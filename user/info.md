@@ -376,15 +376,6 @@ level_exp 对象：
 | current_exp   | num   | 0          | 作用尚不明确       |
 | next_exp      | num   | 0          | 作用尚不明确       |
 
-| birthday    | str   | 生日                 | mm-dd                           |
-| coins       | num   | 硬币数               | 需要登录 只能查看自己的 默认为0 |
-| fans_badge  | bool  | 是否具有粉丝勋章     |                                 |
-| official    | obj   | 认证信息             |                                 |
-| is_followed | bool  | 是否关注此用户       | 需要登录 默认为false            |
-| top_photo   | str   | 主页头图链接         | png                             |
-| theme       | obj   | 空                   | 作用尚不明确                    |
-| sys_notice  | obj   | 空                   | 作用尚不明确                    |
-
 示例：
 http://api.bilibili.com/x/space/myinfo
 ```
