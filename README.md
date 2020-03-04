@@ -21,7 +21,8 @@
 - [用户](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/user)
 	- [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/info.md)√
 	- [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/status_number.md)√
-- 视频
+- [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
+	- [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/status_number.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
 

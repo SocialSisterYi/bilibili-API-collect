@@ -1,6 +1,6 @@
 # 视频状态数
 
-##视频状态数1
+## 视频状态数1
 api.bilibili.com/archive_stat/stat
 
 *方式:GET*
@@ -11,7 +11,7 @@ api.bilibili.com/archive_stat/stat
 | aid    | 视频avID | 必要   |      |
 
 
-**json回复**
+**json回复：**
 |  字段   | 类型  | 内容      | 备注                             |
 | ------- | ----- | --------- | -------------------------------- |
 | code    | num   | 返回值    | 0成功  40001请求错误 40003无视频 |
@@ -62,8 +62,7 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 }
 ```
 
-##视频状态数2
-
+## 视频状态数2
 api.bilibili.com/x/web-interface/archive/stat
 
 *方式:GET*

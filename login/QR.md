@@ -15,7 +15,7 @@ passport.bilibili.com/qrcode/getLoginUrl
 *方式:GET*
 
 
-**json回复**
+**json回复：**
 | 字段    | 类型  | 内容      | 备注               |
 | ------- | ----- | --------- | ------------------ |
 | code    | num   | 返回值    | 0成功              |
@@ -47,8 +47,9 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 ## 验证二维码登录
 passport.bilibili.com/qrcode/getLoginInfo
 
-正确时会进行设置以下cookie项：
-DedeUserID DedeUserID__ckMd5 SESSDATA bili_jct
+验证正确时会进行设置以下cookie项：
+
+「DedeUserID」 「DedeUserID__ckMd5」 「SESSDATA」 「bili_jct」
 
 
 *方式:POST*
@@ -60,7 +61,7 @@ DedeUserID DedeUserID__ckMd5 SESSDATA bili_jct
 | gourl    | 跳转url      | 非必要 | 默认为http://www.bilibili.com |
 
 
-**json回复**
+**json回复：**
 | 字段    | 类型                | 内容                                 | 备注                                            |
 | ------- | ------------------- | ------------------------------------ | ----------------------------------------------- |
 | status  | bool                | 扫码是否成功                         |                                                 |
@@ -74,7 +75,7 @@ data 对象：
 | ---- | ---- | --------------- | ---- |
 | url  | str  | 游戏分站登录url |      |
 
-示例：
+示例：（重要token已河蟹处理）
 
 curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 ```
@@ -83,12 +84,12 @@ curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 	"status": true,
 	"ts": 1583315474,
 	"data": {
-		"url": "https://passport.biligame.com/crossDomain?DedeUserID=293793435&DedeUserID__ckMd5=ab24cb40578a85b0&Expires=15551000&SESSDATA=7816ef30%2C1598867474%2C500ce%2A31&bili_jct=cf13274801a8ff69bdbc4a1c0f09688a&gourl=http%3A%2F%2Fwww.bilibili.com"
+		"url": "https://passport.biligame.com/crossDomain?DedeUserID=***&DedeUserID__ckMd5=***&Expires=***&SESSDATA=***&bili_jct=***&gourl=http%3A%2F%2Fwww.bilibili.com"
 	}
 }
 ```
 
-抓包信息（回复头部）：
+回复头部抓包信息：
 
 可明显看见设置了几个cookie（本人手打cookie，成功登录B站）（重要token已河蟹处理）
 
@@ -109,13 +110,5 @@ Cache-Control: no-cache
 X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 ```
 
-**游戏分站登录url**
-https://passport.biligame.com/crossDomain?
-DedeUserID=(登录UID)&
-DedeUserID__ckMd5=(DedeUserID__ckMd5)&
-Expires=(过期时间 秒)&
-SESSDATA=(SESSDATA)&
-bili_jct=(bili_jct)&
-gourl=(跳转网址 默认为主页)
-
-
+**游戏分站登录url（也可用于不方便设置cookie的场合使用）**
+https://passport.biligame.com/crossDomain?DedeUserID=(登录UID)&DedeUserID__ckMd5=(DedeUserID__ckMd5)&Expires=(过期时间 秒)&SESSDATA=(SESSDATA)&bili_jct=(bili_jct)&gourl=(跳转网址 默认为主页)
