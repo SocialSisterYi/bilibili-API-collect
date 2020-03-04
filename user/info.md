@@ -1,7 +1,8 @@
-#用户详细信息
+#用户详细信息#
 ----------
-##用户详细信息1 (用于空间)
+##用户详细信息1 (用于空间)##
 api.bilibili.com/x/space/acc/info
+
 *方式:GET*
 
 参数：
@@ -97,8 +98,9 @@ http://api.bilibili.com/x/space/acc/info?mid=2
 ```
 
 ----------
-##用户详细信息2 (用于卡片)
+##用户详细信息2 (用于卡片)##
 api.bilibili.com/x/web-interface/card
+
 *方式:GET*
 
 参数：
@@ -286,8 +288,9 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 ```
 
 ----------
-##自己详细信息 (需要登录)
+##自己详细信息 (需要登录)##
 api.bilibili.com/x/space/myinfo
+
 *方式:GET*
 
 **json回复：**
