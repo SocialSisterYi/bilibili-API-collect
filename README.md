@@ -32,6 +32,6 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 **注意：请勿滥用，仅用于学习和测试！**
 
-![](http://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg)
+![](https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg)
 
 **--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
