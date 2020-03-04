@@ -16,7 +16,8 @@
 - 动态
 - 历史&稍后再看
 - 直播
-- 登录
+- [登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login)
+	- [二维码登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login/QR.md)√
 - [用户](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/user)
 	- [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/info.md)√
 	- [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/status_number.md)√
