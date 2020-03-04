@@ -2,12 +2,12 @@
 
 流程&逻辑：
 
-1. 获取「二维码url」以及「秘钥」，以「二维码url」作为内容生成二维码，等待手机端扫描
+1. 获取「二维码内容url」以及「秘钥」，以「二维码内容url」作为内容生成二维码，等待手机端扫描
 2. 以「秘钥」作为参数进行POST
 3. if "code"==true goto 6                   else goto 4（是否已经确认）
 4. if "data"==-4   goto 2                   else goto 5（是否已经扫描）
 5. if "data"==-5   goto 3 && 提示「已扫描」 else goto 1&提示二维码超时或错误（秘钥是否有效）
-6. 
+6. 成功后会自动配置cookie 如需登录游戏分站则访问"data"."url"中的url
 
 ## 获取二维码内容url以及秘钥 (秘钥超时为180秒)
 passport.bilibili.com/qrcode/getLoginUrl
@@ -44,7 +44,7 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 }
 ```
 
-## 验证二维码登录
+## 验证二维码登录 (秘钥超时为180秒)
 passport.bilibili.com/qrcode/getLoginInfo
 
 验证正确时会进行设置以下cookie项：
@@ -111,4 +111,18 @@ X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 ```
 
 **游戏分站登录url（也可用于不方便设置cookie的场合使用）**
-https://passport.biligame.com/crossDomain?DedeUserID=(登录UID)&DedeUserID__ckMd5=(DedeUserID__ckMd5)&Expires=(过期时间 秒)&SESSDATA=(SESSDATA)&bili_jct=(bili_jct)&gourl=(跳转网址 默认为主页)
+
+https://passport.biligame.com/crossDomain?
+
+DedeUserID=(登录UID)&
+
+DedeUserID__ckMd5=(DedeUserID__ckMd5)&
+
+Expires=(过期时间 秒)&
+
+SESSDATA=(SESSDATA)&
+
+bili_jct=(bili_jct)&
+
+gourl=(跳转网址 默认为主页)
+
