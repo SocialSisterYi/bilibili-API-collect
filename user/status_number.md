@@ -1,6 +1,6 @@
 # 状态数
 
-## 用户状态数
+## 关系状态数
 api.bilibili.com/x/relation/stat
 
 *方式:GET*
@@ -28,6 +28,7 @@ data 对象：
 | follower  | num   | 粉丝数      |                                 |
 
 示例：
+
 http://api.bilibili.com/x/relation/stat?vmid=332704117
 ```
 {
@@ -48,6 +49,7 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 api.bilibili.com/x/space/upstat
 
 *方式:GET*
+
 参数：
 | 参数名 | 内容    | 必要性 | 备注 |
 | -------| ------- | ------ |------|
@@ -80,6 +82,7 @@ article 对象：
 | view | num   | 专栏阅读量 |       |
 
 示例：
+
 http://api.bilibili.com/x/space/upstat?mid=456664753
 ```
 {
@@ -98,10 +101,12 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 }
 ```
 
-## 用户订阅数
+## 订阅&投稿状态数
 api.bilibili.com/x/space/navnum
 
 *方式:GET*
+
+参数：
 | 参数名 | 内容    | 必要性 | 备注 |
 | -------| ------- | ------ |------|
 | mid    | 用户UID | 必要   |      |
@@ -143,6 +148,7 @@ favourite 对象：
 | guest   | num   | 收藏夹数   | 无视隐私设置 |
 
 示例：
+
 http://api.bilibili.com/x/space/navnum?mid=23920239
 ```
 {

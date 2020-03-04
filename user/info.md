@@ -58,6 +58,7 @@ vip 对象：
 | theme_type | num   | 0          | 作用尚不明确       |
 
 示列：
+
 http://api.bilibili.com/x/space/acc/info?mid=2
 ```
 {
@@ -210,6 +211,7 @@ space 对象：
 | l_img     | str   | 主页头图链接 正常 | png              |
 
 示列：
+
 http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 ```
 {
@@ -377,6 +379,7 @@ level_exp 对象：
 | next_exp      | num   | 0          | 作用尚不明确       |
 
 示例：
+
 http://api.bilibili.com/x/space/myinfo
 ```
 {
