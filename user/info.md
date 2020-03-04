@@ -1,5 +1,5 @@
 # 用户详细信息
-----------
+
 ## 用户详细信息1 (用于空间)
 api.bilibili.com/x/space/acc/info
 
@@ -97,7 +97,6 @@ http://api.bilibili.com/x/space/acc/info?mid=2
 }
 ```
 
-----------
 ## 用户详细信息2 (用于卡片)
 api.bilibili.com/x/web-interface/card
 
@@ -288,7 +287,6 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 }
 ```
 
-----------
 ## 自己详细信息 (需要登录)
 api.bilibili.com/x/space/myinfo
 

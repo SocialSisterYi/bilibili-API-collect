@@ -1,5 +1,5 @@
 # 状态数
------------
+
 ## 用户状态数
 api.bilibili.com/x/relation/stat
 
@@ -44,7 +44,6 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 }
 ```
 
---------------
 ## UP主状态数
 api.bilibili.com/x/space/upstat
 
@@ -99,7 +98,6 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 }
 ```
 
------------
 ## 用户订阅数
 api.bilibili.com/x/space/navnum
 
