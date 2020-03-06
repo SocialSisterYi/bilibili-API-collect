@@ -32,7 +32,7 @@ data 对象：
 示例：
 
 http://passport.bilibili.com/qrcode/getLoginUrl
-```
+```json
 {
 	"code": 0,
 	"status": true,
@@ -78,7 +78,7 @@ data 对象：
 示例：（重要token已河蟹处理）
 
 curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
-```
+```json
 {
 	"code": 0,
 	"status": true,
@@ -93,7 +93,7 @@ curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 
 可明显看见设置了几个cookie（本人手打cookie，成功登录B站）（重要token已河蟹处理）
 
-```
+```http
 HTTP/1.1 200 OK
 Date: Wed, 04 Mar 2020 10:36:37 GMT
 Content-Type: application/json;charset=UTF-8

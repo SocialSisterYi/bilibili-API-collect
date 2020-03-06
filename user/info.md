@@ -60,7 +60,7 @@ vip 对象：
 示列：
 
 http://api.bilibili.com/x/space/acc/info?mid=2
-```
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -108,8 +108,8 @@ api.bilibili.com/x/web-interface/card
 | -------| -------------------- | ------ |--------------- |
 | mid    | 用户UID              | 必要   |                |
 | photo  | 是否请求用户主页头图 | 非必要 | true是 false否 |
- 
- 
+
+
 **json回复：**
 |  字段   | 类型  | 内容      | 备注               |
 | ------- | ----- | --------- | ------------------ |
@@ -213,7 +213,7 @@ space 对象：
 示列：
 
 http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
-```
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -381,7 +381,7 @@ level_exp 对象：
 示例：
 
 http://api.bilibili.com/x/space/myinfo
-```
+```json
 {
 	"code": 0,
 	"message": "0",

@@ -39,7 +39,7 @@ data 对象：
 示例：
 
 http://api.bilibili.com/archive_stat/stat?aid=91572143
-```
+```json
 {
 	"code": 0,
 	"message": "0",

@@ -30,7 +30,7 @@ data 对象：
 示例：
 
 http://api.bilibili.com/x/relation/stat?vmid=332704117
-```
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -84,7 +84,7 @@ article 对象：
 示例：
 
 http://api.bilibili.com/x/space/upstat?mid=456664753
-```
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -151,7 +151,7 @@ favourite 对象：
 示例：
 
 http://api.bilibili.com/x/space/navnum?mid=23920239
-```
+```json
 {
 	"code": 0,
 	"message": "0",
