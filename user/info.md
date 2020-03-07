@@ -20,27 +20,27 @@ api.bilibili.com/x/space/acc/info
 | data    | obj   | 信息本体  |                    |
 
 data 对象：
-| 字段        | 类型  | 内容                 | 备注                            |
-| ----------- | ----- | -------------------- | ------------------------------- |
-| mid         | num   | UID                  |                                 |
-| name        | str   | 昵称                 |                                 |
-| sex         | str   | 性别                 | 男 女 保密                      |
-| face        | str   | 头像链接             | jpg或gif                        |
-| sign        | str   | 签名                 |                                 |
-| rank        | num   | 10000                | 作用尚不明确                    |
-| level       | num   | 当前等级             | 0-6级                           |
-| jointime    | num   | 0                    | 作用尚不明确                    |
-| moral       | num   | 0                    | 作用尚不明确                    |
-| silence     | num   | 封禁状态             | 0正常 1被封                     |
-| birthday    | str   | 生日                 | mm-dd                           |
-| coins       | num   | 硬币数               | 需要登录 只能查看自己的 默认为0 |
-| fans_badge  | bool  | 是否具有粉丝勋章     |                                 |
-| official    | obj   | 认证信息             |                                 |
-| vip         | obj   | 大会员状态           |                                 |
-| is_followed | bool  | 是否关注此用户       | 需要登录 默认为false            |
-| top_photo   | str   | 主页头图链接         | png                             |
-| theme       | obj   | 空                   | 作用尚不明确                    |
-| sys_notice  | obj   | 空                   | 作用尚不明确                    |
+| 字段        | 类型 | 内容             | 备注                                       |
+| ----------- | ---- | ---------------- | ------------------------------------------ |
+| mid         | num  | UID              |                                            |
+| name        | str  | 昵称             |                                            |
+| sex         | str  | 性别             | 男 女 保密                                 |
+| face        | str  | 头像链接         | jpg或gif                                   |
+| sign        | str  | 签名             |                                            |
+| rank        | num  | 10000            | 作用尚不明确                               |
+| level       | num  | 当前等级         | 0-6级                                      |
+| jointime    | num  | 0                | 作用尚不明确                               |
+| moral       | num  | 0                | 作用尚不明确                               |
+| silence     | num  | 封禁状态         | 0正常 1被封                                |
+| birthday    | str  | 生日             | mm-dd                                      |
+| coins       | num  | 硬币数           | 需要登录(SESSDATA)  只能查看自己的 默认为0 |
+| fans_badge  | bool | 是否具有粉丝勋章 |                                            |
+| official    | obj  | 认证信息         |                                            |
+| vip         | obj  | 大会员状态       |                                            |
+| is_followed | bool | 是否关注此用户   | 需要登录 默认为false                       |
+| top_photo   | str  | 主页头图链接     | png                                        |
+| theme       | obj  | 空               | 作用尚不明确                               |
+| sys_notice  | obj  | 空               | 作用尚不明确                               |
 
 official 对象：
 | 字段  | 类型  | 内容     | 备注                            |
@@ -124,35 +124,35 @@ data 对象：
 | card | obj   | 卡片信息 |      |
 
 card 对象：
-| 字段            | 类型  | 内容                 | 备注                            |
-| --------------- | ----- | -------------------- | ------------------------------- |
-| mid             | num   | 用户UID              |                                 |
-| approve         | bool  | false                | 作用尚不明确                    |
-| name            | str   | 用户昵称             |                                 |
-| sex             | str   | 用户性别             | 男 女 保密                      |
-| face            | str   | 用户头像链接         | jpg或gif                        |
-| DisplayRank     | str   | 0                    | 作用尚不明确                    |
-| regtime         | num   | 0                    | 作用尚不明确                    |
-| spacesta        | num   | 0                    | 作用尚不明确                    |
-| birthday        | str   | 空                   | 作用尚不明确                    |
-| place           | str   | 空                   | 作用尚不明确                    |
-| description     | str   | 空                   | 作用尚不明确                    |
-| article         | num   | 0                    | 作用尚不明确                    |
-| attentions      | array | 空                   | 作用尚不明确                    |
-| fans            | num   | 粉丝数               |                                 |
-| friend          | num   | 关注数               |                                 |
-| attention       | num   | 关注数               |                                 |
-| level_info      | obj   | 等级                 |                                 |
-| pendant         | obj   | 挂件                 |                                 |
-| nameplate       | obj   | 勋章                 |                                 |
-| Official        | obj   | 认证信息             |                                 |
-| official_verify | obj   | 认证信息             |                                 |
-| vip             | obj   | 大会员状态           |                                 |
-| space           | obj   | 主页头图             |                                 |
-| following       | bool  | 是否关注此用户       | 需要登录 默认为false            |
-| archive_count   | num   | 用户稿件数           |                                 |
-| article_count   | num   | 0                    | 作用尚不明确                    |
-| follower        | num   | 粉丝数               |                                 |
+| 字段            | 类型  | 内容           | 备注                            |
+| --------------- | ----- | -------------- | ------------------------------- |
+| mid             | num   | 用户UID        |                                 |
+| approve         | bool  | false          | 作用尚不明确                    |
+| name            | str   | 用户昵称       |                                 |
+| sex             | str   | 用户性别       | 男 女 保密                      |
+| face            | str   | 用户头像链接   | jpg或gif                        |
+| DisplayRank     | str   | 0              | 作用尚不明确                    |
+| regtime         | num   | 0              | 作用尚不明确                    |
+| spacesta        | num   | 0              | 作用尚不明确                    |
+| birthday        | str   | 空             | 作用尚不明确                    |
+| place           | str   | 空             | 作用尚不明确                    |
+| description     | str   | 空             | 作用尚不明确                    |
+| article         | num   | 0              | 作用尚不明确                    |
+| attentions      | array | 空             | 作用尚不明确                    |
+| fans            | num   | 粉丝数         |                                 |
+| friend          | num   | 关注数         |                                 |
+| attention       | num   | 关注数         |                                 |
+| level_info      | obj   | 等级           |                                 |
+| pendant         | obj   | 挂件           |                                 |
+| nameplate       | obj   | 勋章           |                                 |
+| Official        | obj   | 认证信息       |                                 |
+| official_verify | obj   | 认证信息       |                                 |
+| vip             | obj   | 大会员状态     |                                 |
+| space           | obj   | 主页头图       |                                 |
+| following       | bool  | 是否关注此用户 | 需要登录(SESSDATA)  默认为false |
+| archive_count   | num   | 用户稿件数     |                                 |
+| article_count   | num   | 0              | 作用尚不明确                    |
+| follower        | num   | 粉丝数         |                                 |
 
 level_info 对象：
 |  字段         | 类型  | 内容       | 备注               |
@@ -289,7 +289,10 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 }
 ```
 
-## 自己详细信息 (需要登录)
+## 自己详细信息
+
+需要登录(SESSDATA)
+
 api.bilibili.com/x/space/myinfo
 
 *方式:GET*

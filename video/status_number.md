@@ -20,21 +20,21 @@ api.bilibili.com/archive_stat/stat
 | data    | obj   | 信息本体  |                                  |
 
 data 对象：
-| 字段       | 类型              | 内容                            | 备注             |
-| ---------- | ----------------- | ------------------------------- | ---------------- |
-| aid        | num               | 视频avID                        |                  |
-| view       | 普通num 屏蔽时str | 普通：观看次数 屏蔽时："--"     |                  |
-| danmaku    | num               | 弹幕条数                        |                  |
-| reply      | num               | 评论条数                        |                  |
-| favorite   | num               | 收藏人数                        |                  |
-| coin       | num               | 投币枚数                        |                  |
-| share      | num               | 分享次数                        |                  |
-| now_rank   | num               | 0                               | 作用尚不明确     |
-| his_rank   | num               | 历史最高排行                    |                  |
-| like       | num               | 获赞次数                        |                  |
-| dislike    | num               | 0                               | 作用尚不明确     |
-| no_reprint | num               | 禁止转载标志                    | 0无 1禁止        |
-| copyright  | num               | 版权标志                        | 1自制 2转载      |
+| 字段       | 类型              | 内容                        | 备注         |
+| ---------- | ----------------- | --------------------------- | ------------ |
+| aid        | num               | 视频avID                    |              |
+| view       | 普通num 屏蔽时str | 普通：观看次数 屏蔽时："--" |              |
+| danmaku    | num               | 弹幕条数                    |              |
+| reply      | num               | 评论条数                    |              |
+| favorite   | num               | 收藏人数                    |              |
+| coin       | num               | 投币枚数                    |              |
+| share      | num               | 分享次数                    |              |
+| now_rank   | num               | 0                           | 作用尚不明确 |
+| his_rank   | num               | 历史最高排行                |              |
+| like       | num               | 获赞次数                    |              |
+| dislike    | num               | 0                           | 作用尚不明确 |
+| no_reprint | num               | 禁止转载标志                | 0无 1禁止    |
+| copyright  | num               | 版权标志                    | 1自制 2转载  |
 
 示例：
 
@@ -65,6 +65,12 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 ## 视频状态数2
 api.bilibili.com/x/web-interface/archive/stat
 
+**此API克制python，UA中只要有"python"字眼就会被墙，如用py请改UA**
+
+**此API克制python，UA中只要有"python"字眼就会被墙，如用py请改UA**
+
+**此API克制python，UA中只要有"python"字眼就会被墙，如用py请改UA**
+
 *方式:GET*
 
 参数：
@@ -82,29 +88,29 @@ api.bilibili.com/x/web-interface/archive/stat
 | data    | obj   | 信息本体  |                                  |
 
 data 对象：
-| 字段       | 类型              | 内容                         | 备注             |
-| ---------- | ----------------- | ---------------------------- | ---------------- |
-| aid        | num               | 视频avID                     |                  |
-| bvid       | str               | 空                           | 作用尚不明确     |
-| view       | 普通num 屏蔽时str | 普通：观看次数 屏蔽时："--"  |                  |
-| danmaku    | num               | 弹幕条数                     |                  |
-| reply      | num               | 评论条数                     |                  |
-| favorite   | num               | 收藏人数                     |                  |
-| coin       | num               | 投币枚数                     |                  |
-| share      | num               | 分享次数                     |                  |
-| now_rank   | num               | 0                            | 作用尚不明确     |
-| his_rank   | num               | 历史最高排行                 |                  |
-| like       | num               | 获赞次数                     |                  |
-| dislike    | num               | 0                            | 作用尚不明确     |
-| no_reprint | num               | 禁止转载标志                 | 0无 1禁止        |
-| copyright  | num               | 版权标志                     | 1自制 2转载      |
-| argue_msg  | str               | 警告信息                     | 默认为空         |
-| evaluation | str               | 视频评分                     | 默认为空         |
+| 字段       | 类型              | 内容                        | 备注         |
+| ---------- | ----------------- | --------------------------- | ------------ |
+| aid        | num               | 视频avID                    |              |
+| bvid       | str               | 空                          | 作用尚不明确 |
+| view       | 普通num 屏蔽时str | 普通：观看次数 屏蔽时："--" |              |
+| danmaku    | num               | 弹幕条数                    |              |
+| reply      | num               | 评论条数                    |              |
+| favorite   | num               | 收藏人数                    |              |
+| coin       | num               | 投币枚数                    |              |
+| share      | num               | 分享次数                    |              |
+| now_rank   | num               | 0                           | 作用尚不明确 |
+| his_rank   | num               | 历史最高排行                |              |
+| like       | num               | 获赞次数                    |              |
+| dislike    | num               | 0                           | 作用尚不明确 |
+| no_reprint | num               | 禁止转载标志                | 0无 1禁止    |
+| copyright  | num               | 版权标志                    | 1自制 2转载  |
+| argue_msg  | str               | 警告信息                    | 默认为空     |
+| evaluation | str               | 视频评分                    | 默认为空     |
 
 示例：
 
 http://api.bilibili.com/x/web-interface/archive/stat?aid=2271112
-```
+```json
 {
 	"code": 0,
 	"message": "0",

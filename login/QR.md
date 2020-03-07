@@ -4,15 +4,18 @@
 
 1. 获取「二维码内容url」以及「秘钥」，以「二维码内容url」作为内容生成二维码，等待手机端扫描
 2. 以「秘钥」作为参数进行POST
-3. if "code"==true goto 6                   else goto 4（是否已经确认）
-4. if "data"==-4   goto 2                   else goto 5（是否已经扫描）
+3. if "code"==true goto 6                               else goto 4（是否已经确认）
+4. if "data"==-4   goto 2                                else goto 5（是否已经扫描）
 5. if "data"==-5   goto 3 && 提示「已扫描」 else goto 1&提示二维码超时或错误（秘钥是否有效）
 6. 成功后会自动配置cookie 如需登录游戏分站则访问"data"."url"中的url
 
-## 获取二维码内容url以及秘钥 (秘钥超时为180秒)
+## 获取二维码内容url以及秘钥 
+
+(秘钥超时为180秒)
+
 passport.bilibili.com/qrcode/getLoginUrl
 
-*方式:GET*
+*方式：GET*
 
 
 **json回复：**
@@ -44,15 +47,17 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 }
 ```
 
-## 验证二维码登录 (秘钥超时为180秒)
+## 验证二维码登录 
+
+（秘钥超时为180秒）
+
 passport.bilibili.com/qrcode/getLoginInfo
 
 验证正确时会进行设置以下cookie项：
 
 「DedeUserID」 「DedeUserID__ckMd5」 「SESSDATA」 「bili_jct」
 
-
-*方式:POST*
+*方式：POST*
 
 参数：
 | 参数名   | 内容         | 必要性 | 备注                          |
@@ -91,7 +96,7 @@ curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 
 回复头部抓包信息：
 
-可明显看见设置了几个cookie（本人手打cookie，成功登录B站）（重要token已河蟹处理）
+可明显看见设置了几个cookie（本人手打cookie，已经成功登录B站）（重要token已河蟹处理）
 
 ```http
 HTTP/1.1 200 OK

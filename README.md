@@ -9,16 +9,47 @@
 计划整理分类&目录：
 
 - cookie
-- 文章
+- [登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login)
+  - [二维码登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login/QR.md)√
+  - 密码&短信登录
+  - qq&微博登录
+  - 登录基本信息
+  - 在线用户
+  - 消息
+  - 私信
+- [用户](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/user)
+  - [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/info.md)√
+  - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/status_number.md)√
+  - 关系
+  - 个人空间
+- [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
+  - 基本信息
+  - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/status_number.md)√
+  - [快照](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/snapshot.md)√
+  - [点赞&投币&收藏](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/like_coin_fav.md)√
+  - TAG
+  - 视频推荐
+  - 播放&下载地址
+- 专栏
+  - 基本信息
+  - 点赞&投币&收藏
+  - 文集基本信息
 - 音频
 - 番剧
+- 排行榜
+- 搜索
+  - 默认搜索
 - 小黑屋
 - 评论区
+  - 评论区明细
+  - 表情
+  - 发表评论
+  - 评论操作
 - 创作中心
 - 弹幕
   - 实时弹幕
   - 历史弹幕
-  - 弹幕快照
+  - 快照
   - 弹幕操作
 - 动态
   - 发送动态
@@ -28,20 +59,6 @@
   - 稍后再看
   - 收藏夹
 - 直播
-- [登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login)
-	- [二维码登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login/QR.md)√
-	- 密码&短信登录
-	- qq&微博登录
-	- 登录基本信息
-- [用户](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/user)
-	- [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/info.md)√
-	- [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/status_number.md)√
-	- 关系
-	- 个人空间
-- [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
-	- [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/status_number.md)√
-	- [快照](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/snapshot.md)√
-	- 赞&币&收
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
 
