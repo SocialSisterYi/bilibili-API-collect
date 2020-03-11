@@ -43,12 +43,12 @@ data 对象：
 | sys_notice  | obj  | 空               | 作用尚不明确                               |
 
 official 对象：
-| 字段  | 类型  | 内容     | 备注                            |
-| ----- | ----- | -------- | ------------------------------- |
-| role  | num   | 认证类型 | 0无 1 2个人认证 3 4 5 6机构认证 |
-| title | str   | 认证信息 | 默认为空                        |
-| desc  | str   | 空       | 作用尚不明确                    |
-| type  | num   | 是否认证 | -1无 0认证                      |
+| 字段  | 类型 | 内容     | 备注                            |
+| ----- | ---- | -------- | ------------------------------- |
+| role  | num  | 认证类型 | 0无 1 2个人认证 3 4 5 6机构认证 |
+| title | str  | 认证信息 | 无为空                          |
+| desc  | str  | 认证备注 | 无为空                          |
+| type  | num  | 是否认证 | -1无 0认证                      |
 
 vip 对象：
 |  字段      | 类型  | 内容       | 备注               |
@@ -98,7 +98,20 @@ http://api.bilibili.com/x/space/acc/info?mid=2
 }
 ```
 
+可得出用户的头像为：
+
+http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg
+
+![](http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg)
+
+空间头图为：
+
+http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
+
+![](http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png)
+
 ## 用户详细信息2 (用于卡片)
+
 api.bilibili.com/x/web-interface/card
 
 *方式:GET*
@@ -181,12 +194,12 @@ nameplate 对象：
 | condition     | str   | 勋章条件          |                    |
 
 Official 对象：
-| 字段  | 类型  | 内容     | 备注                            |
-| ----- | ----- | -------- | ------------------------------- |
-| role  | num   | 认证类型 | 0无 1 2个人认证 3 4 5 6机构认证 |
-| title | str   | 认证信息 | 默认为空                        |
-| desc  | str   | 空       | 作用尚不明确                    |
-| type  | num   | 是否认证 | -1无 0认证                      |
+| 字段  | 类型 | 内容     | 备注                            |
+| ----- | ---- | -------- | ------------------------------- |
+| role  | num  | 认证类型 | 0无 1 2个人认证 3 4 5 6机构认证 |
+| title | str  | 认证信息 | 无为空                          |
+| desc  | str  | 认证备注 | 无为空                          |
+| type  | num  | 是否认证 | -1无 0认证                      |
 
 official_verify 对象：
 | 字段  | 类型  | 内容     | 备注                            |
@@ -366,12 +379,12 @@ nameplate 对象：
 | condition     | str   | 勋章条件          |                    |
 
 Official 对象：
-| 字段  | 类型  | 内容     | 备注                            |
-| ----- | ----- | -------- | ------------------------------- |
-| role  | num   | 认证类型 | 0无 1 2个人认证 3 4 5 6机构认证 |
-| title | str   | 认证信息 | 默认为空                        |
-| desc  | str   | 空       | 作用尚不明确                    |
-| type  | num   | 是否认证 | -1无 0认证                      |
+| 字段  | 类型 | 内容     | 备注                            |
+| ----- | ---- | -------- | ------------------------------- |
+| role  | num  | 认证类型 | 0无 1 2个人认证 3 4 5 6机构认证 |
+| title | str  | 认证信息 | 无为空                          |
+| desc  | str  | 认证备注 | 无为空                          |
+| type  | num  | 是否认证 | -1无 0认证                      |
 
 level_exp 对象：
 |  字段         | 类型  | 内容       | 备注               |

@@ -6,6 +6,8 @@
 
 **不断更新中....**
 
+（打对勾的已经完成）
+
 计划整理分类&目录：
 
 - cookie
@@ -23,6 +25,7 @@
   - 关系
   - 个人空间
 - [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
+  - 视频分区代码
   - 基本信息
   - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/status_number.md)√
   - [快照](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/snapshot.md)√
@@ -30,6 +33,7 @@
   - TAG
   - 视频推荐
   - 播放&下载地址
+  - 实时观看人数
 - 专栏
   - 基本信息
   - 点赞&投币&收藏
@@ -46,7 +50,7 @@
   - 发表评论
   - 评论操作
 - 创作中心
-- 弹幕
+- 视频弹幕
   - 实时弹幕
   - 历史弹幕
   - 快照
@@ -54,11 +58,20 @@
 - 动态
   - 发送动态
   - 动态列表
-- 历史&收藏
+  - 动态内容
+  - 小视频
+- 历史&收藏再看
   - 历史记录
   - 稍后再看
   - 收藏夹
+- 课程
 - 直播
+  - 直播视频流
+  - 直播弹幕
+- 漫画
+- 轻视频
+- 哔哩哔哩游戏
+- 会员购
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
 
@@ -67,6 +80,8 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 **注意：请勿滥用，仅用于学习和测试！**
 
 **注意：请勿滥用，仅用于学习和测试！**
+
+（重要的话说三遍，本人不承担任何责任）
 
 ![](https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg)
 

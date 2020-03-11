@@ -87,7 +87,7 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "api.
 
 需要登录(SESSDATA)
 
-需要验证来源为"http://www.bilibili.com"或"https://www.bilibili.com"域名下
+需要验证来源为 "http://www.bilibili.com" 或 "https://www.bilibili.com" 域名下
 
 api.bilibili.com/medialist/gateway/coll/resource/deal
 
