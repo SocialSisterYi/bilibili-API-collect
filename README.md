@@ -26,7 +26,7 @@
   - 个人空间
 - [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
   - 视频分区代码
-  - 基本信息
+  - [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md)√
   - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/status_number.md)√
   - [快照](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/snapshot.md)√
   - [点赞&投币&收藏](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/like_coin_fav.md)√
@@ -83,7 +83,7 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 （重要的话说三遍，本人不承担任何责任）
 
-![](https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg)
+<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg" style="zoom:50%;" />
 
 **--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 

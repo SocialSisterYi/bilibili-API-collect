@@ -37,7 +37,7 @@ data 对象：
 | ctime        | num   | 视频审核通过时间               | 时间戳                |
 | desc         | str   | 视频简介                       |                       |
 | state        | num   | 0                              | 作用尚不明确          |
-| attribute    | num   |                                |                       |
+| attribute    | num   |                                | 作用尚不明确          |
 | duration     | num   | 视频总计持续时长（所有分P）    | 单位为秒              |
 | mission_id   | num   | 视频参与的活动ID               | 无为0                 |
 | redirect_url | str   | 重定向url                      | 用于番剧 影视的av->ep |
@@ -102,7 +102,7 @@ page 数组（类型：obj）：
 | n    | (n+1)P内容 |               |
 | ……   | ……         | ……            |
 
-数组 data 中的对象：
+数组 page 中的对象：
 
 | 字段      | 类型 | 内容            | 备注         |
 | --------- | ---- | --------------- | ------------ |
@@ -115,7 +115,7 @@ page 数组（类型：obj）：
 | weblink   | str  | 空              | 作用尚不明确 |
 | dimension | obj  | 当前分P分辨率   |              |
 
-dimension 对象：
+dimension 对象：(同data中的dimension对象)
 
 | 字段   | 类型 | 内容         | 备注         |
 | ------ | ---- | ------------ | ------------ |
@@ -338,7 +338,7 @@ UP主头像为：
 
 http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
-![](http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg)
+<img src="http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg" style="zoom: 25%;" />
 
 
 
