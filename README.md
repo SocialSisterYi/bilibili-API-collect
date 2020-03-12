@@ -1,8 +1,8 @@
 # 哔哩哔哩-API收集整理
 
-本项目对B站的野生api进行收集整理，以及研究使用方法并对其进行说明
+本项目对B站的野生web端api进行收集整理，以及研究使用方法并对其进行说明
 
-所有api均为标准http协议，返回值均为json
+所有api均为标准http协议，返回值大都为json
 
 **不断更新中....**
 
@@ -15,7 +15,7 @@
   - [二维码登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login/QR.md)√
   - 密码&短信登录
   - qq&微博登录
-  - 登录基本信息
+  - [登录基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login/login_info.md)√
   - 在线用户
   - 消息
   - 私信
@@ -68,6 +68,7 @@
 - 直播
   - 直播视频流
   - 直播弹幕
+- B币钱包
 - 漫画
 - 轻视频
 - 哔哩哔哩游戏

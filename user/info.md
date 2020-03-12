@@ -159,7 +159,7 @@ card 对象：
 | pendant         | obj   | 挂件           |                                 |
 | nameplate       | obj   | 勋章           |                                 |
 | Official        | obj   | 认证信息       |                                 |
-| official_verify | obj   | 认证信息       |                                 |
+| official_verify | obj   | 认证信息2      |                                 |
 | vip             | obj   | 大会员状态     |                                 |
 | space           | obj   | 主页头图       |                                 |
 | following       | bool  | 是否关注此用户 | 需要登录(SESSDATA)  默认为false |
@@ -202,10 +202,10 @@ Official 对象：
 | type  | num  | 是否认证 | -1无 0认证                      |
 
 official_verify 对象：
-| 字段  | 类型  | 内容     | 备注                            |
-| ----- | ----- | -------- | ------------------------------- |
-| type  | num   | 是否认证 | -1无 0认证                      |
-| desc  | str   | 认证信息 |                                 |
+| 字段 | 类型 | 内容     | 备注       |
+| ---- | ---- | -------- | ---------- |
+| type | num  | 是否认证 | -1无 0认证 |
+| desc | str  | 认证信息 | 无为空     |
 
 vip 对象：
 |  字段         | 类型  | 内容       | 备注               |
@@ -361,12 +361,12 @@ label 对象:
 | path         | str   | 空     | 作用尚不明确 |
 
 pendant 对象：
-|  字段         | 类型  | 内容             | 备注               |
-| ------------- | ----- | ---------------- | ------------------ |
-| pid           | num   | 挂件id           |                    |
-| name          | str   | 挂件名称         |                    |
-| image         | str   | 挂件图片链接     | png                |
-| expire        | num   | 0                | 作用尚不明确       |
+| 字段   | 类型 | 内容        | 备注         |
+| ------ | ---- | ----------- | ------------ |
+| pid    | num  | 挂件id      |              |
+| name   | str  | 挂件名称    |              |
+| image  | str  | 挂件图片url | png          |
+| expire | num  | 0           | 作用尚不明确 |
 
 nameplate 对象：
 |  字段         | 类型  | 内容              | 备注               |

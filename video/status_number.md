@@ -1,6 +1,6 @@
 # 视频状态数
 
-## 视频状态数1
+## 视频状态数1（备用 部分 不墙py）
 api.bilibili.com/archive_stat/stat
 
 *方式:GET*
@@ -62,7 +62,7 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 }
 ```
 
-## 视频状态数2
+## 视频状态数2（常用 全 墙py）
 api.bilibili.com/x/web-interface/archive/stat
 
 **此API克制python，UA中只要有"python"字眼就会被墙，如用py请改UA**

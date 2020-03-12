@@ -1,6 +1,8 @@
 # 视频点赞&投币&收藏
 
-## 点赞视频 
+## 操作
+
+### 点赞视频 
 
 需要登录(SESSDATA)
 
@@ -36,7 +38,7 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 }
 ```
 
-## 投币视频
+### 投币视频
 
 需要登录(SESSDATA)
 
@@ -83,7 +85,7 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "api.
 }
 ```
 
-## 收藏视频
+### 收藏视频
 
 需要登录(SESSDATA)
 
@@ -131,7 +133,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 }
 ```
 
-## 一键三连视频
+### 一键三连视频
 
 需要登录(SESSDATA)
 
@@ -182,7 +184,9 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 }
 ```
 
-## 判断视频是否被收藏
+## 判断状态
+
+### 视频被收藏
 
 需要登录(SESSDATA)
 
@@ -228,7 +232,7 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 }
 ```
 
-## 判断视频是否被点赞
+### 视频被点赞
 
 需要登录(SESSDATA)
 
@@ -264,7 +268,7 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 }
 ```
 
-## 判断视频是否被投币
+### 视频被投币
 
 需要登录(SESSDATA)
 
