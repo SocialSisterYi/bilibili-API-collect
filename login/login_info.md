@@ -12,40 +12,40 @@ api.bilibili.com/x/web-interface/nav (原始数据)
 
 **json回复：**
 
-| 字段    | 类型 | 内容     | 备注                 |
-| ------- | ---- | -------- | -------------------- |
-| code    | num  | 返回值   | 0成功 -101账号未登录 |
-| message | str  | 错误信息 | 默认为0              |
-| ttl     | num  | 1        | 作用尚不明确         |
-| data    | obj  | 信息本体 |                      |
+| 字段    | 类型 | 内容     | 备注                      |
+| ------- | ---- | -------- | ------------------------- |
+| code    | num  | 返回值   | 0成功<br />-101账号未登录 |
+| message | str  | 错误信息 | 默认为0                   |
+| ttl     | num  | 1        | 作用尚不明确              |
+| data    | obj  | 信息本体 |                           |
 
 data 对象：
 
-| 字段            | 类型 | 内容             | 备注            |
-| --------------- | ---- | ---------------- | --------------- |
-| isLogin         | bool | 是否已登录       |                 |
-| email_verified  | num  | 是否验证邮箱地址 | 0未验证 1已验证 |
-| face            | str  | 登录用户头像url  | jpg gif         |
-| level_info      | obj  | 等级信息         |                 |
-| mid             | num  | 登录UID          |                 |
-| mobile_verified | num  | 是否验证手机号   | 0未验证 1已验证 |
-| money           | num  | 拥有硬币数       |                 |
-| moral           | num  | 当前节操值       | 上限70          |
-| official        | obj  | 认证信息         |                 |
-| officialVerify  | obj  | 认证信息2        |                 |
-| pendant         | obj  | 挂件信息         |                 |
-| scores          | num  | 0                | 作用尚不明确    |
-| uname           | str  | 登录用户昵称     |                 |
-| vipDueDate      | num  | 大会员到期时间   | 毫秒 时间戳     |
-| vipStatus       | num  | 会员开通状态     | 0无 1有         |
-| vipType         | num  | 大会员类型       | 0无 1月度 2年度 |
-| vip_pay_type    | num  | 会员开通状态     | 0无 1有         |
-| vip_theme_type  | num  | 0                | 作用尚不明确    |
-| wallet          | obj  | B币信息          |                 |
-| has_shop        | bool | false            | 作用尚不明确    |
-| shop_url        | str  | 空               | 作用尚不明确    |
-| allowance_count | num  | 0                | 作用尚不明确    |
-| answer_status   | num  | 0                | 作用尚不明确    |
+| 字段            | 类型 | 内容             | 备注                      |
+| --------------- | ---- | ---------------- | ------------------------- |
+| isLogin         | bool | 是否已登录       |                           |
+| email_verified  | num  | 是否验证邮箱地址 | 0未验证<br />1已验证      |
+| face            | str  | 登录用户头像url  | jpg gif                   |
+| level_info      | obj  | 等级信息         |                           |
+| mid             | num  | 登录UID          |                           |
+| mobile_verified | num  | 是否验证手机号   | 0未验证<br />1已验证      |
+| money           | num  | 拥有硬币数       |                           |
+| moral           | num  | 当前节操值       | 上限70                    |
+| official        | obj  | 认证信息         |                           |
+| officialVerify  | obj  | 认证信息2        |                           |
+| pendant         | obj  | 挂件信息         |                           |
+| scores          | num  | 0                | 作用尚不明确              |
+| uname           | str  | 登录用户昵称     |                           |
+| vipDueDate      | num  | 大会员到期时间   | 毫秒 时间戳               |
+| vipStatus       | num  | 会员开通状态     | 0无<br />1有              |
+| vipType         | num  | 大会员类型       | 0无<br />1月度<br />2年度 |
+| vip_pay_type    | num  | 会员开通状态     | 0无<br />1有              |
+| vip_theme_type  | num  | 0                | 作用尚不明确              |
+| wallet          | obj  | B币信息          |                           |
+| has_shop        | bool | false            | 作用尚不明确              |
+| shop_url        | str  | 空               | 作用尚不明确              |
+| allowance_count | num  | 0                | 作用尚不明确              |
+| answer_status   | num  | 0                | 作用尚不明确              |
 
 level_info 对象：
 
@@ -58,19 +58,19 @@ level_info 对象：
 
 official 对象：
 
-| 字段  | 类型 | 内容     | 备注                            |
-| ----- | ---- | -------- | ------------------------------- |
-| role  | num  | 认证类型 | 0无 1 2个人认证 3 4 5 6机构认证 |
-| title | str  | 认证信息 | 无为空                          |
-| desc  | str  | 认证备注 | 无为空                          |
-| type  | num  | 是否认证 | -1无 0认证                      |
+| 字段  | 类型 | 内容     | 备注                                      |
+| ----- | ---- | -------- | ----------------------------------------- |
+| role  | num  | 认证类型 | 0无<br />1 2个人认证<br />3 4 5 6机构认证 |
+| title | str  | 认证信息 | 无为空                                    |
+| desc  | str  | 认证备注 | 无为空                                    |
+| type  | num  | 是否认证 | -1无<br />0认证                           |
 
 official_verify 对象：
 
-| 字段 | 类型 | 内容     | 备注       |
-| ---- | ---- | -------- | ---------- |
-| type | num  | 是否认证 | -1无 0认证 |
-| desc | str  | 认证信息 | 无为空     |
+| 字段 | 类型 | 内容     | 备注            |
+| ---- | ---- | -------- | --------------- |
+| type | num  | 是否认证 | -1无<br />0认证 |
+| desc | str  | 认证信息 | 无为空          |
 
 pendant 对象：
 
@@ -158,34 +158,34 @@ http://api.bilibili.com/x/web-interface/nav
 
 需要验证DedeUserID存在且不为0
 
-account.bilibili.com/home/userInfo (使用转义)
+account.bilibili.com/home/userInfo (带有转义)
 
 *方式:GET*
 
 **json回复：**
 
-| 字段   | 类型 | 内容     | 备注                 |
-| ------ | ---- | -------- | -------------------- |
-| code   | num  | 返回值   | 0成功 -101账号未登录 |
-| status | bool | true     | 作用尚不明确         |
-| data   | obj  | 信息本体 |                      |
+| 字段   | 类型 | 内容     | 备注                      |
+| ------ | ---- | -------- | ------------------------- |
+| code   | num  | 返回值   | 0成功<br />-101账号未登录 |
+| status | bool | true     | 作用尚不明确              |
+| data   | obj  | 信息本体 |                           |
 
 data 对象：
 
-| 字段              | 类型 | 内容              | 备注            |
-| ----------------- | ---- | ----------------- | --------------- |
-| level_info        | obj  | 等级信息          |                 |
-| bCoins            | num  | 拥有B币数         |                 |
-| coins             | num  | 拥有硬币数        |                 |
-| face              | str  | 登录用户头像url   | jpg gif         |
-| nameplate_current | null | ???               | 作用尚不明确    |
-| pendant_current   | str  | 登录用户头像框url | png             |
-| uname             | str  | 登录用户昵称      |                 |
-| userStatus        | str  | 登录用户状态      |                 |
-| vipType           | num  | 大会员类型        | 0无 1月度 2年度 |
-| vipStatus         | num  | 会员开通状态      | 0无 1有         |
-| official_verify   | num  | 是否认证          | -1无 0认证      |
-| pointBalance      | num  | 0                 | 作用尚不明确    |
+| 字段              | 类型 | 内容              | 备注                      |
+| ----------------- | ---- | ----------------- | ------------------------- |
+| level_info        | obj  | 等级信息          |                           |
+| bCoins            | num  | 拥有B币数         |                           |
+| coins             | num  | 拥有硬币数        |                           |
+| face              | str  | 登录用户头像url   | jpg gif                   |
+| nameplate_current | null | ???               | 作用尚不明确              |
+| pendant_current   | str  | 登录用户头像框url | png                       |
+| uname             | str  | 登录用户昵称      |                           |
+| userStatus        | str  | 登录用户状态      |                           |
+| vipType           | num  | 大会员类型        | 0无<br />1月度<br />2年度 |
+| vipStatus         | num  | 会员开通状态      | 0无<br />1有              |
+| official_verify   | num  | 是否认证          | -1无<br />0认证           |
+| pointBalance      | num  | 0                 | 作用尚不明确              |
 
 level_info 对象：
 
@@ -238,12 +238,12 @@ api.bilibili.com/x/web-interface/nav/stat
 
 **json回复：**
 
-| 字段    | 类型 | 内容     | 备注                 |
-| ------- | ---- | -------- | -------------------- |
-| code    | num  | 返回值   | 0成功 -101账号未登录 |
-| message | str  | 错误信息 | 默认为0              |
-| ttl     | num  | 1        | 作用尚不明确         |
-| data    | obj  | 信息本体 |                      |
+| 字段    | 类型 | 内容     | 备注                      |
+| ------- | ---- | -------- | ------------------------- |
+| code    | num  | 返回值   | 0成功<br />-101账号未登录 |
+| message | str  | 错误信息 | 默认为0                   |
+| ttl     | num  | 1        | 作用尚不明确              |
+| data    | obj  | 信息本体 |                           |
 
 | 字段          | 类型 | 内容       | 备注 |
 | ------------- | ---- | ---------- | ---- |
