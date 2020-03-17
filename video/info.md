@@ -104,16 +104,16 @@ page 数组：
 
 数组 page 中的所有项 对象：
 
-| 字段      | 类型 | 内容            | 备注         |
-| --------- | ---- | --------------- | ------------ |
-| cid       | num  | 当前分P CID     |              |
-| page      | num  | 当前分P         |              |
-| from      | str  | vupload         | 作用尚不明确 |
-| part      | str  | 当前分P标题     |              |
-| duration  | num  | 当前分P持续时间 | 单位为秒     |
-| vid       | str  | 空              | 作用尚不明确 |
-| weblink   | str  | 空              | 作用尚不明确 |
-| dimension | obj  | 当前分P分辨率   |              |
+| 字段      | 类型 | 内容            | 备注                             |
+| --------- | ---- | --------------- | -------------------------------- |
+| cid       | num  | 当前分P CID     |                                  |
+| page      | num  | 当前分P         |                                  |
+| from      | str  | 视频来源        | vupload用户上传<br />hunan芒果TV |
+| part      | str  | 当前分P标题     |                                  |
+| duration  | num  | 当前分P持续时间 | 单位为秒                         |
+| vid       | str  | 空              | 作用尚不明确                     |
+| weblink   | str  | 空              | 作用尚不明确                     |
+| dimension | obj  | 当前分P分辨率   |                                  |
 
 dimension 对象：(同data中的dimension对象)
 
@@ -409,16 +409,16 @@ api.bilibili.com/x/player/pagelist
 
 数组 data 中的所有项 对象：
 
-| 字段      | 类型 | 内容            | 备注         |
-| --------- | ---- | --------------- | ------------ |
-| cid       | num  | 当前分P CID     |              |
-| page      | num  | 当前分P         |              |
-| from      | str  | vupload         | 作用尚不明确 |
-| part      | str  | 当前分P标题     |              |
-| duration  | num  | 当前分P持续时间 | 单位为秒     |
-| vid       | str  | 空              | 作用尚不明确 |
-| weblink   | str  | 空              | 作用尚不明确 |
-| dimension | obj  | 当前分P分辨率   |              |
+| 字段      | 类型 | 内容            | 备注                             |
+| --------- | ---- | --------------- | -------------------------------- |
+| cid       | num  | 当前分P CID     |                                  |
+| page      | num  | 当前分P         |                                  |
+| from      | str  | 视频来源        | vupload用户上传<br />hunan芒果TV |
+| part      | str  | 当前分P标题     |                                  |
+| duration  | num  | 当前分P持续时间 | 单位为秒                         |
+| vid       | str  | 空              | 作用尚不明确                     |
+| weblink   | str  | 空              | 作用尚不明确                     |
+| dimension | obj  | 当前分P分辨率   |                                  |
 
 dimension 对象：
 

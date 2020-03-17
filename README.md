@@ -25,7 +25,7 @@
   - [关系](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/relation.md)√
   - 个人空间
 - [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
-  - 视频分区代码
+  - [视频分区一览（分区代码）](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/video_zone.md)√
   - [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md)√
   - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/status_number.md)√
   - [快照](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/snapshot.md)√
