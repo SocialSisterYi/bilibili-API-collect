@@ -152,7 +152,7 @@ http://api.bilibili.com/x/web-interface/nav
 
 
 
-## 登录用户信息2（仅部分并带有转义）
+## 登录用户信息2（仅部分  带有转义）
 
 需要登录(SESSDATA)
 

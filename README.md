@@ -22,7 +22,7 @@
 - [用户](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/user)
   - [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/info.md)√
   - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/status_number.md)√
-  - 关系
+  - [关系](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/relation.md)√
   - 个人空间
 - [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
   - 视频分区代码
@@ -66,8 +66,9 @@
   - 收藏夹
 - 课程
 - 直播
+  - 直播间基本信息
   - 直播视频流
-  - 直播弹幕
+  - 直播信息流
 - B币钱包
 - 漫画
 - 轻视频
