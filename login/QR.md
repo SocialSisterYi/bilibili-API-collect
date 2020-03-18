@@ -11,6 +11,8 @@
 
 <img src="/imgs/2233login.png" align="left"/>
 
+
+
 ## 获取二维码内容url以及秘钥 
 
 (秘钥超时为180秒)
@@ -19,8 +21,8 @@ passport.bilibili.com/qrcode/getLoginUrl
 
 *方式：GET*
 
-
 **json回复：**
+
 | 字段    | 类型  | 内容      | 备注               |
 | ------- | ----- | --------- | ------------------ |
 | code    | num   | 返回值    | 0成功              |

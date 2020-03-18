@@ -1,6 +1,6 @@
 # 视频基本信息
 
-<img src="/imgs/ploading.gif" align="left" width="100" height="100"/>
+<img src="/imgs/ploading.gif" width="100" height="100"/>
 
 ## 视频详细信息
 

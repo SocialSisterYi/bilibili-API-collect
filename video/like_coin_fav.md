@@ -4,7 +4,7 @@
 
 ### 点赞视频 
 
-<img src="/imgs/like.svg" align="left" width="100" height="100"/>
+<img src="/imgs/like.svg" width="100" height="100"/>
 
 需要登录(SESSDATA)
 
@@ -42,7 +42,7 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 
 ### 投币视频
 
-<img src="/imgs/coin.svg" align="left" width="100" height="100"/>
+<img src="/imgs/coin.svg" width="100" height="100"/>
 
 需要登录(SESSDATA)
 
@@ -91,7 +91,7 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "api.
 
 ### 收藏视频
 
-<img src="/imgs/fav.svg" align="left" width="100" height="100"/>
+<img src="/imgs/fav.svg" width="100" height="100"/>
 
 需要登录(SESSDATA)
 
@@ -141,9 +141,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 
 ### 一键三连视频
 
-<img src="/imgs/like.svg" align="left" width="50" height="50"/><img src="/imgs/coin.svg" align="left" width="50" height="50"/><img src="/imgs/fav.svg" align="left" width="50" height="50"/>
-
-
+<img src="/imgs/like.svg" align="left" width="50" height="50"/><img src="/imgs/coin.svg" align="left" width="50" height="50"/><img src="/imgs/fav.svg"  width="50" height="50"/>
 
 需要登录(SESSDATA)
 
@@ -198,7 +196,7 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 
 ### 视频被收藏
 
-<img src="/imgs/fav.svg" align="left" width="100" height="100"/>
+<img src="/imgs/fav.svg" width="100" height="100"/>
 
 需要登录(SESSDATA)
 
@@ -246,7 +244,7 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
 ### 视频被点赞
 
-<img src="/imgs/like.svg" align="left" width="100" height="100"/>
+<img src="/imgs/like.svg" width="100" height="100"/>
 
 需要登录(SESSDATA)
 
@@ -284,7 +282,7 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 
 ### 视频被投币
 
-<img src="/imgs/coin.svg" align="left" width="100" height="100"/>
+<img src="/imgs/coin.svg" width="100" height="100"/>
 
 需要登录(SESSDATA)
 

@@ -1,6 +1,6 @@
 # 用户详细信息
 
-<img src="/imgs/akari.jpg" align="left" width="100" height="100"/>
+<img src="/imgs/akari.jpg" width="100" height="100"/>
 
 ## 用户详细信息1 (用于空间)
 api.bilibili.com/x/space/acc/info

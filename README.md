@@ -1,6 +1,6 @@
 # 哔哩哔哩-API收集整理
 
-<img src="/imgs/bilibili.svg" align="left" width="200" height="100"/>
+<img src="/imgs/bilibili.svg" width="200" height="100"/>
 
 本项目对B站的野生web端api进行收集整理，以及研究使用方法并对其进行说明
 
@@ -87,14 +87,13 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 （重要的话说三遍，本人不承担任何责任）
 
-<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg" align="left" width="100" height="100"/>
+<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg" width="100" height="100"/>
 
 **--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
-
-
 
 备注：
 
 不了解http的请移步，[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
 
 不了解json的请移步，[传送门](https://www.sojson.com/json/json_index.html)
+
