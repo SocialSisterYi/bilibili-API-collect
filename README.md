@@ -1,6 +1,6 @@
 # 哔哩哔哩-API收集整理
 
-<img src="/imgs/bilibili.svg" align="left" width="200" height="100"/>
+<a href><img src="/imgs/bilibili.svg" align="left" width="200" height="100"/></a>
 
 本项目对B站的野生web端api进行收集整理，以及研究使用方法并对其进行说明
 
