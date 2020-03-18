@@ -141,7 +141,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 
 ### 一键三连视频
 
-<img src="/imgs/like.svg" align="left" width="50" height="50"/><img src="/imgs/coin.svg" align="left" width="50" height="50"/><img src="/imgs/fav.svg"  width="50" height="50"/>
+<img src="/imgs/like.svg" align="left" width="50" height="50"/><img src="/imgs/coin.svg" align="left" width="50" height="50"/><img src="/imgs/fav.svg" width="50" height="50"/>
 
 需要登录(SESSDATA)
 
