@@ -9,7 +9,7 @@
 5. if "data"==-5   goto 3 && 提示「已扫描」 else goto 1&提示二维码超时或错误（秘钥是否有效）
 6. 成功后会自动配置cookie 如需登录游戏分站则访问"data"."url"中的url
 
-<img src="/imgs/2233login.png" align="left"/>
+<img src="/imgs/2233login.png"/>
 
 
 

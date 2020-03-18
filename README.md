@@ -96,7 +96,3 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 不了解http的请移步，[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
 
 不了解json的请移步，[传送门](https://www.sojson.com/json/json_index.html)
-<<<<<<< HEAD
-
-=======
->>>>>>> 619133fb992b5ab4ed99712460b4ba7655563c42

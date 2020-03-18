@@ -40,6 +40,10 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 }
 ```
 
+成功为视频av79677524点赞
+
+
+
 ### 投币视频
 
 <img src="/imgs/coin.svg" width="100" height="100"/>
@@ -88,6 +92,10 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "api.
 	}
 }
 ```
+
+成功为视频av90671873投币2枚
+
+
 
 ### 收藏视频
 
@@ -138,6 +146,10 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 	"message": "success"
 }
 ```
+
+成功将av49166435收藏到收藏夹ID为49166435的收藏夹中
+
+
 
 ### 一键三连视频
 
@@ -192,6 +204,10 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 }
 ```
 
+成功将视频av91003840一键三连
+
+
+
 ## 判断状态
 
 ### 视频被收藏
@@ -242,6 +258,10 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 }
 ```
 
+视频av46281123的状态为已收藏
+
+
+
 ### 视频被点赞
 
 <img src="/imgs/like.svg" width="100" height="100"/>
@@ -279,6 +299,10 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 	"data": 1
 }
 ```
+
+视频av39330059的状态为已点赞
+
+
 
 ### 视频被投币
 
@@ -326,5 +350,5 @@ http://api.bilibili.com/x/web-interface/archive/coins?aid=37896701
 }
 ```
 
-
+视频av37896701的投币数为2枚
 

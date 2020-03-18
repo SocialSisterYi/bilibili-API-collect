@@ -340,7 +340,7 @@ UP主头像为：
 
 http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
-<img src="http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg" align="left" width="100" height="100" />
+<img src="http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg" width="100" height="100" />
 
 
 
