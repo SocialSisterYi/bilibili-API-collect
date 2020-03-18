@@ -1,5 +1,7 @@
 # 视频基本信息
 
+<img src="/imgs/ploading.gif" align="left" width="100" height="100"/>
+
 ## 视频详细信息
 
 api.bilibili.com/x/web-interface/view
@@ -338,7 +340,7 @@ UP主头像为：
 
 http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
-<img src="http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg" style="zoom: 25%;" />
+<img src="http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg" align="left" width="100" height="100" />
 
 
 

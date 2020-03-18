@@ -1,5 +1,7 @@
 # 哔哩哔哩-API收集整理
 
+<img src="/imgs/bilibili.svg" align="left" width="200" height="100"/>
+
 本项目对B站的野生web端api进行收集整理，以及研究使用方法并对其进行说明
 
 所有api均为标准http协议，返回值大都为json
@@ -11,25 +13,25 @@
 计划整理分类&目录：
 
 - cookie
-- [登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login)
-  - [二维码登录](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login/QR.md)√
+- [登录](login)
+  - [二维码登录](login/QR.md)√
   - 密码&短信登录
   - qq&微博登录
-  - [登录基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/login/login_info.md)√
+  - [登录基本信息](login/login_info.md)√
   - 在线用户
   - 消息
   - 私信
-- [用户](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/user)
-  - [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/info.md)√
-  - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/status_number.md)√
-  - [关系](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/user/relation.md)√
+- [用户](user)
+  - [基本信息](user/info.md)√
+  - [状态数](user/status_number.md)√
+  - [关系](user/relation.md)√
   - 个人空间
-- [视频](https://github.com/SocialSisterYi/bilibili-API-collect/tree/master/video)
-  - [视频分区一览（分区代码）](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/video_zone.md)√
-  - [基本信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md)√
-  - [状态数](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/status_number.md)√
-  - [快照](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/snapshot.md)√
-  - [点赞&投币&收藏](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/like_coin_fav.md)√
+- [视频](video)
+  - [视频分区一览（分区代码）](video/video_zone.md)√
+  - [基本信息](video/info.md)√
+  - [状态数](video/status_number.md)√
+  - [快照](video/snapshot.md)√
+  - [点赞&投币&收藏](video/like_coin_fav.md)√
   - TAG
   - 视频推荐
   - 播放&下载地址
@@ -85,7 +87,7 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 （重要的话说三遍，本人不承担任何责任）
 
-<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg" style="zoom:50%;" />
+<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg" align="left" width="100" height="100"/>
 
 **--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 

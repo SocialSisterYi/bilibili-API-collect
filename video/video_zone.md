@@ -6,7 +6,7 @@
 
 ## 动画
 
-<img src="/svgs/douga.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/douga.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号      | tID  | 简介                                                         |
 | -------------- | --------- | ---- | ------------------------------------------------------------ |
@@ -19,7 +19,7 @@
 
 ## 番剧
 
-<img src="/svgs/anime.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/anime.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号        | tID  | 简介                                               |
 | -------------- | ----------- | ---- | -------------------------------------------------- |
@@ -31,7 +31,7 @@
 
 ## 国创
 
-<img src="/svgs/guochuang.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/guochuang.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号        | tID  | 简介              |
 | -------------- | ----------- | ---- | ----------------- |
@@ -44,7 +44,7 @@
 
 ## 音乐
 
-<img src="/svgs/music.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/music.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号       | tID  | 简介                                                         |
 | -------------- | ---------- | ---- | ------------------------------------------------------------ |
@@ -60,7 +60,7 @@
 
 ## 舞蹈
 
-<img src="/svgs/dance.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/dance.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号    | tID  | 简介                                                         |
 | -------------- | ------- | ---- | ------------------------------------------------------------ |
@@ -74,7 +74,7 @@
 
 ## 游戏
 
-<img src="/svgs/game.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/game.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号        | tID  | 简介                                                         |
 | -------------- | ----------- | ---- | ------------------------------------------------------------ |
@@ -90,7 +90,7 @@
 
 ## 科技
 
-<img src="/svgs/technology.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/technology.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号          | tID  | 简介                                             |
 | -------------- | ------------- | ---- | ------------------------------------------------ |
@@ -104,7 +104,7 @@
 
 ## 数码
 
-<img src="/svgs/digital.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/digital.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号            | tID  | 简介                         |
 | -------------- | --------------- | ---- | ---------------------------- |
@@ -116,7 +116,7 @@
 
 ## 生活
 
-<img src="/svgs/life.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/life.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号     | tID  | 简介                                                  |
 | -------------- | -------- | ---- | ----------------------------------------------------- |
@@ -132,7 +132,7 @@
 
 ## 鬼畜
 
-<img src="/svgs/kichiku.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/kichiku.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号            | tID  | 简介                                                         |
 | -------------- | --------------- | ---- | ------------------------------------------------------------ |
@@ -144,7 +144,7 @@
 
 ## 时尚
 
-<img src="/svgs/fashion.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/fashion.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号     | tID  | 简介                                                         |
 | -------------- | -------- | ---- | ------------------------------------------------------------ |
@@ -157,7 +157,7 @@
 
 ## 广告
 
-<img src="/svgs/ad.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/ad.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号 | tID  | 简介 |
 | -------------- | ---- | ---- | ---- |
@@ -166,7 +166,7 @@
 
 ## 娱乐
 
-<img src="/svgs/ent.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/ent.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号    | tID  | 简介                               |
 | -------------- | ------- | ---- | ---------------------------------- |
@@ -177,7 +177,7 @@
 
 ## 影视
 
-<img src="/svgs/cinephile.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/cinephile.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号         | tID  | 简介                             |
 | -------------- | ------------ | ---- | -------------------------------- |
@@ -189,7 +189,7 @@
 
 ## 纪录片
 
-<img src="/svgs/documentary.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/documentary.svg" align="left" width="100" height="100"/>
 
 | 名称             | 代号        | tID  | 简介 |
 | ---------------- | ----------- | ---- | ---- |
@@ -201,7 +201,7 @@
 
 ## 电影
 
-<img src="/svgs/movie.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/movie.svg" align="left" width="100" height="100"/>
 
 | 名称           | 代号    | tID  | 简介 |
 | -------------- | ------- | ---- | ---- |
@@ -213,7 +213,7 @@
 
 ## 电视剧
 
-<img src="/svgs/teleplay.svg" align="left" width="100" height="100"/>
+<img src="/imgs/zone/teleplay.svg" align="left" width="100" height="100"/>
 
 | 名称             | 代号     | tID  | 简介 |
 | ---------------- | -------- | ---- | ---- |
