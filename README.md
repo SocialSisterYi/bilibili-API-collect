@@ -1,4 +1,4 @@
-<img src="/imgs/mylogo.png" align="right" width="250" height="200"/>
+<img src="/imgs/Mylogo.png" align="right" width="250" height="200"/>
 
 # 哔哩哔哩-API收集整理
 
