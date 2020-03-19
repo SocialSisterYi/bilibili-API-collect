@@ -81,20 +81,20 @@ owner 对象：
 
 stat 对象：
 
-| 字段       | 类型                   | 内容                             | 备注         |
-| ---------- | ---------------------- | -------------------------------- | ------------ |
-| aid        | num                    | 视频avID                         |              |
-| view       | 普通num<br />屏蔽时str | 普通：观看次数<br />屏蔽时："--" |              |
-| danmaku    | num                    | 弹幕条数                         |              |
-| reply      | num                    | 评论条数                         |              |
-| favorite   | num                    | 收藏人数                         |              |
-| coin       | num                    | 投币枚数                         |              |
-| share      | num                    | 分享次数                         |              |
-| now_rank   | num                    | 0                                | 作用尚不明确 |
-| his_rank   | num                    | 历史最高排行                     |              |
-| like       | num                    | 获赞次数                         |              |
-| dislike    | num                    | 0                                | 作用尚不明确 |
-| evaluation | str                    | 视频评分                         | 默认为空     |
+| 字段       | 类型 | 内容                           | 备注         |
+| ---------- | ---- | ------------------------------ | ------------ |
+| aid        | num  | 视频avID                       |              |
+| view       | num  | 普通：观看次数<br />屏蔽时：-1 |              |
+| danmaku    | num  | 弹幕条数                       |              |
+| reply      | num  | 评论条数                       |              |
+| favorite   | num  | 收藏人数                       |              |
+| coin       | num  | 投币枚数                       |              |
+| share      | num  | 分享次数                       |              |
+| now_rank   | num  | 0                              | 作用尚不明确 |
+| his_rank   | num  | 历史最高排行                   |              |
+| like       | num  | 获赞次数                       |              |
+| dislike    | num  | 0                              | 作用尚不明确 |
+| evaluation | str  | 视频评分                       | 默认为空     |
 
 page 数组：
 
