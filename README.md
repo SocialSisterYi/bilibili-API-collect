@@ -41,7 +41,7 @@
 - 番剧
 - [视频弹幕](danmaku)
   - [实时弹幕&弹幕格式](danmaku/danmaku.md)√
-  - 历史弹幕
+  - [历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
   - 弹幕操作
 - 专栏
