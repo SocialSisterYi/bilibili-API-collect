@@ -4,7 +4,7 @@
 
 ## 视频详细信息
 
-api.bilibili.com/x/web-interface/view
+http://api.bilibili.com/x/web-interface/view
 
 *方式:GET*
 
@@ -23,7 +23,7 @@ api.bilibili.com/x/web-interface/view
 | ttl     | num  | 1        | 作用尚不明确                            |
 | data    | obj  | 信息本体 |                                         |
 
-data 对象：
+`data`对象：
 
 | 字段         | 类型  | 内容                           | 备注                  |
 | ------------ | ----- | ------------------------------ | --------------------- |
@@ -54,7 +54,7 @@ data 对象：
 | subtitle     | obj   | 视频CC字幕                     |                       |
 | staff        | array | 合作成员列表                   | 可不存在              |
 
-rights 对象：
+`data`中的`rights`对象：
 
 | 字段            | 类型 | 内容             | 备注                                 |
 | --------------- | ---- | ---------------- | ------------------------------------ |
@@ -71,7 +71,7 @@ rights 对象：
 | ugc_pay_preview | num  | 0                | 作用尚不明确                         |
 | no_background   | num  | 0                | 作用尚不明确                         |
 
-owner 对象：
+`data`中的`owner`对象：
 
 | 字段 | 类型 | 内容     | 备注    |
 | ---- | ---- | -------- | ------- |
@@ -79,7 +79,7 @@ owner 对象：
 | name | str  | UP主昵称 |         |
 | face | str  | UP主头像 | jpg gif |
 
-stat 对象：
+`data`中的`stat`对象：
 
 | 字段       | 类型 | 内容                           | 备注         |
 | ---------- | ---- | ------------------------------ | ------------ |
@@ -96,7 +96,7 @@ stat 对象：
 | dislike    | num  | 0                              | 作用尚不明确 |
 | evaluation | str  | 视频评分                       | 默认为空     |
 
-page 数组：
+`data`中的`pages`数组：
 
 | 项   | 类型 | 内容       | 备注          |
 | ---- | ---- | ---------- | ------------- |
@@ -104,7 +104,7 @@ page 数组：
 | n    | obj  | (n+1)P内容 |               |
 | ……   | obj  | ……         | ……            |
 
-数组 page 中的所有项 对象：
+数组`pages`中的对象：
 
 | 字段      | 类型 | 内容            | 备注                             |
 | --------- | ---- | --------------- | -------------------------------- |
@@ -117,7 +117,7 @@ page 数组：
 | weblink   | str  | 空              | 作用尚不明确                     |
 | dimension | obj  | 当前分P分辨率   |                                  |
 
-dimension 对象：(同data中的dimension对象)
+数组`pages`中的对象中的`dimension`对象：(同`data`中的`dimension`对象)
 
 | 字段   | 类型 | 内容         | 备注         |
 | ------ | ---- | ------------ | ------------ |
@@ -125,14 +125,14 @@ dimension 对象：(同data中的dimension对象)
 | height | num  | 当前分P 高度 | 可能为0      |
 | rotate | num  | 0            | 作用尚不明确 |
 
-subtitle 对象：
+`subtitle`对象：
 
 | 字段         | 类型  | 内容             | 备注 |
 | ------------ | ----- | ---------------- | ---- |
 | allow_submit | bool  | 是否允许提交字幕 |      |
 | list         | array | 字幕列表         |      |
 
-list 数组：
+`subtitle`对象中的`list`数组：
 
 | 项   | 类型 | 内容      | 备注 |
 | ---- | ---- | --------- | ---- |
@@ -140,7 +140,7 @@ list 数组：
 | n    | obj  | 字幕(n+1) |      |
 | ……   | obj  | ……        | ……   |
 
-数组 list 中的所有项 对象：
+数组`list`中的对象：
 
 | 字段         | 类型 | 内容           | 备注     |
 | ------------ | ---- | -------------- | -------- |
@@ -152,7 +152,7 @@ list 数组：
 | subtitle_url | str  | 字幕文件url    | json格式 |
 | author       | obj  | 字幕上传者信息 |          |
 
-author 对象：
+数组`list`中的对象中的`author`对象：
 
 | 字段            | 类型 | 内容              | 备注         |
 | --------------- | ---- | ----------------- | ------------ |
@@ -166,7 +166,7 @@ author 对象：
 | is_fake_account | num  | 0                 | 作用尚不明确 |
 | is_deleted      | num  | 0                 | 作用尚不明确 |
 
-staff 数组：
+`staff`数组：
 
 | 项   | 类型 | 内容          | 备注 |
 | ---- | ---- | ------------- | ---- |
@@ -174,7 +174,7 @@ staff 数组：
 | n    | obj  | 合作成员(n+1) |      |
 | ……   | obj  | ……            | ……   |
 
-数组 staff 中的所有项 对象：
+数组`staff`中的对象：
 
 | 字段     | 类型 | 内容           | 备注    |
 | -------- | ---- | -------------- | ------- |
@@ -186,7 +186,7 @@ staff 数组：
 | official | obj  | 成员认证信息   |         |
 | follower | num  | 成员粉丝数     |         |
 
-vip 对象：
+数组`staff`中的对象中的`vip`对象：
 
 | 字段       | 类型 | 内容         | 备注                |
 | ---------- | ---- | ------------ | ------------------- |
@@ -194,7 +194,7 @@ vip 对象：
 | status     | num  | 会员状态     | 0无 1有             |
 | theme_type | num  | 0            |                     |
 
-official 对象：
+数组`staff`中的对象中的`official`对象：
 
 | 字段  | 类型 | 内容         | 备注                                      |
 | ----- | ---- | ------------ | ----------------------------------------- |
@@ -346,7 +346,7 @@ http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
 ## 视频简介
 
-api.bilibili.com/x/web-interface/archive/desc
+http://api.bilibili.com/x/web-interface/archive/desc
 
 *方式:GET*
 
@@ -382,7 +382,7 @@ http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 
 ## 视频分P列表  (avID转CID)
 
-api.bilibili.com/x/player/pagelist
+http://api.bilibili.com/x/player/pagelist
 
 *方式:GET*
 
@@ -401,7 +401,7 @@ api.bilibili.com/x/player/pagelist
 | ttl     | num   | 1        | 作用尚不明确                            |
 | data    | array | 分P列表  |                                         |
 
-数组 data：
+数组`data`：
 
 | 项   | 类型 | 内容       | 备注          |
 | ---- | ---- | ---------- | ------------- |
@@ -409,7 +409,7 @@ api.bilibili.com/x/player/pagelist
 | n    | obj  | (n+1)P内容 |               |
 | ……   | obj  | ……         | ……            |
 
-数组 data 中的所有项 对象：
+数组`data`中的对象：
 
 | 字段      | 类型 | 内容            | 备注                             |
 | --------- | ---- | --------------- | -------------------------------- |
@@ -422,7 +422,7 @@ api.bilibili.com/x/player/pagelist
 | weblink   | str  | 空              | 作用尚不明确                     |
 | dimension | obj  | 当前分P分辨率   |                                  |
 
-dimension 对象：
+数组`data`中的对象中的`dimension`对象：
 
 | 字段   | 类型 | 内容         | 备注         |
 | ------ | ---- | ------------ | ------------ |

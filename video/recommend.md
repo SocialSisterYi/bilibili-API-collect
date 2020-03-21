@@ -2,11 +2,11 @@
 
 ## 获取单视频推荐列表
 
-最多获取40条推荐视频
-
-api.bilibili.com/x/web-interface/archive/related
+http://api.bilibili.com/x/web-interface/archive/related
 
 *方式:GET* 
+
+最多获取40条推荐视频
 
 参数：
 
@@ -23,7 +23,7 @@ api.bilibili.com/x/web-interface/archive/related
 | ttl     | num    | 1        | 作用尚不明确             |
 | data    | arrary | 推荐列表 |                          |
 
-data 数组：
+`data`数组：
 
 | 项   | 类型 | 内容          | 备注 |
 | ---- | ---- | ------------- | ---- |
@@ -32,7 +32,7 @@ data 数组：
 | ……   | obj  | ……            | ……   |
 | 39   | obj  | 推荐视频40    |      |
 
-data 数组中的所有项 对象：
+`data`数组中的对象：
 
 同「[视频详细信息](info.md#视频详细信息)」中的data对象
 

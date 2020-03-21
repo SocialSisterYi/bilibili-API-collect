@@ -1,7 +1,7 @@
 # 用户状态数
 
 ## 关系状态数
-api.bilibili.com/x/relation/stat
+http://api.bilibili.com/x/relation/stat
 
 *方式:GET*
 
@@ -18,7 +18,8 @@ api.bilibili.com/x/relation/stat
 | ttl     | num  | 1        | 作用尚不明确            |
 | data    | obj  | 信息本体 |                         |
 
-data 对象：
+`data`对象：
+
 | 字段      | 类型 | 内容        | 备注                                       |
 | --------- | ---- | ----------- | ------------------------------------------ |
 | mid       | num  | 目标用户UID |                                            |
@@ -46,7 +47,7 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 ```
 
 ## UP主状态数
-api.bilibili.com/x/space/upstat
+http://api.bilibili.com/x/space/upstat
 
 *方式:GET*
 
@@ -64,19 +65,22 @@ api.bilibili.com/x/space/upstat
 | ttl     | num  | 1        | 作用尚不明确            |
 | data    | obj  | 信息本体 |                         |
 
-data 对象：
+`data`对象：
+
 | 字段    | 类型  | 内容       | 备注  |
 | ------- | ----- | ---------- | ----- |
 | archive | obj   | 视频播放量 |       |
 | article | obj   | 专栏阅读量 |       |
 | likes   | num   | 获赞次数   |       |
 
-archive 对象：
+`data`中的`archive`对象：
+
 | 字段 | 类型  | 内容       | 备注  |
 | ---- | ----- | ---------- | ----- |
 | view | num   | 视频播放量 |       |
 
-article 对象：
+`data`中的`article`对象：
+
 | 字段 | 类型  | 内容       | 备注  |
 | ---- | ----- | ---------- | ----- |
 | view | num   | 专栏阅读量 |       |
@@ -102,7 +106,7 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 ```
 
 ## 订阅&投稿状态数
-api.bilibili.com/x/space/navnum
+http://api.bilibili.com/x/space/navnum
 
 *方式:GET*
 
@@ -111,8 +115,8 @@ api.bilibili.com/x/space/navnum
 | -------| ------- | ------ |------|
 | mid    | 用户UID | 必要   |      |
 
-
 **json回复：**
+
 | 字段    | 类型 | 内容     | 备注                    |
 | ------- | ---- | -------- | ----------------------- |
 | code    | num  | 返回值   | 0成功<br />-400请求错误 |
@@ -120,7 +124,8 @@ api.bilibili.com/x/space/navnum
 | ttl     | num  | 1        | 作用尚不明确            |
 | data    | obj  | 信息本体 |                         |
 
-data 对象：
+`data`对象：
+
 | 字段      | 类型  | 内容       | 备注         |
 | --------- | ----- | ---------- | ------------ |
 | video     | num   | 投稿视频数 |              |
@@ -135,13 +140,15 @@ data 对象：
 | audio     | num   | 投稿音频数 |              |
 | pugv      | num   | 投稿课程数 |              |
 
-channel 对象：
+`data`中的`channel`对象：
+
 | 字段    | 类型  | 内容       | 备注         |
 | ------- | ----- | ---------- | ------------ |
 | master  | num   | 频道数     |              |
 | guest   | num   | 频道数     |              |
 
-favourite 对象：
+`data`中的`favourite`对象：
+
 | 字段   | 类型 | 内容         | 备注                               |
 | ------ | ---- | ------------ | ---------------------------------- |
 | master | num  | 全部收藏夹数 | 需要登录(SESSDATA)  只能查看自己的 |

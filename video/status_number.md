@@ -1,7 +1,7 @@
 # 视频状态数
 
-## 视频状态数1（备用  部分  不墙py）
-api.bilibili.com/archive_stat/stat
+## 视频状态数1（备用  不封python）
+http://api.bilibili.com/archive_stat/stat
 
 *方式:GET*
 
@@ -19,7 +19,8 @@ api.bilibili.com/archive_stat/stat
 | ttl     | num  | 1        | 作用尚不明确                              |
 | data    | obj  | 信息本体 |                                           |
 
-data 对象：
+`data`对象：
+
 | 字段       | 类型              | 内容                        | 备注             |
 | ---------- | ----------------- | --------------------------- | ---------------- |
 | aid        | num               | 视频avID                    |                  |
@@ -62,23 +63,23 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 }
 ```
 
-## 视频状态数2（常用 全 墙py）
-api.bilibili.com/x/web-interface/archive/stat
-
-**此API克制python，UA中只要存在\*python\*字眼就会被墙，如用py请改UA**
-
-**此API克制python，UA中只要存在\*python\*字眼就会被墙，如用py请改UA**
-
-**此API克制python，UA中只要存在\*python\*字眼就会被墙，如用py请改UA**
+## 视频状态数2（常用 封杀python）
+http://api.bilibili.com/x/web-interface/archive/stat
 
 *方式:GET*
+
+**此API克python，UA中只要存在\*python\*字眼就无法获取正确内容，如用py请改UA**
+
+**此API克python，UA中只要存在\*python\*字眼就无法获取正确内容，如用py请改UA**
+
+**此API克python，UA中只要存在\*python\*字眼就无法获取正确内容，如用py请改UA**
 
 参数：
 | 参数名 | 内容     | 必要性 | 备注 |
 | -------| -------- | ------ |------|
 | aid    | 视频avID | 必要   |      |
 
-**json回复**
+**json回复：**
 
 | 字段    | 类型 | 内容     | 备注                                      |
 | ------- | ---- | -------- | ----------------------------------------- |
@@ -87,7 +88,8 @@ api.bilibili.com/x/web-interface/archive/stat
 | ttl     | num  | 1        | 作用尚不明确                              |
 | data    | obj  | 信息本体 |                                           |
 
-data 对象：
+`data`对象：
+
 | 字段       | 类型                   | 内容                             | 备注             |
 | ---------- | ---------------------- | -------------------------------- | ---------------- |
 | aid        | num                    | 视频avID                         |                  |

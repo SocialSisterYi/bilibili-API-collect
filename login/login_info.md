@@ -2,13 +2,13 @@
 
 ## 登录用户信息1（完整）
 
-需要登录(SESSDATA)
+http://api.bilibili.com/nav (使用转义)
 
-api.bilibili.com/nav (使用转义)
-
-api.bilibili.com/x/web-interface/nav (原始数据)
+http://api.bilibili.com/x/web-interface/nav (原始数据)
 
 *方式:GET*
+
+需要登录(SESSDATA)
 
 **json回复：**
 
@@ -19,7 +19,7 @@ api.bilibili.com/x/web-interface/nav (原始数据)
 | ttl     | num  | 1        | 作用尚不明确              |
 | data    | obj  | 信息本体 |                           |
 
-data 对象：
+`data`对象：
 
 | 字段            | 类型 | 内容             | 备注                      |
 | --------------- | ---- | ---------------- | ------------------------- |
@@ -47,7 +47,7 @@ data 对象：
 | allowance_count | num  | 0                | 作用尚不明确              |
 | answer_status   | num  | 0                | 作用尚不明确              |
 
-level_info 对象：
+`data`中的`level_info`对象：
 
 | 字段          | 类型 | 内容                     | 备注 |
 | ------------- | ---- | ------------------------ | ---- |
@@ -56,7 +56,7 @@ level_info 对象：
 | current_exp   | num  | 当前经验                 |      |
 | next_exp      | num  | 升级下一等级需达到的经验 |      |
 
-official 对象：
+`data`中的`official`对象：
 
 | 字段  | 类型 | 内容     | 备注                                      |
 | ----- | ---- | -------- | ----------------------------------------- |
@@ -65,14 +65,14 @@ official 对象：
 | desc  | str  | 认证备注 | 无为空                                    |
 | type  | num  | 是否认证 | -1无<br />0认证                           |
 
-official_verify 对象：
+`data`中的`official_verify`对象：
 
 | 字段 | 类型 | 内容     | 备注            |
 | ---- | ---- | -------- | --------------- |
 | type | num  | 是否认证 | -1无<br />0认证 |
 | desc | str  | 认证信息 | 无为空          |
 
-pendant 对象：
+`data`中的`pendant`对象：
 
 | 字段   | 类型 | 内容        | 备注         |
 | ------ | ---- | ----------- | ------------ |
@@ -81,7 +81,7 @@ pendant 对象：
 | image  | str  | 挂件图片url | png          |
 | expire | num  | 0           | 作用尚不明确 |
 
-wallet 对象：
+`data`中的`wallet`对象：
 
 | 字段            | 类型 | 内容          | 备注         |
 | --------------- | ---- | ------------- | ------------ |
@@ -154,13 +154,13 @@ http://api.bilibili.com/x/web-interface/nav
 
 ## 登录用户信息2（仅部分  带有转义）
 
+http://account.bilibili.com/home/userInfo (带有转义)
+
+*方式:GET*
+
 需要登录(SESSDATA)
 
 需要验证DedeUserID存在且不为0
-
-account.bilibili.com/home/userInfo (带有转义)
-
-*方式:GET*
 
 **json回复：**
 
@@ -170,7 +170,7 @@ account.bilibili.com/home/userInfo (带有转义)
 | status | bool | true     | 作用尚不明确              |
 | data   | obj  | 信息本体 |                           |
 
-data 对象：
+`data`对象：
 
 | 字段              | 类型 | 内容              | 备注                      |
 | ----------------- | ---- | ----------------- | ------------------------- |
@@ -187,7 +187,7 @@ data 对象：
 | official_verify   | num  | 是否认证          | -1无<br />0认证           |
 | pointBalance      | num  | 0                 | 作用尚不明确              |
 
-level_info 对象：
+`data`中的`level_info`对象：
 
 | 字段          | 类型 | 内容                     | 备注 |
 | ------------- | ---- | ------------------------ | ---- |
@@ -230,11 +230,11 @@ http://account.bilibili.com/home/userInfo
 
 ## 登录用户状态数
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/web-interface/nav/stat
+http://api.bilibili.com/x/web-interface/nav/stat
 
 *方式：GET*
+
+需要登录(SESSDATA)
 
 **json回复：**
 
@@ -268,3 +268,4 @@ http://api.bilibili.com/x/web-interface/nav/stat
 }
 ```
 
+粉丝数为365，关注数为695，发送的动态数为162

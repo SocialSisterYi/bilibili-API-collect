@@ -2,11 +2,13 @@
 
 ## 查询用户粉丝明细 
 
-登录(SESSDATA)可看自己全部
+<img src="/imgs/relation.svg" width="100" height="100" />
 
-api.bilibili.com/x/relation/followers
+http://api.bilibili.com/x/relation/followers
 
 *方式:GET*
+
+登录(SESSDATA)可看自己全部
 
 参数：
 
@@ -25,7 +27,7 @@ api.bilibili.com/x/relation/followers
 | ttl     | num  | 1        | 作用尚不明确                                  |
 | data    | obj  | 信息本体 |                                               |
 
-data 对象：
+`data`对象：
 
 | 字段       | 类型  | 内容     | 备注         |
 | ---------- | ----- | -------- | ------------ |
@@ -33,7 +35,7 @@ data 对象：
 | re_version | num   | ？？？   | 作用尚不明确 |
 | total      | num   | 粉丝总数 |              |
 
-list 数组：
+`data`中的`list`数组：
 
 | 项   | 类型 | 内容  | 备注             |
 | ---- | ---- | ----- | ---------------- |
@@ -41,7 +43,7 @@ list 数组：
 | n    | obj  | 粉丝n | 按照关注顺序排列 |
 | ……   | obj  | ……    | ……               |
 
-数组 list 中的所有项 对象：
+数组`list`中的对象：
 
 | 字段            | 类型 | 内容         | 备注                              |
 | --------------- | ---- | ------------ | --------------------------------- |
@@ -56,14 +58,14 @@ list 数组：
 | official_verify | obj  | 认证信息     |                                   |
 | vip             | obj  | 会员信息     |                                   |
 
-official_verify 对象：
+数组`list`中的对象中的`official_verify`对象：
 
 | 字段 | 类型 | 内容         | 备注            |
 | ---- | ---- | ------------ | --------------- |
 | type | num  | 用户认证类型 | -1无<br />1认证 |
 | desc | str  | 用户认证信息 | 无为空          |
 
-vip 对象：
+数组`list`中的对象中的`vip`对象：
 
 | 字段          | 类型 | 内容         | 备注                          |
 | ------------- | ---- | ------------ | ----------------------------- |
@@ -76,7 +78,7 @@ vip 对象：
 | themeType     | num  | 0            | 作用尚不明确                  |
 | label         | obj  | ？？？       | 作用尚不明确                  |
 
-label 对象：
+`vip`中的`label`对象：
 
 | 字段 | 类型 | 内容 | 备注         |
 | ---- | ---- | ---- | ------------ |
@@ -155,11 +157,13 @@ http://api.bilibili.com/x/relation/followers?vmid=293793435&ps=2&pn=1
 
 ## 查询用户关注明细 
 
-登录(SESSDATA)可看自己全部
+<img src="/imgs/relation.svg" width="100" height="100" />
 
-api.bilibili.com/x/relation/followings
+http://api.bilibili.com/x/relation/followings
 
 *方式:GET*
+
+登录(SESSDATA)可看自己全部
 
 参数：
 
@@ -186,7 +190,7 @@ data 对象：
 | re_version | num   | ？？？   | 作用尚不明确 |
 | total      | num   | 关注总数 |              |
 
-list 数组：
+`data`中的`list`数组：
 
 | 项   | 类型 | 内容  | 备注             |
 | ---- | ---- | ----- | ---------------- |
@@ -194,7 +198,7 @@ list 数组：
 | n    | obj  | 粉丝n | 按照关注顺序排列 |
 | ……   | obj  | ……    | ……               |
 
-数组 list 中的所有项 对象：
+数组`list`中的对象：
 
 | 字段            | 类型                                     | 内容         | 备注                              |
 | --------------- | ---------------------------------------- | ------------ | --------------------------------- |
@@ -209,7 +213,7 @@ list 数组：
 | official_verify | obj                                      | 认证信息     |                                   |
 | vip             | obj                                      | 会员信息     |                                   |
 
-tag 数组：
+数组`list`中的对象中的`tag`数组：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
@@ -217,14 +221,14 @@ tag 数组：
 | n    | num  | 位于分组（n+1）的分组ID |      |
 | ……   | num  | ……                      | ……   |
 
-official_verify 对象：
+数组`list`中的对象中的`official_verify`对象：
 
 | 字段 | 类型 | 内容         | 备注            |
 | ---- | ---- | ------------ | --------------- |
 | type | num  | 用户认证类型 | -1无<br />0认证 |
 | desc | str  | 用户认证信息 | 无为空          |
 
-vip 对象：
+数组`list`中的对象中的`vip`对象：
 
 | 字段          | 类型 | 内容         | 备注                          |
 | ------------- | ---- | ------------ | ----------------------------- |
@@ -237,7 +241,7 @@ vip 对象：
 | themeType     | num  | 0            | 作用尚不明确                  |
 | label         | obj  | ？？？       | 作用尚不明确                  |
 
-label 对象：
+`vip`中的`label`对象：
 
 | 字段 | 类型 | 内容 | 备注         |
 | ---- | ---- | ---- | ------------ |
@@ -316,11 +320,13 @@ http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 
 ## 操作用户关系（关注/取关 等）
 
-需要登录(SESSDATA)
+<img src="/imgs/follow.svg" width="200" height="100" />
 
-api.bilibili.com/x/relation/modify
+http://api.bilibili.com/x/relation/modify
 
 *方式:POST*
+
+需要登录(SESSDATA)
 
 参数：
 
@@ -369,11 +375,11 @@ curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" http://api.bilibili
 
 ## 查询用户与自己关系1 (仅查关注)
 
- 需要登录(SESSDATA)
-
-api.bilibili.com/x/relation
+http://api.bilibili.com/x/relation
 
 *方式:GET*
+
+ 需要登录(SESSDATA)
 
 参数：
 
@@ -390,7 +396,7 @@ api.bilibili.com/x/relation
 | ttl     | num  | 1        | 作用尚不明确                                |
 | data    | obj  | 信息本体 |                                             |
 
-data 对象：
+`data`对象：
 
 | 字段      | 类型                                     | 内容         | 备注                              |
 | --------- | ---------------------------------------- | ------------ | --------------------------------- |
@@ -400,7 +406,7 @@ data 对象：
 | tag       | null默认分组<br />arrary存在至少一个分组 | 分组ID       |                                   |
 | special   | num                                      | 特别关注标志 | 0否<br />1是                      |
 
-tag 数组：
+`tag`数组：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
@@ -433,11 +439,11 @@ http://api.bilibili.com/x/relation?fid=258150656
 
 ## 查询用户与自己关系2(互相)
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/space/acc/relation
+http://api.bilibili.com/x/space/acc/relation
 
 *方式:GET*
+
+需要登录(SESSDATA)
 
 参数：
 
@@ -454,14 +460,14 @@ api.bilibili.com/x/space/acc/relation
 | ttl     | num  | 1        | 作用尚不明确                                |
 | data    | obj  | 信息本体 |                                             |
 
-data 对象：
+`data`对象：
 
 | 字段        | 类型 | 内容                     | 备注 |
 | ----------- | ---- | ------------------------ | ---- |
 | relation    | obj  | 目标用户对于本用户的属性 |      |
 | be_relation | obj  | 本用户对于目标用户的属性 |      |
 
-relation 对象：
+`data`中的`relation`对象：
 
 | 字段      | 类型                                     | 内容         | 备注           |
 | --------- | ---------------------------------------- | ------------ | -------------- |
@@ -471,7 +477,7 @@ relation 对象：
 | tag       | null默认分组<br />arrary存在至少一个分组 |              |                |
 | special   | num                                      |              |                |
 
-be_relation 对象：
+`data`中的`be_relation`对象：
 
 | 字段      | 类型                                     | 内容         | 备注           |
 | --------- | ---------------------------------------- | ------------ | -------------- |
@@ -481,7 +487,7 @@ be_relation 对象：
 | tag       | null默认分组<br />arrary存在至少一个分组 |              |                |
 | special   | num                                      |              |                |
 
-tag 数组（relation中与be_relation中）：
+`be_relation`与`relation`中的`tag`数组：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
@@ -527,11 +533,11 @@ http://api.bilibili.com/x/space/acc/relation?mid=15858903
 
 ### 查询关注分组列表
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/relation/tags
+http://api.bilibili.com/x/relation/tags
 
 *方式:GET*
+
+需要登录(SESSDATA)
 
 **json回复：**
 
@@ -542,7 +548,7 @@ api.bilibili.com/x/relation/tags
 | ttl     | num    | 1        | 作用尚不明确              |
 | data    | arrary | 分组列表 |                           |
 
-data 数组：
+`data`数组：
 
 | 项   | 类型 | 内容         | 备注 |
 | ---- | ---- | ------------ | ---- |
@@ -551,7 +557,7 @@ data 数组：
 | n    | obj  | 其他分组     |      |
 | ……   | num  | ……           | ……   |
 
-数组 data 中的所有项 对象：
+数组`data`中的对象：
 
 | 字段  | 类型 | 内容       | 备注                               |
 | ----- | ---- | ---------- | ---------------------------------- |
@@ -592,11 +598,11 @@ http://api.bilibili.com/x/relation/tags
 
 ### 查询关注分组明细
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/relation/tag
+http://api.bilibili.com/x/relation/tag
 
 *方式:GET*
+
+需要登录(SESSDATA)
 
 参数：
 
@@ -615,7 +621,7 @@ api.bilibili.com/x/relation/tag
 | ttl     | num    | 1        | 作用尚不明确                                                 |
 | data    | arrary | 成员列表 |                                                              |
 
-data 数组：
+`data`数组：
 
 | 项   | 类型 | 内容      | 备注             |
 | ---- | ---- | --------- | ---------------- |
@@ -623,7 +629,7 @@ data 数组：
 | n    | obj  | 成员信息n | 按照添加顺序排序 |
 | ……   | num  | ……        | ……               |
 
-数组 data 中的所有项 对象：
+数组`data`中的对象：
 
 | 字段            | 类型 | 内容        | 备注    |
 | --------------- | ---- | ----------- | ------- |
@@ -634,14 +640,14 @@ data 数组：
 | official_verify | obj  | 认证信息    |         |
 | vip             | obj  | 会员信息    |         |
 
-official_verify 对象：
+数组`data`中的对象中的`official_verify`对象：
 
 | 字段 | 类型 | 内容         | 备注            |
 | ---- | ---- | ------------ | --------------- |
 | type | num  | 用户认证类型 | -1无<br />1认证 |
 | desc | str  | 用户认证信息 | 无为空          |
 
-vip 对象：
+数组`data`中的对象中的`vip`对象：
 
 | 字段          | 类型 | 内容         | 备注                          |
 | ------------- | ---- | ------------ | ----------------------------- |
@@ -654,7 +660,7 @@ vip 对象：
 | themeType     | num  | 0            | 作用尚不明确                  |
 | label         | obj  | ？？？       | 作用尚不明确                  |
 
-label 对象：
+数组`data`中的对象中的`label`对象：
 
 | 字段 | 类型 | 内容 | 备注         |
 | ---- | ---- | ---- | ------------ |
@@ -721,11 +727,11 @@ http://api.bilibili.com/x/relation/tag?tagid=207542&ps=2&pn=1
 
 ### 查询目标用户所在的分组 
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/relation/tag/user
+http://api.bilibili.com/x/relation/tag/user
 
 *方式:GET*
+
+需要登录(SESSDATA)
 
 参数：
 
@@ -742,7 +748,7 @@ api.bilibili.com/x/relation/tag/user
 | ttl     | num  | 1        | 作用尚不明确                                |
 | data    | obj  | 信息本体 |                                             |
 
-data 对象：
+`data`对象：
 
 | 字段                | 类型 | 内容      | 备注 |
 | ------------------- | ---- | --------- | ---- |
@@ -772,11 +778,13 @@ http://api.bilibili.com/x/relation/tag/user?fid=319214221
 
 ### 创建关注分组
 
-需要登录(SESSDATA)
+<img src="/imgs/add.svg" width="100" height="100" />
 
-api.bilibili.com/x/relation/tag/create
+http://api.bilibili.com/x/relation/tag/create
 
 *方式:POST*
+
+需要登录(SESSDATA)
 
 参数：
 
@@ -794,7 +802,7 @@ api.bilibili.com/x/relation/tag/create
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 | data    | obj  | 信息本体 |                                                              |
 
-data 对象：
+`data`对象：
 
 | 字段  | 类型 | 内容           | 备注 |
 | ----- | ---- | -------------- | ---- |
@@ -821,11 +829,11 @@ curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" http://api.bilibili.com/x/relation/ta
 
 ### 重命名关注分组
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/relation/tag/update
+http://api.bilibili.com/x/relation/tag/update
 
 *方式:POST*
+
+需要登录(SESSDATA)
 
 参数：
 
@@ -861,11 +869,13 @@ curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx"
 
 ### 删除关注分组
 
-需要登录(SESSDATA)
+<img src="/imgs/delete.svg" width="100" height="100" />
 
-api.bilibili.com/x/relation/tag/del
+http://api.bilibili.com/x/relation/tag/del
 
 *方式:POST*
+
+需要登录(SESSDATA)
 
 参数：
 
@@ -900,11 +910,13 @@ curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" http://api.bilibili.com/x/relati
 
 ### 修改用户分组关系（添加/删除）
 
-需要登录(SESSDATA)
+<img src="/imgs/add.svg" width="100" height="100" />
 
-api.bilibili.com/x/relation/tags/addUsers
+http://api.bilibili.com/x/relation/tags/addUsers
 
 *方式:POST*
+
+需要登录(SESSDATA)
 
 参数：
 

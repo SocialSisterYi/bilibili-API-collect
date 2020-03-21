@@ -3,7 +3,7 @@
 <img src="/imgs/akari.jpg" width="200" height="200"/>
 
 ## 用户详细信息1 (用于空间)
-api.bilibili.com/x/space/acc/info
+http://api.bilibili.com/x/space/acc/info
 
 *方式:GET*
 
@@ -21,7 +21,8 @@ api.bilibili.com/x/space/acc/info
 | ttl     | num  | 1        | 作用尚不明确            |
 | data    | obj  | 信息本体 |                         |
 
-data 对象：
+`data`对象：
+
 | 字段        | 类型 | 内容             | 备注                                       |
 | ----------- | ---- | ---------------- | ------------------------------------------ |
 | mid         | num  | UID              |                                            |
@@ -44,7 +45,8 @@ data 对象：
 | theme       | obj  | 空               | 作用尚不明确                               |
 | sys_notice  | obj  | 空               | 作用尚不明确                               |
 
-official 对象：
+`data`中的`official`对象：
+
 | 字段  | 类型 | 内容     | 备注                                      |
 | ----- | ---- | -------- | ----------------------------------------- |
 | role  | num  | 认证类型 | 0无<br />1 2个人认证<br />3 4 5 6机构认证 |
@@ -52,7 +54,8 @@ official 对象：
 | desc  | str  | 认证备注 | 无为空                                    |
 | type  | num  | 是否认证 | -1无<br />0认证                           |
 
-vip 对象：
+`data`中的`vip`对象：
+
 | 字段       | 类型 | 内容       | 备注                          |
 | ---------- | ---- | ---------- | ----------------------------- |
 | type       | num  | 大会员类型 | 0无<br />1月会员<br />2年会员 |
@@ -100,7 +103,7 @@ http://api.bilibili.com/x/space/acc/info?mid=2
 }
 ```
 
-可得出用户的头像为：
+用户的头像为：
 
 http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg
 
@@ -112,9 +115,11 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 ![](http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png)
 
-## 用户详细信息2 (用于卡片)
 
-api.bilibili.com/x/web-interface/card
+
+## 用户详细信息2 (用于名片)
+
+http://api.bilibili.com/x/web-interface/card
 
 *方式:GET*
 
@@ -133,12 +138,14 @@ api.bilibili.com/x/web-interface/card
 | ttl     | num  | 1        | 作用尚不明确            |
 | data    | obj  | 信息本体 |                         |
 
-data 对象：
+`data`对象：
+
 | 字段 | 类型  | 内容     | 备注 |
 | ---- | ----- | -------- | ---- |
 | card | obj   | 卡片信息 |      |
 
-card 对象：
+`data`中的`card`对象：
+
 | 字段            | 类型  | 内容           | 备注                            |
 | --------------- | ----- | -------------- | ------------------------------- |
 | mid             | num   | 用户UID        |                                 |
@@ -169,7 +176,8 @@ card 对象：
 | article_count   | num   | 0              | 作用尚不明确                    |
 | follower        | num   | 粉丝数         |                                 |
 
-level_info 对象：
+`card`中的`level_info`对象：
+
 |  字段         | 类型  | 内容       | 备注               |
 | ------------- | ----- | ---------- | ------------------ |
 | current_level | num   | 当前等级   | 0-6级              |
@@ -177,7 +185,8 @@ level_info 对象：
 | current_exp   | num   | 0          | 作用尚不明确       |
 | next_exp      | num   | 0          | 作用尚不明确       |
 
-pendant 对象：
+`card`中的`pendant`对象：
+
 |  字段         | 类型  | 内容             | 备注               |
 | ------------- | ----- | ---------------- | ------------------ |
 | pid           | num   | 挂件id           |                    |
@@ -185,7 +194,8 @@ pendant 对象：
 | image         | str   | 挂件图片链接     | png                |
 | expire        | num   | 0                | 作用尚不明确       |
 
-nameplate 对象：
+`card`中的`nameplate`对象：
+
 |  字段         | 类型  | 内容              | 备注               |
 | ------------- | ----- | ----------------- | ------------------ |
 | nid           | num   | 勋章id            |                    |
@@ -195,7 +205,8 @@ nameplate 对象：
 | level         | str   | 勋章等级          |                    |
 | condition     | str   | 勋章条件          |                    |
 
-Official 对象：
+`card`中的`Official`对象：
+
 | 字段  | 类型 | 内容     | 备注                                      |
 | ----- | ---- | -------- | ----------------------------------------- |
 | role  | num  | 认证类型 | 0无<br />1 2个人认证<br />3 4 5 6机构认证 |
@@ -203,13 +214,15 @@ Official 对象：
 | desc  | str  | 认证备注 | 无为空                                    |
 | type  | num  | 是否认证 | -1无 0认证                                |
 
-official_verify 对象：
+`card`中的`official_verify`对象：
+
 | 字段 | 类型 | 内容     | 备注            |
 | ---- | ---- | -------- | --------------- |
 | type | num  | 是否认证 | -1无<br />0认证 |
 | desc | str  | 认证信息 | 无为空          |
 
-vip 对象：
+`card`中的`vip`对象：
+
 | 字段          | 类型 | 内容       | 备注                          |
 | ------------- | ---- | ---------- | ----------------------------- |
 | vipType       | num  | 大会员类型 | 0无<br />1月会员<br />2年会员 |
@@ -219,7 +232,8 @@ vip 对象：
 | vipStatusWarn | str  | 空         | 作用尚不明确                  |
 | theme_type    | num  | 0          | 作用尚不明确                  |
 
-space 对象：
+`card`中的`space`对象：
+
 |  字段     | 类型  | 内容              | 备注             |
 | --------- | ----- | ----------------- | ---------------- |
 | s_img     | str   | 主页头图链接 小图 | png              |
@@ -304,13 +318,17 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 }
 ```
 
-## 自己详细信息
+
+
+## 本用户详细信息
+
+http://api.bilibili.com/x/space/myinfo
+
+*方式:GET*
 
 需要登录(SESSDATA)
 
-api.bilibili.com/x/space/myinfo
-
-*方式:GET*
+功能同「[登录用户信息1](../login/login_info.md#登录用户信息1（完整）)」
 
 **json回复：**
 | 字段    | 类型 | 内容     | 备注                  |
@@ -320,8 +338,8 @@ api.bilibili.com/x/space/myinfo
 | ttl     | num  | 1        | 作用尚不明确          |
 | data    | obj  | 信息本体 |                       |
 
+`data`对象：
 
-data 对象：
 | 字段            | 类型 | 内容         | 备注                 |
 | --------------- | ---- | ------------ | -------------------- |
 | mid             | num  | UID          |                      |
@@ -347,7 +365,8 @@ data 对象：
 | following       | num  | 粉丝数       |                      |
 | follower        | num  | 粉丝数       |                      |
 
-vip 对象：
+`data`中的`vip`对象：
+
 | 字段         | 类型 | 内容           | 备注                          |
 | ------------ | ---- | -------------- | ----------------------------- |
 | type         | num  | 大会员类型     | 0无<br />1月会员<br />2年会员 |
@@ -357,12 +376,14 @@ vip 对象：
 | theme_type   | num  | 0              | 作用尚不明确                  |
 | label        | obj  | ？？？         |                               |
 
-label 对象:
+`vip`中的`label`对象:
+
 |  字段        | 类型  | 内容   | 备注         |
 | ------------ | ----- | ------ | ------------ |
 | path         | str   | 空     | 作用尚不明确 |
 
-pendant 对象：
+`data`中的`pendant`对象：
+
 | 字段   | 类型 | 内容        | 备注         |
 | ------ | ---- | ----------- | ------------ |
 | pid    | num  | 挂件id      |              |
@@ -370,7 +391,8 @@ pendant 对象：
 | image  | str  | 挂件图片url | png          |
 | expire | num  | 0           | 作用尚不明确 |
 
-nameplate 对象：
+`data`中的`nameplate`对象：
+
 |  字段         | 类型  | 内容              | 备注               |
 | ------------- | ----- | ----------------- | ------------------ |
 | nid           | num   | 勋章id            |                    |
@@ -380,7 +402,8 @@ nameplate 对象：
 | level         | str   | 勋章等级          |                    |
 | condition     | str   | 勋章条件          |                    |
 
-Official 对象：
+`data`中的`Official`对象：
+
 | 字段  | 类型 | 内容     | 备注                                      |
 | ----- | ---- | -------- | ----------------------------------------- |
 | role  | num  | 认证类型 | 0无<br />1 2个人认证<br />3 4 5 6机构认证 |
@@ -388,7 +411,8 @@ Official 对象：
 | desc  | str  | 认证备注 | 无为空                                    |
 | type  | num  | 是否认证 | -1无<br />0认证                           |
 
-level_exp 对象：
+`data`中的`level_exp`对象：
+
 |  字段         | 类型  | 内容       | 备注               |
 | ------------- | ----- | ---------- | ------------------ |
 | current_level | num   | 当前等级   |  0-6级             |

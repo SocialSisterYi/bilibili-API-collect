@@ -2,13 +2,13 @@
 
 ## 获取弹幕快照
 
+http://api.bilibili.com/x/v2/dm/ajax
+
+*方式:GET*
+
 最近产生的几条弹幕内容
 
 **最多20条**
-
-api.bilibili.com/x/v2/dm/ajax
-
-*方式:GET*
 
 参数：
 
@@ -25,7 +25,7 @@ api.bilibili.com/x/v2/dm/ajax
 | ttl     | num   | 1        | 作用尚不明确                            |
 | data    | array | 预览列表 |                                         |
 
-data 数组：
+`data`数组：
 
 | 项   | 类型 | 内容            | 备注     |
 | ---- | ---- | --------------- | -------- |
@@ -38,7 +38,7 @@ data 数组：
 
 http://api.bilibili.com/x/v2/dm/ajax?aid=43337021
 
-```
+```json
 {
 	"code": 0,
 	"message": "0",

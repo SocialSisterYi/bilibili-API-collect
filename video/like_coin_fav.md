@@ -1,14 +1,14 @@
 # 视频点赞&投币&收藏
 
+**本页所有操作均需登录（SESSDATA）**
+
 ## 操作
 
 ### 点赞视频 
 
 <img src="/imgs/like.svg" width="100" height="100"/>
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/web-interface/archive/like
+http://api.bilibili.com/x/web-interface/archive/like
 
 *方式：POST*
 
@@ -48,9 +48,7 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 
 <img src="/imgs/coin.svg" width="100" height="100"/>
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/web-interface/coin/add
+http://api.bilibili.com/x/web-interface/coin/add
 
 *方式：POST*
 
@@ -80,7 +78,7 @@ data 对象：
 
 示例：
 
-curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "api.bilibili.com/x/web-interface/coin/add"
+curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http://api.bilibili.com/x/web-interface/coin/add"
 
 ```json
 {
@@ -101,23 +99,21 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "api.
 
 <img src="/imgs/fav.svg" width="100" height="100"/>
 
-需要登录(SESSDATA)
-
-需要验证来源为 "http://www.bilibili.com" 或 "https://www.bilibili.com" 域名下
-
-api.bilibili.com/medialist/gateway/coll/resource/deal
+http://api.bilibili.com/medialist/gateway/coll/resource/deal
 
 *方式：POST*
 
+需要验证referer为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
+
 参数：
 
-| 参数名        | 内容                | 必要性 | 备注      |
-| ------------- | ------------------- | ------ | --------- |
-| rid           | 视频avID            | 必要   |           |
-| type          | 必须为2             | 必要   |           |
-| add_media_ids | 需要加入的收藏夹ID  | 非必要 | 用","分隔 |
-| del_media_ids | 需要删除的收藏夹ID  | 非必要 | 用","分隔 |
-| csrf          | cookies中的bili_jct | 必要   |           |
+| 参数名        | 内容                | 必要性 | 备注                    |
+| ------------- | ------------------- | ------ | ----------------------- |
+| rid           | 视频avID            | 必要   |                         |
+| type          | 必须为2             | 必要   |                         |
+| add_media_ids | 需要加入的收藏夹ID  | 非必要 | 同时添加多个，用`,`分隔 |
+| del_media_ids | 需要取消的收藏夹ID  | 非必要 | 同时取消多个，用`,`分隔 |
+| csrf          | cookies中的bili_jct | 必要   |                         |
 
 **json回复：**
 
@@ -127,7 +123,7 @@ api.bilibili.com/medialist/gateway/coll/resource/deal
 | message | str  | 错误信息 | 正确为success                                                |
 | data    | obj  | 信息本体 |                                                              |
 
-data 对象：
+`data`对象：
 
 | 字段   | 类型 | 内容  | 备注         |
 | ------ | ---- | ----- | ------------ |
@@ -155,11 +151,11 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 
 <img src="/imgs/like.svg" align="left" width="50" height="50"/><img src="/imgs/coin.svg" align="left" width="50" height="50"/><img src="/imgs/fav.svg" width="50" height="50"/>
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/web-interface/archive/like/triple
+http://api.bilibili.com/x/web-interface/archive/like/triple
 
 *方式：POST*
+
+同时点赞投币收藏视频，收藏于默认收藏夹中
 
 参数：
 
@@ -177,7 +173,7 @@ api.bilibili.com/x/web-interface/archive/like/triple
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 | data    | obj  | 信息本体 |                                                              |
 
-data 对象：
+`data`对象：
 
 | 字段     | 类型 | 内容         | 备注    |
 | -------- | ---- | ------------ | ------- |
@@ -210,13 +206,11 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 
 ## 判断状态
 
-### 视频被收藏
+### 视频是否被收藏
 
 <img src="/imgs/fav.svg" width="100" height="100"/>
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/v2/fav/video/favoured
+http://api.bilibili.com/x/v2/fav/video/favoured
 
 *方式:GET*
 
@@ -262,13 +256,11 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
 
 
-### 视频被点赞
+### 视频是否被点赞
 
 <img src="/imgs/like.svg" width="100" height="100"/>
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/web-interface/archive/has/like
+http://api.bilibili.com/x/web-interface/archive/has/like
 
 *方式:GET*
 
@@ -285,7 +277,7 @@ api.bilibili.com/x/web-interface/archive/has/like
 | code    | num  | 返回值     | 0成功<br />-400请求错误<br />-101账号未登录 |
 | message | str  | 错误信息   | 默认为0                                     |
 | ttl     | num  | 1          | 作用尚不明确                                |
-| data    | num  | 是否被点赞 | 0未点赞<br />1已点赞                        |
+| data    | num  | 被点赞标志 | 0未点赞<br />1已点赞                        |
 
 示例：
 
@@ -304,13 +296,11 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 
 
 
-### 视频被投币
+### 视频是否被投币
 
 <img src="/imgs/coin.svg" width="100" height="100"/>
 
-需要登录(SESSDATA)
-
-api.bilibili.com/x/web-interface/archive/coins
+http://api.bilibili.com/x/web-interface/archive/coins
 
 *方式:GET*
 
@@ -329,7 +319,7 @@ api.bilibili.com/x/web-interface/archive/coins
 | ttl     | num  | 1        | 作用尚不明确                                |
 | data    | obj  | 信息本体 |                                             |
 
-data 对象：
+`data`对象：
 
 | 字段     | 类型 | 内容     | 备注      |
 | -------- | ---- | -------- | --------- |

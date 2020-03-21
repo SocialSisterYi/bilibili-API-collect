@@ -13,13 +13,13 @@
 
 
 
-## 获取二维码内容url以及秘钥 
+## 申请二维码URL及扫码秘钥 
 
-(秘钥超时为180秒)
-
-passport.bilibili.com/qrcode/getLoginUrl
+http://passport.bilibili.com/qrcode/getLoginUrl
 
 *方式：GET*
+
+秘钥超时为180秒
 
 **json回复：**
 
@@ -30,7 +30,8 @@ passport.bilibili.com/qrcode/getLoginUrl
 | ts      | num   | 请求时间  | 时间戳             |
 | data    | obj   | 信息本体  |                    |
 
-data 对象：
+`data`对象：
+
 | 字段     | 类型  | 内容          | 备注       |
 | -------- | ----- | ------------- | ---------- |
 | url      | str   | 二维码内容url | 恒为87字符 |
@@ -51,17 +52,21 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 }
 ```
 
+用`url`中的值生成二维码，等待手机客户端扫描，并将`oauthKey`保存等待使用
+
+
+
 ## 验证二维码登录 
 
-（秘钥超时为180秒）
+*方式：POST*
 
-passport.bilibili.com/qrcode/getLoginInfo
+http://passport.bilibili.com/qrcode/getLoginInfo
+
+秘钥超时为180秒
 
 验证正确时会进行设置以下cookie项：
 
-「DedeUserID」 「DedeUserID__ckMd5」 「SESSDATA」 「bili_jct」
-
-*方式：POST*
+「sid」「DedeUserID」 「DedeUserID__ckMd5」 「SESSDATA」 「bili_jct」
 
 参数：
 | 参数名   | 内容         | 必要性 | 备注                          |
@@ -84,9 +89,32 @@ data 对象：
 | ---- | ---- | --------------- | ---- |
 | url  | str  | 游戏分站登录url |      |
 
-示例：（重要token已河蟹处理）
+示例：
 
 curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
+
+当秘钥正确时但未扫描时`status`为false，`data`为num值-4
+
+```json
+{
+    "status":false,
+    "data":-4,
+    "message":"Can't scan~"
+}
+```
+
+扫描成功但手机端未确认时`status`为false，`data`为num值-4
+
+```json
+{
+    "status":false,
+    "data":-5,
+    "message":"Can't confirm~"
+}
+```
+
+扫描成功手机端确认登录后，`status`为true，`data`为对象，并向浏览器写入cookie
+
 ```json
 {
 	"code": 0,
@@ -100,7 +128,7 @@ curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 
 回复头部抓包信息：
 
-可明显看见设置了几个cookie（本人手打cookie，已经成功登录B站）（重要token已河蟹处理）
+可明显看见设置了几个cookie（本人手打已测试成功登录B站）
 
 ```http
 HTTP/1.1 200 OK
@@ -119,7 +147,7 @@ Cache-Control: no-cache
 X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 ```
 
-**游戏分站登录url（也可用于不方便设置cookie的场合使用）**
+**游戏分站登录url与cookie的数据对应（也可用于不方便设置cookie的场合提取使用）**
 
 https://passport.biligame.com/crossDomain?
 
@@ -129,9 +157,9 @@ DedeUserID__ckMd5=(DedeUserID__ckMd5)&
 
 Expires=(过期时间 秒)&
 
-SESSDATA=(SESSDATA)&
+SESSDATA=(登录token)&
 
-bili_jct=(bili_jct)&
+bili_jct=(登录csrf)&
 
 gourl=(跳转网址 默认为主页)
 

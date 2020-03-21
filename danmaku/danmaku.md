@@ -6,11 +6,11 @@
 
 ## 获取实时弹幕1
 
-**使用deflate压缩，使用时注意解码**
-
-api.bilibili.com/x/v1/dm/list.so
+http://api.bilibili.com/x/v1/dm/list.so
 
 *方式:GET*
+
+**使用deflate压缩，注意解码**
 
 参数：
 
@@ -24,13 +24,13 @@ http://api.bilibili.com/x/v1/dm/list.so?oid=144541892
 
 ## 获取实时弹幕2
 
-与前者使用效果相同
-
-**使用deflate压缩，使用时注意解码**
-
-comment.bilibili.com/{cid}.xml
+http://comment.bilibili.com/{cid}.xml
 
 *方式:GET*
+
+效果与前者相同
+
+**使用deflate压缩，注意解码**
 
 参数：
 
@@ -101,7 +101,7 @@ http://comment.bilibili.com/144541892.xml
 | 3    | 弹幕颜色           | int   | 十进制RGB888值                                               |
 | 4    | 弹幕发送时间       | int   | 时间戳                                                       |
 | 5    | 弹幕池类型         | int   | 0普通池<br />1字幕池<br />2特殊池（高级弹幕）                |
-| 6    | 编码后的用户ID     | HEX   | 用于屏蔽用户  也可反查用户ID                                 |
+| 6    | 编码后的用户ID     | HEX   | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |
 | 7    | 弹幕ID             | int   | 唯一  可用于操作参数                                         |
 
 ```xml
@@ -114,9 +114,22 @@ http://comment.bilibili.com/144541892.xml
 
 ### web版标准颜色
 
-|      |      |      |
-| ---- | ---- | ---- |
-|      |      |      |
-|      |      |      |
-|      |      |      |
+弹幕的颜色属性使用**十进制RGB888**值
+
+| 颜色                              | HEX（RGB888）                       | DEC（RGB888）                         |
+| --------------------------------- | ----------------------------------- | ------------------------------------- |
+| <font color="#FE0302">红色</font> | <font color="#FE0302">FE0302</font> | <font color="#FE0302">16646914‬</font> |
+| <font color="#FF7204">橘红</font> | <font color="#FF7204">FF7204</font> | <font color="#FF7204">16740868</font> |
+| <font color="#FFAA02">橘黄</font> | <font color="#FFAA02">FFAA02</font> | <font color="#FFAA02">16755202</font> |
+| <font color="#FFD302">淡黄</font> | <font color="#FFD302">FFD302</font> | <font color="#FFD302">16765698</font> |
+| <font color="#FFFF00">黄色</font> | <font color="#FFFF00">FFFF00</font> | <font color="#FFFF00">16776960</font> |
+| <font color="#A0EE00">草绿</font> | <font color="#A0EE00">A0EE00</font> | <font color="#A0EE00">10546688</font> |
+| <font color="#00CD00">绿色</font> | <font color="#00CD00">00CD00</font> | <font color="#00CD00">52480</font>    |
+| <font color="#019899">墨绿</font> | <font color="#019899">019899</font> | <font color="#019899">104601</font>   |
+| <font color="#4266BE">紫色</font> | <font color="#4266BE">4266BE</font> | <font color="#4266BE">4351678</font>  |
+| <font color="#89D5FF">青色</font> | <font color="#89D5FF">89D5FF</font> | <font color="#89D5FF">9022215</font>  |
+| <font color="#CC0273">品红</font> | <font color="#CC0273">CC0273</font> | <font color="#CC0273">13369971</font> |
+| <font color="#222222">黑色</font> | <font color="#222222">222222</font> | <font color="#222222">2236962</font>  |
+| <font color="#9B9B9B">灰色</font> | <font color="#9B9B9B">9B9B9B</font> | <font color="#9B9B9B">10197915</font> |
+| <font color="#FFFFFF">白色</font> | <font color="#FFFFFF">FFFFFF</font> | <font color="#FFFFFF">16777215</font> |
 
