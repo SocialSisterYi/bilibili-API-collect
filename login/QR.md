@@ -58,9 +58,9 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 
 ## 验证二维码登录 
 
-*方式：POST*
-
 http://passport.bilibili.com/qrcode/getLoginInfo
+
+*方式：POST*
 
 秘钥超时为180秒
 

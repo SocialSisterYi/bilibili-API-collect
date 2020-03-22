@@ -34,7 +34,7 @@ http://api.bilibili.com/x/web-interface/archive/related
 
 `data`数组中的对象：
 
-同「[视频详细信息](info.md#视频详细信息)」中的data对象
+基本同「[视频详细信息](info.md#视频详细信息)」中的data对象
 
 示例：
 
