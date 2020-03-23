@@ -12,9 +12,9 @@ http://api.bilibili.com/x/v2/dm/ajax
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容               | 必要性 | 备注 |
+| ------ | ------------------ | ------ | ---- |
+| aid    | 视频avID或视频bvID | 必要   |      |
 
 **json回复：**
 
@@ -37,6 +37,8 @@ http://api.bilibili.com/x/v2/dm/ajax
 示例：
 
 http://api.bilibili.com/x/v2/dm/ajax?aid=43337021
+
+同http://api.bilibili.com/x/v2/dm/ajax?aid=BV1rb411m7gE
 
 ```json
 {

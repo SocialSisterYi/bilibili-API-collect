@@ -2,7 +2,7 @@
 
 ## 获取单视频推荐列表
 
-http://api.bilibili.com/x/web-interface/archive/related
+> http://api.bilibili.com/x/web-interface/archive/related
 
 *方式:GET* 
 
@@ -10,9 +10,10 @@ http://api.bilibili.com/x/web-interface/archive/related
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容     | 必要性 | 备注               |
+| ------ | -------- | ------ | ------------------ |
+| aid    | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -39,6 +40,8 @@ http://api.bilibili.com/x/web-interface/archive/related
 示例：
 
 http://api.bilibili.com/x/web-interface/archive/related?aid=7
+
+同http://api.bilibili.com/x/web-interface/archive/related?bvid=BV1xx411c7m9
 
 ```json
 {

@@ -8,15 +8,16 @@
 
 <img src="/imgs/like.svg" width="100" height="100"/>
 
-http://api.bilibili.com/x/web-interface/archive/like
+> http://api.bilibili.com/x/web-interface/archive/like
 
 *方式：POST*
 
-参数：
+参数（ application/x-www-form-urlencoded ）：
 
 | 参数名 | 内容                | 必要性 | 备注               |
 | ------ | ------------------- | ------ | ------------------ |
-| aid    | 视频avID            | 必要   |                    |
+| aid    | 视频avID            | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID            | 非必要 | avID与bvID任选一个 |
 | like   | 操作方式            | 必要   | 1点赞<br />2取消赞 |
 | csrf   | cookies中的bili_jct | 必要   |                    |
 
@@ -30,7 +31,11 @@ http://api.bilibili.com/x/web-interface/archive/like
 
 示例：
 
+为视频av79677524/BV1uJ411r7hL点赞
+
 curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.com/x/web-interface/archive/like"
+
+同curl -b "SESSDATA=xxx" -d "aid=BV1uJ411r7hL&like=1&csrf=xxx" "http://api.bilibili.com/x/web-interface/archive/like"
 
 ```json
 {
@@ -40,23 +45,22 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 }
 ```
 
-成功为视频av79677524点赞
-
 
 
 ### 投币视频
 
 <img src="/imgs/coin.svg" width="100" height="100"/>
 
-http://api.bilibili.com/x/web-interface/coin/add
+> http://api.bilibili.com/x/web-interface/coin/add
 
 *方式：POST*
 
-参数：
+参数（ application/x-www-form-urlencoded ）：
 
 | 参数名      | 内容                | 必要性 | 备注                                |
 | ----------- | ------------------- | ------ | ----------------------------------- |
-| aid         | 视频avID            | 必要   |                                     |
+| aid         | 视频avID            | 非必要 | avID与bvID任选一个                  |
+| bvid        | 视频bvID            | 非必要 | avID与bvID任选一个                  |
 | select_like | 同时点赞            | 非必要 | 0不点赞<br />1同时点赞<br />默认为0 |
 | multiply    | 投币数量            | 必要   | 上限为2                             |
 | csrf        | cookies中的bili_jct | 必要   |                                     |
@@ -65,7 +69,7 @@ http://api.bilibili.com/x/web-interface/coin/add
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0成功<br />-400请求错误<br />10003不存在该稿件<br />-111csrf校验失败<br />-101账号未登录<br />34005超过投币上限<br />34002不能给自己投币<br />-104硬币不足 |
+| code    | num  | 返回值   | 0成功<br />-400请求错误<br />10003不存在该稿件<br />-111csrf校验失败<br />-101账号未登录<br />34002不能给自己投币<br />34003非法的投币数量<br />34005超过投币上限<br />-104硬币不足 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 | data    | obj  | 信息本体 |                                                              |
@@ -78,7 +82,11 @@ data 对象：
 
 示例：
 
+为视频av90671873/BV1N7411A7wC投币2枚
+
 curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http://api.bilibili.com/x/web-interface/coin/add"
+
+同curl -b "SESSDATA=xxx" -d "bvid=BV1N7411A7wC&select_like=1&multiply=2&csrf=xxx" "http://api.bilibili.com/x/web-interface/coin/add"
 
 ```json
 {
@@ -91,21 +99,19 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http
 }
 ```
 
-成功为视频av90671873投币2枚
 
 
-
-### 收藏视频
+### 收藏视频（暂不支持bvID）
 
 <img src="/imgs/fav.svg" width="100" height="100"/>
 
-http://api.bilibili.com/medialist/gateway/coll/resource/deal
+> http://api.bilibili.com/medialist/gateway/coll/resource/deal
 
 *方式：POST*
 
 需要验证referer为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
 
-参数：
+参数（ application/x-www-form-urlencoded ）：
 
 | 参数名        | 内容                | 必要性 | 备注                    |
 | ------------- | ------------------- | ------ | ----------------------- |
@@ -131,6 +137,8 @@ http://api.bilibili.com/medialist/gateway/coll/resource/deal
 
 示例：
 
+将视频av49166435添加到收藏夹49166435中
+
 curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type=2&add_media_ids=49166435&del_media_ids=&csrf=xxx" "http://api.bilibili.com/medialist/gateway/coll/resource/deal"
 
 ```json
@@ -143,26 +151,25 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 }
 ```
 
-成功将av49166435收藏到收藏夹ID为49166435的收藏夹中
-
 
 
 ### 一键三连视频
 
 <img src="/imgs/like.svg" align="left" width="50" height="50"/><img src="/imgs/coin.svg" align="left" width="50" height="50"/><img src="/imgs/fav.svg" width="50" height="50"/>
 
-http://api.bilibili.com/x/web-interface/archive/like/triple
+> http://api.bilibili.com/x/web-interface/archive/like/triple
 
 *方式：POST*
 
 同时点赞投币收藏视频，收藏于默认收藏夹中
 
-参数：
+参数（ application/x-www-form-urlencoded ）：
 
-| 参数名 | 内容                | 必要性 | 备注 |
-| ------ | ------------------- | ------ | ---- |
-| aid    | 视频avID            | 必要   |      |
-| csrf   | cookies中的bili_jct | 必要   |      |
+| 参数名 | 内容                | 必要性 | 备注               |
+| ------ | ------------------- | ------ | ------------------ |
+| aid    | 视频avID            | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID            | 非必要 | avID与bvID任选一个 |
+| csrf   | cookies中的bili_jct | 必要   |                    |
 
 **json回复：**
 
@@ -184,7 +191,11 @@ http://api.bilibili.com/x/web-interface/archive/like/triple
 
 示例：
 
+将视频av91003840/BV1Wj411f79U一键三连
+
 curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web-interface/archive/like/triple"
+
+同curl -b "SESSDATA=xxx" -d "bvid=BV1Wj411f79U&csrf=xxx" "http://api.bilibili.com/x/web-interface/archive/like/triple"
 
 ```json
 {
@@ -200,8 +211,6 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 }
 ```
 
-成功将视频av91003840一键三连
-
 
 
 ## 判断状态
@@ -210,15 +219,15 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 
 <img src="/imgs/fav.svg" width="100" height="100"/>
 
-http://api.bilibili.com/x/v2/fav/video/favoured
+> http://api.bilibili.com/x/v2/fav/video/favoured
 
 *方式:GET*
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容               | 必要性 | 备注 |
+| ------ | ------------------ | ------ | ---- |
+| aid    | 视频avID或视频bvID | 必要   |      |
 
 **json回复：**
 
@@ -238,7 +247,11 @@ data 对象：
 
 示例：
 
+视频av46281123/BV1Bb411H7Dv的状态为已收藏
+
 http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
+
+同http://api.bilibili.com/x/v2/fav/video/favoured?aid=BV1Bb411H7Dv
 
 ```json
 {
@@ -252,23 +265,22 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 }
 ```
 
-视频av46281123的状态为已收藏
-
 
 
 ### 视频是否被点赞
 
 <img src="/imgs/like.svg" width="100" height="100"/>
 
-http://api.bilibili.com/x/web-interface/archive/has/like
+> http://api.bilibili.com/x/web-interface/archive/has/like
 
 *方式:GET*
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容     | 必要性 | 备注               |
+| ------ | -------- | ------ | ------------------ |
+| aid    | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -281,7 +293,11 @@ http://api.bilibili.com/x/web-interface/archive/has/like
 
 示例：
 
+视频av39330059/BV1Bt411z799的状态为已点赞
+
 http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
+
+同http://api.bilibili.com/x/web-interface/archive/has/like?bvid=BV1Bt411z799
 
 ```json
 {
@@ -292,23 +308,22 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 }
 ```
 
-视频av39330059的状态为已点赞
-
 
 
 ### 视频是否被投币
 
 <img src="/imgs/coin.svg" width="100" height="100"/>
 
-http://api.bilibili.com/x/web-interface/archive/coins
+> http://api.bilibili.com/x/web-interface/archive/coins
 
 *方式:GET*
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容     | 必要性 | 备注               |
+| ------ | -------- | ------ | ------------------ |
+| aid    | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -327,7 +342,11 @@ http://api.bilibili.com/x/web-interface/archive/coins
 
 示例：
 
+视频av37896701/BV18t411q7zz的投币数为2枚
+
 http://api.bilibili.com/x/web-interface/archive/coins?aid=37896701
+
+同http://api.bilibili.com/x/web-interface/archive/coins?bvid=BV18t411q7zz
 
 ```json
 {
@@ -340,5 +359,5 @@ http://api.bilibili.com/x/web-interface/archive/coins?aid=37896701
 }
 ```
 
-视频av37896701的投币数为2枚
+
 

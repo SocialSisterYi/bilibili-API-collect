@@ -1,7 +1,7 @@
 # 用户状态数
 
 ## 关系状态数
-http://api.bilibili.com/x/relation/stat
+> http://api.bilibili.com/x/relation/stat
 
 *方式:GET*
 
@@ -30,7 +30,10 @@ http://api.bilibili.com/x/relation/stat
 
 示例：
 
+查询用户332704117的关系状态数
+
 http://api.bilibili.com/x/relation/stat?vmid=332704117
+
 ```json
 {
 	"code": 0,
@@ -47,7 +50,7 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 ```
 
 ## UP主状态数
-http://api.bilibili.com/x/space/upstat
+> http://api.bilibili.com/x/space/upstat
 
 *方式:GET*
 
@@ -87,6 +90,8 @@ http://api.bilibili.com/x/space/upstat
 
 示例：
 
+查询用户456664753的up主状态数
+
 http://api.bilibili.com/x/space/upstat?mid=456664753
 ```json
 {
@@ -106,7 +111,7 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 ```
 
 ## 订阅&投稿状态数
-http://api.bilibili.com/x/space/navnum
+> http://api.bilibili.com/x/space/navnum
 
 *方式:GET*
 
@@ -154,10 +159,11 @@ http://api.bilibili.com/x/space/navnum
 | master | num  | 全部收藏夹数 | 需要登录(SESSDATA)  只能查看自己的 |
 | guest  | num  | 公开收藏夹数 | 无视隐私设置                       |
 
-
 示例：
 
-http://api.bilibili.com/x/space/navnum?mid=23920239
+查询用户239202390的订阅&投稿状态数
+
+http://api.bilibili.com/x/space/navnum?mid=239202390
 ```json
 {
 	"code": 0,

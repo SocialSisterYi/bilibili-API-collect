@@ -15,7 +15,7 @@
 
 ## 申请二维码URL及扫码秘钥 
 
-http://passport.bilibili.com/qrcode/getLoginUrl
+> http://passport.bilibili.com/qrcode/getLoginUrl
 
 *方式：GET*
 
@@ -58,7 +58,7 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 
 ## 验证二维码登录 
 
-http://passport.bilibili.com/qrcode/getLoginInfo
+> http://passport.bilibili.com/qrcode/getLoginInfo
 
 *方式：POST*
 
@@ -68,14 +68,14 @@ http://passport.bilibili.com/qrcode/getLoginInfo
 
 「sid」「DedeUserID」 「DedeUserID__ckMd5」 「SESSDATA」 「bili_jct」
 
-参数：
+参数（ application/x-www-form-urlencoded ）：
 | 参数名   | 内容         | 必要性 | 备注                          |
 | ---------| ------------ | ------ |------------------------------ |
 | oauthKey | 扫码登录秘钥 | 必要   |                               |
 | gourl    | 跳转url      | 非必要 | 默认为http://www.bilibili.com |
 
-
 **json回复：**
+
 | 字段    | 类型                     | 内容                                      | 备注                                                         |
 | ------- | ------------------------ | ----------------------------------------- | ------------------------------------------------------------ |
 | status  | bool                     | 扫码是否成功                              |                                                              |
@@ -93,7 +93,7 @@ data 对象：
 
 curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 
-当秘钥正确时但未扫描时`status`为false，`data`为num值-4
+当秘钥正确时但未扫描时`status`为false，`data`为num值`-4`
 
 ```json
 {
@@ -103,7 +103,7 @@ curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 }
 ```
 
-扫描成功但手机端未确认时`status`为false，`data`为num值-4
+扫描成功但手机端未确认时`status`为`false`，`data`为num值`-5`
 
 ```json
 {
@@ -113,7 +113,7 @@ curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 }
 ```
 
-扫描成功手机端确认登录后，`status`为true，`data`为对象，并向浏览器写入cookie
+扫描成功手机端确认登录后，`status`为`true`，`data`为对象，并向浏览器写入cookie
 
 ```json
 {

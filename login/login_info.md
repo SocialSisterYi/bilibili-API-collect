@@ -2,9 +2,9 @@
 
 ## 登录用户信息1（完整）
 
-http://api.bilibili.com/nav (使用转义)
-
-http://api.bilibili.com/x/web-interface/nav (原始数据)
+> http://api.bilibili.com/nav (使用转义)
+>
+> http://api.bilibili.com/x/web-interface/nav (原始数据)
 
 *方式:GET*
 
@@ -92,6 +92,8 @@ http://api.bilibili.com/x/web-interface/nav (原始数据)
 
 示例：
 
+查询当前登录用户的信息
+
 http://api.bilibili.com/x/web-interface/nav
 
 ```json
@@ -154,7 +156,7 @@ http://api.bilibili.com/x/web-interface/nav
 
 ## 登录用户信息2（仅部分  带有转义）
 
-http://account.bilibili.com/home/userInfo (带有转义)
+> http://account.bilibili.com/home/userInfo (带有转义)
 
 *方式:GET*
 
@@ -198,6 +200,8 @@ http://account.bilibili.com/home/userInfo (带有转义)
 
 示例：
 
+查询当前登录用户的信息
+
 http://account.bilibili.com/home/userInfo
 
 ```json
@@ -230,7 +234,7 @@ http://account.bilibili.com/home/userInfo
 
 ## 登录用户状态数
 
-http://api.bilibili.com/x/web-interface/nav/stat
+> http://api.bilibili.com/x/web-interface/nav/stat
 
 *方式：GET*
 
@@ -253,6 +257,10 @@ http://api.bilibili.com/x/web-interface/nav/stat
 
 示例：
 
+查询当前登录用户的状态数
+
+粉丝数为365，关注数为695，发送的动态数为162
+
 http://api.bilibili.com/x/web-interface/nav/stat
 
 ```json
@@ -267,5 +275,3 @@ http://api.bilibili.com/x/web-interface/nav/stat
 	}
 }
 ```
-
-粉丝数为365，关注数为695，发送的动态数为162

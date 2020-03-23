@@ -3,7 +3,7 @@
 <img src="/imgs/akari.jpg" width="200" height="200"/>
 
 ## 用户详细信息1 (用于空间)
-http://api.bilibili.com/x/space/acc/info
+> http://api.bilibili.com/x/space/acc/info
 
 *方式:GET*
 
@@ -119,7 +119,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 ## 用户详细信息2 (用于名片)
 
-http://api.bilibili.com/x/web-interface/card
+> http://api.bilibili.com/x/web-interface/card
 
 *方式:GET*
 
@@ -322,7 +322,7 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 
 ## 本用户详细信息
 
-http://api.bilibili.com/x/space/myinfo
+> http://api.bilibili.com/x/space/myinfo
 
 *方式:GET*
 

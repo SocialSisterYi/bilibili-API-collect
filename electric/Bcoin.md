@@ -10,7 +10,7 @@ http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
 需要登录(SESSDATA)
 
-参数：
+参数（ application/x-www-form-urlencoded ）：
 
 | 参数名   | 内容                | 必要性 | 备注                                              |
 | -------- | ------------------- | ------ | ------------------------------------------------- |

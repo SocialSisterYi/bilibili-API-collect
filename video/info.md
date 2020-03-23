@@ -2,17 +2,18 @@
 
 <img src="/imgs/ploading.gif" width="100" height="100"/>
 
-## 视频详细信息
+## 视频详细信息（avID/bvID互转）
 
-http://api.bilibili.com/x/web-interface/view
+> http://api.bilibili.com/x/web-interface/view
 
 *方式:GET*
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容     | 必要性 | 备注               |
+| ------ | -------- | ------ | ------------------ |
+| aid    | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -27,7 +28,7 @@ http://api.bilibili.com/x/web-interface/view
 
 | 字段         | 类型  | 内容                           | 备注                  |
 | ------------ | ----- | ------------------------------ | --------------------- |
-| bvid         | str   | 空                             | 作用尚不明确          |
+| bvid         | str   | 视频bvID                       |                       |
 | aid          | num   | 视频avID                       |                       |
 | videos       | num   | 视频分P总数                    | 默认为1               |
 | tid          | num   | 分区ID                         |                       |
@@ -207,13 +208,15 @@ http://api.bilibili.com/x/web-interface/view
 
 http://api.bilibili.com/x/web-interface/view?aid=85440373
 
+同http://api.bilibili.com/x/web-interface/view?bvid=BV117411r7R1
+
 ```json
 {
 	"code": 0,
 	"message": "0",
 	"ttl": 1,
 	"data": {
-		"bvid": "",
+		"bvid": "BV117411r7R1",
 		"aid": 85440373,
 		"videos": 1,
 		"tid": 28,
@@ -245,19 +248,19 @@ http://api.bilibili.com/x/web-interface/view?aid=85440373
 		"owner": {
 			"mid": 66606350,
 			"name": "Crazy_Bucket",
-			"face": "http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg"
+			"face": "http://i2.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg"
 		},
 		"stat": {
 			"aid": 85440373,
-			"view": 1362470,
-			"danmaku": 8753,
-			"reply": 2489,
-			"favorite": 47970,
-			"coin": 55627,
-			"share": 7927,
+			"view": 1419319,
+			"danmaku": 9203,
+			"reply": 2519,
+			"favorite": 49031,
+			"coin": 57470,
+			"share": 8120,
 			"now_rank": 0,
 			"his_rank": 55,
-			"like": 115395,
+			"like": 118462,
 			"dislike": 0,
 			"evaluation": ""
 		},
@@ -291,7 +294,7 @@ http://api.bilibili.com/x/web-interface/view?aid=85440373
 			"mid": 66606350,
 			"title": "UP主",
 			"name": "Crazy_Bucket",
-			"face": "http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg",
+			"face": "http://i2.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg",
 			"vip": {
 				"type": 2,
 				"status": 1,
@@ -304,7 +307,7 @@ http://api.bilibili.com/x/web-interface/view?aid=85440373
 				"desc": "",
 				"type": 0
 			},
-			"follower": 333883,
+			"follower": 369687,
 			"label_style": 0
 		}, {
 			"mid": 53456,
@@ -323,7 +326,7 @@ http://api.bilibili.com/x/web-interface/view?aid=85440373
 				"desc": "",
 				"type": 0
 			},
-			"follower": 1398071,
+			"follower": 1452718,
 			"label_style": 0
 		}]
 	}
@@ -346,15 +349,16 @@ http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
 ## 视频简介
 
-http://api.bilibili.com/x/web-interface/archive/desc
+> http://api.bilibili.com/x/web-interface/archive/desc
 
 *方式:GET*
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容     | 必要性 | 备注               |
+| ------ | -------- | ------ | ------------------ |
+| aid    | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -369,6 +373,8 @@ http://api.bilibili.com/x/web-interface/archive/desc
 
 http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 
+同http://api.bilibili.com/x/web-interface/archive/desc?bvid=BV1Bt411z799
+
 ~~（教主的咕鸽）~~
 
 ```json
@@ -380,17 +386,18 @@ http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 }
 ```
 
-## 视频分P列表  (avID转CID)
+## 视频分P列表  (avID/bvID转CID)
 
-http://api.bilibili.com/x/player/pagelist
+> http://api.bilibili.com/x/player/pagelist
 
 *方式:GET*
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注 |
-| ------ | -------- | ------ | ---- |
-| aid    | 视频avID | 必要   |      |
+| 参数名 | 内容     | 必要性 | 备注               |
+| ------ | -------- | ------ | ------------------ |
+| aid    | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -433,6 +440,8 @@ http://api.bilibili.com/x/player/pagelist
 示例：（后面省略）
 
 http://api.bilibili.com/x/player/pagelist?aid=13502509
+
+同http://api.bilibili.com/x/player/pagelist?bvid=BV1ex411J7GE
 
 ```json
 {

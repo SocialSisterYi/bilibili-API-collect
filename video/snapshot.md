@@ -7,14 +7,15 @@
 截取时间表的时间和快照一一对应，并按照从左到右 从上到下的顺序排布
 
 ## 获取视频快照1（用于进度条预览）
-http://api.bilibili.com/x/player/videoshot
+> http://api.bilibili.com/x/player/videoshot
 
 *方式:GET* 
 
 参数：
 | 参数名 | 内容               | 必要性 | 备注                            |
 | ------ | ------------------ | ------ | ------------------------------- |
-| aid    | 视频avID           | 必要   |                                 |
+| aid    | 视频avID           | 非必要 | avID与bvID任选一个              |
+| bvid   | 视频bvID           | 非必要 | avID与bvID任选一个              |
 | cid    | 分P CID            | 非必要 | 默认为1P                        |
 | index  | json数组截取时间表 | 非必要 | 1需要<br />0不需要<br />默认为0 |
 
@@ -60,6 +61,8 @@ http://api.bilibili.com/x/player/videoshot
 
 http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
 
+同http://api.bilibili.com/x/player/videoshot?bvid=BV1os411H7wm&index=1
+
 ```json
 {
 	"code": 0,
@@ -79,11 +82,9 @@ http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
 
 
 
+## 获取视频快照2 （用于封面预览  暂不支持bvID）
 
-
-## 获取视频快照2 （用于封面预览）
-
-http://api.bilibili.com/pvideo
+> http://api.bilibili.com/pvideo
 
 *方式:GET*
 
