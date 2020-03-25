@@ -14,53 +14,53 @@
 
 
 **json回复：**
-| 字段    | 类型 | 内容     | 备注                    |
-| ------- | ---- | -------- | ----------------------- |
-| code    | num  | 返回值   | 0成功<br />-400请求错误 |
-| message | str  | 错误信息 | 默认为0                 |
-| ttl     | num  | 1        | 作用尚不明确            |
-| data    | obj  | 信息本体 |                         |
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                     |
+| ttl     | num  | 1        | 作用尚不明确                |
+| data    | obj  | 信息本体 |                             |
 
 `data`对象：
 
-| 字段        | 类型 | 内容             | 备注                                       |
-| ----------- | ---- | ---------------- | ------------------------------------------ |
-| mid         | num  | UID              |                                            |
-| name        | str  | 昵称             |                                            |
-| sex         | str  | 性别             | 男 女 保密                                 |
-| face        | str  | 头像链接         | jpg或gif                                   |
-| sign        | str  | 签名             |                                            |
-| rank        | num  | 10000            | 作用尚不明确                               |
-| level       | num  | 当前等级         | 0-6级                                      |
-| jointime    | num  | 0                | 作用尚不明确                               |
-| moral       | num  | 0                | 作用尚不明确                               |
-| silence     | num  | 封禁状态         | 0正常<br />1被封                           |
-| birthday    | str  | 生日             | mm-dd                                      |
-| coins       | num  | 硬币数           | 需要登录(SESSDATA)  只能查看自己的 默认为0 |
-| fans_badge  | bool | 是否具有粉丝勋章 |                                            |
-| official    | obj  | 认证信息         |                                            |
-| vip         | obj  | 大会员状态       |                                            |
-| is_followed | bool | 是否关注此用户   | 需要登录 默认为false                       |
-| top_photo   | str  | 主页头图链接     | png                                        |
-| theme       | obj  | 空               | 作用尚不明确                               |
-| sys_notice  | obj  | 空               | 作用尚不明确                               |
+| 字段        | 类型 | 内容             | 备注                                                 |
+| ----------- | ---- | ---------------- | ---------------------------------------------------- |
+| mid         | num  | UID              |                                                      |
+| name        | str  | 昵称             |                                                      |
+| sex         | str  | 性别             | 男 女 保密                                           |
+| face        | str  | 头像链接         | jpg或gif                                             |
+| sign        | str  | 签名             |                                                      |
+| rank        | num  | 10000            | 作用尚不明确                                         |
+| level       | num  | 当前等级         | 0-6级                                                |
+| jointime    | num  | 0                | 作用尚不明确                                         |
+| moral       | num  | 0                | 作用尚不明确                                         |
+| silence     | num  | 封禁状态         | 0：正常<br />1：被封                                 |
+| birthday    | str  | 生日             | mm-dd                                                |
+| coins       | num  | 硬币数           | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0 |
+| fans_badge  | bool | 是否具有粉丝勋章 |                                                      |
+| official    | obj  | 认证信息         |                                                      |
+| vip         | obj  | 大会员状态       |                                                      |
+| is_followed | bool | 是否关注此用户   | 需要登录(SESSDATA)<br />默认为false                  |
+| top_photo   | str  | 主页头图链接     | png                                                  |
+| theme       | obj  | 空               | 作用尚不明确                                         |
+| sys_notice  | obj  | 空               | 作用尚不明确                                         |
 
 `data`中的`official`对象：
 
-| 字段  | 类型 | 内容     | 备注                                      |
-| ----- | ---- | -------- | ----------------------------------------- |
-| role  | num  | 认证类型 | 0无<br />1 2个人认证<br />3 4 5 6机构认证 |
-| title | str  | 认证信息 | 无为空                                    |
-| desc  | str  | 认证备注 | 无为空                                    |
-| type  | num  | 是否认证 | -1无<br />0认证                           |
+| 字段  | 类型 | 内容     | 备注                                            |
+| ----- | ---- | -------- | ----------------------------------------------- |
+| role  | num  | 认证类型 | 0：无<br />1 2：个人认证<br />3 4 5 6：机构认证 |
+| title | str  | 认证信息 | 无为空                                          |
+| desc  | str  | 认证备注 | 无为空                                          |
+| type  | num  | 是否认证 | -1：无<br />0：认证                             |
 
 `data`中的`vip`对象：
 
-| 字段       | 类型 | 内容       | 备注                          |
-| ---------- | ---- | ---------- | ----------------------------- |
-| type       | num  | 大会员类型 | 0无<br />1月会员<br />2年会员 |
-| status     | num  | 大会员状态 | 0无<br />1有                  |
-| theme_type | num  | 0          | 作用尚不明确                  |
+| 字段       | 类型 | 内容       | 备注                                |
+| ---------- | ---- | ---------- | ----------------------------------- |
+| type       | num  | 大会员类型 | 0：无<br />1：月会员<br />2：年会员 |
+| status     | num  | 大会员状态 | 0：无<br />1：有                    |
+| theme_type | num  | 0          | 作用尚不明确                        |
 
 示列：
 
@@ -124,19 +124,19 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 *方式:GET*
 
 参数：
-| 参数名 | 内容                 | 必要性 | 备注                |
-| ------ | -------------------- | ------ | ------------------- |
-| mid    | 用户UID              | 必要   |                     |
-| photo  | 是否请求用户主页头图 | 非必要 | true是<br />false否 |
+| 参数名 | 内容                 | 必要性 | 备注                    |
+| ------ | -------------------- | ------ | ----------------------- |
+| mid    | 用户UID              | 必要   |                         |
+| photo  | 是否请求用户主页头图 | 非必要 | true：是<br />false：否 |
 
 
 **json回复：**
-| 字段    | 类型 | 内容     | 备注                    |
-| ------- | ---- | -------- | ----------------------- |
-| code    | num  | 返回值   | 0成功<br />-400请求错误 |
-| message | str  | 错误信息 | 默认为0                 |
-| ttl     | num  | 1        | 作用尚不明确            |
-| data    | obj  | 信息本体 |                         |
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                     |
+| ttl     | num  | 1        | 作用尚不明确                |
+| data    | obj  | 信息本体 |                             |
 
 `data`对象：
 
@@ -146,35 +146,35 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 `data`中的`card`对象：
 
-| 字段            | 类型  | 内容           | 备注                            |
-| --------------- | ----- | -------------- | ------------------------------- |
-| mid             | num   | 用户UID        |                                 |
-| approve         | bool  | false          | 作用尚不明确                    |
-| name            | str   | 用户昵称       |                                 |
-| sex             | str   | 用户性别       | 男 女 保密                      |
-| face            | str   | 用户头像链接   | jpg或gif                        |
-| DisplayRank     | str   | 0              | 作用尚不明确                    |
-| regtime         | num   | 0              | 作用尚不明确                    |
-| spacesta        | num   | 0              | 作用尚不明确                    |
-| birthday        | str   | 空             | 作用尚不明确                    |
-| place           | str   | 空             | 作用尚不明确                    |
-| description     | str   | 空             | 作用尚不明确                    |
-| article         | num   | 0              | 作用尚不明确                    |
-| attentions      | array | 空             | 作用尚不明确                    |
-| fans            | num   | 粉丝数         |                                 |
-| friend          | num   | 关注数         |                                 |
-| attention       | num   | 关注数         |                                 |
-| level_info      | obj   | 等级           |                                 |
-| pendant         | obj   | 挂件           |                                 |
-| nameplate       | obj   | 勋章           |                                 |
-| Official        | obj   | 认证信息       |                                 |
-| official_verify | obj   | 认证信息2      |                                 |
-| vip             | obj   | 大会员状态     |                                 |
-| space           | obj   | 主页头图       |                                 |
-| following       | bool  | 是否关注此用户 | 需要登录(SESSDATA)  默认为false |
-| archive_count   | num   | 用户稿件数     |                                 |
-| article_count   | num   | 0              | 作用尚不明确                    |
-| follower        | num   | 粉丝数         |                                 |
+| 字段            | 类型  | 内容           | 备注                                 |
+| --------------- | ----- | -------------- | ------------------------------------ |
+| mid             | num   | 用户UID        |                                      |
+| approve         | bool  | false          | 作用尚不明确                         |
+| name            | str   | 用户昵称       |                                      |
+| sex             | str   | 用户性别       | 男 女 保密                           |
+| face            | str   | 用户头像链接   | jpg或gif                             |
+| DisplayRank     | str   | 0              | 作用尚不明确                         |
+| regtime         | num   | 0              | 作用尚不明确                         |
+| spacesta        | num   | 0              | 作用尚不明确                         |
+| birthday        | str   | 空             | 作用尚不明确                         |
+| place           | str   | 空             | 作用尚不明确                         |
+| description     | str   | 空             | 作用尚不明确                         |
+| article         | num   | 0              | 作用尚不明确                         |
+| attentions      | array | 空             | 作用尚不明确                         |
+| fans            | num   | 粉丝数         |                                      |
+| friend          | num   | 关注数         |                                      |
+| attention       | num   | 关注数         |                                      |
+| level_info      | obj   | 等级           |                                      |
+| pendant         | obj   | 挂件           |                                      |
+| nameplate       | obj   | 勋章           |                                      |
+| Official        | obj   | 认证信息       |                                      |
+| official_verify | obj   | 认证信息2      |                                      |
+| vip             | obj   | 大会员状态     |                                      |
+| space           | obj   | 主页头图       |                                      |
+| following       | bool  | 是否关注此用户 | 需要登录(SESSDATA) <br />默认为false |
+| archive_count   | num   | 用户稿件数     |                                      |
+| article_count   | num   | 0              | 作用尚不明确                         |
+| follower        | num   | 粉丝数         |                                      |
 
 `card`中的`level_info`对象：
 
@@ -207,30 +207,30 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 `card`中的`Official`对象：
 
-| 字段  | 类型 | 内容     | 备注                                      |
-| ----- | ---- | -------- | ----------------------------------------- |
-| role  | num  | 认证类型 | 0无<br />1 2个人认证<br />3 4 5 6机构认证 |
-| title | str  | 认证信息 | 无为空                                    |
-| desc  | str  | 认证备注 | 无为空                                    |
-| type  | num  | 是否认证 | -1无 0认证                                |
+| 字段  | 类型 | 内容     | 备注                                            |
+| ----- | ---- | -------- | ----------------------------------------------- |
+| role  | num  | 认证类型 | 0：无<br />1 2：个人认证<br />3 4 5 6：机构认证 |
+| title | str  | 认证信息 | 无为空                                          |
+| desc  | str  | 认证备注 | 无为空                                          |
+| type  | num  | 是否认证 | -1：无<br />0：认证                             |
 
 `card`中的`official_verify`对象：
 
-| 字段 | 类型 | 内容     | 备注            |
-| ---- | ---- | -------- | --------------- |
-| type | num  | 是否认证 | -1无<br />0认证 |
-| desc | str  | 认证信息 | 无为空          |
+| 字段 | 类型 | 内容     | 备注                |
+| ---- | ---- | -------- | ------------------- |
+| type | num  | 是否认证 | -1：无<br />0：认证 |
+| desc | str  | 认证信息 | 无为空              |
 
 `card`中的`vip`对象：
 
-| 字段          | 类型 | 内容       | 备注                          |
-| ------------- | ---- | ---------- | ----------------------------- |
-| vipType       | num  | 大会员类型 | 0无<br />1月会员<br />2年会员 |
-| dueRemark     | str  | 空         | 作用尚不明确                  |
-| accessStatus  | num  | 0          | 作用尚不明确                  |
-| vipStatus     | num  | 大会员状态 | 0无<br />1有                  |
-| vipStatusWarn | str  | 空         | 作用尚不明确                  |
-| theme_type    | num  | 0          | 作用尚不明确                  |
+| 字段          | 类型 | 内容       | 备注                                |
+| ------------- | ---- | ---------- | ----------------------------------- |
+| vipType       | num  | 大会员类型 | 0：无<br />1：月会员<br />2：年会员 |
+| dueRemark     | str  | 空         | 作用尚不明确                        |
+| accessStatus  | num  | 0          | 作用尚不明确                        |
+| vipStatus     | num  | 大会员状态 | 0：无<br />1：有                    |
+| vipStatusWarn | str  | 空         | 作用尚不明确                        |
+| theme_type    | num  | 0          | 作用尚不明确                        |
 
 `card`中的`space`对象：
 
@@ -331,50 +331,50 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 功能同「[登录用户信息1](../login/login_info.md#登录用户信息1（完整）)」
 
 **json回复：**
-| 字段    | 类型 | 内容     | 备注                  |
-| ------- | ---- | -------- | --------------------- |
-| code    | num  | 返回值   | 0成功<br />-101未登录 |
-| message | str  | 错误信息 | 默认为0               |
-| ttl     | num  | 1        | 作用尚不明确          |
-| data    | obj  | 信息本体 |                       |
+| 字段    | 类型 | 内容     | 备注                      |
+| ------- | ---- | -------- | ------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：未登录 |
+| message | str  | 错误信息 | 默认为0                   |
+| ttl     | num  | 1        | 作用尚不明确              |
+| data    | obj  | 信息本体 |                           |
 
 `data`对象：
 
-| 字段            | 类型 | 内容         | 备注                 |
-| --------------- | ---- | ------------ | -------------------- |
-| mid             | num  | UID          |                      |
-| name            | str  | 昵称         |                      |
-| sex             | str  | 性别         | 男 女 保密           |
-| face            | str  | 头像链接     | jpg或gif             |
-| sign            | str  | 签名         |                      |
-| rank            | num  | 10000        | 作用尚不明确         |
-| level           | num  | 当前等级     | 0-6级                |
-| jointime        | num  | 0            | 作用尚不明确         |
-| moral           | num  | 节操         | 默认70               |
-| silence         | num  | 封禁状态     | 0正常<br />1被封     |
-| email_status    | num  | 已验证邮箱   | 0未验证<br />1已验证 |
-| tel_status      | num  | 已验证手机号 | 0未验证<br />1已验证 |
-| identification  | num  | 1            | 作用尚不明确         |
-| vip             | obj  | 大会员状态   |                      |
-| birthday        | num  | 生日         | 时间戳               |
-| is_tourist      | num  | 0            | 作用尚不明确         |
-| is_fake_account | num  | 0            | 作用尚不明确         |
-| pin_prompting   | num  | 0            | 作用尚不明确         |
-| is_deleted      | num  | 0            | 作用尚不明确         |
-| coins           | num  | 硬币数       |                      |
-| following       | num  | 粉丝数       |                      |
-| follower        | num  | 粉丝数       |                      |
+| 字段            | 类型 | 内容         | 备注                     |
+| --------------- | ---- | ------------ | ------------------------ |
+| mid             | num  | UID          |                          |
+| name            | str  | 昵称         |                          |
+| sex             | str  | 性别         | 男 女 保密               |
+| face            | str  | 头像链接     | jpg或gif                 |
+| sign            | str  | 签名         |                          |
+| rank            | num  | 10000        | 作用尚不明确             |
+| level           | num  | 当前等级     | 0-6级                    |
+| jointime        | num  | 0            | 作用尚不明确             |
+| moral           | num  | 节操         | 默认70                   |
+| silence         | num  | 封禁状态     | 0：正常<br />1：被封     |
+| email_status    | num  | 已验证邮箱   | 0：未验证<br />1：已验证 |
+| tel_status      | num  | 已验证手机号 | 0：未验证<br />1：已验证 |
+| identification  | num  | 1            | 作用尚不明确             |
+| vip             | obj  | 大会员状态   |                          |
+| birthday        | num  | 生日         | 时间戳                   |
+| is_tourist      | num  | 0            | 作用尚不明确             |
+| is_fake_account | num  | 0            | 作用尚不明确             |
+| pin_prompting   | num  | 0            | 作用尚不明确             |
+| is_deleted      | num  | 0            | 作用尚不明确             |
+| coins           | num  | 硬币数       |                          |
+| following       | num  | 粉丝数       |                          |
+| follower        | num  | 粉丝数       |                          |
 
 `data`中的`vip`对象：
 
-| 字段         | 类型 | 内容           | 备注                          |
-| ------------ | ---- | -------------- | ----------------------------- |
-| type         | num  | 大会员类型     | 0无<br />1月会员<br />2年会员 |
-| status       | num  | 大会员状态     | 0无<br />1有                  |
-| due_date     | num  | 大会员到期时间 | 毫秒 时间戳                   |
-| vip_pay_type | num  | 1              | 作用尚不明确                  |
-| theme_type   | num  | 0              | 作用尚不明确                  |
-| label        | obj  | ？？？         |                               |
+| 字段         | 类型 | 内容           | 备注                                |
+| ------------ | ---- | -------------- | ----------------------------------- |
+| type         | num  | 大会员类型     | 0：无<br />1：月会员<br />2：年会员 |
+| status       | num  | 大会员状态     | 0：无<br />1：有                    |
+| due_date     | num  | 大会员到期时间 | 毫秒 时间戳                         |
+| vip_pay_type | num  | 1              | 作用尚不明确                        |
+| theme_type   | num  | 0              | 作用尚不明确                        |
+| label        | obj  | ？？？         |                                     |
 
 `vip`中的`label`对象:
 
@@ -404,12 +404,12 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 
 `data`中的`Official`对象：
 
-| 字段  | 类型 | 内容     | 备注                                      |
-| ----- | ---- | -------- | ----------------------------------------- |
-| role  | num  | 认证类型 | 0无<br />1 2个人认证<br />3 4 5 6机构认证 |
-| title | str  | 认证信息 | 无为空                                    |
-| desc  | str  | 认证备注 | 无为空                                    |
-| type  | num  | 是否认证 | -1无<br />0认证                           |
+| 字段  | 类型 | 内容     | 备注                                            |
+| ----- | ---- | -------- | ----------------------------------------------- |
+| role  | num  | 认证类型 | 0：无<br />1 2：个人认证<br />3 4 5 6：机构认证 |
+| title | str  | 认证信息 | 无为空                                          |
+| desc  | str  | 认证备注 | 无为空                                          |
+| type  | num  | 是否认证 | -1：无<br />0：认证                             |
 
 `data`中的`level_exp`对象：
 

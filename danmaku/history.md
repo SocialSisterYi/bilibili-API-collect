@@ -18,12 +18,12 @@ http://api.bilibili.com/x/v2/dm/history/index
 
 **json回复：**
 
-| 字段    | 类型                        | 内容     | 备注                                        |
-| ------- | --------------------------- | -------- | ------------------------------------------- |
-| code    | num                         | 返回值   | 0成功<br />-400请求错误<br />-101账号未登录 |
-| message | str                         | 错误信息 | 默认为0                                     |
-| ttl     | num                         | 1        | 作用尚不明确                                |
-| data    | 有弹幕array<br />无弹幕null | 日期列表 |                                             |
+| 字段    | 类型                            | 内容     | 备注                                              |
+| ------- | ------------------------------- | -------- | ------------------------------------------------- |
+| code    | num                             | 返回值   | 0：成功<br />-400：请求错误<br />-101：账号未登录 |
+| message | str                             | 错误信息 | 默认为0                                           |
+| ttl     | num                             | 1        | 作用尚不明确                                      |
+| data    | 有弹幕：array<br />无弹幕：null | 日期列表 |                                                   |
 
 `data`数组：
 
@@ -34,6 +34,8 @@ http://api.bilibili.com/x/v2/dm/history/index
 | ……   | str  | ……                  | ……         |
 
 示例：
+
+查询了cid为144541892的视频位于2020年1月中有历史弹幕记录的日期
 
 http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2020-01
 
@@ -58,9 +60,7 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2020-01
 }
 ```
 
-返回结果的 `data` 项说明这些日期有弹幕发送。若查询的月份中视频无弹幕，则 `data` 项为 `null`。
-
-示例：
+返回结果的 `data` 项说明这些日期有弹幕发送。若查询的月份中视频无弹幕，则 `data` 项为 `null`
 
 http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
 
