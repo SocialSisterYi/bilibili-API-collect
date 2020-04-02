@@ -6,7 +6,7 @@
 
 ## 获取实时弹幕1
 
-http://api.bilibili.com/x/v1/dm/list.so
+> http://api.bilibili.com/x/v1/dm/list.so
 
 *方式:GET*
 
@@ -14,9 +14,9 @@ http://api.bilibili.com/x/v1/dm/list.so
 
 参数：
 
-| 参数名 | 内容    | 必要性 | 备注 |
-| ------ | ------- | ------ | ---- |
-| oid    | 视频CID | 必要   |      |
+| 参数名 | 类型 | 内容    | 必要性 | 备注 |
+| ------ | ---- | ------- | ------ | ---- |
+| oid    | url  | 视频CID | 必要   |      |
 
 示例：
 
@@ -24,7 +24,7 @@ http://api.bilibili.com/x/v1/dm/list.so?oid=144541892
 
 ## 获取实时弹幕2
 
-http://comment.bilibili.com/{cid}.xml
+> http://comment.bilibili.com/{cid}.xml
 
 *方式:GET*
 
@@ -34,9 +34,9 @@ http://comment.bilibili.com/{cid}.xml
 
 参数：
 
-| 参数名 | 内容    | 必要性 | 备注 |
-| ------ | ------- | ------ | ---- |
-| cid    | 视频CID | 必要   |      |
+| 参数名 | 类型 | 内容    | 必要性 | 备注 |
+| ------ | ---- | ------- | ------ | ---- |
+| cid    | url  | 视频CID | 必要   |      |
 
 示例：
 

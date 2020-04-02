@@ -12,13 +12,13 @@ http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
 参数（ application/x-www-form-urlencoded ）：
 
-| 参数名   | 内容                | 必要性 | 备注                                              |
-| -------- | ------------------- | ------ | ------------------------------------------------- |
-| elec_num | 充电电池数量        | 必要   | 必须在20-99990之间                                |
-| up_mid   | 充电对象用户UID     | 必要   |                                                   |
-| otype    | 充电来源            | 必要   | up：空间充电<br />archive：视频充电               |
-| oid      | 充电来源代码        | 必要   | 空间充电：充电对象用户UID<br />视频充电：视频avID |
-| csrf     | cookies中的bili_jct | 必要   |                                                   |
+| 参数名   | 类型 | 内容                | 必要性 | 备注                                              |
+| -------- | ---- | ------------------- | ------ | ------------------------------------------------- |
+| elec_num | data | 充电电池数量        | 必要   | 必须在20-99990之间                                |
+| up_mid   | data | 充电对象用户UID     | 必要   |                                                   |
+| otype    | data | 充电来源            | 必要   | up：空间充电<br />archive：视频充电               |
+| oid      | data | 充电来源代码        | 必要   | 空间充电：充电对象用户UID<br />视频充电：视频avID |
+| csrf     | data | cookies中的bili_jct | 必要   |                                                   |
 
 **json回复：**
 

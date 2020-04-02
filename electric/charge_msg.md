@@ -8,11 +8,11 @@ http://api.bilibili.com/x/ugcpay/trade/elec/message
 
 参数（ application/x-www-form-urlencoded ）：
 
-| 参数名   | 内容                | 必要性 | 备注 |
-| -------- | ------------------- | ------ | ---- |
-| order_id | 交易编号            | 必要   |      |
-| message  | 留言内容            | 必要   |      |
-| csrf     | cookies中的bili_jct | 必要   |      |
+| 参数名   | 类型 | 内容                | 必要性 | 备注 |
+| -------- | ---- | ------------------- | ------ | ---- |
+| order_id | data | 交易编号            | 必要   |      |
+| message  | data | 留言内容            | 必要   |      |
+| csrf     | data | cookies中的bili_jct | 必要   |      |
 
 **json回复：**
 

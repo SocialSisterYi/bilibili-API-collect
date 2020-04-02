@@ -4,17 +4,17 @@
 
 ## 查询历史弹幕日期
 
-http://api.bilibili.com/x/v2/dm/history/index
+> http://api.bilibili.com/x/v2/dm/history/index
 
 *方式：GET*
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注         |
-| ------ | -------- | ------ | ------------ |
-| type   | 1        | 必要   | 作用尚不明确 |
-| oid    | 视频CID  | 必要   |              |
-| month  | 查询月份 | 必要   | mm-dd        |
+| 参数名 | 类型 | 内容     | 必要性 | 备注         |
+| ------ | ---- | -------- | ------ | ------------ |
+| type   | url  | 1        | 必要   | 作用尚不明确 |
+| oid    | url  | 视频CID  | 必要   |              |
+| month  | url  | 查询月份 | 必要   | mm-dd        |
 
 **json回复：**
 
@@ -75,7 +75,7 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
 
 ## 获取历史弹幕
 
-http://api.bilibili.com/x/v2/dm/history
+> http://api.bilibili.com/x/v2/dm/history
 
 *方式：GET*
 
@@ -85,11 +85,11 @@ http://api.bilibili.com/x/v2/dm/history
 
 参数：
 
-| 参数名 | 内容     | 必要性 | 备注         |
-| ------ | -------- | ------ | ------------ |
-| type   | 1        | 必要   | 作用尚不明确 |
-| oid    | 视频CID  | 必要   |              |
-| date   | 弹幕日期 | 必要   | yyyy-mm-dd   |
+| 参数名 | 类型 | 内容     | 必要性 | 备注         |
+| ------ | ---- | -------- | ------ | ------------ |
+| type   | url  | 1        | 必要   | 作用尚不明确 |
+| oid    | url  | 视频CID  | 必要   |              |
+| date   | url  | 弹幕日期 | 必要   | yyyy-mm-dd   |
 
 示例：
 
