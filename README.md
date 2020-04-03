@@ -12,7 +12,7 @@
 
 <img src="/imgs/bilibili.svg" width="200" height="100"/>
 
-计划整理分类&目录：（对勾代表已完成）
+计划整理分类&目录：（√代表已完成,x代表未更新完成）
 
 - cookie
 - [登录](login)
@@ -70,8 +70,8 @@
   - 表情
   - 发表评论
   - 评论操作
-- 创作中心
-  - 统计相关
+- [创作中心](creativecenter)
+  - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关
   - 电磁力相关
 - [充电](electric)
@@ -102,8 +102,8 @@
 - 哔哩哔哩漫画
 - 哔哩哔哩游戏
 - 会员购
-- 其他
-  - ip查询
+- [其他](other)
+  - [ip查询](other/ip.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
 
