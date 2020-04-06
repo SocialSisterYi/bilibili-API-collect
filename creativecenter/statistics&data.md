@@ -355,7 +355,7 @@ http://member.bilibili.com/x/web/data/pandect?type=1
 
 示例：
 
-查询30天前的文章阅读增量趋势，可知`2020-04-05`的阅读增量为`6`，`2020-04-04`的播放增量为`6`
+查询30天前的文章阅读增量趋势，可知`2020-04-05`的阅读增量为`6`，`2020-04-04`的阅读增量为`6`
 
 http://member.bilibili.com/x/web/data/article/thirty?type=1
 

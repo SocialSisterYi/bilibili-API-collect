@@ -12,7 +12,7 @@
 
 <img src="/imgs/bilibili.svg" width="200" height="100"/>
 
-计划整理分类&目录：（√代表已完成,x代表未更新完成）
+计划整理分类&目录：（√代表已完成，x代表尚未完工）
 
 - cookie
 - [登录](login)
@@ -39,6 +39,7 @@
   - 播放&下载地址
   - 互动视频
   - 实时观看人数
+  - 高能进度条
 - 番剧（影视）
   - 基本信息
   - 状态数
@@ -56,9 +57,9 @@
   - 歌曲相关
   - 歌单相关
   - 音频榜单
-- 排行榜
-  - 全站
-  - 分区
+- [排行榜&最新动态](ranking&dynamic)
+  - [排行榜](ranking&dynamic/ranking.md)x
+  - [最新动态](ranking&dynamic/dynamic.md)x
 - 搜索
   - 普通搜索
   - 热搜
