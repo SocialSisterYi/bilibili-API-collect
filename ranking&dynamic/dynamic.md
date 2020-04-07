@@ -40,7 +40,7 @@
 
 `data`中的`archives`数组中的对象：
 
-基本同「[视频详细信息](..\video\info.md#视频详细信息)」中的data对象
+基本同「[视频详细信息](\video\info.md#视频详细信息)」中的data对象
 
 `data`中的`page`对象：
 
@@ -52,7 +52,7 @@
 
 示例：
 
-获取tid=21（生活->日常）分区中的2条最新动态视频信息
+获取`tID=21`（生活->日常）分区中的2条最新动态视频信息
 
 https://api.bilibili.com/x/web-interface/dynamic/region?pn=1&ps=2&rid=21
 

@@ -37,11 +37,11 @@
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](..\video\info.md#视频详细信息)」中的data对象
+基本同「[视频详细信息](\video\info.md#视频详细信息)」中的data对象
 
 示例：
 
-获取tid=1（动画）分区中的三日视频排行榜
+获取`tID=1`（动画）分区中的三日视频排行榜
 
 http://api.bilibili.com/x/web-interface/ranking/region?rid=1&day=3
 
