@@ -27,7 +27,7 @@
 
 `data`对象：
 
-基本同「[视频详细信息](\video\info.md#视频详细信息)」中的data对象
+基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息)」中的data对象
 
 示例：
 
@@ -137,7 +137,7 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](\video\info.md#视频详细信息)」中的data对象
+基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息)」中的data对象
 
 示例：
 
@@ -405,8 +405,8 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 | mid            | num  | 视频UP主UID    | 不一定为目标用户（合作视频） |
 | pic            | str  | 视频封面       | jpg gif                      |
 | play           | num  | 视频播放次数   |                              |
-| review         | num  | 0              |                              |
-| subtitle       | str  | 0              |                              |
+| review         | num  | 0              | 作用尚不明确                 |
+| subtitle       | str  | 空             | 作用尚不明确                 |
 | title          | str  | 视频标题       |                              |
 | typeid         | num  | 视频分区tID    |                              |
 | video_review   | num  | 视频弹幕数     |                              |
@@ -423,7 +423,7 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 
 `pn`（页码）和`ps`（每页项数）只改变`vlist`中成员的多少与内容
 
-已每页2项查询用户`UID=53456`的第1页投稿视频明细
+以每页2项查询用户`UID=53456`的第1页投稿视频明细
 
 http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 

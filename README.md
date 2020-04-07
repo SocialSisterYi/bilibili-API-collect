@@ -21,13 +21,13 @@
   - qq&微博登录
   - [登录基本信息](login/login_info.md)√
   - 在线用户
-  - 消息
-  - 私信
+  - [消息](login/msg.md)x
+  - [私信](login/private_msg.md)x
 - [用户](user)
   - [基本信息](user/info.md)√
   - [状态数](user/status_number.md)√
   - [关系](user/relation.md)√
-  - 个人空间
+  - [个人空间](user/space.md)x
 - [视频](video)
   - [视频分区一览（分区代码）](video/video_zone.md)√
   - [基本信息](video/info.md)√
