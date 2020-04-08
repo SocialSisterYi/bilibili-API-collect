@@ -1,4 +1,4 @@
-# 用户详细信息
+# 用户基本信息
 
 <img src="/imgs/akari.jpg" width="200" height="200"/>
 
@@ -8,12 +8,12 @@
 *方式:GET*
 
 参数：
-| 参数名 | 类型 | 内容    | 必要性 | 备注 |
-| ------ | ---- | ------- | ------ | ---- |
-| mid    | url  | 用户UID | 必要   |      |
-
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
@@ -23,27 +23,29 @@
 
 `data`对象：
 
-| 字段        | 类型 | 内容             | 备注                                                 |
-| ----------- | ---- | ---------------- | ---------------------------------------------------- |
-| mid         | num  | UID              |                                                      |
-| name        | str  | 昵称             |                                                      |
-| sex         | str  | 性别             | 男 女 保密                                           |
-| face        | str  | 头像链接         | jpg或gif                                             |
-| sign        | str  | 签名             |                                                      |
-| rank        | num  | 10000            | 作用尚不明确                                         |
-| level       | num  | 当前等级         | 0-6级                                                |
-| jointime    | num  | 0                | 作用尚不明确                                         |
-| moral       | num  | 0                | 作用尚不明确                                         |
-| silence     | num  | 封禁状态         | 0：正常<br />1：被封                                 |
-| birthday    | str  | 生日             | mm-dd                                                |
-| coins       | num  | 硬币数           | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0 |
-| fans_badge  | bool | 是否具有粉丝勋章 |                                                      |
-| official    | obj  | 认证信息         |                                                      |
-| vip         | obj  | 大会员状态       |                                                      |
-| is_followed | bool | 是否关注此用户   | 需要登录(SESSDATA)<br />默认为false                  |
-| top_photo   | str  | 主页头图链接     | png                                                  |
-| theme       | obj  | 空               | 作用尚不明确                                         |
-| sys_notice  | obj  | 空               | 作用尚不明确                                         |
+| 字段        | 类型 | 内容             | 备注                                                         |
+| ----------- | ---- | ---------------- | ------------------------------------------------------------ |
+| mid         | num  | UID              |                                                              |
+| name        | str  | 昵称             |                                                              |
+| sex         | str  | 性别             | 男 女 保密                                                   |
+| face        | str  | 头像链接         | jpg或gif                                                     |
+| sign        | str  | 签名             |                                                              |
+| rank        | num  | 10000            | 作用尚不明确                                                 |
+| level       | num  | 当前等级         | 0-6级                                                        |
+| jointime    | num  | 0                | 作用尚不明确                                                 |
+| moral       | num  | 0                | 作用尚不明确                                                 |
+| silence     | num  | 封禁状态         | 0：正常<br />1：被封                                         |
+| birthday    | str  | 生日             | MM-DD                                                        |
+| coins       | num  | 硬币数           | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0         |
+| fans_badge  | bool | 是否具有粉丝勋章 | false：无<br />true：有                                      |
+| official    | obj  | 认证信息         |                                                              |
+| vip         | obj  | 大会员状态       |                                                              |
+| pendant     | obj  | 头像框状态       |                                                              |
+| nameplate   | obj  | 粉丝勋章状态     |                                                              |
+| is_followed | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(SESSDATA) <br />未登录为false |
+| top_photo   | str  | 主页头图链接     | png                                                          |
+| theme       | obj  | 空               | 作用尚不明确                                                 |
+| sys_notice  | obj  | 空               | 作用尚不明确                                                 |
 
 `data`中的`official`对象：
 
@@ -62,7 +64,29 @@
 | status     | num  | 大会员状态 | 0：无<br />1：有                    |
 | theme_type | num  | 0          | 作用尚不明确                        |
 
+`data`中的`pendant`对象：
+
+| 字段   | 类型 | 内容        | 备注         |
+| ------ | ---- | ----------- | ------------ |
+| pid    | num  | 挂件id      |              |
+| name   | str  | 挂件名称    |              |
+| image  | str  | 挂件图片url | png          |
+| expire | num  | 0           | 作用尚不明确 |
+
+`data`中的`nameplate`对象：
+
+| 字段        | 类型 | 内容             | 备注 |
+| ----------- | ---- | ---------------- | ---- |
+| nid         | num  | 勋章id           |      |
+| name        | str  | 勋章名称         |      |
+| image       | str  | 挂件图片url 正常 | png  |
+| image_small | str  | 勋章图片url 小   | png  |
+| level       | str  | 勋章等级         |      |
+| condition   | str  | 勋章条件         |      |
+
 示列：
+
+查询用户`UID=2`的详细信息
 
 http://api.bilibili.com/x/space/acc/info?mid=2
 ```json
@@ -74,7 +98,7 @@ http://api.bilibili.com/x/space/acc/info?mid=2
 		"mid": 2,
 		"name": "碧诗",
 		"sex": "男",
-		"face": "http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg",
+		"face": "http://i0.hdslb.com/bfs/app/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg",
 		"sign": "kami.im 直男过气网红 # av362830 “We Are Star Dust”",
 		"rank": 20000,
 		"level": 6,
@@ -95,21 +119,67 @@ http://api.bilibili.com/x/space/acc/info?mid=2
 			"status": 1,
 			"theme_type": 0
 		},
+		"pendant": {
+			"pid": 76,
+			"name": "管理员",
+			"image": "http://i2.hdslb.com/bfs/face/02a3b79edef0f0e682de7f5dca7b6b5fe36d5f65.png",
+			"expire": 0
+		},
+		"nameplate": {
+			"nid": 10,
+			"name": "见习偶像",
+			"image": "http://i1.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png",
+			"image_small": "http://i2.hdslb.com/bfs/face/275b468b043ec246737ab8580a2075bee0b1263b.png",
+			"level": "普通勋章",
+			"condition": "所有自制视频总播放数\u003e=10万"
+		},
 		"is_followed": true,
-		"top_photo": "http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
+		"top_photo": "http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
 		"theme": {},
 		"sys_notice": {}
 	}
 }
 ```
 
-用户的头像为：
+**查询到的信息解析如下：**
+
+**用户昵称为**：碧诗
+
+**性别**：男
+
+**用户的头像为**：
 
 http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg
 
 <img src="http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg" width="100" height="100" />
 
-空间头图为：
+**等级**：6级
+
+**生日**：09-19
+
+**粉丝勋章状态**：拥有
+
+**认证**：个人认证
+
+**认证名称**： bilibili创始人（站长） 
+
+**大会员类型**：年度
+
+**大会员状态**：已开通
+
+**头像框**：管理员 
+
+ http://i2.hdslb.com/bfs/face/02a3b79edef0f0e682de7f5dca7b6b5fe36d5f65.png 
+
+<img src="http://i2.hdslb.com/bfs/face/02a3b79edef0f0e682de7f5dca7b6b5fe36d5f65.png" width="100" height="100" />
+
+**粉丝勋章**： 见习偶像 
+
+ http://i1.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png 
+
+<img src="http://i1.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png" width="100" height="100" />
+
+**空间头图**：
 
 http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
@@ -126,7 +196,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 参数：
 | 参数名 | 类型 | 内容                 | 必要性 | 备注                    |
 | ------ | ---- | -------------------- | ------ | ----------------------- |
-| mid    | url  | 用户UID              | 必要   |                         |
+| mid    | url  | 目标用户UID          | 必要   |                         |
 | photo  | url  | 是否请求用户主页头图 | 非必要 | true：是<br />false：否 |
 
 
@@ -146,35 +216,35 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 `data`中的`card`对象：
 
-| 字段            | 类型  | 内容           | 备注                                 |
-| --------------- | ----- | -------------- | ------------------------------------ |
-| mid             | num   | 用户UID        |                                      |
-| approve         | bool  | false          | 作用尚不明确                         |
-| name            | str   | 用户昵称       |                                      |
-| sex             | str   | 用户性别       | 男 女 保密                           |
-| face            | str   | 用户头像链接   | jpg或gif                             |
-| DisplayRank     | str   | 0              | 作用尚不明确                         |
-| regtime         | num   | 0              | 作用尚不明确                         |
-| spacesta        | num   | 0              | 作用尚不明确                         |
-| birthday        | str   | 空             | 作用尚不明确                         |
-| place           | str   | 空             | 作用尚不明确                         |
-| description     | str   | 空             | 作用尚不明确                         |
-| article         | num   | 0              | 作用尚不明确                         |
-| attentions      | array | 空             | 作用尚不明确                         |
-| fans            | num   | 粉丝数         |                                      |
-| friend          | num   | 关注数         |                                      |
-| attention       | num   | 关注数         |                                      |
-| level_info      | obj   | 等级           |                                      |
-| pendant         | obj   | 挂件           |                                      |
-| nameplate       | obj   | 勋章           |                                      |
-| Official        | obj   | 认证信息       |                                      |
-| official_verify | obj   | 认证信息2      |                                      |
-| vip             | obj   | 大会员状态     |                                      |
-| space           | obj   | 主页头图       |                                      |
-| following       | bool  | 是否关注此用户 | 需要登录(SESSDATA) <br />默认为false |
-| archive_count   | num   | 用户稿件数     |                                      |
-| article_count   | num   | 0              | 作用尚不明确                         |
-| follower        | num   | 粉丝数         |                                      |
+| 字段            | 类型  | 内容           | 备注                                                         |
+| --------------- | ----- | -------------- | ------------------------------------------------------------ |
+| mid             | num   | 用户UID        |                                                              |
+| approve         | bool  | false          | 作用尚不明确                                                 |
+| name            | str   | 用户昵称       |                                                              |
+| sex             | str   | 用户性别       | 男 女 保密                                                   |
+| face            | str   | 用户头像链接   | jpg或gif                                                     |
+| DisplayRank     | str   | 0              | 作用尚不明确                                                 |
+| regtime         | num   | 0              | 作用尚不明确                                                 |
+| spacesta        | num   | 0              | 作用尚不明确                                                 |
+| birthday        | str   | 空             | 作用尚不明确                                                 |
+| place           | str   | 空             | 作用尚不明确                                                 |
+| description     | str   | 空             | 作用尚不明确                                                 |
+| article         | num   | 0              | 作用尚不明确                                                 |
+| attentions      | array | 空             | 作用尚不明确                                                 |
+| fans            | num   | 粉丝数         |                                                              |
+| friend          | num   | 关注数         |                                                              |
+| attention       | num   | 关注数         |                                                              |
+| level_info      | obj   | 等级           |                                                              |
+| pendant         | obj   | 挂件           |                                                              |
+| nameplate       | obj   | 勋章           |                                                              |
+| Official        | obj   | 认证信息       |                                                              |
+| official_verify | obj   | 认证信息2      |                                                              |
+| vip             | obj   | 大会员状态     |                                                              |
+| space           | obj   | 主页头图       |                                                              |
+| following       | bool  | 是否关注此用户 | true：已关注<br />false：未关注<br />需要登录(SESSDATA) <br />未登录为false |
+| archive_count   | num   | 用户稿件数     |                                                              |
+| article_count   | num   | 0              | 作用尚不明确                                                 |
+| follower        | num   | 粉丝数         |                                                              |
 
 `card`中的`level_info`对象：
 
@@ -187,23 +257,23 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 `card`中的`pendant`对象：
 
-|  字段         | 类型  | 内容             | 备注               |
-| ------------- | ----- | ---------------- | ------------------ |
-| pid           | num   | 挂件id           |                    |
-| name          | str   | 挂件名称         |                    |
-| image         | str   | 挂件图片链接     | png                |
-| expire        | num   | 0                | 作用尚不明确       |
+| 字段   | 类型 | 内容        | 备注         |
+| ------ | ---- | ----------- | ------------ |
+| pid    | num  | 挂件id      |              |
+| name   | str  | 挂件名称    |              |
+| image  | str  | 挂件图片url | png          |
+| expire | num  | 0           | 作用尚不明确 |
 
 `card`中的`nameplate`对象：
 
-|  字段         | 类型  | 内容              | 备注               |
-| ------------- | ----- | ----------------- | ------------------ |
-| nid           | num   | 勋章id            |                    |
-| name          | str   | 勋章名称          |                    |
-| image         | str   | 挂件图片链接 正常 | png                |
-| image_small   | str   | 勋章图片链接 小   | png                |
-| level         | str   | 勋章等级          |                    |
-| condition     | str   | 勋章条件          |                    |
+| 字段        | 类型 | 内容             | 备注 |
+| ----------- | ---- | ---------------- | ---- |
+| nid         | num  | 勋章id           |      |
+| name        | str  | 勋章名称         |      |
+| image       | str  | 挂件图片url 正常 | png  |
+| image_small | str  | 勋章图片url 小   | png  |
+| level       | str  | 勋章等级         |      |
+| condition   | str  | 勋章条件         |      |
 
 `card`中的`Official`对象：
 
@@ -234,10 +304,10 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 `card`中的`space`对象：
 
-|  字段     | 类型  | 内容              | 备注             |
-| --------- | ----- | ----------------- | ---------------- |
-| s_img     | str   | 主页头图链接 小图 | png              |
-| l_img     | str   | 主页头图链接 正常 | png              |
+| 字段  | 类型 | 内容             | 备注 |
+| ----- | ---- | ---------------- | ---- |
+| s_img | str  | 主页头图url 小图 | png  |
+| l_img | str  | 主页头图url 正常 | png  |
 
 示列：
 
@@ -345,7 +415,7 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 | mid             | num  | UID          |                          |
 | name            | str  | 昵称         |                          |
 | sex             | str  | 性别         | 男 女 保密               |
-| face            | str  | 头像链接     | jpg或gif                 |
+| face            | str  | 头像图片url  | jpg gif                  |
 | sign            | str  | 签名         |                          |
 | rank            | num  | 10000        | 作用尚不明确             |
 | level           | num  | 当前等级     | 0-6级                    |
@@ -393,14 +463,14 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 
 `data`中的`nameplate`对象：
 
-|  字段         | 类型  | 内容              | 备注               |
-| ------------- | ----- | ----------------- | ------------------ |
-| nid           | num   | 勋章id            |                    |
-| name          | str   | 勋章名称          |                    |
-| image         | str   | 挂件图片链接 正常 | png                |
-| image_small   | str   | 勋章图片链接 小   | png                |
-| level         | str   | 勋章等级          |                    |
-| condition     | str   | 勋章条件          |                    |
+| 字段        | 类型 | 内容             | 备注 |
+| ----------- | ---- | ---------------- | ---- |
+| nid         | num  | 勋章id           |      |
+| name        | str  | 勋章名称         |      |
+| image       | str  | 挂件图片url 正常 | png  |
+| image_small | str  | 勋章图片url 小   | png  |
+| level       | str  | 勋章等级         |      |
+| condition   | str  | 勋章条件         |      |
 
 `data`中的`Official`对象：
 

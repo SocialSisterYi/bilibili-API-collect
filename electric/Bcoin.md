@@ -4,7 +4,7 @@
 
 **注：1B币折合10电池，一般地充电10电池可获得1经验**
 
-http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
+> http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
 *方式：POST*
 
@@ -43,7 +43,7 @@ http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
 示例：
 
-以空间的方式向用户293793435充了20电池，得到2经验，交易编号为`BPRG5CEC3VUPOOANA540`
+以空间的方式向用户`UID=293793435`充了20电池，得到2经验，交易编号为`BPRG5CEC3VUPOOANA540`
 
 此时`data`.`status`=`4`
 

@@ -1,6 +1,6 @@
 # 充电留言
 
-http://api.bilibili.com/x/ugcpay/trade/elec/message
+> http://api.bilibili.com/x/ugcpay/trade/elec/message
 
 *方式：POST*
 

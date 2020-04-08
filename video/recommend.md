@@ -39,6 +39,8 @@
 
 示例：
 
+查询视频`av7`/`BV1xx411c7m9`的推荐视频列表
+
 http://api.bilibili.com/x/web-interface/archive/related?aid=7
 
 同http://api.bilibili.com/x/web-interface/archive/related?bvid=BV1xx411c7m9

@@ -11,6 +11,7 @@
 | vmid   | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
@@ -30,7 +31,7 @@
 
 示例：
 
-查询用户332704117的关系状态数
+查询用户`UID=332704117`的关系状态数
 
 http://api.bilibili.com/x/relation/stat?vmid=332704117
 
@@ -49,15 +50,18 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 }
 ```
 
+
+
 ## UP主状态数
+
 > http://api.bilibili.com/x/space/upstat
 
 *方式:GET*
 
 参数：
-| 参数名 | 类型 | 内容    | 必要性 | 备注 |
-| ------ | ---- | ------- | ------ | ---- |
-| mid    | url  | 用户UID | 必要   |      |
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | url  | 目标用户UID | 必要   |      |
 
 
 **json回复：**
@@ -90,7 +94,7 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 
 示例：
 
-查询用户456664753的up主状态数
+查询用户`UID=456664753`的UP主状态数
 
 http://api.bilibili.com/x/space/upstat?mid=456664753
 ```json
@@ -110,15 +114,18 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 }
 ```
 
+
+
 ## 订阅&投稿状态数
+
 > http://api.bilibili.com/x/space/navnum
 
 *方式:GET*
 
 参数：
-| 参数名 | 类型 | 内容    | 必要性 | 备注 |
-| ------ | ---- | ------- | ------ | ---- |
-| mid    | url  | 用户UID | 必要   |      |
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -161,7 +168,7 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 
 示例：
 
-查询用户239202390的订阅&投稿状态数
+查询用户`UID=239202390`的订阅&投稿状态数
 
 http://api.bilibili.com/x/space/navnum?mid=239202390
 ```json

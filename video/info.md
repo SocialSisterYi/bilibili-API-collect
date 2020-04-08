@@ -2,7 +2,7 @@
 
 <img src="/imgs/ploading.gif" width="100" height="100"/>
 
-## 视频详细信息（avID/bvID互转）
+## 视频详细信息（avID/bvID互转及转epID）
 
 > http://api.bilibili.com/x/web-interface/view
 
@@ -43,7 +43,7 @@
 | attribute    | num   |                                | 作用尚不明确          |
 | duration     | num   | 视频总计持续时长（所有分P）    | 单位为秒              |
 | mission_id   | num   | 视频参与的活动ID               | 无为0                 |
-| redirect_url | str   | 重定向url                      | 用于番剧 影视的av->ep |
+| redirect_url | str   | 重定向url                      | 用于番剧&影视的av->ep |
 | rights       | obj   | 视频属性标志                   |                       |
 | owner        | obj   | 视频UP主信息                   |                       |
 | stat         | obj   | 视频状态数                     |                       |
@@ -371,11 +371,11 @@ http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
 示例：
 
+查看视频~~（教主的咕鸽）~~`av39330059`/`BV1Bt411z799`的简介
+
 http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 
 同http://api.bilibili.com/x/web-interface/archive/desc?bvid=BV1Bt411z799
-
-~~（教主的咕鸽）~~
 
 ```json
 {
@@ -385,6 +385,8 @@ http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 	"data": "1.小朋友们大家好，我是你们爷爷最喜欢的超威一列姆！\r\n2.在过去的一年里，我创作了无数脍炙人口的歌曲，常常被人夸赞高产似雌豚。\r\n3.接下来的日子里我会一如既往地勤勉创作，争取继续保持现在的产量，文体两开花。\r\n4.我感觉照这个势头和速度下去别说日常更新不在话下，连出张新专辑都指日可待了啊。\r\n5.也感谢你们一如既往的支持和鼓励，我会注意身体，不把自己累垮掉的。\r\n6.我个人不建议你们在评论区里艾特任何UP主，我真的不建议，当然你们非要这么做我也没办法的。"
 }
 ```
+
+
 
 ## 视频分P列表  (avID/bvID转CID)
 
@@ -437,7 +439,9 @@ http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 | height | num  | 当前分P 高度 | 可能为0      |
 | rotate | num  | 0            | 作用尚不明确 |
 
-示例：（后面省略）
+示例：
+
+查询视频`av13502509`/`BV1ex411J7GE`的分P列表
 
 http://api.bilibili.com/x/player/pagelist?aid=13502509
 

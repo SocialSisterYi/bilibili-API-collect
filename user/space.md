@@ -27,7 +27,7 @@
 
 `data`对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息)」中的data对象
+基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
 
 示例：
 
@@ -137,7 +137,7 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息)」中的data对象
+基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
 
 示例：
 
@@ -348,7 +348,7 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
 | ttl     | num  | 1        | 作用尚不明确                |
-| data    | data | 信息本体 |                             |
+| data    | obj  | 信息本体 |                             |
 
 `data`对象：
 
@@ -504,6 +504,355 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 			"ps": 2
 		}
 	}
+}
+```
+
+
+
+### 查询用户追番（追剧）明细
+
+> http://api.bilibili.com/x/space/bangumi/follow/list
+
+*方式:GET*
+
+参数：
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注                 |
+| ------ | ---- | ----------- | ------ | -------------------- |
+| vmid   | url  | 目标用户UID | 必要   |                      |
+| pn     | url  | 页码        | 非必要 | 默认为1              |
+| ps     | url  | 每页项数    | 非必要 | 默认为15             |
+| type   | url  | 查询类型    | 必要   | 1：追番<br />2：追剧 |
+
+**json回复：**
+
+| 字段    | 类型 | 内容     | 备注                                                       |
+| ------- | ---- | -------- | ---------------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />53013：用户隐私设置未公开 |
+| message | str  | 错误信息 | 默认为0                                                    |
+| ttl     | num  | 1        | 作用尚不明确                                               |
+| data    | obj  | 信息本体 |                                                            |
+
+`data`对象：
+
+| 字段  | 类型   | 内容       | 备注 |
+| ----- | ------ | ---------- | ---- |
+| list  | arrary | 追番列表   |      |
+| pn    | num    | 当前页码   |      |
+| ps    | num    | 每页项数   |      |
+| total | num    | 总计追番数 |      |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容        | 备注                       |
+| ---- | ---- | ----------- | -------------------------- |
+| 0    | obj  | 追番1       |                            |
+| n    | obj  | 追番（n+1） | 按照目标用户的关注顺序排列 |
+| ……   | obj  | ……          |                            |
+
+`data`中的`list`数组中的对象：
+
+基本同「番剧详细信息」中的result对象（未完工）
+
+示例：
+
+查看用户`UID=14082`的追番明细
+
+http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"list": [{
+			"season_id": 29310,
+			"media_id": 28224080,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"title": "异度侵入 ID:INVADED",
+			"cover": "http://i0.hdslb.com/bfs/bangumi/image/9bf9e66968f85b33ec3769a16c86b36dc984abbc.png",
+			"total_count": 13,
+			"is_finish": 1,
+			"is_started": 1,
+			"is_play": 1,
+			"badge": "会员专享",
+			"badge_type": 0,
+			"rights": {
+				"allow_review": 1,
+				"is_selection": 1,
+				"selection_style": 1
+			},
+			"stat": {
+				"follow": 3475768,
+				"view": 87500861,
+				"danmaku": 1334654,
+				"reply": 316632,
+				"coin": 835150,
+				"series_follow": 3475242,
+				"series_view": 87500861
+			},
+			"new_ep": {
+				"id": 307774,
+				"index_show": "全13话",
+				"cover": "http://i0.hdslb.com/bfs/archive/3dce2b856a7b0ea667aa288b51b7c0478fa56c4d.jpg",
+				"title": "13",
+				"long_title": "CHANNELEDⅡ",
+				"pub_time": "2020-03-23 00:30:00",
+				"duration": 1481000
+			},
+			"rating": {
+				"score": 9.8,
+				"count": 262589
+			},
+			"square_cover": "http://i0.hdslb.com/bfs/bangumi/image/664dbf039ec2da8dd982b697a108e28e87b9897e.jpg",
+			"season_status": 13,
+			"season_title": "TV",
+			"badge_ep": "会员",
+			"media_attr": 196608,
+			"season_attr": 0,
+			"evaluate": "本片讲述利用能检测出人们杀意的装置以及利用思想粒子做出的“井”，来探知事件真相的科幻故事。...",
+			"areas": [{
+				"id": 2,
+				"name": "日本"
+			}],
+			"subtitle": "",
+			"first_ep": 307446,
+			"can_watch": 1,
+			"series": {
+				"series_id": 4760,
+				"title": "ID:INVADED",
+				"season_count": 1,
+				"new_season_id": 29310
+			},
+			"publish": {
+				"pub_time": "2020-01-06 00:30:00",
+				"pub_time_show": "敬请期待",
+				"release_date": "2020-01-06",
+				"release_date_show": "2020年1月6日"
+			},
+			"mode": 2,
+			"section": [{
+				"section_id": 39327,
+				"season_id": 29310,
+				"limit_group": 328,
+				"watch_platform": 15,
+				"copyright": "dujia",
+				"ban_area_show": 1
+			}, {
+				"section_id": 39633,
+				"season_id": 29310,
+				"limit_group": 328,
+				"watch_platform": 15,
+				"type": 1,
+				"copyright": "dujia",
+				"title": "其他",
+				"ban_area_show": 1
+			}, {
+				"section_id": 44101,
+				"season_id": 29310,
+				"limit_group": 316,
+				"watch_platform": 15,
+				"type": 4,
+				"copyright": "ugc",
+				"ban_area_show": 1
+			}],
+			"url": "https://www.bilibili.com/bangumi/play/ss29310",
+			"follow_status": 2,
+			"is_new": 0,
+			"progress": "",
+			"both_follow": true
+		}, {
+			"season_id": 25739,
+			"media_id": 139252,
+			"season_type": 1,
+			"season_type_name": "番剧",
+			"title": "关于我转生变成史莱姆这档事",
+			"cover": "http://i0.hdslb.com/bfs/bangumi/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
+			"total_count": 27,
+			"is_finish": 1,
+			"is_started": 1,
+			"is_play": 1,
+			"badge": "会员专享",
+			"badge_type": 0,
+			"rights": {
+				"allow_review": 1,
+				"is_selection": 1,
+				"selection_style": 1
+			},
+			"stat": {
+				"follow": 5516519,
+				"view": 246739631,
+				"danmaku": 3802465,
+				"reply": 460225,
+				"coin": 1338958,
+				"series_follow": 5516535,
+				"series_view": 246739631
+			},
+			"new_ep": {
+				"id": 316957,
+				"index_show": "全27话",
+				"cover": "http://i0.hdslb.com/bfs/archive/81d07d1a478ce3a6209b557e14df9b9c78c42abb.jpg",
+				"title": "OAD03",
+				"long_title": "外传：利姆鲁的华丽教师生活 其一",
+				"pub_time": "2020-03-27 00:00:03",
+				"duration": 1493000
+			},
+			"rating": {
+				"score": 9.4,
+				"count": 83354
+			},
+			"square_cover": "http://i0.hdslb.com/bfs/bangumi/8d9f5b4a566d0547bc2e3f6f733b732a09c0d3d4.jpg",
+			"season_status": 13,
+			"season_title": "TV",
+			"badge_ep": "会员",
+			"media_attr": 0,
+			"season_attr": 0,
+			"evaluate": "史莱姆生活，开始了。\n上班族的三上悟在道路上被歹徒给刺杀身亡后，回过神来发现自己转生到了异世界。\n不过，自己居然是“史莱姆”！\n他在得到利姆鲁这个名字后开始了自己的史莱姆人生，随着与各个种族相处交流的...",
+			"areas": [{
+				"id": 2,
+				"name": "日本"
+			}],
+			"subtitle": "",
+			"first_ep": 250460,
+			"can_watch": 1,
+			"series": {
+				"series_id": 4188,
+				"title": "关于我转生变成史莱姆这档事",
+				"season_count": 1,
+				"new_season_id": 25739
+			},
+			"publish": {
+				"pub_time": "2018-10-02 00:30:00",
+				"pub_time_show": "2018年10月02日00:30",
+				"release_date": "2018-10-02",
+				"release_date_show": "2018年10月2日"
+			},
+			"mode": 2,
+			"section": [{
+				"section_id": 34988,
+				"season_id": 25739,
+				"limit_group": 328,
+				"watch_platform": 15,
+				"copyright": "bilibili",
+				"ban_area_show": 1
+			}],
+			"url": "https://www.bilibili.com/bangumi/play/ss25739",
+			"follow_status": 2,
+			"is_new": 0,
+			"progress": "",
+			"both_follow": true
+		}],
+		"pn": 1,
+		"ps": 2,
+		"total": 25
+	}
+}
+```
+
+
+
+### 查看用户空间公告
+
+> http://api.bilibili.com/x/space/notice
+
+*方式:GET*
+
+参数：
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | url  | 目标用户UID | 必要   |      |
+
+**json回复：**
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                     |
+| ttl     | num  | 1        | 作用尚不明确                |
+| data    | str  | 公告信息 | 无则为空                    |
+
+示例：
+
+查看用户`UID=53456`的空间公告
+
+http://api.bilibili.com/x/space/notice?mid=53456
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1,
+    "data":"我的微博 @_warma_\n直播录像上传到：warma养鸽场\n头像画师是：微博@Dr-H_喵_\n横幅画师：@薬屋"
+}
+```
+
+
+
+### 查看用户个人TAG
+
+> http://api.bilibili.com/x/space/acc/tags
+
+*方式:GET*
+
+上限5条，且内容由用户自定义
+
+带有转义
+
+参数：
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | url  | 目标用户UID | 必要   |      |
+
+**json回复：**
+
+| 字段    | 类型   | 内容     | 备注                        |
+| ------- | ------ | -------- | --------------------------- |
+| code    | num    | 返回值   | 0：成功<br />-400：请求错误 |
+| message | str    | 错误信息 | 默认为0                     |
+| ttl     | num    | 1        | 作用尚不明确                |
+| data    | arrary | 信息本体 |                             |
+
+`data`数组：
+
+| 项   | 类型 | 内容     | 备注          |
+| ---- | ---- | -------- | ------------- |
+| 0    | obj  | 信息本体 | 只有1项？？？ |
+
+`data`数组中的对象：
+
+| 字段 | 类型   | 内容        | 备注 |
+| ---- | ------ | ----------- | ---- |
+| mid  | num    | 目标用户UID |      |
+| tags | arrary | TAG名称     |      |
+
+`data`数组中的对象中的`tags`数组：
+
+| 项   | 类型 | 内容     | 备注    |
+| ---- | ---- | -------- | ------- |
+| 0    | str  | TAG1     |         |
+| n    | str  | TAG(n+1) |         |
+| ……   | str  | ……       |         |
+| 4    | str  | TAG5     | 上限5条 |
+
+示例：
+
+查看用户`UID=53456`的个人TAG
+
+http://api.bilibili.com/x/space/acc/tags?mid=53456
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": [{
+		"mid": 53456,
+		"tags": ["\u6e38\u620f", "\u97f3\u4e50", "warma", "\u641e\u7b11", "\u52a8\u753b"]
+	}]
 }
 ```
 

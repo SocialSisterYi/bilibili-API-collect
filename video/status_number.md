@@ -21,23 +21,25 @@
 
 `data`对象：
 
-| 字段       | 类型              | 内容                        | 备注                 |
-| ---------- | ----------------- | --------------------------- | -------------------- |
-| aid        | num               | 视频avID                    |                      |
-| view       | 普通num 屏蔽时str | 普通：观看次数 屏蔽时："--" |                      |
-| danmaku    | num               | 弹幕条数                    |                      |
-| reply      | num               | 评论条数                    |                      |
-| favorite   | num               | 收藏人数                    |                      |
-| coin       | num               | 投币枚数                    |                      |
-| share      | num               | 分享次数                    |                      |
-| now_rank   | num               | 0                           | 作用尚不明确         |
-| his_rank   | num               | 历史最高排行                |                      |
-| like       | num               | 获赞次数                    |                      |
-| dislike    | num               | 0                           | 作用尚不明确         |
-| no_reprint | num               | 禁止转载标志                | 0：无<br />1：禁止   |
-| copyright  | num               | 版权标志                    | 1：自制<br />2：转载 |
+| 字段       | 类型                     | 内容                           | 备注                 |
+| ---------- | ------------------------ | ------------------------------ | -------------------- |
+| aid        | num                      | 视频avID                       |                      |
+| view       | 正常：num<br />屏蔽：str | 正常：播放次数<br />屏蔽："--" |                      |
+| danmaku    | num                      | 弹幕条数                       |                      |
+| reply      | num                      | 评论条数                       |                      |
+| favorite   | num                      | 收藏人数                       |                      |
+| coin       | num                      | 投币枚数                       |                      |
+| share      | num                      | 分享次数                       |                      |
+| now_rank   | num                      | 0                              | 作用尚不明确         |
+| his_rank   | num                      | 历史最高排行                   |                      |
+| like       | num                      | 获赞次数                       |                      |
+| dislike    | num                      | 0                              | 作用尚不明确         |
+| no_reprint | num                      | 禁止转载标志                   | 0：无<br />1：禁止   |
+| copyright  | num                      | 版权标志                       | 1：自制<br />2：转载 |
 
 示例：
+
+查询视频`av91572143`的状态数
 
 http://api.bilibili.com/archive_stat/stat?aid=91572143
 
@@ -64,7 +66,10 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 }
 ```
 
-## 视频状态数2（常用 封杀python）（avID/bvID互转）
+
+
+## 视频状态数2（常用 封杀python）
+
 > http://api.bilibili.com/x/web-interface/archive/stat
 
 *方式:GET*
@@ -92,26 +97,28 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 
 `data`对象：
 
-| 字段       | 类型                   | 内容                             | 备注                 |
-| ---------- | ---------------------- | -------------------------------- | -------------------- |
-| aid        | num                    | 视频avID                         |                      |
-| bvid       | str                    | 视频bvID                         |                      |
-| view       | 普通num<br />屏蔽时str | 普通：观看次数<br />屏蔽时："--" |                      |
-| danmaku    | num                    | 弹幕条数                         |                      |
-| reply      | num                    | 评论条数                         |                      |
-| favorite   | num                    | 收藏人数                         |                      |
-| coin       | num                    | 投币枚数                         |                      |
-| share      | num                    | 分享次数                         |                      |
-| now_rank   | num                    | 0                                | 作用尚不明确         |
-| his_rank   | num                    | 历史最高排行                     |                      |
-| like       | num                    | 获赞次数                         |                      |
-| dislike    | num                    | 0                                | 作用尚不明确         |
-| no_reprint | num                    | 禁止转载标志                     | 0：无<br />1：禁止   |
-| copyright  | num                    | 版权标志                         | 1：自制<br />2：转载 |
-| argue_msg  | str                    | 警告信息                         | 默认为空             |
-| evaluation | str                    | 视频评分                         | 默认为空             |
+| 字段       | 类型                     | 内容                           | 备注                 |
+| ---------- | ------------------------ | ------------------------------ | -------------------- |
+| aid        | num                      | 视频avID                       |                      |
+| bvid       | str                      | 视频bvID                       |                      |
+| view       | 正常：num<br />屏蔽：str | 正常：播放次数<br />屏蔽："--" |                      |
+| danmaku    | num                      | 弹幕条数                       |                      |
+| reply      | num                      | 评论条数                       |                      |
+| favorite   | num                      | 收藏人数                       |                      |
+| coin       | num                      | 投币枚数                       |                      |
+| share      | num                      | 分享次数                       |                      |
+| now_rank   | num                      | 0                              | 作用尚不明确         |
+| his_rank   | num                      | 历史最高排行                   |                      |
+| like       | num                      | 获赞次数                       |                      |
+| dislike    | num                      | 0                              | 作用尚不明确         |
+| no_reprint | num                      | 禁止转载标志                   | 0：无<br />1：禁止   |
+| copyright  | num                      | 版权标志                       | 1：自制<br />2：转载 |
+| argue_msg  | str                      | 警告信息                       | 默认为空             |
+| evaluation | str                      | 视频评分                       | 默认为空             |
 
 示例：
+
+查询视频`av2271112`/`BV1es411D7sW`的状态数
 
 http://api.bilibili.com/x/web-interface/archive/stat?aid=2271112
 

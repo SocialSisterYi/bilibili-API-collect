@@ -2,7 +2,7 @@
 
 ## 登录用户信息1（完整）
 
-> http://api.bilibili.com/nav (使用转义)
+> http://api.bilibili.com/nav (带有转义)
 >
 > http://api.bilibili.com/x/web-interface/nav (原始数据)
 

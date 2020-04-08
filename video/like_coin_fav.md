@@ -61,7 +61,7 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 | ----------- | ---- | ------------------- | ------ | --------------------------------------- |
 | aid         | data | 视频avID            | 非必要 | avID与bvID任选一个                      |
 | bvid        | data | 视频bvID            | 非必要 | avID与bvID任选一个                      |
-| select_like | data | 同时点赞            | 非必要 | 0：不点赞<br />1：同时点赞<br />默认为0 |
+| select_like | data | 附加点赞            | 非必要 | 0：不点赞<br />1：同时点赞<br />默认为0 |
 | multiply    | data | 投币数量            | 必要   | 上限为2                                 |
 | csrf        | data | cookies中的bili_jct | 必要   |                                         |
 
@@ -76,13 +76,13 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 
 data 对象：
 
-| 字段 | 类型 | 内容         | 备注                                          |
-| ---- | ---- | ------------ | --------------------------------------------- |
-| like | bool | 是否点赞成功 | true：成功<br />false：失败<br />已赞过则失败 |
+| 字段 | 类型 | 内容         | 备注                                                  |
+| ---- | ---- | ------------ | ----------------------------------------------------- |
+| like | bool | 是否点赞成功 | true：成功<br />false：失败<br />已赞过则附加点赞失败 |
 
 示例：
 
-为视频av90671873/BV1N7411A7wC投币2枚
+为视频`av90671873`/`BV1N7411A7wC`投币2枚
 
 curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http://api.bilibili.com/x/web-interface/coin/add"
 
@@ -137,7 +137,7 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http
 
 示例：
 
-将视频av49166435添加到收藏夹49166435中
+将视频`av49166435`添加到收藏夹`49166435`中
 
 curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type=2&add_media_ids=49166435&del_media_ids=&csrf=xxx" "http://api.bilibili.com/medialist/gateway/coll/resource/deal"
 
@@ -191,7 +191,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 
 示例：
 
-将视频av91003840/BV1Wj411f79U一键三连
+将视频`av91003840`/`BV1Wj411f79U`一键三连
 
 curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web-interface/archive/like/triple"
 
@@ -247,7 +247,7 @@ data 对象：
 
 示例：
 
-视频av46281123/BV1Bb411H7Dv的状态为已收藏
+视频`av46281123`/`BV1Bb411H7Dv`的状态为已收藏
 
 http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
@@ -293,7 +293,7 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
 示例：
 
-视频av39330059/BV1Bt411z799的状态为已点赞
+视频`av39330059`/`BV1Bt411z799`的状态为已点赞
 
 http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 
@@ -342,7 +342,7 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 
 示例：
 
-视频av37896701/BV18t411q7zz的投币数为2枚
+视频`av37896701`/`BV18t411q7zz`的投币数为2枚
 
 http://api.bilibili.com/x/web-interface/archive/coins?aid=37896701
 
