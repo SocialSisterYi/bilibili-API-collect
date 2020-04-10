@@ -34,7 +34,7 @@
 | tid          | num   | 分区ID                         |                       |
 | tname        | str   | 子分区名称                     |                       |
 | copyright    | num   | 版权标志                       | 1：自制<br />2：转载  |
-| pic          | str   | 视频封面图片url                | jpg gif               |
+| pic          | str   | 视频封面图片url                |                       |
 | title        | str   | 视频标题                       |                       |
 | pubdate      | num   | 视频上传时间                   | 时间戳                |
 | ctime        | num   | 视频审核通过时间               | 时间戳                |
@@ -74,11 +74,11 @@
 
 `data`中的`owner`对象：
 
-| 字段 | 类型 | 内容     | 备注    |
-| ---- | ---- | -------- | ------- |
-| mid  | num  | UP主UID  |         |
-| name | str  | UP主昵称 |         |
-| face | str  | UP主头像 | jpg gif |
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| mid  | num  | UP主UID  |      |
+| name | str  | UP主昵称 |      |
+| face | str  | UP主头像 |      |
 
 `data`中的`stat`对象：
 
@@ -160,7 +160,7 @@
 | mid             | num  | 字幕上传者UID     |              |
 | name            | str  | 字幕上传者昵称    |              |
 | sex             | str  | 字幕上传者性别    | 男 女 保密   |
-| face            | str  | 字幕上传者头像url | jpg gif      |
+| face            | str  | 字幕上传者头像url |              |
 | sign            | str  | 字幕上传者签名    |              |
 | rank            | num  | 10000             | 作用尚不明确 |
 | birthday        | num  | 0                 | 作用尚不明确 |
@@ -177,15 +177,15 @@
 
 数组`staff`中的对象：
 
-| 字段     | 类型 | 内容           | 备注    |
-| -------- | ---- | -------------- | ------- |
-| mid      | num  | 成员UID        |         |
-| title    | str  | 成员名称       |         |
-| name     | str  | 成员昵称       |         |
-| face     | str  | 成员头像url    | jpg gif |
-| vip      | obj  | 成员大会员状态 |         |
-| official | obj  | 成员认证信息   |         |
-| follower | num  | 成员粉丝数     |         |
+| 字段     | 类型 | 内容           | 备注 |
+| -------- | ---- | -------------- | ---- |
+| mid      | num  | 成员UID        |      |
+| title    | str  | 成员名称       |      |
+| name     | str  | 成员昵称       |      |
+| face     | str  | 成员头像url    |      |
+| vip      | obj  | 成员大会员状态 |      |
+| official | obj  | 成员认证信息   |      |
+| follower | num  | 成员粉丝数     |      |
 
 数组`staff`中的对象中的`vip`对象：
 

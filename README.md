@@ -103,7 +103,7 @@
 - 哔哩哔哩漫画
 - 哔哩哔哩游戏
 - [其他](other)
-  - [ip查询](other/ip.md)√
+  - [ip位置查询](other/ip.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
 

@@ -25,7 +25,7 @@
 | --------------- | ---- | ---------------- | ------------------------------- |
 | isLogin         | bool | 是否已登录       |                                 |
 | email_verified  | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证        |
-| face            | str  | 登录用户头像url  | jpg gif                         |
+| face            | str  | 登录用户头像url  |                                 |
 | level_info      | obj  | 等级信息         |                                 |
 | mid             | num  | 登录UID          |                                 |
 | mobile_verified | num  | 是否验证手机号   | 0：未验证<br />1：已验证        |
@@ -78,7 +78,7 @@
 | ------ | ---- | ----------- | ------------ |
 | pid    | num  | 挂件id      |              |
 | name   | str  | 挂件名称    |              |
-| image  | str  | 挂件图片url | png          |
+| image  | str  | 挂件图片url |              |
 | expire | num  | 0           | 作用尚不明确 |
 
 `data`中的`wallet`对象：
@@ -179,9 +179,9 @@ http://api.bilibili.com/x/web-interface/nav
 | level_info        | obj  | 等级信息          |                                 |
 | bCoins            | num  | 拥有B币数         |                                 |
 | coins             | num  | 拥有硬币数        |                                 |
-| face              | str  | 登录用户头像url   | jpg gif                         |
+| face              | str  | 登录用户头像url   |                                 |
 | nameplate_current | null | ???               | 作用尚不明确                    |
-| pendant_current   | str  | 登录用户头像框url | png                             |
+| pendant_current   | str  | 登录用户头像框url |                                 |
 | uname             | str  | 登录用户昵称      |                                 |
 | userStatus        | str  | 登录用户状态      |                                 |
 | vipType           | num  | 大会员类型        | 0：无<br />1：月度<br />2：年度 |

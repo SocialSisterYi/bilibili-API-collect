@@ -28,7 +28,7 @@
 | mid         | num  | UID              |                                                              |
 | name        | str  | 昵称             |                                                              |
 | sex         | str  | 性别             | 男 女 保密                                                   |
-| face        | str  | 头像链接         | jpg或gif                                                     |
+| face        | str  | 头像链接         |                                                              |
 | sign        | str  | 签名             |                                                              |
 | rank        | num  | 10000            | 作用尚不明确                                                 |
 | level       | num  | 当前等级         | 0-6级                                                        |
@@ -70,7 +70,7 @@
 | ------ | ---- | ----------- | ------------ |
 | pid    | num  | 挂件id      |              |
 | name   | str  | 挂件名称    |              |
-| image  | str  | 挂件图片url | png          |
+| image  | str  | 挂件图片url |              |
 | expire | num  | 0           | 作用尚不明确 |
 
 `data`中的`nameplate`对象：
@@ -79,8 +79,8 @@
 | ----------- | ---- | ---------------- | ---- |
 | nid         | num  | 勋章id           |      |
 | name        | str  | 勋章名称         |      |
-| image       | str  | 挂件图片url 正常 | png  |
-| image_small | str  | 勋章图片url 小   | png  |
+| image       | str  | 挂件图片url 正常 |      |
+| image_small | str  | 勋章图片url 小   |      |
 | level       | str  | 勋章等级         |      |
 | condition   | str  | 勋章条件         |      |
 
@@ -222,7 +222,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 | approve         | bool  | false          | 作用尚不明确                                                 |
 | name            | str   | 用户昵称       |                                                              |
 | sex             | str   | 用户性别       | 男 女 保密                                                   |
-| face            | str   | 用户头像链接   | jpg或gif                                                     |
+| face            | str   | 用户头像链接   |                                                              |
 | DisplayRank     | str   | 0              | 作用尚不明确                                                 |
 | regtime         | num   | 0              | 作用尚不明确                                                 |
 | spacesta        | num   | 0              | 作用尚不明确                                                 |
@@ -306,8 +306,8 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 | 字段  | 类型 | 内容             | 备注 |
 | ----- | ---- | ---------------- | ---- |
-| s_img | str  | 主页头图url 小图 | png  |
-| l_img | str  | 主页头图url 正常 | png  |
+| s_img | str  | 主页头图url 小图 |      |
+| l_img | str  | 主页头图url 正常 |      |
 
 示列：
 
@@ -415,7 +415,7 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 | mid             | num  | UID          |                          |
 | name            | str  | 昵称         |                          |
 | sex             | str  | 性别         | 男 女 保密               |
-| face            | str  | 头像图片url  | jpg gif                  |
+| face            | str  | 头像图片url  |                          |
 | sign            | str  | 签名         |                          |
 | rank            | num  | 10000        | 作用尚不明确             |
 | level           | num  | 当前等级     | 0-6级                    |
@@ -458,7 +458,7 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 | ------ | ---- | ----------- | ------------ |
 | pid    | num  | 挂件id      |              |
 | name   | str  | 挂件名称    |              |
-| image  | str  | 挂件图片url | png          |
+| image  | str  | 挂件图片url |              |
 | expire | num  | 0           | 作用尚不明确 |
 
 `data`中的`nameplate`对象：
@@ -467,8 +467,8 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 | ----------- | ---- | ---------------- | ---- |
 | nid         | num  | 勋章id           |      |
 | name        | str  | 勋章名称         |      |
-| image       | str  | 挂件图片url 正常 | png  |
-| image_small | str  | 勋章图片url 小   | png  |
+| image       | str  | 挂件图片url 正常 |      |
+| image_small | str  | 勋章图片url 小   |      |
 | level       | str  | 勋章等级         |      |
 | condition   | str  | 勋章条件         |      |
 

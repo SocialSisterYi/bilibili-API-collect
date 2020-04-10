@@ -53,7 +53,7 @@
 | tag             | null |              | 作用尚不明确                            |
 | special         | num  | 0            | 作用尚不明确                            |
 | uname           | str  | 用户昵称     |                                         |
-| face            | str  | 用户头像url  | jpg gif                                 |
+| face            | str  | 用户头像url  |                                         |
 | sign            | str  | 用户签名     |                                         |
 | official_verify | obj  | 认证信息     |                                         |
 | vip             | obj  | 会员信息     |                                         |
@@ -86,7 +86,7 @@
 
 示例：
 
-以每页2项的方式获取UID为293793435的用户的第1页的粉丝明细
+以每页2项的方式获取`UID=293793435`的用户的第1页的粉丝明细
 
 http://api.bilibili.com/x/relation/followers?vmid=293793435&ps=2&pn=1
 
@@ -208,7 +208,7 @@ data 对象：
 | tag             | null默认分组<br />arrary存在至少一个分组 | 分组ID       | 作用尚不明确                            |
 | special         | num                                      | 特别关注标志 | 0：否<br />1：是                        |
 | uname           | str                                      | 用户昵称     |                                         |
-| face            | str                                      | 用户头像url  | jpg gif                                 |
+| face            | str                                      | 用户头像url  |                                         |
 | sign            | str                                      | 用户签名     |                                         |
 | official_verify | obj                                      | 认证信息     |                                         |
 | vip             | obj                                      | 会员信息     |                                         |
@@ -249,7 +249,7 @@ data 对象：
 
 示例：
 
-以每页2项的方式获取UID为293793435的用户的第1页的关注明细
+以每页2项的方式获取`UID=293793435`的用户的第1页的关注明细
 
 http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 
@@ -353,13 +353,13 @@ http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-111：csrf校验失败<br />-101：账号未登录<br />-400：请求错误<br />22003：用户位于黑名单 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />22003：用户位于黑名单 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 
 示例：
 
-关注了UID为14082的用户
+关注`UID=14082`的用户
 
 curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" http://api.bilibili.com/x/relation/modify
 
@@ -416,7 +416,7 @@ curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" http://api.bilibili
 
 示例：
 
-可得对于UID为258150656的用户，在2018/10/28 0:51:41时关注，且设为特别关注，并位于ID为-10分组中
+可得对于`UID=258150656`的用户，在`2018/10/28 0:51:41`时关注，且设为特别关注，并位于ID为`-10`分组中
 
 http://api.bilibili.com/x/relation?fid=258150656
 
@@ -497,7 +497,7 @@ http://api.bilibili.com/x/relation?fid=258150656
 
 示例：
 
-可得对于UID为15858903的用户，在2019/1/24 14:24:19时关注了对方，且互相关注，自己将对方特别关注，并同时位于ID为-10和194110的分组中，对方也将自己设为特别关注，并同时位于-10和56502的分组中（虽然我看不到）
+可得对于`UID=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于ID为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于ID为`-10`和`56502`的分组中（虽然我看不到）
 
 http://api.bilibili.com/x/space/acc/relation?mid=15858903
 
@@ -631,14 +631,14 @@ http://api.bilibili.com/x/relation/tags
 
 数组`data`中的对象：
 
-| 字段            | 类型 | 内容        | 备注    |
-| --------------- | ---- | ----------- | ------- |
-| mid             | num  | 用户UID     |         |
-| uname           | str  | 用户昵称    |         |
-| face            | str  | 用户头像url | jpg gif |
-| sign            | str  | 用户签名    |         |
-| official_verify | obj  | 认证信息    |         |
-| vip             | obj  | 会员信息    |         |
+| 字段            | 类型 | 内容        | 备注 |
+| --------------- | ---- | ----------- | ---- |
+| mid             | num  | 用户UID     |      |
+| uname           | str  | 用户昵称    |      |
+| face            | str  | 用户头像url |      |
+| sign            | str  | 用户签名    |      |
+| official_verify | obj  | 认证信息    |      |
+| vip             | obj  | 会员信息    |      |
 
 数组`data`中的对象中的`official_verify`对象：
 
@@ -668,7 +668,7 @@ http://api.bilibili.com/x/relation/tags
 
 示例：
 
-以每页2项的方式获取了分组ID为207542分组的第1页的粉丝明细
+以每页2项的方式获取了ID为`207542`分组的第1页的粉丝明细
 
 http://api.bilibili.com/x/relation/tag?tagid=207542&ps=2&pn=1
 
@@ -758,7 +758,7 @@ http://api.bilibili.com/x/relation/tag?tagid=207542&ps=2&pn=1
 
 示例：
 
-查询用户319214221存在的分组的ID和名称
+查询用户`UID=319214221`存在的所有分组ID和名称
 
 http://api.bilibili.com/x/relation/tag/user?fid=319214221
 
@@ -810,7 +810,7 @@ http://api.bilibili.com/x/relation/tag/user?fid=319214221
 
 示例：
 
-创建了名为"vUP"的分组，ID为216677
+创建了名为`vUP`的分组，得到ID为`216677`
 
 curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" http://api.bilibili.com/x/relation/tag/create
 
@@ -853,7 +853,7 @@ curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" http://api.bilibili.com/x/relation/ta
 
 示例：
 
-把ID为194112的分组更名为"膜法师"
+把ID为`194112`的分组更名为`膜法师`
 
 curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx" http://api.bilibili.com/x/relation/tag/update
 
@@ -894,7 +894,7 @@ curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx"
 
 示例：
 
-删除分组ID为216699的分组
+删除分组ID为`216699`的分组
 
 curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" http://api.bilibili.com/x/relation/tag/del
 
@@ -920,23 +920,23 @@ curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" http://api.bilibili.com/x/relati
 
 参数（ application/x-www-form-urlencoded ）：
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                     |
-| ------ | ---- | ------------------- | ------ | ------------------------ |
-| fids   | data | 目标用户UID         | 必要   |                          |
-| tagids | data | 分组ID              | 必要   | 每个ID见用","（%2C）间隔 |
-| csrf   | data | cookies中的bili_jct | 必要   |                          |
+| 参数名 | 类型 | 内容                | 必要性 | 备注                       |
+| ------ | ---- | ------------------- | ------ | -------------------------- |
+| fids   | data | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
+| tagids | data | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf   | data | cookies中的bili_jct | 必要   |                            |
 
 **json回复：**
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-111：csrf校验失败<br />-101：账号未登录<br />-400：请求错误<br />22105：未关注 |
+| code    | num  | 返回值   | 0：成功<br />-111：csrf校验失败<br />-101：账号未登录<br />-400：请求错误<br />22104：无权限<br />22105：未关注 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 
 示例：
 
-把UID为205631797的用户同时添加到了分组ID为-10和207542的分组中
+把关注用户`UID=205631797`同时添加分组关系到ID为`-10`和`207542`的分组中
 
 curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" http://api.bilibili.com/x/relation/tags/addUsers
 
@@ -945,6 +945,87 @@ curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" http://api
 	"code": 0,
 	"message": "0",
 	"ttl": 1
+}
+```
+
+
+
+### 批量复制关注用户到分组
+
+> http://api.bilibili.com/x/relation/tags/copyUsers 
+
+*方式:POST*
+
+需要登录(SESSDATA)
+
+参数（ application/x-www-form-urlencoded ）：
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注                       |
+| ------ | ---- | ------------------- | ------ | -------------------------- |
+| fids   | data | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
+| tagids | data | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf   | data | cookies中的bili_jct | 必要   |                            |
+
+**json回复：**
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-111：csrf校验失败<br />-101：账号未登录<br />-400：请求错误<br />22104：无权限<br />22105：未关注 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+示例：
+
+把关注用户`UID=4856007`和`UID=326499679`同时复制到ID为`231305`的分组中
+
+curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" http://api.bilibili.com/x/relation/tags/copyUsers
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1
+}
+```
+
+
+
+### 批量移动关注用户到分组
+
+> http://api.bilibili.com/x/relation/tags/moveUsers 
+
+*方式:POST*
+
+需要登录(SESSDATA)
+
+参数（ application/x-www-form-urlencoded ）：
+
+| 参数名       | 类型 | 内容                | 必要性 | 备注                       |
+| ------------ | ---- | ------------------- | ------ | -------------------------- |
+| beforeTagids | data |                     |        |                            |
+| afterTagids  | data |                     |        |                            |
+| fids         | data | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf         | data | cookies中的bili_jct | 必要   |                            |
+
+**json回复：**
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-111：csrf校验失败<br />-101：账号未登录<br />-400：请求错误<br />22104：无权限<br />22105：未关注 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+把关注用户`UID=3211734
+69`和`UID=327086920`同时从ID为`207542`的分组移动到ID为`231305`的分组中
+
+curl -b SESSDATA=xxx -d "beforeTagids=207542&afterTagids=231305&fids=3211734
+69%2C327086920&csrf=xxx" http://api.bilibili.com/x/relation/tags/moveUsers
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1
 }
 ```
 
