@@ -15,6 +15,7 @@
 计划整理分类&目录：（√代表已完成，x代表正在施工...）
 
 - cookie
+- 图片格式化
 - [登录](login)
   - [二维码登录](login/QR.md)√
   - 密码&短信登录
@@ -79,8 +80,8 @@
   - [B币方式](electric/Bcoin.md)√
   - [微信&支付宝方式](electric/WeChat&Alipay.md)√
   - [充电留言](electric/charge_msg.md)√
-- 动态
-  - 发送&转载动态
+- [动态](dynamic)
+  - [发送&转载动态](dynamic/publish.md)x
   - 动态列表
   - 动态内容
   - 小视频

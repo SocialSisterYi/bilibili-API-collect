@@ -511,6 +511,8 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 
 ### 查询用户追番预览列表
 
+<img src="/imgs/bangumi_fav.svg" width="100" height="100" />
+
 > http://space.bilibili.com/ajax/Bangumi/getList
 
 *方式:GET*
@@ -609,6 +611,8 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 
 
 ### 查询用户追番（追剧）明细
+
+<img src="/imgs/bangumi_fav.svg" width="100" height="100" />
 
 > http://api.bilibili.com/x/space/bangumi/follow/list
 
@@ -1106,6 +1110,8 @@ http://api.vc.bilibili.com/link_draw/v1/doc/doc_list?uid=2&page_num=1&page_size=
 
 
 ### 查询用户频道列表
+
+<img src="/imgs/channel.svg" width="100" height="100" />
 
 > http://api.bilibili.com/x/space/channel/list
 
