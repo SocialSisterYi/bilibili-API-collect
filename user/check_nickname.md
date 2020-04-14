@@ -2,16 +2,14 @@
 也可用于判断指定昵称的用户是否存在
 
 ### 请求地址
-> https://passport.bilibili.com/web/generic/check/nickname
+> http://passport.bilibili.com/web/generic/check/nickname
 
 *方式:GET*
-
-### 使用说明
 
 **参数：**
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | -------- | ---- | ----------- | ------ | ---- |
-| nickname | str  | 目标昵称  | 必要   |   注意大小写   |
+| nickname | url | 目标昵称  | 必要   |   注意大小写   |
 
 **json回复：**
 
@@ -20,24 +18,23 @@
 | code    | num  | 状态码    | **详细说明见下一表格**        |
 | message | str  | 错误详情   | 若昵称可用，则不返回message   |
 
-关于其中的 code状态码：
+`code`状态码：
 
-| 值     | 意义                           | 备注                        |
-| ------ | ----------------------------- | --------------------------- |
-| 0      |  昵称未被注册                   | 此时不返回message            |
-| 2001   |  该昵称已被他人使用              |不知道和40014有什么区别     |
-| 40004  |  昵称不可包含除\-和_以外的特殊字符 | \- |
-| 40005  |  昵称过长                       | \- |
-| 40006  |  昵称过短                       | \- |
-| 40014  |  昵称已存在                     | \- |
+| 值    | 含义                              |
+| ----- | --------------------------------- |
+| 0     | 昵称未被注册                      |
+| 2001  | 该昵称已被他人使用                |
+| 40002 | 昵称包含敏感信息                  |
+| 40004 | 昵称不可包含除\-和_以外的特殊字符 |
+| 40005 | 昵称过长                          |
+| 40006 | 昵称过短                          |
+| 40014 | 昵称已存在                        |
 
-其余返回值暂未发现
-
-### 示例：
+**示例：**
 
 查询昵称 `test` 是否被使用
 
-https://passport.bilibili.com/web/generic/check/nickname?nickName=test
+http://passport.bilibili.com/web/generic/check/nickname?nickName=test
 
 ```json
 {
@@ -45,3 +42,17 @@ https://passport.bilibili.com/web/generic/check/nickname?nickName=test
 	"message":"昵称已存在"
 }
 ```
+
+查询昵称 `bishi` 是否被使用
+
+http://passport.bilibili.com/web/generic/check/nickname?nickName=bishi
+
+```json
+{
+    "code":40002,
+    "message":"昵称包含敏感信息"
+}
+```
+
+
+
