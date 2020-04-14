@@ -29,6 +29,7 @@
   - [状态数](user/status_number.md)√
   - [关系](user/relation.md)√
   - [个人空间](user/space.md)x
+  - [检查昵称是否可注册](user/check_nickname.md)√
 - [视频](video)
   - [视频分区一览（分区代码）](video/video_zone.md)√
   - [基本信息](video/info.md)√
