@@ -12,6 +12,8 @@
 
 **json回复：**
 
+根对象：
+
 | 字段    | 类型 | 内容     | 备注                          |
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
@@ -90,7 +92,7 @@
 | coupon_balance  | num  | 每月奖励B币数 |              |
 | coupon_due_time | num  | 0             | 作用尚不明确 |
 
-示例：
+**示例：**
 
 查询当前登录用户的信息
 
@@ -166,6 +168,8 @@ http://api.bilibili.com/x/web-interface/nav
 
 **json回复：**
 
+根对象：
+
 | 字段   | 类型 | 内容     | 备注                          |
 | ------ | ---- | -------- | ----------------------------- |
 | code   | num  | 返回值   | 0：成功<br />-101：账号未登录 |
@@ -198,7 +202,7 @@ http://api.bilibili.com/x/web-interface/nav
 | current_exp   | num  | 当前经验                 |      |
 | next_exp      | num  | 升级下一等级需达到的经验 |      |
 
-示例：
+**示例：**
 
 查询当前登录用户的信息
 
@@ -242,6 +246,8 @@ http://account.bilibili.com/home/userInfo
 
 **json回复：**
 
+根对象：
+
 | 字段    | 类型 | 内容     | 备注                          |
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
@@ -255,7 +261,7 @@ http://account.bilibili.com/home/userInfo
 | follower      | num  | 粉丝数     |      |
 | dynamic_count | num  | 发布动态数 |      |
 
-示例：
+**示例：**
 
 查询当前登录用户的状态数
 

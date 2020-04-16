@@ -7,12 +7,15 @@
 
 *方式:GET*
 
-参数：
+**参数：**
+
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | mid    | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
@@ -84,7 +87,7 @@
 | level       | str  | 勋章等级         |      |
 | condition   | str  | 勋章条件         |      |
 
-示列：
+**示列：**
 
 查询用户`UID=2`的详细信息
 
@@ -193,14 +196,17 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 *方式:GET*
 
-参数：
+**参数：**
+
 | 参数名 | 类型 | 内容                 | 必要性 | 备注                    |
 | ------ | ---- | -------------------- | ------ | ----------------------- |
 | mid    | url  | 目标用户UID          | 必要   |                         |
 | photo  | url  | 是否请求用户主页头图 | 非必要 | true：是<br />false：否 |
 
-
 **json回复：**
+
+根对象：
+
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
@@ -309,7 +315,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 | s_img | str  | 主页头图url 小图 |      |
 | l_img | str  | 主页头图url 正常 |      |
 
-示列：
+**示列：**
 
 http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 ```json
@@ -401,6 +407,9 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 功能同「[登录用户信息1](../login/login_info.md#登录用户信息1（完整）)」
 
 **json回复：**
+
+根对象：
+
 | 字段    | 类型 | 内容     | 备注                      |
 | ------- | ---- | -------- | ------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：未登录 |
@@ -490,7 +499,7 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 | current_exp   | num   | 0          | 作用尚不明确       |
 | next_exp      | num   | 0          | 作用尚不明确       |
 
-示例：
+**示例：**
 
 http://api.bilibili.com/x/space/myinfo
 ```json

@@ -6,6 +6,8 @@
 
 **json回复：**
 
+根对象：
+
 | 字段    | 类型 | 内容     | 备注         |
 | ------- | ---- | -------- | ------------ |
 | code    | num  | 返回值   | 0：成功      |
@@ -27,7 +29,7 @@
 | zone_id      | num  | ？？？        |              |
 | country_code | num  | 国家/地区代码 |              |
 
-示例：
+**示例：**
 
 http://api.bilibili.com/x/web-interface/zone
 

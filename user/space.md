@@ -10,13 +10,15 @@
 
 粉丝在其主页上可见
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | vmid   | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                                 |
 | ------- | ---- | -------- | ---------------------------------------------------- |
@@ -29,7 +31,7 @@
 
 基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
 
-示例：
+**示例：**
 
 查询用户`UID=23215368`的置顶视频
 
@@ -112,13 +114,15 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 
 最多可以设置3个
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | vmid   | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型   | 内容       | 备注                        |
 | ------- | ------ | ---------- | --------------------------- |
@@ -139,7 +143,7 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 
 基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
 
-示例：
+**示例：**
 
 查询用户`UID=23215368`的代表作视频列表
 
@@ -333,7 +337,7 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
@@ -342,6 +346,8 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 | ps     | url  | 每页项数    | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
@@ -419,7 +425,7 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 | pn    | num  | 当前页码   |      |
 | ps    | num  | 每页项数   |      |
 
-示例：
+**示例：**
 
 `pn`（页码）和`ps`（每页项数）只改变`vlist`中成员的多少与内容
 
@@ -519,13 +525,15 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 
 带有转义，且只能获取最多15条
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | mid    | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段   | 类型                     | 内容                               | 备注                        |
 | ------ | ------------------------ | ---------------------------------- | --------------------------- |
@@ -565,7 +573,7 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 | title           | str  | 标题            |                                   |
 | total_count     | num  | 总计集数        | 未完结：-1<br />已完结：非0正整数 |
 
-示例：
+**示例：**
 
 查看用户`UID=14082`的追番预览列表
 
@@ -618,7 +626,7 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注                 |
 | ------ | ---- | ----------- | ------ | -------------------- |
@@ -628,6 +636,8 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 | type   | url  | 查询类型    | 必要   | 1：追番<br />2：追剧 |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                                       |
 | ------- | ---- | -------- | ---------------------------------------------------------- |
@@ -657,7 +667,7 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 
 基本同「番剧详细信息」中的result对象（未完工）
 
-示例：
+**示例：**
 
 查看用户`UID=14082`的追番明细
 
@@ -864,7 +874,7 @@ http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
 
 所有类型的相簿
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注    |
 | ------ | ---- | ------------ | ------ | ------- |
@@ -872,6 +882,8 @@ http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
 | ps     | url  | 获取的相簿量 | 非必要 | 默认为8 |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型   | 内容     | 备注                        |
 | ------- | ------ | -------- | --------------------------- |
@@ -919,7 +931,7 @@ http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
 | img_src    | str  | 图片url  |             |
 | img_width  | num  | 图片宽度 |             |
 
-示例：
+**示例：**
 
 查询用户`UID=53456`的投稿相簿预览
 
@@ -982,7 +994,7 @@ http://api.bilibili.com/x/space/album/index?mid=53456&ps=2
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名    | 类型 | 内容        | 必要性 | 备注                                                         |
 | --------- | ---- | ----------- | ------ | ------------------------------------------------------------ |
@@ -992,6 +1004,8 @@ http://api.bilibili.com/x/space/album/index?mid=53456&ps=2
 | biz       | url  | 查询类型    | 非必要 | 全部：all<br />绘画：draw<br />摄影：photo<br />日常：daily<br />默认为all |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注          |
 | ------- | ---- | -------- | ------------- |
@@ -1045,7 +1059,7 @@ http://api.bilibili.com/x/space/album/index?mid=53456&ps=2
 | img_src    | str  | 图片url  |             |
 | img_width  | num  | 图片宽度 |             |
 
-示例：
+**示例：**
 
 查询用户`UID=53456`的投稿明细中的全部类型
 
@@ -1117,13 +1131,15 @@ http://api.vc.bilibili.com/link_draw/v1/doc/doc_list?uid=2&page_num=1&page_size=
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | mid    | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注         |
 | ------- | ---- | -------- | ------------ |
@@ -1159,7 +1175,7 @@ http://api.vc.bilibili.com/link_draw/v1/doc/doc_list?uid=2&page_num=1&page_size=
 | mtime | num  | 创建时间       | 时间戳   |
 | name  | str  | 标题           |          |
 
-示例：
+**示例：**
 
 查询用户`UID=53456`的频道列表
 
@@ -1233,7 +1249,7 @@ http://api.bilibili.com/x/space/channel/list?mid=53456
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注      |
 | ------ | ---- | ----------- | ------ | --------- |
@@ -1243,6 +1259,8 @@ http://api.bilibili.com/x/space/channel/list?mid=53456
 | ps     | url  | 每页项数    | 非必要 | 默认为100 |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                                    |
 | ------- | ---- | -------- | ------------------------------------------------------- |
@@ -1291,7 +1309,7 @@ http://api.bilibili.com/x/space/channel/list?mid=53456
 | num   | num  | 当前页码   |      |
 | size  | num  | 每页项数   |      |
 
-示例：
+**示例：**
 
 查询用户`UID=53456`的频道`170`中的视频
 
@@ -1441,13 +1459,15 @@ http://api.bilibili.com/x/space/channel/video?mid=53456&cid=170&ps=2&pn=1
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | mid    | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
@@ -1456,7 +1476,7 @@ http://api.bilibili.com/x/space/channel/video?mid=53456&cid=170&ps=2&pn=1
 | ttl     | num  | 1        | 作用尚不明确                |
 | data    | str  | 公告信息 | 无则为空                    |
 
-示例：
+**示例：**
 
 查看用户`UID=53456`的空间公告
 
@@ -1483,13 +1503,15 @@ http://api.bilibili.com/x/space/notice?mid=53456
 
 带有转义
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | mid    | url  | 目标用户UID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型   | 内容     | 备注                        |
 | ------- | ------ | -------- | --------------------------- |
@@ -1520,7 +1542,7 @@ http://api.bilibili.com/x/space/notice?mid=53456
 | ……   | str  | ……       |         |
 | 4    | str  | TAG5     | 上限5条 |
 
-示例：
+**示例：**
 
 查看用户`UID=53456`的个人TAG
 

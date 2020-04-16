@@ -23,6 +23,8 @@
 
 **json回复：**
 
+根对象：
+
 | 字段   | 类型 | 内容     | 备注         |
 | ------ | ---- | -------- | ------------ |
 | code   | num  | 返回值   | 0：成功      |
@@ -37,7 +39,7 @@
 | url      | str   | 二维码内容url | 恒为87字符 |
 | oauthKey | str   | 扫码登录秘钥  | 恒为32字符 |
 
-示例：
+**示例：**
 
 用申请到的`data`.`url`中的值生成二维码，等待手机客户端扫描，并将`data`.`oauthKey`保存等待使用
 
@@ -68,13 +70,16 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 
 `sid` `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
 
-参数（ application/x-www-form-urlencoded ）：
+**参数（ application/x-www-form-urlencoded ）：**
+
 | 参数名   | 类型 | 内容         | 必要性 | 备注                          |
 | -------- | ---- | ------------ | ------ | ----------------------------- |
 | oauthKey | data | 扫码登录秘钥 | 必要   |                               |
 | gourl    | data | 跳转url      | 非必要 | 默认为http://www.bilibili.com |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型                         | 内容                                      | 备注                                                         |
 | ------- | ---------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
@@ -89,7 +94,7 @@ data 对象：
 | ---- | ---- | --------------- | ---- |
 | url  | str  | 游戏分站登录url |      |
 
-示例：
+**示例：**
 
 curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 

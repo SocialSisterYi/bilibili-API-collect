@@ -12,7 +12,7 @@
 
 *方式：POST*
 
-参数（ application/x-www-form-urlencoded ）：
+**参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                   |
 | ------ | ---- | ------------------- | ------ | ---------------------- |
@@ -23,13 +23,15 @@
 
 **json回复：**
 
+根对象：
+
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
 | code    | num  | 返回值   | 0：成功 <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />10003：不存在该稿件<br />65006：已赞过<br />65004：取消点赞失败 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 
-示例：
+**示例：**
 
 为视频av79677524/BV1uJ411r7hL点赞
 
@@ -55,7 +57,7 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 
 *方式：POST*
 
-参数（ application/x-www-form-urlencoded ）：
+**参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名      | 类型 | 内容                | 必要性 | 备注                                    |
 | ----------- | ---- | ------------------- | ------ | --------------------------------------- |
@@ -66,6 +68,8 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 | csrf        | data | cookies中的bili_jct | 必要   |                                         |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
@@ -80,7 +84,7 @@ data 对象：
 | ---- | ---- | ------------ | ----------------------------------------------------- |
 | like | bool | 是否点赞成功 | true：成功<br />false：失败<br />已赞过则附加点赞失败 |
 
-示例：
+**示例：**
 
 为视频`av90671873`/`BV1N7411A7wC`投币2枚
 
@@ -111,7 +115,7 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http
 
 需要验证referer为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
 
-参数（ application/x-www-form-urlencoded ）：
+**参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名        | 类型 | 内容                | 必要性 | 备注                    |
 | ------------- | ---- | ------------------- | ------ | ----------------------- |
@@ -122,6 +126,8 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http
 | csrf          | data | cookies中的bili_jct | 必要   |                         |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
@@ -135,7 +141,7 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http
 | ------ | ---- | ----- | ------------ |
 | prompt | bool | false | 作用尚不明确 |
 
-示例：
+**示例：**
 
 将视频`av49166435`添加到收藏夹`49166435`中
 
@@ -163,7 +169,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 
 同时点赞投币收藏视频，收藏于默认收藏夹中
 
-参数（ application/x-www-form-urlencoded ）：
+**参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注               |
 | ------ | ---- | ------------------- | ------ | ------------------ |
@@ -172,6 +178,8 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 | csrf   | data | cookies中的bili_jct | 必要   |                    |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
@@ -189,7 +197,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 | fav      | bool | 是否收藏成功 |         |
 | multiply | num  | 投币枚数     | 默认为2 |
 
-示例：
+**示例：**
 
 将视频`av91003840`/`BV1Wj411f79U`一键三连
 
@@ -223,13 +231,15 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容               | 必要性 | 备注 |
 | ------ | ---- | ------------------ | ------ | ---- |
 | aid    | url  | 视频avID或视频bvID | 必要   |      |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                              |
 | ------- | ---- | -------- | ------------------------------------------------- |
@@ -245,7 +255,7 @@ data 对象：
 | count    | num  | 1        | 作用尚不明确                    |
 | favoured | bool | 是否收藏 | true：已收藏<br />false：未收藏 |
 
-示例：
+**示例：**
 
 视频`av46281123`/`BV1Bb411H7Dv`的状态为已收藏
 
@@ -275,7 +285,7 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注               |
 | ------ | ---- | -------- | ------ | ------------------ |
@@ -284,6 +294,8 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
 **json回复：**
 
+根对象：
+
 | 字段    | 类型 | 内容       | 备注                                              |
 | ------- | ---- | ---------- | ------------------------------------------------- |
 | code    | num  | 返回值     | 0：成功<br />-400：请求错误<br />-101：账号未登录 |
@@ -291,7 +303,7 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 | ttl     | num  | 1          | 作用尚不明确                                      |
 | data    | num  | 被点赞标志 | 0：未点赞<br />1：已点赞                          |
 
-示例：
+**示例：**
 
 视频`av39330059`/`BV1Bt411z799`的状态为已点赞
 
@@ -318,7 +330,7 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 
 *方式:GET*
 
-参数：
+**参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注               |
 | ------ | ---- | -------- | ------ | ------------------ |
@@ -326,6 +338,8 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 | bvid   | url  | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
+
+根对象：
 
 | 字段    | 类型 | 内容     | 备注                                              |
 | ------- | ---- | -------- | ------------------------------------------------- |
@@ -340,7 +354,7 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 | -------- | ---- | -------- | --------- |
 | multiply | num  | 投币枚数 | 未投币为0 |
 
-示例：
+**示例：**
 
 视频`av37896701`/`BV18t411q7zz`的投币数为2枚
 
