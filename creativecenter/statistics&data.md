@@ -393,3 +393,211 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 }
 ```
 
+
+
+## 稿件操作来源占比情况
+
+> http://member.bilibili.com/x/web/data/survey
+
+*方式：GET*
+
+数据为上一天的
+
+**参数：**
+
+| 参数名 | 类型 | 内容         | 必要性 | 备注           |
+| ------ | ---- | ------------ | ------ | -------------- |
+| type   | url  | 目标数据类型 | 必要   | 类型代码见下表 |
+
+类型代码`type`：
+
+| 代码 | 含义 |
+| ---- | ---- |
+| 1    | 播放 |
+| 2    | 弹幕 |
+| 3    | 评论 |
+| 4    | 分享 |
+| 5    | 投币 |
+| 6    | 收藏 |
+| 7    | 充电 |
+| 8    | 点赞 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        | 作用尚不明确                                      |
+| data    | obj  | 信息本体 |                                                   |
+
+`data`对象：
+
+| 字段         | 类型 | 内容         | 备注         |
+| ------------ | ---- | ------------ | ------------ |
+| ｛YYYYMMDD｝ | obj  | 上一天的情况 | 字段名为日期 |
+
+`data`中的`｛YYYYMMDD｝`对象：
+
+| 字段      | 类型   | 内容         | 备注 |
+| --------- | ------ | ------------ | ---- |
+| arc_inc   | arrary | 稿件情况     |      |
+| total_inc | num    | 总计增长情况 |      |
+| type_rank | obj    | 分区排名情况 |      |
+
+`｛YYYYMMDD｝`中的`arc_inc`数组：
+
+| 项   | 类型 | 内容        | 备注 |
+| ---- | ---- | ----------- | ---- |
+| 0    | obj  | 稿件1       |      |
+| n    | obj  | 稿件（n+1） |      |
+| ……   | obj  | ……          | ……   |
+
+`｛YYYYMMDD｝`中的`arc_inc`数组中的对象：
+
+| 字段        | 类型 | 内容           | 备注         |
+| ----------- | ---- | -------------- | ------------ |
+| aid         | num  | 稿件avID       |              |
+| bvid        | str  | 稿件bvID       |              |
+| daytime     | num  | 统计时间       | 时间戳       |
+| incr        | num  | 稿件增长情况数 |              |
+| interactive | num  | 0              | 作用尚不明确 |
+| ptime       | num  | 稿件发布时间   | 时间戳       |
+| title       | str  | 稿件标题       |              |
+
+`｛YYYYMMDD｝`中的`type_rank`对象：
+
+| 字段     | 类型 | 内容     | 备注 |
+| -------- | ---- | -------- | ---- |
+| {分区名} | num  | 该排名数 |      |
+| ……       | num  | ……       | ……   |
+
+**示例：**
+
+查询我的稿件来源占比情况
+
+http://member.bilibili.com/x/web/data/survey?type=1
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"20200418": {
+			"arc_inc": [{
+				"aid": 94916552,
+				"bvid": "BV1ZE411K7ux",
+				"incr": 18,
+				"title": "【8-bit】影  流  之  主（爱河）",
+				"daytime": 1587155030,
+				"ptime": 1583760165,
+				"interactive": 0
+			}, {
+				"aid": 98948772,
+				"bvid": "BV1n741127LD",
+				"incr": 14,
+				"title": "【特斯拉线圈】组装迷你SSTC",
+				"daytime": 1587155030,
+				"ptime": 1585054436,
+				"interactive": 0
+			}, {
+				"aid": 37294890,
+				"bvid": "BV1kt411D7yW",
+				"incr": 9,
+				"title": "【病毒】彩虹猫可以调速还带有计时器  MEMZ重构升级版",
+				"daytime": 1587155030,
+				"ptime": 1543775696,
+				"interactive": 0
+			}, 
+			…………
+			],
+			"total_inc": 55,
+			"type_rank": {
+				"生活": 1392,
+				"科技": 1597,
+				"音乐": 1058
+			}
+		}
+	}
+}
+```
+
+
+
+## 播放来源占比情况（平台及方式）
+
+> http://member.bilibili.com/x/web/data/playsource
+
+*方式：GET*
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        | 作用尚不明确                  |
+| data    | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段            | 类型 | 内容         | 备注 |
+| --------------- | ---- | ------------ | ---- |
+| page_source     | obj  | 播放方式情况 |      |
+| play_proportion | obj  | 播放平台情况 |      |
+
+`data`中的`page_source`对象：
+
+| 字段          | 类型 | 内容         | 备注 |
+| ------------- | ---- | ------------ | ---- |
+| dynamic       | num  | 通过动态     |      |
+| other         | num  | 其他方式     |      |
+| related_video | num  | 通过推荐列表 |      |
+| search        | num  | 通过搜索     |      |
+| space         | num  | 空间列表播放 |      |
+| tenma         | num  | ？？？       |      |
+
+`data`中的`play_proportion`对象：
+
+| 字段    | 类型 | 内容         | 备注 |
+| ------- | ---- | ------------ | ---- |
+| android | num  | 安卓端       |      |
+| h5      | num  | 移动端h5页面 |      |
+| ios     | num  | ios端        |      |
+| out     | num  | 站外         |      |
+| pc      | num  | 电脑版网页   |      |
+
+**示例：**
+
+http://member.bilibili.com/x/web/data/playsource
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"play_proportion": {
+			"android": 6060,
+			"h5": 410,
+			"ios": 1325,
+			"out": 0,
+			"pc": 2137
+		},
+		"page_source": {
+			"dynamic": 173,
+			"other": 1440,
+			"related_video": 1813,
+			"search": 1980,
+			"space": 501,
+			"tenma": 4087
+		}
+	}
+}
+```
+
