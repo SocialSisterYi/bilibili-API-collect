@@ -1572,6 +1572,8 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 
 签名最多支持70个字
 
+修改签名不会立即生效，会等待审核队列稍后生效
+
 需要登录(SESSDATA)
 
 **参数（ application/x-www-form-urlencoded ）：**
