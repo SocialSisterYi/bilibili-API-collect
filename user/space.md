@@ -1564,7 +1564,7 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 
 ## 设置相关
 
-### 更新个人签名
+### 修改个人签名
 
 > http://api.bilibili.com/x/member/web/sign/update
 
@@ -1578,10 +1578,10 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 
 **参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名    | 类型 | 内容                | 必要性 | 备注             |
-| --------- | ---- | ------------------- | ------ | ---------------- |
-| user_sign | data | 要设置的签名内容    | 必要   | 删除签名留空即可 |
-| csrf      | data | cookies中的bili_jct | 必要   |                  |
+| 参数名    | 类型 | 内容                | 必要性 | 备注                   |
+| --------- | ---- | ------------------- | ------ | ---------------------- |
+| user_sign | data | 要设置的签名内容    | 非必要 | 删除签名留空或省去即可 |
+| csrf      | data | cookies中的bili_jct | 必要   |                        |
 
 **json回复：**
 
@@ -1604,6 +1604,90 @@ curl -b "SESSDATA=xxx" -d "user_sign=%E9%AB%98%E4%B8%AD%E6%8A%80%E6%9C%AF%E5%AE%
     "code":0,
     "message":"0",
     "ttl":1
+}
+```
+
+
+
+### 修改用户空间公告
+
+> http://api.bilibili.com/x/space/notice/set
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注                                        |
+| ------ | ---- | ------------------- | ------ | ------------------------------------------- |
+| notice | data | 要设置的公告内容    | 非必要 | 删除公告留空或省去即可<br />公告最多150字符 |
+| csrf   | data | cookies中的bili_jct | 必要   |                                             |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-304：未修改<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+修改个人空间公告为`鸽子`
+
+curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilibili.com/x/space/notice/set"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+### 修改个人TAG
+
+> http://api.bilibili.com/x/space/acc/tags/set
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+需要验证`DedeUserID`存在且不为0
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注                                                         |
+| ------ | ---- | ------------------- | ------ | ------------------------------------------------------------ |
+| tags   | data | 要设置的TAG内容     | 非必要 | 删除公告留空或省去即可<br />各TAG长度小于10字符<br />最多5个TAG<br />各TAG之间用","(%2C)分隔<br />重复TAG无效 |
+| csrf   | data | cookies中的bili_jct | 必要   |                                                              |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+修改个人TAG为`minecraft,技术宅,大佬,小哥哥,可爱`
+
+curl -b "SESSDATA=xxx;DedeUserID=1" -d "csrf=xxx&tags=minecraft%2C%E6%8A%80%E6%9C%AF%E5%AE%85%2C%E5%A4%A7%E4%BD%AC%2C%E5%B0%8F%E5%93%A5%E5%93%A5%2C%E5%8F%AF%E7%88%B1" "http://api.bilibili.com/x/space/acc/tags/set"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
 }
 ```
 
