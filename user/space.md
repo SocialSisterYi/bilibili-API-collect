@@ -1630,7 +1630,7 @@ curl -b "SESSDATA=xxx" -d "user_sign=%E9%AB%98%E4%B8%AD%E6%8A%80%E6%9C%AF%E5%AE%
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-304：未修改<br />-400：请求错误 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-304：未修改<br />-400：请求错误（超出长度限制） |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 
@@ -1673,7 +1673,7 @@ curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilib
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误（超出长度限制） |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        | 作用尚不明确                                                 |
 
@@ -1690,4 +1690,170 @@ curl -b "SESSDATA=xxx;DedeUserID=1" -d "csrf=xxx&tags=minecraft%2C%E6%8A%80%E6%9
     "ttl": 1
 }
 ```
+
+
+
+### 修改（添加）置顶视频
+
+> http://api.bilibili.com/x/space/top/arc/set
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注               |
+| ------ | ---- | ------------------- | ------ | ------------------ |
+| aid    | data | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
+| bvid   | data | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
+| reason | data | 置顶视频备注        | 非必要 | 置顶备注最大40字符 |
+| csrf   | data | cookies中的bili_jct | 必要   |                    |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-304：未修改<br />-400：请求错误<br />53014：稿件已失效<br />53015：备注过长<br />53017：置顶非自己的稿件 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+置顶视频`av98948772`/`BV1n741127LD`
+
+curl -b "SESSDATA=xxx" -b "aid=98948772&csrf=xxx" "http://api.bilibili.com/x/space/top/arc/set"
+
+同curl -b "SESSDATA=xxx" -b "bvid=BV1n741127LD&csrf=xxx" "http://api.bilibili.com/x/space/top/arc/set"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+### 取消置顶视频
+
+> http://api.bilibili.com/x/space/top/arc/cancel
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注 |
+| ------ | ---- | ------------------- | ------ | ---- |
+| csrf   | data | cookies中的bili_jct | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误（重复取消） |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/space/top/arc/cancel"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+### 添加代表作视频
+
+> http://api.bilibili.com/x/space/masterpiece/add
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+代表作上限为3个稿件
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注               |
+| ------ | ---- | ------------------- | ------ | ------------------ |
+| aid    | data | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
+| bvid   | data | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
+| reason | data | 代表作备注          | 非必要 | 置顶备注最大40字符 |
+| csrf   | data | cookies中的bili_jct | 必要   |                    |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />53014：稿件已失效<br />53015：备注过长<br />53017：置顶非自己的稿件<br />53019：达到上限<br />53020：已经存在该稿件 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+添加视频`av94916552`/`BV1ZE411K7ux`到代表作列表
+
+curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=94916552" "http://api.bilibili.com/x/space/masterpiece/add"
+
+同curl -b "SESSDATA=xxx" -d "csrf=xxx&bvid=BV1ZE411K7ux" "http://api.bilibili.com/x/space/masterpiece/add"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+### 删除代表作视频
+
+> http://api.bilibili.com/x/space/masterpiece/cancel
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                 | 必要性 | 备注               |
+| ------ | ---- | -------------------- | ------ | ------------------ |
+| aid    | data | 要删除的目标视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | data | 要删除的目标视频bvID | 非必要 | avID与bvID任选一个 |
+| csrf   | data | cookies中的bili_jct  | 必要   |                    |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />53021：置顶列表中没有该视频 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+删除置顶视频`av59765630`/`BV1Yt41137T6`
+
+curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=59765630" "http://api.bilibili.com/x/space/masterpiece/cancel"
+
+同curl -b "SESSDATA=xxx" -d "csrf=xxx&bvid=BV1Yt41137T6" "http://api.bilibili.com/x/space/masterpiece/cancel"
 
