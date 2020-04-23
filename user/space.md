@@ -1650,6 +1650,123 @@ curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilib
 
 
 
+### 修改空间隐私权限
+
+> http://space.bilibili.com/ajax/settings/setPrivacy
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+需要验证`DedeUserID`及`DedeUserID__ckMd5`存在且不为0
+
+需要验证`referer`为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名      | 类型 | 内容                | 必要性 | 备注                           |
+| ----------- | ---- | ------------------- | ------ | ------------------------------ |
+| fav_video   | data | 收藏视频            | 非必要 | 0：隐藏<br />1：公开<br />下同 |
+| bangumi     | data | 追番及追剧          | 非必要 |                                |
+| tags        | data | 关注的TAG           | 非必要 |                                |
+| coins_video | data | 投币的视频          | 非必要 |                                |
+| user_info   | data | 个人信息            | 非必要 |                                |
+| played_game | data | 玩过的游戏          | 非必要 |                                |
+| csrf        | data | cookies中的bili_jct | 必要   |                                |
+
+**json回复：**
+
+根对象：
+
+| 字段   | 类型 | 内容     | 备注                                |
+| ------ | ---- | -------- | ----------------------------------- |
+| ststus | bool | 操作结果 | true：操作成功<br />false：操作失败 |
+| data   | str  | 错误信息 | 正确时无此项                        |
+
+**示例：**
+
+设置`关注的TAG`为隐藏
+
+curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;" -d "csrf=xxx&tags=0" "http://space.bilibili.com/ajax/settings/setPrivacy"
+
+```json
+{
+    "status": true
+}
+```
+
+
+
+### 调整空间板块布局
+
+> http://space.bilibili.com/ajax/settings/setIndexOrder
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+需要验证`DedeUserID`及`DedeUserID__ckMd5`存在且不为0
+
+需要验证`referer`为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名      | 类型 | 内容                | 必要性 | 备注                                                         |
+| ----------- | ---- | ------------------- | ------ | ------------------------------------------------------------ |
+| index_order | data | 布局列表            | 必要   | 每个值之间用","（%2C）分隔<br />先左侧布局再右侧布局<br />值的意义见下表 |
+| csrf        | data | cookies中的bili_jct | 必要   |                                                              |
+
+布局参数`index_order`：
+
+| 值   | 含义                   |
+| ---- | ---------------------- |
+| 1    | （左侧）我的稿件       |
+| 2    | （左侧）我的收藏夹     |
+| 3    | （左侧）订阅番剧       |
+| 4    | （左侧）订阅标签       |
+| 5    | （左侧）最近投币的视频 |
+| 6    | **作用尚不明确**       |
+| 7    | （左侧）我的频道       |
+| 8    | （左侧）我的专栏       |
+| 9    | （左侧）我的相簿       |
+| 21   | （右侧）公告           |
+| 22   | （右侧）直播间         |
+| 23   | （右侧）个人资料       |
+| 24   | （右侧）官方活动       |
+| 25   | （右侧）最近玩的游戏   |
+
+**json回复：**
+
+根对象：
+
+| 字段   | 类型 | 内容     | 备注                                |
+| ------ | ---- | -------- | ----------------------------------- |
+| ststus | bool | 操作结果 | true：操作成功<br />false：操作失败 |
+| data   | str  | 错误信息 | 正确时无此项                        |
+
+**示例：**
+
+调整空间布局为：
+
+>我的稿件            直播间
+>我的专栏            个人资料
+>订阅番剧            公告
+>我的收藏夹        官方活动
+>我的相簿            最近玩的游戏
+>最近投币的视频
+>订阅标签
+>我的频道
+
+curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;" -d "csrf=xxx&index_order=1%2C8%2C3%2C2%2C9%2C5%2C4%2C7%2C22%2C23%2C21%2C24%2C25%2C6" "http://space.bilibili.com/ajax/settings/setIndexOrder"
+
+```json
+{
+    "status": true
+}
+```
+
+
+
 ### 修改个人TAG
 
 > http://api.bilibili.com/x/space/acc/tags/set

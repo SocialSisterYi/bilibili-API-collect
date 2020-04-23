@@ -28,7 +28,7 @@
 
 成功为交易编号为`BPRG5CEC3VUPOOANA540`的充电操作，添加了内容为`支持一下大佬`的留言
 
-curl -b SESSDATA=xxx -d "csrf=xxx&order_id=BPRG
+curl -b "SESSDATA=xxx" -d "csrf=xxx&order_id=BPRG
 5CEC3VUPOOANA540&message=%e6%94%af%e6%8c%81%e4%b8%80%e4%b8%8b%e5%a4%a7%e4%bd%ac" "http://api.bilibili.com/x/ugcpay/trade/elec/message"
 
 ```json

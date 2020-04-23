@@ -51,7 +51,7 @@
 
 ~~（自己冲自己QAQ）~~
 
-curl -b SESSDATA=xxx -d "elec_num=20&u
+curl -b "SESSDATA=xxx" -d "elec_num=20&u
 p_mid=293793435&otype=up&oid=293793435&csrf=xxx" "http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick"
 
 ```json

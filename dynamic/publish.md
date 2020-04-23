@@ -41,7 +41,7 @@
 
 上传了一张图片`test.png`类型为`日常`
 
-curl -b SESSDATA=xxx -F "file_up=@test.png" -F "category=daily" "http://api.vc.bilibili.com/api/v1/drawImage/upload"
+curl -b "SESSDATA=xxx" -F "file_up=@test.png" -F "category=daily" "http://api.vc.bilibili.com/api/v1/drawImage/upload"
 
 ```json
 {

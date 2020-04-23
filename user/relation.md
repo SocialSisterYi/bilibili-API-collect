@@ -367,7 +367,7 @@ http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 
 关注`UID=14082`的用户
 
-curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" http://api.bilibili.com/x/relation/modify
+curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" "http://api.bilibili.com/x/relation/modify"
 
 ```json
 {
@@ -830,7 +830,7 @@ http://api.bilibili.com/x/relation/tag/user?fid=319214221
 
 创建了名为`vUP`的分组，得到ID为`216677`
 
-curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" http://api.bilibili.com/x/relation/tag/create
+curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" "http://api.bilibili.com/x/relation/tag/create"
 
 ```json
 {
@@ -875,7 +875,7 @@ curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" http://api.bilibili.com/x/relation/ta
 
 把ID为`194112`的分组更名为`膜法师`
 
-curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx" http://api.bilibili.com/x/relation/tag/update
+curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx" "http://api.bilibili.com/x/relation/tag/update"
 
 ```json
 {
@@ -918,7 +918,7 @@ curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx"
 
 删除分组ID为`216699`的分组
 
-curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" http://api.bilibili.com/x/relation/tag/del
+curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" "http://api.bilibili.com/x/relation/tag/del"
 
 ```json
 {
@@ -962,7 +962,7 @@ curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" http://api.bilibili.com/x/relati
 
 把关注用户`UID=205631797`同时添加分组关系到ID为`-10`和`207542`的分组中
 
-curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" http://api.bilibili.com/x/relation/tags/addUsers
+curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" "http://api.bilibili.com/x/relation/tags/addUsers"
 
 ```json
 {
@@ -1004,7 +1004,7 @@ curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" http://api
 
 把关注用户`UID=4856007`和`UID=326499679`同时复制到ID为`231305`的分组中
 
-curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" http://api.bilibili.com/x/relation/tags/copyUsers
+curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" "http://api.bilibili.com/x/relation/tags/copyUsers"
 
 ```json
 {
@@ -1049,7 +1049,7 @@ curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" http:/
 69`和`UID=327086920`同时从ID为`207542`的分组移动到ID为`231305`的分组中
 
 curl -b SESSDATA=xxx -d "beforeTagids=207542&afterTagids=231305&fids=3211734
-69%2C327086920&csrf=xxx" http://api.bilibili.com/x/relation/tags/moveUsers
+69%2C327086920&csrf=xxx" "http://api.bilibili.com/x/relation/tags/moveUsers"
 
 ```json
 {

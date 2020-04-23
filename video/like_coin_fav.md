@@ -113,7 +113,7 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http
 
 *方式：POST*
 
-需要验证referer为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
+需要验证`referer`为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
 
 **参数（ application/x-www-form-urlencoded ）：**
 
