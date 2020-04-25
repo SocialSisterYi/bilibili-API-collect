@@ -31,6 +31,81 @@
 
 基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
 
+| 字段        | 类型 | 内容                           | 备注                    |
+| ----------- | ---- | ------------------------------ | ----------------------- |
+| aid         | num  | 视频avID                       |                         |
+| videos      | num  | 视频分P总数                    | 默认为1                 |
+| tid         | num  | 分区ID                         |                         |
+| tname       | str  | 子分区名称                     |                         |
+| copyright   | num  | 版权标志                       | 1：自制<br />2：转载    |
+| pic         | str  | 视频封面图片url                |                         |
+| title       | str  | 视频标题                       |                         |
+| pubdate     | num  | 视频上传时间                   | 时间戳                  |
+| ctime       | num  | 视频审核通过时间               | 时间戳                  |
+| desc        | str  | 视频简介                       |                         |
+| state       | num  | 0                              | 作用尚不明确            |
+| attribute   | num  |                                | 作用尚不明确            |
+| duration    | num  | 视频总计持续时长（所有分P）    | 单位为秒                |
+| rights      | obj  | 视频属性标志                   |                         |
+| owner       | obj  | 视频UP主信息                   |                         |
+| stat        | obj  | 视频状态数                     |                         |
+| dynamic     | str  | 视频同步发布的的动态的文字内容 | 无为空                  |
+| cid         | num  | 视频1P CID                     |                         |
+| dimension   | obj  | 视频1P分辨率                   |                         |
+| bvid        | str  | 视频bvID                       |                         |
+| reason      | str  | 置顶视频备注                   |                         |
+| inter_video | bool | 是否为合作视频                 | false：否<br />ture：是 |
+
+`data`中的`rights`对象：
+
+| 字段            | 类型 | 内容             | 备注                                     |
+| --------------- | ---- | ---------------- | ---------------------------------------- |
+| bp              | num  | 0                | 作用尚不明确                             |
+| elec            | num  | 0                | 作用尚不明确                             |
+| download        | num  | 允许下载标志     | 0：不允许<br />1：允许                   |
+| movie           | num  | 视频时电影标志   | 0：否<br />1：是                         |
+| pay             | num  | 仅会员可观看标志 | 0：无<br />1：有                         |
+| hd5             | num  | 有高码率标志     | 0：无<br />1：有                         |
+| no_reprint      | num  | 禁止转载标志     | 0：无<br />1：禁止                       |
+| autoplay        | num  | 可自动播放标志   | 0：无<br />1：有  区别影视番剧与普通视频 |
+| ugc_pay         | num  | 0                | 作用尚不明确                             |
+| is_cooperation  | num  | 视频合作标志     | 0：无<br />1：是                         |
+| ugc_pay_preview | num  | 0                | 作用尚不明确                             |
+| no_background   | num  | 0                | 作用尚不明确                             |
+
+`data`中的`owner`对象：
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| mid  | num  | UP主UID  |      |
+| name | str  | UP主昵称 |      |
+| face | str  | UP主头像 |      |
+
+`data`中的`stat`对象：
+
+| 字段       | 类型 | 内容                           | 备注         |
+| ---------- | ---- | ------------------------------ | ------------ |
+| aid        | num  | 视频avID                       |              |
+| view       | num  | 普通：观看次数<br />屏蔽时：-1 |              |
+| danmaku    | num  | 弹幕条数                       |              |
+| reply      | num  | 评论条数                       |              |
+| favorite   | num  | 收藏人数                       |              |
+| coin       | num  | 投币枚数                       |              |
+| share      | num  | 分享次数                       |              |
+| now_rank   | num  | 0                              | 作用尚不明确 |
+| his_rank   | num  | 历史最高排行                   |              |
+| like       | num  | 获赞次数                       |              |
+| dislike    | num  | 0                              | 作用尚不明确 |
+| evaluation | str  | 视频评分                       | 默认为空     |
+
+同`data`中的`dimension`对象
+
+| 字段   | 类型 | 内容         | 备注         |
+| ------ | ---- | ------------ | ------------ |
+| width  | num  | 当前分P 宽度 | 可能为0      |
+| height | num  | 当前分P 高度 | 可能为0      |
+| rotate | num  | 0            | 作用尚不明确 |
+
 **示例：**
 
 查询用户`UID=23215368`的置顶视频
@@ -141,7 +216,7 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
+同查询用户置顶视频中的`data`对象
 
 **示例：**
 
