@@ -600,6 +600,8 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 
 带有转义，且只能获取最多15条
 
+如设置隐私查看自己的需要登录(SESSDATA)
+
 **参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
@@ -663,7 +665,7 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 		"result": [{
 			"season_id": "29310",
 			"share_url": "http:\/\/bangumi.bilibili.com\/anime\/29310\/",
-			"title": "\u5f02\u5ea6\u4fb5\u5165 ID:INVADED",
+			"title": "异度侵入 ID:INVADED",
 			"is_finish": 1,
 			"favorites": 3479220,
 			"newest_ep_index": 13,
@@ -671,11 +673,11 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 			"total_count": 13,
 			"cover": "http:\/\/i0.hdslb.com\/bfs\/bangumi\/image\/9bf9e66968f85b33ec3769a16c86b36dc984abbc.png",
 			"evaluate": "",
-			"brief": "\u672c\u7247\u8bb2\u8ff0\u5229\u7528\u80fd\u68c0\u6d4b\u51fa\u4eba\u4eec\u6740\u610f\u7684\u88c5\u7f6e\u4ee5\u53ca\u5229\u7528\u601d\u60f3\u7c92\u5b50\u505a\u51fa\u7684\u201c\u4e95\u201d\uff0c\u6765\u63a2\u77e5\u4e8b\u4ef6\u771f\u76f8\u7684\u79d1\u5e7b\u6545\u4e8b\u3002"
+			"brief": "本片讲述利用能检测出人们杀意的装置以及利用思想粒子做出的“井”，来探知事件真相的科幻故事。"
 		}, {
 			"season_id": "25739",
 			"share_url": "http:\/\/bangumi.bilibili.com\/anime\/25739\/",
-			"title": "\u5173\u4e8e\u6211\u8f6c\u751f\u53d8\u6210\u53f2\u83b1\u59c6\u8fd9\u6863\u4e8b",
+			"title": "关于我转生变成史莱姆这档事",
 			"is_finish": 1,
 			"favorites": 5518829,
 			"newest_ep_index": 0,
@@ -683,7 +685,7 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 			"total_count": 27,
 			"cover": "http:\/\/i0.hdslb.com\/bfs\/bangumi\/a4c0e0ccc44fe3949a734f546cf5bb07da925bad.png",
 			"evaluate": "",
-			"brief": "\u53f2\u83b1\u59c6\u751f\u6d3b\uff0c\u5f00\u59cb\u4e86\u3002\n\u4e0a\u73ed\u65cf\u7684\u4e09\u4e0a\u609f\u5728\u9053\u8def\u4e0a\u88ab\u6b79\u5f92\u7ed9\u523a\u6740\u8eab\u4ea1\u540e\uff0c\u56de\u8fc7\u795e\u6765\u53d1\u73b0\u81ea\u5df1\u8f6c\u751f\u5230\u4e86\u5f02\u4e16\u754c\u3002\n\u4e0d..."
+			"brief": "史莱姆生活，开始了。\n上班族的三上悟在道路上被歹徒给刺杀身亡后，回过神来发现自己转生到了异世界。\n不..."
 		}, 
 		…………
 		]
@@ -700,6 +702,8 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 > http://api.bilibili.com/x/space/bangumi/follow/list
 
 *方式:GET*
+
+如设置隐私查看自己的需要登录(SESSDATA)
 
 **参数：**
 
@@ -938,6 +942,96 @@ http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
 	}
 }
 ```
+
+
+
+### 查询用户关注的TAG（话题）
+
+> http://space.bilibili.com/ajax/tags/getSubList
+
+*方式:GET*
+
+带有转义
+
+只显示前100个
+
+如设置隐私查看自己的需要登录(SESSDATA)
+
+**参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | url  | 目标用户UID | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段   | 类型                         | 内容                                   | 备注                        |
+| ------ | ---------------------------- | -------------------------------------- | --------------------------- |
+| ststus | bool                         | 返回值                                 | false：错误<br />true：正确 |
+| data   | 错误时：str<br />正确时：obj | 错误时：错误信息<br />正确时：数据本体 | 正确时不返回错误信息        |
+
+`data`对象：
+
+| 字段  | 类型   | 内容        | 备注 |
+| ----- | ------ | ----------- | ---- |
+| tags  | arrary | 关注TAG列表 |      |
+| count | num    | 关注TAG的数 |      |
+
+`data`中的`tags`数组：
+
+| 项   | 类型 | 内容           | 备注     |
+| ---- | ---- | -------------- | -------- |
+| 0    | obj  | 关注TAG1       |          |
+| n    | obj  | 关注TAG（n+1） |          |
+| ……   | obj  | ……             | ……       |
+| 99   | obj  | 关注TAG100     | 最后一项 |
+
+`data`中的`tags`数组中的对象：
+
+| 字段          | 类型 | 内容                | 备注         |
+| ------------- | ---- | ------------------- | ------------ |
+| archive_count | num  | 0                   | 作用尚不明确 |
+| cover         | str  | TAG图片url          | 无则为空     |
+| name          | str  | TAG名               |              |
+| notify        | num  | 1                   | 作用尚不明确 |
+| tag_id        | num  | TAGID               |              |
+| updated_ts    | str  | 1970-01-01 08:00:00 | 作用尚不明确 |
+
+**示例：**
+
+查询用户`UID=2`的关注TAG
+
+http://space.bilibili.com/ajax/tags/getSubList?mid=2
+
+```json
+{
+	"status": true,
+	"data": {
+		"tags": [{
+			"name": "豪宅",
+			"cover": "",
+			"tag_id": 47637,
+			"notify": 1,
+			"archive_count": 0,
+			"updated_ts": "1970-01-01 08:00:00"
+		}, {
+			"name": "死亡搁浅",
+			"cover": "",
+			"tag_id": 1737239,
+			"notify": 1,
+			"archive_count": 0,
+			"updated_ts": "1970-01-01 08:00:00"
+		},
+		…………
+		],
+		"count": 58
+	}
+}
+```
+
+
 
 
 
