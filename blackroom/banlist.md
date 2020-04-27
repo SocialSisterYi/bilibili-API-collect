@@ -112,7 +112,7 @@ http://api.bilibili.com/x/credit/blocked/list?btype=&otype=0&pn=1
 		"originTitle": "【罗翔】聊聊网络喷子与键盘侠",
 		"blockedRemark": "内容涉及人身攻击",
 		"originUrl": "https://www.bilibili.com/video/av752825895",
-		"originContentModify": "<p>案情：</p><p>1、大量刷屏/引战</p><p>我看新闻了，竹鼠全部被ZF无害化处理了，看的爽死我了，亏死你们，啊哈哈哈（x10）</p><p>【BV16g4y187he，2020-4-21 10：46：23～10：46：47】</p><p>2、大量人身攻击</p><p>N * * L</p><p>Deine Mu**er ist tot. （x10）</p><p>【BV1rk4y1R7id，2020-4-21 20：31：08～20：32：23】</p><p>3、引战</p><p>每次看他厨房乱七八糟的，可能有数不清的小强，你们还看美食看的有味也是奇PA</p><p>【BV1Kg4y1z7mA，2020-4-22&nbsp; 00：52：37】<br/></p><p>批注：</p><p>满地狼藉招摇过，人皆愤懑怒拳握。</p><p>余恶不堪漏夜扫，正气于心涤龌龊。</p><p><br/></p><p>（发现违规引战、人身攻击、刷屏评论，请按照相应分类进行举报。若发现反复进行上述行为，可联系工作人员反馈相关违规账号信息，我们会予以排查。）</p><p>（案例感想请发布在小黑屋评论区讨论，请勿骚扰被封禁的用户）</p><p>【本次判罚为管理员判定，请注意案件右上无蓝色标记（风纪委员众裁）】</p><p><br/></p>",
+		"originContentModify": "\u003cp\u003e案情：\u003c/p\u003e\u003cp\u003e1、大量刷屏/引战\u003c/p\u003e\u003cp\u003e我看新闻了，竹鼠全部被ZF无害化处理了，看的爽死我了，亏死你们，啊哈哈哈（x10）\u003c/p\u003e\u003cp\u003e【BV16g4y187he，2020-4-21 10：46：23～10：46：47】\u003c/p\u003e\u003cp\u003e2、大量人身攻击\u003c/p\u003e\u003cp\u003eN * * L\u003c/p\u003e\u003cp\u003eDeine Mu**er ist tot. （x10）\u003c/p\u003e\u003cp\u003e【BV1rk4y1R7id，2020-4-21 20：31：08～20：32：23】\u003c/p\u003e\u003cp\u003e3、引战\u003c/p\u003e\u003cp\u003e每次看他厨房乱七八糟的，可能有数不清的小强，你们还看美食看的有味也是奇PA\u003c/p\u003e\u003cp\u003e【BV1Kg4y1z7mA，2020-4-22\u0026nbsp; 00：52：37】\u003cbr/\u003e\u003c/p\u003e\u003cp\u003e批注：\u003c/p\u003e\u003cp\u003e满地狼藉招摇过，人皆愤懑怒拳握。\u003c/p\u003e\u003cp\u003e余恶不堪漏夜扫，正气于心涤龌龊。\u003c/p\u003e\u003cp\u003e\u003cbr/\u003e\u003c/p\u003e\u003cp\u003e（发现违规引战、人身攻击、刷屏评论，请按照相应分类进行举报。若发现反复进行上述行为，可联系工作人员反馈相关违规账号信息，我们会予以排查。）\u003c/p\u003e\u003cp\u003e（案例感想请发布在小黑屋评论区讨论，请勿骚扰被封禁的用户）\u003c/p\u003e\u003cp\u003e【本次判罚为管理员判定，请注意案件右上无蓝色标记（风纪委员众裁）】\u003c/p\u003e\u003cp\u003e\u003cbr/\u003e\u003c/p\u003e",
 		"originType": 1,
 		"originTypeName": "评论",
 		"punishTitle": "在评论中发布人身攻击言论",
@@ -129,10 +129,36 @@ http://api.bilibili.com/x/credit/blocked/list?btype=&otype=0&pn=1
 		"operatorName": "",
 		"caseId": 0,
 		"ctime": 1587494264,
-		"commentSum": 566
+		"commentSum": 606
+	}, {
+		"id": 1091621,
+		"uname": "风纪委员会会长零八",
+		"face": "http://i1.hdslb.com/bfs/face/6ea4296f7591b9a724f540a41d48df728a0881b0.jpg",
+		"uid": 305542374,
+		"originTitle": "巅峰赛大乔游走辅助，队友说自家法师湖南卫视都不敢像法师这么演哈哈！",
+		"blockedRemark": "内容涉及传播不实信息",
+		"originUrl": "https://www.bilibili.com/video/av882552073",
+		"originContentModify": "\u003cp\u003e具体违规情况说明：\u003c/p\u003e\u003col class=\" list-paddingleft-2\" style=\"list-style-type: decimal;\"\u003e\u003cli\u003e\u003cp\u003e经查实确认，该账号\u003cspan style=\"text-decoration: underline;\"\u003e从未申请\u003c/span\u003e亦\u003cspan style=\"text-decoration: underline;\"\u003e从未担任\u003c/span\u003e过风纪委员职务。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e发布多条 “您的稿件/评论涉及违规，即将下架/删除”的恐吓性言论。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e谎称曾经封禁了某个up主，事实上风纪委员\u003cspan style=\"text-decoration: underline;\"\u003e无法封禁up主投稿\u003c/span\u003e，且该up也从未被封禁。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e威胁他人“要不要到小黑屋坐坐”，事实上风纪委员无法直接封禁用户。通过管理员封禁或风纪委员投票封禁的账号亦有据实申诉的机会。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e故意挑衅他人“那你可以试着骂我，我们试试（举报）有没有用”。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e误导他人“此评论区和弹幕无需保持礼仪”。\u003c/p\u003e\u003c/li\u003e\u003c/ol\u003e\u003cp\u003e批注：\u003c/p\u003e\u003cp\u003e如您发现：假冒风纪委员身份招摇撞骗、炫耀风纪委员身份、借风纪委员职务之便威胁恐吓他人、在风纪观点中发布违规内容等违规行为，请及时联系我们进行举报。您可直接将举报材料发送至judgement@bilibili.com。\u003c/p\u003e\u003cp\u003e（案例感想请发布在小黑屋评论区讨论，请勿骚扰被封禁的用户）\u003c/p\u003e\u003cp\u003e【本次判罚为管理员判定，请注意案件右上无蓝色标记（风纪委员众裁）】\u003c/p\u003e",
+		"originType": 1,
+		"originTypeName": "评论",
+		"punishTitle": "在评论中发布传播不实信息",
+		"punishTime": 1585560309,
+		"punishType": 2,
+		"punishTypeName": "封禁",
+		"moralNum": 0,
+		"blockedDays": 15,
+		"publishStatus": 1,
+		"blockedType": 0,
+		"blockedForever": 0,
+		"reasonType": 18,
+		"reasonTypeName": "发布传播不实信息",
+		"operatorName": "",
+		"caseId": 0,
+		"ctime": 1585560309,
+		"commentSum": 2379
 	}, 
-	……
-	]
+    …………
+    ]
 }
 ```
 
@@ -210,7 +236,7 @@ http://api.bilibili.com/x/credit/blocked/info?id=1091621
 		"originTitle": "巅峰赛大乔游走辅助，队友说自家法师湖南卫视都不敢像法师这么演哈哈！",
 		"blockedRemark": "内容涉及传播不实信息",
 		"originUrl": "https://www.bilibili.com/video/BV1qK4y1C7dd",
-		"originContentModify": "<p>具体违规情况说明：</p><ol class=\" list-paddingleft-2\" style=\"list-style-type: decimal;\"><li><p>经查实确认，该账号<span style=\"text-decoration: underline;\">从未申请</span>亦<span style=\"text-decoration: underline;\">从未担任</span>过风纪委员职务。</p></li><li><p>发布多条 “您的稿件/评论涉及违规，即将下架/删除”的恐吓性言论。</p></li><li><p>谎称曾经封禁了某个up主，事实上风纪委员<span style=\"text-decoration: underline;\">无法封禁up主投稿</span>，且该up也从未被封禁。</p></li><li><p>威胁他人“要不要到小黑屋坐坐”，事实上风纪委员无法直接封禁用户。通过管理员封禁或风纪委员投票封禁的账号亦有据实申诉的机会。</p></li><li><p>故意挑衅他人“那你可以试着骂我，我们试试（举报）有没有用”。</p></li><li><p>误导他人“此评论区和弹幕无需保持礼仪”。</p></li></ol><p>批注：</p><p>如您发现：假冒风纪委员身份招摇撞骗、炫耀风纪委员身份、借风纪委员职务之便威胁恐吓他人、在风纪观点中发布违规内容等违规行为，请及时联系我们进行举报。您可直接将举报材料发送至judgement@bilibili.com。</p><p>（案例感想请发布在小黑屋评论区讨论，请勿骚扰被封禁的用户）</p><p>【本次判罚为管理员判定，请注意案件右上无蓝色标记（风纪委员众裁）】</p>",
+		"originContentModify": "\u003cp\u003e具体违规情况说明：\u003c/p\u003e\u003col class=\" list-paddingleft-2\" style=\"list-style-type: decimal;\"\u003e\u003cli\u003e\u003cp\u003e经查实确认，该账号\u003cspan style=\"text-decoration: underline;\"\u003e从未申请\u003c/span\u003e亦\u003cspan style=\"text-decoration: underline;\"\u003e从未担任\u003c/span\u003e过风纪委员职务。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e发布多条 “您的稿件/评论涉及违规，即将下架/删除”的恐吓性言论。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e谎称曾经封禁了某个up主，事实上风纪委员\u003cspan style=\"text-decoration: underline;\"\u003e无法封禁up主投稿\u003c/span\u003e，且该up也从未被封禁。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e威胁他人“要不要到小黑屋坐坐”，事实上风纪委员无法直接封禁用户。通过管理员封禁或风纪委员投票封禁的账号亦有据实申诉的机会。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e故意挑衅他人“那你可以试着骂我，我们试试（举报）有没有用”。\u003c/p\u003e\u003c/li\u003e\u003cli\u003e\u003cp\u003e误导他人“此评论区和弹幕无需保持礼仪”。\u003c/p\u003e\u003c/li\u003e\u003c/ol\u003e\u003cp\u003e批注：\u003c/p\u003e\u003cp\u003e如您发现：假冒风纪委员身份招摇撞骗、炫耀风纪委员身份、借风纪委员职务之便威胁恐吓他人、在风纪观点中发布违规内容等违规行为，请及时联系我们进行举报。您可直接将举报材料发送至judgement@bilibili.com。\u003c/p\u003e\u003cp\u003e（案例感想请发布在小黑屋评论区讨论，请勿骚扰被封禁的用户）\u003c/p\u003e\u003cp\u003e【本次判罚为管理员判定，请注意案件右上无蓝色标记（风纪委员众裁）】\u003c/p\u003e",
 		"originType": 1,
 		"originTypeName": "评论",
 		"punishTitle": "在评论中发布传播不实信息",
@@ -227,7 +253,7 @@ http://api.bilibili.com/x/credit/blocked/info?id=1091621
 		"operatorName": "",
 		"caseId": 0,
 		"ctime": 1585560309,
-		"commentSum": 2358
+		"commentSum": 2379
 	}
 }
 ```
