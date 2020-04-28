@@ -21,7 +21,6 @@
   - 密码&短信登录
   - qq&微博登录
   - [登录基本信息](login/login_info.md)√
-  - 在线用户
   - [消息](login/msg.md)x
   - [私信](login/private_msg.md)x
 - [用户](user)
@@ -40,7 +39,6 @@
   - [视频推荐](video/recommend.md)√
   - 播放&下载地址
   - 互动视频
-  - 实时观看人数
   - [高能进度条](video/pbp.md)√
 - 番剧（影视）
   - 基本信息
@@ -51,8 +49,8 @@
   - [历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
   - 弹幕操作
-- 专栏
-  - 基本信息
+- [专栏](article)
+  - [基本信息](article/info.md)
   - 点赞&投币&收藏
   - 文集基本信息
 - 音频
@@ -77,6 +75,10 @@
   - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关
   - 电磁力相关
+- 实时广播
+  - 总则
+  - 视频内广播
+  - 分区实时在线
 - [充电](electric)
   - [B币方式](electric/Bcoin.md)√
   - [微信&支付宝方式](electric/WeChat&Alipay.md)√
