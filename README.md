@@ -75,9 +75,9 @@
   - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关
   - 电磁力相关
-- 实时广播
-  - 总则
-  - 视频内广播
+- [实时广播](broadcast)
+  - [总则](broadcast/general.md)
+  - [视频内广播](broadcast/video_room.md)
   - 分区实时在线
 - [充电](electric)
   - [B币方式](electric/Bcoin.md)√
