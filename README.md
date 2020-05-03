@@ -48,9 +48,9 @@
   - [实时弹幕&弹幕格式](danmaku/danmaku.md)√
   - [历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
-  - 弹幕操作
+  - [弹幕操作](danmaku/action.md)×
 - [专栏](article)
-  - [基本信息](article/info.md)
+  - [基本信息](article/info.md)×
   - 点赞&投币&收藏
   - 文集基本信息
 - 音频
@@ -76,8 +76,8 @@
   - 列表查询相关
   - 电磁力相关
 - [实时广播](broadcast)
-  - [总则](broadcast/general.md)
-  - [视频内广播](broadcast/video_room.md)
+  - [总则](broadcast/general.md)√
+  - [视频内广播](broadcast/video_room.md)√
   - 分区实时在线
 - [充电](electric)
   - [B币方式](electric/Bcoin.md)√
@@ -119,7 +119,7 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 （重要的话说三遍，本人不承担任何责任）
 
-<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg" width="100" height="100"/>
+<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg@100w_100h" />
 
 **--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 

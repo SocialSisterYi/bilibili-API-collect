@@ -92,15 +92,16 @@
 
 <img src="/imgs/zone/technology.svg" width="100" height="100"/>
 
-| 名称           | 代号          | tID  | 简介                                             | url路由                     |
-| -------------- | ------------- | ---- | ------------------------------------------------ | --------------------------- |
-| 科技（主分区） | technology    | 36   |                                                  | /v/technology               |
-| 趣味科普人文   | fun           | 124  | 含有科普或人文性质的视频                         | /v/technology/fun           |
-| 野生技术协会   | wild          | 122  | 展示一定改装/创作能力的视频                      | /v/technology/wild          |
-| 演讲·公开课    | speech_course | 39   | 演讲、教育课程相关的视频                         | /v/technology/speech_course |
-| 星海           | military      | 96   | 军事相关视频                                     | /v/technology/military      |
-| 机械           | mechanical    | 98   | 机械设备展示或制作视频                           | /v/technology/mechanical    |
-| 汽车           | automobile    | 176  | 汽车、摩托车、公交车以及竞赛用车等轮式交通工具相 | /v/technology/automobile    |
+| 名称                         | 代号          | tID  | 简介                                                         | url路由                     |
+| ---------------------------- | ------------- | ---- | ------------------------------------------------------------ | --------------------------- |
+| 科技（主分区）               | technology    | 36   |                                                              | /v/technology               |
+| 科学科普                     | science       | 201  | 回答你的十万个为什么                                         | /v/technology/science       |
+| 社科人文~~（趣味科普人文）~~ | fun           | 124  | 聊聊财经/社会/法律，看看历史趣闻，品品人文艺术~~（含有科普或人文性质的视频）~~ | /v/technology/fun           |
+| 野生技术协会                 | wild          | 122  | 是时候展现真正的技术了~~（展示一定改装/创作能力的视频）~~    | /v/technology/wild          |
+| 演讲·公开课                  | speech_course | 39   | 涨知识的好地方，给爱学习的你~~（演讲、教育课程相关的视频）~~ | /v/technology/speech_course |
+| 星海                         | military      | 96   | 军事类内容的圣地~~（军事相关视频）~~                         | /v/technology/military      |
+| 机械                         | mechanical    | 98   | 机械设备展示或制作视频                                       | /v/technology/mechanical    |
+| 汽车                         | automobile    | 176  | 让我们共同感受驰骋的快感~~（汽车、摩托车、公交车以及竞赛用车等轮式交通工具相）~~ | /v/technology/automobile    |
 
 ## 数码
 
