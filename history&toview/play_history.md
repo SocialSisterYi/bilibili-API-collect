@@ -10,10 +10,10 @@
 
 **参数：**
 
-| 参数名 | 类型 | 内容     | 必要性 | 备注      |
-| ------ | ---- | -------- | ------ | --------- |
-| pn     | url  | 页码     | 非必要 | 默认为1   |
-| ps     | url  | 每页项数 | 非必要 | 默认为100 |
+| 参数名 | 类型 | 内容     | 必要性 | 备注    |
+| ------ | ---- | -------- | ------ | ------- |
+| pn     | url  | 页码     | 非必要 | 默认为1 |
+| ps     | url  | 每页项数 | 非必要 |         |
 
 **json回复：**
 
@@ -63,7 +63,7 @@
 | type          | num  | 视频属性                       | 3：普通视频<br />4：番剧/影视<br />10：课程                  |
 | sub_type      | num  | 附视频属性                     | 0：普通视频<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
 | device        | num  | 观看设备                       | 1 3 5 7：手机端<br />2：PC端<br />4 6：PAD端<br />33：TV端<br />0：其他 |
-| page          | obj  | 分P信息                        |                                                              |
+| page          | obj  | 最后观看的分P信息              |                                                              |
 | count         | num  | 分P数                          | 非投稿视频无此项                                             |
 | progress      | num  | 观看进度                       | 单位为秒                                                     |
 | view_at       | num  | 观看时间                       | 时间戳                                                       |
@@ -114,15 +114,7 @@
 | dislike    | num  | 0                              | 作用尚不明确 |
 | evaluation | str  | 视频评分                       | 默认为空     |
 
-`data`数组中的对象中的`pages`数组：
-
-| 项   | 类型 | 内容       | 备注          |
-| ---- | ---- | ---------- | ------------- |
-| 0    | obj  | 1P内容     | 无分P仅有此项 |
-| n    | obj  | (n+1)P内容 |               |
-| ……   | obj  | ……         | ……            |
-
-`pages`数组中的对象：
+`pages`对象：
 
 | 字段      | 类型 | 内容            | 备注                                 |
 | --------- | ---- | --------------- | ------------------------------------ |
@@ -135,7 +127,7 @@
 | weblink   | str  | 空              | 作用尚不明确                         |
 | dimension | obj  | 当前分P分辨率   |                                      |
 
-`pages`数组中的对象中的`dimension`对象(同`data`数组中的对象中的`dimension`对象)：
+`pages`中的`dimension`对象(同`data`数组中的对象中的`dimension`对象)：
 
 | 字段   | 类型 | 内容         | 备注         |
 | ------ | ---- | ------------ | ------------ |
@@ -371,3 +363,147 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 }
 ```
 
+
+
+## 删除视频观看历史记录
+
+> http://api.bilibili.com/x/v2/history/delete
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注                     |
+| ------ | ---- | ------------------- | ------ | ------------------------ |
+| kid    | data | 删除的目标记录      | 必要   | 格式：archive_{视频avID} |
+| csrf   | data | cookies中的bili_jct | 必要   |                          |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+删除视频`av540580868`的观看历史记录
+
+curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.com/x/v2/history/delete"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+## 清空历史记录
+
+> http://api.bilibili.com/x/v2/history/clear
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注 |
+| ------ | ---- | ------------------- | ------ | ---- |
+| csrf   | data | cookies中的bili_jct | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                  |
+| ------- | ---- | -------- | ----------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败 |
+| message | str  | 错误信息 | 默认为0                                               |
+| ttl     | num  | 1        | 作用尚不明确                                          |
+
+**示例：**
+
+清空历史记录
+
+curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+## 停用历史记录
+
+> http://api.bilibili.com/x/v2/history/shadow/set
+
+*方式：POST*
+
+需要登录(SESSDATA)
+
+该功能不会影响历史记录的保存于删除
+
+**参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注                                         |
+| ------ | ---- | ------------------- | ------ | -------------------------------------------- |
+| switch | data | 停用开关            | 非必要 | true：停用<br />false：正常<br />默认为false |
+| csrf   | data | cookies中的bili_jct | 必要   |                                              |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                  |
+| ------- | ---- | -------- | ----------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败 |
+| message | str  | 错误信息 | 默认为0                                               |
+| ttl     | num  | 1        | 作用尚不明确                                          |
+
+**示例：**
+
+停用历史记录功能
+
+curl -b "SESSDATA=xxx" -d "switch=true&csrf=xxx" "http://api.bilibili.com/x/v2/history/shadow/set"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+## 查询历史记录停用状态
+
+> http://api.bilibili.com/x/v2/history/shadow
+
+*方式：GET*
+
+需要登录(SESSDATA)
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        | 作用尚不明确                  |
+| data    | bool | 停用状态 | true：停用<br />false：正常   |

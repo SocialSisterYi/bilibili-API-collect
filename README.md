@@ -90,7 +90,7 @@
   - 小视频
   - 操作
 - [历史记录&稍后再看](history&toview)
-  - [历史记录](history&toview/play_history.md)×
+  - [历史记录](history&toview/play_history.md)√
   - 稍后再看
 - 收藏夹
 - 课程
