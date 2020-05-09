@@ -507,3 +507,19 @@ curl -b "SESSDATA=xxx" -d "switch=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 | message | str  | 错误信息 | 默认为0                       |
 | ttl     | num  | 1        | 作用尚不明确                  |
 | data    | bool | 停用状态 | true：停用<br />false：正常   |
+
+**示例：**
+
+当前状态为未停用视频历史记录
+
+http://api.bilibili.com/x/v2/history/shadow
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": false
+}
+```
+
