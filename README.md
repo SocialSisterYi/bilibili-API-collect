@@ -23,7 +23,7 @@
   - [登录基本信息](login/login_info.md)√
   - [消息](login/msg.md)x
   - [私信](login/private_msg.md)x
-  - 个人中心
+  - [个人中心](login/member_center.md)×
 - [用户](user)
   - [基本信息](user/info.md)√
   - [状态数](user/status_number.md)√
@@ -92,7 +92,7 @@
   - 操作
 - [历史记录&稍后再看](history&toview)
   - [历史记录](history&toview/play_history.md)√
-  - 稍后再看
+  - [稍后再看](history&toview/toview.md)√
 - 收藏夹
 - 课程
 - [直播](live)

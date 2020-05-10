@@ -1,6 +1,6 @@
 # 播放历史
 
-## 查询视频播放历史
+## 获取视频播放历史
 
 > http://api.bilibili.com/x/v2/history
 

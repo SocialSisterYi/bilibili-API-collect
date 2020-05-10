@@ -2078,7 +2078,7 @@ curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilib
 
 需要验证`DedeUserID`及`DedeUserID__ckMd5`存在且不为0
 
-需要验证`referer`为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
+需要验证`referer`为 `http://.bilibili.com`或`https://.bilibili.com`域名下
 
 **参数（ application/x-www-form-urlencoded ）：**
 
@@ -2105,7 +2105,7 @@ curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilib
 
 设置`关注的TAG`为隐藏
 
-curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;" -d "csrf=xxx&tags=0" "http://space.bilibili.com/ajax/settings/setPrivacy"
+curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;" -d "csrf=xxx&tags=0" "http://space.bilibili.com/ajax/settings/setPrivacy"
 
 ```json
 {
@@ -2125,7 +2125,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserI
 
 需要验证`DedeUserID`及`DedeUserID__ckMd5`存在且不为0
 
-需要验证`referer`为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
+需要验证`referer`为 `http://.bilibili.com`或`https://.bilibili.com`域名下
 
 **参数（ application/x-www-form-urlencoded ）：**
 
@@ -2175,7 +2175,7 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserI
 >订阅标签
 >我的频道
 
-curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;" -d "csrf=xxx&index_order=1%2C8%2C3%2C2%2C9%2C5%2C4%2C7%2C22%2C23%2C21%2C24%2C25%2C6" "http://space.bilibili.com/ajax/settings/setIndexOrder"
+curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;" -d "csrf=xxx&index_order=1%2C8%2C3%2C2%2C9%2C5%2C4%2C7%2C22%2C23%2C21%2C24%2C25%2C6" "http://space.bilibili.com/ajax/settings/setIndexOrder"
 
 ```json
 {
