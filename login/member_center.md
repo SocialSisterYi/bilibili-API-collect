@@ -1,12 +1,12 @@
 # 个人中心
 
+**本页所有操作均需登录（SESSDATA）**
+
 ## 获取我的信息
 
 > http://api.bilibili.com/x/member/web/account
 
 *方式:GET*
-
-需要登录(SESSDATA)
 
 **json回复：**
 
@@ -62,8 +62,6 @@ http://api.bilibili.com/x/member/web/account
 
 *方式:GET*
 
-需要登录(SESSDATA)
-
 **json回复：**
 
 根对象：
@@ -118,8 +116,6 @@ http://api.bilibili.com/x/member/web/exp/reward
 
 *方式:GET*
 
-需要登录(SESSDATA)
-
 **json回复：**
 
 根对象：
@@ -158,6 +154,102 @@ http://api.bilibili.com/x/vip/web/user/info
         "vip_due_date": 1612454400000,
         "vip_pay_type": 1,
         "theme_type": 0
+    }
+}
+```
+
+
+
+## 查询我的账号安全情况
+
+> http://passport.bilibili.com/web/site/user/info
+
+*方式:GET*
+
+需要验证`DedeUserID`存在且不为0
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        | 作用尚不明确                  |
+| data    | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段          | 类型 | 内容             | 备注 |
+| ------------- | ---- | ---------------- | ---- |
+| account_info  | obj  | 账号绑定信息     |      |
+| account_safe  | obj  | 密码安全信息     |      |
+| account_sns   | obj  | 互联登录绑定信息 |      |
+| account_other | obj  |                  |      |
+
+`data`中的`account_info`对象：
+
+| 字段           | 类型 | 内容           | 备注                            |
+| -------------- | ---- | -------------- | ------------------------------- |
+| hide_tel       | str  | 绑定的手机号   | 星号隐藏部分信息                |
+| hide_mail      | str  | 绑定的邮箱     | 星号隐藏部分信息                |
+| bind_tel       | bool | 是否绑定手机号 | false：未绑定<br />true：已绑定 |
+| bind_mail      | bool | 是否绑定邮箱   | false：未绑定<br />true：已绑定 |
+| tel_verify     | bool | 是否验证手机号 | false：未验证<br />true：已验证 |
+| mail_verify    | bool | 是否验证邮箱   | false：未验证<br />true：已验证 |
+| unneeded_check | bool | 是否未设置密码 | false：已设置<br />true：未设置 |
+
+`data`中的`account_safe`对象：
+
+| 字段      | 类型 | 内容             | 备注                          |
+| --------- | ---- | ---------------- | ----------------------------- |
+| Score     | num  | 当前密码强度     | 0-100                         |
+| pwd_level | num  | 当前密码强度等级 | 1：弱<br />2：中<br />3：强   |
+| security  | bool | 当前密码是否安全 | false：不安全<br />true：安全 |
+
+`data`中的`account_sns`对象：
+
+| 字段       | 类型 | 内容         | 备注                     |
+| ---------- | ---- | ------------ | ------------------------ |
+| weibo_bind | num  | 是否绑定微博 | 0：未绑定<br />1：已绑定 |
+| qq_bind    | num  | 是否绑定qq   | 0：未绑定<br />1：已绑定 |
+
+`data`中的`account_other`对象：
+
+| 字段       | 类型 | 内容  | 备注         |
+| ---------- | ---- | ----- | ------------ |
+| skipVerify | bool | false | 作用尚不明确 |
+
+**示例：**
+
+http://passport.bilibili.com/web/site/user/info
+
+```json
+{
+    "code": 0,
+    "data": {
+        "account_info": {
+            "hide_tel": "153*****056",
+            "hide_mail": "144****@qq.com",
+            "bind_tel": true,
+            "bind_mail": true,
+            "tel_verify": true,
+            "mail_verify": true,
+            "unneeded_check": false
+        },
+        "account_safe": {
+            "Score": 90,
+            "pwd_level": 3,
+            "security": true
+        },
+        "account_sns": {
+            "weibo_bind": 1,
+            "qq_bind": 1
+        },
+        "account_other": {
+            "skipVerify": false
+        }
     }
 }
 ```
