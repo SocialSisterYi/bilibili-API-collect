@@ -156,14 +156,28 @@
 | T台            | catwalk  | 159  | 发布会走秀现场及模特相关时尚片、采访、后台花絮               | /v/fashion/catwalk  |
 | 风尚标         | trends   | 192  | 时尚明星专访、街拍、时尚购物相关知识科普                     | /v/fashion/trends   |
 
-## 广告
+## 资讯
+
+<img src="/imgs/zone/information.svg" width="100" height="100"/>
+
+| 名称           | 代号        | tID  | 简介                                         | url路由                 |
+| -------------- | ----------- | ---- | -------------------------------------------- | ----------------------- |
+| 资讯（主分区） | information | 202  |                                              | /v/information          |
+| 热点           | hotspot     | 203  | 全民关注的时政热门资讯                       | /v/information/hotspot  |
+| 环球           | global      | 204  | 全球范围内发生的具有重大影响力的事件动态     | /v/information/global   |
+| 社会           | social      | 205  | 日常生活的社会事件、社会问题、社会风貌的报道 | /v/information/social   |
+| 综合           | multiple    | 206  | 除上述领域外其它垂直领域的综合资讯           | /v/information/multiple |
+
+## ~~广告~~
+
+（目前已下线）
 
 <img src="/imgs/zone/ad.svg" width="100" height="100"/>
 
-| 名称           | 代号 | tID  | 简介 | url路由  |
-| -------------- | ---- | ---- | ---- | -------- |
-| 广告（主分区） | ad   | 165  |      | /v/ad    |
-| 广告           | ad   | 166  |      | /v/ad/ad |
+| 名称               | 代号 | tID  | 简介 | url路由  |
+| ------------------ | ---- | ---- | ---- | -------- |
+| ~~广告（主分区）~~ | ad   | 165  |      | /v/ad    |
+| ~~广告~~           | ad   | 166  |      | /v/ad/ad |
 
 ## 娱乐
 
