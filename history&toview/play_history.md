@@ -1,5 +1,7 @@
 # 播放历史
 
+<img src="/imgs/history.png" width="25" height="25"/>
+
 ## 获取视频播放历史
 
 > http://api.bilibili.com/x/v2/history

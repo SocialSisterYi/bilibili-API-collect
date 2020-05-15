@@ -1,5 +1,7 @@
 # 稍后再看
 
+<img src="/imgs/toview.png" width="25" height="25"/>
+
 ## 视频添加稍后再看
 
 >http://api.bilibili.com/x/v2/history/toview/add

@@ -38,7 +38,7 @@
   - [点赞&投币&收藏](video/like_coin_fav.md)√
   - [TAG](video/tags.md)x
   - [视频推荐](video/recommend.md)√
-  - 播放&下载地址
+  - [播放&下载地址（视频流）](video/videostream_url.md)√
   - 互动视频
   - [高能进度条](video/pbp.md)√
 - 番剧（影视）
@@ -84,6 +84,7 @@
   - [B币方式](electric/Bcoin.md)√
   - [微信&支付宝方式](electric/WeChat&Alipay.md)√
   - [充电留言](electric/charge_msg.md)√
+  - [充电列表](electric/charge_list.md)√
 - [动态](dynamic)
   - [发送&转载动态](dynamic/publish.md)x
   - 动态列表
