@@ -89,7 +89,7 @@
 
 | 字段       | 类型   | 内容       | 备注                           |
 | ---------- | ------ | ---------- | ------------------------------ |
-| order      | num    | 1          | 作用尚不明确                   |
+| order      | num    | 序号      | 某些视频会分为多个片段, 这就是片段序号 |
 | length     | num    | 视频长度   | 单位为毫秒                     |
 | size       | num    | 视频大小   | 单位为Byte                     |
 | ahead      | str    | ？？？     | 作用尚不明确                   |
@@ -162,7 +162,7 @@
 
 ## 视频的获取
 
-将`data`.`durl`.`[0]`.`url`或`data`.`durl`.`[0]`.`backup_url`.`[0]`中的内容作为url进行GET操作
+将`data`.`durl`.`[1-n]`.`url`或`data`.`durl`.`[1-n]`.`backup_url`.`[0]`中的内容作为url进行GET操作, 如果有多个视频, 需要手动合并处理
 
 Header中的`referer`为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
 
