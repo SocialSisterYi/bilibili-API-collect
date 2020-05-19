@@ -110,7 +110,7 @@ http://api.bilibili.com/x/member/web/exp/reward
 
 
 
-## 查询我的大会员状态
+## 查询大会员状态
 
 > http://api.bilibili.com/x/vip/web/user/info
 
@@ -160,7 +160,7 @@ http://api.bilibili.com/x/vip/web/user/info
 
 
 
-## 查询我的账号安全情况
+## 查询账号安全情况
 
 > http://passport.bilibili.com/web/site/user/info
 
@@ -250,6 +250,222 @@ http://passport.bilibili.com/web/site/user/info
         "account_other": {
             "skipVerify": false
         }
+    }
+}
+```
+
+
+
+## 查询账号实名认证状态
+
+> http://api.bilibili.com/x/member/realname/status
+
+*方式:GET*
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        | 作用尚不明确                  |
+| data    | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段   | 类型 | 内容         | 备注                     |
+| ------ | ---- | ------------ | ------------------------ |
+| status | num  | 实名认证状态 | 0：未认证<br />1：已认证 |
+
+**示例：**
+
+http://api.bilibili.com/x/member/realname/status
+
+当前状态为已认证
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "status": 1
+    }
+}
+```
+
+
+
+## 查询实名认证详细信息
+
+> http://api.bilibili.com/x/member/realname/apply/status
+
+*方式:GET*
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        | 作用尚不明确                  |
+| data    | obj  | 数据本体 |                               |
+
+`data`对象：
+
+| 字段      | 类型 | 内容         | 备注                                                         |
+| --------- | ---- | ------------ | ------------------------------------------------------------ |
+| status    | num  | 认证状态     | 1：已认证<br />3：未认证                                     |
+| remark    | str  | 驳回信息     | 默认为空                                                     |
+| realname  | str  | 实名姓名     | 星号隐藏部分信息                                             |
+| card      | str  | 证件号码     | 星号隐藏部分信息                                             |
+| card_type | num  | 证件类型代码 | 0：身份证<br />2：港澳居民来往内地通行证<br />3：台湾居民来往大陆通行证<br />4：护照(中国签发)<br />5：外国人永久居留证<br />6：其他国家或地区身份证明 |
+
+http://api.bilibili.com/x/member/realname/apply/status
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "status": 1,
+        "remark": "",
+        "realname": "*唯恺",
+        "card": "6***************17",
+        "card_type": 0
+    }
+}
+```
+
+
+
+
+
+## 查询硬币变化情况
+
+> http://api.bilibili.com/x/member/web/coin/log
+
+*方式:GET*
+
+仅能查询最近一周的情况
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        | 作用尚不明确                  |
+| data    | obj  | 数据本体 |                               |
+
+`data`对象：
+
+| 字段  | 类型   | 内容             | 备注 |
+| ----- | ------ | ---------------- | ---- |
+| list  | arrary | 变化记录条目列表 |      |
+| count | num    | 变化记录条目数   |      |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容              | 备注 |
+| ---- | ---- | ----------------- | ---- |
+| 0    | obj  | 变化记录条目1     |      |
+| n    | obj  | 变化记录条目(n+1) |      |
+| ……   | obj  | ……                | ……   |
+
+`list`数组中的对象：
+
+| 字段   | 类型 | 内容     | 备注                   |
+| ------ | ---- | -------- | ---------------------- |
+| time   | str  | 变化时间 | YYYY-MM-DD HH:MM:SS    |
+| delta  | num  | 变化量   | 正值为收入，负值为支出 |
+| reason | str  | 变化说明 |                        |
+
+**示例：**
+
+http://api.bilibili.com/x/member/web/coin/log
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "time": "2020-05-19 23:58:29",
+                "delta": -1,
+                "reason": "给视频 BV1j5411s7M8 打赏"
+            },
+            {
+                "time": "2020-05-19 16:02:53",
+                "delta": -1,
+                "reason": "给视频 BV1Ht4y117A1 打赏"
+            },
+            {
+                "time": "2020-05-19 15:38:42",
+                "delta": 0.1,
+                "reason": "给视频 BV1nb411C7aa 打赏"
+            },
+            {
+                "time": "2020-05-19 02:19:20",
+                "delta": 1,
+                "reason": "登录奖励"
+            },
+            {
+                "time": "2020-05-18 22:34:04",
+                "delta": -1,
+                "reason": "给视频 BV1Bp4y1Q7uw 打赏"
+            },
+            {
+                "time": "2020-05-18 22:33:59",
+                "delta": -1,
+                "reason": "给视频 BV1j5411s7M8 打赏"
+            },
+            {
+                "time": "2020-05-18 02:45:53",
+                "delta": 1,
+                "reason": "登录奖励"
+            },
+            {
+                "time": "2020-05-17 03:02:38",
+                "delta": 1,
+                "reason": "登录奖励"
+            },
+            {
+                "time": "2020-05-16 01:57:02",
+                "delta": 1,
+                "reason": "登录奖励"
+            },
+            {
+                "time": "2020-05-15 11:10:35",
+                "delta": 0.2,
+                "reason": "给视频 BV1Yt41137T6 打赏"
+            },
+            {
+                "time": "2020-05-15 00:34:27",
+                "delta": 1,
+                "reason": "登录奖励"
+            },
+            {
+                "time": "2020-05-14 02:11:37",
+                "delta": 1,
+                "reason": "登录奖励"
+            },
+            {
+                "time": "2020-05-13 02:12:28",
+                "delta": 1,
+                "reason": "登录奖励"
+            }
+        ],
+        "count": 13
     }
 }
 ```
