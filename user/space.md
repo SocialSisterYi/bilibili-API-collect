@@ -54,7 +54,7 @@
 | dimension   | obj  | 视频1P分辨率                   |                         |
 | bvid        | str  | 视频bvID                       |                         |
 | reason      | str  | 置顶视频备注                   |                         |
-| inter_video | bool | 是否为合作视频                 | false：否<br />ture：是 |
+| inter_video | bool | 是否为合作视频                 | false：否<br />true：是 |
 
 `data`中的`rights`对象：
 
