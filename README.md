@@ -54,8 +54,11 @@
   - [基本信息](article/info.md)×
   - 点赞&投币&收藏
   - 文集基本信息
-- 音频
-  - 歌曲相关
+- [音频](music)
+  - [歌曲基本信息](music/info.md)√
+  - [状态数](music/ststus_number.md)×
+  - [投币&收藏](music/coin&fav.md)×
+  - 播放&下载地址（音频流）
   - 歌单相关
   - 音频榜单
 - [排行榜&最新动态](ranking&dynamic)
