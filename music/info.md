@@ -24,33 +24,33 @@
 
 `data`对象：
 
-| 字段       | 类型   | 内容         | 备注             |
-| ---------- | ------ | ------------ | ---------------- |
-| id         | num    | 音频auID     |                  |
-| uid        | num    | UP主UID      |                  |
-| uname      | str    | UP主昵称     |                  |
-| author     | str    | 作者名       |                  |
-| title      | str    | 歌曲标题     |                  |
-| cover      | str    | 封面图片url  |                  |
-| intro      | str    | 歌曲简介     |                  |
-| lyric      | str    | lrc歌词url   |                  |
-| crtype     | num    | 1            | **作用尚不明确** |
-| duration   | num    | 歌曲时间长度 | 单位为秒         |
-| passtime   | num    | 歌曲发布时间 | 时间戳           |
-| curtime    | num    | 当前请求时间 | 时间戳           |
-| aid        | num    | 关联视频avID | 无为0            |
-| bvid       | str    | 关联视频bvID | 无为空           |
-| cid        | num    | 关联视频CID  | 无为0            |
-| msid       | num    | 0            | **作用尚不明确** |
-| attr       | num    | 0            | **作用尚不明确** |
-| limit      | num    | 0            | **作用尚不明确** |
-| activityId | num    | 0            | **作用尚不明确** |
-| limitdesc  | str    | 空           | **作用尚不明确** |
-| ctime      | null   | -            | **作用尚不明确** |
-| statistic  | obj    | 状态数       |                  |
-| vipInfo    | obj    | UP主会员状态 |                  |
-| collectIds | arrary | 空           | **作用尚不明确** |
-| coin_num   | num    | 投币数       |                  |
+| 字段       | 类型   | 内容               | 备注               |
+| ---------- | ------ | ------------------ | ------------------ |
+| id         | num    | 音频auID           |                    |
+| uid        | num    | UP主UID            |                    |
+| uname      | str    | UP主昵称           |                    |
+| author     | str    | 作者名             |                    |
+| title      | str    | 歌曲标题           |                    |
+| cover      | str    | 封面图片url        |                    |
+| intro      | str    | 歌曲简介           |                    |
+| lyric      | str    | lrc歌词url         |                    |
+| crtype     | num    | 1                  | **作用尚不明确**   |
+| duration   | num    | 歌曲时间长度       | 单位为秒           |
+| passtime   | num    | 歌曲发布时间       | 时间戳             |
+| curtime    | num    | 当前请求时间       | 时间戳             |
+| aid        | num    | 关联视频avID       | 无为0              |
+| bvid       | str    | 关联视频bvID       | 无为空             |
+| cid        | num    | 关联视频CID        | 无为0              |
+| msid       | num    | 0                  | **作用尚不明确**   |
+| attr       | num    | 0                  | **作用尚不明确**   |
+| limit      | num    | 0                  | **作用尚不明确**   |
+| activityId | num    | 0                  | **作用尚不明确**   |
+| limitdesc  | str    | 空                 | **作用尚不明确**   |
+| ctime      | null   | -                  | **作用尚不明确**   |
+| statistic  | obj    | 状态数             |                    |
+| vipInfo    | obj    | UP主会员状态       |                    |
+| collectIds | arrary | 歌曲所在的收藏夹ID | 需要登录(SESSDATA) |
+| coin_num   | num    | 投币数             |                    |
 
 `data`中的`statistic`对象：
 
@@ -70,6 +70,14 @@
 | status       | num  | 会员状态     | 0：无<br />1：有                    |
 | due_date     | num  | 会员到期时间 | 时间戳 毫秒                         |
 | vip_pay_type | num  | 会员开通状态 | 0：无<br />1：有                    |
+
+`data`中的`collectIds`数组：
+
+| 项   | 类型 | 内容                      | 备注 |
+| ---- | ---- | ------------------------- | ---- |
+| 0    | num  | 第1个所在的收藏夹ID       |      |
+| n    | num  | 第（n+1）个所在的收藏夹ID |      |
+| ……   | num  | ……                        | ……   |
 
 **示例：**
 
@@ -93,7 +101,7 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
         "crtype": 1,
         "duration": 239,
         "passtime": 1501640683,
-        "curtime": 1589951574,
+        "curtime": 1590154258,
         "aid": 2554020,
         "bvid": "BV1us411S7E6",
         "cid": 3990196,
@@ -105,9 +113,9 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
         "ctime": null,
         "statistic": {
             "sid": 13598,
-            "play": 1027436,
-            "collect": 30892,
-            "comment": 520,
+            "play": 1028516,
+            "collect": 30914,
+            "comment": 523,
             "share": 384
         },
         "vipInfo": {
@@ -116,7 +124,9 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
             "due_date": 1620316800000,
             "vip_pay_type": 0
         },
-        "collectIds": [],
+        "collectIds": [
+            15967839
+        ],
         "coin_num": 1777
     }
 }
