@@ -1,5 +1,6 @@
-<img src="/imgs/Mylogo.png" align="center" width="250" height="200"/>
-
+<p align="center">
+    <img src="http://i0.hdslb.com/bfs/album/1ba8228cc208a12ac17f73a160081a0918ab7d14.png" width="250" height="200"/>
+<p/>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
 <p align="center">
     <a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues" style="text-decoration:none">
@@ -22,7 +23,7 @@
 
 所有api均为标准http协议，返回值大都为json
 
-<img src="/imgs/bilibili.svg" align="left" width="200" height="100"/>
+---
 
 计划整理分类&目录：（√代表已完成，x代表正在施工...）
 
