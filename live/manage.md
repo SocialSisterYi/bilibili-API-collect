@@ -58,12 +58,12 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%9
 
 **参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                | 必要性 | 备注                 |
-| -------- | ---- | ------------------- | ------ | -------------------- |
-| room_id  | data | 直播间ID            | 必要   | 必须为自己的直播间ID |
-| area_v2  | data | 直播分区ID          | 必要   | 最大20字符           |
-| platform | data | pc                  | 必要   |                      |
-| csrf     | data | cookies中的bili_jct | 必要   |                      |
+| 参数名   | 类型 | 内容                   | 必要性 | 备注                         |
+| -------- | ---- | ---------------------- | ------ | ---------------------------- |
+| room_id  | data | 直播间ID               | 必要   | 必须为自己的直播间ID         |
+| area_v2  | data | 直播分区ID（子分区ID） | 必要   | 详见[直播分区](live_area.md) |
+| platform | data | 必须为`pc`             | 必要   |                              |
+| csrf     | data | cookies中的bili_jct    | 必要   |                              |
 
 **json回复：**
 

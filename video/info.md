@@ -2,7 +2,7 @@
 
 <img src="/imgs/ploading.gif" width="100" height="100"/>
 
-## 视频详细信息（avID/bvID互转及转epID）
+## 获取视频详细信息（avID/bvID互转及转epID）
 
 > http://api.bilibili.com/x/web-interface/view
 
@@ -349,7 +349,7 @@ http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
 
 
-## 视频简介
+## 获取视频简介
 
 > http://api.bilibili.com/x/web-interface/archive/desc
 
@@ -392,7 +392,7 @@ http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 
 
 
-## 视频分P列表  (avID/bvID转CID)
+## 查询视频分P列表  (avID/bvID转CID)
 
 > http://api.bilibili.com/x/player/pagelist
 

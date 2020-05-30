@@ -1,16 +1,28 @@
-<img src="/imgs/Mylogo.png" align="right" width="250" height="200"/>
+<img src="/imgs/Mylogo.png" align="center" width="250" height="200"/>
 
-# 哔哩哔哩-API收集整理
+<h1 align="center">哔哩哔哩-API收集整理</h1>
+<p align="center">
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues" style="text-decoration:none">
+        <img src="https://img.shields.io/github/issues/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub issues"/>
+    </a>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/stargazers" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/stars/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub stars"/>
+    </a>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/network" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/forks/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub forks"/>
+    </a>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/license/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub license"/>
+    </a>
+</p>
 
-**野生API文档**
-
-**不断更新中....**
-
-本项目对B站web端以及移动端散落在世界各地的野生api进行收集整理，以及研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js逆向分析法等研究办法
+<h3 align="center">野生API文档</h3> 
+<h3 align="center">不断更新中....</h3> 
+本项目旨在对B站web端以及移动端散落在世界各地的野生api进行收集整理，以及研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js逆向分析法等研究办法
 
 所有api均为标准http协议，返回值大都为json
 
-<img src="/imgs/bilibili.svg" width="200" height="100"/>
+<img src="/imgs/bilibili.svg" align="left" width="200" height="100"/>
 
 计划整理分类&目录：（√代表已完成，x代表正在施工...）
 
@@ -98,9 +110,15 @@
   - [历史记录](history&toview/play_history.md)√
   - [稍后再看](history&toview/toview.md)√
 - 收藏夹
-- 课程
+- [课程](cheese)
+  - [课程基本信息](cheese/info.md)√
+  - 已购课程
+  - 分区推荐列表
+  - 操作
+  - 播放&下载地址（视频流）
 - [直播](live)
   - [直播间基本信息](live/info.md)x
+  - [直播分区](live/live_area.md)×
   - [直播间管理](live/manage.md)×
   - 直播间操作
   - 直播视频流
@@ -149,6 +167,8 @@ https://github.com/czp3009/bilibili-api
 https://github.com/Vespa314/bilibili-api
 
 https://github.com/Hsury/Bilibili-Toolkit
+
+ https://github.com/adachi-sakura/openbilibili-go-common-1 
 
 成品：
 
