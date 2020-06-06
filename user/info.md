@@ -48,7 +48,7 @@
 | is_followed | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(SESSDATA) <br />未登录为false |
 | top_photo   | str  | 主页头图链接     | png                                                          |
 | theme       | obj  | 空               | 作用尚不明确                                                 |
-| sys_notice  | obj  | 空               | 作用尚不明确                                                 |
+| sys_notice  | obj  | 系统通知           | 作用尚不明确                                                 |
 
 `data`中的`official`对象：
 
