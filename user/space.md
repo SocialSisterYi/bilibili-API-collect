@@ -10,11 +10,11 @@
 
 粉丝在其主页上可见
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| vmid   | url  | 目标用户UID | 必要   |      |
+| vmid   | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -189,11 +189,11 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 
 最多可以设置3个
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| vmid   | url  | 目标用户UID | 必要   |      |
+| vmid   | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -412,13 +412,13 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
-| pn     | url  | 页码        | 必要   |      |
-| ps     | url  | 每页项数    | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
+| pn     | num  | 页码        | 必要   |      |
+| ps     | num  | 每页项数    | 必要   |      |
 
 **json回复：**
 
@@ -602,11 +602,11 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 
 如设置隐私查看自己的需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -705,14 +705,14 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 
 如设置隐私查看自己的需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注                 |
 | ------ | ---- | ----------- | ------ | -------------------- |
-| vmid   | url  | 目标用户UID | 必要   |                      |
-| pn     | url  | 页码        | 非必要 | 默认为1              |
-| ps     | url  | 每页项数    | 非必要 | 默认为15             |
-| type   | url  | 查询类型    | 必要   | 1：追番<br />2：追剧 |
+| vmid   | num  | 目标用户UID | 必要   |                      |
+| pn     | num  | 页码        | 非必要 | 默认为1              |
+| ps     | num  | 每页项数    | 非必要 | 默认为15             |
+| type   | num  | 查询类型    | 必要   | 1：追番<br />2：追剧 |
 
 **json回复：**
 
@@ -957,11 +957,11 @@ http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
 
 如设置隐私查看自己的需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -1043,12 +1043,12 @@ http://space.bilibili.com/ajax/tags/getSubList?mid=2
 
 所有类型的相簿
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注    |
 | ------ | ---- | ------------ | ------ | ------- |
-| mid    | url  | 目标用户UID  | 必要   |         |
-| ps     | url  | 获取的相簿量 | 非必要 | 默认为8 |
+| mid    | num  | 目标用户UID  | 必要   |         |
+| ps     | num  | 获取的相簿量 | 非必要 | 默认为8 |
 
 **json回复：**
 
@@ -1163,14 +1163,14 @@ http://api.bilibili.com/x/space/album/index?mid=53456&ps=2
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名    | 类型 | 内容        | 必要性 | 备注                                                         |
 | --------- | ---- | ----------- | ------ | ------------------------------------------------------------ |
-| uid       | url  | 目标用户UID | 必要   |                                                              |
-| page_num  | url  | 页码        | 非必要 | 默认为1                                                      |
-| page_size | url  | 每页项数    | 非必要 | 默认为20                                                     |
-| biz       | url  | 查询类型    | 非必要 | 全部：all<br />绘画：draw<br />摄影：photo<br />日常：daily<br />默认为all |
+| uid       | num  | 目标用户UID | 必要   |                                                              |
+| page_num  | num  | 页码        | 非必要 | 默认为1                                                      |
+| page_size | num  | 每页项数    | 非必要 | 默认为20                                                     |
+| biz       | str  | 查询类型    | 非必要 | 全部：all<br />绘画：draw<br />摄影：photo<br />日常：daily<br />默认为all |
 
 **json回复：**
 
@@ -1300,11 +1300,11 @@ http://api.vc.bilibili.com/link_draw/v1/doc/doc_list?uid=2&page_num=1&page_size=
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -1418,14 +1418,14 @@ http://api.bilibili.com/x/space/channel/list?mid=53456
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注      |
 | ------ | ---- | ----------- | ------ | --------- |
-| mid    | url  | 目标用户UID | 必要   |           |
-| cid    | url  | 目标频道ID  | 必要   |           |
-| pn     | url  | 页码        | 非必要 | 默认为1   |
-| ps     | url  | 每页项数    | 非必要 | 默认为100 |
+| mid    | num  | 目标用户UID | 必要   |           |
+| cid    | num  | 目标频道ID  | 必要   |           |
+| pn     | num  | 页码        | 非必要 | 默认为1   |
+| ps     | num  | 每页项数    | 非必要 | 默认为100 |
 
 **json回复：**
 
@@ -1628,11 +1628,11 @@ http://api.bilibili.com/x/space/channel/video?mid=53456&cid=170&ps=2&pn=1
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -1672,11 +1672,11 @@ http://api.bilibili.com/x/space/notice?mid=53456
 
 带有转义
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -1737,11 +1737,11 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 
 查看私有收藏夹时需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| up_mid | url  | 目标用户UID | 必要   |      |
+| up_mid | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -1853,13 +1853,13 @@ http://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=7792521
 
 *方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| ps     | url  | 每页项数    | 必要   |      |
-| pn     | url  | 页码        | 必要   |      |
-| up_mid | url  | 目标用户UID | 必要   |      |
+| ps     | num  | 每页项数    | 必要   |      |
+| pn     | num  | 页码        | 必要   |      |
+| up_mid | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -1994,12 +1994,12 @@ http://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=7792521
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名    | 类型 | 内容                | 必要性 | 备注                   |
 | --------- | ---- | ------------------- | ------ | ---------------------- |
-| user_sign | data | 要设置的签名内容    | 非必要 | 删除签名留空或省去即可 |
-| csrf      | data | cookies中的bili_jct | 必要   |                        |
+| user_sign | str  | 要设置的签名内容    | 非必要 | 删除签名留空或省去即可 |
+| csrf      | str  | cookies中的bili_jct | 必要   |                        |
 
 **json回复：**
 
@@ -2035,12 +2035,12 @@ curl -b "SESSDATA=xxx" -d "user_sign=%E9%AB%98%E4%B8%AD%E6%8A%80%E6%9C%AF%E5%AE%
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                                        |
-| ------ | ---- | ------------------- | ------ | ------------------------------------------- |
-| notice | data | 要设置的公告内容    | 非必要 | 删除公告留空或省去即可<br />公告最多150字符 |
-| csrf   | data | cookies中的bili_jct | 必要   |                                             |
+| 参数名 | 类型 | 内容                | 必要性 | 备注                                    |
+| ------ | ---- | ------------------- | ------ | --------------------------------------- |
+| notice | str  | 要设置的公告内容    | 非必要 | 删除公告留空或省去即可<br />少于150字符 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                                         |
 
 **json回复：**
 
@@ -2080,17 +2080,17 @@ curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilib
 
 需要验证`referer`为 `http://.bilibili.com`或`https://.bilibili.com`域名下
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名      | 类型 | 内容                | 必要性 | 备注                           |
 | ----------- | ---- | ------------------- | ------ | ------------------------------ |
-| fav_video   | data | 收藏视频            | 非必要 | 0：隐藏<br />1：公开<br />下同 |
-| bangumi     | data | 追番及追剧          | 非必要 |                                |
-| tags        | data | 关注的TAG           | 非必要 |                                |
-| coins_video | data | 投币的视频          | 非必要 |                                |
-| user_info   | data | 个人信息            | 非必要 |                                |
-| played_game | data | 玩过的游戏          | 非必要 |                                |
-| csrf        | data | cookies中的bili_jct | 必要   |                                |
+| fav_video   | num  | 收藏视频            | 非必要 | 0：隐藏<br />1：公开<br />下同 |
+| bangumi     | num  | 追番及追剧          | 非必要 |                                |
+| tags        | num  | 关注的TAG           | 非必要 |                                |
+| coins_video | num  | 投币的视频          | 非必要 |                                |
+| user_info   | num  | 个人信息            | 非必要 |                                |
+| played_game | num  | 玩过的游戏          | 非必要 |                                |
+| csrf        | nstr | cookies中的bili_jct | 必要   |                                |
 
 **json回复：**
 
@@ -2127,12 +2127,12 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 需要验证`referer`为 `http://.bilibili.com`或`https://.bilibili.com`域名下
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名      | 类型 | 内容                | 必要性 | 备注                                                         |
 | ----------- | ---- | ------------------- | ------ | ------------------------------------------------------------ |
-| index_order | data | 布局列表            | 必要   | 每个值之间用","（%2C）分隔<br />先左侧布局再右侧布局<br />值的意义见下表 |
-| csrf        | data | cookies中的bili_jct | 必要   |                                                              |
+| index_order | nums | 布局列表            | 必要   | 每个值之间用","（%2C）分隔<br />先左侧布局再右侧布局<br />值的意义见下表 |
+| csrf        | str  | cookies中的bili_jct | 必要   |                                                              |
 
 布局参数`index_order`：
 
@@ -2195,12 +2195,12 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 需要验证`DedeUserID`存在且不为0
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------- | ------ | ------------------------------------------------------------ |
-| tags   | data | 要设置的TAG内容     | 非必要 | 删除公告留空或省去即可<br />各TAG长度小于10字符<br />最多5个TAG<br />各TAG之间用","(%2C)分隔<br />重复TAG无效 |
-| csrf   | data | cookies中的bili_jct | 必要   |                                                              |
+| tags   | strs | 要设置的TAG内容     | 非必要 | 删除公告留空或省去即可<br />各TAG长度小于10字符<br />最多5个TAG<br />各TAG之间用","(%2C)分隔<br />重复TAG无效 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                                                              |
 
 **json回复：**
 
@@ -2236,14 +2236,14 @@ curl -b "SESSDATA=xxx;DedeUserID=1" -d "csrf=xxx&tags=minecraft%2C%E6%8A%80%E6%9
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注               |
 | ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | data | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
-| bvid   | data | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
-| reason | data | 置顶视频备注        | 非必要 | 置顶备注最大40字符 |
-| csrf   | data | cookies中的bili_jct | 必要   |                    |
+| aid    | num  | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
+| reason | str  | 置顶视频备注        | 非必要 | 置顶备注最大40字符 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                    |
 
 **json回复：**
 
@@ -2281,11 +2281,11 @@ curl -b "SESSDATA=xxx" -b "aid=98948772&csrf=xxx" "http://api.bilibili.com/x/spa
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| csrf   | str  | cookies中的bili_jct | 必要   |      |
 
 **json回复：**
 
@@ -2321,14 +2321,14 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/space/top/arc/ca
 
 代表作上限为3个稿件
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注               |
 | ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | data | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
-| bvid   | data | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
-| reason | data | 代表作备注          | 非必要 | 置顶备注最大40字符 |
-| csrf   | data | cookies中的bili_jct | 必要   |                    |
+| aid    | num  | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
+| reason | str  | 代表作备注          | 非必要 | 置顶备注最大40字符 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                    |
 
 **json回复：**
 
@@ -2366,13 +2366,13 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=94916552" "http://api.bilibili.com/x/spa
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                 | 必要性 | 备注               |
 | ------ | ---- | -------------------- | ------ | ------------------ |
-| aid    | data | 要删除的目标视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | data | 要删除的目标视频bvID | 非必要 | avID与bvID任选一个 |
-| csrf   | data | cookies中的bili_jct  | 必要   |                    |
+| aid    | num  | 要删除的目标视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 要删除的目标视频bvID | 非必要 | avID与bvID任选一个 |
+| csrf   | str  | cookies中的bili_jct  | 必要   |                    |
 
 **json回复：**
 

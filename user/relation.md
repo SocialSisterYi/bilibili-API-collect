@@ -10,13 +10,13 @@
 
 登录(SESSDATA)可看自己全部
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注                             |
 | ------ | ---- | ----------- | ------ | -------------------------------- |
-| vmid   | url  | 目标用户UID | 必要   |                                  |
-| ps     | url  | 每页项数    | 非必要 | 默认为50                         |
-| pn     | url  | 页码        | 非必要 | 默认为1<br />非自己仅可查看前5页 |
+| vmid   | num  | 目标用户UID | 必要   |                                  |
+| ps     | num  | 每页项数    | 非必要 | 默认为50                         |
+| pn     | num  | 页码        | 非必要 | 默认为1<br />非自己仅可查看前5页 |
 
 **json回复：**
 
@@ -167,13 +167,13 @@ http://api.bilibili.com/x/relation/followers?vmid=293793435&ps=2&pn=1
 
 登录(SESSDATA)可看自己全部
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注                             |
 | ------ | ---- | ----------- | ------ | -------------------------------- |
-| vmid   | url  | 目标用户UID | 必要   |                                  |
-| ps     | url  | 每页项数    | 非必要 | 默认为50                         |
-| pn     | url  | 页码        | 非必要 | 默认为1<br />非自己仅可查看前5页 |
+| vmid   | num  | 目标用户UID | 必要   |                                  |
+| ps     | num  | 每页项数    | 非必要 | 默认为50                         |
+| pn     | num  | 页码        | 非必要 | 默认为1<br />非自己仅可查看前5页 |
 
 **json回复：**
 
@@ -332,14 +332,14 @@ http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注           |
-| ------ | ---- | ------------------- | ------ | -------------- |
-| fid    | data | 目标用户UID         | 必要   |                |
-| act    | data | 操作代码            | 必要   | 操作代码见下表 |
-| re_src | data | 必须为11            | 必要   |                |
-| csrf   | data | cookies中的bili_jct | 必要   |                |
+| 参数名 | 类型 | 内容                | 必要性 | 备注               |
+| ------ | ---- | ------------------- | ------ | ------------------ |
+| fid    | num  | 目标用户UID         | 必要   |                    |
+| act    | num  | 操作代码            | 必要   | **操作代码见下表** |
+| re_src | num  | 必须为11            | 必要   |                    |
+| csrf   | str  | cookies中的bili_jct | 必要   |                    |
 
 操作代码`act`：
 
@@ -387,11 +387,11 @@ curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" "http://api.bilibil
 
  需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| fid    | url  | 目标用户UID | 必要   |      |
+| fid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -453,11 +453,11 @@ http://api.bilibili.com/x/relation?fid=258150656
 
 需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -616,13 +616,13 @@ http://api.bilibili.com/x/relation/tags
 
 需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注                               |
 | ------ | ---- | -------- | ------ | ---------------------------------- |
-| tagid  | url  | 分组ID   | 必要   | 特别关注恒为-10<br />默认分组恒为0 |
-| ps     | url  | 每页项数 | 非必要 | 默认为50                           |
-| pn     | url  | 页数     | 非必要 | 默认为1                            |
+| tagid  | num  | 分组ID   | 必要   | 特别关注恒为-10<br />默认分组恒为0 |
+| ps     | num  | 每页项数 | 非必要 | 默认为50                           |
+| pn     | num  | 页数     | 非必要 | 默认为1                            |
 
 **json回复：**
 
@@ -747,11 +747,11 @@ http://api.bilibili.com/x/relation/tag?tagid=207542&ps=2&pn=1
 
 需要登录(SESSDATA)
 
-**参数：**
+**num参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| fid    | url  | 目标用户UID | 必要   |      |
+| fid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -802,12 +802,12 @@ http://api.bilibili.com/x/relation/tag/user?fid=319214221
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注       |
 | ------ | ---- | ------------------- | ------ | ---------- |
-| tag    | data | 分组名              | 必要   | 最长16字符 |
-| csrf   | data | cookies中的bili_jct | 必要   |            |
+| tag    | str  | 分组名              | 必要   | 最长16字符 |
+| csrf   | str  | cookies中的bili_jct | 必要   |            |
 
 **json回复：**
 
@@ -853,13 +853,13 @@ curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" "http://api.bilibili.com/x/relation/t
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注       |
 | ------ | ---- | ------------------- | ------ | ---------- |
-| tagid  | data | 分组ID              | 必要   |            |
-| name   | data | 新名称              | 必要   | 最长16字符 |
-| csrf   | data | cookies中的bili_jct | 必要   |            |
+| tagid  | num  | 分组ID              | 必要   |            |
+| name   | str  | 新名称              | 必要   | 最长16字符 |
+| csrf   | str  | cookies中的bili_jct | 必要   |            |
 
 **json回复：**
 
@@ -897,12 +897,12 @@ curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx"
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| tagid  | data | 分组ID              | 必要   |      |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| tagid  | num  | 分组ID              | 必要   |      |
+| csrf   | str  | cookies中的bili_jct | 必要   |      |
 
 **json回复：**
 
@@ -940,13 +940,13 @@ curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" "http://api.bilibili.com/x/relat
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                       |
 | ------ | ---- | ------------------- | ------ | -------------------------- |
-| fids   | data | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
-| tagids | data | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf   | data | cookies中的bili_jct | 必要   |                            |
+| fids   | nums | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
+| tagids | nums | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                            |
 
 **json回复：**
 
@@ -982,13 +982,13 @@ curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" "http://ap
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                       |
 | ------ | ---- | ------------------- | ------ | -------------------------- |
-| fids   | data | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
-| tagids | data | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf   | data | cookies中的bili_jct | 必要   |                            |
+| fids   | nums | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
+| tagids | nums | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                            |
 
 **json回复：**
 
@@ -1024,14 +1024,14 @@ curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" "http:
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名       | 类型 | 内容                | 必要性 | 备注                       |
 | ------------ | ---- | ------------------- | ------ | -------------------------- |
-| beforeTagids | data |                     |        |                            |
-| afterTagids  | data |                     |        |                            |
-| fids         | data | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf         | data | cookies中的bili_jct | 必要   |                            |
+| beforeTagids | nums | 原分组ID            | 必要   | 每个ID之间用","（%2C）间隔 |
+| afterTagids  | nums | 新分组ID            | 必要   | 每个ID之间用","（%2C）间隔 |
+| fids         | nums | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf         | str  | cookies中的bili_jct | 必要   |                            |
 
 **json回复：**
 
