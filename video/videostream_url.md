@@ -53,27 +53,27 @@
 
 | 字段               | 类型   | 内容                     | 备注                                     |
 | ------------------ | ------ | ------------------------ | ---------------------------------------- |
-| from               | str    | local                    | 作用尚不明确                             |
-| result             | str    | suee                     | 作用尚不明确                             |
-| message            | str    | 空                       | 作用尚不明确                             |
+| from               | str    | local                    | **作用尚不明确**                         |
+| result             | str    | suee                     | **作用尚不明确**                         |
+| message            | str    | 空                       | **作用尚不明确**                         |
 | quality            | num    | 视频分辨率代码           | **值含义见上表**                         |
 | format             | str    | 视频格式                 |                                          |
 | timelength         | num    | 视频长度                 | 单位为毫秒<br />不同分辨率可能有略微差异 |
 | accept_format      | str    | 视频支持的分辨率的格式   |                                          |
 | accept_description | arrary | 视频支持的分辨率列表     |                                          |
 | accept_quality     | arrary | 视频支持的分辨率代码列表 | **值含义见上表**                         |
-| video_codecid      | num    | ？？？                   | 作用尚不明确                             |
-| seek_param         | str    | start                    | 作用尚不明确                             |
-| seek_type          | str    | offset                   | 作用尚不明确                             |
-| durl               | arrary | 视频流地址信息           |                                          |
+| video_codecid      | num    | ？？？                   | **作用尚不明确**                         |
+| seek_param         | str    | start                    | **作用尚不明确**                         |
+| seek_type          | str    | offset                   | **作用尚不明确**                         |
+| durl               | arrary | 视频分段                 |                                          |
 
 `data`中的`accept_description`数组：
 
-| 项   | 类型 | 内容        | 备注 |
-| ---- | ---- | ----------- | ---- |
-| 0    | str  | 分辨率1     |      |
-| n    | str  | 分辨率(n+1) |      |
-| ……   | str  | ……          | ……   |
+| 项   | 类型 | 内容            | 备注 |
+| ---- | ---- | --------------- | ---- |
+| 0    | str  | 分辨率名称1     |      |
+| n    | str  | 分辨率名称(n+1) |      |
+| ……   | str  | ……              | ……   |
 
 `data`中的`accept_quality`数组：
 
@@ -91,7 +91,7 @@
 | n    | obj  | 视频分段(n+1)信息 |      |
 | ……   | obj  | ……                |      |
 
-`data`中的`durl`数组中的对象：
+`durl`数组中的对象：
 
 | 字段       | 类型   | 内容         | 备注                               |
 | ---------- | ------ | ------------ | ---------------------------------- |
@@ -103,7 +103,7 @@
 | url        | str    | 视频流url    | **重要**<br />链接有效时间为120min |
 | backup_url | arrary | 备用视频流   |                                    |
 
-`data`中的`durl`数组中的对象中的`backup_url`数组：
+`durl`数组中的对象中的`backup_url`数组：
 
 | 项   | 类型 | 内容          | 备注             |
 | ---- | ---- | ------------- | ---------------- |

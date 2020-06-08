@@ -129,7 +129,7 @@
 | page           | num  | 1                |                                                              |
 | play           | num  | 课程分集播放量   |                                                              |
 | release_date   | num  | 课程分集发布时间 | 时间戳                                                       |
-| status         | num  | 分集属性         | 1：可免费试看<br />2：需要付费观看                           |
+| status         | num  | 分集权限属性     | 1：可观看<br />2：不可观看                                   |
 | title          | str  | 课程分集标题     |                                                              |
 | watched        | bool | 是否观看该集     | **需要登录（SESSDATA）且referer为`https://www.bilibili.com`**<br />false：未观看<br />true：已观看 |
 | watchedHistory | num  | 该集观看历史     | **需要登录（SESSDATA）且referer为`https://www.bilibili.com`** |
@@ -490,7 +490,7 @@ http://api.bilibili.com/pugv/view/web/season?season_id=61
 | page           | num  | 1                |                                                              |
 | play           | num  | 课程分集播放量   |                                                              |
 | release_date   | num  | 课程分集发布时间 | 时间戳                                                       |
-| status         | num  | 分集属性         | 1：可免费试看<br />2：需要付费观看                           |
+| status         | num  | 分集权限属性     | 1：可观看<br />2：不可观看                                   |
 | title          | str  | 课程分集标题     |                                                              |
 | watched        | bool | 是否观看该集     | **需要登录（SESSDATA）且referer为`https://www.bilibili.com`**<br />false：未观看<br />true：已观看 |
 | watchedHistory | num  | 该集观看历史     | **需要登录（SESSDATA）且referer为`https://www.bilibili.com`** |

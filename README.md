@@ -116,7 +116,7 @@
   - 已购课程
   - 分区推荐列表
   - 操作
-  - 播放&下载地址（视频流）
+  - [播放&下载地址（视频流）](cheese/videostream_url.md)√
 - [直播](live)
   - [直播间基本信息](live/info.md)x
   - [直播分区](live/live_area.md)×
