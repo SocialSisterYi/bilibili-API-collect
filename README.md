@@ -65,7 +65,7 @@
   - [弹幕操作](danmaku/action.md)×
 - [专栏](article)
   - [基本信息](article/info.md)×
-  - 点赞&投币&收藏
+  - [点赞&投币&收藏](article/like_coin_fav.md)×
   - 文集基本信息
 - [音频](music)
   - [歌曲基本信息](music/info.md)√
@@ -131,7 +131,7 @@
 - 哔哩哔哩漫画
 - 哔哩哔哩游戏
 - [其他](other)
-  - [ip位置查询](other/ip.md)√
+  - [基于ip的地理位置查询](other/ip.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
 
