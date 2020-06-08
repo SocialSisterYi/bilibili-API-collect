@@ -12,12 +12,12 @@
 
 注意：非日常类型像素宽高必须大于420
 
-**参数（multipart/form-data）：**
+**正文参数（multipart/form-data）：**
 
 | 参数名   | 类型 | 内容               | 必要性 | 备注                                                         |
 | -------- | ---- | ------------------ | ------ | ------------------------------------------------------------ |
-| file_up  | data | 需要上传的图片文件 | 必要   | 格式仅支持jpg  png  gif                                      |
-| category | data | 图片类型           | 必要   | daily：日常（动态）<br />draw：绘画（画友）<br />cos：摄影（COSPLAY） |
+| file_up  | file | 需要上传的图片文件 | 必要   | 格式仅支持jpg  png  gif                                      |
+| category | str  | 图片类型           | 必要   | daily：日常（动态）<br />draw：绘画（画友）<br />cos：摄影（COSPLAY） |
 
 **json回复：**
 

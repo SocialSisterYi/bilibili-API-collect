@@ -12,13 +12,13 @@
 
 最多添加100个视频
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注               |
 | ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | data | 视频avID            | 非必要 | avID与bvID任选一个 |
-| bvid   | data | 视频bvID            | 非必要 | avID与bvID任选一个 |
-| csrf   | data | cookies中的bili_jct | 必要   |                    |
+| aid    | num  | 视频avID            | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID            | 非必要 | avID与bvID任选一个 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                    |
 
 **json回复：**
 
@@ -64,13 +64,13 @@ curl -b "SESSDATA=xxx" -d "aid=41687433&csrf=xxx" "http://api.bilibili.com/x/v2/
 
 超过容量后会截取容量之内的添加
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                  | 必要性 | 备注 |
 | ------ | ---- | --------------------- | ------ | ---- |
-| cid    | data | 目标频道ID            | 必要   |      |
-| mid    | data | 目标频道所属的用户UID | 必要   |      |
-| csrf   | data | cookies中的bili_jct   | 必要   |      |
+| cid    | num  | 目标频道ID            | 必要   |      |
+| mid    | num  | 目标频道所属的用户UID | 必要   |      |
+| csrf   | str  | cookies中的bili_jct   | 必要   |      |
 
 **json回复：**
 
@@ -382,13 +382,13 @@ http://api.bilibili.com/x/v2/history/toview
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| viewed | data | 是否删除所有已观看的视频 | 非必要 | true：删除已观看视频<br />false：不删除已观看视频<br />默认为false |
-| aid    | data | 删除的目标记录的avID     | 非必要 |                                                              |
-| csrf   | data | cookies中的bili_jct      | 必要   |                                                              |
+| viewed | bool | 是否删除所有已观看的视频 | 非必要 | true：删除已观看视频<br />false：不删除已观看视频<br />默认为false |
+| aid    | num  | 删除的目标记录的avID     | 非必要 |                                                              |
+| csrf   | str  | cookies中的bili_jct      | 必要   |                                                              |
 
 **json回复：**
 
@@ -436,11 +436,11 @@ curl -b "SESSDATA=xxx" -d "viewed=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| csrf   | num  | cookies中的bili_jct | 必要   |      |
 
 **json回复：**
 

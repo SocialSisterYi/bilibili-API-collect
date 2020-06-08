@@ -10,12 +10,12 @@
 
 需要登录(SESSDATA)
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注    |
 | ------ | ---- | -------- | ------ | ------- |
-| pn     | url  | 页码     | 非必要 | 默认为1 |
-| ps     | url  | 每页项数 | 非必要 |         |
+| pn     | num  | 页码     | 非必要 | 默认为1 |
+| ps     | num  | 每页项数 | 非必要 |         |
 
 **json回复：**
 
@@ -375,12 +375,12 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                     |
 | ------ | ---- | ------------------- | ------ | ------------------------ |
-| kid    | data | 删除的目标记录      | 必要   | 格式：archive_{视频avID} |
-| csrf   | data | cookies中的bili_jct | 必要   |                          |
+| kid    | str  | 删除的目标记录      | 必要   | 格式：archive_{视频avID} |
+| csrf   | str  | cookies中的bili_jct | 必要   |                          |
 
 **json回复：**
 
@@ -416,11 +416,11 @@ curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.
 
 需要登录(SESSDATA)
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| csrf   | str  | cookies中的bili_jct | 必要   |      |
 
 **json回复：**
 
@@ -458,12 +458,12 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear
 
 该功能不会影响历史记录的保存于删除
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                                         |
 | ------ | ---- | ------------------- | ------ | -------------------------------------------- |
-| switch | data | 停用开关            | 非必要 | true：停用<br />false：正常<br />默认为false |
-| csrf   | data | cookies中的bili_jct | 必要   |                                              |
+| switch | bool | 停用开关            | 非必要 | true：停用<br />false：正常<br />默认为false |
+| csrf   | str  | cookies中的bili_jct | 必要   |                                              |
 
 **json回复：**
 

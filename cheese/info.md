@@ -18,12 +18,12 @@
 
 *方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名    | 类型 | 内容     | 必要性 | 备注                                               |
 | --------- | ---- | -------- | ------ | -------------------------------------------------- |
-| season_id | url  | 课程ssID | 非必要 | season_id与ep_id任选其一<br />**与番剧ssID不互通** |
-| ep_id     | url  | 课程epID | 非必要 | season_id与ep_id任选其一<br />**与番剧epID不互通** |
+| season_id | num  | 课程ssID | 非必要 | season_id与ep_id任选其一<br />**与番剧ssID不互通** |
+| ep_id     | num  | 课程epID | 非必要 | season_id与ep_id任选其一<br />**与番剧epID不互通** |
 
 **json回复：**
 
@@ -444,13 +444,13 @@ http://api.bilibili.com/pugv/view/web/season?season_id=61
 
 *方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名    | 类型 | 内容     | 必要性 | 备注                 |
 | --------- | ---- | -------- | ------ | -------------------- |
-| season_id | url  | 课程ssID | 必要   | **与番剧ssID不互通** |
-| ps        | url  | 每页项数 | 非必要 | 默认为50             |
-| pn        | url  | 页码     | 非必要 | 默认为1              |
+| season_id | num  | 课程ssID | 必要   | **与番剧ssID不互通** |
+| ps        | num  | 每页项数 | 非必要 | 默认为50             |
+| pn        | num  | 页码     | 非必要 | 默认为1              |
 
 **json回复：**
 

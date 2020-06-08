@@ -11,14 +11,14 @@
 
 *方式:GET* 
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容               | 必要性 | 备注                                |
 | ------ | ---- | ------------------ | ------ | ----------------------------------- |
-| aid    | url  | 视频avID           | 非必要 | avID与bvID任选一个                  |
-| bvid   | url  | 视频bvID           | 非必要 | avID与bvID任选一个                  |
-| cid    | url  | 分P CID            | 非必要 | 默认为1P                            |
-| index  | url  | json数组截取时间表 | 非必要 | 1：需要<br />0：不需要<br />默认为0 |
+| aid    | num  | 视频avID           | 非必要 | avID与bvID任选一个                  |
+| bvid   | str  | 视频bvID           | 非必要 | avID与bvID任选一个                  |
+| cid    | num  | 分P CID            | 非必要 | 默认为1P                            |
+| index  | num  | json数组截取时间表 | 非必要 | 1：需要<br />0：不需要<br />默认为0 |
 
 **json回复：**
 
@@ -93,11 +93,11 @@ http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
 
 内容与「获取视频快照1」加参数「index」=1相同，但url带有转义，仅限第1P
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| aid    | url  | 视频avID | 必要   |      |
+| aid    | num  | 视频avID | 必要   |      |
 
 **json回复：**
 

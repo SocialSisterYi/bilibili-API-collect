@@ -10,13 +10,13 @@
 
 还需验证cookie中`bili_jct`的值正确并与`csrf`相同
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名  | 类型 | 内容                | 必要性 | 备注                 |
 | ------- | ---- | ------------------- | ------ | -------------------- |
-| room_id | data | 直播间ID            | 必要   | 必须为自己的直播间ID |
-| title   | data | 直播间标题          | 必要   | 最大20字符           |
-| csrf    | data | cookies中的bili_jct | 必要   |                      |
+| room_id | num  | 直播间ID            | 必要   | 必须为自己的直播间ID |
+| title   | str  | 直播间标题          | 必要   | 最大20字符           |
+| csrf    | str  | cookies中的bili_jct | 必要   |                      |
 
 **json回复：**
 
@@ -56,14 +56,14 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%9
 
 开播时必须有分区选择，开播后返回推流地址
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名   | 类型 | 内容                   | 必要性 | 备注                         |
 | -------- | ---- | ---------------------- | ------ | ---------------------------- |
-| room_id  | data | 直播间ID               | 必要   | 必须为自己的直播间ID         |
-| area_v2  | data | 直播分区ID（子分区ID） | 必要   | 详见[直播分区](live_area.md) |
-| platform | data | 必须为`pc`             | 必要   |                              |
-| csrf     | data | cookies中的bili_jct    | 必要   |                              |
+| room_id  | num  | 直播间ID               | 必要   | 必须为自己的直播间ID         |
+| area_v2  | num  | 直播分区ID（子分区ID） | 必要   | 详见[直播分区](live_area.md) |
+| platform | str  | 必须为`pc`             | 必要   |                              |
+| csrf     | str  | cookies中的bili_jct    | 必要   |                              |
 
 **json回复：**
 
@@ -183,12 +183,12 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&area_v2=27&platform=pc&
 
 还需验证cookie中`bili_jct`的值正确并与`csrf`相同
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名  | 类型 | 内容                | 必要性 | 备注                 |
 | ------- | ---- | ------------------- | ------ | -------------------- |
-| room_id | data | 直播间ID            | 必要   | 必须为自己的直播间ID |
-| csrf    | data | cookies中的bili_jct | 必要   |                      |
+| room_id | num  | 直播间ID            | 必要   | 必须为自己的直播间ID |
+| csrf    | str  | cookies中的bili_jct | 必要   |                      |
 
 **json回复：**
 

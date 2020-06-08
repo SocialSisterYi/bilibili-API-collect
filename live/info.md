@@ -1,16 +1,16 @@
 # 直播间基本信息
 
-## 用户直播间状态
+## 获取用户对应的直播间状态
 
 > http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld
 
 *方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 

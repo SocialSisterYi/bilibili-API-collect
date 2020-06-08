@@ -8,11 +8,11 @@
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | url  | 音频auID | 必要   |      |
+| sid    | num  | 音频auID | 必要   |      |
 
 **json回复：**
 
@@ -46,11 +46,11 @@ http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll?sid=135
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | url  | 音频auID | 必要   |      |
+| sid    | num  | 音频auID | 必要   |      |
 
 **json回复：**
 

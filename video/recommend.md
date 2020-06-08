@@ -8,12 +8,12 @@
 
 最多获取40条推荐视频
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注               |
 | ------ | ---- | -------- | ------ | ------------------ |
-| aid    | url  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | url  | 视频bvID | 非必要 | avID与bvID任选一个 |
+| aid    | num  | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 

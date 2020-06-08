@@ -6,12 +6,12 @@
 
 *方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注               |
 | ------ | ---- | -------- | ------ | ------------------ |
-| aid    | url  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | url  | 视频bvID | 非必要 | avID与bvID任选一个 |
+| aid    | num  | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -195,13 +195,13 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 
 重复访问为取消
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| aid    | data | 视频avID            | 必要   |      |
-| tag_id | data | TAGID               | 必要   |      |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| aid    | num  | 视频avID            | 必要   |      |
+| tag_id | num  | TAGID               | 必要   |      |
+| csrf   | str  | cookies中的bili_jct | 必要   |      |
 
 **json回复：**
 
@@ -239,13 +239,13 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bi
 
 重复访问为取消
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| aid    | data | 视频avID            | 必要   |      |
-| tag_id | data | TAGID               | 必要   |      |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| aid    | num  | 视频avID            | 必要   |      |
+| tag_id | num  | TAGID               | 必要   |      |
+| csrf   | str  | cookies中的bili_jct | 必要   |      |
 
 **json回复：**
 

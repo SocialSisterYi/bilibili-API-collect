@@ -70,12 +70,12 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 
 `sid` `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名   | 类型 | 内容         | 必要性 | 备注                          |
 | -------- | ---- | ------------ | ------ | ----------------------------- |
-| oauthKey | data | 扫码登录秘钥 | 必要   |                               |
-| gourl    | data | 跳转url      | 非必要 | 默认为http://www.bilibili.com |
+| oauthKey | str  | 扫码登录秘钥 | 必要   |                               |
+| gourl    | str  | 跳转url      | 非必要 | 默认为http://www.bilibili.com |
 
 **json回复：**
 

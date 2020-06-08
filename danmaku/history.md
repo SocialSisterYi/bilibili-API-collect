@@ -8,13 +8,13 @@
 
 *方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注         |
 | ------ | ---- | -------- | ------ | ------------ |
-| type   | url  | 1        | 必要   | 作用尚不明确 |
-| oid    | url  | 视频CID  | 必要   |              |
-| month  | url  | 查询月份 | 必要   | mm-dd        |
+| type   | num  | 1        | 必要   | 作用尚不明确 |
+| oid    | num  | 视频CID  | 必要   |              |
+| month  | str  | 查询月份 | 必要   | mm-dd        |
 
 **json回复：**
 
@@ -85,13 +85,13 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
 
 **使用deflate压缩，注意解码**
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注         |
 | ------ | ---- | -------- | ------ | ------------ |
-| type   | url  | 1        | 必要   | 作用尚不明确 |
-| oid    | url  | 视频CID  | 必要   |              |
-| date   | url  | 弹幕日期 | 必要   | yyyy-mm-dd   |
+| type   | num  | 1        | 必要   | 作用尚不明确 |
+| oid    | num  | 视频CID  | 必要   |              |
+| date   | str  | 弹幕日期 | 必要   | yyyy-mm-dd   |
 
 **示例：**
 

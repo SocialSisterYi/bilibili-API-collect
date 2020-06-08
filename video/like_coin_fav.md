@@ -12,14 +12,14 @@
 
 *方式：POST*
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                   |
 | ------ | ---- | ------------------- | ------ | ---------------------- |
-| aid    | data | 视频avID            | 非必要 | avID与bvID任选一个     |
-| bvid   | data | 视频bvID            | 非必要 | avID与bvID任选一个     |
-| like   | data | 操作方式            | 必要   | 1：点赞<br />2：取消赞 |
-| csrf   | data | cookies中的bili_jct | 必要   |                        |
+| aid    | num  | 视频avID            | 非必要 | avID与bvID任选一个     |
+| bvid   | str  | 视频bvID            | 非必要 | avID与bvID任选一个     |
+| like   | num  | 操作方式            | 必要   | 1：点赞<br />2：取消赞 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                        |
 
 **json回复：**
 
@@ -57,15 +57,15 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 
 *方式：POST*
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名      | 类型 | 内容                | 必要性 | 备注                                    |
 | ----------- | ---- | ------------------- | ------ | --------------------------------------- |
-| aid         | data | 视频avID            | 非必要 | avID与bvID任选一个                      |
-| bvid        | data | 视频bvID            | 非必要 | avID与bvID任选一个                      |
-| select_like | data | 附加点赞            | 非必要 | 0：不点赞<br />1：同时点赞<br />默认为0 |
-| multiply    | data | 投币数量            | 必要   | 上限为2                                 |
-| csrf        | data | cookies中的bili_jct | 必要   |                                         |
+| aid         | num  | 视频avID            | 非必要 | avID与bvID任选一个                      |
+| bvid        | str  | 视频bvID            | 非必要 | avID与bvID任选一个                      |
+| select_like | num  | 附加点赞            | 非必要 | 0：不点赞<br />1：同时点赞<br />默认为0 |
+| multiply    | num  | 投币数量            | 必要   | 上限为2                                 |
+| csrf        | str  | cookies中的bili_jct | 必要   |                                         |
 
 **json回复：**
 
@@ -115,15 +115,15 @@ curl -b "SESSDATA=xxx" -d "aid=90671873&select_like=1&multiply=2&csrf=xxx" "http
 
 需要验证`referer`为 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名        | 类型 | 内容                | 必要性 | 备注                    |
 | ------------- | ---- | ------------------- | ------ | ----------------------- |
-| rid           | data | 视频avID            | 必要   |                         |
-| type          | data | 必须为2             | 必要   |                         |
-| add_media_ids | data | 需要加入的收藏夹ID  | 非必要 | 同时添加多个，用`,`分隔 |
-| del_media_ids | data | 需要取消的收藏夹ID  | 非必要 | 同时取消多个，用`,`分隔 |
-| csrf          | data | cookies中的bili_jct | 必要   |                         |
+| rid           | num  | 视频avID            | 必要   |                         |
+| type          | num  | 必须为2             | 必要   |                         |
+| add_media_ids | nums | 需要加入的收藏夹ID  | 非必要 | 同时添加多个，用`,`分隔 |
+| del_media_ids | nums | 需要取消的收藏夹ID  | 非必要 | 同时取消多个，用`,`分隔 |
+| csrf          | str  | cookies中的bili_jct | 必要   |                         |
 
 **json回复：**
 
@@ -169,13 +169,13 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 
 同时点赞投币收藏视频，收藏于默认收藏夹中
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注               |
 | ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | data | 视频avID            | 非必要 | avID与bvID任选一个 |
-| bvid   | data | 视频bvID            | 非必要 | avID与bvID任选一个 |
-| csrf   | data | cookies中的bili_jct | 必要   |                    |
+| aid    | num  | 视频avID            | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID            | 非必要 | avID与bvID任选一个 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                    |
 
 **json回复：**
 
@@ -231,11 +231,11 @@ curl -b "SESSDATA=xxx" -d "aid=91003840&csrf=xxx" "http://api.bilibili.com/x/web
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
-| 参数名 | 类型 | 内容               | 必要性 | 备注 |
-| ------ | ---- | ------------------ | ------ | ---- |
-| aid    | url  | 视频avID或视频bvID | 必要   |      |
+| 参数名 | 类型     | 内容               | 必要性 | 备注 |
+| ------ | -------- | ------------------ | ------ | ---- |
+| aid    | num或str | 视频avID或视频bvID | 必要   |      |
 
 **json回复：**
 
@@ -285,12 +285,12 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注               |
 | ------ | ---- | -------- | ------ | ------------------ |
-| aid    | url  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | url  | 视频bvID | 非必要 | avID与bvID任选一个 |
+| aid    | num  | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -330,12 +330,12 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注               |
 | ------ | ---- | -------- | ------ | ------------------ |
-| aid    | url  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | url  | 视频bvID | 非必要 | avID与bvID任选一个 |
+| aid    | num  | 视频avID | 非必要 | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID | 非必要 | avID与bvID任选一个 |
 
 **json回复：**
 

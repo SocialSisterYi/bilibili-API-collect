@@ -22,16 +22,16 @@
 
 秘钥有效时间为10分钟
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名              | 类型 | 内容                | 必要性 | 备注                                                         |
 | ------------------- | ---- | ------------------- | ------ | ------------------------------------------------------------ |
-| up_mid              | data | 充电对象用户UID     | 必要   |                                                              |
-| elec_num            | data | 充电电池数量        | 必要   | 必须在20-99990之间<br />1-19区间视为充值B币                  |
-| is_bp_remains_prior | data | 是否优先扣除B币     | 必要   | true：是<br />false：否<br />在B币不足时剩余的部分利用支付平台支付 |
-| otype               | data | 充电来源            | 必要   | up：空间充电<br />archive：视频充电                          |
-| oid                 | data | 充电来源代码        | 必要   | 空间充电：充电对象用户UID<br />视频充电：视频avID            |
-| csrf                | data | cookies中的bili_jct | 必要   |                                                              |
+| up_mid              | num  | 充电对象用户UID     | 必要   |                                                              |
+| elec_num            | num  | 充电电池数量        | 必要   | 必须在20-99990之间<br />1-19区间视为充值B币                  |
+| is_bp_remains_prior | bool | 是否优先扣除B币     | 必要   | true：是<br />false：否<br />在B币不足时剩余的部分利用支付平台支付 |
+| otype               | str  | 充电来源            | 必要   | up：空间充电<br />archive：视频充电                          |
+| oid                 | num  | 充电来源代码        | 必要   | 空间充电：充电对象用户UID<br />视频充电：视频avID            |
+| csrf                | str  | cookies中的bili_jct | 必要   |                                                              |
 
 **json回复：**
 
@@ -79,11 +79,11 @@ curl -b "SESSDATA=xxx" -d "up_mid=23215368&elec_num=10&is_bp_remains_prior=false
 
 *方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名   | 类型 | 内容     | 必要性 | 备注 |
 | -------- | ---- | -------- | ------ | ---- |
-| qr_token | url  | 扫码秘钥 | 必要   |      |
+| qr_token | str  | 扫码秘钥 | 必要   |      |
 
 **json回复：**
 
@@ -101,7 +101,7 @@ curl -b "SESSDATA=xxx" -d "up_mid=23215368&elec_num=10&is_bp_remains_prior=false
 | 字段     | 类型 | 内容        | 备注                                                         |
 | -------- | ---- | ----------- | ------------------------------------------------------------ |
 | qr_token | str  | 扫码秘钥    |                                                              |
-| order_no | str  | 交易编号    | 未成功则无此项<br />用于添加充电备注                         |
+| order_no | str  | 留言token   | 未成功则无此项<br />用于添加充电留言                         |
 | mid      | num  | 当前用户UID |                                                              |
 | status   | num  | 状态值      | 若秘钥错误则无此项<br />1：已支付<br />2：未扫描<br />3：未确认 |
 
@@ -141,7 +141,7 @@ http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status?qr_token=c7cbdc47fc
 }
 ```
 
-成功支付后，`data`.`ststus`的值为`1`，且`data`.`order_no`存在交易编号
+成功支付后，`data`.`ststus`的值为`1`，且`data`.`order_no`存在留言token
 
 http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status?qr_token=bd649c836c524550bfe22a369334fc05
 

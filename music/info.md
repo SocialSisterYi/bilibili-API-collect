@@ -6,11 +6,11 @@
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | url  | 音频auID | 必要   |      |
+| sid    | num  | 音频auID | 必要   |      |
 
 **json回复：**
 
@@ -140,11 +140,11 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | url  | 音频auID | 必要   |      |
+| sid    | num  | 音频auID | 必要   |      |
 
 **json回复：**
 
@@ -232,11 +232,11 @@ http://www.bilibili.com/audio/music-service-c/web/tag/song?sid=15664
 
 *方式:GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | url  | 音频auID | 必要   |      |
+| sid    | num  | 音频auID | 必要   |      |
 
 **json回复：**
 
@@ -364,11 +364,11 @@ http://www.bilibili.com/audio/music-service-c/web/member/song?sid=815861
 
 同「查询歌曲基本信息」中的lrc歌词	
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | url  | 音频auID | 必要   |      |
+| sid    | num  | 音频auID | 必要   |      |
 
 **json回复：**
 

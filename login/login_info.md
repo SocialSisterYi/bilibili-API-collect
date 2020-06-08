@@ -158,7 +158,7 @@ http://api.bilibili.com/x/web-interface/nav
 
 ## 登录用户信息2（仅部分  带有转义）
 
-> http://account.bilibili.com/home/userInfo (带有转义)
+> http://account.bilibili.com/home/userInfo
 
 *方式:GET*
 
