@@ -209,7 +209,7 @@ data 对象：
 | mid             | num                                      | 用户UID      |                                         |
 | attribute       | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num                                      | 关注对方时间 | 时间戳<br />互关后刷新                  |
-| tag             | null默认分组<br />arrary存在至少一个分组 | 分组ID       | 作用尚不明确                            |
+| tag             | null默认分组<br />array存在至少一个分组 | 分组ID       | 作用尚不明确                            |
 | special         | num                                      | 特别关注标志 | 0：否<br />1：是                        |
 | uname           | str                                      | 用户昵称     |                                         |
 | face            | str                                      | 用户头像url  |                                         |
@@ -411,7 +411,7 @@ curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" "http://api.bilibil
 | mid       | num                                      | 目标用户UID  |                                         |
 | attribute | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime     | num                                      | 关注对方时间 | 时间戳<br />未关注为0                   |
-| tag       | null默认分组<br />arrary存在至少一个分组 | 分组ID       |                                         |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组ID       |                                         |
 | special   | num                                      | 特别关注标志 | 0：否<br />1：是                        |
 
 `tag`数组：
@@ -484,7 +484,7 @@ http://api.bilibili.com/x/relation?fid=258150656
 | mid       | num                                      | 对方用户UID  |                |
 | attribute | num                                      |              |                |
 | mtime     | num                                      | 关注对方时间 | 互关后刷新时间 |
-| tag       | null默认分组<br />arrary存在至少一个分组 |              |                |
+| tag       | null默认分组<br />array存在至少一个分组 |              |                |
 | special   | num                                      |              |                |
 
 `data`中的`be_relation`对象：
@@ -494,7 +494,7 @@ http://api.bilibili.com/x/relation?fid=258150656
 | mid       | num                                      |              |                |
 | attribute | num                                      |              |                |
 | mtime     | num                                      | 成为粉丝时间 | 互关后刷新时间 |
-| tag       | null默认分组<br />arrary存在至少一个分组 |              |                |
+| tag       | null默认分组<br />array存在至少一个分组 |              |                |
 | special   | num                                      |              |                |
 
 `be_relation`与`relation`中的`tag`数组：
@@ -558,7 +558,7 @@ http://api.bilibili.com/x/space/acc/relation?mid=15858903
 | code    | num    | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str    | 错误信息 | 默认为0                       |
 | ttl     | num    | 1        | 作用尚不明确                  |
-| data    | arrary | 分组列表 |                               |
+| data    | array | 分组列表 |                               |
 
 `data`数组：
 
@@ -633,7 +633,7 @@ http://api.bilibili.com/x/relation/tags
 | code    | num    | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />22104：该分组不存在<br />-101：账号未登录 |
 | message | str    | 错误信息 | 默认为0                                                      |
 | ttl     | num    | 1        | 作用尚不明确                                                 |
-| data    | arrary | 成员列表 |                                                              |
+| data    | array | 成员列表 |                                                              |
 
 `data`数组：
 

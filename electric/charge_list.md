@@ -29,7 +29,7 @@
 | display_num | num    | 0                | 作用尚不明确 |
 | count       | num    | 本月充电人数     |              |
 | total_count | num    | 总计充电人数     |              |
-| list        | arrary | 本月充电用户列表 |              |
+| list        | array | 本月充电用户列表 |              |
 | user        | null   |                  | 作用尚不明确 |
 
 `data`中的`list`数组：
@@ -166,8 +166,8 @@
 | total_count | num    | 总计充电人数     |              |
 | special_day | num    | 0                | 作用尚不明确 |
 | display_num | num    | 0                | 作用尚不明确 |
-| av_list     | arrary | 目标视频充电列表 |              |
-| list        | arrary | 本月充电用户列表 |              |
+| av_list     | array | 目标视频充电列表 |              |
+| list        | array | 本月充电用户列表 |              |
 
 `data`中的`show_info`对象：
 

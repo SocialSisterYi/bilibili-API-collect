@@ -83,7 +83,7 @@ http://comment.bilibili.com/144541892.xml
   - 标签 chatid：视频CID
   - 标签 mission：0
   - 标签 maxlimit：实时弹幕池最大容量
-  - 标签 state：0
+  - 标签 state：弹幕状态（0：正常 1：弹幕已关闭）
   - 标签 real_name：0
   - 标签 source：e-r
 

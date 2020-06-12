@@ -24,7 +24,7 @@
 | code    | num    | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                      |
 | ttl     | num    | 1        | 作用尚不明确                 |
-| data    | arrary | 推荐列表 |                              |
+| data    | array | 推荐列表 |                              |
 
 `data`数组：
 

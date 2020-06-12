@@ -27,7 +27,7 @@
 | code    | num    | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误 |
 | msg     | str    | 错误信息 | 默认为ok                                               |
 | message | str    | 错误信息 | 默认为ok                                               |
-| data    | arrary | 空       |                                                        |
+| data    | array | 空       |                                                        |
 
 **示例：**
 

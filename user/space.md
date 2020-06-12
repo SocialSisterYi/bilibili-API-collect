@@ -204,7 +204,7 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 | code    | num    | 返回值     | 0：成功<br />-400：请求错误 |
 | message | str    | 错误信息   | 默认为0                     |
 | ttl     | num    | 1          | 作用尚不明确                |
-| data    | arrary | 代表作列表 |                             |
+| data    | array | 代表作列表 |                             |
 
 `data`数组：
 
@@ -443,7 +443,7 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 | 字段  | 类型   | 内容             | 备注 |
 | ----- | ------ | ---------------- | ---- |
 | tlist | obj    | 投稿视频分区索引 |      |
-| vlist | arrary | 投稿视频列表     |      |
+| vlist | array | 投稿视频列表     |      |
 
 `list`中的`tlist`对象：
 
@@ -623,7 +623,7 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 | ------ | ------ | ------------ | ------------ |
 | count  | num    | 总计追番数   |              |
 | pages  | num    | 0            | 作用尚不明确 |
-| result | arrary | 追番预览列表 |              |
+| result | array | 追番预览列表 |              |
 
 `data`中的`result`数组：
 
@@ -729,7 +729,7 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 
 | 字段  | 类型   | 内容       | 备注 |
 | ----- | ------ | ---------- | ---- |
-| list  | arrary | 追番列表   |      |
+| list  | array | 追番列表   |      |
 | pn    | num    | 当前页码   |      |
 | ps    | num    | 每页项数   |      |
 | total | num    | 总计追番数 |      |
@@ -976,7 +976,7 @@ http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
 
 | 字段  | 类型   | 内容        | 备注 |
 | ----- | ------ | ----------- | ---- |
-| tags  | arrary | 关注TAG列表 |      |
+| tags  | array | 关注TAG列表 |      |
 | count | num    | 关注TAG的数 |      |
 
 `data`中的`tags`数组：
@@ -1059,7 +1059,7 @@ http://space.bilibili.com/ajax/tags/getSubList?mid=2
 | code    | num    | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                     |
 | ttl     | num    | 1        | 作用尚不明确                |
-| data    | arrary | 相簿列表 |                             |
+| data    | array | 相簿列表 |                             |
 
 `data`数组：
 
@@ -1078,7 +1078,7 @@ http://space.bilibili.com/ajax/tags/getSubList?mid=2
 | description | str    | 简介        |                |
 | doc_id      | num    | 相册ID      | 非动态ID！！！ |
 | like        | num    | 点赞数      |                |
-| pictures    | arrary | 图片内容    |                |
+| pictures    | array | 图片内容    |                |
 | poster_uid  | num    | 上传用户UID |                |
 | title       | str    | 标题        | 动态内容无     |
 | view        | num    | 浏览数      |                |
@@ -1187,7 +1187,7 @@ http://api.bilibili.com/x/space/album/index?mid=53456&ps=2
 
 | 字段  | 类型   | 内容     | 备注 |
 | ----- | ------ | -------- | ---- |
-| items | arrary | 相簿列表 |      |
+| items | array | 相簿列表 |      |
 
 `items`数组：
 
@@ -1206,7 +1206,7 @@ http://api.bilibili.com/x/space/album/index?mid=53456&ps=2
 | description | str    | 简介        |                |
 | doc_id      | num    | 相册ID      | 非动态ID！！！ |
 | like        | num    | 点赞数      |                |
-| pictures    | arrary | 图片内容    |                |
+| pictures    | array | 图片内容    |                |
 | poster_uid  | num    | 上传用户UID |                |
 | title       | str    | 标题        | 动态内容无     |
 | view        | num    | 浏览数      |                |
@@ -1322,7 +1322,7 @@ http://api.vc.bilibili.com/link_draw/v1/doc/doc_list?uid=2&page_num=1&page_size=
 | 字段  | 类型   | 内容       | 备注 |
 | ----- | ------ | ---------- | ---- |
 | count | num    | 总计频道数 |      |
-| list  | arrary | 频道列表   |      |
+| list  | array | 频道列表   |      |
 
 `data`中的`list`数组：
 
@@ -1449,7 +1449,7 @@ http://api.bilibili.com/x/space/channel/list?mid=53456
 
 | 字段     | 类型   | 内容           | 备注     |
 | -------- | ------ | -------------- | -------- |
-| archives | arrary | 包含的视频列表 |          |
+| archives | array | 包含的视频列表 |          |
 | cid      | num    | 频道ID         |          |
 | count    | num    | 频道内含视频数 |          |
 | cover    | str    | 封面图片url    |          |
@@ -1687,7 +1687,7 @@ http://api.bilibili.com/x/space/notice?mid=53456
 | code    | num    | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                     |
 | ttl     | num    | 1        | 作用尚不明确                |
-| data    | arrary | 信息本体 |                             |
+| data    | array | 信息本体 |                             |
 
 `data`数组：
 
@@ -1700,7 +1700,7 @@ http://api.bilibili.com/x/space/notice?mid=53456
 | 字段 | 类型   | 内容        | 备注 |
 | ---- | ------ | ----------- | ---- |
 | mid  | num    | 目标用户UID |      |
-| tags | arrary | TAG名称     |      |
+| tags | array | TAG名称     |      |
 
 `data`数组中的对象中的`tags`数组：
 
@@ -1728,6 +1728,90 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 	}]
 }
 ```
+
+
+
+### 查询用户最近玩过的游戏
+
+> http://api.bilibili.com/x/space/lastplaygame 
+
+*方式：GET*
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | num  | 目标用户UID | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型                            | 内容     | 备注                                                       |
+| ------- | ------------------------------- | -------- | ---------------------------------------------------------- |
+| code    | num                             | 返回值   | 0：成功<br />-400：请求错误<br />53013：用户隐私设置未公开 |
+| message | str                             | 错误信息 | 默认为0                                                    |
+| ttl     | num                             | 1        | 作用尚不明确                                               |
+| data    | 隐藏时：null<br />公开时：array | 信息本体 |                                                            |
+
+`data`数组：
+
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 游戏1     |                  |
+| n    | obj  | 游戏(n+1) | 项数为总计游戏数 |
+| ……   | obj  | ……        | ……               |
+
+`data`数组中的对象：
+
+| 字段    | 类型 | 内容            | 备注 |
+| ------- | ---- | --------------- | ---- |
+| website | str  | 游戏主页链接url |      |
+| image   | str  | 游戏图片url     |      |
+| name    | str  | 游戏名          |      |
+
+**示例：**
+
+查询`UID=2`的最近玩过的游戏
+
+ http://api.bilibili.com/x/space/lastplaygame?mid=2 
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": [
+        {
+            "website": "https://game.bilibili.com/fgo/event_meihosou",
+            "image": "http://i0.hdslb.com/bfs/game/f7d4ee0877089e4079b8f0b4f5c95dd4ceba512a.png",
+            "name": "命运-冠位指定（Fate/GO）"
+        },
+        {
+            "website": "https://game.bilibili.com/pcr/xxtix",
+            "image": "http://i0.hdslb.com/bfs/game/7922ecea5cc76fe3c8c177e1d4a6c8cf1c36a700.jpg",
+            "name": "公主连结Re:Dive"
+        },
+        {
+            "website": "https://game.bilibili.com/dwbgx/",
+            "image": "http://i0.hdslb.com/bfs/game/6d5b2df70dfa987408d8d09110cdc327949885e3.png",
+            "name": "大王不高兴"
+        },
+        {
+            "website": "https://game.bilibili.com/bangdream/1stanniversary-yxzx/",
+            "image": "http://i0.hdslb.com/bfs/game/4a7d0b7272dffe5a489ee935b6bd2d4f7d5f1257.png",
+            "name": "BanG Dream！"
+        },
+        {
+            "website": "http://www.biligame.com/detail/?id=101772",
+            "image": "http://i0.hdslb.com/bfs/game/8e8b04e7bd2170c2ba2c9f563a62c72bac2eba2c.jpg",
+            "name": "明日方舟"
+        }
+    ]
+}
+```
+
+
 
 ### 查询用户创建的视频收藏夹列表
 
@@ -1759,7 +1843,7 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 | 字段  | 类型                                     | 内容           | 备注 |
 | ----- | ---------------------------------------- | -------------- | ---- |
 | count | num                                      | 创建的收藏夹数 |      |
-| list  | 无收藏夹时：null<br />有收藏夹时：arrary | 收藏夹列表     |      |
+| list  | 无收藏夹时：null<br />有收藏夹时：array | 收藏夹列表     |      |
 
 `data`中的`list`数组：
 
@@ -1877,7 +1961,7 @@ http://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=7792521
 | 字段  | 类型                                     | 内容           | 备注 |
 | ----- | ---------------------------------------- | -------------- | ---- |
 | count | num                                      | 创建的收藏夹数 |      |
-| list  | 无收藏夹时：null<br />有收藏夹时：arrary | 收藏夹列表     |      |
+| list  | 无收藏夹时：null<br />有收藏夹时：array | 收藏夹列表     |      |
 
 `data`中的`list`数组：
 

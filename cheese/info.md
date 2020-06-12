@@ -44,7 +44,7 @@
 | cover               | str    | 课程封面url                   |                                                              |
 | episode_page        | obj    | 课程分集信息                  |                                                              |
 | episode_sort        | num    | 1                             | **作用尚不明确**                                             |
-| episodes            | arrary | 课程分集列表                  |                                                              |
+| episodes            | array | 课程分集列表                  |                                                              |
 | faq                 | obj    | 常见问题信息1                 | 合并格式                                                     |
 | faq1                | obj    | 常见问题信息2                 | 分离格式                                                     |
 | payment             | obj    | 付费信息                      |                                                              |
@@ -69,7 +69,7 @@
 | 字段    | 类型   | 内容     | 备注 |
 | ------- | ------ | -------- | ---- |
 | content | str    | 空       |      |
-| img     | arrary | 简介图片 |      |
+| img     | array | 简介图片 |      |
 | title   | str    | 课程概述 |      |
 | type    | num    | 2        |      |
 
@@ -146,7 +146,7 @@
 
 | 字段  | 类型   | 内容         | 备注 |
 | ----- | ------ | ------------ | ---- |
-| items | arrary | 常见问题列表 |      |
+| items | array | 常见问题列表 |      |
 | title | str    | 常见问题     |      |
 
 `faq1`中的`items`数组：
@@ -466,7 +466,7 @@ http://api.bilibili.com/pugv/view/web/season?season_id=61
 
 | 字段  | 类型   | 内容         | 备注 |
 | ----- | ------ | ------------ | ---- |
-| items | arrary | 课程分集列表 |      |
+| items | array | 课程分集列表 |      |
 | page  | obj    | 列表分页信息 |      |
 
 `data`中的`items`数组：

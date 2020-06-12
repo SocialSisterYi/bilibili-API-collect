@@ -33,7 +33,7 @@
 | pageCount | num    | 总计页数     |      |
 | totalSize | num    | 总计收藏夹数 |      |
 | pageSize  | num    | 当前页面项数 |      |
-| data      | arrary | 歌单列表     |      |
+| data      | array | 歌单列表     |      |
 
 `data`中的`data`数组：
 
@@ -57,7 +57,7 @@
 | ctime     | num    | 歌单创建时间             | 时间戳                           |
 | song      | num    | 歌单中的音乐数量         |                                  |
 | desc      | str    | 歌单备注信息             |                                  |
-| sids      | arrary | 歌单中的音乐             |                                  |
+| sids      | array | 歌单中的音乐             |                                  |
 | menuId    | num    | 音频收藏夹对应的歌单amID |                                  |
 | statistic | obj    | 歌单状态数信息           |                                  |
 
@@ -196,7 +196,7 @@
 | ctime     | num    | 歌单创建时间             | 时间戳                 |
 | song      | num    | 歌单中的音乐数量         |                        |
 | desc      | str    | 空                       | 恒为空                 |
-| sids      | arrary | 歌单中的音乐             |                        |
+| sids      | array | 歌单中的音乐             |                        |
 | menuId    | num    | 音频收藏夹对应的歌单amID | 与普通歌单不同通用     |
 | statistic | obj    | 歌单状态数信息           |                        |
 

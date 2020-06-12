@@ -59,7 +59,7 @@
   - 状态数
   - 操作
 - [视频弹幕](danmaku)
-  - [实时弹幕&弹幕格式](danmaku/danmaku.md)√
+  - [实时弹幕&弹幕格式](danmaku/danmaku_list.md)√
   - [历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
   - [弹幕操作](danmaku/action.md)×
@@ -83,11 +83,10 @@
 - [小黑屋](blackroom)
   - [封禁公示](blackroom/banlist.md)√
   - 仲裁信息
-- 评论区
-  - 评论区明细
+- [评论区](comment)
+  - [评论区明细](comment/comment_list.md)×
+  - 操作
   - 表情
-  - 发表评论
-  - 评论操作
 - [创作中心](creativecenter)
   - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关

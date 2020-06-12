@@ -49,7 +49,7 @@
 | ctime      | null   | -                  | **作用尚不明确**   |
 | statistic  | obj    | 状态数             |                    |
 | vipInfo    | obj    | UP主会员状态       |                    |
-| collectIds | arrary | 歌曲所在的收藏夹ID | 需要登录(SESSDATA) |
+| collectIds | array | 歌曲所在的收藏夹ID | 需要登录(SESSDATA) |
 | coin_num   | num    | 投币数             |                    |
 
 `data`中的`statistic`对象：
@@ -154,7 +154,7 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
 | ---- | ------ | -------- | ------------- |
 | code | num    | 返回值   | 0：成功       |
 | msg  | str    | 错误信息 | 默认为success |
-| data | arrary | TAG列表  | 无为空        |
+| data | array | TAG列表  | 无为空        |
 
 `data`数组：
 
@@ -246,7 +246,7 @@ http://www.bilibili.com/audio/music-service-c/web/tag/song?sid=15664
 | ---- | ------ | ------------ | ------------- |
 | code | num    | 返回值       | 0：成功       |
 | msg  | str    | 错误信息     | 默认为success |
-| data | arrary | 成员类型列表 | 无为空        |
+| data | array | 成员类型列表 | 无为空        |
 
 `data`数组：
 
@@ -260,7 +260,7 @@ http://www.bilibili.com/audio/music-service-c/web/tag/song?sid=15664
 
 | 字段 | 类型   | 内容         | 备注                                                         |
 | ---- | ------ | ------------ | ------------------------------------------------------------ |
-| list | arrary | 成员列表     |                                                              |
+| list | array | 成员列表     |                                                              |
 | type | num    | 成员类型代码 | 1：歌手<br />2：作词<br />3：作曲<br />4：编曲<br />5：后期/混音<br />7：封面制作<br />8：音源<br />9：调音<br />10：演奏<br />11：乐器<br />127：UP主 |
 
 `data`数组中的对象中的`list`数组：

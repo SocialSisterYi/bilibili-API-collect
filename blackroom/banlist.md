@@ -53,7 +53,7 @@
 | code    | num    | 返回值   | 0：成功      |
 | message | str    | 错误信息 | 默认为0      |
 | ttl     | num    | 1        | 作用尚不明确 |
-| data    | arrary | 公示列表 |              |
+| data    | array | 公示列表 |              |
 
 `data`数组：
 

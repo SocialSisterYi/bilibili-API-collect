@@ -1,5 +1,7 @@
 # 课程视频流URL
 
+<img src="/imgs/download.svg" width="100" height="100"/>
+
 ## 获取课程视频流URL
 
 > http://api.bilibili.com/pugv/player/web/playurl
@@ -54,7 +56,7 @@
 | ------------------ | ------ | ---------------------- | ---------------------------------------- |
 | accept_format      | str    | 视频支持的分辨率的格式 |                                          |
 | code               | num    | 0                      |                                          |
-| durl               | arrary | 视频分段               |                                          |
+| durl               | array | 视频分段               |                                          |
 | seek_param         | str    | start                  |                                          |
 | no_rexcode         | num    | 0                      |                                          |
 | format             | str    | 视频格式               |                                          |
@@ -63,16 +65,16 @@
 | fnver              | num    | 0                      |                                          |
 | message            | str    | 空                     |                                          |
 | type               | str    | 视频格式               |                                          |
-| accept_quality     | arrary | 视频支持的分辨率列表   |                                          |
+| accept_quality     | array | 视频支持的分辨率列表   |                                          |
 | quality            | num    | 视频分辨率代码         | **值含义见上表**                         |
 | timelength         | num    | 视频长度               | 单位为毫秒<br />不同分辨率可能有略微差异 |
 | result             | str    | suee                   | **作用尚不明确**                         |
 | seek_type          | str    | offset                 | **作用尚不明确**                         |
 | has_paid           | bool   | false                  | **作用尚不明确**                         |
-| supportFormats     | arrary | 视频分辨率详细列表     |                                          |
+| supportFormats     | array | 视频分辨率详细列表     |                                          |
 | from               | str    | local                  | **作用尚不明确**                         |
 | video_codecid      | num    | ？？？                 | **作用尚不明确**                         |
-| accept_description | arrary | 视频支持的分辨率列表   |                                          |
+| accept_description | array | 视频支持的分辨率列表   |                                          |
 | status             | num    | 0                      | **作用尚不明确**                         |
 
 `data`中的`durl`数组：
@@ -91,7 +93,7 @@
 | ahead      | str    | 空           | 作用尚不明确                       |
 | length     | num    | 视频长度     | 单位为毫秒                         |
 | vhead      | str    | 空           | 作用尚不明确                       |
-| backup_url | arrary | 备用视频流   |                                    |
+| backup_url | array | 备用视频流   |                                    |
 | url        | str    | 视频流url    | **重要**<br />链接有效时间为120min |
 | order      | num    | 视频分段序号 | 某些视频会分为多个片段             |
 

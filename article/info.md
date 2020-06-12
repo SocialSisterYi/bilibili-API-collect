@@ -37,15 +37,15 @@
 | mid               | num    | 文章作者UID      |                                                              |
 | author_name       | str    | 文章作者昵称     |                                                              |
 | is_author         | bool   | true             | 作用尚不明确                                                 |
-| image_urls        | arrary | 动态封面         |                                                              |
-| origin_image_urls | arrary | 封面图片         |                                                              |
+| image_urls        | array | 动态封面         |                                                              |
+| origin_image_urls | array | 封面图片         |                                                              |
 | shareable         | bool   | true             | 作用尚不明确                                                 |
 | show_later_watch  | bool   | true             | 作用尚不明确                                                 |
 | show_small_window | bool   | true             | 作用尚不明确                                                 |
 | in_list           | bool   | 是否收于文集     | false：否<br />true：是                                      |
 | pre               | num    | 上一篇文章cvID   | 无为0                                                        |
 | next              | num    | 下一篇文章cvID   | 无为0                                                        |
-| share_channels    | arrary | 分享方式列表     |                                                              |
+| share_channels    | array | 分享方式列表     |                                                              |
 
 `stats`对象：
 

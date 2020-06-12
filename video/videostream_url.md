@@ -1,5 +1,7 @@
 # 视频流URL
 
+<img src="/imgs/download.svg" width="100" height="100"/>
+
 ## 获取视频流URL
 
 > http://api.bilibili.com/x/player/playurl 
@@ -60,12 +62,12 @@
 | format             | str    | 视频格式                 |                                          |
 | timelength         | num    | 视频长度                 | 单位为毫秒<br />不同分辨率可能有略微差异 |
 | accept_format      | str    | 视频支持的分辨率的格式   |                                          |
-| accept_description | arrary | 视频支持的分辨率列表     |                                          |
-| accept_quality     | arrary | 视频支持的分辨率代码列表 | **值含义见上表**                         |
+| accept_description | array | 视频支持的分辨率列表     |                                          |
+| accept_quality     | array | 视频支持的分辨率代码列表 | **值含义见上表**                         |
 | video_codecid      | num    | ？？？                   | **作用尚不明确**                         |
 | seek_param         | str    | start                    | **作用尚不明确**                         |
 | seek_type          | str    | offset                   | **作用尚不明确**                         |
-| durl               | arrary | 视频分段                 |                                          |
+| durl               | array | 视频分段                 |                                          |
 
 `data`中的`accept_description`数组：
 
@@ -101,7 +103,7 @@
 | ahead      | str    | 空           | 作用尚不明确                       |
 | vhead      | str    | 空           | 作用尚不明确                       |
 | url        | str    | 视频流url    | **重要**<br />链接有效时间为120min |
-| backup_url | arrary | 备用视频流   |                                    |
+| backup_url | array | 备用视频流   |                                    |
 
 `durl`数组中的对象中的`backup_url`数组：
 

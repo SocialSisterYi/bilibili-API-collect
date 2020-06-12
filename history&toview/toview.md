@@ -120,7 +120,7 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 | 字段  | 类型   | 内容             | 备注 |
 | ----- | ------ | ---------------- | ---- |
 | count | num    | 稍后再看视频数   |      |
-| list  | arrary | 稍后再看视频列表 |      |
+| list  | array | 稍后再看视频列表 |      |
 
 `data`中的`list`数组：
 

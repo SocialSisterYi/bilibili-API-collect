@@ -367,7 +367,7 @@ http://api.bilibili.com/x/member/realname/apply/status
 
 | 字段  | 类型   | 内容             | 备注 |
 | ----- | ------ | ---------------- | ---- |
-| list  | arrary | 变化记录条目列表 |      |
+| list  | array | 变化记录条目列表 |      |
 | count | num    | 变化记录条目数   |      |
 
 `data`中的`list`数组：

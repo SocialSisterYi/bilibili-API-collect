@@ -17,7 +17,7 @@
 | code    | num    | 返回值     | 0：成功       |
 | msg     | str    | 错误信息   | 默认为success |
 | message | str    | 错误信息   | 默认为success |
-| data    | arrary | 父分区列表 |               |
+| data    | array | 父分区列表 |               |
 
 `data`数组：
 

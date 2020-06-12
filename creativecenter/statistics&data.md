@@ -443,7 +443,7 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 
 | 字段      | 类型   | 内容         | 备注 |
 | --------- | ------ | ------------ | ---- |
-| arc_inc   | arrary | 稿件情况     |      |
+| arc_inc   | array | 稿件情况     |      |
 | total_inc | num    | 总计增长情况 |      |
 | type_rank | obj    | 分区排名情况 |      |
 

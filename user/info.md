@@ -42,9 +42,9 @@
 | coins       | num  | 硬币数           | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0         |
 | fans_badge  | bool | 是否具有粉丝勋章 | false：无<br />true：有                                      |
 | official    | obj  | 认证信息         |                                                              |
-| vip         | obj  | 大会员状态       |                                                              |
-| pendant     | obj  | 头像框状态       |                                                              |
-| nameplate   | obj  | 粉丝勋章状态     |                                                              |
+| vip         | obj  | 大会员信息       |                                                              |
+| pendant     | obj  | 头像框信息       |                                                              |
+| nameplate   | obj  | 勋章信息         |                                                              |
 | is_followed | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(SESSDATA) <br />未登录恒为false |
 | top_photo   | str  | 主页头图链接     |                                                              |
 | theme       | obj  | 空               | **作用尚不明确**                                             |
@@ -69,12 +69,12 @@
 
 `data`中的`pendant`对象：
 
-| 字段   | 类型 | 内容        | 备注                 |
-| ------ | ---- | ----------- | -------------------- |
-| pid    | num  | 挂件id      | **详细说明有待补充** |
-| name   | str  | 挂件名称    |                      |
-| image  | str  | 挂件图片url |                      |
-| expire | num  | 0           | **作用尚不明确**     |
+| 字段   | 类型 | 内容          | 备注                 |
+| ------ | ---- | ------------- | -------------------- |
+| pid    | num  | 头像框id      | **详细说明有待补充** |
+| name   | str  | 头像框名称    |                      |
+| image  | str  | 头像框图片url |                      |
+| expire | num  | 0             | **作用尚不明确**     |
 
 `data`中的`nameplate`对象：
 

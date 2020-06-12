@@ -32,7 +32,7 @@
 | ws_port       | num    | websocket端口      |      |
 | wss_port      | num    | websocket ssl端口  |      |
 | heartbeat     | num    | 最大心跳包间隔时间 |      |
-| nodes         | arrary | 服务节点地址列表   |      |
+| nodes         | array | 服务节点地址列表   |      |
 | backoff       | obj    | ？？？             |      |
 | heartbeat_max | num    | ？？？             |      |
 

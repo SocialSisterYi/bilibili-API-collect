@@ -29,7 +29,7 @@
 
 | 字段     | 类型   | 内容     | 备注 |
 | -------- | ------ | -------- | ---- |
-| archives | arrary | 视频列表 |      |
+| archives | array | 视频列表 |      |
 | page     | obj    | 页面信息 |      |
 
 `data`中的`archives`数组：
