@@ -14,8 +14,8 @@
 | ------- | ---- | ------------------- | ------ | ------------------------------------------------------------ |
 | type    | num  | 评论区类型代码      | 必要   | **类型代码见「[评论区明细](comment_list.md)」**              |
 | oid     | num  | 目标评论区ID        | 必要   |                                                              |
-| root    | num  | 根评论ID            | 非必要 | 二级评论以上使用                                             |
-| parent  | num  | 夫评论ID            | 非必要 | 二级评论同根评论ID<br />大于二级评论为要回复的评论ID         |
+| root    | num  | 根评论rpID          | 非必要 | 二级评论以上使用                                             |
+| parent  | num  | 父评论rpID          | 非必要 | 二级评论同根评论ID<br />大于二级评论为要回复的评论ID         |
 | message | str  | 发送评论内容        | 必要   | 最大1000字符<br />表情使用表情转义符                         |
 | plat    | num  | 发送平台标识        | 非必要 | 1：web端<br />2：安卓客户端<br />3：ios客户端<br />4：wp客户端<br />默认为1 |
 | csrf    | str  | cookies中的bili_jct | 必要   |                                                              |
@@ -39,14 +39,14 @@
 | success_toast  | str                           | 状态文字       |                                                              |
 | need_captcha   | bool                          | false          | **作用尚不明确**                                             |
 | url            | str                           | 空             | **作用尚不明确**                                             |
-| rpid           | num                           | 评论ID         |                                                              |
-| rpid_str       | str                           | 评论ID         |                                                              |
-| dialog         | num                           | 回复对方ID     | 若为一级评论则为0<br />若为二级评论则为该评论ID<br />大于二级评论为上一级评论ID |
-| dialog_str     | str                           | 回复对方ID     |                                                              |
-| root           | num                           | 根评论ID       | 若为一级评论则为0<br />大于一级评论则为根评论ID              |
-| root_str       | str                           | 根评论ID       |                                                              |
-| parent         | num                           | 回复父评论ID   | 若为一级评论则为0<br />若为二级评论则为根评论ID<br />大于二级评论为上一级评论ID |
-| parent_str     | str                           | 回复父评论ID   |                                                              |
+| rpid           | num                           | 评论rpID       |                                                              |
+| rpid_str       | str                           | 评论rpID       | 字串格式                                                     |
+| dialog         | num                           | 回复对方rpID   | 若为一级评论则为0<br />若为二级评论则为该评论ID<br />大于二级评论为上一级评论ID |
+| dialog_str     | str                           | 回复对方rpID   | 字串格式                                                     |
+| root           | num                           | 根评论rpID     | 若为一级评论则为0<br />大于一级评论则为根评论ID              |
+| root_str       | str                           | 根评论rpID     | 字串格式                                                     |
+| parent         | num                           | 回复父评论rpID | 若为一级评论则为0<br />若为二级评论则为根评论ID<br />大于二级评论为上一级评论ID |
+| parent_str     | str                           | 回复父评论rpID | 字串格式                                                     |
 | emote          | obj                           | 表情转义符信息 | 无表情时无此项<br />**见「[评论区明细](comment_list.md#附表-评论条目对象)」的附表** |
 | reply          | 有效时：obj<br />无效时：null |                | **见「[评论区明细](comment_list.md#附表-评论条目对象)」的附表** |
 
@@ -226,7 +226,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&message=%E6%B5%8B%E8%AF%95test%5
 | ------ | ---- | ------------------- | ------ | ----------------------------------------------- |
 | type   | num  | 评论区类型代码      | 必要   | **类型代码见「[评论区明细](comment_list.md)」** |
 | oid    | num  | 目标评论区ID        | 必要   |                                                 |
-| rpid   | num  | 目标评论ID          | 必要   |                                                 |
+| rpid   | num  | 目标评论rpID        | 必要   |                                                 |
 | action | num  | 操作代码            | 非必要 | 默认为0<br />0：取消赞<br />1：点赞             |
 | csrf   | str  | cookies中的bili_jct | 必要   |                                                 |
 
@@ -242,7 +242,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&message=%E6%B5%8B%E8%AF%95test%5
 
 **示例：**
 
-点赞视频`av243322853`下评论`3039053308`
+点赞视频`av243322853`下评论`rpID=3039053308`
 
 curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xxx" "http://api.bilibili.com/x/v2/reply/action"
 
@@ -270,7 +270,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 | ------ | ---- | ------------------- | ------ | ----------------------------------------------- |
 | type   | num  | 评论区类型代码      | 必要   | **类型代码见「[评论区明细](comment_list.md)」** |
 | oid    | num  | 目标评论区ID        | 必要   |                                                 |
-| rpid   | num  | 目标评论ID          | 必要   |                                                 |
+| rpid   | num  | 目标评论rpID        | 必要   |                                                 |
 | action | num  | 操作代码            | 非必要 | 默认为0<br />0：取消踩<br />1：点踩             |
 | csrf   | str  | cookies中的bili_jct | 必要   |                                                 |
 
@@ -286,9 +286,52 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 
 **示例：**
 
-点踩视频`av243322853`下评论`3039053308`
+点踩视频`av243322853`下评论`rpID=3039053308`
 
 curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xxx" "http://api.bilibili.com/x/v2/reply/hate"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+## 删除评论
+
+> http://api.bilibili.com/x/v2/reply/del
+
+*方式：POST*
+
+只能删除自己的评论，或自己管理的评论区下的评论
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注                                            |
+| ------ | ---- | ------------------- | ------ | ----------------------------------------------- |
+| type   | num  | 评论区类型代码      | 必要   | **类型代码见「[评论区明细](comment_list.md)」** |
+| oid    | num  | 目标评论区ID        | 必要   |                                                 |
+| rpid   | num  | 目标评论rpID        | 必要   |                                                 |
+| csrf   | str  | cookies中的bili_jct | 必要   |                                                 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />-403：权限不足<br />-404：无此项<br />12002：评论区已关闭<br />12009：评论主体的type不合法<br />12022：已经被删除了<br />**（其他错误码有待补充）** |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | **作用尚不明确**                                             |
+
+**示例：**
+
+删除`av243322853`下评论`rpID=3039053308`
+
+curl -b "SESSDATA=xxx" -d "type=1&oid=3039053308&csrf=xxx" "http://api.bilibili.com/x/v2/reply/del"
 
 ```json
 {

@@ -4703,7 +4703,7 @@ http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
 | ------ | ---- | ---------------- | ------ | -------------------------- |
 | type   | num  | 评论区类型代码   | 必要   | **类型代码见上表**         |
 | oid    | num  | 目标评论区ID     | 必要   |                            |
-| root   | num  | 目标评论ID       | 必要   |                            |
+| root   | num  | 目标一级评论rpID | 必要   |                            |
 | pn     | num  | 二级评论页码     | 非必要 | 默认为1                    |
 | ps     | num  | 二级评论每页项数 | 非必要 | 默认为20<br />定义域：1-49 |
 
@@ -4767,7 +4767,7 @@ http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
 
 **示例：**
 
-获取视频`av2`下评论`476670`的二级评论，每页5项，查看第1页
+获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
 
 http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
@@ -5414,17 +5414,17 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 
 
-## 附表-评论条目对象：
+## 附表-评论条目对象
 
 | 字段        | 类型                            | 内容             | 备注                                                         |
 | ----------- | ------------------------------- | ---------------- | ------------------------------------------------------------ |
-| rpid        | num                             | 评论ID           |                                                              |
-| oid         | num                             | 目标评论区ID     |                                                              |
+| rpid        | num                             | 评论rpID         |                                                              |
+| oid         | num                             | 目标评论区rpID   |                                                              |
 | type        | num                             | 评论区类型代码   | **类型代码见上表**                                           |
 | mid         | num                             | 评论发送者UID    |                                                              |
-| root        | num                             | 根评论ID         | 若为一级评论则为0<br />大于一级评论则为根评论ID              |
-| parent      | num                             | 回复父评论ID     | 若为一级评论则为0<br />若为二级评论则为根评论ID<br />大于二级评论为上一级评论ID |
-| dialog      | num                             | 回复对方ID       | 若为一级评论则为0<br />若为二级评论则为该评论ID<br />大于二级评论为上一级评论ID |
+| root        | num                             | 根评论rpID       | 若为一级评论则为0<br />大于一级评论则为根评论ID              |
+| parent      | num                             | 回复父评论rpID   | 若为一级评论则为0<br />若为二级评论则为根评论rpID<br />大于二级评论为上一级评论rpID |
+| dialog      | num                             | 回复对方rpID     | 若为一级评论则为0<br />若为二级评论则为该评论rpID<br />大于二级评论为上一级评论rpID |
 | count       | num                             | 评论回复条数     |                                                              |
 | rcount      | num                             | 评论回复条数     |                                                              |
 | floor       | num                             | 评论楼层号       | **重要：若不支持楼层则无此项**                               |
@@ -5432,9 +5432,9 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 | fansgrade   | num                             | 是否具有粉丝标签 | 0：无<br />1：有                                             |
 | attr        | num                             | ？？？           | **作用尚不明确**                                             |
 | ctime       | num                             | 评论发送时间     | 时间戳                                                       |
-| rpid_str    | str                             | 评论ID           |                                                              |
-| root_str    | str                             | 根评论ID         |                                                              |
-| parent_str  | str                             | 回复父评论ID     |                                                              |
+| rpid_str    | str                             | 评论rpID         | 字串格式                                                     |
+| root_str    | str                             | 根评论rpID       | 字串格式                                                     |
+| parent_str  | str                             | 回复父评论rpID   | 字串格式                                                     |
 | like        | num                             | 评论获赞数       |                                                              |
 | action      | num                             | 当前用户操作状态 | 需要登录(SESSDATA) <br />否则恒为0<br />0：无<br />1：已点赞<br />2：已点踩 |
 | member      | obj                             | 评论发送者信息   |                                                              |

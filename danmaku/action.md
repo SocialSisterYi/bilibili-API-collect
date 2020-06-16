@@ -38,12 +38,12 @@
 
 `data`对象：
 
-| 字段     | 类型 | 内容   | 备注         |
-| -------- | ---- | ------ | ------------ |
-| action   | str  | 空     | 作用尚不明确 |
-| dmid     | num  | 弹幕ID |              |
-| dmid_str | str  | 弹幕ID | 字串形式     |
-| visible  | bool | true   | 作用尚不明确 |
+| 字段     | 类型 | 内容     | 备注         |
+| -------- | ---- | -------- | ------------ |
+| action   | str  | 空       | 作用尚不明确 |
+| dmid     | num  | 弹幕dmID |              |
+| dmid_str | str  | 弹幕dmID | 字串形式     |
+| visible  | bool | true     | 作用尚不明确 |
 
 **示例：**
 
@@ -83,7 +83,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=62131&msg=%e5%89%8d%e6%9d%a5%e8%80%83%e5%8
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| dmid   | num  | 弹幕ID              | 必要   |      |
+| dmid   | num  | 弹幕dmID            | 必要   |      |
 | cid    | num  | 视频CID             | 必要   |      |
 | csrf   | str  | cookies中的bili_jct | 必要   |      |
 
