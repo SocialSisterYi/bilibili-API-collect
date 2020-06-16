@@ -34,9 +34,10 @@
   - 密码&短信登录
   - qq&微博登录
   - [登录基本信息](login/login_info.md)√
-  - [消息](login/msg.md)x
-  - [私信](login/private_msg.md)x
   - [个人中心](login/member_center.md)×
+- [消息](msg)
+  - [通知类消息](msg/msg.md)×
+  - [私信](msg/private_msg.md)×
 - [用户](user)
   - [基本信息](user/info.md)√
   - [状态数](user/status_number.md)√
@@ -123,6 +124,7 @@
   - 直播间操作
   - 直播视频流
   - 直播信息流
+- 答题
 - B币钱包
   - 基本信息
   - B币充值
