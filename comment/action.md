@@ -2,6 +2,8 @@
 
 **本页所有操作均需登录（SESSDATA）**
 
+使用该登录token进行评论用户识别与操作鉴权
+
 ## 发表评论
 
 > http://api.bilibili.com/x/v2/reply/add
@@ -331,7 +333,51 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 
 删除`av243322853`下评论`rpID=3039053308`
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=3039053308&csrf=xxx" "http://api.bilibili.com/x/v2/reply/del"
+curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&csrf=xxx" "http://api.bilibili.com/x/v2/reply/del"
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+
+
+## 置顶评论
+
+> http://api.bilibili.com/x/v2/reply/top
+
+*方式：POST*
+
+只能置顶自己管理的评论区中的一级评论
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                | 必要性 | 备注                                            |
+| ------ | ---- | ------------------- | ------ | ----------------------------------------------- |
+| type   | num  | 评论区类型代码      | 必要   | **类型代码见「[评论区明细](comment_list.md)」** |
+| oid    | num  | 目标评论区ID        | 必要   |                                                 |
+| rpid   | num  | 目标评论rpID        | 必要   |                                                 |
+| action | num  | 操作代码            | 非必要 | 默认为0<br />0：取消置顶<br />1：设为置顶       |
+| csrf   | str  | cookies中的bili_jct | 必要   |                                                 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />-403：权限不足<br />-404：无此项<br />12002：评论区已关闭<br />12006：没有该评论<br />12009：评论主体的type不合法<br />12029：已经有置顶评论<br />12030：不能置顶非一级评论<br />**（其他错误码有待补充）** |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | **作用尚不明确**                                             |
+
+**示例：**
+
+置顶视频`av243322853`下评论`rpID=2940645593`
+
+curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=2940645593&action=1&csrf=xxx" "http://api.bilibili.com/x/v2/reply/top"
 
 ```json
 {

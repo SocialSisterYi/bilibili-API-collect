@@ -86,7 +86,7 @@
   - 仲裁信息
 - [评论区](comment)
   - [评论区明细](comment/comment_list.md)√
-  - [操作](comment/action.md)×
+  - [操作](comment/action.md)√
   - 表情
 - [创作中心](creativecenter)
   - [统计与数据](creativecenter/statistics&data.md)x
