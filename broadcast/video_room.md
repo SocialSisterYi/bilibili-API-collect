@@ -128,7 +128,7 @@
 
 | 项   | 类型 | 内容         | 备注                                                         |
 | ---- | ---- | ------------ | ------------------------------------------------------------ |
-| 0    | str  | 弹幕属性信息 | 详见[「弹幕」中的属性 p](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/danmaku/danmaku.md) |
+| 0    | str  | 弹幕属性信息 | 详见[「弹幕」中的属性 p](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/danmaku/danmaku_xml.md) |
 | 1    | str  | 弹幕内容     |                                                              |
 
 **示例：**

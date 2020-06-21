@@ -4689,7 +4689,7 @@ http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
 
 
 
-## 获取评论区指定条目及二级回复（分离结构 无楼层号）
+## 获取指定评论条目及二级回复明细1（分离结构 无楼层号）
 
 > http://api.bilibili.com/x/v2/reply/reply
 
@@ -5410,6 +5410,1597 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 ```
 
 
+
+## 获取指定评论条目及二级回复明细2（嵌套结构 带有楼层号）
+
+> http://api.bilibili.com/x/v2/reply/detail 
+
+*方式：GET*
+
+按照楼层排列
+
+**url参数：**
+
+| 参数名 | 类型 | 内容           | 必要性 | 备注                                   |
+| ------ | ---- | -------------- | ------ | -------------------------------------- |
+| type   | num  | 评论区类型代码 | 必要   | **类型代码见上表**                     |
+| oid    | num  | 目标评论区ID   | 必要   |                                        |
+| root   | num  | 根回复rpID     | 必要   |                                        |
+| next   | num  | 评论页选择     | 非必要 | 第一页为0<br />默认为0<br />顺序楼层号 |
+| ps     | num  | 每页项数       | 非必要 | 默认为0                                |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型                          | 内容     | 备注                                                         |
+| ------- | ----------------------------- | -------- | ------------------------------------------------------------ |
+| code    | num                           | 返回值   | 0：成功<br />-400：请求错误<br />-404：无此项<br />12002：评论区已关闭<br />12009：评论主体的type不合法 |
+| message | str                           | 错误信息 | 默认为0                                                      |
+| ttl     | num                           | 1        | **作用尚不明确**                                             |
+| data    | 正确时：obj<br />错误时：null | 数据本体 |                                                              |
+
+`data`对象：
+
+| 字段      | 类型 | 内容           | 备注             |
+| --------- | ---- | -------------- | ---------------- |
+| cursor    | obj  | 页信息         |                  |
+| assist    | num  | 0              | **作用尚不明确** |
+| blacklist | num  | 0              | **作用尚不明确** |
+| vote      | num  | 0              | **作用尚不明确** |
+| lottery   | num  | 0              | **作用尚不明确** |
+| config    | obj  | 属性信息       |                  |
+| upper     | obj  | UP主UID        |                  |
+| show_bvid | bool | true           | **作用尚不明确** |
+| control   | obj  | 评论区输入属性 |                  |
+| root      | obj  | 根评论         | **详情见附表**   |
+| Mid       | num  | 0              | **作用尚不明确** |
+
+`data`中的`cursor`对象：
+
+| 字段     | 类型 | 内容         | 备注                    |
+| -------- | ---- | ------------ | ----------------------- |
+| is_begin | bool | 是否为第一页 | false：否<br />true：是 |
+| prev     | num  | 上页楼层     |                         |
+| next     | num  | 下页楼层     |                         |
+| is_end   | bool | 是否为最后页 | false：否<br />true：是 |
+
+`data`中的`config`对象：
+
+| 字段         | 类型 | 内容  | 备注             |
+| ------------ | ---- | ----- | ---------------- |
+| showadmin    | num  | 1     | **作用尚不明确** |
+| showentry    | num  | 1     | **作用尚不明确** |
+| showfloor    | num  | 0     | **作用尚不明确** |
+| showtopic    | num  | 1     | **作用尚不明确** |
+| show_up_flag | bool | true  | **作用尚不明确** |
+| read_only    | bool | false | **作用尚不明确** |
+| show_del_log | bool | false | **作用尚不明确** |
+
+`data`中的`upper`对象：
+
+| 字段 | 类型 | 内容    | 备注 |
+| ---- | ---- | ------- | ---- |
+| mid  | num  | UP主UID |      |
+
+`data`中的`control`对象：
+
+| 字段                     | 类型 | 内容               | 备注                                |
+| ------------------------ | ---- | ------------------ | ----------------------------------- |
+| input_disable            | bool | false              | **作用尚不明确**                    |
+| root_input_text          | str  | 评论框文字         |                                     |
+| child_input_text         | str  | 评论框文字         |                                     |
+| bg_text                  | str  | 空评论区文字       |                                     |
+| web_selection            | bool | 评论是否筛选后可见 | false：无需筛选<br />true：需要筛选 |
+| answer_guide_text        | str  | 答题页面链接文字   |                                     |
+| answer_guide_icon_url    | str  | 答题页面图标url    |                                     |
+| answer_guide_ios_url     | str  | 答题页面ios url    |                                     |
+| answer_guide_android_url | str  | 答题页面安卓url    |                                     |
+
+**示例：**
+
+获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
+
+ http://api.bilibili.com/x/v2/reply/detail?type=1&oid=2&root=476670&next=0&ps=5
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "cursor": {
+            "is_begin": true,
+            "prev": 0,
+            "next": 6,
+            "is_end": false
+        },
+        "assist": 0,
+        "blacklist": 0,
+        "vote": 0,
+        "lottery": 0,
+        "config": {
+            "showadmin": 1,
+            "showentry": 1,
+            "showfloor": 0,
+            "showtopic": 1,
+            "show_up_flag": true,
+            "read_only": false,
+            "show_del_log": true
+        },
+        "upper": {
+            "mid": 2
+        },
+        "show_bvid": true,
+        "control": {
+            "input_disable": false,
+            "root_input_text": "",
+            "child_input_text": "",
+            "bg_text": "看看下面~来发评论吧",
+            "web_selection": false,
+            "answer_guide_text": "需要升级成为lv2会员后才可以评论，先去答题转正吧！",
+            "answer_guide_icon_url": "http://i0.hdslb.com/bfs/emote/96940d16602cacbbac796245b7bb99fa9b5c970c.png",
+            "answer_guide_ios_url": "https://www.bilibili.com/h5/newbie/entry?navhide=1&re_src=12",
+            "answer_guide_android_url": "https://www.bilibili.com/h5/newbie/entry?navhide=1&re_src=6"
+        },
+        "root": {
+            "rpid": 476670,
+            "oid": 2,
+            "type": 1,
+            "mid": 58426,
+            "root": 0,
+            "parent": 0,
+            "dialog": 0,
+            "count": 1922,
+            "rcount": 1871,
+            "floor": 2,
+            "state": 0,
+            "fansgrade": 0,
+            "attr": 0,
+            "ctime": 1291350931,
+            "rpid_str": "476670",
+            "root_str": "0",
+            "parent_str": "0",
+            "like": 54765,
+            "action": 0,
+            "member": {
+                "mid": "58426",
+                "uname": "残星什么的就是残星",
+                "sex": "男",
+                "sign": "少说话多做事 _微博@残星",
+                "avatar": "http://i0.hdslb.com/bfs/face/56ac36b37662e3746228f30eb4acf2cd332b66a5.jpg",
+                "rank": "20000",
+                "DisplayRank": "0",
+                "level_info": {
+                    "current_level": 6,
+                    "current_min": 0,
+                    "current_exp": 0,
+                    "next_exp": 0
+                },
+                "pendant": {
+                    "pid": 0,
+                    "name": "",
+                    "image": "",
+                    "expire": 0,
+                    "image_enhance": ""
+                },
+                "nameplate": {
+                    "nid": 30,
+                    "name": "字幕君",
+                    "image": "http://i1.hdslb.com/bfs/face/383c3fed3dc162c93a8d616a272693f6650e98f1.png",
+                    "image_small": "http://i1.hdslb.com/bfs/face/7ad18084e40b725210e22696e0efdae408cd378c.png",
+                    "level": "稀有勋章",
+                    "condition": "弹幕大赛获得"
+                },
+                "official_verify": {
+                    "type": -1,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 1,
+                    "vipDueDate": 1550851200000,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": "",
+                    "themeType": 0,
+                    "label": {
+                        "path": "",
+                        "text": "",
+                        "label_theme": ""
+                    }
+                },
+                "fans_detail": null,
+                "following": 0,
+                "is_followed": 0,
+                "user_sailing": {
+                    "pendant": null,
+                    "cardbg": null,
+                    "cardbg_with_focus": null
+                }
+            },
+            "content": {
+                "message": "貌似没人来",
+                "plat": 1,
+                "device": "",
+                "members": [],
+                "jump_url": {},
+                "max_line": 999
+            },
+            "replies": [
+                {
+                    "rpid": 214198179,
+                    "oid": 2,
+                    "type": 1,
+                    "mid": 18370638,
+                    "root": 476670,
+                    "parent": 476670,
+                    "dialog": 214198179,
+                    "count": 0,
+                    "rcount": 0,
+                    "floor": 1,
+                    "state": 0,
+                    "fansgrade": 0,
+                    "attr": 0,
+                    "ctime": 1488888303,
+                    "rpid_str": "214198179",
+                    "root_str": "476670",
+                    "parent_str": "476670",
+                    "like": 1113,
+                    "action": 0,
+                    "member": {
+                        "mid": "18370638",
+                        "uname": "初音ハク",
+                        "sex": "保密",
+                        "sign": "我是艾尔的利刃",
+                        "avatar": "http://i1.hdslb.com/bfs/face/50b3a20369f4358beca8078ef6ac652093ce7414.jpg",
+                        "rank": "10000",
+                        "DisplayRank": "0",
+                        "level_info": {
+                            "current_level": 5,
+                            "current_min": 0,
+                            "current_exp": 0,
+                            "next_exp": 0
+                        },
+                        "pendant": {
+                            "pid": 0,
+                            "name": "",
+                            "image": "",
+                            "expire": 0,
+                            "image_enhance": ""
+                        },
+                        "nameplate": {
+                            "nid": 74,
+                            "name": "大会员2018年度勋章",
+                            "image": "http://i0.hdslb.com/bfs/face/421179426c929dfeaed4117461c83f5d07ffb148.png",
+                            "image_small": "http://i2.hdslb.com/bfs/face/682001c2e1c2ae887bdf2a0e18eef61180c48f84.png",
+                            "level": "稀有勋章",
+                            "condition": "2018.6.26-7.8某一天是年度大会员"
+                        },
+                        "official_verify": {
+                            "type": -1,
+                            "desc": ""
+                        },
+                        "vip": {
+                            "vipType": 2,
+                            "vipDueDate": 1620403200000,
+                            "dueRemark": "",
+                            "accessStatus": 0,
+                            "vipStatus": 1,
+                            "vipStatusWarn": "",
+                            "themeType": 0,
+                            "label": {
+                                "path": "",
+                                "text": "年度大会员",
+                                "label_theme": "annual_vip"
+                            }
+                        },
+                        "fans_detail": null,
+                        "following": 0,
+                        "is_followed": 0,
+                        "user_sailing": {
+                            "pendant": null,
+                            "cardbg": null,
+                            "cardbg_with_focus": null
+                        }
+                    },
+                    "content": {
+                        "message": "可怜的二楼(=・ω・=)",
+                        "plat": 2,
+                        "device": "",
+                        "members": [],
+                        "jump_url": {},
+                        "max_line": 999
+                    },
+                    "replies": null,
+                    "assist": 0,
+                    "folder": {
+                        "has_folded": false,
+                        "is_folded": false,
+                        "rule": ""
+                    },
+                    "up_action": {
+                        "like": false,
+                        "reply": false
+                    },
+                    "show_follow": false
+                },
+                {
+                    "rpid": 214198733,
+                    "oid": 2,
+                    "type": 1,
+                    "mid": 18370638,
+                    "root": 476670,
+                    "parent": 476670,
+                    "dialog": 214198733,
+                    "count": 0,
+                    "rcount": 0,
+                    "floor": 2,
+                    "state": 0,
+                    "fansgrade": 0,
+                    "attr": 0,
+                    "ctime": 1488888369,
+                    "rpid_str": "214198733",
+                    "root_str": "476670",
+                    "parent_str": "476670",
+                    "like": 1208,
+                    "action": 0,
+                    "member": {
+                        "mid": "18370638",
+                        "uname": "初音ハク",
+                        "sex": "保密",
+                        "sign": "我是艾尔的利刃",
+                        "avatar": "http://i1.hdslb.com/bfs/face/50b3a20369f4358beca8078ef6ac652093ce7414.jpg",
+                        "rank": "10000",
+                        "DisplayRank": "0",
+                        "level_info": {
+                            "current_level": 5,
+                            "current_min": 0,
+                            "current_exp": 0,
+                            "next_exp": 0
+                        },
+                        "pendant": {
+                            "pid": 0,
+                            "name": "",
+                            "image": "",
+                            "expire": 0,
+                            "image_enhance": ""
+                        },
+                        "nameplate": {
+                            "nid": 74,
+                            "name": "大会员2018年度勋章",
+                            "image": "http://i0.hdslb.com/bfs/face/421179426c929dfeaed4117461c83f5d07ffb148.png",
+                            "image_small": "http://i2.hdslb.com/bfs/face/682001c2e1c2ae887bdf2a0e18eef61180c48f84.png",
+                            "level": "稀有勋章",
+                            "condition": "2018.6.26-7.8某一天是年度大会员"
+                        },
+                        "official_verify": {
+                            "type": -1,
+                            "desc": ""
+                        },
+                        "vip": {
+                            "vipType": 2,
+                            "vipDueDate": 1620403200000,
+                            "dueRemark": "",
+                            "accessStatus": 0,
+                            "vipStatus": 1,
+                            "vipStatusWarn": "",
+                            "themeType": 0,
+                            "label": {
+                                "path": "",
+                                "text": "年度大会员",
+                                "label_theme": "annual_vip"
+                            }
+                        },
+                        "fans_detail": null,
+                        "following": 0,
+                        "is_followed": 0,
+                        "user_sailing": {
+                            "pendant": null,
+                            "cardbg": null,
+                            "cardbg_with_focus": null
+                        }
+                    },
+                    "content": {
+                        "message": "划了4千多条评论找到的啊ε=ε=(ノ≧∇≦)ノ",
+                        "plat": 2,
+                        "device": "",
+                        "members": [],
+                        "jump_url": {},
+                        "max_line": 999
+                    },
+                    "replies": null,
+                    "assist": 0,
+                    "folder": {
+                        "has_folded": false,
+                        "is_folded": false,
+                        "rule": ""
+                    },
+                    "up_action": {
+                        "like": false,
+                        "reply": false
+                    },
+                    "show_follow": false
+                },
+                {
+                    "rpid": 225269192,
+                    "oid": 2,
+                    "type": 1,
+                    "mid": 15094738,
+                    "root": 476670,
+                    "parent": 476670,
+                    "dialog": 225269192,
+                    "count": 0,
+                    "rcount": 0,
+                    "floor": 3,
+                    "state": 0,
+                    "fansgrade": 0,
+                    "attr": 0,
+                    "ctime": 1490666434,
+                    "rpid_str": "225269192",
+                    "root_str": "476670",
+                    "parent_str": "476670",
+                    "like": 240,
+                    "action": 0,
+                    "member": {
+                        "mid": "15094738",
+                        "uname": "御坂妹妹10492號",
+                        "sex": "保密",
+                        "sign": "",
+                        "avatar": "http://i1.hdslb.com/bfs/face/6484b0e77b554f43237c78f383199ad211e8b3bd.jpg",
+                        "rank": "10000",
+                        "DisplayRank": "0",
+                        "level_info": {
+                            "current_level": 6,
+                            "current_min": 0,
+                            "current_exp": 0,
+                            "next_exp": 0
+                        },
+                        "pendant": {
+                            "pid": 326,
+                            "name": "圣诞节快乐",
+                            "image": "http://i1.hdslb.com/bfs/face/b72dbf785e810e94fce2481265e71b6f16c64681.png",
+                            "expire": 0,
+                            "image_enhance": "http://i1.hdslb.com/bfs/face/b72dbf785e810e94fce2481265e71b6f16c64681.png"
+                        },
+                        "nameplate": {
+                            "nid": 74,
+                            "name": "大会员2018年度勋章",
+                            "image": "http://i2.hdslb.com/bfs/face/421179426c929dfeaed4117461c83f5d07ffb148.png",
+                            "image_small": "http://i2.hdslb.com/bfs/face/682001c2e1c2ae887bdf2a0e18eef61180c48f84.png",
+                            "level": "稀有勋章",
+                            "condition": "2018.6.26-7.8某一天是年度大会员"
+                        },
+                        "official_verify": {
+                            "type": -1,
+                            "desc": ""
+                        },
+                        "vip": {
+                            "vipType": 2,
+                            "vipDueDate": 1621958400000,
+                            "dueRemark": "",
+                            "accessStatus": 0,
+                            "vipStatus": 1,
+                            "vipStatusWarn": "",
+                            "themeType": 0,
+                            "label": {
+                                "path": "",
+                                "text": "年度大会员",
+                                "label_theme": "annual_vip"
+                            }
+                        },
+                        "fans_detail": null,
+                        "following": 0,
+                        "is_followed": 0,
+                        "user_sailing": {
+                            "pendant": {
+                                "id": 326,
+                                "name": "圣诞节快乐",
+                                "image": "http://i0.hdslb.com/bfs/face/b72dbf785e810e94fce2481265e71b6f16c64681.png",
+                                "jump_url": "",
+                                "type": "vip"
+                            },
+                            "cardbg": null,
+                            "cardbg_with_focus": null
+                        }
+                    },
+                    "content": {
+                        "message": "可怜二楼没人",
+                        "plat": 2,
+                        "device": "",
+                        "members": [],
+                        "jump_url": {},
+                        "max_line": 999
+                    },
+                    "replies": null,
+                    "assist": 0,
+                    "folder": {
+                        "has_folded": false,
+                        "is_folded": false,
+                        "rule": ""
+                    },
+                    "up_action": {
+                        "like": false,
+                        "reply": false
+                    },
+                    "show_follow": false
+                },
+                {
+                    "rpid": 451059061,
+                    "oid": 2,
+                    "type": 1,
+                    "mid": 41075238,
+                    "root": 476670,
+                    "parent": 476670,
+                    "dialog": 451059061,
+                    "count": 0,
+                    "rcount": 0,
+                    "floor": 4,
+                    "state": 6,
+                    "fansgrade": 1,
+                    "attr": 4,
+                    "ctime": 1508168753,
+                    "rpid_str": "451059061",
+                    "root_str": "476670",
+                    "parent_str": "476670",
+                    "like": 112,
+                    "action": 0,
+                    "member": {
+                        "mid": "41075238",
+                        "uname": "废爪萌狼",
+                        "sex": "保密",
+                        "sign": "赫萝是天！！！！！！！！！！！！！！！！",
+                        "avatar": "http://i2.hdslb.com/bfs/face/4e3b1610b40d3901516b09ba6d593e8cf68cf8f1.jpg",
+                        "rank": "10000",
+                        "DisplayRank": "0",
+                        "level_info": {
+                            "current_level": 5,
+                            "current_min": 0,
+                            "current_exp": 0,
+                            "next_exp": 0
+                        },
+                        "pendant": {
+                            "pid": 0,
+                            "name": "",
+                            "image": "",
+                            "expire": 0,
+                            "image_enhance": ""
+                        },
+                        "nameplate": {
+                            "nid": 61,
+                            "name": "饭圈楷模",
+                            "image": "http://i0.hdslb.com/bfs/face/5a90f715451325c642a6ac39e01195cb6d075734.png",
+                            "image_small": "http://i2.hdslb.com/bfs/face/5bfc1b4fb3f4b411495dddb0b2127ad80f6fbcac.png",
+                            "level": "普通勋章",
+                            "condition": "当前持有粉丝勋章最高等级>=10级"
+                        },
+                        "official_verify": {
+                            "type": -1,
+                            "desc": ""
+                        },
+                        "vip": {
+                            "vipType": 2,
+                            "vipDueDate": 1643385600000,
+                            "dueRemark": "",
+                            "accessStatus": 0,
+                            "vipStatus": 1,
+                            "vipStatusWarn": "",
+                            "themeType": 0,
+                            "label": {
+                                "path": "",
+                                "text": "年度大会员",
+                                "label_theme": "annual_vip"
+                            }
+                        },
+                        "fans_detail": {
+                            "uid": 41075238,
+                            "medal_id": 29058,
+                            "medal_name": "逸国",
+                            "score": 0,
+                            "level": 3,
+                            "intimacy": 0,
+                            "master_status": 1,
+                            "is_receive": 1
+                        },
+                        "following": 0,
+                        "is_followed": 0,
+                        "user_sailing": {
+                            "pendant": null,
+                            "cardbg": null,
+                            "cardbg_with_focus": null
+                        }
+                    },
+                    "content": {
+                        "message": "好可怜啊(=・ω・=)",
+                        "plat": 2,
+                        "device": "",
+                        "members": [],
+                        "jump_url": {},
+                        "max_line": 999
+                    },
+                    "replies": null,
+                    "assist": 0,
+                    "folder": {
+                        "has_folded": false,
+                        "is_folded": false,
+                        "rule": ""
+                    },
+                    "up_action": {
+                        "like": false,
+                        "reply": false
+                    },
+                    "show_follow": false
+                },
+                {
+                    "rpid": 451154733,
+                    "oid": 2,
+                    "type": 1,
+                    "mid": 15094738,
+                    "root": 476670,
+                    "parent": 451059061,
+                    "dialog": 451059061,
+                    "count": 0,
+                    "rcount": 0,
+                    "floor": 5,
+                    "state": 6,
+                    "fansgrade": 0,
+                    "attr": 4,
+                    "ctime": 1508175639,
+                    "rpid_str": "451154733",
+                    "root_str": "476670",
+                    "parent_str": "451059061",
+                    "like": 108,
+                    "action": 0,
+                    "member": {
+                        "mid": "15094738",
+                        "uname": "御坂妹妹10492號",
+                        "sex": "保密",
+                        "sign": "",
+                        "avatar": "http://i1.hdslb.com/bfs/face/6484b0e77b554f43237c78f383199ad211e8b3bd.jpg",
+                        "rank": "10000",
+                        "DisplayRank": "0",
+                        "level_info": {
+                            "current_level": 6,
+                            "current_min": 0,
+                            "current_exp": 0,
+                            "next_exp": 0
+                        },
+                        "pendant": {
+                            "pid": 326,
+                            "name": "圣诞节快乐",
+                            "image": "http://i1.hdslb.com/bfs/face/b72dbf785e810e94fce2481265e71b6f16c64681.png",
+                            "expire": 0,
+                            "image_enhance": "http://i1.hdslb.com/bfs/face/b72dbf785e810e94fce2481265e71b6f16c64681.png"
+                        },
+                        "nameplate": {
+                            "nid": 74,
+                            "name": "大会员2018年度勋章",
+                            "image": "http://i2.hdslb.com/bfs/face/421179426c929dfeaed4117461c83f5d07ffb148.png",
+                            "image_small": "http://i2.hdslb.com/bfs/face/682001c2e1c2ae887bdf2a0e18eef61180c48f84.png",
+                            "level": "稀有勋章",
+                            "condition": "2018.6.26-7.8某一天是年度大会员"
+                        },
+                        "official_verify": {
+                            "type": -1,
+                            "desc": ""
+                        },
+                        "vip": {
+                            "vipType": 2,
+                            "vipDueDate": 1621958400000,
+                            "dueRemark": "",
+                            "accessStatus": 0,
+                            "vipStatus": 1,
+                            "vipStatusWarn": "",
+                            "themeType": 0,
+                            "label": {
+                                "path": "",
+                                "text": "年度大会员",
+                                "label_theme": "annual_vip"
+                            }
+                        },
+                        "fans_detail": null,
+                        "following": 0,
+                        "is_followed": 0,
+                        "user_sailing": {
+                            "pendant": {
+                                "id": 326,
+                                "name": "圣诞节快乐",
+                                "image": "http://i0.hdslb.com/bfs/face/b72dbf785e810e94fce2481265e71b6f16c64681.png",
+                                "jump_url": "",
+                                "type": "vip"
+                            },
+                            "cardbg": null,
+                            "cardbg_with_focus": null
+                        }
+                    },
+                    "content": {
+                        "message": "回复 @负能量使者:你你你..你是怎么找到这里来的Σ(ﾟдﾟ;)",
+                        "plat": 2,
+                        "device": "",
+                        "members": [],
+                        "jump_url": {},
+                        "max_line": 999
+                    },
+                    "replies": null,
+                    "assist": 0,
+                    "folder": {
+                        "has_folded": false,
+                        "is_folded": false,
+                        "rule": ""
+                    },
+                    "up_action": {
+                        "like": false,
+                        "reply": false
+                    },
+                    "show_follow": false
+                }
+            ],
+            "assist": 0,
+            "folder": {
+                "has_folded": false,
+                "is_folded": false,
+                "rule": "https://www.bilibili.com/blackboard/foldingreply.html"
+            },
+            "up_action": {
+                "like": false,
+                "reply": false
+            },
+            "show_follow": true
+        },
+        "Mid": 0
+    }
+}
+```
+
+
+
+## 获取指定评论对话树（带有楼层）
+
+> http://api.bilibili.com/x/v2/reply/dialog/cursor 
+
+*方式：GET*
+
+按照楼层排列
+
+**url参数：**
+
+| 参数名 | 类型 | 内容           | 必要性 | 备注               |
+| ------ | ---- | -------------- | ------ | ------------------ |
+| type   | num  | 评论区类型代码 | 必要   | **类型代码见上表** |
+| oid    | num  | 目标评论区ID   | 必要   |                    |
+| root   | num  | 根回复rpID     | 必要   |                    |
+| dialog | num  | 对话树根rpID   | 必要   |                    |
+| size   | num  | 每页最大项数   | 必要   |                    |
+
+**json回复：**
+
+data`对象：
+
+| 字段      | 类型  | 内容           | 备注             |
+| --------- | ----- | -------------- | ---------------- |
+| cursor    | obj   | 页楼层信息     |                  |
+| dialog    | obj   | 对话楼层信息   |                  |
+| replies   | array | 评论对话树列表 |                  |
+| assist    | num   | 0              | **作用尚不明确** |
+| blacklist | num   | 0              | **作用尚不明确** |
+| vote      | num   | 0              | **作用尚不明确** |
+| lottery   | num   | 0              | **作用尚不明确** |
+| config    | obj   | 属性信息       |                  |
+| upper     | obj   | UP主UID        |                  |
+| show_bvid | bool  | true           | **作用尚不明确** |
+| control   | obj   | 评论区输入属性 |                  |
+
+`data`中的`cursor`对象：
+
+| 字段      | 类型 | 内容             | 备注 |
+| --------- | ---- | ---------------- | ---- |
+| min_floor | num  | 本页最低对话楼层 |      |
+| max_floor | num  | 本页最高对话楼层 |      |
+| size      | num  | 本页项数         |      |
+
+`data`中的`dialog`对象：
+
+| 字段      | 类型 | 内容                 | 备注 |
+| --------- | ---- | -------------------- | ---- |
+| min_floor | num  | 二级评论最低对话楼层 |      |
+| max_floor | num  | 二级评论最高对话楼层 |      |
+
+`data`中的`replies`数组：
+
+| 项   | 类型 | 内容              | 备注             |
+| ---- | ---- | ----------------- | ---------------- |
+| 0    | obj  | 对话评论条目1     | **详情见附表**   |
+| n    | obj  | 对话评论条目(n+1) | 按照对话顺序排列 |
+| ……   | obj  | ……                | ……               |
+
+`data`中的`config`对象：
+
+| 字段         | 类型 | 内容  | 备注             |
+| ------------ | ---- | ----- | ---------------- |
+| showadmin    | num  | 1     | **作用尚不明确** |
+| showentry    | num  | 1     | **作用尚不明确** |
+| showfloor    | num  | 0     | **作用尚不明确** |
+| showtopic    | num  | 1     | **作用尚不明确** |
+| show_up_flag | bool | true  | **作用尚不明确** |
+| read_only    | bool | false | **作用尚不明确** |
+| show_del_log | bool | false | **作用尚不明确** |
+
+`data`中的`upper`对象：
+
+| 字段 | 类型 | 内容    | 备注 |
+| ---- | ---- | ------- | ---- |
+| mid  | num  | UP主UID |      |
+
+`data`中的`control`对象：
+
+| 字段                     | 类型 | 内容               | 备注                                |
+| ------------------------ | ---- | ------------------ | ----------------------------------- |
+| input_disable            | bool | false              | **作用尚不明确**                    |
+| root_input_text          | str  | 评论框文字         |                                     |
+| child_input_text         | str  | 评论框文字         |                                     |
+| bg_text                  | str  | 空评论区文字       |                                     |
+| web_selection            | bool | 评论是否筛选后可见 | false：无需筛选<br />true：需要筛选 |
+| answer_guide_text        | str  | 答题页面链接文字   |                                     |
+| answer_guide_icon_url    | str  | 答题页面图标url    |                                     |
+| answer_guide_ios_url     | str  | 答题页面ios url    |                                     |
+| answer_guide_android_url | str  | 答题页面安卓url    |                                     |
+
+**示例：**
+
+获取视频`av201022189`下评论`rpID=3030790837`的对话`rpID=3030978856`，每页最大5项
+
+ http://api.bilibili.com/x/v2/reply/dialog/cursor?type=1&oid=201022189&root=3030790837&dialog=3030978856&size=5 
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "cursor": {
+            "min_floor": 5,
+            "max_floor": 94,
+            "size": 5
+        },
+        "dialog": {
+            "min_floor": 5,
+            "max_floor": 243
+        },
+        "replies": [
+            {
+                "rpid": 3030978856,
+                "oid": 201022189,
+                "type": 1,
+                "mid": 11814633,
+                "root": 3030790837,
+                "parent": 3030790837,
+                "dialog": 3030978856,
+                "count": 0,
+                "rcount": 0,
+                "floor": 5,
+                "state": 0,
+                "fansgrade": 0,
+                "attr": 0,
+                "ctime": 1592020635,
+                "rpid_str": "3030978856",
+                "root_str": "3030790837",
+                "parent_str": "3030790837",
+                "like": 55,
+                "action": 0,
+                "member": {
+                    "mid": "11814633",
+                    "uname": "我到四川省来",
+                    "sex": "保密",
+                    "sign": "保持half-sugar-life",
+                    "avatar": "http://i2.hdslb.com/bfs/face/1c7cad967633c718ddef302f4aa39efaed53a2e4.jpg",
+                    "rank": "10000",
+                    "DisplayRank": "0",
+                    "level_info": {
+                        "current_level": 5,
+                        "current_min": 0,
+                        "current_exp": 0,
+                        "next_exp": 0
+                    },
+                    "pendant": {
+                        "pid": 0,
+                        "name": "",
+                        "image": "",
+                        "expire": 0,
+                        "image_enhance": ""
+                    },
+                    "nameplate": {
+                        "nid": 4,
+                        "name": "青铜殿堂",
+                        "image": "http://i0.hdslb.com/bfs/face/2879cd5fb8518f7c6da75887994c1b2a7fe670bd.png",
+                        "image_small": "http://i2.hdslb.com/bfs/face/6707c120e00a3445933308fd9b7bd9fad99e9ec4.png",
+                        "level": "普通勋章",
+                        "condition": "单个自制视频总播放数>=1万"
+                    },
+                    "official_verify": {
+                        "type": -1,
+                        "desc": ""
+                    },
+                    "vip": {
+                        "vipType": 2,
+                        "vipDueDate": 1617638400000,
+                        "dueRemark": "",
+                        "accessStatus": 0,
+                        "vipStatus": 1,
+                        "vipStatusWarn": "",
+                        "themeType": 0,
+                        "label": {
+                            "path": "",
+                            "text": "年度大会员",
+                            "label_theme": "annual_vip"
+                        }
+                    },
+                    "fans_detail": null,
+                    "following": 0,
+                    "is_followed": 0,
+                    "user_sailing": {
+                        "pendant": null,
+                        "cardbg": null,
+                        "cardbg_with_focus": null
+                    }
+                },
+                "content": {
+                    "message": "看有机化学考研视频",
+                    "plat": 1,
+                    "device": "",
+                    "members": [],
+                    "jump_url": {},
+                    "max_line": 999
+                },
+                "replies": null,
+                "assist": 0,
+                "folder": {
+                    "has_folded": false,
+                    "is_folded": false,
+                    "rule": ""
+                },
+                "up_action": {
+                    "like": false,
+                    "reply": false
+                },
+                "show_follow": false
+            },
+            {
+                "rpid": 3032092982,
+                "oid": 201022189,
+                "type": 1,
+                "mid": 80396483,
+                "root": 3030790837,
+                "parent": 3030978856,
+                "dialog": 3030978856,
+                "count": 0,
+                "rcount": 0,
+                "floor": 7,
+                "state": 0,
+                "fansgrade": 0,
+                "attr": 0,
+                "ctime": 1592036860,
+                "rpid_str": "3032092982",
+                "root_str": "3030790837",
+                "parent_str": "3030978856",
+                "like": 210,
+                "action": 0,
+                "member": {
+                    "mid": "80396483",
+                    "uname": "緑箭口香糖",
+                    "sex": "保密",
+                    "sign": "交个朋友吧。",
+                    "avatar": "http://i1.hdslb.com/bfs/face/ca4b00a0e68f61559812ddc146b627ed6dd4d481.jpg",
+                    "rank": "10000",
+                    "DisplayRank": "0",
+                    "level_info": {
+                        "current_level": 5,
+                        "current_min": 0,
+                        "current_exp": 0,
+                        "next_exp": 0
+                    },
+                    "pendant": {
+                        "pid": 0,
+                        "name": "",
+                        "image": "",
+                        "expire": 0,
+                        "image_enhance": ""
+                    },
+                    "nameplate": {
+                        "nid": 58,
+                        "name": "收集达人",
+                        "image": "http://i0.hdslb.com/bfs/face/3f5539e1486303422ffc8595862ccb6606e0b745.png",
+                        "image_small": "http://i2.hdslb.com/bfs/face/cf85e7908095d256e595ec9759f4e7795f23bc22.png",
+                        "level": "普通勋章",
+                        "condition": "同时拥有粉丝勋章>=15个"
+                    },
+                    "official_verify": {
+                        "type": -1,
+                        "desc": ""
+                    },
+                    "vip": {
+                        "vipType": 0,
+                        "vipDueDate": 0,
+                        "dueRemark": "",
+                        "accessStatus": 0,
+                        "vipStatus": 0,
+                        "vipStatusWarn": "",
+                        "themeType": 0,
+                        "label": {
+                            "path": "",
+                            "text": "",
+                            "label_theme": ""
+                        }
+                    },
+                    "fans_detail": null,
+                    "following": 0,
+                    "is_followed": 0,
+                    "user_sailing": {
+                        "pendant": null,
+                        "cardbg": null,
+                        "cardbg_with_focus": null
+                    }
+                },
+                "content": {
+                    "message": "回复 @我到四川省来 :有一说一，上p站看原本要收费或者不好找的考研视频真的香[吃瓜]",
+                    "plat": 2,
+                    "device": "",
+                    "members": [
+                        {
+                            "mid": "11814633",
+                            "uname": "我到四川省来",
+                            "sex": "保密",
+                            "sign": "保持half-sugar-life",
+                            "avatar": "http://i2.hdslb.com/bfs/face/1c7cad967633c718ddef302f4aa39efaed53a2e4.jpg",
+                            "rank": "10000",
+                            "DisplayRank": "0",
+                            "level_info": {
+                                "current_level": 5,
+                                "current_min": 0,
+                                "current_exp": 0,
+                                "next_exp": 0
+                            },
+                            "pendant": {
+                                "pid": 0,
+                                "name": "",
+                                "image": "",
+                                "expire": 0,
+                                "image_enhance": ""
+                            },
+                            "nameplate": {
+                                "nid": 4,
+                                "name": "青铜殿堂",
+                                "image": "http://i0.hdslb.com/bfs/face/2879cd5fb8518f7c6da75887994c1b2a7fe670bd.png",
+                                "image_small": "http://i2.hdslb.com/bfs/face/6707c120e00a3445933308fd9b7bd9fad99e9ec4.png",
+                                "level": "普通勋章",
+                                "condition": "单个自制视频总播放数>=1万"
+                            },
+                            "official_verify": {
+                                "type": -1,
+                                "desc": ""
+                            },
+                            "vip": {
+                                "vipType": 2,
+                                "vipDueDate": 1617638400000,
+                                "dueRemark": "",
+                                "accessStatus": 0,
+                                "vipStatus": 1,
+                                "vipStatusWarn": "",
+                                "themeType": 0,
+                                "label": {
+                                    "path": "",
+                                    "text": "年度大会员",
+                                    "label_theme": "annual_vip"
+                                }
+                            }
+                        }
+                    ],
+                    "emote": {
+                        "[吃瓜]": {
+                            "id": 415,
+                            "package_id": 1,
+                            "state": 0,
+                            "type": 1,
+                            "attr": 0,
+                            "text": "[吃瓜]",
+                            "url": "http://i0.hdslb.com/bfs/emote/4191ce3c44c2b3df8fd97c33f85d3ab15f4f3c84.png",
+                            "meta": {
+                                "size": 1
+                            },
+                            "mtime": 1577702898
+                        }
+                    },
+                    "jump_url": {},
+                    "max_line": 999
+                },
+                "replies": null,
+                "assist": 0,
+                "folder": {
+                    "has_folded": false,
+                    "is_folded": false,
+                    "rule": ""
+                },
+                "up_action": {
+                    "like": false,
+                    "reply": false
+                },
+                "show_follow": false
+            },
+            {
+                "rpid": 3049044835,
+                "oid": 201022189,
+                "type": 1,
+                "mid": 34598825,
+                "root": 3030790837,
+                "parent": 3032092982,
+                "dialog": 3030978856,
+                "count": 0,
+                "rcount": 0,
+                "floor": 54,
+                "state": 0,
+                "fansgrade": 0,
+                "attr": 0,
+                "ctime": 1592368714,
+                "rpid_str": "3049044835",
+                "root_str": "3030790837",
+                "parent_str": "3032092982",
+                "like": 0,
+                "action": 0,
+                "member": {
+                    "mid": "34598825",
+                    "uname": "人宇君sayo",
+                    "sex": "男",
+                    "sign": "一个兴趣很乱的人hah",
+                    "avatar": "http://i2.hdslb.com/bfs/face/cd3bf8b9f4b6cc759cf29424c3017c41c8d018d7.jpg",
+                    "rank": "10000",
+                    "DisplayRank": "0",
+                    "level_info": {
+                        "current_level": 5,
+                        "current_min": 0,
+                        "current_exp": 0,
+                        "next_exp": 0
+                    },
+                    "pendant": {
+                        "pid": 149,
+                        "name": "快把我哥带走",
+                        "image": "http://i2.hdslb.com/bfs/face/6b45cf8ceb8cd6eeefbbcb202659e62a56356814.png",
+                        "expire": 0,
+                        "image_enhance": "http://i2.hdslb.com/bfs/face/6b45cf8ceb8cd6eeefbbcb202659e62a56356814.png"
+                    },
+                    "nameplate": {
+                        "nid": 0,
+                        "name": "",
+                        "image": "",
+                        "image_small": "",
+                        "level": "",
+                        "condition": ""
+                    },
+                    "official_verify": {
+                        "type": -1,
+                        "desc": ""
+                    },
+                    "vip": {
+                        "vipType": 1,
+                        "vipDueDate": 1591545600000,
+                        "dueRemark": "",
+                        "accessStatus": 0,
+                        "vipStatus": 0,
+                        "vipStatusWarn": "",
+                        "themeType": 0,
+                        "label": {
+                            "path": "",
+                            "text": "",
+                            "label_theme": ""
+                        }
+                    },
+                    "fans_detail": null,
+                    "following": 0,
+                    "is_followed": 0,
+                    "user_sailing": {
+                        "pendant": {
+                            "id": 149,
+                            "name": "快把我哥带走",
+                            "image": "http://i0.hdslb.com/bfs/face/6b45cf8ceb8cd6eeefbbcb202659e62a56356814.png",
+                            "jump_url": "",
+                            "type": "vip"
+                        },
+                        "cardbg": null,
+                        "cardbg_with_focus": null
+                    }
+                },
+                "content": {
+                    "message": "回复 @緑箭口香糖 :牛的",
+                    "plat": 3,
+                    "device": "phone",
+                    "members": [
+                        {
+                            "mid": "80396483",
+                            "uname": "緑箭口香糖",
+                            "sex": "保密",
+                            "sign": "交个朋友吧。",
+                            "avatar": "http://i1.hdslb.com/bfs/face/ca4b00a0e68f61559812ddc146b627ed6dd4d481.jpg",
+                            "rank": "10000",
+                            "DisplayRank": "0",
+                            "level_info": {
+                                "current_level": 5,
+                                "current_min": 0,
+                                "current_exp": 0,
+                                "next_exp": 0
+                            },
+                            "pendant": {
+                                "pid": 0,
+                                "name": "",
+                                "image": "",
+                                "expire": 0,
+                                "image_enhance": ""
+                            },
+                            "nameplate": {
+                                "nid": 58,
+                                "name": "收集达人",
+                                "image": "http://i0.hdslb.com/bfs/face/3f5539e1486303422ffc8595862ccb6606e0b745.png",
+                                "image_small": "http://i2.hdslb.com/bfs/face/cf85e7908095d256e595ec9759f4e7795f23bc22.png",
+                                "level": "普通勋章",
+                                "condition": "同时拥有粉丝勋章>=15个"
+                            },
+                            "official_verify": {
+                                "type": -1,
+                                "desc": ""
+                            },
+                            "vip": {
+                                "vipType": 0,
+                                "vipDueDate": 0,
+                                "dueRemark": "",
+                                "accessStatus": 0,
+                                "vipStatus": 0,
+                                "vipStatusWarn": "",
+                                "themeType": 0,
+                                "label": {
+                                    "path": "",
+                                    "text": "",
+                                    "label_theme": ""
+                                }
+                            }
+                        }
+                    ],
+                    "jump_url": {},
+                    "max_line": 999
+                },
+                "replies": null,
+                "assist": 0,
+                "folder": {
+                    "has_folded": false,
+                    "is_folded": false,
+                    "rule": ""
+                },
+                "up_action": {
+                    "like": false,
+                    "reply": false
+                },
+                "show_follow": false
+            },
+            {
+                "rpid": 3049581999,
+                "oid": 201022189,
+                "type": 1,
+                "mid": 479083152,
+                "root": 3030790837,
+                "parent": 3030978856,
+                "dialog": 3030978856,
+                "count": 0,
+                "rcount": 0,
+                "floor": 93,
+                "state": 0,
+                "fansgrade": 0,
+                "attr": 0,
+                "ctime": 1592378703,
+                "rpid_str": "3049581999",
+                "root_str": "3030790837",
+                "parent_str": "3030978856",
+                "like": 1,
+                "action": 0,
+                "member": {
+                    "mid": "479083152",
+                    "uname": "转手告别旧生活",
+                    "sex": "保密",
+                    "sign": "无聊...\n",
+                    "avatar": "http://i1.hdslb.com/bfs/face/6b0f326614a787aa83a8a87a3aeb2b90b3976ea1.jpg",
+                    "rank": "10000",
+                    "DisplayRank": "0",
+                    "level_info": {
+                        "current_level": 3,
+                        "current_min": 0,
+                        "current_exp": 0,
+                        "next_exp": 0
+                    },
+                    "pendant": {
+                        "pid": 0,
+                        "name": "",
+                        "image": "",
+                        "expire": 0,
+                        "image_enhance": ""
+                    },
+                    "nameplate": {
+                        "nid": 0,
+                        "name": "",
+                        "image": "",
+                        "image_small": "",
+                        "level": "",
+                        "condition": ""
+                    },
+                    "official_verify": {
+                        "type": -1,
+                        "desc": ""
+                    },
+                    "vip": {
+                        "vipType": 0,
+                        "vipDueDate": 0,
+                        "dueRemark": "",
+                        "accessStatus": 0,
+                        "vipStatus": 0,
+                        "vipStatusWarn": "",
+                        "themeType": 0,
+                        "label": {
+                            "path": "",
+                            "text": "",
+                            "label_theme": ""
+                        }
+                    },
+                    "fans_detail": null,
+                    "following": 0,
+                    "is_followed": 0,
+                    "user_sailing": {
+                        "pendant": null,
+                        "cardbg": null,
+                        "cardbg_with_focus": null
+                    }
+                },
+                "content": {
+                    "message": "回复 @我到四川省来 :哈哈，考研不考化学吧",
+                    "plat": 2,
+                    "device": "",
+                    "members": [
+                        {
+                            "mid": "11814633",
+                            "uname": "我到四川省来",
+                            "sex": "保密",
+                            "sign": "保持half-sugar-life",
+                            "avatar": "http://i2.hdslb.com/bfs/face/1c7cad967633c718ddef302f4aa39efaed53a2e4.jpg",
+                            "rank": "10000",
+                            "DisplayRank": "0",
+                            "level_info": {
+                                "current_level": 5,
+                                "current_min": 0,
+                                "current_exp": 0,
+                                "next_exp": 0
+                            },
+                            "pendant": {
+                                "pid": 0,
+                                "name": "",
+                                "image": "",
+                                "expire": 0,
+                                "image_enhance": ""
+                            },
+                            "nameplate": {
+                                "nid": 4,
+                                "name": "青铜殿堂",
+                                "image": "http://i0.hdslb.com/bfs/face/2879cd5fb8518f7c6da75887994c1b2a7fe670bd.png",
+                                "image_small": "http://i2.hdslb.com/bfs/face/6707c120e00a3445933308fd9b7bd9fad99e9ec4.png",
+                                "level": "普通勋章",
+                                "condition": "单个自制视频总播放数>=1万"
+                            },
+                            "official_verify": {
+                                "type": -1,
+                                "desc": ""
+                            },
+                            "vip": {
+                                "vipType": 2,
+                                "vipDueDate": 1617638400000,
+                                "dueRemark": "",
+                                "accessStatus": 0,
+                                "vipStatus": 1,
+                                "vipStatusWarn": "",
+                                "themeType": 0,
+                                "label": {
+                                    "path": "",
+                                    "text": "年度大会员",
+                                    "label_theme": "annual_vip"
+                                }
+                            }
+                        }
+                    ],
+                    "jump_url": {},
+                    "max_line": 999
+                },
+                "replies": null,
+                "assist": 0,
+                "folder": {
+                    "has_folded": false,
+                    "is_folded": false,
+                    "rule": ""
+                },
+                "up_action": {
+                    "like": false,
+                    "reply": false
+                },
+                "show_follow": false
+            },
+            {
+                "rpid": 3049578129,
+                "oid": 201022189,
+                "type": 1,
+                "mid": 11814633,
+                "root": 3030790837,
+                "parent": 3049581999,
+                "dialog": 3030978856,
+                "count": 0,
+                "rcount": 0,
+                "floor": 94,
+                "state": 0,
+                "fansgrade": 0,
+                "attr": 0,
+                "ctime": 1592378760,
+                "rpid_str": "3049578129",
+                "root_str": "3030790837",
+                "parent_str": "3049581999",
+                "like": 0,
+                "action": 0,
+                "member": {
+                    "mid": "11814633",
+                    "uname": "我到四川省来",
+                    "sex": "保密",
+                    "sign": "保持half-sugar-life",
+                    "avatar": "http://i2.hdslb.com/bfs/face/1c7cad967633c718ddef302f4aa39efaed53a2e4.jpg",
+                    "rank": "10000",
+                    "DisplayRank": "0",
+                    "level_info": {
+                        "current_level": 5,
+                        "current_min": 0,
+                        "current_exp": 0,
+                        "next_exp": 0
+                    },
+                    "pendant": {
+                        "pid": 0,
+                        "name": "",
+                        "image": "",
+                        "expire": 0,
+                        "image_enhance": ""
+                    },
+                    "nameplate": {
+                        "nid": 4,
+                        "name": "青铜殿堂",
+                        "image": "http://i0.hdslb.com/bfs/face/2879cd5fb8518f7c6da75887994c1b2a7fe670bd.png",
+                        "image_small": "http://i2.hdslb.com/bfs/face/6707c120e00a3445933308fd9b7bd9fad99e9ec4.png",
+                        "level": "普通勋章",
+                        "condition": "单个自制视频总播放数>=1万"
+                    },
+                    "official_verify": {
+                        "type": -1,
+                        "desc": ""
+                    },
+                    "vip": {
+                        "vipType": 2,
+                        "vipDueDate": 1617638400000,
+                        "dueRemark": "",
+                        "accessStatus": 0,
+                        "vipStatus": 1,
+                        "vipStatusWarn": "",
+                        "themeType": 0,
+                        "label": {
+                            "path": "",
+                            "text": "年度大会员",
+                            "label_theme": "annual_vip"
+                        }
+                    },
+                    "fans_detail": null,
+                    "following": 0,
+                    "is_followed": 0,
+                    "user_sailing": {
+                        "pendant": null,
+                        "cardbg": null,
+                        "cardbg_with_focus": null
+                    }
+                },
+                "content": {
+                    "message": "回复 @转手告别旧生活 :专业课 考啊",
+                    "plat": 3,
+                    "device": "phone",
+                    "members": [
+                        {
+                            "mid": "479083152",
+                            "uname": "转手告别旧生活",
+                            "sex": "保密",
+                            "sign": "无聊...\n",
+                            "avatar": "http://i1.hdslb.com/bfs/face/6b0f326614a787aa83a8a87a3aeb2b90b3976ea1.jpg",
+                            "rank": "10000",
+                            "DisplayRank": "0",
+                            "level_info": {
+                                "current_level": 3,
+                                "current_min": 0,
+                                "current_exp": 0,
+                                "next_exp": 0
+                            },
+                            "pendant": {
+                                "pid": 0,
+                                "name": "",
+                                "image": "",
+                                "expire": 0,
+                                "image_enhance": ""
+                            },
+                            "nameplate": {
+                                "nid": 0,
+                                "name": "",
+                                "image": "",
+                                "image_small": "",
+                                "level": "",
+                                "condition": ""
+                            },
+                            "official_verify": {
+                                "type": -1,
+                                "desc": ""
+                            },
+                            "vip": {
+                                "vipType": 0,
+                                "vipDueDate": 0,
+                                "dueRemark": "",
+                                "accessStatus": 0,
+                                "vipStatus": 0,
+                                "vipStatusWarn": "",
+                                "themeType": 0,
+                                "label": {
+                                    "path": "",
+                                    "text": "",
+                                    "label_theme": ""
+                                }
+                            }
+                        }
+                    ],
+                    "jump_url": {},
+                    "max_line": 999
+                },
+                "replies": null,
+                "assist": 0,
+                "folder": {
+                    "has_folded": false,
+                    "is_folded": false,
+                    "rule": ""
+                },
+                "up_action": {
+                    "like": false,
+                    "reply": false
+                },
+                "show_follow": false
+            }
+        ],
+        "assist": 0,
+        "blacklist": 0,
+        "vote": 0,
+        "lottery": 0,
+        "config": {
+            "showadmin": 1,
+            "showentry": 1,
+            "showfloor": 0,
+            "showtopic": 1,
+            "show_up_flag": true,
+            "read_only": false,
+            "show_del_log": true
+        },
+        "upper": {
+            "mid": 92586428
+        },
+        "show_bvid": true,
+        "control": {
+            "input_disable": false,
+            "root_input_text": "",
+            "child_input_text": "",
+            "bg_text": "看看下面~来发评论吧",
+            "web_selection": false,
+            "answer_guide_text": "需要升级成为lv2会员后才可以评论，先去答题转正吧！",
+            "answer_guide_icon_url": "http://i0.hdslb.com/bfs/emote/96940d16602cacbbac796245b7bb99fa9b5c970c.png",
+            "answer_guide_ios_url": "https://www.bilibili.com/h5/newbie/entry?navhide=1&re_src=12",
+            "answer_guide_android_url": "https://www.bilibili.com/h5/newbie/entry?navhide=1&re_src=6"
+        }
+    }
+}
+```
 
 
 

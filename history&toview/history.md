@@ -1,8 +1,8 @@
-# 播放历史
+# 历史记录
 
 <img src="/imgs/history.png" width="25" height="25"/>
 
-## 获取视频播放历史
+## 获取视频历史记录
 
 > http://api.bilibili.com/x/v2/history
 
@@ -367,7 +367,7 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 
 
 
-## 删除视频观看历史记录
+## 删除历史记录
 
 > http://api.bilibili.com/x/v2/history/delete
 
@@ -377,10 +377,10 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                     |
-| ------ | ---- | ------------------- | ------ | ------------------------ |
-| kid    | str  | 删除的目标记录      | 必要   | 格式：archive_{视频avID} |
-| csrf   | str  | cookies中的bili_jct | 必要   |                          |
+| 参数名 | 类型 | 内容                | 必要性 | 备注                                                         |
+| ------ | ---- | ------------------- | ------ | ------------------------------------------------------------ |
+| kid    | str  | 删除的目标记录      | 必要   | 视频：archive\_{视频avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />番剧（影视）：pgc\_{番剧ssID} |
+| csrf   | str  | cookies中的bili_jct | 必要   |                                                              |
 
 **json回复：**
 

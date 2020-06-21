@@ -35,9 +35,10 @@
   - qq&微博登录
   - [登录基本信息](login/login_info.md)√
   - [个人中心](login/member_center.md)×
-- [消息](msg)
-  - [通知类消息](msg/msg.md)×
-  - [私信](msg/private_msg.md)×
+- [消息中心](message)
+  - [通知类消息](message/msg.md)×
+  - [私信](message/private_msg.md)×
+  - [设置](message/config.md)×
 - [用户](user)
   - [基本信息](user/info.md)√
   - [状态数](user/status_number.md)√
@@ -55,13 +56,15 @@
   - [播放&下载地址（视频流）](video/videostream_url.md)√
   - 互动视频
   - [高能进度条](video/pbp.md)√
+  - [信息（上报心跳及记录历史）](video/report.md)×
 - 番剧（影视）
   - 基本信息
   - 状态数
   - 操作
 - [视频弹幕](danmaku)
-  - [实时弹幕&弹幕格式](danmaku/danmaku_list.md)√
-  - [历史弹幕](danmaku/history.md)√
+  - protobuf实时弹幕
+  - [xml实时弹幕](danmaku/danmaku_xml.md)√
+  - [xml历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
   - [弹幕操作](danmaku/action.md)×
 - [专栏](article)
@@ -87,7 +90,9 @@
 - [评论区](comment)
   - [评论区明细](comment/comment_list.md)√
   - [操作](comment/action.md)√
-  - 表情
+- [表情](emoji)
+  - [表情及表情包信息](emoji/emoji_list.md)×
+  - 操作
 - [创作中心](creativecenter)
   - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关
@@ -108,7 +113,7 @@
   - 小视频
   - 操作
 - [历史记录&稍后再看](history&toview)
-  - [历史记录](history&toview/play_history.md)√
+  - [历史记录](history&toview/history.md)√
   - [稍后再看](history&toview/toview.md)√
 - 收藏夹
 - [课程](cheese)
@@ -133,8 +138,9 @@
 - 哔哩哔哩游戏
 - [其他](other)
   - [基于ip的地理位置查询](other/ip.md)√
+  - [获取当前时间戳](other/time_stamp.md)√
 
-B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
+B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
 **注意：请勿滥用，仅用于学习和测试！**
 
