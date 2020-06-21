@@ -2322,12 +2322,12 @@ curl -b "SESSDATA=xxx;DedeUserID=1" -d "csrf=xxx&tags=minecraft%2C%E6%8A%80%E6%9
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注               |
-| ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | num  | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
-| bvid   | str  | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
-| reason | str  | 置顶视频备注        | 非必要 | 置顶备注最大40字符 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                    |
+| 参数名 | 类型 | 内容                | 必要性       | 备注                             |
+| ------ | ---- | ------------------- | ------------ | -------------------------------- |
+| aid    | num  | 置顶目标视频avID    | 必要（可选） | avID与bvID任选一个               |
+| bvid   | str  | 置顶目标视频bvID    | 必要（可选） | avID与bvID任选一个               |
+| reason | str  | 置顶视频备注        | 非必要       | 置顶备注最大40字符<br />默认为空 |
+| csrf   | str  | cookies中的bili_jct | 必要         |                                  |
 
 **json回复：**
 
@@ -2407,12 +2407,12 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/space/top/arc/ca
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注               |
-| ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | num  | 置顶目标视频avID    | 非必要 | avID与bvID任选一个 |
-| bvid   | str  | 置顶目标视频bvID    | 非必要 | avID与bvID任选一个 |
-| reason | str  | 代表作备注          | 非必要 | 置顶备注最大40字符 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                    |
+| 参数名 | 类型 | 内容                | 必要性       | 备注                             |
+| ------ | ---- | ------------------- | ------------ | -------------------------------- |
+| aid    | num  | 置顶目标视频avID    | 必要（可选） | avID与bvID任选一个               |
+| bvid   | str  | 置顶目标视频bvID    | 必要（可选） | avID与bvID任选一个               |
+| reason | str  | 代表作备注          | 非必要       | 置顶备注最大40字符<br />默认为空 |
+| csrf   | str  | cookies中的bili_jct | 必要         |                                  |
 
 **json回复：**
 
@@ -2452,11 +2452,11 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=94916552" "http://api.bilibili.com/x/spa
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                 | 必要性 | 备注               |
-| ------ | ---- | -------------------- | ------ | ------------------ |
-| aid    | num  | 要删除的目标视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | str  | 要删除的目标视频bvID | 非必要 | avID与bvID任选一个 |
-| csrf   | str  | cookies中的bili_jct  | 必要   |                    |
+| 参数名 | 类型 | 内容                 | 必要性       | 备注               |
+| ------ | ---- | -------------------- | ------------ | ------------------ |
+| aid    | num  | 要删除的目标视频avID | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 要删除的目标视频bvID | 必要（可选） | avID与bvID任选一个 |
+| csrf   | str  | cookies中的bili_jct  | 必要         |                    |
 
 **json回复：**
 

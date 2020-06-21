@@ -62,7 +62,7 @@
 | bangumi       | obj  | 番剧/影视信息                  | 非番剧/影视无此项                                            |
 | cheese        | obj  | 课程信息                       | 非课程无此项                                                 |
 | favorite      | bool | 是否已收藏                     | true：已收藏<br />false：未收藏                              |
-| type          | num  | 视频属性                       | 3：普通视频<br />4：番剧/影视<br />10：课程                  |
+| type          | num  | 视频属性                       | 3：普通视频<br />4：剧集<br />10：课程                       |
 | sub_type      | num  | 附视频属性                     | 0：普通视频<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
 | device        | num  | 观看设备                       | 1 3 5 7：手机端<br />2：PC端<br />4 6：PAD端<br />33：TV端<br />0：其他 |
 | page          | obj  | 最后观看的分P信息              |                                                              |

@@ -14,11 +14,11 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注               |
-| ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | num  | 视频avID            | 非必要 | avID与bvID任选一个 |
-| bvid   | str  | 视频bvID            | 非必要 | avID与bvID任选一个 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                    |
+| 参数名 | 类型 | 内容                | 必要性       | 备注               |
+| ------ | ---- | ------------------- | ------------ | ------------------ |
+| aid    | num  | 视频avID            | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID            | 必要（可选） | avID与bvID任选一个 |
+| csrf   | str  | cookies中的bili_jct | 必要         |                    |
 
 **json回复：**
 

@@ -14,12 +14,12 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                   |
-| ------ | ---- | ------------------- | ------ | ---------------------- |
-| aid    | num  | 视频avID            | 非必要 | avID与bvID任选一个     |
-| bvid   | str  | 视频bvID            | 非必要 | avID与bvID任选一个     |
-| like   | num  | 操作方式            | 必要   | 1：点赞<br />2：取消赞 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                        |
+| 参数名 | 类型 | 内容                | 必要性       | 备注                   |
+| ------ | ---- | ------------------- | ------------ | ---------------------- |
+| aid    | num  | 视频avID            | 必要（可选） | avID与bvID任选一个     |
+| bvid   | str  | 视频bvID            | 必要（可选） | avID与bvID任选一个     |
+| like   | num  | 操作方式            | 必要         | 1：点赞<br />2：取消赞 |
+| csrf   | str  | cookies中的bili_jct | 必要         |                        |
 
 **json回复：**
 
@@ -59,13 +59,13 @@ curl -b "SESSDATA=xxx" -d "aid=79677524&like=1&csrf=xxx" "http://api.bilibili.co
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名      | 类型 | 内容                | 必要性 | 备注                                    |
-| ----------- | ---- | ------------------- | ------ | --------------------------------------- |
-| aid         | num  | 视频avID            | 非必要 | avID与bvID任选一个                      |
-| bvid        | str  | 视频bvID            | 非必要 | avID与bvID任选一个                      |
-| select_like | num  | 附加点赞            | 非必要 | 0：不点赞<br />1：同时点赞<br />默认为0 |
-| multiply    | num  | 投币数量            | 必要   | 上限为2                                 |
-| csrf        | str  | cookies中的bili_jct | 必要   |                                         |
+| 参数名      | 类型 | 内容                | 必要性       | 备注                                    |
+| ----------- | ---- | ------------------- | ------------ | --------------------------------------- |
+| aid         | num  | 视频avID            | 必要（可选） | avID与bvID任选一个                      |
+| bvid        | str  | 视频bvID            | 必要（可选） | avID与bvID任选一个                      |
+| select_like | num  | 附加点赞            | 非必要       | 0：不点赞<br />1：同时点赞<br />默认为0 |
+| multiply    | num  | 投币数量            | 必要         | 上限为2                                 |
+| csrf        | str  | cookies中的bili_jct | 必要         |                                         |
 
 **json回复：**
 
@@ -171,11 +171,11 @@ curl --referer "http://www.bilibili.com" -b "SESSDATA=xxx" -d "rid=90671873&type
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注               |
-| ------ | ---- | ------------------- | ------ | ------------------ |
-| aid    | num  | 视频avID            | 非必要 | avID与bvID任选一个 |
-| bvid   | str  | 视频bvID            | 非必要 | avID与bvID任选一个 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                    |
+| 参数名 | 类型 | 内容                | 必要性       | 备注               |
+| ------ | ---- | ------------------- | ------------ | ------------------ |
+| aid    | num  | 视频avID            | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID            | 必要（可选） | avID与bvID任选一个 |
+| csrf   | str  | cookies中的bili_jct | 必要         |                    |
 
 **json回复：**
 
@@ -287,10 +287,10 @@ http://api.bilibili.com/x/v2/fav/video/favoured?aid=46281123
 
 **url参数：**
 
-| 参数名 | 类型 | 内容     | 必要性 | 备注               |
-| ------ | ---- | -------- | ------ | ------------------ |
-| aid    | num  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | str  | 视频bvID | 非必要 | avID与bvID任选一个 |
+| 参数名 | 类型 | 内容     | 必要性       | 备注               |
+| ------ | ---- | -------- | ------------ | ------------------ |
+| aid    | num  | 视频avID | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID | 必要（可选） | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -332,10 +332,10 @@ http://api.bilibili.com/x/web-interface/archive/has/like?aid=39330059
 
 **url参数：**
 
-| 参数名 | 类型 | 内容     | 必要性 | 备注               |
-| ------ | ---- | -------- | ------ | ------------------ |
-| aid    | num  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | str  | 视频bvID | 非必要 | avID与bvID任选一个 |
+| 参数名 | 类型 | 内容     | 必要性       | 备注               |
+| ------ | ---- | -------- | ------------ | ------------------ |
+| aid    | num  | 视频avID | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 视频bvID | 必要（可选） | avID与bvID任选一个 |
 
 **json回复：**
 
