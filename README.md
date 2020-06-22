@@ -56,7 +56,7 @@
   - [播放&下载地址（视频流）](video/videostream_url.md)√
   - 互动视频
   - [高能进度条](video/pbp.md)√
-  - [信息（上报心跳及记录历史）](video/report.md)×
+  - [信息上报（心跳及记录历史）](video/report.md)×
 - 番剧（影视）
   - 基本信息
   - 状态数
