@@ -19,7 +19,7 @@
 | 22   | 漫画                    | 漫画mcID   |
 | 33   | 课程                    | 课程epID   |
 
-## 获取评论区明细1(无楼层号)
+## 获取评论区明细1(无楼层号 web端)
 
 > http://api.bilibili.com/x/v2/reply
 
@@ -2323,7 +2323,7 @@
 
 
 
-## 获取评论区明细2(带有楼层号)
+## 获取评论区明细2(带有楼层号 客户端)
 
 > http://api.bilibili.com/x/v2/reply/main
 
@@ -4689,7 +4689,7 @@ http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
 
 
 
-## 获取指定评论条目及二级回复明细1（分离结构 无楼层号）
+## 获取指定评论条目及二级回复明细1（分离结构 无楼层号 web端）
 
 > http://api.bilibili.com/x/v2/reply/reply
 
@@ -5411,7 +5411,7 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 
 
-## 获取指定评论条目及二级回复明细2（嵌套结构 带有楼层号）
+## 获取指定评论条目及二级回复明细2（嵌套结构 带有楼层号 客户端）
 
 > http://api.bilibili.com/x/v2/reply/detail 
 
@@ -6154,7 +6154,7 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 
 
-## 获取指定评论对话树（带有楼层）
+## 获取指定评论对话树（带有楼层 客户端）
 
 > http://api.bilibili.com/x/v2/reply/dialog/cursor 
 
@@ -6998,6 +6998,55 @@ data`对象：
             "answer_guide_ios_url": "https://www.bilibili.com/h5/newbie/entry?navhide=1&re_src=12",
             "answer_guide_android_url": "https://www.bilibili.com/h5/newbie/entry?navhide=1&re_src=6"
         }
+    }
+}
+```
+
+
+
+## 获取评论区评论总数（客户端）
+
+> http://api.bilibili.com/x/v2/reply/count
+
+*方式：GET*
+
+**url参数：**
+
+| 参数名 | 类型 | 内容           | 必要性 | 备注               |
+| ------ | ---- | -------------- | ------ | ------------------ |
+| type   | num  | 评论区类型代码 | 必要   | **类型代码见上表** |
+| oid    | num  | 目标评论区ID   | 必要   |                    |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型                          | 内容     | 备注                                                         |
+| ------- | ----------------------------- | -------- | ------------------------------------------------------------ |
+| code    | num                           | 返回值   | 0：成功<br />-400：请求错误<br />-404：无此项<br />12009：评论主体的type不合法 |
+| message | str                           | 错误信息 | 默认为0                                                      |
+| ttl     | num                           | 1        | **作用尚不明确**                                             |
+| data    | 正确时：obj<br />错误时：null | 数据本体 |                                                              |
+
+`data`对象：
+
+| 字段  | 类型 | 内容     | 备注 |
+| ----- | ---- | -------- | ---- |
+| count | num  | 评论条数 |      |
+
+**示例：**
+
+获取视频`av2`的评论区总计评论条数
+
+http://api.bilibili.com/x/v2/reply/count?type=1&oid=2
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "count": 65521
     }
 }
 ```
