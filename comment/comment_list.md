@@ -7038,24 +7038,24 @@ data`对象：
 
 `评论条目`中的`member`对象：
 
-| 字段            | 类型                          | 内容             | 备注                                                         |
-| --------------- | ----------------------------- | ---------------- | ------------------------------------------------------------ |
-| mid             | str                           | 发送者UID        |                                                              |
-| uname           | str                           | 发送者昵称       |                                                              |
-| sex             | str                           | 发送者性别       | 男 女 保密                                                   |
-| sign            | str                           | 发送者签名       |                                                              |
-| avatar          | str                           | 发送者头像       |                                                              |
-| rank            | str                           | 10000            | **作用尚不明确**                                             |
-| DisplayRank     | str                           | 0                | **作用尚不明确**                                             |
-| level_info      | obj                           | 发送者等级       |                                                              |
-| pendant         | obj                           | 发送者头像框信息 |                                                              |
-| nameplate       | obj                           | 发送者勋章信息   |                                                              |
-| official_verify | obj                           | 发送者认证信息   |                                                              |
-| vip             | obj                           | 发送者会员信息   |                                                              |
-| fans_detail     | 无效时：null<br />有效时：obj | 发送者粉丝标签   |                                                              |
-| following       | num                           | 是否关注该用户   | 需要登录(SESSDATA) <br />否则恒为0<br />0：未关注<br />1：已关注 |
-| is_followed     | num                           | 是否被该用户关注 | 需要登录(SESSDATA) <br />否则恒为0<br />0：未关注<br />1：已关注 |
-| user_sailing    | obj                           | ？？？           |                                                              |
+| 字段            | 类型                          | 内容                   | 备注                                                         |
+| --------------- | ----------------------------- | ---------------------- | ------------------------------------------------------------ |
+| mid             | str                           | 发送者UID              |                                                              |
+| uname           | str                           | 发送者昵称             |                                                              |
+| sex             | str                           | 发送者性别             | 男 女 保密                                                   |
+| sign            | str                           | 发送者签名             |                                                              |
+| avatar          | str                           | 发送者头像             |                                                              |
+| rank            | str                           | 10000                  | **作用尚不明确**                                             |
+| DisplayRank     | str                           | 0                      | **作用尚不明确**                                             |
+| level_info      | obj                           | 发送者等级             |                                                              |
+| pendant         | obj                           | 发送者头像框信息       |                                                              |
+| nameplate       | obj                           | 发送者勋章信息         |                                                              |
+| official_verify | obj                           | 发送者认证信息         |                                                              |
+| vip             | obj                           | 发送者会员信息         |                                                              |
+| fans_detail     | 无效时：null<br />有效时：obj | 发送者粉丝标签         |                                                              |
+| following       | num                           | 是否关注该用户         | 需要登录(SESSDATA) <br />否则恒为0<br />0：未关注<br />1：已关注 |
+| is_followed     | num                           | 是否被该用户关注       | 需要登录(SESSDATA) <br />否则恒为0<br />0：未关注<br />1：已关注 |
+| user_sailing    | obj                           | 发送者评论条目装扮信息 |                                                              |
 
 `member`中的`level_info`对象：
 
@@ -7128,13 +7128,44 @@ data`对象：
 | master_status | num  | 1            | **作用尚不明确**     |
 | is_receive    | num  | 1            | **作用尚不明确**     |
 
-`member`中的`user_sailing`对象:
+`member`中的`user_sailing`对象：
 
-| 字段              | 类型 | 内容 | 备注             |
-| ----------------- | ---- | ---- | ---------------- |
-| pendant           | null | -    | **作用尚不明确** |
-| cardbg            | null | -    | **作用尚不明确** |
-| cardbg_with_focus | null | -    | **作用尚不明确** |
+| 字段              | 类型                          | 内容         | 备注             |
+| ----------------- | ----------------------------- | ------------ | ---------------- |
+| pendant           | 无效时：null<br />有效时：obj | 头像框信息   |                  |
+| cardbg            | 无效时：null<br />有效时：obj | 评论条目装扮 |                  |
+| cardbg_with_focus | null                          | -            | **作用尚不明确** |
+
+`user_sailing`中的`pendant`对象：
+
+| 字段     | 类型 | 内容          | 备注                                  |
+| -------- | ---- | ------------- | ------------------------------------- |
+| id       | num  | 头像框ID      |                                       |
+| name     | str  | 头像框名称    |                                       |
+| image    | str  | 头像框图片url |                                       |
+| jump_url | str  | 空            |                                       |
+| type     | str  | 装扮类型      | suit：一般装扮<br />vip_suit：vip装扮 |
+
+`user_sailing`中的`cardbg`对象：
+
+| 字段     | 类型 | 内容                    | 备注                                  |
+| -------- | ---- | ----------------------- | ------------------------------------- |
+| id       | num  | 评论条目装扮ID          |                                       |
+| name     | str  | 评论条目装扮名称        |                                       |
+| image    | str  | 评论条目装扮图片url     |                                       |
+| jump_url | str  | 评论条目装扮商城页面url |                                       |
+| fan      | obj  | 粉丝专属信息            |                                       |
+| type     | str  | 装扮类型                | suit：一般装扮<br />vip_suit：vip装扮 |
+
+`cardbg`中的`fan`对象：
+
+| 字段     | 类型 | 内容               | 备注             |
+| -------- | ---- | ------------------ | ---------------- |
+| is_fan   | num  | 是否为粉丝专属装扮 | 0：否<br />1：是 |
+| number   | num  | 粉丝专属编号       |                  |
+| color    | str  | 数字颜色           | 颜色码           |
+| name     | str  | 装扮名称           |                  |
+| num_desc | str  | 粉丝专属编号       | 字串格式         |
 
 `评论条目`中的`content`对象：
 

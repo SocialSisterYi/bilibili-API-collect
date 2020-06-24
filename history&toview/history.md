@@ -2,13 +2,344 @@
 
 <img src="/imgs/history.png" width="25" height="25"/>
 
-## 获取视频历史记录
+**本页所有操作均需登录（SESSDATA）**
+
+## 获取历史记录列表（视频、直播、专栏）
+
+>http://api.bilibili.com/x/web-interface/history/cursor
+
+*方式：GET*
+
+**url参数：**
+
+| 参数名   | 类型 | 内容                   | 必要性 | 备注                                                         |
+| -------- | ---- | ---------------------- | ------ | ------------------------------------------------------------ |
+| max      | num  | 历史记录截止目标ID     | 非必要 | 默认为0<br />稿件：视频avID<br />番剧（影视）：剧集ssID<br />直播：直播间ID<br />文集：文集rlID<br />文章：文章cvID |
+| business | num  | 历史记录截止目标ID类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：番剧（影视）<br />live：直播<br />article-list：文集<br />article：文章 |
+| view_at  | num  | 历史记录截止时间       | 非必要 | 时间戳<br />默认为0<br />0为当前时间                         |
+| ps       | num  | 每页项数               | 非必要 | 默认为20                                                     |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型  | 内容         | 备注                                              |
+| ------- | ----- | ------------ | ------------------------------------------------- |
+| code    | num   | 返回值       | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str   | 错误信息     | 默认为0                                           |
+| ttl     | num   | 1            | **作用尚不明确**                                  |
+| data    | array | 历史记录列表 |                                                   |
+
+`data`对象：
+
+| 字段   | 类型  | 内容             | 备注 |
+| ------ | ----- | ---------------- | ---- |
+| cursor | obj   | 历史记录页面信息 |      |
+| tab    | array | 历史记录筛选类型 |      |
+| list   | array | 分段历史记录列表 |      |
+
+`data`中的`cursor`对象：
+
+| 字段     | 类型 | 内容               | 备注               |
+| -------- | ---- | ------------------ | ------------------ |
+| max      | num  | 最后一项目标ID     | **详细内容见参数** |
+| view_at  | num  | 最后一项时间节点   | 时间戳             |
+| business | str  | 最后一项目标ID类型 | **详细内容见参数** |
+| ps       | num  | 每页项数           |                    |
+
+`data`中的`tab`数组：
+
+| 项   | 类型 | 内容              | 备注 |
+| ---- | ---- | ----------------- | ---- |
+| 0    | obj  | 历史记录筛选类型1 |      |
+| 1    | obj  | 历史记录筛选类型2 |      |
+| 2    | obj  | 历史记录筛选类型3 |      |
+
+`tab`数组中的对象：
+
+| 字段 | 类型 | 内容   | 备注 |
+| ---- | ---- | ------ | ---- |
+| type | str  | 类型   |      |
+| name | str  | 类型名 |      |
+
+`data`中的`tab`数组：
+
+| 项   | 类型 | 内容            | 备注             |
+| ---- | ---- | --------------- | ---------------- |
+| 0    | obj  | 历史记录1       |                  |
+| n    | obj  | 历史记录（n+1） | 按照查看顺序排列 |
+| ……   | obj  |                 |                  |
+
+`tab`数组中的对象：
+
+| 字段        | 类型                            | 内容                 | 备注                                     |
+| ----------- | ------------------------------- | -------------------- | ---------------------------------------- |
+| title       | str                             | 条目标题             |                                          |
+| long_title  | str                             | 条目副标题           |                                          |
+| cover       | str                             | 条目封面图url        | 用于专栏以外的条目                       |
+| covers      | 有效时：array<br />无效时：null | 条目封面图组         | 仅用于专栏                               |
+| uri         | str                             | 重定向url            | 仅用于剧集和直播                         |
+| history     | obj                             | 条目详细信息         |                                          |
+| videos      | num                             | 视频分P数目          | 仅用于稿件视频                           |
+| author_name | str                             | UP主昵称             |                                          |
+| author_face | str                             | UP主头像url          |                                          |
+| author_mid  | num                             | UP主UID              |                                          |
+| view_at     | num                             | 查看时间             | 时间戳                                   |
+| progress    | num                             | 视频观看进度         | 单位为秒<br />用于稿件视频或剧集         |
+| badge       | str                             | 条目备注标识         | 用于稿件视频或剧集                       |
+| show_title  | str                             | 分P标题              | 用于稿件视频或剧集                       |
+| duration    | num                             | 视频总时长           | 用于稿件视频或剧集                       |
+| current     | str                             | 空                   | **作用尚不明确**                         |
+| total       | num                             | 总计分集数           | 仅用于剧集                               |
+| new_desc    | str                             | 最新一话/最新一P标识 | 用于稿件视频或剧集                       |
+| is_finish   | num                             | 是否已完结           | 仅用于剧集<br />0：未完结<br />1：已完结 |
+| is_fav      | num                             | 是否收藏             | 0：未收藏<br />1：已收藏                 |
+| kid         | num                             | 条目目标ID           | **详细内容见参数**                       |
+| tag_name    | str                             | 子分区名             | 用于稿件视频和直播                       |
+| live_status | num                             | 直播状态             | 仅用于直播<br />0：未开播<br />1：已开播 |
+
+`tab`数组中的对象中的`covers`数组：
+
+| 项   | 类型 | 内容            | 备注 |
+| ---- | ---- | --------------- | ---- |
+| 0    | str  | 封面图片1       |      |
+| n    | str  | 封面图片（n+1） |      |
+| ……   | str  | ……              |      |
+
+`tab`数组中的对象中的`history`对象：
+
+| 字段     | 类型 | 内容                | 备注                                                         |
+| -------- | ---- | ------------------- | ------------------------------------------------------------ |
+| oid      | num  | 目标ID              | 稿件视频&剧集：视频avID<br />直播：直播间ID<br />文章：文章cvID<br />文集：文集rlID |
+| epid     | num  | 剧集epID            | 仅用于剧集                                                   |
+| bvid     | str  | 视频bvID            | 仅用于稿件视频                                               |
+| page     | num  | 观看到的视频分P数   | 仅用于稿件视频                                               |
+| cid      | num  | 观看到的对象ID      | 稿件视频&剧集：视频CID<br />文集：文章cvID                   |
+| part     | str  | 观看到的视频分P标题 | 仅用于稿件视频                                               |
+| business | str  | 条目类型            | **详细内容见参数**                                           |
+| dt       | num  | 查看平台代码        | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
+
+**示例：**
+
+获取当前时间截止的5条历史记录
+
+ http://api.bilibili.com/x/web-interface/history/cursor?ps=5
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "cursor": {
+            "max": 26193,
+            "view_at": 1592985807,
+            "business": "pgc",
+            "ps": 5
+        },
+        "tab": [
+            {
+                "type": "archive",
+                "name": "视频"
+            },
+            {
+                "type": "live",
+                "name": "直播"
+            },
+            {
+                "type": "article",
+                "name": "专栏"
+            }
+        ],
+        "list": [
+            {
+                "title": "韩国漫画如何出海掘金？一年出口额2.8亿元",
+                "long_title": "",
+                "cover": "",
+                "covers": [
+                    "https://i0.hdslb.com/bfs/article/b170c6fd7429ae205d6cb935e1d431710d82609d.jpg"
+                ],
+                "uri": "",
+                "history": {
+                    "oid": 6470274,
+                    "epid": 0,
+                    "bvid": "",
+                    "page": 0,
+                    "cid": 0,
+                    "part": "",
+                    "business": "article",
+                    "dt": 2
+                },
+                "videos": 0,
+                "author_name": "三文娱",
+                "author_face": "http://i1.hdslb.com/bfs/face/98566839756a8e3de6e183109984b032de6ff2d9.jpg",
+                "author_mid": 34772409,
+                "view_at": 1593000539,
+                "progress": 0,
+                "badge": "专栏",
+                "show_title": "",
+                "duration": 0,
+                "current": "",
+                "total": 0,
+                "new_desc": "",
+                "is_finish": 0,
+                "is_fav": 0,
+                "kid": 6470274,
+                "tag_name": "",
+                "live_status": 0
+            },
+            {
+                "title": "从国际空间站俯瞰地球，静谧蓝星守护者",
+                "long_title": "",
+                "cover": "http://i0.hdslb.com/bfs/live/new_room_cover/f07d8a0c7c5655f81cf1586903a121f2680cf3bc.jpg",
+                "covers": null,
+                "uri": "https://live.bilibili.com/14047",
+                "history": {
+                    "oid": 14047,
+                    "epid": 0,
+                    "bvid": "",
+                    "page": 0,
+                    "cid": 0,
+                    "part": "",
+                    "business": "live",
+                    "dt": 2
+                },
+                "videos": 0,
+                "author_name": "Zelo-Balance",
+                "author_face": "http://i1.hdslb.com/bfs/face/7303b3032d1e13ca7c788cd9c30d4430f8ffd1ea.jpg",
+                "author_mid": 19193,
+                "view_at": 1592999822,
+                "progress": 0,
+                "badge": "直播中",
+                "show_title": "",
+                "duration": 0,
+                "current": "",
+                "total": 0,
+                "new_desc": "",
+                "is_finish": 0,
+                "is_fav": 0,
+                "kid": 14047,
+                "tag_name": "户外",
+                "live_status": 1
+            },
+            {
+                "title": "许巍 《蓝莲花》吉他Cover，这回你们不用截图抓我了吧",
+                "long_title": "",
+                "cover": "http://i2.hdslb.com/bfs/archive/0225b1f1a790393097ceebb51e89796be806d6bc.jpg",
+                "covers": null,
+                "uri": "",
+                "history": {
+                    "oid": 883617049,
+                    "epid": 0,
+                    "bvid": "BV1sK4y147ob",
+                    "page": 1,
+                    "cid": 205017957,
+                    "part": "许巍 《蓝莲花》 Cover_1",
+                    "business": "archive",
+                    "dt": 2
+                },
+                "videos": 1,
+                "author_name": "硬核拆解",
+                "author_face": "http://i1.hdslb.com/bfs/face/4e131c9609299303cdde882792fc62b9f99cdcde.jpg",
+                "author_mid": 427494870,
+                "view_at": 1592999572,
+                "progress": 13,
+                "badge": "",
+                "show_title": "",
+                "duration": 91,
+                "current": "",
+                "total": 0,
+                "new_desc": "",
+                "is_finish": 0,
+                "is_fav": 0,
+                "kid": 883617049,
+                "tag_name": "演奏",
+                "live_status": 0
+            },
+            {
+                "title": "从清楚与混沌之分看Vtuber形象塑造",
+                "long_title": "",
+                "cover": "",
+                "covers": [
+                    "https://i0.hdslb.com/bfs/article/5ddb94dd1890c639622717c7083fb2917b4aa475.jpg"
+                ],
+                "uri": "",
+                "history": {
+                    "oid": 268656,
+                    "epid": 0,
+                    "bvid": "",
+                    "page": 0,
+                    "cid": 6233590,
+                    "part": "",
+                    "business": "article-list",
+                    "dt": 2
+                },
+                "videos": 0,
+                "author_name": "普天一光",
+                "author_face": "http://i2.hdslb.com/bfs/face/3702810bdac3d5103d684e61dc5bc8492a74f904.jpg",
+                "author_mid": 6614889,
+                "view_at": 1592998686,
+                "progress": 0,
+                "badge": "专栏",
+                "show_title": "",
+                "duration": 0,
+                "current": "",
+                "total": 0,
+                "new_desc": "",
+                "is_finish": 0,
+                "is_fav": 0,
+                "kid": 268656,
+                "tag_name": "",
+                "live_status": 0
+            },
+            {
+                "title": "百妖谱",
+                "long_title": "庆忌（下）",
+                "cover": "http://i0.hdslb.com/bfs/archive/695a4566d05620a24c51d6eb935fa4767d673b45.jpg",
+                "covers": null,
+                "uri": "https://www.bilibili.com/bangumi/play/ss26193",
+                "history": {
+                    "oid": 370908663,
+                    "epid": 326789,
+                    "bvid": "",
+                    "page": 0,
+                    "cid": 199204975,
+                    "part": "",
+                    "business": "pgc",
+                    "dt": 3
+                },
+                "videos": 0,
+                "author_name": "",
+                "author_face": "",
+                "author_mid": 0,
+                "view_at": 1592985807,
+                "progress": 533,
+                "badge": "国创",
+                "show_title": "第8话 庆忌（下）",
+                "duration": 1402,
+                "current": "",
+                "total": 12,
+                "new_desc": "更新至第10话",
+                "is_finish": 0,
+                "is_fav": 0,
+                "kid": 26193,
+                "tag_name": "",
+                "live_status": 0
+            }
+        ]
+    }
+}
+```
+
+
+
+
+
+## 获取全部视频历史记录（旧）
 
 > http://api.bilibili.com/x/v2/history
 
 *方式：GET*
-
-需要登录(SESSDATA)
 
 **url参数：**
 
@@ -25,7 +356,7 @@
 | ------- | ------ | ------------ | ------------------------------------------------- |
 | code    | num    | 返回值       | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
 | message | str    | 错误信息     | 默认为0                                           |
-| ttl     | num    | 1            | 作用尚不明确                                      |
+| ttl     | num    | 1            | **作用尚不明确**                                  |
 | data    | array | 历史记录列表 |                                                   |
 
 `data`数组：
@@ -64,7 +395,7 @@
 | favorite      | bool | 是否已收藏                     | true：已收藏<br />false：未收藏                              |
 | type          | num  | 视频属性                       | 3：普通视频<br />4：剧集<br />10：课程                       |
 | sub_type      | num  | 附视频属性                     | 0：普通视频<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
-| device        | num  | 观看设备                       | 1 3 5 7：手机端<br />2：PC端<br />4 6：PAD端<br />33：TV端<br />0：其他 |
+| device        | num  | 观看平台代码                   | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
 | page          | obj  | 最后观看的分P信息              |                                                              |
 | count         | num  | 分P数                          | 非投稿视频无此项                                             |
 | progress      | num  | 观看进度                       | 单位为秒                                                     |
@@ -373,13 +704,11 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 
 *方式：POST*
 
-需要登录(SESSDATA)
-
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------- | ------ | ------------------------------------------------------------ |
-| kid    | str  | 删除的目标记录      | 必要   | 视频：archive\_{视频avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />番剧（影视）：pgc\_{番剧ssID} |
+| kid    | str  | 删除的目标记录      | 必要   | 视频：archive\_{视频avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />剧集：pgc\_{剧集ssID}<br />文集：article-list\_{文集rlID} |
 | csrf   | str  | cookies中的bili_jct | 必要   |                                                              |
 
 **json回复：**
@@ -413,8 +742,6 @@ curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.
 > http://api.bilibili.com/x/v2/history/clear
 
 *方式：POST*
-
-需要登录(SESSDATA)
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -454,9 +781,7 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear
 
 *方式：POST*
 
-需要登录(SESSDATA)
-
-该功能不会影响历史记录的保存于删除
+该操作不会影响原有历史记录
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -496,8 +821,6 @@ curl -b "SESSDATA=xxx" -d "switch=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 > http://api.bilibili.com/x/v2/history/shadow
 
 *方式：GET*
-
-需要登录(SESSDATA)
 
 **json回复：**
 
