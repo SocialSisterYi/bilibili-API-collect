@@ -67,7 +67,10 @@
   - [xml历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
   - [弹幕操作](danmaku/action.md)×
+  - 高级弹幕
+  - 屏蔽管理
 - [专栏](article)
+  - 分区
   - [基本信息](article/info.md)×
   - [点赞&投币&收藏](article/like_coin_fav.md)×
   - 文集基本信息
@@ -81,10 +84,13 @@
 - [排行榜&最新动态](ranking&dynamic)
   - [排行榜](ranking&dynamic/ranking.md)x
   - [最新动态](ranking&dynamic/dynamic.md)x
-- 搜索
-  - 普通搜索
+- [搜索](search)
+  - [搜索请求](search/search_request.md)×
+  - [搜索结果](search/search_response.md)√
   - 热搜
+  - 搜索建议
 - [小黑屋](blackroom)
+  - 基本信息
   - [封禁公示](blackroom/banlist.md)√
   - 仲裁信息
 - [评论区](comment)
@@ -100,7 +106,6 @@
 - [实时广播](broadcast)
   - [总则](broadcast/general.md)√
   - [视频内广播](broadcast/video_room.md)√
-  - 分区实时在线
 - [充电](electric)
   - [B币方式](electric/Bcoin.md)√
   - [微信&支付宝方式](electric/WeChat&Alipay.md)√

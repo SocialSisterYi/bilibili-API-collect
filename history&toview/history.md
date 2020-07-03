@@ -110,11 +110,11 @@
 
 | 字段     | 类型 | 内容                | 备注                                                         |
 | -------- | ---- | ------------------- | ------------------------------------------------------------ |
-| oid      | num  | 目标ID              | 稿件视频&剧集：视频avID<br />直播：直播间ID<br />文章：文章cvID<br />文集：文集rlID |
+| oid      | num  | 目标ID              | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频avID<br />直播（当`business=live`时）：直播间ID<br />文章（当`business=article`时）：文章cvID<br />文集（当`business=article-list`时）：文集rlID |
 | epid     | num  | 剧集epID            | 仅用于剧集                                                   |
 | bvid     | str  | 视频bvID            | 仅用于稿件视频                                               |
 | page     | num  | 观看到的视频分P数   | 仅用于稿件视频                                               |
-| cid      | num  | 观看到的对象ID      | 稿件视频&剧集：视频CID<br />文集：文章cvID                   |
+| cid      | num  | 观看到的对象ID      | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频CID<br />文集（当`business=article-list`时）：文章cvID |
 | part     | str  | 观看到的视频分P标题 | 仅用于稿件视频                                               |
 | business | str  | 条目类型            | **详细内容见参数**                                           |
 | dt       | num  | 查看平台代码        | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
