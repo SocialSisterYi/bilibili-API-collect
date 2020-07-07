@@ -23,6 +23,10 @@
 
 所有api均为标准http协议，返回值大都为json
 
+所有http协议地址均可使用https
+
+小小的Demo：[av583785685](https://www.bilibili.com/video/av583785685)
+
 ---
 
 计划整理分类&目录：（√代表已完成，x代表正在施工...）
@@ -141,9 +145,11 @@
   - 贝壳相关
 - 哔哩哔哩漫画
 - 哔哩哔哩游戏
+- 轻视频
 - [其他](other)
   - [基于ip的地理位置查询](other/ip.md)√
   - [获取当前时间戳](other/time_stamp.md)√
+  - [分区在线人数](other/zone_online.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
