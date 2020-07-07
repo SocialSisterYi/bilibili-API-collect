@@ -106,7 +106,7 @@
 - [创作中心](creativecenter)
   - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关
-  - 电磁力相关
+  - [电磁力数据](creativecenter/railgun.md)√
 - [实时广播](broadcast)
   - [总则](broadcast/general.md)√
   - [视频内广播](broadcast/video_room.md)√
