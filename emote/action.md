@@ -12,11 +12,11 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                | 必要性 | 备注                             |
-| ---------- | ---- | ------------------- | ------ | -------------------------------- |
-| package_id | num  | 表情包ID            | 必要   |                                  |
-| business   | str  | 使用场景            | 必要   | reply：评论区<br />dynamic：动态 |
-| csrf       | str  | cookies中的bili_jct | 必要   |                                  |
+| 参数名     | 类型 | 内容                     | 必要性 | 备注                             |
+| ---------- | ---- | ------------------------ | ------ | -------------------------------- |
+| package_id | num  | 表情包ID                 | 必要   |                                  |
+| business   | str  | 使用场景                 | 必要   | reply：评论区<br />dynamic：动态 |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |                                  |
 
 **json回复：**
 
@@ -52,11 +52,11 @@ curl -b "SESSDATA=xxx" -d "package_id=25&business=reply&csrf=xxx" "http://api.bi
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                | 必要性 | 备注                             |
-| ---------- | ---- | ------------------- | ------ | -------------------------------- |
-| package_id | num  | 表情包ID            | 必要   |                                  |
-| business   | str  | 使用场景            | 必要   | reply：评论区<br />dynamic：动态 |
-| csrf       | str  | cookies中的bili_jct | 必要   |                                  |
+| 参数名     | 类型 | 内容                     | 必要性 | 备注                             |
+| ---------- | ---- | ------------------------ | ------ | -------------------------------- |
+| package_id | num  | 表情包ID                 | 必要   |                                  |
+| business   | str  | 使用场景                 | 必要   | reply：评论区<br />dynamic：动态 |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |                                  |
 
 **json回复：**
 

@@ -197,11 +197,11 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| aid    | num  | 视频avID            | 必要   |      |
-| tag_id | num  | TAGID               | 必要   |      |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| aid    | num  | 视频avID                 | 必要   |      |
+| tag_id | num  | TAGID                    | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -241,11 +241,11 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bi
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| aid    | num  | 视频avID            | 必要   |      |
-| tag_id | num  | TAGID               | 必要   |      |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| aid    | num  | 视频avID                 | 必要   |      |
+| tag_id | num  | TAGID                    | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 

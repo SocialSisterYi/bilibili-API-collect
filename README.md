@@ -31,7 +31,7 @@
 
 计划整理分类&目录：（√代表已完成，x代表正在施工...）
 
-- cookie
+- [API认证与鉴权](other/API_auth.md)×
 - [图片格式化](other/picture.md)√
 - [登录](login)
   - [二维码登录](login/QR.md)√
@@ -100,9 +100,9 @@
 - [评论区](comment)
   - [评论区明细](comment/comment_list.md)√
   - [操作](comment/action.md)√
-- [表情](emoji)
-  - [表情及表情包信息](emoji/emoji_list.md)×
-  - 操作
+- [表情](emote)
+  - [表情及表情包信息](emote/emote_list.md)√
+  - [操作](emote/action.md)√
 - [创作中心](creativecenter)
   - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关

@@ -706,10 +706,10 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                                                         |
-| ------ | ---- | ------------------- | ------ | ------------------------------------------------------------ |
-| kid    | str  | 删除的目标记录      | 必要   | 视频：archive\_{视频avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />剧集：pgc\_{剧集ssID}<br />文集：article-list\_{文集rlID} |
-| csrf   | str  | cookies中的bili_jct | 必要   |                                                              |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
+| ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
+| kid    | str  | 删除的目标记录           | 必要   | 视频：archive\_{视频avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />剧集：pgc\_{剧集ssID}<br />文集：article-list\_{文集rlID} |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
 **json回复：**
 
@@ -745,9 +745,9 @@ curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -785,10 +785,10 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                                         |
-| ------ | ---- | ------------------- | ------ | -------------------------------------------- |
-| switch | bool | 停用开关            | 非必要 | true：停用<br />false：正常<br />默认为false |
-| csrf   | str  | cookies中的bili_jct | 必要   |                                              |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                                         |
+| ------ | ---- | ------------------------ | ------ | -------------------------------------------- |
+| switch | bool | 停用开关                 | 非必要 | true：停用<br />false：正常<br />默认为false |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                              |
 
 **json回复：**
 

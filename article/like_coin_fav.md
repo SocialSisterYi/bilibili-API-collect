@@ -16,7 +16,7 @@
 | ------ | ---- | ------------------- | ------ | ---------------------- |
 | id     | num  | 文章cvID            | 必要   |                        |
 | type   | num  | 操作方式            | 必要   | 1：点赞<br />2：取消赞 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                        |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                        |
 
 **json回复：**
 
@@ -58,7 +58,7 @@ curl -b "SESSDATA=xxx" -d "id=5806746&type=1&csrf=xxx" "http://api.bilibili.com/
 | -------- | ---- | ------------------- | ------ | ------- |
 | aid      | num  | 文章cvID            | 必要   |         |
 | multiply | num  | 投币数量            | 必要   | 上限为2 |
-| csrf     | str  | cookies中的bili_jct | 必要   |         |
+| csrf     | str  | CSRF Token（位于cookie） | 必要   |         |
 
 **json回复：**
 
@@ -109,7 +109,7 @@ curl -b "SESSDATA=xxx" -d "aid=5806746&multiply=1&csrf=xxx" "http://api.bilibili
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
 | id     | num  | 文章cvID            | 必要   |      |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 

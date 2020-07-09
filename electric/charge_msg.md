@@ -8,11 +8,11 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                | 必要性 | 备注 |
-| -------- | ---- | ------------------- | ------ | ---- |
-| order_id | str  | 留言token           | 必要   |      |
-| message  | str  | 留言内容            | 必要   |      |
-| csrf     | str  | cookies中的bili_jct | 必要   |      |
+| 参数名   | 类型 | 内容                     | 必要性 | 备注 |
+| -------- | ---- | ------------------------ | ------ | ---- |
+| order_id | str  | 留言token                | 必要   |      |
+| message  | str  | 留言内容                 | 必要   |      |
+| csrf     | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 

@@ -10,20 +10,20 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                   | 必要性       | 备注                                                         |
-| -------- | ---- | ---------------------- | ------------ | ------------------------------------------------------------ |
-| type     | num  | 1                      | 必要         |                                                              |
-| oid      | num  | 视频CID                | 必要         |                                                              |
-| msg      | str  | 弹幕内容               | 必要         | 长度小于100字符                                              |
-| bvid     | str  | 视频bvID               | 必要（可选） | avID与bvID任选一个                                           |
-| aid      | num  | 视频avID               | 必要（可选） | avID与bvID任选一个                                           |
-| progress | num  | 弹幕出现在视频内的时间 | 非必要       | 单位为毫秒<br />默认为0                                      |
-| color    | num  | 弹幕颜色设置           | 非必要       | 详见[「弹幕」中的属性 p](danmaku.md#属性 p)<br />默认为16777215（#FFFFFF）白色 |
-| fontsize | num  | 弹幕字号设置           | 非必要       | 详见[「弹幕」中的属性 p](danmaku.md#属性 p)<br />默认为25    |
-| pool     | num  | 弹幕池选择             | 非必要       | 0：普通弹幕<br />1：字幕弹幕<br />2：BAS弹幕<br />默认为0    |
-| mode     | num  | 弹幕类型选择           | 必要         | 1：普通<br />4：底部<br />5：顶部<br />7：高级<br />9：BAS（`pool`必须为2） |
-| rnd      | num  | 16位10进制随机数       | 非必要       | **若无此项，则发送弹幕冷却时间限制为90s**<br />若有此项，则发送弹幕冷却时间限制为5s |
-| csrf     | str  | cookies中的bili_jct    | 必要         |                                                              |
+| 参数名   | 类型 | 内容                     | 必要性       | 备注                                                         |
+| -------- | ---- | ------------------------ | ------------ | ------------------------------------------------------------ |
+| type     | num  | 1                        | 必要         |                                                              |
+| oid      | num  | 视频CID                  | 必要         |                                                              |
+| msg      | str  | 弹幕内容                 | 必要         | 长度小于100字符                                              |
+| bvid     | str  | 视频bvID                 | 必要（可选） | avID与bvID任选一个                                           |
+| aid      | num  | 视频avID                 | 必要（可选） | avID与bvID任选一个                                           |
+| progress | num  | 弹幕出现在视频内的时间   | 非必要       | 单位为毫秒<br />默认为0                                      |
+| color    | num  | 弹幕颜色设置             | 非必要       | 详见[「弹幕」中的属性 p](danmaku.md#属性 p)<br />默认为16777215（#FFFFFF）白色 |
+| fontsize | num  | 弹幕字号设置             | 非必要       | 详见[「弹幕」中的属性 p](danmaku.md#属性 p)<br />默认为25    |
+| pool     | num  | 弹幕池选择               | 非必要       | 0：普通弹幕<br />1：字幕弹幕<br />2：BAS弹幕<br />默认为0    |
+| mode     | num  | 弹幕类型选择             | 必要         | 1：普通<br />4：底部<br />5：顶部<br />7：高级<br />9：BAS（`pool`必须为2） |
+| rnd      | num  | 16位10进制随机数         | 非必要       | **若无此项，则发送弹幕冷却时间限制为90s**<br />若有此项，则发送弹幕冷却时间限制为5s |
+| csrf     | str  | CSRF Token（位于cookie） | 必要         |                                                              |
 
 **json回复：**
 
@@ -81,11 +81,11 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=62131&msg=%e5%89%8d%e6%9d%a5%e8%80%83%e5%8
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| dmid   | num  | 弹幕dmID            | 必要   |      |
-| cid    | num  | 视频CID             | 必要   |      |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| dmid   | num  | 弹幕dmID                 | 必要   |      |
+| cid    | num  | 视频CID                  | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -124,11 +124,11 @@ curl -b "SESSDATA=xxx" -d "dmid=32310301474947077&cid=168901231&csrf=xxx" "http:
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| mode   | str  | sp                  | 必要   |      |
-| cid    | num  | 视频CID             | 必要   |      |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| mode   | str  | sp                       | 必要   |      |
+| cid    | num  | 视频CID                  | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 

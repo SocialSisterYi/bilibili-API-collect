@@ -2080,10 +2080,10 @@ http://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=7792521
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名    | 类型 | 内容                | 必要性 | 备注                   |
-| --------- | ---- | ------------------- | ------ | ---------------------- |
-| user_sign | str  | 要设置的签名内容    | 非必要 | 删除签名留空或省去即可 |
-| csrf      | str  | cookies中的bili_jct | 必要   |                        |
+| 参数名    | 类型 | 内容                     | 必要性 | 备注                   |
+| --------- | ---- | ------------------------ | ------ | ---------------------- |
+| user_sign | str  | 要设置的签名内容         | 非必要 | 删除签名留空或省去即可 |
+| csrf      | str  | CSRF Token（位于cookie） | 必要   |                        |
 
 **json回复：**
 
@@ -2121,10 +2121,10 @@ curl -b "SESSDATA=xxx" -d "user_sign=%E9%AB%98%E4%B8%AD%E6%8A%80%E6%9C%AF%E5%AE%
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                                    |
-| ------ | ---- | ------------------- | ------ | --------------------------------------- |
-| notice | str  | 要设置的公告内容    | 非必要 | 删除公告留空或省去即可<br />少于150字符 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                                         |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                                    |
+| ------ | ---- | ------------------------ | ------ | --------------------------------------- |
+| notice | str  | 要设置的公告内容         | 非必要 | 删除公告留空或省去即可<br />少于150字符 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                         |
 
 **json回复：**
 
@@ -2166,15 +2166,15 @@ curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilib
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名      | 类型 | 内容                | 必要性 | 备注                           |
-| ----------- | ---- | ------------------- | ------ | ------------------------------ |
-| fav_video   | num  | 收藏视频            | 非必要 | 0：隐藏<br />1：公开<br />下同 |
-| bangumi     | num  | 追番及追剧          | 非必要 |                                |
-| tags        | num  | 关注的TAG           | 非必要 |                                |
-| coins_video | num  | 投币的视频          | 非必要 |                                |
-| user_info   | num  | 个人信息            | 非必要 |                                |
-| played_game | num  | 玩过的游戏          | 非必要 |                                |
-| csrf        | nstr | cookies中的bili_jct | 必要   |                                |
+| 参数名      | 类型 | 内容                     | 必要性 | 备注                           |
+| ----------- | ---- | ------------------------ | ------ | ------------------------------ |
+| fav_video   | num  | 收藏视频                 | 非必要 | 0：隐藏<br />1：公开<br />下同 |
+| bangumi     | num  | 追番及追剧               | 非必要 |                                |
+| tags        | num  | 关注的TAG                | 非必要 |                                |
+| coins_video | num  | 投币的视频               | 非必要 |                                |
+| user_info   | num  | 个人信息                 | 非必要 |                                |
+| played_game | num  | 玩过的游戏               | 非必要 |                                |
+| csrf        | nstr | CSRF Token（位于cookie） | 必要   |                                |
 
 **json回复：**
 
@@ -2213,10 +2213,10 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名      | 类型 | 内容                | 必要性 | 备注                                                         |
-| ----------- | ---- | ------------------- | ------ | ------------------------------------------------------------ |
-| index_order | nums | 布局列表            | 必要   | 每个值之间用","（%2C）分隔<br />先左侧布局再右侧布局<br />值的意义见下表 |
-| csrf        | str  | cookies中的bili_jct | 必要   |                                                              |
+| 参数名      | 类型 | 内容                     | 必要性 | 备注                                                         |
+| ----------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
+| index_order | nums | 布局列表                 | 必要   | 每个值之间用","（%2C）分隔<br />先左侧布局再右侧布局<br />值的意义见下表 |
+| csrf        | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
 布局参数`index_order`：
 
@@ -2281,10 +2281,10 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                                                         |
-| ------ | ---- | ------------------- | ------ | ------------------------------------------------------------ |
-| tags   | strs | 要设置的TAG内容     | 非必要 | 删除公告留空或省去即可<br />各TAG长度小于10字符<br />最多5个TAG<br />各TAG之间用","(%2C)分隔<br />重复TAG无效 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                                                              |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
+| ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
+| tags   | strs | 要设置的TAG内容          | 非必要 | 删除公告留空或省去即可<br />各TAG长度小于10字符<br />最多5个TAG<br />各TAG之间用","(%2C)分隔<br />重复TAG无效 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
 **json回复：**
 
@@ -2322,12 +2322,12 @@ curl -b "SESSDATA=xxx;DedeUserID=1" -d "csrf=xxx&tags=minecraft%2C%E6%8A%80%E6%9
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性       | 备注                             |
-| ------ | ---- | ------------------- | ------------ | -------------------------------- |
-| aid    | num  | 置顶目标视频avID    | 必要（可选） | avID与bvID任选一个               |
-| bvid   | str  | 置顶目标视频bvID    | 必要（可选） | avID与bvID任选一个               |
-| reason | str  | 置顶视频备注        | 非必要       | 置顶备注最大40字符<br />默认为空 |
-| csrf   | str  | cookies中的bili_jct | 必要         |                                  |
+| 参数名 | 类型 | 内容                     | 必要性       | 备注                             |
+| ------ | ---- | ------------------------ | ------------ | -------------------------------- |
+| aid    | num  | 置顶目标视频avID         | 必要（可选） | avID与bvID任选一个               |
+| bvid   | str  | 置顶目标视频bvID         | 必要（可选） | avID与bvID任选一个               |
+| reason | str  | 置顶视频备注             | 非必要       | 置顶备注最大40字符<br />默认为空 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要         |                                  |
 
 **json回复：**
 
@@ -2367,9 +2367,9 @@ curl -b "SESSDATA=xxx" -b "aid=98948772&csrf=xxx" "http://api.bilibili.com/x/spa
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -2407,12 +2407,12 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/space/top/arc/ca
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性       | 备注                             |
-| ------ | ---- | ------------------- | ------------ | -------------------------------- |
-| aid    | num  | 置顶目标视频avID    | 必要（可选） | avID与bvID任选一个               |
-| bvid   | str  | 置顶目标视频bvID    | 必要（可选） | avID与bvID任选一个               |
-| reason | str  | 代表作备注          | 非必要       | 置顶备注最大40字符<br />默认为空 |
-| csrf   | str  | cookies中的bili_jct | 必要         |                                  |
+| 参数名 | 类型 | 内容                     | 必要性       | 备注                             |
+| ------ | ---- | ------------------------ | ------------ | -------------------------------- |
+| aid    | num  | 置顶目标视频avID         | 必要（可选） | avID与bvID任选一个               |
+| bvid   | str  | 置顶目标视频bvID         | 必要（可选） | avID与bvID任选一个               |
+| reason | str  | 代表作备注               | 非必要       | 置顶备注最大40字符<br />默认为空 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要         |                                  |
 
 **json回复：**
 
@@ -2452,11 +2452,11 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=94916552" "http://api.bilibili.com/x/spa
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                 | 必要性       | 备注               |
-| ------ | ---- | -------------------- | ------------ | ------------------ |
-| aid    | num  | 要删除的目标视频avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 要删除的目标视频bvID | 必要（可选） | avID与bvID任选一个 |
-| csrf   | str  | cookies中的bili_jct  | 必要         |                    |
+| 参数名 | 类型 | 内容                     | 必要性       | 备注               |
+| ------ | ---- | ------------------------ | ------------ | ------------------ |
+| aid    | num  | 要删除的目标视频avID     | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 要删除的目标视频bvID     | 必要（可选） | avID与bvID任选一个 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
 
 **json回复：**
 

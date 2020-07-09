@@ -334,12 +334,12 @@ http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注               |
-| ------ | ---- | ------------------- | ------ | ------------------ |
-| fid    | num  | 目标用户UID         | 必要   |                    |
-| act    | num  | 操作代码            | 必要   | **操作代码见下表** |
-| re_src | num  | 必须为11            | 必要   |                    |
-| csrf   | str  | cookies中的bili_jct | 必要   |                    |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注               |
+| ------ | ---- | ------------------------ | ------ | ------------------ |
+| fid    | num  | 目标用户UID              | 必要   |                    |
+| act    | num  | 操作代码                 | 必要   | **操作代码见下表** |
+| re_src | num  | 必须为11                 | 必要   |                    |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                    |
 
 操作代码`act`：
 
@@ -863,10 +863,10 @@ http://api.bilibili.com/x/relation/tag/special
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注       |
-| ------ | ---- | ------------------- | ------ | ---------- |
-| tag    | str  | 分组名              | 必要   | 最长16字符 |
-| csrf   | str  | cookies中的bili_jct | 必要   |            |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注       |
+| ------ | ---- | ------------------------ | ------ | ---------- |
+| tag    | str  | 分组名                   | 必要   | 最长16字符 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |            |
 
 **json回复：**
 
@@ -914,11 +914,11 @@ curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" "http://api.bilibili.com/x/relation/t
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注       |
-| ------ | ---- | ------------------- | ------ | ---------- |
-| tagid  | num  | 分组ID              | 必要   |            |
-| name   | str  | 新名称              | 必要   | 最长16字符 |
-| csrf   | str  | cookies中的bili_jct | 必要   |            |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注       |
+| ------ | ---- | ------------------------ | ------ | ---------- |
+| tagid  | num  | 分组ID                   | 必要   |            |
+| name   | str  | 新名称                   | 必要   | 最长16字符 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |            |
 
 **json回复：**
 
@@ -958,10 +958,10 @@ curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx"
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| tagid  | num  | 分组ID              | 必要   |      |
-| csrf   | str  | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| tagid  | num  | 分组ID                   | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -1001,11 +1001,11 @@ curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" "http://api.bilibili.com/x/relat
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                       |
-| ------ | ---- | ------------------- | ------ | -------------------------- |
-| fids   | nums | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
-| tagids | nums | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                            |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                       |
+| ------ | ---- | ------------------------ | ------ | -------------------------- |
+| fids   | nums | 目标用户UID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| tagids | nums | 分组ID                   | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                            |
 
 **json回复：**
 
@@ -1043,11 +1043,11 @@ curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" "http://ap
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注                       |
-| ------ | ---- | ------------------- | ------ | -------------------------- |
-| fids   | nums | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
-| tagids | nums | 分组ID              | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf   | str  | cookies中的bili_jct | 必要   |                            |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                       |
+| ------ | ---- | ------------------------ | ------ | -------------------------- |
+| fids   | nums | 目标用户UID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| tagids | nums | 分组ID                   | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                            |
 
 **json回复：**
 
@@ -1085,12 +1085,12 @@ curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" "http:
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名       | 类型 | 内容                | 必要性 | 备注                       |
-| ------------ | ---- | ------------------- | ------ | -------------------------- |
-| beforeTagids | nums | 原分组ID            | 必要   | 每个ID之间用","（%2C）间隔 |
-| afterTagids  | nums | 新分组ID            | 必要   | 每个ID之间用","（%2C）间隔 |
-| fids         | nums | 目标用户UID         | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf         | str  | cookies中的bili_jct | 必要   |                            |
+| 参数名       | 类型 | 内容                     | 必要性 | 备注                       |
+| ------------ | ---- | ------------------------ | ------ | -------------------------- |
+| beforeTagids | nums | 原分组ID                 | 必要   | 每个ID之间用","（%2C）间隔 |
+| afterTagids  | nums | 新分组ID                 | 必要   | 每个ID之间用","（%2C）间隔 |
+| fids         | nums | 目标用户UID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| csrf         | str  | CSRF Token（位于cookie） | 必要   |                            |
 
 **json回复：**
 
