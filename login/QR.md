@@ -2,24 +2,24 @@
 
 流程&逻辑：
 
-1. 获取`二维码内容url`以及`秘钥`，以`二维码内容url`生成二维码，等待手机客户端扫描
-2. 以`秘钥`作为参数进行POST
+1. 获取`二维码内容url`以及`密钥`，以`二维码内容url`生成二维码，等待手机客户端扫描
+2. 以`密钥`作为参数进行POST
 3. if "code"==true goto 6                               else goto 4（是否已经确认）
 4. if "data"==-4   goto 2                                else goto 5（是否已经扫描）
-5. if "data"==-5   goto 3 && 提示`已扫描`else goto 1&提示`二维码超时或错误`（秘钥是否有效）
+5. if "data"==-5   goto 3 && 提示`已扫描`else goto 1&提示`二维码超时或错误`（密钥是否有效）
 6. 成功后会自动配置cookie 如需登录游戏分站则访问`data`.`url`中的url
 
 <img src="/imgs/2233login.png"/>
 
 
 
-## 申请二维码URL及扫码秘钥 
+## 申请二维码URL及扫码密钥 
 
 > http://passport.bilibili.com/qrcode/getLoginUrl
 
 *方式：GET*
 
-秘钥超时为180秒
+密钥超时为180秒
 
 **json回复：**
 
@@ -64,7 +64,7 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 
 *方式：POST*
 
-秘钥超时为180秒
+密钥超时为180秒
 
 验证正确时会进行设置以下cookie项：
 
@@ -98,7 +98,7 @@ data 对象：
 
 curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 
-当秘钥正确时但未扫描时`status`为`false`，`data`为num值`-4`
+当密钥正确时但未扫描时`status`为`false`，`data`为num值`-4`
 
 ```json
 {
