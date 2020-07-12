@@ -96,7 +96,7 @@
 - [小黑屋](blackroom)
   - 基本信息
   - [封禁公示](blackroom/banlist.md)√
-  - 仲裁信息
+  - [仲裁信息](blackroom/judgement.md)√
 - [评论区](comment)
   - [评论区明细](comment/comment_list.md)√
   - [操作](comment/action.md)√
