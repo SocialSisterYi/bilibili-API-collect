@@ -66,7 +66,7 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 
 密钥超时为180秒
 
-验证正确时会进行设置以下cookie项：
+验证登录成功后会进行设置以下cookie项：
 
 `sid` `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
 
@@ -90,9 +90,9 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 | data    | 正确时：obj<br />错误时：num | 正确时：游戏分站url<br />错误时：错误代码 | 错误时：<br />-1：秘钥错误<br />-2：秘钥超时<br />-4：未扫描<br />-5：未确认 |
 
 data 对象：
-| 字段 | 类型 | 内容            | 备注 |
-| ---- | ---- | --------------- | ---- |
-| url  | str  | 游戏分站登录url |      |
+| 字段 | 类型 | 内容                | 备注 |
+| ---- | ---- | ------------------- | ---- |
+| url  | str  | 游戏分站跨域登录url |      |
 
 **示例：**
 
@@ -131,9 +131,9 @@ curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
 }
 ```
 
-回复头部抓包信息：
+**响应头部抓包信息：**
 
-可明显看见设置了几个cookie（本人手打已测试成功登录B站）
+可明显看见设置了几个cookie（填入浏览器即可成功登录）
 
 ```http
 HTTP/1.1 200 OK
@@ -152,19 +152,21 @@ Cache-Control: no-cache
 X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 ```
 
-**游戏分站登录url与cookie的数据对应（也可用于不方便设置cookie的场合提取使用）**
+**游戏分站跨域登录url：**
+
+游戏分站跨域登录url与cookie的值一一对应，可用于不方便设置cookie的场合提取使用
 
 https://passport.biligame.com/crossDomain?
 
 DedeUserID=(登录UID)&
 
-DedeUserID__ckMd5=(DedeUserID__ckMd5)&
+DedeUserID__ckMd5=(登录UID MD5值)&
 
 Expires=(过期时间 秒)&
 
 SESSDATA=(登录token)&
 
-bili_jct=(登录csrf)&
+bili_jct=(csrf)&
 
 gourl=(跳转网址 默认为主页)
 

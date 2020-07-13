@@ -2324,7 +2324,7 @@
 
 
 
-## 获取评论区明细2(带有楼层号 客户端)
+## 获取评论区明细2(带有楼层号 APP端)
 
 > http://api.bilibili.com/x/v2/reply/main
 
@@ -5412,7 +5412,7 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 
 
-## 获取指定评论条目及二级回复明细2（嵌套结构 带有楼层号 客户端）
+## 获取指定评论条目及二级回复明细2（嵌套结构 带有楼层号 APP端）
 
 > http://api.bilibili.com/x/v2/reply/detail 
 
@@ -7005,7 +7005,7 @@ data`对象：
 
 
 
-## 获取评论区评论总数（客户端）
+## 获取评论区评论总数（APP端）
 
 > http://api.bilibili.com/x/v2/reply/count
 
