@@ -35,7 +35,9 @@
 - [图片格式化](other/picture.md)√
 - [登录](login)
   - [二维码登录](login/QR.md)√
-  - 密码&短信登录
+  - [验证码登录](login/verify)√
+    + [短信登录](login/verify/SMS.md)√
+    + 密码登录
   - qq&微博登录
   - [登录基本信息](login/login_info.md)√
   - [个人中心](login/member_center.md)×
