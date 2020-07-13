@@ -185,8 +185,7 @@ curl --request POST 'http://passport.bilibili.com/web/sms/general/v2/send' \
 curl --request POST 'https://passport.bilibili.com/web/login/rapid' 
 --data-urlencode 'cid=1'\
 --data-urlencode 'tel=13888888888'\
---data-urlencode 'smsCode=123456'\
-'&source=main-web&goUrl=https%3A%2F%2Fspace.bilibili.com&keep=true'
+--data-urlencode 'smsCode=123456'
 ```
 ```json
 {
