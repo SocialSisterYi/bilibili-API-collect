@@ -2,7 +2,7 @@
 
 > http://api.bilibili.com/x/ugcpay/trade/elec/message
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 

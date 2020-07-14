@@ -8,7 +8,7 @@
 
 > http://api.bilibili.com/pbp/data
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

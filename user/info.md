@@ -5,7 +5,7 @@
 ## 用户详细信息1 (用于空间)
 > http://api.bilibili.com/x/space/acc/info
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -99,7 +99,12 @@
 
 查询用户`UID=2`的详细信息
 
-http://api.bilibili.com/x/space/acc/info?mid=2
+```shell
+curl -G 'http://api.bilibili.com/x/space/acc/info'\
+--data-urlencode 'mid=2'\
+-b 'SESSDATA=xxx'
+```
+
 ```json
 {
 	"code": 0,
@@ -202,7 +207,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 > http://api.bilibili.com/x/web-interface/card
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -325,7 +330,13 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 **示列：**
 
-http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
+```shell
+curl -G 'api.bilibili.com/x/web-interface/card'\
+--data-urlencode 'mid=2'\
+--data-urlencode 'photo=true'\
+-b 'SESSDATA=xxx'
+```
+
 ```json
 {
 	"code": 0,
@@ -402,13 +413,11 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 }
 ```
 
-
-
 ## 本用户详细信息
 
 > http://api.bilibili.com/x/space/myinfo
 
-*方式:GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)
 
@@ -509,7 +518,11 @@ http://api.bilibili.com/x/web-interface/card?mid=2&photo=true
 
 **示例：**
 
-http://api.bilibili.com/x/space/myinfo
+```shell
+curl -G 'api.bilibili.com/x/space/myinfo'\
+-b 'SESSDATA=xxx'
+```
+
 ```json
 {
 	"code": 0,

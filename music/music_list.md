@@ -4,7 +4,7 @@
 
 > https://www.bilibili.com/audio/music-service-c/web/collections/list
 
-*方式：GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)及验证DedeUserID存在且不为0
 
@@ -162,7 +162,7 @@
 
 > https://www.bilibili.com/audio/music-service-c/web/collections/info
 
-*方式：GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)及验证DedeUserID存在且不为0
 

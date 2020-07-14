@@ -4,7 +4,7 @@
 
 > http://www.bilibili.com/audio/music-service-c/web/song/info
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -138,7 +138,7 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
 
 > http://www.bilibili.com/audio/music-service-c/web/tag/song
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -230,7 +230,7 @@ http://www.bilibili.com/audio/music-service-c/web/tag/song?sid=15664
 
 > http://www.bilibili.com/audio/music-service-c/web/member/song
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -360,7 +360,7 @@ http://www.bilibili.com/audio/music-service-c/web/member/song?sid=815861
 
 > http://www.bilibili.com/audio/music-service-c/web/song/lyric
 
-*方式:GET*
+*请求方式：GET*
 
 同「查询歌曲基本信息」中的lrc歌词	
 

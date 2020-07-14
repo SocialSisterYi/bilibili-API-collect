@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/relation/followers
 
-*方式:GET*
+*请求方式：GET*
 
 登录(SESSDATA)可看自己全部
 
@@ -90,7 +90,13 @@
 
 以每页2项的方式获取`UID=293793435`的用户的第1页的粉丝明细
 
-http://api.bilibili.com/x/relation/followers?vmid=293793435&ps=2&pn=1
+```shell
+curl -G 'http://api.bilibili.com/x/relation/followers'\
+--data-urlencode 'vmid=293793435'\
+--data-urlencode 'ps=2'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -155,15 +161,13 @@ http://api.bilibili.com/x/relation/followers?vmid=293793435&ps=2&pn=1
 }
 ```
 
-
-
 ## 查询用户关注明细 
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
 > http://api.bilibili.com/x/relation/followings
 
-*方式:GET*
+*请求方式：GET*
 
 登录(SESSDATA)可看自己全部
 
@@ -255,7 +259,13 @@ data 对象：
 
 以每页2项的方式获取`UID=293793435`的用户的第1页的关注明细
 
-http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
+```shell
+curl -G 'http://api.bilibili.com/x/relation/ollowings'\
+--data-urlencode 'vmid=293793435'\
+--data-urlencode 'ps=2'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -320,26 +330,24 @@ http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 }
 ```
 
-
-
 ## 操作用户关系（关注/取关 等）
 
 <img src="/imgs/follow.svg" width="200" height="100" />
 
 > http://api.bilibili.com/x/relation/modify
 
-*方式:POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注               |
-| ------ | ---- | ------------------------ | ------ | ------------------ |
-| fid    | num  | 目标用户UID              | 必要   |                    |
-| act    | num  | 操作代码                 | 必要   | **操作代码见下表** |
-| re_src | num  | 必须为11                 | 必要   |                    |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |                    |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                                  |
+| ------ | ---- | ------------------------ | ------ | ------------------------------------- |
+| fid    | num  | 目标用户UID              | 必要   |                                       |
+| act    | num  | 操作代码                 | 必要   | **操作代码见下表**                    |
+| re_src | num  | 关注来源代码             | 必要   | 空间：11<br />视频：14<br />文章：115 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                       |
 
 操作代码`act`：
 
@@ -367,7 +375,14 @@ http://api.bilibili.com/x/relation/followings?vmid=293793435&ps=2&pn=1
 
 关注`UID=14082`的用户
 
-curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" "http://api.bilibili.com/x/relation/modify"
+```shell
+curl 'http://http://api.bilibili.com/x/relation/modify'\
+--data-urlencode 'fid=14082'\
+--data-urlencode 'act=1'\
+--data-urlencode 're_src=11'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -377,13 +392,11 @@ curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" "http://api.bilibil
 }
 ```
 
-
-
 ## 查询用户与自己关系1 (仅查关注)
 
 > http://api.bilibili.com/x/relation
 
-*方式:GET*
+*请求方式：GET*
 
  需要登录(SESSDATA)
 
@@ -426,7 +439,11 @@ curl -b SESSDATA=xxx -d "fid=14082&act=1&re_src=11&csrf=xxx" "http://api.bilibil
 
 可得对于`UID=258150656`的用户，在`2018/10/28 0:51:41`时关注，且设为特别关注，并位于ID为`-10`分组中
 
-http://api.bilibili.com/x/relation?fid=258150656
+```shell
+curl -G 'http://http://api.bilibili.com/x/relation'\
+--data-urlencode 'fid=258150656'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -443,13 +460,11 @@ http://api.bilibili.com/x/relation?fid=258150656
 }
 ```
 
-
-
 ## 查询用户与自己关系2(互相)
 
 > http://api.bilibili.com/x/space/acc/relation
 
-*方式:GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)
 
@@ -509,7 +524,11 @@ http://api.bilibili.com/x/relation?fid=258150656
 
 可得对于`UID=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于ID为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于ID为`-10`和`56502`的分组中（虽然我看不到）
 
-http://api.bilibili.com/x/space/acc/relation?mid=15858903
+```shell
+curl -G 'http://api.bilibili.com/x/space/acc/relation'\
+--data-urlencode 'mid=15858903'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -537,15 +556,13 @@ http://api.bilibili.com/x/space/acc/relation?mid=15858903
 }
 ```
 
-
-
 ## 关注分组相关
 
 ### 查询关注分组列表
 
 > http://api.bilibili.com/x/relation/tags
 
-*方式:GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)
 
@@ -581,7 +598,10 @@ http://api.bilibili.com/x/space/acc/relation?mid=15858903
 
 查询所有的分组的名字以及ID
 
-http://api.bilibili.com/x/relation/tags
+```shell
+curl 'http://api.bilibili.com/x/relation/tags'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -606,13 +626,11 @@ http://api.bilibili.com/x/relation/tags
 }
 ```
 
-
-
 ### 查询关注分组明细
 
 > http://api.bilibili.com/x/relation/tag
 
-*方式:GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)
 
@@ -684,7 +702,13 @@ http://api.bilibili.com/x/relation/tags
 
 以每页2项的方式获取了ID为`207542`分组的第1页的粉丝明细
 
-http://api.bilibili.com/x/relation/tag?tagid=207542&ps=2&pn=1
+```shell
+curl -G 'http://api.bilibili.com/x/relation/tag'\
+--data-urlencode 'tagid=207542'\
+--data-urlencode 'ps=2'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -737,13 +761,11 @@ http://api.bilibili.com/x/relation/tag?tagid=207542&ps=2&pn=1
 }
 ```
 
-
-
 ### 查询目标用户所在的分组 
 
 > http://api.bilibili.com/x/relation/tag/user
 
-*方式:GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)
 
@@ -776,7 +798,11 @@ http://api.bilibili.com/x/relation/tag?tagid=207542&ps=2&pn=1
 
 查询用户`UID=319214221`存在的所有分组ID和名称
 
-http://api.bilibili.com/x/relation/tag/user?fid=319214221
+```shell
+curl -G 'http://api.bilibili.com/x/relation/tag/user'\
+--data-urlencode 'fid=319214221'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -790,11 +816,11 @@ http://api.bilibili.com/x/relation/tag/user?fid=319214221
 }
 ```
 
-
-
 ### 查询所有特别关注的UID
 
 > http://api.bilibili.com/x/relation/tag/special
+
+*请求方式：GET*
 
 需要登录(SESSDATA)
 
@@ -819,7 +845,10 @@ http://api.bilibili.com/x/relation/tag/user?fid=319214221
 
 **示例：**
 
-http://api.bilibili.com/x/relation/tag/special
+```shell
+curl 'http://api.bilibili.com/x/relation/tag/special'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -849,15 +878,13 @@ http://api.bilibili.com/x/relation/tag/special
 }
 ```
 
-
-
-### 创建关注分组
+### 创建分组
 
 <img src="/imgs/add.svg" width="100" height="100" />
 
 > http://api.bilibili.com/x/relation/tag/create
 
-*方式:POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -887,9 +914,14 @@ http://api.bilibili.com/x/relation/tag/special
 
 **示例：**
 
-创建了名为`vUP`的分组，得到ID为`216677`
+创建了名为`测试`的分组，得到ID为`216677`
 
-curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" "http://api.bilibili.com/x/relation/tag/create"
+```shell
+curl 'http://api.bilibili.com/x/relation/tag/create'\
+--data-urlencode 'tag=测试'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -902,13 +934,11 @@ curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" "http://api.bilibili.com/x/relation/t
 }
 ```
 
-
-
-### 重命名关注分组
+### 重命名分组
 
 > http://api.bilibili.com/x/relation/tag/update
 
-*方式:POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -934,7 +964,13 @@ curl -b SESSDATA=xxx -d "tag=vUP&csrf=xxx" "http://api.bilibili.com/x/relation/t
 
 把ID为`194112`的分组更名为`膜法师`
 
-curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx" "http://api.bilibili.com/x/relation/tag/update"
+```shell
+curl 'http://api.bilibili.com/x/relation/tag/update'\
+--data-urlencode 'tagid=194112'\
+--data-urlencode 'name=膜法师'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -944,15 +980,13 @@ curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx"
 }
 ```
 
-
-
-### 删除关注分组
+### 删除分组
 
 <img src="/imgs/delete.svg" width="100" height="100" />
 
 > http://api.bilibili.com/x/relation/tag/del
 
-*方式:POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -977,7 +1011,12 @@ curl -b SESSDATA=xxx -d "tagid=194112&name=%e8%86%9c%e6%b3%95%e5%b8%88&csrf=xxx"
 
 删除分组ID为`216699`的分组
 
-curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" "http://api.bilibili.com/x/relation/tag/del"
+```shell
+curl 'http://api.bilibili.com/x/relation/tag/del'\
+--data-urlencode 'tagid=216699'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -987,15 +1026,13 @@ curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" "http://api.bilibili.com/x/relat
 }
 ```
 
-
-
-### 修改用户分组关系（添加/删除）
+### 修改分组成员（添加/删除）
 
 <img src="/imgs/add.svg" width="100" height="100" />
 
 > http://api.bilibili.com/x/relation/tags/addUsers
 
-*方式:POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -1021,7 +1058,13 @@ curl -b SESSDATA=xxx -d "tagid=216699&csrf=xxx" "http://api.bilibili.com/x/relat
 
 把关注用户`UID=205631797`同时添加分组关系到ID为`-10`和`207542`的分组中
 
-curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" "http://api.bilibili.com/x/relation/tags/addUsers"
+```shell
+curl 'http://api.bilibili.com/x/relation/tags/addUsers'\
+--data-urlencode 'fids=205631797'\
+--data-urlencode 'tagids=-10,207542'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -1031,13 +1074,11 @@ curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" "http://ap
 }
 ```
 
-
-
-### 批量复制关注用户到分组
+### 复制关注到分组
 
 > http://api.bilibili.com/x/relation/tags/copyUsers 
 
-*方式:POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -1045,8 +1086,8 @@ curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" "http://ap
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                       |
 | ------ | ---- | ------------------------ | ------ | -------------------------- |
-| fids   | nums | 目标用户UID              | 必要   | 每个ID之间用","（%2C）间隔 |
-| tagids | nums | 分组ID                   | 必要   | 每个ID之间用","（%2C）间隔 |
+| fids   | nums | 待复制的用户UID          | 必要   | 每个ID之间用","（%2C）间隔 |
+| tagids | nums | 目标分组ID               | 必要   | 每个ID之间用","（%2C）间隔 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                            |
 
 **json回复：**
@@ -1063,7 +1104,13 @@ curl -b SESSDATA=xxx -d "fids=205631797&tagids=-10%2C207542&csrf=xxx" "http://ap
 
 把关注用户`UID=4856007`和`UID=326499679`同时复制到ID为`231305`的分组中
 
-curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" "http://api.bilibili.com/x/relation/tags/copyUsers"
+```shell
+curl 'http://api.bilibili.com/x/relation/tags/copyUsers'\
+--data-urlencode 'fids=4856007,326499679'\
+--data-urlencode 'tagids=231305'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -1073,13 +1120,11 @@ curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" "http:
 }
 ```
 
-
-
-### 批量移动关注用户到分组
+### 移动关注到分组
 
 > http://api.bilibili.com/x/relation/tags/moveUsers 
 
-*方式:POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -1089,7 +1134,7 @@ curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" "http:
 | ------------ | ---- | ------------------------ | ------ | -------------------------- |
 | beforeTagids | nums | 原分组ID                 | 必要   | 每个ID之间用","（%2C）间隔 |
 | afterTagids  | nums | 新分组ID                 | 必要   | 每个ID之间用","（%2C）间隔 |
-| fids         | nums | 目标用户UID              | 必要   | 每个ID之间用","（%2C）间隔 |
+| fids         | nums | 待移动的用户UID          | 必要   | 每个ID之间用","（%2C）间隔 |
 | csrf         | str  | CSRF Token（位于cookie） | 必要   |                            |
 
 **json回复：**
@@ -1104,11 +1149,16 @@ curl -b SESSDATA=xxx -d "fids=4856007%2C326499679&tagids=231305&csrf=xxx" "http:
 
 **示例：**
 
-把关注用户`UID=3211734
-69`和`UID=327086920`同时从ID为`207542`的分组移动到ID为`231305`的分组中
+把关注用户`UID=321173469`和`UID=327086920`同时从ID为`207542`的分组移动到ID为`231305`的分组中
 
-curl -b SESSDATA=xxx -d "beforeTagids=207542&afterTagids=231305&fids=3211734
-69%2C327086920&csrf=xxx" "http://api.bilibili.com/x/relation/tags/moveUsers"
+```shell
+curl 'http://api.bilibili.com/x/relation/tags/moveUsers'\
+--data-urlencode 'beforeTagids=207542'\
+--data-urlencode 'afterTagids=23130'\
+--data-urlencode 'fids=321173469,327086920'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

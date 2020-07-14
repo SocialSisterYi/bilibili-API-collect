@@ -1,9 +1,9 @@
 # 视频状态数
 
-## 视频状态数1（备用  不封python 暂不支持bvID）
+## 视频状态数1（仅avID）
 > http://api.bilibili.com/archive_stat/stat
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -44,7 +44,12 @@
 
 查询视频`av91572143`的状态数
 
-http://api.bilibili.com/archive_stat/stat?aid=91572143
+avID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/archive_stat/stat'\
+--data-urlencode 'aid=91572143'
+```
 
 ```json
 {
@@ -71,17 +76,13 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 
 
 
-## 视频状态数2（常用 封杀python）
+## 视频状态数2（禁python）
 
 > http://api.bilibili.com/x/web-interface/archive/stat
 
-*方式:GET*
+*请求方式：GET*
 
-**此API克python，UA中只要存在\*python\*字眼就无法获取正确内容，如用py请改UA**
-
-**此API克python，UA中只要存在\*python\*字眼就无法获取正确内容，如用py请改UA**
-
-**此API克python，UA中只要存在\*python\*字眼就无法获取正确内容，如用py请改UA**
+此接口请求头中UA值存在`python`字串，会返回-412错误
 
 **url参数：**
 
@@ -94,12 +95,12 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                            |
-| ------- | ---- | -------- | ----------------------------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />-400：请求错误<br />40003：无视频 |
-| message | str  | 错误信息 | 默认为0                                         |
-| ttl     | num  | 1        | 作用尚不明确                                    |
-| data    | obj  | 信息本体 |                                                 |
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功 <br />-400：请求错误<br />-412：请求被拦截<br />40003：无视频 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+| data    | obj  | 信息本体 |                                                              |
 
 `data`对象：
 
@@ -126,9 +127,19 @@ http://api.bilibili.com/archive_stat/stat?aid=91572143
 
 查询视频`av2271112`/`BV1es411D7sW`的状态数
 
-http://api.bilibili.com/x/web-interface/archive/stat?aid=2271112
+avID方式：
 
-同http://api.bilibili.com/x/web-interface/archive/stat?bvid=BV1es411D7sW
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
+--data-urlencode 'aid=2271112'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
+--data-urlencode 'bvid=BV1es411D7sW'
+```
 
 ```json
 {
@@ -155,5 +166,20 @@ http://api.bilibili.com/x/web-interface/archive/stat?aid=2271112
 }
 ```
 
+当UA为`2333python2333`时，则无法访问此接口：
 
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
+--data-urlencode 'aid=2271112'\
+-A '2333python2333'
+```
+
+```json
+{
+    "code":-412,
+    "message":"请求被拦截",
+    "ttl":1,
+    "data":null
+}
+```
 

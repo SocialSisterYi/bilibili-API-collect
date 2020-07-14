@@ -6,7 +6,7 @@
 
 >http://api.bilibili.com/x/v2/history/toview/add
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -52,7 +52,7 @@ curl -b "SESSDATA=xxx" -d "aid=41687433&csrf=xxx" "http://api.bilibili.com/x/v2/
 
 > http://space.bilibili.com/ajax/channel/addAllToView
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -100,7 +100,7 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 > http://api.bilibili.com/x/v2/history/toview
 
-*方式：GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)
 
@@ -378,7 +378,7 @@ http://api.bilibili.com/x/v2/history/toview
 
 > http://api.bilibili.com/x/v2/history/toview/del
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -432,7 +432,7 @@ curl -b "SESSDATA=xxx" -d "viewed=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 
 > http://api.bilibili.com/x/v2/history/toview/clear
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 

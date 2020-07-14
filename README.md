@@ -29,16 +29,16 @@
 
 ---
 
-计划整理分类&目录：（√代表已完成，x代表正在施工...）
+计划整理分类&目录：（√代表已完成，x代表正在施工...）二级目录正在建设中.....
 
 - [API认证与鉴权（APP与Cookie方式）](other/API_auth.md)×
 - [图片格式化](other/picture.md)√
 - [登录](login)
-  - [二维码登录](login/QR.md)√
-  - [验证码登录](login/verify)√
+  - [登录操作](login/login_action)√
     + [短信登录](login/verify/SMS.md)√
     + [密码登录](login/verify/password.md)√
-  - qq&微博登录
+    + [二维码登录](login/QR.md)√
+    + SNS登录（QQ&微博）
   - [登录基本信息](login/login_info.md)√
   - [个人中心](login/member_center.md)×
 - [消息中心](message)

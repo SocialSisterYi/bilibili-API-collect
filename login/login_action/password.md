@@ -10,7 +10,7 @@ web端密码登录流程：
 
 > http://passport.bilibili.com/login?act=getkey
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -38,7 +38,7 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 
 >  http://passport.bilibili.com/api/oauth2/getKey
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -59,7 +59,7 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 **示例：**
 
 ```shell
-curl --request POST 'http://passport.bilibili.com/api/oauth2/getKey'\
+curl 'http://passport.bilibili.com/api/oauth2/getKey'\
 --data-urlencode 'appkey=1d8b6e7d45233436'\
 --data-urlencode 'sign=17004c193f688f0b5665c1068e733aff'
 ```
@@ -75,7 +75,7 @@ curl --request POST 'http://passport.bilibili.com/api/oauth2/getKey'\
 
 **注：RSA公钥一般为固定值**
 
-```plaintext
+```
 -----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjb4V7EidX/ym28t2ybo0U6t0n
 6p4ej8VjqKHg100va6jkNbNTrLQqMCQCAYtXMXXp2Fwkk6WR+12N9zknLjf+C9sx
@@ -86,19 +86,19 @@ Xl69GV6klzgxW6d2xQIDAQAB
 
 例如登录密码为：
 
-```plaintext
+```
 BiShi22332323
 ```
 
 获取到的盐值为：
 
-```plaintext
+```
 8e0db05c46f4052c
 ```
 
 那么按照`盐值`+`密码字串`连接二者得到：
 
-```plaintext
+```
 8e0db05c46f4052cBiShi22332323
 ```
 
@@ -106,15 +106,15 @@ BiShi22332323
 
 因为公钥的**无法解密性**和盐值的**超时机制**，故无法本地验证加密结果
 
-```plaintext
+```
 YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotmNvpl25l1KO5y4AjcqeWTzNTSVn6ejonBXGmBMybHHYawJ0aMPn1eDGpKrbI91mrF+h2x+fsnnpuZ1gheiYGzFmtshUc=
 ```
 
-## 验证密码登录操作（web端）
+## 使用账号密码登录（web端）
 
 > http://passport.bilibili.com/web/login/v2
 
-*方式：POST*
+*请求方式：POST*
 
 验证登录成功后会进行设置以下cookie项：
 
@@ -164,7 +164,7 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 例如用户账号为`12345678900`，加密后的密码为`xxx`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行验证登录操作
 
 ```shell
-curl --request POST 'https://passport.bilibili.com/web/login/v2'\
+curl 'https://passport.bilibili.com/web/login/v2'\
 --data-urlencode 'captchaType=6'\
 --data-urlencode 'username=12345678900'\
 --data-urlencode 'password=xxx'\

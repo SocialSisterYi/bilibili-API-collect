@@ -20,11 +20,11 @@
 | 22   | 漫画                    | 漫画mcID   |
 | 33   | 课程                    | 课程epID   |
 
-## 获取评论区明细1(无楼层号 web端)
+## 获取评论区明细1(web端)（无楼层号）
 
 > http://api.bilibili.com/x/v2/reply
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -2324,11 +2324,11 @@
 
 
 
-## 获取评论区明细2(带有楼层号 APP端)
+## 获取评论区明细2(APP端)（带有楼层号 ）
 
 > http://api.bilibili.com/x/v2/reply/main
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -4690,11 +4690,11 @@ http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
 
 
 
-## 获取指定评论条目及二级回复明细1（分离结构 无楼层号 web端）
+## 获取指定评论条目及二级回复明细1（web端）（分离结构 无楼层号）
 
 > http://api.bilibili.com/x/v2/reply/reply
 
-*方式：GET*
+*请求方式：GET*
 
 按照热度排列
 
@@ -5412,11 +5412,11 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 
 
-## 获取指定评论条目及二级回复明细2（嵌套结构 带有楼层号 APP端）
+## 获取指定评论条目及二级回复明细2（APP端）（嵌套结构 带有楼层号）
 
 > http://api.bilibili.com/x/v2/reply/detail 
 
-*方式：GET*
+*请求方式：GET*
 
 按照楼层排列
 
@@ -6155,11 +6155,11 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 
 
-## 获取指定评论对话树（带有楼层 客户端）
+## 获取指定评论对话树（APP端）（带有楼层）
 
 > http://api.bilibili.com/x/v2/reply/dialog/cursor 
 
-*方式：GET*
+*请求方式：GET*
 
 按照楼层排列
 
@@ -7009,7 +7009,7 @@ data`对象：
 
 > http://api.bilibili.com/x/v2/reply/count
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

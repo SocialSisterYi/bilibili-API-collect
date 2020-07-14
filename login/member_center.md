@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/member/web/account
 
-*方式:GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -60,7 +60,7 @@ http://api.bilibili.com/x/member/web/account
 
 > http://api.bilibili.com/x/member/web/exp/reward
 
-*方式:GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -114,7 +114,7 @@ http://api.bilibili.com/x/member/web/exp/reward
 
 > http://api.bilibili.com/x/vip/web/user/info
 
-*方式:GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -164,7 +164,7 @@ http://api.bilibili.com/x/vip/web/user/info
 
 > http://passport.bilibili.com/web/site/user/info
 
-*方式:GET*
+*请求方式：GET*
 
 需要验证`DedeUserID`存在且不为0
 
@@ -260,7 +260,7 @@ http://passport.bilibili.com/web/site/user/info
 
 > http://api.bilibili.com/x/member/realname/status
 
-*方式:GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -302,7 +302,7 @@ http://api.bilibili.com/x/member/realname/status
 
 > http://api.bilibili.com/x/member/realname/apply/status
 
-*方式:GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -348,7 +348,7 @@ http://api.bilibili.com/x/member/realname/apply/status
 
 > http://api.bilibili.com/x/member/web/coin/log
 
-*方式:GET*
+*请求方式：GET*
 
 仅能查询最近一周的情况
 

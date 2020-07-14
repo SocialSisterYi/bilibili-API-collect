@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/emote/package/add
 
-*方式：POST*
+*请求方式：POST*
 
 只能添加有会员权限或已购买的表情包
 
@@ -48,7 +48,7 @@ curl -b "SESSDATA=xxx" -d "package_id=25&business=reply&csrf=xxx" "http://api.bi
 
 > http://api.bilibili.com/x/emote/package/remove
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 

@@ -8,7 +8,7 @@
 
 > http://member.bilibili.com/x/web/index/stat
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -160,7 +160,7 @@ http://member.bilibili.com/x/web/index/stat
 
 > http://member.bilibili.com/x/web/data/article
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -222,7 +222,7 @@ http://member.bilibili.com/x/web/data/article
 
 > http://member.bilibili.com/x/web/data/article/thirty 
 
-*方式：GET*
+*请求方式：GET*
 
 数据为前30天
 
@@ -313,7 +313,7 @@ http://member.bilibili.com/x/web/data/pandect?type=1
 
 >  http://member.bilibili.com/x/web/data/article/thirty 
 
-*方式：GET*
+*请求方式：GET*
 
 数据为前30天
 
@@ -399,7 +399,7 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 
 > http://member.bilibili.com/x/web/data/survey
 
-*方式：GET*
+*请求方式：GET*
 
 数据为上一天的
 
@@ -531,7 +531,7 @@ http://member.bilibili.com/x/web/data/survey?type=1
 
 > http://member.bilibili.com/x/web/data/playsource
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -607,7 +607,7 @@ http://member.bilibili.com/x/web/data/playsource
 
 > http://member.bilibili.com/x/web/data/base
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 

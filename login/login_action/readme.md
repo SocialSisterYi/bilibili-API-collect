@@ -1,6 +1,14 @@
-# 验证码登录
+# 登录操作
 
 人机验证方式登录包含**账号密码登录**与手**机短信验证码登录**
+
+**注：扫码登录**不需要进行**人机验证**，故**不使用**以下接口
+
+## 扫码登录
+
+- [扫码登录](QR.md)
+
+## 验证登录
 
 人机验证流程：
 
@@ -9,11 +17,11 @@
 3. 返回验证结果`validate`与`seccode`，进行短信或密码登录
 
 
-## 申请验证码参数
+### 申请验证码参数
 
 > http://passport.bilibili.com/web/captcha/combine?plat=6
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -61,7 +69,7 @@ curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
 ```
 
 
-## 进行验证
+### 进行验证
 
 本文档为Bilibili文档，验证码为geetest极验提供，故不提供api
 
@@ -74,7 +82,7 @@ curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
 4. 使用最开始获得到的`key`、`challenge`和刚获得到的`validate`、`seccode`继续之后的登录操作
 
 
-## 继续登录
+### 继续登录
 
 - [短信登录](SMS.md)
 - [密码登录](password.md)

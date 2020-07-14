@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 

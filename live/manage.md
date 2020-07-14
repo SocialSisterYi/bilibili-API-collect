@@ -6,7 +6,7 @@
 
 > http://api.live.bilibili.com/room/v1/Room/update
 
-*方式：POST*
+*请求方式：POST*
 
 还需验证cookie中`bili_jct`的值正确并与`csrf`相同
 
@@ -50,7 +50,7 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%9
 
 > http://api.live.bilibili.com/room/v1/Room/startLive
 
-*方式：POST*
+*请求方式：POST*
 
 还需验证cookie中`bili_jct`的值正确并与`csrf`相同
 
@@ -179,7 +179,7 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&area_v2=27&platform=pc&
 
 > http://api.live.bilibili.com/room/v1/Room/stopLive
 
-*方式：POST*
+*请求方式：POST*
 
 还需验证cookie中`bili_jct`的值正确并与`csrf`相同
 

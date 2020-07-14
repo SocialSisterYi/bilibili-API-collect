@@ -4,7 +4,7 @@
 
 > http://api.live.bilibili.com/room/v1/Area/getList
 
-*方式：GET*
+*请求方式：GET*
 
 直播分区共有两级，分别是父分区和子分区
 

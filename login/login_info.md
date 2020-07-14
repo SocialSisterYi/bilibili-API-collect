@@ -8,7 +8,7 @@
 >
 > http://api.bilibili.com/x/web-interface/nav (原始数据)
 
-*方式:GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -179,7 +179,7 @@ http://api.bilibili.com/x/web-interface/nav
 
 > http://account.bilibili.com/home/userInfo
 
-*方式:GET*
+*请求方式：GET*
 
 需要验证DedeUserID存在且不为0
 
@@ -257,7 +257,7 @@ http://account.bilibili.com/home/userInfo
 
 > http://api.bilibili.com/x/web-interface/nav/stat
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 

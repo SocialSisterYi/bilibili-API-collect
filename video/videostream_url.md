@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/player/playurl
 
-*方式:GET*
+*请求方式：GET*
 
 获取会员专属视频及720P以上清晰度视频时需要登录(SESSDATA)
 
@@ -114,13 +114,29 @@
 
 **示例：**
 
-**视频无分段时**
+**视频无分段时：**
 
 获取视频`av99999999`/`BV1y7411Q7Eq`中的1P（CID=`171776208`）的视频流url，清晰度为1080P+
 
- http://api.bilibili.com/x/player/playurl?avid=99999999&cid=171776208&qn=112
+avID方式：
 
- 同http://api.bilibili.com/x/player/playurl?bvid=BV1y7411Q7Eq&cid=171776208&qn=112
+```shell
+curl -G 'http://api.bilibili.com/x/player/playurl'\
+--data-urlencode 'avid=99999999'\
+--data-urlencode 'cid=171776208'\
+--data-urlencode 'qn=112'\
+-b 'SESSDATA=xxx'
+```
+
+ bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/player/playurl'\
+--data-urlencode 'bvid=BV1y7411Q7Eq'\
+--data-urlencode 'cid=171776208'\
+--data-urlencode 'qn=112'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -169,13 +185,7 @@
 }
 ```
 
-**视频有分段时**
-
-获取视频`av138284`/`BV1Tx411w7PX`中的2P（CID=`872498`）的视频流url，清晰度为1080P
-
- http://api.bilibili.com/x/player/playurl?avid=138284&cid=872498&qn=80
-
- 同http://api.bilibili.com/x/player/playurl?bvid=BV1Tx411w7PX&cid=872498&qn=80
+**视频有分段时：**
 
 ```json
 {
@@ -265,6 +275,10 @@
 
 **以上述视频url为例：**
 
-wget --referer "http://www.bilibili.com" "http://upos-sz-mirrorhw.bilivideo.com/upgcxcode/08/62/171776208/171776208-1-112.flv?e=ig8euxZM2rNcNbhMnwhVhwdlhzK3hzdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1589565412&gen=playurl&os=hwbv&oi=606631998&trid=e0fa5f9a7610440a871279a28fae85aau&platform=pc&upsig=5f469cb4c190ed54b89bd40cc37eddff&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=293793435&logo=80000000" -O video.flv
+```shell
+wget 'http://upos-sz-mirrorhw.bilivideo.com/upgcxcode/08/62/171776208/171776208-1-112.flv?e=ig8euxZM2rNcNbhMnwhVhwdlhzK3hzdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1589565412&gen=playurl&os=hwbv&oi=606631998&trid=e0fa5f9a7610440a871279a28fae85aau&platform=pc&upsig=5f469cb4c190ed54b89bd40cc37eddff&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=293793435&logo=80000000'\
+-e 'https://www.bilibili.com'\
+-O 'Download_video.flv'
+```
 
-回复正文将返回一个flv文件的数据
+响应正文将返回一个flv文件

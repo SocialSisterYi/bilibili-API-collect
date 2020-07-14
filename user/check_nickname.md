@@ -1,10 +1,10 @@
 # 检查昵称是否可注册
 也可用于判断指定昵称的用户是否存在
 
-### 请求地址
+### 
 > http://passport.bilibili.com/web/generic/check/nickname
 
-*方式:GET*
+*请求方式:GET*
 
 **url参数：**
 
@@ -35,9 +35,12 @@
 
 **示例：**
 
-查询昵称 `xijinping` 是否被使用
+查询昵称 `xijinping` 是否被使用：
 
-http://passport.bilibili.com/web/generic/check/nickname?nickName=xijinping
+```shell
+curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
+--data-urlencode 'nickName=xijinping'
+```
 
 ```json
 {
@@ -46,9 +49,12 @@ http://passport.bilibili.com/web/generic/check/nickname?nickName=xijinping
 }
 ```
 
-查询昵称 `//` 是否被使用
+查询昵称 `//` 是否被使用：
 
-http://passport.bilibili.com/web/generic/check/nickname?nickName=%2F%2F
+```shell
+curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
+--data-urlencode 'nickName=//'
+```
 
 ```json
 {
@@ -57,9 +63,12 @@ http://passport.bilibili.com/web/generic/check/nickname?nickName=%2F%2F
 }
 ```
 
-查询昵称 `test0000000000000 ` 是否被使用
+查询昵称 `test0000000000000 ` 是否被使用：
 
- http://passport.bilibili.com/web/generic/check/nickname?nickName=test0000000000000 
+```shell
+curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
+--data-urlencode 'nickName=test0000000000000 '
+```
 
 ```json
 {
@@ -68,9 +77,12 @@ http://passport.bilibili.com/web/generic/check/nickname?nickName=%2F%2F
 }
 ```
 
-查询昵称 `0` 是否被使用
+查询昵称 `0` 是否被使用：
 
- http://passport.bilibili.com/web/generic/check/nickname?nickName=0
+```shell
+curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
+--data-urlencode 'nickName=0'
+```
 
 ```json
 {
@@ -79,9 +91,12 @@ http://passport.bilibili.com/web/generic/check/nickname?nickName=%2F%2F
 }
 ```
 
-查询昵称 `test` 是否被使用
+查询昵称 `test` 是否被使用：
 
-http://passport.bilibili.com/web/generic/check/nickname?nickName=test
+```shell
+curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
+--data-urlencode 'nickName=test'
+```
 
 ```json
 {

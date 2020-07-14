@@ -1,10 +1,10 @@
 # 发布动态
 
-## 为动态（画友）上传图片
+## 为图片动态（相簿）上传图片
 
 > http://api.vc.bilibili.com/api/v1/drawImage/upload
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 

@@ -4,7 +4,7 @@
 
 > http://https://api.bilibili.com/x/tag/archive/tags
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -189,7 +189,7 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 
 > http://api.bilibili.com/x/tag/archive/like2
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA) 
 
@@ -233,7 +233,7 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bi
 
 > http://api.bilibili.com/x/tag/archive/hate2
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA) 
 

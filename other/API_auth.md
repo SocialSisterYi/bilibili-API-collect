@@ -1,6 +1,6 @@
 # API认证与鉴权
 
-## cookie方式
+## Cookie方式
 
 cookie中的值在访问登录接口成功登录时，用`set-cookie`写入
 
@@ -15,7 +15,7 @@ Token有效期为1月，更改密码或过期失效
 | SESSDATA          | 登录Token         | 用于用户识别与鉴权<br />作用同`access_key` |
 | bili_jct          | CSRF Token        | 用于操作性接口                             |
 
-## app方式
+## APP方式
 
 | 参数          | 含义             | 备注           |
 | ------------- | ---------------- | -------------- |

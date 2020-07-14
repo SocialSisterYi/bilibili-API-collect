@@ -10,7 +10,7 @@ web端短信登录流程：
 
 > http://passport.bilibili.com/web/generic/country/list
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -90,7 +90,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 
 > http://passport.bilibili.com/web/sms/general/v2/send
 
-*方式：POST*
+*请求方式：POST*
 
 短信发送CD时间为60s
 
@@ -123,7 +123,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 例如手机号为`13888888888`，国际ID为`1（中国大陆）`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
 
 ```shell
-curl --request POST 'http://passport.bilibili.com/web/sms/general/v2/send' \
+curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 --data-urlencode 'tel=13888888888'\
 --data-urlencode 'cid=1'\
 --data-urlencode 'type=21'\
@@ -140,11 +140,11 @@ curl --request POST 'http://passport.bilibili.com/web/sms/general/v2/send' \
 }
 ```
 
-## 验证短信登录操作（web端）
+## 使用短信验证码登录（web端）
 
 > http://passport.bilibili.com/web/login/rapid
 
-*方式：POST*
+*请求方式：POST*
 
 验证登录成功后会进行设置以下cookie项：
 
@@ -182,7 +182,7 @@ curl --request POST 'http://passport.bilibili.com/web/sms/general/v2/send' \
 使用手机号`13888888888`，短信验证码为`123456`，进行验证登录操作
 
 ```shell
-curl --request POST 'https://passport.bilibili.com/web/login/rapid' 
+curl 'https://passport.bilibili.com/web/login/rapid' 
 --data-urlencode 'cid=1'\
 --data-urlencode 'tel=13888888888'\
 --data-urlencode 'smsCode=123456'

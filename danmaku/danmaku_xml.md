@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/v1/dm/list.so
 
-*方式:GET*
+*请求方式:GET*
 
 **使用deflate压缩，注意解码**
 
@@ -24,7 +24,7 @@ http://api.bilibili.com/x/v1/dm/list.so?oid=144541892
 
 > http://comment.bilibili.com/{cid}.xml
 
-*方式:GET*
+*请求方式:GET*
 
 效果与前者相同
 

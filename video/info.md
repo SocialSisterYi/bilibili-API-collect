@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/web-interface/view
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -113,19 +113,19 @@
 | --------- | ---- | --------------- | ------------------------------------ |
 | cid       | num  | 当前分P CID     |                                      |
 | page      | num  | 当前分P         |                                      |
-| from      | str  | 视频来源        | vupload：用户上传<br />hunan：芒果TV |
+| from      | str  | 视频来源        | vupload：普通上传<br />hunan：芒果TV |
 | part      | str  | 当前分P标题     |                                      |
 | duration  | num  | 当前分P持续时间 | 单位为秒                             |
 | vid       | str  | 空              | 作用尚不明确                         |
 | weblink   | str  | 空              | 作用尚不明确                         |
-| dimension | obj  | 当前分P分辨率   |                                      |
+| dimension | obj  | 当前分P分辨率   | 有部分视频无法获取分辨率             |
 
 `pages`数组中的对象中的`dimension`对象(同`data`中的`dimension`对象)：
 
 | 字段   | 类型 | 内容         | 备注         |
 | ------ | ---- | ------------ | ------------ |
-| width  | num  | 当前分P 宽度 | 可能为0      |
-| height | num  | 当前分P 高度 | 可能为0      |
+| width  | num  | 当前分P 宽度 |              |
+| height | num  | 当前分P 高度 |              |
 | rotate | num  | 0            | 作用尚不明确 |
 
 `subtitle`对象：
@@ -208,9 +208,19 @@
 
 **示例：**
 
-http://api.bilibili.com/x/web-interface/view?aid=85440373
+avID方式：
 
-同http://api.bilibili.com/x/web-interface/view?bvid=BV117411r7R1
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/view'\
+--data-urlencode 'aid=85440373'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/view'\
+--data-urlencode 'bvid=BV117411r7R1'
+```
 
 ```json
 {
@@ -353,7 +363,7 @@ http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
 > http://api.bilibili.com/x/web-interface/archive/desc
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -377,9 +387,19 @@ http://i0.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg
 
 查看视频~~（教主的咕鸽）~~`av39330059`/`BV1Bt411z799`的简介
 
-http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
+avID方式：
 
-同http://api.bilibili.com/x/web-interface/archive/desc?bvid=BV1Bt411z799
+```shell
+curl -G 'http://api.bilibili.com/x/archive/desc'\
+--data-urlencode 'aid=39330059'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/archive/desc'\
+--data-urlencode 'bvid=BV1Bt411z799'
+```
 
 ```json
 {
@@ -396,7 +416,7 @@ http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 
 > http://api.bilibili.com/x/player/pagelist
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -430,28 +450,38 @@ http://api.bilibili.com/x/web-interface/archive/desc?aid=39330059
 | --------- | ---- | --------------- | ------------------------------------ |
 | cid       | num  | 当前分P CID     |                                      |
 | page      | num  | 当前分P         |                                      |
-| from      | str  | 视频来源        | vupload：用户上传<br />hunan：芒果TV |
+| from      | str  | 视频来源        | vupload：普通上传<br />hunan：芒果TV |
 | part      | str  | 当前分P标题     |                                      |
 | duration  | num  | 当前分P持续时间 | 单位为秒                             |
 | vid       | str  | 空              | 作用尚不明确                         |
 | weblink   | str  | 空              | 作用尚不明确                         |
-| dimension | obj  | 当前分P分辨率   |                                      |
+| dimension | obj  | 当前分P分辨率   | 有部分视频无法获取分辨率             |
 
 数组`data`中的对象中的`dimension`对象：
 
 | 字段   | 类型 | 内容         | 备注         |
 | ------ | ---- | ------------ | ------------ |
-| width  | num  | 当前分P 宽度 | 可能为0      |
-| height | num  | 当前分P 高度 | 可能为0      |
+| width  | num  | 当前分P 宽度 |              |
+| height | num  | 当前分P 高度 |              |
 | rotate | num  | 0            | 作用尚不明确 |
 
 **示例：**
 
 查询视频`av13502509`/`BV1ex411J7GE`的分P列表
 
-http://api.bilibili.com/x/player/pagelist?aid=13502509
+avID方式：
 
-同http://api.bilibili.com/x/player/pagelist?bvid=BV1ex411J7GE
+```shell
+curl -G 'http://api.bilibili.com/x/player/pagelist'\
+--data-urlencode 'aid=13502509'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/player/pagelist'\
+--data-urlencode 'bvid=BV1ex411J7GE'
+```
 
 ```json
 {

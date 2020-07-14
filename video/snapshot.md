@@ -9,7 +9,7 @@
 ## 获取视频快照1（用于进度条预览）
 > http://api.bilibili.com/x/player/videoshot
 
-*方式:GET* 
+*请求方式：GET* 
 
 **url参数：**
 
@@ -89,7 +89,7 @@ http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
 
 > http://api.bilibili.com/pvideo
 
-*方式:GET*
+*请求方式：GET*
 
 内容与「获取视频快照1」加参数「index」=1相同，但url带有转义，仅限第1P
 

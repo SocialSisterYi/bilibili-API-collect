@@ -4,7 +4,7 @@
 
 > http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

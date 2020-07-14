@@ -4,7 +4,7 @@
 
 > http://api.bilibili.com/x/v2/dm/post 
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -73,7 +73,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=62131&msg=%e5%89%8d%e6%9d%a5%e8%80%83%e5%8
 
 > http://api.bilibili.com/x/dm/recall
 
-*方式：POST*
+*请求方式：POST*
 
 仅能撤回自己两分钟内的弹幕，且每天只有3次机会
 
@@ -116,7 +116,7 @@ curl -b "SESSDATA=xxx" -d "dmid=32310301474947077&cid=168901231&csrf=xxx" "http:
 
 > http://api.bilibili.com/x/dm/adv/buy
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -159,7 +159,7 @@ curl -b "SESSDATA=xxx" -d "mode=sp&cid=168901231&csrf=xxx" "http://api.bilibili.
 
 > http://api.bilibili.com/x/dm/adv/state
 
-*方式：GET*
+*请求方式：GET*
 
 需要登录(SESSDATA)
 

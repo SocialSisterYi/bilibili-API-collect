@@ -18,7 +18,7 @@
 
 > http://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/create 
 
-*方式：POST*
+*请求方式：POST*
 
 秘钥有效时间为10分钟
 
@@ -77,7 +77,7 @@ curl -b "SESSDATA=xxx" -d "up_mid=23215368&elec_num=10&is_bp_remains_prior=false
 
 > http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

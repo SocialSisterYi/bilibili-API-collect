@@ -6,7 +6,7 @@
 
 > http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 

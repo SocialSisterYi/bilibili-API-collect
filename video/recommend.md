@@ -4,7 +4,7 @@
 
 > http://api.bilibili.com/x/web-interface/archive/related
 
-*方式:GET* 
+*请求方式：GET* 
 
 最多获取40条推荐视频
 

@@ -4,7 +4,7 @@
 
 > http://api.bilibili.com/x/v2/dm/ajax
 
-*方式:GET*
+*请求方式:GET*
 
 最近产生的几条弹幕内容，**最多20条**
 

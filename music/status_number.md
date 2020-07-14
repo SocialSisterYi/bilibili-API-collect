@@ -4,7 +4,7 @@
 
 >http://www.bilibili.com/audio/music-service-c/web/stat/song
 
-*方式:GET*
+*请求方式：GET*
 
 唯缺投币数2333333
 

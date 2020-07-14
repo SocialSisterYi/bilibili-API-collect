@@ -4,7 +4,7 @@
 
 > http://api.bilibili.com/x/emote/user/panel/web
 
-*方式：GET*
+*请求方式：GET*
 
 使用登录（SESSDATA）进行会员专属及已购买表情包的分发，否则为免费表情包
 
@@ -211,7 +211,7 @@
 
 > http://api.bilibili.com/x/emote/package 
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -497,7 +497,7 @@
 
 > http://api.bilibili.com/x/emote/setting/panel 
 
-*方式：GET*
+*请求方式：GET*
 
 需要登录（SESSDATA）
 

@@ -6,7 +6,7 @@
 
 > http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -44,7 +44,7 @@ http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll?sid=135
 
 > http://www.bilibili.com/audio/music-service-c/web/coin/audio
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 

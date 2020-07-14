@@ -17,7 +17,7 @@
 
 > http://passport.bilibili.com/qrcode/getLoginUrl
 
-*方式：GET*
+*请求方式：GET*
 
 密钥超时为180秒
 
@@ -43,7 +43,10 @@
 
 用申请到的`data`.`url`中的值生成二维码，等待手机客户端扫描，并将`data`.`oauthKey`保存等待使用
 
-http://passport.bilibili.com/qrcode/getLoginUrl
+```shell
+curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
+```
+
 ```json
 {
 	"code": 0,
@@ -56,13 +59,11 @@ http://passport.bilibili.com/qrcode/getLoginUrl
 }
 ```
 
-
-
-## 验证二维码登录 
+## 使用扫码登录（验证扫码状态）
 
 > http://passport.bilibili.com/qrcode/getLoginInfo
 
-*方式：POST*
+*请求方式：POST*
 
 密钥超时为180秒
 
@@ -96,7 +97,13 @@ data 对象：
 
 **示例：**
 
-curl -d "oauthKey=xxx" "http://passport.bilibili.com/qrcode/getLoginInfo"
+例如扫码秘钥为`23333`
+
+```shell
+curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
+--data-urlencode 'oauthKey=23333'\
+-c 'cookie.txt'
+```
 
 当密钥正确时但未扫描时`status`为`false`，`data`为num值`-4`
 

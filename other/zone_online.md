@@ -2,7 +2,7 @@
 
 > http://api.bilibili.com/x/web-interface/online
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 

@@ -6,7 +6,7 @@
 
 >http://api.bilibili.com/x/space/top/arc
 
-*方式:GET*
+*请求方式：GET*
 
 粉丝在其主页上可见
 
@@ -183,7 +183,7 @@ http://api.bilibili.com/x/space/top/arc?vmid=23215368
 
 > http://api.bilibili.com/x/space/masterpiece
 
-*方式:GET*
+*请求方式：GET*
 
 新访客在其主页上可见
 
@@ -410,7 +410,7 @@ http://api.bilibili.com/x/space/masterpiece?vmid=23215368
 
 > http://api.bilibili.com/x/space/arc/search
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -596,7 +596,7 @@ http://api.bilibili.com/x/space/arc/search?mid=53456&ps=2&pn=1
 
 > http://space.bilibili.com/ajax/Bangumi/getList
 
-*方式:GET*
+*请求方式：GET*
 
 带有转义，且只能获取最多15条
 
@@ -701,7 +701,7 @@ http://space.bilibili.com/ajax/Bangumi/getList?mid=14082
 
 > http://api.bilibili.com/x/space/bangumi/follow/list
 
-*方式:GET*
+*请求方式：GET*
 
 如设置隐私查看自己的需要登录(SESSDATA)
 
@@ -949,7 +949,7 @@ http://api.bilibili.com/x/space/bangumi/follow/list?vmid=14082&pn=1&ps=2&type=1
 
 > http://space.bilibili.com/ajax/tags/getSubList
 
-*方式:GET*
+*请求方式：GET*
 
 带有转义
 
@@ -1039,7 +1039,7 @@ http://space.bilibili.com/ajax/tags/getSubList?mid=2
 
 > http://api.bilibili.com/x/space/album/index
 
-*方式:GET*
+*请求方式：GET*
 
 所有类型的相簿
 
@@ -1161,7 +1161,7 @@ http://api.bilibili.com/x/space/album/index?mid=53456&ps=2
 
 > http://api.vc.bilibili.com/link_draw/v1/doc/doc_list
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -1298,7 +1298,7 @@ http://api.vc.bilibili.com/link_draw/v1/doc/doc_list?uid=2&page_num=1&page_size=
 
 > http://api.bilibili.com/x/space/channel/list
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -1416,7 +1416,7 @@ http://api.bilibili.com/x/space/channel/list?mid=53456
 
 > http://api.bilibili.com/x/space/channel/video
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -1626,7 +1626,7 @@ http://api.bilibili.com/x/space/channel/video?mid=53456&cid=170&ps=2&pn=1
 
 > http://api.bilibili.com/x/space/notice
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -1666,7 +1666,7 @@ http://api.bilibili.com/x/space/notice?mid=53456
 
 > http://api.bilibili.com/x/space/acc/tags
 
-*方式:GET*
+*请求方式：GET*
 
 上限5条，且内容由用户自定义
 
@@ -1735,7 +1735,7 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 
 > http://api.bilibili.com/x/space/lastplaygame 
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -1817,7 +1817,7 @@ http://api.bilibili.com/x/space/acc/tags?mid=53456
 
 > http://api.bilibili.com/x/v3/fav/folder/created/list-all 
 
-*方式：GET*
+*请求方式：GET*
 
 查看私有收藏夹时需要登录(SESSDATA)
 
@@ -1935,7 +1935,7 @@ http://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=7792521
 
 > http://api.bilibili.com/x/v3/fav/folder/collected/list 
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -2070,7 +2070,7 @@ http://api.bilibili.com/x/v3/fav/folder/created/list-all?up_mid=7792521
 
 > http://api.bilibili.com/x/member/web/sign/update
 
-*方式：POST*
+*请求方式：POST*
 
 签名最多支持70个字
 
@@ -2115,7 +2115,7 @@ curl -b "SESSDATA=xxx" -d "user_sign=%E9%AB%98%E4%B8%AD%E6%8A%80%E6%9C%AF%E5%AE%
 
 > http://api.bilibili.com/x/space/notice/set
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -2156,7 +2156,7 @@ curl -b "sessdata=xxx" -d "csrf=xxx&notice=%E9%B8%BD%E5%AD%90" "http://api.bilib
 
 > http://space.bilibili.com/ajax/settings/setPrivacy
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -2203,7 +2203,7 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 > http://space.bilibili.com/ajax/settings/setIndexOrder
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -2273,7 +2273,7 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 > http://api.bilibili.com/x/space/acc/tags/set
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -2312,11 +2312,11 @@ curl -b "SESSDATA=xxx;DedeUserID=1" -d "csrf=xxx&tags=minecraft%2C%E6%8A%80%E6%9
 
 
 
-### 修改（添加）置顶视频
+### 添加置顶视频
 
 > http://api.bilibili.com/x/space/top/arc/set
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -2361,7 +2361,7 @@ curl -b "SESSDATA=xxx" -b "aid=98948772&csrf=xxx" "http://api.bilibili.com/x/spa
 
 > http://api.bilibili.com/x/space/top/arc/cancel
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -2399,7 +2399,7 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/space/top/arc/ca
 
 > http://api.bilibili.com/x/space/masterpiece/add
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 
@@ -2446,7 +2446,7 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=94916552" "http://api.bilibili.com/x/spa
 
 > http://api.bilibili.com/x/space/masterpiece/cancel
 
-*方式：POST*
+*请求方式：POST*
 
 需要登录(SESSDATA)
 

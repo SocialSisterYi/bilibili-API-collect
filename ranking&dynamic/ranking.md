@@ -6,7 +6,7 @@
 
 >http://api.bilibili.com/x/web-interface/ranking/region
 
-*方式：GET*
+*请求方式：GET*
 
 获取相应时间段内播放量增速为前11的视频
 

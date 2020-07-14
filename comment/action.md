@@ -8,7 +8,7 @@
 
 > http://api.bilibili.com/x/v2/reply/add
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -218,7 +218,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&message=%E6%B5%8B%E8%AF%95test%5
 
 > http://api.bilibili.com/x/v2/reply/action
 
-*方式：POST*
+*请求方式：POST*
 
 点赞成功后会同时消去该评论的点踩
 
@@ -262,7 +262,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 
 > http://api.bilibili.com/x/v2/reply/hate
 
-*方式：POST*
+*请求方式：POST*
 
 点踩成功后会同时消去该评论的点赞
 
@@ -306,7 +306,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 
 > http://api.bilibili.com/x/v2/reply/del
 
-*方式：POST*
+*请求方式：POST*
 
 只能删除自己的评论，或自己管理的评论区下的评论
 
@@ -349,7 +349,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&csrf=xxx" "http:
 
 > http://api.bilibili.com/x/v2/reply/top
 
-*方式：POST*
+*请求方式：POST*
 
 只能置顶自己管理的评论区中的一级评论
 
@@ -393,7 +393,7 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=2940645593&action=1&csrf=xx
 
 > http://api.bilibili.com/x/v2/reply/report
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 

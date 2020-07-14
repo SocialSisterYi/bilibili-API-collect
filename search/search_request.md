@@ -4,7 +4,7 @@
 
 > http://api.bilibili.com/x/web-interface/search/type
 
-*方式：GET*
+*请求方式：GET*
 
 根据关键词进行搜索，返回结果每页20项
 

@@ -8,7 +8,7 @@
 
 > http://member.bilibili.com/x/web/elec/user
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -52,7 +52,7 @@ http://member.bilibili.com/x/web/elec/user
 
 > http://api.bilibili.com/studio/up-rating/rating/summary
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
@@ -129,7 +129,7 @@ http://api.bilibili.com/studio/up-rating/rating/summary
 
 > http://api.bilibili.com/studio/up-rating/rating/history 
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

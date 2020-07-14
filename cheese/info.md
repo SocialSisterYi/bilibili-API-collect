@@ -16,7 +16,7 @@
 
 > http://api.bilibili.com/pugv/view/web/season
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -442,7 +442,7 @@ http://api.bilibili.com/pugv/view/web/season?season_id=61
 
 > http://api.bilibili.com/pugv/view/web/ep/list 
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

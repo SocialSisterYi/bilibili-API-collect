@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/x/v2/dm/history/index
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -79,7 +79,7 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
 
 > http://api.bilibili.com/x/v2/dm/history
 
-*方式：GET*
+*请求方式：GET*
 
 结果为标准xml格式弹幕
 

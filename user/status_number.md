@@ -3,7 +3,7 @@
 ## 关系状态数
 > http://api.bilibili.com/x/relation/stat
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -59,7 +59,7 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 
 > http://api.bilibili.com/x/space/upstat
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -126,7 +126,7 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 
 > http://api.bilibili.com/x/space/navnum
 
-*方式:GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -213,7 +213,7 @@ http://api.bilibili.com/x/space/navnum?mid=239202390
 
 > http://api.vc.bilibili.com/link_draw/v1/doc/upload_count
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

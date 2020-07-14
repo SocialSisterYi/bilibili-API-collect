@@ -8,7 +8,7 @@
 
 > http://api.bilibili.com/x/article/like
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -50,7 +50,7 @@ curl -b "SESSDATA=xxx" -d "id=5806746&type=1&csrf=xxx" "http://api.bilibili.com/
 
 > http://api.bilibili.com/x/web-interface/coin/add
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -102,7 +102,7 @@ curl -b "SESSDATA=xxx" -d "aid=5806746&multiply=1&csrf=xxx" "http://api.bilibili
 
 >http://api.bilibili.com/x/article/favorites/add
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 

@@ -2,7 +2,7 @@
 
 > http://api.bilibili.com/x/report/click/now 
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 

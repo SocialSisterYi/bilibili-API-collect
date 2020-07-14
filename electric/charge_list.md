@@ -4,7 +4,7 @@
 
 > http://elec.bilibili.com/api/query.rank.do 
 
-*方式:GET*
+*请求方式:GET*
 
 **url参数：**
 
@@ -135,7 +135,7 @@
 
 > http://api.bilibili.com/x/web-interface/elec/show 
 
-*方式:GET*
+*请求方式:GET*
 
 **url参数：**
 

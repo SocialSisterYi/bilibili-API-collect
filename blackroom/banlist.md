@@ -32,7 +32,7 @@
 
 > http://api.bilibili.com/x/credit/blocked/list
 
-*方式：GET*
+*请求方式：GET*
 
 每页最多10项
 
@@ -168,7 +168,7 @@ http://api.bilibili.com/x/credit/blocked/list?btype=&otype=0&pn=1
 
 > http://api.bilibili.com/x/credit/blocked/info
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 

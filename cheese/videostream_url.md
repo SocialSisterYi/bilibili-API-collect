@@ -6,7 +6,7 @@
 
 > http://api.bilibili.com/pugv/player/web/playurl
 
-*方式:GET*
+*请求方式:GET*
 
 本接口为课程视频专用，故与普通视频不互通
 
@@ -26,6 +26,7 @@
 | ep_id  | num  | 课程epID       | 必要   |                                                              |
 | cid    | num  | 视频CID        | 必要   |                                                              |
 | qn     | num  | 视频清晰度选择 | 非必要 | 未登录默认32（480P）<br />登录默认64（720P）<br />**值含义见下表** |
+| fourk  | num  | 是否允许4K视频 | 非必要 | 默认为0<br />画质最高1080P：0<br />画质最高4K：1             |
 
 分辨率代码：
 
@@ -131,7 +132,14 @@
 
 获取课程`ep790`（CID=`132105993`，avID=`76973173`）的视频流url，清晰度为1080P60
 
-http://api.bilibili.com/pugv/player/web/playurl?ep_id=790&avid=76973173&cid=132105993&qn=116
+```shell
+curl -G 'http://api.bilibili.com/pugv/player/web/playurl'\
+--data-urlencode 'ep_id=790'\
+--data-urlencode 'avid=76973173'\
+--data-urlencode 'cid=132105993'\
+--data-urlencode 'qn=116'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -234,6 +242,10 @@ http://api.bilibili.com/pugv/player/web/playurl?ep_id=790&avid=76973173&cid=1321
 
 **以上述视频url为例：**
 
-wget --referer "http://www.bilibili.com" "https://upos-sz-mirrorks3c.bilivideo.com/upgcxcode/93/59/132105993/132105993_da2-1-116.flv?e=ig8euxZM2rNcNbNghzTBhwdlhbNz7bUVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1591596728&gen=playurl&os=ks3cbv&oi=606633803&trid=76bea9a9e56f4cb89a9aff2f8213c9acu&platform=pc&upsig=b271bf493bff32ffe62969582c8d18b4&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=0&orderid=1,2&logo=40000000" -O video.flv
+```shell
+wget 'https://upos-sz-mirrorks3c.bilivideo.com/upgcxcode/93/59/132105993/132105993_da2-1-116.flv?e=ig8euxZM2rNcNbNghzTBhwdlhbNz7bUVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1591596728&gen=playurl&os=ks3cbv&oi=606633803&trid=76bea9a9e56f4cb89a9aff2f8213c9acu&platform=pc&upsig=b271bf493bff32ffe62969582c8d18b4&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=0&orderid=1,2&logo=40000000'\
+-e 'https://www.bilibili.com'\
+-O 'Download_video.flv'
+```
 
-回复正文将返回一个flv文件的数据
+响应正文将返回一个flv文件

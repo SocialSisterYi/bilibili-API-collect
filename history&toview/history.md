@@ -8,7 +8,7 @@
 
 >http://api.bilibili.com/x/web-interface/history/cursor
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -339,7 +339,7 @@
 
 > http://api.bilibili.com/x/v2/history
 
-*方式：GET*
+*请求方式：GET*
 
 **url参数：**
 
@@ -702,7 +702,7 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 
 > http://api.bilibili.com/x/v2/history/delete
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -741,7 +741,7 @@ curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.
 
 > http://api.bilibili.com/x/v2/history/clear
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -779,7 +779,7 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear
 
 > http://api.bilibili.com/x/v2/history/shadow/set
 
-*方式：POST*
+*请求方式：POST*
 
 该操作不会影响原有历史记录
 
@@ -820,7 +820,7 @@ curl -b "SESSDATA=xxx" -d "switch=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 
 > http://api.bilibili.com/x/v2/history/shadow
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 

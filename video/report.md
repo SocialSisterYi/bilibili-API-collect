@@ -1,12 +1,12 @@
 # 视频观看数据上报
 
-**本页所有操作均需登录（SESSDATA）**
+**本页所有操作均需登录（Cookie或APP）**
 
-## 上报观看进度（暂不支持bvID）
+## 上报观看进度（APP端）（暂不支持bvID）
 
 > http://api.bilibili.com/x/v2/history/report
 
-*方式：POST*
+*请求方式：POST*
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -47,7 +47,7 @@ curl -b "SESSDATA=xxx" -d "aid=13662970&cid=126654047&progress=1248&csrf=xxx" "h
 
 > http://api.bilibili.com/x/click-interface/web/heartbeat 
 
-*方式：POST*
+*请求方式：POST*
 
 默认间隔15秒一次
 
