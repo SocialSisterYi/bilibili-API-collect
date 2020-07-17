@@ -45,7 +45,10 @@
 
 获取视频`CID=3724723`的获取弹幕趋势顶点列表
 
-http://api.bilibili.com/pbp/data?cid=3724723
+```shell
+curl -G 'http://api.bilibili.com/pbp/data'\
+--data-urlencode 'cid=3724723'
+```
 
 ```json
 {

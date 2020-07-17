@@ -34,10 +34,10 @@
 - [API认证与鉴权（APP与Cookie方式）](other/API_auth.md)×
 - [图片格式化](other/picture.md)√
 - [登录](login)
-  - [登录操作](login/login_action)√
-    + [短信登录](login/verify/SMS.md)√
-    + [密码登录](login/verify/password.md)√
-    + [二维码登录](login/QR.md)√
+  - [登录操作（人机认证）](login/login_action)√
+    + [短信登录](llogin/login_action/SMS.md)√
+    + [密码登录](login/login_action/password.md)√
+    + [二维码登录](login/login_action/QR.md)√
     + SNS登录（QQ&微博）
   - [登录基本信息](login/login_info.md)√
   - [个人中心](login/member_center.md)×
@@ -109,8 +109,7 @@
   - [统计与数据](creativecenter/statistics&data.md)x
   - 列表查询相关
   - [电磁力数据](creativecenter/railgun.md)√
-- [实时广播](broadcast)
-  - [总则](broadcast/general.md)√
+- [实时广播（通讯协议）](broadcast)√
   - [视频内广播](broadcast/video_room.md)√
 - [充电](electric)
   - [B币方式](electric/Bcoin.md)√
@@ -173,9 +172,7 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 不了解json的请移步，[传送门](https://www.sojson.com/json/json_index.html)
 
-
-
-**相关项目**：
+# 相关项目：
 
 库及文档：
 
@@ -189,7 +186,7 @@ https://github.com/Vespa314/bilibili-api
 
 https://github.com/Hsury/Bilibili-Toolkit
 
- https://github.com/adachi-sakura/openbilibili-go-common-1 
+https://github.com/whjstc/openbilibili-go-common-1
 
 成品：
 

@@ -13,7 +13,7 @@
 
 
 
-## 申请二维码URL及扫码密钥 
+## 申请二维码URL及扫码密钥（web端）
 
 > http://passport.bilibili.com/qrcode/getLoginUrl
 
@@ -59,7 +59,7 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 }
 ```
 
-## 使用扫码登录（验证扫码状态）
+## 使用扫码登录（web端）
 
 > http://passport.bilibili.com/qrcode/getLoginInfo
 
@@ -176,4 +176,45 @@ SESSDATA=(登录token)&
 bili_jct=(csrf)&
 
 gourl=(跳转网址 默认为主页)
+
+
+
+## 申请二维码URL及扫码密钥（TV端）
+
+> http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code 
+
+*请求方式：POST*
+
+鉴权方式：appkey
+
+密钥超时为180秒
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名   | 类型 | 内容       | 必要性      | 备注  |
+| -------- | ---- | ---------- | ----------- | ----- |
+| appkey   | str  | APP密钥    | APP方式必要 |       |
+| local_id | str  | TV端ID     | APP方式必要 | 可为0 |
+| ts       | num  | 当前时间戳 | APP方式必要 |       |
+| sign     | str  | APP签名    | APP方式必要 |       |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注    |
+| ------- | ---- | -------- | ------- |
+| code    | num  | 返回值   | 0：成功 |
+| message | str  | 错误信息 | 默认为0 |
+| ttl     | num  | 1        |         |
+| data    | obj  | 信息本体 |         |
+
+`data`对象：
+
+| 字段     | 类型 | 内容          | 备注       |
+| -------- | ---- | ------------- | ---------- |
+| url      | str  | 二维码内容url | 恒为87字符 |
+| oauthKey | str  | 扫码登录秘钥  | 恒为32字符 |
+
+**示例：**
 

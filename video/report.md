@@ -2,20 +2,24 @@
 
 **本页所有操作均需登录（Cookie或APP）**
 
-## 上报观看进度（APP端）（暂不支持bvID）
+## 上报观看进度（APP端）
 
 > http://api.bilibili.com/x/v2/history/report
 
 *请求方式：POST*
 
+认证方式：APP或Cookie（SESSDATA）
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                     | 必要性 | 备注                  |
-| -------- | ---- | ------------------------ | ------ | --------------------- |
-| aid      | num  | 视频avID                 | 必要   |                       |
-| cid      | num  | 视频CID                  | 必要   | 用于识别分P           |
-| progress | num  | 观看进度                 | 非必要 | 单位为秒<br />默认为0 |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |                       |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                  |
+| ---------- | ---- | ------------------------ | -------------- | --------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                       |
+| aid        | num  | 视频avID                 | 必要           |                       |
+| cid        | num  | 视频CID                  | 必要           | 用于识别分P           |
+| progress   | num  | 观看进度                 | 非必要         | 单位为秒<br />默认为0 |
+| platform   | str  | 平台标识                 | 非必要         | 可为android           |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                       |
 
 **json回复：**
 
@@ -25,13 +29,35 @@
 | ------- | ---- | -------- | ------------------------------------------------------------ |
 | code    | num  | 返回值   | 0：成功 <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                                                      |
-| ttl     | num  | 1        | 作用尚不明确                                                 |
+| ttl     | num  | 1        |                                                              |
 
 **示例：**
 
 记录视频`av13662970`（`CID=126654047`）的观看记录位于`1248`秒
 
-curl -b "SESSDATA=xxx" -d "aid=13662970&cid=126654047&progress=1248&csrf=xxx" "http://api.bilibili.com/x/v2/history/report"
+Cookie方式：
+
+```shell
+curl 'http://api.bilibili.com/x/v2/history/report'\
+--data-urlencode 'aid=13662970'\
+--data-urlencode 'cid=126654047'\
+--data-urlencode 'progress=1248'\
+--data-urlencode 'platform=android'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+APP方式：
+
+```shell
+curl 'http://api.bilibili.com/x/v2/history/report'\
+--data-urlencode 'access_key=xxx'\
+--data-urlencode 'aid=13662970'\
+--data-urlencode 'cid=126654047'\
+--data-urlencode 'progress=1248'\
+--data-urlencode 'platform=android'
+```
+
 
 ```json
 {
@@ -41,13 +67,13 @@ curl -b "SESSDATA=xxx" -d "aid=13662970&cid=126654047&progress=1248&csrf=xxx" "h
 }
 ```
 
-
-
 ## 上报视频播放心跳（web端）
 
 > http://api.bilibili.com/x/click-interface/web/heartbeat 
 
 *请求方式：POST*
+
+认证方式：仅可Cookie（SESSDATA）
 
 默认间隔15秒一次
 
@@ -80,13 +106,26 @@ curl -b "SESSDATA=xxx" -d "aid=13662970&cid=126654047&progress=1248&csrf=xxx" "h
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 
 **示例：**
 
 上报一次视频`av2`/`BV1xx411c7mD`的心跳数据
 
- http://api.bilibili.com/x/click-interface/web/heartbeat?aid=2&bvid=BV1xx411c7mD&cid=62131&played_time=60&realtime=60&start_ts=1592720840&type=3&dt=2&play_type=0&csrf=xxx
+```shell
+curl 'api.bilibili.com/x/click-interface/web/heartbeat'\
+--data-urlencode 'aid=2'\
+--data-urlencode 'bvid=BV1xx411c7mD'\
+--data-urlencode 'cid=62131'\
+--data-urlencode 'played_time=60'\
+--data-urlencode 'realtime=60'\
+--data-urlencode 'start_ts=1592720840'\
+--data-urlencode 'type=3'\
+--data-urlencode 'dt=2'\
+--data-urlencode 'play_type=0'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

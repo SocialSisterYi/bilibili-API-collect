@@ -88,7 +88,7 @@
 | 音游           | music       | 136  | 各个平台上，通过配合音乐与节奏而进行的音乐类游戏视频         | [/v/game/music](https://www.bilibili.com/v/game/music)       |
 | Mugen          | mugen       | 19   | 以Mugen引擎为平台制作、或与Mugen相关的游戏视频               | [/v/game/mugen](https://www.bilibili.com/v/game/mugen)       |
 
-## 知识~~（原科技分区）~~
+## 知识（~~原科技分区~~）
 
 **已改版**
 
@@ -98,7 +98,7 @@
 | ----------------------------- | ----------------- | ---- | --------------------------------------------------------- | ------------------------------------------------------------ |
 | 知识（主分区）                | technology        | 36   |                                                           | [/v/technology](https://www.bilibili.com/v/technology)       |
 | 科学科普                      | science           | 201  | 回答你的十万个为什么                                      | [/v/technology/science](https://www.bilibili.com/v/technology/science) |
-| 社科人文~~（趣味科普人文）~~  | fun               | 124  | 聊聊财经/社会/法律，看看历史趣闻，品品人文艺术            | [/v/technology/fun](https://www.bilibili.com/v/technology/fun) |
+| 社科人文（~~趣味科普人文~~）  | fun               | 124  | 聊聊财经/社会/法律，看看历史趣闻，品品人文艺术            | [/v/technology/fun](https://www.bilibili.com/v/technology/fun) |
 | 财经                          | finance           | 207  | 宏观经济分析，证券市场动态，商业帝国故事，知识与财富齐飞~ | [/v/technology/finance](https://www.bilibili.com/v/technology/finance) |
 | 校园学习                      | campus            | 208  | 老师很有趣，同学多人才，我们都爱搞学习                    | [/v/technology/campus](https://www.bilibili.com/v/technology/campus) |
 | 职业职场                      | career            | 209  | 职场加油站，成为最有料的职场人                            | [/v/technology/career](https://www.bilibili.com/v/technology/career) |

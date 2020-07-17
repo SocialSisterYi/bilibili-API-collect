@@ -21,7 +21,7 @@
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | **作用尚不明确**            |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -224,7 +224,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -431,7 +431,7 @@ curl -G 'api.bilibili.com/x/web-interface/card'\
 | ------- | ---- | -------- | ------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：未登录 |
 | message | str  | 错误信息 | 默认为0                   |
-| ttl     | num  | 1        | **作用尚不明确**          |
+| ttl     | num  | 1        |                           |
 | data    | obj  | 信息本体 |                           |
 
 `data`对象：

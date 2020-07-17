@@ -236,7 +236,7 @@ curl -G 'http://api.bilibili.com/pugv/player/web/playurl'\
 
 将`data`.`durl`.`[1-n]`.`url`或`data`.`durl`.`[1-n]`.`backup_url`.`[0]`中的内容作为url进行GET操作, 如果有多个视频, 需要手动合并处理
 
-需要验证Header中`referer`在 `http://www.bilibili.com`或`https://www.bilibili.com`域名下
+需要验证请求Header中`referer`为 `.bilibili.com`域名下（防盗链）
 
 **无referer或错误的情况会返回403 Forbidden**故无法获取
 

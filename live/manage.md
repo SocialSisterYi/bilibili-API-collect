@@ -58,12 +58,12 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%9
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                     | 必要性 | 备注                         |
-| -------- | ---- | ------------------------ | ------ | ---------------------------- |
-| room_id  | num  | 直播间ID                 | 必要   | 必须为自己的直播间ID         |
-| area_v2  | num  | 直播分区ID（子分区ID）   | 必要   | 详见[直播分区](live_area.md) |
-| platform | str  | 必须为`pc`               | 必要   |                              |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |                              |
+| 参数名   | 类型 | 内容                     | 必要性 | 备注                                |
+| -------- | ---- | ------------------------ | ------ | ----------------------------------- |
+| room_id  | num  | 直播间ID                 | 必要   | 必须为自己的直播间ID                |
+| area_v2  | num  | 直播分区ID（子分区ID）   | 必要   | 详见[直播分区](live_area.md)        |
+| platform | str  | 直播平台                 | 必要   | web端：<br />bililink：android_link |
+| csrf     | str  | CSRF Token（位于cookie） | 必要   |                                     |
 
 **json回复：**
 
@@ -78,16 +78,16 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%9
 
 `data`对象：
 
-| 字段      | 类型   | 内容             | 备注                   |
-| --------- | ------ | ---------------- | ---------------------- |
-| change    | num    | 是否改变状态     | 0：未改变<br />1：改变 |
-| status    | str    | LIVE             |                        |
-| room_type | num    | 0                | 作用尚不明确           |
-| rtmp      | obj    | RTMP推流地址信息 |                        |
-| protocols | srrary | ？？？           | 作用尚不明确           |
-| try_time  | str    | ？？？           | 作用尚不明确           |
-| live_key  | str    | ？？？           | 作用尚不明确           |
-| notice    | obj    | ？？？           | 作用尚不明确           |
+| 字段      | 类型  | 内容             | 备注                   |
+| --------- | ----- | ---------------- | ---------------------- |
+| change    | num   | 是否改变状态     | 0：未改变<br />1：改变 |
+| status    | str   | LIVE             |                        |
+| room_type | num   | 0                | 作用尚不明确           |
+| rtmp      | obj   | RTMP推流地址信息 |                        |
+| protocols | array | ？？？           | 作用尚不明确           |
+| try_time  | str   | ？？？           | 作用尚不明确           |
+| live_key  | str   | ？？？           | 作用尚不明确           |
+| notice    | obj   | ？？？           | 作用尚不明确           |
 
 `data`中的`rtmp`对象：
 

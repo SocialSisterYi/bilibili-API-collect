@@ -2,7 +2,7 @@
 
 ## 获取视频TAG信息
 
-> http://https://api.bilibili.com/x/tag/archive/tags
+> http://api.bilibili.com/x/tag/archive/tags
 
 *请求方式：GET*
 
@@ -21,7 +21,7 @@
 | ------- | ------ | -------- | ---------------------------- |
 | code    | num    | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                      |
-| ttl     | num    | 1        | 作用尚不明确                 |
+| ttl     | num    | 1        |                  |
 | data    | array | TAG列表  | 无TAG为空                    |
 
 `data`数组：
@@ -65,9 +65,21 @@
 
 查询视频`av89772773`/`BV1M741177Kg`的TAG
 
-http://api.bilibili.com/x/tag/archive/tags?aid=89772773
+avID方式：
 
-同http://api.bilibili.com/x/tag/archive/tags?bvid=BV1M741177Kg
+```shell
+curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
+--data-urlencode 'aid=89772773'\
+-b 'SESSDATA=xxx'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
+--data-urlencode 'bvid=BV1M741177Kg'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -183,9 +195,7 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 }
 ```
 
-
-
-## 点赞&取消点赞视频TAG（暂不支持bvID）
+## 点赞&取消点赞视频TAG
 
 > http://api.bilibili.com/x/tag/archive/like2
 
@@ -193,7 +203,7 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 
 需要登录(SESSDATA) 
 
-重复访问为取消
+重复请求为取消
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -211,13 +221,19 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 | ------- | ---- | -------- | ---------------------------- |
 | code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                      |
-| ttl     | num  | 1        | 作用尚不明确                 |
+| ttl     | num  | 1        |                              |
 
 **示例：**
 
-为视频`av89772773`的TAG`TAGID=12620189`点赞
+为视频`av89772773`的TAG`12620189`点赞
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bilibili.com/x/tag/archive/like2"
+```shell
+curl 'http://api.bilibili.com/x/tag/archive/like2'\
+--data-urlencode 'aid=89772773'\
+--data-urlencode 'tag_id=12620189'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -227,9 +243,7 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bi
 }
 ```
 
-
-
-## 点踩&取消点踩视频TAG（暂不支持bvID）
+## 点踩&取消点踩视频TAG
 
 > http://api.bilibili.com/x/tag/archive/hate2
 
@@ -255,13 +269,19 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bi
 | ------- | ---- | -------- | ---------------------------- |
 | code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                      |
-| ttl     | num  | 1        | 作用尚不明确                 |
+| ttl     | num  | 1        |                              |
 
 **示例：**
 
-为视频`av89772773`的TAG`TAGID=7520816`点踩
+为视频`av89772773`的TAG`7520816`点踩
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=7520816" "http://api.bilibili.com/x/tag/archive/hate2"
+```shell
+curl 'http://pi.bilibili.com/x/tag/archive/hate2'\
+--data-urlencode 'aid=89772773'\
+--data-urlencode 'tag_id=7520816'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

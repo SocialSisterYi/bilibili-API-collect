@@ -23,7 +23,7 @@
 | ------- | ------ | -------- | ---------------------------- |
 | code    | num    | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                      |
-| ttl     | num    | 1        | 作用尚不明确                 |
+| ttl     | num    | 1        |                  |
 | data    | array | 推荐列表 |                              |
 
 `data`数组：
@@ -43,9 +43,19 @@
 
 查询视频`av7`/`BV1xx411c7m9`的推荐视频列表
 
-http://api.bilibili.com/x/web-interface/archive/related?aid=7
+avID方式：
 
-同http://api.bilibili.com/x/web-interface/archive/related?bvid=BV1xx411c7m9
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related'\
+--data-urlencode 'aid=7'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related'\
+--data-urlencode 'bvid=BV1xx411c7m9'
+```
 
 ```json
 {

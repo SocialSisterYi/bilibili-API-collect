@@ -19,7 +19,7 @@
 | ------- | ---- | -------- | ----------------------------------------------- |
 | code    | num  | 返回值   | 0：成功<br />40001：请求错误<br />40003：无视频 |
 | message | str  | 错误信息 | 默认为0                                         |
-| ttl     | num  | 1        | 作用尚不明确                                    |
+| ttl     | num  | 1        |                                                 |
 | data    | obj  | 信息本体 |                                                 |
 
 `data`对象：
@@ -74,8 +74,6 @@ curl -G 'http://api.bilibili.com/archive_stat/stat'\
 }
 ```
 
-
-
 ## 视频状态数2（禁python）
 
 > http://api.bilibili.com/x/web-interface/archive/stat
@@ -99,7 +97,7 @@ curl -G 'http://api.bilibili.com/archive_stat/stat'\
 | ------- | ---- | -------- | ------------------------------------------------------------ |
 | code    | num  | 返回值   | 0：成功 <br />-400：请求错误<br />-412：请求被拦截<br />40003：无视频 |
 | message | str  | 错误信息 | 默认为0                                                      |
-| ttl     | num  | 1        | 作用尚不明确                                                 |
+| ttl     | num  | 1        |                                                              |
 | data    | obj  | 信息本体 |                                                              |
 
 `data`对象：

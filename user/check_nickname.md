@@ -1,7 +1,6 @@
 # 检查昵称是否可注册
 也可用于判断指定昵称的用户是否存在
 
-### 
 > http://passport.bilibili.com/web/generic/check/nickname
 
 *请求方式:GET*

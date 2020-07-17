@@ -468,3 +468,48 @@ http://api.bilibili.com/x/member/web/coin/log
 }
 ```
 
+## 修改个人签名
+
+> http://api.bilibili.com/x/member/web/sign/update
+
+*请求方式：POST*
+
+签名最多支持70个字
+
+修改签名不会立即生效，会等待审核队列稍后生效
+
+需要登录(SESSDATA)
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名    | 类型 | 内容                     | 必要性 | 备注                   |
+| --------- | ---- | ------------------------ | ------ | ---------------------- |
+| user_sign | str  | 要设置的签名内容         | 非必要 | 删除签名留空或省去即可 |
+| csrf      | str  | CSRF Token（位于cookie） | 必要   |                        |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />40022：签名过长 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | 作用尚不明确                                                 |
+
+**示例：**
+
+更新个人标签为`高中技术宅一枚，爱好MC&电子&音乐&数码&编程，资深猿厨`
+
+curl -b "SESSDATA=xxx" -d "user_sign=%E9%AB%98%E4%B8%AD%E6%8A%80%E6%9C%AF%E5%AE%85%E4%B8%80%E6%9E%9A%EF%BC%8C%E7%88%B1%E5%A5%BDMC&%E7%94%B5%E5%AD%90&%E9%9F%B3%E4%B9%90&%E6%95%B0%E7%A0%81&%E7%BC%96%E7%A8%8B%EF%BC%8C%E8%B5%84%E6%B7%B1%E7%8C%BF%E5%8E%A8&csrf=xxx" "http://api.bilibili.com/x/member/web/sign/update"
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1
+}
+```
+
+
+

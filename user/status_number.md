@@ -19,7 +19,7 @@
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -36,7 +36,11 @@
 
 查询用户`UID=332704117`的关系状态数
 
-http://api.bilibili.com/x/relation/stat?vmid=332704117
+```shell
+curl -G 'http://api.bilibili.com/x/relation/stat'\
+--data-urlencode 'vmid=332704117'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -52,8 +56,6 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 	}
 }
 ```
-
-
 
 ## UP主状态数
 
@@ -75,7 +77,7 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -102,7 +104,11 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 
 查询用户`UID=456664753`的UP主状态数
 
-http://api.bilibili.com/x/space/upstat?mid=456664753
+```shell
+curl -G 'http://api.bilibili.com/x/space/upstat'\
+--data-urlencode 'mid=456664753'
+```
+
 ```json
 {
 	"code": 0,
@@ -119,8 +125,6 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 	}
 }
 ```
-
-
 
 ## 订阅&投稿状态数
 
@@ -142,7 +146,7 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -179,7 +183,12 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 
 查询用户`UID=239202390`的订阅&投稿状态数
 
-http://api.bilibili.com/x/space/navnum?mid=239202390
+```shell
+curl -G 'http://api.bilibili.com/x/space/navnum'\
+--data-urlencode 'mid=239202390'\
+-b 'SESSDATA=xxx'
+```
+
 ```json
 {
 	"code": 0,
@@ -206,8 +215,6 @@ http://api.bilibili.com/x/space/navnum?mid=239202390
 	}
 }
 ```
-
-
 
 ## 投稿相簿数
 
@@ -245,7 +252,10 @@ http://api.bilibili.com/x/space/navnum?mid=239202390
 
  查询用户`UID=53456`的投稿相簿数
 
-http://api.vc.bilibili.com/link_draw/v1/doc/upload_count?uid=53456
+```shell
+curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count'\
+--data-urlencode 'uid=53456'
+```
 
 ```json
 {

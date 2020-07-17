@@ -40,6 +40,8 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 
 *请求方式：POST*
 
+鉴权方式：appkey
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容    | 必要性      | 备注 |

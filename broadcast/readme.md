@@ -1,5 +1,9 @@
 # 全站广播
 
+可用的广播服务：
+
+- [视频实时信息](video_room.md)√
+
 ## 获取广播服务器地址
 
 > http://api.bilibili.com/x/web-interface/broadcast/servers 
@@ -20,7 +24,7 @@
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -108,8 +112,6 @@
 	}
 }
 ```
-
-
 
 ## 服务器数据包
 
