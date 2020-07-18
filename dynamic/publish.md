@@ -6,7 +6,7 @@
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 ~~这是图床？（滑稽保命）~~
 
@@ -41,14 +41,19 @@
 
 上传了一张图片`test.png`类型为`日常`
 
-curl -b "SESSDATA=xxx" -F "file_up=@test.png" -F "category=daily" "http://api.vc.bilibili.com/api/v1/drawImage/upload"
+```shell
+curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload'\
+-F 'file_up=@test.png'\
+-F 'category=daily'
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
     "code":0,
     "message":"success",
     "data":{
-        "image_url":"http:\/\/i0.hdslb.com\/bfs\/album\/13f9523efe186a8066b2d72e80283cea2437eb62.png",
+     "image_url":"http:\/\/i0.hdslb.com\/bfs\/album\/13f9523efe186a8066b2d72e80283cea2437eb62.png",
         "image_width":1225,
         "image_height":850
     }

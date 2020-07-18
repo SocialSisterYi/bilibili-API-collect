@@ -61,9 +61,11 @@
 
 **示例：**
 
-如想在`网游`父分区下的`英雄联盟`分区开播，需要取得子分区ID`86`
+如想在`网游`父分区下的`英雄联盟`分区开播，则查到子分区ID为`86`
 
-http://api.live.bilibili.com/room/v1/Area/getList
+```shell
+curl 'http://api.live.bilibili.com/room/v1/Area/getList'
+```
 
 ```json
 {

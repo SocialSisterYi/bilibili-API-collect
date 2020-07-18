@@ -10,6 +10,8 @@
 
 *请求方式：POST*
 
+认证方式：Cookie（SESSDATA）
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                                                         |
@@ -56,7 +58,15 @@
 
 给视频`av243322853`发送内容为`测试test[泠鸢yousa_awsl]`的评论（带有表情转义符），平台标识为1（web端）
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&message=%E6%B5%8B%E8%AF%95test%5B%E6%B3%A0%E9%B8%A2yousa_awsl%5D&plat=1&csrf=xxx" "http://api.bilibili.com/x/v2/reply/add"
+```shell
+curl 'http://api.bilibili.com/x/v2/reply/add'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=243322853'\
+--data-urlencode 'message=测试test[泠鸢yousa_awsl]'\
+--data-urlencode 'plat=1'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -212,13 +222,13 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&message=%E6%B5%8B%E8%AF%95test%5
 }
 ```
 
-
-
 ## 点赞评论
 
 > http://api.bilibili.com/x/v2/reply/action
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 点赞成功后会同时消去该评论的点踩
 
@@ -246,7 +256,15 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&message=%E6%B5%8B%E8%AF%95test%5
 
 点赞视频`av243322853`下评论`rpID=3039053308`
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xxx" "http://api.bilibili.com/x/v2/reply/action"
+```shell
+curl 'http://api.bilibili.com/x/v2/reply/action'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=243322853'\
+--data-urlencode 'rpid=3039053308'\
+--data-urlencode 'action=1'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -256,13 +274,13 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 }
 ```
 
-
-
 ## 点踩评论
 
 > http://api.bilibili.com/x/v2/reply/hate
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 点踩成功后会同时消去该评论的点赞
 
@@ -290,7 +308,15 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 
 点踩视频`av243322853`下评论`rpID=3039053308`
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xxx" "http://api.bilibili.com/x/v2/reply/hate"
+```shell
+curl 'http://api.bilibili.com/x/v2/reply/hate'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=243322853'\
+--data-urlencode 'rpid=3039053308'\
+--data-urlencode 'action=1'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -300,13 +326,13 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 }
 ```
 
-
-
 ## 删除评论
 
 > http://api.bilibili.com/x/v2/reply/del
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 只能删除自己的评论，或自己管理的评论区下的评论
 
@@ -333,7 +359,14 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&action=1&csrf=xx
 
 删除`av243322853`下评论`rpID=3039053308`
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&csrf=xxx" "http://api.bilibili.com/x/v2/reply/del"
+```shell
+curl 'http://api.bilibili.com/x/v2/reply/del'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=243322853'\
+--data-urlencode 'rpid=3039053308'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -343,13 +376,13 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&csrf=xxx" "http:
 }
 ```
 
-
-
 ## 置顶评论
 
 > http://api.bilibili.com/x/v2/reply/top
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 只能置顶自己管理的评论区中的一级评论
 
@@ -377,7 +410,15 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=3039053308&csrf=xxx" "http:
 
 置顶视频`av243322853`下评论`rpID=2940645593`
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=2940645593&action=1&csrf=xxx" "http://api.bilibili.com/x/v2/reply/top"
+```shell
+curl 'http://api.bilibili.com/x/v2/reply/top'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=243322853'\
+--data-urlencode 'rpid=2940645593'\
+--data-urlencode 'action=1'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -387,13 +428,13 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=2940645593&action=1&csrf=xx
 }
 ```
 
-
-
 ## 举报评论
 
 > http://api.bilibili.com/x/v2/reply/report
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -407,6 +448,27 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=2940645593&action=1&csrf=xx
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                                                 |
 
 举报类型`reason`：
+
+| 代码 | 含义           |
+| ---- | -------------- |
+| 0    | 其他           |
+| 1    | 垃圾广告       |
+| 2    | 色情           |
+| 3    | 刷屏           |
+| 4    | 引战           |
+| 5    | 剧透           |
+| 6    | 政治           |
+| 7    | 人身攻击       |
+| 8    | 内容不相关     |
+| 9    | 违法违规       |
+| 10   | 低俗           |
+| 11   | 非法网站       |
+| 12   | 赌博诈骗       |
+| 13   | 传播不实信息   |
+| 14   | 怂恿教唆信息   |
+| 15   | 侵犯隐私       |
+| 16   | 抢楼           |
+| 17   | 青少年不良信息 |
 
 **json回复：**
 
@@ -422,7 +484,15 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=243322853&rpid=2940645593&action=1&csrf=xx
 
 举报视频` av752881391 `下评论`rpID=3062537442`，理由是`引战`
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=752881391&rpid=3062537442&reason=4&csrf=xxx" "http://api.bilibili.com/x/v2/reply/report"
+```shell
+curl 'http://api.bilibili.com/x/v2/reply/report'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=752881391'\
+--data-urlencode 'rpid=3062537442'\
+--data-urlencode 'reason=4'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

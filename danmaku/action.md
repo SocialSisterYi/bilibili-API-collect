@@ -6,7 +6,7 @@
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -49,9 +49,21 @@
 
 为视频`av2`/`BV1xx411c7mD`（CID为`62131`）的5s位置发送一条弹幕`前来考古`（颜色为#FFFFFF，字号25，普通弹幕，游动弹幕）
 
-curl -b "SESSDATA=xxx" -d "type=1&oid=62131&msg=%e5%89%8d%e6%9d%a5%e8%80%83%e5%8f%a4&aid=2&progress=5000&color=16777215&fontsize=25&pool=0&mode=1&rnd=3456789987654321&csrf=xxx" "http://api.bilibili.com/x/v2/dm/post"
-
-同curl -b "SESSDATA=xxx" -d "type=1&oid=62131&msg=%e5%89%8d%e6%9d%a5%e8%80%83%e5%8f%a4&bvid=BV1xx411c7mD&progress=5000&color=16777215&fontsize=25&pool=0&mode=1&rnd=3456789987654321&csrf=xxx" "http://api.bilibili.com/x/v2/dm/post"
+```shell
+curl 'http://api.bilibili.com/x/v2/dm/post'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=62131'\
+--data-urlencode 'msg=前来考古'\
+--data-urlencode 'aid=2'\
+--data-urlencode 'progress=5000'\
+--data-urlencode 'color=16777215'\
+--data-urlencode 'fontsize=25'\
+--data-urlencode 'pool=0'\
+--data-urlencode 'mode=1'\
+--data-urlencode 'rnd=3456789987654321'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -67,17 +79,15 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=62131&msg=%e5%89%8d%e6%9d%a5%e8%80%83%e5%8
 }
 ```
 
-
-
 ## 撤回弹幕
 
 > http://api.bilibili.com/x/dm/recall
 
 *请求方式：POST*
 
-仅能撤回自己两分钟内的弹幕，且每天只有3次机会
+认证方式：Cookie（SESSDATA）
 
-需要登录(SESSDATA)
+仅能撤回自己两分钟内的弹幕，且每天只有3次机会
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -99,9 +109,15 @@ curl -b "SESSDATA=xxx" -d "type=1&oid=62131&msg=%e5%89%8d%e6%9d%a5%e8%80%83%e5%8
 
 **示例：**
 
-撤回视频CID为`168901231`弹幕ID为`32310301474947077`的弹幕
+撤回`CID=168901231`下的弹幕`32310301474947077`的弹幕
 
-curl -b "SESSDATA=xxx" -d "dmid=32310301474947077&cid=168901231&csrf=xxx" "http://api.bilibili.com/x/dm/recall"
+```shell
+curl 'http://api.bilibili.com/x/dm/recall'\
+--data-urlencode 'cid=168901231'\
+--data-urlencode 'dmid=32310301474947077'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -110,15 +126,13 @@ curl -b "SESSDATA=xxx" -d "dmid=32310301474947077&cid=168901231&csrf=xxx" "http:
 }
 ```
 
-
-
 ## 购买高级弹幕发送权限
 
 > http://api.bilibili.com/x/dm/adv/buy
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 购买一次需要2硬币，同时向up主发送请求
 
@@ -144,7 +158,13 @@ curl -b "SESSDATA=xxx" -d "dmid=32310301474947077&cid=168901231&csrf=xxx" "http:
 
 购买视频CID为`168901231`的高级弹幕发送权限
 
-curl -b "SESSDATA=xxx" -d "mode=sp&cid=168901231&csrf=xxx" "http://api.bilibili.com/x/dm/adv/buy"
+```shell
+curl 'http://api.bilibili.com/x/dm/adv/buy'\
+--data-urlencode 'cid=168901231'\
+--data-urlencode 'mode=sp'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -153,15 +173,13 @@ curl -b "SESSDATA=xxx" -d "mode=sp&cid=168901231&csrf=xxx" "http://api.bilibili.
 }
 ```
 
-
-
 ## 检测高级弹幕发送权限
 
 > http://api.bilibili.com/x/dm/adv/state
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 **url参数：**
 
@@ -196,7 +214,12 @@ curl -b "SESSDATA=xxx" -d "mode=sp&cid=168901231&csrf=xxx" "http://api.bilibili.
 
 当前状态为已购买且同意
 
-https://api.bilibili.com/x/dm/adv/state?cid=168901231&mode=sp
+```shell
+curl -G 'http://api.bilibili.com/x/dm/adv/state'\
+--data-urlencode 'cid=168901231'\
+--data-urlencode 'mode=sp'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

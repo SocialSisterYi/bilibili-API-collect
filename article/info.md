@@ -6,6 +6,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
@@ -94,7 +96,11 @@
 
 查询文章`cv2`的基本信息
 
-http://api.bilibili.com/x/article/viewinfo?id=2
+```shell
+curl -G 'http://api.bilibili.com/x/article/viewinfo'\
+--data-urlencode 'id=2'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

@@ -8,7 +8,9 @@
 
 *请求方式：POST*
 
-还需验证cookie中`bili_jct`的值正确并与`csrf`相同
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -33,7 +35,13 @@
 
 修改直播间`10352053`标题为`测试`
 
-curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%95" "http://api.live.bilibili.com/room/v1/Room/update"
+```shell
+curl 'http://api.live.bilibili.com/room/v1/Room/update'\
+--data-urlencode 'room_id=10352053'\
+--data-urlencode 'title=测试'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx;bili_jct=xx'
+```
 
 ```json
 {
@@ -44,15 +52,15 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%9
 }
 ```
 
-
-
 ## 开始直播
 
 > http://api.live.bilibili.com/room/v1/Room/startLive
 
 *请求方式：POST*
 
-还需验证cookie中`bili_jct`的值正确并与`csrf`相同
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
 
 开播时必须有分区选择，开播后返回推流地址
 
@@ -133,7 +141,14 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&title=%E6%B5%8B%E8%AF%9
 
 `"data"."rtmp"."code"`为推流参数
 
-curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&area_v2=27&platform=pc&csrf=xxx" "http://api.live.bilibili.com/room/v1/Room/startLive"
+```shell
+curl 'http://api.live.bilibili.com/room/v1/Room/startLive'\
+--data-urlencode 'room_id=10352053'\
+--data-urlencode 'area_v2=27'\
+--data-urlencode 'platform=pc'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx;bili_jct=xx'
+```
 
 ```json
 {
@@ -181,7 +196,9 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&area_v2=27&platform=pc&
 
 *请求方式：POST*
 
-还需验证cookie中`bili_jct`的值正确并与`csrf`相同
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -212,7 +229,12 @@ curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&area_v2=27&platform=pc&
 
 关闭直播间`10352053`的直播
 
-curl -b "SESSDATA=xxx;bili_jct=xxx" -d "room_id=10352053&csrf=xxx" "http://api.live.bilibili.com/room/v1/Room/stopLive"
+```shell
+curl 'http://api.live.bilibili.com/room/v1/Room/stopLive'\
+--data-urlencode 'room_id=10352053'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx;bili_jct=xxx'
+```
 
 ```json
 {

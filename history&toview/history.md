@@ -10,6 +10,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名   | 类型 | 内容                   | 必要性 | 备注                                                         |
@@ -123,7 +125,11 @@
 
 获取当前时间截止的5条历史记录
 
- http://api.bilibili.com/x/web-interface/history/cursor?ps=5
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
+--data-urlencode 'ps=5'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -331,15 +337,13 @@
 }
 ```
 
-
-
-
-
 ## 获取全部视频历史记录（旧）
 
 > http://api.bilibili.com/x/v2/history
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **url参数：**
 
@@ -462,11 +466,11 @@
 
 `pages`中的`dimension`对象(同`data`数组中的对象中的`dimension`对象)：
 
-| 字段   | 类型 | 内容         | 备注         |
-| ------ | ---- | ------------ | ------------ |
-| width  | num  | 当前分P 宽度 | 可能为0      |
-| height | num  | 当前分P 高度 | 可能为0      |
-| rotate | num  | 0            | 作用尚不明确 |
+| 字段   | 类型 | 内容           | 备注                 |
+| ------ | ---- | -------------- | -------------------- |
+| width  | num  | 当前分P 宽度   | 可能为0              |
+| height | num  | 当前分P 高度   | 可能为0              |
+| rotate | num  | 是否将宽高对换 | 0：正常<br />1：对换 |
 
 `data`数组中的对象`bangumi`对象：
 
@@ -507,7 +511,12 @@
 
 查询当前视频历史记录列表
 
-http://api.bilibili.com/x/v2/history?ps=5&pn=1
+```shell
+curl -G 'http://api.bilibili.com/x/v2/history'\
+--data-urlencode 'ps=5'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -696,13 +705,13 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 }
 ```
 
-
-
 ## 删除历史记录
 
 > http://api.bilibili.com/x/v2/history/delete
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -725,7 +734,12 @@ http://api.bilibili.com/x/v2/history?ps=5&pn=1
 
 删除视频`av540580868`的观看历史记录
 
-curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.com/x/v2/history/delete"
+```shell
+curl 'http://api.bilibili.com/x/v2/history/delete'\
+--data-urlencode 'kid=archive_540580868'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -735,13 +749,13 @@ curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.
 }
 ```
 
-
-
 ## 清空历史记录
 
 > http://api.bilibili.com/x/v2/history/clear
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -763,7 +777,11 @@ curl -b "SESSDATA=xxx" -d "kid=archive_540580868&csrf=xxx" "http://api.bilibili.
 
 清空历史记录
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear"
+```shell
+curl 'http://api.bilibili.com/x/v2/history/clear'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -773,13 +791,13 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear
 }
 ```
 
-
-
 ## 停用历史记录
 
 > http://api.bilibili.com/x/v2/history/shadow/set
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 该操作不会影响原有历史记录
 
@@ -804,7 +822,12 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/clear
 
 停用历史记录功能
 
-curl -b "SESSDATA=xxx" -d "switch=true&csrf=xxx" "http://api.bilibili.com/x/v2/history/shadow/set"
+```shell
+curl 'http://api.bilibili.com/x/v2/history/shadow/set'\
+--data-urlencode 'switch=true'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -814,13 +837,13 @@ curl -b "SESSDATA=xxx" -d "switch=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 }
 ```
 
-
-
 ## 查询历史记录停用状态
 
 > http://api.bilibili.com/x/v2/history/shadow
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -837,7 +860,10 @@ curl -b "SESSDATA=xxx" -d "switch=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 
 当前状态为未停用视频历史记录
 
-http://api.bilibili.com/x/v2/history/shadow
+```shell
+curl 'http://api.bilibili.com/x/v2/history/shadow'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

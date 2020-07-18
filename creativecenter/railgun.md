@@ -10,6 +10,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **json回复：**
 
 根对象：
@@ -31,7 +33,10 @@
 
 **示例：**
 
-http://member.bilibili.com/x/web/elec/user
+```shell
+curl 'http://member.bilibili.com/x/web/elec/user'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -46,13 +51,13 @@ http://member.bilibili.com/x/web/elec/user
 }
 ```
 
-
-
 ## 获取电磁力详细数值
 
 > http://api.bilibili.com/studio/up-rating/rating/summary
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -86,7 +91,10 @@ http://member.bilibili.com/x/web/elec/user
 
 **示例：**
 
-http://api.bilibili.com/studio/up-rating/rating/summary
+```shell
+curl 'http://api.bilibili.com/studio/up-rating/rating/summary'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -123,13 +131,13 @@ http://api.bilibili.com/studio/up-rating/rating/summary
 }
 ```
 
-
-
 ## 获取电磁力数值历史变化
 
 > http://api.bilibili.com/studio/up-rating/rating/history 
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **url参数：**
 
@@ -185,7 +193,11 @@ http://api.bilibili.com/studio/up-rating/rating/summary
 
 查询创作力的历史变化
 
- http://api.bilibili.com/studio/up-rating/rating/history?type=1
+```shell
+curl -G 'http://api.bilibili.com/studio/up-rating/rating/history'\
+--data-urlencode 'type=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

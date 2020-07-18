@@ -8,6 +8,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注         |
@@ -39,7 +41,12 @@
 
 查询了cid为144541892的视频位于2020年1月中有历史弹幕记录的日期
 
-http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2020-01
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=144541892'\
+--data-urlencode 'month=2020-01'
+```
 
 ```json
 {
@@ -64,7 +71,12 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2020-01
 
 返回结果的 `data` 项说明这些日期有弹幕发送。若查询的月份中视频无弹幕，则 `data` 项为 `null`
 
-http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=144541892'\
+--data-urlencode 'month=2019-12'
+```
 
 ```json
 {
@@ -81,6 +93,8 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 结果为标准xml格式弹幕
 
 **使用deflate压缩，注意解码**
@@ -95,7 +109,13 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
 
 **示例：**
 
-https://api.bilibili.com/x/v2/dm/history?type=1&oid=144541892&date=2020-01-21
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/history'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=144541892'\
+--data-urlencode 'date=2020-01-21'\
+--compressed -o 'danmaku.xml'
+```
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

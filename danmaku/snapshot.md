@@ -1,6 +1,6 @@
-# 弹幕快照
+# 
 
-## 获取弹幕快照
+# 获取弹幕快照
 
 > http://api.bilibili.com/x/v2/dm/ajax
 
@@ -38,9 +38,19 @@
 
 获取视频`av43337021`/`BV1rb411m7gE`的弹幕快照，总计20条
 
-http://api.bilibili.com/x/v2/dm/ajax?aid=43337021
+avID方式：
 
-同http://api.bilibili.com/x/v2/dm/ajax?aid=BV1rb411m7gE
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/ajax'\
+--data-urlencode 'aid=43337021'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/ajax'\
+--data-urlencode 'aid=BV1rb411m7gE'
+```
 
 ```json
 {

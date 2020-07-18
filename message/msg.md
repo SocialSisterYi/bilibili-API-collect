@@ -8,6 +8,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **json回复：**
 
 根对象：
@@ -32,9 +34,12 @@ data 对象：
 
 **示例：**
 
-以下信息代表了未读点赞数为`10`，未读回复数为`3`，未读at消息数为`1`，未读系统通知数为`1`
+以下信息代表了未读点赞数为10，未读回复数为3，未读at消息数为1，未读系统通知数为1
 
-http://api.bilibili.com/x/msgfeed/unread
+```shell
+curl 'http://api.bilibili.com/x/msgfeed/unread'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

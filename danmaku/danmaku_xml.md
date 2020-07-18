@@ -18,7 +18,11 @@
 
 **示例：**
 
-http://api.bilibili.com/x/v1/dm/list.so?oid=144541892 
+```shell
+curl -G 'http://api.bilibili.com/x/v1/dm/list.so'\
+--data-urlencode 'oid=144541892'\
+--compressed -o 'danmaku.xml'
+```
 
 ## 获取实时弹幕2
 
@@ -38,7 +42,10 @@ http://api.bilibili.com/x/v1/dm/list.so?oid=144541892
 
 **示例：**
 
-http://comment.bilibili.com/144541892.xml
+```shell
+curl 'http://comment.bilibili.com/144541892.xml'
+--compressed -o 'danmaku.xml'
+```
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

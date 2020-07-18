@@ -35,6 +35,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容           | 必要性 | 备注                                                     |
@@ -166,7 +168,16 @@
 
 获取视频`av2`的评论区明细，不显示热评，按照热度排序，每页5项，查看第1页
 
- http://api.bilibili.com/x/v2/reply?type=1&oid=2&sort=1&pn=1&ps=5&nohot=1
+```shell
+curl -G 'http://api.bilibili.com/x/v2/reply'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=2'\
+--data-urlencode 'sort=1'\
+--data-urlencode 'ps=5'\
+--data-urlencode 'pn=1'\
+--data-urlencode 'nohot=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -2339,6 +2350,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容           | 必要性 | 备注                                                         |
@@ -2489,7 +2502,15 @@
 
 获取视频`av2`的评论区明细（显示楼层号），按照热度排序，每页5项，查看第1页
 
-http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
+```shell
+curl -G 'http://api.bilibili.com/x/v2/reply/main'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=2'\
+--data-urlencode 'mode=3'\
+--data-urlencode 'next=0'\
+--data-urlencode 'ps=5'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -4705,6 +4726,8 @@ http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 按照热度排列
 
 **url参数：**
@@ -4779,7 +4802,15 @@ http://api.bilibili.com/x/v2/reply/main?type=1&oid=2&mode=3&next=0&ps=5
 
 获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
 
-http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
+```shell
+curl -G 'http://api.bilibili.com/x/v2/reply/reply'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=2'\
+--data-urlencode 'root=476670'\
+--data-urlencode 'ps=5'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -5423,9 +5454,11 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 ## 获取指定评论条目及二级回复明细2（APP端）（嵌套结构 带有楼层号）
 
-> http://api.bilibili.com/x/v2/reply/detail 
+> http://api.bilibili.com/x/v2/reply/detail
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 按照楼层排列
 
@@ -5511,7 +5544,15 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
 
- http://api.bilibili.com/x/v2/reply/detail?type=1&oid=2&root=476670&next=0&ps=5
+```shell
+curl -G 'http://api.bilibili.com/x/v2/reply/detail'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=2'\
+--data-urlencode 'root=476670'\
+--data-urlencode 'ps=5'\
+--data-urlencode 'next=0'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -6164,9 +6205,11 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 ## 获取指定评论对话树（APP端）（带有楼层）
 
-> http://api.bilibili.com/x/v2/reply/dialog/cursor 
+> http://api.bilibili.com/x/v2/reply/dialog/cursor
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 按照楼层排列
 
@@ -6266,7 +6309,15 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 获取视频`av201022189`下评论`rpID=3030790837`的对话`rpID=3030978856`，每页最大5项
 
- http://api.bilibili.com/x/v2/reply/dialog/cursor?type=1&oid=201022189&root=3030790837&dialog=3030978856&size=5 
+```shell
+curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=201022189'\
+--data-urlencode 'root=3030790837'\
+--data-urlencode 'dialog=3030978856'\
+--data-urlencode 'size=5'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -7053,7 +7104,11 @@ http://api.bilibili.com/x/v2/reply/reply?type=1&oid=2&root=476670&pn=1&ps=5
 
 获取视频`av2`的评论区总计评论条数
 
-http://api.bilibili.com/x/v2/reply/count?type=1&oid=2
+```shell
+curl -G 'http://api.bilibili.com/x/v2/reply/count'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=2'
+```
 
 ```json
 {

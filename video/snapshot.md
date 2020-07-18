@@ -109,9 +109,9 @@ curl -G 'http://api.bilibili.com/x/player/videoshot'\
 
 | 参数名 | 类型 | 内容       | 必要性      | 备注 |
 | ------ | ---- | ---------- | ----------- | ---- |
+| appkey | str  | APP密钥    | APP方式必要 |      |
 | aid    | num  | 视频avID   | 必要        |      |
 | cid    | num  | 分P CID    | 必要        |      |
-| appkey | str  | APP密钥    | APP方式必要 |      |
 | ts     | num  | 当前时间戳 | APP方式必要 |      |
 | sign   | str  | APP签名    | APP方式必要 |      |
 
@@ -151,10 +151,10 @@ curl -G 'http://api.bilibili.com/x/player/videoshot'\
 
 ```shell
 curl -G 'http://app.bilibili.com/x/v2/view/video/shot'\
---data-urlencode 'aid=26273789'
---data-urlencode 'cid=49075258'
---data-urlencode 'appkey=1d8b6e7d45233436'
---data-urlencode 'ts=0'
+--data-urlencode 'appkey=1d8b6e7d45233436'\
+--data-urlencode 'aid=26273789'\
+--data-urlencode 'cid=49075258'\
+--data-urlencode 'ts=0'\
 --data-urlencode 'sign=06c0a4f2ede21984313552bd9439db18'
 ```
 

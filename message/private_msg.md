@@ -8,6 +8,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **json回复：**
 
 根对象：
@@ -31,7 +33,10 @@ data 对象：
 
 以下信息代表了为未关注用户未读私信数为`10`条，已关注用户未读私信数为`3`条
 
-http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread
+```shell
+curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

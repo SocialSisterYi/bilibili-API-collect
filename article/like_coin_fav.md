@@ -10,6 +10,8 @@
 
 *请求方式：POST*
 
+认证方式：Cookie（SESSDATA）
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                   |
@@ -32,7 +34,13 @@
 
 为文章`cv5806746`点赞
 
-curl -b "SESSDATA=xxx" -d "id=5806746&type=1&csrf=xxx" "http://api.bilibili.com/x/article/like"
+```shell
+curl 'http://api.bilibili.com/x/article/like'\
+--data-urlencode 'id=5806746'\
+--data-urlencode 'type=1'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -42,8 +50,6 @@ curl -b "SESSDATA=xxx" -d "id=5806746&type=1&csrf=xxx" "http://api.bilibili.com/
 }
 ```
 
-
-
 ## 投币文章
 
 <img src="/imgs/coin.svg" width="100" height="100"/>
@@ -52,12 +58,15 @@ curl -b "SESSDATA=xxx" -d "id=5806746&type=1&csrf=xxx" "http://api.bilibili.com/
 
 *请求方式：POST*
 
+认证方式：Cookie（SESSDATA）
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名   | 类型 | 内容                | 必要性 | 备注    |
 | -------- | ---- | ------------------- | ------ | ------- |
 | aid      | num  | 文章cvID            | 必要   |         |
 | multiply | num  | 投币数量            | 必要   | 上限为2 |
+| avtype | num | 2 | 必要 | 必须为2 |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |         |
 
 **json回复：**
@@ -81,7 +90,14 @@ data 对象：
 
 为文章`cv5806746`投币1枚
 
-curl -b "SESSDATA=xxx" -d "aid=5806746&multiply=1&csrf=xxx" "http://api.bilibili.com/x/web-interface/coin/add"
+```shell
+curl 'http://api.bilibili.com/x/web-interface/coin/add'\
+--data-urlencode 'aid=5806746'\
+--data-urlencode 'multiply=1'\
+--data-urlencode 'avtype=2'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -94,8 +110,6 @@ curl -b "SESSDATA=xxx" -d "aid=5806746&multiply=1&csrf=xxx" "http://api.bilibili
 }
 ```
 
-
-
 ## 收藏文章
 
 <img src="/imgs/fav.svg" width="100" height="100"/>
@@ -103,6 +117,8 @@ curl -b "SESSDATA=xxx" -d "aid=5806746&multiply=1&csrf=xxx" "http://api.bilibili
 >http://api.bilibili.com/x/article/favorites/add
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -125,7 +141,12 @@ curl -b "SESSDATA=xxx" -d "aid=5806746&multiply=1&csrf=xxx" "http://api.bilibili
 
 收藏文章`cv5806746`
 
-curl  -b "SESSDATA=xxx" -d "id=5806746&csrf=xxx" "http://api.bilibili.com/x/article/favorites/add"
+```shell
+curl 'http://api.bilibili.com/x/article/favorites/add'\
+--data-urlencode 'id=5806746'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

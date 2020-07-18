@@ -8,6 +8,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **json回复：**
 
 根对象：
@@ -34,33 +36,36 @@
 
 **示例：**
 
-http://api.bilibili.com/x/member/web/account
+```shell
+curl 'http://api.bilibili.com/x/member/web/account'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "mid": 293793435,
-        "uname": "社会易姐QwQ",
-        "userid": "bili_84675323391",
-        "sign": "高中技术宅一枚，爱好MC&电子&音乐&数码&编程，资深猿厨",
-        "birthday": "2002-03-05",
-        "sex": "男",
-        "nick_free": false,
-        "rank": "正式会员"
+    "code":0,
+    "message":"0",
+    "ttl":1,
+    "data":{
+        "mid":293793435,
+        "uname":"社会易姐QwQ",
+        "userid":"bili_84675323391",
+        "sign":"高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，资深猿厨，粉丝群：1136462265",
+        "birthday":"2002-03-05",
+        "sex":"男",
+        "nick_free":false,
+        "rank":"正式会员"
     }
 }
 ```
-
-
 
 ## 查询每日奖励状态
 
 > http://api.bilibili.com/x/member/web/exp/reward
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -88,7 +93,10 @@ http://api.bilibili.com/x/member/web/account
 
 **示例：**
 
-http://api.bilibili.com/x/member/web/exp/reward
+```shell
+curl 'http://api.bilibili.com/x/member/web/exp/reward'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -108,13 +116,13 @@ http://api.bilibili.com/x/member/web/exp/reward
 }
 ```
 
-
-
 ## 查询大会员状态
 
 > http://api.bilibili.com/x/vip/web/user/info
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -140,7 +148,10 @@ http://api.bilibili.com/x/member/web/exp/reward
 
 **示例：**
 
-http://api.bilibili.com/x/vip/web/user/info
+```shell
+curl 'http://api.bilibili.com/x/vip/web/user/info'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -158,15 +169,15 @@ http://api.bilibili.com/x/vip/web/user/info
 }
 ```
 
-
-
 ## 查询账号安全情况
 
 > http://passport.bilibili.com/web/site/user/info
 
 *请求方式：GET*
 
-需要验证`DedeUserID`存在且不为0
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`DedeUserID`存在且不为0
 
 **json回复：**
 
@@ -223,7 +234,10 @@ http://api.bilibili.com/x/vip/web/user/info
 
 **示例：**
 
-http://passport.bilibili.com/web/site/user/info
+```shell
+curl 'http://passport.bilibili.com/web/site/user/info'\
+-b 'SESSDATA=xxx;DedeUserID=1;'
+```
 
 ```json
 {
@@ -254,13 +268,13 @@ http://passport.bilibili.com/web/site/user/info
 }
 ```
 
-
-
 ## 查询账号实名认证状态
 
 > http://api.bilibili.com/x/member/realname/status
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -281,9 +295,12 @@ http://passport.bilibili.com/web/site/user/info
 
 **示例：**
 
-http://api.bilibili.com/x/member/realname/status
-
 当前状态为已认证
+
+```shell
+curl 'http://api.bilibili.com/x/member/realname/status'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -296,13 +313,13 @@ http://api.bilibili.com/x/member/realname/status
 }
 ```
 
-
-
 ## 查询实名认证详细信息
 
 > http://api.bilibili.com/x/member/realname/apply/status
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -325,7 +342,10 @@ http://api.bilibili.com/x/member/realname/status
 | card      | str  | 证件号码     | 星号隐藏部分信息                                             |
 | card_type | num  | 证件类型代码 | 0：身份证<br />2：港澳居民来往内地通行证<br />3：台湾居民来往大陆通行证<br />4：护照(中国签发)<br />5：外国人永久居留证<br />6：其他国家或地区身份证明 |
 
-http://api.bilibili.com/x/member/realname/apply/status
+```shell
+curl 'http://api.bilibili.com/x/member/realname/apply/status'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -342,13 +362,13 @@ http://api.bilibili.com/x/member/realname/apply/status
 }
 ```
 
-
-
 ## 查询硬币变化情况
 
 > http://api.bilibili.com/x/member/web/coin/log
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 仅能查询最近一周的情况
 
@@ -388,7 +408,10 @@ http://api.bilibili.com/x/member/realname/apply/status
 
 **示例：**
 
-http://api.bilibili.com/x/member/web/coin/log
+```shell
+curl 'http://api.bilibili.com/x/member/web/coin/log'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -474,18 +497,16 @@ http://api.bilibili.com/x/member/web/coin/log
 
 *请求方式：POST*
 
-签名最多支持70个字
+认证方式：Cookie（SESSDATA）
 
 修改签名不会立即生效，会等待审核队列稍后生效
 
-需要登录(SESSDATA)
-
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名    | 类型 | 内容                     | 必要性 | 备注                   |
-| --------- | ---- | ------------------------ | ------ | ---------------------- |
-| user_sign | str  | 要设置的签名内容         | 非必要 | 删除签名留空或省去即可 |
-| csrf      | str  | CSRF Token（位于cookie） | 必要   |                        |
+| 参数名    | 类型 | 内容                     | 必要性 | 备注                                         |
+| --------- | ---- | ------------------------ | ------ | -------------------------------------------- |
+| user_sign | str  | 要设置的签名内容         | 非必要 | 删除签名留空或省去即可<br />最多支持70个字符 |
+| csrf      | str  | CSRF Token（位于cookie） | 必要   |                                              |
 
 **json回复：**
 
@@ -499,9 +520,14 @@ http://api.bilibili.com/x/member/web/coin/log
 
 **示例：**
 
-更新个人标签为`高中技术宅一枚，爱好MC&电子&音乐&数码&编程，资深猿厨`
+更新个人标签为`高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，资深猿厨，粉丝群：1136462265`
 
-curl -b "SESSDATA=xxx" -d "user_sign=%E9%AB%98%E4%B8%AD%E6%8A%80%E6%9C%AF%E5%AE%85%E4%B8%80%E6%9E%9A%EF%BC%8C%E7%88%B1%E5%A5%BDMC&%E7%94%B5%E5%AD%90&%E9%9F%B3%E4%B9%90&%E6%95%B0%E7%A0%81&%E7%BC%96%E7%A8%8B%EF%BC%8C%E8%B5%84%E6%B7%B1%E7%8C%BF%E5%8E%A8&csrf=xxx" "http://api.bilibili.com/x/member/web/sign/update"
+```shell
+curl 'http://api.bilibili.com/x/member/web/sign/update'\
+--data-urlencode 'user_sign=高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，资深猿厨，粉丝群：1136462265'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

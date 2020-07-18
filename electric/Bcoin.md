@@ -8,7 +8,7 @@
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -49,10 +49,17 @@
 
 此时`data`.`status`=`4`
 
-~~（自己冲自己QAQ）~~
+~~自己冲自己QAQ~~
 
-curl -b "SESSDATA=xxx" -d "elec_num=20&u
-p_mid=293793435&otype=up&oid=293793435&csrf=xxx" "http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick"
+```shell
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
+--data-urlencode 'elec_num=20'\
+--data-urlencode 'up_mid=293793435'\
+--data-urlencode 'otype=up'\
+--data-urlencode 'oid=293793435'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -75,8 +82,15 @@ p_mid=293793435&otype=up&oid=293793435&csrf=xxx" "http://api.bilibili.com/x/ugcp
 
 此时`data`.`status`=`-2`
 
-curl -b SESSDATA=xxx -d "elec_num=1&u
-p_mid=293793435&otype=up&oid=293793435&csrf=xxx" "http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick"
+```shell
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
+--data-urlencode 'elec_num=1'\
+--data-urlencode 'up_mid=293793435'\
+--data-urlencode 'otype=up'\
+--data-urlencode 'oid=293793435'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -99,8 +113,15 @@ p_mid=293793435&otype=up&oid=293793435&csrf=xxx" "http://api.bilibili.com/x/ugcp
 
 此时`data`.`status`=`-4`
 
-curl -b SESSDATA=xxx -d "elec_num=999&u
-p_mid=293793435&otype=up&oid=293793435&csrf=xxx" "http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick"
+```shell
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
+--data-urlencode 'elec_num=999'\
+--data-urlencode 'up_mid=293793435'\
+--data-urlencode 'otype=up'\
+--data-urlencode 'oid=293793435'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

@@ -42,7 +42,10 @@
 
 查询用户`UID=322892`的直播间信息
 
-http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld?mid=322892
+```shell
+curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
+--data-urlencode 'mid=322892'
+```
 
 ```json
 {

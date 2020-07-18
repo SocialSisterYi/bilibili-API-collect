@@ -1,6 +1,6 @@
 # 充电列表
 
-## 获取充电公示列表
+## 获取空间充电公示列表
 
 > http://elec.bilibili.com/api/query.rank.do 
 
@@ -67,7 +67,10 @@
 
 查询用户`UID=53456`的充电公示列表
 
- http://elec.bilibili.com/api/query.rank.do?mid=53456
+```shell
+curl -G 'http://elec.bilibili.com/api/query.rank.do'\
+--data-urlencode 'mid=53456'
+```
 
 ```json
 {
@@ -128,8 +131,6 @@
     }
 }
 ```
-
-
 
 ## 获取视频充电鸣谢名单
 
@@ -211,9 +212,21 @@
 
 获取视频`av967773538`/` BV1up4y1y77i `，用户`UID=53456`的视频充电鸣谢名单
 
- http://api.bilibili.com/x/web-interface/elec/show?aid=967773538&mid=53456 
+avID方式：
 
-同 http://api.bilibili.com/x/web-interface/elec/show?mid=53456&bvid=BV1up4y1y77i 
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/elec/show'\
+--data-urlencode 'mid=53456'\
+--data-urlencode 'aid=967773538'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/elec/show'\
+--data-urlencode 'mid=53456'\
+--data-urlencode 'bvid=BV1up4y1y77i '
+```
 
 ```json
 {

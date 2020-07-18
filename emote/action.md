@@ -8,6 +8,8 @@
 
 *请求方式：POST*
 
+认证方式：Cookie（SESSDATA）
+
 只能添加有会员权限或已购买的表情包
 
 **正文参数（ application/x-www-form-urlencoded ）：**
@@ -32,7 +34,13 @@
 
 添加ID为`25`的表情包，使用场景为评论区
 
-curl -b "SESSDATA=xxx" -d "package_id=25&business=reply&csrf=xxx" "http://api.bilibili.com/x/emote/package/add"
+```shell
+curl 'http://api.bilibili.com/x/emote/package/add'\
+--data-urlencode 'package_id=25'\
+--data-urlencode 'business=reply'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -42,13 +50,13 @@ curl -b "SESSDATA=xxx" -d "package_id=25&business=reply&csrf=xxx" "http://api.bi
 }
 ```
 
-
-
 ## 移除表情包
 
 > http://api.bilibili.com/x/emote/package/remove
 
 *请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -72,7 +80,13 @@ curl -b "SESSDATA=xxx" -d "package_id=25&business=reply&csrf=xxx" "http://api.bi
 
 移除ID为`25`的表情包，使用场景为评论区
 
-curl -b "SESSDATA=xxx" -d "package_id=25&business=reply&csrf=xxx" "http://api.bilibili.com/x/emote/package/remove"
+```shell
+curl 'http://api.bilibili.com/x/emote/package/remove'\
+--data-urlencode 'package_id=25'\
+--data-urlencode 'business=reply'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

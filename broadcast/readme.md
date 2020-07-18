@@ -61,7 +61,10 @@
 
 当`platform`=`web`时，不显示节点ip
 
- http://api.bilibili.com/x/web-interface/broadcast/servers?platform=web
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers'\
+--data-urlencode 'platform=web'
+```
 
 ```json
 {
@@ -88,7 +91,10 @@
 
 当`platform`=其他时，显示节点ip
 
- http://api.bilibili.com/x/web-interface/broadcast/servers?platform=1
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers'\
+--data-urlencode 'platform=1'
+```
 
 ```json
 {

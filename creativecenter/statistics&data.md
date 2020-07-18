@@ -10,6 +10,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **json回复：**
 
 根对象：
@@ -68,7 +70,10 @@
 
 **示例：**
 
-http://member.bilibili.com/x/web/index/stat
+```shell
+curl 'http://member.bilibili.com/x/web/index/stat'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -154,13 +159,13 @@ http://member.bilibili.com/x/web/index/stat
 }
 ```
 
-
-
 ## UP主专栏状态数据
 
 > http://member.bilibili.com/x/web/data/article
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -192,7 +197,10 @@ http://member.bilibili.com/x/web/index/stat
 
 **示例：**
 
-http://member.bilibili.com/x/web/data/article
+```shell
+curl 'http://member.bilibili.com/x/web/data/article'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -216,13 +224,13 @@ http://member.bilibili.com/x/web/data/article
 }
 ```
 
-
-
 ## 视频数据增量趋势
 
 > http://member.bilibili.com/x/web/data/article/thirty 
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 数据为前30天
 
@@ -276,7 +284,11 @@ http://member.bilibili.com/x/web/data/article
 
 查询30天前的视频播放增量趋势，可知`2020-04-05`的播放增量为`46`，`2020-04-04`的播放增量为`58`
 
-http://member.bilibili.com/x/web/data/pandect?type=1
+```shell
+curl -G 'http://member.bilibili.com/x/web/data/pandect'\
+--data-urlencode 'type=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -307,13 +319,13 @@ http://member.bilibili.com/x/web/data/pandect?type=1
 }
 ```
 
-
-
 ## 专栏数据增量趋势
 
 >  http://member.bilibili.com/x/web/data/article/thirty 
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 数据为前30天
 
@@ -365,7 +377,11 @@ http://member.bilibili.com/x/web/data/pandect?type=1
 
 查询30天前的文章阅读增量趋势，可知`2020-04-05`的阅读增量为`6`，`2020-04-04`的阅读增量为`6`
 
-http://member.bilibili.com/x/web/data/article/thirty?type=1
+```shell
+curl -G 'http://member.bilibili.com/x/web/data/article/thirty'\
+--data-urlencode 'type=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -393,13 +409,13 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 }
 ```
 
-
-
 ## 稿件操作来源占比情况
 
 > http://member.bilibili.com/x/web/data/survey
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 数据为上一天的
 
@@ -478,7 +494,11 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 
 查询我的稿件来源占比情况
 
-http://member.bilibili.com/x/web/data/survey?type=1
+```shell
+curl -G 'http://member.bilibili.com/x/web/data/survey'\
+--data-urlencode 'type=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -525,13 +545,13 @@ http://member.bilibili.com/x/web/data/survey?type=1
 }
 ```
 
-
-
 ## 播放来源占比情况（平台及方式）
 
 > http://member.bilibili.com/x/web/data/playsource
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -574,7 +594,10 @@ http://member.bilibili.com/x/web/data/survey?type=1
 
 **示例：**
 
-http://member.bilibili.com/x/web/data/playsource
+```shell
+curl 'http://member.bilibili.com/x/web/data/playsource'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -601,13 +624,13 @@ http://member.bilibili.com/x/web/data/playsource
 }
 ```
 
-
-
 ## 播放分布情况（粉丝与路人）
 
 > http://member.bilibili.com/x/web/data/base
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -701,7 +724,10 @@ http://member.bilibili.com/x/web/data/playsource
 
 **示例：**
 
-http://member.bilibili.com/x/web/data/base
+```shell
+curl 'http://member.bilibili.com/x/web/data/base'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

@@ -18,12 +18,16 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：referer为 `.bilibili.com`域名下
+
 **url参数：**
 
-| 参数名    | 类型 | 内容     | 必要性 | 备注                                               |
-| --------- | ---- | -------- | ------ | -------------------------------------------------- |
-| season_id | num  | 课程ssID | 非必要 | season_id与ep_id任选其一<br />**与番剧ssID不互通** |
-| ep_id     | num  | 课程epID | 非必要 | season_id与ep_id任选其一<br />**与番剧epID不互通** |
+| 参数名    | 类型 | 内容     | 必要性       | 备注                                               |
+| --------- | ---- | -------- | ------------ | -------------------------------------------------- |
+| season_id | num  | 课程ssID | 必要（可选） | season_id与ep_id任选其一<br />**与番剧ssID不互通** |
+| ep_id     | num  | 课程epID | 必要（可选） | season_id与ep_id任选其一<br />**与番剧epID不互通** |
 
 **json回复：**
 
@@ -239,9 +243,23 @@
 
 查询课程`ss61`或分集`ep790`的信息
 
-http://api.bilibili.com/pugv/view/web/season?season_id=61
+ssID方式：
 
-同 http://api.bilibili.com/pugv/view/web/season?ep_id=790
+```shell
+curl -G 'http://api.bilibili.com/pugv/view/web/season'\
+--data-urlencode 'season_id=61'\
+-b 'SESSDATA=xxx'\
+-e 'https://www.bilibili.com'
+```
+
+epID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/pugv/view/web/season'\
+--data-urlencode 'ep_id=790'\
+-b 'SESSDATA=xxx'\
+-e 'https://www.bilibili.com'
+```
 
 ```json
 {
@@ -436,13 +454,15 @@ http://api.bilibili.com/pugv/view/web/season?season_id=61
 }
 ```
 
-
-
 ## 获取课程分集列表
 
 > http://api.bilibili.com/pugv/view/web/ep/list 
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：referer为 `.bilibili.com`域名下
 
 **url参数：**
 
@@ -508,7 +528,14 @@ http://api.bilibili.com/pugv/view/web/season?season_id=61
 
 按照每页5项查询课程`ss61`的分集列表第1页
 
- http://api.bilibili.com/pugv/view/web/ep/list?season_id=61&pn=1&ps=5 
+```shell
+curl -G 'http://api.bilibili.com/pugv/view/web/ep/list'\
+--data-urlencode 'season_id=61'\
+--data-urlencode 'ps=5 '\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'\
+-e 'https://www.bilibili.com'
+```
 
 ```json
 {

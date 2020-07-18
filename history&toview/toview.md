@@ -8,7 +8,7 @@
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 最多添加100个视频
 
@@ -34,9 +34,23 @@
 
 添加视频`av41687433`/`BV1ht41147kj`到稍后再看列表
 
-curl -b "SESSDATA=xxx" -d "aid=41687433&csrf=xxx" "http://api.bilibili.com/x/v2/history/toview/add"
+avID方式：
 
-同curl -b "SESSDATA=xxx" -d "bvid=BV1ht41147kj&csrf=xxx" "http://api.bilibili.com/x/v2/history/toview/add"
+```shell
+curl 'http://api.bilibili.com/x/v2/history/toview/add'\
+--data-urlencode 'aid=41687433'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+bvID方式：
+
+```shell
+curl 'http://api.bilibili.com/x/v2/history/toview/add'\
+--data-urlencode 'bvid=BV1ht41147kj'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -46,19 +60,15 @@ curl -b "SESSDATA=xxx" -d "aid=41687433&csrf=xxx" "http://api.bilibili.com/x/v2/
 }
 ```
 
-
-
 ## 添加频道中所有视频到稍后再看
 
 > http://space.bilibili.com/ajax/channel/addAllToView
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
-需要验证`DedeUserID`及`DedeUserID__ckMd5`存在且不为0
-
-需要验证`referer`为 `http://.bilibili.com`或`https://.bilibili.com`域名下
+鉴权方式：Cookie中`DedeUserID`及`DedeUserID__ckMd5`存在且不为0，referer为 `.bilibili.com`域名下
 
 带有转义
 
@@ -85,7 +95,14 @@ curl -b "SESSDATA=xxx" -d "aid=41687433&csrf=xxx" "http://api.bilibili.com/x/v2/
 
 添加用户`UID=282994`下的频道`4693`中所有视频到稍后再看
 
-curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1" -d "cid=4693&mid=282994&csrf=xxx" "http://space.bilibili.com/ajax/channel/addAllToView"
+```shell
+curl 'http://space.bilibili.com/ajax/channel/addAllToView'\
+--data-urlencode 'cid=4693'\
+--data-urlencode 'mid=282994'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;'
+-e 'https://www.bilibili.com'
+```
 
 ```json
 {
@@ -94,15 +111,13 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 }
 ```
 
-
-
 ## 获取稍后再看视频列表
 
 > http://api.bilibili.com/x/v2/history/toview
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 **json回复：**
 
@@ -216,17 +231,20 @@ curl --referer "http://.bilibili.com" -b "SESSDATA=xxx;DedeUserID=1;DedeUserID__
 
 `pages`中的`dimension`对象(同`data`中的`list`数组中的对象中的`dimension`对象)：
 
-| 字段   | 类型 | 内容         | 备注         |
-| ------ | ---- | ------------ | ------------ |
-| width  | num  | 当前分P 宽度 | 可能为0      |
-| height | num  | 当前分P 高度 | 可能为0      |
-| rotate | num  | 0            | 作用尚不明确 |
+| 字段   | 类型 | 内容           | 备注                 |
+| ------ | ---- | -------------- | -------------------- |
+| width  | num  | 当前分P 宽度   | 可能为0              |
+| height | num  | 当前分P 高度   | 可能为0              |
+| rotate | num  | 是否将宽高对换 | 0：正常<br />1：对换 |
 
 **示例：**
 
 获取稍后再看视频列表
 
-http://api.bilibili.com/x/v2/history/toview
+```shell
+curl 'http://api.bilibili.com/x/v2/history/toview'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
  "code": 0,
@@ -372,15 +390,13 @@ http://api.bilibili.com/x/v2/history/toview
 }
 ```
 
-
-
 ## 删除稍后再看视频
 
 > http://api.bilibili.com/x/v2/history/toview/del
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -404,7 +420,12 @@ http://api.bilibili.com/x/v2/history/toview
 
 删除视频`av540580868`的稍后再看记录
 
-curl -b "SESSDATA=xxx" -d "aid=540580868&csrf=xxx" "http://api.bilibili.com/x/v2/history/toview/del"
+```shell
+curl 'http://api.bilibili.com/x/v2/history/toview/del'\
+--data-urlencode 'aid=540580868'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -416,7 +437,12 @@ curl -b "SESSDATA=xxx" -d "aid=540580868&csrf=xxx" "http://api.bilibili.com/x/v2
 
 删除所有已观看的视频
 
-curl -b "SESSDATA=xxx" -d "viewed=true&csrf=xxx" "http://api.bilibili.com/x/v2/history/toview/del"
+```shell
+curl 'http://api.bilibili.com/x/v2/history/toview/del'\
+--data-urlencode 'viewed=true'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -426,15 +452,13 @@ curl -b "SESSDATA=xxx" -d "viewed=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 }
 ```
 
-
-
 ## 清空稍后再看视频列表
 
 > http://api.bilibili.com/x/v2/history/toview/clear
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -456,7 +480,11 @@ curl -b "SESSDATA=xxx" -d "viewed=true&csrf=xxx" "http://api.bilibili.com/x/v2/h
 
 清空稍后再看视频列表
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/toview/clear"
+```shell
+curl 'http://api.bilibili.com/x/v2/history/toview/clear'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -465,4 +493,3 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx" "http://api.bilibili.com/x/v2/history/tovie
     "ttl": 1
 }
 ```
-

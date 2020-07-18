@@ -4,7 +4,7 @@
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -28,8 +28,13 @@
 
 为留言token为`BPRG5CEC3VUPOOANA540`的充电操作，添加了内容为`支持一下大佬`的留言
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx&order_id=BPRG
-5CEC3VUPOOANA540&message=%e6%94%af%e6%8c%81%e4%b8%80%e4%b8%8b%e5%a4%a7%e4%bd%ac" "http://api.bilibili.com/x/ugcpay/trade/elec/message"
+```shell
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/message'\
+--data-urlencode 'order_id=BPRG5CEC3VUPOOANA540'\
+--data-urlencode 'message=支持一下大佬'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

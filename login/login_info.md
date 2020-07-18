@@ -1,14 +1,16 @@
 # 登录基本信息
 
-**本页所有操作均需登录（SESSDATA）**
+**本页所有操作均需登录（Cookie或APP）**
 
-## 登录用户信息1（完整）
+## 登录用户信息1（web端）
 
-> http://api.bilibili.com/nav (带有转义)
+> http://api.bilibili.com/nav（带有转义）
 >
-> http://api.bilibili.com/x/web-interface/nav (原始数据)
+> http://api.bilibili.com/x/web-interface/nav（原始数据）
 
 *请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -105,83 +107,86 @@
 
 **示例：**
 
-查询当前登录用户的信息
-
-http://api.bilibili.com/x/web-interface/nav
+```shell
+curl 'http://api.bilibili.com/nav'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "isLogin": true,
-        "email_verified": 1,
-        "face": "http://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
-        "level_info": {
-            "current_level": 5,
-            "current_min": 10800,
-            "current_exp": 16269,
-            "next_exp": 28800
+    "code":0,
+    "message":"0",
+    "ttl":1,
+    "data":{
+        "isLogin":true,
+        "email_verified":1,
+        "face":"http://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
+        "level_info":{
+            "current_level":5,
+            "current_min":10800,
+            "current_exp":17065,
+            "next_exp":28800
         },
-        "mid": 293793435,
-        "mobile_verified": 1,
-        "money": 26.6,
-        "moral": 70,
-        "official": {
-            "role": 0,
-            "title": "",
-            "desc": "",
-            "type": -1
+        "mid":293793435,
+        "mobile_verified":1,
+        "money":33.4,
+        "moral":70,
+        "official":{
+            "role":0,
+            "title":"",
+            "desc":"",
+            "type":-1
         },
-        "officialVerify": {
-            "type": -1,
-            "desc": ""
+        "officialVerify":{
+            "type":-1,
+            "desc":""
         },
-        "pendant": {
-            "pid": 1888,
-            "name": "泠鸢yousa",
-            "image": "http://i0.hdslb.com/bfs/garb/item/3e66e712b8e70c6b02393c54ad5fd8d993eb39f9.png",
-            "expire": 0,
-            "image_enhance": "http://i0.hdslb.com/bfs/garb/item/3e66e712b8e70c6b02393c54ad5fd8d993eb39f9.png"
+        "pendant":{
+            "pid":0,
+            "name":"",
+            "image":"",
+            "expire":0,
+            "image_enhance":""
         },
-        "scores": 0,
-        "uname": "社会易姐QwQ",
-        "vipDueDate": 1612454400000,
-        "vipStatus": 1,
-        "vipType": 2,
-        "vip_pay_type": 1,
-        "vip_theme_type": 0,
-        "vip_label": {
-            "path": "",
-            "text": "年度大会员",
-            "label_theme": "annual_vip"
+        "scores":0,
+        "uname":"社会易姐QwQ",
+        "vipDueDate":1612454400000,
+        "vipStatus":1,
+        "vipType":2,
+        "vip_pay_type":1,
+        "vip_theme_type":0,
+        "vip_label":{
+            "path":"",
+            "text":"年度大会员",
+            "label_theme":"annual_vip"
         },
-        "vip_avatar_subscript": 1,
-        "vip_nickname_color": "#FB7299",
-        "wallet": {
-            "mid": 293793435,
-            "bcoin_balance": 8,
-            "coupon_balance": 5,
-            "coupon_due_time": 0
+        "vip_avatar_subscript":1,
+        "vip_nickname_color":"#FB7299",
+        "wallet":{
+            "mid":293793435,
+            "bcoin_balance":8,
+            "coupon_balance":5,
+            "coupon_due_time":0
         },
-        "has_shop": false,
-        "shop_url": "",
-        "allowance_count": 0,
-        "answer_status": 0
+        "has_shop":false,
+        "shop_url":"",
+        "allowance_count":0,
+        "answer_status":0
     }
 }
 ```
 
-
-
-## 登录用户信息2（仅部分  带有转义）
+## 登录用户信息2（web端）（仅部分）
 
 > http://account.bilibili.com/home/userInfo
 
 *请求方式：GET*
 
-需要验证DedeUserID存在且不为0
+认证方式：仅可Cookie（SESSDATA）
+
+鉴权方式：Cookie中`DedeUserID`存在且不为0
+
+带有转义
 
 **json回复：**
 
@@ -221,9 +226,10 @@ http://api.bilibili.com/x/web-interface/nav
 
 **示例：**
 
-查询当前登录用户的信息
-
-http://account.bilibili.com/home/userInfo
+```shell
+curl 'http://account.bilibili.com/home/userInfo'\
+-b 'SESSDATA=xxx;DedeUserID=1;'
+```
 
 ```json
 {
@@ -251,13 +257,169 @@ http://account.bilibili.com/home/userInfo
 }
 ```
 
+## 登录用户信息（APP端）
+
+> http://app.bilibili.com/x/v2/account/myinfo 
+
+*请求方式：GET*
+
+认证方式：仅可APP
+
+鉴权方式：appkey
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| appkey     | str  | APP密钥      | APP方式必要 |      |
+| ts         | num  | 当前时间戳   | APP方式必要 |      |
+| sign       | str  | APP签名      | APP方式必要 |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-3：API校验密匙错误<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        | **作用尚不明确**                                             |
+| data    | obj  | 信息本体 |                                                              |
+
+`data`对象：
+
+| 字段           | 类型 | 内容             | 备注                     |
+| -------------- | ---- | ---------------- | ------------------------ |
+| mid            | num  | 用户UID          |                          |
+| name           | str  | 用户昵称         |                          |
+| sign           | str  | 用户签名         |                          |
+| coins          | num  | 拥有硬币数       |                          |
+| birthday       | str  | 用户生日         | YYYY-MM-DD               |
+| face           | str  | 用户头像url      |                          |
+| sex            | num  | 用户性别         | 1：男                    |
+| level          | num  | 用户等级         | 0-6                      |
+| rank           | num  | 1000             | **作用尚不明确**         |
+| silence        | num  | 用户是否被封禁   | 0：正常<br />1：封禁     |
+| vip            | obj  | 会员信息         |                          |
+| email_status   | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证 |
+| tel_status     | num  | 是否验证手机号   | 0：未验证<br />1：已验证 |
+| official       | obj  | 认证信息         |                          |
+| identification | num  | 1                | **作用尚不明确**         |
+| invite         | obj  |                  |                          |
+| is_tourist     | num  | 0                | **作用尚不明确**         |
+| pin_prompting  | num  | 0                | **作用尚不明确**         |
+
+`data`中的`vip`对象：
+
+| 字段             | 类型 | 内容             | 备注                            |
+| ---------------- | ---- | ---------------- | ------------------------------- |
+| type             | num  | 大会员类型       | 0：无<br />1：月度<br />2：年度 |
+| status           | num  | 会员开通状态     | 0：无<br />1：有                |
+| due_date         | num  | 大会员到期时间   | 毫秒 时间戳                     |
+| vip_pay_type     | num  | 会员开通状态     | 0：无<br />1：有                |
+| theme_type       | num  | 会员开通状态     | 0：无<br />1：有                |
+| label            | obj  | 大会员信息       |                                 |
+| avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示          |
+| nickname_color   | str  | 会员昵称颜色     | 颜色码                          |
+
+`vip`中的`label`对象：
+
+| 字段        | 类型 | 内容         | 备注             |
+| ----------- | ---- | ------------ | ---------------- |
+| path        | str  | 空           | **作用尚不明确** |
+| text        | str  | 会员类型文字 |                  |
+| label_theme | str  | 会员类型     |                  |
+
+`data`中的`official`对象：
+
+| 字段  | 类型 | 内容     | 备注                                            |
+| ----- | ---- | -------- | ----------------------------------------------- |
+| role  | num  | 认证类型 | 0：无<br />1 2：个人认证<br />3 4 5 6：机构认证 |
+| title | str  | 认证信息 | 无为空                                          |
+| desc  | str  | 认证备注 | 无为空                                          |
+| type  | num  | 认证备注 | 无为空                                          |
+
+`data`中的`invite`对象：
+
+| 字段          | 类型 | 内容 | 备注             |
+| ------------- | ---- | ---- | ---------------- |
+| invite_remind | num  | 1    | **作用尚不明确** |
+| display       | bool | true | **作用尚不明确** |
+
+**示例：**
+
+```shell
+curl -G 'http://app.bilibili.com/x/v2/account/myinfo'\
+--data-urlencode 'access_key=xxx'\
+--data-urlencode 'appkey=4409e2ce8ffd12b8'\
+--data-urlencode 'ts=0'\
+--data-urlencode 'sign=b8fb8480049c525994be6507a97ae0b6'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 293793435,
+        "name": "社会易姐QwQ",
+        "sign": "高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，资深猿厨，粉丝群：1136462265",
+        "coins": 33.4,
+        "birthday": "2002-03-05",
+        "face": "http://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
+        "sex": 1,
+        "level": 5,
+        "rank": 10000,
+        "silence": 0,
+        "vip": {
+            "type": 2,
+            "status": 1,
+            "due_date": 1612454400000,
+            "vip_pay_type": 1,
+            "theme_type": 0,
+            "label": {
+                "path": "",
+                "text": "年度大会员",
+                "label_theme": "annual_vip"
+            },
+            "avatar_subscript": 1,
+            "nickname_color": "#FB7299"
+        },
+        "email_status": 1,
+        "tel_status": 1,
+        "official": {
+            "role": 0,
+            "title": "",
+            "desc": "",
+            "type": -1
+        },
+        "identification": 1,
+        "invite": {
+            "invite_remind": 1,
+            "display": true
+        },
+        "is_tourist": 0,
+        "pin_prompting": 0
+    }
+}
+```
 
 
-## 登录用户状态数
+## 登录用户状态数（双端）
 
 > http://api.bilibili.com/x/web-interface/nav/stat
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
 
 **json回复：**
 
@@ -278,21 +440,45 @@ http://account.bilibili.com/home/userInfo
 
 **示例：**
 
-查询当前登录用户的状态数
+当前登录用户的状态数为粉丝596，关注754，发送的动态252
 
-粉丝数为365，关注数为695，发送的动态数为162
+Cookie方式：
 
-http://api.bilibili.com/x/web-interface/nav/stat
+```shell
+curl 'http://api.bilibili.com/x/web-interface/nav/stat'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"following": 695,
-		"follower": 365,
-		"dynamic_count": 162
-	}
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "following": 754,
+        "follower": 596,
+        "dynamic_count": 252
+    }
 }
 ```
+
+APP方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/nav/stat'\
+--data-urlencode 'access_key=d907f51122c59599d580ade2315af971'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "following": 754,
+        "follower": 596,
+        "dynamic_count": 252
+    }
+}
+```
+

@@ -6,7 +6,9 @@
 
 *请求方式：GET*
 
-使用登录（SESSDATA）进行会员专属及已购买表情包的分发，否则为免费表情包
+认证方式：Cookie（SESSDATA）
+
+使用登录（Cookie）进行会员专属及已购买表情包的分发，否则全为免费表情包
 
 **url参数：**
 
@@ -41,7 +43,11 @@
 
 **示例：**
 
- http://api.bilibili.com/x/emote/user/panel/web?business=reply
+```shell
+curl -G 'http://api.bilibili.com/x/emote/user/panel/web'\
+--data-urlencode 'business=reply'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -205,8 +211,6 @@
 }
 ```
 
-
-
 ## 获取指定的表情包明细
 
 > http://api.bilibili.com/x/emote/package 
@@ -249,7 +253,11 @@
 
 获取表情包ID为`93`的表情包明细
 
- http://api.bilibili.com/x/emote/package?business=reply&ids=93
+```shell
+curl -G 'http://api.bilibili.com/x/emote/package'\
+--data-urlencode 'ids=93'\
+--data-urlencode 'business=reply'
+```
 
 ```json
 {
@@ -491,15 +499,13 @@
 }
 ```
 
-
-
 ## 获取所有表情包列表
 
 > http://api.bilibili.com/x/emote/setting/panel 
 
 *请求方式：GET*
 
-需要登录（SESSDATA）
+认证方式：Cookie（SESSDATA）
 
 **url参数：**
 
@@ -551,13 +557,13 @@
 
 **示例：**
 
- http://api.bilibili.com/x/emote/setting/panel?business=reply
+```shell
+curl -G 'http://api.bilibili.com/x/emote/setting/panel'\
+--data-urlencode 'business=reply'\
+-b 'SESSDATA=xxx'
+```
 
 **限于篇幅，代码块示例略**
-
-
-
-
 
 ## 附表-表情包对象
 
@@ -621,3 +627,4 @@
 | ----- | ---- | ------------ | ---------------- |
 | size  | num  | 表情尺寸信息 | 1：小<br />2：大 |
 | alias | str  | 简写名       | 无则无此项       |
+

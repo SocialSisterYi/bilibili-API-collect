@@ -1,6 +1,6 @@
 # 二维码登录
 
-流程&逻辑：
+web端流程&逻辑：
 
 1. 获取`二维码内容url`以及`密钥`，以`二维码内容url`生成二维码，等待手机客户端扫描
 2. 以`密钥`作为参数进行POST
@@ -8,6 +8,12 @@
 4. if "data"==-4   goto 2                                else goto 5（是否已经扫描）
 5. if "data"==-5   goto 3 && 提示`已扫描`else goto 1&提示`二维码超时或错误`（密钥是否有效）
 6. 成功后会自动配置cookie 如需登录游戏分站则访问`data`.`url`中的url
+
+TV端流程&逻辑：
+
+1. 获取`二维码内容url`以及`密钥`，以`二维码内容url`生成二维码，等待手机客户端扫描
+2. 以`密钥`作为参数进行POST
+3. 
 
 <img src="/imgs/2233login.png"/>
 
@@ -97,11 +103,11 @@ data 对象：
 
 **示例：**
 
-例如扫码秘钥为`23333`
+使用扫描秘钥`c3bd5286a2b40a822f5f60e9bf3f602e`登录
 
 ```shell
 curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
---data-urlencode 'oauthKey=23333'\
+--data-urlencode 'oauthKey=c3bd5286a2b40a822f5f60e9bf3f602e'\
 -c 'cookie.txt'
 ```
 
@@ -177,8 +183,6 @@ bili_jct=(csrf)&
 
 gourl=(跳转网址 默认为主页)
 
-
-
 ## 申请二维码URL及扫码密钥（TV端）
 
 > http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code 
@@ -189,25 +193,27 @@ gourl=(跳转网址 默认为主页)
 
 密钥超时为180秒
 
+本接口可申请用于APP方式登录的`access_key`
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容       | 必要性      | 备注  |
-| -------- | ---- | ---------- | ----------- | ----- |
-| appkey   | str  | APP密钥    | APP方式必要 |       |
-| local_id | str  | TV端ID     | APP方式必要 | 可为0 |
-| ts       | num  | 当前时间戳 | APP方式必要 |       |
-| sign     | str  | APP签名    | APP方式必要 |       |
+| 参数名   | 类型 | 内容       | 必要性      | 备注                     |
+| -------- | ---- | ---------- | ----------- | ------------------------ |
+| appkey   | str  | APP密钥    | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
+| local_id | str  | TV端ID     | TV端必要    | 可为0                    |
+| ts       | num  | 当前时间戳 | APP方式必要 |                          |
+| sign     | str  | APP签名    | APP方式必要 |                          |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注    |
-| ------- | ---- | -------- | ------- |
-| code    | num  | 返回值   | 0：成功 |
-| message | str  | 错误信息 | 默认为0 |
-| ttl     | num  | 1        |         |
-| data    | obj  | 信息本体 |         |
+| 字段    | 类型 | 内容     | 备注                                                 |
+| ------- | ---- | -------- | ---------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                              |
+| ttl     | num  | 1        |                                                      |
+| data    | obj  | 信息本体 |                                                      |
 
 `data`对象：
 
@@ -217,4 +223,93 @@ gourl=(跳转网址 默认为主页)
 | oauthKey | str  | 扫码登录秘钥  | 恒为32字符 |
 
 **示例：**
+
+```shell
+curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code'\
+--data-urlencode 'appkey=4409e2ce8ffd12b8'\
+--data-urlencode 'local_id=0'\
+--data-urlencode 'ts=0'\
+--data-urlencode 'sign=e134154ed6add881d28fbdf68653cd9c'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "url": "https://passport.bilibili.com/x/passport-tv-login/h5/qrcode/auth?auth_code=0eeb635a64526709d70cb4c854a3b001",
+        "auth_code": "0eeb635a64526709d70cb4c854a3b001"
+    }
+}
+```
+
+## 使用扫码登录（TV端）
+
+> http://passport.bilibili.com/x/passport-tv-login/qrcode/poll
+
+*请求方式：POST*
+
+鉴权方式：appkey
+
+密钥超时为180秒
+
+验证登录成功后会返回可用于APP方式登录的`access_key`以及`refresh_token`
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名    | 类型 | 内容       | 必要性      | 备注                     |
+| --------- | ---- | ---------- | ----------- | ------------------------ |
+| appkey    | str  | APP密钥    | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
+| auth_code | str  | 扫码秘钥   | 必要        |                          |
+| local_id  | str  | TV端ID     | TV端必要    | 可为0                    |
+| ts        | num  | 当前时间戳 | APP方式必要 |                          |
+| sign      | str  | APP签名    | APP方式必要 |                          |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型                          | 内容     | 备注                                                         |
+| ------- | ----------------------------- | -------- | ------------------------------------------------------------ |
+| code    | num                           | 返回值   | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误<br />86038：二维码已失效<br />86039：二维码尚未确认 |
+| message | str                           | 错误信息 | 默认为0                                                      |
+| ttl     | num                           | 1        |                                                              |
+| data    | 有效时：obj<br />无效时：null | 信息本体 |                                                              |
+
+`data`对象：
+
+| 字段          | 类型 | 内容         | 备注                 |
+| ------------- | ---- | ------------ | -------------------- |
+| mid           | num  | 登录用户UID  |                      |
+| access_token  | str  | APP登录Token |                      |
+| refresh_token | str  | APP刷新Token |                      |
+| expires_in    | num  | 有效时间     | 单位为秒  一般为30天 |
+
+**示例：**
+
+使用扫描秘钥`6214464b3025541abf6f654cf7569a01`进行验证登录
+
+```shell
+curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/poll'\
+--data-urlencode 'appkey=4409e2ce8ffd12b8'\
+--data-urlencode 'auth_code=6214464b3025541abf6f654cf7569a01'\
+--data-urlencode 'local_id=0'\
+--data-urlencode 'ts=0'\
+--data-urlencode 'sign=87de3d0fee7c3f4facd244537238914e'\
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 293793435,
+        "access_token": "***",
+        "refresh_token": "***",
+        "expires_in": 2592000
+    }
+}
+```
 
