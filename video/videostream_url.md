@@ -271,6 +271,8 @@ curl -G 'http://api.bilibili.com/x/player/playurl'\
 
 需要验证请求Header中`referer`为 `.bilibili.com`域名下（防盗链）
 
+且`user-agent` 不为空 （否则会403)
+
 **无referer或错误的情况会返回403 Forbidden**故无法获取
 
 **以上述视频url为例：**
