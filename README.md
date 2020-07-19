@@ -85,7 +85,7 @@
   - [歌单&音频收藏夹详细信息](music/music_list.md)×
   - [状态数](music/status_number.md)×
   - [投币&收藏](music/coin&fav.md)×
-  - 播放&下载地址（音频流）
+  - [播放&下载地址（音频流）](music/musicStream_url.md)×
   - 音频榜单
 - [排行榜&最新动态](ranking&dynamic)
   - [排行榜](ranking&dynamic/ranking.md)x
