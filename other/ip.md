@@ -31,7 +31,9 @@
 
 **示例：**
 
-http://api.bilibili.com/x/web-interface/zone
+```shell
+curl 'http://api.bilibili.com/x/web-interface/zone'
+```
 
 ```json
 {

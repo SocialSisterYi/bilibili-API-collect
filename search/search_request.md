@@ -6,14 +6,16 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 根据关键词进行搜索，返回结果每页20项
 
 **url参数：**
 
 | 参数名      | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ----------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| keyword     | str  | 需要搜索的关键词         | 必要   |                                                              |
 | search_type | str  | 搜索目标类型             | 必要   | 视频：video<br/>番剧：media_bangumi<br/>影视：media_ft<br/>直播间及主播：live<br />直播间：live_room<br/>主播：live_user<br/>专栏：article<br/>话题：topic<br/>用户：bili_user<br/>相簿：photo |
+| keyword     | str  | 需要搜索的关键词         | 必要   |                                                              |
 | order       | str  | 结果排序方式             | 非必要 | 搜索类型为视频、专栏及相簿时：<br />默认为totalrank<br />综合排序：totalrank<br/>最多点击：click<br/>最新发布：pubdate<br/>最多弹幕：dm<br/>最多收藏：stow<br/>最多评论：scores<br />最多喜欢：attention（仅用于专栏）<br />----------------------------<br/>搜索结果为直播间时：<br />默认为online<br />人气直播：online<br/>最新开播：live_time<br />----------------------------<br/>搜索结果为用户时：<br />默认为0<br />默认排序：0<br/>粉丝数：fans<br/>用户等级：level |
 | order_sort  | num  | 用户粉丝数及等级排序顺序 | 非必要 | 仅用于搜索用户<br />默认为0<br />由高到低：0<br/>由低到高：1 |
 | user_type   | num  | 用户分类筛选             | 非必要 | 仅用于搜索用户<br />默认为0<br />全部用户：0<br/>up主：1<br/>普通用户：2<br/>认证用户：3 |
@@ -120,7 +122,16 @@
 
 按照关键词` 少年 `搜索视频，默认排序，全部时长，全部分区，第1页
 
- http://api.bilibili.com/x/web-interface/search/type?keyword=少年&search_type=video&order=totalrank&duration=0&page=1&tids=0 
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/search/type'\
+--data-urlencode 'search_type=video'\
+--data-urlencode 'keyword=少年'\
+--data-urlencode 'order=totalrank'\
+--data-urlencode 'duration=0'\
+--data-urlencode 'tids=0'\
+--data-urlencode 'page=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

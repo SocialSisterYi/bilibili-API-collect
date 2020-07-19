@@ -1,12 +1,16 @@
 # 音频投币&收藏
 
-**本页所有操作均需登录（SESSDATA）以及DedeUserID存在且不为0**
+本页所有操作均需登录（SESSDATA）
 
 ## 查询音频收藏状态
 
 > http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`DedeUserID`存在且不为0
 
 **url参数：**
 
@@ -28,7 +32,11 @@
 
 查询音频`au13598`的收藏状态
 
-http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll?sid=13598
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll'\
+--data-urlencode 'sid=13598'\
+-b 'SESSDATA=xxx;DedeUserID=1;'
+```
 
 ```json
 {
@@ -38,13 +46,15 @@ http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll?sid=135
 }
 ```
 
-
-
 ## 查询音频投币数
 
 > http://www.bilibili.com/audio/music-service-c/web/coin/audio
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`DedeUserID`存在且不为0
 
 **url参数：**
 
@@ -66,7 +76,11 @@ http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll?sid=135
 
 查询音频`au13598`的投币数
 
-http://www.bilibili.com/audio/music-service-c/web/coin/audio?sid=15664
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio'\
+--data-urlencode 'sid=15664'\
+-b 'SESSDATA=xxx;DedeUserID=1;'
+```
 
 ```json
 {

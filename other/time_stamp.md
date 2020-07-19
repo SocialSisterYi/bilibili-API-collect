@@ -23,7 +23,9 @@
 
 **示例：**
 
-http://api.bilibili.com/x/report/click/now 
+```shell
+curl 'http://api.bilibili.com/x/report/click/now'
+```
 
 ```json
 {

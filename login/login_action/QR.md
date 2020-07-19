@@ -4,16 +4,18 @@ web端流程&逻辑：
 
 1. 获取`二维码内容url`以及`密钥`，以`二维码内容url`生成二维码，等待手机客户端扫描
 2. 以`密钥`作为参数进行POST
-3. if "code"==true goto 6                               else goto 4（是否已经确认）
-4. if "data"==-4   goto 2                                else goto 5（是否已经扫描）
-5. if "data"==-5   goto 3 && 提示`已扫描`else goto 1&提示`二维码超时或错误`（密钥是否有效）
+3. if  `code` == `true` goto `6`                               else goto 4（是否已经确认）
+4. if `data` == `-4`   goto `2`                                  else goto 5（是否已经扫描）
+5. if `data` == `-5`   goto `3` & 提示`已扫描`        else goto `1`&提示`二维码超时或错误`（密钥是否有效）
 6. 成功后会自动配置cookie 如需登录游戏分站则访问`data`.`url`中的url
 
 TV端流程&逻辑：
 
 1. 获取`二维码内容url`以及`密钥`，以`二维码内容url`生成二维码，等待手机客户端扫描
 2. 以`密钥`作为参数进行POST
-3. 
+3. if `code` == `0`  提示`扫码成功`并存储`access_key`于`refersh_key` else goto `4`
+4. if `code` == `86039`  提示`未扫描`&goto `2`                                         else goto `5`
+5. if `code` == `86038` 提示`二维码超时或错误`&goto `1`
 
 <img src="/imgs/2233login.png"/>
 

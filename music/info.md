@@ -6,6 +6,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
@@ -83,7 +85,11 @@
 
 查询音频`au13598`的基本信息
 
-http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/info'\
+--data-urlencode 'sid=13598'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {
@@ -132,8 +138,6 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
 }
 ```
 
-
-
 ## 查询歌曲TAG
 
 > http://www.bilibili.com/audio/music-service-c/web/tag/song
@@ -177,7 +181,10 @@ http://www.bilibili.com/audio/music-service-c/web/song/info?sid=13598
 
 查询音频`au15664`的TAG
 
-http://www.bilibili.com/audio/music-service-c/web/tag/song?sid=15664
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/tag/song'\
+--data-urlencode 'sid=15664'
+```
 
 ```json
 {
@@ -223,8 +230,6 @@ http://www.bilibili.com/audio/music-service-c/web/tag/song?sid=15664
     ]
 }
 ```
-
-
 
 ## 查询歌曲创作成员列表
 
@@ -283,7 +288,10 @@ http://www.bilibili.com/audio/music-service-c/web/tag/song?sid=15664
 
 查询音频`au815861`的创作成员信息
 
-http://www.bilibili.com/audio/music-service-c/web/member/song?sid=815861
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/member/song'\
+--data-urlencode 'sid=815861'
+```
 
 ```json
 {
@@ -354,8 +362,6 @@ http://www.bilibili.com/audio/music-service-c/web/member/song?sid=815861
 }
 ```
 
-
-
 ## 获取歌曲歌词
 
 > http://www.bilibili.com/audio/music-service-c/web/song/lyric
@@ -384,7 +390,11 @@ http://www.bilibili.com/audio/music-service-c/web/member/song?sid=815861
 
 获取音频`au15664`的歌词信息
 
-http://www.bilibili.com/audio/music-service-c/web/song/lyric?sid=15664
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/lyric'\
+--data-urlencode 'sid=15664'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

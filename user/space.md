@@ -1499,9 +1499,9 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list'\
 
 **url参数：**
 
-| mid    | num  | 目标用户UID | 必要   |      |
-| ------ | ---- | ----------- | ------ | ---- |
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -1834,17 +1834,55 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 
 认证方式：Cookie（SESSDATA）
 
+创建成功后会返回新建频道的ID
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
 | name   | str  | 频道名                   | 必要   |      |
-| intro  | str  | 频道简介                 |        |      |
+| intro  | str  | 频道简介                 | 非必要 |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
+**json回复：**
 
+根对象：
 
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />53001：频道名字数超过限制<br />53002：频道简介字数超过限制<br />53004：创建的频道已经满额<br />53007：频道名称已经存在<br />53024：编辑内容命中敏感信息 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 数据本体 | 成功有此项                                                   |
 
+`data`对象：
+
+| 字段 | 类型 | 内容   | 备注 |
+| ---- | ---- | ------ | ---- |
+| cid  | num  | 频道ID |      |
+
+**示例：**
+
+创建名为`test1`的频道，简介为空
+
+```shell
+curl 'http://api.bilibili.com/x/space/channel/add'\
+--data-urlencode 'name=test1'\
+--data-urlencode 'intro='\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "cid": 138996
+    }
+}
+```
 
 ### 修改频道
 
@@ -1859,11 +1897,40 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
 | cid    | num  | 频道ID                   | 必要   |      |
-| name   | str  | 频道名                   |        |      |
-| intro  | str  | 频道简介                 |        |      |
+| name   | str  | 频道名                   | 必要   |      |
+| intro  | str  | 频道简介                 | 非必要 |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
+**json回复：**
 
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />53001：频道名字数超过限制<br />53002：频道简介字数超过限制<br />53007：频道名称已经存在<br />53024：编辑内容命中敏感信息 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+
+**示例：**
+
+修改频道`138996`名称为`测试`，简介为`123456`
+
+```shell
+curl 'http://api.bilibili.com/x/space/channel/edit'\
+--data-urlencode 'cid=138996'\
+--data-urlencode 'name=测试'\
+--data-urlencode 'intro=123456'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
 
 ### 删除频道
 
@@ -1877,14 +1944,39 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| cid    | num  | 频道ID                   | 必要   |      |
+| cid    | num  | 需要删除的频道ID         | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
+**json回复：**
 
+根对象：
 
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
 
+**示例：**
 
-### 添加频道视频
+删除频道`138996`
+
+```shell
+curl 'http://api.bilibili.com/x/space/channel/del'\
+--data-urlencode 'cid=138996'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+### 频道添加视频
 
 > http://api.bilibili.com/x/space/channel/video/add
 
@@ -1892,25 +1984,69 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 
 认证方式：Cookie（SESSDATA）
 
+仅能添加自己是UP主的视频
+
+如添加多个视频，仅会添加正确的
+
+**注：完成后需要使用接口「查询用户频道中的视频」刷新**
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
-| ------ | ---- | ------------------------ | ------ | ---- |
-| cid    | num  | 频道ID                   | 必要   |      |
-| aids   | nums | 要添加的目标视频avID     | 必要   |      |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                   |
+| ------ | ---- | ------------------------ | ------ | ---------------------- |
+| cid    | num  | 频道ID                   | 必要   |                        |
+| aids   | nums | 要添加的目标视频avID     | 必要   | 多个使用","（%2C）分隔 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                        |
 
+**json回复：**
 
+根对象：
 
+| 字段    | 类型  | 内容             | 备注                                                         |
+| ------- | ----- | ---------------- | ------------------------------------------------------------ |
+| code    | num   | 返回值           | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />53003：本频道里的视频已满<br />53006：提交视频已失效或频道里有（非该视频UP主） |
+| message | str   | 错误信息         | 默认为0                                                      |
+| ttl     | num   | 1                |                                                              |
+| data    | array | 出错视频avID列表 |                                                              |
 
+`data`数组：
 
-### 删除频道视频
+| 项   | 类型 | 内容                | 备注 |
+| ---- | ---- | ------------------- | ---- |
+| 0    | num  | 出错视频avID1       |      |
+| n    | num  | 出错视频avID（n+1） |      |
+| ……   | num  | ……                  | ……   |
 
-> https://api.bilibili.com/x/space/channel/video/del
+**示例：**
+
+向频道`138995`中添加视频`av583785685`和`av243322853`
+
+```shell
+curl 'http://api.bilibili.com/x/space/channel/video/add'\
+--data-urlencode 'cid=138995'\
+--data-urlencode 'aids=583785685,243322853'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": []
+}
+```
+
+### 频道删除视频
+
+> http://api.bilibili.com/x/space/channel/video/del
 
 *请求方式：POST*
 
 认证方式：Cookie（SESSDATA）
+
+**注：完成后需要使用接口「查询用户频道中的视频」刷新**
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -1920,9 +2056,37 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 | aid    | num  | 要删除的目标视频avID     | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
+**json回复：**
 
+根对象：
 
-### 调整频道视频顺序
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />53008：频道内没有视频<br />53009：频道内没有该视频 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+
+**示例：**
+
+删除频道`138995`中的视频`av583785685`
+
+```shell
+curl 'http://api.bilibili.com/x/space/channel/video/del'\
+--data-urlencode 'cid=138995'\
+--data-urlencode 'aid=583785685'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+### 调整频道视频排序
 
 > http://api.bilibili.com/x/space/channel/video/sort
 
@@ -1932,20 +2096,85 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
-| ------ | ---- | ------------------------ | ------ | ---- |
-| cid    | num  | 频道ID                   | 必要   |      |
-| aid    | num  |                          | 必要   |      |
-| to     | num  |                          |        |      |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
+| ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
+| cid    | num  | 频道ID                   | 必要   |                                                              |
+| aid    | num  | 要移动的目标视频avID     | 必要   |                                                              |
+| to     | num  | 视频排序倒数位置         | 非必要 | 默认为1<br />1为列表底部，视频总数为首端<br />与显示顺序恰好相反 |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
+**json回复：**
 
+根对象：
 
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
 
+**示例：**
 
+调整`138995`中的视频`av583785685`位置为倒数第2
 
+```shell
+curl 'http://api.bilibili.com/x/space/channel/video/sort'\
+--data-urlencode 'cid=138995'\
+--data-urlencode 'aid=583785685'\
+--data-urlencode 'to=2'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
 
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
 
+### 检查频道中有无失效视频
+
+> http://api.bilibili.com/x/space/channel/video/check 
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名 | 类型 | 内容       | 必要性 | 备注 |
+| ------ | ---- | ---------- | ------ | ---- |
+| cid    | num  | 目标频道ID | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />53005：频道内有失效视频 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+
+**示例：**
+
+检查频道`138995`
+
+```shell
+curl -G 'http://api.bilibili.com/x/space/channel/video/check
+--data-urlencode 'cid=138995'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
 
 ## 收藏
 

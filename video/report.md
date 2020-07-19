@@ -2,7 +2,7 @@
 
 **本页所有操作均需登录（Cookie或APP）**
 
-## 上报观看进度（APP端）
+## 上报观看进度（双端）
 
 > http://api.bilibili.com/x/v2/history/report
 

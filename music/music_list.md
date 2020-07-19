@@ -6,7 +6,9 @@
 
 *请求方式：GET*
 
-需要登录(SESSDATA)及验证DedeUserID存在且不为0
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`DedeUserID`存在且不为0
 
 **url参数：**
 
@@ -81,7 +83,12 @@
 
 **示例：**
 
- http://www.bilibili.com/audio/music-service-c/web/collections/list?pn=1&ps=2 
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list'\
+--data-urlencode 'ps=2'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx;DedeUserID=1;'
+```
 
 共计创建了两个歌单，如下
 
@@ -156,15 +163,15 @@
 }
 ```
 
-
-
 ## 查询音频收藏夹（默认歌单）信息
 
 > https://www.bilibili.com/audio/music-service-c/web/collections/info
 
 *请求方式：GET*
 
-需要登录(SESSDATA)及验证DedeUserID存在且不为0
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`DedeUserID`存在且不为0
 
 **url参数：**
 
@@ -222,7 +229,11 @@
 
 查询我的默认歌单，ID为` 15967839 `
 
- https://www.bilibili.com/audio/music-service-c/web/collections/info?sid=15967839 
+```shell
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/info'\
+--data-urlencode 'sid=15967839 '\
+-b 'SESSDATA=xxx;DedeUserID=1;'
+```
 
 ```json
 {

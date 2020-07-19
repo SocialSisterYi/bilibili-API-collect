@@ -7,6 +7,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
@@ -39,13 +41,13 @@
 | moral       | num  | 0                | **作用尚不明确**                                             |
 | silence     | num  | 封禁状态         | 0：正常<br />1：被封                                         |
 | birthday    | str  | 生日             | MM-DD                                                        |
-| coins       | num  | 硬币数           | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0         |
+| coins       | num  | 硬币数           | 需要登录(Cookie) <br />只能查看自己的<br />默认为0           |
 | fans_badge  | bool | 是否具有粉丝勋章 | false：无<br />true：有                                      |
 | official    | obj  | 认证信息         |                                                              |
 | vip         | obj  | 大会员信息       |                                                              |
 | pendant     | obj  | 头像框信息       |                                                              |
 | nameplate   | obj  | 勋章信息         |                                                              |
-| is_followed | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(SESSDATA) <br />未登录恒为false |
+| is_followed | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录恒为false |
 | top_photo   | str  | 主页头图链接     |                                                              |
 | theme       | obj  | 空               | **作用尚不明确**                                             |
 | sys_notice  | obj  | 系统通知         | 无内容则为空                                                 |
@@ -209,6 +211,8 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容                 | 必要性 | 备注                    |
@@ -260,7 +264,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 | official_verify | obj   | 认证信息2      |                                                              |
 | vip             | obj   | 大会员状态     |                                                              |
 | space           | obj   | 主页头图       |                                                              |
-| following       | bool  | 是否关注此用户 | true：已关注<br />false：未关注<br />需要登录(SESSDATA) <br />未登录为false |
+| following       | bool  | 是否关注此用户 | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录为false |
 | archive_count   | num   | 用户稿件数     |                                                              |
 | article_count   | num   | 0              | **作用尚不明确**                                             |
 | follower        | num   | 粉丝数         |                                                              |
@@ -419,7 +423,7 @@ curl -G 'api.bilibili.com/x/web-interface/card'\
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
 功能同「[登录用户信息1](../login/login_info.md#登录用户信息1（完整）)」
 

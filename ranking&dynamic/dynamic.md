@@ -56,7 +56,13 @@
 
 获取`tID=21`（生活->日常）分区中的2条最新动态视频信息
 
-https://api.bilibili.com/x/web-interface/dynamic/region?pn=1&ps=2&rid=21
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/dynamic/region'\
+--data-urlencode 'rid=21'\
+--data-urlencode 'ps=2'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'
+```
 
 ```json
 {

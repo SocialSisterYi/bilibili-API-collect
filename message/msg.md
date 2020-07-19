@@ -30,11 +30,11 @@ data 对象：
 | like    | num  | 未读点赞数     |              |
 | reply   | num  | 未读回复数     |              |
 | sys_msg | num  | 未读系统通知数 |              |
-| up      | num  | 0              | 作用尚不明确 |
+| up      | num  | UP主助手信息数 |              |
 
 **示例：**
 
-以下信息代表了未读点赞数为10，未读回复数为3，未读at消息数为1，未读系统通知数为1
+以下信息代表了未读点赞数为10，未读回复数为4，未读at消息数为3，未读系统通知数为2，UP主助手信息数为1
 
 ```shell
 curl 'http://api.bilibili.com/x/msgfeed/unread'\
@@ -47,12 +47,12 @@ curl 'http://api.bilibili.com/x/msgfeed/unread'\
 	"message": "0",
 	"ttl": 1,
 	"data": {
-		"at": 1,
+		"at": 3,
 		"chat": 0,
 		"like": 10,
-		"reply": 3,
-		"sys_msg": 1,
-		"up": 0
+		"reply": 4,
+		"sys_msg": 2,
+		"up": 1
 	}
 }
 ```

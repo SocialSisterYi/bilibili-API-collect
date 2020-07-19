@@ -45,7 +45,11 @@
 
 获取`tID=1`（动画）分区中的三日视频排行榜
 
-http://api.bilibili.com/x/web-interface/ranking/region?rid=1&day=3
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/ranking/region'\
+--data-urlencode 'rid=1'\
+--data-urlencode 'day=3'
+```
 
 ```json
 {

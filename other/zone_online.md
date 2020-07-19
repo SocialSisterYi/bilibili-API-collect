@@ -50,7 +50,9 @@
 
 **示例：**
 
-http://api.bilibili.com/x/web-interface/online
+```shell
+curl 'http://api.bilibili.com/x/web-interface/online'
+```
 
 ```json
 {

@@ -289,26 +289,26 @@ curl 'http://account.bilibili.com/home/userInfo'\
 
 `data`对象：
 
-| 字段           | 类型 | 内容             | 备注                     |
-| -------------- | ---- | ---------------- | ------------------------ |
-| mid            | num  | 用户UID          |                          |
-| name           | str  | 用户昵称         |                          |
-| sign           | str  | 用户签名         |                          |
-| coins          | num  | 拥有硬币数       |                          |
-| birthday       | str  | 用户生日         | YYYY-MM-DD               |
-| face           | str  | 用户头像url      |                          |
-| sex            | num  | 用户性别         | 1：男                    |
-| level          | num  | 用户等级         | 0-6                      |
-| rank           | num  | 1000             | **作用尚不明确**         |
-| silence        | num  | 用户是否被封禁   | 0：正常<br />1：封禁     |
-| vip            | obj  | 会员信息         |                          |
-| email_status   | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证 |
-| tel_status     | num  | 是否验证手机号   | 0：未验证<br />1：已验证 |
-| official       | obj  | 认证信息         |                          |
-| identification | num  | 1                | **作用尚不明确**         |
-| invite         | obj  |                  |                          |
-| is_tourist     | num  | 0                | **作用尚不明确**         |
-| pin_prompting  | num  | 0                | **作用尚不明确**         |
+| 字段           | 类型 | 内容             | 备注                          |
+| -------------- | ---- | ---------------- | ----------------------------- |
+| mid            | num  | 用户UID          |                               |
+| name           | str  | 用户昵称         |                               |
+| sign           | str  | 用户签名         |                               |
+| coins          | num  | 拥有硬币数       |                               |
+| birthday       | str  | 用户生日         | YYYY-MM-DD                    |
+| face           | str  | 用户头像url      |                               |
+| sex            | num  | 用户性别         | 1：男<br />2：女<br />3：私密 |
+| level          | num  | 用户等级         | 0-6                           |
+| rank           | num  | 1000             | **作用尚不明确**              |
+| silence        | num  | 用户是否被封禁   | 0：正常<br />1：封禁          |
+| vip            | obj  | 会员信息         |                               |
+| email_status   | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证      |
+| tel_status     | num  | 是否验证手机号   | 0：未验证<br />1：已验证      |
+| official       | obj  | 认证信息         |                               |
+| identification | num  | 1                | **作用尚不明确**              |
+| invite         | obj  |                  |                               |
+| is_tourist     | num  | 0                | **作用尚不明确**              |
+| pin_prompting  | num  | 0                | **作用尚不明确**              |
 
 `data`中的`vip`对象：
 
