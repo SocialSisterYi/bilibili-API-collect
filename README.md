@@ -80,12 +80,12 @@
   - [基本信息](article/info.md)×
   - [点赞&投币&收藏](article/like_coin_fav.md)×
   - 文集基本信息
-- [音频](music)
-  - [歌曲基本信息](music/info.md)√
-  - [歌单&音频收藏夹详细信息](music/music_list.md)×
-  - [状态数](music/status_number.md)×
-  - [投币&收藏](music/coin&fav.md)×
-  - [播放&下载地址（音频流）](music/musicStream_url.md)×
+- [音频](audio)
+  - [歌曲基本信息](audio/info.md)√
+  - [歌单&音频收藏夹详细信息](audio/music_list.md)×
+  - [状态数](audio/status_number.md)×
+  - [投币&收藏](audio/coin&fav.md)×
+  - [播放&下载地址（音频流）](audio/musicstream_url.md)√
   - 音频榜单
 - [排行榜&最新动态](ranking&dynamic)
   - [排行榜](ranking&dynamic/ranking.md)x

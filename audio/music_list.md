@@ -2,7 +2,7 @@
 
 ## 查询自己创建的歌单
 
-> https://www.bilibili.com/audio/music-service-c/web/collections/list
+> http://www.bilibili.com/audio/music-service-c/web/collections/list
 
 *请求方式：GET*
 

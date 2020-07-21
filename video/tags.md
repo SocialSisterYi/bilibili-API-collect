@@ -6,6 +6,8 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
@@ -46,12 +48,12 @@
 | state         | num  | 0              |                                                              |
 | ctime         | num  | 创建时间       | 时间戳                                                       |
 | count         | obj  | 状态数         |                                                              |
-| is_atten      | num  | 是否关注       | 0：未关注<br />1：已关注<br />需要登录(SESSDATA) <br />未登录为0 |
+| is_atten      | num  | 是否关注       | 0：未关注<br />1：已关注<br />需要登录(Cookie) <br />未登录为0 |
 | likes         | num  | 0              | 作用尚不明确                                                 |
 | hates         | num  | 0              | 作用尚不明确                                                 |
 | attribute     | num  | 0              | 作用尚不明确                                                 |
-| liked         | num  | 是否已经点赞   | 0：未点赞<br />1：已点赞<br />需要登录(SESSDATA) <br />未登录为0 |
-| hated         | num  | 是否已经点踩   | 0：未点踩<br />1：已点踩<br />需要登录(SESSDATA) <br />未登录为0 |
+| liked         | num  | 是否已经点赞   | 0：未点赞<br />1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
+| hated         | num  | 是否已经点踩   | 0：未点踩<br />1：已点踩<br />需要登录(Cookie) <br />未登录为0 |
 
 `data`数组中的对象中的`count`对象：
 
@@ -201,7 +203,7 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA) 
+认证方式：Cookie（SESSDATA）
 
 重复请求为取消
 
@@ -249,7 +251,7 @@ curl 'http://api.bilibili.com/x/tag/archive/like2'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA) 
+认证方式：Cookie（SESSDATA）
 
 重复访问为取消
 

@@ -10,7 +10,7 @@
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -165,7 +165,7 @@ curl 'http://member.bilibili.com/x/web/index/stat'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -230,7 +230,7 @@ curl 'http://member.bilibili.com/x/web/data/article'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 数据为前30天
 
@@ -325,7 +325,7 @@ curl -G 'http://member.bilibili.com/x/web/data/pandect'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 数据为前30天
 
@@ -415,7 +415,7 @@ curl -G 'http://member.bilibili.com/x/web/data/article/thirty'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 数据为上一天的
 
@@ -551,7 +551,7 @@ curl -G 'http://member.bilibili.com/x/web/data/survey'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -630,7 +630,7 @@ curl 'http://member.bilibili.com/x/web/data/playsource'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 

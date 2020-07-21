@@ -2,17 +2,26 @@
 
 <img src="/imgs/download.svg" width="100" height="100"/>
 
-## 获取课程视频流URL
+## 获取课程视频流URL（web端）
 
 > http://api.bilibili.com/pugv/player/web/playurl
 
-*请求方式:GET*
+*请求方式：GET*
 
-本接口为课程视频专用，故与普通视频不互通
+认证方式：Cookie（SESSDATA）
 
-获取非试看课程视频及720P以上清晰度视频时需要登录(SESSDATA)购买的课程也需要使用登录进行鉴权
+**注：本接口为课程视频专用，故与普通视频不互通**
 
-高帧率（码率）视频需要带有大会员的账号token(SESSDATA)
+---
+
+关于视频流会员鉴权：
+
+- 获取720P及以上清晰度视频时需要登录（Cookie）
+
+- 获取高帧率（1080P60）/高码率（1080P+）视频时需要有大会员的账号登录（Cookie）
+- 获取正式课程视频（非试看）时需要有已经购买的账号登录（Cookie）
+
+---
 
 获取的url有效时间为120min，超时失效需要重新获取
 
@@ -95,7 +104,7 @@
 | length     | num    | 视频长度     | 单位为毫秒                         |
 | vhead      | str    | 空           | 作用尚不明确                       |
 | backup_url | array | 备用视频流   |                                    |
-| url        | str    | 视频流url    | **重要**<br />链接有效时间为120min |
+| url        | str    | 视频流url    | 链接有效时间为120min |
 | order      | num    | 视频分段序号 | 某些视频会分为多个片段             |
 
 `durl`数组中的对象中的`backup_url`数组：
@@ -236,9 +245,9 @@ curl -G 'http://api.bilibili.com/pugv/player/web/playurl'\
 
 将`data`.`durl`.`[1-n]`.`url`或`data`.`durl`.`[1-n]`.`backup_url`.`[0]`中的内容作为url进行GET操作, 如果有多个视频, 需要手动合并处理
 
-需要验证请求Header中`referer`为 `.bilibili.com`域名下（防盗链）
+需要验证请求`referer`为 `.bilibili.com`域名下（防盗链），且`user-agent` 不为空
 
-**无referer或错误的情况会返回403 Forbidden**故无法获取
+**referer或user-agent错误的情况会返回403 Forbidden**故无法获取
 
 **以上述视频url为例：**
 

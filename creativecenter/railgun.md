@@ -4,13 +4,13 @@
 
 电磁力每周日下午刷新
 
-## 获取电磁力等级
+## 获取电磁力等级（web端）
 
 > http://member.bilibili.com/x/web/elec/user
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -51,13 +51,19 @@ curl 'http://member.bilibili.com/x/web/elec/user'\
 }
 ```
 
-## 获取电磁力详细数值
+## 获取电磁力详细数值（双端）
 
 > http://api.bilibili.com/studio/up-rating/rating/summary
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
 
 **json回复：**
 
@@ -91,9 +97,18 @@ curl 'http://member.bilibili.com/x/web/elec/user'\
 
 **示例：**
 
+Cookie方式：
+
 ```shell
 curl 'http://api.bilibili.com/studio/up-rating/rating/summary'\
 -b 'SESSDATA=xxx'
+```
+
+APP方式：
+
+```shell
+curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary'\
+--data-urlencode 'access_key=xxx'
 ```
 
 ```json
@@ -131,19 +146,20 @@ curl 'http://api.bilibili.com/studio/up-rating/rating/summary'\
 }
 ```
 
-## 获取电磁力数值历史变化
+## 获取电磁力数值历史变化（双端）
 
 > http://api.bilibili.com/studio/up-rating/rating/history 
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 **url参数：**
 
-| 参数名 | 类型 | 内容         | 必要性 | 备注           |
-| ------ | ---- | ------------ | ------ | -------------- |
-| type   | num  | 目标数据类型 | 必要   | 类型代码见下表 |
+| 参数名     | 类型 | 内容         | 必要性      | 备注           |
+| ---------- | ---- | ------------ | ----------- | -------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                |
+| type       | num  | 目标数据类型 | 必要        | 类型代码见下表 |
 
 类型代码`type`：
 
@@ -193,10 +209,20 @@ curl 'http://api.bilibili.com/studio/up-rating/rating/summary'\
 
 查询创作力的历史变化
 
+Cookie方式：
+
 ```shell
 curl -G 'http://api.bilibili.com/studio/up-rating/rating/history'\
 --data-urlencode 'type=1'\
 -b 'SESSDATA=xxx'
+```
+
+APP方式：
+
+```shell
+curl -G 'http://api.bilibili.com/studio/up-rating/rating/history'\
+--data-urlencode 'type=1'\
+--data-urlencode 'access_key=xxx'
 ```
 
 ```json

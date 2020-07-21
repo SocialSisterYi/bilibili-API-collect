@@ -2,15 +2,25 @@
 
 <img src="/imgs/download.svg" width="100" height="100"/>
 
-## 获取视频流URL
+## 获取视频流URL（web端）
 
 > http://api.bilibili.com/x/player/playurl
 
 *请求方式：GET*
 
-获取会员专属视频及720P以上清晰度视频时需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
-会员专属及高帧率（码率）视频需要带有大会员的账号token(SESSDATA)
+---
+
+关于视频流会员鉴权：
+
+- 获取720P及以上清晰度视频时需要登录（Cookie）
+
+- 获取高帧率（1080P60）/高码率（1080P+）视频时需要有大会员的账号登录（Cookie）
+
+- 获取会员专属视频时需要登录（Cookie）
+
+---
 
 获取的url有效时间为120min，超时失效需要重新获取
 
@@ -103,14 +113,14 @@
 | size       | num    | 视频大小     | 单位为Byte                         |
 | ahead      | str    | 空           | 作用尚不明确                       |
 | vhead      | str    | 空           | 作用尚不明确                       |
-| url        | str    | 视频流url    | **重要**<br />链接有效时间为120min |
+| url        | str    | 视频流url    | **注：url内容存在转义符**<br />链接有效时间为120min |
 | backup_url | array | 备用视频流   |                                    |
 
 `durl`数组中的对象中的`backup_url`数组：
 
-| 项   | 类型 | 内容          | 备注             |
-| ---- | ---- | ------------- | ---------------- |
-| 0    | str  | 备用视频流url | 有效时间为120min |
+| 项   | 类型 | 内容          | 备注                                            |
+| ---- | ---- | ------------- | ----------------------------------------------- |
+| 0    | str  | 备用视频流url | **注：url内容存在转义符**<br />有效时间为120min |
 
 **示例：**
 
@@ -267,13 +277,11 @@ curl -G 'http://api.bilibili.com/x/player/playurl'\
 
 ## 视频的获取
 
-将`data`.`durl`.`[1-n]`.`url`或`data`.`durl`.`[1-n]`.`backup_url`.`[0]`中的内容作为url进行GET操作, 如果有多个视频, 需要手动合并处理
+将`data`.`durl`.`[1-n]`.`url`或`data`.`durl`.`[1-n]`.`backup_url`.`[0]`中的内容作为url进行GET操作, 如果有多个视频, 需要手动合并处理（注意转义符）
 
-需要验证请求Header中`referer`为 `.bilibili.com`域名下（防盗链）
+需要验证请求`referer`为 `.bilibili.com`域名下（防盗链），且`user-agent` 不为空
 
-且`user-agent` 不为空 （否则会403)
-
-**无referer或错误的情况会返回403 Forbidden**故无法获取
+**referer或user-agent错误的情况会返回403 Forbidden**故无法获取
 
 **以上述视频url为例：**
 
