@@ -68,13 +68,15 @@
   - 状态数
   - 操作
 - [视频弹幕](danmaku)
-  - [protobuf实时弹幕](danmaku/danmaku_proto.md)
+  - [protobuf实时弹幕](danmaku/danmaku_proto.md)×
+  - protobuf云推荐弹幕
   - [xml实时弹幕](danmaku/danmaku_xml.md)√
   - [xml历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
   - [弹幕操作](danmaku/action.md)×
   - 高级弹幕
   - 屏蔽管理
+  - 智能防挡弹幕
 - [专栏](article)
   - 分区
   - [基本信息](article/info.md)×
