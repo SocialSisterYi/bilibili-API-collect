@@ -68,7 +68,7 @@
   - 状态数
   - 操作
 - [视频弹幕](danmaku)
-  - protobuf实时弹幕
+  - [protobuf实时弹幕](danmaku/danmaku_proto.md)
   - [xml实时弹幕](danmaku/danmaku_xml.md)√
   - [xml历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
