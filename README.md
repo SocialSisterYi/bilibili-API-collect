@@ -41,6 +41,7 @@
     + SNS登录（QQ&微博）
   - [登录基本信息](login/login_info.md)√
   - [个人中心](login/member_center.md)×
+  - [注销登录](login/exit.md)×
 - [消息中心](message)
   - [通知类消息](message/msg.md)×
   - [私信](message/private_msg.md)×

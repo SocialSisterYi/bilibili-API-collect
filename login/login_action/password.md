@@ -124,16 +124,16 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名      | 类型 | 内容               | 必要性 | 备注             |
-| ----------- | ---- | ------------------ | ------ | ---------------- |
-| captchaType | num  | 6                  | 必要   | 必须为`6`        |
-| username    | str  | 用户登录账号       | 必要   | 手机号或邮箱地址 |
-| password    | str  | 加密后的带盐密码   | 必要   | base64格式       |
-| keep        | bool | true               | 必要   | 必须为`true`     |
-| key         | str  | 登录秘钥           | 必要   | 从B站API获取     |
-| challenge   | str  | 极验challenge      | 必要   | 从B站API获取     |
-| validate    | str  | 极验结果           | 必要   | 从极验获取       |
-| seccode     | str  | 极验结果+`|jordan` | 必要   | 从极验获取       |
+| 参数名      | 类型 | 内容             | 必要性 | 备注             |
+| ----------- | ---- | ---------------- | ------ | ---------------- |
+| captchaType | num  | 6                | 必要   | 必须为`6`        |
+| username    | str  | 用户登录账号     | 必要   | 手机号或邮箱地址 |
+| password    | str  | 加密后的带盐密码 | 必要   | base64格式       |
+| keep        | bool | true             | 必要   | 必须为`true`     |
+| key         | str  | 登录秘钥         | 必要   | 从B站API获取     |
+| challenge   | str  | 极验challenge    | 必要   | 从B站API获取     |
+| validate    | str  | 极验结果         | 必要   | 从极验获取       |
+| seccode     | str  | 极验结果         | 必要   | 从极验获取       |
 
 **json回复：**
 

@@ -42,10 +42,10 @@ TV端流程&逻辑：
 
 `data`对象：
 
-| 字段     | 类型  | 内容          | 备注       |
-| -------- | ----- | ------------- | ---------- |
-| url      | str   | 二维码内容url | 恒为87字符 |
-| oauthKey | str   | 扫码登录秘钥  | 恒为32字符 |
+| 字段     | 类型 | 内容          | 备注       |
+| -------- | ---- | ------------- | ---------- |
+| url      | str  | 二维码内容url | 恒为87字符 |
+| oauthKey | str  | 扫码登录秘钥  | 恒为32字符 |
 
 **示例：**
 
@@ -77,7 +77,7 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 
 验证登录成功后会进行设置以下cookie项：
 
-`sid` `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
+ `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -92,11 +92,11 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 
 | 字段    | 类型                         | 内容                                      | 备注                                                         |
 | ------- | ---------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
-| status  | bool                         | 扫码是否成功                              | true：成功<br />false：未成功                                |
 | code    | num                          | 返回值                                    | 0：成功                                                      |
 | message | str                          | 错误信息                                  | 正确无                                                       |
 | ts      | num                          | 扫码时间                                  | 错误无                                                       |
-| data    | 正确时：obj<br />错误时：num | 正确时：游戏分站url<br />错误时：错误代码 | 错误时：<br />-1：秘钥错误<br />-2：秘钥超时<br />-4：未扫描<br />-5：未确认 |
+| status  | bool                         | 扫码是否成功                              | true：成功<br />false：未成功                                |
+| data    | 正确时：obj<br />错误时：num | 正确时：游戏分站url<br />错误时：错误代码 | 未成功时：<br />-1：秘钥错误<br />-2：秘钥超时<br />-4：未扫描<br />-5：未确认 |
 
 data 对象：
 | 字段 | 类型 | 内容                | 备注 |
