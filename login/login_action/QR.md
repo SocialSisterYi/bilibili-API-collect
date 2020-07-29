@@ -96,7 +96,7 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 | message | str                          | 错误信息                                  | 正确无                                                       |
 | ts      | num                          | 扫码时间                                  | 错误无                                                       |
 | status  | bool                         | 扫码是否成功                              | true：成功<br />false：未成功                                |
-| data    | 正确时：obj<br />错误时：num | 正确时：游戏分站url<br />错误时：错误代码 | 未成功时：<br />-1：秘钥错误<br />-2：秘钥超时<br />-4：未扫描<br />-5：未确认 |
+| data    | 正确时：obj<br />错误时：num | 正确时：游戏分站url<br />错误时：错误代码 | 未成功时：<br />-1：密钥错误<br />-2：密钥超时<br />-4：未扫描<br />-5：未确认 |
 
 data 对象：
 | 字段 | 类型 | 内容                | 备注 |

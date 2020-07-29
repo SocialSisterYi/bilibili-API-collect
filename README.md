@@ -21,9 +21,9 @@
 <h3 align="center">不断更新中....</h3> 
 本项目旨在对B站web端、移动端以及TV端散落在世界各地的野生api进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js逆向分析法、网络抓包法等研究办法
 
-所有api均为标准http协议，返回值大都为json
+所有api均为标准http协议，返回数据大都为json或protobuf
 
-所有http协议地址均可使用https
+PS：所有http协议地址均可使用https，文档中为了统一写作`http`，为了数据安全建议所有接口使用https
 
 小小的Demo：[av583785685](https://www.bilibili.com/video/av583785685)
 
@@ -94,9 +94,9 @@
   - [排行榜](ranking&dynamic/ranking.md)x
   - [最新动态](ranking&dynamic/dynamic.md)x
 - [搜索](search)
-  - [搜索请求](search/search_request.md)×
+  - [搜索请求](search/search_request.md)√
   - [搜索结果](search/search_response.md)√
-  - 热搜
+  - [默认搜索&热搜](search/hot.md)√
   - 搜索建议
 - [小黑屋](blackroom)
   - 基本信息
@@ -191,9 +191,15 @@ https://github.com/Hsury/Bilibili-Toolkit
 
 https://github.com/whjstc/openbilibili-go-common-1
 
+ https://github.com/wnstar/bili-utils
+
 成品：
 
+https://github.com/AncientLysine/BiliLocal
+
 https://github.com/zyzsdy/biliroku
+
+https://github.com/otakustay/danmaku-to-ass
 
 https://github.com/bilibili-helper/bilibili-helper-o
 
@@ -205,7 +211,11 @@ https://github.com/Hsury/BiliDrive
 
 https://github.com/Tsuk1ko/bilibili-live-chat
 
+https://github.com/ironmanic/crawler_target_users_good
+
 其他：
+
+ https://github.com/kuresaru/geetest-validator
 
 https://github.com/Hsury/Geetest3-Crack
 

@@ -1,6 +1,576 @@
 # 搜索
 
-## 分类搜索
+## 综合搜索（web端）
+
+> http://api.bilibili.com/x/web-interface/search/all/v2
+
+*方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+返回和关键字相关的20条信息
+
+综合搜索为默认搜索方式，主要用于优先搜索用户、影视、番剧、游戏、话题等，并加载第一页的20项相关视频，还用于展示各个类型的结果数目，便于进一步分类搜索
+
+**url参数：**
+
+| 参数名  | 类型 | 内容             | 备注 |
+| ------- | ---- | ---------------- | ---- |
+| keyword | str  | 需要搜索的关键词 |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                     |
+| ttl     | num  | 1        |                             |
+| data    | obj  | 信息本体 |                             |
+
+`data`对象：
+
+| 字段             | 类型  | 内容             | 备注             |
+| ---------------- | ----- | ---------------- | ---------------- |
+| seid             | str   | 搜索id           |                  |
+| page             | num   | 页数             | 固定为1          |
+| pagesize         | num   | 每页条数         | 固定为20         |
+| numResults       | num   | 总条数           | 最大值为1000     |
+| numPages         | num   | 分页数           | 最大值为50       |
+| suggest_keyword  | str   | 空               | **作用尚不明确** |
+| rqt_type         | str   | search           | **作用尚不明确** |
+| cost_time        | obj   | 详细搜索用时     | 大概             |
+| exp_list         | obj   | ？？？           | **作用尚不明确** |
+| egg_hit          | num   | 0                | **作用尚不明确** |
+| pageinfo         | obj   | 分类页数信息     |                  |
+| top_tlist        | obj   | 分类结果数目信息 |                  |
+| show_column      | num   | 0                | **作用尚不明确** |
+| show_module_list | array | 返回结果类型列表 |                  |
+| result           | array | 结果列表         |                  |
+
+`data`中的`cost_time`对象：
+
+| 字段                 | 类型 | 内容 | 备注 |
+| -------------------- | ---- | ---- | ---- |
+| params_check         | str  |      |      |
+| illegal_handler      | str  |      |      |
+| as_response_format   | str  |      |      |
+| as_request           | str  |      |      |
+| save_cache           | str  |      |      |
+| deserialize_response | str  |      |      |
+| as_request_format    | str  |      |      |
+| total                | str  |      |      |
+| main_handler         | str  |      |      |
+
+`data`中的`pageinfo`对象：
+
+| 字段           | 类型 | 内容     | 备注 |
+| -------------- | ---- | -------- | ---- |
+| pgc            | obj  | -        |      |
+| live_room      | obj  | 直播数   |      |
+| photo          | obj  | 相簿数   |      |
+| topic          | obj  | 话题数   |      |
+| video          | obj  | 视频数   |      |
+| user           | obj  | -        |      |
+| bili_user      | obj  | 用户数   |      |
+| media_ft       | obj  | 电影数   |      |
+| article        | obj  | 专栏数   |      |
+| media_bangumi  | obj  | 番剧数   |      |
+| special        | obj  | -        |      |
+| operation_card | obj  | -        |      |
+| upuser         | obj  | -        |      |
+| movie          | obj  | -        |      |
+| live_all       | obj  | -        |      |
+| tv             | obj  | -        |      |
+| live           | obj  | 直播间数 |      |
+| bangumi        | obj  | -        |      |
+| activity       | obj  | 活动数   |      |
+| live_master    | obj  | -        |      |
+| live_user      | obj  | 主播数   |      |
+
+`pageinfo`中的所有对象：
+
+| 字段       | 类型 | 内容     | 备注 |
+| ---------- | ---- | -------- | ---- |
+| numResults | num  | 总计数量 |      |
+| total      | num  | 总计数量 |      |
+| pages      | num  | 分页数量 |      |
+
+`data`中的`top_tlist`对象：
+
+| 字段           | 类型 | 内容     | 备注 |
+| -------------- | ---- | -------- | ---- |
+| pgc            | num  | -        |      |
+| live_room      | num  | 直播数   |      |
+| photo          | num  | 相簿数   |      |
+| topic          | num  | 话题数   |      |
+| video          | num  | 视频数   |      |
+| user           | num  | -        |      |
+| bili_user      | num  | 用户数   |      |
+| media_ft       | num  | 电影数   |      |
+| article        | num  | 专栏数   |      |
+| media_bangumi  | num  | 番剧数   |      |
+| card           | num  | -        |      |
+| operation_card | num  | -        |      |
+| upuser         | num  | -        |      |
+| movie          | num  | -        |      |
+| live_all       | num  | -        |      |
+| tv             | num  | -        |      |
+| live           | num  | 直播间数 |      |
+| special        | num  | -        |      |
+| bangumi        | num  | -        |      |
+| activity       | num  | 活动数   |      |
+| live_master    | num  | -        |      |
+| live_user      | num  | 主播数   |      |
+
+`data`中的`show_module_list`数组：
+
+| 项   | 类型 | 内容          | 备注 |
+| ---- | ---- | ------------- | ---- |
+| 0    | str  | activity      |      |
+| 1    | str  | web_game      | 游戏 |
+| 2    | str  | card          |      |
+| 3    | str  | media_bangumi | 番剧 |
+| 4    | str  | media_ft      | 电影 |
+| 5    | str  | bili_user     | 用户 |
+| 6    | str  | user          |      |
+| 7    | str  | star          |      |
+| 8    | str  | video         | 视频 |
+
+`data`中的`result`数组：
+
+| 项   | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| 0    | obj  | -        |      |
+| 1    | obj  | 游戏结果 |      |
+| 2    | obj  | -        |      |
+| 3    | obj  | 番剧结果 |      |
+| 4    | obj  | 电影结果 |      |
+| 5    | obj  | 用户结果 |      |
+| 6    | obj  | -        |      |
+| 7    | obj  | -        |      |
+| 8    | obj  | 视频结果 |      |
+
+`result`数组中的对象：
+
+| 字段        | 类型  | 内容     | 备注                           |
+| ----------- | ----- | -------- | ------------------------------ |
+| result_type | str   | 结果类型 | 与`result`数组对应的项相同     |
+| data        | array | 搜索结果 | 结果为该项所对应的对象条目格式 |
+
+`result`数组中的对象中的`data`数组：
+
+| 项   | 类型 | 内容            | 备注                                         |
+| ---- | ---- | --------------- | -------------------------------------------- |
+| 0    | obj  | 搜索结果1       | 对象详情见「[搜索结果](search_response.md)」 |
+| n    | obj  | 搜索结果（n+1） | 按照参数指定的顺序排列                       |
+| ……   | obj  | ……              | ……                                           |
+
+**示例：**
+
+使用综合搜索进行搜索关键字`洛天依`
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2'\
+--data-urlencode 'keyword=洛天依'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "seid": "8850295244740510044",
+        "page": 1,
+        "pagesize": 20,
+        "numResults": 1000,
+        "numPages": 50,
+        "suggest_keyword": "",
+        "rqt_type": "search",
+        "cost_time": {
+            "params_check": "0.000496",
+            "get upuser live status": "0.002325",
+            "illegal_handler": "0.000118",
+            "as_response_format": "0.007020",
+            "mysql_request": "0.000054",
+            "as_request": "0.099139",
+            "as_request_format": "0.002199",
+            "deserialize_response": "0.000342",
+            "total": "0.109753",
+            "main_handler": "0.109041"
+        },
+        "exp_list": {
+            "5520": true
+        },
+        "egg_hit": 0,
+        "pageinfo": {
+            "pgc": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "live_room": {
+                "numResults": 1,
+                "total": 1,
+                "pages": 1
+            },
+            "photo": {
+                "numResults": 1000,
+                "total": 1000,
+                "pages": 50
+            },
+            "bili_user": {
+                "numResults": 548,
+                "total": 548,
+                "pages": 28
+            },
+            "topic": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "video": {
+                "numResults": 1000,
+                "total": 1000,
+                "pages": 50
+            },
+            "user": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "article": {
+                "numResults": 1000,
+                "total": 1000,
+                "pages": 50
+            },
+            "media_ft": {
+                "numResults": 1,
+                "total": 1,
+                "pages": 1
+            },
+            "media_bangumi": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "special": {
+                "numResults": 14,
+                "total": 14,
+                "pages": 1
+            },
+            "operation_card": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "upuser": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "movie": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "live_all": {
+                "numResults": 2,
+                "total": 2,
+                "pages": 1
+            },
+            "tv": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "live": {
+                "numResults": 773,
+                "total": 773,
+                "pages": 39
+            },
+            "bangumi": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "activity": {
+                "numResults": 0,
+                "total": 0,
+                "pages": 0
+            },
+            "live_master": {
+                "numResults": 1,
+                "total": 1,
+                "pages": 1
+            },
+            "live_user": {
+                "numResults": 772,
+                "total": 772,
+                "pages": 39
+            }
+        },
+        "top_tlist": {
+            "pgc": 0,
+            "live_room": 1,
+            "photo": 1000,
+            "bili_user": 548,
+            "topic": 0,
+            "video": 1000,
+            "user": 0,
+            "article": 1000,
+            "media_ft": 1,
+            "media_bangumi": 0,
+            "card": 0,
+            "operation_card": 0,
+            "upuser": 0,
+            "movie": 0,
+            "tv": 0,
+            "live": 2,
+            "special": 14,
+            "bangumi": 0,
+            "activity": 0,
+            "live_master": 1,
+            "live_user": 772
+        },
+        "show_column": 0,
+        "show_module_list": [
+            "bili_user",
+            "user",
+            "activity",
+            "web_game",
+            "card",
+            "media_bangumi",
+            "media_ft",
+            "star",
+            "video"
+        ],
+        "result": [
+            {
+                "result_type": "bili_user",
+                "data": [
+                    {
+                        "type": "bili_user",
+                        "mid": 36081646,
+                        "uname": "洛天依",
+                        "usign": "上海禾念Vsinger旗下歌手，世界第一位VOCALOID中文虚拟歌姬。投食请戳：luotianyi@sh-henian.com",
+                        "fans": 1982688,
+                        "videos": 45,
+                        "upic": "//i2.hdslb.com/bfs/face/cc96d1d6bf76f8198263f9083921997ab3a80d8b.jpg",
+                        "verify_info": "",
+                        "level": 6,
+                        "gender": 2,
+                        "is_upuser": 1,
+                        "is_live": 0,
+                        "room_id": 1546736,
+                        "res": [
+                            {
+                                "aid": 753839250,
+                                "bvid": "BV1Hk4y1B7Cx",
+                                "title": "【洛天依】2020.7.12洛天依生日会",
+                                "pubdate": 1594559234,
+                                "arcurl": "http://www.bilibili.com/video/av753839250",
+                                "pic": "//i2.hdslb.com/bfs/archive/5347eafb5a65ad9a9ffc39063d686772ea1298c4.jpg",
+                                "play": "269428",
+                                "dm": 30648,
+                                "coin": 33838,
+                                "fav": 24066,
+                                "desc": "从2012年一路走至2020年，8年间刻画下的无数回忆，都在生日会上娓娓道来。\n大家的每一次应援，每一条弹幕都无可替代，都凝结着无可比拟的珍贵回忆。\n希望天依的歌声能鼓起每个人心中的勇气，跨过悲伤、无力，去迎接希望。\n愿我们一同携手成长~相扶相伴。\n天依的首张官方数字专辑也已经上线，等你来听。\n试听： BV1Tp4y1S7cu\n购买：https://y.music.163.com/m/album?id=92206376",
+                                "duration": "58:6",
+                                "is_pay": 0,
+                                "is_union_video": 0
+                            },
+                            {
+                                "aid": 968772260,
+                                "bvid": "BV1Tp4y1S7cu",
+                                "title": "【洛天依原创曲】万分之一的光",
+                                "pubdate": 1594557008,
+                                "arcurl": "http://www.bilibili.com/video/av968772260",
+                                "pic": "//i1.hdslb.com/bfs/archive/67c6118e4f94bee89b984525ca665fc88c969cac.jpg",
+                                "play": "333322",
+                                "dm": 9323,
+                                "coin": 39961,
+                                "fav": 29818,
+                                "desc": "8年间我们一起经历了许多，有欢乐也有悲伤，有相遇自然也有别离，但曾相处的日子永远那么辉光闪耀。\n感谢你成为我的光芒，而我也会是你万分之一的光。\n\n音乐：ChiliChill\n贝斯：山口進也\n鼓手：口口口口口\n调校：动点P\n弦乐编配：胡静成 / ChiliChill\n小提琴：庞阔 / 张浩\n中提琴：毕芳\n大提琴：郎莹\n监制：人形兎\n出品：Vsinger",
+                                "duration": "4:12",
+                                "is_pay": 0,
+                                "is_union_video": 1
+                            },
+                            {
+                                "aid": 883803983,
+                                "bvid": "BV1kK4y1s7Dd",
+                                "title": "洛天依2020官方专辑《Moments》试听PV",
+                                "pubdate": 1594526467,
+                                "arcurl": "http://www.bilibili.com/video/av883803983",
+                                "pic": "//i1.hdslb.com/bfs/archive/2ff004df9d98e2a78531c6400ee8e823fb30e6f4.jpg",
+                                "play": "205340",
+                                "dm": 7748,
+                                "coin": 18792,
+                                "fav": 14222,
+                                "desc": "8是数字也是象征；\n∞是循环也是无限；\n \n音乐给予了我诞生和成长的力量，让我不断汲取养分，直至冲破险阻向阳生长；\n音乐让我更加幸运，在曾经未知的道路上遇见属于我们彼此的蓝色星光；\n那些一路上的美好，我都想和你们一起收集，瞬间即永恒。\n\n--------Staff--------\n作曲：Chilichill / COP / 人形兎 / 纯白P / 花之祭P / 希望索任合资 / 银临 / JUSF周存\n作词： Chilichill / COP / 人形兎 / 果汁凉菜 / 沈病娇 / 南岐 / 冥凰 / ",
+                                "duration": "3:44",
+                                "is_pay": 0,
+                                "is_union_video": 0
+                            }
+                        ],
+                        "official_verify": {
+                            "type": 0,
+                            "desc": "洛天依官方账号"
+                        },
+                        "hit_columns": [
+                            "uname"
+                        ]
+                    }
+                ]
+            },
+            {
+                "result_type": "user",
+                "data": []
+            },
+            {
+                "result_type": "activity",
+                "data": []
+            },
+            {
+                "result_type": "web_game",
+                "data": []
+            },
+            {
+                "result_type": "card",
+                "data": []
+            },
+            {
+                "result_type": "media_bangumi",
+                "data": []
+            },
+            {
+                "result_type": "media_ft",
+                "data": []
+            },
+            {
+                "result_type": "star",
+                "data": []
+            },
+            {
+                "result_type": "video",
+                "data": [
+                    {
+                        "type": "video",
+                        "id": 753839250,
+                        "author": "洛天依",
+                        "mid": 36081646,
+                        "typeid": "30",
+                        "typename": "VOCALOID·UTAU",
+                        "arcurl": "http://www.bilibili.com/video/av753839250",
+                        "aid": 753839250,
+                        "bvid": "BV1Hk4y1B7Cx",
+                        "title": "【<em class=\"keyword\">洛天依</em>】2020.7.12<em class=\"keyword\">洛天依</em>生日会",
+                        "description": "从2012年一路走至2020年，8年间刻画下的无数回忆，都在生日会上娓娓道来。\n大家的每一次应援，每一条弹幕都无可替代，都凝结着无可比拟的珍贵回忆。\n希望天依的歌声能鼓起每个人心中的勇气，跨过悲伤、无力，去迎接希望。\n愿我们一同携手成长~相扶相伴。\n天依的首张官方数字专辑也已经上线，等你来听。\n试听： BV1Tp4y1S7cu\n购买：https://y.music.163.com/m/album?id=92206376",
+                        "arcrank": "0",
+                        "pic": "//i2.hdslb.com/bfs/archive/5347eafb5a65ad9a9ffc39063d686772ea1298c4.jpg",
+                        "play": 269428,
+                        "video_review": 30648,
+                        "favorites": 24066,
+                        "tag": "VSINGER,洛天依生日快乐,2020洛天依生日会,洛天依生日会,VOCALOID,洛天依",
+                        "review": 4391,
+                        "pubdate": 1594559234,
+                        "senddate": 1594559234,
+                        "duration": "58:6",
+                        "badgepay": false,
+                        "hit_columns": [
+                            "title",
+                            "author",
+                            "tag"
+                        ],
+                        "view_type": "",
+                        "is_pay": 0,
+                        "is_union_video": 0,
+                        "rec_tags": null,
+                        "new_rec_tags": [],
+                        "rank_score": 102616359
+                    },
+                    {
+                        "type": "video",
+                        "id": 753460703,
+                        "author": "低调的黑叔",
+                        "mid": 22065421,
+                        "typeid": "25",
+                        "typename": "MMD·3D",
+                        "arcurl": "http://www.bilibili.com/video/av753460703",
+                        "aid": 753460703,
+                        "bvid": "BV1Zk4y1B7bn",
+                        "title": "【4K/布料/水手服】<em class=\"keyword\">洛天依</em> - GimmexGimme",
+                        "description": "喜欢本期4K请点个关注并长按视频下方大拇指一键三连拜托啦这对我真的很重要\n\nModel：\niRon0129/夏夜/Tda様/やまもと/Samsink(机动战士牛肉）\n\nMotion：\nシガー\n\nSailor Suit：\n星音\n\nStage：\nG_Wuuuuu\n\nRenderer：\nToolbag 3\n\nMusic：\n【初音ミク×鏡音リン】Gimme×Gimme【八王子P×Giga】",
+                        "arcrank": "0",
+                        "pic": "//i1.hdslb.com/bfs/archive/d1bd3d4d12b1e115ce82463853ff791a45472f1f.jpg",
+                        "play": 809854,
+                        "video_review": 1189,
+                        "favorites": 47632,
+                        "tag": "自制,3D,TDA,动画,百万剪辑师挑战,洛天依,美腿,舞蹈MMD,4K",
+                        "review": 798,
+                        "pubdate": 1591367468,
+                        "senddate": 1591404973,
+                        "duration": "1:11",
+                        "badgepay": false,
+                        "hit_columns": [
+                            "title",
+                            "tag"
+                        ],
+                        "view_type": "",
+                        "is_pay": 0,
+                        "is_union_video": 0,
+                        "rec_tags": null,
+                        "new_rec_tags": [],
+                        "rank_score": 102465557
+                    },
+                    {
+                        "type": "video",
+                        "id": 10131337,
+                        "author": "赛亚♂sya",
+                        "mid": 157056,
+                        "typeid": "30",
+                        "typename": "VOCALOID·UTAU",
+                        "arcurl": "http://www.bilibili.com/video/av10131337",
+                        "aid": 10131337,
+                        "bvid": "BV1fx411U7Kg",
+                        "title": "【<em class=\"keyword\">洛天依</em>原创】自言自语",
+                        "description": "词曲编调绘：Sya；混音：JUSF周存；简介你随便拿个之前的复制粘贴就行",
+                        "arcrank": "0",
+                        "pic": "//i0.hdslb.com/bfs/archive/e5aab7ddab3e060854e420edae6c5282cbe09324.jpg",
+                        "play": 746480,
+                        "video_review": 4665,
+                        "favorites": 49097,
+                        "tag": "黑洛,诚信代投,自言自语,洛天依,VOCALOID中文曲,原创,高级一图流,自x自x,自A自B系列,赛亚♂sya,JUSF周存",
+                        "review": 7310,
+                        "pubdate": 1493282828,
+                        "senddate": 1542308981,
+                        "duration": "4:14",
+                        "badgepay": false,
+                        "hit_columns": [
+                            "title",
+                            "tag"
+                        ],
+                        "view_type": "",
+                        "is_pay": 0,
+                        "is_union_video": 0,
+                        "rec_tags": null,
+                        "new_rec_tags": [],
+                        "rank_score": 102432728
+                    },
+                    …………
+                ]
+            }
+        ]
+    }
+}
+```
+
+
+
+## 分类搜索（web端）
 
 > http://api.bilibili.com/x/web-interface/search/type
 
