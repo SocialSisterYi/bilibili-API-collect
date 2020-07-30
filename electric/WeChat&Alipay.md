@@ -1,6 +1,6 @@
 # 微信&支付宝方式充电
 
-**本页所有操作均需登录（SESSDATA）**
+**本页所有操作均需登录（Cookie）**
 
 <img src="/imgs/battery-100.png" width="100" height="100"/>
 

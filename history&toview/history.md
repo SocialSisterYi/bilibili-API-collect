@@ -2,7 +2,7 @@
 
 <img src="/imgs/history.png" width="25" height="25"/>
 
-**本页所有操作均需登录（SESSDATA）**
+**本页所有操作均需登录（Cookie）**
 
 ## 获取历史记录列表（视频、直播、专栏）
 

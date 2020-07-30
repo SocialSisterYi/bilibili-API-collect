@@ -11,7 +11,7 @@
 | 2    | 高品质 320K          |
 | 3    | 无损 FLAC （大会员） |
 
-## 获取音频流URL（web端）
+## 获取音频流URL（无法获取付费音频）（web端）
 
 > http://www.bilibili.com/audio/music-service-c/web/url
 

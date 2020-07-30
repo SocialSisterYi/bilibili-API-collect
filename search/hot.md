@@ -72,7 +72,7 @@ curl 'http://api.bilibili.com/x/web-interface/search/default'
 | --------- | ----- | ------------ | ------------- |
 | exp_str   | str   | ？？？       |               |
 | code      | num   | 返回值       | 0：成功       |
-| cost      | obj   | 响应时间？   |               |
+| cost      | obj   | 详细搜索用时 | 大概是吧？    |
 | seid      | str   | 搜索seID     |               |
 | timestamp | num   | 榜单统计时间 | 时间戳        |
 | message   | str   | 错误信息     | 默认为success |

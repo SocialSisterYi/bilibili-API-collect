@@ -2178,6 +2178,8 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
 
 ## 收藏
 
+<img src="/imgs/collect.svg" width="100" height="100" />
+
 ### 查询用户创建的视频收藏夹
 
 > http://api.bilibili.com/x/v3/fav/folder/created/list-all 
@@ -2896,3 +2898,4 @@ curl -G 'http://space.bilibili.com/ajax/tags/getSubList'\
 	}
 }
 ```
+

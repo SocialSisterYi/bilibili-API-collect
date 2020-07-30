@@ -1,6 +1,6 @@
 # 视频推荐
 
-## 获取单视频推荐列表
+## 获取单视频推荐列表（web端）
 
 > http://api.bilibili.com/x/web-interface/archive/related
 
