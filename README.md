@@ -1,4 +1,6 @@
-<center><img src="./imgs/Mylogo.png" width="250" height="200"></center>
+<p align="center">
+    <img src="imgs/Mylogo.png" width="250" height="200">
+</p>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
 <p align="center">
     <a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues" style="text-decoration:none">
