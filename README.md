@@ -103,7 +103,6 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 基本信息
   - [封禁公示](blackroom/banlist.md)√
   - 仲裁信息
-  - 仲裁操作
 - [评论区](comment)
   - [评论区明细](comment/comment_list.md)√
   - [操作](comment/action.md)√
