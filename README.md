@@ -102,7 +102,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [小黑屋](blackroom)
   - 基本信息
   - [封禁公示](blackroom/banlist.md)√
-  - 仲裁信息
+  - [仲裁信息](blackroom/judgement.md)√
 - [评论区](comment)
   - [评论区明细](comment/comment_list.md)√
   - [操作](comment/action.md)√
