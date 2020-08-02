@@ -1,4 +1,4 @@
-# 封禁用户公示
+# 封禁公示
 
 **已知的违规类型代码总览：**
 
@@ -37,6 +37,20 @@
 | 31   | 发布违规抽奖         |
 | 32   | 恶意冒充他人         |
 
+**已知的违规来源代码：**
+
+| 代码 | 含义     |
+| ---- | -------- |
+| 1    | 评论     |
+| 2    | 弹幕     |
+| 3    | 私信     |
+| 4    | 标签     |
+| 5    | 个人资料 |
+| 6    | 投稿     |
+| 8    | 专栏     |
+| 10   | 动态     |
+| 11   | 相簿     |
+
 ## 获取封禁用户公示列表
 
 > http://api.bilibili.com/x/credit/blocked/list
@@ -47,11 +61,11 @@
 
 **url参数：**
 
-| 参数名 | 类型 | 内容     | 必要性 | 备注                                                         |
-| ------ | ---- | -------- | ------ | ------------------------------------------------------------ |
-| btype  | num  | 来源筛选 | 非必要 | 空：全部类型<br />0：系统封禁<br />1：风纪仲裁               |
-| otype  | num  | 类型筛选 | 非必要 | 0：全部类型<br />1：评论<br />2：弹幕<br />3：私信<br />4：标签<br />5：个人资料<br />6：投稿<br />8：专栏<br />10：动态<br />11：相簿 |
-| pn     | num  | 页码     | 非必要 | 默认为1                                                      |
+| 参数名 | 类型 | 内容     | 必要性 | 备注                                           |
+| ------ | ---- | -------- | ------ | ---------------------------------------------- |
+| btype  | num  | 来源筛选 | 非必要 | 空：全部类型<br />0：系统封禁<br />1：风纪仲裁 |
+| otype  | num  | 类型筛选 | 非必要 | **见上表**<br />**0：全部类型**                |
+| pn     | num  | 页码     | 非必要 | 默认为1                                        |
 
 **json回复：**
 
@@ -74,33 +88,33 @@
 
 `data`数组中的对象：
 
-| 字段                | 类型 | 内容            | 备注                                                         |
-| ------------------- | ---- | --------------- | ------------------------------------------------------------ |
-| id                  | num  | 封禁公示ID      |                                                              |
-| uname               | str  | 对象用户名      |                                                              |
-| face                | str  | 对象用户头像url |                                                              |
-| uid                 | num  | 对象用户UID     |                                                              |
-| originTitle         | str  | 来源标题        |                                                              |
-| blockedRemark       | str  |                 |                                                              |
-| originUrl           | str  | 来源url         |                                                              |
-| originContentModify | str  | 裁决正文        |                                                              |
-| originType          | num  | 来源类型        | 0：全部类型<br />1：评论<br />2：弹幕<br />3：私信<br />4：标签<br />5：个人资料<br />6：投稿<br />8：专栏<br />10：动态<br />11：相簿 |
-| originTypeName      | str  | 来源名          |                                                              |
-| punishTitle         | str  | 公示标题        |                                                              |
-| punishTime          | num  | 处罚时间        | 时间戳                                                       |
-| punishType          | num  | 处理手段类型    | 2：封禁<br />3：永久封禁                                     |
-| punishTypeName      | str  | 处理手段名      |                                                              |
-| moralNum            | num  | 0               | 作用尚不明确                                                 |
-| blockedDays         | num  | 封禁天数        | 永封为0                                                      |
-| publishStatus       | num  | 1               | 作用尚不明确                                                 |
-| blockedType         | num  | 处理来源        | 0：系统封禁<br />1：风纪仲裁                                 |
-| blockedForever      | num  | 是否永封        | 0：非永封<br />1：永封                                       |
-| reasonType          | num  | 违规类型        | **违规类型见表**                                             |
-| reasonTypeName      | str  | 违规类型名称    |                                                              |
-| operatorName        | str  | 空              | 作用尚不明确                                                 |
-| caseId              | num  | 仲裁信息        | 心态封禁时为0                                                |
-| ctime               | num  | 创建时间        | 时间戳                                                       |
-| commentSum          | num  | 该条目评论数    |                                                              |
+| 字段                | 类型 | 内容            | 备注                         |
+| ------------------- | ---- | --------------- | ---------------------------- |
+| id                  | num  | 封禁公示ID      |                              |
+| uname               | str  | 对象用户名      |                              |
+| face                | str  | 对象用户头像url |                              |
+| uid                 | num  | 对象用户UID     |                              |
+| originTitle         | str  | 来源标题        |                              |
+| blockedRemark       | str  |                 |                              |
+| originUrl           | str  | 来源url         |                              |
+| originContentModify | str  | 裁决正文        |                              |
+| originType          | num  | 来源类型        | **见上表**                   |
+| originTypeName      | str  | 来源名          |                              |
+| punishTitle         | str  | 公示标题        |                              |
+| punishTime          | num  | 处罚时间        | 时间戳                       |
+| punishType          | num  | 处理手段类型    | 2：封禁<br />3：永久封禁     |
+| punishTypeName      | str  | 处理手段名      |                              |
+| moralNum            | num  | 0               | 作用尚不明确                 |
+| blockedDays         | num  | 封禁天数        | 永封为0                      |
+| publishStatus       | num  | 1               | 作用尚不明确                 |
+| blockedType         | num  | 处理来源        | 0：系统封禁<br />1：风纪仲裁 |
+| blockedForever      | num  | 是否永封        | 0：非永封<br />1：永封       |
+| reasonType          | num  | 违规类型        | **见上表**                   |
+| reasonTypeName      | str  | 违规类型名称    |                              |
+| operatorName        | str  | 空              | 作用尚不明确                 |
+| caseId              | num  | 仲裁信息ID      | 系统封禁时固定为0            |
+| ctime               | num  | 创建时间        | 时间戳                       |
+| commentSum          | num  | 该条目评论数    |                              |
 
 **示例：**
 
@@ -201,33 +215,33 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list'\
 
 `data`对象：
 
-| 字段                | 类型 | 内容            | 备注                                                         |
-| ------------------- | ---- | --------------- | ------------------------------------------------------------ |
-| id                  | num  | 封禁公示ID      |                                                              |
-| uname               | str  | 对象用户名      |                                                              |
-| face                | str  | 对象用户头像url |                                                              |
-| uid                 | num  | 对象用户UID     |                                                              |
-| originTitle         | str  | 来源标题        |                                                              |
-| blockedRemark       | str  |                 |                                                              |
-| originUrl           | str  | 来源url         |                                                              |
-| originContentModify | str  | 裁决正文        |                                                              |
-| originType          | num  | 来源类型        | 0：全部类型<br />1：评论<br />2：弹幕<br />3：私信<br />4：标签<br />5：个人资料<br />6：投稿<br />8：专栏<br />10：动态<br />11：相簿 |
-| originTypeName      | str  | 来源名          |                                                              |
-| punishTitle         | str  | 公示标题        |                                                              |
-| punishTime          | num  | 处罚时间        | 时间戳                                                       |
-| punishType          | num  | 处理手段类型    | 2：封禁<br />3：永久封禁                                     |
-| punishTypeName      | str  | 处理手段名      |                                                              |
-| moralNum            | num  | 0               | 作用尚不明确                                                 |
-| blockedDays         | num  | 封禁天数        | 永封为0                                                      |
-| publishStatus       | num  | 1               | 作用尚不明确                                                 |
-| blockedType         | num  | 处理来源        | 0：系统封禁<br />1：风纪仲裁                                 |
-| blockedForever      | num  | 是否永封        | 0：非永封<br />1：永封                                       |
-| reasonType          | num  | 违规类型        | **违规类型见表**                                             |
-| reasonTypeName      | str  | 违规类型名称    |                                                              |
-| operatorName        | str  | 空              | 作用尚不明确                                                 |
-| caseId              | num  | 仲裁信息        | 心态封禁时为0                                                |
-| ctime               | num  | 创建时间        | 时间戳                                                       |
-| commentSum          | num  | 该条目评论数    |                                                              |
+| 字段                | 类型 | 内容            | 备注                         |
+| ------------------- | ---- | --------------- | ---------------------------- |
+| id                  | num  | 封禁公示ID      |                              |
+| uname               | str  | 对象用户名      |                              |
+| face                | str  | 对象用户头像url |                              |
+| uid                 | num  | 对象用户UID     |                              |
+| originTitle         | str  | 来源标题        |                              |
+| blockedRemark       | str  |                 |                              |
+| originUrl           | str  | 来源url         |                              |
+| originContentModify | str  | 裁决正文        |                              |
+| originType          | num  | 来源类型        | **见上表**                   |
+| originTypeName      | str  | 来源名          |                              |
+| punishTitle         | str  | 公示标题        |                              |
+| punishTime          | num  | 处罚时间        | 时间戳                       |
+| punishType          | num  | 处理手段类型    | 2：封禁<br />3：永久封禁     |
+| punishTypeName      | str  | 处理手段名      |                              |
+| moralNum            | num  | 0               | 作用尚不明确                 |
+| blockedDays         | num  | 封禁天数        | 永封为0                      |
+| publishStatus       | num  | 1               | 作用尚不明确                 |
+| blockedType         | num  | 处理来源        | 0：系统封禁<br />1：风纪仲裁 |
+| blockedForever      | num  | 是否永封        | 0：非永封<br />1：永封       |
+| reasonType          | num  | 违规类型        | **违规类型见表**             |
+| reasonTypeName      | str  | 违规类型名称    |                              |
+| operatorName        | str  | 空              | 作用尚不明确                 |
+| caseId              | num  | 仲裁信息        | 系统封禁时固定为0            |
+| ctime               | num  | 创建时间        | 时间戳                       |
+| commentSum          | num  | 该条目评论数    |                              |
 
 **示例：**
 

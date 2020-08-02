@@ -1934,7 +1934,7 @@ curl 'http://api.bilibili.com/x/space/channel/edit'\
 
 ### 删除频道
 
-> http://api.bilibili.com/x/space/channel/del 
+> http://api.bilibili.com/x/space/channel/del
 
 *请求方式：POST*
 
@@ -2136,7 +2136,7 @@ curl 'http://api.bilibili.com/x/space/channel/video/sort'\
 
 ### 检查频道中有无失效视频
 
-> http://api.bilibili.com/x/space/channel/video/check 
+> http://api.bilibili.com/x/space/channel/video/check
 
 *请求方式：GET*
 
@@ -2154,7 +2154,7 @@ curl 'http://api.bilibili.com/x/space/channel/video/sort'\
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />53005：频道内有失效视频 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />-404：无此项<br />53005：频道内有失效视频 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        |                                                              |
 
@@ -2182,7 +2182,7 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
 
 ### 查询用户创建的视频收藏夹
 
-> http://api.bilibili.com/x/v3/fav/folder/created/list-all 
+> http://api.bilibili.com/x/v3/fav/folder/created/list-all
 
 *请求方式：GET*
 
@@ -2304,7 +2304,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all'\
 
 ### 查询用户收藏的视频收藏夹
 
-> http://api.bilibili.com/x/v3/fav/folder/collected/list 
+> http://api.bilibili.com/x/v3/fav/folder/collected/list
 
 *请求方式：GET*
 

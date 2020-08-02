@@ -33,6 +33,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 计划整理分类&目录：（√代表已完成，x代表正在施工...）二级目录正在建设中.....
 
 - [API认证与鉴权（APP与Cookie方式）](other/API_auth.md)×
+- [公共错误码](other/errcode.md)√
 - [图片格式化](other/picture.md)√
 - [登录](login)
   - [登录操作（人机认证）](login/login_action)√
@@ -102,7 +103,10 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [小黑屋](blackroom)
   - 基本信息
   - [封禁公示](blackroom/banlist.md)√
-  - [仲裁信息](blackroom/judgement.md)√
+  - [风纪委员及众裁案件相关](blackroom/jury)
+    - [风纪委员基本信息](blackroom/jury/base_info.md)√
+    - [众裁案件基本信息](blackroom/jury/judgement_info.md)√
+    - [裁决操作](blackroom/jury/action.md)√
 - [评论区](comment)
   - [评论区明细](comment/comment_list.md)√
   - [操作](comment/action.md)√
