@@ -41,7 +41,7 @@
 | -------------- | ----------------------------- | -------------- | ------------------------------------------------------------ |
 | success_action | num                           | 0              | **作用尚不明确**                                             |
 | success_toast  | str                           | 状态文字       |                                                              |
-| need_captcha   | bool                          | false          | **作用尚不明确**                                             |
+| need_captcha   | bool                          | false          | 评论需要验证码(未证实)                                            |
 | url            | str                           | 空             | **作用尚不明确**                                             |
 | rpid           | num                           | 评论rpID       |                                                              |
 | rpid_str       | str                           | 评论rpID       | 字串格式                                                     |
