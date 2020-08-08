@@ -64,15 +64,40 @@
 
 `data`中的`articles`数组中的对象：
 
-| 字段         | 类型  | 内容           | 备注         |
-| ------------ | ----- | -------------- | ------------ |
-| id           | num   | 专栏cvID       |              |
-| title        | str   | 文章标题       |              |
-| state        | num   | 0              | 作用尚不明确 |
-| publish_time | num   | 发布时间       | 秒时间戳     |
-| words        | num   | 文章字数       |              |
-| image_urls   | array | 文章封面       |              |
-| category     | obj   | 文章标签       |              |
-| categories   | array | 文章标签列表   |              |
-| summary      | str   | 文章摘要       |              |
-| stats        | obj   | 文章状态数信息 |              |
+| 字段         | 类型  | 内容           | 备注                                                             |
+| ------------ | ----- | -------------- | ---------------------------------------------------------------- |
+| id           | num   | 专栏cvID       |                                                                  |
+| title        | str   | 文章标题       |                                                                  |
+| state        | num   | 0              | 作用尚不明确                                                     |
+| publish_time | num   | 发布时间       | 秒时间戳                                                         |
+| words        | num   | 文章字数       |                                                                  |
+| image_urls   | array | 文章封面       |                                                                  |
+| category     | obj   | 文章标签       |                                                                  |
+| categories   | array | 文章标签列表   |                                                                  |
+| summary      | str   | 文章摘要       |                                                                  |
+| stats        | obj   | 文章状态数信息 |                                                                  |
+| like_state   | num   | 是否点赞       | 0：未点赞<br />1：已点赞<br />需要登录(SESSDATA) <br />未登录为0 |
+
+`articles`数组中的对象中的`stats`：
+
+| 字段     | 类型 | 内容       | 备注 |
+| -------- | ---- | ---------- | ---- |
+| view     | num  | 阅读数     |      |
+| favorite | num  | 收藏数     |      |
+| like     | num  | 点赞数     |      |
+| dislike  | num  | 点踩数     |      |
+| reply    | num  | 评论数     |      |
+| share    | num  | 分享数     |      |
+| coin     | num  | 投币数     |      |
+| dynamic  | num  | 动态转发数 |      |
+
+`articles`数组中的对象中的`author`：
+
+| 字段            | 类型 | 内容           | 备注 |
+| --------------- | ---- | -------------- | ---- |
+| mid             | num  | 作者UID        |      |
+| name            | str  | 作者昵称       |      |
+| face            | str  | 作者头像url    |      |
+| official_verify | obj  | 作者认证信息   |      |
+| nameplate       | obj  | 作者勋章       |      |
+| vip             | obj  | 作者大会员状态 |      |
