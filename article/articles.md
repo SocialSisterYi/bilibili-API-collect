@@ -64,9 +64,15 @@
 
 `data`中的`articles`数组中的对象：
 
-| 字段         | 类型 | 内容         | 备注         |
-| ------------ | ---- | ------------ | ------------ |
-| id           | num  | 专栏cvID     |              |
-| title        | str  | 文章标题     |              |
-| state        | num  | 0            | 作用尚不明确 |
-| publish_time | num  | 发布时间     | 秒时间戳     |
+| 字段         | 类型  | 内容           | 备注         |
+| ------------ | ----- | -------------- | ------------ |
+| id           | num   | 专栏cvID       |              |
+| title        | str   | 文章标题       |              |
+| state        | num   | 0              | 作用尚不明确 |
+| publish_time | num   | 发布时间       | 秒时间戳     |
+| words        | num   | 文章字数       |              |
+| image_urls   | array | 文章封面       |              |
+| category     | obj   | 文章标签       |              |
+| categories   | array | 文章标签列表   |              |
+| summary      | str   | 文章摘要       |              |
+| stats        | obj   | 文章状态数信息 |              |
