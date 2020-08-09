@@ -96,8 +96,8 @@
 | share      | num  | 分享次数                       |              |
 | now_rank   | num  | 0                              | 作用尚不明确 |
 | his_rank   | num  | 历史最高排行                   |              |
-| like       | num  | 获赞次数                       |              |
-| dislike    | num  | 0                              | 作用尚不明确 |
+| like       | num  | 获赞次数                       ||
+| dislike    | num  | 0                              | 原为点踩计数，现已不再返回正确数据 |
 | evaluation | str  | 视频评分                       | 默认为空     |
 
 同`data`中的`dimension`对象
