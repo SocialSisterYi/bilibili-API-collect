@@ -14,7 +14,7 @@
 | ------------- | ---- | ---------- | ------------ | ------------------ |
 | aid           | num  | 视频avID   | 必要（可选） | avID与bvID任选一个 |
 | bvid          | str  | 视频bvID   | 必要（可选） | avID与bvID任选一个 |
-| edge_id       | num  | 选择序列号 | 非必要       |                    |
+| edge_id       | num  | 选择编号   | 非必要       |                    |
 | graph_version | num  | 155446     | 必要         | 作用尚不明确       |
 | platform      | str  | 平台名称   | 必要         | 电脑：pc           |
 | portal        | num  | 0          | 非必要       | 作用尚不明确       |
@@ -37,7 +37,7 @@
 | 字段        | 类型  | 内容           | 备注         |
 | ----------- | ----- | -------------- | ------------ |
 | title       | str   | 分P标题        |              |
-| edge_id     | num   | 当前选择序列号 |              |
+| edge_id     | num   | 当前选择编号   |              |
 | story_list  | array | 进度回溯条     |              |
 | edges       | obj   | 当前选择信息   |              |
 | preload     | obj   | 预加载的分P    |              |
@@ -57,7 +57,7 @@
 | 项         | 类型 | 内容          | 备注                |
 | ---------- | ---- | ------------- | ------------------- |
 | node_id    | num  | 与edge_id相等 |                     |
-| edge_id    | num  | 选择序列号    |                     |
+| edge_id    | num  | 选择编号      |                     |
 | title      | str  | 分P标题       |                     |
 | cid        | num  | 分P CID       |                     |
 | start_pos  | num  | 播放开始位置  | 毫秒单位            |
@@ -98,3 +98,28 @@
 | pause_video  | num   | 是否暂停视频    | null：否<br />1：是 |
 | title        | str   | 问题标题        |                     |
 | choices      | array | 回答列表        |                     |
+
+`data`中的`edges`对象中的`questions`数组中的对象中的`choices`数组：
+
+| 项   | 类型 | 内容        | 备注 |
+| ---- | ---- | ----------- | ---- |
+| 0    | obj  | 第一选项    |      |
+| n    | obj  | 第(n+1)选项 |      |
+| ……   | obj  | ……          | ……   |
+
+`data`中的`edges`对象中的`questions`数组中的对象中的`choices`数组中的对象：
+
+| 字段            | 类型 | 内容                      | 备注                  |
+| --------------- | ---- | ------------------------- | --------------------- |
+| id              | num  | 选项编号                  |                       |
+| platform_action | str  | 点击后跳转的分P与选项编号 | JUMP 选项编号 目标cid |
+| native_action   | str  | 点击后对变量进行的修改    | 每项间用分号隔开      |
+| condition       | str  | 选项出现条件              |                       |
+| cid             | num  | 跳转分P CID               |                       |
+| x               | num  | 选项出现的x坐标           |                       |
+| y               | num  | 选项出现的y坐标           |                       |
+| text_align      | num  | 选项文本对齐方式          | 暂不明确              |
+| option          | str  | 选项文本                  |                       |
+| is_default      | num  | 是否为默认选项            | null：否<br />1：是   |
+
+`data`中的`edges`对象中的`skin`对象：
