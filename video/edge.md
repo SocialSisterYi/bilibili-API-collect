@@ -123,3 +123,20 @@
 | is_default      | num  | 是否为默认选项            | null：否<br />1：是   |
 
 `data`中的`edges`对象中的`skin`对象：
+
+| 字段                     | 类型 | 内容             | 备注             |
+| ------------------------ | ---- | ---------------- | ---------------- |
+| choice_image             | str  | 选项组件外观链接 |                  |
+| title_text_color         | str  | 文字颜色         | 以下均为RGBA格式 |
+| title_shadow_color       | str  | 文字阴影颜色     |                  |
+| title_shadow_offset_x    | num  | 文字阴影x偏移    |                  |
+| title_shadow_offset_y    | num  | 文字阴影y偏移    |                  |
+| title_shadow_radius      | num  | 文字阴影半径     |                  |
+| progressbar_color        | str  | 倒计时条颜色     |                  |
+| progressbar_shadow_color | str  | 倒计时条阴影颜色 |                  |
+
+`data`中的`preload`对象：
+
+| 字段  | 类型  | 内容        | 备注 |
+| ----- | ----- | ----------- | ---- |
+| video | array | 预加载的分P |      |
