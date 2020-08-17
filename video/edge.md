@@ -111,8 +111,8 @@
 
 | 字段            | 类型 | 内容                      | 备注                  |
 | --------------- | ---- | ------------------------- | --------------------- |
-| id              | num  | 选项编号                  |                       |
-| platform_action | str  | 点击后跳转的分P与选项编号 | JUMP 选项编号 目标cid |
+| id              | num  | 选择编号                  |                       |
+| platform_action | str  | 点击后跳转的分P与选择编号 | JUMP 选择编号 目标cid |
 | native_action   | str  | 点击后对变量进行的修改    | 每项间用分号隔开      |
 | condition       | str  | 选项出现条件              |                       |
 | cid             | num  | 跳转分P CID               |                       |
@@ -155,3 +155,192 @@
 | ---- | ---- | -------- | ---- |
 | aid  | num  | 视频avID |      |
 | cid  | num  | 分P CID  |      |
+
+`data`中的`hidden_vars`数组：
+
+| 项   | 类型 | 内容          | 备注 |
+| ---- | ---- | ------------- | ---- |
+| 0    | obj  | 第一个变量    |      |
+| n    | obj  | 第(n+1)个变量 |      |
+| ……   | obj  | ……            | ……   |
+
+`data`中的`hidden_vars`数组中的对象：
+
+| 字段           | 类型 | 内容         | 备注                     |
+| -------------- | ---- | ------------ | ------------------------ |
+| value          | num  | 变量值       |                          |
+| id             | str  | 变量编号     |                          |
+| id_v2          | str  | 变量编号     | 语句中一般使用这种       |
+| type           | num  | 变量类型     | “随机值”变量为2，否则为1 |
+| is_show        | num  | 变量是否显示 | 0：否<br />1：是         |
+| name           | str  | 变量名       |                          |
+| skip_overwrite | num  | 0            | 作用尚不明确             |
+
+**示例：**
+
+查询互动视频`av73267982`下选择`5556092`的信息
+
+```shell
+curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
+--data-urlencode 'aid=73267982'\
+--data-urlencode 'edge_id=5556092'\
+--data-urlencode 'graph_version=155446'\
+--data-urlencode 'platform=pc'\
+-b 'SESSDATA=xxx'
+```
+
+```json
+{
+    "code": 0, 
+    "message": "0", 
+    "ttl": 1, 
+    "data": {
+        "title": "4", 
+        "edge_id": 5556092, 
+        "story_list": [
+            {
+                "node_id": 1, 
+                "edge_id": 1, 
+                "title": "0 片头", 
+                "cid": 127486603, 
+                "start_pos": 27000, 
+                "cover": "http://i0.hdslb.com/bfs/steins-gate/127486603_screenshot.jpg", 
+                "cursor": 0
+            }, 
+            {
+                "node_id": 5556092, 
+                "edge_id": 5556092, 
+                "title": "4", 
+                "cid": 125499378, 
+                "start_pos": 82000, 
+                "cover": "http://i0.hdslb.com/bfs/steins-gate/125499378_screenshot.jpg", 
+                "is_current": 1, 
+                "cursor": 15
+            }
+        ], 
+        "edges": {
+            "dimension": {
+                "width": 1920, 
+                "height": 1000, 
+                "rotate": 0, 
+                "sar": ""
+            }, 
+            "questions": [
+                {
+                    "id": 0, 
+                    "type": 2, 
+                    "start_time_r": 300, 
+                    "duration": -1, 
+                    "pause_video": 1, 
+                    "title": "", 
+                    "choices": [
+                        {
+                            "id": 5556133, 
+                            "platform_action": "JUMP 5556133 125499249", 
+                            "native_action": "", 
+                            "condition": "$H7g_64_PG2EVS>=1.00 && $H7g_64_PG2EVS<=80.00", 
+                            "cid": 125499249, 
+                            "x": 947, 
+                            "y": 499, 
+                            "text_align": 2, 
+                            "option": "A <你已成为杀手> 试图砍死萌新 (成功率20%)", 
+                            "is_default": 1
+                        }, 
+                        {
+                            "id": 5556134, 
+                            "platform_action": "JUMP 5556134 125502707", 
+                            "native_action": "", 
+                            "condition": "$H7g_64_PG2EVS>=81.00 && $H7g_64_PG2EVS<=100.00", 
+                            "cid": 125502707, 
+                            "x": 949, 
+                            "y": 502, 
+                            "text_align": 2, 
+                            "option": "B <你已成为杀手> 试图砍死萌新 (成功率20%)"
+                        }, 
+                        {
+                            "id": 5556135, 
+                            "platform_action": "JUMP 5556135 125499249", 
+                            "native_action": "", 
+                            "condition": "", 
+                            "cid": 125499249, 
+                            "x": 120, 
+                            "y": 145, 
+                            "text_align": 2, 
+                            "option": "C 直接【砍杀失败】"
+                        }
+                    ]
+                }
+            ], 
+            "skin": {
+                "choice_image": "https://i0.hdslb.com/bfs/app/db0ae7700d4fb1416c8b305bcfb6f0948f818cc9.png", 
+                "title_text_color": "d8fbffff", 
+                "title_shadow_color": "00000033", 
+                "title_shadow_offset_y": 1, 
+                "title_shadow_radius": 1, 
+                "progressbar_color": "ffffffff", 
+                "progressbar_shadow_color": "000000cc"
+            }
+        }, 
+        "preload": {
+            "video": [
+                {
+                    "aid": 73267982, 
+                    "cid": 125499249
+                }, 
+                {
+                    "aid": 73267982, 
+                    "cid": 125502707
+                }
+            ]
+        }, 
+        "hidden_vars": [
+            {
+                "value": 97, 
+                "id": "v-H7g@PG2EVS", 
+                "id_v2": "$H7g_64_PG2EVS", 
+                "type": 2, 
+                "is_show": 0, 
+                "name": "随机值", 
+                "skip_overwrite": 0
+            }, 
+            {
+                "value": 0, 
+                "id": "v-YWB6dk1oCP", 
+                "id_v2": "$YWB6dk1oCP", 
+                "type": 1, 
+                "is_show": 1, 
+                "name": "达成假结局次数", 
+                "skip_overwrite": 0
+            }, 
+            {
+                "value": 0, 
+                "id": "v-Zh4JACIiId", 
+                "id_v2": "$Zh4JACIiId", 
+                "type": 1, 
+                "is_show": 1, 
+                "name": "死亡次数", 
+                "skip_overwrite": 0
+            }, 
+            {
+                "value": 0, 
+                "id": "v-a2vplaQlsP", 
+                "id_v2": "$a2vplaQlsP", 
+                "type": 1, 
+                "is_show": 1, 
+                "name": "达成真结局次数", 
+                "skip_overwrite": 0
+            }, 
+            {
+                "value": 1, 
+                "id": "v-lMQqQ994Sk", 
+                "id_v2": "$lMQqQ994Sk", 
+                "type": 1, 
+                "is_show": 1, 
+                "name": "循环编号", 
+                "skip_overwrite": 0
+            }
+        ], 
+        "is_leaf": 0
+    }
+}
+```

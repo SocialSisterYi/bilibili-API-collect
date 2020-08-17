@@ -63,7 +63,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [TAG](video/tags.md)x
   - [视频推荐](video/recommend.md)√
   - [播放&下载地址（视频流）](video/videostream_url.md)√
-  - [互动视频](video/edge.md)x
+  - [互动视频](video/edge.md)√
   - [高能进度条](video/pbp.md)√
   - [信息上报（心跳及记录历史）](video/report.md)×
 - 番剧（影视）
