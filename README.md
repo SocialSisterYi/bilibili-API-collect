@@ -63,7 +63,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [TAG](video/tags.md)x
   - [视频推荐](video/recommend.md)√
   - [播放&下载地址（视频流）](video/videostream_url.md)√
-  - 互动视频
+  - [互动视频](video/edge.md)x
   - [高能进度条](video/pbp.md)√
   - [信息上报（心跳及记录历史）](video/report.md)×
 - 番剧（影视）
@@ -84,7 +84,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 分区
   - [基本信息](article/info.md)×
   - [点赞&投币&收藏](article/like_coin_fav.md)×
-  - 文集基本信息
+  - [文集基本信息](article/articles.md)×
 - [音频](audio)
   - [歌曲基本信息](audio/info.md)√
   - [歌单&音频收藏夹详细信息](audio/music_list.md)×
@@ -93,8 +93,8 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [播放&下载地址（音频流）](audio/musicstream_url.md)√
   - 音频榜单
 - [排行榜&最新动态](ranking&dynamic)
-  - [排行榜](ranking&dynamic/ranking.md)x
-  - [最新动态](ranking&dynamic/dynamic.md)x
+  - [排行榜](ranking&dynamic/ranking.md)×
+  - [最新动态](ranking&dynamic/dynamic.md)×
 - [搜索](search)
   - [搜索请求](search/search_request.md)√
   - [搜索结果](search/search_response.md)√
@@ -114,7 +114,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [表情及表情包信息](emote/emote_list.md)√
   - [操作](emote/action.md)√
 - [创作中心](creativecenter)
-  - [统计与数据](creativecenter/statistics&data.md)x
+  - [统计与数据](creativecenter/statistics&data.md)×
   - 列表查询相关
   - [电磁力数据](creativecenter/railgun.md)√
 - [实时广播（通讯协议）](broadcast)√
@@ -125,7 +125,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [充电留言](electric/charge_msg.md)√
   - [充电列表](electric/charge_list.md)√
 - [动态](dynamic)
-  - [发送&转载动态](dynamic/publish.md)x
+  - [发送&转载动态](dynamic/publish.md)×
   - 动态列表
   - 动态内容
   - 小视频
@@ -141,7 +141,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 操作
   - [播放&下载地址（视频流）](cheese/videostream_url.md)√
 - [直播](live)
-  - [直播间基本信息](live/info.md)x
+  - [直播间基本信息](live/info.md)×
   - [直播分区](live/live_area.md)×
   - [直播间管理](live/manage.md)×
   - 直播间操作
