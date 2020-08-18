@@ -14,7 +14,7 @@
 | ------------- | ---- | ---------- | ------------ | ------------------ |
 | aid           | num  | 视频avID   | 必要（可选） | avID与bvID任选一个 |
 | bvid          | str  | 视频bvID   | 必要（可选） | avID与bvID任选一个 |
-| edge_id       | num  | 选择编号   | 非必要       |                    |
+| edge_id       | num  | 模块编号   | 非必要       |                    |
 | graph_version | num  | 155446     | 必要         | 作用尚不明确       |
 | platform      | str  | 平台名称   | 必要         | 电脑：pc           |
 | portal        | num  | 0          | 非必要       | 作用尚不明确       |
@@ -37,9 +37,9 @@
 | 字段        | 类型  | 内容           | 备注         |
 | ----------- | ----- | -------------- | ------------ |
 | title       | str   | 分P标题        |              |
-| edge_id     | num   | 当前选择编号   |              |
+| edge_id     | num   | 当前模块编号   |              |
 | story_list  | array | 进度回溯条     |              |
-| edges       | obj   | 当前选择信息   |              |
+| edges       | obj   | 当前模块信息   |              |
 | preload     | obj   | 预加载的分P    |              |
 | hidden_vars | array | 变量列表       |              |
 | is_leaf     | num   | 0              | 作用尚不明确 |
@@ -57,7 +57,7 @@
 | 项         | 类型 | 内容          | 备注                |
 | ---------- | ---- | ------------- | ------------------- |
 | node_id    | num  | 与edge_id相等 |                     |
-| edge_id    | num  | 选择编号      |                     |
+| edge_id    | num  | 模块编号      |                     |
 | title      | str  | 分P标题       |                     |
 | cid        | num  | 分P CID       |                     |
 | start_pos  | num  | 播放开始位置  | 毫秒单位            |
@@ -89,15 +89,15 @@
 
 `data`中的`edges`对象中的`questions`数组中的对象：
 
-| 字段         | 类型  | 内容            | 备注                |
-| ------------ | ----- | --------------- | ------------------- |
-| id           | num   | 问题编号        |                     |
-| type         | num   | 2               | 作用尚不明确        |
-| start_time_r | num   | 300 或 duration | 作用尚不明确        |
-| duration     | num   | 回答限时        | 毫秒单位，不限为-1  |
-| pause_video  | num   | 是否暂停视频    | null：否<br />1：是 |
-| title        | str   | 问题标题        |                     |
-| choices      | array | 回答列表        |                     |
+| 字段         | 类型  | 内容            | 备注                    |
+| ------------ | ----- | --------------- | ----------------------- |
+| id           | num   | 模块编号        |                         |
+| type         | num   | 2               | 作用尚不明确            |
+| start_time_r | num   | 300 或 duration | 作用尚不明确            |
+| duration     | num   | 回答限时        | 不限为-1<br />5秒为5000 |
+| pause_video  | num   | 1               | 作用尚不明确            |
+| title        | str   | 空              | 作用尚不明确            |
+| choices      | array | 回答列表        |                         |
 
 `data`中的`edges`对象中的`questions`数组中的对象中的`choices`数组：
 
@@ -111,8 +111,8 @@
 
 | 字段            | 类型 | 内容                      | 备注                  |
 | --------------- | ---- | ------------------------- | --------------------- |
-| id              | num  | 选择编号                  |                       |
-| platform_action | str  | 点击后跳转的分P与选择编号 | JUMP 选择编号 目标cid |
+| id              | num  | 模块编号                  |                       |
+| platform_action | str  | 点击后跳转的分P与模块编号 | JUMP 模块编号 模块cid |
 | native_action   | str  | 点击后对变量进行的修改    | 每项间用分号隔开      |
 | condition       | str  | 选项出现条件              |                       |
 | cid             | num  | 跳转分P CID               |                       |
@@ -178,7 +178,7 @@
 
 **示例：**
 
-查询互动视频`av73267982`下选择`5556092`的信息
+查询互动视频`av73267982`下模块`5556092`的信息
 
 ```shell
 curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
