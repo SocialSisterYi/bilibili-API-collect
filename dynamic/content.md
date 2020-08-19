@@ -32,7 +32,7 @@
 | count       | num   | 直播者数量 |              |
 | group       | str   | "default"  | 作用尚不明确 |
 | items       | array | 直播者列表 |              |
-| _gt_        | num   | 0          |              |
+| _gt_        | num   | 0          | 作用尚不明确 |
 
 `data`中的`items`数组：
 
@@ -104,6 +104,41 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users'\
 ```
 
 ## 获取发布新动态的已关注者
+
+> http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist
+
+**url参数：**
+
+| 参数名         | 类型 | 内容               | 必要性 | 备注             |
+| -------------- | ---- | ------------------ | ------ | ---------------- |
+| teenagers_mode | num  | 是否开启青少年模式 | 非必要 | 否：0<br />是：1 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                    |
+| ------- | ---- | -------- | ----------------------- |
+| code    | num  | 返回值   | 0：成功<br />-6：未登录 |
+| data    | obj  | 信息本体 |                         |
+| message | str  | 错误信息 | 默认为0                 |
+| msg     | num  | 空       |                         |
+
+`data`对象：
+
+| 字段             | 类型  | 内容       | 备注         |
+| ---------------- | ----- | ---------- | ------------ |
+| button_statement | str   | 空         | 作用尚不明确 |
+| items            | array | 更新者列表 |              |
+| _gt_             | num   | 0          | 作用尚不明确 |
+
+`data`中的`items`数组：
+
+| 项   | 类型 | 内容            | 备注 |
+| ---- | ---- | --------------- | ---- |
+| 0    | obj  | 第一位更新者    |      |
+| n    | obj  | 第(n+1)位更新者 |      |
+| ……   | obj  | ……              | ……   |
 
 **示例：**
 
