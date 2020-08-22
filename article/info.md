@@ -29,9 +29,9 @@
 
 | 字段              | 类型   | 内容             | 备注                                                         |
 | ----------------- | ------ | ---------------- | ------------------------------------------------------------ |
-| like              | num    | 是否点赞         | 0：未点赞<br />1：已点赞<br />需要登录(SESSDATA) <br />未登录为0 |
-| attention         | bool   | 是否关注文章作者 | false：未关注<br />true：已关注<br />需要登录(SESSDATA) <br />未登录为false |
-| favorite          | bool   | 是否收藏         | false：未收藏<br />true：已收藏<br />需要登录(SESSDATA) <br />未登录为false |
+| like              | num    | 是否点赞         | 0：未点赞<br />1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
+| attention         | bool   | 是否关注文章作者 | false：未关注<br />true：已关注<br />需要登录(Cookie) <br />未登录为false |
+| favorite          | bool   | 是否收藏         | false：未收藏<br />true：已收藏<br />需要登录(Cookie) <br />未登录为false |
 | coin              | num    | 为文章投币数     |                                                              |
 | stats             | obj    | 状态数信息       |                                                              |
 | title             | str    | 文章标题         |                                                              |
