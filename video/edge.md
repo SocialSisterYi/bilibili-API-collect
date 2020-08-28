@@ -1,12 +1,14 @@
 # 互动视频信息
 
+注：互动视频分P与普通视频分P不互通
+
 ## 获取互动视频单P详细信息
 
 > http://api.bilibili.com/x/stein/edgeinfo_v2
 
 *请求方式：GET*
 
-认证方式：SESSDATA
+认证方式：Cookie（SESSDATA）
 
 **url参数：**
 
@@ -14,35 +16,35 @@
 | ------------- | ---- | ---------- | ------------ | ------------------ |
 | aid           | num  | 视频avID   | 必要（可选） | avID与bvID任选一个 |
 | bvid          | str  | 视频bvID   | 必要（可选） | avID与bvID任选一个 |
-| edge_id       | num  | 模块编号   | 非必要       |                    |
 | graph_version | num  | 155446     | 必要         | 作用尚不明确       |
-| platform      | str  | 平台名称   | 必要         | 电脑：pc           |
-| portal        | num  | 0          | 非必要       | 作用尚不明确       |
-| screen        | num  | 0          | 非必要       | 作用尚不明确       |
+| edge_id       | num  | 模块编号   | 非必要       |                    |
 | buvid         | str  | 位于Cookie | 非必要       | 作用尚不明确       |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                          |
-| ------- | ---- | -------- | --------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />-404：无视频 |
-| message | str  | 错误信息 | 默认为0                                       |
-| ttl     | num  | 1        |                                               |
-| data    | obj  | 信息本体 |                                               |
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />-404：无视频<br />99003：剧情图被修改已失效<br />99077：请输入aid/bvid |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
 
 `data`对象：
 
-| 字段        | 类型  | 内容           | 备注         |
-| ----------- | ----- | -------------- | ------------ |
-| title       | str   | 分P标题        |              |
-| edge_id     | num   | 当前模块编号   |              |
-| story_list  | array | 进度回溯条     |              |
-| edges       | obj   | 当前模块信息   |              |
-| preload     | obj   | 预加载的分P    |              |
-| hidden_vars | array | 变量列表       |              |
-| is_leaf     | num   | 0              | 作用尚不明确 |
+| 字段            | 类型  | 内容                | 备注                                             |
+| --------------- | ----- | ------------------- | ------------------------------------------------ |
+| title           | str   | 视频模块（分P）标题 |                                                  |
+| edge_id         | num   | 当前模块编号        |                                                  |
+| story_list      | array | 进度回溯条          | 未登录为起始项                                   |
+| edges           | obj   | 当前模块信息        |                                                  |
+| preload         | obj   | 预加载的分P         |                                                  |
+| hidden_vars     | array | 变量列表            | 无变量时不存在此项                               |
+| is_leaf         | num   | 是否为结束模块      | 0：当前模块为普通模块<br />1：当前模块为结束模块 |
+| no_tutorial     | num   | 禁止记录选择        | 1：禁止<br />非禁止时无此项                      |
+| no_backtracking | num   | 禁止进度回溯        | 1：禁止<br />非禁止时无此项                      |
+| no_evaluation   | num   | 禁止结尾评分        | 1：禁止<br />非禁止时无此项                      |
 
 `data`中的`story_list`数组：
 
@@ -54,26 +56,26 @@
 
 `story_list`数组中的对象：
 
-| 项         | 类型 | 内容          | 备注                |
-| ---------- | ---- | ------------- | ------------------- |
-| node_id    | num  | 与edge_id相等 |                     |
-| edge_id    | num  | 模块编号      |                     |
-| title      | str  | 分P标题       |                     |
-| cid        | num  | 分P CID       |                     |
-| start_pos  | num  | 播放开始位置  | 毫秒单位            |
-| cover      | str  | 分P封面       |                     |
-| is_current | num  | 是否为当前P   | null：否<br />1：是 |
-| cursor     | num  | 不定          | 作用尚不明确        |
+| 项         | 类型 | 内容                | 备注                          |
+| ---------- | ---- | ------------------- | ----------------------------- |
+| node_id    | num  | 模块编号            |                               |
+| edge_id    | num  | **同上**            |                               |
+| title      | str  | 视频模块（分P）标题 |                               |
+| cid        | num  | 视频模块（分P）CID  |                               |
+| start_pos  | num  | 记录播放开始位置    | 单位为毫秒                    |
+| cover      | str  | 分P封面url          |                               |
+| is_current | num  | 是否为当前模块      | 1：是<br />仅为当前模块时存在 |
+| cursor     | num  |                     |                               |
 
 `data`中的`edges`对象：
 
-| 字段        | 类型  | 内容          | 备注                     |
-| ----------- | ----- | ------------- | ------------------------ |
-| dimension   | obj   | 当前分P分辨率 | 有部分视频无法获取分辨率 |
-| questions   | array | 问题          |                          |
-| skin        | obj   | 问题外观      |                          |
+| 字段      | 类型  | 内容          | 备注                     |
+| --------- | ----- | ------------- | ------------------------ |
+| dimension | obj   | 当前分P分辨率 | 有部分视频无法获取分辨率 |
+| questions | array | 问题          | 结束模块无此项           |
+| skin      | obj   | 问题外观      |                          |
 
-`data`中的`edges`对象中的`dimension`对象：
+`edges`中的`dimension`对象：
 
 | 字段   | 类型 | 内容           | 备注                 |
 | ------ | ---- | -------------- | -------------------- |
@@ -81,25 +83,27 @@
 | height | num  | 当前分P 高度   |                      |
 | rotate | num  | 是否将宽高对换 | 0：正常<br />1：对换 |
 
-`data`中的`edges`对象中的`questions`数组：
+`edges`中的`questions`数组：
 
 | 项   | 类型 | 内容     | 备注 |
 | ---- | ---- | -------- | ---- |
-| 0    | obj  | 问题本体 |      |
+| 0    | obj  | 套了个娃 |      |
 
-`data`中的`edges`对象中的`questions`数组中的对象：
+`edges`中的`questions`数组中的对象：
 
-| 字段         | 类型  | 内容            | 备注                    |
-| ------------ | ----- | --------------- | ----------------------- |
-| id           | num   | 模块编号        |                         |
-| type         | num   | 2               | 作用尚不明确            |
-| start_time_r | num   | 300 或 duration | 作用尚不明确            |
-| duration     | num   | 回答限时        | 不限为-1<br />5秒为5000 |
-| pause_video  | num   | 1               | 作用尚不明确            |
-| title        | str   | 空              | 作用尚不明确            |
-| choices      | array | 回答列表        |                         |
+| 字段          | 类型  | 内容             | 备注                                                         |
+| ------------- | ----- | ---------------- | ------------------------------------------------------------ |
+| id            | num   | ？？？           |                                                              |
+| type          | num   | 选项显示模式     | 0：不显示选项<br />1：底部选项模式<br />2：坐标定点模式<br />127： |
+| start_time_r  | num   | 300 或 duration  | 作用尚不明确                                                 |
+| duration      | num   | 回答限时         | 单位为毫秒<br />不限时为`-1`                                 |
+| pause_video   | num   | 是否暂停播放视频 | 0：不暂停<br />1：暂停播放                                   |
+| title         | str   | 空               | 作用尚不明确                                                 |
+| choices       | array | 选项列表         |                                                              |
+| fade_in_time  | num   | 选项淡入时间     | 毫秒                                                         |
+| fade_out_time | num   | 选项淡出时间     | 毫秒                                                         |
 
-`data`中的`edges`对象中的`questions`数组中的对象中的`choices`数组：
+`questions`数组中的对象中的`choices`数组：
 
 | 项   | 类型 | 内容        | 备注 |
 | ---- | ---- | ----------- | ---- |
@@ -107,33 +111,36 @@
 | n    | obj  | 第(n+1)选项 |      |
 | ……   | obj  | ……          | ……   |
 
-`data`中的`edges`对象中的`questions`数组中的对象中的`choices`数组中的对象：
+`questions`数组中的对象中的`choices`数组中的对象：
 
-| 字段            | 类型 | 内容                      | 备注                  |
-| --------------- | ---- | ------------------------- | --------------------- |
-| id              | num  | 模块编号                  |                       |
-| platform_action | str  | 点击后跳转的分P与模块编号 | JUMP 模块编号 模块cid |
-| native_action   | str  | 点击后对变量进行的修改    | 每项间用分号隔开      |
-| condition       | str  | 选项出现条件              |                       |
-| cid             | num  | 跳转分P CID               |                       |
-| x               | num  | 选项出现的x坐标           |                       |
-| y               | num  | 选项出现的y坐标           |                       |
-| text_align      | num  | 选项文本对齐方式          | 暂不明确              |
-| option          | str  | 选项文本                  |                       |
-| is_default      | num  | 是否为默认选项            | null：否<br />1：是   |
+| 字段            | 类型 | 内容                 | 备注                                  |
+| --------------- | ---- | -------------------- | ------------------------------------- |
+| id              | num  | 选项所跳转的模块编号 |                                       |
+| platform_action | str  | 跳转信息文字         | JUMP+{所跳转的模块编号}+{所跳转的CID} |
+| native_action   | str  | 点击后对变量运算语句 | 每项间用分号隔开<br />无为空          |
+| condition       | str  | 选项出现条件判断语句 | 无为空                                |
+| cid             | num  | 选项所跳转分P的CID   |                                       |
+| x               | num  | 选项出现的x坐标      | 仅坐标模式有此项                      |
+| y               | num  | 选项出现的y坐标      | 仅坐标模式有此项                      |
+| text_align      | num  | 选项文本对齐方式     |                                       |
+| option          | str  | 选项文字             |                                       |
+| selected        | obj  | 选择动画信息         |                                       |
+| submited        | obj  | 提交动画信息         |                                       |
+| is_default      | num  | 是否为默认选项       | 1：是<br />非默认选项无此项           |
+| is_hidden       | num  | 是否为隐藏选项       | 1：是<br />非隐藏选项无此项           |
 
-`data`中的`edges`对象中的`skin`对象：
+`edges`中的`skin`对象：
 
-| 字段                     | 类型 | 内容             | 备注             |
-| ------------------------ | ---- | ---------------- | ---------------- |
-| choice_image             | str  | 选项组件外观链接 |                  |
-| title_text_color         | str  | 文字颜色         | 以下均为RGBA格式 |
-| title_shadow_color       | str  | 文字阴影颜色     |                  |
-| title_shadow_offset_x    | num  | 文字阴影x偏移    |                  |
-| title_shadow_offset_y    | num  | 文字阴影y偏移    |                  |
-| title_shadow_radius      | num  | 文字阴影半径     |                  |
-| progressbar_color        | str  | 倒计时条颜色     |                  |
-| progressbar_shadow_color | str  | 倒计时条阴影颜色 |                  |
+| 字段                     | 类型 | 内容                | 备注             |
+| ------------------------ | ---- | ------------------- | ---------------- |
+| choice_image             | str  | 选项组件外观图片url |                  |
+| title_text_color         | str  | 文字颜色            | 以下均为RGBA格式 |
+| title_shadow_color       | str  | 文字阴影颜色        |                  |
+| title_shadow_offset_x    | num  | 文字阴影x偏移       |                  |
+| title_shadow_offset_y    | num  | 文字阴影y偏移       |                  |
+| title_shadow_radius      | num  | 文字阴影半径        |                  |
+| progressbar_color        | str  | 倒计时条颜色        |                  |
+| progressbar_shadow_color | str  | 倒计时条阴影颜色    |                  |
 
 `data`中的`preload`对象：
 
@@ -141,15 +148,15 @@
 | ----- | ----- | ----------- | ---- |
 | video | array | 预加载的分P |      |
 
-`data`中的`preload`对象中的`video`数组：
+`preload`中的`video`数组：
 
-| 项   | 类型 | 内容            | 备注 |
-| ---- | ---- | --------------- | ---- |
-| 0    | obj  | 预加载第一项    |      |
-| n    | obj  | 预加载第(n+1)项 |      |
-| ……   | obj  | ……              | ……   |
+| 项   | 类型 | 内容            | 备注                                 |
+| ---- | ---- | --------------- | ------------------------------------ |
+| 0    | obj  | 预加载第一项    | 预加载的内容为当前所有选项的跳转视频 |
+| n    | obj  | 预加载第(n+1)项 |                                      |
+| ……   | obj  | ……              | ……                                   |
 
-`data`中的`preload`对象中的`video`数组中的对象：
+`preload`中的`video`数组中的对象：
 
 | 字段 | 类型 | 内容     | 备注 |
 | ---- | ---- | -------- | ---- |
@@ -166,15 +173,15 @@
 
 `data`中的`hidden_vars`数组中的对象：
 
-| 字段           | 类型 | 内容         | 备注                     |
-| -------------- | ---- | ------------ | ------------------------ |
-| value          | num  | 变量值       |                          |
-| id             | str  | 变量编号     |                          |
-| id_v2          | str  | 变量编号     | 语句中一般使用这种       |
-| type           | num  | 变量类型     | “随机值”变量为2，否则为1 |
-| is_show        | num  | 变量是否显示 | 0：否<br />1：是         |
-| name           | str  | 变量名       |                          |
-| skip_overwrite | num  | 0            | 作用尚不明确             |
+| 字段           | 类型 | 内容         | 备注                       |
+| -------------- | ---- | ------------ | -------------------------- |
+| value          | num  | 变量值       | 随机值为随机整数           |
+| id             | str  | 变量编号     |                            |
+| id_v2          | str  | 变量编号     | 语句中一般使用这种         |
+| type           | num  | 变量类型     | 1：普通变量<br />2：随机值 |
+| is_show        | num  | 是否展示变量 | 0：否<br />1：是           |
+| name           | str  | 变量名       |                            |
+| skip_overwrite | num  | 0            | 作用尚不明确               |
 
 **示例：**
 
