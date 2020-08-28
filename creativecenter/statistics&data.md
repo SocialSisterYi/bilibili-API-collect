@@ -573,14 +573,14 @@ curl -G 'http://member.bilibili.com/x/web/data/survey'\
 
 `data`中的`page_source`对象：
 
-| 字段          | 类型 | 内容         | 备注 |
-| ------------- | ---- | ------------ | ---- |
-| dynamic       | num  | 通过动态     |      |
-| other         | num  | 其他方式     |      |
-| related_video | num  | 通过推荐列表 |      |
-| search        | num  | 通过搜索     |      |
-| space         | num  | 空间列表播放 |      |
-| tenma         | num  | ？？？       |      |
+| 字段          | 类型 | 内容                      | 备注 |
+| ------------- | ---- | ------------------------- | ---- |
+| dynamic       | num  | 通过动态                  |      |
+| other         | num  | 其他方式                  |      |
+| related_video | num  | 通过推荐列表              |      |
+| search        | num  | 通过搜索                  |      |
+| space         | num  | 空间列表播放              |      |
+| tenma         | num  | 天马（APP推荐信息流）来源 |      |
 
 `data`中的`play_proportion`对象：
 

@@ -411,9 +411,9 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins'\
 
 `data`对象：
 
-| 字段   | 类型 | 内容  | 备注         |
-| ------ | ---- | ----- | ------------ |
-| prompt | bool | false | 作用尚不明确 |
+| 字段   | 类型 | 内容                 | 备注                    |
+| ------ | ---- | -------------------- | ----------------------- |
+| prompt | bool | 是否为未关注用户收藏 | false：否<br />true：是 |
 
 **示例：**
 

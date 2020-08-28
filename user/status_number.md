@@ -126,7 +126,11 @@ curl -G 'http://api.bilibili.com/x/space/upstat'\
 }
 ```
 
-## 订阅&投稿状态数
+## ~~订阅&投稿状态数（已弃用）~~
+
+<details>
+<summary>查看折叠内容</summary>
+
 
 > http://api.bilibili.com/x/space/navnum
 
@@ -215,6 +219,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum'\
 	}
 }
 ```
+</details>
 
 ## 投稿相簿数
 
