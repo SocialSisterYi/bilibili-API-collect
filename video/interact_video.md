@@ -2,7 +2,7 @@
 
 注：互动视频分P与普通视频分P不互通
 
-## 获取互动视频单P详细信息
+## 获取互动视频模块详细信息
 
 > http://api.bilibili.com/x/stein/edgeinfo_v2
 
@@ -12,13 +12,12 @@
 
 **url参数：**
 
-| 参数名        | 类型 | 内容       | 必要性       | 备注               |
-| ------------- | ---- | ---------- | ------------ | ------------------ |
-| aid           | num  | 视频avID   | 必要（可选） | avID与bvID任选一个 |
-| bvid          | str  | 视频bvID   | 必要（可选） | avID与bvID任选一个 |
-| graph_version | num  | 155446     | 必要         | 作用尚不明确       |
-| edge_id       | num  | 模块编号   | 非必要       |                    |
-| buvid         | str  | 位于Cookie | 非必要       | 作用尚不明确       |
+| 参数名        | 类型 | 内容     | 必要性       | 备注               |
+| ------------- | ---- | -------- | ------------ | ------------------ |
+| aid           | num  | 视频avID | 必要（可选） | avID与bvID任选一个 |
+| bvid          | str  | 视频bvID | 必要（可选） | avID与bvID任选一个 |
+| graph_version | num  | 剧情图ID | 必要         | 位于`player.so`中  |
+| edge_id       | num  | 模块编号 | 非必要       | 0或留空为起始模块  |
 
 **json回复：**
 
@@ -36,8 +35,8 @@
 | 字段            | 类型  | 内容                | 备注                                             |
 | --------------- | ----- | ------------------- | ------------------------------------------------ |
 | title           | str   | 视频模块（分P）标题 |                                                  |
-| edge_id         | num   | 当前模块编号        |                                                  |
-| story_list      | array | 进度回溯条          | 未登录为起始项                                   |
+| edge_id         | num   | 当前模块ID          |                                                  |
+| story_list      | array | 进度回溯信息        | 未登录仅有起始模块                               |
 | edges           | obj   | 当前模块信息        |                                                  |
 | preload         | obj   | 预加载的分P         |                                                  |
 | hidden_vars     | array | 变量列表            | 无变量时不存在此项                               |
@@ -48,24 +47,24 @@
 
 `data`中的`story_list`数组：
 
-| 项   | 类型 | 内容          | 备注 |
-| ---- | ---- | ------------- | ---- |
-| 0    | obj  | 回溯第一项    |      |
-| n    | obj  | 回溯第(n+1)项 |      |
-| ……   | obj  | ……            | ……   |
+| 项   | 类型 | 内容              | 备注 |
+| ---- | ---- | ----------------- | ---- |
+| 0    | obj  | 回溯第一项模块    |      |
+| n    | obj  | 回溯第(n+1)项模块 |      |
+| ……   | obj  | ……                | ……   |
 
 `story_list`数组中的对象：
 
-| 项         | 类型 | 内容                | 备注                          |
-| ---------- | ---- | ------------------- | ----------------------------- |
-| node_id    | num  | 模块编号            |                               |
-| edge_id    | num  | **同上**            |                               |
-| title      | str  | 视频模块（分P）标题 |                               |
-| cid        | num  | 视频模块（分P）CID  |                               |
-| start_pos  | num  | 记录播放开始位置    | 单位为毫秒                    |
-| cover      | str  | 分P封面url          |                               |
-| is_current | num  | 是否为当前模块      | 1：是<br />仅为当前模块时存在 |
-| cursor     | num  |                     |                               |
+| 项         | 类型 | 内容             | 备注                          |
+| ---------- | ---- | ---------------- | ----------------------------- |
+| node_id    | num  | 模块编号         |                               |
+| edge_id    | num  | **同上**         |                               |
+| title      | str  | 模块（分P）标题  |                               |
+| cid        | num  | 模块（分P）CID   |                               |
+| start_pos  | num  | 记录播放开始位置 | 单位为毫秒                    |
+| cover      | str  | 分P封面url       |                               |
+| is_current | num  | 是否为当前模块   | 1：是<br />仅为当前模块时存在 |
+| cursor     | num  | 进度序号         | 从0开始向上增长               |
 
 `data`中的`edges`对象：
 
@@ -82,6 +81,7 @@
 | width  | num  | 当前分P 宽度   |                      |
 | height | num  | 当前分P 高度   |                      |
 | rotate | num  | 是否将宽高对换 | 0：正常<br />1：对换 |
+| sar    | str  | ？？？         | 作用尚不明确         |
 
 `edges`中的`questions`数组：
 
@@ -93,8 +93,8 @@
 
 | 字段          | 类型  | 内容             | 备注                                                         |
 | ------------- | ----- | ---------------- | ------------------------------------------------------------ |
-| id            | num   | ？？？           |                                                              |
-| type          | num   | 选项显示模式     | 0：不显示选项<br />1：底部选项模式<br />2：坐标定点模式<br />127： |
+| id            | num   | ？？？           | 作用尚不明确                                                 |
+| type          | num   | 选项显示模式     | 0：不显示选项<br />1：底部选项模式<br />2：坐标定点模式<br />3：？？？<br />127：？？？ |
 | start_time_r  | num   | 300 或 duration  | 作用尚不明确                                                 |
 | duration      | num   | 回答限时         | 单位为毫秒<br />不限时为`-1`                                 |
 | pause_video   | num   | 是否暂停播放视频 | 0：不暂停<br />1：暂停播放                                   |
@@ -115,7 +115,7 @@
 
 | 字段            | 类型 | 内容                 | 备注                                  |
 | --------------- | ---- | -------------------- | ------------------------------------- |
-| id              | num  | 选项所跳转的模块编号 |                                       |
+| id              | num  | 选项所跳转的模块ID   |                                       |
 | platform_action | str  | 跳转信息文字         | JUMP+{所跳转的模块编号}+{所跳转的CID} |
 | native_action   | str  | 点击后对变量运算语句 | 每项间用分号隔开<br />无为空          |
 | condition       | str  | 选项出现条件判断语句 | 无为空                                |
@@ -185,16 +185,30 @@
 
 **示例：**
 
-查询互动视频`av73267982`下模块`5556092`的信息
+查询互动视频`av73267982`下剧情图`155446`模块`5556092`的信息
+
+avID方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
 --data-urlencode 'aid=73267982'\
---data-urlencode 'edge_id=5556092'\
 --data-urlencode 'graph_version=155446'\
---data-urlencode 'platform=pc'\
+--data-urlencode 'edge_id=5556092'\
 -b 'SESSDATA=xxx'
 ```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
+--data-urlencode 'bvid=BV1UE411y7Wy'\
+--data-urlencode 'graph_version=155446'\
+--data-urlencode 'edge_id=5556092'\
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -351,3 +365,5 @@ curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
     }
 }
 ```
+
+</details>
