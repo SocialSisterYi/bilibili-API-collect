@@ -171,7 +171,7 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 （重要的话说三遍，本人不承担任何责任）
 
-<img src="imgs/up_face.jpg" width="100" height="100">/>
+<img src="imgs/up_face.jpg" width="100" height="100">
 
 **--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 
@@ -200,6 +200,10 @@ https://github.com/Hsury/Bilibili-Toolkit
 https://github.com/whjstc/openbilibili-go-common-1
 
  https://github.com/wnstar/bili-utils
+
+ https://github.com/lovelyyoshino/Bilibili-Live-API
+
+ https://github.com/flaribbit/bilibili-manga-spider
 
 成品：
 
