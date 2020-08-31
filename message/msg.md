@@ -41,6 +41,9 @@ curl 'http://api.bilibili.com/x/msgfeed/unread'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -57,3 +60,4 @@ curl 'http://api.bilibili.com/x/msgfeed/unread'\
 }
 ```
 
+</details>

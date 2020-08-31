@@ -43,6 +43,9 @@ curl 'http://api.live.bilibili.com/room/v1/Room/update'\
 -b 'SESSDATA=xxx;bili_jct=xx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -51,6 +54,8 @@ curl 'http://api.live.bilibili.com/room/v1/Room/update'\
     "data": []
 }
 ```
+
+</details>
 
 ## 开始直播
 
@@ -150,6 +155,9 @@ curl 'http://api.live.bilibili.com/room/v1/Room/startLive'\
 -b 'SESSDATA=xxx;bili_jct=xx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -187,6 +195,8 @@ curl 'http://api.live.bilibili.com/room/v1/Room/startLive'\
     }
 }
 ```
+
+</details>
 
 
 
@@ -236,6 +246,9 @@ curl 'http://api.live.bilibili.com/room/v1/Room/stopLive'\
 -b 'SESSDATA=xxx;bili_jct=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -248,3 +261,4 @@ curl 'http://api.live.bilibili.com/room/v1/Room/stopLive'\
 }
 ```
 
+</details>

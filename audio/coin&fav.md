@@ -38,6 +38,9 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-col
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -45,6 +48,8 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-col
     "data": true
 }
 ```
+
+</details>
 
 ## 查询音频投币数
 
@@ -82,6 +87,9 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio'\
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -90,3 +98,4 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio'\
 }
 ```
 
+</details>

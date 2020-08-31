@@ -67,6 +67,9 @@
 curl 'http://api.live.bilibili.com/room/v1/Area/getList'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -204,3 +207,4 @@ curl 'http://api.live.bilibili.com/room/v1/Area/getList'
 }
 ```
 
+</details>

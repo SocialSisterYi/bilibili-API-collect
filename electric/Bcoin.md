@@ -61,6 +61,9 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -78,6 +81,8 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 }
 ```
 
+</details>
+
 当所充电池数小于20时，充电不会成功
 
 此时`data`.`status`=`-2`
@@ -91,6 +96,9 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 --data-urlencode 'csrf=xxx'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -109,6 +117,8 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 }
 ```
 
+</details>
+
 当所充电池数折合的B币数不足时，充电也不会成功
 
 此时`data`.`status`=`-4`
@@ -122,6 +132,9 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 --data-urlencode 'csrf=xxx'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -140,3 +153,4 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 }
 ```
 
+</details>

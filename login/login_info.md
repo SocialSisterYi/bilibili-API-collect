@@ -112,6 +112,9 @@ curl 'http://api.bilibili.com/nav'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -176,6 +179,8 @@ curl 'http://api.bilibili.com/nav'\
 }
 ```
 
+</details>
+
 ## 登录用户信息2（web端）（仅部分）
 
 > http://account.bilibili.com/home/userInfo
@@ -231,6 +236,9 @@ curl 'http://account.bilibili.com/home/userInfo'\
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -256,6 +264,8 @@ curl 'http://account.bilibili.com/home/userInfo'\
 	}
 }
 ```
+
+</details>
 
 ## 登录用户信息（APP端）
 
@@ -357,6 +367,9 @@ curl -G 'http://app.bilibili.com/x/v2/account/myinfo'\
 --data-urlencode 'sign=b8fb8480049c525994be6507a97ae0b6'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -406,6 +419,8 @@ curl -G 'http://app.bilibili.com/x/v2/account/myinfo'\
 }
 ```
 
+</details>
+
 
 ## 登录用户状态数（双端）
 
@@ -449,6 +464,9 @@ curl 'http://api.bilibili.com/x/web-interface/nav/stat'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -461,6 +479,8 @@ curl 'http://api.bilibili.com/x/web-interface/nav/stat'\
     }
 }
 ```
+
+</details>
 
 APP方式：
 
@@ -469,6 +489,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat'\
 --data-urlencode 'access_key=d907f51122c59599d580ade2315af971'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -482,3 +505,4 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat'\
 }
 ```
 
+</details>

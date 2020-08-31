@@ -75,6 +75,9 @@ curl 'http://member.bilibili.com/x/web/index/stat'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -159,6 +162,8 @@ curl 'http://member.bilibili.com/x/web/index/stat'\
 }
 ```
 
+</details>
+
 ## UP主专栏状态数据
 
 > http://member.bilibili.com/x/web/data/article
@@ -202,6 +207,9 @@ curl 'http://member.bilibili.com/x/web/data/article'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -223,6 +231,8 @@ curl 'http://member.bilibili.com/x/web/data/article'\
 	}
 }
 ```
+
+</details>
 
 ## 视频数据增量趋势
 
@@ -290,6 +300,9 @@ curl -G 'http://member.bilibili.com/x/web/data/pandect'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -318,6 +331,8 @@ curl -G 'http://member.bilibili.com/x/web/data/pandect'\
 	]
 }
 ```
+
+</details>
 
 ## 专栏数据增量趋势
 
@@ -383,6 +398,9 @@ curl -G 'http://member.bilibili.com/x/web/data/article/thirty'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -408,6 +426,8 @@ curl -G 'http://member.bilibili.com/x/web/data/article/thirty'\
 	}]
 }
 ```
+
+</details>
 
 ## 稿件操作来源占比情况
 
@@ -500,6 +520,9 @@ curl -G 'http://member.bilibili.com/x/web/data/survey'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -544,6 +567,8 @@ curl -G 'http://member.bilibili.com/x/web/data/survey'\
 	}
 }
 ```
+
+</details>
 
 ## 播放来源占比情况（平台及方式）
 
@@ -599,6 +624,9 @@ curl 'http://member.bilibili.com/x/web/data/playsource'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -623,6 +651,8 @@ curl 'http://member.bilibili.com/x/web/data/playsource'\
 	}
 }
 ```
+
+</details>
 
 ## 播放分布情况（粉丝与路人）
 
@@ -728,6 +758,9 @@ curl 'http://member.bilibili.com/x/web/data/playsource'\
 curl 'http://member.bilibili.com/x/web/data/base'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -845,3 +878,4 @@ curl 'http://member.bilibili.com/x/web/data/base'\
 }
 ```
 
+</details>

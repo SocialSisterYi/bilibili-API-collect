@@ -69,6 +69,9 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/create'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -81,6 +84,8 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/create'\
 	}
 }
 ```
+
+</details>
 
 ## 检查扫码支付结果
 
@@ -126,6 +131,9 @@ curl -G 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -139,6 +147,8 @@ curl -G 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status'\
 }
 ```
 
+</details>
+
 当申请到的支付二维码已扫描但未确认时，`data`.`ststus`的值为`3`
 
 ```shell
@@ -146,6 +156,9 @@ curl -G 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status'\
 --data-urlencode 'qr_token=c7cbdc47fc424cd18f2146db653597b8'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -160,6 +173,8 @@ curl -G 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status'\
 }
 ```
 
+</details>
+
 成功支付后，`data`.`ststus`的值为`1`，且`data`.`order_no`存在留言token
 
 ```shell
@@ -167,6 +182,9 @@ curl -G 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status'\
 --data-urlencode 'qr_token=c7cbdc47fc424cd18f2146db653597b8'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -182,3 +200,4 @@ curl -G 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status'\
 }
 ```
 
+</details>

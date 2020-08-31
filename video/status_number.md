@@ -51,6 +51,9 @@ curl -G 'http://api.bilibili.com/archive_stat/stat'\
 --data-urlencode 'aid=91572143'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -73,6 +76,8 @@ curl -G 'http://api.bilibili.com/archive_stat/stat'\
 	}
 }
 ```
+
+</details>
 
 ## 视频状态数2（禁python）
 
@@ -139,6 +144,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
 --data-urlencode 'bvid=BV1es411D7sW'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -164,6 +172,8 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
 }
 ```
 
+</details>
+
 当UA为`2333python2333`时，则无法访问此接口：
 
 ```shell
@@ -171,6 +181,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
 --data-urlencode 'aid=2271112'\
 -A '2333python2333'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -181,3 +194,4 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
 }
 ```
 
+</details>

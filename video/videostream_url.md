@@ -206,6 +206,9 @@ curl -G 'http://api.bilibili.com/x/player/playurl'\
 <details>
 <summary>查看响应示例：</summary>
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -252,9 +255,14 @@ curl -G 'http://api.bilibili.com/x/player/playurl'\
     }
 }
 ```
+
+</details>
 </details>
 
 **视频有分段时：**
+
+<details>
+<summary>查看响应示例：</summary>
 
 <details>
 <summary>查看响应示例：</summary>
@@ -336,6 +344,8 @@ curl -G 'http://api.bilibili.com/x/player/playurl'\
     }
 }
 ```
+
+</details>
 
 </details>
 
@@ -439,6 +449,9 @@ curl -G 'http://api.bilibili.com/x/player/playurl'\
 --data-urlencode 'fourk=1'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 <details>
 <summary>查看响应示例：</summary>
@@ -848,6 +861,8 @@ curl -G 'http://api.bilibili.com/x/player/playurl'\
     }
 }
 ```
+
+</details>
 
 </details>
 

@@ -38,6 +38,9 @@
 curl 'http://api.bilibili.com/x/web-interface/search/default'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -55,6 +58,8 @@ curl 'http://api.bilibili.com/x/web-interface/search/default'
     }
 }
 ```
+
+</details>
 
 ## 获取热搜列表（web端）
 
@@ -105,6 +110,9 @@ curl 'http://api.bilibili.com/x/web-interface/search/default'
 ```shell
 curl 'http://s.search.bilibili.com/main/hotword'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -347,3 +355,4 @@ curl 'http://s.search.bilibili.com/main/hotword'
 }
 ```
 
+</details>

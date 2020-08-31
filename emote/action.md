@@ -42,6 +42,9 @@ curl 'http://api.bilibili.com/x/emote/package/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -49,6 +52,8 @@ curl 'http://api.bilibili.com/x/emote/package/add'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 移除表情包
 
@@ -88,6 +93,9 @@ curl 'http://api.bilibili.com/x/emote/package/remove'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -96,3 +104,4 @@ curl 'http://api.bilibili.com/x/emote/package/remove'\
 }
 ```
 
+</details>

@@ -48,6 +48,9 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
 --data-urlencode 'month=2020-01'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -69,6 +72,8 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
 }
 ```
 
+</details>
+
 返回结果的 `data` 项说明这些日期有弹幕发送。若查询的月份中视频无弹幕，则 `data` 项为 `null`
 
 ```shell
@@ -78,6 +83,9 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
 --data-urlencode 'month=2019-12'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -86,6 +94,8 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
     "data": null
 }
 ```
+
+</details>
 
 ## 获取历史弹幕
 

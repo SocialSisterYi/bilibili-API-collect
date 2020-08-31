@@ -49,6 +49,9 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -211,6 +214,8 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web'\
 }
 ```
 
+</details>
+
 ## 获取指定的表情包明细
 
 > http://api.bilibili.com/x/emote/package 
@@ -258,6 +263,9 @@ curl -G 'http://api.bilibili.com/x/emote/package'\
 --data-urlencode 'ids=93'\
 --data-urlencode 'business=reply'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -499,6 +507,8 @@ curl -G 'http://api.bilibili.com/x/emote/package'\
 }
 ```
 
+</details>
+
 ## 获取所有表情包列表
 
 > http://api.bilibili.com/x/emote/setting/panel 
@@ -627,4 +637,3 @@ curl -G 'http://api.bilibili.com/x/emote/setting/panel'\
 | ----- | ---- | ------------ | ---------------- |
 | size  | num  | 表情尺寸信息 | 1：小<br />2：大 |
 | alias | str  | 简写名       | 无则无此项       |
-

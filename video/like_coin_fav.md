@@ -57,6 +57,9 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -64,6 +67,8 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like'\
 	"ttl": 1
 }
 ```
+
+</details>
 
 ### 点赞视频（APP端）
 
@@ -109,6 +114,9 @@ curl 'http://app.bilibili.com/x/v2/view/like'\
 --data-urlencode 'like=0'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -119,6 +127,8 @@ curl 'http://app.bilibili.com/x/v2/view/like'\
     }
 }
 ```
+
+</details>
 
 ### 判断视频是否被点赞（双端）
 
@@ -167,6 +177,9 @@ curl -G 'api.bilibili.com/x/web-interface/archive/has/like'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -175,6 +188,8 @@ curl -G 'api.bilibili.com/x/web-interface/archive/has/like'\
 	"data": 1
 }
 ```
+
+</details>
 
 ## 投币
 
@@ -242,6 +257,9 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -252,6 +270,8 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add'\
 	}
 }
 ```
+
+</details>
 
 ### 投币视频（APP端）
 
@@ -297,6 +317,9 @@ curl 'http://app.bilibili.com/x/v2/view/coin/add'\
 --data-urlencode 'multiply=2'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -307,6 +330,8 @@ curl 'http://app.bilibili.com/x/v2/view/coin/add'\
 	}
 }
 ```
+
+</details>
 
 ### 判断视频是否被投币（双端）
 
@@ -361,6 +386,9 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -371,6 +399,8 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins'\
 	}
 }
 ```
+
+</details>
 
 ## 收藏
 
@@ -443,6 +473,9 @@ curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal'\
 --data-urlencode 'del_media_ids='
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -452,6 +485,8 @@ curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal'\
 	"message": "success"
 }
 ```
+
+</details>
 
 ### 判断视频是否被收藏（双端）
 
@@ -506,6 +541,9 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -517,6 +555,8 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured'\
 	}
 }
 ```
+
+</details>
 
 ## 一键三连
 
@@ -582,6 +622,9 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -595,6 +638,8 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple'\
 	}
 }
 ```
+
+</details>
 
 ### 一键三连视频（APP端）
 
@@ -642,4 +687,3 @@ curl 'http://app.bilibili.com/x/v2/view/like/triple'\
 --data-urlencode 'access_key=xxx'\
 --data-urlencode 'aid=91003840'
 ```
-

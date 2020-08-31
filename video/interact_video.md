@@ -210,6 +210,9 @@ curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
 <details>
 <summary>查看响应示例：</summary>
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0, 
@@ -365,5 +368,7 @@ curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
     }
 }
 ```
+
+</details>
 
 </details>

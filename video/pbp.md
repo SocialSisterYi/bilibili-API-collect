@@ -50,6 +50,9 @@ curl -G 'http://api.bilibili.com/pbp/data'\
 --data-urlencode 'cid=3724723'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"step_sec": 3,
@@ -61,3 +64,4 @@ curl -G 'http://api.bilibili.com/pbp/data'\
 }
 ```
 
+</details>

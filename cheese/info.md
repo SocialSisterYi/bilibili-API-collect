@@ -261,6 +261,9 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season'\
 -e 'https://www.bilibili.com'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -454,6 +457,8 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season'\
 }
 ```
 
+</details>
+
 ## 获取课程分集列表
 
 > http://api.bilibili.com/pugv/view/web/ep/list 
@@ -536,6 +541,9 @@ curl -G 'http://api.bilibili.com/pugv/view/web/ep/list'\
 -b 'SESSDATA=xxx'\
 -e 'https://www.bilibili.com'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -629,3 +637,4 @@ curl -G 'http://api.bilibili.com/pugv/view/web/ep/list'\
 }
 ```
 
+</details>

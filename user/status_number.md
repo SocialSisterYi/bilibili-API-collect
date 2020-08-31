@@ -42,6 +42,9 @@ curl -G 'http://api.bilibili.com/x/relation/stat'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -56,6 +59,8 @@ curl -G 'http://api.bilibili.com/x/relation/stat'\
 	}
 }
 ```
+
+</details>
 
 ## UP主状态数
 
@@ -109,6 +114,9 @@ curl -G 'http://api.bilibili.com/x/space/upstat'\
 --data-urlencode 'mid=456664753'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -125,6 +133,8 @@ curl -G 'http://api.bilibili.com/x/space/upstat'\
 	}
 }
 ```
+
+</details>
 
 ## ~~订阅&投稿状态数（已弃用）~~
 
@@ -193,6 +203,9 @@ curl -G 'http://api.bilibili.com/x/space/navnum'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -219,6 +232,8 @@ curl -G 'http://api.bilibili.com/x/space/navnum'\
 	}
 }
 ```
+
+</details>
 </details>
 
 ## 投稿相簿数
@@ -262,6 +277,9 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count'\
 --data-urlencode 'uid=53456'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -276,3 +294,4 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count'\
 }
 ```
 
+</details>

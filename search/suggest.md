@@ -91,6 +91,9 @@ curl -G 'http://s.search.bilibili.com/main/suggest'\
 --data-urlencode 'highlight='
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -175,3 +178,4 @@ curl -G 'http://s.search.bilibili.com/main/suggest'\
 }
 ```
 
+</details>

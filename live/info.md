@@ -47,6 +47,9 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
 --data-urlencode 'mid=322892'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -67,3 +70,4 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
 }
 ```
 
+</details>

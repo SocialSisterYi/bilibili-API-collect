@@ -66,6 +66,9 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/url'\
 --data-urlencode 'sid=sid=15664'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -86,6 +89,8 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/url'\
     }
 }
 ```
+
+</details>
 
 ## 获取音频流URL（可获取付费音频）（双端）
 
@@ -190,6 +195,9 @@ curl -G 'http://api.bilibili.com/audio/music-service-c/url
 --data-urlencode 'mid=293793435'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -247,6 +255,8 @@ curl -G 'http://api.bilibili.com/audio/music-service-c/url
     }
 }
 ```
+
+</details>
 
 ## 音频流的获取
 

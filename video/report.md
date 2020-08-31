@@ -59,6 +59,9 @@ curl 'http://api.bilibili.com/x/v2/history/report'\
 ```
 
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -66,6 +69,8 @@ curl 'http://api.bilibili.com/x/v2/history/report'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 上报视频播放心跳（web端）
 
@@ -127,6 +132,9 @@ curl 'api.bilibili.com/x/click-interface/web/heartbeat'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -135,3 +143,4 @@ curl 'api.bilibili.com/x/click-interface/web/heartbeat'\
 }
 ```
 
+</details>

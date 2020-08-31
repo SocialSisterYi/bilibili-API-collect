@@ -107,6 +107,9 @@ curl -G 'http://api.bilibili.com/x/space/acc/info'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -158,6 +161,8 @@ curl -G 'http://api.bilibili.com/x/space/acc/info'\
 	}
 }
 ```
+
+</details>
 
 **查询到的信息解析如下：**
 
@@ -341,6 +346,9 @@ curl -G 'api.bilibili.com/x/web-interface/card'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -416,6 +424,8 @@ curl -G 'api.bilibili.com/x/web-interface/card'\
 	}
 }
 ```
+
+</details>
 
 ## 本用户详细信息
 
@@ -527,6 +537,9 @@ curl -G 'api.bilibili.com/x/space/myinfo'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -594,3 +607,4 @@ curl -G 'api.bilibili.com/x/space/myinfo'\
 }
 ```
 
+</details>

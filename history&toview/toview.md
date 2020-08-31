@@ -52,6 +52,9 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -59,6 +62,8 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 添加频道中所有视频到稍后再看
 
@@ -104,12 +109,17 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView'\
 -e 'https://www.bilibili.com'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "status": true,
     "data": "操作成功"
 }
 ```
+
+</details>
 
 ## 获取稍后再看视频列表
 
@@ -245,6 +255,9 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView'\
 curl 'http://api.bilibili.com/x/v2/history/toview'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
  "code": 0,
@@ -390,6 +403,8 @@ curl 'http://api.bilibili.com/x/v2/history/toview'\
 }
 ```
 
+</details>
+
 ## 删除稍后再看视频
 
 > http://api.bilibili.com/x/v2/history/toview/del
@@ -427,6 +442,9 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -434,6 +452,8 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del'\
     "ttl": 1
 }
 ```
+
+</details>
 
 删除所有已观看的视频
 
@@ -444,6 +464,9 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -451,6 +474,8 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 清空稍后再看视频列表
 
@@ -486,6 +511,9 @@ curl 'http://api.bilibili.com/x/v2/history/toview/clear'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -493,3 +521,5 @@ curl 'http://api.bilibili.com/x/v2/history/toview/clear'\
     "ttl": 1
 }
 ```
+
+</details>

@@ -92,6 +92,9 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list'\
 
 共计创建了两个歌单，如下
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -162,6 +165,8 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list'\
     }
 }
 ```
+
+</details>
 
 ## 查询音频收藏夹（默认歌单）信息
 
@@ -235,6 +240,9 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/info'\
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -277,5 +285,6 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/info'\
 }
 ```
 
+</details>
 
 

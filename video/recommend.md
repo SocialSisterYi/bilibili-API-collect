@@ -57,6 +57,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/related'\
 --data-urlencode 'bvid=BV1xx411c7m9'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -284,3 +287,4 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/related'\
 }
 ```
 
+</details>

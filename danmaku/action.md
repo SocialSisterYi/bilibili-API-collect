@@ -65,6 +65,9 @@ curl 'http://api.bilibili.com/x/v2/dm/post'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -78,6 +81,8 @@ curl 'http://api.bilibili.com/x/v2/dm/post'\
     }
 }
 ```
+
+</details>
 
 ## 撤回弹幕
 
@@ -119,12 +124,17 @@ curl 'http://api.bilibili.com/x/dm/recall'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
     "message": "撤回成功，你还有3次撤回机会"
 }
 ```
+
+</details>
 
 ## 购买高级弹幕发送权限
 
@@ -166,12 +176,17 @@ curl 'http://api.bilibili.com/x/dm/adv/buy'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
     "message":"已成功购买"
 }
 ```
+
+</details>
 
 ## 检测高级弹幕发送权限
 
@@ -221,6 +236,9 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -235,3 +253,4 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state'\
 }
 ```
 
+</details>

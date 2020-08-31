@@ -117,6 +117,9 @@ curl -G 'http://api.bilibili.com/x/space/top/arc'\
 --data-urlencode 'vmid=23215368'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -182,6 +185,8 @@ curl -G 'http://api.bilibili.com/x/space/top/arc'\
 }
 ```
 
+</details>
+
 #### 设置置顶视频
 
 > http://api.bilibili.com/x/space/top/arc/set
@@ -229,6 +234,9 @@ curl 'http://api.bilibili.com/x/space/top/arc/set'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -236,6 +244,8 @@ curl 'http://api.bilibili.com/x/space/top/arc/set'\
     "ttl": 1
 }
 ```
+
+</details>
 
 #### 取消置顶视频
 
@@ -269,6 +279,9 @@ curl 'http://api.bilibili.com/x/space/top/arc/cancel'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -276,6 +289,8 @@ curl 'http://api.bilibili.com/x/space/top/arc/cancel'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ### 代表作视频
 
@@ -326,6 +341,9 @@ curl 'http://api.bilibili.com/x/space/top/arc/cancel'\
 curl -G 'http://api.bilibili.com/x/space/masterpiece'\
 --data-urlencode 'vmid=23215368'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -505,6 +523,8 @@ curl -G 'http://api.bilibili.com/x/space/masterpiece'\
 }
 ```
 
+</details>
+
 #### 添加代表作视频
 
 > http://api.bilibili.com/x/space/masterpiece/add
@@ -556,6 +576,9 @@ curl 'http://api.bilibili.com/x/space/masterpiece/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -563,6 +586,8 @@ curl 'http://api.bilibili.com/x/space/masterpiece/add'\
     "ttl": 1
 }
 ```
+
+</details>
 
 #### 删除代表作视频
 
@@ -672,6 +697,9 @@ curl -G 'http://api.bilibili.com/x/space/acc/tags'\
 --data-urlencode 'mid=53456'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -691,6 +719,8 @@ curl -G 'http://api.bilibili.com/x/space/acc/tags'\
     ]
 }
 ```
+
+</details>
 
 #### 修改个人TAG
 
@@ -730,6 +760,9 @@ curl 'http://api.bilibili.com/x/space/acc/tags/set'\
 -b 'SESSDATA=xxx;DedeUserID=1'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -737,6 +770,8 @@ curl 'http://api.bilibili.com/x/space/acc/tags/set'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ### 空间公告
 
@@ -772,6 +807,9 @@ curl -G 'http://api.bilibili.com/x/space/notice'\
 --data-urlencode 'mid=53456'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -780,6 +818,8 @@ curl -G 'http://api.bilibili.com/x/space/notice'\
     "data":"我的微博 @_warma_\n直播录像上传到：warma养鸽场\n头像画师是：微博@Dr-H_喵_\n横幅画师：@薬屋"
 }
 ```
+
+</details>
 
 #### 修改空间公告
 
@@ -817,6 +857,9 @@ curl 'http://api.bilibili.com/x/space/notice/set'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -824,6 +867,8 @@ curl 'http://api.bilibili.com/x/space/notice/set'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ### 主页板块布局与权限
 
@@ -893,11 +938,16 @@ curl 'http://space.bilibili.com/ajax/settings/setIndexOrder'\
 -e 'https://www.bilibili.com'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "status": true
 }
 ```
+
+</details>
 
 #### 修改空间隐私权限
 
@@ -942,11 +992,16 @@ curl 'http://space.bilibili.com/ajax/settings/setPrivacy'\
 -e 'https://www.bilibili.com'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "status": true
 }
 ```
+
+</details>
 
 ### 查询用户最近玩过的游戏
 
@@ -996,6 +1051,9 @@ curl -G 'http://api.bilibili.com/x/space/lastplaygame'\
 --data-urlencode 'mid=2 '
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -1030,6 +1088,8 @@ curl -G 'http://api.bilibili.com/x/space/lastplaygame'\
     ]
 }
 ```
+
+</details>
 
 ## 投稿
 
@@ -1144,6 +1204,9 @@ curl -G 'http://api.bilibili.com/x/space/arc/search'\
 --data-urlencode 'pn=1'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -1224,6 +1287,8 @@ curl -G 'http://api.bilibili.com/x/space/arc/search'\
 }
 ```
 
+</details>
+
 ### 查询用户投稿相簿预览
 
 > http://api.bilibili.com/x/space/album/index
@@ -1299,6 +1364,9 @@ curl -G 'http://api.bilibili.com/x/space/album/index'\
 --data-urlencode 'ps=2'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -1347,6 +1415,8 @@ curl -G 'http://api.bilibili.com/x/space/album/index'\
 	}]
 }
 ```
+
+</details>
 
 ### 查询用户投稿相簿明细
 
@@ -1431,6 +1501,9 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list'\
 --data-urlencode 'biz=all'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -1486,6 +1559,8 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list'\
 	}
 }
 ```
+
+</details>
 
 ## 频道
 
@@ -1550,6 +1625,9 @@ curl -G 'http://api.bilibili.com/x/space/channel/list'\
 --data-urlencode 'mid=53456'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -1609,6 +1687,8 @@ curl -G 'http://api.bilibili.com/x/space/channel/list'\
 	}
 }
 ```
+
+</details>
 
 
 
@@ -1689,6 +1769,9 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 --data-urlencode 'ps=2'\
 --data-urlencode 'pn=1'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -1826,6 +1909,8 @@ curl -G 'http://api.bilibili.com/x/space/channel/video'\
 }
 ```
 
+</details>
+
 ### 创建频道
 
 > http://api.bilibili.com/x/space/channel/add
@@ -1873,6 +1958,9 @@ curl 'http://api.bilibili.com/x/space/channel/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -1883,6 +1971,8 @@ curl 'http://api.bilibili.com/x/space/channel/add'\
     }
 }
 ```
+
+</details>
 
 ### 修改频道
 
@@ -1924,6 +2014,9 @@ curl 'http://api.bilibili.com/x/space/channel/edit'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -1931,6 +2024,8 @@ curl 'http://api.bilibili.com/x/space/channel/edit'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ### 删除频道
 
@@ -1968,6 +2063,9 @@ curl 'http://api.bilibili.com/x/space/channel/del'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -1975,6 +2073,8 @@ curl 'http://api.bilibili.com/x/space/channel/del'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ### 频道添加视频
 
@@ -2029,6 +2129,9 @@ curl 'http://api.bilibili.com/x/space/channel/video/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -2037,6 +2140,8 @@ curl 'http://api.bilibili.com/x/space/channel/video/add'\
     "data": []
 }
 ```
+
+</details>
 
 ### 频道删除视频
 
@@ -2078,6 +2183,9 @@ curl 'http://api.bilibili.com/x/space/channel/video/del'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -2085,6 +2193,8 @@ curl 'http://api.bilibili.com/x/space/channel/video/del'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ### 调整频道视频排序
 
@@ -2126,6 +2236,9 @@ curl 'http://api.bilibili.com/x/space/channel/video/sort'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -2133,6 +2246,8 @@ curl 'http://api.bilibili.com/x/space/channel/video/sort'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ### 检查频道中有无失效视频
 
@@ -2168,6 +2283,9 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -2175,6 +2293,8 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 收藏
 
@@ -2250,6 +2370,9 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -2301,6 +2424,8 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all'\
 	}
 }
 ```
+
+</details>
 
 ### 查询用户收藏的视频收藏夹
 
@@ -2387,6 +2512,9 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/collected/list'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -2436,6 +2564,8 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/collected/list'\
 	}
 }
 ```
+
+</details>
 
 ## 订阅
 
@@ -2511,6 +2641,9 @@ curl -G 'http://space.bilibili.com/ajax/Bangumi/getList'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"status": true,
@@ -2547,6 +2680,8 @@ curl -G 'http://space.bilibili.com/ajax/Bangumi/getList'\
 	}
 }
 ```
+
+</details>
 
 ### 查询用户追番（追剧）明细
 
@@ -2611,6 +2746,9 @@ curl -G 'http://api.bilibili.com/x/space/bangumi/follow/list'\
 --data-urlencode 'pn=1'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -2803,6 +2941,8 @@ curl -G 'http://api.bilibili.com/x/space/bangumi/follow/list'\
 }
 ```
 
+</details>
+
 
 
 
@@ -2873,6 +3013,9 @@ curl -G 'http://space.bilibili.com/ajax/tags/getSubList'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"status": true,
@@ -2899,3 +3042,4 @@ curl -G 'http://space.bilibili.com/ajax/tags/getSubList'\
 }
 ```
 
+</details>

@@ -222,6 +222,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/view'\
 --data-urlencode 'bvid=BV117411r7R1'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -345,6 +348,8 @@ curl -G 'http://api.bilibili.com/x/web-interface/view'\
 }
 ```
 
+</details>
+
 可得出视频封面为：**（可用于封面提取）**
 
 http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
@@ -401,6 +406,9 @@ curl -G 'http://api.bilibili.com/x/archive/desc'\
 --data-urlencode 'bvid=BV1Bt411z799'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -409,6 +417,8 @@ curl -G 'http://api.bilibili.com/x/archive/desc'\
 	"data": "1.小朋友们大家好，我是你们爷爷最喜欢的超威一列姆！\r\n2.在过去的一年里，我创作了无数脍炙人口的歌曲，常常被人夸赞高产似雌豚。\r\n3.接下来的日子里我会一如既往地勤勉创作，争取继续保持现在的产量，文体两开花。\r\n4.我感觉照这个势头和速度下去别说日常更新不在话下，连出张新专辑都指日可待了啊。\r\n5.也感谢你们一如既往的支持和鼓励，我会注意身体，不把自己累垮掉的。\r\n6.我个人不建议你们在评论区里艾特任何UP主，我真的不建议，当然你们非要这么做我也没办法的。"
 }
 ```
+
+</details>
 
 
 
@@ -483,6 +493,9 @@ curl -G 'http://api.bilibili.com/x/player/pagelist'\
 --data-urlencode 'bvid=BV1ex411J7GE'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -546,5 +559,6 @@ curl -G 'http://api.bilibili.com/x/player/pagelist'\
 }
 ```
 
+</details>
 
 

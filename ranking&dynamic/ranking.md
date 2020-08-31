@@ -51,6 +51,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/ranking/region'\
 --data-urlencode 'day=3'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -423,3 +426,4 @@ curl -G 'http://api.bilibili.com/x/web-interface/ranking/region'\
 }
 ```
 
+</details>

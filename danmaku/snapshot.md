@@ -52,6 +52,9 @@ curl -G 'http://api.bilibili.com/x/v2/dm/ajax'\
 --data-urlencode 'aid=BV1rb411m7gE'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -82,3 +85,4 @@ curl -G 'http://api.bilibili.com/x/v2/dm/ajax'\
 }
 ```
 
+</details>

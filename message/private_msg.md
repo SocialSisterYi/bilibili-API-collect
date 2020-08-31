@@ -38,6 +38,9 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -50,6 +53,8 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread'\
 	}
 }
 ```
+
+</details>
 
 ## 发送私信（web端）
 
@@ -138,6 +143,9 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -149,6 +157,8 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg'\
     }
 }
 ```
+
+</details>
 
 给目标用户`UID=1`发一条图片私信：
 
@@ -165,6 +175,9 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -177,3 +190,4 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg'\
 }
 ```
 
+</details>

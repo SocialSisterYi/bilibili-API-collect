@@ -131,6 +131,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -337,6 +340,8 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 }
 ```
 
+</details>
+
 ## 获取全部视频历史记录（旧）
 
 > http://api.bilibili.com/x/v2/history
@@ -517,6 +522,9 @@ curl -G 'http://api.bilibili.com/x/v2/history'\
 --data-urlencode 'pn=1'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -705,6 +713,8 @@ curl -G 'http://api.bilibili.com/x/v2/history'\
 }
 ```
 
+</details>
+
 ## 删除历史记录
 
 > http://api.bilibili.com/x/v2/history/delete
@@ -741,6 +751,9 @@ curl 'http://api.bilibili.com/x/v2/history/delete'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -748,6 +761,8 @@ curl 'http://api.bilibili.com/x/v2/history/delete'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 清空历史记录
 
@@ -783,6 +798,9 @@ curl 'http://api.bilibili.com/x/v2/history/clear'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -790,6 +808,8 @@ curl 'http://api.bilibili.com/x/v2/history/clear'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 停用历史记录
 
@@ -829,6 +849,9 @@ curl 'http://api.bilibili.com/x/v2/history/shadow/set'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -836,6 +859,8 @@ curl 'http://api.bilibili.com/x/v2/history/shadow/set'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 查询历史记录停用状态
 
@@ -865,6 +890,9 @@ curl 'http://api.bilibili.com/x/v2/history/shadow'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -874,3 +902,4 @@ curl 'http://api.bilibili.com/x/v2/history/shadow'\
 }
 ```
 
+</details>

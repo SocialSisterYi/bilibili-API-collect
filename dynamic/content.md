@@ -60,6 +60,9 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -102,6 +105,8 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users'\
     }
 }
 ```
+
+</details>
 
 ## 获取发布新动态的已关注者
 
@@ -146,6 +151,9 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users'\
 curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -1018,3 +1026,5 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist'\
     }
 }
 ```
+
+</details>

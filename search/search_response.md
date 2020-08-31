@@ -46,6 +46,9 @@
 
 **示例：**
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "type": "video",
@@ -83,6 +86,8 @@
     "rank_score": 109020056
 }
 ```
+
+</details>
 
 ## 对象类型2-结果为番剧&影视
 
@@ -204,6 +209,9 @@
 
 **示例：**
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "media_id": 28224080,
@@ -308,6 +316,8 @@
 },
 ```
 
+</details>
+
 ## 对象类型3-结果为直播间
 
 | 字段        | 类型  | 内容           | 备注                                      |
@@ -343,6 +353,9 @@
 
 **示例：**
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "rank_offset": 1,
@@ -370,6 +383,8 @@
     "attentions": 317864
 }
 ```
+
+</details>
 
 ## 对象类型4-结果为主播
 
@@ -400,6 +415,9 @@
 
 **示例：**
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "rank_offset": 1,
@@ -421,6 +439,8 @@
     "attentions": 2570790
 }
 ```
+
+</details>
 
 ## 对象类型5-结果为专栏
 
@@ -453,6 +473,9 @@
 
 **示例：**
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "pub_time": 1582123245,
@@ -475,6 +498,8 @@
     "category_name": "动漫杂谈"
 }
 ```
+
+</details>
 
 ## 对象类型6-结果为话题
 
@@ -510,6 +535,9 @@
 
 **示例：**
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "description": "「Bad Apple」的各式各样的PV有很多很多，小编在这里给大家推荐一些比较特别且高人气的特别PV......",
@@ -535,6 +563,8 @@
     "rank_score": 1851888
 }
 ```
+
+</details>
 
 ## 对象类型7-结果为用户
 
@@ -600,6 +630,9 @@
 | ……   | str  | ……              | ……                       |
 
 **示例：**
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -676,6 +709,8 @@
 }
 ```
 
+</details>
+
 ## 对象类型8-结果为相簿
 
 | 字段        | 类型  | 内容           | 备注             |
@@ -704,6 +739,9 @@
 
 **示例：**
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "count": 4,
@@ -723,3 +761,5 @@
     "rank_score": 25315
 }
 ```
+
+</details>

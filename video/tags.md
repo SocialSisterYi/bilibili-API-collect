@@ -83,6 +83,9 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -197,6 +200,8 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
 }
 ```
 
+</details>
+
 ## 点赞&取消点赞视频TAG
 
 > http://api.bilibili.com/x/tag/archive/like2
@@ -237,6 +242,9 @@ curl 'http://api.bilibili.com/x/tag/archive/like2'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -244,6 +252,8 @@ curl 'http://api.bilibili.com/x/tag/archive/like2'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 点踩&取消点踩视频TAG
 
@@ -285,6 +295,9 @@ curl 'http://pi.bilibili.com/x/tag/archive/hate2'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -293,3 +306,4 @@ curl 'http://pi.bilibili.com/x/tag/archive/hate2'\
 }
 ```
 
+</details>

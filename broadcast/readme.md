@@ -66,6 +66,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers'\
 --data-urlencode 'platform=web'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -89,12 +92,17 @@ curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers'\
 }
 ```
 
+</details>
+
 当`platform`=其他时，显示节点ip
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers'\
 --data-urlencode 'platform=1'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -118,6 +126,8 @@ curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers'\
 	}
 }
 ```
+
+</details>
 
 ## 服务器数据包
 
@@ -170,6 +180,5 @@ curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers'\
 00000000  00 00 00 16 00 12 00 01  00 00 00 07 00 00 00 01  |................|
 00000010  00 00 74 65 73 74                                 |..test|
 ```
-
 
 

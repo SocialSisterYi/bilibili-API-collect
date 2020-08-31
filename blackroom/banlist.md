@@ -127,6 +127,9 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list'\
 --data-urlencode 'pn=1'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -190,6 +193,8 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list'\
 }
 ```
 
+</details>
+
 ## 封禁处理公示详情
 
 > http://api.bilibili.com/x/credit/blocked/info
@@ -252,6 +257,9 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/info'\
 --data-urlencode 'id=1091621'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -287,3 +295,4 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/info'\
 }
 ```
 
+</details>

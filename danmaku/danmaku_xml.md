@@ -137,4 +137,3 @@ curl 'http://comment.bilibili.com/144541892.xml'
 | <font color="#222222">黑色</font> | <font color="#222222">222222</font> | <font color="#222222">2236962</font>  |
 | <font color="#9B9B9B">灰色</font> | <font color="#9B9B9B">9B9B9B</font> | <font color="#9B9B9B">10197915</font> |
 | <font color="#FFFFFF">白色</font> | <font color="#FFFFFF">FFFFFF</font> | <font color="#FFFFFF">16777215</font> |
-

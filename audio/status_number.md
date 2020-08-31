@@ -43,6 +43,9 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/stat/song'\
 --data-urlencode 'sid=15664'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -57,3 +60,4 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/stat/song'\
 }
 ```
 
+</details>

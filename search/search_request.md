@@ -177,6 +177,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -568,6 +571,8 @@ curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2'\
 }
 ```
 
+</details>
+
 
 
 ## 分类搜索（web端）
@@ -702,6 +707,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/search/type'\
 --data-urlencode 'page=1'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -1425,3 +1433,4 @@ curl -G 'http://api.bilibili.com/x/web-interface/search/type'\
 }
 ```
 
+</details>

@@ -72,6 +72,9 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do'\
 --data-urlencode 'mid=53456'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -131,6 +134,8 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do'\
     }
 }
 ```
+
+</details>
 
 ## 获取视频充电鸣谢名单
 
@@ -227,6 +232,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/elec/show'\
 --data-urlencode 'mid=53456'\
 --data-urlencode 'bvid=BV1up4y1y77i '
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -357,3 +365,4 @@ curl -G 'http://api.bilibili.com/x/web-interface/elec/show'\
 }
 ```
 
+</details>

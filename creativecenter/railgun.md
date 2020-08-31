@@ -38,6 +38,9 @@ curl 'http://member.bilibili.com/x/web/elec/user'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -50,6 +53,8 @@ curl 'http://member.bilibili.com/x/web/elec/user'\
     }
 }
 ```
+
+</details>
 
 ## 获取电磁力详细数值（双端）
 
@@ -111,6 +116,9 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary'\
 --data-urlencode 'access_key=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -145,6 +153,8 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary'\
     }
 }
 ```
+
+</details>
 
 ## 获取电磁力数值历史变化（双端）
 
@@ -225,6 +235,9 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/history'\
 --data-urlencode 'access_key=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -255,3 +268,4 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/history'\
 }
 ```
 
+</details>

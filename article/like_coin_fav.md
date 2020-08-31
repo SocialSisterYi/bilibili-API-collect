@@ -42,6 +42,9 @@ curl 'http://api.bilibili.com/x/article/like'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -49,6 +52,8 @@ curl 'http://api.bilibili.com/x/article/like'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 投币文章
 
@@ -99,6 +104,9 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -109,6 +117,8 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add'\
     }
 }
 ```
+
+</details>
 
 ## 收藏文章
 
@@ -148,6 +158,9 @@ curl 'http://api.bilibili.com/x/article/favorites/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -156,3 +169,4 @@ curl 'http://api.bilibili.com/x/article/favorites/add'\
 }
 ```
 
+</details>

@@ -41,6 +41,9 @@ curl 'http://api.bilibili.com/x/member/web/account'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -58,6 +61,8 @@ curl 'http://api.bilibili.com/x/member/web/account'\
     }
 }
 ```
+
+</details>
 
 ## 查询每日奖励状态
 
@@ -98,6 +103,9 @@ curl 'http://api.bilibili.com/x/member/web/exp/reward'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -115,6 +123,8 @@ curl 'http://api.bilibili.com/x/member/web/exp/reward'\
     }
 }
 ```
+
+</details>
 
 ## 查询大会员状态
 
@@ -153,6 +163,9 @@ curl 'http://api.bilibili.com/x/vip/web/user/info'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -168,6 +181,8 @@ curl 'http://api.bilibili.com/x/vip/web/user/info'\
     }
 }
 ```
+
+</details>
 
 ## 查询账号安全情况
 
@@ -239,6 +254,9 @@ curl 'http://passport.bilibili.com/web/site/user/info'\
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -267,6 +285,8 @@ curl 'http://passport.bilibili.com/web/site/user/info'\
     }
 }
 ```
+
+</details>
 
 ## 查询账号实名认证状态
 
@@ -302,6 +322,9 @@ curl 'http://api.bilibili.com/x/member/realname/status'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -312,6 +335,8 @@ curl 'http://api.bilibili.com/x/member/realname/status'\
     }
 }
 ```
+
+</details>
 
 ## 查询实名认证详细信息
 
@@ -347,6 +372,9 @@ curl 'http://api.bilibili.com/x/member/realname/apply/status'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -361,6 +389,8 @@ curl 'http://api.bilibili.com/x/member/realname/apply/status'\
     }
 }
 ```
+
+</details>
 
 ## 查询硬币变化情况
 
@@ -412,6 +442,9 @@ curl 'http://api.bilibili.com/x/member/realname/apply/status'\
 curl 'http://api.bilibili.com/x/member/web/coin/log'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -491,6 +524,8 @@ curl 'http://api.bilibili.com/x/member/web/coin/log'\
 }
 ```
 
+</details>
+
 ## 修改个人签名
 
 > http://api.bilibili.com/x/member/web/sign/update
@@ -529,6 +564,9 @@ curl 'http://api.bilibili.com/x/member/web/sign/update'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -537,5 +575,6 @@ curl 'http://api.bilibili.com/x/member/web/sign/update'\
 }
 ```
 
+</details>
 
 

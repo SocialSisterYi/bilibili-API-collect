@@ -150,6 +150,9 @@ curl -G 'http://api.bilibili.com/pugv/player/web/playurl'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -238,6 +241,8 @@ curl -G 'http://api.bilibili.com/pugv/player/web/playurl'\
     "message": "success"
 }
 ```
+
+</details>
 
 
 

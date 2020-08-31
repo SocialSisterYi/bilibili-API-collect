@@ -41,12 +41,17 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
 --data-urlencode 'nickName=xijinping'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":40002,
     "message":"昵称包含敏感信息"
 }
 ```
+
+</details>
 
 查询昵称 `//` 是否被使用：
 
@@ -55,12 +60,17 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
 --data-urlencode 'nickName=//'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 40004,
     "message": "昵称不可包含除-和_以外的特殊字符"
 }
 ```
+
+</details>
 
 查询昵称 `test0000000000000 ` 是否被使用：
 
@@ -69,12 +79,17 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
 --data-urlencode 'nickName=test0000000000000 '
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 40005,
     "message": "昵称过长"
 }
 ```
+
+</details>
 
 查询昵称 `0` 是否被使用：
 
@@ -83,12 +98,17 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
 --data-urlencode 'nickName=0'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 40006,
     "message": "昵称过短"
 }
 ```
+
+</details>
 
 查询昵称 `test` 是否被使用：
 
@@ -97,6 +117,9 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
 --data-urlencode 'nickName=test'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code":40014,
@@ -104,3 +127,4 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname'\
 }
 ```
 
+</details>

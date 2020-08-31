@@ -179,6 +179,9 @@ curl -G 'http://api.bilibili.com/x/v2/reply'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -2342,6 +2345,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply'\
 }
 ```
 
+</details>
+
 
 
 ## 获取评论区明细2(APP端)（带有楼层号 ）
@@ -2511,6 +2516,9 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main'\
 --data-urlencode 'ps=5'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -4718,6 +4726,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main'\
 }
 ```
 
+</details>
+
 
 
 ## 获取指定评论条目及二级回复明细1（web端）（分离结构 无楼层号）
@@ -4811,6 +4821,9 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply'\
 --data-urlencode 'pn=1'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -5450,6 +5463,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply'\
 }
 ```
 
+</details>
+
 
 
 ## 获取指定评论条目及二级回复明细2（APP端）（嵌套结构 带有楼层号）
@@ -5553,6 +5568,9 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail'\
 --data-urlencode 'next=0'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -6203,6 +6221,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail'\
 }
 ```
 
+</details>
+
 ## 获取指定评论对话树（APP端）（带有楼层）
 
 > http://api.bilibili.com/x/v2/reply/dialog/cursor
@@ -6318,6 +6338,9 @@ curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor'\
 --data-urlencode 'size=5'\
 -b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -7070,6 +7093,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor'\
 }
 ```
 
+</details>
+
 ## 获取评论区评论总数（APP端）
 
 > http://api.bilibili.com/x/v2/reply/count
@@ -7110,6 +7135,9 @@ curl -G 'http://api.bilibili.com/x/v2/reply/count'\
 --data-urlencode 'oid=2'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -7120,6 +7148,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/count'\
     }
 }
 ```
+
+</details>
 
 
 ## 附表-评论条目对象

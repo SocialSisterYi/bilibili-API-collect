@@ -68,6 +68,9 @@ curl 'http://api.bilibili.com/x/v2/reply/add'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -222,6 +225,8 @@ curl 'http://api.bilibili.com/x/v2/reply/add'\
 }
 ```
 
+</details>
+
 ## 点赞评论
 
 > http://api.bilibili.com/x/v2/reply/action
@@ -266,6 +271,9 @@ curl 'http://api.bilibili.com/x/v2/reply/action'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -273,6 +281,8 @@ curl 'http://api.bilibili.com/x/v2/reply/action'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 点踩评论
 
@@ -318,6 +328,9 @@ curl 'http://api.bilibili.com/x/v2/reply/hate'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -325,6 +338,8 @@ curl 'http://api.bilibili.com/x/v2/reply/hate'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 删除评论
 
@@ -368,6 +383,9 @@ curl 'http://api.bilibili.com/x/v2/reply/del'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -375,6 +393,8 @@ curl 'http://api.bilibili.com/x/v2/reply/del'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 置顶评论
 
@@ -420,6 +440,9 @@ curl 'http://api.bilibili.com/x/v2/reply/top'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -427,6 +450,8 @@ curl 'http://api.bilibili.com/x/v2/reply/top'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 举报评论
 
@@ -494,6 +519,9 @@ curl 'http://api.bilibili.com/x/v2/reply/report'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -502,3 +530,4 @@ curl 'http://api.bilibili.com/x/v2/reply/report'\
 }
 ```
 
+</details>

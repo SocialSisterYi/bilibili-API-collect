@@ -48,6 +48,9 @@ curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -60,3 +63,4 @@ curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload'\
 }
 ```
 
+</details>

@@ -102,6 +102,9 @@ curl -G 'http://api.bilibili.com/x/article/viewinfo'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -160,3 +163,4 @@ curl -G 'http://api.bilibili.com/x/article/viewinfo'\
 }
 ```
 
+</details>

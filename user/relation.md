@@ -98,6 +98,9 @@ curl -G 'http://api.bilibili.com/x/relation/followers'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -160,6 +163,8 @@ curl -G 'http://api.bilibili.com/x/relation/followers'\
 	}
 }
 ```
+
+</details>
 
 ## 查询用户关注明细 
 
@@ -267,6 +272,9 @@ curl -G 'http://api.bilibili.com/x/relation/ollowings'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -330,6 +338,8 @@ curl -G 'http://api.bilibili.com/x/relation/ollowings'\
 }
 ```
 
+</details>
+
 ## 操作用户关系（关注/取关 等）
 
 <img src="/imgs/follow.svg" width="200" height="100" />
@@ -384,6 +394,9 @@ curl 'http://http://api.bilibili.com/x/relation/modify'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -391,6 +404,8 @@ curl 'http://http://api.bilibili.com/x/relation/modify'\
 	"ttl": 1
 }
 ```
+
+</details>
 
 ## 查询用户与自己关系1 (仅查关注)
 
@@ -445,6 +460,9 @@ curl -G 'http://http://api.bilibili.com/x/relation'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -459,6 +477,8 @@ curl -G 'http://http://api.bilibili.com/x/relation'\
 	}
 }
 ```
+
+</details>
 
 ## 查询用户与自己关系2(互相)
 
@@ -530,6 +550,9 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -555,6 +578,8 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation'\
 	}
 }
 ```
+
+</details>
 
 ## 关注分组相关
 
@@ -603,6 +628,9 @@ curl 'http://api.bilibili.com/x/relation/tags'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -625,6 +653,8 @@ curl 'http://api.bilibili.com/x/relation/tags'\
 	]
 }
 ```
+
+</details>
 
 ### 查询关注分组明细
 
@@ -710,6 +740,9 @@ curl -G 'http://api.bilibili.com/x/relation/tag'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -761,6 +794,8 @@ curl -G 'http://api.bilibili.com/x/relation/tag'\
 }
 ```
 
+</details>
+
 ### 查询目标用户所在的分组 
 
 > http://api.bilibili.com/x/relation/tag/user
@@ -804,6 +839,9 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -815,6 +853,8 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user'\
 	}
 }
 ```
+
+</details>
 
 ### 查询所有特别关注的UID
 
@@ -850,6 +890,9 @@ curl 'http://api.bilibili.com/x/relation/tag/special'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -877,6 +920,8 @@ curl 'http://api.bilibili.com/x/relation/tag/special'\
     ]
 }
 ```
+
+</details>
 
 ### 创建分组
 
@@ -923,6 +968,9 @@ curl 'http://api.bilibili.com/x/relation/tag/create'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -933,6 +981,8 @@ curl 'http://api.bilibili.com/x/relation/tag/create'\
 	}
 }
 ```
+
+</details>
 
 ### 重命名分组
 
@@ -972,6 +1022,9 @@ curl 'http://api.bilibili.com/x/relation/tag/update'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -979,6 +1032,8 @@ curl 'http://api.bilibili.com/x/relation/tag/update'\
 	"ttl": 1
 }
 ```
+
+</details>
 
 ### 删除分组
 
@@ -1018,6 +1073,9 @@ curl 'http://api.bilibili.com/x/relation/tag/del'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -1025,6 +1083,8 @@ curl 'http://api.bilibili.com/x/relation/tag/del'\
 	"ttl": 1
 }
 ```
+
+</details>
 
 ### 修改分组成员（添加/删除）
 
@@ -1066,6 +1126,9 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -1073,6 +1136,8 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers'\
 	"ttl": 1
 }
 ```
+
+</details>
 
 ### 复制关注到分组
 
@@ -1112,6 +1177,9 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -1119,6 +1187,8 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers'\
     "ttl":1
 }
 ```
+
+</details>
 
 ### 移动关注到分组
 
@@ -1160,6 +1230,9 @@ curl 'http://api.bilibili.com/x/relation/tags/moveUsers'\
 -b 'SESSDATA=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code":0,
@@ -1168,3 +1241,4 @@ curl 'http://api.bilibili.com/x/relation/tags/moveUsers'\
 }
 ```
 
+</details>
