@@ -127,6 +127,9 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history'\
 --compressed -o 'danmaku.xml'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <i>
@@ -156,3 +159,5 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history'\
     …………
 <i>
 ```
+
+</details>

@@ -27,12 +27,17 @@ web端密码登录流程：
 curl 'http://passport.bilibili.com/login?act=getkey'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "hash":"07c6501690c1af85",
     "key":"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjb4V7EidX/ym28t2ybo0U6t0n\n6p4ej8VjqKHg100va6jkNbNTrLQqMCQCAYtXMXXp2Fwkk6WR+12N9zknLjf+C9sx\n/+l48mjUU8RqahiFD1XT/u2e0m2EN029OhCgkHx3Fc/KlFSIbak93EH/XlYis0w+\nXl69GV6klzgxW6d2xQIDAQAB\n-----END PUBLIC KEY-----\n"
 }
 ```
+
+</details>
 
 ## 获取加密公钥及密码盐值2（APP端）
 
@@ -66,12 +71,17 @@ curl 'http://passport.bilibili.com/api/oauth2/getKey'\
 --data-urlencode 'sign=17004c193f688f0b5665c1068e733aff'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "hash":"07c6501690c1af85",
     "key":"-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjb4V7EidX/ym28t2ybo0U6t0n\n6p4ej8VjqKHg100va6jkNbNTrLQqMCQCAYtXMXXp2Fwkk6WR+12N9zknLjf+C9sx\n/+l48mjUU8RqahiFD1XT/u2e0m2EN029OhCgkHx3Fc/KlFSIbak93EH/XlYis0w+\nXl69GV6klzgxW6d2xQIDAQAB\n-----END PUBLIC KEY-----\n"
 }
 ```
+
+</details>
 
 ## 登录密码的加密
 
@@ -177,6 +187,9 @@ curl 'https://passport.bilibili.com/web/login/v2'\
 --data-urlencode 'seccode=666666|jordan'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -186,9 +199,14 @@ curl 'https://passport.bilibili.com/web/login/v2'\
 }
 ```
 
+</details>
+
 **响应头部抓包信息：**
 
 可明显看见设置了几个cookie（填入浏览器即可成功登录）
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```http
 HTTP/1.1 200 OK
@@ -206,6 +224,8 @@ Expires: Mon, 13 Jul 2020 06:55:59 GMT
 Cache-Control: no-cache
 X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 ```
+
+</details>
 
 **游戏分站跨域登录url：**
 

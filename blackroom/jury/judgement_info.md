@@ -89,6 +89,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
 --data-urlencode 'cid=1239790'\
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -124,6 +127,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
     }
 }
 ```
+
+</details>
 
 ## 查询案件众裁信息
 
@@ -188,6 +193,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
 --data-urlencode 'cid=1239790'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -221,6 +229,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
     }
 }
 ```
+
+</details>
 
 ## 查询我的众裁记录
 
@@ -309,6 +319,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/caseList'\
 --data-urlencode 'pn=1'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -346,6 +359,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/caseList'\
     ]
 }
 ```
+
+</details>
 
 ## 众议观点
 
@@ -411,6 +426,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/case/opinion'\
 --data-urlencode 'ps=10'\
 --data-urlencode 'pn=1'\
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -523,3 +541,4 @@ curl -G 'http://api.bilibili.com/x/credit/jury/case/opinion'\
 }
 ```
 
+</details>

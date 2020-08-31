@@ -420,8 +420,6 @@ curl -G 'http://api.bilibili.com/x/archive/desc'\
 
 </details>
 
-
-
 ## 查询视频分P列表  (avID/bvID转CID)
 
 > http://api.bilibili.com/x/player/pagelist

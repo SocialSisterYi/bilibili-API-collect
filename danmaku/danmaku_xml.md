@@ -47,6 +47,9 @@ curl 'http://comment.bilibili.com/144541892.xml'
 --compressed -o 'danmaku.xml'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <i>
@@ -76,7 +79,7 @@ curl 'http://comment.bilibili.com/144541892.xml'
 <i>
 ```
 
-
+</details>
 
 ## 弹幕格式
 

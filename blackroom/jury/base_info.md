@@ -54,6 +54,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury'\
 --data-urlencode 'access_key=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -69,6 +72,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury'\
     }
 }
 ```
+
+</details>
 
 ## 统计信息
 
@@ -140,6 +145,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi'\
 --data-urlencode 'access_key=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -167,6 +175,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi'\
     ]
 }
 ```
+
+</details>
 
 ## 检查申请风纪委员会资格
 
@@ -220,6 +230,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/requirement'\
 --data-urlencode 'access_key=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -234,3 +247,4 @@ curl -G 'http://api.bilibili.com/x/credit/jury/requirement'\
 }
 ```
 
+</details>

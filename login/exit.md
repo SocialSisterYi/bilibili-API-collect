@@ -29,6 +29,9 @@ curl 'http://passport.bilibili.com/login?act=exit'\
 
 使用set-cookie删除了以上cookie项
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```http
 HTTP/1.1 200 OK
 Date: Mon, 27 Jul 2020 13:42:21 GMT
@@ -57,3 +60,5 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 Content-Encoding: gzip
 
 ```
+
+</details>

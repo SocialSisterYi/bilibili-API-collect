@@ -55,6 +55,9 @@ TV端流程&逻辑：
 curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -66,6 +69,8 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 	}
 }
 ```
+
+</details>
 
 ## 使用扫码登录（web端）
 
@@ -115,6 +120,9 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 
 当密钥正确时但未扫描时`status`为`false`，`data`为num值`-4`
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "status":false,
@@ -123,7 +131,12 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 }
 ```
 
+</details>
+
 扫描成功但手机端未确认时`status`为`false`，`data`为num值`-5`
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -133,7 +146,12 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 }
 ```
 
+</details>
+
 扫描成功手机端确认登录后，`status`为`true`，`data`为对象，并向浏览器写入cookie
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -146,9 +164,14 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 }
 ```
 
+</details>
+
 **响应头部抓包信息：**
 
 可明显看见设置了几个cookie（填入浏览器即可成功登录）
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```http
 HTTP/1.1 200 OK
@@ -166,6 +189,8 @@ Expires: Wed, 04 Mar 2020 10:36:36 GMT
 Cache-Control: no-cache
 X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 ```
+
+</details>
 
 **游戏分站跨域登录url：**
 
@@ -234,6 +259,9 @@ curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code'\
 --data-urlencode 'sign=e134154ed6add881d28fbdf68653cd9c'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -245,6 +273,8 @@ curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code'\
     }
 }
 ```
+
+</details>
 
 ## 使用扫码登录（TV端）
 
@@ -301,6 +331,9 @@ curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/poll'\
 --data-urlencode 'sign=87de3d0fee7c3f4facd244537238914e'\
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -315,3 +348,4 @@ curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/poll'\
 }
 ```
 
+</details>

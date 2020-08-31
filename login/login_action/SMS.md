@@ -50,6 +50,9 @@ web端短信登录流程：
 curl 'http://passport.bilibili.com/web/generic/country/list'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -83,6 +86,8 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
     }
 }
 ```
+
+</details>
 
 ## 发送短信验证码（web端）
 
@@ -131,12 +136,18 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 --data-urlencode 'validate=666666'\
 --data-urlencode 'seccode=666666|jordan'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
   "code": 0,
   "message": "验证码短信已下发"
 }
 ```
+
+</details>
 
 ## 使用短信验证码登录（web端）
 
@@ -185,6 +196,10 @@ curl 'https://passport.bilibili.com/web/login/rapid'
 --data-urlencode 'tel=13888888888'\
 --data-urlencode 'smsCode=123456'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
   "code": 0,
@@ -195,9 +210,15 @@ curl 'https://passport.bilibili.com/web/login/rapid'
   }
 }
 ```
+
+</details>
+
 **响应头部抓包信息：**
 
 可明显看见设置了几个cookie（填入浏览器即可成功登录）
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```http
 HTTP/1.1 200 OK
@@ -215,3 +236,5 @@ Cache-Control: no-cache
 X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 
 ```
+
+</details>

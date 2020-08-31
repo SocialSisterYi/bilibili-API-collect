@@ -687,3 +687,22 @@ curl 'http://app.bilibili.com/x/v2/view/like/triple'\
 --data-urlencode 'access_key=xxx'\
 --data-urlencode 'aid=91003840'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"like": true,
+		"coin": true,
+		"fav": true,
+		"multiply": 2
+	}
+}
+```
+
+</details>

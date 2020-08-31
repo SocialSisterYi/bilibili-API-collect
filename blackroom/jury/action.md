@@ -49,6 +49,8 @@ APP方式：
 curl 'http://api.bilibili.com/x/credit/jury/apply'\
 --data-urlencode 'access_key=xxx'
 ```
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -57,6 +59,8 @@ curl 'http://api.bilibili.com/x/credit/jury/apply'\
     "ttl": 1
 }
 ```
+
+</details>
 
 ## 拉取新案件
 
@@ -107,6 +111,9 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain'\
 --data-urlencode 'access_key=xxx'
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -117,6 +124,8 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain'\
     }
 }
 ```
+
+</details>
 
 ## 进行仲裁投票
 
@@ -188,6 +197,9 @@ curl 'http://api.bilibili.com/x/credit/jury/vote'\
 --data-urlencode 'apply_reason='
 ```
 
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -196,3 +208,4 @@ curl 'http://api.bilibili.com/x/credit/jury/vote'\
 }
 ```
 
+</details>

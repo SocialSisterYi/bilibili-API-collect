@@ -53,6 +53,10 @@
 ```shell
 curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
   "code": 0,
@@ -68,6 +72,7 @@ curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
 }
 ```
 
+</details>
 
 ### 进行验证
 

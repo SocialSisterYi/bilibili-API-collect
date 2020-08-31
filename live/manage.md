@@ -198,8 +198,6 @@ curl 'http://api.live.bilibili.com/room/v1/Room/startLive'\
 
 </details>
 
-
-
 ## 关闭直播
 
 > http://api.live.bilibili.com/room/v1/Room/stopLive
