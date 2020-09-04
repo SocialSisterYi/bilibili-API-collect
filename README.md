@@ -158,8 +158,13 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [其他](other)
   - [基于ip的地理位置查询](other/ip.md)√
   - [获取当前时间戳](other/time_stamp.md)√
-- [web端首页组件](web_widget)
+- [web端组件](web_widget)
   - [分区当日上传数](web_widget/zone_upload.md)√
+- [APP端组件](APP_widget)
+  - [开屏图片](APP_widget/splash.md)√
+- [个性装扮](garb)
+  - [主题及加载动画](garb/skin.md)√
+  - [主题色](garb/color.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
@@ -205,7 +210,11 @@ https://github.com/whjstc/openbilibili-go-common-1
 
  https://github.com/flaribbit/bilibili-manga-spider
 
+ https://github.com/simon300000/bili-api
+
 成品：
+
+https://github.com/3Shain/BiliChat
 
 https://github.com/AncientLysine/BiliLocal
 
@@ -224,6 +233,10 @@ https://github.com/Hsury/BiliDrive
 https://github.com/Tsuk1ko/bilibili-live-chat
 
 https://github.com/ironmanic/crawler_target_users_good
+
+https://github.com/dd-center/DDatElectron
+
+https://github.com/dd-center/vtbs.moe
 
 其他：
 
