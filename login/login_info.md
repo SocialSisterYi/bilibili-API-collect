@@ -212,6 +212,7 @@ curl 'http://api.bilibili.com/nav'\
 | coins             | num  | 拥有硬币数        |                                 |
 | face              | str  | 登录用户头像url   |                                 |
 | nameplate_current | null | ???               | 作用尚不明确                    |
+| nameplate_current | str  | 登录用户勋章url   |                                 |
 | pendant_current   | str  | 登录用户头像框url |                                 |
 | uname             | str  | 登录用户昵称      |                                 |
 | userStatus        | str  | 登录用户状态      |                                 |
