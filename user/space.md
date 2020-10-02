@@ -872,13 +872,15 @@ curl 'http://api.bilibili.com/x/space/notice/set'\
 
 ### 主页板块布局与权限
 
-#### 查看空间设置
+#### 查询空间设置
 
-> http://space.bilibili.com/ajax/settings/getSettings（带有转义）
+> http://space.bilibili.com/ajax/settings/getSettings
 
-*请求方式：POST*
+*请求方式：GET*
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+注：带有转义
+
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
@@ -895,26 +897,26 @@ curl 'http://api.bilibili.com/x/space/notice/set'\
 
 `data`对象：
 
-| 字段                   | 类型  | 内容                 | 备注         |
-| ---------------------- | ----- | -------------------- | ------------ |
-| privacy                | obj   | 空间隐私权限         |              |
-| index_order            | array | 空间板块布局         |              |
-| theme                  | str   | default（主题？）    | 作用尚不明确 |
-| theme_preview_img_path | str   | （主题预览图路径？） | 作用尚不明确 |
-| toutu                  | obj   | 空间头图             |              |
+| 字段                   | 类型  | 内容             | 备注         |
+| ---------------------- | ----- | ---------------- | ------------ |
+| privacy                | obj   | 空间隐私权限     |              |
+| index_order            | array | 空间板块布局     |              |
+| theme                  | str   | default主题？    | 作用尚不明确 |
+| theme_preview_img_path | str   | 主题预览图路径？ | 作用尚不明确 |
+| toutu                  | obj   | 空间头图         |              |
 
 `privacy`对象：
 
 | 字段        | 类型 | 内容           | 备注                           |
 | ----------- | ---- | -------------- | ------------------------------ |
 | bangumi     | num  | 追番及追剧     | 0：隐藏<br>1：公开<br>**下同** |
-| bbq         | num  | （表白墙？）   | 作用尚不明确                   |
+| bbq         | num  | 轻视频         |                                |
 | channel     | num  | 频道           |                                |
 | coins_video | num  | 最近投币的视频 |                                |
 | comic       | num  | 追漫           |                                |
 | dress_up    | num  | 装扮           |                                |
 | fav_video   | num  | 收藏夹         |                                |
-| groups      | num  | （圈子？）     | 作用尚不明确                   |
+| groups      | num  | 圈子？         | 作用尚不明确                   |
 | likes_video | num  | 最近点赞的视频 |                                |
 | played_game | num  | 最近玩过的游戏 |                                |
 | tags        | num  | 订阅标签       |                                |
@@ -937,24 +939,24 @@ curl 'http://api.bilibili.com/x/space/notice/set'\
 
 `toutu`对象：
 
-| 字段          | 类型 | 内容                 | 备注                                     |
-| ------------- | ---- | -------------------- | ---------------------------------------- |
-| sid           | num  | 1                    | 作用尚不明确                             |
-| expire        | num  |                      | 作用尚不明确                             |
-| s_img         | str  | 空间头图小图相对路径 | 完整url为`http://i0.hdslb.com/`+相对路径 |
-| l_img         | str  | 空间头图相对路径     | **同上**                                 |
-| android_img   | str  | 安卓端头图           | 未启用                                   |
-| iphone_img    | str  | iPhone端头图         | 未启用                                   |
-| ipad_img      | str  | iPad端头图           | 未启用                                   |
-| thumbnail_img | str  | 缩略图               | 未启用                                   |
-| platform      | num  | 0                    | 作用尚不明确                             |
+| 字段          | 类型 | 内容                 | 备注                                                   |
+| ------------- | ---- | -------------------- | ------------------------------------------------------ |
+| sid           | num  | 1                    | 作用尚不明确                                           |
+| expire        | num  | 到期时间？           | 时间戳？<br />作用尚不明确                             |
+| s_img         | str  | 空间头图小图相对路径 | 完整url为`http://i0.hdslb.com/`+相对路径               |
+| l_img         | str  | 空间头图相对路径     | **同上**                                               |
+| android_img   | str  | 安卓端头图           | 未启用<br />注：手机版头图与web版不同，用另一个api获取 |
+| iphone_img    | str  | iPhone端头图         | 未启用                                                 |
+| ipad_img      | str  | iPad端头图           | 未启用                                                 |
+| thumbnail_img | str  | 缩略图               | 未启用                                                 |
+| platform      | num  | 0                    | 作用尚不明确                                           |
 
 **示例：**
 
 查看`UID=2`的空间设置
 
 ```shell
-curl 'http://space.bilibili.com/ajax/settings/getSettings'\
+curl -G 'http://space.bilibili.com/ajax/settings/getSettings'\
 --data-urlencode 'mid=2'
 ```
 
