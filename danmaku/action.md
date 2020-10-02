@@ -261,13 +261,14 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 **url参数：**
-| 参数名 | 类型 | 内容     | 必要性 | 备注 |
-| ------ | ---- | -------- | ------ | ---- |
-| oid    | num  | 视频CID  | 必要   |      |
-| ids    | num  | 弹幕dmID | 必要   |      |
+| 参数名     | 类型 | 内容         | 必要性      | 备注                |
+| ---------- | ---- | ------------ | ----------- | ------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                     |
+| oid        | num  | 视频CID      | 必要        |                     |
+| ids        | nums | 弹幕dmID列表 | 必要        | 多个ID之间用`,`分隔 |
 
 **json回复**
 
@@ -282,26 +283,27 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state'\
 
 `data`对象：
 
-| 字段     | 类型 | 内容     | 备注 |
-| -------- | ---- | -------- | ---- |
-| {弹幕ID} | obj  | 套了个娃 |      |
+| 字段     | 类型 | 内容             | 备注                              |
+| -------- | ---- | ---------------- | --------------------------------- |
+| {弹幕ID} | obj  | 弹幕id对应的信息 | id分别对应请求参数中的`ids`，下同 |
+| ……       | obj  | 弹幕id对应的信息 |                                   |
 
 `{弹幕ID}`对象：
 
 | 字段      | 类型 | 内容     | 备注                                                         |
 | --------- | ---- | -------- | ------------------------------------------------------------ |
 | likes     | num  | 点赞数   |                                                              |
-| user_like | num  | 是否点赞 | 0：未点赞<br />1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
+| user_like | num  | 是否点赞 | 0：未点赞<br />1：已点赞<br />需要登录(Cookie或APP) <br />未登录恒为0 |
 | id_str    | str  | 弹幕dmID |                                                              |
 
 **示例**
 
-查询`CID=145928946`下的弹幕`35600074482384899`点赞数
+查询`CID=236871317`下的弹幕`35600074482384899`、`38880975220375559`、`39052528418553863`点赞数
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
---data-urlencode 'oid=145928946'\
---data-urlencode 'ids=35600074482384899'\
+--data-urlencode 'oid=236871317'\
+--data-urlencode 'ids=39019145405661191,38880975220375559,39052528418553863'\
 -b 'SESSDATA=xxx'
 ```
 
@@ -310,14 +312,24 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "35600074482384899":{
-            "likes":1,
-            "user_like":1,
-            "id_str":"35600074482384899"
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "38880975220375559": {
+            "likes": 1,
+            "user_like": 1,
+            "id_str": "38880975220375559"
+        },
+        "39019145405661191": {
+            "likes": 3,
+            "user_like": 1,
+            "id_str": "39019145405661191"
+        },
+        "39052528418553863": {
+            "likes": 2,
+            "user_like": 0,
+            "id_str": "39052528418553863"
         }
     }
 }
@@ -331,17 +343,18 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                     | 必要性 | 备注                     |
-| -------- | ---- | ------------------------ | ------ | ------------------------ |
-| dmid     | num  | 弹幕dmID                 | 必要   |                          |
-| oid      | num  | 视频CID                  | 必要   |                          |
-| op       | num  | 操作                     | 必要   | 1：点赞<br />2：取消点赞 |
-| platform | str  | 平台                     | 非必要 |                          |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |                          |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                     |
+| ---------- | ---- | ------------------------ | -------------- | ------------------------ |
+| access_key | str  | APP登录Token             | APP方式必要    |                          |
+| dmid       | num  | 弹幕dmID                 | 必要           |                          |
+| oid        | num  | 视频CID                  | 必要           |                          |
+| op         | num  | 操作                     | 必要           | 1：点赞<br />2：取消点赞 |
+| platform   | str  | 平台                     | 非必要         |                          |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                          |
 
 **json回复：**
 
@@ -386,17 +399,18 @@ curl 'http://api.bilibili.com/x/v2/dm/thumbup/add'\
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名  | 类型 | 内容                     | 必要性 | 备注               |
-| ------- | ---- | ------------------------ | ------ | ------------------ |
-| cid     | num  | 视频CID                  | 必要   |                    |
-| dmid    | num  | 弹幕dmID                 | 必要   |                    |
-| reason  | num  | 举报类型                 | 必要   | **类型代码见下表** |
-| content | str  | 其他举报备注             | 非必要 | `reason=11`时有效  |
-| csrf    | str  | CSRF Token（位于cookie） | 必要   |                    |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注               |
+| ---------- | ---- | ------------------------ | -------------- | ------------------ |
+| access_key | str  | APP登录Token             | APP方式必要    |                    |
+| cid        | num  | 视频CID                  | 必要           |                    |
+| dmid       | num  | 弹幕dmID                 | 必要           |                    |
+| reason     | num  | 举报类型                 | 必要           | **类型代码见下表** |
+| content    | str  | 其他举报备注             | 非必要         | `reason=11`时有效  |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                    |
 
 举报类型`reason`：
 
@@ -422,7 +436,7 @@ curl 'http://api.bilibili.com/x/v2/dm/thumbup/add'\
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />36201：举报弹幕不存在<br />36203：举报原因类型错误<br />36204：已举报 |
-| message | str  | 错误信息 | 默认为0                                                      |
+| message | str  | 错误信息 | 默认为空                                                     |
 | tll     | num  | 1        | 举报失败时                                                   |
 
 **示例**
