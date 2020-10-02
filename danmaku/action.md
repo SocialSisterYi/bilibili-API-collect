@@ -254,3 +254,73 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state'\
 ```
 
 </details>
+
+## 查询弹幕点赞数
+
+> http://api.bilibili.com/x/v2/dm/thumbup/stats
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+| 参数名   | 类型 | 内容    | 必要性 | 备注 |
+| -------- | ---- | ------- | ------ | ---- |
+| oid      | num  | 视频CID | 必要   |      |  |
+| ids     | num  | 弹幕dmID       | 必要   |      |
+
+**json回复**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                     |
+| ttl     | num  | 1        |                             |
+| data    | obj  | 信息本体 |                             |
+
+`data`对象：
+
+| 字段     | 类型 | 内容     | 备注 |
+| -------- | ---- | -------- | ---- |
+| {弹幕ID} | obj  | 套了个娃 |      |
+
+`{弹幕ID}`对象：
+
+| 字段      | 类型 | 内容     | 备注                                                         |
+| --------- | ---- | -------- | ------------------------------------------------------------ |
+| likes     | num  | 点赞数   |                                                              |
+| user_like | num  | 是否点赞 | 0：未点赞<br/>1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
+| id_str    | str  | 弹幕dmID |                                                              |
+
+**示例**
+
+查询`CID=145928946`下的弹幕`35600074482384899`点赞数
+
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
+--data-urlencode 'oid=145928946'\
+--data-urlencode 'ids=35600074482384899'\
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1,
+    "data":{
+        "35600074482384899":{
+            "likes":1,
+            "user_like":1,
+            "id_str":"35600074482384899"
+        }
+    }
+}
+```
+
+</details>
