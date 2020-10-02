@@ -872,6 +872,192 @@ curl 'http://api.bilibili.com/x/space/notice/set'\
 
 ### 主页板块布局与权限
 
+#### 查询空间设置
+
+> http://space.bilibili.com/ajax/settings/getSettings
+
+*请求方式：GET*
+
+注：带有转义
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid    | num  | 目标用户UID | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段   | 类型                | 内容     | 备注 |
+| ------ | ------------------- | -------- | ---- |
+| status | bool             | 用户是否存在                                   | true：存在<br>false：不存在 |
+| data   | 用户存在时：obj<br>用户不存在时：str| 用户存在时：信息本体<br>用户不存在时：错误信息 |      |
+
+`data`对象：
+
+| 字段                   | 类型  | 内容             | 备注         |
+| ---------------------- | ----- | ---------------- | ------------ |
+| privacy                | obj   | 空间隐私权限     |              |
+| index_order            | array | 空间板块布局     |              |
+| theme                  | str   | default主题？    | 作用尚不明确 |
+| theme_preview_img_path | str   | 主题预览图路径？ | 作用尚不明确 |
+| toutu                  | obj   | 空间头图         |              |
+
+`privacy`对象：
+
+| 字段        | 类型 | 内容           | 备注                           |
+| ----------- | ---- | -------------- | ------------------------------ |
+| bangumi     | num  | 追番及追剧     | 0：隐藏<br>1：公开<br>**下同** |
+| bbq         | num  | 轻视频         |                                |
+| channel     | num  | 频道           |                                |
+| coins_video | num  | 最近投币的视频 |                                |
+| comic       | num  | 追漫           |                                |
+| dress_up    | num  | 装扮           |                                |
+| fav_video   | num  | 收藏夹         |                                |
+| groups      | num  | 圈子？         | 作用尚不明确                   |
+| likes_video | num  | 最近点赞的视频 |                                |
+| played_game | num  | 最近玩过的游戏 |                                |
+| tags        | num  | 订阅标签       |                                |
+| user_info   | num  | 个人资料       |                                |
+
+`index_order`数组：
+
+| 项   | 类型 | 内容      | 备注                                         |
+| ---- | ---- | --------- | -------------------------------------------- |
+| 0    | obj  | 板块1     | 根据板块布局顺序排序<br>先左侧布局后右侧布局 |
+| n    | obj  | 板块(n+1) |                                              |
+| ……   | obj  | ……        | ……                                           |
+
+`index_order`数组内对象：
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| id   | num  | 板块编号 |      |
+| name | str  | 板块名称 |      |
+
+`toutu`对象：
+
+| 字段          | 类型 | 内容                 | 备注                                                   |
+| ------------- | ---- | -------------------- | ------------------------------------------------------ |
+| sid           | num  | 1                    | 作用尚不明确                                           |
+| expire        | num  | 到期时间？           | 时间戳？<br />作用尚不明确                             |
+| s_img         | str  | 空间头图小图相对路径 | 完整url为`http://i0.hdslb.com/`+相对路径               |
+| l_img         | str  | 空间头图相对路径     | **同上**                                               |
+| android_img   | str  | 安卓端头图           | 未启用<br />注：手机版头图与web版不同，用另一个api获取 |
+| iphone_img    | str  | iPhone端头图         | 未启用                                                 |
+| ipad_img      | str  | iPad端头图           | 未启用                                                 |
+| thumbnail_img | str  | 缩略图               | 未启用                                                 |
+| platform      | num  | 0                    | 作用尚不明确                                           |
+
+**示例：**
+
+查看`UID=2`的空间设置
+
+```shell
+curl -G 'http://space.bilibili.com/ajax/settings/getSettings'\
+--data-urlencode 'mid=2'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "status":true,
+    "data":{
+        "privacy":{
+            "bangumi":1,
+            "bbq":1,
+            "channel":1,
+            "coins_video":0,
+            "comic":1,
+            "dress_up":1,
+            "fav_video":0,
+            "groups":0,
+            "likes_video":0,
+            "played_game":1,
+            "tags":1,
+            "user_info":1
+        },
+        "index_order":[
+            {
+                "id":1,
+                "name":"我的稿件"
+            },
+            {
+                "id":8,
+                "name":"我的专栏"
+            },
+            {
+                "id":7,
+                "name":"我的频道"
+            },
+            {
+                "id":2,
+                "name":"我的收藏夹"
+            },
+            {
+                "id":3,
+                "name":"订阅番剧"
+            },
+            {
+                "id":4,
+                "name":"订阅标签"
+            },
+            {
+                "id":5,
+                "name":"最近投币的视频"
+            },
+            {
+                "id":6,
+                "name":"我的圈子"
+            },
+            {
+                "id":9,
+                "name":"我的相簿"
+            },
+            {
+                "id":21,
+                "name":"公告"
+            },
+            {
+                "id":22,
+                "name":"直播间"
+            },
+            {
+                "id":23,
+                "name":"个人资料"
+            },
+            {
+                "id":24,
+                "name":"官方活动"
+            },
+            {
+                "id":25,
+                "name":"最近玩过的游戏"
+            }
+        ],
+        "theme":"default",
+        "theme_preview_img_path":"",
+        "toutu":{
+            "sid":1,
+            "expire":2861874560,
+            "s_img":"bfs/space/768cc4fd97618cf589d23c2711a1d1a729f42235.png",
+            "l_img":"bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
+            "android_img":"",
+            "iphone_img":"",
+            "ipad_img":"",
+            "thumbnail_img":"",
+            "platform":0
+        }
+    }
+}
+```
+
+</details>
+
 #### 调整空间板块布局
 
 > http://space.bilibili.com/ajax/settings/setIndexOrder
@@ -891,22 +1077,22 @@ curl 'http://api.bilibili.com/x/space/notice/set'\
 
 布局参数`index_order`：
 
-| 值   | 含义                   |
-| ---- | ---------------------- |
-| 1    | （左侧）我的稿件       |
-| 2    | （左侧）我的收藏夹     |
-| 3    | （左侧）订阅番剧       |
-| 4    | （左侧）订阅标签       |
-| 5    | （左侧）最近投币的视频 |
-| 6    | **作用尚不明确**       |
-| 7    | （左侧）我的频道       |
-| 8    | （左侧）我的专栏       |
-| 9    | （左侧）我的相簿       |
-| 21   | （右侧）公告           |
-| 22   | （右侧）直播间         |
-| 23   | （右侧）个人资料       |
-| 24   | （右侧）官方活动       |
-| 25   | （右侧）最近玩的游戏   |
+| 值   | 含义                                 |
+| ---- | ------------------------------------ |
+| 1    | （左侧）我的稿件                     |
+| 2    | （左侧）我的收藏夹                   |
+| 3    | （左侧）订阅番剧                     |
+| 4    | （左侧）订阅标签                     |
+| 5    | （左侧）最近投币的视频               |
+| 6    | （左侧）我的圈子**（此板块被隐藏）** |
+| 7    | （左侧）我的频道                     |
+| 8    | （左侧）我的专栏                     |
+| 9    | （左侧）我的相簿                     |
+| 21   | （右侧）公告                         |
+| 22   | （右侧）直播间                       |
+| 23   | （右侧）个人资料                     |
+| 24   | （右侧）官方活动                     |
+| 25   | （右侧）最近玩的游戏                 |
 
 **json回复：**
 
