@@ -2753,11 +2753,166 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/collected/list'\
 
 </details>
 
+## 课程
+
+<img src="/imgs/class.svg" width="100" height="100" />
+
+###  查询用户发布的课程列表
+
+> http://api.bilibili.com/pugv/app/web/season/page
+
+*请求方式：GET*
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注     |
+| ------ | ---- | ----------- | ------ | -------- |
+| mid    | num  | 目标用户UID | 必要   |          |
+| pn     | num  | 页码        | 非必要 | 默认为1  |
+| ps     | num  | 每页项数    | 非必要 | 默认为20 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                       |
+| ------- | ---- | -------- | ---------------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />53013：用户隐私设置未公开 |
+| message | str  | 错误信息 | 默认为0                                                    |
+| ttl     | num  | 1        |                                                            |
+| data    | obj  | 信息本体 |                                                            |
+
+`data`对象：
+
+| 字段 | 类型  | 内容     | 备注 |
+| ---- | ----- | -------- | ---- |
+| list | array | 课程列表 |      |
+| page | obj   | 页面信息 |      |
+
+`data`中的`page`对象：
+
+| 字段  | 类型 | 内容           | 备注                                  |
+| ----- | ---- | -------------- | ------------------------------------- |
+| next  | bool | 是否存在下一页 | false：最后一页<br />true：存在下一页 |
+| num   | num  | 当前页码       |                                       |
+| size  | num  | 每页项数       |                                       |
+| total | num  | 总计项数       |                                       |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容        | 备注                       |
+| ---- | ---- | ----------- | -------------------------- |
+| 0    | obj  | 课程1       |                            |
+| n    | obj  | 课程（n+1） | 按照目标用户的发布顺序排列 |
+| ……   | obj  | ……          |                            |
+
+`data`中的`list`数组中的对象：
+
+| 字段      | 类型 | 内容         | 备注          |
+| --------- | ---- | ------------ | ------------- |
+| cover     | str  | 课程封面url  |               |
+| ep_count  | num  | 课程集数     |               |
+| link      | str  | 课程页面url  | 手机版页面url |
+| page      | num  | 1            | 作用尚不明确  |
+| play      | num  | 课程播放数   |               |
+| season_id | num  | 课程ssID     |               |
+| status    | str  | 更新状态说明 |               |
+| subtitle  | str  | 课程副标题   |               |
+| title     | str  | 课程标题     |               |
+
+**示例：**
+
+查询用户`UID=33683045`的课程发布列表
+
+```shell
+curl -G 'http://api.bilibili.com/pugv/app/web/season/page'\
+--data-urlencode 'mid=33683045'\
+--data-urlencode 'ps=5'\
+--data-urlencode 'pn=1'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "data": {
+        "items": [
+            {
+                "cover": "http://i0.hdslb.com/bfs/archive/596575057885fff7f0ceff047437186cba459358.jpg",
+                "ep_count": 10,
+                "link": "https://m.bilibili.com/cheese/play/ss80",
+                "page": 1,
+                "play": 174467,
+                "season_id": 80,
+                "status": "共10期",
+                "subtitle": "百科全书式军事科普短视频系列",
+                "title": "《战忽知道》第一季"
+            },
+            {
+                "cover": "http://i0.hdslb.com/bfs/archive/322aa94d27cece62d2a859caf71ac2426f29eee2.jpg",
+                "ep_count": 1,
+                "link": "https://m.bilibili.com/cheese/play/ss145",
+                "page": 1,
+                "play": 22155,
+                "season_id": 145,
+                "status": "更新至第1期",
+                "subtitle": "此课程为《局座：第四次工业革命来了》部分集数，请谨慎购买",
+                "title": "【体验课】局座讲5G：5G如何改变我们的生活？"
+            },
+            {
+                "cover": "http://i0.hdslb.com/bfs/archive/b9794ac4507f8764e219df413b661b5faf499a19.jpg",
+                "ep_count": 10,
+                "link": "https://m.bilibili.com/cheese/play/ss113",
+                "page": 1,
+                "play": 49833,
+                "season_id": 113,
+                "status": "更新至第10期",
+                "subtitle": "百科全书式军事科普短视频系列",
+                "title": "《战忽知道》第二季"
+            },
+            {
+                "cover": "http://i0.hdslb.com/bfs/archive/7351fcb33592a4bc7aac9f71d421b4b5ce0177d3.jpg",
+                "ep_count": 10,
+                "link": "https://m.bilibili.com/cheese/play/ss51",
+                "page": 1,
+                "play": 4981037,
+                "season_id": 51,
+                "status": "共10期",
+                "subtitle": "洞悉国际局势，学习战略思维",
+                "title": "局座的国际战略课"
+            },
+            {
+                "cover": "http://i0.hdslb.com/bfs/archive/31e2a170b5a815e34f0537a2727b28f1b87dca18.jpg",
+                "ep_count": 10,
+                "link": "https://m.bilibili.com/cheese/play/ss121",
+                "page": 1,
+                "play": 30754,
+                "season_id": 121,
+                "status": "更新至第10期",
+                "subtitle": "百科全书式军事科普短视频系列",
+                "title": "《战忽知道》第三季"
+            }
+        ],
+        "page": {
+            "next": true,
+            "num": 1,
+            "size": 5,
+            "total": 8
+        }
+    },
+    "message": "success"
+}
+```
+
+</details>
+
 ## 订阅
 
 <img src="/imgs/sub.svg" width="100" height="100" />
 
-### 订阅查询用户追番预览列表
+### 查询用户追番预览列表
 
 > http://space.bilibili.com/ajax/Bangumi/getList
 

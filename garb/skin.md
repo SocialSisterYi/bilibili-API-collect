@@ -191,3 +191,64 @@ curl -G 'http://app.bilibili.com/x/resource/show/skin'\
 ```
 
 </details>
+
+## 主题包结构
+
+主题包为app端付费主题（套装）的整合包，以zip格式通过url分发
+
+包内的图片文件为app对应的资源替换
+
+| 文件名                         | 说明                       |
+| ------------------------------ | -------------------------- |
+| tail_icon_selected_myself.png  | 【我的】按钮（选中状态）   |
+| head_bg.jpg                    | 首页顶部栏背景             |
+| head_tab_bg.jpg                | 顶部栏背景                 |
+| side_bg.jpg                    | 侧边栏背景                 |
+| side_bg_bottom.jpg             | 侧边栏底部背景             |
+| tail_bg.png                    | 底部栏背景                 |
+| tail_icon_main.png             | 【首页】按钮               |
+| tail_icon_selected_main.png    | 【首页】按钮（选中状态）   |
+| tail_icon_selected_channel.png | 【频道】按钮（选中状态）   |
+| head_myself_squared_bg.jpg     | 【我的】页面头图（大）     |
+| tail_icon_channel.png          | 【频道】按钮               |
+| tail_icon_selected_dynamic.png | 【动态】按钮（选中状态）   |
+| head_myself_bg.jpg             | 【我的】页面头图（小）     |
+| tail_icon_dynamic.png          | 【动态】按钮               |
+| tail_icon_shop.png             | 【会员购】按钮             |
+| tail_icon_selected_shop.png    | 【会员购】按钮（选中状态） |
+| tail_icon_myself.png           | 【我的】按钮               |
+
+以`id=2529（初音未来-日版）`的资源为例
+
+```shell
+wget http://i0.hdslb.com/bfs/garb/zip/9c393edea0c7b7b59685a20cd655363ef573a325.zip
+unzip -l 9c393edea0c7b7b59685a20cd655363ef573a325.zip
+```
+
+返回为
+
+```
+Archive:  9c393edea0c7b7b59685a20cd655363ef573a325.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+    22995  1980-00-00 00:00   tail_icon_selected_myself.png
+    18444  1980-00-00 00:00   head_bg.jpg
+     3061  1980-00-00 00:00   head_tab_bg.jpg
+   188898  1980-00-00 00:00   side_bg.jpg
+     2842  1980-00-00 00:00   side_bg_bottom.jpg
+   203134  1980-00-00 00:00   tail_bg.png
+    27539  1980-00-00 00:00   tail_icon_main.png
+    25632  1980-00-00 00:00   tail_icon_selected_main.png
+    27415  1980-00-00 00:00   tail_icon_selected_channel.png
+   191706  1980-00-00 00:00   head_myself_squared_bg.jpg
+    27919  1980-00-00 00:00   tail_icon_channel.png
+    27262  1980-00-00 00:00   tail_icon_selected_dynamic.png
+   147738  1980-00-00 00:00   head_myself_bg.jpg
+    28182  1980-00-00 00:00   tail_icon_dynamic.png
+    25878  1980-00-00 00:00   tail_icon_shop.png
+    26487  1980-00-00 00:00   tail_icon_selected_shop.png
+    21831  1980-00-00 00:00   tail_icon_myself.png
+---------                     -------
+  1016963                     17 files
+```
+
