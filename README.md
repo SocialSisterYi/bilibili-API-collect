@@ -44,6 +44,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [登录基本信息](login/login_info.md)√
   - [个人中心](login/member_center.md)×
   - [注销登录](login/exit.md)×
+  - [登录记录](login/login_notice.md)√
 - [消息中心](message)
   - [通知类消息](message/msg.md)×
   - [私信](message/private_msg.md)×
@@ -107,7 +108,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
     - [风纪委员基本信息](blackroom/jury/base_info.md)√
     - [众裁案件基本信息](blackroom/jury/judgement_info.md)√
     - [裁决操作](blackroom/jury/action.md)√
-- [评论区](comment)
+- [评论区](comment)√
   - [评论区明细](comment/comment_list.md)√
   - [操作](comment/action.md)√
 - [表情](emote)

@@ -1,6 +1,6 @@
 # 用户关系相关
 
-## 查询用户粉丝明细 
+## 查询用户粉丝明细
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
@@ -8,15 +8,18 @@
 
 *请求方式：GET*
 
-登录(SESSDATA)可看自己全部
+认证方式：Cookie（SESSDATA）或APP
+
+登录可看自己全部，其他用户仅可查看前5页
 
 **url参数：**
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注                             |
-| ------ | ---- | ----------- | ------ | -------------------------------- |
-| vmid   | num  | 目标用户UID | 必要   |                                  |
-| ps     | num  | 每页项数    | 非必要 | 默认为50                         |
-| pn     | num  | 页码        | 非必要 | 默认为1<br />非自己仅可查看前5页 |
+| 参数名     | 类型 | 内容         | 必要性      | 备注                               |
+| ---------- | ---- | ------------ | ----------- | ---------------------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                                    |
+| vmid       | num  | 目标用户UID  | 必要        |                                    |
+| ps         | num  | 每页项数     | 非必要      | 默认为50                           |
+| pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页 |
 
 **json回复：**
 
@@ -88,7 +91,7 @@
 
 **示例：**
 
-以每页2项的方式获取`UID=293793435`的用户的第1页的粉丝明细
+获取用户`UID=293793435`的粉丝明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/followers'\
@@ -166,7 +169,7 @@ curl -G 'http://api.bilibili.com/x/relation/followers'\
 
 </details>
 
-## 查询用户关注明细 
+## 查询用户关注明细
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
@@ -174,15 +177,18 @@ curl -G 'http://api.bilibili.com/x/relation/followers'\
 
 *请求方式：GET*
 
-登录(SESSDATA)可看自己全部
+认证方式：Cookie（SESSDATA）或APP
+
+登录可看自己全部，其他用户仅可查看前5页
 
 **url参数：**
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注                             |
-| ------ | ---- | ----------- | ------ | -------------------------------- |
-| vmid   | num  | 目标用户UID | 必要   |                                  |
-| ps     | num  | 每页项数    | 非必要 | 默认为50                         |
-| pn     | num  | 页码        | 非必要 | 默认为1<br />非自己仅可查看前5页 |
+| 参数名     | 类型 | 内容         | 必要性      | 备注                               |
+| ---------- | ---- | ------------ | ----------- | ---------------------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                                    |
+| vmid       | num  | 目标用户UID  | 必要        |                                    |
+| ps         | num  | 每页项数     | 非必要      | 默认为50                           |
+| pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页 |
 
 **json回复：**
 
@@ -262,7 +268,7 @@ data 对象：
 
 **示例：**
 
-以每页2项的方式获取`UID=293793435`的用户的第1页的关注明细
+获取用户`UID=293793435`的关注明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/ollowings'\
@@ -340,6 +346,186 @@ curl -G 'http://api.bilibili.com/x/relation/ollowings'\
 
 </details>
 
+## 查询共同关注明细
+
+<img src="/imgs/relation.svg" width="100" height="100" />
+
+> http://api.bilibili.com/x/relation/same/followings
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注     |
+| ---------- | ---- | ------------ | ----------- | -------- |
+| access_key | str  | APP登录Token | APP方式必要 |          |
+| vmid       | num  | 目标用户UID  | 必要        |          |
+| ps         | num  | 每页项数     | 非必要      | 默认为50 |
+| pn         | num  | 页码         | 非必要      | 默认为1  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 信息本体 |                                                   |
+
+data 对象：
+
+| 字段       | 类型  | 内容     | 备注         |
+| ---------- | ----- | -------- | ------------ |
+| list       | array | 明细列表 |              |
+| re_version | num   | ？？？   | 作用尚不明确 |
+| total      | num   | 关注总数 |              |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容            | 备注             |
+| ---- | ---- | --------------- | ---------------- |
+| 0    | obj  | 共同关注1       |                  |
+| n    | obj  | 共同关注（n+1） | 按照关注顺序排列 |
+| ……   | obj  | ……              | ……               |
+
+数组`list`中的对象：
+
+| 字段            | 类型                                    | 内容         | 备注                                    |
+| --------------- | --------------------------------------- | ------------ | --------------------------------------- |
+| mid             | num                                     | 用户UID      |                                         |
+| attribute       | num                                     | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
+| mtime           | num                                     | 关注对方时间 | 时间戳<br />互关后刷新                  |
+| tag             | null默认分组<br />array存在至少一个分组 | 分组ID       | 作用尚不明确                            |
+| special         | num                                     | 特别关注标志 | 0：否<br />1：是                        |
+| uname           | str                                     | 用户昵称     |                                         |
+| face            | str                                     | 用户头像url  |                                         |
+| sign            | str                                     | 用户签名     |                                         |
+| official_verify | obj                                     | 认证信息     |                                         |
+| vip             | obj                                     | 会员信息     |                                         |
+
+数组`list`中的对象中的`tag`数组：
+
+| 项   | 类型 | 内容                    | 备注 |
+| ---- | ---- | ----------------------- | ---- |
+| 0    | num  | 位于分组1的分组ID       |      |
+| n    | num  | 位于分组（n+1）的分组ID |      |
+| ……   | num  | ……                      | ……   |
+
+数组`list`中的对象中的`official_verify`对象：
+
+| 字段 | 类型 | 内容         | 备注                |
+| ---- | ---- | ------------ | ------------------- |
+| type | num  | 用户认证类型 | -1：无<br />0：认证 |
+| desc | str  | 用户认证信息 | 无为空              |
+
+数组`list`中的对象中的`vip`对象：
+
+| 字段          | 类型 | 内容         | 备注                                |
+| ------------- | ---- | ------------ | ----------------------------------- |
+| vipType       | num  | 大会员类型   | 0：无<br />1：月会员<br />2：年会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                         |
+| dueRemark     | str  | 空           | 作用尚不明确                        |
+| accessStatus  | num  | 0            | 作用尚不明确                        |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                    |
+| vipStatusWarn | str  | 空           | 作用尚不明确                        |
+| themeType     | num  | 0            | 作用尚不明确                        |
+| label         | obj  | ？？？       | 作用尚不明确                        |
+
+`vip`中的`label`对象：
+
+| 字段 | 类型 | 内容 | 备注         |
+| ---- | ---- | ---- | ------------ |
+| path | str  | 空   | 作用尚不明确 |
+
+**示例：**
+
+获取自己与用户`UID=2`的共同关注明细
+
+```shell
+curl -G 'http://api.bilibili.com/x/relation/same/followings'\
+--data-urlencode 'vmid=2'\
+--data-urlencode 'ps=2'\
+--data-urlencode 'pn=1'\
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "mid": 116683,
+                "attribute": 2,
+                "mtime": 1564627532,
+                "tag": null,
+                "special": 0,
+                "uname": "=咬人猫=",
+                "face": "http://i0.hdslb.com/bfs/face/8fad84a4470f3d894d8f0dc95555ab8f2cb10a83.jpg",
+                "sign": "面瘫女仆酱~小粗腿~事业线什么的！！吐槽你就输了！喵~",
+                "official_verify": {
+                    "type": 0,
+                    "desc": "bilibili 2019百大UP主、高能联盟成员"
+                },
+                "vip": {
+                    "vipType": 2,
+                    "vipDueDate": 1618934400000,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 1,
+                    "vipStatusWarn": "",
+                    "themeType": 0,
+                    "label": {
+                        "path": ""
+                    }
+                }
+            },
+            {
+                "mid": 517717593,
+                "attribute": 2,
+                "mtime": 1592126052,
+                "tag": [
+                    207542
+                ],
+                "special": 0,
+                "uname": "上海爱丽丝幻乐团",
+                "face": "http://i0.hdslb.com/bfs/face/851a9191cbe93e66304d7577c0f6f83834e52109.jpg",
+                "sign": "日本同人社团 上海爱丽丝幻乐团",
+                "official_verify": {
+                    "type": 0,
+                    "desc": "上海爱丽丝幻乐团官方账号"
+                },
+                "vip": {
+                    "vipType": 1,
+                    "vipDueDate": 1593792000000,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": "",
+                    "themeType": 0,
+                    "label": {
+                        "path": ""
+                    }
+                }
+            }
+        ],
+        "re_version": 2498273968,
+        "total": 38
+    }
+}
+```
+
+</details>
+
 ## 操作用户关系（关注/取关 等）
 
 <img src="/imgs/follow.svg" width="200" height="100" />
@@ -348,16 +534,17 @@ curl -G 'http://api.bilibili.com/x/relation/ollowings'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注                                  |
-| ------ | ---- | ------------------------ | ------ | ------------------------------------- |
-| fid    | num  | 目标用户UID              | 必要   |                                       |
-| act    | num  | 操作代码                 | 必要   | **操作代码见下表**                    |
-| re_src | num  | 关注来源代码             | 必要   | 空间：11<br />视频：14<br />文章：115 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                       |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                     |
+| ---------- | ---- | ------------------------ | -------------- | -------------------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                                          |
+| fid        | num  | 目标用户UID              | 必要           |                                                          |
+| act        | num  | 操作代码                 | 必要           | **操作代码见下表**                                       |
+| re_src     | num  | 关注来源代码             | 必要           | 空间：11<br />视频：14<br />文章：115<br />活动页面：222 |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                          |
 
 操作代码`act`：
 
@@ -407,19 +594,91 @@ curl 'http://http://api.bilibili.com/x/relation/modify'\
 
 </details>
 
+## 批量操作用户关系（关注/取关 等）
+
+> http://api.bilibili.com/x/relation/batch/modify
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                           |
+| ---------- | ---- | ------------------------ | -------------- | ---------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                                |
+| fids       | nums | 目标用户UID              | 必要           | 每个ID之间用`,`间隔                            |
+| act        | num  | 操作代码                 | 必要           | 同上<br />仅可为1或5，故只能进行批量关注和拉黑 |
+| re_src     | num  | 关注来源代码             | 必要           | 同上                                           |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />22003：用户位于黑名单 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 数据本体 |                                                              |
+
+`data`对象：
+
+| 字段        | 类型  | 内容          | 备注 |
+| ----------- | ----- | ------------- | ---- |
+| failed_fids | array | 操作失败的UID |      |
+
+`data`中的`failed_fids`数组：
+
+| 项   | 类型 | 内容                 | 备注 |
+| ---- | ---- | -------------------- | ---- |
+| 0    | num  | 操作失败的UID 1      |      |
+| n    | num  | 操作失败的UID（n+1） |      |
+| ……   | num  | ……                   | ……   |
+
+**示例：**
+
+批量关注`UID=1,2,3,4,5`的用户
+
+```shell
+curl 'http://http://api.bilibili.com/x/relation/batch/modify'\
+--data-urlencode 'fid=1,2,3,4,5'\
+--data-urlencode 'act=1'\
+--data-urlencode 're_src=11'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "failed_fids": []
+    }
+}
+```
+
+</details>
+
 ## 查询用户与自己关系1 (仅查关注)
 
 > http://api.bilibili.com/x/relation
 
 *请求方式：GET*
 
- 需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **url参数：**
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| fid    | num  | 目标用户UID | 必要   |      |
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| fid        | num  | 目标用户UID  | 必要        |      |
 
 **json回复：**
 
@@ -437,7 +696,7 @@ curl 'http://http://api.bilibili.com/x/relation/modify'\
 | 字段      | 类型                                     | 内容         | 备注                                    |
 | --------- | ---------------------------------------- | ------------ | --------------------------------------- |
 | mid       | num                                      | 目标用户UID  |                                         |
-| attribute | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
+| attribute | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
 | mtime     | num                                      | 关注对方时间 | 时间戳<br />未关注为0                   |
 | tag       | null默认分组<br />array存在至少一个分组 | 分组ID       |                                         |
 | special   | num                                      | 特别关注标志 | 0：否<br />1：是                        |
@@ -486,13 +745,14 @@ curl -G 'http://http://api.bilibili.com/x/relation'\
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **url参数：**
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| mid        | num  | 目标用户UID  | 必要        |      |
 
 **json回复：**
 
@@ -517,20 +777,20 @@ curl -G 'http://http://api.bilibili.com/x/relation'\
 | 字段      | 类型                                     | 内容         | 备注           |
 | --------- | ---------------------------------------- | ------------ | -------------- |
 | mid       | num                                      | 对方用户UID  |                |
-| attribute | num                                      |              |                |
+| attribute | num                                      | 关注属性 | 0：未关注<br />1：悄悄关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
 | mtime     | num                                      | 关注对方时间 | 互关后刷新时间 |
-| tag       | null默认分组<br />array存在至少一个分组 |              |                |
-| special   | num                                      |              |                |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组ID |                |
+| special   | num                                      | 特别关注标志 | 0：否<br />1：是 |
 
 `data`中的`be_relation`对象：
 
 | 字段      | 类型                                     | 内容         | 备注           |
 | --------- | ---------------------------------------- | ------------ | -------------- |
-| mid       | num                                      |              |                |
-| attribute | num                                      |              |                |
+| mid       | num                                      | 自己的UID |                |
+| attribute | num                                      | 关注属性 | 0：未关注<br />1：悄悄关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
 | mtime     | num                                      | 成为粉丝时间 | 互关后刷新时间 |
-| tag       | null默认分组<br />array存在至少一个分组 |              |                |
-| special   | num                                      |              |                |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组ID |                |
+| special   | num                                      | 特别关注标志 | 0：否<br />1：是 |
 
 `be_relation`与`relation`中的`tag`数组：
 
@@ -581,6 +841,96 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation'\
 
 </details>
 
+## 批量查询用户与自己关系
+
+> http://api.bilibili.com/x/relation/relations
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注                |
+| ---------- | ---- | ------------ | ----------- | ------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                     |
+| fids       | nums | 目标用户UID  | 必要        | 每个ID之间用`,`间隔 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 信息本体 |                                                   |
+
+`data`对象：
+
+| 字段      | 类型 | 内容       | 备注 |
+| --------- | ---- | ---------- | ---- |
+| {用户UID} | obj  | 关注的用户 | 下同 |
+| ……        | obj  | ……         |      |
+
+`{用户UID}`对象：
+
+| 字段      | 类型                                    | 内容         | 备注                                                         |
+| --------- | --------------------------------------- | ------------ | ------------------------------------------------------------ |
+| mid       | num                                     | 目标用户UID  |                                                              |
+| attribute | num                                     | 关注属性     | 0：未关注<br />1：悄悄关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
+| mtime     | num                                     | 关注对方时间 | 时间戳<br />未关注为0                                        |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组ID       |                                                              |
+| special   | num                                     | 特别关注标志 | 0：否<br />1：是                                             |
+
+`tag`数组：
+
+| 项   | 类型 | 内容                    | 备注 |
+| ---- | ---- | ----------------------- | ---- |
+| 0    | num  | 位于分组1的分组ID       |      |
+| n    | num  | 位于分组（n+1）的分组ID |      |
+| ……   | num  | ……                      | ……   |
+
+**示例：**
+
+批量查询`UID=1,2,3,4,5`的关系
+
+```shell
+curl -G 'http://http://api.bilibili.com/x/relation/relations'\
+--data-urlencode 'fid=258150656'\
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "1": {
+            "mid": 1,
+            "attribute": 2,
+            "mtime": 1601654227,
+            "tag": null,
+            "special": 0
+        },
+        "2": {
+            "mid": 2,
+            "attribute": 2,
+            "mtime": 1601654225,
+            "tag": null,
+            "special": 0
+        }
+    }
+}
+```
+
+</details>
+
 ## 关注分组相关
 
 ### 查询关注分组列表
@@ -589,7 +939,13 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation'\
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
 
 **json回复：**
 
@@ -662,15 +1018,16 @@ curl 'http://api.bilibili.com/x/relation/tags'\
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **url参数：**
 
-| 参数名 | 类型 | 内容     | 必要性 | 备注                               |
-| ------ | ---- | -------- | ------ | ---------------------------------- |
-| tagid  | num  | 分组ID   | 必要   | 特别关注恒为-10<br />默认分组恒为0 |
-| ps     | num  | 每页项数 | 非必要 | 默认为50                           |
-| pn     | num  | 页数     | 非必要 | 默认为1                            |
+| 参数名     | 类型 | 内容         | 必要性      | 备注                               |
+| ---------- | ---- | ------------ | ----------- | ---------------------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                                    |
+| tagid      | num  | 分组ID       | 必要        | 特别关注恒为-10<br />默认分组恒为0 |
+| ps         | num  | 每页项数     | 非必要      | 默认为50                           |
+| pn         | num  | 页数         | 非必要      | 默认为1                            |
 
 **json回复：**
 
@@ -802,13 +1159,14 @@ curl -G 'http://api.bilibili.com/x/relation/tag'\
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **url参数：**
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| fid    | num  | 目标用户UID | 必要   |      |
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| fid        | num  | 目标用户UID  | 必要        |      |
 
 **json回复：**
 
@@ -862,7 +1220,13 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user'\
 
 *请求方式：GET*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
 
 **json回复：**
 
@@ -931,14 +1295,15 @@ curl 'http://api.bilibili.com/x/relation/tag/special'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注       |
-| ------ | ---- | ------------------------ | ------ | ---------- |
-| tag    | str  | 分组名                   | 必要   | 最长16字符 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |            |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注       |
+| ---------- | ---- | ------------------------ | -------------- | ---------- |
+| access_key | str  | APP登录Token             | APP方式必要    |            |
+| tag        | str  | 分组名                   | 必要           | 最长16字符 |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |            |
 
 **json回复：**
 
@@ -990,15 +1355,16 @@ curl 'http://api.bilibili.com/x/relation/tag/create'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注       |
-| ------ | ---- | ------------------------ | ------ | ---------- |
-| tagid  | num  | 分组ID                   | 必要   |            |
-| name   | str  | 新名称                   | 必要   | 最长16字符 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |            |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注       |
+| ---------- | ---- | ------------------------ | -------------- | ---------- |
+| access_key | str  | APP登录Token             | APP方式必要    |            |
+| tagid      | num  | 分组ID                   | 必要           |            |
+| name       | str  | 新名称                   | 必要           | 最长16字符 |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |            |
 
 **json回复：**
 
@@ -1043,14 +1409,15 @@ curl 'http://api.bilibili.com/x/relation/tag/update'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
-| ------ | ---- | ------------------------ | ------ | ---- |
-| tagid  | num  | 分组ID                   | 必要   |      |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注 |
+| ---------- | ---- | ------------------------ | -------------- | ---- |
+| access_key | str  | APP登录Token             | APP方式必要    |      |
+| tagid      | num  | 分组ID                   | 必要           |      |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |      |
 
 **json回复：**
 
@@ -1094,15 +1461,16 @@ curl 'http://api.bilibili.com/x/relation/tag/del'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注                       |
-| ------ | ---- | ------------------------ | ------ | -------------------------- |
-| fids   | nums | 目标用户UID              | 必要   | 每个ID之间用","（%2C）间隔 |
-| tagids | nums | 分组ID                   | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |                            |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                |
+| ---------- | ---- | ------------------------ | -------------- | ------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                     |
+| fids       | nums | 目标用户UID              | 必要           | 每个ID之间用`,`间隔 |
+| tagids     | nums | 分组ID                   | 必要           | 每个ID之间用`,`间隔 |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
 
 **json回复：**
 
@@ -1145,15 +1513,16 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注                       |
-| ------ | ---- | ------------------------ | ------ | -------------------------- |
-| fids   | nums | 待复制的用户UID          | 必要   | 每个ID之间用","（%2C）间隔 |
-| tagids | nums | 目标分组ID               | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |                            |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                |
+| ---------- | ---- | ------------------------ | -------------- | ------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                     |
+| fids       | nums | 待复制的用户UID          | 必要           | 每个ID之间用`,`间隔 |
+| tagids     | nums | 目标分组ID               | 必要           | 每个ID之间用`,`间隔 |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
 
 **json回复：**
 
@@ -1196,16 +1565,17 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers'\
 
 *请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名       | 类型 | 内容                     | 必要性 | 备注                       |
-| ------------ | ---- | ------------------------ | ------ | -------------------------- |
-| beforeTagids | nums | 原分组ID                 | 必要   | 每个ID之间用","（%2C）间隔 |
-| afterTagids  | nums | 新分组ID                 | 必要   | 每个ID之间用","（%2C）间隔 |
-| fids         | nums | 待移动的用户UID          | 必要   | 每个ID之间用","（%2C）间隔 |
-| csrf         | str  | CSRF Token（位于cookie） | 必要   |                            |
+| 参数名       | 类型 | 内容                     | 必要性         | 备注                |
+| ------------ | ---- | ------------------------ | -------------- | ------------------- |
+| access_key   | str  | APP登录Token             | APP方式必要    |                     |
+| beforeTagids | nums | 原分组ID                 | 必要           | 每个ID之间用`,`间隔 |
+| afterTagids  | nums | 新分组ID                 | 必要           | 每个ID之间用`,`间隔 |
+| fids         | nums | 待移动的用户UID          | 必要           | 每个ID之间用`,`间隔 |
+| csrf         | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
 
 **json回复：**
 

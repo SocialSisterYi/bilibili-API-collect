@@ -18,7 +18,7 @@
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
-| ttl     | num  | 1        | 作用尚不明确                  |
+| ttl     | num  | 1        |                               |
 | data    | obj  | 信息本体 |                               |
 
 `data`对象：
@@ -80,7 +80,7 @@ curl 'http://api.bilibili.com/x/member/web/account'\
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
-| ttl     | num  | 1        | 作用尚不明确                  |
+| ttl     | num  | 1        |                               |
 | data    | obj  | 信息本体 |                               |
 
 `data`对象：
@@ -142,7 +142,7 @@ curl 'http://api.bilibili.com/x/member/web/exp/reward'\
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
-| ttl     | num  | 1        | 作用尚不明确                  |
+| ttl     | num  | 1        |                               |
 | data    | obj  | 信息本体 |                               |
 
 `data`对象：
@@ -202,7 +202,7 @@ curl 'http://api.bilibili.com/x/vip/web/user/info'\
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
-| ttl     | num  | 1        | 作用尚不明确                  |
+| ttl     | num  | 1        |                               |
 | data    | obj  | 信息本体 |                               |
 
 `data`对象：
@@ -304,7 +304,7 @@ curl 'http://passport.bilibili.com/web/site/user/info'\
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
-| ttl     | num  | 1        | 作用尚不明确                  |
+| ttl     | num  | 1        |                               |
 | data    | obj  | 信息本体 |                               |
 
 `data`对象：
@@ -354,7 +354,7 @@ curl 'http://api.bilibili.com/x/member/realname/status'\
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
-| ttl     | num  | 1        | 作用尚不明确                  |
+| ttl     | num  | 1        |                               |
 | data    | obj  | 数据本体 |                               |
 
 `data`对象：
@@ -410,7 +410,7 @@ curl 'http://api.bilibili.com/x/member/realname/apply/status'\
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
-| ttl     | num  | 1        | 作用尚不明确                  |
+| ttl     | num  | 1        |                               |
 | data    | obj  | 数据本体 |                               |
 
 `data`对象：
@@ -551,7 +551,7 @@ curl 'http://api.bilibili.com/x/member/web/coin/log'\
 | ------- | ---- | -------- | ------------------------------------------------------------ |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />40015：签名包含敏感词<br />40021：签名不能包含表情图片<br />40022：签名过长 |
 | message | str  | 错误信息 | 默认为0                                                      |
-| ttl     | num  | 1        | 作用尚不明确                                                 |
+| ttl     | num  | 1        |                                                              |
 
 **示例：**
 
@@ -559,7 +559,7 @@ curl 'http://api.bilibili.com/x/member/web/coin/log'\
 
 ```shell
 curl 'http://api.bilibili.com/x/member/web/sign/update'\
---data-urlencode 'user_sign=高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，资深猿厨，粉丝群：1136462265'\
+--data-urlencode 'user_sign=高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，粉丝群：1136462265'\
 --data-urlencode 'csrf=xxx'\
 -b 'SESSDATA=xxx'
 ```

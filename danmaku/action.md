@@ -6,24 +6,25 @@
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                     | 必要性         | 备注                                                         |
-| -------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
-| type     | num  | 1                        | 必要           |                                                              |
-| oid      | num  | 视频CID                  | 必要           |                                                              |
-| msg      | str  | 弹幕内容                 | 必要           | 长度小于100字符                                              |
-| bvid     | str  | 视频bvID                 | 必要（可选）   | avID与bvID任选一个                                           |
-| aid      | num  | 视频avID                 | 必要（可选）   | avID与bvID任选一个                                           |
-| progress | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
-| color    | num  | 弹幕颜色设置             | 非必要         | 十进制RGB888值<br />默认为16777215（#FFFFFF）白色            |
-| fontsize | num  | 弹幕字号设置             | 非必要         | 默认为25<br />极小：12<br />超小：16<br />小：18<br />标准：25<br />大：36<br />超大：45<br />极大：64 |
-| pool     | num  | 弹幕池选择               | 非必要         | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）<br />默认为0 |
-| mode     | num  | 弹幕类型选择             | 必要           | 1：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />7：高级弹幕<br />9：BAS弹幕（`pool`必须为2） |
-| rnd      | num  | 当前时间戳*1000000       | 非必要         | **若无此项，则发送弹幕冷却时间限制为90s**<br />若有此项，则发送弹幕冷却时间限制为5s |
-| csrf     | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
+| ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
+| access_key | str  | APP登录Token             | APP方式必要    |                                                              |
+| type       | num  | 1                        | 必要           |                                                              |
+| oid        | num  | 视频CID                  | 必要           |                                                              |
+| msg        | str  | 弹幕内容                 | 必要           | 长度小于100字符                                              |
+| bvid       | str  | 视频bvID                 | 必要（可选）   | avID与bvID任选一个                                           |
+| aid        | num  | 视频avID                 | 必要（可选）   | avID与bvID任选一个                                           |
+| progress   | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
+| color      | num  | 弹幕颜色设置             | 非必要         | 十进制RGB888值<br />默认为16777215（#FFFFFF）白色            |
+| fontsize   | num  | 弹幕字号设置             | 非必要         | 默认为25<br />极小：12<br />超小：16<br />小：18<br />标准：25<br />大：36<br />超大：45<br />极大：64 |
+| pool       | num  | 弹幕池选择               | 非必要         | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）<br />默认为0 |
+| mode       | num  | 弹幕类型选择             | 必要           | 1：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />7：高级弹幕<br />9：BAS弹幕（`pool`必须为2） |
+| rnd        | num  | 当前时间戳*1000000       | 非必要         | **若无此项，则发送弹幕冷却时间限制为90s**<br />若有此项，则发送弹幕冷却时间限制为5s |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
 
 **json回复：**
 
@@ -102,16 +103,17 @@ curl 'http://api.bilibili.com/x/v2/dm/post'\
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                     | 必要性         | 备注                                                         |
-| -------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
-| type     | num  | 互动弹幕类型             | 必要           | 1：UP主头像弹幕<br />2：关联视频弹幕<br />5：视频内嵌引导关注按钮 |
-| aid      | num  | 视频avID                 | 必要           |                                                              |
-| cid      | num  | 视频CID                  | 必要           |                                                              |
-| progress | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
-| plat     | num  | 平台标识                 | 必要           | 1：web端<br />2：安卓端<br />8：视频管理页面                 |
-| data     | str  | json序列                 | 必要           |                                                              |
-| dmid     | num  | 修改互动弹幕的弹幕ID     | 非必要         | 注：修改弹幕`plat`必须为8                                    |
-| csrf     | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
+| ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
+| access_key | str  | APP登录Token             | APP方式必要    |                                                              |
+| type       | num  | 互动弹幕类型             | 必要           | 1：UP主头像弹幕<br />2：关联视频弹幕<br />5：视频内嵌引导关注按钮 |
+| aid        | num  | 视频avID                 | 必要           |                                                              |
+| cid        | num  | 视频CID                  | 必要           |                                                              |
+| progress   | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
+| plat       | num  | 平台标识                 | 必要           | 1：web端<br />2：安卓端<br />8：视频管理页面                 |
+| data       | str  | json序列                 | 必要           |                                                              |
+| dmid       | num  | 修改互动弹幕的弹幕ID     | 非必要         | 注：修改弹幕`plat`必须为8                                    |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
 
 `data`参数：
 
@@ -299,17 +301,18 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post'\
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 仅能撤回自己两分钟内的弹幕，且每天只有3次机会
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
-| ------ | ---- | ------------------------ | ------ | ---- |
-| dmid   | num  | 弹幕dmID                 | 必要   |      |
-| cid    | num  | 视频CID                  | 必要   |      |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注 |
+| ---------- | ---- | ------------------------ | -------------- | ---- |
+| access_key | str  | APP登录Token             | APP方式必要    |      |
+| dmid       | num  | 弹幕dmID                 | 必要           |      |
+| cid        | num  | 视频CID                  | 必要           |      |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |      |
 
 **json回复：**
 
@@ -351,17 +354,18 @@ curl 'http://api.bilibili.com/x/dm/recall'\
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 购买一次需要2硬币，同时向up主发送请求
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
-| ------ | ---- | ------------------------ | ------ | ---- |
-| mode   | str  | sp                       | 必要   |      |
-| cid    | num  | 视频CID                  | 必要   |      |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注 |
+| ---------- | ---- | ------------------------ | -------------- | ---- |
+| access_key | str  | APP登录Token             | APP方式必要    |      |
+| mode       | str  | sp                       | 必要           |      |
+| cid        | num  | 视频CID                  | 必要           |      |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |      |
 
 **json回复：**
 
@@ -403,14 +407,15 @@ curl 'http://api.bilibili.com/x/dm/adv/buy'\
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA）或APP
 
 **url参数：**
 
-| 参数名 | 类型 | 内容    | 必要性 | 备注 |
-| ------ | ---- | ------- | ------ | ---- |
-| mode   | str  | sp      | 必要   |      |
-| cid    | num  | 视频CID | 必要   |      |
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| mode       | str  | sp           | 必要        |      |
+| cid        | num  | 视频CID      | 必要        |      |
 
 **json回复：**
 
