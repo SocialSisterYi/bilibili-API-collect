@@ -327,7 +327,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
 
 ## 点赞弹幕
 
-> https://api.bilibili.com/x/v2/dm/thumbup/add
+> http://api.bilibili.com/x/v2/dm/thumbup/add
 
 *请求方式：POST*
 
@@ -358,7 +358,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
 为`CID=145928946`下的弹幕`35600074482384899`点赞
 
 ```shell
-curl 'https://api.bilibili.com/x/v2/dm/thumbup/add'\
+curl 'http://api.bilibili.com/x/v2/dm/thumbup/add'\
 --data-urlencode 'dmid=35600074482384899'\
 --data-urlencode 'oid=145928946'\
 --data-urlencode 'op=1'\
@@ -375,6 +375,76 @@ curl 'https://api.bilibili.com/x/v2/dm/thumbup/add'\
     "code":0,
     "message":"0",
     "ttl":1
+}
+```
+
+</details>
+
+## 举报弹幕
+
+> http://api.bilibili.com/x/dm/report/add
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名  | 类型 | 内容                     | 必要性 | 备注               |
+| ------- | ---- | ------------------------ | ------ | ------------------ |
+| cid     | num  | 视频CID                  | 必要   |                    |
+| dmid    | num  | 弹幕dmID                 | 必要   |                    |
+| reason  | num  | 举报类型                 | 必要   | **类型代码见下表** |
+| content | str  | 其他举报备注             | 非必要 | `reason=11`时有效  |
+| csrf    | str  | CSRF Token（位于cookie） | 必要   |                    |
+
+举报类型`reason`：
+
+| 代码 | 含义       |
+| ---- | ---------- |
+| 1    | 违法违禁   |
+| 2    | 色情低俗   |
+| 3    | 赌博诈骗   |
+| 4    | 人身攻击   |
+| 5    | 侵犯隐私   |
+| 6    | 垃圾广告   |
+| 7    | 引战       |
+| 8    | 剧透       |
+| 9    | 恶意刷屏   |
+| 10   | 视频无关   |
+| 11   | 其他       |
+| 12   | 青少年不良 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />36201：举报弹幕不存在<br />36203：举报原因类型错误<br />36204：已举报 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| tll     | num  | 1        | 举报失败时                                                   |
+
+**示例**
+
+举报`CID=145928946`下的弹幕`35600074482384899`，理由是`引战`
+
+```shell
+curl 'http://api.bilibili.com/x/dm/report/add'\
+--data-urlencode 'cid=145928946'\
+--data-urlencode 'dmid=35600074482384899'\
+--data-urlencode 'reason=7'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code":0,
+    "message":""
 }
 ```
 
