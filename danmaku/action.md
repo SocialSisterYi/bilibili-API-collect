@@ -727,3 +727,58 @@ curl 'http://api.bilibili.com/x/v2/dm/edit/state'\
 ```
 
 </details>
+
+## 移入移出字幕池
+
+> http://api.bilibili.com/x/v2/dm/edit/pool
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容                     | 必要性         | 备注                             |
+| ------ | ---- | ------------------------ | -------------- | -------------------------------- |
+| type   | num  | 1                        | 必要           |                                  |
+| oid    | num  | 视频CID                  | 必要           |                                  |
+| pool   | num  | 操作                     | 必要           | 0：移出字幕池<br />1：移入字幕池 |
+| dmids  | nums | 弹幕dmID列表             | 必要           | 多个ID之间用`,`分隔              |
+| csrf   | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />-403：访问权限不足 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+
+**示例**
+
+将`CID=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`移入字幕池
+
+```shell
+curl 'http://api.bilibili.com/x/v2/dm/edit/state'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=145928946'\
+--data-urlencode 'pool=1'\
+--data-urlencode 'dmids=35600074482384899,39067304918515717,39082777041174531'\
+--data-urlencode 'csrf=xxx'\
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1
+}
+```
+
+</details>
