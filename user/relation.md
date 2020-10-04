@@ -183,12 +183,13 @@ curl -G 'http://api.bilibili.com/x/relation/followers'\
 
 **url参数：**
 
-| 参数名     | 类型 | 内容         | 必要性      | 备注                               |
-| ---------- | ---- | ------------ | ----------- | ---------------------------------- |
-| access_key | str  | APP登录Token | APP方式必要 |                                    |
-| vmid       | num  | 目标用户UID  | 必要        |                                    |
-| ps         | num  | 每页项数     | 非必要      | 默认为50                           |
-| pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页 |
+| 参数名     | 类型 | 内容         | 必要性      | 备注                                                    |
+| ---------- | ---- | ------------ | ----------- | ------------------------------------------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                                                         |
+| vmid       | num  | 目标用户UID  | 必要        |                                                         |
+| order_type | str  | 排序方式     | 非必要      | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
+| ps         | num  | 每页项数     | 非必要      | 默认为50                                                |
+| pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页                      |
 
 **json回复：**
 
@@ -268,11 +269,12 @@ data 对象：
 
 **示例：**
 
-获取用户`UID=293793435`的关注明细
+获取用户`UID=293793435`的关注明细，按照关注顺序
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/ollowings'\
 --data-urlencode 'vmid=293793435'\
+--data-urlencode 'order_type='\
 --data-urlencode 'ps=2'\
 --data-urlencode 'pn=1'\
 -b 'SESSDATA=xxx'
@@ -1022,12 +1024,13 @@ curl 'http://api.bilibili.com/x/relation/tags'\
 
 **url参数：**
 
-| 参数名     | 类型 | 内容         | 必要性      | 备注                               |
-| ---------- | ---- | ------------ | ----------- | ---------------------------------- |
-| access_key | str  | APP登录Token | APP方式必要 |                                    |
-| tagid      | num  | 分组ID       | 必要        | 特别关注恒为-10<br />默认分组恒为0 |
-| ps         | num  | 每页项数     | 非必要      | 默认为50                           |
-| pn         | num  | 页数         | 非必要      | 默认为1                            |
+| 参数名     | 类型 | 内容         | 必要性      | 备注                                                    |
+| ---------- | ---- | ------------ | ----------- | ------------------------------------------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                                                         |
+| tagid      | num  | 分组ID       | 必要        | 特别关注恒为-10<br />默认分组恒为0                      |
+| order_type | str  | 排序方式     | 非必要      | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
+| ps         | num  | 每页项数     | 非必要      | 默认为50                                                |
+| pn         | num  | 页数         | 非必要      | 默认为1                                                 |
 
 **json回复：**
 
@@ -1087,11 +1090,12 @@ curl 'http://api.bilibili.com/x/relation/tags'\
 
 **示例：**
 
-以每页2项的方式获取了ID为`207542`分组的第1页的粉丝明细
+以每页2项的方式获取了ID为`207542`分组的第1页的粉丝明细，按照关注顺序
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/tag'\
 --data-urlencode 'tagid=207542'\
+--data-urlencode 'order_type='\
 --data-urlencode 'ps=2'\
 --data-urlencode 'pn=1'\
 -b 'SESSDATA=xxx'

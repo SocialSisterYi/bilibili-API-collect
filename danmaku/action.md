@@ -8,12 +8,16 @@
 
 认证方式：Cookie（SESSDATA）或APP
 
+此接口与漫画弹幕相同
+
+`mode=6`的逆向弹幕与`mode=8`的代码弹幕不可发送
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                              |
-| type       | num  | 1                        | 必要           |                                                              |
+| type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                                                  |
 | oid        | num  | 视频CID                  | 必要           |                                                              |
 | msg        | str  | 弹幕内容                 | 必要           | 长度小于100字符                                              |
 | bvid       | str  | 视频bvID                 | 必要（可选）   | avID与bvID任选一个                                           |
@@ -115,7 +119,7 @@ curl 'http://api.bilibili.com/x/v2/dm/post'\
 | dmid       | num  | 修改互动弹幕的弹幕ID     | 非必要         | 注：修改弹幕`plat`必须为8                                    |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
 
-`data`参数：
+`data`参数json序列：
 
 类型为【UP主头像弹幕】时：
 
@@ -178,6 +182,15 @@ curl 'http://api.bilibili.com/x/v2/dm/post'\
 | aid   | num  | 关联视频的avID |      |
 | title | str  | 关联视频的标题 |      |
 | bvid  | str  | 关联视频的bvID |      |
+
+类型为【视频内嵌引导关注按钮】时：
+
+| 字段     | 类型 | 内容        | 备注                               |
+| -------- | ---- | ----------- | ---------------------------------- |
+| duration | num  | 持续时间    | 单位为毫秒                         |
+| posX     | num  | X坐标       | 区间：[118-549]                    |
+| posY     | num  | Y坐标       | 区间：[82-293]                     |
+| icon     | str  | 按钮图片url | 不应该是关注按钮吗，但这个是圆形的 |
 
 **示例：**
 

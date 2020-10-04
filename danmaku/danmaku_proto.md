@@ -14,7 +14,9 @@
 
 此接口与漫画弹幕相同
 
-只能返回普通和高级弹幕，代码（BAS）弹幕请从云推荐弹幕中获取
+只能返回普通弹幕（`pool=1` `mode=1-7`）和代码弹幕（`pool=2` `mode=8`），BAS弹幕（`pool=2` `mode=9`）请从[弹幕元数据](danmaku_view_proto.md)中获取
+
+互动弹幕（UP主头像弹幕、关联视频、内嵌关注按钮）也不存在这个接口，请从[弹幕元数据](danmaku_view_proto.md)中获取
 
 **注：仅获取6min的整数倍时间内的弹幕，6min内最多弹幕数为6000条（如第一包中弹幕`progress`值域为0-360000）**
 
@@ -22,31 +24,35 @@
 
 | 参数名        | 类型 | 内容     | 必要性 | 备注        |
 | ------------- | ---- | -------- | ------ | ----------- |
-| type          | num  | 弹幕分类 | 必要   | 1：视频弹幕 |
+| type          | num  | 弹幕类   | 必要   | 1：视频弹幕 |
 | oid           | num  | 视频CID  | 必要   |             |
 | pid           | num  | 视频avID | 非必要 |             |
 | segment_index | num  | 分包     | 必要   | 6分钟一包   |
 
-**回复：**
+**proto回复：**
 
-返回二进制数据，需要自行解析
+消息`DmSegMobileReply`：
 
-**示例：**
+| 名称  | 类型             | 含义     | 备注 |
+| ----- | ---------------- | -------- | ---- |
+| elems | repeated message | 弹幕条目 |      |
 
-获取视频`av810872(CID=1176840)`的实时弹幕分段`1`
+消息`DanmakuElem`：
 
-```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/web/seg.so'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=1176840'\
---data-urlencode 'pid=810872'\
---data-urlencode 'segment_index=1'\
--o 'danmaku.bin'
-```
-
-响应正文为protubuf二进制数据
-
-## 弹幕格式
+| 名称     | 类型   | 含义               | 备注                                                         |
+| -------- | ------ | ------------------ | ------------------------------------------------------------ |
+| id       | int64  | 弹幕dmID           | 唯一  可用于操作参数                                         |
+| progress | int32  | 视频内弹幕出现时间 | 毫秒                                                         |
+| mode     | int32  | 弹幕类型           | 1 2 3：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />6：逆向弹幕<br />7：高级弹幕<br />8：代码弹幕<br />~~9：BAS弹幕~~ |
+| fontsize | int32  | 弹幕字号           | 18：小<br />25：标准<br />36：大                             |
+| color    | uint32 | 弹幕颜色           | 十进制RGB888值                                               |
+| midHash  | string | 发送者UID的HASH    | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |
+| content  | string | 弹幕内容           | utf-8编码                                                    |
+| ctime    | int64  | 弹幕发送时间       | 时间戳                                                       |
+| weight   | int32  | 权重               | 用于智能屏蔽，根据弹幕语义及长度通过AI识别得出<br />范围：[0-10]<br />值越大权重越高 |
+| action   | string | 动作？             | 作用尚不明确                                                 |
+| pool     | int32  | 弹幕池             | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）      |
+| idStr    | string | 弹幕dmID           | 字串形式<br />唯一  可用于操作参数                           |
 
 protobuf结构体：
 
@@ -65,30 +71,30 @@ message DanmakuElem {
     string content = 7; //弹幕内容
     int64 ctime = 8;    //发送时间
     int32 weight = 9;   //权重
-    string action = 10; //动作
+    string action = 10; //动作？
     int32 pool = 11;    //弹幕池
-    string idStr = 12;  //弹幕dmID
+    string idStr = 12;  //弹幕dmID（字串形式）
 }
 
 message DmSegMobileReply {
-    repeated DanmakuElem elems = 1;
+    repeated DanmakuElem elems = 1; //弹幕条目
 }
 ```
 
-| 名称     | 含义                 | 类型   | 备注                                                         |
-| -------- | -------------------- | ------ | ------------------------------------------------------------ |
-| id       | 弹幕dmID             | int64  | 唯一  可用于操作参数                                         |
-| progress | 视频内弹幕出现时间   | int32  | 毫秒                                                         |
-| mode     | 弹幕类型             | int32  | 1 2 3：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />6：逆向弹幕<br />7：高级弹幕<br />8：代码弹幕<br />9：BAS弹幕 |
-| fontsize | 弹幕字号             | int32  | 18：小<br />25：标准<br />36：大                             |
-| color    | 弹幕颜色             | uint32 | 十进制RGB888值                                               |
-| midHash  | 发送者UID的HASH      | string | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |
-| content  | 弹幕内容             | string | utf-8编码                                                    |
-| ctime    | 弹幕发送时间         | int64  | 时间戳                                                       |
-| weight   | 权重                 | int32  | 用于智能屏蔽级别                                             |
-| action   | 动作                 | string | 未知                                                         |
-| pool     | 弹幕池               | int32  | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）      |
-| idStr    | 弹幕dmID的字符串类型 | string | 唯一  可用于操作参数                                         |
+**示例：**
+
+获取视频`av810872(CID=1176840)`的实时弹幕分包1
+
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/web/seg.so'\
+--data-urlencode 'type=1'\
+--data-urlencode 'oid=1176840'\
+--data-urlencode 'pid=810872'\
+--data-urlencode 'segment_index=1'\
+-o 'danmaku.bin'
+```
+
+响应正文为protubuf二进制数据
 
 ## 实例
 
@@ -104,15 +110,21 @@ protoc --python_out=. bilidm.proto
 
 ---
 
-以下为python测试代码
+以下为python测试代码，输出第一包的第一条弹幕
 
 ```python
 import bilidm_pb2
 import requests
-url = 'http://api.bilibili.com/x/v2/dm/web/seg.so?type=1&oid=1176840&pid=810872&segment_index=1'
+
+AVID = 810872
+CID = 1176840
+SEG = 1
+url = 'http://api.bilibili.com/x/v2/dm/web/seg.so?type=1&oid=' + str(CID) + '&pid=' + str(AVID) + '&segment_index=' + str(SEG)
+
 data = requests.get(url)
 target = bilidm_pb2.DmSegMobileReply()
 target.ParseFromString(data.content)
+
 print(target.elems[0])
 print(target.elems[0].content)
 ```
