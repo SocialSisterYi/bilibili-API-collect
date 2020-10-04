@@ -679,17 +679,20 @@ curl 'http://api.bilibili.com/x/dm/report/add'\
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA） 或APP 
+
+注：只能操作自己的稿件或有骑士权限的稿件
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性         | 备注                                          |
-| ------ | ---- | ------------------------ | -------------- | --------------------------------------------- |
-| type   | num  | 1                        | 必要           |                                               |
-| oid    | num  | 视频CID                  | 必要           |                                               |
-| dmids  | nums | 弹幕dmID列表             | 必要           | 多个ID之间用`,`分隔                           |
-| state  | num  | 操作                     | 必要           | 1：删除弹幕<br />2：弹幕保护<br />3：取消保护 |
-| csrf   | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                               |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                          |
+| ---------- | ---- | ------------------------ | -------------- | --------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                               |
+| type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                                   |
+| oid        | num  | 视频CID                  | 必要           |                                               |
+| dmids      | nums | 弹幕dmID                 | 必要           | 多个ID之间用`,`分隔                           |
+| state      | num  | 操作代码                 | 必要           | 1：删除弹幕<br />2：弹幕保护<br />3：取消保护 |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                               |
 
 **json回复：**
 
@@ -728,23 +731,26 @@ curl 'http://api.bilibili.com/x/v2/dm/edit/state'\
 
 </details>
 
-## 移入移出字幕池
+## 修改字幕池
 
 > http://api.bilibili.com/x/v2/dm/edit/pool
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA） 或APP 
+
+注：只能操作自己的稿件或有骑士权限的稿件
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性         | 备注                             |
-| ------ | ---- | ------------------------ | -------------- | -------------------------------- |
-| type   | num  | 1                        | 必要           |                                  |
-| oid    | num  | 视频CID                  | 必要           |                                  |
-| pool   | num  | 操作                     | 必要           | 0：移出字幕池<br />1：移入字幕池 |
-| dmids  | nums | 弹幕dmID列表             | 必要           | 多个ID之间用`,`分隔              |
-| csrf   | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                  |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                             |
+| ---------- | ---- | ------------------------ | -------------- | -------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                  |
+| type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                      |
+| oid        | num  | 视频CID                  | 必要           |                                  |
+| dmids      | nums | 弹幕dmID                 | 必要           | 多个ID之间用`,`分隔              |
+| pool       | num  | 操作代码                 | 必要           | 0：移出字幕池<br />1：移入字幕池 |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                  |
 
 **json回复：**
 
