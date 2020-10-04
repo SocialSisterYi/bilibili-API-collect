@@ -73,7 +73,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 操作
 - [视频弹幕](danmaku)
   - [protobuf实时弹幕](danmaku/danmaku_proto.md)√
-  - [protobuf弹幕元数据（BAS弹幕/互动弹幕）](danmaku/danmaku_view.md)√
+  - [protobuf弹幕元数据（BAS弹幕/互动弹幕）](danmaku/danmaku_view_proto.md)√
   - [xml实时弹幕](danmaku/danmaku_xml.md)√
   - [xml历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
