@@ -206,13 +206,13 @@ https://github.com/Hsury/Bilibili-Toolkit
 
 https://github.com/whjstc/openbilibili-go-common-1
 
- https://github.com/wnstar/bili-utils
+https://github.com/wnstar/bili-utils
 
- https://github.com/lovelyyoshino/Bilibili-Live-API
+https://github.com/lovelyyoshino/Bilibili-Live-API
 
- https://github.com/flaribbit/bilibili-manga-spider
+https://github.com/flaribbit/bilibili-manga-spider
 
- https://github.com/simon300000/bili-api
+https://github.com/simon300000/bili-api
 
 成品：
 
@@ -242,7 +242,7 @@ https://github.com/dd-center/vtbs.moe
 
 其他：
 
- https://github.com/kuresaru/geetest-validator
+https://github.com/kuresaru/geetest-validator
 
 https://github.com/Hsury/Geetest3-Crack
 
