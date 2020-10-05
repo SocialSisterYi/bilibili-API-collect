@@ -5,4 +5,4 @@ site_description: 本项目旨在对B站web端、移动端以及TV端散落在�
 site_author: 所有的贡献者们
 
 docs_dir: '..'
-site_dir: '../html'
+site_dir: 'html'
