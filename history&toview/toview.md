@@ -16,8 +16,8 @@
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注               |
 | ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 视频avID                 | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 视频bvID                 | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avID                 | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 稿件bvID                 | 必要（可选） | avID与bvID任选一个 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
 
 **json回复：**
@@ -158,48 +158,77 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView'\
 
 `data`中的`list`数组中的对象：
 
-| 字段      | 类型 | 内容                           | 备注                 |
-| --------- | ---- | ------------------------------ | -------------------- |
-| aid       | num  | 视频avID                       |                      |
-| videos    | num  | 视频分P总数                    | 默认为1              |
-| tid       | num  | 分区ID                         |                      |
-| tname     | str  | 子分区名称                     |                      |
-| copyright | num  | 版权标志                       | 1：自制<br />2：转载 |
-| pic       | str  | 视频封面图片url                |                      |
-| title     | str  | 视频标题                       |                      |
-| pubdate   | num  | 视频上传时间                   | 时间戳               |
-| ctime     | num  | 视频审核通过时间               | 时间戳               |
-| desc      | str  | 视频简介                       |                      |
-| state     | num  | 0                              | 作用尚不明确         |
-| attribute | num  | ？？？                         | 作用尚不明确         |
-| duration  | num  | 视频总计持续时长（所有分P）    | 单位为秒             |
-| rights    | obj  | 视频属性标志                   |                      |
-| owner     | obj  | 视频UP主信息                   |                      |
-| stat      | obj  | 视频状态数                     |                      |
-| dynamic   | str  | 视频同步发布的的动态的文字内容 | 无为空               |
-| dimension | obj  | 视频1P分辨率                   |                      |
-| count     | num  | 分P数                          | 非投稿视频无此项     |
-| cid       | num  | 视频CID                        |                      |
-| progress  | num  | 观看进度时间                   | 单位为秒             |
-| add_at    | num  | 添加时间                       | 时间戳               |
-| bvid      | str  | 视频bvID                       |                      |
+| 字段      | 类型 | 内容                           | 备注                                                         |
+| --------- | ---- | ------------------------------ | ------------------------------------------------------------ |
+| aid       | num  | 稿件avID                       |                                                              |
+| videos    | num  | 稿件分P总数                    | 默认为1                                                      |
+| tid       | num  | 分区tID                        |                                                              |
+| tname     | str  | 子分区名称                     |                                                              |
+| copyright | num  | 是否转载                       | 1：原创<br />2：转载                                         |
+| pic       | str  | 稿件封面图片url                |                                                              |
+| title     | str  | 稿件标题                       |                                                              |
+| pubdate   | num  | 稿件发布时间                   | 时间戳                                                       |
+| ctime     | num  | 用户提交稿件的时间             | 时间戳                                                       |
+| desc      | str  | 视频简介                       |                                                              |
+| state     | num  | 视频状态                       | 0：开放浏览<br />1：橙色通过<br />-1：待审<br />-2：被打回<br />-3：网警锁定<br />-4：被锁定<br />-5：管理员锁定（可浏览）<br />-6：修复待审<br />-7：暂缓审核<br />-8：补档待审<br />-9：等待转码<br />-10：延迟审核<br />-11：视频源待修<br />-12：转储失败<br />-13：允许评论待审<br />-14：临时回收站<br />-15：分发中<br />-16：转码失败<br />-20：创建未提交<br />-30：创建已提交<br />-40：定时发布<br />-100：用户删除 |
+| attribute | num  | 稿件属性位配置                 |                                                              |
+| duration  | num  | 稿件总时长（所有分P）          | 单位为秒                                                     |
+| rights    | obj  | 稿件属性标志                   |                                                              |
+| owner     | obj  | 稿件UP主信息                   |                                                              |
+| stat      | obj  | 稿件状态数                     |                                                              |
+| dynamic   | str  | 视频同步发布的的动态的文字内容 | 无为空                                                       |
+| dimension | obj  | 稿件1P分辨率                   |                                                              |
+| count     | num  | 稿件分P数                      | 非投稿视频无此项                                             |
+| cid       | num  | 视频CID                        |                                                              |
+| progress  | num  | 观看进度时间                   | 单位为秒                                                     |
+| add_at    | num  | 添加时间                       | 时间戳                                                       |
+| bvid      | str  | 稿件bvID                       |                                                              |
+
+`attribute`属性位二进制值表：
+
+| 位   | 内容              | 备注                    |
+| ---- | ----------------- | ----------------------- |
+| 0    | 禁止排行          |                         |
+| 1    | 动态禁止          |                         |
+| 2    | 禁止网页输出      |                         |
+| 3    | 禁止客户端列表    |                         |
+| 4    | 搜索禁止          |                         |
+| 5    | 海外禁止          |                         |
+| 6    | 禁止推荐          |                         |
+| 7    | 禁止转载          |                         |
+| 8    | 是否高清          | 视频清晰度>=1080P       |
+| 9    | 是否PGC稿件       | 番剧及影视              |
+| 10   | 允许承包          |                         |
+| 11   | 是否番剧          |                         |
+| 12   | 是否私单          |                         |
+| 13   | 是否限制地区      | 大多数番剧              |
+| 14   | 允许其他人添加tag |                         |
+| 15   | ？                |                         |
+| 16   | 跳转              | 番剧及影视av/bv->ep跳转 |
+| 17   | 是否影视          |                         |
+| 18   | 付费              |                         |
+| 19   | 推送动态          |                         |
+| 20   | 家长模式          |                         |
+| 21   | UGC付费           |                         |
+| 22   | ？                |                         |
+| 23   | 是否失效          |                         |
 
 `data`中的`list`数组中的对象中的`rights`对象：
 
-| 字段            | 类型 | 内容             | 备注                                     |
-| --------------- | ---- | ---------------- | ---------------------------------------- |
-| bp              | num  | 0                | 作用尚不明确                             |
-| elec            | num  | 0                | 作用尚不明确                             |
-| download        | num  | 允许下载标志     | 0：不允许<br />1：允许                   |
-| movie           | num  | 视频时电影标志   | 0：否<br />1：是                         |
-| pay             | num  | 仅会员可观看标志 | 0：无<br />1：有                         |
-| hd5             | num  | 有高码率标志     | 0：无<br />1：有                         |
-| no_reprint      | num  | 禁止转载标志     | 0：无<br />1：禁止                       |
-| autoplay        | num  | 可自动播放标志   | 0：无<br />1：有  区别影视番剧与普通视频 |
-| ugc_pay         | num  | 0                | 作用尚不明确                             |
-| is_cooperation  | num  | 视频合作标志     | 0：无<br />1：是                         |
-| ugc_pay_preview | num  | 0                | 作用尚不明确                             |
-| no_background   | num  | 0                | 作用尚不明确                             |
+| 字段            | 类型 | 内容             | 备注         |
+| --------------- | ---- | ---------------- | ------------ |
+| bp              | num  | 0                | 作用尚不明确 |
+| elec            | num  | 是否支持充电     |              |
+| download        | num  | 是否允许下载     |              |
+| movie           | num  | 是否电影         |              |
+| pay             | num  | 是否PGC付费      |              |
+| hd5             | num  | 是否有高码率     |              |
+| no_reprint      | num  | 是否禁止转载     |              |
+| autoplay        | num  | 是否可以自动播放 |              |
+| ugc_pay         | num  | 是否UGC付费      |              |
+| is_cooperation  | num  | 是否联合投稿     |              |
+| ugc_pay_preview | num  | 0                | 作用尚不明确 |
+| no_background   | num  | 0                | 作用尚不明确 |
 
 `data`中的`list`数组中的对象中的`owner`对象：
 
@@ -213,7 +242,7 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView'\
 
 | 字段       | 类型 | 内容                           | 备注         |
 | ---------- | ---- | ------------------------------ | ------------ |
-| aid        | num  | 视频avID                       |              |
+| aid        | num  | 稿件avID                       |              |
 | view       | num  | 普通：观看次数<br />屏蔽时：-1 |              |
 | danmaku    | num  | 弹幕条数                       |              |
 | reply      | num  | 评论条数                       |              |

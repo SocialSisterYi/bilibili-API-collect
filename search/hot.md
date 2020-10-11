@@ -29,7 +29,7 @@
 | show_name  | str  | 显示文字        |                |
 | name       | str  | 空              |                |
 | goto_type  | num  | 跳转类型        | 1：视频        |
-| goto_value | str  | 搜索目标ID      | 视频：视频avID |
+| goto_value | str  | 搜索目标ID      | 视频：稿件avID |
 | url        | str  | 搜索目标跳转url |                |
 
 **示例：**

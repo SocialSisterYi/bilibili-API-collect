@@ -7,14 +7,14 @@
 | 字段           | 类型  | 内容           | 备注                                      |
 | -------------- | ----- | -------------- | ----------------------------------------- |
 | type           | str   | 结果类型       | 固定为video                               |
-| id             | num   | 结果ID         | 为视频avID                                |
+| id             | num   | 结果ID         | 为稿件avID                                |
 | author         | str   | UP主昵称       |                                           |
 | mid            | num   | UP主UID        |                                           |
 | typeid         | str   | 视频分区tID    |                                           |
 | typename       | str   | 视频子分区名   |                                           |
 | arcurl         | str   | 视频重定向url  |                                           |
-| aid            | num   | 视频avID       |                                           |
-| bvid           | str   | 视频bvID       |                                           |
+| aid            | num   | 稿件avID       |                                           |
+| bvid           | str   | 稿件bvID       |                                           |
 | title          | str   | 视频标题       | 关键字用xml标签`<em class="keyword">`标注 |
 | description    | str   | 视频简介       |                                           |
 | arcrank        | str   | 0              | **作用尚不明确**                          |
@@ -599,8 +599,8 @@
 
 | 字段           | 类型 | 内容              | 备注             |
 | -------------- | ---- | ----------------- | ---------------- |
-| aid            | num  | 视频avID          |                  |
-| bvid           | str  | 视频bvID          |                  |
+| aid            | num  | 稿件avID          |                  |
+| bvid           | str  | 稿件bvID          |                  |
 | title          | str  | 视频标题          |                  |
 | pubdate        | num  | 视频投稿时间      | 时间戳           |
 | arcurl         | str  | 视频页面重定向url |                  |

@@ -35,6 +35,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [API认证与鉴权（APP与Cookie方式）](other/API_auth.md)×
 - [公共错误码](other/errcode.md)√
 - [图片格式化](other/picture.md)√
+- [bvID说明](other/bvID.md)√
 - [登录](login)
   - [登录操作（人机认证）](login/login_action)√
     + [短信登录](login/login_action/SMS.md)√

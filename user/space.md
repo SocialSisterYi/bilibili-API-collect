@@ -35,7 +35,7 @@
 
 | 字段        | 类型 | 内容                           | 备注                    |
 | ----------- | ---- | ------------------------------ | ----------------------- |
-| aid         | num  | 视频avID                       |                         |
+| aid         | num  | 稿件avID                       |                         |
 | videos      | num  | 视频分P总数                    | 默认为1                 |
 | tid         | num  | 分区ID                         |                         |
 | tname       | str  | 子分区名称                     |                         |
@@ -54,7 +54,7 @@
 | dynamic     | str  | 视频同步发布的的动态的文字内容 | 无为空                  |
 | cid         | num  | 视频1P CID                     |                         |
 | dimension   | obj  | 视频1P分辨率                   |                         |
-| bvid        | str  | 视频bvID                       |                         |
+| bvid        | str  | 稿件bvID                       |                         |
 | reason      | str  | 置顶视频备注                   |                         |
 | inter_video | bool | 是否为合作视频                 | false：否<br />true：是 |
 
@@ -87,7 +87,7 @@
 
 | 字段       | 类型 | 内容                           | 备注         |
 | ---------- | ---- | ------------------------------ | ------------ |
-| aid        | num  | 视频avID                       |              |
+| aid        | num  | 稿件avID                       |              |
 | view       | num  | 普通：观看次数<br />屏蔽时：-1 |              |
 | danmaku    | num  | 弹幕条数                       |              |
 | reply      | num  | 评论条数                       |              |
@@ -199,8 +199,8 @@ curl -G 'http://api.bilibili.com/x/space/top/arc'\
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注                             |
 | ------ | ---- | ------------------------ | ------------ | -------------------------------- |
-| aid    | num  | 置顶目标视频avID         | 必要（可选） | avID与bvID任选一个               |
-| bvid   | str  | 置顶目标视频bvID         | 必要（可选） | avID与bvID任选一个               |
+| aid    | num  | 置顶目标稿件avID         | 必要（可选） | avID与bvID任选一个               |
+| bvid   | str  | 置顶目标稿件bvID         | 必要（可选） | avID与bvID任选一个               |
 | reason | str  | 置顶视频备注             | 非必要       | 置顶备注最大40字符<br />默认为空 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                                  |
 
@@ -539,8 +539,8 @@ curl -G 'http://api.bilibili.com/x/space/masterpiece'\
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注                             |
 | ------ | ---- | ------------------------ | ------------ | -------------------------------- |
-| aid    | num  | 置顶目标视频avID         | 必要（可选） | avID与bvID任选一个               |
-| bvid   | str  | 置顶目标视频bvID         | 必要（可选） | avID与bvID任选一个               |
+| aid    | num  | 置顶目标稿件avID         | 必要（可选） | avID与bvID任选一个               |
+| bvid   | str  | 置顶目标稿件bvID         | 必要（可选） | avID与bvID任选一个               |
 | reason | str  | 代表作备注               | 非必要       | 置顶备注最大40字符<br />默认为空 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                                  |
 
@@ -601,8 +601,8 @@ curl 'http://api.bilibili.com/x/space/masterpiece/add'\
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注               |
 | ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 要删除的目标视频avID     | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 要删除的目标视频bvID     | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 要删除的目标稿件avID     | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 要删除的目标稿件bvID     | 必要（可选） | avID与bvID任选一个 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
 
 **json回复：**
@@ -2281,7 +2281,7 @@ curl 'http://api.bilibili.com/x/space/channel/del'\
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                   |
 | ------ | ---- | ------------------------ | ------ | ---------------------- |
 | cid    | num  | 频道ID                   | 必要   |                        |
-| aids   | nums | 要添加的目标视频avID     | 必要   | 多个使用","（%2C）分隔 |
+| aids   | nums | 要添加的目标稿件avID     | 必要   | 多个使用","（%2C）分隔 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                        |
 
 **json回复：**
@@ -2293,14 +2293,14 @@ curl 'http://api.bilibili.com/x/space/channel/del'\
 | code    | num   | 返回值           | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />53003：本频道里的视频已满<br />53006：提交视频已失效或频道里有（非该视频UP主） |
 | message | str   | 错误信息         | 默认为0                                                      |
 | ttl     | num   | 1                |                                                              |
-| data    | array | 出错视频avID列表 |                                                              |
+| data    | array | 出错稿件avID列表 |                                                              |
 
 `data`数组：
 
 | 项   | 类型 | 内容                | 备注 |
 | ---- | ---- | ------------------- | ---- |
-| 0    | num  | 出错视频avID1       |      |
-| n    | num  | 出错视频avID（n+1） |      |
+| 0    | num  | 出错稿件avID1       |      |
+| n    | num  | 出错稿件avID（n+1） |      |
 | ……   | num  | ……                  | ……   |
 
 **示例：**
@@ -2344,7 +2344,7 @@ curl 'http://api.bilibili.com/x/space/channel/video/add'\
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
 | cid    | num  | 频道ID                   | 必要   |      |
-| aid    | num  | 要删除的目标视频avID     | 必要   |      |
+| aid    | num  | 要删除的目标稿件avID     | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
@@ -2395,7 +2395,7 @@ curl 'http://api.bilibili.com/x/space/channel/video/del'\
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
 | cid    | num  | 频道ID                   | 必要   |                                                              |
-| aid    | num  | 要移动的目标视频avID     | 必要   |                                                              |
+| aid    | num  | 要移动的目标稿件avID     | 必要   |                                                              |
 | to     | num  | 视频排序倒数位置         | 非必要 | 默认为1<br />1为列表底部，视频总数为首端<br />与显示顺序恰好相反 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
@@ -2530,21 +2530,23 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
 
 `data`中的`list`数组中的对象：
 
-| 字段        | 类型 | 内容             | 备注                                      |
-| ----------- | ---- | ---------------- | ----------------------------------------- |
-| id          | num  | 收藏夹mlID       |                                           |
-| fid         | num  | 原始收藏夹ID     | 去除两位UID尾号                           |
-| mid         | num  | 创建用户UID      |                                           |
-| attr        | num  | 收藏夹属性       | 转换成8-bit二进制处理<br />详细说明见下表 |
-| title       | str  | 收藏夹标题       |                                           |
-| fav_state   | num  | 0                | 作用尚不明确                              |
-| media_count | num  | 收藏夹总计视频数 |                                           |
+| 字段        | 类型 | 内容             | 备注            |
+| ----------- | ---- | ---------------- | --------------- |
+| id          | num  | 收藏夹mlID       |                 |
+| fid         | num  | 原始收藏夹ID     | 去除两位UID尾号 |
+| mid         | num  | 创建用户UID      |                 |
+| attr        | num  | 收藏夹属性位配置 |                 |
+| title       | str  | 收藏夹标题       |                 |
+| fav_state   | num  | 0                | 作用尚不明确    |
+| media_count | num  | 收藏夹总计视频数 |                 |
 
-`attr`属性二进制值表：
+`attr`属性位二进制值表：
 
-| 其他有待补充... | 1：默认收藏夹                    | 0：公开性            |
-| --------------- | -------------------------------- | -------------------- |
-|                 | 0：默认收藏夹<br />1：其他收藏夹 | 0：公开<br />1：私有 |
+| 位              | 内容             | 备注                             |
+| --------------- | ---------------- | -------------------------------- |
+| 0               | 是否为默认收藏夹 | 0：默认收藏夹<br />1：其他收藏夹 |
+| 1               | 私有收藏夹       | 0：公开<br />1：私有             |
+| 其他有待补充... |                  |                                  |
 
 **示例：**
 

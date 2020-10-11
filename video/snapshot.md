@@ -15,8 +15,8 @@
 
 | 参数名 | 类型 | 内容               | 必要性       | 备注                                |
 | ------ | ---- | ------------------ | ------------ | ----------------------------------- |
-| aid    | num  | 视频avID           | 必要（可选） | avID与bvID任选一个                  |
-| bvid   | str  | 视频bvID           | 必要（可选） | avID与bvID任选一个                  |
+| aid    | num  | 稿件avID           | 必要（可选） | avID与bvID任选一个                  |
+| bvid   | str  | 稿件bvID           | 必要（可选） | avID与bvID任选一个                  |
 | cid    | num  | 分P CID            | 非必要       | 默认为1P                            |
 | index  | num  | json数组截取时间表 | 非必要       | 1：需要<br />0：不需要<br />默认为0 |
 
@@ -115,7 +115,7 @@ curl -G 'http://api.bilibili.com/x/player/videoshot'\
 | 参数名 | 类型 | 内容       | 必要性      | 备注 |
 | ------ | ---- | ---------- | ----------- | ---- |
 | appkey | str  | APP密钥    | APP方式必要 |      |
-| aid    | num  | 视频avID   | 必要        |      |
+| aid    | num  | 稿件avID   | 必要        |      |
 | cid    | num  | 分P CID    | 必要        |      |
 | ts     | num  | 当前时间戳 | APP方式必要 |      |
 | sign   | str  | APP签名    | APP方式必要 |      |
@@ -199,7 +199,7 @@ curl -G 'http://app.bilibili.com/x/v2/view/video/shot'\
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| aid    | num  | 视频avID | 必要   |      |
+| aid    | num  | 稿件avID | 必要   |      |
 
 **json回复：**
 

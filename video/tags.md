@@ -12,8 +12,8 @@
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
 | ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 视频avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 视频bvID | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -216,7 +216,7 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| aid    | num  | 视频avID                 | 必要   |      |
+| aid    | num  | 稿件avID                 | 必要   |      |
 | tag_id | num  | TAGID                    | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
@@ -269,7 +269,7 @@ curl 'http://api.bilibili.com/x/tag/archive/like2'\
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| aid    | num  | 视频avID                 | 必要   |      |
+| aid    | num  | 稿件avID                 | 必要   |      |
 | tag_id | num  | TAGID                    | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 

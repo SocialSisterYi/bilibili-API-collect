@@ -148,8 +148,8 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do'\
 | 参数名 | 类型 | 内容         | 必要性       | 备注               |
 | ------ | ---- | ------------ | ------------ | ------------------ |
 | mid    | num  | 目标用户UID  | 必要         |                    |
-| aid    | num  | 目标视频avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 目标视频bvID | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 目标稿件avID | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 目标稿件bvID | 必要（可选） | avID与bvID任选一个 |
 
 **json回复：**
 

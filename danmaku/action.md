@@ -20,8 +20,8 @@
 | type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                                                  |
 | oid        | num  | 视频CID                  | 必要           |                                                              |
 | msg        | str  | 弹幕内容                 | 必要           | 长度小于100字符                                              |
-| bvid       | str  | 视频bvID                 | 必要（可选）   | avID与bvID任选一个                                           |
-| aid        | num  | 视频avID                 | 必要（可选）   | avID与bvID任选一个                                           |
+| bvid       | str  | 稿件bvID                 | 必要（可选）   | avID与bvID任选一个                                           |
+| aid        | num  | 稿件avID                 | 必要（可选）   | avID与bvID任选一个                                           |
 | progress   | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
 | color      | num  | 弹幕颜色设置             | 非必要         | 十进制RGB888值<br />默认为16777215（#FFFFFF）白色            |
 | fontsize   | num  | 弹幕字号设置             | 非必要         | 默认为25<br />极小：12<br />超小：16<br />小：18<br />标准：25<br />大：36<br />超大：45<br />极大：64 |
@@ -111,7 +111,7 @@ curl 'http://api.bilibili.com/x/v2/dm/post'\
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                              |
 | type       | num  | 互动弹幕类型             | 必要           | 1：UP主头像弹幕<br />2：关联视频弹幕<br />5：视频内嵌引导关注按钮 |
-| aid        | num  | 视频avID                 | 必要           |                                                              |
+| aid        | num  | 稿件avID                 | 必要           |                                                              |
 | cid        | num  | 视频CID                  | 必要           |                                                              |
 | progress   | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
 | plat       | num  | 平台标识                 | 必要           | 1：web端<br />2：安卓端<br />8：视频管理页面                 |

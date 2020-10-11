@@ -22,24 +22,24 @@
 | ------ | ---- | -------- | ------ | ----------- |
 | type   | num  | 弹幕类   | 必要   | 1：视频弹幕 |
 | oid    | num  | 视频CID  | 必要   |             |
-| pid    | num  | 视频avID | 非必要 |             |
+| pid    | num  | 稿件avID | 非必要 |             |
 
 **proto回复：**
 
 消息`DmWebViewReply`：
 
-| 名称       | 类型             | 含义                   | 备注                         |
-| ---------- | ---------------- | ---------------------- | ---------------------------- |
-| state      | int32            | 弹幕开放状态           | 0：开放弹幕<br />1：禁止弹幕 |
-| text       | string           | ？                     |                              |
-| textSide   | string           | ？                     |                              |
-| dmSge      | message          | 分段弹幕包信息？       |                              |
-| flag       | message          | ？                     |                              |
-| specialDms | repeated message | BAS（代码）弹幕专包url |                              |
-| checkBox   | bool             | ？                     |                              |
-| count      | int64            | 实际弹幕总数           | 具有1500-6000不等的上限      |
-| commandDms | repeated message | 互动弹幕条目           |                              |
-| dmSetting  | message          | 弹幕个人配置           | 仅登录后存在                 |
+| 名称       | 类型                 | 含义                   | 备注                         |
+| ---------- | -------------------- | ---------------------- | ---------------------------- |
+| state      | int32                | 弹幕开放状态           | 0：开放弹幕<br />1：禁止弹幕 |
+| text       | string               | ？                     |                              |
+| textSide   | string               | ？                     |                              |
+| dmSge      | DmSegConfig          | 分段弹幕包信息？       |                              |
+| flag       | DanmakuFlagConfig    | ？                     |                              |
+| specialDms | repeated string      | BAS（代码）弹幕专包url |                              |
+| checkBox   | bool                 | ？                     |                              |
+| count      | int64                | 实际弹幕总数           | 具有1500-6000不等的上限      |
+| commandDms | repeated CommandDm   | 互动弹幕条目           |                              |
+| dmSetting  | DanmuWebPlayerConfig | 弹幕个人配置           | 仅登录后存在                 |
 
 消息`dmSge`：
 
@@ -217,8 +217,9 @@ curl -G 'http://api.bilibili.com/x/v2/dm/web/view'\
 import web_dmview_pb2
 import requests
 
+AVID = 797164471
 CID = 236871317
-url = 'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid='+str(CID)
+url = 'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid=' + str(CID) + '&pid='  + str(AVID)
 
 data = requests.get(url)
 target = web_dmview_pb2.DmWebViewReply()
@@ -267,8 +268,9 @@ BAS弹幕（`pool=2` `mode=9`）只能从此包获取，代码弹幕（`pool=2` 
 import web_dmview_pb2
 import requests
 
+AVID = 2
 CID = 62131
-url = 'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid='+str(CID)
+url = 'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid=' + str(CID) + '&pid='  + str(AVID)
 
 data = requests.get(url)
 target = web_dmview_pb2.DmWebViewReply()

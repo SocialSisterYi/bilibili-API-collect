@@ -28,14 +28,14 @@
 | --------------- | ------ | -------------------------- | ------------------------------------------ |
 | activity        | obj    | 参与的活动                 |                                            |
 | alias           | str    | 空                         | 作用尚不明确                               |
-| bkg_cover       | str    | 背景图片url                | 无则为空                                   |
-| cover           | str    | 封面图片url                |                                            |
-| episodes        | array | 剧集列表                   |                                            |
+| bkg_cover       | str    | 网页背景图片url              | 无则为空                                   |
+| cover           | str    | 剧集封面图片url              |                                            |
+| episodes        | array | 正片剧集列表                 |                                            |
 | evaluate        | str    | 简介                       |                                            |
 | jp_title        | str    | 空                         | 作用尚不明确                               |
-| link            | str    | 简介网址url                |                                            |
-| media_id        | num    | 番剧mdID                   |                                            |
-| mode            | num    |                            |                                            |
+| link            | str    | 简介页面url              |                                            |
+| media_id        | num    | 剧集mdID                 |                                            |
+| mode            | num    | 2 | 作用尚不明确 |
 | new_ep          | obj    | 更新信息                   |                                            |
 | payment         | obj    | 会员&付费信息              | 若无相关内容则无此项                       |
 | positive        | obj    |                            |                                            |
@@ -44,21 +44,21 @@
 | record          | str    | 备案号                     | 无则为空                                   |
 | rights          | obj    | 属性标志信息               |                                            |
 | season_id       | num    | 番剧ssID                   |                                            |
-| season_title    | str    | 标题                       |                                            |
-| seasons         | array | 同系列其他季               | 无则为空                                   |
+| season_title    | str    | 剧集标题                   |                                            |
+| seasons         | array | 同系列所以季信息         |                                    |
 | section         | array | 花絮、PV、番外等非正片内容 | 若无相关内容则无此项                       |
 | series          | obj    | 系列信息                   |                                            |
-| share_copy      | str    | 《标题》+签名              |                                            |
-| share_sub_title | str    | 签名                       | 无则为空                                   |
+| share_copy      | str    | 《{标题}》+{备注}        |                                            |
+| share_sub_title | str    | 备注                     |                                    |
 | share_url       | str    | 番剧播放页面url            |                                            |
 | show            | obj    | 网页全屏标志               |                                            |
-| square_cover    | str    | 方形封面图片url            | 若无相关内容则无此项                       |
+| square_cover    | str    | 方形封面图片url            |                        |
 | stat            | obj    | 状态数                     |                                            |
 | status          | num    |                            |                                            |
-| subtitle        | str    | 观看次数文字介绍           |                                            |
-| title           | str    | 标题                       |                                            |
-| total           | num    | 总计集数                   | 未完结：大多为-1<br />已完结：大多为正整数 |
-| type            | num    |                            |                                            |
+| subtitle        | str    | 剧集副标题      |                                            |
+| title           | str    | 剧集标题                     |                                            |
+| total           | num    | 总计正片集数                 | 未完结：大多为-1<br />已完结：正整数 |
+| type            | num    | 剧集类型 | 1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
 | up_info         | obj    | UP主信息                   | 若无相关内容则无此项                       |
 
 `result`中的`activity`对象：
@@ -70,6 +70,44 @@
 | title       | str  | 活动标题 |              |
 
 `result`中的`episodes`数组：
+
+| 项   | 类型 | 内容            | 备注         |
+| ---- | ---- | --------------- | ------------ |
+| 0    | obj  | 正片第1集       |              |
+| n    | obj  | 正片第（n+1）集 | 按照顺序排列 |
+| ……   | obj  |                 |              |
+
+`episodes`数组中的对象：
+
+| 字段         | 类型 | 内容                              | 备注                 |
+| ------------ | ---- | --------------------------------- | -------------------- |
+| aid          | num  | 单集稿件avID                      |                      |
+| badge        | str  | 标签文字                          | 例如`会员`、`限免`等 |
+| badge_info   | obj  |                                   |                      |
+| badge_type   | num  |                                   |                      |
+| bvid         | str  | 单集稿件bvID                      |                      |
+| cid          | num  | 视频CID                           |                      |
+| cover        | str  | 单集封面url                       |                      |
+| dimension    | obj  | 分辨率信息                        |                      |
+| from         | str  |                                   |                      |
+| id           | num  | 单集epID                          |                      |
+| link         | str  | 单集网页url                       |                      |
+| long_title   | str  | 单集完整标题                      |                      |
+| pub_time     | num  | 发布时间                          | 时间戳               |
+| pv           | num  | 0                                 | 作用尚不明确         |
+| release_date | str  | 空                                | 作用尚不明确         |
+| rights       | obj  |                                   |                      |
+| share_copy   | str  | 《{标题}》+第n话+｛单集完整标题｝ |                      |
+| share_url    | str  | 单集网页url                       |                      |
+| short_link   | str  | 单集网页url短链接                 |                      |
+| status       | num  |                                   |                      |
+| subtitle     | str  | 单集副标题                        | 观看次数文字         |
+| title        | str  | 单集标题                          |                      |
+| vid          | str  | 单集vID                           | vupload_+{CID}       |
+
+
+
+
 
 
 
@@ -83,6 +121,17 @@
 | title  | str  | 最新一话标题 |                  |
 
 `result`中的`payment`对象：
+
+| 字段                | 类型 | 内容 | 备注 |
+| ------------------- | ---- | ---- | ---- |
+| discount            | num  |      |      |
+| pay_type            | obj  |      |      |
+| price               | str  |      |      |
+| promotion           | str  |      |      |
+| tip                 | str  |      |      |
+| vip_discount        | num  |      |      |
+| vip_first_promotion | str  |      |      |
+| vip_promotion       | str  |      |      |
 
 
 
@@ -132,21 +181,75 @@
 
 `result`中的`seasons`数组：
 
+| 项   | 类型 | 内容              | 备注         |
+| ---- | ---- | ----------------- | ------------ |
+| 0    | obj  | 同系列剧集1       |              |
+| n    | obj  | 同系列剧集（n+1） | 按照顺序排列 |
+| ……   | obj  |                   |              |
+
+`seasons`数组中的对象：
+
+| 字段         | 类型 | 内容 | 备注 |
+| ------------ | ---- | ---- | ---- |
+| badge        | str  |      |      |
+| badge_info   | obj  |      |      |
+| badge_type   | num  |      |      |
+| cover        | str  |      |      |
+| media_id     | str  |      |      |
+| new_ep       | num  |      |      |
+| season_id    | obj  |      |      |
+| season_title | num  |      |      |
+| season_type  | str  |      |      |
+| stat         | obj  |      |      |
+
+
+
+
+
+
+
 
 
 `result`中的`section`数组：
+
+| 项   | 类型 | 内容              | 备注         |
+| ---- | ---- | ----------------- | ------------ |
+| 0    | obj  | 其他内容块1       |              |
+| n    | obj  | 其他内容块（n+1） | 按照顺序排列 |
+| ……   | obj  |                   |              |
+
+`section`数组中的对象：
+
+| 字段       | 类型  | 内容     | 备注 |
+| ---------- | ----- | -------- | ---- |
+| episode_id | num   | 0        |      |
+| episodes   | array | 板块内容 |      |
+| id         | num   | 板块ID？ |      |
+| title      | str   | 板块标题 |      |
+| type       | num   | ？       |      |
+
+
+
+
+
+
+
+
 
 
 
 `result`中的`series`对象：
 
-
+| 字段         | 类型 | 内容   | 备注 |
+| ------------ | ---- | ------ | ---- |
+| series_id    | num  | 系列ID |      |
+| series_title | str  | 系列名 |      |
 
 `result`中的`show`对象：
 
-| 字段        | 类型 | 内容   | 备注                 |
-| ----------- | ---- | ------ | -------------------- |
-| wide_screen | num  | 投币数 | 0：正常<br />1：全屏 |
+| 字段        | 类型 | 内容     | 备注                 |
+| ----------- | ---- | -------- | -------------------- |
+| wide_screen | num  | 是否全屏 | 0：正常<br />1：全屏 |
 
 `result`中的`stat`对象：
 
@@ -155,6 +258,7 @@
 | coins     | num  | 投币数 |      |
 | danmakus  | num  | 弹幕数 |      |
 | favorites | num  | 收藏数 |      |
+| likes     | num  | 点赞数 |      |
 | reply     | num  | 评论数 |      |
 | share     | num  | 分享数 |      |
 | views     | num  | 播放数 |      |
@@ -165,11 +269,11 @@
 | ----------- | ---- | ----------- | ---- |
 | avatar      | str  | 头像图片url |      |
 | follower    | num  | 粉丝数      |      |
-| is_follow   | num  |             |      |
+| is_follow   | num  | 0           |      |
 | mid         | num  | UP主UID     |      |
 | pendant     | obj  |             |      |
-| theme_type  | num  |             |      |
-| uname       | str  |             |      |
+| theme_type  | num  | 0           |      |
+| uname       | str  | UP主昵称    |      |
 | verify_type | num  |             |      |
 | vip_status  | num  |             |      |
 | vip_type    | num  |             |      |

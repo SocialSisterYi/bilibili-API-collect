@@ -16,7 +16,7 @@
 
 | 参数名   | 类型 | 内容                   | 必要性 | 备注                                                         |
 | -------- | ---- | ---------------------- | ------ | ------------------------------------------------------------ |
-| max      | num  | 历史记录截止目标ID     | 非必要 | 默认为0<br />稿件：视频avID<br />番剧（影视）：剧集ssID<br />直播：直播间ID<br />文集：文集rlID<br />文章：文章cvID |
+| max      | num  | 历史记录截止目标ID     | 非必要 | 默认为0<br />稿件：稿件avID<br />番剧（影视）：剧集ssID<br />直播：直播间ID<br />文集：文集rlID<br />文章：文章cvID |
 | business | num  | 历史记录截止目标ID类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：番剧（影视）<br />live：直播<br />article-list：文集<br />article：文章 |
 | view_at  | num  | 历史记录截止时间       | 非必要 | 时间戳<br />默认为0<br />0为当前时间                         |
 | ps       | num  | 每页项数               | 非必要 | 默认为20                                                     |
@@ -112,9 +112,9 @@
 
 | 字段     | 类型 | 内容                | 备注                                                         |
 | -------- | ---- | ------------------- | ------------------------------------------------------------ |
-| oid      | num  | 目标ID              | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频avID<br />直播（当`business=live`时）：直播间ID<br />文章（当`business=article`时）：文章cvID<br />文集（当`business=article-list`时）：文集rlID |
+| oid      | num  | 目标ID              | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：稿件avID<br />直播（当`business=live`时）：直播间ID<br />文章（当`business=article`时）：文章cvID<br />文集（当`business=article-list`时）：文集rlID |
 | epid     | num  | 剧集epID            | 仅用于剧集                                                   |
-| bvid     | str  | 视频bvID            | 仅用于稿件视频                                               |
+| bvid     | str  | 稿件bvID            | 仅用于稿件视频                                               |
 | page     | num  | 观看到的视频分P数   | 仅用于稿件视频                                               |
 | cid      | num  | 观看到的对象ID      | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频CID<br />文集（当`business=article-list`时）：文章cvID |
 | part     | str  | 观看到的视频分P标题 | 仅用于稿件视频                                               |
@@ -380,7 +380,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 
 | 字段          | 类型 | 内容                           | 备注                                                         |
 | ------------- | ---- | ------------------------------ | ------------------------------------------------------------ |
-| aid           | num  | 视频avID                       |                                                              |
+| aid           | num  | 稿件avID                       |                                                              |
 | videos        | num  | 视频分P总数                    | 默认为1                                                      |
 | tid           | num  | 分区ID                         |                                                              |
 | tname         | str  | 子分区名称                     |                                                              |
@@ -409,10 +409,10 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 | count         | num  | 分P数                          | 非投稿视频无此项                                             |
 | progress      | num  | 观看进度                       | 单位为秒                                                     |
 | view_at       | num  | 观看时间                       | 时间戳                                                       |
-| kid           | num  | 视频avID                       |                                                              |
+| kid           | num  | 稿件avID                       |                                                              |
 | business      | str  | 视频类型标识                   | archive：用户投稿视频<br />pgc：番剧/影视<br />cheese：课程  |
 | redirect_link | str  | 重定向url                      |                                                              |
-| bvid          | str  | 视频bvID                       |                                                              |
+| bvid          | str  | 稿件bvID                       |                                                              |
 
 `data`数组中的对象中的`rights`对象：
 
@@ -443,7 +443,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 
 | 字段       | 类型 | 内容                           | 备注         |
 | ---------- | ---- | ------------------------------ | ------------ |
-| aid        | num  | 视频avID                       |              |
+| aid        | num  | 稿件avID                       |              |
 | view       | num  | 普通：观看次数<br />屏蔽时：-1 |              |
 | danmaku    | num  | 弹幕条数                       |              |
 | reply      | num  | 评论条数                       |              |
@@ -727,7 +727,7 @@ curl -G 'http://api.bilibili.com/x/v2/history'\
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| kid    | str  | 删除的目标记录           | 必要   | 视频：archive\_{视频avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />剧集：pgc\_{剧集ssID}<br />文集：article-list\_{文集rlID} |
+| kid    | str  | 删除的目标记录           | 必要   | 视频：archive\_{稿件avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />剧集：pgc\_{剧集ssID}<br />文集：article-list\_{文集rlID} |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
 **json回复：**

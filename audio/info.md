@@ -40,8 +40,8 @@
 | duration   | num    | 歌曲时间长度       | 单位为秒           |
 | passtime   | num    | 歌曲发布时间       | 时间戳             |
 | curtime    | num    | 当前请求时间       | 时间戳             |
-| aid        | num    | 关联视频avID       | 无为0              |
-| bvid       | str    | 关联视频bvID       | 无为空             |
+| aid        | num    | 关联稿件avID       | 无为0              |
+| bvid       | str    | 关联稿件bvID       | 无为空             |
 | cid        | num    | 关联视频CID        | 无为0              |
 | msid       | num    | 0                  | **作用尚不明确**   |
 | attr       | num    | 0                  | **作用尚不明确**   |

@@ -17,7 +17,7 @@
 | elec_num | num  | 充电电池数量             | 必要   | 必须在20-99990之间                                |
 | up_mid   | num  | 充电对象用户UID          | 必要   |                                                   |
 | otype    | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电               |
-| oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：视频avID |
+| oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：稿件avID |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                   |
 
 **json回复：**

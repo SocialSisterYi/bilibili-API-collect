@@ -14,8 +14,8 @@
 
 | 参数名        | 类型 | 内容     | 必要性       | 备注               |
 | ------------- | ---- | -------- | ------------ | ------------------ |
-| aid           | num  | 视频avID | 必要（可选） | avID与bvID任选一个 |
-| bvid          | str  | 视频bvID | 必要（可选） | avID与bvID任选一个 |
+| aid           | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
+| bvid          | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
 | graph_version | num  | 剧情图ID | 必要         | 位于`player.so`中  |
 | edge_id       | num  | 模块编号 | 非必要       | 0或留空为起始模块  |
 
@@ -160,7 +160,7 @@
 
 | 字段 | 类型 | 内容     | 备注 |
 | ---- | ---- | -------- | ---- |
-| aid  | num  | 视频avID |      |
+| aid  | num  | 稿件avID |      |
 | cid  | num  | 分P CID  |      |
 
 `data`中的`hidden_vars`数组：

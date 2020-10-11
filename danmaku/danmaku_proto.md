@@ -6,9 +6,11 @@
 
 ## 获取实时弹幕
 
-> http://api.bilibili.com/x/v2/dm/web/seg.so
+> http://api.bilibili.com/x/v2/dm/web/seg.so （web端）
 >
-> http://api.bilibili.com/x/v2/dm/list/seg.so
+> http://api.bilibili.com/x/v2/dm/list/seg.so （APP端）
+>
+> http://i0.hdslb.com/bfs/dm/{data}.bin （BAS/代码弹幕专包）
 
 *请求方式：GET*
 
@@ -26,16 +28,16 @@
 | ------------- | ---- | -------- | ------ | ----------- |
 | type          | num  | 弹幕类   | 必要   | 1：视频弹幕 |
 | oid           | num  | 视频CID  | 必要   |             |
-| pid           | num  | 视频avID | 非必要 |             |
+| pid           | num  | 稿件avID | 非必要 |             |
 | segment_index | num  | 分包     | 必要   | 6分钟一包   |
 
 **proto回复：**
 
 消息`DmSegMobileReply`：
 
-| 名称  | 类型             | 含义     | 备注 |
-| ----- | ---------------- | -------- | ---- |
-| elems | repeated message | 弹幕条目 |      |
+| 名称  | 类型                 | 含义     | 备注 |
+| ----- | -------------------- | -------- | ---- |
+| elems | repeated DanmakuElem | 弹幕条目 |      |
 
 消息`DanmakuElem`：
 
@@ -43,7 +45,7 @@
 | -------- | ------ | ------------------ | ------------------------------------------------------------ |
 | id       | int64  | 弹幕dmID           | 唯一  可用于操作参数                                         |
 | progress | int32  | 视频内弹幕出现时间 | 毫秒                                                         |
-| mode     | int32  | 弹幕类型           | 1 2 3：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />6：逆向弹幕<br />7：高级弹幕<br />8：代码弹幕<br />~~9：BAS弹幕~~ |
+| mode     | int32  | 弹幕类型           | 1 2 3：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />6：逆向弹幕<br />7：高级弹幕<br />8：代码弹幕<br />9：BAS弹幕（仅限于特殊弹幕专包） |
 | fontsize | int32  | 弹幕字号           | 18：小<br />25：标准<br />36：大                             |
 | color    | uint32 | 弹幕颜色           | 十进制RGB888值                                               |
 | midHash  | string | 发送者UID的HASH    | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |

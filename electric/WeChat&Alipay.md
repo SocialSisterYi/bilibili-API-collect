@@ -32,7 +32,7 @@
 | up_mid              | num  | 充电对象用户UID          | 必要   |                                                              |
 | is_bp_remains_prior | bool | 是否优先扣除B币          | 必要   | true：是<br />false：否<br />在B币不足时剩余的部分利用支付平台支付 |
 | otype               | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电                          |
-| oid                 | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：视频avID            |
+| oid                 | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：稿件avID            |
 | csrf                | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
 **json回复：**
