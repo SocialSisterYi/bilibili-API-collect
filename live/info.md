@@ -74,7 +74,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
 
 ## 根据直播间号获取直播间信息
 
-> https://api.live.bilibili.com/room/v1/Room/room_init?id=
+> https://api.live.bilibili.com/room/v1/Room/room_init
 
 *请求方式：GET*
 
@@ -107,7 +107,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
 | is_hidden         | boolean   | 未知      |                          |
 | is_locked         | boolean   | 未知      |                          |
 | is_portrait         | boolean   | 未知      |                          |
-| liveStatus     | num  | 直播状态      | 0：未开播<br />1：直播中 |
+| live_status     | num  | 直播状态      | 0：未开播<br />1：直播中 |
 | hidden_till     | num  | 未知      |      	 |
 | lock_till     | num  | 未知      |   		 |
 | encrypted     | boolean   | 未知      |   		 |
