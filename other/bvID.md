@@ -31,7 +31,7 @@
 
 > fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF
 
-4. 按照以下字符顺序编码表编码
+4. 按照以下字符顺序编码表编码b[i]
 
 字符编码表：
 
@@ -55,7 +55,7 @@
 >
 > 9->7
 
-5. 最后在前面添加字符`BV`
+5. 最后在b[i]前面添加字符`BV`
 
 [援引知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)
 
@@ -140,15 +140,15 @@ char* av2bv(unsigned long long av)
 		result[s[i]] = table[(unsigned long long)(av / (unsigned long long)pow(58, i)) % 58];
 	result[10] = '\0';//添加休止符
 	char *bv=result;
-    return bv;
+	return bv;
 }
 
 int main()
 {
-    tr_init();
-    printf("%s\n",av2bv(170001));
+	tr_init();
+	printf("%s\n",av2bv(170001));
 	printf("%u\n",bv2av("BV17x411w7KC"));
-    return 0;
+	return 0;
 }
 ```
 
