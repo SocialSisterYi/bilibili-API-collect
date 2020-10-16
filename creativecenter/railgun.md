@@ -34,7 +34,7 @@
 **示例：**
 
 ```shell
-curl 'http://member.bilibili.com/x/web/elec/user'\
+curl 'http://member.bilibili.com/x/web/elec/user' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -105,14 +105,14 @@ curl 'http://member.bilibili.com/x/web/elec/user'\
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/studio/up-rating/rating/summary'\
+curl 'http://api.bilibili.com/studio/up-rating/rating/summary' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary'\
+curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -222,16 +222,16 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary'\
 Cookie方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/studio/up-rating/rating/history'\
---data-urlencode 'type=1'\
+curl -G 'http://api.bilibili.com/studio/up-rating/rating/history' \
+--data-urlencode 'type=1' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/studio/up-rating/rating/history'\
---data-urlencode 'type=1'\
+curl -G 'http://api.bilibili.com/studio/up-rating/rating/history' \
+--data-urlencode 'type=1' \
 --data-urlencode 'access_key=xxx'
 ```
 

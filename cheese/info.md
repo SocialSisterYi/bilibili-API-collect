@@ -246,18 +246,18 @@
 ssID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/view/web/season'\
---data-urlencode 'season_id=61'\
--b 'SESSDATA=xxx'\
+curl -G 'http://api.bilibili.com/pugv/view/web/season' \
+--data-urlencode 'season_id=61' \
+-b 'SESSDATA=xxx' \
 -e 'https://www.bilibili.com'
 ```
 
 epID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/view/web/season'\
---data-urlencode 'ep_id=790'\
--b 'SESSDATA=xxx'\
+curl -G 'http://api.bilibili.com/pugv/view/web/season' \
+--data-urlencode 'ep_id=790' \
+-b 'SESSDATA=xxx' \
 -e 'https://www.bilibili.com'
 ```
 
@@ -534,11 +534,11 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season'\
 按照每页5项查询课程`ss61`的分集列表第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/view/web/ep/list'\
---data-urlencode 'season_id=61'\
---data-urlencode 'ps=5 '\
---data-urlencode 'pn=1'\
--b 'SESSDATA=xxx'\
+curl -G 'http://api.bilibili.com/pugv/view/web/ep/list' \
+--data-urlencode 'season_id=61' \
+--data-urlencode 'ps=5 ' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx' \
 -e 'https://www.bilibili.com'
 ```
 

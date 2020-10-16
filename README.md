@@ -95,9 +95,9 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [投币&收藏](audio/coin&fav.md)×
   - [播放&下载地址（音频流）](audio/musicstream_url.md)√
   - 音频榜单
-- [排行榜&最新动态](ranking&dynamic)
+- [排行榜&最新视频](ranking&dynamic)
   - [排行榜](ranking&dynamic/ranking.md)×
-  - [最新动态](ranking&dynamic/dynamic.md)×
+  - [最新视频](ranking&dynamic/dynamic.md)×
 - [搜索](search)
   - [搜索请求](search/search_request.md)√
   - [搜索结果](search/search_response.md)√

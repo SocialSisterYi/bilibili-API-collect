@@ -33,8 +33,8 @@
 查询音频`au13598`的收藏状态
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll'\
---data-urlencode 'sid=13598'\
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll' \
+--data-urlencode 'sid=13598' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
@@ -82,8 +82,8 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-col
 查询音频`au13598`的投币数
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio'\
---data-urlencode 'sid=15664'\
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio' \
+--data-urlencode 'sid=15664' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 

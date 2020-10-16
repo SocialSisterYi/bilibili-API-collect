@@ -37,8 +37,8 @@
 查询用户`UID=332704117`的关系状态数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/stat'\
---data-urlencode 'vmid=332704117'\
+curl -G 'http://api.bilibili.com/x/relation/stat' \
+--data-urlencode 'vmid=332704117' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -110,7 +110,7 @@ curl -G 'http://api.bilibili.com/x/relation/stat'\
 查询用户`UID=456664753`的UP主状态数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/space/upstat'\
+curl -G 'http://api.bilibili.com/x/space/upstat' \
 --data-urlencode 'mid=456664753'
 ```
 
@@ -198,8 +198,8 @@ curl -G 'http://api.bilibili.com/x/space/upstat'\
 查询用户`UID=239202390`的订阅&投稿状态数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/space/navnum'\
---data-urlencode 'mid=239202390'\
+curl -G 'http://api.bilibili.com/x/space/navnum' \
+--data-urlencode 'mid=239202390' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -273,7 +273,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum'\
  查询用户`UID=53456`的投稿相簿数
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count'\
+curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count' \
 --data-urlencode 'uid=53456'
 ```
 

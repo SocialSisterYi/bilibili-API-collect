@@ -17,7 +17,7 @@
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                              |
-| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md)**                                |
+| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)**                 |
 | oid        | num  | 目标评论区ID             | 必要           |                                                              |
 | root       | num  | 根评论rpID               | 非必要         | 二级评论以上使用                                             |
 | parent     | num  | 父评论rpID               | 非必要         | 二级评论同根评论ID<br />大于二级评论为要回复的评论ID         |
@@ -52,20 +52,20 @@
 | root_str       | str                           | 根评论rpID     | 字串格式                                                     |
 | parent         | num                           | 回复父评论rpID | 若为一级评论则为0<br />若为二级评论则为根评论ID<br />大于二级评论为上一级评论ID |
 | parent_str     | str                           | 回复父评论rpID | 字串格式                                                     |
-| emote          | obj                           | 表情转义符信息 | [对象定义见表](readme.md)                                    |
-| reply          | 有效时：obj<br />无效时：null |                | [对象定义见表](readme.md)                                    |
+| emote          | obj                           | 表情转义符信息 | [对象定义见表](readme.md#评论条目对象)                       |
+| reply          | 有效时：obj<br />无效时：null |                | [对象定义见表](readme.md#评论条目对象)                       |
 
 **示例：**
 
 给视频`av243322853`发送内容为`测试test[泠鸢yousa_awsl]`的评论（带有表情转义符），平台标识为1（web端）
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/add'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=243322853'\
---data-urlencode 'message=测试test[泠鸢yousa_awsl]'\
---data-urlencode 'plat=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/reply/add' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=243322853' \
+--data-urlencode 'message=测试test[泠鸢yousa_awsl]' \
+--data-urlencode 'plat=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -240,14 +240,14 @@ curl 'http://api.bilibili.com/x/v2/reply/add'\
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                |
-| ---------- | ---- | ------------------------ | -------------- | ----------------------------------- |
-| access_key | str  | APP登录Token             | APP方式必要    |                                     |
-| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md)**       |
-| oid        | num  | 目标评论区ID             | 必要           |                                     |
-| rpid       | num  | 目标评论rpID             | 必要           |                                     |
-| action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消赞<br />1：点赞 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                     |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                         |
+| ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                              |
+| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
+| oid        | num  | 目标评论区ID             | 必要           |                                              |
+| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消赞<br />1：点赞          |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
 **json回复：**
 
@@ -264,12 +264,12 @@ curl 'http://api.bilibili.com/x/v2/reply/add'\
 点赞视频`av243322853`下评论`rpID=3039053308`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/action'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=243322853'\
---data-urlencode 'rpid=3039053308'\
---data-urlencode 'action=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/reply/action' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=243322853' \
+--data-urlencode 'rpid=3039053308' \
+--data-urlencode 'action=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -298,14 +298,14 @@ curl 'http://api.bilibili.com/x/v2/reply/action'\
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                |
-| ---------- | ---- | ------------------------ | -------------- | ----------------------------------- |
-| access_key | str  | APP登录Token             | APP方式必要    |                                     |
-| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md)**       |
-| oid        | num  | 目标评论区ID             | 必要           |                                     |
-| rpid       | num  | 目标评论rpID             | 必要           |                                     |
-| action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消踩<br />1：点踩 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                     |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                         |
+| ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                              |
+| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
+| oid        | num  | 目标评论区ID             | 必要           |                                              |
+| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消踩<br />1：点踩          |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
 **json回复：**
 
@@ -322,12 +322,12 @@ curl 'http://api.bilibili.com/x/v2/reply/action'\
 点踩视频`av243322853`下评论`rpID=3039053308`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/hate'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=243322853'\
---data-urlencode 'rpid=3039053308'\
---data-urlencode 'action=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/reply/hate' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=243322853' \
+--data-urlencode 'rpid=3039053308' \
+--data-urlencode 'action=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -356,13 +356,13 @@ curl 'http://api.bilibili.com/x/v2/reply/hate'\
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                          |
-| ---------- | ---- | ------------------------ | -------------- | ----------------------------- |
-| access_key | str  | APP登录Token             | APP方式必要    |                               |
-| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md)** |
-| oid        | num  | 目标评论区ID             | 必要           |                               |
-| rpid       | num  | 目标评论rpID             | 必要           |                               |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                               |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                         |
+| ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                              |
+| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
+| oid        | num  | 目标评论区ID             | 必要           |                                              |
+| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
 **json回复：**
 
@@ -379,11 +379,11 @@ curl 'http://api.bilibili.com/x/v2/reply/hate'\
 删除`av243322853`下评论`rpID=3039053308`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/del'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=243322853'\
---data-urlencode 'rpid=3039053308'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/reply/del' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=243322853' \
+--data-urlencode 'rpid=3039053308' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -412,14 +412,14 @@ curl 'http://api.bilibili.com/x/v2/reply/del'\
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                      |
-| ---------- | ---- | ------------------------ | -------------- | ----------------------------------------- |
-| access_key | str  | APP登录Token             | APP方式必要    |                                           |
-| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md)**             |
-| oid        | num  | 目标评论区ID             | 必要           |                                           |
-| rpid       | num  | 目标评论rpID             | 必要           |                                           |
-| action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消置顶<br />1：设为置顶 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                           |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                         |
+| ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                              |
+| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
+| oid        | num  | 目标评论区ID             | 必要           |                                              |
+| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消置顶<br />1：设为置顶    |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
 **json回复：**
 
@@ -436,12 +436,12 @@ curl 'http://api.bilibili.com/x/v2/reply/del'\
 置顶视频`av243322853`下评论`rpID=2940645593`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/top'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=243322853'\
---data-urlencode 'rpid=2940645593'\
---data-urlencode 'action=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/reply/top' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=243322853' \
+--data-urlencode 'rpid=2940645593' \
+--data-urlencode 'action=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -468,15 +468,15 @@ curl 'http://api.bilibili.com/x/v2/reply/top'\
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                          |
-| ---------- | ---- | ------------------------ | -------------- | ----------------------------- |
-| access_key | str  | APP登录Token             | APP方式必要    |                               |
-| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md)** |
-| oid        | num  | 目标评论区ID             | 必要           |                               |
-| rpid       | num  | 目标评论rpID             | 必要           |                               |
-| reason     | num  | 举报类型                 | 必要           | **类型代码见下表**            |
-| content    | str  | 其他举报备注             | 非必要         | `reason=0`时有效              |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                               |
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                         |
+| ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
+| access_key | str  | APP登录Token             | APP方式必要    |                                              |
+| type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
+| oid        | num  | 目标评论区ID             | 必要           |                                              |
+| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| reason     | num  | 举报类型                 | 必要           | **类型代码见下表**                           |
+| content    | str  | 其他举报备注             | 非必要         | `reason=0`时有效                             |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
 举报类型`reason`：
 
@@ -516,12 +516,12 @@ curl 'http://api.bilibili.com/x/v2/reply/top'\
 举报视频` av752881391 `下评论`rpID=3062537442`，理由是`引战`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/report'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=752881391'\
---data-urlencode 'rpid=3062537442'\
---data-urlencode 'reason=4'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/reply/report' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=752881391' \
+--data-urlencode 'rpid=3062537442' \
+--data-urlencode 'reason=4' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

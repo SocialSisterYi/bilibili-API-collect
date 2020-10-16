@@ -55,18 +55,18 @@
 为视频`av2`/`BV1xx411c7mD`（CID为`62131`）的5000ms位置发送一条弹幕`前来考古`（颜色为#FFFFFF，字号25，普通弹幕，游动弹幕）
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/post'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=62131'\
---data-urlencode 'msg=前来考古'\
---data-urlencode 'aid=2'\
---data-urlencode 'progress=5000'\
---data-urlencode 'color=16777215'\
---data-urlencode 'fontsize=25'\
---data-urlencode 'pool=0'\
---data-urlencode 'mode=1'\
---data-urlencode 'rnd=3456789987654321'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/dm/post' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=62131' \
+--data-urlencode 'msg=前来考古' \
+--data-urlencode 'aid=2' \
+--data-urlencode 'progress=5000' \
+--data-urlencode 'color=16777215' \
+--data-urlencode 'fontsize=25' \
+--data-urlencode 'pool=0' \
+--data-urlencode 'mode=1' \
+--data-urlencode 'rnd=3456789987654321' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -197,14 +197,14 @@ curl 'http://api.bilibili.com/x/v2/dm/post'\
 为视频`av201947622`（CID为`230709860`）的5000ms位置发送一条UP主头像弹幕`test`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/command/post'\
---data-urlencode 'type=1'\
---data-urlencode 'aid=201947622'\
---data-urlencode 'cid=230709860'\
---data-urlencode 'progress=5000'\
---data-urlencode 'plat=1'\
---data-urlencode 'data={"msg":"test"}'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/dm/command/post' \
+--data-urlencode 'type=1' \
+--data-urlencode 'aid=201947622' \
+--data-urlencode 'cid=230709860' \
+--data-urlencode 'progress=5000' \
+--data-urlencode 'plat=1' \
+--data-urlencode 'data={"msg":"test"}' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -234,14 +234,14 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post'\
 为视频`av201947622`（CID为`230709860`）的5000ms位置发送一条发送关联视频弹幕`测试1234`关联视频为`BV1kz4y1X7XP`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/command/post'\
---data-urlencode 'type=2'\
---data-urlencode 'aid=201947622'\
---data-urlencode 'cid=230709860'\
---data-urlencode 'progress=5000'\
---data-urlencode 'plat=1'\
---data-urlencode 'data={"bvid":"BV1kz4y1X7XP","msg":"测试1234"}'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/dm/command/post' \
+--data-urlencode 'type=2' \
+--data-urlencode 'aid=201947622' \
+--data-urlencode 'cid=230709860' \
+--data-urlencode 'progress=5000' \
+--data-urlencode 'plat=1' \
+--data-urlencode 'data={"bvid":"BV1kz4y1X7XP","msg":"测试1234"}' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -273,14 +273,14 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post'\
 为视频`av201947622`（CID为`230709860`）的5000ms位置发送视频内嵌引导关注按钮，X坐标为118，Y坐标为82，持续时间为5000ms
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/command/post'\
---data-urlencode 'type=5'\
---data-urlencode 'aid=201947622'\
---data-urlencode 'cid=230709860'\
---data-urlencode 'progress=5000'\
---data-urlencode 'plat=1'\
---data-urlencode 'data={"duration":5000,"posX":118,"posY":82}'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/dm/command/post' \
+--data-urlencode 'type=5' \
+--data-urlencode 'aid=201947622' \
+--data-urlencode 'cid=230709860' \
+--data-urlencode 'progress=5000' \
+--data-urlencode 'plat=1' \
+--data-urlencode 'data={"duration":5000,"posX":118,"posY":82}' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -342,10 +342,10 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post'\
 撤回`CID=168901231`下的弹幕`32310301474947077`的弹幕
 
 ```shell
-curl 'http://api.bilibili.com/x/dm/recall'\
---data-urlencode 'cid=168901231'\
---data-urlencode 'dmid=32310301474947077'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/dm/recall' \
+--data-urlencode 'cid=168901231' \
+--data-urlencode 'dmid=32310301474947077' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -395,10 +395,10 @@ curl 'http://api.bilibili.com/x/dm/recall'\
 购买视频CID为`168901231`的高级弹幕发送权限
 
 ```shell
-curl 'http://api.bilibili.com/x/dm/adv/buy'\
---data-urlencode 'cid=168901231'\
---data-urlencode 'mode=sp'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/dm/adv/buy' \
+--data-urlencode 'cid=168901231' \
+--data-urlencode 'mode=sp' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -457,9 +457,9 @@ curl 'http://api.bilibili.com/x/dm/adv/buy'\
 当前状态为已购买且同意
 
 ```shell
-curl -G 'http://api.bilibili.com/x/dm/adv/state'\
---data-urlencode 'cid=168901231'\
---data-urlencode 'mode=sp'\
+curl -G 'http://api.bilibili.com/x/dm/adv/state' \
+--data-urlencode 'cid=168901231' \
+--data-urlencode 'mode=sp' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -528,9 +528,9 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state'\
 查询`CID=236871317`下的弹幕`35600074482384899`、`38880975220375559`、`39052528418553863`点赞数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
---data-urlencode 'oid=236871317'\
---data-urlencode 'ids=39019145405661191,38880975220375559,39052528418553863'\
+curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats' \
+--data-urlencode 'oid=236871317' \
+--data-urlencode 'ids=39019145405661191,38880975220375559,39052528418553863' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -598,12 +598,12 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats'\
 为`CID=145928946`下的弹幕`35600074482384899`点赞
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/thumbup/add'\
---data-urlencode 'dmid=35600074482384899'\
---data-urlencode 'oid=145928946'\
---data-urlencode 'op=1'\
---data-urlencode 'platform=web_player'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/dm/thumbup/add' \
+--data-urlencode 'dmid=35600074482384899' \
+--data-urlencode 'oid=145928946' \
+--data-urlencode 'op=1' \
+--data-urlencode 'platform=web_player' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -671,11 +671,11 @@ curl 'http://api.bilibili.com/x/v2/dm/thumbup/add'\
 举报`CID=145928946`下的弹幕`35600074482384899`，理由是`引战`
 
 ```shell
-curl 'http://api.bilibili.com/x/dm/report/add'\
---data-urlencode 'cid=145928946'\
---data-urlencode 'dmid=35600074482384899'\
---data-urlencode 'reason=7'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/dm/report/add' \
+--data-urlencode 'cid=145928946' \
+--data-urlencode 'dmid=35600074482384899' \
+--data-urlencode 'reason=7' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -727,12 +727,12 @@ curl 'http://api.bilibili.com/x/dm/report/add'\
 删除`CID=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/edit/state'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=145928946'\
---data-urlencode 'dmids=35600074482384899,39067304918515717,39082777041174531'\
---data-urlencode 'state=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=145928946' \
+--data-urlencode 'dmids=35600074482384899,39067304918515717,39082777041174531' \
+--data-urlencode 'state=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -785,12 +785,12 @@ curl 'http://api.bilibili.com/x/v2/dm/edit/state'\
 将`CID=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`移入字幕池
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/edit/state'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=145928946'\
---data-urlencode 'pool=1'\
---data-urlencode 'dmids=35600074482384899,39067304918515717,39082777041174531'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=145928946' \
+--data-urlencode 'pool=1' \
+--data-urlencode 'dmids=35600074482384899,39067304918515717,39082777041174531' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

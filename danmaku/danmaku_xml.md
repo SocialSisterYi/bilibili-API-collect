@@ -19,8 +19,8 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v1/dm/list.so'\
---data-urlencode 'oid=144541892'\
+curl -G 'http://api.bilibili.com/x/v1/dm/list.so' \
+--data-urlencode 'oid=144541892' \
 --compressed -o 'danmaku.xml'
 ```
 
@@ -34,7 +34,7 @@ curl -G 'http://api.bilibili.com/x/v1/dm/list.so'\
 
 **使用deflate压缩，注意解码**
 
-**url：**
+**url路径：**
 
 | 参数名 | 类型 | 内容    | 必要性 | 备注 |
 | ------ | ---- | ------- | ------ | ---- |
@@ -46,6 +46,8 @@ curl -G 'http://api.bilibili.com/x/v1/dm/list.so'\
 curl 'http://comment.bilibili.com/144541892.xml'
 --compressed -o 'danmaku.xml'
 ```
+
+**xml回复：**
 
 <details>
 <summary>查看响应示例：</summary>

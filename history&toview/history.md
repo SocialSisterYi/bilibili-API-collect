@@ -126,8 +126,8 @@
 获取当前时间截止的5条历史记录
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
---data-urlencode 'ps=5'\
+curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
+--data-urlencode 'ps=5' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -382,23 +382,23 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 | ------------- | ---- | ------------------------------ | ------------------------------------------------------------ |
 | aid           | num  | 稿件avID                       |                                                              |
 | videos        | num  | 视频分P总数                    | 默认为1                                                      |
-| tid           | num  | 分区ID                         |                                                              |
+| tid           | num  | 分区tID                        |                                                              |
 | tname         | str  | 子分区名称                     |                                                              |
-| copyright     | num  | 版权标志                       | 1：自制<br />2：转载                                         |
+| copyright     | num  | 是否转载                       | 1：原创<br />2：转载                                         |
 | pic           | str  | 视频封面图片url                |                                                              |
-| title         | str  | 视频标题                       |                                                              |
-| pubdate       | num  | 视频上传时间                   | 时间戳                                                       |
-| ctime         | num  | 视频审核通过时间               | 时间戳                                                       |
+| title         | str  | 稿件标题                       |                                                              |
+| pubdate       | num  | 稿件发布时间                   | 时间戳                                                       |
+| ctime         | num  | 用户提交稿件的时间             | 时间戳                                                       |
 | desc          | str  | 视频简介                       |                                                              |
-| state         | num  | 0                              | 作用尚不明确                                                 |
-| attribute     | num  | ？？？                         | 作用尚不明确                                                 |
+| state         | num  | 视频状态                       | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`state`备注 |
+| attribute     | num  | 稿件属性位配置                 | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`attribute`备注 |
 | duration      | num  | 视频总计持续时长（所有分P）    | 单位为秒                                                     |
-| rights        | obj  | 视频属性标志                   |                                                              |
-| owner         | obj  | 视频UP主信息                   |                                                              |
-| stat          | obj  | 视频状态数                     |                                                              |
+| rights        | obj  | 视频属性标志                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`rights`对象 |
+| owner         | obj  | 视频UP主信息                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
+| stat          | obj  | 视频状态数                     | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
 | dynamic       | str  | 视频同步发布的的动态的文字内容 | 无为空                                                       |
 | cid           | num  | 视频1P CID                     |                                                              |
-| dimension     | obj  | 视频1P分辨率                   |                                                              |
+| dimension     | obj  | 视频1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
 | bangumi       | obj  | 番剧/影视信息                  | 非番剧/影视无此项                                            |
 | cheese        | obj  | 课程信息                       | 非课程无此项                                                 |
 | favorite      | bool | 是否已收藏                     | true：已收藏<br />false：未收藏                              |
@@ -413,69 +413,6 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 | business      | str  | 视频类型标识                   | archive：用户投稿视频<br />pgc：番剧/影视<br />cheese：课程  |
 | redirect_link | str  | 重定向url                      |                                                              |
 | bvid          | str  | 稿件bvID                       |                                                              |
-
-`data`数组中的对象中的`rights`对象：
-
-| 字段            | 类型 | 内容             | 备注                                     |
-| --------------- | ---- | ---------------- | ---------------------------------------- |
-| bp              | num  | 0                | 作用尚不明确                             |
-| elec            | num  | 0                | 作用尚不明确                             |
-| download        | num  | 允许下载标志     | 0：不允许<br />1：允许                   |
-| movie           | num  | 视频时电影标志   | 0：否<br />1：是                         |
-| pay             | num  | 仅会员可观看标志 | 0：无<br />1：有                         |
-| hd5             | num  | 有高码率标志     | 0：无<br />1：有                         |
-| no_reprint      | num  | 禁止转载标志     | 0：无<br />1：禁止                       |
-| autoplay        | num  | 可自动播放标志   | 0：无<br />1：有  区别影视番剧与普通视频 |
-| ugc_pay         | num  | 0                | 作用尚不明确                             |
-| is_cooperation  | num  | 视频合作标志     | 0：无<br />1：是                         |
-| ugc_pay_preview | num  | 0                | 作用尚不明确                             |
-| no_background   | num  | 0                | 作用尚不明确                             |
-
-`data`数组中的对象中的`owner`对象：
-
-| 字段 | 类型 | 内容     | 备注 |
-| ---- | ---- | -------- | ---- |
-| mid  | num  | UP主UID  |      |
-| name | str  | UP主昵称 |      |
-| face | str  | UP主头像 |      |
-
-`data`数组中的对象中的`stat`对象：
-
-| 字段       | 类型 | 内容                           | 备注         |
-| ---------- | ---- | ------------------------------ | ------------ |
-| aid        | num  | 稿件avID                       |              |
-| view       | num  | 普通：观看次数<br />屏蔽时：-1 |              |
-| danmaku    | num  | 弹幕条数                       |              |
-| reply      | num  | 评论条数                       |              |
-| favorite   | num  | 收藏人数                       |              |
-| coin       | num  | 投币枚数                       |              |
-| share      | num  | 分享次数                       |              |
-| now_rank   | num  | 0                              | 作用尚不明确 |
-| his_rank   | num  | 历史最高排行                   |              |
-| like       | num  | 获赞次数                       |              |
-| dislike    | num  | 0                              | 作用尚不明确 |
-| evaluation | str  | 视频评分                       | 默认为空     |
-
-`pages`对象：
-
-| 字段      | 类型 | 内容            | 备注                                 |
-| --------- | ---- | --------------- | ------------------------------------ |
-| cid       | num  | 当前分P CID     |                                      |
-| page      | num  | 当前分P         |                                      |
-| from      | str  | 视频来源        | vupload：用户上传<br />hunan：芒果TV |
-| part      | str  | 当前分P标题     |                                      |
-| duration  | num  | 当前分P持续时间 | 单位为秒                             |
-| vid       | str  | 空              | 作用尚不明确                         |
-| weblink   | str  | 空              | 作用尚不明确                         |
-| dimension | obj  | 当前分P分辨率   |                                      |
-
-`pages`中的`dimension`对象(同`data`数组中的对象中的`dimension`对象)：
-
-| 字段   | 类型 | 内容           | 备注                 |
-| ------ | ---- | -------------- | -------------------- |
-| width  | num  | 当前分P 宽度   | 可能为0              |
-| height | num  | 当前分P 高度   | 可能为0              |
-| rotate | num  | 是否将宽高对换 | 0：正常<br />1：对换 |
 
 `data`数组中的对象`bangumi`对象：
 
@@ -517,9 +454,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor'\
 查询当前视频历史记录列表
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/history'\
---data-urlencode 'ps=5'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/v2/history' \
+--data-urlencode 'ps=5' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -745,9 +682,9 @@ curl -G 'http://api.bilibili.com/x/v2/history'\
 删除视频`av540580868`的观看历史记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/delete'\
---data-urlencode 'kid=archive_540580868'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/delete' \
+--data-urlencode 'kid=archive_540580868' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -793,8 +730,8 @@ curl 'http://api.bilibili.com/x/v2/history/delete'\
 清空历史记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/clear'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/clear' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -843,9 +780,9 @@ curl 'http://api.bilibili.com/x/v2/history/clear'\
 停用历史记录功能
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/shadow/set'\
---data-urlencode 'switch=true'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/shadow/set' \
+--data-urlencode 'switch=true' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -886,7 +823,7 @@ curl 'http://api.bilibili.com/x/v2/history/shadow/set'\
 当前状态为未停用视频历史记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/shadow'\
+curl 'http://api.bilibili.com/x/v2/history/shadow' \
 -b 'SESSDATA=xxx'
 ```
 

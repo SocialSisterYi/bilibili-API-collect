@@ -2,7 +2,7 @@
 
 <img src="/imgs/ranking.svg" width="100" height="100"/>
 
-## 获取分区排行榜视频列表
+## 获取分区视频排行榜列表
 
 >http://api.bilibili.com/x/web-interface/ranking/region
 
@@ -39,15 +39,15 @@
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
+基本同[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的data对象
 
 **示例：**
 
 获取`tID=1`（动画）分区中的三日视频排行榜
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/ranking/region'\
---data-urlencode 'rid=1'\
+curl -G 'http://api.bilibili.com/x/web-interface/ranking/region' \
+--data-urlencode 'rid=1' \
 --data-urlencode 'day=3'
 ```
 

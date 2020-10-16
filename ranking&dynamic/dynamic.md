@@ -1,6 +1,6 @@
-# 视频最新动态
+# 分区最新视频
 
-## 获取分区最新动态视频列表
+## 获取分区最新视频列表
 
 > http://api.bilibili.com/x/web-interface/dynamic/region
 
@@ -42,7 +42,7 @@
 
 `data`中的`archives`数组中的对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
+基本同[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的data对象
 
 `data`中的`page`对象：
 
@@ -57,10 +57,10 @@
 获取`tID=21`（生活->日常）分区中的2条最新动态视频信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/dynamic/region'\
---data-urlencode 'rid=21'\
---data-urlencode 'ps=2'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/web-interface/dynamic/region' \
+--data-urlencode 'rid=21' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 

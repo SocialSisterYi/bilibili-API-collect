@@ -35,10 +35,10 @@
 为文章`cv5806746`点赞
 
 ```shell
-curl 'http://api.bilibili.com/x/article/like'\
---data-urlencode 'id=5806746'\
---data-urlencode 'type=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/article/like' \
+--data-urlencode 'id=5806746' \
+--data-urlencode 'type=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -96,11 +96,11 @@ data 对象：
 为文章`cv5806746`投币1枚
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/coin/add'\
---data-urlencode 'aid=5806746'\
---data-urlencode 'multiply=1'\
---data-urlencode 'avtype=2'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/web-interface/coin/add' \
+--data-urlencode 'aid=5806746' \
+--data-urlencode 'multiply=1' \
+--data-urlencode 'avtype=2' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -152,9 +152,9 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add'\
 收藏文章`cv5806746`
 
 ```shell
-curl 'http://api.bilibili.com/x/article/favorites/add'\
---data-urlencode 'id=5806746'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/article/favorites/add' \
+--data-urlencode 'id=5806746' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

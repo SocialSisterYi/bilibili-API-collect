@@ -161,19 +161,19 @@
 
 `result`数组中的对象中的`data`数组：
 
-| 项   | 类型 | 内容            | 备注                                         |
-| ---- | ---- | --------------- | -------------------------------------------- |
-| 0    | obj  | 搜索结果1       | 对象详情见「[搜索结果](search_response.md)」 |
-| n    | obj  | 搜索结果（n+1） | 按照参数指定的顺序排列                       |
-| ……   | obj  | ……              | ……                                           |
+| 项   | 类型 | 内容            | 备注                                     |
+| ---- | ---- | --------------- | ---------------------------------------- |
+| 0    | obj  | 搜索结果1       | 对象详情见[搜索结果](search_response.md) |
+| n    | obj  | 搜索结果（n+1） | 按照参数指定的顺序排列                   |
+| ……   | obj  | ……              | ……                                       |
 
 **示例：**
 
 使用综合搜索进行搜索关键字`洛天依`
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2'\
---data-urlencode 'keyword=洛天依'\
+curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2' \
+--data-urlencode 'keyword=洛天依' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -669,42 +669,42 @@ curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2'\
 
 `result`中的`live_room`数组：
 
-| 项   | 类型 | 内容                  | 备注                                         |
-| ---- | ---- | --------------------- | -------------------------------------------- |
-| 0    | obj  | 直播间搜索结果1       | 对象详情见「[搜索结果](search_response.md)」 |
-| n    | obj  | 直播间搜索结果（n+1） | 按照参数指定的顺序排列                       |
-| ……   | obj  | ……                    | ……                                           |
+| 项   | 类型 | 内容                  | 备注                                     |
+| ---- | ---- | --------------------- | ---------------------------------------- |
+| 0    | obj  | 直播间搜索结果1       | 对象详情见[搜索结果](search_response.md) |
+| n    | obj  | 直播间搜索结果（n+1） | 按照参数指定的顺序排列                   |
+| ……   | obj  | ……                    | ……                                       |
 
 `result`中的`live_user`数组：
 
-| 项   | 类型 | 内容                | 备注                                         |
-| ---- | ---- | ------------------- | -------------------------------------------- |
-| 0    | obj  | 主播搜索结果1       | 对象详情见「[搜索结果](search_response.md)」 |
-| n    | obj  | 主播搜索结果（n+1） | 按照参数指定的顺序排列                       |
-| ……   | obj  | ……                  | ……                                           |
+| 项   | 类型 | 内容                | 备注                                     |
+| ---- | ---- | ------------------- | ---------------------------------------- |
+| 0    | obj  | 主播搜索结果1       | 对象详情见[搜索结果](search_response.md) |
+| n    | obj  | 主播搜索结果（n+1） | 按照参数指定的顺序排列                   |
+| ……   | obj  | ……                  | ……                                       |
 
 **搜索类型为其他时：**
 
 `data`中的`result`数组：
 
-| 项   | 类型 | 内容            | 备注                                         |
-| ---- | ---- | --------------- | -------------------------------------------- |
-| 0    | obj  | 搜索结果1       | 对象详情见「[搜索结果](search_response.md)」 |
-| n    | obj  | 搜索结果（n+1） | 按照参数指定的顺序排列                       |
-| ……   | obj  | ……              | ……                                           |
+| 项   | 类型 | 内容            | 备注                                     |
+| ---- | ---- | --------------- | ---------------------------------------- |
+| 0    | obj  | 搜索结果1       | 对象详情见[搜索结果](search_response.md) |
+| n    | obj  | 搜索结果（n+1） | 按照参数指定的顺序排列                   |
+| ……   | obj  | ……              | ……                                       |
 
 **示例：**
 
 按照关键词` 少年 `搜索视频，默认排序，全部时长，全部分区，第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/search/type'\
---data-urlencode 'search_type=video'\
---data-urlencode 'keyword=少年'\
---data-urlencode 'order=totalrank'\
---data-urlencode 'duration=0'\
---data-urlencode 'tids=0'\
---data-urlencode 'page=1'\
+curl -G 'http://api.bilibili.com/x/web-interface/search/type' \
+--data-urlencode 'search_type=video' \
+--data-urlencode 'keyword=少年' \
+--data-urlencode 'order=totalrank' \
+--data-urlencode 'duration=0' \
+--data-urlencode 'tids=0' \
+--data-urlencode 'page=1' \
 -b 'SESSDATA=xxx'
 ```
 

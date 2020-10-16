@@ -38,23 +38,23 @@
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/report'\
---data-urlencode 'aid=13662970'\
---data-urlencode 'cid=126654047'\
---data-urlencode 'progress=1248'\
---data-urlencode 'platform=android'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/report' \
+--data-urlencode 'aid=13662970' \
+--data-urlencode 'cid=126654047' \
+--data-urlencode 'progress=1248' \
+--data-urlencode 'platform=android' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/report'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'aid=13662970'\
---data-urlencode 'cid=126654047'\
---data-urlencode 'progress=1248'\
+curl 'http://api.bilibili.com/x/v2/history/report' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'aid=13662970' \
+--data-urlencode 'cid=126654047' \
+--data-urlencode 'progress=1248' \
 --data-urlencode 'platform=android'
 ```
 
@@ -118,17 +118,17 @@ curl 'http://api.bilibili.com/x/v2/history/report'\
 上报一次视频`av2`/`BV1xx411c7mD`的心跳数据
 
 ```shell
-curl 'api.bilibili.com/x/click-interface/web/heartbeat'\
---data-urlencode 'aid=2'\
---data-urlencode 'bvid=BV1xx411c7mD'\
---data-urlencode 'cid=62131'\
---data-urlencode 'played_time=60'\
---data-urlencode 'realtime=60'\
---data-urlencode 'start_ts=1592720840'\
---data-urlencode 'type=3'\
---data-urlencode 'dt=2'\
---data-urlencode 'play_type=0'\
---data-urlencode 'csrf=xxx'\
+curl 'api.bilibili.com/x/click-interface/web/heartbeat' \
+--data-urlencode 'aid=2' \
+--data-urlencode 'bvid=BV1xx411c7mD' \
+--data-urlencode 'cid=62131' \
+--data-urlencode 'played_time=60' \
+--data-urlencode 'realtime=60' \
+--data-urlencode 'start_ts=1592720840' \
+--data-urlencode 'type=3' \
+--data-urlencode 'dt=2' \
+--data-urlencode 'play_type=0' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

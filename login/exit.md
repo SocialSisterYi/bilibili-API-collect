@@ -21,7 +21,7 @@
 **示例：**
 
 ```shell
-curl 'http://passport.bilibili.com/login?act=exit'\
+curl 'http://passport.bilibili.com/login?act=exit' \
 -b 'SESSDATA=xxx;DedeUserID__ckMd5=xxx;SESSDATA=xxx;bili_jct=xxx'
 ```
 

@@ -47,7 +47,7 @@
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/archive_stat/stat'\
+curl -G 'http://api.bilibili.com/archive_stat/stat' \
 --data-urlencode 'aid=91572143'
 ```
 
@@ -133,14 +133,14 @@ curl -G 'http://api.bilibili.com/archive_stat/stat'\
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
+curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
 --data-urlencode 'aid=2271112'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
+curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
 --data-urlencode 'bvid=BV1es411D7sW'
 ```
 
@@ -177,8 +177,8 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
 当UA为`2333python2333`时，则无法访问此接口：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/stat'\
---data-urlencode 'aid=2271112'\
+curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
+--data-urlencode 'aid=2271112' \
 -A '2333python2333'
 ```
 

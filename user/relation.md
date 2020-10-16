@@ -94,10 +94,10 @@
 获取用户`UID=293793435`的粉丝明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/followers'\
---data-urlencode 'vmid=293793435'\
---data-urlencode 'ps=2'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/relation/followers' \
+--data-urlencode 'vmid=293793435' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -272,11 +272,11 @@ data 对象：
 获取用户`UID=293793435`的关注明细，按照关注顺序
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/ollowings'\
---data-urlencode 'vmid=293793435'\
---data-urlencode 'order_type='\
---data-urlencode 'ps=2'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/relation/ollowings' \
+--data-urlencode 'vmid=293793435' \
+--data-urlencode 'order_type=' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -448,10 +448,10 @@ data 对象：
 获取自己与用户`UID=2`的共同关注明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/same/followings'\
---data-urlencode 'vmid=2'\
---data-urlencode 'ps=2'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/relation/same/followings' \
+--data-urlencode 'vmid=2' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -575,11 +575,11 @@ curl -G 'http://api.bilibili.com/x/relation/same/followings'\
 关注`UID=14082`的用户
 
 ```shell
-curl 'http://http://api.bilibili.com/x/relation/modify'\
---data-urlencode 'fid=14082'\
---data-urlencode 'act=1'\
---data-urlencode 're_src=11'\
---data-urlencode 'csrf=xxx'\
+curl 'http://http://api.bilibili.com/x/relation/modify' \
+--data-urlencode 'fid=14082' \
+--data-urlencode 'act=1' \
+--data-urlencode 're_src=11' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -644,11 +644,11 @@ curl 'http://http://api.bilibili.com/x/relation/modify'\
 批量关注`UID=1,2,3,4,5`的用户
 
 ```shell
-curl 'http://http://api.bilibili.com/x/relation/batch/modify'\
---data-urlencode 'fid=1,2,3,4,5'\
---data-urlencode 'act=1'\
---data-urlencode 're_src=11'\
---data-urlencode 'csrf=xxx'\
+curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
+--data-urlencode 'fid=1,2,3,4,5' \
+--data-urlencode 'act=1' \
+--data-urlencode 're_src=11' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -716,8 +716,8 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify'\
 可得对于`UID=258150656`的用户，在`2018/10/28 0:51:41`时关注，且设为特别关注，并位于ID为`-10`分组中
 
 ```shell
-curl -G 'http://http://api.bilibili.com/x/relation'\
---data-urlencode 'fid=258150656'\
+curl -G 'http://http://api.bilibili.com/x/relation' \
+--data-urlencode 'fid=258150656' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -807,8 +807,8 @@ curl -G 'http://http://api.bilibili.com/x/relation'\
 可得对于`UID=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于ID为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于ID为`-10`和`56502`的分组中（虽然我看不到）
 
 ```shell
-curl -G 'http://api.bilibili.com/x/space/acc/relation'\
---data-urlencode 'mid=15858903'\
+curl -G 'http://api.bilibili.com/x/space/acc/relation' \
+--data-urlencode 'mid=15858903' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -899,8 +899,8 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation'\
 批量查询`UID=1,2,3,4,5`的关系
 
 ```shell
-curl -G 'http://http://api.bilibili.com/x/relation/relations'\
---data-urlencode 'fid=258150656'\
+curl -G 'http://http://api.bilibili.com/x/relation/relations' \
+--data-urlencode 'fid=258150656' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -982,7 +982,7 @@ curl -G 'http://http://api.bilibili.com/x/relation/relations'\
 查询所有的分组的名字以及ID
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags'\
+curl 'http://api.bilibili.com/x/relation/tags' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1093,11 +1093,11 @@ curl 'http://api.bilibili.com/x/relation/tags'\
 以每页2项的方式获取了ID为`207542`分组的第1页的粉丝明细，按照关注顺序
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/tag'\
---data-urlencode 'tagid=207542'\
---data-urlencode 'order_type='\
---data-urlencode 'ps=2'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/relation/tag' \
+--data-urlencode 'tagid=207542' \
+--data-urlencode 'order_type=' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1196,8 +1196,8 @@ curl -G 'http://api.bilibili.com/x/relation/tag'\
 查询用户`UID=319214221`存在的所有分组ID和名称
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/tag/user'\
---data-urlencode 'fid=319214221'\
+curl -G 'http://api.bilibili.com/x/relation/tag/user' \
+--data-urlencode 'fid=319214221' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1254,7 +1254,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user'\
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/special'\
+curl 'http://api.bilibili.com/x/relation/tag/special' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1331,9 +1331,9 @@ curl 'http://api.bilibili.com/x/relation/tag/special'\
 创建了名为`测试`的分组，得到ID为`216677`
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/create'\
---data-urlencode 'tag=测试'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/relation/tag/create' \
+--data-urlencode 'tag=测试' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1385,10 +1385,10 @@ curl 'http://api.bilibili.com/x/relation/tag/create'\
 把ID为`194112`的分组更名为`膜法师`
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/update'\
---data-urlencode 'tagid=194112'\
---data-urlencode 'name=膜法师'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/relation/tag/update' \
+--data-urlencode 'tagid=194112' \
+--data-urlencode 'name=膜法师' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1438,9 +1438,9 @@ curl 'http://api.bilibili.com/x/relation/tag/update'\
 删除分组ID为`216699`的分组
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/del'\
---data-urlencode 'tagid=216699'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/relation/tag/del' \
+--data-urlencode 'tagid=216699' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1491,10 +1491,10 @@ curl 'http://api.bilibili.com/x/relation/tag/del'\
 把关注用户`UID=205631797`同时添加分组关系到ID为`-10`和`207542`的分组中
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags/addUsers'\
---data-urlencode 'fids=205631797'\
---data-urlencode 'tagids=-10,207542'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
+--data-urlencode 'fids=205631797' \
+--data-urlencode 'tagids=-10,207542' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1543,10 +1543,10 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers'\
 把关注用户`UID=4856007`和`UID=326499679`同时复制到ID为`231305`的分组中
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags/copyUsers'\
---data-urlencode 'fids=4856007,326499679'\
---data-urlencode 'tagids=231305'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
+--data-urlencode 'fids=4856007,326499679' \
+--data-urlencode 'tagids=231305' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1596,11 +1596,11 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers'\
 把关注用户`UID=321173469`和`UID=327086920`同时从ID为`207542`的分组移动到ID为`231305`的分组中
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags/moveUsers'\
---data-urlencode 'beforeTagids=207542'\
---data-urlencode 'afterTagids=23130'\
---data-urlencode 'fids=321173469,327086920'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/relation/tags/moveUsers' \
+--data-urlencode 'beforeTagids=207542' \
+--data-urlencode 'afterTagids=23130' \
+--data-urlencode 'fids=321173469,327086920' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

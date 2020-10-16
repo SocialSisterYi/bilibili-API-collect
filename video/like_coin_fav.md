@@ -40,20 +40,20 @@
 avID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like'\
---data-urlencode 'aid=79677524'\
---data-urlencode 'like=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/web-interface/archive/like' \
+--data-urlencode 'aid=79677524' \
+--data-urlencode 'like=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like'\
---data-urlencode 'bvid=BV1uJ411r7hL'\
---data-urlencode 'like=1'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/web-interface/archive/like' \
+--data-urlencode 'bvid=BV1uJ411r7hL' \
+--data-urlencode 'like=1' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -108,9 +108,9 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like'\
 点赞视频`av79677524`
 
 ```shell
-curl 'http://app.bilibili.com/x/v2/view/like'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'aid=79677524'\
+curl 'http://app.bilibili.com/x/v2/view/like' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'aid=79677524' \
 --data-urlencode 'like=0'
 ```
 
@@ -164,16 +164,16 @@ curl 'http://app.bilibili.com/x/v2/view/like'\
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/has/like'\
---data-urlencode 'aid=39330059'\
+curl -G 'http://api.bilibili.com/x/web-interface/archive/has/like' \
+--data-urlencode 'aid=39330059' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/has/like'\
---data-urlencode 'bvid=BV1Bt411z799'\
+curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
+--data-urlencode 'bvid=BV1Bt411z799' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -238,22 +238,22 @@ data 对象：
 avID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/coin/add'\
---data-urlencode 'aid=90671873'\
---data-urlencode 'select_like=1'\
---data-urlencode 'multiply=2'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/web-interface/coin/add' \
+--data-urlencode 'aid=90671873' \
+--data-urlencode 'select_like=1' \
+--data-urlencode 'multiply=2' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/coin/add'\
---data-urlencode 'bvid=BV1N7411A7wC'\
---data-urlencode 'select_like=1'\
---data-urlencode 'multiply=2'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/web-interface/coin/add' \
+--data-urlencode 'bvid=BV1N7411A7wC' \
+--data-urlencode 'select_like=1' \
+--data-urlencode 'multiply=2' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -310,10 +310,10 @@ data 对象：
 为视频`av90671873`投币2枚
 
 ```shell
-curl 'http://app.bilibili.com/x/v2/view/coin/add'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'aid=90671873'\
---data-urlencode 'select_like=1'\
+curl 'http://app.bilibili.com/x/v2/view/coin/add' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'aid=90671873' \
+--data-urlencode 'select_like=1' \
 --data-urlencode 'multiply=2'
 ```
 
@@ -373,16 +373,16 @@ curl 'http://app.bilibili.com/x/v2/view/coin/add'\
 avID方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/coins'\
---data-urlencode 'aid=37896701'\
+curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
+--data-urlencode 'aid=37896701' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/coins'\
---data-urlencode 'bvid=BV18t411q7zz'\
+curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
+--data-urlencode 'bvid=BV18t411q7zz' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -452,24 +452,24 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins'\
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal'\
---data-urlencode 'rid=90671873'\
---data-urlencode 'type=2'\
---data-urlencode 'add_media_ids=49166435'\
---data-urlencode 'del_media_ids='\
---data-urlencode 'csrf=xxx'\
--b 'SESSDATA=xxx'\
+curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal' \
+--data-urlencode 'rid=90671873' \
+--data-urlencode 'type=2' \
+--data-urlencode 'add_media_ids=49166435' \
+--data-urlencode 'del_media_ids=' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx' \
 -e 'https://www.bilibili.com'
 ```
 
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'rid=90671873'\
---data-urlencode 'type=2'\
---data-urlencode 'add_media_ids=49166435'\
+curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'rid=90671873' \
+--data-urlencode 'type=2' \
+--data-urlencode 'add_media_ids=49166435' \
 --data-urlencode 'del_media_ids='
 ```
 
@@ -528,16 +528,16 @@ data 对象：
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured'\
---data-urlencode 'aid=46281123'\
+curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
+--data-urlencode 'aid=46281123' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured'\
---data-urlencode 'aid=BV1Bb411H7Dv'\
+curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
+--data-urlencode 'aid=BV1Bb411H7Dv' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -607,18 +607,18 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured'\
 avID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like/triple'\
---data-urlencode 'aid=91003840'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
+--data-urlencode 'aid=91003840' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like/triple'\
---data-urlencode 'bvid=BV1Wj411f79U'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
+--data-urlencode 'bvid=BV1Wj411f79U' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -683,8 +683,8 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple'\
 将视频`av91003840`一键三连
 
 ```shell
-curl 'http://app.bilibili.com/x/v2/view/like/triple'\
---data-urlencode 'access_key=xxx'\
+curl 'http://app.bilibili.com/x/v2/view/like/triple' \
+--data-urlencode 'access_key=xxx' \
 --data-urlencode 'aid=91003840'
 ```
 

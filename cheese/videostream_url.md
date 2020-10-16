@@ -142,11 +142,11 @@
 获取课程`ep790`（CID=`132105993`，avID=`76973173`）的视频流url，清晰度为1080P60
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/player/web/playurl'\
---data-urlencode 'ep_id=790'\
---data-urlencode 'avid=76973173'\
---data-urlencode 'cid=132105993'\
---data-urlencode 'qn=116'\
+curl -G 'http://api.bilibili.com/pugv/player/web/playurl' \
+--data-urlencode 'ep_id=790' \
+--data-urlencode 'avid=76973173' \
+--data-urlencode 'cid=132105993' \
+--data-urlencode 'qn=116' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -257,8 +257,8 @@ curl -G 'http://api.bilibili.com/pugv/player/web/playurl'\
 **以上述视频url为例：**
 
 ```shell
-wget 'https://upos-sz-mirrorks3c.bilivideo.com/upgcxcode/93/59/132105993/132105993_da2-1-116.flv?e=ig8euxZM2rNcNbNghzTBhwdlhbNz7bUVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1591596728&gen=playurl&os=ks3cbv&oi=606633803&trid=76bea9a9e56f4cb89a9aff2f8213c9acu&platform=pc&upsig=b271bf493bff32ffe62969582c8d18b4&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=0&orderid=1,2&logo=40000000'\
--e 'https://www.bilibili.com'\
+wget 'https://upos-sz-mirrorks3c.bilivideo.com/upgcxcode/93/59/132105993/132105993_da2-1-116.flv?e=ig8euxZM2rNcNbNghzTBhwdlhbNz7bUVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1591596728&gen=playurl&os=ks3cbv&oi=606633803&trid=76bea9a9e56f4cb89a9aff2f8213c9acu&platform=pc&upsig=b271bf493bff32ffe62969582c8d18b4&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=0&orderid=1,2&logo=40000000' \
+-e 'https://www.bilibili.com' \
 -O 'Download_video.flv'
 ```
 

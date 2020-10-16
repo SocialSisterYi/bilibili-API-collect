@@ -127,13 +127,13 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 
 ```shell
 curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
---data-urlencode 'tel=13888888888'\
---data-urlencode 'cid=1'\
---data-urlencode 'type=21'\
---data-urlencode 'captchaType=6'\
---data-urlencode 'key=aabbccdd'\
---data-urlencode 'challenge=2333'\
---data-urlencode 'validate=666666'\
+--data-urlencode 'tel=13888888888' \
+--data-urlencode 'cid=1' \
+--data-urlencode 'type=21' \
+--data-urlencode 'captchaType=6' \
+--data-urlencode 'key=aabbccdd' \
+--data-urlencode 'challenge=2333' \
+--data-urlencode 'validate=666666' \
 --data-urlencode 'seccode=666666|jordan'
 ```
 
@@ -192,8 +192,8 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 
 ```shell
 curl 'https://passport.bilibili.com/web/login/rapid' 
---data-urlencode 'cid=1'\
---data-urlencode 'tel=13888888888'\
+--data-urlencode 'cid=1' \
+--data-urlencode 'tel=13888888888' \
 --data-urlencode 'smsCode=123456'
 ```
 

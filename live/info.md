@@ -25,25 +25,25 @@
 
 `data`对象：
 
-| 字段           | 类型 | 内容          | 备注                     |
-| -------------- | ---- | ------------- | ------------------------ |
-| roomStatus     | num  | 直播间状态    | 0：无房间<br />1：有房间 |
-| roundStatus    | num  | 轮播状态      | 0：未轮播<br />1：轮播   |
-| liveStatus     | num  | 直播状态      | 0：未开播<br />1：直播中 |
-| url            | str  | 直播间网页url |                          |
-| title          | str  | 直播间标题    |                          |
-| cover          | str  | 直播间封面    |                          |
-| online         | num  | 直播间人气    | 值为上次直播刷新         |
-| roomid         | num  | 直播间ID      |                          |
-| broadcast_type | num  | 0             |                          |
-| online_hidden  | num  | 0             |                          |
+| 字段           | 类型 | 内容             | 备注                     |
+| -------------- | ---- | ---------------- | ------------------------ |
+| roomStatus     | num  | 直播间状态       | 0：无房间<br />1：有房间 |
+| roundStatus    | num  | 轮播状态         | 0：未轮播<br />1：轮播   |
+| liveStatus     | num  | 直播状态         | 0：未开播<br />1：直播中 |
+| url            | str  | 直播间网页url    |                          |
+| title          | str  | 直播间标题       |                          |
+| cover          | str  | 直播间封面       |                          |
+| online         | num  | 直播间人气       | 值为上次直播刷新         |
+| roomid         | num  | 直播间ID（短号） |                          |
+| broadcast_type | num  | 0                |                          |
+| online_hidden  | num  | 0                |                          |
 
 **示例：**
 
 查询用户`UID=322892`的直播间信息
 
 ```shell
-curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
+curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 --data-urlencode 'mid=322892'
 ```
 
@@ -72,9 +72,9 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
 
 </details>
 
-## 根据直播间号获取直播间信息
+## 获取房间页初始化信息
 
-> https://api.live.bilibili.com/room/v1/Room/room_init
+> http://api.live.bilibili.com/room/v1/Room/room_init
 
 *请求方式：GET*
 
@@ -82,7 +82,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| id    | num  | 目标直播间号 | 必要   |      |
+| id    | num  | 目标直播间号（短号） | 必要   |      |
 
 **json回复：**
 
@@ -101,29 +101,28 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld'\
 | 字段           | 类型 | 内容          | 备注                     |
 | -------------- | ---- | ------------- | ------------------------ |
 | room_id         | num  | 直播间真实ID      |                          |
-| short_id         | num  | 直播间URL_ID      |                          |
-| uid         | num  | 用户UID      |                          |
-| need_p2p         | num  | 未知      |                          |
-| is_hidden         | boolean   | 未知      |                          |
-| is_locked         | boolean   | 未知      |                          |
-| is_portrait         | boolean   | 未知      |                          |
+| short_id         | num  | 直播间ID（短号） |                          |
+| uid         | num  | 主播用户UID    |                          |
+| need_p2p         | num  | 是否p2p |                          |
+| is_hidden         | bool   | 是否隐藏  |                          |
+| is_locked         | bool   | 是否锁定  |                          |
+| is_portrait         | bool   | 是否竖屏  |                          |
 | live_status     | num  | 直播状态      | 0：未开播<br />1：直播中 |
-| hidden_till     | num  | 未知      |      	 |
-| lock_till     | num  | 未知      |   		 |
-| encrypted     | boolean   | 未知      |   		 |
-| pwd_verified     | boolean   | 未知      |   		 |
+| hidden_till     | num  | 隐藏时间戳 |      	 |
+| lock_till     | num  | 锁定时间戳 |   		 |
+| encrypted     | bool   | 是否加密  |   		 |
+| pwd_verified     | bool   | 加密房间是否通过密码验证 | `encrypted`=true时才有意义 |
 | live_time     | num  | 开播时长      |   		 |
 | room_shield     | num  | 未知    |  |
-| is_sp    | num  | 未知      |    |
-| special_type      | num  | 未知 |                |
-
+| is_sp    | num  | 是否为特殊直播间 | 0：普通直播间<br />1：付费直播间 |
+| special_type      | num  | 特殊直播间标志 | 0：普通直播间<br />1：付费直播间<br />2：拜年祭直播间 |
 
 **示例：**
 
 查询直播间`ID=76`的直播间信息
 
 ```shell
-curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init'\
+curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 --data-urlencode 'id=76'
 ```
 

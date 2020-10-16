@@ -70,16 +70,16 @@
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
---data-urlencode 'aid=89772773'\
+curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
+--data-urlencode 'aid=89772773' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
---data-urlencode 'bvid=BV1M741177Kg'\
+curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
+--data-urlencode 'bvid=BV1M741177Kg' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -235,10 +235,10 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags'\
 为视频`av89772773`的TAG`12620189`点赞
 
 ```shell
-curl 'http://api.bilibili.com/x/tag/archive/like2'\
---data-urlencode 'aid=89772773'\
---data-urlencode 'tag_id=12620189'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/tag/archive/like2' \
+--data-urlencode 'aid=89772773' \
+--data-urlencode 'tag_id=12620189' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -288,10 +288,10 @@ curl 'http://api.bilibili.com/x/tag/archive/like2'\
 为视频`av89772773`的TAG`7520816`点踩
 
 ```shell
-curl 'http://pi.bilibili.com/x/tag/archive/hate2'\
---data-urlencode 'aid=89772773'\
---data-urlencode 'tag_id=7520816'\
---data-urlencode 'csrf=xxx'\
+curl 'http://pi.bilibili.com/x/tag/archive/hate2' \
+--data-urlencode 'aid=89772773' \
+--data-urlencode 'tag_id=7520816' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

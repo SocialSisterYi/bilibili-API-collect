@@ -8,6 +8,10 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDSTA）
+
+限制游客访问的视频需要登录
+
 **url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
@@ -41,7 +45,7 @@
 | pubdate      | num   | 稿件发布时间                   | 时间戳                                                       |
 | ctime        | num   | 用户提交稿件的时间             | 时间戳                                                       |
 | desc         | str   | 视频简介                       |                                                              |
-| state        | num   | 视频状态                       | 0：开放浏览<br />1：橙色通过<br />-1：待审<br />-2：被打回<br />-3：网警锁定<br />-4：被锁定<br />-5：管理员锁定（可浏览）<br />-6：修复待审<br />-7：暂缓审核<br />-8：补档待审<br />-9：等待转码<br />-10：延迟审核<br />-11：视频源待修<br />-12：转储失败<br />-13：允许评论待审<br />-14：临时回收站<br />-15：分发中<br />-16：转码失败<br />-20：创建未提交<br />-30：创建已提交<br />-40：定时发布<br />-100：用户删除 |
+| state        | num   | 视频状态                       | （PS：以下部分内容来源不明，有待验证）<br />0：开放浏览<br />1：橙色通过<br />-1：待审<br />-2：被打回<br />-3：网警锁定<br />-4：被锁定<br />-5：管理员锁定（可浏览）<br />-6：修复待审<br />-7：暂缓审核<br />-8：补档待审<br />-9：等待转码<br />-10：延迟审核<br />-11：视频源待修<br />-12：转储失败<br />-13：允许评论待审<br />-14：临时回收站<br />-15：分发中<br />-16：转码失败<br />-20：创建未提交<br />-30：创建已提交<br />-40：定时发布<br />-100：用户删除 |
 | attribute    | num   | 稿件属性位配置                 |                                                              |
 | duration     | num   | 稿件总时长（所有分P）          | 单位为秒                                                     |
 | mission_id   | num   | 稿件参与的活动ID               | 无为0                                                        |
@@ -59,32 +63,40 @@
 
 `attribute`属性位二进制值表：
 
-| 位   | 内容              | 备注                    |
-| ---- | ----------------- | ----------------------- |
-| 0    | 禁止排行          |                         |
-| 1    | 动态禁止          |                         |
-| 2    | 禁止网页输出      |                         |
-| 3    | 禁止客户端列表    |                         |
-| 4    | 搜索禁止          |                         |
-| 5    | 海外禁止          |                         |
-| 6    | 禁止推荐          |                         |
-| 7    | 禁止转载          |                         |
-| 8    | 是否高清          | 视频清晰度>=1080P       |
-| 9    | 是否PGC稿件       | 番剧及影视              |
-| 10   | 允许承包          |                         |
-| 11   | 是否番剧          |                         |
-| 12   | 是否私单          |                         |
-| 13   | 是否限制地区      | 大多数番剧              |
-| 14   | 允许其他人添加tag |                         |
-| 15   | ？                |                         |
-| 16   | 跳转              | 番剧及影视av/bv->ep跳转 |
-| 17   | 是否影视          |                         |
-| 18   | 付费              |                         |
-| 19   | 推送动态          |                         |
-| 20   | 家长模式          |                         |
-| 21   | UGC付费           |                         |
-| 22   | ？                |                         |
-| 23   | 是否失效          |                         |
+（PS：以下部分内容来源不明，有待验证）
+
+| 位   | 内容               | 备注                                          |
+| ---- | ------------------ | --------------------------------------------- |
+| 0    | 禁止排行           |                                               |
+| 1    | 动态禁止           | 禁止APP推送动态                               |
+| 2    | 禁止网页输出       |                                               |
+| 3    | 禁止客户端列表     |                                               |
+| 4    | 搜索禁止           |                                               |
+| 5    | 海外禁止           |                                               |
+| 6    | 禁止推荐           | 禁止被APP端天马列表推荐                       |
+| 7    | 禁止转载           | 显示“禁止转载”标志                            |
+| 8    | 是否高清           | 视频清晰度>=1080P                             |
+| 9    | 是否PGC稿件        | 番剧&影视                                     |
+| 10   | 允许承包           |                                               |
+| 11   | 是否番剧           |                                               |
+| 12   | 是否私单           |                                               |
+| 13   | 是否限制地区       | 大多数番剧&影视                               |
+| 14   | 允许其他人添加TAG  |                                               |
+| 15   | ？                 |                                               |
+| 16   | 跳转               | 番剧及影视av/bv->ep跳转                       |
+| 17   | 是否影视           |                                               |
+| 18   | 是否付费           |                                               |
+| 19   | 推送动态           |                                               |
+| 20   | 家长模式           |                                               |
+| 21   | 是否限制游客和外链 | 部分视频未登录无法观看，且网页限制referer跳转 |
+| 22   | ？                 |                                               |
+| 23   | ？                 |                                               |
+| 24   | 是否合作视频       |                                               |
+| 25   | ？                 |                                               |
+| 26   | ？                 |                                               |
+| 27   | ？                 |                                               |
+| 28   | ？                 |                                               |
+| 29   | 是否为互动视频     |                                               |
 
 `data`中的`rights`对象：
 
@@ -242,14 +254,14 @@
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/view'\
+curl -G 'http://api.bilibili.com/x/web-interface/view' \
 --data-urlencode 'aid=85440373'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/view'\
+curl -G 'http://api.bilibili.com/x/web-interface/view' \
 --data-urlencode 'bvid=BV117411r7R1'
 ```
 
@@ -442,14 +454,14 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/archive/desc'\
+curl -G 'http://api.bilibili.com/x/archive/desc' \
 --data-urlencode 'aid=39330059'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/archive/desc'\
+curl -G 'http://api.bilibili.com/x/archive/desc' \
 --data-urlencode 'bvid=BV1Bt411z799'
 ```
 
@@ -527,14 +539,14 @@ curl -G 'http://api.bilibili.com/x/archive/desc'\
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/pagelist'\
+curl -G 'http://api.bilibili.com/x/player/pagelist' \
 --data-urlencode 'aid=13502509'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/pagelist'\
+curl -G 'http://api.bilibili.com/x/player/pagelist' \
 --data-urlencode 'bvid=BV1ex411J7GE'
 ```
 

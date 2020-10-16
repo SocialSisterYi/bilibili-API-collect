@@ -43,14 +43,14 @@
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/jury'\
+curl 'http://api.bilibili.com/x/credit/jury/jury' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/jury'\
+curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -134,14 +134,14 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury'\
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/kpi'\
+curl 'http://api.bilibili.com/x/credit/jury/kpi' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/kpi'\
+curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -219,14 +219,14 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi'\
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/requirement'\
+curl 'http://api.bilibili.com/x/credit/jury/requirement' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/requirement'\
+curl -G 'http://api.bilibili.com/x/credit/jury/requirement' \
 --data-urlencode 'access_key=xxx'
 ```
 

@@ -37,18 +37,18 @@
 avID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/add'\
---data-urlencode 'aid=41687433'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/toview/add' \
+--data-urlencode 'aid=41687433' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/add'\
---data-urlencode 'bvid=BV1ht41147kj'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/toview/add' \
+--data-urlencode 'bvid=BV1ht41147kj' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -101,10 +101,10 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add'\
 添加用户`UID=282994`下的频道`4693`中所有视频到稍后再看
 
 ```shell
-curl 'http://space.bilibili.com/ajax/channel/addAllToView'\
---data-urlencode 'cid=4693'\
---data-urlencode 'mid=282994'\
---data-urlencode 'csrf=xxx'\
+curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
+--data-urlencode 'cid=4693' \
+--data-urlencode 'mid=282994' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;'
 -e 'https://www.bilibili.com'
 ```
@@ -281,7 +281,7 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView'\
 获取稍后再看视频列表
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview'\
+curl 'http://api.bilibili.com/x/v2/history/toview' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -465,9 +465,9 @@ curl 'http://api.bilibili.com/x/v2/history/toview'\
 删除视频`av540580868`的稍后再看记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/del'\
---data-urlencode 'aid=540580868'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/toview/del' \
+--data-urlencode 'aid=540580868' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -487,9 +487,9 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del'\
 删除所有已观看的视频
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/del'\
---data-urlencode 'viewed=true'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/toview/del' \
+--data-urlencode 'viewed=true' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -535,8 +535,8 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del'\
 清空稍后再看视频列表
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/clear'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/v2/history/toview/clear' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

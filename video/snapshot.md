@@ -67,16 +67,16 @@
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/videoshot'\
---data-urlencode 'aid=26273789'\
+curl -G 'http://api.bilibili.com/x/player/videoshot' \
+--data-urlencode 'aid=26273789' \
 --data-urlencode 'index=1'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/videoshot'\
---data-urlencode 'bvid=BV1os411H7wm'\
+curl -G 'http://api.bilibili.com/x/player/videoshot' \
+--data-urlencode 'bvid=BV1os411H7wm' \
 --data-urlencode 'index=1'
 ```
 
@@ -155,11 +155,11 @@ curl -G 'http://api.bilibili.com/x/player/videoshot'\
 获取视频`av26273789`（`CID=49075258`）的快照
 
 ```shell
-curl -G 'http://app.bilibili.com/x/v2/view/video/shot'\
---data-urlencode 'appkey=1d8b6e7d45233436'\
---data-urlencode 'aid=26273789'\
---data-urlencode 'cid=49075258'\
---data-urlencode 'ts=0'\
+curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
+--data-urlencode 'appkey=1d8b6e7d45233436' \
+--data-urlencode 'aid=26273789' \
+--data-urlencode 'cid=49075258' \
+--data-urlencode 'ts=0' \
 --data-urlencode 'sign=06c0a4f2ede21984313552bd9439db18'
 ```
 
@@ -246,7 +246,7 @@ curl -G 'http://app.bilibili.com/x/v2/view/video/shot'\
 获取视频`av26273789`的快照
 
 ```shell
-curl -G 'http://api.bilibili.com/pvideo'\
+curl -G 'http://api.bilibili.com/pvideo' \
 --data-urlencode 'aid=26273789'
 ```
 

@@ -41,14 +41,14 @@
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/ajax'\
+curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \
 --data-urlencode 'aid=43337021'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/ajax'\
+curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \
 --data-urlencode 'aid=BV1rb411m7gE'
 ```
 

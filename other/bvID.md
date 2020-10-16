@@ -138,7 +138,7 @@ char* av2bv(unsigned long long av)
 	av = (av ^ Xor) + add;
 	for (int i = 0; i < 10; i++)
 		result[s[i]] = table[(unsigned long long)(av / (unsigned long long)pow(58, i)) % 58];
-	result[10] = '\0';//添加休止符
+	result[10] = ' \0';//添加休止符
 	char *bv=result;
 	return bv;
 }

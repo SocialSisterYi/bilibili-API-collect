@@ -44,8 +44,8 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/emote/user/panel/web'\
---data-urlencode 'business=reply'\
+curl -G 'http://api.bilibili.com/x/emote/user/panel/web' \
+--data-urlencode 'business=reply' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -259,8 +259,8 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web'\
 获取表情包ID为`93`的表情包明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/emote/package'\
---data-urlencode 'ids=93'\
+curl -G 'http://api.bilibili.com/x/emote/package' \
+--data-urlencode 'ids=93' \
 --data-urlencode 'business=reply'
 ```
 
@@ -568,8 +568,8 @@ curl -G 'http://api.bilibili.com/x/emote/package'\
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/emote/setting/panel'\
---data-urlencode 'business=reply'\
+curl -G 'http://api.bilibili.com/x/emote/setting/panel' \
+--data-urlencode 'business=reply' \
 -b 'SESSDATA=xxx'
 ```
 

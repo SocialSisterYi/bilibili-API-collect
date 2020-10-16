@@ -52,12 +52,12 @@
 ~~自己冲自己QAQ~~
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
---data-urlencode 'elec_num=20'\
---data-urlencode 'up_mid=293793435'\
---data-urlencode 'otype=up'\
---data-urlencode 'oid=293793435'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
+--data-urlencode 'elec_num=20' \
+--data-urlencode 'up_mid=293793435' \
+--data-urlencode 'otype=up' \
+--data-urlencode 'oid=293793435' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -88,12 +88,12 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 此时`data`.`status`=`-2`
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
---data-urlencode 'elec_num=1'\
---data-urlencode 'up_mid=293793435'\
---data-urlencode 'otype=up'\
---data-urlencode 'oid=293793435'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
+--data-urlencode 'elec_num=1' \
+--data-urlencode 'up_mid=293793435' \
+--data-urlencode 'otype=up' \
+--data-urlencode 'oid=293793435' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -124,12 +124,12 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
 此时`data`.`status`=`-4`
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick'\
---data-urlencode 'elec_num=999'\
---data-urlencode 'up_mid=293793435'\
---data-urlencode 'otype=up'\
---data-urlencode 'oid=293793435'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
+--data-urlencode 'elec_num=999' \
+--data-urlencode 'up_mid=293793435' \
+--data-urlencode 'otype=up' \
+--data-urlencode 'oid=293793435' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

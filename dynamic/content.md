@@ -1,12 +1,12 @@
-> 感谢Notepad++的一路陪伴，原则问题，以后便不再使用了
-
 # 动态信息
-
-**本页所有操作均需登录（SESSDATA）**
 
 ## 获取正在直播的已关注者
 
 > http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDSTA）
 
 **url参数：**
 
@@ -55,8 +55,8 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users'\
---data-urlencode 'size=10'\
+curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users' \
+--data-urlencode 'size=10' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -112,6 +112,10 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users'\
 
 > http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist
 
+*请求方式：GET*
+
+认证方式：Cookie（SESSDSTA）
+
 **url参数：**
 
 | 参数名         | 类型 | 内容               | 必要性 | 备注             |
@@ -148,7 +152,7 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users'\
 **示例：**
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist'\
+curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist' \
 -b 'SESSDATA=xxx'
 ```
 

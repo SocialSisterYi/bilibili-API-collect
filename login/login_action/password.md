@@ -66,8 +66,8 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 **示例：**
 
 ```shell
-curl 'http://passport.bilibili.com/api/oauth2/getKey'\
---data-urlencode 'appkey=1d8b6e7d45233436'\
+curl 'http://passport.bilibili.com/api/oauth2/getKey' \
+--data-urlencode 'appkey=1d8b6e7d45233436' \
 --data-urlencode 'sign=17004c193f688f0b5665c1068e733aff'
 ```
 
@@ -186,14 +186,14 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 例如用户账号为`12345678900`，加密后的密码为`xxx`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行验证登录操作
 
 ```shell
-curl 'https://passport.bilibili.com/web/login/v2'\
---data-urlencode 'captchaType=6'\
---data-urlencode 'username=12345678900'\
---data-urlencode 'password=xxx'\
---data-urlencode 'keep=true'\
---data-urlencode 'key=aabbccdd'\
---data-urlencode 'challenge=2333'\
---data-urlencode 'validate=666666'\
+curl 'https://passport.bilibili.com/web/login/v2' \
+--data-urlencode 'captchaType=6' \
+--data-urlencode 'username=12345678900' \
+--data-urlencode 'password=xxx' \
+--data-urlencode 'keep=true' \
+--data-urlencode 'key=aabbccdd' \
+--data-urlencode 'challenge=2333' \
+--data-urlencode 'validate=666666' \
 --data-urlencode 'seccode=666666|jordan'
 ```
 

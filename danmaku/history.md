@@ -42,9 +42,9 @@
 查询了cid为144541892的视频位于2020年1月中有历史弹幕记录的日期
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=144541892'\
+curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=144541892' \
 --data-urlencode 'month=2020-01'
 ```
 
@@ -77,9 +77,9 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
 返回结果的 `data` 项说明这些日期有弹幕发送。若查询的月份中视频无弹幕，则 `data` 项为 `null`
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=144541892'\
+curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=144541892' \
 --data-urlencode 'month=2019-12'
 ```
 
@@ -105,7 +105,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
 
 认证方式：Cookie（SESSDATA）
 
-结果为标准xml格式弹幕
+结果为[标准xml格式弹幕](danmaku_xml.md#弹幕格式)
 
 **使用deflate压缩，注意解码**
 
@@ -120,10 +120,10 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index'\
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/history'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=144541892'\
---data-urlencode 'date=2020-01-21'\
+curl -G 'http://api.bilibili.com/x/v2/dm/history' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=144541892' \
+--data-urlencode 'date=2020-01-21' \
 --compressed -o 'danmaku.xml'
 ```
 

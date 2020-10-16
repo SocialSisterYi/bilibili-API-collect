@@ -190,20 +190,20 @@
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
---data-urlencode 'aid=73267982'\
---data-urlencode 'graph_version=155446'\
---data-urlencode 'edge_id=5556092'\
+curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \
+--data-urlencode 'aid=73267982' \
+--data-urlencode 'graph_version=155446' \
+--data-urlencode 'edge_id=5556092' \
 -b 'SESSDATA=xxx'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2'\
---data-urlencode 'bvid=BV1UE411y7Wy'\
---data-urlencode 'graph_version=155446'\
---data-urlencode 'edge_id=5556092'\
+curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \
+--data-urlencode 'bvid=BV1UE411y7Wy' \
+--data-urlencode 'graph_version=155446' \
+--data-urlencode 'edge_id=5556092' \
 -b 'SESSDATA=xxx'
 ```
 

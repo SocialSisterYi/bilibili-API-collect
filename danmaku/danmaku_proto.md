@@ -88,11 +88,11 @@ message DmSegMobileReply {
 获取视频`av810872(CID=1176840)`的实时弹幕分包1
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/web/seg.so'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=1176840'\
---data-urlencode 'pid=810872'\
---data-urlencode 'segment_index=1'\
+curl -G 'http://api.bilibili.com/x/v2/dm/web/seg.so' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=1176840' \
+--data-urlencode 'pid=810872' \
+--data-urlencode 'segment_index=1' \
 -o 'danmaku.bin'
 ```
 

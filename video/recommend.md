@@ -37,7 +37,7 @@
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](info.md#视频详细信息)」中的data对象
+基本同「[获取视频详细信息（web端）](info.md#获取视频详细信息（web端）)」中的data对象
 
 **示例：**
 
@@ -46,14 +46,14 @@
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/related'\
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'aid=7'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/related'\
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'bvid=BV1xx411c7m9'
 ```
 

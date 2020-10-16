@@ -13,7 +13,7 @@
 | 参数名     | 类型 | 内容           | 必要性      | 备注                                                     |
 | ---------- | ---- | -------------- | ----------- | -------------------------------------------------------- |
 | access_key | str  | APP登录Token   | APP方式必要 |                                                          |
-| type       | num  | 评论区类型代码 | 必要        | **[类型代码见表](readme.md)**                            |
+| type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码)                 |
 | oid        | num  | 目标评论区ID   | 必要        |                                                          |
 | sort       | num  | 排序方式       | 非必要      | 默认为0<br />0：按时间<br />1：按点赞数<br />2：按回复数 |
 | nohot      | num  | 是否不显示热评 | 非必要      | 默认为0<br />1：不显示<br />0：显示                      |
@@ -75,27 +75,27 @@
 
 `data`中的`replies`数组：
 
-| 项   | 类型 | 内容          | 备注               |
-| ---- | ---- | ------------- | ------------------ |
-| 0    | obj  | 评论条目1     | **详情见附表**     |
-| n    | obj  | 评论条目(n+1) | 按照指定的顺序排列 |
-| ……   | obj  | ……            | ……                 |
+| 项   | 类型 | 内容          | 备注                                   |
+| ---- | ---- | ------------- | -------------------------------------- |
+| 0    | obj  | 评论条目1     | [对象定义见表](readme.md#评论条目对象) |
+| n    | obj  | 评论条目(n+1) | 按照指定的顺序排列                     |
+| ……   | obj  | ……            | ……                                     |
 
 `data`中的`hots`数组：
 
-| 项   | 类型 | 内容          | 备注             |
-| ---- | ---- | ------------- | ---------------- |
-| 0    | obj  | 热评条目1     | **详情见附表**   |
-| n    | obj  | 热评条目(n+1) | 按照热评热度排列 |
-| ……   | obj  | ……            | ……               |
+| 项   | 类型 | 内容          | 备注                                   |
+| ---- | ---- | ------------- | -------------------------------------- |
+| 0    | obj  | 热评条目1     | [对象定义见表](readme.md#评论条目对象) |
+| n    | obj  | 热评条目(n+1) | 按照热评热度排列                       |
+| ……   | obj  | ……            | ……                                     |
 
 `data`中的`upper`对象：
 
-| 字段 | 类型                          | 内容     | 备注           |
-| ---- | ----------------------------- | -------- | -------------- |
-| mid  | num                           | UP主UID  |                |
-| top  | 有效时：obj<br />无效时：null | 置顶条目 | **详情见附表** |
-| vote | null                          | -        |                |
+| 字段 | 类型                          | 内容     | 备注                                   |
+| ---- | ----------------------------- | -------- | -------------------------------------- |
+| mid  | num                           | UP主UID  |                                        |
+| top  | 有效时：obj<br />无效时：null | 置顶条目 | [对象定义见表](readme.md#评论条目对象) |
+| vote | null                          | -        |                                        |
 
 `data`中的`notice`对象：
 
@@ -141,13 +141,13 @@
 获取视频`av2`的评论区明细，不显示热评，按照热度排序，每页5项，查看第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=2'\
---data-urlencode 'sort=1'\
---data-urlencode 'ps=5'\
---data-urlencode 'pn=1'\
---data-urlencode 'nohot=1'\
+curl -G 'http://api.bilibili.com/x/v2/reply' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=2' \
+--data-urlencode 'sort=1' \
+--data-urlencode 'ps=5' \
+--data-urlencode 'pn=1' \
+--data-urlencode 'nohot=1' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -2332,7 +2332,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply'\
 | 参数名     | 类型 | 内容           | 必要性      | 备注                                                         |
 | ---------- | ---- | -------------- | ----------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token   | APP方式必要 |                                                              |
-| type       | num  | 评论区类型代码 | 必要        | **[类型代码见表](readme.md)**                                |
+| type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码)                     |
 | oid        | num  | 目标评论区ID   | 必要        |                                                              |
 | mode       | num  | 排序方式       | 非必要      | 默认为0<br />0 3：仅按热度<br />1：按热度+按时间<br />2：仅按时间 |
 | next       | num  | 评论页选择     | 非必要      | 按热度时：热度顺序页码（0为第一页）<br />按时间时：时间倒序楼层号<br />默认为0 |
@@ -2395,11 +2395,11 @@ curl -G 'http://api.bilibili.com/x/v2/reply'\
 
 `data`中的`top`对象：
 
-| 字段  | 类型                          | 内容     | 备注           |
-| ----- | ----------------------------- | -------- | -------------- |
-| admin | null                          | -        |                |
-| upper | 有效时：obj<br />无效时：null | 置顶条目 | **详情见附表** |
-| vote  | null                          | -        |                |
+| 字段  | 类型                          | 内容     | 备注                                   |
+| ----- | ----------------------------- | -------- | -------------------------------------- |
+| admin | null                          | -        |                                        |
+| upper | 有效时：obj<br />无效时：null | 置顶条目 | [对象定义见表](readme.md#评论条目对象) |
+| vote  | null                          | -        |                                        |
 
 `data`中的`config`对象：
 
@@ -2415,19 +2415,19 @@ curl -G 'http://api.bilibili.com/x/v2/reply'\
 
 `data`中的`replies`数组：
 
-| 项   | 类型 | 内容          | 备注               |
-| ---- | ---- | ------------- | ------------------ |
-| 0    | obj  | 评论条目1     | **详情见附表**     |
-| n    | obj  | 评论条目(n+1) | 按照指定的顺序排列 |
-| ……   | obj  | ……            | ……                 |
+| 项   | 类型 | 内容          | 备注                                   |
+| ---- | ---- | ------------- | -------------------------------------- |
+| 0    | obj  | 评论条目1     | [对象定义见表](readme.md#评论条目对象) |
+| n    | obj  | 评论条目(n+1) | 按照指定的顺序排列                     |
+| ……   | obj  | ……            | ……                                     |
 
 `data`中的`hots`数组：
 
-| 项   | 类型 | 内容          | 备注             |
-| ---- | ---- | ------------- | ---------------- |
-| 0    | obj  | 热评条目1     | **详情见附表**   |
-| n    | obj  | 热评条目(n+1) | 按照热评热度排列 |
-| ……   | obj  | ……            | ……               |
+| 项   | 类型 | 内容          | 备注                                   |
+| ---- | ---- | ------------- | -------------------------------------- |
+| 0    | obj  | 热评条目1     | [对象定义见表](readme.md#评论条目对象) |
+| n    | obj  | 热评条目(n+1) | 按照热评热度排列                       |
+| ……   | obj  | ……            | ……                                     |
 
 `data`中的`upper`对象：
 
@@ -2479,12 +2479,12 @@ curl -G 'http://api.bilibili.com/x/v2/reply'\
 获取视频`av2`的评论区明细（显示楼层号），按照热度排序，每页5项，查看第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/main'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=2'\
---data-urlencode 'mode=3'\
---data-urlencode 'next=0'\
---data-urlencode 'ps=5'\
+curl -G 'http://api.bilibili.com/x/v2/reply/main' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=2' \
+--data-urlencode 'mode=3' \
+--data-urlencode 'next=0' \
+--data-urlencode 'ps=5' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -4711,14 +4711,14 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main'\
 
 **url参数：**
 
-| 参数名     | 类型 | 内容             | 必要性      | 备注                          |
-| ---------- | ---- | ---------------- | ----------- | ----------------------------- |
-| access_key | str  | APP登录Token     | APP方式必要 |                               |
-| type       | num  | 评论区类型代码   | 必要        | **[类型代码见表](readme.md)** |
-| oid        | num  | 目标评论区ID     | 必要        |                               |
-| root       | num  | 目标一级评论rpID | 必要        |                               |
-| pn         | num  | 二级评论页码     | 非必要      | 默认为1                       |
-| ps         | num  | 二级评论每页项数 | 非必要      | 默认为20<br />定义域：1-49    |
+| 参数名     | 类型 | 内容             | 必要性      | 备注                                     |
+| ---------- | ---- | ---------------- | ----------- | ---------------------------------------- |
+| access_key | str  | APP登录Token     | APP方式必要 |                                          |
+| type       | num  | 评论区类型代码   | 必要        | [类型代码见表](readme.md#评论区类型代码) |
+| oid        | num  | 目标评论区ID     | 必要        |                                          |
+| root       | num  | 目标一级评论rpID | 必要        |                                          |
+| pn         | num  | 二级评论页码     | 非必要      | 默认为1                                  |
+| ps         | num  | 二级评论每页项数 | 非必要      | 默认为20<br />定义域：1-49               |
 
 **json回复：**
 
@@ -4739,7 +4739,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main'\
 | control      | obj                              | 评论区输入属性 |                  |
 | page         | obj                              | 页信息   |                  |
 | replies      | array | 二级评论列表 |                  |
-| root      | obj   | 根评论         | **详情见附表** |
+| root      | obj   | 根评论         | [对象定义见表](readme.md#评论条目对象) |
 | show_bvid    | bool                             | true     | **作用尚不明确** |
 | upper    | obj                           | UP主UID  |  |
 
@@ -4766,11 +4766,11 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main'\
 
 `data`中的`replies`数组：
 
-| 项   | 类型 | 内容              | 备注           |
-| ---- | ---- | ----------------- | -------------- |
-| 0    | obj  | 二级评论条目1     | **详情见附表** |
-| n    | obj  | 二级评论条目(n+1) | 按照热度排列   |
-| ……   | obj  | ……                | ……             |
+| 项   | 类型 | 内容              | 备注                                   |
+| ---- | ---- | ----------------- | -------------------------------------- |
+| 0    | obj  | 二级评论条目1     | [对象定义见表](readme.md#评论条目对象) |
+| n    | obj  | 二级评论条目(n+1) | 按照热度排列                           |
+| ……   | obj  | ……                | ……                                     |
 
 `data`中的`upper`对象：
 
@@ -4783,12 +4783,12 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main'\
 获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/reply'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=2'\
---data-urlencode 'root=476670'\
---data-urlencode 'ps=5'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=2' \
+--data-urlencode 'root=476670' \
+--data-urlencode 'ps=5' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -5449,14 +5449,14 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply'\
 
 **url参数：**
 
-| 参数名     | 类型 | 内容           | 必要性      | 备注                                   |
-| ---------- | ---- | -------------- | ----------- | -------------------------------------- |
-| access_key | str  | APP登录Token   | APP方式必要 |                                        |
-| type       | num  | 评论区类型代码 | 必要        | **[类型代码见表](readme.md)**          |
-| oid        | num  | 目标评论区ID   | 必要        |                                        |
-| root       | num  | 根回复rpID     | 必要        |                                        |
-| next       | num  | 评论页选择     | 非必要      | 第一页为0<br />默认为0<br />顺序楼层号 |
-| ps         | num  | 每页项数       | 非必要      | 默认为0                                |
+| 参数名     | 类型 | 内容           | 必要性      | 备注                                     |
+| ---------- | ---- | -------------- | ----------- | ---------------------------------------- |
+| access_key | str  | APP登录Token   | APP方式必要 |                                          |
+| type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码) |
+| oid        | num  | 目标评论区ID   | 必要        |                                          |
+| root       | num  | 根回复rpID     | 必要        |                                          |
+| next       | num  | 评论页选择     | 非必要      | 第一页为0<br />默认为0<br />顺序楼层号   |
+| ps         | num  | 每页项数       | 非必要      | 默认为0                                  |
 
 **json回复：**
 
@@ -5471,19 +5471,19 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply'\
 
 `data`对象：
 
-| 字段      | 类型 | 内容           | 备注             |
-| --------- | ---- | -------------- | ---------------- |
-| cursor    | obj  | 页信息         |                  |
-| assist    | num  | 0              | **作用尚不明确** |
-| blacklist | num  | 0              | **作用尚不明确** |
-| vote      | num  | 0              | **作用尚不明确** |
-| lottery   | num  | 0              | **作用尚不明确** |
-| config    | obj  | 属性信息       |                  |
-| upper     | obj  | UP主UID        |                  |
-| show_bvid | bool | true           | **作用尚不明确** |
-| control   | obj  | 评论区输入属性 |                  |
-| root      | obj  | 根评论         | **详情见附表**   |
-| Mid       | num  | 0              | **作用尚不明确** |
+| 字段      | 类型 | 内容           | 备注                                   |
+| --------- | ---- | -------------- | -------------------------------------- |
+| cursor    | obj  | 页信息         |                                        |
+| assist    | num  | 0              | **作用尚不明确**                       |
+| blacklist | num  | 0              | **作用尚不明确**                       |
+| vote      | num  | 0              | **作用尚不明确**                       |
+| lottery   | num  | 0              | **作用尚不明确**                       |
+| config    | obj  | 属性信息       |                                        |
+| upper     | obj  | UP主UID        |                                        |
+| show_bvid | bool | true           | **作用尚不明确**                       |
+| control   | obj  | 评论区输入属性 |                                        |
+| root      | obj  | 根评论         | [对象定义见表](readme.md#评论条目对象) |
+| Mid       | num  | 0              | **作用尚不明确**                       |
 
 `data`中的`cursor`对象：
 
@@ -5531,12 +5531,12 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply'\
 获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/detail'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=2'\
---data-urlencode 'root=476670'\
---data-urlencode 'ps=5'\
---data-urlencode 'next=0'\
+curl -G 'http://api.bilibili.com/x/v2/reply/detail' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=2' \
+--data-urlencode 'root=476670' \
+--data-urlencode 'ps=5' \
+--data-urlencode 'next=0' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -6206,14 +6206,14 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail'\
 
 **url参数：**
 
-| 参数名     | 类型 | 内容           | 必要性      | 备注                          |
-| ---------- | ---- | -------------- | ----------- | ----------------------------- |
-| access_key | str  | APP登录Token   | APP方式必要 |                               |
-| type       | num  | 评论区类型代码 | 必要        | **[类型代码见表](readme.md)** |
-| oid        | num  | 目标评论区ID   | 必要        |                               |
-| root       | num  | 根回复rpID     | 必要        |                               |
-| dialog     | num  | 对话树根rpID   | 必要        |                               |
-| size       | num  | 每页最大项数   | 必要        |                               |
+| 参数名     | 类型 | 内容           | 必要性      | 备注                                     |
+| ---------- | ---- | -------------- | ----------- | ---------------------------------------- |
+| access_key | str  | APP登录Token   | APP方式必要 |                                          |
+| type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码) |
+| oid        | num  | 目标评论区ID   | 必要        |                                          |
+| root       | num  | 根回复rpID     | 必要        |                                          |
+| dialog     | num  | 对话树根rpID   | 必要        |                                          |
+| size       | num  | 每页最大项数   | 必要        |                                          |
 
 **json回复：**
 
@@ -6259,11 +6259,11 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail'\
 
 `data`中的`replies`数组：
 
-| 项   | 类型 | 内容              | 备注             |
-| ---- | ---- | ----------------- | ---------------- |
-| 0    | obj  | 对话评论条目1     | **详情见附表**   |
-| n    | obj  | 对话评论条目(n+1) | 按照对话顺序排列 |
-| ……   | obj  | ……                | ……               |
+| 项   | 类型 | 内容              | 备注                                   |
+| ---- | ---- | ----------------- | -------------------------------------- |
+| 0    | obj  | 对话评论条目1     | [对象定义见表](readme.md#评论条目对象) |
+| n    | obj  | 对话评论条目(n+1) | 按照对话顺序排列                       |
+| ……   | obj  | ……                | ……                                     |
 
 `data`中的`config`对象：
 
@@ -6302,12 +6302,12 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail'\
 获取视频`av201022189`下评论`rpID=3030790837`的对话`rpID=3030978856`，每页最大5项
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=201022189'\
---data-urlencode 'root=3030790837'\
---data-urlencode 'dialog=3030978856'\
---data-urlencode 'size=5'\
+curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=201022189' \
+--data-urlencode 'root=3030790837' \
+--data-urlencode 'dialog=3030978856' \
+--data-urlencode 'size=5' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -7075,10 +7075,10 @@ curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor'\
 
 **url参数：**
 
-| 参数名 | 类型 | 内容           | 必要性 | 备注                          |
-| ------ | ---- | -------------- | ------ | ----------------------------- |
-| type   | num  | 评论区类型代码 | 必要   | **[类型代码见表](readme.md)** |
-| oid    | num  | 目标评论区ID   | 必要   |                               |
+| 参数名 | 类型 | 内容           | 必要性 | 备注                                         |
+| ------ | ---- | -------------- | ------ | -------------------------------------------- |
+| type   | num  | 评论区类型代码 | 必要   | **[类型代码见表](readme.md#评论区类型代码)** |
+| oid    | num  | 目标评论区ID   | 必要   |                                              |
 
 **json回复：**
 
@@ -7102,8 +7102,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor'\
 获取视频`av2`的评论区总计评论条数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/count'\
---data-urlencode 'type=1'\
+curl -G 'http://api.bilibili.com/x/v2/reply/count' \
+--data-urlencode 'type=1' \
 --data-urlencode 'oid=2'
 ```
 

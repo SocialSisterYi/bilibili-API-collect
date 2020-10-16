@@ -37,7 +37,7 @@
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/member/web/account'\
+curl 'http://api.bilibili.com/x/member/web/account' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -99,7 +99,7 @@ curl 'http://api.bilibili.com/x/member/web/account'\
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/member/web/exp/reward'\
+curl 'http://api.bilibili.com/x/member/web/exp/reward' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -159,7 +159,7 @@ curl 'http://api.bilibili.com/x/member/web/exp/reward'\
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/vip/web/user/info'\
+curl 'http://api.bilibili.com/x/vip/web/user/info' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -250,7 +250,7 @@ curl 'http://api.bilibili.com/x/vip/web/user/info'\
 **示例：**
 
 ```shell
-curl 'http://passport.bilibili.com/web/site/user/info'\
+curl 'http://passport.bilibili.com/web/site/user/info' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
@@ -318,7 +318,7 @@ curl 'http://passport.bilibili.com/web/site/user/info'\
 当前状态为已认证
 
 ```shell
-curl 'http://api.bilibili.com/x/member/realname/status'\
+curl 'http://api.bilibili.com/x/member/realname/status' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -368,7 +368,7 @@ curl 'http://api.bilibili.com/x/member/realname/status'\
 | card_type | num  | 证件类型代码 | 0：身份证<br />2：港澳居民来往内地通行证<br />3：台湾居民来往大陆通行证<br />4：护照(中国签发)<br />5：外国人永久居留证<br />6：其他国家或地区身份证明 |
 
 ```shell
-curl 'http://api.bilibili.com/x/member/realname/apply/status'\
+curl 'http://api.bilibili.com/x/member/realname/apply/status' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -439,7 +439,7 @@ curl 'http://api.bilibili.com/x/member/realname/apply/status'\
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/member/web/coin/log'\
+curl 'http://api.bilibili.com/x/member/web/coin/log' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -558,9 +558,9 @@ curl 'http://api.bilibili.com/x/member/web/coin/log'\
 更新个人标签为`高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，资深猿厨，粉丝群：1136462265`
 
 ```shell
-curl 'http://api.bilibili.com/x/member/web/sign/update'\
---data-urlencode 'user_sign=高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，粉丝群：1136462265'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/member/web/sign/update' \
+--data-urlencode 'user_sign=高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，粉丝群：1136462265' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 

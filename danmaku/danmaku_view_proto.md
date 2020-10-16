@@ -199,11 +199,11 @@ message DmWebViewReply {
 获取视频`av797164471(CID=236871317)`的弹幕元数据
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/web/view'\
---data-urlencode 'type=1'\
---data-urlencode 'oid=236871317'\
---data-urlencode 'pid=797164471'\
--b 'SESSDATA=xxx'\
+curl -G 'http://api.bilibili.com/x/v2/dm/web/view' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=236871317' \
+--data-urlencode 'pid=797164471' \
+-b 'SESSDATA=xxx' \
 -o 'danmaku_view.bin'
 ```
 
@@ -289,4 +289,4 @@ for i in range(specialDms_len):
 特殊弹幕包url[ 0 ]= http://i0.hdslb.com/bfs/dm/b0d5f08c12be59292aa0d4e09b6dd8e54c2ba886.bin
 ```
 
-使用[普通分段包弹幕](danmaku_proto.md)的proto结构体反序列化此bin数据
+使用[普通分段包弹幕](danmaku_proto.md#获取实时弹幕)的proto结构体反序列化此bin数据

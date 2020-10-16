@@ -38,15 +38,15 @@
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/apply'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/credit/jury/apply' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/apply'\
+curl 'http://api.bilibili.com/x/credit/jury/apply' \
 --data-urlencode 'access_key=xxx'
 ```
 <details>
@@ -99,15 +99,15 @@ curl 'http://api.bilibili.com/x/credit/jury/apply'\
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/caseObtain'\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/caseObtain'\
+curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -167,33 +167,33 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain'\
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/vote'\
---data-urlencode 'cid=2333'\
---data-urlencode 'vote=1'\
---data-urlencode 'content='\
---data-urlencode 'likes='\
---data-urlencode 'hates='\
---data-urlencode 'attr=1'\
---data-urlencode 'apply_type=0'\
---data-urlencode 'origin_reason='\
---data-urlencode 'apply_reason='\
---data-urlencode 'csrf=xxx'\
+curl 'http://api.bilibili.com/x/credit/jury/vote' \
+--data-urlencode 'cid=2333' \
+--data-urlencode 'vote=1' \
+--data-urlencode 'content=' \
+--data-urlencode 'likes=' \
+--data-urlencode 'hates=' \
+--data-urlencode 'attr=1' \
+--data-urlencode 'apply_type=0' \
+--data-urlencode 'origin_reason=' \
+--data-urlencode 'apply_reason=' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/vote'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'cid=2333'\
---data-urlencode 'vote=1'\
---data-urlencode 'content='\
---data-urlencode 'likes='\
---data-urlencode 'hates='\
---data-urlencode 'attr=1'\
---data-urlencode 'apply_type=0'\
---data-urlencode 'origin_reason='\
+curl 'http://api.bilibili.com/x/credit/jury/vote' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'cid=2333' \
+--data-urlencode 'vote=1' \
+--data-urlencode 'content=' \
+--data-urlencode 'likes=' \
+--data-urlencode 'hates=' \
+--data-urlencode 'attr=1' \
+--data-urlencode 'apply_type=0' \
+--data-urlencode 'origin_reason=' \
 --data-urlencode 'apply_reason='
 ```
 

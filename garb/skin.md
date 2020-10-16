@@ -98,11 +98,11 @@
 **示例：**
 
 ```shell
-curl -G 'http://app.bilibili.com/x/resource/show/skin'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'appkey=1d8b6e7d45233436'\
---data-urlencode 'build=6082000'\
---data-urlencode 'ts=0'\
+curl -G 'http://app.bilibili.com/x/resource/show/skin' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'appkey=1d8b6e7d45233436' \
+--data-urlencode 'build=6082000' \
+--data-urlencode 'ts=0' \
 --data-urlencode 'sign=ea212fea5b00a6278ea6d9938b4c500e'
 ```
 

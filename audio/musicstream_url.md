@@ -62,7 +62,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/url'\
+curl -G 'http://www.bilibili.com/audio/music-service-c/web/url' \
 --data-urlencode 'sid=sid=15664'
 ```
 
@@ -175,11 +175,11 @@ Cookie方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/audio/music-service-c/url
---data-urlencode 'songid=682118'\
---data-urlencode 'quality=3'\
---data-urlencode 'privilege=2'\
---data-urlencode 'platform=android'\
---data-urlencode 'mid=293793435'\
+--data-urlencode 'songid=682118' \
+--data-urlencode 'quality=3' \
+--data-urlencode 'privilege=2' \
+--data-urlencode 'platform=android' \
+--data-urlencode 'mid=293793435' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -187,11 +187,11 @@ APP方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/audio/music-service-c/url
---data-urlencode 'access_key=xxx'\
---data-urlencode 'songid=682118'\
---data-urlencode 'quality=3'\
---data-urlencode 'privilege=2'\
---data-urlencode 'platform=android'\
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'songid=682118' \
+--data-urlencode 'quality=3' \
+--data-urlencode 'privilege=2' \
+--data-urlencode 'platform=android' \
 --data-urlencode 'mid=293793435'
 ```
 
@@ -269,7 +269,7 @@ curl -G 'http://api.bilibili.com/audio/music-service-c/url
 **以上述音频url为例：**
 
 ```shell
-wget 'https://upos-sz-mirrorkodo.bilivideo.com/ugaxcode/m190102ws2pzf6jitbem841vq2x0du5x-flac.flac?deadline=1595332269&gen=uga&os=kodobv&uparams=deadline,gen,os&upsig=ac2284d97a61ef8758681eccf621c56d'\
+wget 'https://upos-sz-mirrorkodo.bilivideo.com/ugaxcode/m190102ws2pzf6jitbem841vq2x0du5x-flac.flac?deadline=1595332269&gen=uga&os=kodobv&uparams=deadline,gen,os&upsig=ac2284d97a61ef8758681eccf621c56d' \
 -O 'Download_music.flac'
 ```
 

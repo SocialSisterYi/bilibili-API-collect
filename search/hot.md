@@ -69,6 +69,8 @@ curl 'http://api.bilibili.com/x/web-interface/search/default'
 
 榜单每隔固定时间统计一次，请求后返回搜索前20的关键词
 
+带有转义
+
 **json回复：**
 
 根对象：

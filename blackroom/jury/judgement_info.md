@@ -76,17 +76,17 @@
 Cookie方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
---data-urlencode 'cid=1239790'\
+curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
+--data-urlencode 'cid=1239790' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'cid=1239790'\
+curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'cid=1239790' \
 ```
 
 <details>
@@ -189,7 +189,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
 查询案件`1239790`的信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
+curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 --data-urlencode 'cid=1239790'
 ```
 
@@ -305,17 +305,17 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase'\
 Cookie方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/caseList'\
---data-urlencode 'ps=1'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
+--data-urlencode 'ps=1' \
+--data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/caseList'\
---data-urlencode 'access_key=xxx'\
---data-urlencode 'ps=1'\
+curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'ps=1' \
 --data-urlencode 'pn=1'
 ```
 
@@ -421,10 +421,10 @@ curl -G 'http://api.bilibili.com/x/credit/jury/caseList'\
 查看案件`1239790`的众议观点，每页10项，查看第一页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/case/opinion'\
---data-urlencode 'cid=1239790'\
---data-urlencode 'ps=10'\
---data-urlencode 'pn=1'\
+curl -G 'http://api.bilibili.com/x/credit/jury/case/opinion' \
+--data-urlencode 'cid=1239790' \
+--data-urlencode 'ps=10' \
+--data-urlencode 'pn=1' \
 ```
 
 <details>

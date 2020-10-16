@@ -40,8 +40,8 @@
 查询用户`293793435`设备ID为`fuck_chenrui`的登录记录
 
 ```shell
-curl -G 'http://api.bilibili.com/x/safecenter/login_notice'\
---data-urlencode 'mid=293793435'\
+curl -G 'http://api.bilibili.com/x/safecenter/login_notice' \
+--data-urlencode 'mid=293793435' \
 --data-urlencode 'buvid=fuck_chenrui'
 ```
 

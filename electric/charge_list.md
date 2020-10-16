@@ -68,7 +68,7 @@
 查询用户`UID=53456`的充电公示列表
 
 ```shell
-curl -G 'http://elec.bilibili.com/api/query.rank.do'\
+curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 --data-urlencode 'mid=53456'
 ```
 
@@ -220,16 +220,16 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do'\
 avID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/elec/show'\
---data-urlencode 'mid=53456'\
+curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
+--data-urlencode 'mid=53456' \
 --data-urlencode 'aid=967773538'
 ```
 
 bvID方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/elec/show'\
---data-urlencode 'mid=53456'\
+curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
+--data-urlencode 'mid=53456' \
 --data-urlencode 'bvid=BV1up4y1y77i '
 ```
 

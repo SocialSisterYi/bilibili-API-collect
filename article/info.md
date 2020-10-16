@@ -97,8 +97,8 @@
 查询文章`cv2`的基本信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/article/viewinfo'\
---data-urlencode 'id=2'\
+curl -G 'http://api.bilibili.com/x/article/viewinfo' \
+--data-urlencode 'id=2' \
 -b 'SESSDATA=xxx'
 ```
 
