@@ -148,8 +148,8 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [直播分区](live/live_area.md)×
   - [直播间管理](live/manage.md)×
   - 直播间操作
-  - 直播视频流
-  - 直播信息流
+  - [直播视频流](live/live_stream.md)×
+  - [直播信息流](live/message_stream.md)×
 - 答题
 - B币钱包
   - 基本信息
