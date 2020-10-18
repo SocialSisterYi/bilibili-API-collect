@@ -6,15 +6,17 @@
 
 ## 获取弹幕趋势顶点列表
 
-> http://api.bilibili.com/pbp/data
+> http://bvc.bilivideo.com/pbp/data
 
 *请求方式：GET*
 
 **url参数：**
 
-| 参数名 | 类型 | 内容    | 必要性 | 备注 |
-| ------ | ---- | ------- | ------ | ---- |
-| vid    | num  | 视频CID | 必要   |      |
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| cid    | num  | 视频CID  | 必要   |      |
+| aid    | num  | 稿件avID | 非必要 |      |
+| bvid   | num  | 稿件bvID | 非必要 |      |
 
 **json回复：**
 
