@@ -61,7 +61,7 @@
 | current_level | num  | 当前等级                 |      |
 | current_min   | num  | 当前等级经验最低值       |      |
 | current_exp   | num  | 当前经验                 |      |
-| next_exp      | num  | 升级下一等级需达到的经验 |      |
+| next_exp      | num  | 升级下一等级需达到的经验 |用户等级为Lv6时，返回类型为str，值为`--` |
 
 `data`中的`official`对象：
 
