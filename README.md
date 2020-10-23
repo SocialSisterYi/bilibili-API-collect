@@ -82,7 +82,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 高级弹幕
   - 屏蔽管理
   - 智能防挡弹幕
-  - 弹幕个人配置修改
+  - [弹幕个人配置修改](danmaku/config.md)
 - [专栏](article)
   - 分区
   - [基本信息](article/info.md)×
