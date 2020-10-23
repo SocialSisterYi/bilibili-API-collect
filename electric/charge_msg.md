@@ -2,17 +2,17 @@
 
 > http://api.bilibili.com/x/ugcpay/trade/elec/message
 
-*方式：POST*
+*请求方式：POST*
 
-需要登录(SESSDATA)
+认证方式：Cookie（SESSDATA）
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                | 必要性 | 备注 |
-| -------- | ---- | ------------------- | ------ | ---- |
-| order_id | data | 交易编号            | 必要   |      |
-| message  | data | 留言内容            | 必要   |      |
-| csrf     | data | cookies中的bili_jct | 必要   |      |
+| 参数名   | 类型 | 内容                     | 必要性 | 备注 |
+| -------- | ---- | ------------------------ | ------ | ---- |
+| order_id | str  | 留言token                | 必要   |      |
+| message  | str  | 留言内容                 | 必要   |      |
+| csrf     | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -20,16 +20,24 @@
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功 <br />-400：请求错误<br />-111：csrf校验失败<br />-101：账号未登录<br />88203：不能重复留言 |
+| code    | num  | 返回值   | 0：成功 <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />88203：不能重复留言 |
 | message | str  | 错误信息 | 默认为0                                                      |
-| ttl     | num  | 1        | 作用尚不明确                                                 |
+| ttl     | num  | 1        |                                                              |
 
 **示例：**
 
-成功为交易编号为`BPRG5CEC3VUPOOANA540`的充电操作，添加了内容为`支持一下大佬`的留言
+为留言token为`BPRG5CEC3VUPOOANA540`的充电操作，添加了内容为`支持一下大佬`的留言
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx&order_id=BPRG
-5CEC3VUPOOANA540&message=%e6%94%af%e6%8c%81%e4%b8%80%e4%b8%8b%e5%a4%a7%e4%bd%ac" "http://api.bilibili.com/x/ugcpay/trade/elec/message"
+```shell
+curl 'http://api.bilibili.com/x/ugcpay/trade/elec/message' \
+--data-urlencode 'order_id=BPRG5CEC3VUPOOANA540' \
+--data-urlencode 'message=支持一下大佬' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -39,3 +47,4 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&order_id=BPRG
 }
 ```
 
+</details>

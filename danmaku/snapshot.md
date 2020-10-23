@@ -1,18 +1,18 @@
-# 弹幕快照
+#  弹幕快照
 
-## 获取弹幕快照
+# 获取弹幕快照
 
 > http://api.bilibili.com/x/v2/dm/ajax
 
-*方式:GET*
+*请求方式:GET*
 
 最近产生的几条弹幕内容，**最多20条**
 
-**参数：**
+**url参数：**
 
-| 参数名 | 类型 | 内容               | 必要性 | 备注 |
-| ------ | ---- | ------------------ | ------ | ---- |
-| aid    | url  | 视频avID或视频bvID | 必要   |      |
+| 参数名 | 类型     | 内容               | 必要性 | 备注 |
+| ------ | -------- | ------------------ | ------ | ---- |
+| aid    | num或str | 稿件avID或稿件bvID | 必要   |      |
 
 **json回复：**
 
@@ -22,7 +22,7 @@
 | ------- | ----- | -------- | --------------------------------------------- |
 | code    | num   | 返回值   | 0：成功<br />-400：请求错误<br />-404：无视频 |
 | message | str   | 错误信息 | 默认为0                                       |
-| ttl     | num   | 1        | 作用尚不明确                                  |
+| ttl     | num   | 1        |                                               |
 | data    | array | 预览列表 |                                               |
 
 `data`数组：
@@ -38,9 +38,22 @@
 
 获取视频`av43337021`/`BV1rb411m7gE`的弹幕快照，总计20条
 
-http://api.bilibili.com/x/v2/dm/ajax?aid=43337021
+avID方式：
 
-同http://api.bilibili.com/x/v2/dm/ajax?aid=BV1rb411m7gE
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \
+--data-urlencode 'aid=43337021'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \
+--data-urlencode 'aid=BV1rb411m7gE'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -72,3 +85,4 @@ http://api.bilibili.com/x/v2/dm/ajax?aid=43337021
 }
 ```
 
+</details>

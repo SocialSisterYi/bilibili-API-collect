@@ -3,13 +3,16 @@
 ## 关系状态数
 > http://api.bilibili.com/x/relation/stat
 
-*方式:GET*
+*请求方式：GET*
 
-**参数：**
+认证方式：Cookie（SESSDATA）或APP
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| vmid   | url  | 目标用户UID | 必要   |      |
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| vmid       | num  | 目标用户UID  | 必要        |      |
 
 **json回复：**
 
@@ -19,24 +22,31 @@
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
 
-| 字段      | 类型 | 内容        | 备注                                                 |
-| --------- | ---- | ----------- | ---------------------------------------------------- |
-| mid       | num  | 目标用户UID |                                                      |
-| following | num  | 关注数      |                                                      |
-| whisper   | num  | 悄悄关注数  | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0 |
-| black     | num  | 黑名单数    | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0 |
-| follower  | num  | 粉丝数      |                                                      |
+| 字段      | 类型 | 内容        | 备注                                             |
+| --------- | ---- | ----------- | ------------------------------------------------ |
+| mid       | num  | 目标用户UID |                                                  |
+| following | num  | 关注数      |                                                  |
+| whisper   | num  | 悄悄关注数  | 需要登录(Cooklie或APP) <br />未登录或非自己恒为0 |
+| black     | num  | 黑名单数    | 需要登录(Cooklie或APP) <br />未登录或非自己恒为0 |
+| follower  | num  | 粉丝数      |                                                  |
 
 **示例：**
 
 查询用户`UID=332704117`的关系状态数
 
-http://api.bilibili.com/x/relation/stat?vmid=332704117
+```shell
+curl -G 'http://api.bilibili.com/x/relation/stat' \
+--data-urlencode 'vmid=332704117' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -53,19 +63,24 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 }
 ```
 
-
+</details>
 
 ## UP主状态数
 
 > http://api.bilibili.com/x/space/upstat
 
-*方式:GET*
+*请求方式：GET*
 
-**参数：**
+认证方式：Cookie（SESSDATA）或APP
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+注：该接口需要**任意用户**登录，否则**不会返回任何数据**
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| mid        | num  | 目标用户UID  | 必要        |      |
 
 **json回复：**
 
@@ -75,7 +90,7 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -102,7 +117,15 @@ http://api.bilibili.com/x/relation/stat?vmid=332704117
 
 查询用户`UID=456664753`的UP主状态数
 
-http://api.bilibili.com/x/space/upstat?mid=456664753
+```shell
+curl -G 'http://api.bilibili.com/x/space/upstat' \
+--data-urlencode 'mid=456664753' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -120,19 +143,23 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 }
 ```
 
+</details>
 
+## ~~订阅&投稿状态数（已弃用）~~
 
-## 订阅&投稿状态数
+<details>
+<summary>查看折叠内容</summary>
+
 
 > http://api.bilibili.com/x/space/navnum
 
-*方式:GET*
+*请求方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | url  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -142,7 +169,7 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
@@ -179,7 +206,15 @@ http://api.bilibili.com/x/space/upstat?mid=456664753
 
 查询用户`UID=239202390`的订阅&投稿状态数
 
-http://api.bilibili.com/x/space/navnum?mid=239202390
+```shell
+curl -G 'http://api.bilibili.com/x/space/navnum' \
+--data-urlencode 'mid=239202390' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -207,19 +242,20 @@ http://api.bilibili.com/x/space/navnum?mid=239202390
 }
 ```
 
-
+</details>
+</details>
 
 ## 投稿相簿数
 
 > http://api.vc.bilibili.com/link_draw/v1/doc/upload_count
 
-*方式：GET*
+*请求方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| uid    | url  | 目标用户UID | 必要   |      |
+| uid    | num  | 目标用户UID | 必要   |      |
 
 **json回复：**
 
@@ -245,7 +281,13 @@ http://api.bilibili.com/x/space/navnum?mid=239202390
 
  查询用户`UID=53456`的投稿相簿数
 
-http://api.vc.bilibili.com/link_draw/v1/doc/upload_count?uid=53456
+```shell
+curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count' \
+--data-urlencode 'uid=53456'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -261,3 +303,4 @@ http://api.vc.bilibili.com/link_draw/v1/doc/upload_count?uid=53456
 }
 ```
 
+</details>

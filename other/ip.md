@@ -2,18 +2,18 @@
 
 > http://api.bilibili.com/x/web-interface/zone
 
-*方式：GET*
+*请求方式：GET*
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注         |
-| ------- | ---- | -------- | ------------ |
-| code    | num  | 返回值   | 0：成功      |
-| message | str  | 错误信息 | 默认为0      |
-| ttl     | num  | 1        | 作用尚不明确 |
-| data    | obj  | 信息本体 |              |
+| 字段    | 类型 | 内容     | 备注    |
+| ------- | ---- | -------- | ------- |
+| code    | num  | 返回值   | 0：成功 |
+| message | str  | 错误信息 | 默认为0 |
+| ttl     | num  | 1        |         |
+| data    | obj  | 信息本体 |         |
 
 `data`对象：
 
@@ -26,12 +26,17 @@
 | isp          | str  | 运营商名      |              |
 | latitude     | num  | 纬度          |              |
 | longitude    | num  | 经度          |              |
-| zone_id      | num  | ？？？        |              |
+| zone_id      | num  | ip数据库ID    |              |
 | country_code | num  | 国家/地区代码 |              |
 
 **示例：**
 
-http://api.bilibili.com/x/web-interface/zone
+```shell
+curl 'http://api.bilibili.com/x/web-interface/zone'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -52,3 +57,4 @@ http://api.bilibili.com/x/web-interface/zone
 }
 ```
 
+</details>

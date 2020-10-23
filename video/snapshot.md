@@ -6,19 +6,19 @@
 
 截取时间表的时间和快照一一对应，并按照从左到右 从上到下的顺序排布
 
-## 获取视频快照1（用于进度条预览）
+## 获取视频快照（web端）
 > http://api.bilibili.com/x/player/videoshot
 
-*方式:GET* 
+*请求方式：GET* 
 
-**参数：**
+**url参数：**
 
-| 参数名 | 类型 | 内容               | 必要性 | 备注                                |
-| ------ | ---- | ------------------ | ------ | ----------------------------------- |
-| aid    | url  | 视频avID           | 非必要 | avID与bvID任选一个                  |
-| bvid   | url  | 视频bvID           | 非必要 | avID与bvID任选一个                  |
-| cid    | url  | 分P CID            | 非必要 | 默认为1P                            |
-| index  | url  | json数组截取时间表 | 非必要 | 1：需要<br />0：不需要<br />默认为0 |
+| 参数名 | 类型 | 内容               | 必要性       | 备注                                |
+| ------ | ---- | ------------------ | ------------ | ----------------------------------- |
+| aid    | num  | 稿件avID           | 必要（可选） | avID与bvID任选一个                  |
+| bvid   | str  | 稿件bvID           | 必要（可选） | avID与bvID任选一个                  |
+| cid    | num  | 分P CID            | 非必要       | 默认为1P                            |
+| index  | num  | json数组截取时间表 | 非必要       | 1：需要<br />0：不需要<br />默认为0 |
 
 **json回复：**
 
@@ -28,7 +28,7 @@
 | ------- | ---- | -------- | ------------------------------------------------ |
 | code    | num  | 返回值   | 0：成功 <br />40001：请求错误<br />40003：无视频 |
 | message | str  | 错误信息 | 默认为0                                          |
-| ttl     | num  | 1        | 作用尚不明确                                     |
+| ttl     | num  | 1        |                                                  |
 | data    | obj  | 信息本体 |                                                  |
 
 `data`对象：
@@ -62,9 +62,26 @@
 
 **示例：**
 
-http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
+获取视频`av26273789`/`BV1os411H7wm`的快照
 
-同http://api.bilibili.com/x/player/videoshot?bvid=BV1os411H7wm&index=1
+avID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/player/videoshot' \
+--data-urlencode 'aid=26273789' \
+--data-urlencode 'index=1'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/player/videoshot' \
+--data-urlencode 'bvid=BV1os411H7wm' \
+--data-urlencode 'index=1'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -83,21 +100,106 @@ http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
 }
 ```
 
+</details>
 
+## 获取视频快照（APP端）
 
-## 获取视频快照2 （用于封面预览  暂不支持bvID）
+> http://app.bilibili.com/x/v2/view/video/shot 
+
+*请求方式：GET*
+
+鉴权方式：appkey
+
+**url参数：**
+
+| 参数名 | 类型 | 内容       | 必要性      | 备注 |
+| ------ | ---- | ---------- | ----------- | ---- |
+| appkey | str  | APP密钥    | APP方式必要 |      |
+| aid    | num  | 稿件avID   | 必要        |      |
+| cid    | num  | 分P CID    | 必要        |      |
+| ts     | num  | 当前时间戳 | APP方式必要 |      |
+| sign   | str  | APP签名    | APP方式必要 |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功 <br />-3：API校验密匙错误<br />-400：请求错误<br />10008：稿件的缩略图不存在 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
+
+`data`对象：
+
+| 字段       | 类型  | 内容                 | 备注      |
+| ---------- | ----- | -------------------- | --------- |
+| pvdata     | str   | bin格式截取时间表url |           |
+| img_x_len  | num   | 每行图片数           | 一般为10  |
+| img_y_len  | num   | 每列图片数           | 一般为10  |
+| img_x_size | num   | 每张图片长           | 一般为160 |
+| img_y_size | num   | 每张图片宽           | 一般为90  |
+| image      | array | 图片拼版             |           |
+
+`data`中的`image`数组：
+
+| 项   | 类型 | 内容              | 备注                       |
+| ---- | ---- | ----------------- | -------------------------- |
+| 0    | str  | 图片拼版1 url     |                            |
+| n    | str  | 图片拼版(n+1) url | 第一张拼版占满时延续第二张 |
+| ……   | str  | ……                | ……                         |
+
+示例：
+
+获取视频`av26273789`（`CID=49075258`）的快照
+
+```shell
+curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
+--data-urlencode 'appkey=1d8b6e7d45233436' \
+--data-urlencode 'aid=26273789' \
+--data-urlencode 'cid=49075258' \
+--data-urlencode 'ts=0' \
+--data-urlencode 'sign=06c0a4f2ede21984313552bd9439db18'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "pvdata": "http://i0.hdslb.com/bfs/videoshot/49075258.bin",
+        "img_x_len": 10,
+        "img_y_len": 10,
+        "img_x_size": 160,
+        "img_y_size": 90,
+        "image": [
+            "http://i0.hdslb.com/bfs/videoshot/49075258.jpg",
+            "http://i0.hdslb.com/bfs/videoshot/49075258-1.jpg"
+        ]
+    }
+}
+```
+
+</details>
+
+## 获取视频快照（web端）（用于封面预览）
 
 > http://api.bilibili.com/pvideo
 
-*方式:GET*
+*请求方式：GET*
 
-内容与「获取视频快照1」加参数「index」=1相同，但url带有转义，仅限第1P
+内容与「获取视频快照1」加参数index=1相同，但url带有转义，仅限第1P
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| aid    | url  | 视频avID | 必要   |      |
+| aid    | num  | 稿件avID | 必要   |      |
 
 **json回复：**
 
@@ -107,7 +209,7 @@ http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
 | ------- | ---- | -------- | ---------------------------------------------- |
 | code    | num  | 返回值   | 0：成功<br />40001：请求错误<br />-404：无视频 |
 | message | str  | 错误信息 | 默认为0                                        |
-| ttl     | num  | 1        | 作用尚不明确                                   |
+| ttl     | num  | 1        |                                                |
 | data    | obj  | 信息本体 |                                                |
 
 `data`对象：
@@ -141,7 +243,15 @@ http://api.bilibili.com/x/player/videoshot?aid=26273789&index=1
 
 **示例：**
 
-http://api.bilibili.com/pvideo?aid=26273789
+获取视频`av26273789`的快照
+
+```shell
+curl -G 'http://api.bilibili.com/pvideo' \
+--data-urlencode 'aid=26273789'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -160,7 +270,7 @@ http://api.bilibili.com/pvideo?aid=26273789
 }
 ```
 
-
+</details>
 
 ## 图片拼版
 
@@ -207,4 +317,3 @@ hex内容如下：
 00000150  05 1a 05 23 05 29 05 30  05 3c 05 43 05 4a 05 51  |...#.).0.<.C.J.Q|
 00000160  05 56 05 5b 05 67 05 6e  05 74 05 7b 05 87        |.V.[.g.n.t.{..|
 ```
-

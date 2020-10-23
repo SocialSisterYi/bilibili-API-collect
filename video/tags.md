@@ -2,16 +2,18 @@
 
 ## 获取视频TAG信息
 
-> http://https://api.bilibili.com/x/tag/archive/tags
+> http://api.bilibili.com/x/tag/archive/tags
 
-*方式：GET*
+*请求方式：GET*
 
-**参数：**
+认证方式：Cookie（SESSDATA）
 
-| 参数名 | 类型 | 内容     | 必要性 | 备注               |
-| ------ | ---- | -------- | ------ | ------------------ |
-| aid    | url  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | url  | 视频bvID | 非必要 | avID与bvID任选一个 |
+**url参数：**
+
+| 参数名 | 类型 | 内容     | 必要性       | 备注               |
+| ------ | ---- | -------- | ------------ | ------------------ |
+| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -21,8 +23,8 @@
 | ------- | ------ | -------- | ---------------------------- |
 | code    | num    | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                      |
-| ttl     | num    | 1        | 作用尚不明确                 |
-| data    | arrary | TAG列表  | 无TAG为空                    |
+| ttl     | num    | 1        |                  |
+| data    | array | TAG列表  | 无TAG为空                    |
 
 `data`数组：
 
@@ -46,12 +48,12 @@
 | state         | num  | 0              |                                                              |
 | ctime         | num  | 创建时间       | 时间戳                                                       |
 | count         | obj  | 状态数         |                                                              |
-| is_atten      | num  | 是否关注       | 0：未关注<br />1：已关注<br />需要登录(SESSDATA) <br />未登录为0 |
+| is_atten      | num  | 是否关注       | 0：未关注<br />1：已关注<br />需要登录(Cookie) <br />未登录为0 |
 | likes         | num  | 0              | 作用尚不明确                                                 |
 | hates         | num  | 0              | 作用尚不明确                                                 |
 | attribute     | num  | 0              | 作用尚不明确                                                 |
-| liked         | num  | 是否已经点赞   | 0：未点赞<br />1：已点赞<br />需要登录(SESSDATA) <br />未登录为0 |
-| hated         | num  | 是否已经点踩   | 0：未点踩<br />1：已点踩<br />需要登录(SESSDATA) <br />未登录为0 |
+| liked         | num  | 是否已经点赞   | 0：未点赞<br />1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
+| hated         | num  | 是否已经点踩   | 0：未点踩<br />1：已点踩<br />需要登录(Cookie) <br />未登录为0 |
 
 `data`数组中的对象中的`count`对象：
 
@@ -65,9 +67,24 @@
 
 查询视频`av89772773`/`BV1M741177Kg`的TAG
 
-http://api.bilibili.com/x/tag/archive/tags?aid=89772773
+avID方式：
 
-同http://api.bilibili.com/x/tag/archive/tags?bvid=BV1M741177Kg
+```shell
+curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
+--data-urlencode 'aid=89772773' \
+-b 'SESSDATA=xxx'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
+--data-urlencode 'bvid=BV1M741177Kg' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -183,25 +200,25 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 }
 ```
 
+</details>
 
-
-## 点赞&取消点赞视频TAG（暂不支持bvID）
+## 点赞&取消点赞视频TAG
 
 > http://api.bilibili.com/x/tag/archive/like2
 
-*方式：POST*
+*请求方式：POST*
 
-需要登录(SESSDATA) 
+认证方式：Cookie（SESSDATA）
 
-重复访问为取消
+重复请求为取消
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| aid    | data | 视频avID            | 必要   |      |
-| tag_id | data | TAGID               | 必要   |      |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| aid    | num  | 稿件avID                 | 必要   |      |
+| tag_id | num  | TAGID                    | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -211,13 +228,22 @@ http://api.bilibili.com/x/tag/archive/tags?aid=89772773
 | ------- | ---- | -------- | ---------------------------- |
 | code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                      |
-| ttl     | num  | 1        | 作用尚不明确                 |
+| ttl     | num  | 1        |                              |
 
 **示例：**
 
-为视频`av89772773`的TAG`TAGID=12620189`点赞
+为视频`av89772773`的TAG`12620189`点赞
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bilibili.com/x/tag/archive/like2"
+```shell
+curl 'http://api.bilibili.com/x/tag/archive/like2' \
+--data-urlencode 'aid=89772773' \
+--data-urlencode 'tag_id=12620189' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -227,25 +253,25 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bi
 }
 ```
 
+</details>
 
-
-## 点踩&取消点踩视频TAG（暂不支持bvID）
+## 点踩&取消点踩视频TAG
 
 > http://api.bilibili.com/x/tag/archive/hate2
 
-*方式：POST*
+*请求方式：POST*
 
-需要登录(SESSDATA) 
+认证方式：Cookie（SESSDATA）
 
 重复访问为取消
 
-**参数（ application/x-www-form-urlencoded ）：**
+**正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                | 必要性 | 备注 |
-| ------ | ---- | ------------------- | ------ | ---- |
-| aid    | data | 视频avID            | 必要   |      |
-| tag_id | data | TAGID               | 必要   |      |
-| csrf   | data | cookies中的bili_jct | 必要   |      |
+| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| ------ | ---- | ------------------------ | ------ | ---- |
+| aid    | num  | 稿件avID                 | 必要   |      |
+| tag_id | num  | TAGID                    | 必要   |      |
+| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
 
@@ -255,13 +281,22 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=12620189" "http://api.bi
 | ------- | ---- | -------- | ---------------------------- |
 | code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                      |
-| ttl     | num  | 1        | 作用尚不明确                 |
+| ttl     | num  | 1        |                              |
 
 **示例：**
 
-为视频`av89772773`的TAG`TAGID=7520816`点踩
+为视频`av89772773`的TAG`7520816`点踩
 
-curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=7520816" "http://api.bilibili.com/x/tag/archive/hate2"
+```shell
+curl 'http://pi.bilibili.com/x/tag/archive/hate2' \
+--data-urlencode 'aid=89772773' \
+--data-urlencode 'tag_id=7520816' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -271,3 +306,4 @@ curl -b "SESSDATA=xxx" -d "csrf=xxx&aid=89772773&tag_id=7520816" "http://api.bil
 }
 ```
 
+</details>

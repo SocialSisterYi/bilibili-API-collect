@@ -1,19 +1,19 @@
 # 视频推荐
 
-## 获取单视频推荐列表
+## 获取单视频推荐列表（web端）
 
 > http://api.bilibili.com/x/web-interface/archive/related
 
-*方式:GET* 
+*请求方式：GET* 
 
 最多获取40条推荐视频
 
-**参数：**
+**url参数：**
 
-| 参数名 | 类型 | 内容     | 必要性 | 备注               |
-| ------ | ---- | -------- | ------ | ------------------ |
-| aid    | url  | 视频avID | 非必要 | avID与bvID任选一个 |
-| bvid   | url  | 视频bvID | 非必要 | avID与bvID任选一个 |
+| 参数名 | 类型 | 内容     | 必要性       | 备注               |
+| ------ | ---- | -------- | ------------ | ------------------ |
+| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
+| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
 
 **json回复：**
 
@@ -23,8 +23,8 @@
 | ------- | ------ | -------- | ---------------------------- |
 | code    | num    | 返回值   | 0：成功 <br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                      |
-| ttl     | num    | 1        | 作用尚不明确                 |
-| data    | arrary | 推荐列表 |                              |
+| ttl     | num    | 1        |                  |
+| data    | array | 推荐列表 |                              |
 
 `data`数组：
 
@@ -37,15 +37,28 @@
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](info.md#视频详细信息)」中的data对象
+基本同「[获取视频详细信息（web端）](info.md#获取视频详细信息（web端）)」中的data对象
 
 **示例：**
 
 查询视频`av7`/`BV1xx411c7m9`的推荐视频列表
 
-http://api.bilibili.com/x/web-interface/archive/related?aid=7
+avID方式：
 
-同http://api.bilibili.com/x/web-interface/archive/related?bvid=BV1xx411c7m9
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
+--data-urlencode 'aid=7'
+```
+
+bvID方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
+--data-urlencode 'bvid=BV1xx411c7m9'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -274,3 +287,4 @@ http://api.bilibili.com/x/web-interface/archive/related?aid=7
 }
 ```
 
+</details>

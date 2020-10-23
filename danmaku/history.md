@@ -1,20 +1,22 @@
 # 历史弹幕
 
-本页所有操作均需登录（SESSDATA）
+**本页所有操作均需登录（SESSDATA）**
 
 ## 查询历史弹幕日期
 
 > http://api.bilibili.com/x/v2/dm/history/index
 
-*方式：GET*
+*请求方式：GET*
 
-**参数：**
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注         |
 | ------ | ---- | -------- | ------ | ------------ |
-| type   | url  | 1        | 必要   | 作用尚不明确 |
-| oid    | url  | 视频CID  | 必要   |              |
-| month  | url  | 查询月份 | 必要   | mm-dd        |
+| type   | num  | 1        | 必要   | 作用尚不明确 |
+| oid    | num  | 视频CID  | 必要   |              |
+| month  | str  | 查询月份 | 必要   | mm-dd        |
 
 **json回复：**
 
@@ -24,7 +26,7 @@
 | ------- | ------------------------------- | -------- | ------------------------------------------------- |
 | code    | num                             | 返回值   | 0：成功<br />-400：请求错误<br />-101：账号未登录 |
 | message | str                             | 错误信息 | 默认为0                                           |
-| ttl     | num                             | 1        | 作用尚不明确                                      |
+| ttl     | num                             | 1        |                                                   |
 | data    | 有弹幕：array<br />无弹幕：null | 日期列表 |                                                   |
 
 `data`数组：
@@ -39,7 +41,15 @@
 
 查询了cid为144541892的视频位于2020年1月中有历史弹幕记录的日期
 
-http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2020-01
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=144541892' \
+--data-urlencode 'month=2020-01'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -62,9 +72,19 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2020-01
 }
 ```
 
+</details>
+
 返回结果的 `data` 项说明这些日期有弹幕发送。若查询的月份中视频无弹幕，则 `data` 项为 `null`
 
-http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=144541892' \
+--data-urlencode 'month=2019-12'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -75,27 +95,40 @@ http://api.bilibili.com/x/v2/dm/history/index?type=1&oid=144541892&month=2019-12
 }
 ```
 
+</details>
+
 ## 获取历史弹幕
 
 > http://api.bilibili.com/x/v2/dm/history
 
-*方式：GET*
+*请求方式：GET*
 
-结果为标准xml格式弹幕
+认证方式：Cookie（SESSDATA）
+
+结果为[标准xml格式弹幕](danmaku_xml.md#弹幕格式)
 
 **使用deflate压缩，注意解码**
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注         |
 | ------ | ---- | -------- | ------ | ------------ |
-| type   | url  | 1        | 必要   | 作用尚不明确 |
-| oid    | url  | 视频CID  | 必要   |              |
-| date   | url  | 弹幕日期 | 必要   | yyyy-mm-dd   |
+| type   | num  | 1        | 必要   | 作用尚不明确 |
+| oid    | num  | 视频CID  | 必要   |              |
+| date   | str  | 弹幕日期 | 必要   | yyyy-mm-dd   |
 
 **示例：**
 
-https://api.bilibili.com/x/v2/dm/history?type=1&oid=144541892&date=2020-01-21
+```shell
+curl -G 'http://api.bilibili.com/x/v2/dm/history' \
+--data-urlencode 'type=1' \
+--data-urlencode 'oid=144541892' \
+--data-urlencode 'date=2020-01-21' \
+--compressed -o 'danmaku.xml'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -126,3 +159,5 @@ https://api.bilibili.com/x/v2/dm/history?type=1&oid=144541892&date=2020-01-21
     …………
 <i>
 ```
+
+</details>

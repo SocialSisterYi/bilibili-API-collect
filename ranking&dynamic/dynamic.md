@@ -1,18 +1,18 @@
-# 视频最新动态
+# 分区最新视频
 
-## 获取分区最新动态视频列表
+## 获取分区最新视频列表
 
 > http://api.bilibili.com/x/web-interface/dynamic/region
 
-*方式：GET*
+*请求方式：GET*
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注    |
 | ------ | ---- | ----------- | ------ | ------- |
-| pn     | url  | 页码        | 非必要 | 默认为1 |
-| ps     | url  | 每页项数    | 非必要 | 默认为5 |
-| rid    | url  | 目标分区tID | 必要   |         |
+| pn     | num  | 页码        | 非必要 | 默认为1 |
+| ps     | num  | 每页项数    | 非必要 | 默认为5 |
+| rid    | num  | 目标分区tID | 必要   |         |
 
 **json回复：**
 
@@ -22,14 +22,14 @@
 | ------- | ---- | -------- | --------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        | 作用尚不明确                |
+| ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
 
 | 字段     | 类型   | 内容     | 备注 |
 | -------- | ------ | -------- | ---- |
-| archives | arrary | 视频列表 |      |
+| archives | array | 视频列表 |      |
 | page     | obj    | 页面信息 |      |
 
 `data`中的`archives`数组：
@@ -42,7 +42,7 @@
 
 `data`中的`archives`数组中的对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
+基本同[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的data对象
 
 `data`中的`page`对象：
 
@@ -56,7 +56,16 @@
 
 获取`tID=21`（生活->日常）分区中的2条最新动态视频信息
 
-https://api.bilibili.com/x/web-interface/dynamic/region?pn=1&ps=2&rid=21
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/dynamic/region' \
+--data-urlencode 'rid=21' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -183,3 +192,4 @@ https://api.bilibili.com/x/web-interface/dynamic/region?pn=1&ps=2&rid=21
 }
 ```
 
+</details>

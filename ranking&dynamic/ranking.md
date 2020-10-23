@@ -2,20 +2,20 @@
 
 <img src="/imgs/ranking.svg" width="100" height="100"/>
 
-## 获取分区排行榜视频列表
+## 获取分区视频排行榜列表
 
 >http://api.bilibili.com/x/web-interface/ranking/region
 
-*方式：GET*
+*请求方式：GET*
 
 获取相应时间段内播放量增速为前11的视频
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注                                                 |
 | ------ | ---- | ----------- | ------ | ---------------------------------------------------- |
-| day    | url  | 页码        | 非必要 | 1：单日榜<br />3：三日榜<br />7：一周榜<br />默认为3 |
-| rid    | url  | 目标分区tID | 必要   |                                                      |
+| day    | num  | 页码        | 非必要 | 1：单日榜<br />3：三日榜<br />7：一周榜<br />默认为3 |
+| rid    | num  | 目标分区tID | 必要   |                                                      |
 
 **json回复：**
 
@@ -25,8 +25,8 @@
 | ------- | ------ | -------- | --------------------------- |
 | code    | num    | 返回值   | 0：成功<br />-400：请求错误 |
 | message | str    | 错误信息 | 默认为0                     |
-| ttl     | num    | 1        | 作用尚不明确                |
-| data    | arrary | 视频列表 |                             |
+| ttl     | num    | 1        |                 |
+| data    | array | 视频列表 |                             |
 
 `data`数组：
 
@@ -39,13 +39,20 @@
 
 `data`数组中的对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
+基本同[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的data对象
 
 **示例：**
 
 获取`tID=1`（动画）分区中的三日视频排行榜
 
-http://api.bilibili.com/x/web-interface/ranking/region?rid=1&day=3
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/ranking/region' \
+--data-urlencode 'rid=1' \
+--data-urlencode 'day=3'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -419,3 +426,4 @@ http://api.bilibili.com/x/web-interface/ranking/region?rid=1&day=3
 }
 ```
 
+</details>

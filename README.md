@@ -1,29 +1,55 @@
-<img src="/imgs/Mylogo.png" align="right" width="250" height="200"/>
+<p align="center">
+    <img src="imgs/Mylogo.png" width="250" height="200">
+</p>
+<h1 align="center">哔哩哔哩-API收集整理</h1>
+<p align="center">
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues" style="text-decoration:none">
+        <img src="https://img.shields.io/github/issues/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub issues"/>
+    </a>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/stargazers" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/stars/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub stars"/>
+    </a>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/network" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/forks/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub forks"/>
+    </a>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/license/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub license"/>
+    </a>
+</p>
 
-# 哔哩哔哩-API收集整理
 
-**野生API文档**
+<h3 align="center">野生API文档</h3> 
+<h3 align="center">不断更新中....</h3> 
+本项目旨在对B站web端、移动端以及TV端散落在世界各地的野生api进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js逆向分析法、网络抓包法等研究办法
 
-**不断更新中....**
+所有api均为标准http协议，返回数据大都为json或protobuf
 
-本项目对B站web端散落在世界各地的野生api进行收集整理，以及研究使用方法并对其进行说明
+PS：所有http协议地址均可使用https，文档中为了统一写作`http`，为了数据安全建议所有接口使用https
 
-所有api均为标准http协议，返回值大都为json
+小小的Demo：[av583785685](https://www.bilibili.com/video/av583785685)
 
-<img src="/imgs/bilibili.svg" width="200" height="100"/>
+---
 
-计划整理分类&目录：（√代表已完成，x代表正在施工...）
+计划整理分类&目录：（√代表已完成，x代表正在施工...）二级目录正在建设中.....
 
-- cookie
+- [API认证与鉴权（APP与Cookie方式）](other/API_auth.md)×
+- [公共错误码](other/errcode.md)√
 - [图片格式化](other/picture.md)√
+- [bvID说明](other/bvID.md)√
 - [登录](login)
-  - [二维码登录](login/QR.md)√
-  - 密码&短信登录
-  - qq&微博登录
+  - [登录操作（人机认证）](login/login_action)√
+    + [短信登录](login/login_action/SMS.md)√
+    + [密码登录](login/login_action/password.md)√
+    + [二维码登录](login/login_action/QR.md)√
+    + SNS登录（QQ&微博）
   - [登录基本信息](login/login_info.md)√
-  - 在线用户
-  - [消息](login/msg.md)x
-  - [私信](login/private_msg.md)x
+  - [个人中心](login/member_center.md)×
+  - [注销登录](login/exit.md)×
+  - [登录记录](login/login_notice.md)√
+- [消息中心](message)
+  - [通知类消息](message/msg.md)×
+  - [私信](message/private_msg.md)×
+  - [设置](message/config.md)×
 - [用户](user)
   - [基本信息](user/info.md)√
   - [状态数](user/status_number.md)√
@@ -38,76 +64,112 @@
   - [点赞&投币&收藏](video/like_coin_fav.md)√
   - [TAG](video/tags.md)x
   - [视频推荐](video/recommend.md)√
-  - 播放&下载地址
-  - 互动视频
-  - 实时观看人数
-  - 高能进度条
-- 番剧（影视）
-  - 基本信息
+  - [播放&下载地址（视频流）](video/videostream_url.md)√
+  - [互动视频](video/interact_video.md)×
+  - [高能进度条](video/pbp.md)√
+  - [信息上报（心跳及记录历史）](video/report.md)×
+- [剧集（番剧、影视）](bangumi)
+  - [基本信息](bangumi/info.md)×
   - 状态数
   - 操作
 - [视频弹幕](danmaku)
-  - [实时弹幕&弹幕格式](danmaku/danmaku.md)√
-  - [历史弹幕](danmaku/history.md)√
+  - [protobuf实时弹幕](danmaku/danmaku_proto.md)√
+  - [protobuf弹幕元数据（BAS弹幕/互动弹幕）](danmaku/danmaku_view_proto.md)√
+  - [xml实时弹幕](danmaku/danmaku_xml.md)√
+  - [xml历史弹幕](danmaku/history.md)√
   - [快照](danmaku/snapshot.md)√
-  - 弹幕操作
-- 专栏
-  - 基本信息
-  - 点赞&投币&收藏
-  - 文集基本信息
-- 音频
-  - 歌曲相关
-  - 歌单相关
+  - [弹幕操作](danmaku/action.md)×
+  - 高级弹幕
+  - 屏蔽管理
+  - 智能防挡弹幕
+  - 弹幕个人配置修改
+- [专栏](article)
+  - 分区
+  - [基本信息](article/info.md)×
+  - [点赞&投币&收藏](article/like_coin_fav.md)×
+  - [文集基本信息](article/articles.md)×
+- [音频](audio)
+  - [歌曲基本信息](audio/info.md)√
+  - [歌单&音频收藏夹详细信息](audio/music_list.md)×
+  - [状态数](audio/status_number.md)×
+  - [投币&收藏](audio/coin&fav.md)×
+  - [播放&下载地址（音频流）](audio/musicstream_url.md)√
   - 音频榜单
-- [排行榜&最新动态](ranking&dynamic)
-  - [排行榜](ranking&dynamic/ranking.md)x
-  - [最新动态](ranking&dynamic/dynamic.md)x
-- 搜索
-  - 普通搜索
-  - 热搜
+- [排行榜&最新视频](ranking&dynamic)
+  - [排行榜](ranking&dynamic/ranking.md)×
+  - [最新视频](ranking&dynamic/dynamic.md)×
+- [搜索](search)
+  - [搜索请求](search/search_request.md)√
+  - [搜索结果](search/search_response.md)√
+  - [默认搜索&热搜](search/hot.md)√
+  - [搜索建议](search/suggest.md)√
 - [小黑屋](blackroom)
+  - 基本信息
   - [封禁公示](blackroom/banlist.md)√
-  - 仲裁信息
-- 评论区
-  - 评论区明细
-  - 表情
-  - 发表评论
-  - 评论操作
+  - [风纪委员及众裁案件相关](blackroom/jury)
+    - [风纪委员基本信息](blackroom/jury/base_info.md)√
+    - [众裁案件基本信息](blackroom/jury/judgement_info.md)√
+    - [裁决操作](blackroom/jury/action.md)√
+- [评论区](comment)√
+  - [评论区明细](comment/list.md)√
+  - [操作](comment/action.md)√
+- [表情](emote)
+  - [表情及表情包信息](emote/emote_list.md)√
+  - [操作](emote/action.md)√
 - [创作中心](creativecenter)
-  - [统计与数据](creativecenter/statistics&data.md)x
+  - [统计与数据](creativecenter/statistics&data.md)×
   - 列表查询相关
-  - 电磁力相关
+  - [电磁力数据](creativecenter/railgun.md)√
+- [实时广播（通讯协议）](broadcast)√
+  - [视频内广播](broadcast/video_room.md)√
 - [充电](electric)
   - [B币方式](electric/Bcoin.md)√
   - [微信&支付宝方式](electric/WeChat&Alipay.md)√
   - [充电留言](electric/charge_msg.md)√
+  - [充电列表](electric/charge_list.md)√
 - [动态](dynamic)
-  - [发送&转载动态](dynamic/publish.md)x
+  - [发送&转载动态](dynamic/publish.md)×
   - 动态列表
   - 动态内容
   - 小视频
   - 操作
-- 历史记录&稍后再看
-  - 历史记录
-  - 稍后再看
+- [历史记录&稍后再看](history&toview)
+  - [历史记录](history&toview/history.md)√
+  - [稍后再看](history&toview/toview.md)√
 - 收藏夹
-- 课程
+- [课程](cheese)
+  - [课程基本信息](cheese/info.md)√
+  - 已购课程
+  - 分区推荐列表
+  - 操作
+  - [播放&下载地址（视频流）](cheese/videostream_url.md)√
 - [直播](live)
-  - [直播间基本信息](live/info.md)x
-  - 直播间管理
+  - [直播间基本信息](live/info.md)×
+  - [直播分区](live/live_area.md)×
+  - [直播间管理](live/manage.md)×
   - 直播间操作
-  - 直播视频流
-  - 直播信息流
+  - [直播视频流](live/live_stream.md)×
+  - [直播信息流](live/message_stream.md)×
+- 答题
 - B币钱包
   - 基本信息
   - B币充值
   - 贝壳相关
 - 哔哩哔哩漫画
 - 哔哩哔哩游戏
+- 轻视频
 - [其他](other)
-  - [ip位置查询](other/ip.md)√
+  - [基于ip的地理位置查询](other/ip.md)√
+  - [获取当前时间戳](other/time_stamp.md)√
+- [web端组件](web_widget)
+  - [分区当日上传数](web_widget/zone_upload.md)√
+- [APP端组件](APP_widget)
+  - [开屏图片](APP_widget/splash.md)√
+- [个性装扮](garb)
+  - [主题及加载动画](garb/skin.md)√
+  - [主题色](garb/color.md)√
 
-B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列，欢迎关注
+B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
 **注意：请勿滥用，仅用于学习和测试！**
 
@@ -117,7 +179,7 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 （重要的话说三遍，本人不承担任何责任）
 
-<img src="https://i2.hdslb.com/bfs/face/480e2e98513aaeb65d2f2c76dbae750c4de722e9.jpg" width="100" height="100"/>
+<img src="imgs/up_face.jpg" width="100" height="100">
 
 **--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 
@@ -127,9 +189,9 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 不了解json的请移步，[传送门](https://www.sojson.com/json/json_index.html)
 
+不了解protobuf的请移步，[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
-
-**相关项目**：
+# 相关项目：
 
 库及文档：
 
@@ -143,9 +205,25 @@ https://github.com/Vespa314/bilibili-api
 
 https://github.com/Hsury/Bilibili-Toolkit
 
+https://github.com/whjstc/openbilibili-go-common-1
+
+https://github.com/wnstar/bili-utils
+
+https://github.com/lovelyyoshino/Bilibili-Live-API
+
+https://github.com/flaribbit/bilibili-manga-spider
+
+https://github.com/simon300000/bili-api
+
 成品：
 
+https://github.com/3Shain/BiliChat
+
+https://github.com/AncientLysine/BiliLocal
+
 https://github.com/zyzsdy/biliroku
+
+https://github.com/otakustay/danmaku-to-ass
 
 https://github.com/bilibili-helper/bilibili-helper-o
 
@@ -157,7 +235,19 @@ https://github.com/Hsury/BiliDrive
 
 https://github.com/Tsuk1ko/bilibili-live-chat
 
+https://github.com/ironmanic/crawler_target_users_good
+
+https://github.com/dd-center/DDatElectron
+
+https://github.com/dd-center/vtbs.moe
+
+https://github.com/JunzhouLiu/BILIBILI-HELPER
+
+https://github.com/the1812/Bilibili-Evolved
+
 其他：
+
+https://github.com/kuresaru/geetest-validator
 
 https://github.com/Hsury/Geetest3-Crack
 

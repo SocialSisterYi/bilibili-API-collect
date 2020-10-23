@@ -1,6 +1,6 @@
 # 统计与数据
 
-本页所有操作均需登录（SESSDATA）
+本页所有操作均需登录（Cookie）
 
 统计与数据次日中午12刷新
 
@@ -8,7 +8,9 @@
 
 > http://member.bilibili.com/x/web/index/stat
 
-*方式：GET*
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -68,7 +70,13 @@
 
 **示例：**
 
-http://member.bilibili.com/x/web/index/stat
+```shell
+curl 'http://member.bilibili.com/x/web/index/stat' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -154,13 +162,15 @@ http://member.bilibili.com/x/web/index/stat
 }
 ```
 
-
+</details>
 
 ## UP主专栏状态数据
 
 > http://member.bilibili.com/x/web/data/article
 
-*方式：GET*
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -192,7 +202,13 @@ http://member.bilibili.com/x/web/index/stat
 
 **示例：**
 
-http://member.bilibili.com/x/web/data/article
+```shell
+curl 'http://member.bilibili.com/x/web/data/article' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -216,21 +232,23 @@ http://member.bilibili.com/x/web/data/article
 }
 ```
 
-
+</details>
 
 ## 视频数据增量趋势
 
 > http://member.bilibili.com/x/web/data/article/thirty 
 
-*方式：GET*
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 数据为前30天
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注           |
 | ------ | ---- | ------------ | ------ | -------------- |
-| type   | url  | 目标数据类型 | 必要   | 类型代码见下表 |
+| type   | num  | 目标数据类型 | 必要   | 类型代码见下表 |
 
 类型代码`type`：
 
@@ -276,7 +294,14 @@ http://member.bilibili.com/x/web/data/article
 
 查询30天前的视频播放增量趋势，可知`2020-04-05`的播放增量为`46`，`2020-04-04`的播放增量为`58`
 
-http://member.bilibili.com/x/web/data/pandect?type=1
+```shell
+curl -G 'http://member.bilibili.com/x/web/data/pandect' \
+--data-urlencode 'type=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -307,21 +332,23 @@ http://member.bilibili.com/x/web/data/pandect?type=1
 }
 ```
 
-
+</details>
 
 ## 专栏数据增量趋势
 
 >  http://member.bilibili.com/x/web/data/article/thirty 
 
-*方式：GET*
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 数据为前30天
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注           |
 | ------ | ---- | ------------ | ------ | -------------- |
-| type   | url  | 目标数据类型 | 必要   | 类型代码见下表 |
+| type   | num  | 目标数据类型 | 必要   | 类型代码见下表 |
 
 类型代码`type`：
 
@@ -365,7 +392,14 @@ http://member.bilibili.com/x/web/data/pandect?type=1
 
 查询30天前的文章阅读增量趋势，可知`2020-04-05`的阅读增量为`6`，`2020-04-04`的阅读增量为`6`
 
-http://member.bilibili.com/x/web/data/article/thirty?type=1
+```shell
+curl -G 'http://member.bilibili.com/x/web/data/article/thirty' \
+--data-urlencode 'type=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -393,21 +427,23 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 }
 ```
 
-
+</details>
 
 ## 稿件操作来源占比情况
 
 > http://member.bilibili.com/x/web/data/survey
 
-*方式：GET*
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 数据为上一天的
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注           |
 | ------ | ---- | ------------ | ------ | -------------- |
-| type   | url  | 目标数据类型 | 必要   | 类型代码见下表 |
+| type   | num  | 目标数据类型 | 必要   | 类型代码见下表 |
 
 类型代码`type`：
 
@@ -443,7 +479,7 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 
 | 字段      | 类型   | 内容         | 备注 |
 | --------- | ------ | ------------ | ---- |
-| arc_inc   | arrary | 稿件情况     |      |
+| arc_inc   | array | 稿件情况     |      |
 | total_inc | num    | 总计增长情况 |      |
 | type_rank | obj    | 分区排名情况 |      |
 
@@ -478,7 +514,14 @@ http://member.bilibili.com/x/web/data/article/thirty?type=1
 
 查询我的稿件来源占比情况
 
-http://member.bilibili.com/x/web/data/survey?type=1
+```shell
+curl -G 'http://member.bilibili.com/x/web/data/survey' \
+--data-urlencode 'type=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -525,13 +568,15 @@ http://member.bilibili.com/x/web/data/survey?type=1
 }
 ```
 
-
+</details>
 
 ## 播放来源占比情况（平台及方式）
 
 > http://member.bilibili.com/x/web/data/playsource
 
-*方式：GET*
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -553,14 +598,14 @@ http://member.bilibili.com/x/web/data/survey?type=1
 
 `data`中的`page_source`对象：
 
-| 字段          | 类型 | 内容         | 备注 |
-| ------------- | ---- | ------------ | ---- |
-| dynamic       | num  | 通过动态     |      |
-| other         | num  | 其他方式     |      |
-| related_video | num  | 通过推荐列表 |      |
-| search        | num  | 通过搜索     |      |
-| space         | num  | 空间列表播放 |      |
-| tenma         | num  | ？？？       |      |
+| 字段          | 类型 | 内容                      | 备注 |
+| ------------- | ---- | ------------------------- | ---- |
+| dynamic       | num  | 通过动态                  |      |
+| other         | num  | 其他方式                  |      |
+| related_video | num  | 通过推荐列表              |      |
+| search        | num  | 通过搜索                  |      |
+| space         | num  | 空间列表播放              |      |
+| tenma         | num  | 天马（APP推荐信息流）来源 |      |
 
 `data`中的`play_proportion`对象：
 
@@ -574,7 +619,13 @@ http://member.bilibili.com/x/web/data/survey?type=1
 
 **示例：**
 
-http://member.bilibili.com/x/web/data/playsource
+```shell
+curl 'http://member.bilibili.com/x/web/data/playsource' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -601,13 +652,15 @@ http://member.bilibili.com/x/web/data/playsource
 }
 ```
 
-
+</details>
 
 ## 播放分布情况（粉丝与路人）
 
 > http://member.bilibili.com/x/web/data/base
 
-*方式：GET*
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
 
 **json回复：**
 
@@ -701,7 +754,13 @@ http://member.bilibili.com/x/web/data/playsource
 
 **示例：**
 
-http://member.bilibili.com/x/web/data/base
+```shell
+curl 'http://member.bilibili.com/x/web/data/base' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -819,3 +878,4 @@ http://member.bilibili.com/x/web/data/base
 }
 ```
 
+</details>

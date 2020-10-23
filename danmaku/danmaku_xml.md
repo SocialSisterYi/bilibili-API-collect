@@ -1,46 +1,56 @@
-# 弹幕
+# xml弹幕
 
-获取的均为xml格式标准弹幕文件，下载至本地后加载
-
-实时弹幕池容量有限（根据视频类型500-3000条不等），占满后再发送会使实时弹幕池底部的弹幕压入历史弹幕池（类似于堆栈）
+实时弹幕池容量有限（根据视频类型500-8000条不等），占满后再发送会使实时弹幕池底部的弹幕压入历史弹幕池（类似于堆栈）
 
 ## 获取实时弹幕1
 
 > http://api.bilibili.com/x/v1/dm/list.so
 
-*方式:GET*
+*请求方式：GET*
 
 **使用deflate压缩，注意解码**
 
-**参数：**
+**url参数：**
 
 | 参数名 | 类型 | 内容    | 必要性 | 备注 |
 | ------ | ---- | ------- | ------ | ---- |
-| oid    | url  | 视频CID | 必要   |      |
+| oid    | num  | 视频CID | 必要   |      |
 
 **示例：**
 
-http://api.bilibili.com/x/v1/dm/list.so?oid=144541892 
+```shell
+curl -G 'http://api.bilibili.com/x/v1/dm/list.so' \
+--data-urlencode 'oid=144541892' \
+--compressed -o 'danmaku.xml'
+```
 
 ## 获取实时弹幕2
 
 > http://comment.bilibili.com/{cid}.xml
 
-*方式:GET*
+*请求方式：GET*
 
 效果与前者相同
 
 **使用deflate压缩，注意解码**
 
-**参数：**
+**url路径：**
 
 | 参数名 | 类型 | 内容    | 必要性 | 备注 |
 | ------ | ---- | ------- | ------ | ---- |
-| cid    | url  | 视频CID | 必要   |      |
+| cid    | num  | 视频CID | 必要   |      |
 
 **示例：**
 
-http://comment.bilibili.com/144541892.xml
+```shell
+curl 'http://comment.bilibili.com/144541892.xml'
+--compressed -o 'danmaku.xml'
+```
+
+**xml回复：**
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -71,7 +81,7 @@ http://comment.bilibili.com/144541892.xml
 <i>
 ```
 
-
+</details>
 
 ## 弹幕格式
 
@@ -83,7 +93,7 @@ http://comment.bilibili.com/144541892.xml
   - 标签 chatid：视频CID
   - 标签 mission：0
   - 标签 maxlimit：实时弹幕池最大容量
-  - 标签 state：0
+  - 标签 state：弹幕状态（0：正常 1：弹幕已关闭）
   - 标签 real_name：0
   - 标签 source：e-r
 
@@ -91,18 +101,18 @@ http://comment.bilibili.com/144541892.xml
 
 ### 属性 p
 
-字符串内每项用","分隔
+字符串内每项用逗号`,`分隔
 
-| 项   | 含义               | 类型  | 备注                                                         |
-| ---- | ------------------ | ----- | ------------------------------------------------------------ |
-| 0    | 视频内弹幕出现时间 | float | 秒                                                           |
-| 1    | 弹幕类型           | int   | 1 2 3普通弹幕<br />4底部<br />5顶部<br />6逆向<br />7精准定位<br />8代码弹幕<br />9BAS弹幕 |
-| 2    | 弹幕字号           | int   | 18 小<br />25 标准<br />36 大                                |
-| 3    | 弹幕颜色           | int   | 十进制RGB888值                                               |
-| 4    | 弹幕发送时间       | int   | 时间戳                                                       |
-| 5    | 弹幕池类型         | int   | 0普通池<br />1字幕池<br />2特殊池（高级弹幕）                |
-| 6    | 编码后的用户ID     | HEX   | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |
-| 7    | 弹幕ID             | int   | 唯一  可用于操作参数                                         |
+| 项   | 含义               | 类型   | 备注                                                         |
+| ---- | ------------------ | ------ | ------------------------------------------------------------ |
+| 0    | 视频内弹幕出现时间 | float  | 秒                                                           |
+| 1    | 弹幕类型           | int32  | 1 2 3：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />6：逆向弹幕<br />7：高级弹幕<br />8：代码弹幕<br />9：BAS弹幕（`pool`必须为2） |
+| 2    | 弹幕字号           | int32  | 18：小<br />25：标准<br />36：大                             |
+| 3    | 弹幕颜色           | int32  | 十进制RGB888值                                               |
+| 4    | 弹幕发送时间       | int32  | 时间戳                                                       |
+| 5    | 弹幕池类型         | int32  | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）      |
+| 6    | 发送者UID的HASH    | string | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |
+| 7    | 弹幕dmID           | int64  | 唯一  可用于操作参数                                         |
 
 ```xml
 <d p="490.19100,1,25,16777215,1584268892,0,a16fe0dd,29950852386521095">从结尾回来看这里，更感动了！</d>
@@ -132,4 +142,3 @@ http://comment.bilibili.com/144541892.xml
 | <font color="#222222">黑色</font> | <font color="#222222">222222</font> | <font color="#222222">2236962</font>  |
 | <font color="#9B9B9B">灰色</font> | <font color="#9B9B9B">9B9B9B</font> | <font color="#9B9B9B">10197915</font> |
 | <font color="#FFFFFF">白色</font> | <font color="#FFFFFF">FFFFFF</font> | <font color="#FFFFFF">16777215</font> |
-
