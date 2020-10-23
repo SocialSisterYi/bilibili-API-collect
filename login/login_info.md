@@ -528,9 +528,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat' \
 
 `data`对象：
 
-| 字段  | 类型 | 内容       | 备注 |
-| ----- | ---- | ---------- | ---- |
-| money | num  | 当前硬币数 |      |
+| 字段  | 类型                                   | 内容       | 备注 |
+| ----- | -------------------------------------- | ---------- | ---- |
+| money | 硬币为正数时：num<br />硬币为0时：null | 当前硬币数 |      |
 
 **示例：**
 
@@ -554,5 +554,3 @@ curl 'http://account.bilibili.com/site/getCoin' \
 ```
 
 </details>
-
-## 
