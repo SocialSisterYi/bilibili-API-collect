@@ -61,7 +61,7 @@
 | current_level | num  | 当前等级                 |      |
 | current_min   | num  | 当前等级经验最低值       |      |
 | current_exp   | num  | 当前经验                 |      |
-| next_exp      | num  | 升级下一等级需达到的经验 |      |
+| next_exp      | 小于6级时：num<br />6级时：str | 升级下一等级需达到的经验 |当用户等级为Lv6时，值为`--`，代表无穷大 |
 
 `data`中的`official`对象：
 
