@@ -23,41 +23,35 @@
 
 ## av->bv算法：
 
-1. a=(avID⊕177451812)+100618342136696320
-2. 以i为循环变量循环10次b[i]=(a/58^i)%58
+注：本算法及示例程序仅能编码及解码avID<` 29460791296  `，无法验证avID>=` 29460791296  `的正确性
+
+1. a=(avID⊕177451812)+8728348608
+2. 以i为循环变量循环6次b[i]=(a/58^i)%58
 3. 将b[i]中各个数字转换为以下码表中的字符
 
 码表：
 
 > fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF
 
-4. 按照以下字符顺序编码表编码b[i]
+4. 初始化字符串b[i]=`BV1 4 1 7 `
 
-字符编码表：
+5. 按照以下字符顺序编码表编码并填充至b[i]
 
-> 0->11
->
-> 1->10
->
-> 2->3
->
-> 3->8
->
-> 4->4
->
-> 5->6
->
-> 6->2
->
-> 7->9
->
-> 8->5
->
-> 9->7
+字符顺序编码表：
 
-5. 最后在b[i]前面添加字符`BV`
+> 0 -> 11
+>
+> 1 -> 10
+>
+> 2 -> 3
+>
+> 3 -> 8
+>
+> 4 -> 4
+>
+> 5 -> 6
 
-[援引知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)
+算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)
 
 ## bv->av算法：
 
@@ -65,29 +59,30 @@
 
 ## 转换程序：
 
-目前使用python与c作为示例
+目前使用**Python**与**C**作为示例
 
 ### python
 
 ```python
-table = 'fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF' //码表
-tr = {} //反查码表
+table = 'fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF' #码表
+tr = {} #反查码表
+#初始化反查码表
 for i in range(58):
     tr[table[i]] = i
-s = [11, 10, 3, 8, 4, 6, 2, 9, 5, 7] //位置编码表
-xor = 177451812 //固定异或值
-add = 100618342136696320 //固定加法值
+s = [11, 10, 3, 8, 4, 6] #位置编码表
+xor = 177451812 #固定异或值
+add = 8728348608 #固定加法值
 
 def bv2av(x):
     r = 0
-    for i in range(10):
+    for i in range(6):
         r += tr[x[s[i]]] * 58 ** i
     return (r - add) ^ xor
 
 def av2bv(x):
     x = (x ^ xor) + add
-    r = list('BV          ')
-    for i in range(10):
+    r = list('BV1  4 1 7  ')
+    for i in range(6):
         r[s[i]] = table[x // 58 ** i % 58]
     return ''. join(r)
 
@@ -112,10 +107,11 @@ BV17x411w7KC
 const char table[] = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF"; //码表
 char tr[124]; //反查码表
 const unsigned long long Xor = 177451812; //固定异或值
-const unsigned long long add = 100618342136696320; //固定加法值
-const int s[] = {11, 10, 3, 8, 4, 6, 2, 9, 5, 7}; //位置编码表
+const unsigned long long add = 8728348608; //固定加法值
+const int s[] = {11, 10, 3, 8, 4, 6}; //位置编码表
 char result[13]; //编码结果
 
+//初始化反查码表
 void tr_init()
 {
 	for (int i = 0; i < 58; i++)
@@ -126,7 +122,7 @@ unsigned long long bv2av(char bv[])
 {
 	unsigned long long r = 0;
 	unsigned long long av;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 6; i++)
 		r += tr[bv[s[i]]] * (unsigned long long)pow(58, i);
 	av = (r - add) ^ Xor;
 	return av;
@@ -134,11 +130,10 @@ unsigned long long bv2av(char bv[])
 
 char* av2bv(unsigned long long av)
 {
-	strcpy(result,"BV        ");
+	strcpy(result,"BV1  4 1 7  ");
 	av = (av ^ Xor) + add;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 6; i++)
 		result[s[i]] = table[(unsigned long long)(av / (unsigned long long)pow(58, i)) % 58];
-	result[10] = ' \0';//添加休止符
 	char *bv=result;
 	return bv;
 }

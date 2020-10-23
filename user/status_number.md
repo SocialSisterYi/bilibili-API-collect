@@ -5,11 +5,14 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）或APP
+
 **url参数：**
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| vmid   | num  | 目标用户UID | 必要   |      |
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| vmid       | num  | 目标用户UID  | 必要        |      |
 
 **json回复：**
 
@@ -24,13 +27,13 @@
 
 `data`对象：
 
-| 字段      | 类型 | 内容        | 备注                                                 |
-| --------- | ---- | ----------- | ---------------------------------------------------- |
-| mid       | num  | 目标用户UID |                                                      |
-| following | num  | 关注数      |                                                      |
-| whisper   | num  | 悄悄关注数  | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0 |
-| black     | num  | 黑名单数    | 需要登录(SESSDATA) <br />只能查看自己的<br />默认为0 |
-| follower  | num  | 粉丝数      |                                                      |
+| 字段      | 类型 | 内容        | 备注                                             |
+| --------- | ---- | ----------- | ------------------------------------------------ |
+| mid       | num  | 目标用户UID |                                                  |
+| following | num  | 关注数      |                                                  |
+| whisper   | num  | 悄悄关注数  | 需要登录(Cooklie或APP) <br />未登录或非自己恒为0 |
+| black     | num  | 黑名单数    | 需要登录(Cooklie或APP) <br />未登录或非自己恒为0 |
+| follower  | num  | 粉丝数      |                                                  |
 
 **示例：**
 
@@ -68,11 +71,16 @@ curl -G 'http://api.bilibili.com/x/relation/stat' \
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）或APP
+
+注：该接口需要**任意用户**登录，否则**不会返回任何数据**
+
 **url参数：**
 
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| 参数名     | 类型 | 内容         | 必要性      | 备注 |
+| ---------- | ---- | ------------ | ----------- | ---- |
+| access_key | str  | APP登录Token | APP方式必要 |      |
+| mid        | num  | 目标用户UID  | 必要        |      |
 
 **json回复：**
 
@@ -111,7 +119,8 @@ curl -G 'http://api.bilibili.com/x/relation/stat' \
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/upstat' \
---data-urlencode 'mid=456664753'
+--data-urlencode 'mid=456664753' \
+-b 'SESSDATA=xxx'
 ```
 
 <details>

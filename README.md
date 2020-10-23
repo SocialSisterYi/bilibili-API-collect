@@ -241,6 +241,10 @@ https://github.com/dd-center/DDatElectron
 
 https://github.com/dd-center/vtbs.moe
 
+https://github.com/JunzhouLiu/BILIBILI-HELPER
+
+https://github.com/the1812/Bilibili-Evolved
+
 其他：
 
 https://github.com/kuresaru/geetest-validator
