@@ -68,8 +68,8 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [互动视频](video/interact_video.md)×
   - [高能进度条](video/pbp.md)√
   - [信息上报（心跳及记录历史）](video/report.md)×
-- 番剧（影视）
-  - 基本信息
+- [剧集（番剧、影视）](bangumi)
+  - [基本信息](bangumi/info.md)×
   - 状态数
   - 操作
 - [视频弹幕](danmaku)
