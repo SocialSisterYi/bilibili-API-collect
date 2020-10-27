@@ -195,61 +195,42 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 库及文档：
 
-https://github.com/jingyuexing/bilibiliAPI
-
-https://github.com/fython/BilibiliAPIDocs
-
-https://github.com/czp3009/bilibili-api
-
-https://github.com/Vespa314/bilibili-api
-
-https://github.com/Hsury/Bilibili-Toolkit
-
-https://github.com/whjstc/openbilibili-go-common-1
-
-https://github.com/wnstar/bili-utils
-
-https://github.com/lovelyyoshino/Bilibili-Live-API
-
-https://github.com/flaribbit/bilibili-manga-spider
-
-https://github.com/simon300000/bili-api
+- [jingyuexing/bilibiliAPI](https://github.com/jingyuexing/bilibiliAPI)
+- [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
+- [czp3009/bilibili-api](https://github.com/czp3009/bilibili-api)
+- [Vespa314/bilibili-api](https://github.com/Vespa314/bilibili-api)
+- [Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
+- [whjstc/openbilibili-go-common-1](https://github.com/whjstc/openbilibili-go-common-1)
+- [wnstar/bili-utils](https://github.com/wnstar/bili-utils)
+- [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API)
+- [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
+- [simon300000/bili-api](https://github.com/simon300000/bili-api)
 
 成品：
-
-https://github.com/3Shain/BiliChat
-
-https://github.com/AncientLysine/BiliLocal
-
-https://github.com/zyzsdy/biliroku
-
-https://github.com/otakustay/danmaku-to-ass
-
-https://github.com/bilibili-helper/bilibili-helper-o
-
-https://github.com/apachecn/BiliDriveEx
-
-https://github.com/apachecn/CDNDrive
-
-https://github.com/Hsury/BiliDrive
-
-https://github.com/Tsuk1ko/bilibili-live-chat
-
-https://github.com/ironmanic/crawler_target_users_good
-
-https://github.com/dd-center/DDatElectron
-
-https://github.com/dd-center/vtbs.moe
-
-https://github.com/JunzhouLiu/BILIBILI-HELPER
-
-https://github.com/the1812/Bilibili-Evolved
+- [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 使用h5展示b站直播间聊天内容。特别兼容了YouTube的样式表，可以用于增强直播效果。
+- [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):Add danmaku to local videos
+- [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制
+- [otakustay/danmaku-to-ass](https://github.com/otakustay/danmaku-to-ass):A站B站弹幕转字幕文件
+- [bilibili-helper/bilibili-helper-o](https://github.com/bilibili-helper/bilibili-helper-o):An auxiliary extension for Bilibili (bilibili.com) which allows users to bypass playback restrictions, replace video players and use shortcuts.哔哩哔哩 (bilibili.com) 辅助工具，可以下载视频，查询弹幕发送人以及一些十分实用的直播区功能。
+- [apachecn/BiliDriveEx](https://github.com/apachecn/BiliDriveEx):已停更
+- [apachecn/CDNDrive](https://github.com/apachecn/CDNDrive):CDNDrive = BiliDrive + SuperBed，支持任意文件的全速上传与下载
+- [Hsury/BiliDrive](https://github.com/Hsury/BiliDrive):哔哩云，支持任意文件的全速上传与下载
+- [Tsuk1ko/bilibili-live-chat](https://github.com/Tsuk1ko/bilibili-live-chat):无后端的仿 YouTube Live Chat 风格的简易 Bilibili 弹幕姬
+- [ironmanic/crawler_target_users_good](https://github.com/ironmanic/crawler_target_users_good):搜索bilibili特定视频，为评论 点赞，关注，私信，一体化服务
+- [dd-center/DDatElectron](https://github.com/dd-center/DDatElectron):DD@Home 分布式项目, 桌面客户端 DD@Electron
+- [dd-center/vtbs.moe](https://github.com/dd-center/vtbs.moe):Virtual YouTubers in bilibili
+- [JunzhouLiu/BILIBILI-HELPER](https://github.com/JunzhouLiu/BILIBILI-HELPER):利用GitHub Action定时任务实现B站，哔哩哔哩（Bilibili）每日自动投币，签到，银瓜子兑换硬币，领取大会员福利，大会员月底给自己充电等。每天轻松获取65经验值。
+- [the1812/Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved):强大的哔哩哔哩增强脚本: 下载视频, 音乐, 封面, 弹幕 / 简化直播间, 评论区, 首页 / 自定义顶栏, 删除广告, 夜间模式 / 触屏设备支持
 
 其他：
 
-https://github.com/kuresaru/geetest-validator
+- [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):No description 暂无描述
+- [Hsury/Geetest3-Crack](https://github.com/Hsury/Geetest3-Crack):Geetest3 Distributed Cracking Platform 极验3代分布式破解平台
+- [SocialSisterYi/bv2av_convert](https://github.com/SocialSisterYi/bv2av_convert):基于算法的av号与bv号互转器
 
-https://github.com/Hsury/Geetest3-Crack
 
-https://github.com/SocialSisterYi/bv2av_convert
+
+
+
+
 
