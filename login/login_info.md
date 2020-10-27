@@ -61,7 +61,7 @@
 | current_level | num  | 当前等级                 |      |
 | current_min   | num  | 当前等级经验最低值       |      |
 | current_exp   | num  | 当前经验                 |      |
-| next_exp      | num  | 升级下一等级需达到的经验 |      |
+| next_exp      | 小于6级时：num<br />6级时：str | 升级下一等级需达到的经验 |当用户等级为Lv6时，值为`--`，代表无穷大 |
 
 `data`中的`official`对象：
 
@@ -308,7 +308,7 @@ curl 'http://account.bilibili.com/home/userInfo' \
 | coins          | num  | 拥有硬币数       |                               |
 | birthday       | str  | 用户生日         | YYYY-MM-DD                    |
 | face           | str  | 用户头像url      |                               |
-| sex            | num  | 用户性别         | 1：男<br />2：女<br />3：私密 |
+| sex            | num  | 用户性别         | 0：私密<br />1：男<br />2：女 |
 | level          | num  | 用户等级         | 0-6                           |
 | rank           | num  | 1000             | **作用尚不明确**              |
 | silence        | num  | 用户是否被封禁   | 0：正常<br />1：封禁          |
@@ -502,6 +502,53 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat' \
         "following": 754,
         "follower": 596,
         "dynamic_count": 252
+    }
+}
+```
+
+</details>
+
+## 获取硬币数
+
+>  http://account.bilibili.com/site/getCoin
+
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
+
+**json回复：**
+
+根对象：
+
+| 字段   | 类型 | 内容     | 备注                          |
+| ------ | ---- | -------- | ----------------------------- |
+| code   | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| status | bool | true     | 作用尚不明确                  |
+| data   | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段  | 类型                                   | 内容       | 备注 |
+| ----- | -------------------------------------- | ---------- | ---- |
+| money | 硬币为正数时：num<br />硬币为0时：null | 当前硬币数 |      |
+
+**示例：**
+
+```shell
+curl 'http://account.bilibili.com/site/getCoin' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+
+```json
+{
+    "code": 0,
+    "status": true,
+    "data": {
+        "money": 42.4
     }
 }
 ```
