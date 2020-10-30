@@ -378,41 +378,41 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 
 `data`数组中的对象：
 
-| 字段          | 类型 | 内容                           | 备注                                                         |
-| ------------- | ---- | ------------------------------ | ------------------------------------------------------------ |
-| aid           | num  | 稿件avID                       |                                                              |
-| videos        | num  | 视频分P总数                    | 默认为1                                                      |
-| tid           | num  | 分区tID                        |                                                              |
-| tname         | str  | 子分区名称                     |                                                              |
-| copyright     | num  | 是否转载                       | 1：原创<br />2：转载                                         |
-| pic           | str  | 视频封面图片url                |                                                              |
-| title         | str  | 稿件标题                       |                                                              |
-| pubdate       | num  | 稿件发布时间                   | 时间戳                                                       |
-| ctime         | num  | 用户提交稿件的时间             | 时间戳                                                       |
-| desc          | str  | 视频简介                       |                                                              |
-| state         | num  | 视频状态                       | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`state`备注 |
-| attribute     | num  | 稿件属性位配置                 | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`attribute`备注 |
-| duration      | num  | 视频总计持续时长（所有分P）    | 单位为秒                                                     |
-| rights        | obj  | 视频属性标志                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`rights`对象 |
-| owner         | obj  | 视频UP主信息                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
-| stat          | obj  | 视频状态数                     | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
-| dynamic       | str  | 视频同步发布的的动态的文字内容 | 无为空                                                       |
-| cid           | num  | 视频1P CID                     |                                                              |
-| dimension     | obj  | 视频1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
-| bangumi       | obj  | 番剧/影视信息                  | 非番剧/影视无此项                                            |
-| cheese        | obj  | 课程信息                       | 非课程无此项                                                 |
-| favorite      | bool | 是否已收藏                     | true：已收藏<br />false：未收藏                              |
-| type          | num  | 视频属性                       | 3：普通视频<br />4：剧集<br />10：课程                       |
-| sub_type      | num  | 附视频属性                     | 0：普通视频<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
-| device        | num  | 观看平台代码                   | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
-| page          | obj  | 最后观看的分P信息              |                                                              |
-| count         | num  | 分P数                          | 非投稿视频无此项                                             |
-| progress      | num  | 观看进度                       | 单位为秒                                                     |
-| view_at       | num  | 观看时间                       | 时间戳                                                       |
-| kid           | num  | 稿件avID                       |                                                              |
-| business      | str  | 视频类型标识                   | archive：用户投稿视频<br />pgc：番剧/影视<br />cheese：课程  |
-| redirect_link | str  | 重定向url                      |                                                              |
-| bvid          | str  | 稿件bvID                       |                                                              |
+| 字段                            | 类型    | 内容                           | 备注                                                         |
+| ------------------------------- | ------- | ------------------------------ | ------------------------------------------------------------ |
+| aid                             | num     | 稿件avID                       |                                                              |
+| videos                          | num     | 视频分P总数                    | 默认为1                                                      |
+| tid                             | num     | 分区tID                        |                                                              |
+| tname                           | str     | 子分区名称                     |                                                              |
+| copyright                       | num     | 是否转载                       | 1：原创<br />2：转载                                         |
+| pic                             | str     | 视频封面图片url                |                                                              |
+| title                           | str     | 稿件标题                       |                                                              |
+| pubdate                         | num     | 稿件发布时间                   | 时间戳                                                       |
+| ctime                           | num     | 用户提交稿件的时间             | 时间戳                                                       |
+| desc                            | str     | 视频简介                       |                                                              |
+| state                           | num     | 视频状态                       | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`state`备注 |
+| ~~attribute~~（仅做历史性保留） | ~~num~~ | ~~稿件属性位配置~~             | 本字段已被删除<br />~~略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`attribute`备注~~ |
+| duration                        | num     | 视频总计持续时长（所有分P）    | 单位为秒                                                     |
+| rights                          | obj     | 视频属性标志                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`rights`对象 |
+| owner                           | obj     | 视频UP主信息                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
+| stat                            | obj     | 视频状态数                     | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
+| dynamic                         | str     | 视频同步发布的的动态的文字内容 | 无为空                                                       |
+| cid                             | num     | 视频1P CID                     |                                                              |
+| dimension                       | obj     | 视频1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
+| bangumi                         | obj     | 番剧/影视信息                  | 非番剧/影视无此项                                            |
+| cheese                          | obj     | 课程信息                       | 非课程无此项                                                 |
+| favorite                        | bool    | 是否已收藏                     | true：已收藏<br />false：未收藏                              |
+| type                            | num     | 视频属性                       | 3：普通视频<br />4：剧集<br />10：课程                       |
+| sub_type                        | num     | 附视频属性                     | 0：普通视频<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
+| device                          | num     | 观看平台代码                   | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
+| page                            | obj     | 最后观看的分P信息              |                                                              |
+| count                           | num     | 分P数                          | 非投稿视频无此项                                             |
+| progress                        | num     | 观看进度                       | 单位为秒                                                     |
+| view_at                         | num     | 观看时间                       | 时间戳                                                       |
+| kid                             | num     | 稿件avID                       |                                                              |
+| business                        | str     | 视频类型标识                   | archive：用户投稿视频<br />pgc：番剧/影视<br />cheese：课程  |
+| redirect_link                   | str     | 重定向url                      |                                                              |
+| bvid                            | str     | 稿件bvID                       |                                                              |
 
 `data`数组中的对象`bangumi`对象：
 
