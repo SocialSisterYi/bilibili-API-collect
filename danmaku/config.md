@@ -1,6 +1,6 @@
 # 弹幕个人配置修改
 
-## 修改弹幕个人配置
+## 修改弹幕个人配置（web端）
 
 > http://api.bilibili.com/x/v2/dm/web/config
 
