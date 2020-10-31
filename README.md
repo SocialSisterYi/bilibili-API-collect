@@ -82,7 +82,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 高级弹幕
   - 屏蔽管理
   - 智能防挡弹幕
-  - 弹幕个人配置修改
+  - [弹幕个人配置修改](danmaku/config.md)
 - [专栏](article)
   - 分区
   - [基本信息](article/info.md)×
@@ -193,63 +193,44 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 # 相关项目：
 
-库及文档：
+## 库及文档：
 
-https://github.com/jingyuexing/bilibiliAPI
+- [jingyuexing/bilibiliAPI](https://github.com/jingyuexing/bilibiliAPI)
+- [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
+- [czp3009/bilibili-api](https://github.com/czp3009/bilibili-api)
+- [Vespa314/bilibili-api](https://github.com/Vespa314/bilibili-api)
+- [Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
+- [whjstc/openbilibili-go-common-1](https://github.com/whjstc/openbilibili-go-common-1)
+- [wnstar/bili-utils](https://github.com/wnstar/bili-utils)
+- [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API)
+- [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
+- [simon300000/bili-api](https://github.com/simon300000/bili-api)
 
-https://github.com/fython/BilibiliAPIDocs
+## 成品：
 
-https://github.com/czp3009/bilibili-api
+- [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
+- [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):本地弹幕播放器
+- [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制
+- [otakustay/danmaku-to-ass](https://github.com/otakustay/danmaku-to-ass):A站B站弹幕转字幕文件
+- [bilibili-helper/bilibili-helper-o](https://github.com/bilibili-helper/bilibili-helper-o):哔哩哔哩 (bilibili.com) 辅助工具，可以下载视频，查询弹幕发送人以及一些十分实用的直播区功能。
+- [apachecn/BiliDriveEx](https://github.com/apachecn/BiliDriveEx):基于B站相簿上传的文件分块索引存储器
+- [apachecn/CDNDrive](https://github.com/apachecn/CDNDrive):基于B站相簿上传的文件分块索引存储器
+- [Hsury/BiliDrive](https://github.com/Hsury/BiliDrive):基于B站相簿上传的文件分块索引存储器
+- [Tsuk1ko/bilibili-live-chat](https://github.com/Tsuk1ko/bilibili-live-chat):无后端的仿 YouTube Live Chat 风格的简易 Bilibili 弹幕姬
+- [ironmanic/crawler_target_users_good](https://github.com/ironmanic/crawler_target_users_good):搜索bilibili特定视频，为评论 点赞，关注，私信，一体化服务
+- [dd-center/DDatElectron](https://github.com/dd-center/DDatElectron):DD@Home 分布式项目, 桌面客户端
+- [dd-center/vtbs.moe](https://github.com/dd-center/vtbs.moe):B站VTB数据中心
+- [JunzhouLiu/BILIBILI-HELPER](https://github.com/JunzhouLiu/BILIBILI-HELPER):利用GitHub Action定时任务实现B站，哔哩哔哩（Bilibili）每日自动投币，签到，银瓜子兑换硬币，领取大会员福利，大会员月底给自己充电等。每天轻松获取65经验值。
+- [the1812/Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved):强大的哔哩哔哩增强脚本: 下载视频, 音乐, 封面, 弹幕 / 简化直播间, 评论区, 首页 / 自定义顶栏, 删除广告, 夜间模式 / 触屏设备支持
 
-https://github.com/Vespa314/bilibili-api
+## 其他：
 
-https://github.com/Hsury/Bilibili-Toolkit
+- [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
+- [SocialSisterYi/bv2av_convert](https://github.com/SocialSisterYi/bv2av_convert):C语言算法av号与bv号互转器
 
-https://github.com/whjstc/openbilibili-go-common-1
 
-https://github.com/wnstar/bili-utils
 
-https://github.com/lovelyyoshino/Bilibili-Live-API
 
-https://github.com/flaribbit/bilibili-manga-spider
 
-https://github.com/simon300000/bili-api
 
-成品：
-
-https://github.com/3Shain/BiliChat
-
-https://github.com/AncientLysine/BiliLocal
-
-https://github.com/zyzsdy/biliroku
-
-https://github.com/otakustay/danmaku-to-ass
-
-https://github.com/bilibili-helper/bilibili-helper-o
-
-https://github.com/apachecn/BiliDriveEx
-
-https://github.com/apachecn/CDNDrive
-
-https://github.com/Hsury/BiliDrive
-
-https://github.com/Tsuk1ko/bilibili-live-chat
-
-https://github.com/ironmanic/crawler_target_users_good
-
-https://github.com/dd-center/DDatElectron
-
-https://github.com/dd-center/vtbs.moe
-
-https://github.com/JunzhouLiu/BILIBILI-HELPER
-
-https://github.com/the1812/Bilibili-Evolved
-
-其他：
-
-https://github.com/kuresaru/geetest-validator
-
-https://github.com/Hsury/Geetest3-Crack
-
-https://github.com/SocialSisterYi/bv2av_convert
 

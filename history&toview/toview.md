@@ -158,123 +158,31 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
 
 `data`中的`list`数组中的对象：
 
-| 字段      | 类型 | 内容                           | 备注                                                         |
-| --------- | ---- | ------------------------------ | ------------------------------------------------------------ |
-| aid       | num  | 稿件avID                       |                                                              |
-| videos    | num  | 稿件分P总数                    | 默认为1                                                      |
-| tid       | num  | 分区tID                        |                                                              |
-| tname     | str  | 子分区名称                     |                                                              |
-| copyright | num  | 是否转载                       | 1：原创<br />2：转载                                         |
-| pic       | str  | 稿件封面图片url                |                                                              |
-| title     | str  | 稿件标题                       |                                                              |
-| pubdate   | num  | 稿件发布时间                   | 时间戳                                                       |
-| ctime     | num  | 用户提交稿件的时间             | 时间戳                                                       |
-| desc      | str  | 视频简介                       |                                                              |
-| state     | num  | 视频状态                       | 0：开放浏览<br />1：橙色通过<br />-1：待审<br />-2：被打回<br />-3：网警锁定<br />-4：被锁定<br />-5：管理员锁定（可浏览）<br />-6：修复待审<br />-7：暂缓审核<br />-8：补档待审<br />-9：等待转码<br />-10：延迟审核<br />-11：视频源待修<br />-12：转储失败<br />-13：允许评论待审<br />-14：临时回收站<br />-15：分发中<br />-16：转码失败<br />-20：创建未提交<br />-30：创建已提交<br />-40：定时发布<br />-100：用户删除 |
-| attribute | num  | 稿件属性位配置                 |                                                              |
-| duration  | num  | 稿件总时长（所有分P）          | 单位为秒                                                     |
-| rights    | obj  | 稿件属性标志                   |                                                              |
-| owner     | obj  | 稿件UP主信息                   |                                                              |
-| stat      | obj  | 稿件状态数                     |                                                              |
-| dynamic   | str  | 视频同步发布的的动态的文字内容 | 无为空                                                       |
-| dimension | obj  | 稿件1P分辨率                   |                                                              |
-| count     | num  | 稿件分P数                      | 非投稿视频无此项                                             |
-| cid       | num  | 视频CID                        |                                                              |
-| progress  | num  | 观看进度时间                   | 单位为秒                                                     |
-| add_at    | num  | 添加时间                       | 时间戳                                                       |
-| bvid      | str  | 稿件bvID                       |                                                              |
-
-`attribute`属性位二进制值表：
-
-| 位   | 内容              | 备注                    |
-| ---- | ----------------- | ----------------------- |
-| 0    | 禁止排行          |                         |
-| 1    | 动态禁止          |                         |
-| 2    | 禁止网页输出      |                         |
-| 3    | 禁止客户端列表    |                         |
-| 4    | 搜索禁止          |                         |
-| 5    | 海外禁止          |                         |
-| 6    | 禁止推荐          |                         |
-| 7    | 禁止转载          |                         |
-| 8    | 是否高清          | 视频清晰度>=1080P       |
-| 9    | 是否PGC稿件       | 番剧及影视              |
-| 10   | 允许承包          |                         |
-| 11   | 是否番剧          |                         |
-| 12   | 是否私单          |                         |
-| 13   | 是否限制地区      | 大多数番剧              |
-| 14   | 允许其他人添加tag |                         |
-| 15   | ？                |                         |
-| 16   | 跳转              | 番剧及影视av/bv->ep跳转 |
-| 17   | 是否影视          |                         |
-| 18   | 付费              |                         |
-| 19   | 推送动态          |                         |
-| 20   | 家长模式          |                         |
-| 21   | UGC付费           |                         |
-| 22   | ？                |                         |
-| 23   | 是否失效          |                         |
-
-`data`中的`list`数组中的对象中的`rights`对象：
-
-| 字段            | 类型 | 内容             | 备注         |
-| --------------- | ---- | ---------------- | ------------ |
-| bp              | num  | 0                | 作用尚不明确 |
-| elec            | num  | 是否支持充电     |              |
-| download        | num  | 是否允许下载     |              |
-| movie           | num  | 是否电影         |              |
-| pay             | num  | 是否PGC付费      |              |
-| hd5             | num  | 是否有高码率     |              |
-| no_reprint      | num  | 是否禁止转载     |              |
-| autoplay        | num  | 是否可以自动播放 |              |
-| ugc_pay         | num  | 是否UGC付费      |              |
-| is_cooperation  | num  | 是否联合投稿     |              |
-| ugc_pay_preview | num  | 0                | 作用尚不明确 |
-| no_background   | num  | 0                | 作用尚不明确 |
-
-`data`中的`list`数组中的对象中的`owner`对象：
-
-| 字段 | 类型 | 内容     | 备注 |
-| ---- | ---- | -------- | ---- |
-| mid  | num  | UP主UID  |      |
-| name | str  | UP主昵称 |      |
-| face | str  | UP主头像 |      |
-
-`data`中的`list`数组中的对象中的`stat`对象：
-
-| 字段       | 类型 | 内容                           | 备注         |
-| ---------- | ---- | ------------------------------ | ------------ |
-| aid        | num  | 稿件avID                       |              |
-| view       | num  | 普通：观看次数<br />屏蔽时：-1 |              |
-| danmaku    | num  | 弹幕条数                       |              |
-| reply      | num  | 评论条数                       |              |
-| favorite   | num  | 收藏人数                       |              |
-| coin       | num  | 投币枚数                       |              |
-| share      | num  | 分享次数                       |              |
-| now_rank   | num  | 0                              | 作用尚不明确 |
-| his_rank   | num  | 历史最高排行                   |              |
-| like       | num  | 获赞次数                       |              |
-| dislike    | num  | 0                              | 作用尚不明确 |
-| evaluation | str  | 视频评分                       | 默认为空     |
-
-`data`中的`list`数组中的对象中的`pages`对象：
-
-| 字段      | 类型 | 内容            | 备注                                 |
-| --------- | ---- | --------------- | ------------------------------------ |
-| cid       | num  | 当前分P CID     |                                      |
-| page      | num  | 当前分P         |                                      |
-| from      | str  | 视频来源        | vupload：用户上传<br />hunan：芒果TV |
-| part      | str  | 当前分P标题     |                                      |
-| duration  | num  | 当前分P持续时间 | 单位为秒                             |
-| vid       | str  | 空              | 作用尚不明确                         |
-| weblink   | str  | 空              | 作用尚不明确                         |
-| dimension | obj  | 当前分P分辨率   |                                      |
-
-`pages`中的`dimension`对象(同`data`中的`list`数组中的对象中的`dimension`对象)：
-
-| 字段   | 类型 | 内容           | 备注                 |
-| ------ | ---- | -------------- | -------------------- |
-| width  | num  | 当前分P 宽度   | 可能为0              |
-| height | num  | 当前分P 高度   | 可能为0              |
-| rotate | num  | 是否将宽高对换 | 0：正常<br />1：对换 |
+| 字段                            | 类型    | 内容                           | 备注                                                         |
+| ------------------------------- | ------- | ------------------------------ | ------------------------------------------------------------ |
+| aid                             | num     | 稿件avID                       |                                                              |
+| videos                          | num     | 稿件分P总数                    | 默认为1                                                      |
+| tid                             | num     | 分区tID                        |                                                              |
+| tname                           | str     | 子分区名称                     |                                                              |
+| copyright                       | num     | 是否转载                       | 1：原创<br />2：转载                                         |
+| pic                             | str     | 稿件封面图片url                |                                                              |
+| title                           | str     | 稿件标题                       |                                                              |
+| pubdate                         | num     | 稿件发布时间                   | 时间戳                                                       |
+| ctime                           | num     | 用户提交稿件的时间             | 时间戳                                                       |
+| desc                            | str     | 视频简介                       |                                                              |
+| state                           | num     | 视频状态                       | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`state`备注 |
+| ~~attribute~~（仅做历史性保留） | ~~num~~ | ~~稿件属性位配置~~             | 本字段已被删除~~略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`attribute`备注~~ |
+| duration                        | num     | 稿件总时长（所有分P）          | 单位为秒                                                     |
+| rights                          | obj     | 稿件属性标志                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`rights`对象 |
+| owner                           | obj     | 稿件UP主信息                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
+| stat                            | obj     | 稿件状态数                     | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
+| dynamic                         | str     | 视频同步发布的的动态的文字内容 | 无为空                                                       |
+| dimension                       | obj     | 稿件1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
+| count                           | num     | 稿件分P数                      | 非投稿视频无此项                                             |
+| cid                             | num     | 视频CID                        |                                                              |
+| progress                        | num     | 观看进度时间                   | 单位为秒                                                     |
+| add_at                          | num     | 添加时间                       | 时间戳                                                       |
+| bvid                            | str     | 稿件bvID                       |                                                              |
 
 **示例：**
 
