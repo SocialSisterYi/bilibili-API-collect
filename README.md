@@ -86,7 +86,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [专栏](article)
   - 分区
   - [基本信息](article/info.md)×
-  - [点赞&投币&收藏](article/like_coin_fav.md)×
+  - [点赞&投币&收藏&分享](article/like_coin_fav.md)×
   - [文集基本信息](article/articles.md)×
 - [音频](audio)
   - [歌曲基本信息](audio/info.md)√
