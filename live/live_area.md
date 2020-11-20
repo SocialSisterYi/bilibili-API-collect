@@ -1,5 +1,9 @@
 # 直播间分区
 
+- [获取全部直播间分区列表](#获取全部直播间分区列表)
+
+---
+
 ## 获取全部直播间分区列表
 
 > http://api.live.bilibili.com/room/v1/Area/getList

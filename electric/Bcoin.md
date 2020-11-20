@@ -4,6 +4,14 @@
 
 **注：1B币折合10电池，一般地充电10电池可获得1经验**
 
+---
+
+- [B币方式充电](#B币方式充电)
+
+---
+
+## B币方式充电
+
 > http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
 *请求方式：POST*

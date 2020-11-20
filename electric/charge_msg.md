@@ -1,5 +1,11 @@
 # 充电留言
 
+- [发送充电留言](#发送充电留言)
+
+---
+
+## 发送充电留言
+
 > http://api.bilibili.com/x/ugcpay/trade/elec/message
 
 *请求方式：POST*

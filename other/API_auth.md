@@ -1,5 +1,10 @@
 # API认证与鉴权
 
+- [Cookie方式（web端）](#Cookie方式（web端）)
+- [APP方式（手机客户端及TV端等）](#APP方式（手机客户端及TV端等）)
+
+---
+
 ## Cookie方式（web端）
 
 cookie中的值在访问登录接口成功登录时，用`set-cookie`写入

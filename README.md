@@ -82,7 +82,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 高级弹幕
   - 屏蔽管理
   - 智能防挡弹幕
-  - [弹幕个人配置修改](danmaku/config.md)
+  - [弹幕个人配置修改](danmaku/config.md)√
 - [专栏](article)
   - 分区
   - [基本信息](article/info.md)×
@@ -106,16 +106,16 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [小黑屋](blackroom)
   - 基本信息
   - [封禁公示](blackroom/banlist.md)√
-  - [风纪委员及众裁案件相关](blackroom/jury)
+  - [风纪委员及众裁案件相关](blackroom/jury)√
     - [风纪委员基本信息](blackroom/jury/base_info.md)√
     - [众裁案件基本信息](blackroom/jury/judgement_info.md)√
     - [裁决操作](blackroom/jury/action.md)√
 - [评论区](comment)√
   - [评论区明细](comment/list.md)√
   - [操作](comment/action.md)√
-- [表情](emote)
-  - [表情及表情包信息](emote/emote_list.md)√
-  - [操作](emote/action.md)√
+- [表情](emoji)
+  - [表情及表情包信息](emoji/list.md)√
+  - [操作](emoji/action.md)√
 - [创作中心](creativecenter)
   - [统计与数据](creativecenter/statistics&data.md)×
   - 列表查询相关
@@ -162,11 +162,11 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [基于ip的地理位置查询](other/ip.md)√
   - [获取当前时间戳](other/time_stamp.md)√
 - [web端组件](web_widget)
-  - [分区当日上传数](web_widget/zone_upload.md)√
+  - [分区当日投稿数](web_widget/zone_upload.md)√
 - [APP端组件](APP_widget)
   - [开屏图片](APP_widget/splash.md)√
 - [个性装扮](garb)
-  - [主题及加载动画](garb/skin.md)√
+  - [APP主题](garb/skin.md)√
   - [主题色](garb/color.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~

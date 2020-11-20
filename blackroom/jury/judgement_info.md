@@ -1,5 +1,12 @@
 # 众裁信息
 
+- [查询投票过的单个案件](#查询投票过的单个案件)
+- [查询案件众裁信息](#查询案件众裁信息)
+- [查询我的众裁记录](#查询我的众裁记录)
+- [获取众议观点](#获取众议观点)
+
+---
+
 投票类型码总览：
 
 | 代码 | 含义 |
@@ -362,7 +369,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
 
 </details>
 
-## 众议观点
+## 获取众议观点
 
 > http://api.bilibili.com/x/credit/jury/case/opinion
 

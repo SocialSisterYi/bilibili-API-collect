@@ -1,5 +1,12 @@
 # 用户状态数
 
+- [关系状态数](#关系状态数)
+- [UP主状态数](#UP主状态数)
+- [~~订阅&投稿状态数（已弃用）~~](#~~订阅&投稿状态数（已弃用）~~)
+- [相簿投稿数](#相簿投稿数)
+
+---
+
 ## 关系状态数
 > http://api.bilibili.com/x/relation/stat
 
@@ -245,7 +252,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum' \
 </details>
 </details>
 
-## 投稿相簿数
+## 相簿投稿数
 
 > http://api.vc.bilibili.com/link_draw/v1/doc/upload_count
 
