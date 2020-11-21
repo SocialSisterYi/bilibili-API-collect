@@ -3,6 +3,8 @@
 - [查询用户粉丝明细](#查询用户粉丝明细)
 - [查询用户关注明细](#查询用户关注明细)
 - [查询共同关注明细](#查询共同关注明细)
+- [查询悄悄关注明细](#查询悄悄关注明细)
+- [查询黑名单明细](#查询黑名单明细)
 - [操作用户关系（关注/取关 等）](#操作用户关系（关注/取关 等）)
 - [批量操作用户关系（仅关注&拉黑）](#批量操作用户关系（仅关注&拉黑）)
 - [查询用户与自己关系（仅查关注）](#查询用户与自己关系（仅查关注）)
@@ -70,40 +72,40 @@
 | n    | obj  | 粉丝（n+1） | 按照关注顺序排列 |
 | ……   | obj  | ……          | ……               |
 
-数组`list`中的对象：
+`list`中的对象：
 
 | 字段            | 类型 | 内容         | 备注                                    |
 | --------------- | ---- | ------------ | --------------------------------------- |
 | mid             | num  | 用户UID      |                                         |
 | attribute       | num  | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num  | 成为粉丝时间 | 时间戳<br />互关后刷新                  |
-| tag             | null |              | 作用尚不明确                            |
-| special         | num  | 0            | 作用尚不明确                            |
+| tag             | null |              |                                         |
+| special         | num  | 0            |                                         |
 | uname           | str  | 用户昵称     |                                         |
 | face            | str  | 用户头像url  |                                         |
 | sign            | str  | 用户签名     |                                         |
 | official_verify | obj  | 认证信息     |                                         |
 | vip             | obj  | 会员信息     |                                         |
 
-数组`list`中的对象中的`official_verify`对象：
+`list`中的对象中的`official_verify`对象：
 
 | 字段 | 类型 | 内容         | 备注                |
 | ---- | ---- | ------------ | ------------------- |
 | type | num  | 用户认证类型 | -1：无<br />1：认证 |
 | desc | str  | 用户认证信息 | 无为空              |
 
-数组`list`中的对象中的`vip`对象：
+`list`中的对象中的`vip`对象：
 
-| 字段          | 类型 | 内容         | 备注                                |
-| ------------- | ---- | ------------ | ----------------------------------- |
-| vipType       | num  | 大会员类型   | 0：无<br />1：月会员<br />2：年会员 |
-| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                         |
-| dueRemark     | str  | 空           | 作用尚不明确                        |
-| accessStatus  | num  | 0            | 作用尚不明确                        |
-| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                    |
-| vipStatusWarn | str  | 空           | 作用尚不明确                        |
-| themeType     | num  | 0            | 作用尚不明确                        |
-| label         | obj  | ？？？       | 作用尚不明确                        |
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
 
 `vip`中的`label`对象：
 
@@ -247,7 +249,7 @@ data 对象：
 | mid             | num                                      | 用户UID      |                                         |
 | attribute       | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num                                      | 关注对方时间 | 时间戳<br />互关后刷新                  |
-| tag             | null默认分组<br />array存在至少一个分组 | 分组ID       | 作用尚不明确                            |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                             |
 | special         | num                                      | 特别关注标志 | 0：否<br />1：是                        |
 | uname           | str                                      | 用户昵称     |                                         |
 | face            | str                                      | 用户头像url  |                                         |
@@ -263,25 +265,25 @@ data 对象：
 | n    | num  | 位于分组（n+1）的分组ID |      |
 | ……   | num  | ……                      | ……   |
 
-数组`list`中的对象中的`official_verify`对象：
+`list`中的对象中的`official_verify`对象：
 
 | 字段 | 类型 | 内容         | 备注                |
 | ---- | ---- | ------------ | ------------------- |
-| type | num  | 用户认证类型 | -1：无<br />0：认证 |
+| type | num  | 用户认证类型 | -1：无<br />1：认证 |
 | desc | str  | 用户认证信息 | 无为空              |
 
-数组`list`中的对象中的`vip`对象：
+`list`中的对象中的`vip`对象：
 
-| 字段          | 类型 | 内容         | 备注                                |
-| ------------- | ---- | ------------ | ----------------------------------- |
-| vipType       | num  | 大会员类型   | 0：无<br />1：月会员<br />2：年会员 |
-| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                         |
-| dueRemark     | str  | 空           | 作用尚不明确                        |
-| accessStatus  | num  | 0            | 作用尚不明确                        |
-| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                    |
-| vipStatusWarn | str  | 空           | 作用尚不明确                        |
-| themeType     | num  | 0            | 作用尚不明确                        |
-| label         | obj  | ？？？       | 作用尚不明确                        |
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
 
 `vip`中的`label`对象：
 
@@ -418,18 +420,18 @@ data 对象：
 
 数组`list`中的对象：
 
-| 字段            | 类型                                    | 内容         | 备注                                    |
-| --------------- | --------------------------------------- | ------------ | --------------------------------------- |
-| mid             | num                                     | 用户UID      |                                         |
-| attribute       | num                                     | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
-| mtime           | num                                     | 关注对方时间 | 时间戳<br />互关后刷新                  |
-| tag             | null默认分组<br />array存在至少一个分组 | 分组ID       | 作用尚不明确                            |
-| special         | num                                     | 特别关注标志 | 0：否<br />1：是                        |
-| uname           | str                                     | 用户昵称     |                                         |
-| face            | str                                     | 用户头像url  |                                         |
-| sign            | str                                     | 用户签名     |                                         |
-| official_verify | obj                                     | 认证信息     |                                         |
-| vip             | obj                                     | 会员信息     |                                         |
+| 字段            | 类型                                        | 内容         | 备注                                    |
+| --------------- | ------------------------------------------- | ------------ | --------------------------------------- |
+| mid             | num                                         | 用户UID      |                                         |
+| attribute       | num                                         | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
+| mtime           | num                                         | 关注对方时间 | 时间戳<br />互关后刷新                  |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                                         |
+| special         | num                                         | 特别关注标志 | 0：否<br />1：是                        |
+| uname           | str                                         | 用户昵称     |                                         |
+| face            | str                                         | 用户头像url  |                                         |
+| sign            | str                                         | 用户签名     |                                         |
+| official_verify | obj                                         | 认证信息     |                                         |
+| vip             | obj                                         | 会员信息     |                                         |
 
 数组`list`中的对象中的`tag`数组：
 
@@ -439,25 +441,25 @@ data 对象：
 | n    | num  | 位于分组（n+1）的分组ID |      |
 | ……   | num  | ……                      | ……   |
 
-数组`list`中的对象中的`official_verify`对象：
+`list`中的对象中的`official_verify`对象：
 
 | 字段 | 类型 | 内容         | 备注                |
 | ---- | ---- | ------------ | ------------------- |
-| type | num  | 用户认证类型 | -1：无<br />0：认证 |
+| type | num  | 用户认证类型 | -1：无<br />1：认证 |
 | desc | str  | 用户认证信息 | 无为空              |
 
-数组`list`中的对象中的`vip`对象：
+`list`中的对象中的`vip`对象：
 
-| 字段          | 类型 | 内容         | 备注                                |
-| ------------- | ---- | ------------ | ----------------------------------- |
-| vipType       | num  | 大会员类型   | 0：无<br />1：月会员<br />2：年会员 |
-| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                         |
-| dueRemark     | str  | 空           | 作用尚不明确                        |
-| accessStatus  | num  | 0            | 作用尚不明确                        |
-| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                    |
-| vipStatusWarn | str  | 空           | 作用尚不明确                        |
-| themeType     | num  | 0            | 作用尚不明确                        |
-| label         | obj  | ？？？       | 作用尚不明确                        |
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
 
 `vip`中的`label`对象：
 
@@ -544,6 +546,322 @@ curl -G 'http://api.bilibili.com/x/relation/same/followings' \
         ],
         "re_version": 2498273968,
         "total": 38
+    }
+}
+```
+
+</details>
+
+## 查询悄悄关注明细
+
+<img src="/imgs/relation.svg" width="100" height="100" />
+
+> http://api.bilibili.com/x/relation/whispers 
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注     |
+| ---------- | ---- | ------------ | ----------- | -------- |
+| access_key | str  | APP登录Token | APP方式必要 |          |
+| ps         | num  | 每页项数     | 非必要      | 默认为50 |
+| pn         | num  | 页码         | 非必要      | 默认为1  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 信息本体 |                                                   |
+
+data 对象：
+
+| 字段       | 类型  | 内容     | 备注         |
+| ---------- | ----- | -------- | ------------ |
+| list       | array | 明细列表 |              |
+| re_version | num   | ？？？   | 作用尚不明确 |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容        | 备注             |
+| ---- | ---- | ----------- | ---------------- |
+| 0    | obj  | 关注1       |                  |
+| n    | obj  | 关注（n+1） | 按照关注顺序排列 |
+| ……   | obj  | ……          | ……               |
+
+数组`list`中的对象：
+
+| 字段            | 类型                                        | 内容         | 备注                                    |
+| --------------- | ------------------------------------------- | ------------ | --------------------------------------- |
+| mid             | num                                         | 用户UID      |                                         |
+| attribute       | num                                         | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
+| mtime           | num                                         | 关注对方时间 | 时间戳<br />互关后刷新                  |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                                         |
+| special         | num                                         | 特别关注标志 | 0：否<br />1：是                        |
+| uname           | str                                         | 用户昵称     |                                         |
+| face            | str                                         | 用户头像url  |                                         |
+| sign            | str                                         | 用户签名     |                                         |
+| official_verify | obj                                         | 认证信息     |                                         |
+| vip             | obj                                         | 会员信息     |                                         |
+
+数组`list`中的对象中的`tag`数组：
+
+| 项   | 类型 | 内容                    | 备注 |
+| ---- | ---- | ----------------------- | ---- |
+| 0    | num  | 位于分组1的分组ID       |      |
+| n    | num  | 位于分组（n+1）的分组ID |      |
+| ……   | num  | ……                      | ……   |
+
+`list`中的对象中的`official_verify`对象：
+
+| 字段 | 类型 | 内容         | 备注                |
+| ---- | ---- | ------------ | ------------------- |
+| type | num  | 用户认证类型 | -1：无<br />1：认证 |
+| desc | str  | 用户认证信息 | 无为空              |
+
+`list`中的对象中的`vip`对象：
+
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
+
+`vip`中的`label`对象：
+
+| 字段 | 类型 | 内容 | 备注         |
+| ---- | ---- | ---- | ------------ |
+| path | str  | 空   | 作用尚不明确 |
+
+**示例：**
+
+获取悄悄关注明细
+
+```shell
+curl -G 'http://api.bilibili.com/x/relation/whispers' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "mid": 178429408,
+                "attribute": 1,
+                "mtime": 1605972105,
+                "tag": null,
+                "special": 0,
+                "uname": "老弟一号",
+                "face": "http://i2.hdslb.com/bfs/face/21426275f3d3149b96b88783275205ba574c09e3.jpg",
+                "sign": "萌新硬件玩家，前垃圾佬～(◦˙▽˙◦某宝店 老弟一号 粉丝群679540094商务合作V13869651328",
+                "official_verify": {
+                    "type": 0,
+                    "desc": "知识领域优质UP主"
+                },
+                "vip": {
+                    "vipType": 2,
+                    "vipDueDate": 1632499200000,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 1,
+                    "vipStatusWarn": "",
+                    "themeType": 0,
+                    "label": {
+                        "path": ""
+                    }
+                }
+            }
+        ],
+        "re_version": 2137574562
+    }
+}
+```
+
+</details>
+
+## 查询黑名单明细
+
+> http://api.bilibili.com/x/relation/blacks 
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注     |
+| ---------- | ---- | ------------ | ----------- | -------- |
+| access_key | str  | APP登录Token | APP方式必要 |          |
+| ps         | num  | 每页项数     | 非必要      | 默认为50 |
+| pn         | num  | 页码         | 非必要      | 默认为1  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 信息本体 |                                                   |
+
+data 对象：
+
+| 字段       | 类型  | 内容         | 备注         |
+| ---------- | ----- | ------------ | ------------ |
+| list       | array | 明细列表     |              |
+| re_version | num   | ？？？       | 作用尚不明确 |
+| total      | num   | 黑名单总计数 |              |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容        | 备注             |
+| ---- | ---- | ----------- | ---------------- |
+| 0    | obj  | 关注1       |                  |
+| n    | obj  | 关注（n+1） | 按照关注顺序排列 |
+| ……   | obj  | ……          | ……               |
+
+数组`list`中的对象：
+
+| 字段            | 类型 | 内容         | 备注                   |
+| --------------- | ---- | ------------ | ---------------------- |
+| mid             | num  | 用户UID      |                        |
+| attribute       | num  | 关注属性     | 128：已拉黑            |
+| mtime           | num  | 关注对方时间 | 时间戳<br />互关后刷新 |
+| tag             | null |              |                        |
+| special         | num  | 0            |                        |
+| uname           | str  | 用户昵称     |                        |
+| face            | str  | 用户头像url  |                        |
+| sign            | str  | 用户签名     |                        |
+| official_verify | obj  | 认证信息     |                        |
+| vip             | obj  | 会员信息     |                        |
+
+`list`中的对象中的`official_verify`对象：
+
+| 字段 | 类型 | 内容         | 备注                |
+| ---- | ---- | ------------ | ------------------- |
+| type | num  | 用户认证类型 | -1：无<br />1：认证 |
+| desc | str  | 用户认证信息 | 无为空              |
+
+`list`中的对象中的`vip`对象：
+
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
+
+`vip`中的`label`对象：
+
+| 字段 | 类型 | 内容 | 备注         |
+| ---- | ---- | ---- | ------------ |
+| path | str  | 空   | 作用尚不明确 |
+
+**示例：**
+
+获取黑名单明细
+
+```shell
+curl -G 'http://api.bilibili.com/x/relation/blacks' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "mid": 22179720,
+                "attribute": 128,
+                "mtime": 1603032789,
+                "tag": null,
+                "special": 0,
+                "uname": "咩2016",
+                "face": "http://i0.hdslb.com/bfs/face/41fe435a7e62eae605a5908652f32f3afff2ae74.jpg",
+                "sign": "",
+                "official_verify": {
+                    "type": 0,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": "",
+                    "themeType": 0,
+                    "label": {
+                        "path": ""
+                    }
+                }
+            },
+            {
+                "mid": 16174624,
+                "attribute": 128,
+                "mtime": 1603026420,
+                "tag": null,
+                "special": 0,
+                "uname": "其实死亡没有那么痛",
+                "face": "http://i2.hdslb.com/bfs/face/79257f5a2e7194a71337ccca5927afba7706d316.jpg",
+                "sign": "等我，我马上就来",
+                "official_verify": {
+                    "type": 0,
+                    "desc": ""
+                },
+                "vip": {
+                    "vipType": 0,
+                    "vipDueDate": 0,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 0,
+                    "vipStatusWarn": "",
+                    "themeType": 0,
+                    "label": {
+                        "path": ""
+                    }
+                }
+            }
+        ],
+        "re_version": 897205356,
+        "total": 2
     }
 }
 ```

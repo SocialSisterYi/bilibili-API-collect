@@ -936,17 +936,17 @@ curl 'http://api.bilibili.com/x/space/notice/set' \
 
 `toutu`对象：
 
-| 字段          | 类型 | 内容                 | 备注                                                   |
-| ------------- | ---- | -------------------- | ------------------------------------------------------ |
-| sid           | num  | 1                    | 作用尚不明确                                           |
-| expire        | num  | 到期时间？           | 时间戳？<br />作用尚不明确                             |
-| s_img         | str  | 空间头图小图相对路径 | 完整url为`http://i0.hdslb.com/`+相对路径               |
-| l_img         | str  | 空间头图相对路径     | **同上**                                               |
-| android_img   | str  | 安卓端头图           | 未启用<br />注：手机版头图与web版不同，用另一个api获取 |
-| iphone_img    | str  | iPhone端头图         | 未启用                                                 |
-| ipad_img      | str  | iPad端头图           | 未启用                                                 |
-| thumbnail_img | str  | 缩略图               | 未启用                                                 |
-| platform      | num  | 0                    | 作用尚不明确                                           |
+| 字段          | 类型 | 内容                 | 备注                                               |
+| ------------- | ---- | -------------------- | -------------------------------------------------- |
+| sid           | num  | 空间头图ID           |                                                    |
+| expire        | num  | 到期时间？           | 时间戳？<br />作用尚不明确                         |
+| s_img         | str  | 空间头图小图相对路径 | 完整url为`http://i0.hdslb.com/`+相对路径           |
+| l_img         | str  | 空间头图相对路径     | **同上**                                           |
+| android_img   | str  | 空                   | 注：**手机端头图与web端不同，需要用另一个api获取** |
+| iphone_img    | str  | 空                   |                                                    |
+| ipad_img      | str  | 空                   |                                                    |
+| thumbnail_img | str  | 缩略图               |                                                    |
+| platform      | num  | 0                    | 作用尚不明确                                       |
 
 **示例：**
 
@@ -1551,10 +1551,11 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 `data`对象：
 
-| 字段 | 类型 | 内容     | 备注 |
-| ---- | ---- | -------- | ---- |
-| list | obj  | 列表信息 |      |
-| page | obj  | 页面信息 |      |
+| 字段            | 类型 | 内容           | 备注 |
+| --------------- | ---- | -------------- | ---- |
+| list            | obj  | 列表信息       |      |
+| page            | obj  | 页面信息       |      |
+| episodic_button | obj  | “播放全部“按钮 |      |
 
 `data`中的`list`对象：
 
@@ -1618,6 +1619,13 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 | pn    | num  | 当前页码   |      |
 | ps    | num  | 每页项数   |      |
 
+`data`中的`episodic_button`对象：
+
+| 字段 | 类型 | 内容          | 备注 |
+| ---- | ---- | ------------- | ---- |
+| text | str  | 按钮文字      |      |
+| uri  | str  | 全部播放页url |      |
+
 **示例：**
 
 `pn`（页码）和`ps`（每页项数）只改变`vlist`中成员的多少与内容
@@ -1626,6 +1634,7 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/arc/search' \
+--data-urlencode 'mid=53456' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1'
 ```
@@ -1635,81 +1644,95 @@ curl -G 'http://api.bilibili.com/x/space/arc/search' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"list": {
-			"tlist": {
-				"1": {
-					"tid": 1,
-					"count": 17,
-					"name": "动画"
-				},
-				"160": {
-					"tid": 160,
-					"count": 43,
-					"name": "生活"
-				},
-				"3": {
-					"tid": 3,
-					"count": 33,
-					"name": "音乐"
-				},
-				"4": {
-					"tid": 4,
-					"count": 70,
-					"name": "游戏"
-				}
-			},
-			"vlist": [{
-				"comment": 4626,
-				"typeid": 17,
-				"play": 954380,
-				"pic": "//i0.hdslb.com/bfs/archive/b40edb19d3000763e1984f854f8f13d2159e13bc.jpg",
-				"subtitle": "",
-				"description": "游戏：动物森友会 平台：Switch\n封面画师：微博@HRDrifter \n终于盼来了动森的新作，和大家一起守夜等着游戏解锁，终于能在第一时间和大家一起分享这份喜悦~\n但是为什么这份高兴的心情最后会变成越来越多的房债呢……\n我的微博：@_warma_",
-				"copyright": "",
-				"title": "【warma】用水壶往海里浇水海平面会升高吗？《动物森友会》",
-				"review": 0,
-				"author": "Warma",
-				"mid": 53456,
-				"created": 1585311134,
-				"length": "48:16",
-				"video_review": 25064,
-				"aid": 667551016,
-				"bvid": "BV1na4y1t7Bf",
-				"hide_click": false,
-				"is_pay": 0,
-				"is_union_video": 0
-			}, {
-				"comment": 3372,
-				"typeid": 17,
-				"play": 838204,
-				"pic": "//i1.hdslb.com/bfs/archive/fc2bd95021e5c88a16b16a3bef803e0fc141d059.jpg",
-				"subtitle": "",
-				"description": "游戏：Rimworld\n上一期：av96139881\n点赞过8W会更新下一期的~\n录制这一期的时候嗓子炎症加剧了，所以说话有点点闷，不过现在已经好很多了~ 下一期要录的话，我会在嗓子完全康复后再录制的，大家放心~\n我的微博：@_warma_",
-				"copyright": "",
-				"title": "【warma实况】拿起狼牙棒去交朋友！《Rimworld》【第二期】",
-				"review": 0,
-				"author": "Warma",
-				"mid": 53456,
-				"created": 1584758891,
-				"length": "21:40",
-				"video_review": 12964,
-				"aid": 98061972,
-				"bvid": "BV1vE411c7Wu",
-				"hide_click": false,
-				"is_pay": 0,
-				"is_union_video": 0
-			}]
-		},
-		"page": {
-			"count": 163,
-			"pn": 1,
-			"ps": 2
-		}
-	}
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": {
+            "tlist": {
+                "1": {
+                    "tid": 1,
+                    "count": 26,
+                    "name": "动画"
+                },
+                "160": {
+                    "tid": 160,
+                    "count": 42,
+                    "name": "生活"
+                },
+                "211": {
+                    "tid": 211,
+                    "count": 3,
+                    "name": "美食"
+                },
+                "3": {
+                    "tid": 3,
+                    "count": 33,
+                    "name": "音乐"
+                },
+                "4": {
+                    "tid": 4,
+                    "count": 72,
+                    "name": "游戏"
+                }
+            },
+            "vlist": [
+                {
+                    "comment": 3558,
+                    "typeid": 47,
+                    "play": 1275661,
+                    "pic": "//i2.hdslb.com/bfs/archive/90157806a34646ac2d4c6af3e8b6156cb3460d14.jpg",
+                    "subtitle": "",
+                    "description": "第一期：BV1ak4y1B7aG\n第二期：BV1eA411Y7FN\n脚本/绘画/配音/动画/片尾曲：warma\n第三期终于做完啦！这是一个以我平时发呆的时候想到的一些灵感组成的冷笑话合集，名字叫《沃玛的生活》，可以当作日常搞笑单元小动画来看。\n如果你喜欢这个系列的话请点赞投币收藏一键三连给我一些继续制作的动力吧，我真的非常非常需要更多的动力！\n祝看得开心~\n我的微博：@_warma_",
+                    "copyright": "",
+                    "title": "【warma】沃玛的新番更新！从现在开始放飞自我【沃玛的生活/第三期】",
+                    "review": 0,
+                    "author": "Warma",
+                    "mid": 53456,
+                    "created": 1605844817,
+                    "length": "05:16",
+                    "video_review": 7470,
+                    "aid": 585275804,
+                    "bvid": "BV1sz4y1y7KJ",
+                    "hide_click": false,
+                    "is_pay": 0,
+                    "is_union_video": 0,
+                    "is_steins_gate": 0
+                },
+                {
+                    "comment": 2979,
+                    "typeid": 21,
+                    "play": 840676,
+                    "pic": "//i2.hdslb.com/bfs/archive/b43f88c6ebae8fdc7dfb663f6f6f2931b924c763.jpg",
+                    "subtitle": "",
+                    "description": "前一阵子过生日，大家的礼物经过几番转寄终于收到了~于是录了这期礼物开箱视频。\n现在也在感慨，大家的礼物真的都太强了，居然这些全都是手工做的，真的好厉害！\n这些手工礼物背后得花多少时间和心力啊……这些对我来说都是无价的礼物，制作礼物的大家真的有心了，谢谢！！\n收到这些礼物真的很开心，视频的封面也是在这样激动的情况下画出来的，祝你看得开心~\n我的微博：@_warma_",
+                    "copyright": "",
+                    "title": "【warma】来开箱！大家寄来的生日礼物",
+                    "review": 0,
+                    "author": "Warma",
+                    "mid": 53456,
+                    "created": 1604635221,
+                    "length": "24:28",
+                    "video_review": 10476,
+                    "aid": 287744380,
+                    "bvid": "BV1xf4y1q7XN",
+                    "hide_click": false,
+                    "is_pay": 0,
+                    "is_union_video": 0,
+                    "is_steins_gate": 0
+                }
+            ]
+        },
+        "page": {
+            "pn": 1,
+            "ps": 2,
+            "count": 176
+        },
+        "episodic_button": {
+            "text": "播放全部",
+            "uri": "//www.bilibili.com/medialist/play/53456?from=space"
+        }
+    }
 }
 ```
 
