@@ -156,8 +156,6 @@ curl -G 'http://api.bilibili.com/x/space/upstat' \
 
 <details>
 <summary>查看折叠内容</summary>
-
-
 > http://api.bilibili.com/x/space/navnum
 
 *请求方式：GET*

@@ -1,7 +1,7 @@
 # 登录基本信息
 
 - [导航栏用户信息](#导航栏用户信息)
-- [登录用户信息2（web端）（仅部分）](#登录用户信息2（web端）（仅部分）)
+- [~~登录用户信息仅部分（已弃用）~~](#~~登录用户信息仅部分（已弃用）~~)
 - [登录用户信息（APP端）](#登录用户信息（APP端）)
 - [登录用户状态数（双端）](#登录用户状态数（双端）)
 - [获取硬币数](#获取硬币数)
@@ -187,7 +187,10 @@ curl 'http://api.bilibili.com/nav' \
 
 </details>
 
-## 登录用户信息（仅部分）
+## ~~登录用户信息仅部分（已弃用）~~
+
+<details>
+<summary>查看折叠内容</summary>
 
 > http://account.bilibili.com/home/userInfo
 
@@ -271,6 +274,8 @@ curl 'http://account.bilibili.com/home/userInfo' \
 	}
 }
 ```
+
+</details>
 
 </details>
 
