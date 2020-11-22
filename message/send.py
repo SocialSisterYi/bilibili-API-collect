@@ -25,7 +25,7 @@ def send_message_text(SESSDATA: str, token: str, sender: int, receiver: int, con
                                  "csrf_token": token
                              })
         if json.loads(data.text)["msg"] != "ok":
-            print("Some things goes wrong. Check data.")
+            print("Some things went wrong. Check data.")
             print(data.text)
     except Exception as e:
         print(e)
