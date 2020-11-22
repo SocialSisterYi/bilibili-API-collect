@@ -8,6 +8,15 @@
 
  [引导关注卡片](https://www.bilibili.com/blackboard/activity-c8a0iDRQy.html )
 
+---
+
+- [获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）](#获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）)
+- [实例](#实例)
+  - [获取互动弹幕](#获取互动弹幕)
+  - [获取BAS（代码）弹幕专包](#获取BAS（代码）弹幕专包)
+
+---
+
 ## 获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）
 
 > http://api.bilibili.com/x/v2/dm/web/view
@@ -209,7 +218,9 @@ curl -G 'http://api.bilibili.com/x/v2/dm/web/view' \
 
 响应正文为protubuf二进制数据
 
-## 获取互动弹幕
+## 实例
+
+### 获取互动弹幕
 
 获取视频`av797164471(CID=236871317)`的互动弹幕
 
@@ -258,7 +269,7 @@ for i in range(commandDms_len):
 ---弹幕ID（字串）= 38469676112019463
 ```
 
-## 获取BAS（代码）弹幕专包
+### 获取BAS（代码）弹幕专包
 
 BAS弹幕（`pool=2` `mode=9`）只能从此包获取，代码弹幕（`pool=2` `mode=8`）也能从此包获取
 

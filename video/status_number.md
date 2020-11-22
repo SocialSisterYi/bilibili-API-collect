@@ -1,6 +1,11 @@
 # 视频状态数
 
-## 视频状态数1（仅avID）
+- [视频状态数（仅avID）](#视频状态数（仅avID）)
+- [视频状态数（bvID/avID）](#视频状态数（bvID/avID）)
+
+---
+
+## 视频状态数（仅avID）
 > http://api.bilibili.com/archive_stat/stat
 
 *请求方式：GET*
@@ -79,7 +84,7 @@ curl -G 'http://api.bilibili.com/archive_stat/stat' \
 
 </details>
 
-## 视频状态数2（禁python）
+## 视频状态数（bvID/avID）
 
 > http://api.bilibili.com/x/web-interface/archive/stat
 

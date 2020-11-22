@@ -1,5 +1,10 @@
 # 搜索
 
+- [综合搜索（web端）](#综合搜索（web端）)
+- [分类搜索（web端）](#分类搜索（web端）)
+
+---
+
 ## 综合搜索（web端）
 
 > http://api.bilibili.com/x/web-interface/search/all/v2

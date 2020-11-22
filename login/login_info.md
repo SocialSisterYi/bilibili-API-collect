@@ -1,8 +1,14 @@
 # 登录基本信息
 
-**本页所有操作均需登录（Cookie或APP）**
+- [导航栏用户信息](#导航栏用户信息)
+- [~~登录用户信息仅部分（已弃用）~~](#~~登录用户信息仅部分（已弃用）~~)
+- [登录用户信息（APP端）](#登录用户信息（APP端）)
+- [登录用户状态数（双端）](#登录用户状态数（双端）)
+- [获取硬币数](#获取硬币数)
 
-## 登录用户信息1（web端）
+---
+
+## 导航栏用户信息
 
 > http://api.bilibili.com/nav（带有转义）
 >
@@ -25,34 +31,34 @@
 
 `data`对象：
 
-| 字段                 | 类型 | 内容             | 备注                            |
-| -------------------- | ---- | ---------------- | ------------------------------- |
-| isLogin              | bool | 是否已登录       | false：未登录<br />true：已登录 |
-| email_verified       | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证        |
-| face                 | str  | 用户头像url      |                                 |
-| level_info           | obj  | 等级信息         |                                 |
-| mid                  | num  | 用户UID          |                                 |
-| mobile_verified      | num  | 是否验证手机号   | 0：未验证<br />1：已验证        |
-| money                | num  | 拥有硬币数       |                                 |
-| moral                | num  | 当前节操值       | 上限70                          |
-| official             | obj  | 认证信息         |                                 |
-| officialVerify       | obj  | 认证信息2        |                                 |
-| pendant              | obj  | 头像框信息       |                                 |
-| scores               | num  | 0                | **作用尚不明确**                |
-| uname                | str  | 用户昵称         |                                 |
-| vipDueDate           | num  | 大会员到期时间   | 毫秒 时间戳                     |
-| vipStatus            | num  | 会员开通状态     | 0：无<br />1：有                |
-| vipType              | num  | 大会员类型       | 0：无<br />1：月度<br />2：年度 |
-| vip_pay_type         | num  | 会员开通状态     | 0：无<br />1：有                |
-| vip_theme_type       | num  | 0                | **作用尚不明确**                |
-| vip_label            | obj  | 大会员信息       |                                 |
-| vip_avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示          |
-| vip_nickname_color   | str  | 会员昵称颜色     | 颜色码                          |
-| wallet               | obj  | B币信息          |                                 |
-| has_shop             | bool | false            | **作用尚不明确**                |
-| shop_url             | str  | 空               | **作用尚不明确**                |
-| allowance_count      | num  | 0                | **作用尚不明确**                |
-| answer_status        | num  | 0                | **作用尚不明确**                |
+| 字段                 | 类型 | 内容             | 备注                                            |
+| -------------------- | ---- | ---------------- | ----------------------------------------------- |
+| isLogin              | bool | 是否已登录       | false：未登录<br />true：已登录                 |
+| email_verified       | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证                        |
+| face                 | str  | 用户头像url      |                                                 |
+| level_info           | obj  | 等级信息         |                                                 |
+| mid                  | num  | 用户UID          |                                                 |
+| mobile_verified      | num  | 是否验证手机号   | 0：未验证<br />1：已验证                        |
+| money                | num  | 拥有硬币数       |                                                 |
+| moral                | num  | 当前节操值       | 上限为70                                        |
+| official             | obj  | 认证信息         |                                                 |
+| officialVerify       | obj  | 认证信息2        |                                                 |
+| pendant              | obj  | 头像框信息       |                                                 |
+| scores               | num  | 0                | 作用尚不明确                                    |
+| uname                | str  | 用户昵称         |                                                 |
+| vipDueDate           | num  | 会员到期时间     | 毫秒 时间戳                                     |
+| vipStatus            | num  | 会员开通状态     | 0：无<br />1：有                                |
+| vipType              | num  | 会员类型         | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vip_pay_type         | num  | 会员开通状态     | 0：无<br />1：有                                |
+| vip_theme_type       | num  | 0                | 作用尚不明确                                    |
+| vip_label            | obj  | 会员标签         |                                                 |
+| vip_avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示                          |
+| vip_nickname_color   | str  | 会员昵称颜色     | 颜色码                                          |
+| wallet               | obj  | B币钱包信息      |                                                 |
+| has_shop             | bool | 是否拥有推广商品 | false：无<br />true：有                         |
+| shop_url             | str  | 商品推广页面url  |                                                 |
+| allowance_count      | num  | 0                | 作用尚不明确                                    |
+| answer_status        | num  | 0                | 作用尚不明确                                    |
 
 `data`中的`level_info`对象：
 
@@ -81,29 +87,29 @@
 
 `data`中的`pendant`对象：
 
-| 字段   | 类型 | 内容        | 备注             |
-| ------ | ---- | ----------- | ---------------- |
-| pid    | num  | 挂件id      |                  |
-| name   | str  | 挂件名称    |                  |
-| image  | str  | 挂件图片url |                  |
-| expire | num  | 0           | **作用尚不明确** |
+| 字段   | 类型 | 内容        | 备注         |
+| ------ | ---- | ----------- | ------------ |
+| pid    | num  | 挂件id      |              |
+| name   | str  | 挂件名称    |              |
+| image  | str  | 挂件图片url |              |
+| expire | num  | 0           | 作用尚不明确 |
 
 `data`中的`vip_label`对象：
 
-| 字段        | 类型 | 内容         | 备注             |
-| ----------- | ---- | ------------ | ---------------- |
-| path        | str  | 空           | **作用尚不明确** |
-| text        | str  | 会员类型文字 |                  |
-| label_theme | str  | 会员类型     |                  |
+| 字段        | 类型 | 内容     | 备注                                                         |
+| ----------- | ---- | -------- | ------------------------------------------------------------ |
+| path        | str  | 空       | 作用尚不明确                                                 |
+| text        | str  | 会员名称 |                                                              |
+| label_theme | str  | 会员标签 | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
 
 `data`中的`wallet`对象：
 
-| 字段            | 类型 | 内容          | 备注             |
-| --------------- | ---- | ------------- | ---------------- |
-| mid             | num  | 登录用户UID   |                  |
-| bcoin_balance   | num  | 拥有B币数     |                  |
-| coupon_balance  | num  | 每月奖励B币数 |                  |
-| coupon_due_time | num  | 0             | **作用尚不明确** |
+| 字段            | 类型 | 内容          | 备注         |
+| --------------- | ---- | ------------- | ------------ |
+| mid             | num  | 登录用户UID   |              |
+| bcoin_balance   | num  | 拥有B币数     |              |
+| coupon_balance  | num  | 每月奖励B币数 |              |
+| coupon_due_time | num  | 0             | 作用尚不明确 |
 
 **示例：**
 
@@ -181,7 +187,10 @@ curl 'http://api.bilibili.com/nav' \
 
 </details>
 
-## 登录用户信息2（web端）（仅部分）
+## ~~登录用户信息仅部分（已弃用）~~
+
+<details>
+<summary>查看折叠内容</summary>
 
 > http://account.bilibili.com/home/userInfo
 
@@ -265,6 +274,8 @@ curl 'http://account.bilibili.com/home/userInfo' \
 	}
 }
 ```
+
+</details>
 
 </details>
 

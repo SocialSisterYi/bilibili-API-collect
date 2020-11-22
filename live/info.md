@@ -1,5 +1,10 @@
 # 直播间基本信息
 
+- [获取用户对应的直播间状态](#获取用户对应的直播间状态)
+- [获取房间页初始化信息](#获取房间页初始化信息)
+
+---
+
 ## 获取用户对应的直播间状态
 
 > http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld
@@ -32,8 +37,8 @@
 | liveStatus     | num  | 直播状态         | 0：未开播<br />1：直播中 |
 | url            | str  | 直播间网页url    |                          |
 | title          | str  | 直播间标题       |                          |
-| cover          | str  | 直播间封面       |                          |
-| online         | num  | 直播间人气       | 值为上次直播刷新         |
+| cover          | str  | 直播间封面url    |                          |
+| online         | num  | 直播间人气       | 值为上次直播时刷新       |
 | roomid         | num  | 直播间ID（短号） |                          |
 | broadcast_type | num  | 0                |                          |
 | online_hidden  | num  | 0                |                          |

@@ -6,6 +6,14 @@ web端短信登录流程：
 2. 发送短信，使用国际地区代码`cid`+手机号码`tel`+登录密钥`key`+极验`challenge`+验证结果`validate`+验证结果`seccode`
 3. 提交短信验证码以验证登录操作，使用国际地区代码`cid`+手机号码`tel`+短信验证码`smsCode`
 
+---
+
+- [获取国际地区代码（web端）](#获取国际地区代码（web端）)
+- [发送短信验证码（web端）](#发送短信验证码（web端）)
+- [使用短信验证码登录（web端）](#使用短信验证码登录（web端）)
+
+---
+
 ## 获取国际地区代码（web端）
 
 > http://passport.bilibili.com/web/generic/country/list

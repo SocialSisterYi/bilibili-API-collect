@@ -2,6 +2,10 @@
 
 <img src="/imgs/ranking.svg" width="100" height="100"/>
 
+- [获取分区视频排行榜列表](#获取分区视频排行榜列表)
+
+---
+
 ## 获取分区视频排行榜列表
 
 >http://api.bilibili.com/x/web-interface/ranking/region

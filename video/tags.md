@@ -1,5 +1,11 @@
 # 视频TAG
 
+- [获取视频TAG信息](#获取视频TAG信息)
+- [点赞&取消点赞视频TAG](#点赞&取消点赞视频TAG)
+- [点踩&取消点踩视频TAG](#点踩&取消点踩视频TAG)
+
+---
+
 ## 获取视频TAG信息
 
 > http://api.bilibili.com/x/tag/archive/tags

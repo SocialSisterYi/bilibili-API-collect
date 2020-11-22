@@ -2,6 +2,12 @@
 
 <img src="/imgs/ploading.gif" width="100" height="100"/>
 
+- [获取视频详细信息（web端）](#获取视频详细信息（web端）)
+- [获取视频简介](#获取视频简介)
+- [查询视频分P列表  (avID/bvID转CID)](#查询视频分P列表  (avID/bvID转CID))
+
+---
+
 ## 获取视频详细信息（web端）
 
 > http://api.bilibili.com/x/web-interface/view
@@ -451,7 +457,7 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 **示例：**
 
-查看视频~~（教主的咕鸽）~~`av39330059`/`BV1Bt411z799`的简介
+查看视频（教主的咕鸽）`av39330059`/`BV1Bt411z799`的简介
 
 avID方式：
 
