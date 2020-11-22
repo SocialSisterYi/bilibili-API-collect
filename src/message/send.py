@@ -29,11 +29,3 @@ def send_message_text(SESSDATA: str, token: str, sender: int, receiver: int, con
             print(data.text)
     except Exception as e:
         print(e)
-
-
-if __name__ == '__main__':
-    send_message_text("6ba530d5%2C1620206403%2Cf1ba2*b1",
-                      "a5b50cf4773f13debd8e90a4f7961ce2",
-                      325272949,
-                      437952226,
-                      "Hello World!\nby Python[doge]")

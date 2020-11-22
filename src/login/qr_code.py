@@ -13,7 +13,3 @@ def get_qr_code():
         return data["url"], data["oauthKey"]
     except Exception as e:
         print(e)
-
-
-if __name__ == '__main__':
-    print(get_qr_code())
