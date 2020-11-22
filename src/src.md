@@ -20,7 +20,7 @@
 
 **请注意，这部分并非原作者完成的，谨慎使用**
 
-这是一个由Python编写的实例文件，方便各位开发者使用
+这是一个由Python(Kris)/Go(小宇)编写的实例文件，方便各位开发者使用
 
 [我fork的项目地址](https://github.com/krishukr/bilibili-API-collect)
 
@@ -31,20 +31,20 @@
 - [公共错误码](other/errcode.md)×
 - [图片格式化](other/picture.md)×
 - [bvID说明](other/bvID.md)×
-- [登录](login)
-  - [登录操作（人机认证）](login/login_action)×
-    + [短信登录](login/login_action/SMS.md)×
-    + [密码登录](login/login_action/password.md)×
-    + [二维码登录](login/login_action/QR.md)×
+- [登录](Python/login)
+  - [登录操作（人机认证）](Python/login/login_action)×
+    + [短信登录](Python/login/login_action/SMS.md)×
+    + [密码登录](Python/login/login_action/password.md)×
+    + [二维码登录](Python/login/login_action/QR.md)×
     + SNS登录（QQ&微博）
-  - [登录基本信息](login/login_info.md)×
-  - [个人中心](login/member_center.md)×
-  - [注销登录](login/exit.md)×
-  - [登录记录](login/login_notice.md)×
-- [消息中心](message)
-  - [通知类消息](message/msg.md)×
-  - [私信](message/private_msg.md)×
-  - [设置](message/config.md)×
+  - [登录基本信息](Python/login/login_info.md)×
+  - [个人中心](Python/login/member_center.md)×
+  - [注销登录](Python/login/exit.md)×
+  - [登录记录](Python/login/login_notice.md)×
+- [消息中心](Python/message)
+  - [通知类消息](Python/message/msg.md)×
+  - [私信](Python/message/private_msg.md)×
+  - [设置](Python/message/config.md)×
 - [用户](user)
   - [基本信息](user/info.md)×
   - [状态数](user/status_number.md)×
