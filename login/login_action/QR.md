@@ -21,6 +21,15 @@ TV端流程&逻辑：
 
 
 
+---
+
+- [申请二维码URL及扫码密钥（web端）](#申请二维码URL及扫码密钥（web端）)
+- [使用扫码登录（web端）](#使用扫码登录（web端）)
+- [申请二维码URL及扫码密钥（TV端）](#申请二维码URL及扫码密钥（TV端）)
+- [使用扫码登录（TV端）](#使用扫码登录（TV端）)
+
+---
+
 ## 申请二维码URL及扫码密钥（web端）
 
 > http://passport.bilibili.com/qrcode/getLoginUrl

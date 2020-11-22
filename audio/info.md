@@ -1,5 +1,12 @@
 # 歌曲基本信息
 
+- [查询歌曲基本信息](#查询歌曲基本信息)
+- [查询歌曲TAG](#查询歌曲TAG)
+- [查询歌曲创作成员列表](#查询歌曲创作成员列表)
+- [获取歌曲歌词](#获取歌曲歌词)
+
+---
+
 ## 查询歌曲基本信息
 
 > http://www.bilibili.com/audio/music-service-c/web/song/info
@@ -383,7 +390,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/member/song' \
 
 *请求方式：GET*
 
-同「查询歌曲基本信息」中的lrc歌词	
+同[查询歌曲基本信息](#查询歌曲基本信息)中的lrc歌词
 
 **url参数：**
 

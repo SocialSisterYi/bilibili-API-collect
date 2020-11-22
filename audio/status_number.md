@@ -1,5 +1,9 @@
 # 音频状态数
 
+- [歌曲状态数](#歌曲状态数)
+
+---
+
 ## 歌曲状态数
 
 >http://www.bilibili.com/audio/music-service-c/web/stat/song

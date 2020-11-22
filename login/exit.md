@@ -1,5 +1,9 @@
 # 退出账号登录
 
+- [退出登录（web端）](#退出登录（web端）)
+
+---
+
 ## 退出登录（web端）
 
 > http://passport.bilibili.com/login?act=exit

@@ -1,5 +1,9 @@
 # 登录记录
 
+- [查询登录记录](#查询登录记录)
+
+---
+
 ## 查询登录记录
 
 > http://api.bilibili.com/x/safecenter/login_notice
