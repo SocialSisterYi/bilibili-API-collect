@@ -38,17 +38,6 @@ type BClient struct {
 	http.Client
 }
 
-// LoginInfo 登陆信息
-type LoginInfo struct {
-	Username  string
-	Password  string
-	Csrf      string
-	UID       string
-	Cookies   string
-	Headers   map[string]string
-	AccessKey string
-}
-
 // Config 配置文件
 type Config struct {
 	ShareServerEnable     bool   `json:"ShareServerEnable"`
@@ -63,6 +52,59 @@ type Config struct {
 		MID    int    `json:"mid"`
 		Replay string `json:"replay"`
 	} `json:"SpecialAttentions"`
+}
+
+// LoginInfo 登陆信息
+type LoginInfo struct {
+	Username  string
+	Password  string
+	Csrf      string
+	UID       string
+	Cookies   string
+	Headers   map[string]string
+	AccessKey string
+}
+
+// **********
+// Responses
+// **********
+
+// CookieData cookie信息
+type CookieData struct {
+	TokenInfo struct {
+		AccessToken string `json:"access_token"`
+	} `json:"token_info"`
+	CookieInfo struct {
+		Cookies []struct {
+			Name  string `json:"name"`
+			Value string `json:"value"`
+		} `json:"cookies"`
+	} `json:"cookie_info"`
+}
+
+// VideoView 视频信息
+type VideoView struct {
+	Code int `json:"code"`
+	Data struct {
+		Aid   int    `json:"aid"`
+		Cid   int    `json:"cid"`
+		Desc  string `json:"desc"`
+		Owner struct {
+			Name string `json:"name"`
+			Mid  int    `json:"mid"`
+		} `json:"owner"`
+		Stat struct {
+			Coin    int `json:"coin"`
+			Danmuku int `json:"danmuku"`
+			Dislike int `json:"dislike"`
+			Like    int `json:"like"`
+			Share   int `json:"share"`
+			View    int `json:"view"`
+		} `json:"stat"`
+		Tid   int    `json:"tid"`
+		Title string `json:"title"`
+		TName string `json:"tname"`
+	}
 }
 
 // UserInfo 用户信息
