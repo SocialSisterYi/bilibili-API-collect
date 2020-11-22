@@ -168,6 +168,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [个性装扮](garb)
   - [APP主题](garb/skin.md)√
   - [主题色](garb/color.md)√
+ - [实例文件](src/src.md)×
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
