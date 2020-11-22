@@ -1,5 +1,5 @@
 # coding=utf-8
-import src.login.qr_code
+import src.login.login_action
 
 if __name__ == '__main__':
     pass
