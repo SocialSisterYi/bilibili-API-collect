@@ -1,5 +1,5 @@
 # coding=utf-8
-import src.message.send
+from src.message import *
 
 if __name__ == '__main__':
     pass
