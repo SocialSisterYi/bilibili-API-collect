@@ -11,8 +11,8 @@ const (
 	encryptSecret = "560c52ccd288fed045859ed18bffd973"
 )
 
-//用来发送GET和POST请求的方法
-func request(url, method, query string) (req *http.Request, err error) {
+//Request 是用来发送GET和POST请求的方法
+func Request(url, method, query string) (req *http.Request, err error) {
 	switch strings.ToUpper(method) {
 	case "GET":
 		// get
