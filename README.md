@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="imgs/Mylogo.png" width="250" height="200">
+    <img src="https://i0.hdslb.com/bfs/album/1ba8228cc208a12ac17f73a160081a0918ab7d14.png" width="250" height="200">
 </p>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
 <p align="center">
