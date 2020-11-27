@@ -135,8 +135,14 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [发送&转载动态](dynamic/publish.md)×
   - 动态列表
   - 动态内容
-  - 小视频
   - 操作
+- [相簿](album)
+  - [基本信息](album/info.md)√
+  - [相簿列表](album/list.md)√
+  - [推荐作者](album/recommend_author.md)√
+  - [活动列表](album/activity_list.md)√
+  - [操作](album/action.md)√
+  - 投稿
 - [历史记录&稍后再看](history&toview)
   - [历史记录](history&toview/history.md)√
   - [稍后再看](history&toview/toview.md)√

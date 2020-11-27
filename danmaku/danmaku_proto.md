@@ -126,7 +126,7 @@ import requests
 AVID = 810872
 CID = 1176840
 SEG = 1
-url = 'http://api.bilibili.com/x/v2/dm/web/seg.so?type=1&oid=' + str(CID) + '&pid=' + str(AVID) + '&segment_index=' + str(SEG)
+url = f'http://api.bilibili.com/x/v2/dm/web/seg.so?type=1&oid={CID}&pid={AVID}&segment_index={SEG}'
 
 data = requests.get(url)
 target = bilidm_pb2.DmSegMobileReply()

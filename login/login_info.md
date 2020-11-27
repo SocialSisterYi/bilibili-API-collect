@@ -31,34 +31,34 @@
 
 `data`对象：
 
-| 字段                 | 类型 | 内容             | 备注                                            |
-| -------------------- | ---- | ---------------- | ----------------------------------------------- |
-| isLogin              | bool | 是否已登录       | false：未登录<br />true：已登录                 |
-| email_verified       | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证                        |
-| face                 | str  | 用户头像url      |                                                 |
-| level_info           | obj  | 等级信息         |                                                 |
-| mid                  | num  | 用户UID          |                                                 |
-| mobile_verified      | num  | 是否验证手机号   | 0：未验证<br />1：已验证                        |
-| money                | num  | 拥有硬币数       |                                                 |
-| moral                | num  | 当前节操值       | 上限为70                                        |
-| official             | obj  | 认证信息         |                                                 |
-| officialVerify       | obj  | 认证信息2        |                                                 |
-| pendant              | obj  | 头像框信息       |                                                 |
-| scores               | num  | 0                | 作用尚不明确                                    |
-| uname                | str  | 用户昵称         |                                                 |
-| vipDueDate           | num  | 会员到期时间     | 毫秒 时间戳                                     |
-| vipStatus            | num  | 会员开通状态     | 0：无<br />1：有                                |
-| vipType              | num  | 会员类型         | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
-| vip_pay_type         | num  | 会员开通状态     | 0：无<br />1：有                                |
-| vip_theme_type       | num  | 0                | 作用尚不明确                                    |
-| vip_label            | obj  | 会员标签         |                                                 |
-| vip_avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示                          |
-| vip_nickname_color   | str  | 会员昵称颜色     | 颜色码                                          |
-| wallet               | obj  | B币钱包信息      |                                                 |
-| has_shop             | bool | 是否拥有推广商品 | false：无<br />true：有                         |
-| shop_url             | str  | 商品推广页面url  |                                                 |
-| allowance_count      | num  | 0                | 作用尚不明确                                    |
-| answer_status        | num  | 0                | 作用尚不明确                                    |
+| 字段                 | 类型 | 内容             | 备注                                              |
+| -------------------- | ---- | ---------------- | ------------------------------------------------- |
+| isLogin              | bool | 是否已登录       | false：未登录<br />true：已登录                   |
+| email_verified       | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证                          |
+| face                 | str  | 用户头像url      |                                                   |
+| level_info           | obj  | 等级信息         |                                                   |
+| mid                  | num  | 用户UID          |                                                   |
+| mobile_verified      | num  | 是否验证手机号   | 0：未验证<br />1：已验证                          |
+| money                | num  | 拥有硬币数       |                                                   |
+| moral                | num  | 当前节操值       | 上限为70                                          |
+| official             | obj  | 认证信息         |                                                   |
+| officialVerify       | obj  | 认证信息2        |                                                   |
+| pendant              | obj  | 头像框信息       |                                                   |
+| scores               | num  | 0                | 作用尚不明确                                      |
+| uname                | str  | 用户昵称         |                                                   |
+| vipDueDate           | num  | 会员到期时间     | 毫秒 时间戳                                       |
+| vipStatus            | num  | 会员开通状态     | 0：无<br />1：有                                  |
+| vipType              | num  | 会员类型         | 0：无<br />1：月度大会员<br />2：年度及以上大会员 |
+| vip_pay_type         | num  | 会员开通状态     | 0：无<br />1：有                                  |
+| vip_theme_type       | num  | 0                | 作用尚不明确                                      |
+| vip_label            | obj  | 会员标签         |                                                   |
+| vip_avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示                            |
+| vip_nickname_color   | str  | 会员昵称颜色     | 颜色码                                            |
+| wallet               | obj  | B币钱包信息      |                                                   |
+| has_shop             | bool | 是否拥有推广商品 | false：无<br />true：有                           |
+| shop_url             | str  | 商品推广页面url  |                                                   |
+| allowance_count      | num  | 0                | 作用尚不明确                                      |
+| answer_status        | num  | 0                | 作用尚不明确                                      |
 
 `data`中的`level_info`对象：
 

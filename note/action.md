@@ -109,7 +109,7 @@ curl 'http://api.bilibili.com/x/note/add' \
 删除稿件`av457253380`下的笔记`4075968478576647`
 
 ```shell
-curl 'http://api.bilibili.com/x/note/add' \
+curl 'http://api.bilibili.com/x/note/del' \
 --data-urlencode 'aid=457253380' \
 --data-urlencode 'note_id=4075968478576647' \
 --data-urlencode 'csrf=xxx'

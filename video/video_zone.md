@@ -98,11 +98,11 @@
 | ---------------------------- | ----------------- | ---- | --------------------------------------------------------- | ------------------------------------------------------------ |
 | 知识（主分区）               | technology        | 36   |                                                           | [/v/technology](https://www.bilibili.com/v/technology)       |
 | 科学科普                     | science           | 201  | 回答你的十万个为什么                                      | [/v/technology/science](https://www.bilibili.com/v/technology/science) |
-| 社科人文（~~趣味科普人文~~） | fun               | 124  | 聊聊财经/社会/法律，看看历史趣闻，品品人文艺术            | [/v/technology/fun](https://www.bilibili.com/v/technology/fun) |
+| 社科人文（~~趣味科普人文~~） | fun               | 124  | 聊聊互联网社会法律，看看历史趣闻艺术，品品文化心理人物    | [/v/technology/fun](https://www.bilibili.com/v/technology/fun) |
 | 财经                         | finance           | 207  | 宏观经济分析，证券市场动态，商业帝国故事，知识与财富齐飞~ | [/v/technology/finance](https://www.bilibili.com/v/technology/finance) |
 | 校园学习                     | campus            | 208  | 老师很有趣，同学多人才，我们都爱搞学习                    | [/v/technology/campus](https://www.bilibili.com/v/technology/campus) |
 | 职业职场                     | career            | 209  | 职场加油站，成为最有料的职场人                            | [/v/technology/career](https://www.bilibili.com/v/technology/career) |
-| 野生技术协会                 | wild              | 122  | 是时候展现真正的技术了                                    | [/v/technology/wild](https://www.bilibili.com/v/technology/wild) |
+| 野生技术协会                 | wild              | 122  | 炫酷技能大集合，是时候展现真正的技术了                    | [/v/technology/wild](https://www.bilibili.com/v/technology/wild) |
 | ~~演讲·公开课~~（已下线）    | ~~speech_course~~ | 39   | ~~涨知识的好地方，给爱学习的你~~                          | ~~/v/technology/speech_course~~                              |
 | ~~星海~~（已下线）           | ~~military~~      | 96   | ~~军事类内容的圣地~~                                      | ~~/v/technology/military~~                                   |
 | ~~机械~~（已下线）           | ~~mechanical~~    | 98   | ~~机械设备展示或制作视频~~                                | ~~/v/technology/mechanical~~                                 |
@@ -111,13 +111,13 @@
 
 <img src="/imgs/zone/digital.svg" width="100" height="100"/>
 
-| 名称           | 代号            | tID  | 简介                         | url路由                                                      |
-| -------------- | --------------- | ---- | ---------------------------- | ------------------------------------------------------------ |
-| 数码（主分区） | digital         | 188  |                              | [/v/digital](https://www.bilibili.com/v/digital)             |
-| 手机平板       | mobile          | 95   | 手机平板设备相关视频         | [/v/digital/mobile](https://www.bilibili.com/v/digital/mobile) |
-| 电脑装机       | pc              | 189  | 电脑装机及配件等相关视频     | [/v/digital/pc](https://www.bilibili.com/v/digital/pc)       |
-| 摄影摄像       | photography     | 190  | 摄影摄像器材等相关视频       | [/v/digital/photography](https://www.bilibili.com/v/digital/photography) |
-| 影音智能       | intelligence_av | 191  | 影音设备、智能产品等相关视频 | [/v/digital/intelligence_av](https://www.bilibili.com/v/digital/intelligence_av) |
+| 名称           | 代号            | tID  | 简介                                               | url路由                                                      |
+| -------------- | --------------- | ---- | -------------------------------------------------- | ------------------------------------------------------------ |
+| 数码（主分区） | digital         | 188  |                                                    | [/v/digital](https://www.bilibili.com/v/digital)             |
+| 手机平板       | mobile          | 95   | 手机平板、app 和产品教程等相关视频                 | [/v/digital/mobile](https://www.bilibili.com/v/digital/mobile) |
+| 电脑装机       | pc              | 189  | 电脑、笔记本、装机配件、外设和软件教程等相关视频   | [/v/digital/pc](https://www.bilibili.com/v/digital/pc)       |
+| 摄影摄像       | photography     | 190  | 摄影摄像器材、拍摄剪辑技巧、拍摄作品分享等相关视频 | [/v/digital/photography](https://www.bilibili.com/v/digital/photography) |
+| 影音智能       | intelligence_av | 191  | 影音设备、智能产品等相关视频                       | [/v/digital/intelligence_av](https://www.bilibili.com/v/digital/intelligence_av) |
 
 ## 生活
 
@@ -125,18 +125,18 @@
 
 <img src="/imgs/zone/life.svg" width="100" height="100"/>
 
-| 名称                 | 代号       | tID    | 简介                                                  | url路由                                                      |
-| -------------------- | ---------- | ------ | ----------------------------------------------------- | ------------------------------------------------------------ |
-| 生活（主分区）       | life       | 160    |                                                       | [/v/life](https://www.bilibili.com/v/life)                   |
-| 搞笑                 | funny      | 138    | 搞笑的、轻松有趣的、具有独特笑点或娱乐精神的视频      | [/v/life/funny](https://www.bilibili.com/v/life/funny)       |
-| 日常                 | daily      | 21     | 漫展、cosplay、体育运动及其他一般日常向视频           | [/v/life/daily](https://www.bilibili.com/v/life/daily)       |
-| ~~美食圈~~（重定向） | ~~food~~   | ~~76~~ | ~~美食鉴赏&料理制作教程~~                             | ~~/v/life/food~~                                             |
-| 动物圈               | animal     | 75     | 这里有各种萌萌哒动物哦                                | [/v/life/animal](https://www.bilibili.com/v/life/animal)     |
-| 手工                 | handmake   | 161    | 简易手工艺品的diy制作视频，例如；折纸、手账、橡皮章等 | [/v/life/handmake](https://www.bilibili.com/v/life/handmake) |
-| 绘画                 | painting   | 162    | 绘画爱好者们关于绘画技巧、绘图过程的分享交流场所      | [/v/life/painting](https://www.bilibili.com/v/life/painting) |
-| 运动                 | sports     | 163    | 一般向运动项目以及惊险刺激的户外极限运动              | [/v/life/sports](https://www.bilibili.com/v/life/sports)     |
-| 汽车                 | automobile | 176    | 专业汽车资讯，分享车生活                              | [/v/life/automobile](https://www.bilibili.com/v/life/automobile) |
-| 其他                 | other      | 174    | 对于分区归属不明的视频进行归纳整合的特定分区          | [/v/life/other](https://www.bilibili.com/v/life/other)       |
+| 名称                 | 代号       | tID    | 简介                                             | url路由                                                      |
+| -------------------- | ---------- | ------ | ------------------------------------------------ | ------------------------------------------------------------ |
+| 生活（主分区）       | life       | 160    |                                                  | [/v/life](https://www.bilibili.com/v/life)                   |
+| 搞笑                 | funny      | 138    | 各种沙雕有趣的搞笑剪辑，挑战，表演，配音等视频   | [/v/life/funny](https://www.bilibili.com/v/life/funny)       |
+| 日常                 | daily      | 21     | 记录日常生活，分享生活故事                       | [/v/life/daily](https://www.bilibili.com/v/life/daily)       |
+| ~~美食圈~~（重定向） | ~~food~~   | ~~76~~ | ~~美食鉴赏&料理制作教程~~                        | ~~/v/life/food~~                                             |
+| 动物圈               | animal     | 75     | 萌萌的动物都在这里哦                             | [/v/life/animal](https://www.bilibili.com/v/life/animal)     |
+| 手工                 | handmake   | 161    | 手工制品的制作过程或成品展示、教程、测评类视频   | [/v/life/handmake](https://www.bilibili.com/v/life/handmake) |
+| 绘画                 | painting   | 162    | 绘画过程或绘画教程，以及绘画相关的所有视频       | [/v/life/painting](https://www.bilibili.com/v/life/painting) |
+| 运动                 | sports     | 163    | 运动相关的记录、教程、装备评测和精彩瞬间剪辑视频 | [/v/life/sports](https://www.bilibili.com/v/life/sports)     |
+| 汽车                 | automobile | 176    | 专业汽车资讯，分享车生活                         | [/v/life/automobile](https://www.bilibili.com/v/life/automobile) |
+| 其他                 | other      | 174    | 对于分区归属不明的视频进行归纳整合的特定分区     | [/v/life/other](https://www.bilibili.com/v/life/other)       |
 
 ## 美食
 
@@ -163,6 +163,7 @@
 | 鬼畜调教       | guide           | 22   | 使用素材在音频、画面上做一定处理，达到与BGM一定的同步感      | [/v/kichiku/guide](https://www.bilibili.com/v/kichiku/guide) |
 | 音MAD          | mad             | 26   | 使用素材音频进行一定的二次创作来达到还原原曲的非商业性质稿件 | [/v/kichiku/mad/v/kichiku/mad](https://www.bilibili.com/v/kichiku/mad) |
 | 人力VOCALOID   | manual_vocaloid | 126  | 将人物或者角色的无伴奏素材进行人工调音，使其就像VOCALOID一样歌唱的技术 | [/v/kichiku/manual_vocaloid](https://www.bilibili.com/v/kichiku/manual_vocaloid) |
+| 鬼畜剧场       | theatre         | 216  | 使用素材进行人工剪辑编排的有剧情的作品                       | [/v/kichiku/theatre](https://www.bilibili.com/v/kichiku/theatre) |
 | 教程演示       | course          | 127  | 鬼畜相关的教程演示                                           | [/v/kichiku/course](https://www.bilibili.com/v/kichiku/course) |
 
 ## 时尚
@@ -207,12 +208,12 @@
 
 <img src="/imgs/zone/ent.svg" width="100" height="100"/>
 
-| 名称           | 代号    | tID  | 简介                               | url路由                                                  |
-| -------------- | ------- | ---- | ---------------------------------- | -------------------------------------------------------- |
-| 娱乐（主分区） | ent     | 5    |                                    | [/v/ent](https://www.bilibili.com/v/ent)                 |
-| 综艺           | variety | 71   | 国内外有趣的综艺和综艺相关精彩剪辑 | [/v/ent/variety](https://www.bilibili.com/v/ent/variety) |
-| 明星           | star    | 137  | 娱乐圈动态、明星资讯相关           | [/v/ent/star](https://www.bilibili.com/v/ent/star)       |
-| Korea相关      | korea   | 131  | Korea相关音乐、舞蹈、综艺等视频    | [/v/ent/korea](https://www.bilibili.com/v/ent/korea)     |
+| 名称                    | 代号      | tID  | 简介                                | url路由                                                  |
+| ----------------------- | --------- | ---- | ----------------------------------- | -------------------------------------------------------- |
+| 娱乐（主分区）          | ent       | 5    |                                     | [/v/ent](https://www.bilibili.com/v/ent)                 |
+| 综艺                    | variety   | 71   | 国内外有趣的综艺和综艺相关精彩剪辑  | [/v/ent/variety](https://www.bilibili.com/v/ent/variety) |
+| 明星                    | star      | 137  | 娱乐圈动态、明星资讯相关            | [/v/ent/star](https://www.bilibili.com/v/ent/star)       |
+| ~~Korea相关~~（已下线） | ~~korea~~ | 131  | ~~Korea相关音乐、舞蹈、综艺等视频~~ | ~~/v/ent/korea~~                                         |
 
 ## 影视
 
