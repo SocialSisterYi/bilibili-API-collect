@@ -2366,7 +2366,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply' \
 | hots         | 禁用时：null<br />正常时：array | 热评根列表 |                  |
 | notice       | 无效时：null<br />有效时：obj            | 评论区公告信息 |  |
 | replies      | 禁用时：null<br />正常时：array | 评论根列表 |                  |
-| top          | obj                       | -        | **作用尚不明确** |
+| top          | obj                       | 置顶评论 |  |
 | lottery_card | null                             | -        | **作用尚不明确** |
 | folder       | obj                              | ??? | **作用尚不明确** |
 | assist       | num                              | 0        | **作用尚不明确** |
