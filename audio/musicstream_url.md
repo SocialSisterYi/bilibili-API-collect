@@ -270,7 +270,7 @@ curl -G 'http://api.bilibili.com/audio/music-service-c/url
 
 需要验证请求`user-agent` 不为空
 
-**user-agent错误并且referer不等于`https://www.bilibili.com/`的情况下会返回403 Forbidden故无法获取**
+**user-agent错误并且referer不等于`https://*.bilibili.com/`的情况下会返回403 Forbidden故无法获取**
 
 **以上述音频url为例：**
 
