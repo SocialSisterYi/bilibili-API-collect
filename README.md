@@ -201,6 +201,14 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 不了解protobuf的请移步，[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
+# 发电
+
+欢迎来py，大家的支持就是我继续开发的动力！
+
+~~请可爱的易姐喝杯奶茶~~
+
+![支付宝&微信支付](sponsorQR.jpg)
+
 # 相关项目：
 
 ## 库及文档：
@@ -237,10 +245,3 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 - [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
 - [SocialSisterYi/bv2av_convert](https://github.com/SocialSisterYi/bv2av_convert):C语言算法av号与bv号互转器
-
-
-
-
-
-
-
