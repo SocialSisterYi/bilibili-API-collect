@@ -207,7 +207,7 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 ~~请可爱的易姐喝杯奶茶~~
 
-![支付宝&微信支付](sponsorQR.jpg)
+<img src="sponsorQR.jpg" width="500" height="500">
 
 # 相关项目：
 
