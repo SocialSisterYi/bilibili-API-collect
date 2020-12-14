@@ -88,7 +88,7 @@
 
 ```shell
 curl -G 'http://api.live.bilibili.com/room/v1/Room/playUrl' \
---data-urlencode 'id=14073662' \
+--data-urlencode 'cid=14073662' \
 --data-urlencode 'qn=10000' \
 --data-urlencode 'platform=web'
 ```
