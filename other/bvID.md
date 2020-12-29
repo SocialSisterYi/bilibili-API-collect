@@ -101,6 +101,7 @@ BV17x411w7KC
 
 ```c
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <string.h>
 
@@ -109,7 +110,6 @@ char tr[124]; //反查码表
 const unsigned long long Xor = 177451812; //固定异或值
 const unsigned long long add = 8728348608; //固定加法值
 const int s[] = {11, 10, 3, 8, 4, 6}; //位置编码表
-char result[13]; //编码结果
 
 //初始化反查码表
 void tr_init()
@@ -130,12 +130,12 @@ unsigned long long bv2av(char bv[])
 
 char* av2bv(unsigned long long av)
 {
+	char* result = (char*)malloc(13);
 	strcpy(result,"BV1  4 1 7  ");
 	av = (av ^ Xor) + add;
 	for (int i = 0; i < 6; i++)
 		result[s[i]] = table[(unsigned long long)(av / (unsigned long long)pow(58, i)) % 58];
-	char *bv=result;
-	return bv;
+	return result;
 }
 
 int main()
