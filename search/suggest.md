@@ -1,5 +1,9 @@
 # 搜索建议
 
+- [获取搜索建议关键词（web端）](#获取搜索建议关键词（web端）)
+
+---
+
 ## 获取搜索建议关键词（web端）
 
 > http://s.search.bilibili.com/main/suggest

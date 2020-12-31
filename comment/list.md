@@ -1,6 +1,15 @@
 # 评论区明细
 
-## 获取评论区明细1（无楼层号）
+- [获取评论区明细（无楼层号）](#获取评论区明细（无楼层号）)
+- [获取评论区明细（带有楼层号 ）](#获取评论区明细（带有楼层号 ）)
+- [获取指定评论条目及二级回复明细（分离结构 无楼层号）](#获取指定评论条目及二级回复明细（分离结构 无楼层号）)
+- [获取指定评论条目及二级回复明细（嵌套结构 带有楼层号）](#获取指定评论条目及二级回复明细（嵌套结构 带有楼层号）)
+- [获取指定评论对话树（带有楼层）](#获取指定评论对话树（带有楼层）)
+- [获取评论区评论总数](#获取评论区评论总数)
+
+---
+
+## 获取评论区明细（无楼层号）
 
 > http://api.bilibili.com/x/v2/reply
 
@@ -2319,7 +2328,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply' \
 
 </details>
 
-## 获取评论区明细2（带有楼层号 ）
+## 获取评论区明细（带有楼层号 ）
 
 > http://api.bilibili.com/x/v2/reply/main
 
@@ -2357,7 +2366,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply' \
 | hots         | 禁用时：null<br />正常时：array | 热评根列表 |                  |
 | notice       | 无效时：null<br />有效时：obj            | 评论区公告信息 |  |
 | replies      | 禁用时：null<br />正常时：array | 评论根列表 |                  |
-| top          | obj                       | -        | **作用尚不明确** |
+| top          | obj                       | 置顶评论 |  |
 | lottery_card | null                             | -        | **作用尚不明确** |
 | folder       | obj                              | ??? | **作用尚不明确** |
 | assist       | num                              | 0        | **作用尚不明确** |
@@ -4699,7 +4708,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 
 </details>
 
-## 获取指定评论条目及二级回复明细1（分离结构 无楼层号）
+## 获取指定评论条目及二级回复明细（分离结构 无楼层号）
 
 > http://api.bilibili.com/x/v2/reply/reply
 
@@ -5437,7 +5446,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 
 
 
-## 获取指定评论条目及二级回复明细2（嵌套结构 带有楼层号）
+## 获取指定评论条目及二级回复明细（嵌套结构 带有楼层号）
 
 > http://api.bilibili.com/x/v2/reply/detail
 

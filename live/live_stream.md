@@ -1,5 +1,9 @@
 # 直播间视频流
 
+- [根据真实直播间号获取直播视频流](#根据真实直播间号获取直播视频流)
+
+---
+
 ## 根据真实直播间号获取直播视频流
 
 > http://api.live.bilibili.com/room/v1/Room/playUrl
@@ -84,7 +88,7 @@
 
 ```shell
 curl -G 'http://api.live.bilibili.com/room/v1/Room/playUrl' \
---data-urlencode 'id=14073662' \
+--data-urlencode 'cid=14073662' \
 --data-urlencode 'qn=10000' \
 --data-urlencode 'platform=web'
 ```
@@ -154,7 +158,3 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/playUrl' \
 ```
 
 </details>
-
-## 播放直播流媒体
-
-以上获得到`url`字段中的值为直播流url，例如`https://d1--cn-gotcha04.bilivideo.com/live-bvc/601131/live_14073662_bs_3699814_1500.flv?cdn=cn-gotcha04&expires=1602496530&len=0&oi=1939228219&pt=&qn=150&trid=e6540d81a5d04c2ea459c46ebe77472a&sigparams=cdn,expires,len,oi,pt,qn,trid&sign=20e4ac695fbdd1d11d5dac4f93caa783&ptype=0&src=9&sl=1&order=1`导入播放器即可播放直播

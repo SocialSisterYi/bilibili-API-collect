@@ -1,5 +1,11 @@
 # 获取当前时间戳
 
+- [获取当前时间戳](#获取当前时间戳)
+
+---
+
+## 获取当前时间戳
+
 > http://api.bilibili.com/x/report/click/now 
 
 *请求方式：GET*

@@ -1,5 +1,11 @@
 # 歌单&音频收藏夹详细信息
 
+- [查询自己创建的歌单](#查询自己创建的歌单)
+
+- [查询音频收藏夹（默认歌单）信息](#查询音频收藏夹（默认歌单）信息)
+
+---
+
 ## 查询自己创建的歌单
 
 > http://www.bilibili.com/audio/music-service-c/web/collections/list

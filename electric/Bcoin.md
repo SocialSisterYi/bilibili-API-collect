@@ -4,7 +4,16 @@
 
 **注：1B币折合10电池，一般地充电10电池可获得1经验**
 
-> http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
+---
+
+- [B币方式充电](#b币方式充电)
+  - [B币方式充电](#b币方式充电-1)
+
+---
+
+## B币方式充电
+
+> https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick
 
 *请求方式：POST*
 
@@ -12,24 +21,25 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                     | 必要性 | 备注                                              |
-| -------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
-| elec_num | num  | 充电电池数量             | 必要   | 必须在20-99990之间                                |
-| up_mid   | num  | 充电对象用户UID          | 必要   |                                                   |
-| otype    | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电               |
-| oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：稿件avID |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                   |
+| 参数名              | 类型 | 内容                     | 必要性 | 备注                                              |
+| ------------------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
+| bp_num              | num  | 充电B币数量              | 必要   | 必须在2-99990之间                                 |
+| is_bp_remains_prior | bool | 是否优先使用余额         | 必要   | false/true                                        |
+| up_mid              | num  | 充电对象用户UID          | 必要   |                                                   |
+| otype               | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电               |
+| oid                 | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：稿件avID |
+| csrf                | str  | CSRF Token（位于cookie） | 必要   |                                                   |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
+| 字段    | 类型 | 内容     | 备注                                                                                           |
+| ------- | ---- | -------- | ---------------------------------------------------------------------------------------------- |
 | code    | num  | 返回值   | 0：成功（并不代表充电成功） <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
-| message | str  | 错误信息 | 默认为0                                                      |
-| ttl     | num  | 1        |                                                              |
-| data    | obj  | 信息本体 |                                                              |
+| message | str  | 错误信息 | 默认为0                                                                                        |
+| ttl     | num  | 1        |                                                                                                |
+| data    | obj  | 信息本体 |                                                                                                |
 
 `data`对象：
 
@@ -38,7 +48,7 @@
 | mid      | num  | 本用户UID   |                                                  |
 | up_mid   | num  | 目标用户UID |                                                  |
 | order_no | str  | 留言token   | 用于添加充电留言                                 |
-| elec_num | num  | 充电电池数  |                                                  |
+| elec_num | num  | 充电电池数  | ps：接口调整，此项可能会有出入                   |
 | exp      | num  | 获得经验数  |                                                  |
 | status   | num  | 返回结果    | 4：成功<br />-2：低于20电池下限<br />-4：B币不足 |
 | msg      | str  | 错误信息    | 默认为空                                         |
@@ -52,8 +62,9 @@
 ~~自己冲自己QAQ~~
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
---data-urlencode 'elec_num=20' \
+curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
+--data-urlencode 'bp_num=2' \
+--data-urlencode 'is_bp_remains_prior=false' \
 --data-urlencode 'up_mid=293793435' \
 --data-urlencode 'otype=up' \
 --data-urlencode 'oid=293793435' \
@@ -83,13 +94,14 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 
 </details>
 
-当所充电池数小于20时，充电不会成功
+当所充B币数小于2时，充电不会成功。
 
 此时`data`.`status`=`-2`
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
---data-urlencode 'elec_num=1' \
+curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
+--data-urlencode 'bp_num=1' \
+--data-urlencode 'is_bp_remains_prior=false' \
 --data-urlencode 'up_mid=293793435' \
 --data-urlencode 'otype=up' \
 --data-urlencode 'oid=293793435' \
@@ -119,13 +131,14 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 
 </details>
 
-当所充电池数折合的B币数不足时，充电也不会成功
+B币数不足时，充电也不会成功
 
 此时`data`.`status`=`-4`
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
---data-urlencode 'elec_num=999' \
+curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
+--data-urlencode 'bp_num=999' \
+--data-urlencode 'is_bp_remains_prior=false' \
 --data-urlencode 'up_mid=293793435' \
 --data-urlencode 'otype=up' \
 --data-urlencode 'oid=293793435' \

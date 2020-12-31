@@ -2,6 +2,12 @@
 
 <img src="/imgs/download.svg" width="100" height="100"/>
 
+- [获取音频流URL（无法获取付费音频）（web端）](#获取音频流URL（无法获取付费音频）（web端）)
+- [获取音频流URL（可获取付费音频）（双端）](#获取音频流URL（可获取付费音频）（双端）)
+- [音频流的获取](#音频流的获取)
+
+---
+
 音质`qn`参数：
 
 | 代码 | 含义                 |
@@ -264,7 +270,7 @@ curl -G 'http://api.bilibili.com/audio/music-service-c/url
 
 需要验证请求`user-agent` 不为空
 
-**user-agent错误的情况会返回403 Forbidden**故无法获取**
+**user-agent错误并且referer不在`*.bilibili.com`域名下的情况下会导致403 Forbidden，故无法获取**
 
 **以上述音频url为例：**
 

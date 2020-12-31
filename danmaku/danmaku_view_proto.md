@@ -8,6 +8,15 @@
 
  [引导关注卡片](https://www.bilibili.com/blackboard/activity-c8a0iDRQy.html )
 
+---
+
+- [获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）](#获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）)
+- [实例](#实例)
+  - [获取互动弹幕](#获取互动弹幕)
+  - [获取BAS（代码）弹幕专包](#获取BAS（代码）弹幕专包)
+
+---
+
 ## 获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）
 
 > http://api.bilibili.com/x/v2/dm/web/view
@@ -90,12 +99,13 @@
 
 类型为【视频内嵌引导关注按钮】时：
 
-| 字段     | 类型 | 内容        | 备注                               |
-| -------- | ---- | ----------- | ---------------------------------- |
-| duration | num  | 持续时间    | 单位为毫秒                         |
-| posX     | num  | X坐标       | 区间：[118-549]                    |
-| posY     | num  | Y坐标       | 区间：[82-293]                     |
-| icon     | str  | 按钮图片url | 不应该是关注按钮吗，但这个是圆形的 |
+| 字段     | 类型 | 内容         | 备注                                       |
+| -------- | ---- | ------------ | ------------------------------------------ |
+| duration | num  | 持续时间     | 单位为毫秒                                 |
+| posX     | num  | X坐标        | 区间：[118-549]                            |
+| posY     | num  | Y坐标        | 区间：[82-293]                             |
+| icon     | str  | 按钮图片url  | 不应该是关注按钮吗，但这个是圆形的         |
+| type     | num  | 关注按钮类型 | 0：仅关注<br />1：仅三联<br />2：关注+三联 |
 
 消息`dmSetting`：
 
@@ -209,9 +219,11 @@ curl -G 'http://api.bilibili.com/x/v2/dm/web/view' \
 
 响应正文为protubuf二进制数据
 
-## 获取互动弹幕
+## 实例
 
-获取视频`av797164471(CID=236871317)`的互动弹幕
+### 获取互动弹幕
+
+获取并显示视频`av797164471(CID=236871317)`的所有互动弹幕
 
 ```python
 import web_dmview_pb2
@@ -219,50 +231,45 @@ import requests
 
 AVID = 797164471
 CID = 236871317
-url = 'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid=' + str(CID) + '&pid='  + str(AVID)
+url = f'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid={CID}&pid={AVID}'
 
 data = requests.get(url)
 target = web_dmview_pb2.DmWebViewReply()
 target.ParseFromString(data.content)
 
-commandDms_len=len(target.commandDms)
-print('互动弹幕数=',commandDms_len)
-for i in range(commandDms_len):
-	print('互动弹幕[',i,']:')
-	print('---弹幕ID=',target.commandDms[i].id)
-	print('---视频CID=',target.commandDms[i].oid)
-	print('---发送者UID=',target.commandDms[i].mid)
-	print('---弹幕指令=',target.commandDms[i].command)
-	print('---弹幕文字=',target.commandDms[i].content)
-	print('---弹幕出现时间=',target.commandDms[i].progress)
-	print('---ctime=',target.commandDms[i].ctime)
-	print('---mtime=',target.commandDms[i].mtime)
-	print('---弹幕负载数据=',target.commandDms[i].extra)
-	print('---弹幕ID（字串）=',target.commandDms[i].idStr)
+print(f'互动弹幕数={len(target.commandDms)}')
+for i in target.commandDms:
+	print(f'''\
+---弹幕ID={i.id}
+---视频CID={i.oid}
+---发送者UID={i.mid}
+---弹幕指令={i.command}
+---弹幕文字={i.content}
+---弹幕出现时间={i.progress}
+---弹幕负载数据={i.extra}
+---弹幕ID（字串）={i.idStr}'''
+)
 ```
 
 输出为：
 
 ```
-互动弹幕数= 1
-互动弹幕[ 0 ]:
----弹幕ID= 38469676112019463
----视频CID= 236871317
----发送者UID= 501183549
----弹幕指令= #UP#
----弹幕文字= 这个视频没有恰饭！别紧张！
----弹幕出现时间= 157818
----ctime=
----mtime=
----弹幕负载数据= {"icon":"http://i1.hdslb.com/bfs/face/559abe31f561f71f3106d8ee7b2065cac50c1235.jpg"}
----弹幕ID（字串）= 38469676112019463
+互动弹幕数=1
+---弹幕ID=38469676112019463
+---视频CID=236871317
+---发送者UID=501183549
+---弹幕指令=#UP#
+---弹幕文字=这个视频没有恰饭！别紧张！
+---弹幕出现时间=157818
+---弹幕负载数据={"icon":"http://i1.hdslb.com/bfs/face/559abe31f561f71f3106d8ee7b2065cac50c1235.jpg"}
+---弹幕ID（字串）=38469676112019463
 ```
 
-## 获取BAS（代码）弹幕专包
+### 获取BAS（代码）弹幕专包
 
 BAS弹幕（`pool=2` `mode=9`）只能从此包获取，代码弹幕（`pool=2` `mode=8`）也能从此包获取
 
-获取视频`av2(CID=62131)`的BAS（代码）弹幕专包
+获取并显示视频`av2(CID=62131)`的所有BAS（代码）弹幕专包
 
 ```python
 import web_dmview_pb2
@@ -270,23 +277,22 @@ import requests
 
 AVID = 2
 CID = 62131
-url = 'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid=' + str(CID) + '&pid='  + str(AVID)
+url = f'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid={CID}&pid={AVID}'
 
 data = requests.get(url)
 target = web_dmview_pb2.DmWebViewReply()
 target.ParseFromString(data.content)
 
-specialDms_len=len(target.specialDms)
-print('特殊弹幕包数=',specialDms_len)
-for i in range(specialDms_len):
-	print('特殊弹幕包url[',i,']=',target.specialDms[i])
+print(f'特殊弹幕包数={len(target.specialDms)}')
+for i in target.specialDms:
+	print(f'特殊弹幕包url={i}')
 ```
 
 输出为：
 
 ```
-特殊弹幕包数= 1
-特殊弹幕包url[ 0 ]= http://i0.hdslb.com/bfs/dm/b0d5f08c12be59292aa0d4e09b6dd8e54c2ba886.bin
+特殊弹幕包数=1
+特殊弹幕包url=http://i0.hdslb.com/bfs/dm/b0d5f08c12be59292aa0d4e09b6dd8e54c2ba886.bin
 ```
 
 使用[普通分段包弹幕](danmaku_proto.md#获取实时弹幕)的proto结构体反序列化此bin数据

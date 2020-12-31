@@ -4,6 +4,11 @@
 
 新的api是以6分钟为一个单位加载，即每次加载6分钟内的弹幕
 
+- [获取实时弹幕](#获取实时弹幕)
+- [实例](#实例)
+
+---
+
 ## 获取实时弹幕
 
 > http://api.bilibili.com/x/v2/dm/web/seg.so （web端）
@@ -121,7 +126,7 @@ import requests
 AVID = 810872
 CID = 1176840
 SEG = 1
-url = 'http://api.bilibili.com/x/v2/dm/web/seg.so?type=1&oid=' + str(CID) + '&pid=' + str(AVID) + '&segment_index=' + str(SEG)
+url = f'http://api.bilibili.com/x/v2/dm/web/seg.so?type=1&oid={CID}&pid={AVID}&segment_index={SEG}'
 
 data = requests.get(url)
 target = bilidm_pb2.DmSegMobileReply()

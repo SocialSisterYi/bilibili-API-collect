@@ -1,5 +1,9 @@
 # APP端开屏图片
 
+- [获取APP端开屏图片列表](#获取APP端开屏图片列表)
+
+---
+
 ## 获取APP端开屏图片列表
 
 > http://app.bilibili.com/x/v2/splash/brand/list

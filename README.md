@@ -82,7 +82,11 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 高级弹幕
   - 屏蔽管理
   - 智能防挡弹幕
-  - 弹幕个人配置修改
+  - [弹幕个人配置修改](danmaku/config.md)√
+- [视频笔记](note)×
+  - 笔记列表
+  - 笔记详细信息
+  - [笔记操作](note/action.md)√
 - [专栏](article)
   - 分区
   - [基本信息](article/info.md)×
@@ -106,16 +110,16 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [小黑屋](blackroom)
   - 基本信息
   - [封禁公示](blackroom/banlist.md)√
-  - [风纪委员及众裁案件相关](blackroom/jury)
+  - [风纪委员及众裁案件相关](blackroom/jury)√
     - [风纪委员基本信息](blackroom/jury/base_info.md)√
     - [众裁案件基本信息](blackroom/jury/judgement_info.md)√
     - [裁决操作](blackroom/jury/action.md)√
 - [评论区](comment)√
   - [评论区明细](comment/list.md)√
   - [操作](comment/action.md)√
-- [表情](emote)
-  - [表情及表情包信息](emote/emote_list.md)√
-  - [操作](emote/action.md)√
+- [表情](emoji)
+  - [表情及表情包信息](emoji/list.md)√
+  - [操作](emoji/action.md)√
 - [创作中心](creativecenter)
   - [统计与数据](creativecenter/statistics&data.md)×
   - 列表查询相关
@@ -131,8 +135,14 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [发送&转载动态](dynamic/publish.md)×
   - 动态列表
   - 动态内容
-  - 小视频
   - 操作
+- [相簿](album)
+  - [基本信息](album/info.md)√
+  - [相簿列表](album/list.md)√
+  - [推荐作者](album/recommend_author.md)√
+  - [活动列表](album/activity_list.md)√
+  - [操作](album/action.md)√
+  - 投稿
 - [历史记录&稍后再看](history&toview)
   - [历史记录](history&toview/history.md)√
   - [稍后再看](history&toview/toview.md)√
@@ -162,11 +172,11 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [基于ip的地理位置查询](other/ip.md)√
   - [获取当前时间戳](other/time_stamp.md)√
 - [web端组件](web_widget)
-  - [分区当日上传数](web_widget/zone_upload.md)√
+  - [分区当日投稿数](web_widget/zone_upload.md)√
 - [APP端组件](APP_widget)
   - [开屏图片](APP_widget/splash.md)√
 - [个性装扮](garb)
-  - [主题及加载动画](garb/skin.md)√
+  - [APP主题](garb/skin.md)√
   - [主题色](garb/color.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
@@ -191,9 +201,17 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 不了解protobuf的请移步，[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
+# 发电
+
+欢迎来py，大家的支持就是我继续开发的动力！
+
+~~请可爱的易姐喝杯奶茶~~
+
+<img src="sponsorQR.jpg" width="500" height="500">
+
 # 相关项目：
 
-库及文档：
+## 库及文档：
 
 - [jingyuexing/bilibiliAPI](https://github.com/jingyuexing/bilibiliAPI)
 - [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
@@ -206,31 +224,24 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 - [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
 - [simon300000/bili-api](https://github.com/simon300000/bili-api)
 
-成品：
-- [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 使用h5展示b站直播间聊天内容。特别兼容了YouTube的样式表，可以用于增强直播效果。
-- [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):Add danmaku to local videos
+## 成品：
+
+- [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
+- [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):本地弹幕播放器
 - [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制
 - [otakustay/danmaku-to-ass](https://github.com/otakustay/danmaku-to-ass):A站B站弹幕转字幕文件
-- [bilibili-helper/bilibili-helper-o](https://github.com/bilibili-helper/bilibili-helper-o):An auxiliary extension for Bilibili (bilibili.com) which allows users to bypass playback restrictions, replace video players and use shortcuts.哔哩哔哩 (bilibili.com) 辅助工具，可以下载视频，查询弹幕发送人以及一些十分实用的直播区功能。
-- [apachecn/BiliDriveEx](https://github.com/apachecn/BiliDriveEx):已停更
-- [apachecn/CDNDrive](https://github.com/apachecn/CDNDrive):CDNDrive = BiliDrive + SuperBed，支持任意文件的全速上传与下载
-- [Hsury/BiliDrive](https://github.com/Hsury/BiliDrive):哔哩云，支持任意文件的全速上传与下载
+- [bilibili-helper/bilibili-helper-o](https://github.com/bilibili-helper/bilibili-helper-o):哔哩哔哩 (bilibili.com) 辅助工具，可以下载视频，查询弹幕发送人以及一些十分实用的直播区功能。
+- [apachecn/BiliDriveEx](https://github.com/apachecn/BiliDriveEx):基于B站相簿上传的文件分块索引存储器
+- [apachecn/CDNDrive](https://github.com/apachecn/CDNDrive):基于B站相簿上传的文件分块索引存储器
+- [Hsury/BiliDrive](https://github.com/Hsury/BiliDrive):基于B站相簿上传的文件分块索引存储器
 - [Tsuk1ko/bilibili-live-chat](https://github.com/Tsuk1ko/bilibili-live-chat):无后端的仿 YouTube Live Chat 风格的简易 Bilibili 弹幕姬
 - [ironmanic/crawler_target_users_good](https://github.com/ironmanic/crawler_target_users_good):搜索bilibili特定视频，为评论 点赞，关注，私信，一体化服务
-- [dd-center/DDatElectron](https://github.com/dd-center/DDatElectron):DD@Home 分布式项目, 桌面客户端 DD@Electron
-- [dd-center/vtbs.moe](https://github.com/dd-center/vtbs.moe):Virtual YouTubers in bilibili
+- [dd-center/DDatElectron](https://github.com/dd-center/DDatElectron):DD@Home 分布式项目, 桌面客户端
+- [dd-center/vtbs.moe](https://github.com/dd-center/vtbs.moe):B站VTB数据中心
 - [JunzhouLiu/BILIBILI-HELPER](https://github.com/JunzhouLiu/BILIBILI-HELPER):利用GitHub Action定时任务实现B站，哔哩哔哩（Bilibili）每日自动投币，签到，银瓜子兑换硬币，领取大会员福利，大会员月底给自己充电等。每天轻松获取65经验值。
 - [the1812/Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved):强大的哔哩哔哩增强脚本: 下载视频, 音乐, 封面, 弹幕 / 简化直播间, 评论区, 首页 / 自定义顶栏, 删除广告, 夜间模式 / 触屏设备支持
 
-其他：
+## 其他：
 
-- [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):No description 暂无描述
-- [Hsury/Geetest3-Crack](https://github.com/Hsury/Geetest3-Crack):Geetest3 Distributed Cracking Platform 极验3代分布式破解平台
-- [SocialSisterYi/bv2av_convert](https://github.com/SocialSisterYi/bv2av_convert):基于算法的av号与bv号互转器
-
-
-
-
-
-
-
+- [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
+- [SocialSisterYi/bv2av_convert](https://github.com/SocialSisterYi/bv2av_convert):C语言算法av号与bv号互转器
