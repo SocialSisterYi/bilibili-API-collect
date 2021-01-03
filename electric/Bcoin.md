@@ -174,6 +174,9 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 
 老版本目前已过期，调用接口成功后（code返回0），data.status会返回0，且B币不会消耗，贝壳也不会增加。以下是历史信息：
 
+<details>
+<summary>查看折叠内容</summary>
+
 > http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
 *请求方式：POST*
@@ -323,4 +326,5 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 }
 ```
 
+</details>
 </details>
