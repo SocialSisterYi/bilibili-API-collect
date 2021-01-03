@@ -1,0 +1,65 @@
+//APP端课程播放v1接口
+syntax = "proto3";
+package bilibili.cheese.gateway.player.v1;
+
+import public "bilibili/app/playurl_v1.proto";
+
+message PlayAbilityConf{
+    bool backgroundPlayDisable=1;
+    bool flipDisable=2;
+    bool castDisable=3;
+    bool feedbackDisable=4;
+    bool subtitleDisable=5;
+    bool playbackRateDisable=6;
+    bool timeUpDisable=7;
+    bool playbackModeDisable=8;
+    bool scaleModeDisable=9;
+    bool likeDisable=10;
+    bool dislikeDisable=11;
+    bool coinDisable=12;
+    bool elecDisable=13;
+    bool shareDisable=14;
+    bool screenShotDisable=15;
+    bool lockScreenDisable=16;
+    bool recommendDisable=17;
+    bool playbackSpeedDisable=18;
+    bool definitionDisable=19;
+    bool selectionsDisable=20;
+    bool nextDisable=21;
+    bool editDmDisable=22;
+    bool smallWindowDisable=23;
+    bool shakeDisable=24;
+    bool outerDmDisable=25;
+    bool innerDmDisable=26;
+    bool freyaEnterDisable=27;
+    bool dolbyDisable=28;
+}
+
+//获取播放url
+//https://app.bilibili.com/bilibili.cheese.gateway.player.v1.PlayURL/PlayView
+//请求
+message playViewReq{
+    enum CodeType{
+        NOCODE = 0;
+        CODE264 = 1;
+        CODE265 = 2;
+    }
+    int64 epid = 1; //目标剧集epid
+    int64 cid = 2; //目标视频cid
+    int64 qn = 3; //清晰度
+    int32 fnver = 4;
+    int32 fnval = 5; //流类型
+    uint32 download = 6; //下载配置 0:播放 1:flv下载 2:dash下载
+    int32 forceHost = 7;
+    bool fourk = 8; //是否4K
+    string spmid = 9;
+    string fromSpmid = 10;
+    int32 teenagersMode = 11;
+    CodeType codetype = 12; //编码类型
+    bool isPreview = 13;
+}
+//回复
+message PlayViewReply{
+    bilibili.app.playurl.v1.VideoInfo info = 1; //视频信息
+    PlayAbilityConf PlayConf = 2; //播放界面配置
+}

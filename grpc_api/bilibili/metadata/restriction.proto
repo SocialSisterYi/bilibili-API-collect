@@ -1,0 +1,8 @@
+syntax = "proto3";
+package bilibili.metadata.restriction;
+
+enum ModeType{
+    NORMAL = 0;
+    TEENAGERS = 1;
+    LESSONS = 2;
+}

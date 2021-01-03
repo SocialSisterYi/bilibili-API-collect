@@ -1,0 +1,25 @@
+syntax = "proto3";
+package bilibili.metadata.network;
+
+enum Type{
+    NT_UNKNOWN = 0;
+    WIFI = 1; //wifi
+    CELLULAR = 2; //蜂窝网络
+    OFFLINE = 3; //离线
+    ETHERNET = 5; //以太网
+    OTHERNET = 4; //其他
+}
+
+/*
+enum Tf{
+
+}*/
+
+//网络类型标识
+//x-bili-network-bin
+message Network{
+    Type type = 1; //网络类型
+    //Tf tf = 2;
+    int32 tf = 2;
+    string oid = 3;
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package bilibili.metadata.device;
+
+//环境参数1
+//x-bili-device-bin
+message Device{
+    int32 appId = 1;
+    int32 build = 2;
+    string buvid = 3;
+    string mobiApp = 4;
+    string platform = 5;
+    string device = 6;
+    string channel = 7;
+    string brand = 8;
+    string model = 9;
+    string osver = 10;
+    string fpLocal = 11;
+    string fpRemote = 12;
+    string versionName = 13;
+}

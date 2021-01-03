@@ -1,0 +1,23 @@
+syntax = "proto3";
+package bilibili.metadata;
+
+//环境参数2
+//x-bili-metadata-bin
+message Metadata{
+    string accessKey = 1;
+    string mobiApp = 2;
+    string device = 3;
+    int32 build = 4;
+    string channel = 5;
+    string buvid = 6;
+    string platform = 7;
+}
+
+import "google/protobuf/any.proto";
+//接口回复报错信息
+//grpc-status-details-bin
+message Status{
+    int32 code = 1; //错误码
+    string message = 2; //错误信息
+    repeated google.protobuf.Any details = 3; //套娃专用
+}

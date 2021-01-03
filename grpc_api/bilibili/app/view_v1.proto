@@ -1,0 +1,669 @@
+//视频页v1接口
+syntax = "proto3";
+package bilibili.app.view.v1;
+
+import "google/protobuf/any.proto";
+import public "bilibili/app/archive_v1.proto";
+
+message ActivityResource{
+    string modPoolName = 1;
+    string modResourceName = 2;
+    string bgColor = 3;
+    string selectedBgColor = 4;
+    string textColor = 5;
+    string lightTextColor = 6;
+    string darkTextColor = 7;
+    string dividerColor = 8;
+}
+
+message Attention{
+    int32 startTime = 1;
+    int32 endTime = 2;
+    double posX = 3;
+    double posY = 4;
+}
+
+message ActivitySeason{
+    bilibili.app.archive.v1.Arc arc = 1;
+    repeated ViewPage pages = 2;
+    OnwerExt ownerExt = 3;
+    ReqUser reqUser = 4;
+    ElecRank elecRank = 5;
+    History history = 6;
+    string bvid = 7;
+    Honor honor = 8;
+    repeated Staff staff = 9;
+    UgcSeason ugcSeason = 10;
+    Tab tab = 11;
+    Rank rank = 12;
+    Order order = 13;
+    bool supportDislike = 14;
+    OperationRelate operationRelate = 15;
+    ActivityResource activityResource = 16;
+    string shortLink = 17;
+    Label label = 18;
+    Dislike dislike = 19;
+    PlayerIcon playerIcon = 20;
+    string shareSubtitle = 21;
+    CMConfig cmConfig = 22;
+    TFPanelCustomized tfPanelCustomized = 23;
+    string argueMsg = 24;
+    ECode ecode = 25;
+    CustomConfig customConfig = 26;
+}
+
+message Audio{
+    string title = 1;
+    string coverUrl = 2;
+    int64 songId = 3;
+    int64 playCount = 4;
+    int64 replyCount = 5;
+    int64 upperId = 6;
+    string entrance = 7;
+    int64 songAttr = 8;
+}
+
+message Bgm {
+    int64 sid = 1;
+    int64 mid = 2;
+    string title = 3;
+    string author = 4;
+    string jumpUrl = 5;
+    string cover = 6;
+}
+
+message BizFavSeasonParam{
+    int64 seasonId = 1;
+}
+
+message BizFollowVideoParam{
+    int64 seasonId = 1;
+}
+
+message BizJumpLinkParam{
+    string url = 1;
+}
+
+message BizReserveActivityParam{
+    int64 activityId = 1;
+    string from = 2;
+    string type = 3;
+    int64 oid = 4;
+}
+
+enum BizType{
+    BizTypeNone = 0;
+    BizTypeFollowVideo = 1;
+    BizTypeReserveActivity = 2;
+    BizTypeJumpLink = 3;
+    BizTypeFavSeason = 4;
+}
+
+message Button{
+    string title = 1;
+    string uri = 2;
+}
+
+message CM{
+    google.protobuf.Any sourceContent = 1;
+}
+
+message CMConfig {
+    google.protobuf.Any adsControl = 1;
+}
+
+message Chronos{
+    string md5 = 1;
+    string file = 2;
+}
+
+message CustomConfig {
+    string redirectUrl = 1;
+}
+
+message CommandDm{
+    int64 id = 1;
+    int64 oid = 2;
+    string mid = 3;
+    string command = 4;
+    string content = 5;
+    int32 progress = 6;
+    string ctime = 7;
+    string mtime = 8;
+    string extra = 9;
+    string idStr = 10;
+}
+
+message Config {
+    string relatesTitle = 1;
+    int32 relatesStyle = 2;
+    int32 relateGifExp = 3;
+    int32 endPageHalf = 4;
+    int32 endPageFull = 5;
+}
+
+message DM{
+    bool closed = 1;
+    bool realName = 2;
+    int64 count = 3;
+}
+
+//不喜欢原因项
+message Dislike {
+    string title = 1;
+    string subtitle = 2;
+    repeated DislikeReasons reasons = 3;
+}
+
+message DislikeReasons{
+    int64 id = 1;
+    int64 mid = 2;
+    int32 rid = 3;
+    int64 tagId = 4;
+    string name = 5;
+}
+
+enum ECode{
+    DEFAULT = 0;
+    CODE404 = 1;
+}
+
+message ElecRank {
+    repeated ElecRankItem list = 1;
+    int64 count = 2;
+}
+
+message ElecRankItem{
+    string avatar = 1;
+    string nickname = 2;
+    string message = 3;
+    int64 mid = 4;
+}
+
+message Episode{
+    int64 id = 1;
+    int64 aid = 2;
+    int64 cid = 3;
+    string title = 4;
+    string cover = 5;
+    string coverRightText = 6;
+    bilibili.app.archive.v1.Page page = 7;
+    bilibili.app.archive.v1.Stat stat = 8;
+    string bvid = 9;
+}
+
+message History {
+    int64 cid = 1;
+    int64 progress = 2;
+}
+
+message Honor {
+    string icon = 1;
+    string iconNight = 2;
+    string text = 3;
+    string textExtra = 4;
+    string textColor = 5;
+    string textColorNight = 6;
+    string bgColor = 7;
+    string bgColorNight = 8;
+    string url = 9;
+    string urlText = 10;
+}
+
+message Interaction {
+    Node historyNode = 1;
+    int64 graphVersion = 2;
+    string msg = 3;
+    string evaluation = 4;
+    int64 mark = 5;
+}
+
+message Label {
+    int32 type = 1;
+    string uri = 2;
+}
+
+message Live{
+    int64 mid = 1;
+    int64 roomid = 2;
+    string uri = 3;
+}
+
+message Node{
+    int64 nodeId = 1;
+    string title = 2;
+    int64 cid = 3;
+}
+
+message Notice{
+    string title = 1;
+    string desc = 2;
+}
+
+message OfficialVerify{
+    int32 type = 1;
+    string desc = 2;
+}
+
+message OnwerExt {
+    OfficialVerify officialVerify = 1;
+    Live live = 2;
+    Vip vip = 3;
+    repeated int64 assists = 4;
+    int64 fans = 5;
+}
+
+message OperationCard{
+    int32 startTime = 1;
+    int32 endTime = 2;
+    string icon = 3;
+    string title = 4;
+    string buttonText = 5;
+    string url = 6;
+    string content = 7;
+}
+
+message OperationCardNew{
+    int64 id = 1;
+    int32 from = 2;
+    int32 to = 3;
+    bool status = 4;
+    OperationCardType cardType = 5;
+    StandardCard standardCard= 6;
+    OperationCard operationCard = 7;
+    BizType bizType = 8;
+    BizFollowVideoParam FollowVideoParam = 9;
+    BizReserveActivityParam ReserveActivityParam = 10;
+    BizJumpLinkParam LinkParam = 11;
+}
+
+enum OperationCardType{
+    CardTypeNone = 0;
+    CardTypeStandard = 1;
+    CardTypeSkip = 2;
+}
+
+message OperationRelate{
+    string title = 1;
+    repeated RelateItem relateItem = 2;
+}
+
+message Order{
+    bool status = 1;
+    string title = 2;
+    string buttonTitle = 3;
+    string buttonSelectedTitle = 4;
+    int64 seasonStatView = 5;
+    int64 seasonStatDanmaku = 6;
+    BizType orderType = 7;
+    BizReserveActivityParam reserve = 8;
+    BizFavSeasonParam favSeason = 9;
+    string intro = 10;
+}
+
+message PackInfo{
+    string title = 1;
+    string uri = 2;
+}
+
+message PlayerIcon {
+    string url1 = 1;
+    string hash1 = 2;
+    string url2 = 3;
+    string hash2 = 4;
+}
+
+message Rank{
+    string icon = 1;
+    string iconNight = 2;
+    string text = 3;
+}
+
+message ReasonStyle{
+    string text = 1;
+    string textColor = 2;
+    string bgColor = 3;
+    string borderColor = 4;
+    string textColorNight = 5;
+    string bgColorNight = 6;
+    string borderColorNight = 7;
+    int32 bgStyle = 8;
+    int32 selected = 9;
+}
+
+//推荐视频
+message Relate {
+    int64 aid = 1;
+    string pic = 2;
+    string title = 3;
+    bilibili.app.archive.v1.Author author = 4;
+    bilibili.app.archive.v1.Stat stat = 5;
+    int64 duration = 6;
+    string goto = 7;
+    string param = 8;
+    string uri = 9;
+    string jumpUrl = 10;
+    double rating = 11;
+    string reserve = 12;
+    string from = 13;
+    string desc = 14;
+    string rcmdReason = 15;
+    string badge = 16;
+    int64 cid = 17;
+    int32 seasonType = 18;
+    int32 ratingCount = 19;
+    string tagName = 20;
+    PackInfo packInfo = 21;
+    Notice notice = 22;
+    Button button = 23;
+    string trackid = 24;
+    int32 newCard = 25;
+    ReasonStyle rcmdReasonStyle = 26;
+    string coverGif = 27;
+    CM cm = 28;
+}
+
+message RelateItem{
+    string url = 1;
+    string cover = 2;
+}
+
+message RelateTab {
+    string id = 1;
+    string title = 2;
+}
+
+message ReqUser {
+    int32 attention = 1;
+    int32 guestAttention = 2;
+    int32 favorite = 3;
+    int32 like = 4;
+    int32 dislike = 5;
+    int32 coin = 6;
+    int32 attentionLevel = 7;
+}
+
+message Season {
+    string allowDownload = 1;
+    int64 seasonId = 2;
+    int32 isJump = 3;
+    string title = 4;
+    string cover = 5;
+    int32 isFinish = 6;
+    int64 newestEpId = 7;
+    string newestEpIndex = 8;
+    int64 totalCount = 9;
+    int32 weekday = 10;
+    UserSeason userSeason = 11;
+    SeasonPlayer player = 12;
+    string ogvPlayurl = 13;
+}
+
+message SeasonPlayer{
+    int64 aid = 1;
+    string vid = 2;
+    int64 cid = 3;
+    string from = 4;
+}
+
+message Section{
+    int64 id = 1;
+    string title = 2;
+    int64 type = 3;
+    repeated Episode episodes = 4;
+}
+
+message Staff {
+    int64 mid = 1;
+    string title = 2;
+    string face = 3;
+    string name = 4;
+    OfficialVerify officialVerify = 5;
+    Vip vip = 6;
+    int32 attention = 7;
+    int32 labelStyle = 8;
+}
+
+message StandardCard{
+    string title = 1;
+    string buttonTitle = 2;
+    string buttonSelectedTitle = 3;
+    bool showSelected = 4;
+}
+
+message TFPanelCustomized{
+    string rightBtnImg = 1;
+    string rightBtnText = 2;
+    string rightBtnTextColor = 3;
+    string rightBtnLink = 4;
+    string mainLabel = 5;
+    string operator = 6;
+    map<string,subTFPanel> entry = 7;
+}
+
+//TAG图标
+message TIcon {
+    string icon = 1;
+}
+
+message Tab{
+    string background = 1;
+    TabOtype otype = 2;
+    int64 oid = 3;
+    string uri = 4;
+    TabStyle style = 5;
+    string text = 6;
+    string textColor = 7;
+    string textColorSelected = 8;
+    string pic = 9;
+    int64 id = 10;
+}
+
+enum TabOtype{
+    UnknownOtype = 0;
+    URL = 1;
+    TopicNA = 2;
+}
+
+enum TabStyle{
+    UnknownStyle = 0;
+    Text = 1;
+    Pic = 2;
+}
+
+//TAG信息
+message Tag {
+    int64 id = 1;
+    string name = 2;
+    int64 likes = 3;
+    int64 hates = 4;
+    int32 liked = 5;
+    int32 hated = 6;
+    string uri = 7;
+    string tagType = 8;
+}
+
+message UgcSeason {
+    int64 id = 1;
+    string title = 2;
+    string cover = 3;
+    string intro = 4;
+    repeated Section sections = 5;
+    UgcSeasonStat stat = 6;
+    string labelText = 7;
+    string labelTextColor = 8;
+    string labelBgColor = 9;
+    string labelBgNightColor = 11;
+    string labelTextNightColor = 10;
+    string descRight = 12;
+    int64 epCount = 13;
+}
+
+message UgcSeasonStat{
+    int64 seasonId = 1;
+    int32 view = 2;
+    int32 danmaku = 3;
+    int32 reply = 4;
+    int32 fav = 5;
+    int32 coin = 6;
+    int32 share = 7;
+    int32 nowRank = 8;
+    int32 hisRank = 9;
+    int32 like = 10;
+}
+
+message UpAct{
+    int64 sid = 1;
+    int64 mid = 2;
+    string title = 3;
+    string statement = 4;
+    string image = 5;
+    string url = 6;
+    string button = 7;
+}
+
+message UserGarb{
+    string urlImageAniCut = 1;
+}
+
+message UserSeason{
+    string attention = 1;
+}
+
+message VideoGuide{
+    repeated Attention attention = 1; //关注按钮卡片
+    repeated CommandDm commandDms = 2; //互动弹幕
+    repeated OperationCard operationCard = 3;
+    repeated OperationCardNew operationCardNew = 4;
+}
+
+//分P明细
+message ViewPage {	
+	bilibili.app.archive.v1.Page page = 1;//分P视频
+	Audio audio = 2;
+	DM dm =3;
+	string downloadTitle = 4;
+	string downloadSubtitle = 5;
+}
+
+message Vip{
+    int32 type = 1;
+    int64 dueDate = 2;
+    string dueRemark = 3;
+    int32 accessStatus = 4;
+    int32 vipStatus = 5;
+    string vipStatusWarn = 6;
+    int32 themeType = 7;
+    VipLabel label = 8;
+}
+
+message VipLabel{
+    string path = 1;
+}
+
+message subTFPanel{
+    string rightBtnImg = 1;
+    string rightBtnText = 2;
+    string rightBtnTextColor = 3;
+    string rightBtnLink = 4;
+    string mainLabel = 5;
+    string operator = 6;
+}
+
+//视频页信息
+//https://app.bilibili.com/bilibili.app.view.v1.View/View
+//请求
+message ViewReq {
+	int64 aid = 1; //avid
+	string bvid = 2; //bvid
+	string from = 3;
+	string trackid = 4;
+	string adExtra = 5;
+	int32 qn = 6;
+	int32 fnver = 7;
+	int32 fnval = 8;
+	int32 forceHost = 9;
+	int32 fourk = 10;
+	string spmid = 11;
+	string fromSpmid = 12; 
+	int32 autoplay = 13;
+}
+//回复
+message ViewReply {
+    bilibili.app.archive.v1.Arc arc = 1; //稿件基本信息
+    repeated ViewPage pages = 2; //分P信息
+    OnwerExt ownerExt = 3;
+    ReqUser reqUser = 4;
+    repeated Tag tag = 5; //稿件TAG
+    map<string, TIcon> tIcon = 6; //TAG图标
+    Season season = 7;
+    ElecRank elecRank = 8;
+    History history = 9;
+    repeated Relate relates = 10; //推荐视频
+    Dislike dislike = 11; //不喜欢原因项
+    PlayerIcon playerIcon = 12;
+    string vipActive_ = 13;
+    string bvid = 14;//稿件bvid
+    Honor honor = 15;
+    repeated RelateTab relateTab = 16;
+    string activityUrl = 17;
+    repeated Bgm bgm = 18;
+    repeated Staff staff = 19;
+    string argueMsg = 20;//警告信息
+    string shortLink = 21;
+    int32 playParam = 22;
+    Label label = 23;
+    UgcSeason ugcSeason = 24;
+    Config config = 25;
+    string shareSubtitle_ = 26;
+    Interaction interaction = 27;
+    int32 ecode = 28;
+    CustomConfig customConfig = 29;
+    repeated CM cms = 30;
+    CMConfig cmConfig = 31;
+    Tab tab = 32;
+    Rank rank = 33;
+    TFPanelCustomized tfPanelCustomized = 34;
+    UpAct upAct = 35;
+    UserGarb userGarb = 36;
+    ActivitySeason activitySeason = 37;
+}
+
+//获取视频特殊数据
+//https://app.bilibili.com/bilibili.app.view.v1.View/ViewProgress
+//请求
+message ViewProgressReq{
+    int64 aid = 1;
+    int64 cid = 2;
+    int64 upMid = 3;
+}
+message ViewProgressReply{
+    VideoGuide videoGuide = 1; //特殊数据
+    Chronos chronos = 2; //资源包
+}
+
+//？
+//https://app.bilibili.com/bilibili.app.view.v1.View/ShortFormVideoDownload
+//请求
+message ShortFormVideoDownloadReq{
+    int64 aid = 1;
+    int64 cid = 2;
+    int64 mid = 3;
+    string buvid = 4;
+    string mobiApp = 5;
+    int64 build = 6;
+    string device = 7;
+    string platform = 8;
+    string spmid = 9;
+}
+//回复
+message ShortFormVideoDownloadReply{
+    bool hasDownloadUrl = 1;
+    string downloadUrl = 2;
+    string md5 = 3;
+    int64 size = 4;
+}
+
+message NoReply{
+
+}

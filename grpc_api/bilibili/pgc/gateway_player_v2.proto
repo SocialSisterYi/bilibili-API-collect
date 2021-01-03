@@ -1,0 +1,245 @@
+//APP端PGC播放v2接口
+//https://app.bilibili.com/bilibili.pgc.gateway.player.v2.PlayURL/PlayView
+syntax = "proto3";
+package bilibili.pgc.gateway.player.v2;
+
+import "google/protobuf/timestamp.proto";
+
+message playViewReq{
+    enum CodeType{
+        NOCODE = 0;
+        CODE264 = 1;
+        CODE265 = 2;
+    }
+    int64 epid = 1; //目标剧集epid
+    int64 cid = 2; //目标视频cid
+    int64 qn = 3; //清晰度
+    int32 fnver = 4;
+    int32 fnval = 5; //流类型
+    uint32 download = 6; //下载配置 0:播放 1:flv下载 2:dash下载
+    int32 forceHost = 7;
+    bool fourk = 8; //是否4K
+    string spmid = 9;
+    string fromSpmid = 10;
+    int32 teenagersMode = 11;
+    CodeType codetype = 12; //编码类型
+    bool isPreview = 13;
+    int64 roomId = 14;
+    bool isNeedViewInfo = 15;
+}
+
+message VideoInfo{
+    message stream{
+        message streamInfo{
+            message Limit{
+                string title=1;
+                string uri=2;
+                string msg=3;
+            }
+            uint32 quality=1;//清晰度
+            string format=2;//格式
+            string description=3;//格式描述
+            uint32 errCode=4;
+            Limit limit=5;
+            bool needVip=6;//需要vip
+            bool needLogin=7;//需要登录
+            bool intact=8;
+            bool noRexcode=9;
+            int64 attribute=10;
+            string newDescription=11;//新版格式描述
+            string displayDesc=12;//格式文字
+            string superscript=13;//新版格式描述备注
+        }
+        message DashVideo{
+            string baseUrl=1;//主线流
+            repeated string backupUrl=2;//备用流
+            uint32 bandwidth=3;//带宽
+            uint32 codecid=4;
+            string md5=5;//md5
+            uint64 size=6;//大小
+            uint32 audioId=7;
+            bool noRexcode=8;            
+        }
+        message SegmentVideo{
+            message ResponseUrl{
+                uint32 order=1;
+                uint64 length=2;
+                uint64 size=3;
+                string url=4;
+                repeated string backupUrl=5;
+                string md5=6;
+            }
+            repeated ResponseUrl segment=1;
+        }
+        streamInfo info=1;//元数据
+        DashVideo dashvideo=2;//dash流
+        SegmentVideo segmentvideo=3;//flv流
+    }
+    message DashAudio{
+        uint32 id=1;
+        string baseUrl=2;//主线流
+        repeated string backupUrl=3;//备用流
+        uint32 bandwidth=4;//带宽
+        uint32 codecid=5;//
+        string md5=6;//md5
+        uint64 size=7;//大小
+    }
+    message DolbyItem{
+        int32 type=1;
+        DashAudio audio=2;
+    }
+    uint32 quality=1;//视频清晰度
+    string format=2;//视频格式
+    uint64 timelength=3;//视频时长
+    uint32 videoCodecid=4;//
+    repeated stream streamList=5;//视频流
+    repeated DashAudio audio=6;//伴音流
+    DolbyItem dolby=7;//杜比伴音流
+}
+
+message PlayAbilityConf{
+    bool backgroundPlayDisable=1;
+    bool flipDisable=2;
+    bool castDisable=3;
+    bool feedbackDisable=4;
+    bool subtitleDisable=5;
+    bool playbackRateDisable=6;
+    bool timeUpDisable=7;
+    bool playbackModeDisable=8;
+    bool scaleModeDisable=9;
+    bool likeDisable=10;
+    bool dislikeDisable=11;
+    bool coinDisable=12;
+    bool elecDisable=13;
+    bool shareDisable=14;
+    bool screenShotDisable=15;
+    bool lockScreenDisable=16;
+    bool recommendDisable=17;
+    bool playbackSpeedDisable=18;
+    bool definitionDisable=19;
+    bool selectionsDisable=20;
+    bool nextDisable=21;
+    bool editDmDisable=22;
+    bool smallWindowDisable=23;
+    bool shakeDisable=24;
+    bool outerDmDisable=25;
+    bool innerDmDisable=26;
+    bool freyaEnterDisable=27;
+    bool dolbyDisable=28;
+}
+
+message PlayViewBusinessInfo{
+    bool isPreview=1;
+    bool bp=2;
+    string marlinToken=3;
+}
+
+message Event{
+    message Shake{
+        string file=1;
+    }
+    Shake shake=1;
+}
+
+message ViewInfo{
+    message Report{
+        string showEventId=1;
+        string clickEventId=2;
+        string extends=3;
+    }
+    message ButtonInfo{
+        message BadgeInfo{
+            string text=1;
+            string bgColor=2;
+            string bgColorNight=3;
+        }
+        string text=1;
+        string textColor=2;
+        string textColorNight=3;
+        string bgColor=4;
+        string bgColorNight=5;
+        string link=6;
+        string actionType=7;
+        BadgeInfo badgeInfo=8;
+        Report report=9;
+    }
+    message Dialog{
+        message DialogConfig{
+            bool isShowCover=1;
+            bool isOrientationEnable=2;
+            bool isNestedScrollEnable=3;
+            bool isForceHalfscreenEnable=4;
+        }
+        message TextInfo{
+            string text=1;
+            string textColor=2;
+            string textColorNight=3;
+        }
+        message ImageInfo{
+            string url=1;
+        }
+        int64 code=1;
+        string msg=2;
+        string type=3;
+        string styleType=4;
+        DialogConfig config=5;
+        TextInfo title=6;
+        TextInfo subtitle=7;
+        ImageInfo image=8;
+        repeated ButtonInfo button=9;
+        ButtonInfo bottomDesc=10;
+        Report report=11;
+        int32 countDownSec=12;
+    }
+    message Toast{
+        string text=1;
+        ButtonInfo button=2;
+    }
+    message CouponInfo{
+        message CouponToast{
+            message CouponTextInfo{
+                string positivePreview=1;
+                string section=2;
+            }
+            CouponTextInfo textInfo=1;
+            ButtonInfo button=2;
+        }
+        message PopWin{
+            message Coupon{
+                string couponToken=1;
+                int64 type=2;
+                string value=3;
+                string useDesc=4;
+                string title=5;
+                string desc=6;
+                string payButtonText=7;
+                string payButtonTextLineThrough=8;
+                string realAmount=9;
+                google.protobuf.Timestamp expireTime=10;
+            }
+            string title=1;
+            repeated Coupon coupon=2;
+            repeated ButtonInfo button=3;
+            string bottomText=4;
+        }
+        CouponToast toast=1;
+        PopWin popWin=2;
+    }
+    message EndPage{
+        Dialog dialog=1;
+        bool hide=2;
+    }
+    Dialog dialog=1;
+    Toast toast=2;
+    CouponInfo couponInfo=3;
+    repeated int64 demandNoPayEpids=4;
+    EndPage endPage=5;
+}
+
+message PlayViewReply{
+    VideoInfo info=1;//视频信息
+    PlayAbilityConf PlayConf=2;//播放界面配置
+    PlayViewBusinessInfo Business=3;
+    Event event=4;
+    ViewInfo viewInfo=5;
+}

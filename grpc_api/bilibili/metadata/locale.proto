@@ -1,0 +1,10 @@
+syntax = "proto3";
+package bilibili.metadata.locale;
+
+//区域标识
+//x-bili-locale-bin
+message LocaleIds{
+    string language = 1;
+    string script = 2;
+    string region = 3;
+}
