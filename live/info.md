@@ -112,12 +112,12 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 | is_hidden         | bool   | 是否隐藏  |                          |
 | is_locked         | bool   | 是否锁定  |                          |
 | is_portrait         | bool   | 是否竖屏  |                          |
-| live_status     | num  | 直播状态      | 0：未开播<br />1：直播中 |
+| live_status     | num  | 直播状态      | 0：未开播<br />1：直播中<br />2：轮播中 |
 | hidden_till     | num  | 隐藏时间戳 |      	 |
 | lock_till     | num  | 锁定时间戳 |   		 |
 | encrypted     | bool   | 是否加密  |   		 |
 | pwd_verified     | bool   | 加密房间是否通过密码验证 | `encrypted`=true时才有意义 |
-| live_time     | num  | 开播时长      |   		 |
+| live_time     | num  | 开播时间     | 未开播时为`-62170012800` |
 | room_shield     | num  | 未知    |  |
 | is_sp    | num  | 是否为特殊直播间 | 0：普通直播间<br />1：付费直播间 |
 | special_type      | num  | 特殊直播间标志 | 0：普通直播间<br />1：付费直播间<br />2：拜年祭直播间 |
