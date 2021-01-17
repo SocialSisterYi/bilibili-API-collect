@@ -2,6 +2,7 @@
 
 - [获取用户对应的直播间状态](#获取用户对应的直播间状态)
 - [获取房间页初始化信息](#获取房间页初始化信息)
+- [获取主播信息](#获取主播信息)
 
 ---
 
@@ -100,7 +101,6 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 | message | str  | 错误信息 | 默认为ok                     |
 | data    | obj  | 信息本体 |                             |
 
-
 `data`对象：
 
 | 字段           | 类型 | 内容          | 备注                     |
@@ -156,6 +156,155 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 		"room_shield":1,
 		"is_sp":0,
 		"special_type":0
+	}
+}
+```
+
+</details>
+
+## 获取主播信息
+
+> http://api.live.bilibili.com/live_user/v1/Master/info
+
+*请求方式：GET*
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| uid    | num  | 目标用户UID | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                     |
+| ------- | ---- | -------- | ------------------------ |
+| code    | num  | 返回值   | 0：成功<br />1：参数错误 |
+| msg     | str  | 错误信息 | 默认为空                 |
+| message | str  | 错误信息 | 默认为空                 |
+| data    | obj  | 信息本体 |                          |
+
+`data`对象：
+
+| 字段           | 类型 | 内容             | 备注             |
+| -------------- | ---- | ---------------- | ---------------- |
+| info           | obj  | 主播信息         |                  |
+| exp            | obj  | 经验等级         |                  |
+| follower_num   | num  | 主播粉丝数       |                  |
+| room_id        | num  | 直播间ID（短号） |                  |
+| medal_name     | str  | 粉丝勋章名       |                  |
+| glory_count    | int  | 主播荣誉数       |                  |
+| pendant        | str  | 直播间头像框url  |                  |
+| link_group_num | int  | 0                | **作用尚不明确** |
+| room_news      | obj  | 主播公告         |                  |
+
+`info`对象：
+
+| 字段            | 类型 | 内容        | 备注                           |
+| --------------- | ---- | ----------- | ------------------------------ |
+| uid             | num  | 主播UID     |                                |
+| uname           | str  | 主播用户名  |                                |
+| face            | str  | 主播头像url |                                |
+| official_verify | obj  | 认证信息    |                                |
+| gender          | num  | 主播性别    | -1：保密<br />0：女<br />1：男 |
+
+`info`中的`official_verify`对象：
+| 字段 | 类型 | 内容         | 备注                                     |
+| ---- | ---- | ------------ | ---------------------------------------- |
+| type | num  | 主播认证类型 | -1：无<br />0：个人认证<br />1：机构认证 |
+| desc | str  | 主播认证信息 |                                          |
+
+`exp`对象：
+
+| 字段         | 类型 | 内容     | 备注 |
+| ------------ | ---- | -------- | ---- |
+| master_level | obj  | 主播等级 |      |
+
+`exp`中的`master_level`对象：
+
+| 字段    | 类型  | 内容         | 备注 |
+| ------- | ----- | ------------ | ---- |
+| level   | num   | 当前等级     |      |
+| color   | num   | 等级框颜色   |      |
+| current | array | 当前等级信息 |      |
+| next    | array | 下一等级信息 |      |
+
+`master_level`中的`current`数组：
+
+| 项   | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| 0    | num  | 升级积分 |      |
+| 1    | num  | 总积分   |      |
+
+`master_level`中的`next`数组：
+
+| 项   | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| 0    | num  | 升级积分 |      |
+| 1    | num  | 总积分   |      |
+
+`room_news`对象：
+
+| 字段       | 类型 | 内容     | 备注 |
+| ---------- | ---- | -------- | ---- |
+| content    | str  | 公告内容 |      |
+| ctime      | str  | 公告时间 |      |
+| ctime_text | str  | 公告日期 |      |
+
+**示例：**
+
+查询直播间`UID=76`的主播信息
+
+```shell
+curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
+--data-urlencode 'uid=2'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"msg": "",
+	"message": "",
+	"data": {
+		"info": {
+			"uid": 2,
+			"uname": "碧诗",
+			"face": "https://i0.hdslb.com/bfs/face/ef0457addb24141e15dfac6fbf45293ccf1e32ab.jpg",
+			"official_verify": {
+				"type": 0,
+				"desc": "bilibili个人认证:bilibili创始人（站长）"
+			},
+			"gender": 1
+		},
+		"exp": {
+			"master_level": {
+				"level": 30,
+				"color": 10512625,
+				"current": [
+					2870000,
+					11883810
+				],
+				"next": [
+					3730000,
+					15613810
+				]
+			}
+		},
+		"follower_num": 926624,
+		"room_id": 1024,
+		"medal_name": "逸国",
+		"glory_count": 0,
+		"pendant": "",
+		"link_group_num": 0,
+		"room_news": {
+			"content": "",
+			"ctime": "",
+			"ctime_text": ""
+		}
 	}
 }
 ```
