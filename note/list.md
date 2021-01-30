@@ -76,7 +76,7 @@
 获取笔记列表
 
 ```shell
-curl 'http://api.bilibili.com/x/note/add' \
+curl 'http://api.bilibili.com/x/note/list' \
 --data-urlencode 'ps=10' \
 --data-urlencode 'pn=1'
 -b 'SESSDATA=xxx'
