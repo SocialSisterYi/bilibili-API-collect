@@ -108,3 +108,23 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 | message | str  | 错误信息 | 默认为0                                             |
 | ttl     | num  | 1        |                                                     |
 | data    | obj  | 信息本体 |                                                     |
+
+`data`对象：
+
+| 字段         | 类型  | 内容             | 备注           |
+| ------------ | ----- | ---------------- | -------------- |
+| title        | str   | 笔记标题         |                |
+| summary      | str   | 笔记预览文本     |                |
+| content      | str   | 笔记正文json序列 | 格式见[附表](readme.md#附表-笔记正文序列格式) |
+| tags         | array | 笔记跳转标签列表 |                |
+| cid_count    | num   | 视频分P数        |                |
+| audit_status | num   | 0                | 作用暂不明确   |
+| aid          | num   | 稿件avID         |                |
+
+`data`中的`tags`数组：
+
+| 项   | 类型 | 内容        | 备注             |
+| ---- | ---- | ----------- | ---------------- |
+| 0    | obj  | 标签1       |                  |
+| n    | obj  | 标签（n+1） | 按照笔记中位置排列 |
+| ……   | obj  | ……          | ……               |
