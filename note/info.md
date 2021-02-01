@@ -128,3 +128,68 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 | 0    | obj  | 标签1       |                  |
 | n    | obj  | 标签（n+1） | 按照笔记中位置排列 |
 | ……   | obj  | ……          | ……               |
+
+`tags`中的对象：
+
+| 字段     | 类型 | 内容              | 备注         |
+| -------- | ---- | ----------------- | ------------ |
+| cid      | num  | 视频cid           |              |
+| status   | num  | 0                 | 作用尚不明确 |
+| index    | num  | 在稿件中的分P索引 |              |
+| seconds  | num  | 视频进度          |              |
+| pos      | num  | 笔记中位置        |              |
+
+**示例：**
+
+查询视频`av583785685`/`BV1kz4y1X7XP`中笔记`7165769906913287`的内容
+
+avID方式：
+
+```shell
+curl 'http://api.bilibili.com/x/note/info' \
+--data-urlencode 'aid=583785685' \
+--data-urlencode 'note_id=7165769906913287' \
+-b 'SESSDATA=xxx'
+```
+
+bvID方式：
+
+```shell
+curl 'http://api.bilibili.com/x/note/info' \
+--data-urlencode 'bvid=BV1kz4y1X7XP' \
+--data-urlencode 'note_id=7165769906913287' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1,
+    "data":{
+        "title":"【cmd】访问api 命令行也能上B站",
+        "summary":"项目介绍  才324个star？哦7月4日没事了  二维码登录流程介绍  正式开",
+        "content":"{
+            "insert":{
+                "tag":{
+                    "cid":209620774,
+                    "status":0,
+                    "index":1,
+                    "seconds":5,
+                    "cidCount":1,
+                    "key":"1611921905204",
+                    "title":"【cmd】访问api 命令行也能上B站_x264"
+                }
+            }
+        }..."
+        "cid_count":1,
+        "audit_status":0,
+        "aid":583785685
+    }
+}
+```
+
+</details>
