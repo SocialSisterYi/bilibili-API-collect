@@ -84,9 +84,9 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 屏蔽管理
   - 智能防挡弹幕
   - [弹幕个人配置修改](danmaku/config.md)√
-- [视频笔记](note)×
-  - 笔记列表
-  - 笔记详细信息
+- [视频笔记](note)√
+  - [笔记列表](note/list.md)√
+  - [笔记详细信息](note/info.md)√
   - [笔记操作](note/action.md)√
 - [专栏](article)
   - 分区

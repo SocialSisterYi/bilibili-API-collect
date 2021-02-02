@@ -2,13 +2,15 @@
 
 2020-11-16 B站推出了测试版的功能——"视频笔记"，与视频稿件关联，为富文本模式，可供记录观看视频时的感悟以及视频中的重要内容，目前只可在web端操作
 
+目前单个稿件只能添加一篇笔记（与分P无关）
+
 ---
 
-继续查看：
+**继续查看：**
 
-- 笔记列表
-- 笔记详细信息
-- [笔记操作](action.md)√
+- [笔记列表](list.md)
+- [笔记详细信息](info.md)
+- [笔记操作](action.md)
 
 ---
 
@@ -68,4 +70,88 @@
 | url    | str  | 图片链接   |              |
 | status | str  | done       | 作用尚不明确 |
 | width  | num  | 图片宽度-2 |              |
+
+示例：
+
+以下笔记正文序列包含`字号`、`加粗`、`高亮`、`普通文本`格式
+
+```json
+[
+    {
+        "attributes": {
+            "size": "24px",
+            "bold": true
+        },
+        "insert": "关掉"
+    },
+    {
+        "attributes": {
+            "size": "24px"
+        },
+        "insert": "，"
+    },
+    {
+        "attributes": {
+            "size": "24px",
+            "bold": true
+        },
+        "insert": "关掉"
+    },
+    {
+        "insert": "，"
+    },
+    {
+        "attributes": {
+            "background": "#fff359"
+        },
+        "insert": "一定要"
+    },
+    {
+        "attributes": {
+            "background": "#fff359",
+            "bold": true
+        },
+        "insert": "关掉"
+    },
+    {
+        "insert": "\n再不关掉那些"
+    },
+    {
+        "attributes": {
+            "bold": true
+        },
+        "insert": "网络游戏"
+    },
+    {
+        "insert": "，小孩哪有"
+    },
+    {
+        "attributes": {
+            "bold": true
+        },
+        "insert": "美好的未来"
+    },
+    {
+        "insert": "，哪有"
+    },
+    {
+        "attributes": {
+            "bold": true
+        },
+        "insert": "美好的前程"
+    },
+    {
+        "insert": "，祖国哪有"
+    },
+    {
+        "attributes": {
+            "bold": true
+        },
+        "insert": "栋梁之才"
+    },
+    {
+        "insert": "\n"
+    }
+]
+```
 

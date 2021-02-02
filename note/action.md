@@ -22,7 +22,7 @@
 | title   | str  | 笔记标题                 | 必要   |                                                              |
 | summary | str  | 笔记预览文本             | 必要   |                                                              |
 | content | str  | 笔记正文json序列         | 必要   | 格式见[附表](readme.md#附表-笔记正文序列格式)                |
-| tags    | str  |                          | 非必要 | 作用尚不明确                                                 |
+| tags    | str  | 笔记跳转标签列表         | 非必要 |                                                              |
 | cls     | num  | 1                        | 非必要 | 作用尚不明确                                                 |
 | from    | str  | 提交类型                 | 非必要 | auto：自动提交<br />save：手动提交<br />close：关闭时自动提交 |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                                                              |
