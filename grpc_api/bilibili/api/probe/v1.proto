@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package bilibili.api.probe.v1;
+
+//
+service Probe {
+    //
+    //
+    rpc testCode (CodeReq) returns (CodeReply);
+
+    //
+    //
+    rpc testReq (ProbeReq) returns (ProbeReply);
+
+    //
+    //
+    rpc testStream (ProbeStreamReq) returns (ProbeStreamReply);
+
+    //
+    //
+    rpc testSub (ProbeSubReq) returns (ProbeSubReply);
+}
+
+//-请求
+message CodeReq {
+    //
+    int64 code = 1;
+}
+
+//-回复
+message CodeReply {
+
+}
+
+//-请求
+message ProbeReq {
+    //
+    int64 mid = 1;
+
+    //
+    string buvid = 2;
+}
+
+//-回复
+message ProbeReply {
+    //
+    string content = 1;
+
+    //
+    int64 timestamp = 2;
+}
+
+//-请求
+message ProbeStreamReq {
+    //
+    int64 mid = 1;
+
+    //
+    int64 sequence = 2;
+}
+
+//-回复
+message ProbeStreamReply {
+    //
+    int64 sequence = 1;
+
+    //
+    int64 timestamp = 2;
+
+    //
+    string content = 3;
+}
+
+//-请求
+message ProbeSubReq {
+    //
+    int64 buvid = 1;
+}
+
+//-回复
+message ProbeSubReply {
+    //
+    int64 messageId = 1;
+}

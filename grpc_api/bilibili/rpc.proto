@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package bilibili.rpc;
 
 import "google/protobuf/any.proto";
@@ -6,7 +7,12 @@ import "google/protobuf/any.proto";
 //接口回复报错信息
 //grpc-status-details-bin
 message Status{
-    int32 code = 1; //错误码
-    string message = 2; //错误信息
-    repeated google.protobuf.Any details = 3; //套娃专用
+    //业务错误码
+    int32 code = 1;
+
+    //业务错误信息
+    string message = 2;
+
+    //扩展信息嵌套（套娃专用）
+    repeated google.protobuf.Any details = 3;
 }

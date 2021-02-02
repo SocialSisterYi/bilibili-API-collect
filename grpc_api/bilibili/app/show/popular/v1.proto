@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package bilibili.app.show.popular.v1;
+
+import "bilibili/app/playurl/v1.proto";
+import "bilibili/app/card/v1.proto";
+
+//
+service Popular {
+    //
+    //
+    rpc index (PopularResultReq) returns (PopularReply);
+}
+
+//-请求
+message PopularResultReq {
+    //
+    int64 idx = 1;
+
+    //
+    int32 loginEvent = 2;
+
+    //
+    int32 qn = 3;
+
+    //
+    int32 fnver = 4;
+
+    //
+    int32 fnval = 5;
+
+    //
+    int32 forceHost = 6;
+
+    //
+    int32 fourk = 7;
+
+    //
+    sfixed32 spmid = 8;
+
+    //
+    sfixed32 lastParam = 9;
+
+    //
+    sfixed32 ver = 10;
+
+    //
+    int64 entranceId = 11;
+
+    //
+    sfixed32 locationIds = 12;
+
+    //
+    int32 sourceId = 13;
+
+    //
+    int32 flush = 14;
+
+    //
+    bilibili.app.playurl.v1.PlayerArgs playerArgs = 15;
+}
+
+//-回复
+message PopularReply {
+    //
+    repeated bilibili.app.card.v1.Card items = 1;
+
+    //
+    Config config = 2;
+
+    //
+    string ver = 3;
+}
+
+//
+message Bubble {
+    //
+    string bubbleContent = 1;
+
+    //
+    int32 version = 2;
+
+    //
+    int64 stime = 3;
+}
+
+//
+message Config {
+    //
+    string itemTitle = 1;
+
+    //
+    string bottomText = 2;
+
+    //
+    string bottomTextCover = 3;
+
+    //
+    string bottomTextUrl = 4;
+
+    //
+    repeated EntranceShow topItems = 5;
+
+    //
+    string headImage = 6;
+
+    //
+    repeated EntranceShow pageItems = 7;
+
+    //
+    int32 hit = 8;
+}
+
+//
+message EntranceShow {
+    //
+    string icon = 1;
+
+    //
+    string title = 2;
+
+    //
+    string moduleId = 3;
+
+    //
+    string uri = 4;
+
+    //
+    Bubble bubble = 5;
+
+    //
+    int64 entranceId = 6;
+
+    //
+    string topPhoto = 7;
+
+    //
+    int32 entranceType = 8;
+}

@@ -1,25 +1,61 @@
 syntax = "proto3";
+
 package bilibili.metadata.network;
 
+//网络类型
 enum Type{
+    //未知
     NT_UNKNOWN = 0;
-    WIFI = 1; //wifi
-    CELLULAR = 2; //蜂窝网络
-    OFFLINE = 3; //离线
-    ETHERNET = 5; //以太网
-    OTHERNET = 4; //其他
+
+    //wifi
+    WIFI = 1;
+
+    //蜂窝网络
+    CELLULAR = 2;
+
+    //未连接
+    OFFLINE = 3;
+
+    //以太网
+    ETHERNET = 5;
+
+    //其他
+    OTHERNET = 4;
 }
 
-/*
-enum Tf{
+//免流类型
+enum TFType {
+    //正常计费
+    TF_UNKNOWN = 0;
 
-}*/
+    //联通卡
+    U_CARD = 1;
+
+    //联通包
+    U_PKG = 2;
+
+    //移动卡
+    C_CARD = 3;
+
+    //移动包
+    C_PKG = 4;
+
+    //电信卡
+    T_CARD = 5;
+
+    //电信包
+    T_PKG = 6;
+}
 
 //网络类型标识
 //x-bili-network-bin
 message Network{
-    Type type = 1; //网络类型
-    //Tf tf = 2;
-    int32 tf = 2;
+    //网络类型
+    Type type = 1;
+
+    //免流类型
+    TFType tf = 2;
+
+    //运营商
     string oid = 3;
 }

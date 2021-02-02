@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package bilibili.account.fission.v1;
+
+//Fission裂变
+service Fission {
+    //活动入口
+    //
+    rpc entrance (EntranceReq) returns (EntranceReply);
+
+    //首页弹窗
+    //
+    rpc window (WindowReq) returns (WindowReply);
+}
+
+//活动入口-请求
+message EntranceReq {
+
+}
+
+//活动入口-回复
+message EntranceReply {
+    //展示图标
+    string icon = 1;
+
+    //活动名称
+    string name = 2;
+
+    //活动跳转链接
+    string url = 3;
+
+    //动画效果
+    AnimateIcon animateIcon = 4;
+}
+
+//首页弹窗-请求
+message WindowReq {
+
+}
+
+//首页弹窗-回复
+message WindowReply {
+    //弹窗类型
+    //0:弹窗
+    //1:普通页面
+    int32 type = 1;
+
+    //跳转链接
+    string url = 2;
+
+    //
+    string reportData = 3;
+}
+
+//
+message AnimateIcon {
+    //icon文件
+    string icon = 1;
+
+    //动效json文件
+    string json = 2;
+}

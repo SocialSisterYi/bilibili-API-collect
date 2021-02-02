@@ -1,20 +1,46 @@
 syntax = "proto3";
+
 package bilibili.metadata.device;
 
 //环境参数1
 //x-bili-device-bin
 message Device{
+    //产品id
     int32 appId = 1;
+
+    //构建id
     int32 build = 2;
+
+    //设备buvid
     string buvid = 3;
+
+    //包类型
     string mobiApp = 4;
+
+    //平台类型
     string platform = 5;
+
+    //设备类型
     string device = 6;
+
+    //渠道
     string channel = 7;
+
+    //品牌
     string brand = 8;
+
+    //型号
     string model = 9;
+
+    //系统版本
     string osver = 10;
+
+    //
     string fpLocal = 11;
+
+    //
     string fpRemote = 12;
+
+    //APP版本号
     string versionName = 13;
 }

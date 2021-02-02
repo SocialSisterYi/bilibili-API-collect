@@ -1,0 +1,955 @@
+syntax = "proto3";
+
+package bilibili.app.card.v1;
+
+message AdInfo {
+    //
+    int64 creativeId = 1;
+
+    //
+    int32 creativeType = 2;
+
+    //
+    int32 cardType = 3;
+
+    //
+    CreativeContent creativeContent = 4;
+
+    //
+    string adCb = 5;
+
+    //
+    int64 resource = 6;
+
+    //
+    int32 source = 7;
+
+    //
+    string requestId = 8;
+
+    //
+    bool isAd = 9;
+
+    //
+    int64 cmMark = 10;
+
+    //
+    int32 index = 11;
+
+    //
+    bool isAdLoc = 12;
+
+    //
+    int32 cardIndex = 13;
+
+    //
+    string clientIp = 14;
+
+    //
+    bytes extra = 15;
+
+    //
+    int32 creativeStyle = 16;
+}
+
+//
+message Args {
+    //
+    int32 type = 1;
+
+    //
+    int64 upId = 2;
+
+    //
+    string upName = 3;
+
+    //
+    int32 rid = 4;
+
+    //
+    string rname = 5;
+
+    //
+    int64 tid = 6;
+
+    //
+    string tname = 7;
+
+    //
+    string trackId = 8;
+
+    //
+    string state = 9;
+
+    //
+    int32 convergeType = 10;
+
+    //
+    int64 aid = 11;
+}
+
+//
+message Avatar {
+    //
+    string cover = 1;
+
+    //
+    string text = 2;
+
+    //
+    string uri = 3;
+
+    //
+    int32 type = 4;
+
+    //
+    string event = 5;
+
+    //
+    string eventV2 = 6;
+
+    //
+    int32 defalutCover = 7;
+}
+
+//
+message Base {
+    //
+    string cardType = 1;
+
+    //
+    string cardGoto = 2;
+
+    //
+    string goto = 3;
+
+    //
+    string param = 4;
+
+    //
+    string cover = 5;
+
+    //
+    string title = 6;
+
+    //
+    string uri = 7;
+
+    //
+    ThreePoint threePoint = 8;
+
+    //
+    Args args = 9;
+
+    //
+    PlayerArgs playerArgs = 10;
+
+    //
+    int64 idx = 11;
+
+    //
+    AdInfo adInfo = 12;
+
+    //
+    Mask mask = 13;
+
+    //
+    string fromType = 14;
+
+    //
+    repeated ThreePointV2 threePointV2 = 15;
+
+    //
+    repeated ThreePointV3 threePointV3 = 16;
+
+    //
+    Button descButton = 17;
+
+    //
+    ThreePointV4 threePointV4 = 18;
+}
+
+//
+message Bubble {
+    //
+    string bubbleContent = 1;
+
+    //
+    int32 version = 2;
+
+    //
+    int64 stime = 3;
+}
+
+//
+message Button {
+    //
+    string text = 1;
+
+    //
+    string param = 2;
+
+    //
+    string uri = 3;
+
+    //
+    string event = 4;
+
+    //
+    int32 selected = 5;
+
+    //
+    int32 type = 6;
+
+    //
+    string eventV2 = 7;
+
+    //
+    Relation relation = 8;
+}
+
+//
+message Card {
+    oneof itemCase {
+        //
+        SmallCoverV5 smallCoverV5 = 1;
+
+        //
+        LargeCoverV1 largeCoverV1 = 2;
+
+        //
+        ThreeItemAllV2 threeItemAllV2 = 3;
+
+        //
+        ThreeItemV1 threeItemV1 = 4;
+
+        //
+        HotTopic hotTopic = 5;
+
+        //
+        DynamicHot dynamicHot = 6;
+
+        //
+        MiddleCoverV3 middleCoverV3 = 7;
+
+        //
+        LargeCoverV4 largeCoverV4 = 8;
+
+        //
+        PopularTopEntrance popularTopEntrance = 9;
+
+        //
+        RcmdOneItem rcmdOneItem = 10;
+    }
+}
+
+//
+message CreativeContent {
+    //
+    string title = 1;
+
+    //
+    string description = 2;
+
+    //
+    int64 videoId = 3;
+
+    //
+    string username = 4;
+
+    //
+    string imageUrl = 5;
+
+    //
+    string imageMd5 = 6;
+
+    //
+    string logUrl = 7;
+
+    //
+    string logMd5 = 8;
+
+    //
+    string url = 9;
+
+    //
+    string clickUrl = 10;
+
+    //
+    string showUrl = 11;
+}
+
+//
+message DislikeReason {
+    //
+    int64 id = 1;
+
+    //
+    string name = 2;
+}
+
+//
+message DynamicHot {
+    //
+    Base base = 1;
+
+    //
+    string topLeftTitle = 2;
+
+    //
+    string desc1 = 3;
+
+    //
+    string desc2 = 4;
+
+    //
+    string moreUri = 5;
+
+    //
+    string moreText = 6;
+
+    //
+    repeated string covers = 7;
+
+    //
+    string coverRightText = 8;
+
+    //
+    ReasonStyle topRcmdReasonStyle = 9;
+}
+
+//
+message EntranceItem {
+    //
+    string goto = 1;
+
+    //
+    string icon = 2;
+
+    //
+    string title = 3;
+
+    //
+    string moduleId = 4;
+
+    //
+    string uri = 5;
+
+    //
+    int64 entranceId = 6;
+
+    //
+    Bubble bubble = 7;
+
+    //
+    int32 entranceType = 8;
+}
+
+//
+message HotTopic {
+    //
+    Base base = 1;
+
+    //
+    string desc = 2;
+
+    //
+    repeated HotTopicItem items = 3;
+}
+
+//
+message HotTopicItem {
+    //
+    string cover = 1;
+
+    //
+    string uri = 2;
+
+    //
+    string param = 3;
+
+    //
+    string name = 4;
+}
+
+//
+message HotwordEntrance {
+    //
+    int64 hotwordId = 1;
+
+    //
+    string hotText = 2;
+
+    //
+    string h5Url = 3;
+
+    //
+    string icon = 4;
+}
+
+//
+message LargeCoverV1 {
+    //
+    Base base = 1;
+
+    //
+    string coverGif = 2;
+
+    //
+    Avatar avatar = 3;
+
+    //
+    string coverLeftText1 = 4;
+
+    //
+    string coverLeftText2 = 5;
+
+    //
+    string coverLeftText3 = 6;
+
+    //
+    string coverBadge = 7;
+
+    //
+    string topRcmdReason = 8;
+
+    //
+    string bottomRcmdReason = 9;
+
+    //
+    string desc = 10;
+
+    //
+    int32 officialIcon = 11;
+
+    //
+    int32 canPlay = 12;
+
+    //
+    ReasonStyle topRcmdReasonStyle = 13;
+
+    //
+    ReasonStyle bottomRcmdReasonStyle = 14;
+
+    //
+    ReasonStyle rcmdReasonStyleV2 = 15;
+
+    //
+    ReasonStyle leftCoverBadgeStyle = 16;
+
+    //
+    ReasonStyle rightCoverBadgeStyle = 17;
+
+    //
+    string coverBadge2 = 18;
+
+    //
+    LikeButton likeButton = 19;
+
+    //
+    int32 titleSingleLine = 20;
+
+    //
+    string coverRightText = 21;
+}
+
+//
+message LargeCoverV4 {
+    //
+    Base base = 1;
+
+    //
+    string coverLeftText1 = 2;
+
+    //
+    string coverLeftText2 = 3;
+
+    //
+    string coverLeftText3 = 4;
+
+    //
+    string coverBadge = 5;
+
+    //
+    int32 canPlay = 6;
+
+    //
+    Up up = 7;
+
+    //
+    string shortLink = 8;
+
+    //
+    string shareSubtitle = 9;
+
+    //
+    string playNumber = 10;
+
+    //
+    string bvid = 11;
+
+    //
+    string subParam = 12;
+}
+
+//
+message LikeButton {
+    //
+    int64 aid = 1;
+
+    //
+    int32 count = 2;
+
+    //
+    bool showCount = 3;
+
+    //
+    string event = 4;
+
+    //
+    int32 selected = 5;
+
+    //
+    string eventV2 = 6;
+}
+
+//
+message Mask {
+    //
+    Avatar avatar = 1;
+
+    //
+    Button button = 2;
+}
+
+//
+message MiddleCoverV3 {
+    //
+    Base base = 1;
+
+    //
+    string desc1 = 2;
+
+    //
+    string desc2 = 3;
+
+    //
+    ReasonStyle coverBadgeStyle = 4;
+}
+
+//
+message PlayerArgs {
+    //
+    int32 isLive = 1;
+
+    //
+    int64 aid = 2;
+
+    //
+    int64 cid = 3;
+
+    //
+    int32 subType = 4;
+
+    //
+    int64 roomId = 5;
+
+    //
+    int64 epId = 7;
+
+    //
+    int32 isPreview = 8;
+
+    //
+    string type = 9;
+
+    //
+    int64 duration = 10;
+
+    //
+    int64 seasonId = 11;
+}
+
+//
+message PopularTopEntrance {
+    //
+    Base base = 1;
+
+    //
+    repeated EntranceItem items = 2;
+}
+
+//
+message RcmdOneItem {
+    //
+    Base base = 1;
+
+    //
+    ReasonStyle topRcmdReasonStyle = 2;
+
+    //
+    SmallCoverRcmdItem item = 3;
+}
+
+//
+message ReasonStyle {
+    //
+    string text = 1;
+
+    //
+    string textColor = 2;
+
+    //
+    string bgColor = 3;
+
+    //
+    string borderColor = 4;
+
+    //
+    string iconUrl = 5;
+
+    //
+    string textColorNight = 6;
+
+    //
+    string bgColorNight = 7;
+
+    //
+    string borderColorNight = 8;
+
+    //
+    string iconNightUrl = 9;
+
+    //
+    int32 bgStyle = 10;
+
+    //
+    string uri = 11;
+
+    //
+    string iconBgUrl = 12;
+
+    //
+    string event = 13;
+
+    //
+    string eventV2 = 14;
+
+    //
+    int32 rightIconType = 15;
+
+    //
+    string leftIconType = 16;
+}
+
+//
+message Relation {
+    //
+    int32 status = 1;
+
+    //
+    int32 isFollow = 2;
+
+    //
+    int32 isFollowed = 3;
+}
+
+//
+message SharePlane {
+    //
+    string title = 1;
+
+    //
+    string shareSubtitle = 2;
+
+    //
+    string desc = 3;
+
+    //
+    string cover = 4;
+
+    //
+    int64 aid = 5;
+
+    //
+    string bvid = 6;
+
+    //
+    map<string,bool> shareTo = 7;
+
+    //
+    string author = 8;
+
+    //
+    int64 authorId = 9;
+
+    //
+    string shortLink = 10;
+
+    //
+    string playNumber = 11;
+}
+
+//
+message SmallCoverRcmdItem {
+    //
+    string title = 1;
+
+    //
+    string cover = 2;
+
+    //
+    string uri = 3;
+
+    //
+    string param = 4;
+
+    //
+    string goto = 5;
+
+    //
+    string coverRightText1 = 6;
+
+    //
+    string rightDesc1 = 7;
+
+    //
+    string rightDesc2 = 8;
+
+    //
+    string coverGif = 9;
+
+    //
+    int32 rightIcon1 = 10;
+
+    //
+    int32 rightIcon2 = 11;
+}
+
+//
+message SmallCoverV5 {
+    //
+    Base base = 1;
+
+    //
+    string coverGif = 2;
+
+    //
+    Up up = 3;
+
+    //
+    string coverRightText1 = 4;
+
+    //
+    string rightDesc1 = 5;
+
+    //
+    string rightDesc2 = 6;
+
+    //
+    ReasonStyle rcmdReasonStyle = 7;
+
+    //
+    HotwordEntrance hotwordEntrance = 8;
+
+    //
+    ReasonStyle cornerMarkStyle = 9;
+
+    //
+    int32 rightIcon1 = 10;
+
+    //
+    int32 rightIcon2 = 11;
+
+    //
+    ReasonStyle leftCornerMarkStyle = 12;
+}
+
+//
+message ThreeItemAllV2 {
+    //
+    Base base = 1;
+
+    //
+    ReasonStyle topRcmdReasonStyle = 2;
+
+    //
+    repeated TwoItemHV1Item item = 3;
+}
+
+//
+message ThreeItemV1 {
+    //
+    Base base = 1;
+
+    //
+    int32 titleIcon = 2;
+
+    //
+    string moreUri = 3;
+
+    //
+    string moreText = 4;
+
+    //
+    repeated ThreeItemV1Item items = 5;
+}
+
+//
+message ThreeItemV1Item {
+    //
+    Base base = 1;
+
+    //
+    string coverLeftText = 2;
+
+    //
+    int32 coverLeftIcon = 3;
+
+    //
+    string desc1 = 4;
+
+    //
+    string desc2 = 5;
+
+    //
+    string badge = 6;
+}
+
+//
+message ThreePoint {
+    //
+    repeated DislikeReason dislikeReasons = 1;
+
+    //
+    repeated DislikeReason feedbacks = 2;
+
+    //
+    int32 watchLater = 3;
+}
+
+//
+message ThreePointV2 {
+    //
+    string title = 1;
+
+    //
+    string subtitle = 2;
+
+    //
+    repeated DislikeReason reasons = 3;
+
+    //
+    string type = 4;
+
+    //
+    int64 id = 5;
+}
+
+//
+message ThreePointV3 {
+    //
+    string title = 1;
+
+    //
+    string selectedTitle = 2;
+
+    //
+    string subtitle = 3;
+
+    //
+    repeated DislikeReason reasons = 4;
+
+    //
+    string type = 5;
+
+    //
+    int64 id = 6;
+
+    //
+    int32 selected = 7;
+
+    //
+    string icon = 8;
+
+    //
+    string selectedIcon = 9;
+
+    //
+    string url = 10;
+
+    //
+    int32 defaultId = 11;
+}
+
+//
+message ThreePointV4 {
+    //
+    SharePlane sharePlane = 1;
+
+    //
+    WatchLater watchLater = 2;
+}
+
+//
+message TwoItemHV1Item {
+    //
+    string title = 1;
+
+    //
+    string cover = 2;
+
+    //
+    string uri = 3;
+
+    //
+    string param = 4;
+
+    //
+    Args args = 5;
+
+    //
+    string goto = 6;
+
+    //
+    string coverLeftText1 = 7;
+
+    //
+    int32 coverLeftIcon1 = 8;
+
+    //
+    string coverRightText = 9;
+}
+
+//
+message Up {
+    //
+    int64 id = 1;
+
+    //
+    string name = 2;
+
+    //
+    string desc = 3;
+
+    //
+    Avatar avatar = 4;
+
+    //
+    int32 officialIcon = 5;
+
+    //
+    Button descButton = 6;
+
+    //
+    string cooperation = 8;
+}
+
+//
+message WatchLater {
+    //
+    int64 aid = 1;
+
+    //
+    string bvid = 2;
+}

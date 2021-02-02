@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+package bilibili.app.show.rank.v1;
+
+//
+service Rank {
+    //
+    //
+    rpc rankAll (RankAllResultReq) returns (RankListReply);
+
+    //
+    //
+    rpc rankRegion (RankRegionResultReq) returns (RankListReply);
+}
+
+//-请求
+message RankAllResultReq {
+    //
+    string order = 1;
+
+    //
+    int32 pn = 2;
+
+    //
+    int32 ps = 3;
+}
+
+//-请求
+message RankRegionResultReq {
+    //
+    int32 rid = 1;
+
+    //
+    int32 pn = 2;
+
+    //
+    int32 ps = 3;
+}
+
+//-回复
+message RankListReply {
+    //
+    repeated Item items = 1;
+}
+
+//
+message Item {
+    //
+    string title = 1;
+
+    //
+    string cover = 2;
+
+    //
+    string param = 3;
+
+    //
+    string uri = 4;
+
+    //
+    string redirectUrl = 5;
+
+    //
+    string goto = 6;
+
+    //
+    int32 play = 7;
+
+    //
+    int32 danmaku = 8;
+
+    //
+    int64 mid = 9;
+
+    //
+    string name = 10;
+
+    //
+    string face = 11;
+
+    //
+    int32 reply = 12;
+
+    //
+    int32 favourite = 13;
+
+    //
+    int64 pubDate = 14;
+
+    //
+    int32 rid = 15;
+
+    //
+    string rname = 16;
+
+    //
+    int64 duration = 17;
+
+    //
+    int32 like = 18;
+
+    //
+    int64 cid = 19;
+
+    //
+    int64 pts = 20;
+
+    //
+    string cooperation = 21;
+
+    //
+    int32 attribute = 22;
+
+    //
+    int64 follower = 23;
+
+    //
+    OfficialVerify officialVerify = 24;
+
+    //
+    repeated Item children = 25;
+
+    //
+    Relation relation = 26;
+}
+
+//
+message OfficialVerify {
+    //
+    int32 type = 1;
+
+    //
+    string desc = 2;
+}
+
+//
+message Relation {
+    //
+    int32 status = 1;
+
+    //
+    int32 isFollow = 2;
+
+    //
+    int32 isFollowed = 3;
+}

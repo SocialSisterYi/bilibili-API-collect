@@ -1,0 +1,189 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.main;
+
+import "google/protobuf/empty.proto";
+
+//
+service NativePage {
+    //
+    //
+    rpc watchNotify (google.protobuf.Empty) returns (NativePageEvent);
+}
+
+//
+service Resource {
+    //
+    //
+    rpc topActivity (google.protobuf.Empty) returns (TopActivityReply);
+}
+//
+message NativePageEvent {
+    //
+    int64 pageID = 1;
+
+    //
+    repeated EventItem items = 2;
+}
+
+//
+message TopActivityReply {
+    //
+    TopOnline online = 1;
+
+    //
+    string hash = 2;
+}
+
+//
+message Animate {
+    //
+    string icon = 1;
+
+    //
+    string json = 2;
+
+    //
+    string svg = 3;
+
+    //
+    int32 loop = 4;
+}
+
+//
+message CommandDm {
+    //
+    int64 id = 1;
+
+    //
+    int64 oid = 2;
+
+    //
+    int64 mid = 3;
+
+    //
+    int32 type = 4;
+
+    //
+    string command = 5;
+
+    //
+    string content = 6;
+
+    //
+    int32 state = 7;
+
+    //
+    int32 progress = 8;
+
+    //
+    string ctime = 9;
+
+    //
+    string mtime = 10;
+
+    //
+    string extra = 11;
+
+    //
+    string idStr = 12;
+}
+
+//
+message DanmakuElem {
+    //
+    int64 id = 1;
+
+    //
+    int32 progress = 2;
+
+    //
+    int32 mode = 3;
+
+    //
+    int32 fontsize = 4;
+
+    //
+    uint32 color = 5;
+
+    //
+    string midHash = 6;
+
+    //
+    string content = 7;
+
+    //
+    int64 ctime = 8;
+
+    //
+    string action = 9;
+
+    //
+    int32 pool = 10;
+
+    //
+    string idStr = 11;
+}
+
+//
+message DanmukuEvent {
+    //
+    DanmakuElem elems = 1;
+}
+
+//
+message EventItem {
+    //
+    int64 itemID = 1;
+
+    //
+    string type = 2;
+
+    //
+    int64 num = 3;
+
+    //
+    string displayNum = 4;
+
+    //
+    string webKey = 5;
+
+    //
+    int64 dimension = 6;
+}
+
+//
+message RedDot {
+    //
+    int32 type = 1;
+
+    //
+    int32 number = 2;
+}
+
+//
+message TopOnline {
+    //
+    int32 type = 1;
+
+    //
+    string icon = 2;
+
+    //
+    string uri = 3;
+
+    //
+    string uniqueId = 4;
+
+    //
+    Animate animate = 5;
+
+    //
+    RedDot redDot = 6;
+
+    //
+    string name = 7;
+
+    //
+    int64 interval = 8;
+}

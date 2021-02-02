@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package bilibili.app.wall.v1;
+
+//
+service Wall {
+    //
+    //
+    rpc ruleInfo (RuleRequest) returns (RulesReply);
+}
+
+//-请求
+message RuleRequest {
+
+}
+
+//-回复
+message RulesReply {
+    //
+    map<string,RulesInfo> rulesInfo = 1;
+}
+
+//
+message RuleInfo {
+    //
+    bool tf = 1;
+
+    //
+    string m = 2;
+
+    //
+    string a = 3;
+
+    //
+    string p = 4;
+}
+
+//
+message RulesInfo {
+    //
+    repeated RuleInfo rulesInfo = 1;
+}

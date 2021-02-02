@@ -1,0 +1,594 @@
+syntax = "proto3";
+
+package bilibili.app.interfaces.v1;
+
+import "bilibili/app/playurl/v1.proto";
+
+//历史记录接口
+service History {
+    //搜索历史记录
+    //https://app.bilibili.com/bilibili.app.interface.v1.History/Search
+    rpc search (SearchReq) returns (SearchReply);
+
+    //?
+    //https://app.bilibili.com/bilibili.app.interface.v1.History/LatestHistory
+    rpc latestHistory (LatestHistoryReq) returns (LatestHistoryReply);
+
+    //获取历史记录业务类型
+    //https://app.bilibili.com/bilibili.app.interface.v1.History/HistoryTab
+    rpc historyTab (HistoryTabReq) returns (HistoryTabReply);
+
+    //删除历史记录
+    //https://app.bilibili.com/bilibili.app.interface.v1.History/Delete
+    rpc delete (DeleteReq) returns (NoReply);
+
+    //获取历史记录列表v2接口
+    //https://app.bilibili.com/bilibili.app.interface.v1.History/CursorV2
+    rpc cursorV2 (CursorV2Req) returns (CursorV2Reply);
+
+    //获取历史记录列表v1接口
+    //https://app.bilibili.com/bilibili.app.interface.v1.History/Cursor
+    rpc cursor (CursorReq) returns (CursorReply);
+
+    //清空历史记录
+    //https://app.bilibili.com/bilibili.app.interface.v1.History/Clear
+    rpc clear (ClearReq) returns (NoReply);
+}
+
+//搜索接口
+service Search {
+    //获取搜索建议
+    //https://app.bilibili.com/bilibili.app.interface.v1.Search/Suggest3
+    rpc suggest3 (SuggestionResult3Req) returns (SuggestionResult3Reply);
+}
+
+//搜索历史记录-请求
+message SearchReq {
+    //关键词
+    string keyword = 1;
+
+    //页码
+    int64 pn = 2;
+
+    //业务选择
+    string business = 3;
+}
+
+//搜索历史记录-回复
+message SearchReply {
+    //历史记录条目列表
+    repeated CursorItem items = 1;
+
+    //是否未拉取完
+    bool hasMore = 2;
+
+    //页面信息
+    Page page = 3;
+}
+
+//?-请求
+message LatestHistoryReq {
+    //业务选择
+    string business = 1;
+
+    //视频预加载配置
+    PlayerPreloadParams playerPreload = 2;
+}
+
+//?-回复
+message LatestHistoryReply {
+    //历史记录条目
+    CursorItem items = 1;
+
+    //
+    string scene = 2;
+}
+
+//获取历史记录业务类型-请求
+message HistoryTabReq {
+    //
+    string business = 1;
+
+    //
+    HistorySource source = 2;
+
+    //
+    string keyword = 3;
+}
+
+//获取历史记录业务类型-回复
+message HistoryTabReply {
+    //
+    repeated CursorTab tab = 1;
+}
+
+//删除历史记录-请求
+message DeleteReq {
+    //历史记录信息
+    HisInfo hisInfo = 1;
+}
+
+//获取历史记录列表v2接口-请求
+message CursorV2Req {
+    //游标信息
+    Cursor cursor = 1;
+
+    //业务选择
+    string business = 2;
+
+    //视频预加载配置
+    PlayerPreloadParams playerPreload = 3;
+
+    //
+    bilibili.app.playurl.v1.PlayerArgs playerArgs = 4;
+}
+
+//获取历史记录列表v2接口-回复
+message CursorV2Reply {
+    //历史记录条目列表
+    repeated CursorItem items = 1;
+
+    //游标信息
+    Cursor cursor = 2;
+
+    //是否未拉取完
+    bool hasMore = 3;
+}
+
+//获取历史记录列表v1接口-请求
+message CursorReq {
+    //游标信息
+    Cursor cursor = 1;
+
+    //业务选择
+    string business = 2;
+
+    //视频预加载配置
+    PlayerPreloadParams playerPreload = 3;
+}
+
+//获取历史记录列表v1接口-回复
+message CursorReply {
+    //历史记录条目列表
+    repeated CursorItem items = 1;
+
+    //业务类型表
+    repeated CursorTab tab = 2;
+
+    //游标信息
+    Cursor cursor = 3;
+
+    //是否未拉取完
+    bool hasMore = 4;
+}
+
+//清空历史记录-请求
+message ClearReq {
+    //业务选择
+    string business = 1;
+}
+
+//空回复
+message NoReply {
+
+}
+
+//获取搜索建议-请求
+message SuggestionResult3Req {
+    //关键字
+    string keyword = 1;
+
+    //是否语法高亮
+    int32 highlight = 2;
+
+    //是否青少年模式
+    int32 teenagersMode = 3;
+}
+
+//获取搜索建议-回复
+message SuggestionResult3Reply {
+    //搜索追踪id
+    string trackid = 1;
+
+    //搜索建议条目列表
+    repeated ResultItem list = 2;
+
+    //
+    string expStr = 3;
+}
+
+//专栏条目类型
+message CardArticle {
+    //封面uel
+    repeated string covers = 1;
+
+    //作者昵称
+    string name = 2;
+
+    //作者UID
+    int64 mid = 3;
+
+    //
+    bool displayAttention = 4;
+
+    //标志名
+    string badge = 5;
+
+    //
+    Relation relation = 6;
+}
+
+//课程条目类型
+message CardCheese {
+    //封面url
+    string cover = 1;
+
+    //观看进度
+    int64 progress = 2;
+
+    //总计时长
+    int64 duration = 3;
+
+    //单集标题
+    string subtitle = 4;
+}
+
+//直播条目类型
+message CardLive {
+    //封面url
+    string cover = 1;
+
+    //主播昵称
+    string name = 2;
+
+    //主播UID
+    int64 mid = 3;
+
+    //直播分区名
+    string tag = 4;
+
+    //
+    int32 ststus = 5;
+
+    //
+    bool displayAttention = 6;
+
+    //
+    Relation relation = 7;
+}
+
+//pgc稿件条目类型
+message CardOGV {
+    //封面url
+    string cover = 1;
+
+    //观看进度
+    int64 progress = 2;
+
+    //总计时长
+    int64 duration = 3;
+
+    //单集标题
+    string subtitle = 4;
+}
+
+//ugc稿件条目类型
+message CardUGC {
+    //封面url
+    string cover = 1;
+
+    //观看进度
+    int64 progress = 2;
+
+    //视频长度
+    int64 duration = 3;
+
+    //UP主昵称
+    string name = 4;
+
+    //UP主UID
+    int64 mid = 5;
+
+    //
+    bool displayAttention = 6;
+    
+    //观看视频cid
+    int64 cid = 7;
+    
+    //观看视频分P
+    int32 page = 8;
+
+    //
+    string subtitle = 9;
+
+    //
+    Relation relation = 10;
+
+    //稿件bvid
+    string bvid = 11;
+
+    //总分P数
+    int64 videos = 12;
+
+    //短链接
+    string shortLink = 13;
+
+    //副标题文案
+    string shareSubtitle = 14;
+
+    //播放数
+    int64 view = 15;
+}
+
+//游标信息
+message Cursor {
+    //起始时间戳
+    int64 max = 1;
+
+    //
+    int32 maxTp = 2;
+}
+
+//历史记录条目
+message CursorItem {
+    //主体数据
+    oneof cardItemCase {
+        //ugc稿件
+        CardUGC cardUGC = 1;
+
+        //pgc稿件
+        CardOGV cardOGV = 2;
+
+        //专栏
+        CardArticle cardArticle = 3;
+
+        //直播
+        CardLive cardLive = 4;
+
+        //课程
+        CardCheese cardCheese = 5;
+    }
+
+    //标题
+    string title = 6;
+
+    //目标uri/url
+    string uri = 7;
+
+    //观看时间
+    int64 viewAt = 8;
+
+    //历史记录id
+    int64 kid = 9;
+
+    //对象id
+    int64 oid = 10;
+
+    //业务类型
+    string business = 11;
+
+    //业务类型代码
+    int32 tp = 12;
+
+    //设备标识
+    DeviceType dt = 13;
+
+    //
+    bool hasShare = 14;
+}
+
+//业务分类表
+message CursorTab {
+    //业务名
+    string business = 1;
+
+    //名称
+    string name = 2;
+
+    //路由uri
+    string router = 3;
+
+    //
+    bool focus = 4;
+}
+
+//设备标识代码
+enum DT {
+    //未知
+    Unknown_VALUE = 0;
+
+    //手机端
+    Phone_VALUE = 1;
+
+    //ipad端
+    Pad_VALUE = 2;
+
+    //web端
+    PC_VALUE = 3;
+}
+
+//设备标识
+message DeviceType {
+    //设备标识代码
+    DT type = 1;
+
+    //图标url
+    string icon = 2;
+}
+
+//历史记录信息
+message HisInfo {
+    //业务选择
+    string business = 1;
+
+    //历史记录id
+    int64 kid = 2;
+}
+
+//
+enum HistorySource {
+    //
+    history_VALUE = 0;
+
+    //
+    shopping_VALUE = 1;
+}
+
+//
+message OfficialVerify {
+    //
+    int32 type = 1;
+
+    //
+    string desc = 2;
+}
+
+//页面信息
+message Page {
+    //当前页码
+    int64 pn = 1;
+
+    //总计条目数
+    int64 total = 2;
+}
+
+//视频预加载配置
+message PlayerPreloadParams {
+    //清晰度
+    int64 qn = 1;
+
+    //
+    int64 fnver = 2;
+    
+    //流类型
+    int64 fnval = 3;
+
+    //强制域名
+    int64 forceHost = 4;
+
+    //是否4K
+    int64 fourk = 5;
+}
+
+//
+message ReasonStyle {
+    //
+    string text = 1;
+
+    //
+    string textColor = 2;
+
+    //
+    string textColorNight = 3;
+
+    //
+    string bgColor = 4;
+
+    //
+    string bgColorNight = 5;
+
+    //
+    string borderColor = 6;
+
+    //
+    string borderColorNight = 7;
+
+    //
+    int32 bgStyle = 8;
+}
+
+//
+message Relation {
+    //
+    int32 status = 1;
+
+    //
+    int32 isFollow = 2;
+
+    //
+    int32 isFollowed = 3;
+}
+
+//搜索建议条目
+message ResultItem {
+    //来源
+    string from = 1;
+
+    //显示结果(语法高亮)
+    string title = 2;
+
+    //结果
+    string keyword = 3;
+
+    //序号
+    int32 position = 4;
+
+    //
+    string cover = 5;
+
+    //
+    double coverSize = 6;
+
+    //
+    string sugType = 7;
+
+    //
+    int32 termType = 8;
+
+    //
+    string goto = 9;
+
+    //
+    string uri = 10;
+
+    //
+    OfficialVerify officialVerify = 11;
+
+    //
+    string param = 12;
+
+    //
+    int64 mid = 13;
+
+    //
+    int32 fans = 14;
+
+    //
+    int32 level = 15;
+
+    //
+    int32 archives = 16;
+
+    //
+    int64 ptime = 17;
+
+    //
+    string seasonTypeName = 18;
+
+    //
+    string area = 19;
+
+    //
+    string style = 20;
+
+    //
+    string label = 21;
+
+    //
+    double rating = 22;
+
+    //
+    int32 vote = 23;
+
+    //
+    repeated ReasonStyle badges = 24;
+
+    //
+    string styles = 25;
+
+    //
+    int64 moduleId = 26;
+
+    //
+    string liveLink = 27;
+}

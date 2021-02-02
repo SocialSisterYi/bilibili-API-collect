@@ -1,0 +1,632 @@
+syntax = "proto3";
+
+package bilibili.ad.v1;
+
+import "google/protobuf/wrappers.proto";
+
+//
+message AdAutoPlayVideoDto {
+    //avid
+    int64 avid = 1;
+
+    //cid
+    int64 cid = 2;
+
+    //分P
+    int64 page = 3;
+
+    //
+    string from = 4;
+
+    //是否自动播放
+    string url = 5;
+
+    //是否自动播放
+    string cover = 6;
+
+    //是否自动播放
+    bool autoPlay = 7;
+
+    //按钮是否动态变色
+    bool btnDycColor = 8;
+
+    //按钮动态变色时间 ms
+    int32 btnDycTime = 9;
+
+    //用于做联播是否是同一个视频的id
+    int64 bizId = 10;
+
+    //开始播放三方监控
+    repeated string process0Urls = 11;
+
+    //播放3S三方监控
+    repeated string play3SUrls = 12;
+
+    //播放5S三方监控
+    repeated string play5SUrls = 13;
+
+    //横竖屏
+    int32 orientation = 14;
+}
+
+//
+message AdBusinessMarkDto {
+    //商业标样式
+    //0:不展示标 
+    //1:实心+文字 
+    //2:空心框+文字
+    //3:纯文字标 
+    //4:纯图片标
+    int32 type = 1;
+
+    //商业标文案
+    string text = 2;
+
+    //商业标文案颜色,如#80FFFFFF RGBA
+    string textColor = 3;
+
+    //夜间模式文字色
+    string textColorNight = 4;
+
+    //背景色
+    string bgColor = 5;
+
+    //夜间模式背景色
+    string bgColorNight = 6;
+
+    //边框色
+    string borderColor = 7;
+
+    //夜间模式边框色
+    string borderColorNight = 8;
+
+    //图片商业标
+    string imgUrl = 9;
+
+    //图片高度
+    int32 imgHeight = 10;
+
+    //图片宽度
+    int32 imgWidth = 11;
+
+    //
+    string bgBorderColor = 12;
+}
+
+//
+message AdButtonDto {
+    //类型
+    //1:落地页
+    //2:应用唤起
+    //3:应用下载
+    int32 type = 1;
+
+    //按钮文案
+    string text = 2;
+
+    //按钮跳转地址
+    string jumpUrl = 3;
+
+    //跳转监测链接
+    string reportUrls = 4;
+
+    //唤起schema
+    string dlsucCallupUrl = 5;
+}
+
+//
+message AdCardDto {
+    //卡片类型
+    int32 cardType = 1;
+
+    //标题
+    string title = 2;
+
+    //描述
+    string desc = 3;
+
+    //额外描述
+    string extraDesc = 4;
+
+    //长描述
+    string longDesc = 5;
+
+    //短标题, 弹幕广告目录面板标题
+    string shortTitle = 6;
+
+    //弹幕/浮层广告的弹幕标题
+    string danmuTitle = 7;
+
+    //弹幕/浮层广告的弹幕高度，整型，分母为100
+    int32 danmuHeight = 8;
+
+    //弹幕/浮层广告的弹幕宽度，整型，分母为100
+    int32 danmuWidth = 9;
+
+    //弹幕/浮层广告生存时间，单位为毫秒
+    int32 danmuLife = 10;
+
+    //弹幕/浮层开始时间，单位为毫秒
+    int32 danmuBegin = 11;
+
+    //背景色值（含透明度）如#80FFFFFF
+    string danmuColor = 12;
+
+    //弹幕/浮层广告H5落地页
+    string danmuH5Url = 13;
+
+    //弹幕/浮层 广告icon
+    string danmuIcon = 14;
+
+    //折叠时间，永驻浮层折叠时间，单位为毫秒
+    int32 foldTime = 15;
+
+    //广告标文案
+    string adTag = 16;
+
+    //cover数组
+    repeated AdCoverDto covers = 17;
+
+    //卡片跳转链接
+    string jumpUrl = 18;
+
+    //
+    string imaxLandingPageJsonString = 19;
+
+    //app唤起schema
+    string callupUrl = 20;
+
+    //univeral link域名
+    string universalApp = 21;
+
+    //原价, 单位为分
+    string oriPrice = 22;
+
+    //现价, 同上
+    int32 curPrice = 23;
+
+    //券后/现价 价格描述
+    string priceDesc = 24;
+
+    //价格单位符号
+    string priceSymbol = 25;
+
+    //券后价格 "1000"
+    string goodsCurPrice = 26;
+
+    //原价 "¥1002"
+    string goodsOriPrice = 27;
+
+    //开放平台商品
+    AdGoodDto good = 28;
+
+    //打分? 满分为100
+    int32 rank = 29;
+
+    //热度
+    int32 hotScore = 30;
+
+    //按钮
+    AdButtonDto button = 31;
+
+    //广告主logo
+    string adverLogo = 32;
+
+    //广告主name
+    string adverName = 33;
+
+    //广告主主页链接
+    string adverPageUrl = 34;
+
+    //视频弹幕，视频广告用
+    repeated string videoBarrage = 35;
+
+    //商业标信息
+    AdBusinessMarkDto adTagStyle = 36;
+
+    //自动播放视频
+    AdAutoPlayVideoDto video = 37;
+
+    //反馈面板功能模块，屏蔽、投诉、广告介绍
+    AdFeedbackPanelDto feedbackPanel = 38;
+
+    //
+    int64 adverMid = 39;
+
+    //
+    int64 adverAccountId = 40;
+
+    //
+    string duration = 41;
+
+    //
+    repeated QualityInfo qualityInfos = 42;
+
+    //
+    string dynamicText = 43;
+
+    //
+    AdverDto adver = 44;
+}
+
+//
+message AdContentExtraDto {
+    //动态布局
+    string layout = 1;
+
+    //展现监控url
+    repeated string showUrls = 2;
+
+    //点击监控url
+    repeated string clickUrls = 3;
+
+    //弹幕创意列表展示第三方上报
+    repeated string danmuListShowUrls = 4;
+
+    //弹幕创意列表点击第三方上报
+    repeated string danmuListClickUrls = 5;
+
+    //弹幕详情页展示第三方上报
+    repeated string danmuDetailShowUrls = 6;
+
+    //弹幕商品添加购物车第三方上报
+    repeated string danmuTrolleyAddUrls = 7;
+
+    //useWebView默认false
+    bool useAdWebV2 = 8;
+
+    //app唤起白名单
+    repeated string openWhitelist = 9;
+
+    //app下载白名单
+    AppPackageDto downloadWhitelist = 10;
+
+    //卡片相关信息
+    AdCardDto card = 11;
+
+    //视频播放和弹幕播放上报控制时间 ms
+    int32 reportTime = 12;
+
+    //是否优先唤起app store
+    int32 appstorePriority = 13;
+
+    //广告售卖类型
+    int32 salesType = 14;
+
+    //落地页是否预加载
+    int32 preloadLandingpage = 15;
+
+    //是否需要展示风险行业提示
+    bool specialIndustry = 16;
+
+    //风险行业提示
+    string specialIndustryTips = 17;
+
+    //是否展示下载弹框
+    bool enableDownloadDialog = 18;
+
+    //是否允许分享
+    bool enableShare = 19;
+
+    //个人空间广告入口类型
+    //1:橱窗
+    //2:商品店铺
+    //3:小程序
+    int32 upzoneEntranceType = 20;
+
+    //个人空间广告入口上报id,橱窗id(当前用Mid)、店铺id或者小程序id
+    int32 upzoneEntranceReportId = 21;
+
+    //分享数据
+    AdShareInfoDto shareInfo = 22;
+
+    //topview图片链接，闪屏预下载用
+    string topviewPicUrl = 23;
+
+    //topview视频链接，闪屏预下载用
+    string topviewVideoUrl = 24;
+
+    //点击区域
+    //0:表示banner可点击
+    //1:表示素材可点击
+    int32 clickArea = 25;
+
+    //
+    int64 shopId = 26;
+
+    //
+    int64 upMid = 27;
+
+    //
+    string trackId = 28;
+
+    //
+    int32 enableStoreDirectLaunch = 29;
+}
+
+//
+message AdCoverDto {
+    //图片链接
+    string url = 1;
+
+    //动图循环次数
+    //0:无限循环
+    int32 loop = 2;
+
+    //图片点击跳转地址，截至目前为空
+    string jumpUrl = 3;
+
+    //跳转监测链接， 数组，单个图片的监控，出区别于click_urls，应前端要求。（此字段截至目前为空，使用时需再次确认）
+    repeated string reportUrls = 4;
+
+    //图片高度
+    int32 imageHeight = 5;
+
+    //图片宽度
+    int32 imageWidth = 6;
+}
+
+//
+message AdDto {
+    //广告创意ID
+    int64 creativeId = 1;
+
+    //广告闭环上报回传数据
+    string adCb = 2;
+
+    //额外广告数据
+    AdContentExtraDto extra = 3;
+
+    //广告标记
+    int32 cmMark = 4;
+
+    //
+    int64 topViewId = 5;
+
+    //
+    int32 creativeType = 6;
+
+    //
+    int32 cardType = 7;
+
+    //
+    int32 creativeStyle = 8;
+
+    //
+    int32 isAd = 9;
+
+    //
+    CreativeDto creativeContent = 10;
+}
+
+//
+message AdFeedbackPanelDto {
+    //面板类型，广告、推广
+    string panelTypeText = 1;
+
+    //反馈面版信息
+    repeated AdFeedbackPanelModuleDto feedbackPanelDetail = 2;
+}
+
+//
+message AdFeedbackPanelModuleDto {
+    //模块id
+    int32 moduleId = 1;
+
+    //icon url
+    string iconUrl = 2;
+
+    //跳转类型
+    //1:气泡
+    //2:H5
+    int32 jumpType = 3;
+
+    //跳转地址
+    string jumpUrl = 4;
+
+    //文案
+    string text = 5;
+
+    //二级文案数组
+    AdSecondFeedbackPanelDto secondaryPanel = 6;
+}
+
+//
+message AdGoodDto {
+    //电商商品ID
+    int64 itemId = 1;
+
+    //电商SKU ID
+    int64 skuId = 2;
+
+    //店铺ID
+    int64 shopId = 3;
+
+    //SKU库存
+    int64 skuNum = 4;
+}
+
+//
+message AdOgvEpDto {
+    //分集epid
+    int64 epid = 1;
+
+    //是否显示 "荐"
+    bool hasRecommend = 2;
+}
+
+//
+message AdSecondFeedbackPanelDto {
+    //屏蔽理由id
+    int32 reasonId = 1;
+
+    //理由文案
+    string text = 2;
+}
+
+//
+message AdShareInfoDto {
+    //分享标题
+    string title = 1;
+
+    //分享副标题
+    string subtitle = 2;
+
+    //分享图片url
+    string imageUrl = 3;
+}
+
+//
+message AdsControlDto {
+    //视频是否有弹幕，如有，需请求弹幕广告
+    int32 hasDanmu = 1;
+
+    //有弹幕的分P视频的cid
+    repeated int64 cids = 2;
+
+    //有弹幕的ogv ep
+    repeated AdOgvEpDto eps = 3;
+}
+
+//
+message AdverDto {
+    //
+    int64 adverId = 1;
+
+    //
+    string adverLogo = 2;
+
+    //
+    string adverName = 3;
+
+    //
+    int32 adverType = 4;
+
+    //
+    string adverPageUrl = 5;
+
+    //
+    string adverDesc = 6;
+}
+
+//
+message AppPackageDto {
+    //包大小, 单位bytes
+    int64 size = 1;
+
+    //
+    string displayName = 2;
+
+    //
+    string apkName = 3;
+
+    //url
+    string url = 4;
+
+    //bili schema url
+    string biliUrl = 5;
+
+    //包md5
+    string md5 = 6;
+
+    //包icon
+    string icon = 7;
+
+    //
+    string devName = 8;
+
+    //
+    string authUrl = 9;
+
+    //
+    string authName = 10;
+
+    //
+    string version = 11;
+
+    //
+    string updateTime = 12;
+}
+
+//
+message CreativeDto {
+    //
+    string title = 1;
+
+    //
+    string description = 2;
+
+    //
+    string imageUrl = 3;
+
+    //
+    string imageMd5 = 4;
+
+    //
+    string url = 5;
+
+    //
+    string clickUrl = 6;
+
+    //
+    string showUrl = 7;
+
+    //
+    int64 videoId = 8;
+
+    //
+    string thumbnailUrl = 9;
+
+    //
+    string thumbnailUrlMd5 = 10;
+
+    //
+    string logoUrl = 11;
+
+    //
+    string logoMd5 = 12;
+
+    //
+    string username = 13;
+}
+
+//
+message QualityInfo {
+    //
+    string icon = 1;
+
+    //
+    string text = 2;
+}
+
+//
+message SourceContentDto {
+    //广告请求ID
+    string requestId = 1;
+
+    //广告资源位source ID
+    int32 sourceId = 2;
+
+    //广告资源位resource ID
+    int32 resourceId = 3;
+
+    //广告位上报标记,对广告返回数据恒为true
+    bool isAdLoc = 4;
+
+    //0:内容
+    //1:广告
+    //与天马现有逻辑一致, 0有含义
+    google.protobuf.Int32Value serverType = 5;
+
+    //客户端IP回传拼接
+    string clientIp = 6;
+
+    //广告卡片位置在一刷中的位置, 天马用, 0有含义
+    google.protobuf.Int32Value cardIndex = 7;
+
+    //广告资源位source 位次
+    int32 index = 8;
+
+    //广告内容
+    AdDto adContent = 9;
+}

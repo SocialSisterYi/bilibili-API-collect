@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package bilibili.api.player.v1;
+
+//
+service Heartbeat {
+    //
+    //
+    rpc mobile (HeartbeatReq) returns (HeartbeatReply);
+}
+
+//-请求
+message HeartbeatReq {
+    //
+    int64 serverTime = 1;
+
+    //
+    string session = 2;
+
+    //
+    int64 mid = 3;
+
+    //
+    int64 aid = 4;
+
+    //
+    int64 cid = 5;
+
+    //
+    string sid = 6;
+
+    //
+    int64 epid = 7;
+
+    //
+    string type = 8;
+
+    //
+    int32 subType = 9;
+
+    //
+    int32 quality = 10;
+
+    //
+    int64 totalTime = 11;
+
+    //
+    int64  pausedTime = 12;
+
+    //
+    int64 playedTime = 13;
+
+    //
+    int64 videoDuration = 14;
+
+    //
+    string playType = 15;
+
+    //
+    int64 networkType = 16;
+
+    //
+    int64 lastPlayProgressTime = 17;
+
+    //
+    int64 maxPlayProgressTime = 18;
+
+    //
+    int32 from = 19;
+
+    //
+    string fromSpmid = 20;
+
+    //
+    string spmid = 21;
+
+    //
+    string epidStatus = 22;
+
+    //
+    string playStatus = 23;
+
+    //
+    string userStatus = 24;
+
+    //
+    int64 actualPlayedTime = 25;
+
+    //
+    int32 autoPlay = 26;
+
+    //
+    int64 listPlayTime = 27;
+
+    //
+    int64 detailPlayTime = 28;
+}
+
+//-回复
+message HeartbeatReply {
+    //
+    int64 ts = 1;
+}

@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://sm.ms/image/gQzJ5Vl2xcrwfL3" width="250" height="200">
+    <img src="imgs/Mylogo.png" width="250" height="200">
 </p>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
 <p align="center">
@@ -190,17 +190,27 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 （重要的话说三遍，本人不承担任何责任）
 
+**--Project_by [社会易姐QwQ](https://space.bilibili.com/293793435)**
+
+# 相关协议基础
+
+http协议：[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
+
+json序列格式：[传送门](https://www.sojson.com/json/json_index.html)
+
+xml序列格式：[传送门](https://www.w3school.com.cn/xml/xml_intro.asp)
+
+protobuf序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
+
+# 交流
+
 <img src="imgs/up_face.jpg" width="100" height="100">
 
-**--by [社会易姐QwQ](https://space.bilibili.com/293793435)**
+QQ粉丝交流群：[1136462265](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
 
-备注：
+B站空间：https://space.bilibili.com/293793435
 
-不了解http的请移步，[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
-
-不了解json的请移步，[传送门](https://www.sojson.com/json/json_index.html)
-
-不了解protobuf的请移步，[传送门](https://www.jianshu.com/p/a24c88c0526a )
+个人博客：https://shakaianee.top
 
 # 发电
 

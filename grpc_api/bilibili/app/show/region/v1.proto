@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package bilibili.app.show.region.v1;
+
+//
+service Region {
+    //
+    //
+    rpc region (RegionReq) returns (RegionReply);
+}
+
+//
+message RegionReq {
+    //
+    string lang = 1;
+}
+
+//
+message RegionReply {
+    //
+    repeated RegionInfo regions = 1;
+}
+
+//
+message RegionConfig {
+    //
+    string scenesName = 1;
+
+    //
+    string scenesType = 2;
+}
+
+//
+message RegionInfo {
+    //
+    int32 tid = 1;
+
+    //
+    int32 reid = 2;
+
+    //
+    string name = 3;
+
+    //
+    string logo = 4;
+
+    //
+    string goto = 5;
+
+    //
+    string param = 6;
+
+    //
+    string uri = 7;
+
+    //
+    int32 type = 8;
+
+    //
+    int32 isBangumi = 9;
+
+    //
+    repeated RegionInfo children = 10;
+
+    //
+    repeated RegionConfig config = 11;
+}

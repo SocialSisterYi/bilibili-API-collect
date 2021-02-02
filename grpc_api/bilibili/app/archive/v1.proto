@@ -1,0 +1,243 @@
+//稿件信息v1模块
+syntax = "proto3";
+
+package bilibili.app.archive.v1;
+
+//稿件基本信息
+message Arc{
+	//稿件avid
+	int64 aid = 1;
+	
+	//稿件分P数
+	int64 videos = 2;
+	
+	//分区tid
+	int32 typeId = 3;
+	
+	//二级分区名
+	string typeName = 4;
+	
+	//稿件版权
+	//1:原创 2:转载
+	int32 copyright = 5;
+	
+	//稿件封面url
+	string pic = 6;
+	
+	//稿件标题
+	string title = 7;
+	
+	//稿件发布时间
+	int64 pubdate = 8;
+	
+	//用户投稿时间
+	int64 ctime = 9;
+	
+	//稿件简介
+	string desc = 10;
+	
+	//稿件状态
+	int32 state = 11;
+	
+	//访问属性
+	//0:全部可见 10000:登录可见
+	int32 access = 12;
+	
+	//属性位配置
+	int32 attribute = 13;
+	
+	//空
+	string tag = 14;
+	
+	//空
+	repeated string tags = 15;
+	
+	//稿件总时长
+	int64 duration = 16;
+	
+	//参与的活动id
+	int64 missionId = 17;
+	
+	//绑定的商单id
+	int64 orderId = 18;
+	
+	//pgc稿件强制重定向url
+	string redirectUrl = 19;
+	
+	//？？？
+	int64 forward = 20;
+	
+	//控制标志
+	Rights rights = 21;
+	
+	//UP主信息
+	Author author = 22;
+	
+	//状态数
+	Stat stat = 23;
+	
+	//？？？
+	string reportResult = 24;
+	
+	//投稿时发送的动态内容
+	string dynamic = 25;
+	
+	//稿件1P cid
+	int64 firstCid = 26;
+	
+	//稿件1P 分辨率
+	Dimension dimension = 27;
+	
+	//合作组成员列表
+	repeated StaffInfo staffInfo = 28;
+	
+	//ugc合集id
+	int64 seasonId = 29;
+	
+	//新版属性位配置
+	int64 attributeV2 = 30;
+}
+
+//作者信息
+message Author{
+	//UID
+	int64 mid = 1;
+	
+	//昵称
+	string name = 2;
+	
+	//头像url
+	string face = 3;
+}
+
+//分辨率信息
+message Dimension{
+	//宽度
+	int64 width = 1;
+	
+	//高度
+	int64 height = 2;
+	
+	//方向
+	//0:横屏 1:竖屏
+	int64 rotate = 3;
+}
+
+//分P视频
+message Page{
+	//视频cid
+    int64 cid = 1;
+    
+    //分P序号
+    int32 page = 2;
+    
+    //源类型
+    //vupload:B站 qq:腾讯 hunan:芒果
+    string from = 3;
+    
+    //分P标题
+    string part = 4;
+    
+    //分P时长
+    int64 duration = 5;
+    
+    //外链vid
+    string vid = 6;
+    
+    //分P简介
+    string desc = 7;
+    
+    //外链url
+    string webLink = 8;
+    
+    //分P分辨率
+    Dimension dimension = 9;
+}
+
+//稿件控制标志
+message Rights{
+	//老版是否付费
+    int32 bp = 1;
+    
+    //允许充电
+    int32 elec = 2;
+    
+    //允许下载
+    int32 download = 3;
+    
+    //是否电影
+    int32 movie = 4;
+    
+    //pgc稿件需要付费
+    int32 pay = 5;
+    
+    //是否高码率
+    int32 hd5 = 6;
+    
+    //是否显示禁止转载标志
+    int32 noReprint = 7;
+    
+    //是否允许自动播放
+    int32 autoplay = 8;
+    
+    //ugc稿件需要付费
+    int32 ugcPay = 9;
+    
+    //是否合作视频
+    int32 isCooperation = 10;
+    
+    //是否ugc付费预览
+    int32 ugcPayPreview = 11;
+    
+    //是否禁止后台播放
+    int32 noBackground = 12;
+}
+
+//合作成员信息
+message StaffInfo{
+	//成员UID
+    int64 mid = 1;
+    
+    //成员角色
+    string title = 2;
+    
+    //属性位
+    int64 attribute = 3;
+}
+
+//状态数
+message Stat{
+	//稿件avid
+	int64 aid = 1;
+	
+	//播放数
+	int32 view = 2;
+	
+	//弹幕数
+	int32 danmaku = 3;
+	
+	//评论数
+	int32 reply = 4;
+	
+	//收藏数
+	int32 fav = 5;
+	
+	//投币数
+	int32 coin = 6;
+	
+	//分享数
+	int32 share = 7;
+	
+	//当前排名
+	int32 nowRank = 8;
+	
+	//历史最高排名
+	int32 hisRank = 9;
+	
+	//点赞数
+	int32 like = 10;
+	
+	//点踩数
+	//前端恒为0
+	int32 dislike = 11;
+}

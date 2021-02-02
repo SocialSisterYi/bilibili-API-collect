@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package bilibili.app.space.v1;
+
+//
+service Space {
+    //
+    //
+    rpc archive (ArchiveReq) returns (ArchiveReply);
+}
+
+//-请求
+message ArchiveReq {
+    //
+    int64 vmid = 1;
+
+    //
+    int32 pn = 2;
+
+    //
+    int32 ps = 3;
+
+    //
+    string order = 4;
+}
+
+//-回复
+message ArchiveReply {
+    //
+    repeated BiliSpaceVideo item = 1;
+
+    //
+    int32 count = 2;
+
+    //
+    EpisodicButton episodicButton = 3;
+
+    //
+    repeated OrderConfig order = 4;
+}
+
+//
+message Badge {
+    //
+    string text = 1;
+
+    //
+    string textColor = 2;
+
+    //
+    string textColorNight = 3;
+
+    //
+    string bgColor = 4;
+
+    //
+    string bgColorNight = 5;
+
+    //
+    string borderColor = 6;
+
+    //
+    string borderColorNight = 7;
+
+    //
+    int32 bgStyle = 8;
+}
+
+//
+message BiliSpaceVideo {
+    //
+    string title = 1;
+
+    //
+    string tname = 2;
+
+    //
+    int64 duration = 3;
+
+    //
+    string cover = 4;
+
+    //
+    string uri = 5;
+
+    //
+    string param = 6;
+
+    //
+    string danmaku = 7;
+
+    //
+    int32 play = 8;
+
+    //
+    int64 ctime = 9;
+
+    //
+    bool state = 10;
+
+    //
+    bool isPopular = 11;
+
+    //
+    repeated Badge badges = 12;
+
+    //
+    string coverRight = 13;
+
+    //
+    string bvid = 14;
+
+    //
+    bool isSteins = 15;
+
+    //
+    bool isUgcpay = 16;
+
+    //
+    bool isCooperation = 17;
+}
+
+//
+message EpisodicButton {
+    //
+    string text = 1;
+
+    //
+    string uri = 2;
+}
+
+//
+message OrderConfig {
+    //
+    string title = 1;
+
+    //
+    string value = 2;
+}

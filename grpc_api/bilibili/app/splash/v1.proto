@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+package bilibili.app.splash.v1;
+
+import "google/protobuf/any.proto";
+
+//
+service Splash {
+    //
+    //
+    rpc list (SplashReq) returns (SplashReply);
+}
+
+//-请求
+message SplashReq {
+    //
+    int32 width = 1;
+
+    //
+    int32 height = 2;
+
+    //
+    string birth = 3;
+
+    //
+    string adExtra = 4;
+
+    //
+    string network = 5;
+}
+
+//-回复
+message SplashReply {
+    //
+    int32 maxTime = 1;
+
+    //
+    int32 minInterval = 2;
+
+    //
+    int32 pullInterval = 3;
+
+    //
+    repeated SplashItem list = 4;
+
+    //
+    repeated ShowStrategy show = 5;
+}
+
+//
+message ShowStrategy {
+    //
+    int32 id = 1;
+
+    //
+    int64 stime = 2;
+
+    //
+    int64 etime = 3;
+}
+
+//
+message SplashItem {
+    //
+    int32 id = 1;
+
+    //
+    int32 type = 2;
+
+    //
+    int32 cardType = 3;
+
+    //
+    int32 duration = 4;
+
+    //
+    int64 beginTime = 5;
+
+    //
+    int64 endTime = 6;
+
+    //
+    string thumb = 7;
+
+    //
+    string hash = 8;
+
+    //
+    string logoUrl = 9;
+
+    //
+    string logoHash = 10;
+
+    //
+    string videoUrl = 11;
+
+    //
+    string videoHash = 12;
+
+    //
+    int32 videoWidth = 13;
+
+    //
+    int32 videoHeight = 14;
+
+    //
+    string schema = 15;
+
+    //
+    string schemaTitle = 16;
+
+    //
+    string schemaPackageName = 17;
+
+    //
+    repeated string schemaCallupWhiteList = 18;
+
+    //
+    int32 skip = 19;
+
+    //
+    string uri = 20;
+
+    //
+    string uriTitle = 21;
+
+    //
+    int32 source = 22;
+
+    //
+    int32 cmMark = 23;
+
+    //
+    string adCb = 24;
+
+    //
+    int64 resourceId = 25;
+
+    //
+    string requestId = 26;
+
+    //
+    string clientIp = 27;
+
+    //
+    bool isAd = 28;
+
+    //
+    bool isAdLoc = 29;
+
+    //
+    google.protobuf.Any extra = 30;
+
+    //
+    int64 cardIndex = 31;
+
+    //
+    int64 serverType = 32;
+
+    //
+    int64 index = 33;
+
+    //
+    string clickUrl = 34;
+
+    //
+    string showUrl = 35;
+
+    //
+    int32 timeTarget = 36;
+
+    //
+    int32 encryption = 37;
+
+    //
+    bool enablePreDownload = 38;
+
+    //
+    bool enableBackgroundDownload = 39;
+}

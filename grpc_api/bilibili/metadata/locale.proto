@@ -1,10 +1,30 @@
 syntax = "proto3";
+
 package bilibili.metadata.locale;
+
+message LocaleIds{
+    //
+    string language = 1;
+
+    //
+    string script = 2;
+
+    //
+    string region = 3;
+}
 
 //区域标识
 //x-bili-locale-bin
-message LocaleIds{
-    string language = 1;
-    string script = 2;
-    string region = 3;
+message Locale {
+    //App设置的locale
+    LocaleIds c_locale = 1;
+
+    //系统默认的locale
+    LocaleIds s_locale = 2;
+
+    //sim卡的国家码+运营商码
+    string sim_code = 3;
+
+    //时区
+    string timezone = 4;
 }

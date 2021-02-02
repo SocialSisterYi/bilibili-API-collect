@@ -48,7 +48,7 @@ Token有效期为1月，更改密码或过期失效
 | 85eb6835b0a1034e | 2ad42749773c441109bdc0191257a664 |      |          |          |
 | aae92bc66f3edfab | af125a0d5279fd576c1b4418a3e8276d | PC   | 投稿工具 |          |
 | bb3101000e232e27 | 36efcfed79309338ced0380abd824ac1 |      |          |          |
-| bca7e84c2d947ac6 |                                  | 安卓 | 客户端   | 登录专用 |
+| bca7e84c2d947ac6 | 60698ba2f68e01ce44738920a0ffe768 | 安卓 | 客户端   | 登录专用 |
 | cc578d267072c94d |                                  | 安卓 | 轻视频   |          |
 | cc8617fd6961e070 |                                  | 安卓 | 漫画     |          |
 | iVGUTjsxvpLeuDCf | aHRmhWMLkdeMuILqORnYZocwMBpMEOdt | 安卓 | 客户端   | 取流专用 |
