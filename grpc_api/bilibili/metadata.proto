@@ -1,0 +1,184 @@
+syntax = "proto3";
+
+package bilibili.metadata;
+
+/**********环境参数1**********/
+//x-bili-device-bin
+message Device{
+    //产品id
+    int32 appId = 1;
+
+    //构建id
+    int32 build = 2;
+
+    //设备buvid
+    string buvid = 3;
+
+    //包类型
+    string mobiApp = 4;
+
+    //平台类型
+    string platform = 5;
+
+    //设备类型
+    string device = 6;
+
+    //渠道
+    string channel = 7;
+
+    //品牌
+    string brand = 8;
+
+    //型号
+    string model = 9;
+
+    //系统版本
+    string osver = 10;
+
+    //
+    string fpLocal = 11;
+
+    //
+    string fpRemote = 12;
+
+    //APP版本号
+    string versionName = 13;
+}
+
+/**********环境参数2**********/
+//x-bili-metadata-bin
+message Metadata{
+    //登录Token
+    string accessKey = 1;
+
+    //包类型
+    string mobiApp = 2;
+
+    //设备类型
+    string device = 3;
+
+    //构建id
+    int32 build = 4;
+
+    //渠道
+    string channel = 5;
+
+    //设备buvid
+    string buvid = 6;
+
+    //平台类型
+    string platform = 7;
+}
+
+/**********区域标识**********/
+//x-bili-locale-bin
+message Locale {
+    //App设置的locale
+    LocaleIds c_locale = 1;
+
+    //系统默认的locale
+    LocaleIds s_locale = 2;
+
+    //sim卡的国家码+运营商码
+    string sim_code = 3;
+
+    //时区
+    string timezone = 4;
+}
+
+//
+message LocaleIds{
+    //
+    string language = 1;
+
+    //
+    string script = 2;
+
+    //
+    string region = 3;
+}
+
+/**********网络类型标识**********/
+//x-bili-network-bin
+message Network{
+    //网络类型
+    Type type = 1;
+
+    //免流类型
+    TFType tf = 2;
+
+    //运营商
+    string oid = 3;
+}
+
+//网络类型
+enum Type{
+    //未知
+    NT_UNKNOWN = 0;
+
+    //wifi
+    WIFI = 1;
+
+    //蜂窝网络
+    CELLULAR = 2;
+
+    //未连接
+    OFFLINE = 3;
+
+    //以太网
+    ETHERNET = 5;
+
+    //其他
+    OTHERNET = 4;
+}
+
+//免流类型
+enum TFType {
+    //正常计费
+    TF_UNKNOWN = 0;
+
+    //联通卡
+    U_CARD = 1;
+
+    //联通包
+    U_PKG = 2;
+
+    //移动卡
+    C_CARD = 3;
+
+    //移动包
+    C_PKG = 4;
+
+    //电信卡
+    T_CARD = 5;
+
+    //电信包
+    T_PKG = 6;
+}
+
+/**********限制条件**********/
+message Restriction {
+    //青少年模式开关状态
+    bool teenagers_mode = 1;
+
+    //课堂模式开关状态
+    bool lessons_mode = 2;
+
+    //模式类型
+    ModeType mode = 3;
+
+    //app审核review状态
+    bool review = 4;
+}
+
+//模式类型
+enum ModeType{
+    //正常
+    NORMAL = 0;
+
+    //青少年模式
+    TEENAGERS = 1;
+
+    //课堂模式
+    LESSONS = 2;
+}

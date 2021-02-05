@@ -2,6 +2,294 @@ syntax = "proto3";
 
 package bilibili.app.card.v1;
 
+//卡片信息
+message Card {
+    oneof item {
+        //小封面条目
+        SmallCoverV5 smallCoverV5 = 1;
+
+        //
+        LargeCoverV1 largeCoverV1 = 2;
+
+        //
+        ThreeItemAllV2 threeItemAllV2 = 3;
+
+        //
+        ThreeItemV1 threeItemV1 = 4;
+
+        //
+        HotTopic hotTopic = 5;
+
+        //
+        DynamicHot dynamicHot = 6;
+
+        //
+        MiddleCoverV3 middleCoverV3 = 7;
+
+        //
+        LargeCoverV4 largeCoverV4 = 8;
+
+        //热门列表顶部按钮
+        PopularTopEntrance popularTopEntrance = 9;
+
+        //
+        RcmdOneItem rcmdOneItem = 10;
+    }
+}
+
+//小封面条目
+message SmallCoverV5 {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    string coverGif = 2;
+
+    //
+    Up up = 3;
+
+    //封面右下角标文案（时长）
+    string coverRightText1 = 4;
+
+    //右侧文案1（UP主昵称）
+    string rightDesc1 = 5;
+
+    //右侧文案2（播放量 时间）
+    string rightDesc2 = 6;
+
+    //右侧推荐原因标签框
+    ReasonStyle rcmdReasonStyle = 7;
+
+    //
+    HotwordEntrance hotwordEntrance = 8;
+
+    //
+    ReasonStyle cornerMarkStyle = 9;
+
+    //右侧文案1图标id
+    int32 rightIcon1 = 10;
+
+    //右侧文案2图标id
+    int32 rightIcon2 = 11;
+
+    //
+    ReasonStyle leftCornerMarkStyle = 12;
+}
+
+//
+message LargeCoverV1 {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    string coverGif = 2;
+
+    //
+    Avatar avatar = 3;
+
+    //
+    string coverLeftText1 = 4;
+
+    //
+    string coverLeftText2 = 5;
+
+    //
+    string coverLeftText3 = 6;
+
+    //
+    string coverBadge = 7;
+
+    //
+    string topRcmdReason = 8;
+
+    //
+    string bottomRcmdReason = 9;
+
+    //
+    string desc = 10;
+
+    //
+    int32 officialIcon = 11;
+
+    //
+    int32 canPlay = 12;
+
+    //
+    ReasonStyle topRcmdReasonStyle = 13;
+
+    //
+    ReasonStyle bottomRcmdReasonStyle = 14;
+
+    //
+    ReasonStyle rcmdReasonStyleV2 = 15;
+
+    //
+    ReasonStyle leftCoverBadgeStyle = 16;
+
+    //
+    ReasonStyle rightCoverBadgeStyle = 17;
+
+    //
+    string coverBadge2 = 18;
+
+    //
+    LikeButton likeButton = 19;
+
+    //
+    int32 titleSingleLine = 20;
+
+    //
+    string coverRightText = 21;
+}
+
+//
+message ThreeItemAllV2 {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    ReasonStyle topRcmdReasonStyle = 2;
+
+    //
+    repeated TwoItemHV1Item item = 3;
+}
+
+//
+message ThreeItemV1 {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    int32 titleIcon = 2;
+
+    //
+    string moreUri = 3;
+
+    //
+    string moreText = 4;
+
+    //
+    repeated ThreeItemV1Item items = 5;
+}
+
+//
+message HotTopic {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    string desc = 2;
+
+    //
+    repeated HotTopicItem items = 3;
+}
+
+//
+message DynamicHot {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    string topLeftTitle = 2;
+
+    //
+    string desc1 = 3;
+
+    //
+    string desc2 = 4;
+
+    //
+    string moreUri = 5;
+
+    //
+    string moreText = 6;
+
+    //
+    repeated string covers = 7;
+
+    //
+    string coverRightText = 8;
+
+    //
+    ReasonStyle topRcmdReasonStyle = 9;
+}
+
+//
+message MiddleCoverV3 {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    string desc1 = 2;
+
+    //
+    string desc2 = 3;
+
+    //
+    ReasonStyle coverBadgeStyle = 4;
+}
+
+//
+message LargeCoverV4 {
+    //条目基本信息
+    Base base = 1;
+
+    //
+    string coverLeftText1 = 2;
+
+    //
+    string coverLeftText2 = 3;
+
+    //
+    string coverLeftText3 = 4;
+
+    //
+    string coverBadge = 5;
+
+    //
+    int32 canPlay = 6;
+
+    //
+    Up up = 7;
+
+    //
+    string shortLink = 8;
+
+    //
+    string shareSubtitle = 9;
+
+    //
+    string playNumber = 10;
+
+    //
+    string bvid = 11;
+
+    //
+    string subParam = 12;
+}
+
+//热门列表顶部按钮
+message PopularTopEntrance {
+    //条目基本信息
+    Base base = 1;
+
+    //按钮项
+    repeated EntranceItem items = 2;
+}
+
+//推荐
+message RcmdOneItem {
+    //条目基本信息
+    Base base = 1;
+
+    //标签框信息
+    ReasonStyle topRcmdReasonStyle = 2;
+
+    //小封面推荐内容信息
+    SmallCoverRcmdItem item = 3;
+}
+
+//
 message AdInfo {
     //
     int64 creativeId = 1;
@@ -112,27 +400,28 @@ message Avatar {
     int32 defalutCover = 7;
 }
 
-//
+//条目基本信息
 message Base {
-    //
+    //卡片类型
     string cardType = 1;
 
-    //
+    //卡片跳转类型?
     string cardGoto = 2;
 
-    //
+    //跳转类型
+    //av:视频稿件 mid:用户空间
     string goto = 3;
 
-    //
+    //目标参数
     string param = 4;
 
-    //
+    //封面url
     string cover = 5;
 
-    //
+    //标题
     string title = 6;
 
-    //
+    //跳转uri
     string uri = 7;
 
     //
@@ -144,7 +433,7 @@ message Base {
     //
     PlayerArgs playerArgs = 10;
 
-    //
+    //条目排位序号
     int64 idx = 11;
 
     //
@@ -153,7 +442,8 @@ message Base {
     //
     Mask mask = 13;
 
-    //
+    //来源标识
+    //recommend:推荐 operation:管理?
     string fromType = 14;
 
     //
@@ -165,82 +455,48 @@ message Base {
     //
     Button descButton = 17;
 
-    //
+    //三点v4
     ThreePointV4 threePointV4 = 18;
 }
 
-//
+//气泡信息
 message Bubble {
-    //
+    //文案
     string bubbleContent = 1;
 
-    //
+    //版本
     int32 version = 2;
 
-    //
+    //起始时间
     int64 stime = 3;
 }
 
-//
+//按钮信息
 message Button {
-    //
+    //文案
     string text = 1;
 
-    //
+    //参数
     string param = 2;
 
     //
     string uri = 3;
 
-    //
+    //事件
     string event = 4;
 
     //
     int32 selected = 5;
 
-    //
+    //类型
+    //2:
     int32 type = 6;
 
-    //
+    //事件v2
     string eventV2 = 7;
 
-    //
+    //关系信息
     Relation relation = 8;
-}
-
-//
-message Card {
-    oneof itemCase {
-        //
-        SmallCoverV5 smallCoverV5 = 1;
-
-        //
-        LargeCoverV1 largeCoverV1 = 2;
-
-        //
-        ThreeItemAllV2 threeItemAllV2 = 3;
-
-        //
-        ThreeItemV1 threeItemV1 = 4;
-
-        //
-        HotTopic hotTopic = 5;
-
-        //
-        DynamicHot dynamicHot = 6;
-
-        //
-        MiddleCoverV3 middleCoverV3 = 7;
-
-        //
-        LargeCoverV4 largeCoverV4 = 8;
-
-        //
-        PopularTopEntrance popularTopEntrance = 9;
-
-        //
-        RcmdOneItem rcmdOneItem = 10;
-    }
 }
 
 //
@@ -288,73 +544,31 @@ message DislikeReason {
     string name = 2;
 }
 
-//
-message DynamicHot {
-    //
-    Base base = 1;
-
-    //
-    string topLeftTitle = 2;
-
-    //
-    string desc1 = 3;
-
-    //
-    string desc2 = 4;
-
-    //
-    string moreUri = 5;
-
-    //
-    string moreText = 6;
-
-    //
-    repeated string covers = 7;
-
-    //
-    string coverRightText = 8;
-
-    //
-    ReasonStyle topRcmdReasonStyle = 9;
-}
-
-//
+//热门列表按钮信息
 message EntranceItem {
-    //
+    //跳转类型
     string goto = 1;
 
-    //
+    //图标url
     string icon = 2;
 
-    //
+    //标题
     string title = 3;
 
-    //
+    //入口模块id
     string moduleId = 4;
 
-    //
+    //跳转uri
     string uri = 5;
 
-    //
+    //入口id
     int64 entranceId = 6;
 
-    //
+    //气泡信息
     Bubble bubble = 7;
 
-    //
+    //入口类型?
     int32 entranceType = 8;
-}
-
-//
-message HotTopic {
-    //
-    Base base = 1;
-
-    //
-    string desc = 2;
-
-    //
-    repeated HotTopicItem items = 3;
 }
 
 //
@@ -388,111 +602,6 @@ message HotwordEntrance {
 }
 
 //
-message LargeCoverV1 {
-    //
-    Base base = 1;
-
-    //
-    string coverGif = 2;
-
-    //
-    Avatar avatar = 3;
-
-    //
-    string coverLeftText1 = 4;
-
-    //
-    string coverLeftText2 = 5;
-
-    //
-    string coverLeftText3 = 6;
-
-    //
-    string coverBadge = 7;
-
-    //
-    string topRcmdReason = 8;
-
-    //
-    string bottomRcmdReason = 9;
-
-    //
-    string desc = 10;
-
-    //
-    int32 officialIcon = 11;
-
-    //
-    int32 canPlay = 12;
-
-    //
-    ReasonStyle topRcmdReasonStyle = 13;
-
-    //
-    ReasonStyle bottomRcmdReasonStyle = 14;
-
-    //
-    ReasonStyle rcmdReasonStyleV2 = 15;
-
-    //
-    ReasonStyle leftCoverBadgeStyle = 16;
-
-    //
-    ReasonStyle rightCoverBadgeStyle = 17;
-
-    //
-    string coverBadge2 = 18;
-
-    //
-    LikeButton likeButton = 19;
-
-    //
-    int32 titleSingleLine = 20;
-
-    //
-    string coverRightText = 21;
-}
-
-//
-message LargeCoverV4 {
-    //
-    Base base = 1;
-
-    //
-    string coverLeftText1 = 2;
-
-    //
-    string coverLeftText2 = 3;
-
-    //
-    string coverLeftText3 = 4;
-
-    //
-    string coverBadge = 5;
-
-    //
-    int32 canPlay = 6;
-
-    //
-    Up up = 7;
-
-    //
-    string shortLink = 8;
-
-    //
-    string shareSubtitle = 9;
-
-    //
-    string playNumber = 10;
-
-    //
-    string bvid = 11;
-
-    //
-    string subParam = 12;
-}
-
-//
 message LikeButton {
     //
     int64 aid = 1;
@@ -520,21 +629,6 @@ message Mask {
 
     //
     Button button = 2;
-}
-
-//
-message MiddleCoverV3 {
-    //
-    Base base = 1;
-
-    //
-    string desc1 = 2;
-
-    //
-    string desc2 = 3;
-
-    //
-    ReasonStyle coverBadgeStyle = 4;
 }
 
 //
@@ -570,57 +664,37 @@ message PlayerArgs {
     int64 seasonId = 11;
 }
 
-//
-message PopularTopEntrance {
-    //
-    Base base = 1;
-
-    //
-    repeated EntranceItem items = 2;
-}
-
-//
-message RcmdOneItem {
-    //
-    Base base = 1;
-
-    //
-    ReasonStyle topRcmdReasonStyle = 2;
-
-    //
-    SmallCoverRcmdItem item = 3;
-}
-
-//
+//标签框信息
 message ReasonStyle {
-    //
+    //文案
     string text = 1;
 
-    //
+    //文字颜色
     string textColor = 2;
 
-    //
+    //背景色
     string bgColor = 3;
 
-    //
+    //边框色
     string borderColor = 4;
 
-    //
+    //图标url
     string iconUrl = 5;
 
-    //
+    //文字颜色-夜间
     string textColorNight = 6;
 
-    //
+    //背景色-夜间
     string bgColorNight = 7;
 
-    //
+    //边框色-夜间
     string borderColorNight = 8;
 
-    //
+    //图标url-夜间
     string iconNightUrl = 9;
 
-    //
+    //背景风格id
+    //1:无背景 2:有背景
     int32 bgStyle = 10;
 
     //
@@ -642,162 +716,94 @@ message ReasonStyle {
     string leftIconType = 16;
 }
 
-//
+//关系信息
 message Relation {
-    //
+    //关系状态
     int32 status = 1;
 
-    //
+    //是否关注
     int32 isFollow = 2;
 
-    //
+    //是否粉丝
     int32 isFollowed = 3;
 }
 
-//
+//分享面板信息
 message SharePlane {
-    //
+    //标题
     string title = 1;
 
-    //
+    //副标贴文案（观看次数）
     string shareSubtitle = 2;
 
-    //
+    //备注
     string desc = 3;
 
-    //
+    //封面url
     string cover = 4;
 
-    //
+    //稿件avid
     int64 aid = 5;
 
-    //
+    //稿件bvid
     string bvid = 6;
 
-    //
+    //允许分享方式
     map<string,bool> shareTo = 7;
 
-    //
+    //UP主昵称
     string author = 8;
 
-    //
+    //UP主UID
     int64 authorId = 9;
 
-    //
+    //短连接
     string shortLink = 10;
 
-    //
+    //播放次数文案
     string playNumber = 11;
 }
 
-//
+//小封面推荐内容信息
 message SmallCoverRcmdItem {
-    //
+    //标题
     string title = 1;
 
-    //
+    //封面url
     string cover = 2;
 
-    //
+    //跳转uri
     string uri = 3;
 
-    //
+    //参数
     string param = 4;
 
-    //
+    //跳转类型
+    //av:视频稿件
     string goto = 5;
 
-    //
+    //封面右下角标文案（时长）
     string coverRightText1 = 6;
 
-    //
+    //右侧文案1（UP主昵称）
     string rightDesc1 = 7;
 
-    //
+    //右侧文案2（播放量 时间）
     string rightDesc2 = 8;
 
     //
     string coverGif = 9;
 
-    //
+    //右侧文案1图标id
     int32 rightIcon1 = 10;
 
-    //
+    //右侧文案2图标id
     int32 rightIcon2 = 11;
-}
-
-//
-message SmallCoverV5 {
-    //
-    Base base = 1;
-
-    //
-    string coverGif = 2;
-
-    //
-    Up up = 3;
-
-    //
-    string coverRightText1 = 4;
-
-    //
-    string rightDesc1 = 5;
-
-    //
-    string rightDesc2 = 6;
-
-    //
-    ReasonStyle rcmdReasonStyle = 7;
-
-    //
-    HotwordEntrance hotwordEntrance = 8;
-
-    //
-    ReasonStyle cornerMarkStyle = 9;
-
-    //
-    int32 rightIcon1 = 10;
-
-    //
-    int32 rightIcon2 = 11;
-
-    //
-    ReasonStyle leftCornerMarkStyle = 12;
-}
-
-//
-message ThreeItemAllV2 {
-    //
-    Base base = 1;
-
-    //
-    ReasonStyle topRcmdReasonStyle = 2;
-
-    //
-    repeated TwoItemHV1Item item = 3;
-}
-
-//
-message ThreeItemV1 {
-    //
-    Base base = 1;
-
-    //
-    int32 titleIcon = 2;
-
-    //
-    string moreUri = 3;
-
-    //
-    string moreText = 4;
-
-    //
-    repeated ThreeItemV1Item items = 5;
 }
 
 //
 message ThreeItemV1Item {
-    //
+    //条目基本信息
     Base base = 1;
 
     //
@@ -824,7 +830,7 @@ message ThreePoint {
     //
     repeated DislikeReason feedbacks = 2;
 
-    //
+    //稍后再看
     int32 watchLater = 3;
 }
 
@@ -882,12 +888,12 @@ message ThreePointV3 {
     int32 defaultId = 11;
 }
 
-//
+//三点v4
 message ThreePointV4 {
-    //
+    //分享面板信息
     SharePlane sharePlane = 1;
 
-    //
+    //稍后再看
     WatchLater watchLater = 2;
 }
 
@@ -945,11 +951,11 @@ message Up {
     string cooperation = 8;
 }
 
-//
+//稍后再看信息
 message WatchLater {
-    //
+    //稿件avid
     int64 aid = 1;
 
-    //
+    //稿件bvid
     string bvid = 2;
 }

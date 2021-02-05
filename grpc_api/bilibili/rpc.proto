@@ -6,7 +6,7 @@ import "google/protobuf/any.proto";
 
 //接口回复报错信息
 //grpc-status-details-bin
-message Status{
+message Status {
     //业务错误码
     int32 code = 1;
 

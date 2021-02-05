@@ -3,27 +3,27 @@ syntax = "proto3";
 
 package bilibili.app.playurl.v1;
 
-//
+//视频url
 service PlayURL {
     //获取播放界面配置
     //https://app.bilibili.com/bilibili.app.playurl.v1.PlayURL/PlayConf
-    rpc playConf (PlayConfReq) returns (PlayConfReply);
+    rpc PlayConf (PlayConfReq) returns (PlayConfReply);
 
     //
     //
-    rpc playConfEdit (PlayConfEditReq) returns (PlayConfEditReply);
+    rpc PlayConfEdit (PlayConfEditReq) returns (PlayConfEditReply);
 
-    //视频url
+    //获取视频url
     //
-    rpc playURL (PlayURLReq) returns (PlayURLReply);
+    rpc PlayURL (PlayURLReq) returns (PlayURLReply);
 
-    //视频播放业务数据
+    //获取视频播放业务数据
     //https://app.bilibili.com/bilibili.app.playurl.v1.PlayURL/PlayView
-    rpc playView (PlayViewReq) returns (PlayViewReply);
+    rpc PlayView (PlayViewReq) returns (PlayViewReply);
 
     //
     //
-    rpc project (ProjectReq) returns (ProjectReply);
+    rpc Project (ProjectReq) returns (ProjectReply);
 }
 
 //获取播放界面配置-请求
@@ -59,10 +59,10 @@ message PlayURLReq {
     //清晰度
     int64 qn = 3;
     
-    //流类型
+    //视频流版本
     int32 fnver = 4;
     
-    //
+    //视频流功能
     int32 fnval = 5;
     
     //下载模式
@@ -125,7 +125,7 @@ message PlayURLReply {
     VideoType type = 13;
 }
 
-//-请求
+//获取视频播放业务数据-请求
 message PlayViewReq {
     //稿件avid
     int64 aid = 1;
@@ -166,7 +166,7 @@ message PlayViewReq {
     CodeType preferCodecType = 12;
 }
 
-//-回复
+//获取视频播放业务数据-回复
 message PlayViewReply {
 	//视频流信息
     VideoInfo info = 1;
@@ -261,16 +261,16 @@ message CloudConf {
     FieldValue fieldValue = 3;
 }
 
-//
+//编码类型
 enum CodeType {
-    //
-    NOCODE_VALUE = 0;
+    //默认
+	NOCODE = 0;
 
-    //
-    CODE264_VALUE = 1;
+    //H.264
+	CODE264 = 1;
 
-    //
-    CODE265_VALUE = 2;
+    //H.265
+	CODE265 = 2;
 }
 
 //
@@ -388,7 +388,7 @@ message DashItem {
 }
 
 //dash视频流
-message DashVideo{
+message DashVideo {
 	//主线流
 	string baseUrl=1;
 	
@@ -415,7 +415,7 @@ message DashVideo{
 }
 
 //杜比音频信息
-message DolbyItem{
+message DolbyItem {
 	//
 	int32 type=1;
 	
@@ -424,7 +424,7 @@ message DolbyItem{
 }
 
 //事件
-message Event{
+message Event {
 	//震动
     Shake shake=1;
 }
@@ -459,95 +459,95 @@ message FormatDescription {
     string superscript = 6;
 }
 
-//播放控件用户自定义配置
-message PlayAbilityConf{
-	//
+//禁用功能配置
+message PlayAbilityConf {
+    //后台播放
     bool backgroundPlayDisable=1;
-    
-    //
+
+    //镜像反转
     bool flipDisable=2;
-    
-    //
+
+    //投屏
     bool castDisable=3;
-    
-    //
+
+    //反馈
     bool feedbackDisable=4;
-    
-    //
+
+    //字幕
     bool subtitleDisable=5;
-    
-    //
+
+    //播放速度
     bool playbackRateDisable=6;
-    
-    //
+
+    //定时停止
     bool timeUpDisable=7;
-    
-    //
+
+    //播放方式
     bool playbackModeDisable=8;
-    
-    //
+
+    //画面尺寸
     bool scaleModeDisable=9;
-    
-    //
+
+    //赞
     bool likeDisable=10;
-    
-    //
+
+    //踩
     bool dislikeDisable=11;
-    
-    //
+
+    //投币
     bool coinDisable=12;
-    
-    //
+
+    //充电
     bool elecDisable=13;
-    
-    //
+
+    //分享
     bool shareDisable=14;
-    
-    //
+
+    //截图
     bool screenShotDisable=15;
-    
-    //
+
+    //锁定
     bool lockScreenDisable=16;
-    
-    //
+
+    //相关推荐
     bool recommendDisable=17;
-    
-    //
+
+    //播放速度
     bool playbackSpeedDisable=18;
-    
-    //
+
+    //清晰度
     bool definitionDisable=19;
-    
-    //
+
+    //选集
     bool selectionsDisable=20;
-    
-    //
+
+    //下一集
     bool nextDisable=21;
-    
-    //
+
+    //编辑弹幕
     bool editDmDisable=22;
-    
-    //
+
+    //小窗
     bool smallWindowDisable=23;
-    
-    //
+
+    //震动
     bool shakeDisable=24;
-    
+
     //
     bool outerDmDisable=25;
-    
+
     //
     bool innerDmDisable=26;
-    
+
     //
     bool freyaEnterDisable=27;
-    
-    //
+
+    //杜比音效
     bool dolbyDisable=28;
 }
 
 //播放控件稿件配置
-message PlayArcConf{
+message PlayArcConf {
 	//后台播放
     ArcConf backgroundPlayConf=1;
     
@@ -629,7 +629,7 @@ message PlayArcConf{
     //
     ArcConf freyaEnterConf=27;
     
-    //
+    //杜比音效
     ArcConf dolbyConf=28;
 }
 
@@ -679,7 +679,7 @@ message ResponseDash {
 }
 
 //分段流条目
-message ResponseUrl{
+message ResponseUrl {
 	//分段序号
 	uint32 order = 1;
 	
@@ -700,19 +700,19 @@ message ResponseUrl{
 }
 
 //分段视频流
-message SegmentVideo{
+message SegmentVideo {
 	//分段视频流列表
 	repeated ResponseUrl segment=1;
 }
 
 //震动
-message Shake{
+message Shake {
 	//
 	string file=1;
 }
 
 //视频流信息
-message Stream{
+message Stream {
 	//元数据
     StreamInfo info=1;
     
@@ -727,7 +727,7 @@ message Stream{
 }
 
 //流媒体元数据
-message StreamInfo{
+message StreamInfo {
 	//清晰度 qn
 	uint32 quality=1;
 	
@@ -769,7 +769,7 @@ message StreamInfo{
 }
 
 //不满足条件信息
-message Limit{
+message Limit {
 	//
 	string title=1;
 	
@@ -790,7 +790,7 @@ message UpgradeButton {
 }
 
 //互动视频升级提示
-message UpgradeLimit{
+message UpgradeLimit {
 	//错误码
     int32 code =1;
     
@@ -805,7 +805,7 @@ message UpgradeLimit{
 }
 
 //视频url信息
-message VideoInfo{
+message VideoInfo {
 	//视频清晰度
     uint32 quality=1;
     

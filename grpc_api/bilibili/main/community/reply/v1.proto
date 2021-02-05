@@ -18,6 +18,10 @@ service Reply {
     //https://app.bilibili.com/bilibili.main.community.reply.v1.Reply/DialogList
     rpc DialogList(DialogListReq) returns (DialogListReply);
     
+    //
+    //
+    rpc previewList (PreviewListReq) returns (PreviewListReply);
+
     //？？？
     //https://app.bilibili.com/bilibili.main.community.reply.v1.Reply/SearchItemPreHook
     rpc SearchItemPreHook(SearchItemPreHookReq) returns (SearchItemPreHookReply);
@@ -25,6 +29,213 @@ service Reply {
     //搜索评论区插入项目接口
     //https://app.bilibili.com/bilibili.main.community.reply.v1.Reply/SearchItem
     rpc SearchItem(SearchItemReq) returns (SearchItemReply);
+}
+
+//主评论列表-请求
+message MainListReq{
+	//目标评论区id
+    int64 oid = 1;
+    
+    //评论区类型
+    int64 type = 2;
+    
+    //页面游标
+    CursorReq cursor = 3;
+    
+    //
+    string extra = 4;
+    
+    //
+    string adExtra = 5;
+    
+    //
+    int64 rpid = 6;
+}
+
+//主评论列表-回复
+message MainListReply{
+	//页面游标
+    CursorReply cursor = 1;
+    
+    //评论列表
+    repeated ReplyInfo replies = 2;
+    
+    //评论区显示控制
+    SubjectControl subjectControl = 3;
+    
+    //UP置顶评论
+    ReplyInfo upTop = 4;
+    
+    //管理员置顶评论
+    ReplyInfo adminTop = 5;
+    
+    //投票置顶评论
+    ReplyInfo voteTop = 6;
+    
+    //
+    Notice notice = 7;
+    
+    //抽奖评论
+    Lottery lottery = 8;
+    
+    //
+    Activity activity = 9;
+    
+    //
+    UpSelection upSelection = 10;
+    
+    //
+    CM cm = 11;
+}
+
+//二级评论明细-请求
+message DetailListReq{
+	//目标评论区id
+    int64 oid = 1;
+    
+    //评论区类型
+    int64 type = 2;
+    
+    //根评论rpid
+    int64 root = 3;
+    
+    //目标评论rpid
+    int64 rpid = 4;
+    
+    //页面游标
+    CursorReq cursor = 5;
+    
+    //来源标识
+    DetailListScene scene = 6;
+}
+
+//二级评论明细-回复
+message DetailListReply{
+	//页面游标
+    CursorReply cursor = 1;
+    
+    //评论区显示控制
+    SubjectControl subjectControl = 2;
+    
+    //根评论信息(带二级评论)
+    ReplyInfo root = 3;
+    
+    //
+    Activity activity = 4;
+}
+
+//对话评论树-请求
+message DialogListReq{
+	//目标评论区id
+    int64 oid = 1;
+    
+    //评论区类型
+    int64 type = 2;
+    
+    //根评论rpid
+    int64 root = 3;
+    
+    //目标评论rpid
+    int64 rpid = 4;
+    
+    //页面游标
+    CursorReq cursor = 5;
+}
+
+//对话评论树-回复
+message DialogListReply{
+	//页面游标
+    CursorReply cursor = 1;
+    
+    //评论区显示控制
+    SubjectControl subjectControl = 2;
+    
+    //评论树列表
+    repeated ReplyInfo replies = 3;
+    
+    //
+    Activity activity = 4;
+}
+
+//?-请求
+message PreviewListReq {
+    //
+    int64 oid = 1;
+
+    //
+    int64 type = 2;
+
+    //
+    CursorReq cursor = 3;
+}
+
+//?-回复
+message PreviewListReply {
+    //
+    CursorReply cursor = 1;
+
+    //
+    repeated ReplyInfo replies = 2;
+
+    //
+    SubjectControl subjectControl = 3;
+
+    //
+    ReplyInfo upTop = 4;
+
+    //
+    ReplyInfo adminTop = 5;
+
+    //
+    ReplyInfo voteTop = 6;
+}
+
+//?-请求
+message SearchItemPreHookReq{
+	//目标评论区id
+    int64 oid = 1;
+    
+    //评论区类型
+    int64 type = 2;
+}
+
+//?-回复
+message SearchItemPreHookReply{
+	//
+    string placeholderText = 1;
+    
+    //
+    string backgroundText = 2;
+    
+    //
+    repeated SearchItemType orderedType = 3;
+}
+
+//搜索评论区插入项目-请求
+message SearchItemReq{
+	//页面游标
+    SearchItemCursorReq cursor = 1;
+    
+    //目标评论区id
+    int64 oid = 2;
+    
+    //评论区类型
+    int64 type = 3;
+    
+    //搜索关键词
+    string keyword = 4;
+}
+
+//搜索评论区插入项目-回复
+message SearchItemReply{
+	//
+    SearchItemCursorReply cursor = 1;
+    
+    //
+    repeated SearchItem items = 2;
+    
+    //
+    SearchItemReplyExtraInfo extra = 3;
 }
 
 //排序方式
@@ -597,178 +808,4 @@ message SearchItem{
 message SearchItemReplyExtraInfo{
 	//
     string eventId = 1;
-}
-
-//主评论列表
-//请求
-message MainListReq{
-	//目标评论区id
-    int64 oid = 1;
-    
-    //评论区类型
-    int64 type = 2;
-    
-    //页面游标
-    CursorReq cursor = 3;
-    
-    //
-    string extra = 4;
-    
-    //
-    string adExtra = 5;
-    
-    //
-    int64 rpid = 6;
-}
-//回复
-message MainListReply{
-	//页面游标
-    CursorReply cursor = 1;
-    
-    //评论列表
-    repeated ReplyInfo replies = 2;
-    
-    //评论区显示控制
-    SubjectControl subjectControl = 3;
-    
-    //UP置顶评论
-    ReplyInfo upTop = 4;
-    
-    //管理员置顶评论
-    ReplyInfo adminTop = 5;
-    
-    //投票置顶评论
-    ReplyInfo voteTop = 6;
-    
-    //
-    Notice notice = 7;
-    
-    //抽奖评论
-    Lottery lottery = 8;
-    
-    //
-    Activity activity = 9;
-    
-    //
-    UpSelection upSelection = 10;
-    
-    //
-    CM cm = 11;
-}
-
-//二级评论明细
-//请求
-message DetailListReq{
-	//目标评论区id
-    int64 oid = 1;
-    
-    //评论区类型
-    int64 type = 2;
-    
-    //根评论rpid
-    int64 root = 3;
-    
-    //目标评论rpid
-    int64 rpid = 4;
-    
-    //页面游标
-    CursorReq cursor = 5;
-    
-    //来源标识
-    DetailListScene scene = 6;
-}
-//回复
-message DetailListReply{
-	//页面游标
-    CursorReply cursor = 1;
-    
-    //评论区显示控制
-    SubjectControl subjectControl = 2;
-    
-    //根评论信息(带二级评论)
-    ReplyInfo root = 3;
-    
-    //
-    Activity activity = 4;
-}
-
-//对话评论树
-//请求
-message DialogListReq{
-	//目标评论区id
-    int64 oid = 1;
-    
-    //评论区类型
-    int64 type = 2;
-    
-    //根评论rpid
-    int64 root = 3;
-    
-    //目标评论rpid
-    int64 rpid = 4;
-    
-    //页面游标
-    CursorReq cursor = 5;
-}
-//回复
-message DialogListReply{
-	//页面游标
-    CursorReply cursor = 1;
-    
-    //评论区显示控制
-    SubjectControl subjectControl = 2;
-    
-    //评论树列表
-    repeated ReplyInfo replies = 3;
-    
-    //
-    Activity activity = 4;
-}
-
-//搜索提示信息？
-//请求
-message SearchItemPreHookReq{
-	//目标评论区id
-    int64 oid = 1;
-    
-    //评论区类型
-    int64 type = 2;
-}
-//回复
-message SearchItemPreHookReply{
-	//
-    string placeholderText = 1;
-    
-    //
-    string backgroundText = 2;
-    
-    //
-    repeated SearchItemType orderedType = 3;
-}
-
-//搜索评论区插入项目
-//请求
-message SearchItemReq{
-	//页面游标
-    SearchItemCursorReq cursor = 1;
-    
-    //目标评论区id
-    int64 oid = 2;
-    
-    //评论区类型
-    int64 type = 3;
-    
-    //搜索关键词
-    string keyword = 4;
-}
-//回复
-message SearchItemReply{
-	//
-    SearchItemCursorReply cursor = 1;
-    
-    //
-    repeated SearchItem items = 2;
-    
-    //
-    SearchItemReplyExtraInfo extra = 3;
 }
