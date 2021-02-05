@@ -94,18 +94,18 @@
 
 新：<img src="/imgs/zone/technology.svg" width="100" height="100"/>旧：<img src="/imgs/zone/technology_old.svg" width="100" height="100"/>
 
-| 名称                         | 代号              | tID  | 简介                                                      | url路由                                                      |
-| ---------------------------- | ----------------- | ---- | --------------------------------------------------------- | ------------------------------------------------------------ |
-| 知识（主分区）               | technology        | 36   |                                                           | [/v/technology](https://www.bilibili.com/v/technology)       |
-| 科学科普                     | science           | 201  | 回答你的十万个为什么                                      | [/v/technology/science](https://www.bilibili.com/v/technology/science) |
-| 社科人文（~~趣味科普人文~~） | fun               | 124  | 聊聊互联网社会法律，看看历史趣闻艺术，品品文化心理人物    | [/v/technology/fun](https://www.bilibili.com/v/technology/fun) |
-| 财经                         | finance           | 207  | 宏观经济分析，证券市场动态，商业帝国故事，知识与财富齐飞~ | [/v/technology/finance](https://www.bilibili.com/v/technology/finance) |
-| 校园学习                     | campus            | 208  | 老师很有趣，同学多人才，我们都爱搞学习                    | [/v/technology/campus](https://www.bilibili.com/v/technology/campus) |
-| 职业职场                     | career            | 209  | 职场加油站，成为最有料的职场人                            | [/v/technology/career](https://www.bilibili.com/v/technology/career) |
-| 野生技术协会                 | wild              | 122  | 炫酷技能大集合，是时候展现真正的技术了                    | [/v/technology/wild](https://www.bilibili.com/v/technology/wild) |
-| ~~演讲·公开课~~（已下线）    | ~~speech_course~~ | 39   | ~~涨知识的好地方，给爱学习的你~~                          | ~~/v/technology/speech_course~~                              |
-| ~~星海~~（已下线）           | ~~military~~      | 96   | ~~军事类内容的圣地~~                                      | ~~/v/technology/military~~                                   |
-| ~~机械~~（已下线）           | ~~mechanical~~    | 98   | ~~机械设备展示或制作视频~~                                | ~~/v/technology/mechanical~~                                 |
+| 名称                         | 代号              | tID    | 简介                                                      | url路由                                                      |
+| ---------------------------- | ----------------- | ------ | --------------------------------------------------------- | ------------------------------------------------------------ |
+| 知识（主分区）               | technology        | 36     |                                                           | [/v/technology](https://www.bilibili.com/v/technology)       |
+| 科学科普                     | science           | 201    | 回答你的十万个为什么                                      | [/v/technology/science](https://www.bilibili.com/v/technology/science) |
+| 社科人文（~~趣味科普人文~~） | fun               | 124    | 聊聊互联网社会法律，看看历史趣闻艺术，品品文化心理人物    | [/v/technology/fun](https://www.bilibili.com/v/technology/fun) |
+| 财经                         | finance           | 207    | 宏观经济分析，证券市场动态，商业帝国故事，知识与财富齐飞~ | [/v/technology/finance](https://www.bilibili.com/v/technology/finance) |
+| 校园学习                     | campus            | 208    | 老师很有趣，同学多人才，我们都爱搞学习                    | [/v/technology/campus](https://www.bilibili.com/v/technology/campus) |
+| 职业职场                     | career            | 209    | 职场加油站，成为最有料的职场人                            | [/v/technology/career](https://www.bilibili.com/v/technology/career) |
+| 野生技术协会                 | wild              | 122    | 炫酷技能大集合，是时候展现真正的技术了                    | [/v/technology/wild](https://www.bilibili.com/v/technology/wild) |
+| ~~演讲·公开课~~（已下线）    | ~~speech_course~~ | ~~39~~ | ~~涨知识的好地方，给爱学习的你~~                          | ~~/v/technology/speech_course~~                              |
+| ~~星海~~（已下线）           | ~~military~~      | ~~96~~ | ~~军事类内容的圣地~~                                      | ~~/v/technology/military~~                                   |
+| ~~机械~~（已下线）           | ~~mechanical~~    | ~~98~~ | ~~机械设备展示或制作视频~~                                | ~~/v/technology/mechanical~~                                 |
 
 ## 数码
 
@@ -131,7 +131,7 @@
 | 搞笑                 | funny      | 138    | 各种沙雕有趣的搞笑剪辑，挑战，表演，配音等视频   | [/v/life/funny](https://www.bilibili.com/v/life/funny)       |
 | 日常                 | daily      | 21     | 记录日常生活，分享生活故事                       | [/v/life/daily](https://www.bilibili.com/v/life/daily)       |
 | ~~美食圈~~（重定向） | ~~food~~   | ~~76~~ | ~~美食鉴赏&料理制作教程~~                        | ~~/v/life/food~~                                             |
-| 动物圈               | animal     | 75     | 萌萌的动物都在这里哦                             | [/v/life/animal](https://www.bilibili.com/v/life/animal)     |
+| ~~动物圈~~（重定向） | ~~animal~~ | ~~75~~ | ~~萌萌的动物都在这里哦~~                         | ~~/v/life/animal~~                                           |
 | 手工                 | handmake   | 161    | 手工制品的制作过程或成品展示、教程、测评类视频   | [/v/life/handmake](https://www.bilibili.com/v/life/handmake) |
 | 绘画                 | painting   | 162    | 绘画过程或绘画教程，以及绘画相关的所有视频       | [/v/life/painting](https://www.bilibili.com/v/life/painting) |
 | 运动                 | sports     | 163    | 运动相关的记录、教程、装备评测和精彩瞬间剪辑视频 | [/v/life/sports](https://www.bilibili.com/v/life/sports)     |
@@ -152,6 +152,22 @@
 | 美食测评                       | measurement | 213  | 吃货世界，品尝世间美味           | [/v/food/measurement](https://www.bilibili.com/v/food/measurement) |
 | 田园美食                       | rural       | 214  | 品味乡野美食，寻找山与海的味道   | [/v/food/rural](https://www.bilibili.com/v/food/rural)       |
 | 美食记录                       | record      | 215  | 记录一日三餐，给生活添一点幸福感 | [/v/food/record](https://www.bilibili.com/v/food/record)     |
+
+## 动物圈
+
+（新分区）
+
+<img src="/imgs/zone/animal.svg" width="100" height="100"/>
+
+| 名称     | 代号                                   | tID  | 简介                                                         | url路由                                                      |
+| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 动物圈   | animal（主分区）                       | 217  |                                                              | [/v/animal](https://www.bilibili.com/v/animal)               |
+| 喵星人   | cat                                    | 218  | 喵喵喵喵喵                                                   | [/v/animal/cat](https://www.bilibili.com/v/animal/cat)       |
+| 汪星人   | dog                                    | 219  | 汪汪汪汪汪                                                   | [/v/animal/dog](https://www.bilibili.com/v/animal/dog)       |
+| 大熊猫   | panda                                  | 220  | 芝麻汤圆营业中                                               | [/v/animal/panda](https://www.bilibili.com/v/animal/panda)   |
+| 野生动物 | wild_animal                            | 221  | 内有“猛兽”出没                                               | [/v/animal/wild_animal](https://www.bilibili.com/v/animal/wild_animal) |
+| 爬宠     | reptiles                               | 222  | 鳞甲有灵                                                     | [/v/animal/reptiles](https://www.bilibili.com/v/animal/reptiles) |
+| 动物综合 | animal_composite（原[生活]->[动物圈]） | 75   | 收录除上述子分区外，其余动物相关视频以及非动物主体或多个动物主体的动物相关延伸内容 | [/v/animal/animal_composite](https://www.bilibili.com/v/animal/animal_composite) |
 
 ## 鬼畜
 
@@ -183,6 +199,8 @@
 
 （新分区）
 
+**注：该分区无排名功能**
+
 <img src="/imgs/zone/information.svg" width="100" height="100"/>
 
 | 名称           | 代号        | tID  | 简介                                         | url路由                                                      |
@@ -208,12 +226,12 @@
 
 <img src="/imgs/zone/ent.svg" width="100" height="100"/>
 
-| 名称                    | 代号      | tID  | 简介                                | url路由                                                  |
-| ----------------------- | --------- | ---- | ----------------------------------- | -------------------------------------------------------- |
-| 娱乐（主分区）          | ent       | 5    |                                     | [/v/ent](https://www.bilibili.com/v/ent)                 |
-| 综艺                    | variety   | 71   | 国内外有趣的综艺和综艺相关精彩剪辑  | [/v/ent/variety](https://www.bilibili.com/v/ent/variety) |
-| 明星                    | star      | 137  | 娱乐圈动态、明星资讯相关            | [/v/ent/star](https://www.bilibili.com/v/ent/star)       |
-| ~~Korea相关~~（已下线） | ~~korea~~ | 131  | ~~Korea相关音乐、舞蹈、综艺等视频~~ | ~~/v/ent/korea~~                                         |
+| 名称                    | 代号      | tID     | 简介                                | url路由                                                  |
+| ----------------------- | --------- | ------- | ----------------------------------- | -------------------------------------------------------- |
+| 娱乐（主分区）          | ent       | 5       |                                     | [/v/ent](https://www.bilibili.com/v/ent)                 |
+| 综艺                    | variety   | 71      | 国内外有趣的综艺和综艺相关精彩剪辑  | [/v/ent/variety](https://www.bilibili.com/v/ent/variety) |
+| 明星                    | star      | 137     | 娱乐圈动态、明星资讯相关            | [/v/ent/star](https://www.bilibili.com/v/ent/star)       |
+| ~~Korea相关~~（已下线） | ~~korea~~ | ~~131~~ | ~~Korea相关音乐、舞蹈、综艺等视频~~ | ~~/v/ent/korea~~                                         |
 
 ## 影视
 
