@@ -30,6 +30,16 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 
 ---
 
+**声明**：
+
+1. 本项目遵守CC-BY-4.0协议，如需转载请标明作者ID
+2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
+3. 由于使用本项目提供的接口、文档等造成的不良影响和后果与本人无关
+4. 由于本项目的特殊性，可能随时停止开发或删档
+5. 本项目为开源项目，不接受任何的催单和索取行为
+
+---
+
 计划整理分类&目录：（√代表已完成，x代表正在施工...）二级目录正在建设中.....
 
 - [API认证与鉴权（APP与Cookie方式）](other/API_auth.md)×
@@ -169,8 +179,10 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - 哔哩哔哩漫画
 - 哔哩哔哩游戏
 - 轻视频
+- [终端网络查询](clientinfo)
+  	- [基于ip的地理位置查询](clientinfo/ip.md)√
+  	- [终端信息查询](clientinfo/client_info.md)√
 - [其他](other)
-  - [基于ip的地理位置查询](other/ip.md)√
   - [获取当前时间戳](other/time_stamp.md)√
 - [web端组件](web_widget)
   - [分区当日投稿数](web_widget/zone_upload.md)√
@@ -181,14 +193,6 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [主题色](garb/color.md)√
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
-
-**注意：请勿滥用，仅用于学习和测试！**
-
-**注意：请勿滥用，仅用于学习和测试！**
-
-**注意：请勿滥用，仅用于学习和测试！**
-
-（重要的话说三遍，本人不承担任何责任）
 
 **--Project_by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 
@@ -218,7 +222,7 @@ B站空间：https://space.bilibili.com/293793435
 
 ~~请可爱的易姐喝杯奶茶~~
 
-<img src="sponsorQR.jpg" width="500" height="500">
+<img src="imgs/sponsorQR.jpg" width="300" height="300">
 
 # 相关项目：
 
@@ -255,4 +259,3 @@ B站空间：https://space.bilibili.com/293793435
 ## 其他：
 
 - [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
-- [SocialSisterYi/bv2av_convert](https://github.com/SocialSisterYi/bv2av_convert):C语言算法av号与bv号互转器

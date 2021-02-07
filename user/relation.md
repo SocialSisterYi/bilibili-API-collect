@@ -2,6 +2,7 @@
 
 - [查询用户粉丝明细](#查询用户粉丝明细)
 - [查询用户关注明细](#查询用户关注明细)
+- [搜索关注明细](#搜索关注明细)
 - [查询共同关注明细](#查询共同关注明细)
 - [查询悄悄关注明细](#查询悄悄关注明细)
 - [查询黑名单明细](#查询黑名单明细)
@@ -367,6 +368,151 @@ curl -G 'http://api.bilibili.com/x/relation/ollowings' \
 		"re_version": 3228575555,
 		"total": 699
 	}
+}
+```
+
+</details>
+
+## 搜索关注明细
+
+<img src="/imgs/relation.svg" width="100" height="100" />
+
+>  http://api.bilibili.com/x/relation/followings/search
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注     |
+| ---------- | ---- | ------------ | ----------- | -------- |
+| access_key | str  | APP登录Token | APP方式必要 |          |
+| vmid       | str  | 目标用户UID  | 必要        |          |
+| name       | str  | 搜索关键词   | 必要        |          |
+| ps         | num  | 每页项数     | 非必要      | 默认为50 |
+| pn         | num  | 页码         | 非必要      | 默认为1  |
+
+data 对象：
+
+| 字段       | 类型  | 内容     | 备注         |
+| ---------- | ----- | -------- | ------------ |
+| list       | array | 明细列表 |              |
+| re_version | num   | ？？？   | 作用尚不明确 |
+| total      | num   | 关注总数 |              |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容            | 备注             |
+| ---- | ---- | --------------- | ---------------- |
+| 0    | obj  | 共同关注1       |                  |
+| n    | obj  | 共同关注（n+1） | 按照关注顺序排列 |
+| ……   | obj  | ……              | ……               |
+
+数组`list`中的对象：
+
+| 字段            | 类型                                        | 内容         | 备注                                    |
+| --------------- | ------------------------------------------- | ------------ | --------------------------------------- |
+| mid             | num                                         | 用户UID      |                                         |
+| attribute       | num                                         | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
+| mtime           | num                                         | 关注对方时间 | 时间戳<br />互关后刷新                  |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                                         |
+| special         | num                                         | 特别关注标志 | 0：否<br />1：是                        |
+| uname           | str                                         | 用户昵称     |                                         |
+| face            | str                                         | 用户头像url  |                                         |
+| sign            | str                                         | 用户签名     |                                         |
+| official_verify | obj                                         | 认证信息     |                                         |
+| vip             | obj                                         | 会员信息     |                                         |
+
+数组`list`中的对象中的`tag`数组：
+
+| 项   | 类型 | 内容                    | 备注 |
+| ---- | ---- | ----------------------- | ---- |
+| 0    | num  | 位于分组1的分组ID       |      |
+| n    | num  | 位于分组（n+1）的分组ID |      |
+| ……   | num  | ……                      | ……   |
+
+`list`中的对象中的`official_verify`对象：
+
+| 字段 | 类型 | 内容         | 备注                |
+| ---- | ---- | ------------ | ------------------- |
+| type | num  | 用户认证类型 | -1：无<br />1：认证 |
+| desc | str  | 用户认证信息 | 无为空              |
+
+`list`中的对象中的`vip`对象：
+
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
+
+`vip`中的`label`对象：
+
+| 字段 | 类型 | 内容 | 备注         |
+| ---- | ---- | ---- | ------------ |
+| path | str  | 空   | 作用尚不明确 |
+
+**示例：**
+
+搜索我的关注列表中关键词`warma`
+
+```shell
+curl -G 'http://api.bilibili.com/x/relation/followings/search' \
+--data-urlencode 'vmid=293793435' \
+--data-urlencode 'name=warma' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "mid": 53456,
+                "attribute": 2,
+                "mtime": 1586415053,
+                "tag": [
+                    -10
+                ],
+                "special": 1,
+                "uname": "Warma",
+                "face": "http://i2.hdslb.com/bfs/face/c1bbee6d255f1e7fc434e9930f0f288c8b24293a.jpg",
+                "sign": "我是沃玛，做点傻开心的视频。日常发在微博：@_warma_ ",
+                "official_verify": {
+                    "type": 0,
+                    "desc": "bilibili 知名UP主"
+                },
+                "vip": {
+                    "vipType": 2,
+                    "vipDueDate": 1637424000000,
+                    "dueRemark": "",
+                    "accessStatus": 0,
+                    "vipStatus": 1,
+                    "vipStatusWarn": "",
+                    "themeType": 0,
+                    "label": {
+                        "path": ""
+                    }
+                }
+            }
+        ],
+        "total": 1
+    }
 }
 ```
 

@@ -57,7 +57,7 @@
 | is_followed | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录恒为false |
 | top_photo   | str  | 主页头图链接     |                                                              |
 | theme       | obj  | 空               | **作用尚不明确**                                             |
-| sys_notice  | obj  | 系统通知         | 无内容则为空                                                 |
+| sys_notice  | obj  | 系统通知         | 无内容则为空对象<br />主要用于展示如用户争议、纪念账号等等   |
 | live_room   | obj  | 直播间信息       |                                                              |
 
 `data`中的`official`对象：
@@ -82,11 +82,11 @@
 
 `vip`中的`label`对象：
 
-| 字段        | 类型 | 内容     | 备注                                                         |
-| ----------- | ---- | -------- | ------------------------------------------------------------ |
-| path        | str  | 空       | 作用尚不明确                                                 |
-| text        | str  | 会员名称 |                                                              |
-| label_theme | str  | 会员标签 | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
+| 字段        | 类型 | 内容         | 备注                                                         |
+| ----------- | ---- | ------------ | ------------------------------------------------------------ |
+| path        | str  | 空           | 作用尚不明确                                                 |
+| text        | str  | 会员类型文案 |                                                              |
+| label_theme | str  | 会员标签     | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
 
 `data`中的`pendant`对象：
 
@@ -110,11 +110,15 @@
 
 `data`中的`sys_notice`对象：
 
-| 字段    | 类型 | 内容            | 备注                 |
-| ------- | ---- | --------------- | -------------------- |
-| id      | num  | 系统提示类型ID  | **详细说明有待补充** |
-| content | str  | 提示信息        |                      |
-| url     | str  | 提示信息链接url |                      |
+| 字段        | 类型 | 内容            | 备注                           |
+| ----------- | ---- | --------------- | ------------------------------ |
+| id          | num  | 系统提示类型ID  | 20：纪念账号                   |
+| content     | str  | 提示文案        |                                |
+| url         | str  | 提示信息页面url |                                |
+| notice_type | num  | ？              | 作用尚不明确<br />此字段非必须 |
+| icon        | str  | 提示图标url     | 此字段非必须                   |
+| text_color  | str  | 提示文字颜色    | 此字段非必须<br />颜色码       |
+| bg_color    | str  | 提示背景颜色    | 此字段非必须<br />颜色码       |
 
 `data`中的`live_room`对象：
 

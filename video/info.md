@@ -45,29 +45,31 @@
 | videos                          | num     | 稿件分P总数                    | 默认为1                                                      |
 | tid                             | num     | 分区tID                        |                                                              |
 | tname                           | str     | 子分区名称                     |                                                              |
-| copyright                       | num     | 是否转载                       | 1：原创<br />2：转载                                         |
+| copyright                       | num     | 视频类型                       | 1：原创<br />2：转载                                         |
 | pic                             | str     | 稿件封面图片url                |                                                              |
 | title                           | str     | 稿件标题                       |                                                              |
 | pubdate                         | num     | 稿件发布时间                   | 时间戳                                                       |
-| ctime                           | num     | 用户提交稿件的时间             | 时间戳                                                       |
+| ctime                           | num     | 用户投稿时间                   | 时间戳                                                       |
 | desc                            | str     | 视频简介                       |                                                              |
-| state                           | num     | 视频状态                       | （PS：以下部分内容来源不明，有待验证）<br />0：开放浏览<br />1：橙色通过<br />-1：待审<br />-2：被打回<br />-3：网警锁定<br />-4：被锁定<br />-5：管理员锁定（可浏览）<br />-6：修复待审<br />-7：暂缓审核<br />-8：补档待审<br />-9：等待转码<br />-10：延迟审核<br />-11：视频源待修<br />-12：转储失败<br />-13：允许评论待审<br />-14：临时回收站<br />-15：分发中<br />-16：转码失败<br />-20：创建未提交<br />-30：创建已提交<br />-40：定时发布<br />-100：用户删除 |
-| ~~attribute~~（仅做历史性保留） | ~~num~~ | ~~稿件属性位配置~~             | 除互动视频外均已被删除且仅显示互动视频属性位                                               |
+| state                           | num     | 视频状态                       | **详情见下表**                                               |
+| ~~attribute~~（仅做历史性保留） | ~~num~~ | ~~稿件属性位配置~~             | **详情见下表**<br />除互动视频外均已被删除且仅显示互动视频属性位 |
 | duration                        | num     | 稿件总时长（所有分P）          | 单位为秒                                                     |
-| mission_id                      | num     | 稿件参与的活动ID               | 无为0                                                        |
-| redirect_url                    | str     | 重定向url                      | 用于番剧及影视的av/bv->ep                                    |
+| forward                         | num     | 撞车视频跳转avid               | 仅撞车视频存在此字段                                         |
+| mission_id                      | num     | 稿件参与的活动ID               |                                                              |
+| redirect_url                    | str     | 重定向url                      | 仅番剧或影视视频存在此字段<br />用于番剧&影视的av/bv->ep     |
 | rights                          | obj     | 视频属性标志                   |                                                              |
 | owner                           | obj     | 视频UP主信息                   |                                                              |
 | stat                            | obj     | 视频状态数                     |                                                              |
-| dynamic                         | str     | 视频同步发布的的动态的文字内容 | 无为空                                                       |
+| dynamic                         | str     | 视频同步发布的的动态的文字内容 |                                                              |
 | cid                             | num     | 视频1P CID                     |                                                              |
 | dimension                       | obj     | 视频1P分辨率                   |                                                              |
 | no_cache                        | bool    | true                           | 作用尚不明确                                                 |
 | pages                           | array   | 视频分P列表                    |                                                              |
-| subtitle                        | obj     | 视频CC字幕                     |                                                              |
+| subtitle                        | obj     | 视频CC字幕信息                 |                                                              |
 | staff                           | array   | 合作成员列表                   | 非合作视频无此项                                             |
+| user_garb                       | obj     | 用户装扮信息                   |                                                              |
 
-`attribute`属性位二进制值表：
+`attribute`字段属性位二进制值表：
 
 （PS：以下部分内容来源不明，有待验证，下表只做历史保留，无实际作用）
 
@@ -103,6 +105,35 @@
 | 27   | ？                     |                                               |
 | 28   | ？                     |                                               |
 | 29   | 是否为互动视频         |  该属性还可以找到，固定为536870912，转二进制再判断                                             |
+
+`state`字段值：
+
+（PS：以下部分内容来源不明，且部分值前端不可见，有待验证）
+
+| 值   | 内容         | 备注       |
+| ---- | ------------ | ---------- |
+| 1    | 橙色通过     |            |
+| 0    | 开放浏览     |            |
+| -1   | 待审         |            |
+| -2   | 被打回       |            |
+| -3   | 网警锁定     |            |
+| -4   | 被锁定       | 视频撞车了 |
+| -5   | 管理员锁定   |            |
+| -6   | 修复待审     |            |
+| -7   | 暂缓审核     |            |
+| -8   | 补档待审     |            |
+| -9   | 等待转码     |            |
+| -10  | 延迟审核     |            |
+| -11  | 视频源待修   |            |
+| -12  | 转储失败     |            |
+| -13  | 允许评论待审 |            |
+| -14  | 临时回收站   |            |
+| -15  | 分发中       |            |
+| -16  | 转码失败     |            |
+| -20  | 创建未提交   |            |
+| -30  | 创建已提交   |            |
+| -40  | 定时发布     |            |
+| -100 | 用户删除     |            |
 
 `data`中的`rights`对象：
 
@@ -253,6 +284,14 @@
 | desc  | str  | 成员认证备注 | 无为空                                          |
 | type  | num  | 成员认证类型 | -1：无<br />0：有                               |
 
+`data`中的`user_garb`对象：
+
+
+
+| 字段              | 类型 | 内容    | 备注 |
+| ----------------- | ---- | ------- | ---- |
+| url_image_ani_cut | str  | 某url？ |      |
+
 **示例：**
 
 获取视频`av85440373`/`BV117411r7R1`的基本信息
@@ -276,124 +315,134 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"bvid": "BV117411r7R1",
-		"aid": 85440373,
-		"videos": 1,
-		"tid": 28,
-		"tname": "原创音乐",
-		"copyright": 1,
-		"pic": "http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg",
-		"title": "当我给拜年祭的快板加了电音配乐…",
-		"pubdate": 1580377255,
-		"ctime": 1580212263,
-		"desc": "【CB想说的】看完拜年祭之后最爱的一个节目！给有快板的部分简单加了一些不同风格的配乐hhh，感谢沃玛画的我！太可爱了哈哈哈哈哈哈哈！！！\n【Warma想说的】我画了打碟的CB，画风为了还原原版视频所以参考了四迹老师的画风，四迹老师的画真的太可爱啦！不过其实在画的过程中我遇到了一个问题，CB的耳机……到底是戴在哪个耳朵上呢？\n\n原版：av78977080\n编曲（配乐）：Crazy Bucket\n人声（配音）：Warma/谢拉\n曲绘：四迹/Warma\n动画：四迹/Crazy Bucket\n剧本：Mokurei-木灵君\n音频后期：DMYoung/纳兰寻风/Crazy Bucket\n包装：破晓天",
-		"state": 0,
-		"attribute": 16793984,
-		"duration": 486,
-		"mission_id": 11838,
-		"rights": {
-			"bp": 0,
-			"elec": 0,
-			"download": 1,
-			"movie": 0,
-			"pay": 0,
-			"hd5": 1,
-			"no_reprint": 1,
-			"autoplay": 1,
-			"ugc_pay": 0,
-			"is_cooperation": 1,
-			"ugc_pay_preview": 0,
-			"no_background": 0
-		},
-		"owner": {
-			"mid": 66606350,
-			"name": "Crazy_Bucket",
-			"face": "http://i2.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg"
-		},
-		"stat": {
-			"aid": 85440373,
-			"view": 1419319,
-			"danmaku": 9203,
-			"reply": 2519,
-			"favorite": 49031,
-			"coin": 57470,
-			"share": 8120,
-			"now_rank": 0,
-			"his_rank": 55,
-			"like": 118462,
-			"dislike": 0,
-			"evaluation": ""
-		},
-		"dynamic": "进来就出不去了！！！\n#全民音乐UP主##CB##warma##电音##快板##拜年祭##诸神的奥运##编曲##Remix#",
-		"cid": 146044693,
-		"dimension": {
-			"width": 1920,
-			"height": 1080,
-			"rotate": 0
-		},
-		"no_cache": false,
-		"pages": [{
-			"cid": 146044693,
-			"page": 1,
-			"from": "vupload",
-			"part": "建议改成：建议改成：诸 神 的 电 音 节（不是）",
-			"duration": 486,
-			"vid": "",
-			"weblink": "",
-			"dimension": {
-				"width": 1920,
-				"height": 1080,
-				"rotate": 0
-			}
-		}],
-		"subtitle": {
-			"allow_submit": false,
-			"list": []
-		},
-		"staff": [{
-			"mid": 66606350,
-			"title": "UP主",
-			"name": "Crazy_Bucket",
-			"face": "http://i2.hdslb.com/bfs/face/5387950a59be8038daaae3f66dfb5a85e20d5737.jpg",
-			"vip": {
-				"type": 2,
-				"status": 1,
-				"vip_pay_type": 0,
-				"theme_type": 0
-			},
-			"official": {
-				"role": 2,
-				"title": "bilibili 知名音乐UP主",
-				"desc": "",
-				"type": 0
-			},
-			"follower": 369687,
-			"label_style": 0
-		}, {
-			"mid": 53456,
-			"title": "曲绘",
-			"name": "Warma",
-			"face": "http://i0.hdslb.com/bfs/face/32a43710a69155a5a90441ebedb6c05b63d2fd98.jpg",
-			"vip": {
-				"type": 2,
-				"status": 1,
-				"vip_pay_type": 0,
-				"theme_type": 0
-			},
-			"official": {
-				"role": 1,
-				"title": "bilibili 知名UP主",
-				"desc": "",
-				"type": 0
-			},
-			"follower": 1452718,
-			"label_style": 0
-		}]
-	}
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "bvid": "BV117411r7R1",
+        "aid": 85440373,
+        "videos": 1,
+        "tid": 28,
+        "tname": "原创音乐",
+        "copyright": 1,
+        "pic": "http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg",
+        "title": "当我给拜年祭的快板加了电音配乐…",
+        "pubdate": 1580377255,
+        "ctime": 1580212263,
+        "desc": "【CB想说的】看完拜年祭之后最爱的一个节目！给有快板的部分简单加了一些不同风格的配乐hhh，感谢沃玛画的我！太可爱了哈哈哈哈哈哈哈！！！\n【Warma想说的】我画了打碟的CB，画风为了还原原版视频所以参考了四迹老师的画风，四迹老师的画真的太可爱啦！不过其实在画的过程中我遇到了一个问题，CB的耳机……到底是戴在哪个耳朵上呢？\n\n原版：av78977080\n编曲（配乐）：Crazy Bucket\n人声（配音）：Warma/谢拉\n曲绘：四迹/Warma\n动画：四迹/Crazy Bucket\n剧本：Mokurei-木灵君\n音频后期：DMYoung/纳兰寻风/Crazy Bucket\n包装：破晓天",
+        "state": 0,
+        "duration": 486,
+        "mission_id": 11838,
+        "rights": {
+            "bp": 0,
+            "elec": 0,
+            "download": 1,
+            "movie": 0,
+            "pay": 0,
+            "hd5": 1,
+            "no_reprint": 1,
+            "autoplay": 1,
+            "ugc_pay": 0,
+            "is_cooperation": 1,
+            "ugc_pay_preview": 0,
+            "no_background": 0,
+            "clean_mode": 0,
+            "is_stein_gate": 0
+        },
+        "owner": {
+            "mid": 66606350,
+            "name": "Crazy_Bucket",
+            "face": "http://i2.hdslb.com/bfs/face/c9af3b32cf74baec5a4b65af8ca18ae5ff571f77.jpg"
+        },
+        "stat": {
+            "aid": 85440373,
+            "view": 1933942,
+            "danmaku": 11184,
+            "reply": 2625,
+            "favorite": 56520,
+            "coin": 66822,
+            "share": 9031,
+            "now_rank": 0,
+            "his_rank": 55,
+            "like": 142339,
+            "dislike": 0,
+            "evaluation": "",
+            "argue_msg": ""
+        },
+        "dynamic": "进来就出不去了！！！\n#全民音乐UP主##CB##warma##电音##快板##拜年祭##诸神的奥运##编曲##Remix#",
+        "cid": 146044693,
+        "dimension": {
+            "width": 1920,
+            "height": 1080,
+            "rotate": 0
+        },
+        "no_cache": false,
+        "pages": [
+            {
+                "cid": 146044693,
+                "page": 1,
+                "from": "vupload",
+                "part": "建议改成：建议改成：诸 神 的 电 音 节（不是）",
+                "duration": 486,
+                "vid": "",
+                "weblink": "",
+                "dimension": {
+                    "width": 1920,
+                    "height": 1080,
+                    "rotate": 0
+                }
+            }
+        ],
+        "subtitle": {
+            "allow_submit": false,
+            "list": []
+        },
+        "staff": [
+            {
+                "mid": 66606350,
+                "title": "UP主",
+                "name": "Crazy_Bucket",
+                "face": "http://i2.hdslb.com/bfs/face/c9af3b32cf74baec5a4b65af8ca18ae5ff571f77.jpg",
+                "vip": {
+                    "type": 2,
+                    "status": 1,
+                    "vip_pay_type": 0,
+                    "theme_type": 0
+                },
+                "official": {
+                    "role": 2,
+                    "title": "bilibili 知名音乐UP主",
+                    "desc": "",
+                    "type": 0
+                },
+                "follower": 628314,
+                "label_style": 0
+            },
+            {
+                "mid": 53456,
+                "title": "曲绘",
+                "name": "Warma",
+                "face": "http://i2.hdslb.com/bfs/face/c1bbee6d255f1e7fc434e9930f0f288c8b24293a.jpg",
+                "vip": {
+                    "type": 2,
+                    "status": 1,
+                    "vip_pay_type": 0,
+                    "theme_type": 0
+                },
+                "official": {
+                    "role": 1,
+                    "title": "bilibili 知名UP主",
+                    "desc": "",
+                    "type": 0
+                },
+                "follower": 2265914,
+                "label_style": 0
+            }
+        ],
+        "user_garb": {
+            "url_image_ani_cut": "http://i0.hdslb.com/bfs/garb/item/bc037f95d050ad3160246f4d90d219389851e78a.bin"
+        }
+    }
 }
 ```
 
