@@ -35,7 +35,7 @@ service View {
     //https://app.bilibili.com/bilibili.app.view.v1.View/View
     rpc view (ViewReq) returns (ViewReply);
 
-    //视频播放时数据
+    //稿件特殊数据
     //https://app.bilibili.com/bilibili.app.view.v1.View/ViewProgress
     rpc viewProgress (ViewProgressReq) returns (ViewProgressReply);
 }
@@ -257,25 +257,26 @@ message ViewReply {
     //ugc视频合集信息
     UgcSeason ugcSeason = 24;
     
-    //
+    //配置?
     Config config = 25;
     
-    //
+    //分享副标题（已观看xxx次）
     string shareSubtitle = 26;
     
     //
     Interaction interaction = 27;
     
-    //
+    //错误码
+    //0:正常 1:视频被UP主删除
     int32 ecode = 28;
     
-    //
+    //404页信息
     CustomConfig customConfig = 29;
     
     //广告
     repeated CM cms = 30;
     
-    //
+    //广告配置?
     CMConfig cmConfig = 31;
     
     //
@@ -284,7 +285,7 @@ message ViewReply {
     //
     Rank rank = 33;
     
-    //
+    //免流相关信息?
     TFPanelCustomized tfPanelCustomized = 34;
     
     //
@@ -297,7 +298,7 @@ message ViewReply {
     ActivitySeason activitySeason = 37;
 }
 
-//视频播放时数据-请求
+//稿件特殊数据-请求
 message ViewProgressReq{
 	//稿件avid
     int64 aid = 1;
@@ -309,9 +310,9 @@ message ViewProgressReq{
     int64 upMid = 3;
 }
 
-//视频播放时数据-回复
+//稿件特殊数据-回复
 message ViewProgressReply{
-	//特殊数据
+	//稿件特殊数据
     VideoGuide videoGuide = 1;
     
     //资源包
@@ -607,9 +608,9 @@ message CommandDm{
     string idStr = 10;
 }
 
-//
+//配置?
 message Config {
-    //
+    //下方推荐项标题
     string relatesTitle = 1;
 
     //
@@ -640,21 +641,22 @@ message ContractCard {
     int64 displayDuration = 3;
 }
 
-//
+//404页信息
 message CustomConfig {
-    //
+    //重定向页面url
     string redirectUrl = 1;
 }
 
-//
+//分P弹幕信息
 message DM{
-    //
+    //分P是否关闭弹幕
+    //0:正常 1:关闭
     bool closed = 1;
 
     //
     bool realName = 2;
 
-    //
+    //分P弹幕总数
     int64 count = 3;
 }
 
@@ -916,21 +918,21 @@ message OperationCard{
     string content = 7;
 }
 
-//
+//内嵌操作按钮卡片
 message OperationCardNew{
-    //
+    //卡片id
     int64 id = 1;
 
-    //
+    //显示时间
     int32 from = 2;
 
-    //
+    //消失时间
     int32 to = 3;
 
     //
     bool status = 4;
 
-    //
+    //卡片类型
     OperationCardType cardType = 5;
 
     oneof renderCase {
@@ -1117,7 +1119,7 @@ message Relate {
     //special:pgc视频 av:稿件视频 cm:广告 game:游戏
     string goto = 7;
     
-    //
+    //参数（如av号等）
     string param = 8;
     
     //跳转uri
@@ -1132,7 +1134,8 @@ message Relate {
     //
     string reserve = 12;
     
-    //
+    //来源标识
+    //operation:管理员添加
     string from = 13;
     
     //备注
@@ -1165,7 +1168,7 @@ message Relate {
     //按钮信息
     Button button = 23;
     
-    //
+    //spm追踪id
     string trackid = 24;
     
     //
@@ -1455,7 +1458,7 @@ message Tag {
     string uri = 7;
     
     //TAG类型
-    //common:普通 new:话题
+    //common:普通 new:话题 act:活动
     string tagType = 8;
 }
 
@@ -1582,7 +1585,7 @@ message VideoGuide{
     //
     repeated OperationCard operationCard = 3;
     
-    //
+    //内嵌操作按钮卡片
     repeated OperationCardNew operationCardNew = 4;
 
     //
@@ -1597,7 +1600,7 @@ message ViewPage{
 	//分P对应的音频稿件
 	Audio audio = 2;
 	
-	//
+	//分P弹幕信息
 	DM dm =3;
 	
 	//下载文案

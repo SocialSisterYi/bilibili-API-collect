@@ -1,0 +1,244 @@
+syntax = "proto3";
+
+package bilibili.im.type;
+
+//消息类型
+enum MsgType {
+    //基础消息类型
+    EN_INVALID_MSG_TYPE = 0;                               //空空的~
+    EN_MSG_TYPE_TEXT = 1;                                  //文本消息
+    EN_MSG_TYPE_PIC = 2;                                   //图片消息
+    EN_MSG_TYPE_AUDIO = 3;                                 //语音消息
+    EN_MSG_TYPE_SHARE = 4;                                 //分享消息
+    EN_MSG_TYPE_DRAW_BACK = 5;                             //撤回消息
+    EN_MSG_TYPE_CUSTOM_FACE = 6;                           //自定义表情
+    EN_MSG_TYPE_SHARE_V2 = 7;                              //分享v2消息
+    EN_MSG_TYPE_SYS_CANCEL = 8;                            //系统撤销
+    EN_MSG_TYPE_MINI_PROGRAM = 9;                          //小程序
+    //扩展消息类型
+    EN_MSG_TYPE_NOTIFY_MSG = 10;                           //业务通知
+    EN_MSG_TYPE_VIDEO_CARD = 11;                           //视频卡片
+    EN_MSG_TYPE_ARTICLE_CARD = 12;                         //专栏卡片
+    EN_MSG_TYPE_PICTURE_CARD = 13;                         //图片卡
+    EN_MSG_TYPE_COMMON_SHARE_CARD = 14;                    //异形卡
+    EN_MSG_TYPE_BIZ_MSG_TYPE = 50;                         //
+    //功能类系统消息类型
+    EN_MSG_TYPE_GROUP_MEMBER_CHANGED = 101;                //群成员变更
+    EN_MSG_TYPE_GROUP_STATUS_CHANGED = 102;                //群状态变更
+    EN_MSG_TYPE_GROUP_DYNAMIC_CHANGED = 103;               //群动态变更
+    EN_MSG_TYPE_GROUP_LIST_CHANGED = 104;                  //群列表变更
+    EM_MSG_TYPE_FRIEND_LIST_CHANGED = 105;                 //好友列表变更
+    EN_MSG_TYPE_GROUP_DETAIL_CHANGED = 106;                //群详情发生变化
+    EN_MSG_TYPE_GROUP_MEMBER_ROLE_CHANGED = 107;           //群成员角色发生变化
+    EN_MSG_TYPE_NOTICE_WATCH_LIST = 108;                   //
+    EN_MSG_TYPE_NOTIFY_NEW_REPLY_RECIEVED = 109;           //消息系统，收到新的reply
+    EN_MSG_TYPE_NOTIFY_NEW_AT_RECIEVED = 110;              //
+    EN_MSG_TYPE_NOTIFY_NEW_PRAISE_RECIEVED = 111;          //
+    EN_MSG_TYPE_NOTIFY_NEW_UP_RECIEVED = 112;              //
+    EN_MSG_TYPE_NOTIFY_NEW_REPLY_RECIEVED_V2 = 113;        //
+    EN_MSG_TYPE_NOTIFY_NEW_AT_RECIEVED_V2 = 114;           //
+    EN_MSG_TYPE_NOTIFY_NEW_PRAISE_RECIEVED_V2 = 115;       //
+    EN_MSG_TYPE_GROUP_DETAIL_CHANGED_MULTI = 116;          //群详情发生变化,多端同步版本需要即时消息，无需落地
+    EN_MSG_TYPE_GROUP_MEMBER_ROLE_CHANGED_MULTI = 117;     //群成员角色发生变化,多端同步版本需要即时消息，无需落地
+    EN_MSG_TYPE_NOTIFY_ANTI_DISTURB = 118;                 //
+    //系统通知栏消息类型
+    EN_MSG_TYPE_SYS_GROUP_DISSOLVED = 201;                 //群解散
+    EN_MSG_TYPE_SYS_GROUP_JOINED = 202;                    //入群
+    EN_MSG_TYPE_SYS_GROUP_MEMBER_EXITED = 203;             //成员主动退群
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_FIRED = 204;               //房管被撤
+    EN_MSG_TYPE_SYS_GROUP_MEMBER_KICKED = 205;             //成员被T
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_KICK_OFF = 206;            //管理T人
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_DUTY = 207;                //管理上任
+    EN_MSG_TYPE_SYS_GROUP_AUTO_CREATED = 208;              //自动创建
+    EN_MSG_TYPE_SYS_FRIEND_APPLY = 210;                    //好友申请
+    EN_MSG_TYPE_SYS_FRIEND_APPLY_ACK = 211;                //好友申请通过
+    EN_MSG_TYPE_SYS_GROUP_APPLY_FOR_JOINING = 212;         //用户加群申请
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_ACCEPTED_USER_APPLY = 213; //通知管理员,有其他管理员已经同意用户加群
+    //聊天窗口通知消息类型
+    EN_MSG_TYPE_CHAT_MEMBER_JOINED = 301;                  //入群
+    EN_MSG_TYPE_CHAT_MEMBER_EXITED = 302;                  //退群
+    EN_MSG_TYPE_CHAT_GROUP_FREEZED = 303;                  //冻结
+    EN_MSG_TYPE_CHAT_GROUP_DISSOLVED = 304;                //解散
+    EN_MSG_TYPE_CHAT_GROUP_CREATED = 305;                  //开通应援团
+    EN_MSG_TYPE_CHAT_POPUP_SESSION = 306;                  //弹出会话
+}
+
+//
+message SessionInfo {
+    //
+    uint64 talkerId = 1;
+
+    //
+    uint32 sessionType = 2;
+
+    //
+    uint64 atSeqno = 3;
+
+    //
+    uint64 topTs = 4;
+
+    //
+    string groupName = 5;
+
+    //
+    string groupCover = 6;
+
+    //
+    uint32 isFollow = 7;
+
+    //
+    uint32 isDnd = 8;
+
+    //
+    uint64 ackSeqno = 9;
+
+    //
+    uint64 ackTs = 10;
+
+    //
+    uint64 sessionTs = 11;
+
+    //
+    uint32 unreadCount = 12;
+
+    //
+    Msg lastMsg = 13;
+
+    //
+    uint32 groupType = 14;
+
+    //
+    uint32 canFold = 15;
+
+    //
+    uint32 status = 16;
+
+    //
+    uint64 maxSeqno = 17;
+
+    //
+    uint32 newPushMsg = 18;
+
+    //
+    uint32 setting = 19;
+
+    //
+    uint32 isGuardian = 20;
+}
+
+//
+message Msg {
+    //
+    uint64 senderUid = 1;
+
+    //
+    int32 receiverType = 2;
+
+    //
+    uint64 receiverId = 3;
+
+    //
+    uint64 cliMsgId = 4;
+
+    //
+    int32 msgType = 5;
+
+    //
+    string content = 6;
+
+    //
+    uint64 msgSeqno = 7;
+
+    //
+    uint64 timestamp = 8;
+
+    //
+    repeated uint64 atUids = 9;
+
+    //
+    repeated uint64 recverIds = 10;
+
+    //
+    uint64 msgKey = 11;
+
+    //
+    uint32 msgStatus = 12;
+
+    //
+    bool sysCancel = 13;
+
+    //
+    string notifyCode = 14;
+
+    //
+    uint32 msgSource = 15;
+
+    //
+    int32 newFaceVersion = 16;
+}
+
+//
+message RelationLog {
+    //
+    int32 logType = 1;
+
+    //
+    uint64 oplogSeqno = 2;
+
+    //
+    FriendRelation friendRelation = 3;
+
+    //
+    GroupRelation groupRelation = 4;
+}
+
+//
+message FriendRelation {
+    //
+    uint64 uid = 1;
+
+    //
+    string userName = 2;
+
+    //
+    string face = 3;
+
+    //
+    uint32 vipLevel = 4;
+}
+
+//
+message GroupRelation {
+    //
+    uint64 groupId = 1;
+
+    //
+    uint64 ownerUid = 2;
+
+    //
+    uint32 groupType = 3;
+
+    //
+    uint32 groupLevel = 4;
+
+    //
+    string groupCover = 5;
+
+    //
+    string groupName = 6;
+
+    //
+    string groupNotice = 7;
+
+    //
+    int32 status = 8;
+
+    //
+    int32 memberRole = 9;
+
+    //
+    string fansMedalName = 10;
+
+    //
+    uint64 roomId = 11;
+}

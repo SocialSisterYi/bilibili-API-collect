@@ -1,0 +1,440 @@
+syntax = "proto3";
+
+import "bilibili/im/type.proto";
+
+package bilibili.im.interfaces.v1;
+
+//私信
+service ImInterface {
+    //未读私信数
+    rpc singleUnread (ReqSingleUnread) returns (RspSingleUnread);
+
+    //会话详情
+    rpc sessionDetail (ReqSessionDetail) returns (bilibili.im.type.SessionInfo);
+
+    //拉取会话记录列表
+    rpc getSessions (ReqGetSessions) returns (RspSessions);
+
+    //拉取最近私信分享列表
+    rpc shareList (ReqShareList) returns (RspShareList);
+
+    //发送消息
+    rpc sendMsg (ReqSendMsg) returns (RspSendMsg);
+
+    //删除会话记录
+    rpc removeSession (ReqRemoveSession) returns (DummyRsp);
+
+    //置顶聊天
+    rpc setTop (ReqSetTop) returns (DummyRsp);
+
+    //
+    rpc ackAssisMsg (ReqAckAssisMsg) returns (DummyRsp);
+
+    //
+    rpc ackSessions (ReqAckSessions) returns (RspSessions);
+
+    //
+    rpc batchRmSessions (ReqBatRmSess) returns (DummyRsp);
+
+    //
+    rpc batchSessDetail (ReqSessionDetails) returns (RspSessionDetails);
+
+    //
+    rpc getSpecificSessions (ReqGetSpecificSessions) returns (RspSessions);
+
+    //
+    rpc groupAssisMsg (ReqGroupAssisMsg) returns (RspSessionMsg);
+
+    //
+    rpc myGroupUnread (DummyReq) returns (RspMyGroupUnread);
+
+    //
+    rpc newSessions (ReqNewSessions) returns (RspSessions);
+
+    //
+    rpc specificSingleUnread (ReqSpecificSingleUnread) returns (RspSpecificSingleUnread);
+
+    //
+    rpc syncAck (ReqSyncAck) returns (RspSyncAck);
+
+    //
+    rpc syncFetchSessionMsgs (ReqSessionMsg) returns (RspSessionMsg);
+
+    //
+    rpc syncRelation (ReqRelationSync) returns (RspRelationSync);
+
+    //
+    rpc updateAck (ReqUpdateAck) returns (DummyRsp);
+
+    //
+    rpc updateUnflwRead (DummyReq) returns (DummyRsp);
+}
+
+//发送消息-请求
+message ReqSendMsg {
+    //
+    bilibili.im.type.Msg msg = 1;
+
+    //
+    string cookie = 2;
+
+    //
+    string cookie2 = 3;
+
+    //
+    int32 errorCode = 4;
+
+    //
+    string devId = 5;
+}
+
+//发送消息-回复
+message RspSendMsg {
+    //
+    uint64 msgKey = 1;
+
+    //
+    repeated EmotionInfo eInfos = 2;
+
+    //
+    string msgContent = 3;
+}
+
+//-请求
+message DummyReq {
+    //
+    uint32 idl = 1;
+}
+
+//-回复
+message DummyRsp {
+
+}
+
+//-请求
+message ReqAckAssisMsg {
+    //
+    uint64 ackSeqno = 1;
+}
+
+//-请求
+message ReqAckSessions {
+    //
+    uint64 beginTs = 1;
+
+    //
+    uint32 endTs = 2;
+
+    //
+    uint32 size = 3;
+}
+
+//-请求
+message ReqBatRmSess {
+
+}
+
+//拉取会话记录列表-请求
+message ReqGetSessions {
+    //
+    uint64 beginTs = 1;
+
+    //
+    uint64 endTs = 2;
+
+    //
+    uint32 size = 3;
+
+    //
+    uint32 sessionType = 4;
+
+    //
+    uint32 unfollowFold = 5;
+
+    //
+    uint32 groupFold = 6;
+
+    //
+    uint32 sortRule = 7;
+
+    //
+    uint32 teenagerMode = 8;
+
+    //
+    uint32 lessonsMode = 9;
+}
+
+//拉取会话记录列表-回复
+message RspSessions {
+    //
+    repeated bilibili.im.type.SessionInfo sessionList = 1;
+
+    //
+    uint32 hasMore = 2;
+
+    //
+    bool antiDisturbCleaning = 3;
+
+    //
+    int32 isAddressListEmpty = 4;
+}
+
+//-请求
+message ReqGetSpecificSessions {
+    //
+    repeated SimpleSession talkerSessions = 1;
+}
+
+//-请求
+message ReqGroupAssisMsg {
+    //
+    uint64 clientSeqno = 1;
+
+    //
+    uint32 size = 2;
+}
+
+//-请求
+message ReqNewSessions {
+    //
+    uint64 beginTs = 1;
+
+    //
+    uint32 size = 2;
+
+    //
+    uint32 teenagerMode = 3;
+
+    //
+    uint32 lessonsMode = 4;
+}
+
+//-请求
+message ReqRelationSync {
+    //
+    uint64 clientRelationOplogSeqno = 1;
+}
+
+//删除会话记录-请求
+message ReqRemoveSession {
+    //
+    uint64 talkerId = 1;
+
+    //
+    uint32 sessionType = 2;
+}
+
+//会话详情-请求
+message ReqSessionDetail {
+    //
+    uint64 talkerId = 1;
+
+    //
+    uint32 sessionType = 2;
+
+    //
+    uint64 uid = 3;
+}
+
+//-请求
+message ReqSessionDetails {
+    //
+    repeated ReqSessionDetail sessIds = 1;
+}
+
+//-请求
+message ReqSessionMsg {
+    //
+    uint64 talkerId = 1;
+
+    //
+    int32 sessionType = 2;
+
+    //
+    uint64 endSeqno = 3;
+
+    //
+    uint64 beginSeqno = 4;
+
+    //
+    int32 size = 5;
+
+    //
+    int32 order = 6;
+
+    //
+    string devId = 7;
+}
+
+//置顶聊天-请求
+message ReqSetTop {
+    //
+    uint64 talkerId = 1;
+
+    //
+    uint32 sessionType = 2;
+
+    //
+    uint32 opType = 3;
+}
+
+//拉取最近私信分享列表-请求
+message ReqShareList {
+    //
+    int32 size = 1;
+}
+
+//拉取最近私信分享列表-回复
+message RspShareList {
+    //最近会话列表
+    repeated ShareSessionInfo sessionList = 1;
+
+    //
+    int32 isAddressListEmpty = 2;
+}
+
+//未读私信数-请求
+message ReqSingleUnread {
+    //
+    uint32 unreadType = 1;
+
+    //
+    uint32 showUnfollowList = 2;
+}
+
+//未读私信数-回复
+message RspSingleUnread {
+    //未关注用户私信数
+    uint64 unfollowUnread = 1;
+
+    //已关注用户私信数
+    uint64 followUnread = 2;
+
+    //
+    uint32 unfollowPushMsg = 3;
+}
+
+//-请求
+message ReqSpecificSingleUnread {
+    //
+    repeated SimpleSession talkerSessions = 1;
+}
+
+//-请求
+message ReqSyncAck {
+    //
+    uint64 clientSeqno = 1;
+}
+
+//-请求
+message ReqUpdateAck {
+    //
+    uint64 talkerId = 1;
+    
+    //
+    uint32 sessionType = 2;
+    
+    //
+    uint64 ackSeqno = 3;
+}
+
+//-回复
+message RspMyGroupUnread {
+    //
+    uint32 unreadCount = 1;
+}
+
+//-回复
+message RspRelationSync {
+    //
+    int32 full = 1;
+
+    //
+    repeated bilibili.im.type.RelationLog relationLogs = 2;
+
+    //
+    repeated bilibili.im.type.FriendRelation friendList = 3;
+
+    //
+    uint64 serverRelationOplogSeqno = 4;
+
+    //
+    repeated bilibili.im.type.GroupRelation groupList = 5;
+}
+
+//-回复
+message RspSessionDetails {
+    //
+    repeated bilibili.im.type.SessionInfo sessInfos = 1;
+}
+
+//-回复
+message RspSessionMsg {
+    //
+    repeated bilibili.im.type.Msg messages = 1;
+
+    //
+    int32 hasMore = 2;
+
+    //
+    uint64 minSeqno = 3;
+
+    //
+    uint64 maxSeqno = 4;
+
+    //
+    repeated EmotionInfo eInfos = 5;
+}
+
+//-回复
+message RspSpecificSingleUnread {
+    //
+    map <uint64,uint64> talkerUnreadCnt = 1;
+
+    //
+    uint64 allUnreadCnt = 2;
+}
+
+//-回复
+message RspSyncAck {
+
+}
+
+//会话信息，用于私信分享
+message ShareSessionInfo {
+    //
+    uint64 talkerId = 1;
+
+    //
+    string talkerUname = 2;
+
+    //
+    string talkerIcon = 3;
+
+    //
+    int32 officialType = 4;
+}
+
+//
+message SimpleSession {
+    //
+    uint64 talkerId = 1;
+
+    //
+    uint32 sessionType = 2;
+}
+
+//
+message EmotionInfo {
+    //
+    string text = 1;
+
+    //
+    string url = 2;
+
+    //
+    int32 size = 3;
+
+    //
+    string gifUrl = 4;
+}

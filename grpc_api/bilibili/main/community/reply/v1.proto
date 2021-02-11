@@ -32,7 +32,7 @@ service Reply {
 }
 
 //主评论列表-请求
-message MainListReq{
+message MainListReq {
 	//目标评论区id
     int64 oid = 1;
     
@@ -53,7 +53,7 @@ message MainListReq{
 }
 
 //主评论列表-回复
-message MainListReply{
+message MainListReply {
 	//页面游标
     CursorReply cursor = 1;
     
@@ -89,7 +89,7 @@ message MainListReply{
 }
 
 //二级评论明细-请求
-message DetailListReq{
+message DetailListReq {
 	//目标评论区id
     int64 oid = 1;
     
@@ -110,7 +110,7 @@ message DetailListReq{
 }
 
 //二级评论明细-回复
-message DetailListReply{
+message DetailListReply {
 	//页面游标
     CursorReply cursor = 1;
     
@@ -125,7 +125,7 @@ message DetailListReply{
 }
 
 //对话评论树-请求
-message DialogListReq{
+message DialogListReq {
 	//目标评论区id
     int64 oid = 1;
     
@@ -143,7 +143,7 @@ message DialogListReq{
 }
 
 //对话评论树-回复
-message DialogListReply{
+message DialogListReply {
 	//页面游标
     CursorReply cursor = 1;
     
@@ -191,7 +191,7 @@ message PreviewListReply {
 }
 
 //?-请求
-message SearchItemPreHookReq{
+message SearchItemPreHookReq {
 	//目标评论区id
     int64 oid = 1;
     
@@ -200,7 +200,7 @@ message SearchItemPreHookReq{
 }
 
 //?-回复
-message SearchItemPreHookReply{
+message SearchItemPreHookReply {
 	//
     string placeholderText = 1;
     
@@ -212,7 +212,7 @@ message SearchItemPreHookReply{
 }
 
 //搜索评论区插入项目-请求
-message SearchItemReq{
+message SearchItemReq {
 	//页面游标
     SearchItemCursorReq cursor = 1;
     
@@ -227,7 +227,7 @@ message SearchItemReq{
 }
 
 //搜索评论区插入项目-回复
-message SearchItemReply{
+message SearchItemReply {
 	//
     SearchItemCursorReply cursor = 1;
     
@@ -239,7 +239,7 @@ message SearchItemReply{
 }
 
 //排序方式
-enum Mode{
+enum Mode {
 	//
 	DEFAULT = 0;
 	
@@ -254,7 +254,7 @@ enum Mode{
 }
 
 //页面游标请求
-message CursorReq{
+message CursorReq {
 	//下页数据
     int64 next = 1;
     
@@ -266,7 +266,7 @@ message CursorReq{
 }
 
 //页面游标回复
-message CursorReply{
+message CursorReply {
 	//下页数据
     int64 next = 1;
     
@@ -284,7 +284,7 @@ message CursorReply{
 }
 
 //
-enum SearchItemType{
+enum SearchItemType {
 	//
     DEFAULT_ITEM_TYPE = 0;
     
@@ -299,7 +299,7 @@ enum SearchItemType{
 }
 
 //
-enum DetailListScene{
+enum DetailListScene {
 	//评论区展开
 	REPLY = 0;
 	
@@ -308,7 +308,7 @@ enum DetailListScene{
 }
 
 //
-message SearchItemCursorReq{
+message SearchItemCursorReq {
 	//
     int64 next = 1;
     
@@ -317,7 +317,7 @@ message SearchItemCursorReq{
 }
 
 //
-message SearchItemCursorReply{
+message SearchItemCursorReply {
 	//
     bool hasNext = 1;
     
@@ -326,7 +326,8 @@ message SearchItemCursorReply{
 }
 
 //用户信息
-message Member{
+message Member {
+    /**********基础信息**********/
 	//UID
     int64 mid = 1;
     
@@ -345,7 +346,7 @@ message Member{
     //认证类型
     int64 officialVerifyType = 6;
     
-    /****VIP相关****/
+    /**********VIP相关**********/
     //会员类型
     int64 vipType = 7;
     
@@ -358,7 +359,7 @@ message Member{
     //会员铭牌样式url
     string vipLabelPath = 10;
     
-    /****装扮相关****/
+    /**********装扮相关**********/
     //头像框url
     string garbPendantImage = 11;
     
@@ -380,7 +381,7 @@ message Member{
     //是否为专属装扮卡
     bool garbCardIsFan = 17;
     
-    /****粉丝勋章相关****/
+    /**********粉丝勋章相关**********/
     //粉丝勋章名
     string fansMedalName = 18;
     
@@ -392,7 +393,7 @@ message Member{
 }
 
 //表情项
-message Emote{
+message Emote {
 	//表情大小
 	//1:小 2:大
 	int64 size = 1;
@@ -402,7 +403,7 @@ message Emote{
 }
 
 //话题项
-message Topic{
+message Topic {
 	//跳转url
 	string link = 1;
 	
@@ -411,7 +412,7 @@ message Topic{
 }
 
 //超链项
-message Url{
+message Url {
 	//标题
 	string title = 1;
 	
@@ -430,12 +431,12 @@ message Url{
 	//
 	string appPackageName = 6;
 	
-	//
+	//上报id
 	string clickReport = 7;
 }
 
 //投票信息
-message Vote{
+message Vote {
 	//投票id
 	int64 id = 1;
 	
@@ -447,7 +448,7 @@ message Vote{
 }
 
 //评论主体信息
-message Content{
+message Content {
 	//评论文本
     string message = 1;
     
@@ -468,7 +469,7 @@ message Content{
 }
 
 //评论条目控制字段
-message ReplyControl{
+message ReplyControl {
 	//操作行为标志
 	//0:无 1:已点赞 2:已点踩
     int64 action = 1;
@@ -520,7 +521,7 @@ message ReplyControl{
 }
 
 //评论条目信息
-message ReplyInfo{
+message ReplyInfo {
 	//二级评论列表
     repeated ReplyInfo replies = 1;
     
@@ -565,7 +566,7 @@ message ReplyInfo{
 }
 
 //评论区控制字段
-message SubjectControl{
+message SubjectControl {
 	//UP主UID
     int64 upMid = 1;
     
@@ -619,7 +620,7 @@ message SubjectControl{
 }
 
 //
-message Notice{
+message Notice {
 	//
     int64 id = 1;
     
@@ -631,7 +632,7 @@ message Notice{
 }
 
 //
-message Lottery{
+message Lottery {
 	//
     int64 lotteryId = 1;
     
@@ -664,7 +665,7 @@ message Lottery{
 }
 
 //
-message Activity{
+message Activity {
 	//
     int64 activityId = 1;
     
@@ -676,7 +677,7 @@ message Activity{
 }
 
 //
-message UpSelection{
+message UpSelection {
 	//
     int64 pendingCount = 1;
     
@@ -685,13 +686,13 @@ message UpSelection{
 }
 
 //
-message CM{
+message CM {
 	//
     google.protobuf.Any sourceContent = 1;
 }
 
 //
-message ArticleSearchItem{
+message ArticleSearchItem {
 	//
 	string title = 1;
 	
@@ -703,7 +704,7 @@ message ArticleSearchItem{
 }
 
 //
-message GoodsSearchItem{
+message GoodsSearchItem {
 	//
 	int64 id = 1;
 	
@@ -724,7 +725,7 @@ message GoodsSearchItem{
 }
 
 //
-enum VideoItemCase{
+enum VideoItemCase {
 	//
 	VIDEOITEM_NOT_SET = 0;
 	
@@ -736,7 +737,7 @@ enum VideoItemCase{
 }
 
 //
-message UGCVideoSearchItem{
+message UGCVideoSearchItem {
 	//
 	string title = 1;
 	
@@ -751,7 +752,7 @@ message UGCVideoSearchItem{
 }
 
 //
-message PGCVideoSearchItem{
+message PGCVideoSearchItem {
 	//
 	string title = 1;
 	
@@ -763,7 +764,7 @@ message PGCVideoSearchItem{
 }
 
 //
-message VideoSearchItem{
+message VideoSearchItem {
 	//
 	VideoItemCase type = 1;
 	
@@ -775,7 +776,7 @@ message VideoSearchItem{
 }
 
 //
-enum ItemCase{
+enum ItemCase {
 	//
 	ITEM_NOT_SET = 0;
 	
@@ -790,7 +791,7 @@ enum ItemCase{
 }
 
 //
-message SearchItem{
+message SearchItem {
 	//
     string url = 1;
     
@@ -805,7 +806,7 @@ message SearchItem{
 }
 
 //
-message SearchItemReplyExtraInfo{
+message SearchItemReplyExtraInfo {
 	//
     string eventId = 1;
 }
