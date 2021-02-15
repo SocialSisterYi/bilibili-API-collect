@@ -125,7 +125,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
 
 **proto回复：**
 
-porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](..\grpc_api\bilibili\community\service\dm\v1.proto)
+porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api/bilibili/community/service/dm/v1.proto)
 
 详细说明见[protobuf弹幕](danmaku_proto.md)
 
