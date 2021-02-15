@@ -582,9 +582,9 @@ curl -G 'api.bilibili.com/x/web-interface/card' \
 | 字段          | 类型 | 内容     | 备注             |
 | ------------- | ---- | -------- | ---------------- |
 | current_level | num  | 当前等级 | 0-6级            |
-| current_min   | num  | 0        | **作用尚不明确** |
-| current_exp   | num  | 0        | **作用尚不明确** |
-| next_exp      | num  | 0        | **作用尚不明确** |
+| current_min   | num  | 0        | 指当前等级从多少经验值开始 |
+| current_exp   | num  | 0        | 当前账户的经验值 |
+| next_exp      | num  | 0        | 下一个等级所需的经验值**(不是还需要多少)** |
 
 **示例：**
 
