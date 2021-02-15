@@ -5,7 +5,6 @@
 新的api是以6分钟为一个单位加载，即每次加载6分钟内的弹幕
 
 - [获取实时弹幕](#获取实时弹幕)
-- [实例](#实例)
 
 ---
 
@@ -38,6 +37,8 @@
 
 **proto回复：**
 
+porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](..\grpc_api\bilibili\community\service\dm\v1.proto)
+
 消息`DmSegMobileReply`：
 
 | 名称  | 类型                 | 含义     | 备注 |
@@ -61,94 +62,46 @@
 | pool     | int32  | 弹幕池             | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）      |
 | idStr    | string | 弹幕dmID           | 字串形式<br />唯一  可用于操作参数                           |
 
-protobuf结构体：
-
-**bilidm.proto**
-
-```protobuf
-syntax = "proto3";
-
-message DanmakuElem {
-    int64 id = 1;       //弹幕dmID
-    int32 progress = 2; //出现时间
-    int32 mode = 3;     //弹幕类型
-    int32 fontsize = 4; //文字大小
-    uint32 color = 5;   //弹幕颜色
-    string midHash = 6; //发送者UID的HASH
-    string content = 7; //弹幕内容
-    int64 ctime = 8;    //发送时间
-    int32 weight = 9;   //权重
-    string action = 10; //动作？
-    int32 pool = 11;    //弹幕池
-    string idStr = 12;  //弹幕dmID（字串形式）
-}
-
-message DmSegMobileReply {
-    repeated DanmakuElem elems = 1; //弹幕条目
-}
-```
-
 **示例：**
 
-获取视频`av810872(CID=1176840)`的实时弹幕分包1
+获取视频`av810872(CID=1176840)`（炮姐）的实时弹幕分包1
 
-```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/web/seg.so' \
---data-urlencode 'type=1' \
---data-urlencode 'oid=1176840' \
---data-urlencode 'pid=810872' \
---data-urlencode 'segment_index=1' \
--o 'danmaku.bin'
-```
-
-响应正文为protubuf二进制数据
-
-## 实例
-
-获取炮姐弹幕第1包，[BV1Js411o76u](https://www.bilibili.com/video/BV1Js411o76u)
-
-编译proto结构文件
-
-```shell
-protoc --python_out=. bilidm.proto
-```
-
-生成bilidm_pb2.py
-
----
-
-以下为python测试代码，输出第一包的第一条弹幕
+**注：proto定义需要编译**
 
 ```python
-import bilidm_pb2
 import requests
+import google.protobuf.text_format as text_format
+import bilibili.community.service.dm.v1_pb2 as Danmaku
 
-AVID = 810872
-CID = 1176840
-SEG = 1
-url = f'http://api.bilibili.com/x/v2/dm/web/seg.so?type=1&oid={CID}&pid={AVID}&segment_index={SEG}'
+url = 'http://api.bilibili.com/x/v2/dm/web/seg.so'
+params = {
+    'type':1,         #弹幕类型
+    'oid':1176840,    #cid
+    'pid':810872,     #avid
+    'segment_index':1 #弹幕分段
+}
+resp = requests.get(url,params)
+data = resp.content
 
-data = requests.get(url)
-target = bilidm_pb2.DmSegMobileReply()
-target.ParseFromString(data.content)
+danmaku_seg = Danmaku.DmSegMobileReply()
+danmaku_seg.ParseFromString(data)
 
-print(target.elems[0])
-print(target.elems[0].content)
+print(text_format.MessageToString(danmaku_seg.elems[0],as_utf8=True))
 ```
 
 输出：
 
 ```
-id: 682225690
-progress: 44125
+id: 711923911
+progress: 47880
 mode: 1
-fontsize: 25
-color: 16777215
-midHash: "af4aa003"
-content: "\346\210\221\347\202\256\350\277\230\350\203\275\345\206\215\346\210\230500\345\271\264\357\274\201\357\274\201\357\274\201\346\210\221\347\202\256\350\277\230\350\203\275\345\206\215\346\210\230500\345\271\264\357\274\201\357\274\201\357\274\201\346\210\221\347\202\256\350\277\230\350\203\275\345\206\215\346\210\230500\345\271\264\357\274\201\357\274\201\357\274\201\346\210\221\347\202\256\350\277\230\350\203\275\345\206\215\346\210\230500\345\271\264"
-ctime: 1416323487
+fontsize: 18
+color: 10092288
+midHash: "59417e95"
+content: "世界第一电击公主殿下,遇到你是我一生最美好的风景!吾炮赛高,永生不离!唯我超电磁炮永世长存! "
+ctime: 1418799826
 weight: 6
-idStr: "682225690"
-
-我炮还能再战500年！！！我炮还能再战500年！！！我炮还能再战500年！！！我炮还能再战500年
+idStr: "711923911"
+attr: 1
 ```
+
