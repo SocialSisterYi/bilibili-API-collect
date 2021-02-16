@@ -1,8 +1,56 @@
 # 视频推荐
 
+- [获取个性化推荐列表（app方式）](获取个性化推荐列表（app方式）)
 - [获取单视频推荐列表（web端）](#获取单视频推荐列表（web端）)
 
 ---
+
+## 获取个性化推荐列表（app方式）
+
+> https://app.bilibili.com/x/v2/feed/index
+
+*请求方式：GET*
+
+| 参数名 | 类型 | 内容     | 必要性       | 备注               |
+| ------ | ---- | ---------------------------- | ------------ | ------------------ |
+| idx    | str  | 上一次刷新最后一个视频的标识 | 必要（可选） |     |
+| flush   | num  | 未知 | 建议填上 |      |
+| column   | num  | 未知 | 建议填上 |      |
+| device   | string  | 设备类型(?) | 必要 | 推荐"pad" |
+| pull   | bool | 未知 | 必要 | 值应为 "idx == 0" |
+
+**json回复**
+
+`data`对象：
+
+| 参数名 | 类型 | 内容     | 备注               |
+| ------ | ---- | ---------------------------- | ------------------ |
+| config    | JsonObject  |   |     |
+| items   | JsonArray  | 主要内容 |      |
+
+`items`数组中的对象：
+
+| 参数名 | 类型 | 内容     | 备注               |
+| ------ | ---- | ---------------------------- | ------------------ |
+| args    | JsonObject  |   |     |
+| can_play   | num  | 能否播放 | 可以：1<br />不能：0 |
+| card_goto   | str  |  | av |
+| card_type   | str  | 手机端上卡片类型  |   |
+| cover_left_icon_1   | num  |  |   |
+| cover_left_icon_2   | num  |  | |
+| cover_left_text_1   | str  | 通常为播放量 | 如“100万” |
+| cover_left_text_2  | str  | 不确定用途 |  |
+| cover_right_text  | str  | 不确定用途 |  |
+| desc_button  | JsonObject  | 不确定用途 |  |
+| goto | str  | 与card_goto一致 | 推测用途为区分视频(av,bv)和专栏(cv) |
+| idx  | num  |  | 此数值可以作为url参数 |
+| official_icon  | num  | 未知 |  |
+| param  | num  | av号(?) |  |
+| player_args  | JsonObject |  | 推测是播放器参数 |
+| three_point | JsonObject  |  |  |
+| three_point_v2  | JsonArray  |  | 推测是手机App中对卡片的菜单项 |
+| title  | str  | 标题 |  |
+| uri  | str  | 跳转Uri | 仅用于参考"bilibili://video/{0}/player\_height={1}&player\_rotate={2}&player\_width={3}" <br /> {0}为参数中的param,{1}为播放器高度,{2}为播放器旋转角度，{3}为播放器宽度|
 
 ## 获取单视频推荐列表（web端）
 
@@ -292,3 +340,4 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 ```
 
 </details>
+
