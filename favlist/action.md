@@ -1,29 +1,34 @@
 # 收藏夹操作
 
 - [收藏夹操作](#收藏夹操作)
-  - [新建收藏夹(web)](#新建收藏夹web)
-  - [修改收藏夹(web)](#修改收藏夹web)
-  - [删除收藏夹(web)](#删除收藏夹web)
+  - [新建收藏夹(双端)](#新建收藏夹双端)
+  - [修改收藏夹(双端)](#修改收藏夹双端)
+  - [删除收藏夹(双端)](#删除收藏夹双端)
+  - [清空所有失效内容(双端)](#清空所有失效内容双端)
 
 ---
 
-## 新建收藏夹(web)
+## 新建收藏夹(双端)
 
 > https://api.bilibili.com/x/v3/fav/folder/add
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：APP或Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名  | 类型 | 内容       | 必要性 | 备注             |
-| ------- | ---- | ---------- | ------ | ---------------- |
-| title   | str  | 收藏夹标题 | 必要   |                  |
-| intro   | str  | 收藏夹简介 | 非必要 |                  |
-| privacy | int  | 是否公开   | 非必要 | 0公开<br />1私密 |
-| cover   | str  | 封面图url  | 非必要 | 封面会被审核     |
-| csrf    | str  | CSRF Token | 必要   | 位于Cookie       |
+| 参数名     | 类型 | 内容         | 必要性      | 备注                   |
+| ---------- | ---- | ------------ | ----------- | ---------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                        |
+| appkey     | str  | APP密钥      | APP方式必要 | 可为`1d8b6e7d45233436` |
+| ts         | int  | 时间戳（秒） | APP方式必要 |                        |
+| title      | str  | 收藏夹标题   | 必要        |                        |
+| intro      | str  | 收藏夹简介   | 非必要      |                        |
+| privacy    | int  | 是否公开     | 非必要      | 0公开<br />1私密       |
+| cover      | str  | 封面图url    | 非必要      | 封面会被审核           |
+| csrf       | str  | CSRF Token   | 必要        | 位于Cookie             |
+| sign       | str  | APP签名      | APP方式必要 |                        |
 
 **json回复：**
 
@@ -135,24 +140,28 @@
 
 </details>
 
-## 修改收藏夹(web)
+## 修改收藏夹(双端)
 
 > https://api.bilibili.com/x/v3/fav/folder/edit
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：APP或Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容             | 必要性 | 备注             |
-| -------- | ---- | ---------------- | ------ | ---------------- |
-| title    | str  | 新收藏夹标题     | 必要   |                  |
-| intro    | str  | 新收藏夹简介     | 非必要 |                  |
-| privacy  | int  | 是否公开         | 非必要 | 0公开<br />1私密 |
-| cover    | str  | 封面图url        | 非必要 | 封面会被审核     |
-| csrf     | str  | CSRF Token       | 必要   | 位于Cookie       |
-| media_id | int  | 欲修改的收藏夹id | 必要   |                  |
+| 参数名     | 类型 | 内容             | 必要性      | 备注                   |
+| ---------- | ---- | ---------------- | ----------- | ---------------------- |
+| access_key | str  | APP登录Token     | APP方式必要 |                        |
+| appkey     | str  | APP密钥          | APP方式必要 | 可为`1d8b6e7d45233436` |
+| ts         | int  | 时间戳（秒）     | APP方式必要 |                        |
+| title      | str  | 新收藏夹标题     | 必要        |                        |
+| intro      | str  | 新收藏夹简介     | 非必要      |                        |
+| privacy    | int  | 是否公开         | 非必要      | 0公开<br />1私密       |
+| cover      | str  | 封面图url        | 非必要      | 封面会被审核           |
+| csrf       | str  | CSRF Token       | 必要        | 位于Cookie             |
+| media_id   | int  | 欲修改的收藏夹id | 必要        |                        |
+| sign       | str  | APP签名          | APP方式必要 |                        |
 
 **json回复：**
 
@@ -266,20 +275,24 @@
 
 </details>
 
-## 删除收藏夹(web)
+## 删除收藏夹(双端)
 
 > https://api.bilibili.com/x/v3/fav/folder/del
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：APP或Cookie（SESSDATA）
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名    | 类型 | 内容                    | 必要性 | 备注               |
-| --------- | ---- | ----------------------- | ------ | ------------------ |
-| media_ids | int  | 收藏夹id                | 必要   | 看名字貌似可以多个 |
-| csrf      | str  | CSRF Token (位于Cookie) | 必要   |                    |
+| 参数名     | 类型 | 内容                    | 必要性      | 备注                   |
+| ---------- | ---- | ----------------------- | ----------- | ---------------------- |
+| access_key | str  | APP登录Token            | APP方式必要 |                        |
+| appkey     | str  | APP密钥                 | APP方式必要 | 可为`1d8b6e7d45233436` |
+| ts         | int  | 时间戳（秒）            | APP方式必要 |                        |
+| media_ids  | int  | 收藏夹id                | 必要        | 看名字貌似可以多个     |
+| csrf       | str  | CSRF Token (位于Cookie) | 必要        |                        |
+| sign       | str  | APP签名                 | APP方式必要 |                        |
 
 **json回复：**
 
@@ -301,6 +314,60 @@
  --data-urlencode 'csrf=xxxx' \
  --data-urlencode 'media_ids=1182306172' \
  -b 'SESSDATA=xxxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1,
+    "data":0
+}
+```
+
+</details>
+
+## 清空所有失效内容(双端)
+
+> https://api.bilibili.com/x/v3/fav/resource/clean
+
+*请求方式：POST*
+
+认证方式：APP或Cookie（SESSDATA）
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名     | 类型 | 内容             | 必要性      | 备注                   |
+| ---------- | ---- | ---------------- | ----------- | ---------------------- |
+| access_key | str  | APP登录Token     | APP方式必要 |                        |
+| appkey     | str  | APP密钥          | APP方式必要 | 可为`1d8b6e7d45233436` |
+| csrf       | str  | CSRF Token       | 必要        | 位于Cookie             |
+| media_id   | int  | 欲清理的收藏夹id | 必要        |                        |
+| sign       | str  | APP签名          | APP方式必要 |                        |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注    |
+| ------- | ---- | -------- | ------- |
+| code    | num  | 返回值   | 0：成功 |
+| message | str  | 错误信息 | 默认为0 |
+| ttl     | num  | 1        |         |
+| data    | obj  | 信息本体 | 成功为0 |
+
+**示例：**
+
+清理id为`1161340172`的收藏夹:
+
+```shell
+curl -G 'https://api.bilibili.com/x/v3/fav/resource/clean' \
+ --data-urlencode 'csrf=563e9d79a8e289dbd96604668edfa802' \
+ --data-urlencode 'media_id=1161340172' \
+ -b 'SESSDATA=00cbbdf2%2C1628861933%2Ce228c%2A21; bili_jct=563e9d79a8e289dbd96604668edfa802;'
 ```
 
 <details>
