@@ -19,7 +19,7 @@
 | pn       | num            | 页码           | 必要    |                                                               |
 | ps       | num            | 每页数量       | 必要    |                                                               |
 | keyword  | str            | 搜索关键字     | 非必要  |                                                               |
-| order    | str            |                | 非必要  | 按收藏时间:mtime<br />按播放量: view<br />按投稿时间：pubtime |
+| order    | str            | 排序方式       | 非必要  | 按收藏时间:mtime<br />按播放量: view<br />按投稿时间：pubtime |
 | type     | num            | 内容类型（？） | 非必要  | 视频为0                                                       |
 | tid      | num            | 分区id         | 非必要  | [详见说明](../video/video_zone.md)                            |
 | platform | 请求来源（？） | 非必要         | 可为web |
@@ -74,6 +74,7 @@
 | face     | str  | 创建者头像url    |                                                 |
 | followed | bool | 是否已关注创建者 |                                                 |
 | vip_type | num  | 会员类别         | 0：无<br />1：月大会员<br />2：年度及以上大会员 |
+| vip_statue | num  | 会员开通状态  | 0：无<br />1：有                                |
 
 `info`中的`cnt_info`对象：
 
