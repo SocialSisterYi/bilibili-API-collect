@@ -159,6 +159,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [稍后再看](history&toview/toview.md)√
 - [收藏夹](favlist)
   - [基本信息](favlist/info.md)
+  - [收藏夹操作](favlist/action.md)
 - [课程](cheese)
   - [课程基本信息](cheese/info.md)√
   - 已购课程
