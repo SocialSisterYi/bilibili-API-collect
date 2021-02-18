@@ -22,10 +22,10 @@
 | ---------- | ---- | ------------ | ----------- | ---------------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                        |
 | appkey     | str  | APP密钥      | APP方式必要 | 可为`1d8b6e7d45233436` |
-| ts         | int  | 时间戳（秒） | APP方式必要 |                        |
+| ts         | num  | 时间戳（秒） | APP方式必要 |                        |
 | title      | str  | 收藏夹标题   | 必要        |                        |
 | intro      | str  | 收藏夹简介   | 非必要      |                        |
-| privacy    | int  | 是否公开     | 非必要      | 0公开<br />1私密       |
+| privacy    | num  | 是否公开     | 非必要      | 0公开<br />1私密       |
 | cover      | str  | 封面图url    | 非必要      | 封面会被审核           |
 | csrf       | str  | CSRF Token   | 必要        | 位于Cookie             |
 | sign       | str  | APP签名      | APP方式必要 |                        |
@@ -154,13 +154,13 @@
 | ---------- | ---- | ---------------- | ----------- | ---------------------- |
 | access_key | str  | APP登录Token     | APP方式必要 |                        |
 | appkey     | str  | APP密钥          | APP方式必要 | 可为`1d8b6e7d45233436` |
-| ts         | int  | 时间戳（秒）     | APP方式必要 |                        |
+| ts         | num  | 时间戳（秒）     | APP方式必要 |                        |
 | title      | str  | 新收藏夹标题     | 必要        |                        |
 | intro      | str  | 新收藏夹简介     | 非必要      |                        |
-| privacy    | int  | 是否公开         | 非必要      | 0公开<br />1私密       |
+| privacy    | num  | 是否公开         | 非必要      | 0公开<br />1私密       |
 | cover      | str  | 封面图url        | 非必要      | 封面会被审核           |
 | csrf       | str  | CSRF Token       | 必要        | 位于Cookie             |
-| media_id   | int  | 欲修改的收藏夹id | 必要        |                        |
+| media_id   | num  | 欲修改的收藏夹id | 必要        |                        |
 | sign       | str  | APP签名          | APP方式必要 |                        |
 
 **json回复：**
@@ -289,8 +289,8 @@
 | ---------- | ---- | ----------------------- | ----------- | ---------------------- |
 | access_key | str  | APP登录Token            | APP方式必要 |                        |
 | appkey     | str  | APP密钥                 | APP方式必要 | 可为`1d8b6e7d45233436` |
-| ts         | int  | 时间戳（秒）            | APP方式必要 |                        |
-| media_ids  | int  | 收藏夹id                | 必要        | 看名字貌似可以多个     |
+| ts         | num  | 时间戳（秒）            | APP方式必要 |                        |
+| media_ids  | num  | 收藏夹id                | 必要        | 看名字貌似可以多个     |
 | csrf       | str  | CSRF Token (位于Cookie) | 必要        |                        |
 | sign       | str  | APP签名                 | APP方式必要 |                        |
 
@@ -345,7 +345,7 @@
 | access_key | str  | APP登录Token     | APP方式必要 |                        |
 | appkey     | str  | APP密钥          | APP方式必要 | 可为`1d8b6e7d45233436` |
 | csrf       | str  | CSRF Token       | 必要        | 位于Cookie             |
-| media_id   | int  | 欲清理的收藏夹id | 必要        |                        |
+| media_id   | num  | 欲清理的收藏夹id | 必要        |                        |
 | sign       | str  | APP签名          | APP方式必要 |                        |
 
 **json回复：**
