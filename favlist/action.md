@@ -10,7 +10,7 @@
 
 ## 新建收藏夹(双端)
 
-> https://api.bilibili.com/x/v3/fav/folder/add
+> http://api.bilibili.com/x/v3/fav/folder/add
 
 *请求方式：POST*
 
@@ -87,7 +87,7 @@
 创建一个叫`test`,简介是`2333`,封面`http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png`,的公开收藏夹:
 
 ```shell
- curl 'https://api.bilibili.com/x/v3/fav/folder/add' \
+ curl 'http://api.bilibili.com/x/v3/fav/folder/add' \
  --data-urlencode 'title=test' \
  --data-urlencode 'intro=2333' \
  --data-urlencode 'privacy: 0' \
@@ -142,7 +142,7 @@
 
 ## 修改收藏夹(双端)
 
-> https://api.bilibili.com/x/v3/fav/folder/edit
+> http://api.bilibili.com/x/v3/fav/folder/edit
 
 *请求方式：POST*
 
@@ -221,7 +221,7 @@
 修改id为`1182306172`的名字为`test`,简介为`2333`,封面为`http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png`,公开收藏夹:
 
 ```shell
- curl 'https://api.bilibili.com/x/v3/fav/folder/add' \
+ curl 'http://api.bilibili.com/x/v3/fav/folder/add' \
  --data-urlencode 'title=test' \
  --data-urlencode 'intro=2333' \
  --data-urlencode 'privacy: 0' \
@@ -277,7 +277,7 @@
 
 ## 删除收藏夹(双端)
 
-> https://api.bilibili.com/x/v3/fav/folder/del
+> http://api.bilibili.com/x/v3/fav/folder/del
 
 *请求方式：POST*
 
@@ -310,7 +310,7 @@
 删除id为`1182306172`的收藏夹:
 
 ```shell
- curl 'https://api.bilibili.com/x/v3/fav/folder/del' \
+ curl 'http://api.bilibili.com/x/v3/fav/folder/del' \
  --data-urlencode 'csrf=xxxx' \
  --data-urlencode 'media_ids=1182306172' \
  -b 'SESSDATA=xxxx'
@@ -332,7 +332,7 @@
 
 ## 清空所有失效内容(双端)
 
-> https://api.bilibili.com/x/v3/fav/resource/clean
+> http://api.bilibili.com/x/v3/fav/resource/clean
 
 *请求方式：POST*
 
@@ -364,7 +364,7 @@
 清理id为`1161340172`的收藏夹:
 
 ```shell
-curl -G 'https://api.bilibili.com/x/v3/fav/resource/clean' \
+curl -G 'http://api.bilibili.com/x/v3/fav/resource/clean' \
  --data-urlencode 'csrf=563e9d79a8e289dbd96604668edfa802' \
  --data-urlencode 'media_id=1161340172' \
  -b 'SESSDATA=00cbbdf2%2C1628861933%2Ce228c%2A21; bili_jct=563e9d79a8e289dbd96604668edfa802;'
