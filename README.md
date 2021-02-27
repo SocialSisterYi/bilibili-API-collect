@@ -26,7 +26,7 @@
 
 PS：所有http协议地址均可使用https，文档中为了统一写作`http`，为了数据安全建议所有接口使用https
 
-小小的Demo：[av583785685](https://www.bilibili.com/video/av583785685)
+小小的Demo：~~av583785685~~[视频失效原因](https://shakaianee.top/archives/56/)
 
 ---
 
