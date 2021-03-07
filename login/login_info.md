@@ -527,6 +527,8 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat' \
 
 认证方式：仅可Cookie（SESSDATA）
 
+鉴权方式：Cookie中` DedeUserID `存在且不为0
+
 **json回复：**
 
 根对象：
@@ -547,7 +549,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat' \
 
 ```shell
 curl 'http://account.bilibili.com/site/getCoin' \
--b 'SESSDATA=xxx'
+-b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
 <details>
