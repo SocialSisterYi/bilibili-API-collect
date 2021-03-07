@@ -10,12 +10,14 @@
 
 *请求方式：GET*
 
+认证方式：Cookie（SESSDATA）
+
 **url参数：**
 
-| 参数名 | 类型 | 内容    | 必要性 | 备注                                         |
-| ------ | ---- | ------- | ------ | -------------------------------------------- |
-| mid    | num  | 用户UID | 必要   |                                              |
-| buvid  | str  | 设备ID  | 非必要 | 为操作登录接口时Cookie中的`buvid3`可为任意值 |
+| 参数名 | 类型 | 内容       | 必要性 | 备注                                                         |
+| ------ | ---- | ---------- | ------ | ------------------------------------------------------------ |
+| mid    | num  | 用户UID    | 必要   |                                                              |
+| buvid  | str  | 设备虚拟id | 非必要 | web端为操作登录接口时Cookie中的`buvid3`<br />若登录设备无`buvid`则留空 |
 
 **json回复：**
 
@@ -46,7 +48,8 @@
 ```shell
 curl -G 'http://api.bilibili.com/x/safecenter/login_notice' \
 --data-urlencode 'mid=293793435' \
---data-urlencode 'buvid=fuck_chenrui'
+--data-urlencode 'buvid=fuck_chenrui' \
+-b 'SESSDATA=xxx'
 ```
 
 <details>
