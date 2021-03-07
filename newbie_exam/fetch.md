@@ -205,7 +205,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/extra' \
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/extra' \
+curl -G 'http://api.bilibili.com/x/answer/v4/pro' \
 -b 'SESSDATA=xxx'
 ```
 
