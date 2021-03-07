@@ -26,7 +26,9 @@
 
 PS：所有http协议地址均可使用https，文档中为了统一写作`http`，为了数据安全建议所有接口使用https
 
-小小的Demo：~~av583785685~~[视频失效原因](https://shakaianee.top/archives/56/)
+小小的Demo：~~av583785685~~[视频失效原因](https://shakaianee.top/archives/56/)（[Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk)）
+
+联动项目：[Hsury/Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
 
 ---
 
@@ -238,7 +240,6 @@ B站空间：https://space.bilibili.com/293793435
 - [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
 - [czp3009/bilibili-api](https://github.com/czp3009/bilibili-api)
 - [Vespa314/bilibili-api](https://github.com/Vespa314/bilibili-api)
-- [Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
 - [whjstc/openbilibili-go-common-1](https://github.com/whjstc/openbilibili-go-common-1)
 - [wnstar/bili-utils](https://github.com/wnstar/bili-utils)
 - [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API)
