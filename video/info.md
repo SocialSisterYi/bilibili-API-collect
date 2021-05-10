@@ -14,7 +14,7 @@
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDSTA）
+认证方式：Cookie（SESSDATA）
 
 限制游客访问的视频需要登录
 
