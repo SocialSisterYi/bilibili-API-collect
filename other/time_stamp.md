@@ -1,6 +1,7 @@
 # 获取当前时间戳
 
 - [获取当前时间戳](#获取当前时间戳)
+- [获取服务器端UTC时间](#获取服务器端UTC时间)
 
 ---
 
@@ -48,3 +49,29 @@ curl 'http://api.bilibili.com/x/report/click/now'
 ```
 
 </details>
+
+## 获取服务器端UTC时间
+
+> https://interface.bilibili.com/serverdate.js
+
+*请求方式：GET*
+
+**js回复：**
+
+```js
+window.serverdate = Date.UTC(YYYY, M, D, h, m, s);
+```
+
+**示例：**
+
+```shell
+curl 'https://interface.bilibili.com/serverdate.js'
+```
+
+
+<details>
+<summary>查看响应示例：</summary>
+
+```js
+window.serverdate = Date.UTC(2021, 4, 16, 17, 31, 8);
+```
