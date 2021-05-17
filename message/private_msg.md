@@ -69,15 +69,34 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 **正文参数（application/x-www-form-urlencoded）：**
 
-| 参数名             | 类型                                 | 内容                     | 必要性 | 备注                                   |
+| 参数名              | 类型                                  | 内容                     | 必要性 | 备注                                   |
 | ------------------ | ------------------------------------ | ------------------------ | ------ | -------------------------------------- |
 | msg[sender_uid]    | num                                  | 发送者UID                | 必要   |                                        |
 | msg[receiver_id]   | num                                  | 接收者UID                | 必要   |                                        |
 | msg[receiver_type] | num                                  | 1                        | 必要   | 固定为1                                |
-| msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1:发送文字<br>2:发送图片<br>5:撤回消息 |
+| msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1:发送文字<br>2:发送图片<br>5:撤回消息      |
 | msg[msg_status]    | num                                  | 0                        | 非必要 |                                        |
-| msg[content]       | 发送文字时：str<br />撤回消息时：num | 消息内容                 | 必要   | **详见下表**                           |
+| msg[dev_id]        | string                               | 372778FD-E359-461D-86A3-EA2BCC6FF52A | 必要 |  **获取方式在下面**            |
+| msg[timestamp]     | num                                  | 时间戳（秒）               | 必要 |                                         |
+| msg[content]       | 发送文字时：str<br />撤回消息时：num     | 消息内容                 | 必要   | **详见下表**                             |
 | csrf_token         | str                                  | CSRF Token（位于cookie） | 必要   |                                        |
+
+---
+
+**dev_id的获取**
+
+以JS为例：
+
+```javascript
+const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function (name) {
+  let randomInt = 16 * Math.random() | 0;
+  return ("x" === name ? randomInt : 3 & randomInt | 8).toString(16).toUpperCase()
+}));
+```
+
+代码来自 [andywang425/BLTH](https://github.com/andywang425/BLTH/blob/45fe93e31754ca8bf07059d46266398e787dbf45/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.js#L6618)
+
+---
 
 `msg[content]`消息内容：
 
@@ -85,7 +104,7 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 该参数为json序列字串
 
-根对象：
+根对象：·
 
 | 字段    | 类型 | 内容     | 备注 |
 | ------- | ---- | -------- | ---- |
