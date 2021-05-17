@@ -104,7 +104,7 @@ const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (functi
 
 该参数为json序列字串
 
-根对象：·
+根对象：
 
 | 字段    | 类型 | 内容     | 备注 |
 | ------- | ---- | -------- | ---- |
