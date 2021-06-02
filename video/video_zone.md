@@ -119,24 +119,39 @@
 | 摄影摄像       | photography     | 190  | 摄影摄像器材、拍摄剪辑技巧、拍摄作品分享等相关视频 | [/v/digital/photography](https://www.bilibili.com/v/digital/photography) |
 | 影音智能       | intelligence_av | 191  | 影音设备、智能产品等相关视频                       | [/v/digital/intelligence_av](https://www.bilibili.com/v/digital/intelligence_av) |
 
+## 汽车
+
+（新分区）
+
+<img src="/imgs/zone/car.svg" width="100" height="100"/>
+
+| 名称           | 代号     | tID  | 简介                                                         | url路由                                                    |
+| -------------- | -------- | ---- | ------------------------------------------------------------ | ---------------------------------------------------------- |
+| 汽车（主分区） | car      | 223  |                                                              | [/v/car](https://www.bilibili.com/v/car)                   |
+| 汽车生活       | life     | 176  | 分享汽车及出行相关的生活体验类视频                           | [/v/car/life](https://www.bilibili.com/v/car/life)         |
+| 汽车文化       | culture  | 224  | 车迷的精神圣地，包括汽车赛事、品牌历史、汽车改装、经典车型和汽车模型等 | [/v/car/culture](https://www.bilibili.com/v/car/culture)   |
+| 汽车极客       | geek     | 225  | 汽车硬核达人聚集地，包括DIY造车、专业评测和技术知识分享      | [/v/car/geek](https://www.bilibili.com/v/car/geek)         |
+| 智能出行       | smart    | 226  | 探索新能源汽车和未来智能出行的前沿阵地                       | [/v/car/smart](https://www.bilibili.com/v/car/smart)       |
+| 购车攻略       | strategy | 227  | 丰富详实的购车建议和新车体验                                 | [/v/car/strategy](https://www.bilibili.com/v/car/strategy) |
+
 ## 生活
 
 （已改版）
 
 <img src="/imgs/zone/life.svg" width="100" height="100"/>
 
-| 名称                 | 代号       | tID    | 简介                                             | url路由                                                      |
-| -------------------- | ---------- | ------ | ------------------------------------------------ | ------------------------------------------------------------ |
-| 生活（主分区）       | life       | 160    |                                                  | [/v/life](https://www.bilibili.com/v/life)                   |
-| 搞笑                 | funny      | 138    | 各种沙雕有趣的搞笑剪辑，挑战，表演，配音等视频   | [/v/life/funny](https://www.bilibili.com/v/life/funny)       |
-| 日常                 | daily      | 21     | 记录日常生活，分享生活故事                       | [/v/life/daily](https://www.bilibili.com/v/life/daily)       |
-| ~~美食圈~~（重定向） | ~~food~~   | ~~76~~ | ~~美食鉴赏&料理制作教程~~                        | ~~/v/life/food~~                                             |
-| ~~动物圈~~（重定向） | ~~animal~~ | ~~75~~ | ~~萌萌的动物都在这里哦~~                         | ~~/v/life/animal~~                                           |
-| 手工                 | handmake   | 161    | 手工制品的制作过程或成品展示、教程、测评类视频   | [/v/life/handmake](https://www.bilibili.com/v/life/handmake) |
-| 绘画                 | painting   | 162    | 绘画过程或绘画教程，以及绘画相关的所有视频       | [/v/life/painting](https://www.bilibili.com/v/life/painting) |
-| 运动                 | sports     | 163    | 运动相关的记录、教程、装备评测和精彩瞬间剪辑视频 | [/v/life/sports](https://www.bilibili.com/v/life/sports)     |
-| 汽车                 | automobile | 176    | 专业汽车资讯，分享车生活                         | [/v/life/automobile](https://www.bilibili.com/v/life/automobile) |
-| 其他                 | other      | 174    | 对于分区归属不明的视频进行归纳整合的特定分区     | [/v/life/other](https://www.bilibili.com/v/life/other)       |
+| 名称                 | 代号           | tID     | 简介                                             | url路由                                                      |
+| -------------------- | -------------- | ------- | ------------------------------------------------ | ------------------------------------------------------------ |
+| 生活（主分区）       | life           | 160     |                                                  | [/v/life](https://www.bilibili.com/v/life)                   |
+| 搞笑                 | funny          | 138     | 各种沙雕有趣的搞笑剪辑，挑战，表演，配音等视频   | [/v/life/funny](https://www.bilibili.com/v/life/funny)       |
+| 日常                 | daily          | 21      | 记录日常生活，分享生活故事                       | [/v/life/daily](https://www.bilibili.com/v/life/daily)       |
+| ~~美食圈~~（重定向） | ~~food~~       | ~~76~~  | ~~美食鉴赏&料理制作教程~~                        | ~~/v/life/food~~                                             |
+| ~~动物圈~~（重定向） | ~~animal~~     | ~~75~~  | ~~萌萌的动物都在这里哦~~                         | ~~/v/life/animal~~                                           |
+| 手工                 | handmake       | 161     | 手工制品的制作过程或成品展示、教程、测评类视频   | [/v/life/handmake](https://www.bilibili.com/v/life/handmake) |
+| 绘画                 | painting       | 162     | 绘画过程或绘画教程，以及绘画相关的所有视频       | [/v/life/painting](https://www.bilibili.com/v/life/painting) |
+| 运动                 | sports         | 163     | 运动相关的记录、教程、装备评测和精彩瞬间剪辑视频 | [/v/life/sports](https://www.bilibili.com/v/life/sports)     |
+| ~~汽车~~（重定向）   | ~~automobile~~ | ~~176~~ | ~~专业汽车资讯，分享车生活~~                     | ~~/v/life/automobile~~                                       |
+| 其他                 | other          | 174     | 对于分区归属不明的视频进行归纳整合的特定分区     | [/v/life/other](https://www.bilibili.com/v/life/other)       |
 
 ## 美食
 
@@ -159,15 +174,15 @@
 
 <img src="/imgs/zone/animal.svg" width="100" height="100"/>
 
-| 名称     | 代号                                   | tID  | 简介                                                         | url路由                                                      |
-| -------- | -------------------------------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 动物圈   | animal（主分区）                       | 217  |                                                              | [/v/animal](https://www.bilibili.com/v/animal)               |
-| 喵星人   | cat                                    | 218  | 喵喵喵喵喵                                                   | [/v/animal/cat](https://www.bilibili.com/v/animal/cat)       |
-| 汪星人   | dog                                    | 219  | 汪汪汪汪汪                                                   | [/v/animal/dog](https://www.bilibili.com/v/animal/dog)       |
-| 大熊猫   | panda                                  | 220  | 芝麻汤圆营业中                                               | [/v/animal/panda](https://www.bilibili.com/v/animal/panda)   |
-| 野生动物 | wild_animal                            | 221  | 内有“猛兽”出没                                               | [/v/animal/wild_animal](https://www.bilibili.com/v/animal/wild_animal) |
-| 爬宠     | reptiles                               | 222  | 鳞甲有灵                                                     | [/v/animal/reptiles](https://www.bilibili.com/v/animal/reptiles) |
-| 动物综合 | animal_composite（原[生活]->[动物圈]） | 75   | 收录除上述子分区外，其余动物相关视频以及非动物主体或多个动物主体的动物相关延伸内容 | [/v/animal/animal_composite](https://www.bilibili.com/v/animal/animal_composite) |
+| 名称     | 代号             | tID  | 简介                                                         | url路由                                                      |
+| -------- | ---------------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 动物圈   | animal（主分区） | 217  |                                                              | [/v/animal](https://www.bilibili.com/v/animal)               |
+| 喵星人   | cat              | 218  | 喵喵喵喵喵                                                   | [/v/animal/cat](https://www.bilibili.com/v/animal/cat)       |
+| 汪星人   | dog              | 219  | 汪汪汪汪汪                                                   | [/v/animal/dog](https://www.bilibili.com/v/animal/dog)       |
+| 大熊猫   | panda            | 220  | 芝麻汤圆营业中                                               | [/v/animal/panda](https://www.bilibili.com/v/animal/panda)   |
+| 野生动物 | wild_animal      | 221  | 内有“猛兽”出没                                               | [/v/animal/wild_animal](https://www.bilibili.com/v/animal/wild_animal) |
+| 爬宠     | reptiles         | 222  | 鳞甲有灵                                                     | [/v/animal/reptiles](https://www.bilibili.com/v/animal/reptiles) |
+| 动物综合 | animal_composite | 75   | 收录除上述子分区外，其余动物相关视频以及非动物主体或多个动物主体的动物相关延伸内容 | [/v/animal/animal_composite](https://www.bilibili.com/v/animal/animal_composite) |
 
 ## 鬼畜
 
