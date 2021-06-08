@@ -1052,7 +1052,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />22003：用户位于黑名单 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />22001：不能对自己进行此操作<br />22003：用户位于黑名单 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        |                                                              |
 
@@ -1061,7 +1061,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 关注`UID=14082`的用户
 
 ```shell
-curl 'http://http://api.bilibili.com/x/relation/modify' \
+curl 'http://api.bilibili.com/x/relation/modify' \
 --data-urlencode 'fid=14082' \
 --data-urlencode 'act=1' \
 --data-urlencode 're_src=11' \
