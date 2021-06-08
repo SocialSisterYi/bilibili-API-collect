@@ -88,40 +88,48 @@
 | 音游           | music       | 136  | 各个平台上，通过配合音乐与节奏而进行的音乐类游戏视频         | [/v/game/music](https://www.bilibili.com/v/game/music)       |
 | Mugen          | mugen       | 19   | 以Mugen引擎为平台制作、或与Mugen相关的游戏视频               | [/v/game/mugen](https://www.bilibili.com/v/game/mugen)       |
 
-## 知识（~~原科技分区~~）
+## 知识
 
-（已改版）
+(已改版)
 
-新：<img src="/imgs/zone/technology.svg" width="100" height="100"/>旧：<img src="/imgs/zone/technology_old.svg" width="100" height="100"/>
+<img src="/imgs/zone/knowledge.svg" width="100" height="100"/>
 
-| 名称                         | 代号              | tID    | 简介                                                      | url路由                                                      |
-| ---------------------------- | ----------------- | ------ | --------------------------------------------------------- | ------------------------------------------------------------ |
-| 知识（主分区）               | technology        | 36     |                                                           | [/v/technology](https://www.bilibili.com/v/technology)       |
-| 科学科普                     | science           | 201    | 回答你的十万个为什么                                      | [/v/technology/science](https://www.bilibili.com/v/technology/science) |
-| 社科人文（~~趣味科普人文~~） | fun               | 124    | 聊聊互联网社会法律，看看历史趣闻艺术，品品文化心理人物    | [/v/technology/fun](https://www.bilibili.com/v/technology/fun) |
-| 财经                         | finance           | 207    | 宏观经济分析，证券市场动态，商业帝国故事，知识与财富齐飞~ | [/v/technology/finance](https://www.bilibili.com/v/technology/finance) |
-| 校园学习                     | campus            | 208    | 老师很有趣，同学多人才，我们都爱搞学习                    | [/v/technology/campus](https://www.bilibili.com/v/technology/campus) |
-| 职业职场                     | career            | 209    | 职场加油站，成为最有料的职场人                            | [/v/technology/career](https://www.bilibili.com/v/technology/career) |
-| 野生技术协会                 | wild              | 122    | 炫酷技能大集合，是时候展现真正的技术了                    | [/v/technology/wild](https://www.bilibili.com/v/technology/wild) |
-| ~~演讲·公开课~~（已下线）    | ~~speech_course~~ | ~~39~~ | ~~涨知识的好地方，给爱学习的你~~                          | ~~/v/technology/speech_course~~                              |
-| ~~星海~~（已下线）           | ~~military~~      | ~~96~~ | ~~军事类内容的圣地~~                                      | ~~/v/technology/military~~                                   |
-| ~~机械~~（已下线）           | ~~mechanical~~    | ~~98~~ | ~~机械设备展示或制作视频~~                                | ~~/v/technology/mechanical~~                                 |
+| 名称                                           | 代号              | tID    | 简介                                                   | url路由                                                      |
+| ---------------------------------------------- | ----------------- | ------ | ------------------------------------------------------ | ------------------------------------------------------------ |
+| 知识(主分区)                                   | knowledge         | 36     |                                                        | [/v/knowledge](https://www.bilibili.com/v/knowledge)         |
+| 科学科普                                       | science           | 201    | 回答你的十万个为什么                                   | [/v/knowledge/science](https://www.bilibili.com/v/knowledge/science) |
+| 社科·法律·心理(~~原社科人文、原趣味科普人文~~) | social_science    | 124    | 基于社会科学、法学、心理学展开或个人观点输出的知识视频 | [/v/knowledge/social_science](https://www.bilibili.com/v/knowledge/social_science) |
+| 人文历史                                       | humanity_history  | 228    | 看看古今人物，聊聊历史过往，品品文学典籍               | [/v/knowledge/humanity_history](https://www.bilibili.com/v/knowledge/humanity_history) |
+| 财经商业                                       | business          | 207    | 说金融市场，谈宏观经济，一起畅聊商业故事               | [/v/knowledge/finance](https://www.bilibili.com/v/knowledge/finance) |
+| 校园学习                                       | campus            | 208    | 老师很有趣，同学多人才，我们都爱搞学习                 | [/v/knowledge/campus](https://www.bilibili.com/v/knowledge/campus) |
+| 职业职场                                       | career            | 209    | 职场加油站，成为最有料的职场人                         | [/v/knowledge/career](https://www.bilibili.com/v/knowledge/career) |
+| 设计·创意                                      | design            | 229    | 天马行空，创意设计，都在这里                           | [/v/knowledge/design](https://www.bilibili.com/v/knowledge/design) |
+| 野生技术协会                                   | skill             | 122    | 炫酷技能大集合，是时候展现真正的技术了                 | [/v/knowledge/skill](https://www.bilibili.com/v/knowledge/skill) |
+| ~~演讲·公开课~~(已下线)                        | ~~speech_course~~ | ~~39~~ | ~~涨知识的好地方，给爱学习的你~~                       | ~~/v/technology/speech_course~~                              |
+| ~~星海~~(已下线)                               | ~~military~~      | ~~96~~ | ~~军事类内容的圣地~~                                   | ~~/v/technology/military~~                                   |
+| ~~机械~~(已下线)                               | ~~mechanical~~    | ~~98~~ | ~~机械设备展示或制作视频~~                             | ~~/v/technology/mechanical~~                                 |
 
-## 数码
+## 科技(~~原数码分区~~)
 
-<img src="/imgs/zone/digital.svg" width="100" height="100"/>
+(已改版)
 
-| 名称           | 代号            | tID  | 简介                                               | url路由                                                      |
-| -------------- | --------------- | ---- | -------------------------------------------------- | ------------------------------------------------------------ |
-| 数码（主分区） | digital         | 188  |                                                    | [/v/digital](https://www.bilibili.com/v/digital)             |
-| 手机平板       | mobile          | 95   | 手机平板、app 和产品教程等相关视频                 | [/v/digital/mobile](https://www.bilibili.com/v/digital/mobile) |
-| 电脑装机       | pc              | 189  | 电脑、笔记本、装机配件、外设和软件教程等相关视频   | [/v/digital/pc](https://www.bilibili.com/v/digital/pc)       |
-| 摄影摄像       | photography     | 190  | 摄影摄像器材、拍摄剪辑技巧、拍摄作品分享等相关视频 | [/v/digital/photography](https://www.bilibili.com/v/digital/photography) |
-| 影音智能       | intelligence_av | 191  | 影音设备、智能产品等相关视频                       | [/v/digital/intelligence_av](https://www.bilibili.com/v/digital/intelligence_av) |
+旧：<img src="/imgs/zone/digital.svg" width="100" height="100"/>新：<img src="/imgs/zone/tech.svg" width="100" height="100"/>
+
+| 名称                 | 代号                | tID     | 简介                                                       | url路由                                                      |
+| -------------------- | ------------------- | ------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| 科技(主分区)         | tech                | 188     |                                                            | [/v/tech](https://www.bilibili.com/v/tech)                   |
+| 数码(~~原手机平板~~) | digital             | 95      | 科技数码产品大全，一起来做发烧友                           | [/v/tech/digital](https://www.bilibili.com/v/tech/digital)   |
+| 软件应用             | application         | 230     | 超全软件应用指南                                           | [/v/tech/application](https://www.bilibili.com/v/tech/application) |
+| 计算机技术           | computer_tech       | 231     | 研究分析、教学演示、经验分享......有关计算机技术的都在这里 | [/v/tech/computer_tech](https://www.bilibili.com/v/tech/computer_tech) |
+| 工业·工程·机械       | industry            | 232     | 前方高能，机甲重工即将出没                                 | [/v/tech/industry](https://www.bilibili.com/v/tech/industry) |
+| 极客DIY              | diy                 | 233     | 炫酷技能，极客文化，硬核技巧，准备好你的惊讶               | [/v/tech/diy](https://www.bilibili.com/v/tech/diy)           |
+| ~~电脑装机~~(已下线) | ~~pc~~              | ~~189~~ | ~~电脑、笔记本、装机配件、外设和软件教程等相关视频~~       | ~~/v/digital/pc~~                                            |
+| ~~摄影摄像~~(已下线) | ~~photography~~     | ~~190~~ | ~~摄影摄像器材、拍摄剪辑技巧、拍摄作品分享等相关视频~~     | ~~/v/digital/photography~~                                   |
+| ~~影音智能~~(已下线) | ~~intelligence_av~~ | ~~191~~ | ~~影音设备、智能产品等相关视频~~                           | ~~/v/digital/intelligence_av~~                               |
 
 ## 汽车
 
-（新分区）
+(新分区)
 
 <img src="/imgs/zone/car.svg" width="100" height="100"/>
 
@@ -136,7 +144,7 @@
 
 ## 生活
 
-（已改版）
+(已改版)
 
 <img src="/imgs/zone/life.svg" width="100" height="100"/>
 
@@ -155,7 +163,7 @@
 
 ## 美食
 
-（新分区）
+(新分区)
 
 <img src="/imgs/zone/food.svg" width="100" height="100"/>
 
@@ -170,7 +178,7 @@
 
 ## 动物圈
 
-（新分区）
+(新分区)
 
 <img src="/imgs/zone/animal.svg" width="100" height="100"/>
 
@@ -212,7 +220,7 @@
 
 ## 资讯
 
-（新分区）
+(新分区)
 
 **注：该分区无排名功能**
 
@@ -228,7 +236,7 @@
 
 ## ~~广告~~
 
-（已下线）
+(已下线)
 
 <img src="/imgs/zone/ad.svg" width="100" height="100"/>
 
