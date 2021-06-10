@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package bilibili.rpc;
+
+import "google/protobuf/any.proto";
+
+// 响应gRPC Status
+// 当status code是[UNKNOWN = 2]时，details为业务详细的错误信息，进行proto any转换成业务码结构体
+message Status {
+  // 业务错误码
+  int32 code = 1;
+  // 业务错误信息
+  string message = 2;
+  //扩展信息嵌套(相当于该messasge的套娃)
+  repeated google.protobuf.Any details = 3;
+}

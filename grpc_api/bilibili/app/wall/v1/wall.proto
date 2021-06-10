@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package bilibili.app.wall.v1;
+
+// 免流规则
+service Wall {
+    // 获取免流规则信息
+    rpc RuleInfo (RuleRequest) returns (RulesReply);
+}
+
+// 获取免流规则信息-请求
+message RuleRequest {}
+
+// 获取免流规则信息-响应
+message RulesReply {
+    // 各ISP的免流规则信息组
+    // ISP如: cu ct cm
+    map<string,RulesInfo> rulesInfo = 1;
+}
+
+// 免流规则信息
+message RuleInfo {
+    // 是否支持免流
+    bool tf = 1;
+    // 操作模式
+    // break:无 replace:替换 proxy:代理
+    string m = 2;
+    // 操作参数
+    string a = 3;
+    // 匹配目标正则
+    string p = 4;
+}
+
+// 免流规则信息组
+message RulesInfo {
+    // 免流规则信息
+    repeated RuleInfo rulesInfo = 1;
+}

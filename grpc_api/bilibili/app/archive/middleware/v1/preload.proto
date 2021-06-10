@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package bilibili.app.archive.middleware.v1;
+
+// 视频秒开参数
+message PlayerArgs {
+    // 清晰度
+    int64 qn = 1;
+    // 流版本
+    int64 fnver = 2;
+    // 流类型
+    int64 fnval = 3;
+    // 返回url是否强制使用域名
+    // 0:不强制使用域名 1:http域名 2:https域名
+    int64 force_host = 4;
+}

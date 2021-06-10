@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package bilibili.metadata.locale;
+
+// Defined by https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LanguageandLocaleIDs/LanguageandLocaleIDs.html
+message LocaleIds {
+    // A language designator is a code that represents a language.
+    string language = 1;
+    // Writing systems.
+    string script = 2;
+    // A region designator is a code that represents a country or an area.
+    string region = 3;
+}
+
+// 区域标识
+// gRPC头部:x-bili-locale-bin
+message Locale {
+    // App设置的locale
+    LocaleIds c_locale = 1;
+    // 系统默认的locale
+    LocaleIds s_locale = 2;
+    // sim卡的国家码+运营商码
+    string sim_code = 3;
+    // 时区
+    string timezone = 4;
+}

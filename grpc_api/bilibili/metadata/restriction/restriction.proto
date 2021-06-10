@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package bilibili.metadata.restriction;
+
+// 模式类型
+enum ModeType {
+    NORMAL = 0;      // 正常模式
+    TEENAGERS = 1;   // 青少年模式
+    LESSONS = 2;     // 课堂模式
+}
+
+// 限制条件
+message Restriction {
+    // 青少年模式开关状态
+    bool teenagers_mode = 1;
+    // 课堂模式开关状态
+    bool lessons_mode = 2;
+    // 模式类型(旧版)
+    ModeType mode = 3;
+    // app 审核review状态
+    bool review = 4;
+}

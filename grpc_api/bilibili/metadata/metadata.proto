@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package bilibili.metadata;
+
+// 请求元数据
+// gRPC头部:x-bili-metadata-bin
+message Metadata {
+    // 登录Token
+    string access_key = 1;
+    // 包类型
+    string mobi_app = 2;
+    // 运行设备
+    string device = 3;
+    // 构建id
+    int32 build = 4;
+    // 渠道
+    string channel = 5;
+    // 设备buvid
+    string buvid = 6;
+    // 平台类型
+    string platform = 7;
+}

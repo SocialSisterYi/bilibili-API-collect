@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package bilibili.metadata.device;
+
+// 设备信息
+// gRPC头部:x-bili-device-bin
+message Device {
+    // 产品id
+    // 粉 白 蓝 直播姬 HD 海外 OTT 漫画 TV野版 小视频 网易漫画 网易漫画 网易漫画HD 国际版
+    // 1  2  3    4    5   6    7   8     9     10      11       12       13       14
+    int32 app_id = 1;
+    // 构建id
+    int32 build = 2;
+    // 设备buvid
+    string buvid = 3;
+    // 包类型
+    string mobi_app = 4;
+    // 平台类型
+    // ios android
+    string platform = 5;
+    // 设备类型
+    string device = 6;
+    // 渠道
+    string channel = 7;
+    // 手机品牌
+    string brand = 8;
+    // 手机型号
+    string model = 9;
+    // 系统版本
+    string osver = 10;
+    // 本地设备指纹
+    string fp_local = 11;
+    // 远程设备指纹
+    string fp_remote = 12;
+    // APP版本号
+    string version_name = 13;
+    // 设备指纹, 不区分本地或远程设备指纹，作为推送目标的索引
+    string fp = 14;
+}
