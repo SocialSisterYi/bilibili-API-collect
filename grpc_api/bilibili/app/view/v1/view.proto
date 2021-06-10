@@ -29,31 +29,31 @@ message NoReply {}
 
 // 视频页详情页-请求
 message ViewReq {
-	// 稿件avid(av/bv任选其一)
-	int64 aid = 1;
-	// 稿件bvid(av/bv任选其一)
-	string bvid = 2;
-	// 来源
-	string from = 3;
-	// AI trackid
-	string trackid = 4;
-	// 广告扩展数据
-	string adExtra = 5;
-	// 清晰度(旧版)
-	int32 qn = 6;
-	// 流版本(旧版)
-	int32 fnver = 7;
-	// 流类型(旧版)
-	int32 fnval = 8;
-	// 是否强制使用域名(旧版)
-	int32 forceHost = 9;
-	// 是否允许4K(旧版)
-	int32 fourk = 10;
-	// 当前页面spm
-	string spmid = 11;
-	// 上一页面spm
-	string fromSpmid = 12;
-	//
+    // 稿件avid(av/bv任选其一)
+    int64 aid = 1;
+    // 稿件bvid(av/bv任选其一)
+    string bvid = 2;
+    // 来源
+    string from = 3;
+    // AI trackid
+    string trackid = 4;
+    // 广告扩展数据
+    string adExtra = 5;
+    // 清晰度(旧版)
+    int32 qn = 6;
+    // 流版本(旧版)
+    int32 fnver = 7;
+    // 流类型(旧版)
+    int32 fnval = 8;
+    // 是否强制使用域名(旧版)
+    int32 forceHost = 9;
+    // 是否允许4K(旧版)
+    int32 fourk = 10;
+    // 当前页面spm
+    string spmid = 11;
+    // 上一页面spm
+    string fromSpmid = 12;
+    //
     int32 autoplay = 13;
     // 视频秒开参数
     bilibili.app.archive.middleware.v1.PlayerArgs playerArgs = 14;
@@ -390,21 +390,21 @@ enum ECode {
 
 // 分P信息
 message ViewPage {
-	// 分P基本信息
-	bilibili.app.archive.v1.Page page = 1;
-	// 分P对应的音频稿件
-	Audio audio = 2;
-	// 分P弹幕信息
-	DM dm =3;
-	// 下载文案
-	string downloadTitle = 4;
-	// 分P完整标题(视频标题+分P标题)
-	string downloadSubtitle = 5;
+    // 分P基本信息
+    bilibili.app.archive.v1.Page page = 1;
+    // 分P对应的音频稿件
+    Audio audio = 2;
+    // 分P弹幕信息
+    DM dm =3;
+    // 下载文案
+    string downloadTitle = 4;
+    // 分P完整标题(视频标题+分P标题)
+    string downloadSubtitle = 5;
 }
 
 // 音频稿件信息
 message Audio {
-	// 音频标题
+    // 音频标题
     string title = 1;
     // 音频封面url
     string coverUrl = 2;
@@ -435,7 +435,7 @@ message DM {
 
 // UP主扩展信息 ("OnwerExt"为源码中拼写错误)
 message OnwerExt {
-	// 认证信息
+    // 认证信息
     OfficialVerify officialVerify = 1;
     // 直播信息
     Live live = 2;
@@ -451,8 +451,8 @@ message OnwerExt {
 
 // 认证信息
 message OfficialVerify {
-	// 认证类型
-	// 0:个人认证 1:官方认证
+    // 认证类型
+    // 0:个人认证 1:官方认证
     int32 type = 1;
     //认证名称
     string desc = 2;
@@ -460,7 +460,7 @@ message OfficialVerify {
 
 // 直播信息
 message Live {
-	// 主播UID
+    // 主播UID
     int64 mid = 1;
     // 直播间id
     int64 roomid = 2;
@@ -472,7 +472,7 @@ message Live {
 
 // 会员信息
 message Vip {
-	//会员类型
+    //会员类型
     int32 type = 1;
     //到期时间
     int64 dueDate = 2;
@@ -502,7 +502,7 @@ message VipLabel {
 
 // 用户操作状态
 message ReqUser {
-	// 用户是否关注UP
+    // 用户是否关注UP
     int32 attention = 1;
     // UP是否关注用户
     int32 guestAttention = 2;
@@ -522,7 +522,7 @@ message ReqUser {
 
 // TAG信息
 message Tag {
-	// TAD id
+    // TAD id
     int64 id = 1;
     // TAG名
     string name = 2;
@@ -543,13 +543,13 @@ message Tag {
 
 // TAG图标信息
 message TIcon {
-	// TAG图标url
+    // TAG图标url
     string icon = 1;
 }
 
 // 剧集信息
 message Season {
-	//
+    //
     string allowDownload = 1;
     // 剧集ssid
     int64 seasonId = 2;
@@ -579,8 +579,8 @@ message Season {
 
 // 用户追番标志
 message UserSeason {
-	// 关注状态
-	// 0:未关注 1:已关注
+    // 关注状态
+    // 0:未关注 1:已关注
     string attention = 1;
 }
 
@@ -598,7 +598,7 @@ message SeasonPlayer{
 
 // 充电排行信息
 message ElecRank {
-	// 充电排行列表
+    // 充电排行列表
     repeated ElecRankItem list = 1;
     // 充电用户数
     int64 count = 2;
@@ -606,7 +606,7 @@ message ElecRank {
 
 // 充电用户信息
 message ElecRankItem {
-	// 用户头像url
+    // 用户头像url
     string avatar = 1;
     // 用户昵称
     string nickname = 2;
@@ -618,7 +618,7 @@ message ElecRankItem {
 
 // 稿件观看进度
 message History {
-	// 播放进度分P cid
+    // 播放进度分P cid
     int64 cid = 1;
     // 播放进度时间
     // 0:未观看 -1:已看完 正整数:播放时间进度
@@ -627,7 +627,7 @@ message History {
 
 //相关推荐项
 message Relate {
-	//
+    //
     int64 aid = 1;
     // 封面url
     string pic = 2;
@@ -714,7 +714,7 @@ message ReasonStyle {
 
 //游戏礼包信息
 message PackInfo {
-	// 礼包标题
+    // 礼包标题
     string title = 1;
     // 礼包页uri
     string uri = 2;
@@ -730,7 +730,7 @@ message Notice {
 
 //
 message Button {
-	// 按钮文案
+    // 按钮文案
     string title = 1;
     // 跳转uri
     string uri = 2;
@@ -738,7 +738,7 @@ message Button {
 
 // 不喜欢原因
 message Dislike {
-	// 标题
+    // 标题
     string title = 1;
     //
     string subtitle = 2;
@@ -748,8 +748,8 @@ message Dislike {
 
 // 不喜欢原因项
 message DislikeReasons {
-	// 类型
-	// 1:全部类型 3:TAG 4:UP主
+    // 类型
+    // 1:全部类型 3:TAG 4:UP主
     int64 id = 1;
     // 相关UP主mid
     int64 mid = 2;
@@ -763,7 +763,7 @@ message DislikeReasons {
 
 // 进度条动画配置
 message PlayerIcon {
-	// 拖动动画配置档url
+    // 拖动动画配置档url
     string url1 = 1;
     // 拖动动画配置档hash
     string hash1 = 2;
@@ -851,7 +851,7 @@ message AssetMsg {
 
 // 视频引用的bgm音频
 message Bgm {
-	// 音频auid
+    // 音频auid
     int64 sid = 1;
     // 音频作者mid
     int64 mid = 2;
@@ -867,7 +867,7 @@ message Bgm {
 
 // 合作成员信息
 message Staff {
-	// 成员mid
+    // 成员mid
     int64 mid = 1;
     // 成员角色
     string title = 2;
@@ -905,7 +905,7 @@ enum SeasonType {
 
 // UGC视频合集信息
 message UgcSeason {
-	// 合集id
+    // 合集id
     int64 id = 1;
     // 合集标题
     string title = 2;
@@ -935,7 +935,7 @@ message UgcSeason {
 
 //ugc视频合集状态数
 message UgcSeasonStat {
-	// 合集id
+    // 合集id
     int64 seasonId = 1;
     // 观看数
     int32 view = 2;
@@ -959,7 +959,7 @@ message UgcSeasonStat {
 
 // 视频合集小节信息
 message Section {
-	// 小节id
+    // 小节id
     int64 id = 1;
     // 小节标题
     string title = 2;
@@ -972,7 +972,7 @@ message Section {
 
 //视频合集单话信息
 message Episode {
-	// 合集单话id
+    // 合集单话id
     int64 id = 1;
     // 稿件avid
     int64 aid = 2;
@@ -1026,7 +1026,7 @@ message Interaction {
 
 // 稿件获得荣誉信息
 message Honor {
-	// 荣誉栏图标url
+    // 荣誉栏图标url
     string icon = 1;
     // 荣誉栏图标url 夜间模式
     string iconNight = 2;
@@ -1086,7 +1086,7 @@ message Node {
 
 // 稿件播放中数据-请求
 message ViewProgressReq{
-	// 稿件avid
+    // 稿件avid
     int64 aid = 1;
     // 视频cid
     int64 cid = 2;
@@ -1096,7 +1096,7 @@ message ViewProgressReq{
 
 // 稿件播放中数据-回复
 message ViewProgressReply{
-	// 视频引导信息
+    // 视频引导信息
     VideoGuide videoGuide = 1;
     // Chronos灰度管理
     Chronos chronos = 2;
@@ -1112,7 +1112,7 @@ message Chronos {
 
 // 视频引导信息
 message VideoGuide{
-	// 关注按钮卡片
+    // 关注按钮卡片
     repeated Attention attention = 1;
     // 互动弹幕
     repeated CommandDm commandDms = 2;
@@ -1231,7 +1231,7 @@ message OperationCard{
 
 // 互动弹幕条目信息
 message CommandDm{
-	// 弹幕id
+    // 弹幕id
     int64 id = 1;
     // 对象视频cid
     int64 oid = 2;

@@ -1,8 +1,5 @@
 # grpc接口定义（protobuf结构体） 
 
-- `comp_proto.bat`---win递归批量编译脚本
-- `conp_proto.sh`---linux递归编译脚本
-
 注：
 
 1. proto结构体文件按照包名分类，同级放在同一目录中
