@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package bilibili.app.show.v1;
+
+// 排行榜
+service Rank {
+    // 全站排行榜
+    rpc RankAll (RankAllResultReq) returns (RankListReply);
+    // 分区排行榜
+    rpc RankRegion (RankRegionResultReq) returns (RankListReply);
+}
+
+// 全站排行榜-请求
+message RankAllResultReq {
+    // 必须为"all"
+    string order = 1;
+    // 页码
+    // 默认1页
+    int32 pn = 2;
+    // 每页项数
+    // 默认100项，最大100
+    int32 ps = 3;
+}
+
+// 分区排行榜-请求
+message RankRegionResultReq {
+    // 一级分区tid(二级分区不可用)
+    // 0:全站
+    int32 rid = 1;
+    // 页码
+    // 默认1页
+    int32 pn = 2;
+    // 每页项数
+    // 默认100项，最大100
+    int32 ps = 3;
+}
+
+// 排行榜信息-响应
+message RankListReply {
+    // 排行榜列表
+    repeated Item items = 1;
+}
+
+// 排行榜列表项
+message Item {
+    // 标题
+    string title = 1;
+    // 封面url
+    string cover = 2;
+    // 参数(稿件avid)
+    string param = 3;
+    // 跳转uri
+    string uri = 4;
+    // 重定向url
+    string redirectUrl = 5;
+    // 跳转类型
+    // av:视频稿件
+    string goto = 6;
+    // 播放数
+    int32 play = 7;
+    // 弹幕数
+    int32 danmaku = 8;
+    // UP主mid
+    int64 mid = 9;
+    // UP主昵称
+    string name = 10;
+    // UP主头像url
+    string face = 11;
+    // 评论数
+    int32 reply = 12;
+    // 收藏数
+    int32 favourite = 13;
+    // 发布时间
+    int64 pubDate = 14;
+    // 分区tid
+    int32 rid = 15;
+    // 子分区名
+    string rname = 16;
+    // 视频总时长
+    int64 duration = 17;
+    // 点赞数
+    int32 like = 18;
+    // 1P cid
+    int64 cid = 19;
+    // 综合评分
+    int64 pts = 20;
+    // 合作视频文案
+    string cooperation = 21;
+    // 属性位
+    // 0:未关注 1:已关注
+    int32 attribute = 22;
+    // UP主粉丝数
+    int64 follower = 23;
+    // UP主认证信息
+    OfficialVerify officialVerify = 24;
+    // 同一UP收起子项列表
+    repeated Item children = 25;
+    // 关系信息
+    Relation relation = 26;
+}
+
+// 认证信息
+message OfficialVerify {
+    // 认证类型
+    // -1:无认证 0:个人认证 1:机构认证
+    int32 type = 1;
+    // 认证描述
+    string desc = 2;
+}
+
+// 关系信息
+message Relation {
+    // 关系状态id
+    // 1:未关注 2:已关注 3:被关注 4:互相关注
+    int32 status = 1;
+    // 是否关注
+    int32 isFollow = 2;
+    // 是否粉丝
+    int32 isFollowed = 3;
+}

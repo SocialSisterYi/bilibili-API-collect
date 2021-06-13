@@ -1,0 +1,416 @@
+syntax = "proto3";
+
+package bilibili.app.card.v1;
+
+import "bilibili/app/card/v1/common.proto";
+
+//
+message DoubleCards {
+    oneof Card {
+        //
+        SmallCoverV2 small_cover_v2 = 1;
+        //
+        OnePicV2 one_pic_v2 = 2;
+        //
+        ThreePicV2 three_pic_v2 = 3;
+    }
+}
+
+//
+message SmallCoverV2 {
+    //
+    Base base = 1;
+    //
+    string cover_gif = 2;
+    //
+    int32 cover_blur = 3;
+    //
+    string cover_left_text_1 = 4;
+    //
+    int32 cover_left_icon_1 = 5;
+    //
+    string cover_left_text_2 = 6;
+    //
+    int32 cover_left_icon_2 = 7;
+    //
+    string cover_right_text = 8;
+    //
+    int32 cover_right_icon = 9;
+    //
+    string cover_right_background_color = 10;
+    //
+    string subtitle = 11;
+    //
+    string badge = 12;
+    //
+    string rcmd_reason = 13;
+    //
+    string desc = 14;
+    //
+    Avatar avatar = 15;
+    //
+    int32 official_icon = 16;
+    //
+    int32 can_play = 17;
+    //
+    ReasonStyle rcmd_reason_style = 18;
+    //
+    ReasonStyle rcmd_reason_style_v2 = 19;
+    //
+    LikeButton like_button = 20;
+}
+
+//
+message SmallCoverV3 {
+    //
+    Base base = 1;
+    //
+    Avatar avatar = 2;
+    //
+    string cover_left_text = 3;
+    //
+    Button cover_right_button = 4;
+    //
+    string rcmd_reason = 5;
+    //
+    string desc = 6;
+    //
+    int32 official_icon = 7;
+    //
+    int32 can_play = 8;
+    //
+    ReasonStyle rcmd_reason_style = 9;
+}
+
+//
+message MiddleCoverV2 {
+    //
+    Base base = 1;
+    //
+    int32 ratio = 2;
+    //
+    string desc = 3;
+    //
+    string badge = 4;
+}
+
+//
+message LargeCoverV2 {
+    //
+    Base base = 1;
+    //
+    Avatar avatar = 2;
+    //
+    string badge = 3;
+    //
+    Button cover_right_button = 4;
+    //
+    string cover_left_text_1 = 5;
+    //
+    int32 cover_left_icon_1 = 6;
+    //
+    string cover_left_text_2 = 7;
+    //
+    int32 cover_left_icon_2 = 8;
+    //
+    string rcmd_reason = 9;
+    //
+    int32 official_icon = 10;
+    //
+    int32 can_play = 11;
+    //
+    ReasonStyle rcmd_reason_style = 12;
+    //
+    int32 show_top = 13;
+    //
+    int32 show_bottom = 14;
+}
+
+//
+message ThreeItemV2 {
+    //
+    Base base = 1;
+    //
+    int32 title_icon = 2;
+    //
+    string more_uri = 3;
+    //
+    string more_text = 4;
+    //
+    repeated ThreeItemV2Item items = 5;
+}
+
+//
+message ThreeItemV2Item {
+    //
+    Base base = 1;
+    //
+    int32 cover_left_icon = 2;
+    //
+    string desc_text_1 = 3;
+    //
+    int32 desc_icon_1 = 4;
+    //
+    string desc_text_2 = 5;
+    //
+    int32 desc_icon_2 = 6;
+    //
+    string badge = 7;
+}
+
+//
+message SmallCoverV4 {
+    //
+    Base base = 1;
+    //
+    string cover_badge = 2;
+    //
+    string desc = 3;
+    //
+    string title_right_text = 4;
+    //
+    int32 title_right_pic = 5;
+}
+
+//
+message TwoItemV2 {
+    //
+    Base base = 1;
+    //
+    repeated TwoItemV2Item items = 2;
+}
+
+message TwoItemV2Item {
+    //
+    Base base = 1;
+    //
+    string badge = 2;
+    //
+    string cover_left_text_1 = 3;
+    //
+    int32 cover_left_icon_1 = 4;
+}
+
+//
+message MultiItem {
+    //
+    Base base = 1;
+    //
+    string more_uri = 2;
+    //
+    string more_text = 3;
+    //
+    repeated DoubleCards items = 4;
+}
+
+//
+message ThreePicV2 {
+    //
+    Base base = 1;
+    //
+    string left_cover = 2;
+    //
+    string right_cover_1 = 3;
+    //
+    string right_cover_2 = 4;
+    //
+    string cover_left_text_1 = 5;
+    //
+    int32 cover_left_icon_1 = 6;
+    //
+    string cover_left_text_2 = 7;
+    //
+    int32 cover_left_icon_2 = 8;
+    //
+    string cover_right_text = 9;
+    //
+    int32 cover_right_icon = 10;
+    //
+    string cover_right_background_color = 11;
+    //
+    string badge = 12;
+    //
+    string rcmd_reason = 13;
+    //
+    string desc = 14;
+    //
+    Avatar avatar = 15;
+    //
+    ReasonStyle rcmd_reason_style = 16;
+}
+
+//
+message OnePicV2 {
+    //
+    Base base = 1;
+    //
+    int32 cover_left_icon_1 = 2;
+    //
+    string cover_left_text_2 = 3;
+    //
+    string cover_right_text = 4;
+    //
+    int32 cover_right_icon = 5;
+    //
+    string cover_right_background_color = 6;
+    //
+    string badge = 7;
+    //
+    string rcmd_reason = 8;
+    //
+    Avatar avatar = 9;
+    //
+    ReasonStyle rcmd_reason_style = 10;
+}
+
+//
+message LargeCoverV3 {
+    //
+    Base base = 1;
+    //
+    string cover_gif = 2;
+    //
+    Avatar avatar = 3;
+    //
+    ReasonStyle top_rcmd_reason_style = 4;
+    //
+    ReasonStyle bottom_rcmd_reason_style = 5;
+    //
+    string cover_left_text_1 = 6;
+    //
+    int32 cover_left_icon_1 = 7;
+    //
+    string cover_left_text_2 = 8;
+    //
+    int32 cover_left_icon_2 = 9;
+    //
+    string cover_right_text = 10;
+    //
+    string desc = 11;
+    //
+    int32 official_icon = 12;
+}
+
+//
+message ThreePicV3 {
+    //
+    Base base = 1;
+    //
+    string left_cover = 2;
+    //
+    string right_cover_1 = 3;
+    //
+    string right_cover_2 = 4;
+    //
+    string cover_left_text_1 = 5;
+    //
+    int32 cover_left_icon_1 = 6;
+    //
+    string cover_left_text_2 = 7;
+    //
+    int32 cover_left_icon_2 = 8;
+    //
+    string cover_right_text = 9;
+    //
+    int32 cover_right_icon = 10;
+    //
+    string cover_right_background_color = 11;
+    //
+    string badge = 12;
+    //
+    ReasonStyle rcmd_reason_style = 13;
+}
+
+//
+message OnePicV3 {
+    //
+    Base base = 1;
+    //
+    string cover_left_text_1 = 2;
+    //
+    int32 cover_left_icon_1 = 3;
+    //
+    string cover_right_text = 4;
+    //
+    int32 cover_right_icon = 5;
+    //
+    string cover_right_background_color = 6;
+    //
+    string badge = 7;
+    //
+    ReasonStyle rcmd_reason_style = 8;
+}
+
+//
+message SmallCoverV7 {
+    //
+    Base base = 1;
+    //
+    string desc = 2;
+}
+
+//
+message SmallCoverV9 {
+    //
+    Base base = 1;
+    //
+    string cover_left_text_1 = 2;
+    //
+    int32 cover_left_icon_1 = 3;
+    //
+    string cover_left_text_2 = 4;
+    //
+    int32 cover_left_icon_2 = 5;
+    //
+    string cover_right_text = 6;
+    //
+    int32 cover_right_icon = 7;
+    //
+    int32 can_play = 8;
+    //
+    ReasonStyle rcmd_reason_style = 9;
+    //
+    Up up = 10;
+    //
+    ReasonStyle left_cover_badge_style = 11;
+    //
+    ReasonStyle left_bottom_rcmd_reason_style = 12;
+}
+
+//
+message SmallCoverConvergeV2 {
+    //
+    Base base = 1;
+    //
+    string cover_left_text_1 = 2;
+    //
+    int32 cover_left_icon_1 = 3;
+    //
+    string cover_left_text_2 = 4;
+    //
+    int32 cover_left_icon_2 = 5;
+    //
+    string cover_right_text = 6;
+    //
+    string cover_right_top_text = 7;
+    //
+    ReasonStyle rcmd_reason_style = 8;
+    //
+    ReasonStyle rcmd_reason_style_v2 = 9;
+}
+
+//
+message SmallChannelSpecial {
+    //
+    Base base = 1;
+    //
+    string bg_cover = 2;
+    //
+    string desc_1 = 3;
+    //
+    string desc_2 = 4;
+    //
+    string badge = 5;
+    //
+    ReasonStyle rcmd_reason_style_2 = 6;
+}

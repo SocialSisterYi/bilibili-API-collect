@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package bilibili.gaia.gw;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+//import "extension/wdcli/wdcli.proto";
+
+// 应用列表上报
+service Gaia {
+    // 应用列表上报
+    rpc ExUploadAppList(GaiaEncryptMsgReq) returns (UploadAppListReply);
+    // 拉取rsa公钥
+    rpc ExFetchPublicKey(.google.protobuf.Empty) returns (FetchPublicKeyReply);
+}
+
+//
+message FetchPublicKeyReply {
+    // 版本号
+    string version = 1;     
+    // RSA公钥
+    string public_key = 2;  
+    // 公钥过期时间
+    int64 deadline = 3;     
+}
+
+message GaiaDeviceBasicInfo {
+    //平台&应用信息
+    string platform = 1;        //android/ios/web/h5;
+    string device = 2;          //运行设备, 用于区分不同的app, 见客户端传入的对应参数。对于苹果系统，device有效值为phone, pad；安卓无法区分phone和pad，留空即可。
+    string mobi_app = 3;        //包类型，用于区分不同的app, 见客户端传入的对应参数（mobi_app ）；对于web端请求，请传空
+    string origin =4;           //客户端appkey, 用以区分不同的客户端，对应客户端请求参数中的appkey,如果无法获取可传空“”
+    string app_id = 5;          //app产品编号 //产品编号，由数据平台分配，粉=1，白=2，蓝=3，直播姬=4，HD=5，海外=6，OTT=7，漫画=8，TV野版=9，小视频=10，网易漫画=11，网易漫画lite=12，网易漫画HD=13,国际版=14
+
+    //应用的版本信息
+    string sdkver = 6;            // SDK版本号   "sdkver": "2.6.6"
+    string app_version = 7;       // app版本  "app_version":"5.36.0"
+    string app_version_code = 8;  // app版本号 "app_version_code":"5360000"
+    string build = 9;             // app版本号，见客户端传入的对应参数；对于web端请求，请传空
+
+    //渠道信息
+    string channel = 10;   //渠道标识，见客户端传入的对应参数；对于web端请求，请传空；对应chid
+
+    //机器硬件信息
+    string brand =11;   //手机品牌，见客户端传入的对应参数；
+    string model=12;    //手机型号，见客户端传入的对应参数
+    string osver =13;   //系统版本，见客户端传入的对应参数
+    string user_agent=14;
+
+    //设备标识信息
+    string buvid_local = 15;  //本地设备唯一标识
+    string buvid = 16;        //设备唯一标识
+
+    //登陆用户信息
+    string mid = 17;         //最后一次登陆用户的mid，如果无登陆信息，传0即可
+
+    //本次启动信息
+    int64  fts = 18; // app首次启动时间 "fts":1530447775661
+    int32  first = 19; // 是否首次启动 是：0 否：1
+
+    //网络相关的信息
+    string network = 20; // 网络连接方式, WIFI/CELLULAR/OFFLINE/OTHERNET/ETHERNET "network":"WIFI", ESS_NETWORK_STATE、ACCESS_WIFI_STATE
+    //string ip = 20;
+}
+
+//待加密的pb对象
+message DeviceAppList {
+    // 上报类型
+    // first_installation:首次安装上报 first_open:每日启动上报
+    string source = 1;
+    // 安装的系统程序列表
+    repeated string system_app_list = 2;
+    //安装的用户程序列表
+    repeated string user_app_list = 3;
+}
+
+// 加密方式
+enum EncryptType{
+    // 非法值
+    INVALID_ENCRYPT_TYPE = 0;
+    // 同客户端人工约定AES加密私钥，存储在客户端
+    CLIENT_AES = 1;
+    // 客户端随机生成一个用于AES加密的私钥，并用服务端下发的RSA公钥来加密
+    SERVER_RSA_AES = 2;
+}
+
+// 负载类型
+enum PayloadType {
+    //非法值
+    INVALID_PAYLOAD = 0;
+    //设备app列表，对应DeviceAppList
+    DEVICE_APP_LIST = 1;
+}
+
+// 风控通用消息头
+message GaiaMsgHeader {
+    //加密类型
+    EncryptType encode_type = 1;
+    //类型
+    PayloadType payload_type = 2;
+    //RAS加密后的aes_key
+    bytes encoded_aes_key = 3;
+    //当前时间戳(ms)
+    int64 ts = 4;
+}
+
+// 应用列表上报-请求
+message GaiaEncryptMsgReq {
+    // 上报头部
+    GaiaMsgHeader header = 1;
+    // 加密数据
+    bytes encrypt_payload = 2;
+}
+
+// 应用列表上报-响应
+message UploadAppListReply {
+    // 上报响应id
+    string trace_id = 1;
+}

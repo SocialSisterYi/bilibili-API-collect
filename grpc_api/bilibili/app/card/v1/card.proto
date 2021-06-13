@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package bilibili.app.card.v1;
+
+import "bilibili/app/card/v1/single.proto";
+
+// 卡片信息
+message Card {
+    oneof item {
+        // 小封面条目
+        SmallCoverV5 smallCoverV5 = 1;
+        //
+        LargeCoverV1 largeCoverV1 = 2;
+        //
+        ThreeItemAllV2 threeItemAllV2 = 3;
+        //
+        ThreeItemV1 threeItemV1 = 4;
+        //
+        HotTopic hotTopic = 5;
+        //
+        DynamicHot dynamicHot = 6;
+        //
+        MiddleCoverV3 middleCoverV3 = 7;
+        //
+        LargeCoverV4 largeCoverV4 = 8;
+        // 热门列表顶部按钮
+        PopularTopEntrance popularTopEntrance = 9;
+        //
+        RcmdOneItem rcmdOneItem = 10;
+    }
+}

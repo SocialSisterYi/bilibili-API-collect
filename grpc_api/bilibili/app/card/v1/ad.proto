@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package bilibili.app.card.v1;
+
+//
+message AdInfo {
+    //
+    int64 creative_id = 1;
+    //
+    int32 creative_type = 2;
+    //
+    int32 card_type = 3;
+    //
+    CreativeContent creative_content = 4;
+    //
+    string ad_cb = 5;
+    //
+    int64 resource = 6;
+    //
+    int32 source = 7;
+    //
+    string request_id = 8;
+    //
+    bool is_ad = 9;
+    //
+    int64 cm_mark = 10;
+    //
+    int32 index = 11;
+    //
+    bool is_ad_loc = 12;
+    //
+    int32 card_index = 13;
+    //
+    string client_ip = 14;
+    //
+    bytes extra = 15;
+    //
+    int32 creative_style = 16;
+}
+
+//
+message CreativeContent {
+    //
+    string title = 1;
+    //
+    string description = 2;
+    //
+    int64 video_id = 3;
+    //
+    string username = 4;
+    //
+    string image_url = 5;
+    //
+    string image_md5 = 6;
+    //
+    string log_url = 7;
+    //
+    string log_md5 = 8;
+    //
+    string url = 9;
+    //
+    string click_url = 10;
+    //
+    string show_url = 11;
+}

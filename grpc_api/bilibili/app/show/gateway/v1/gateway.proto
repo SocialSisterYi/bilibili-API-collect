@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package bilibili.app.show.gateway.v1;
+
+import "bilibili/broadcast/message/main/native.proto";
+
+//
+service AppShow {
+    // 获取Native页进度数据
+    rpc GetActProgress (GetActProgressReq) returns (GetActProgressReply);
+}
+
+// 获取Native页进度数据-请求
+message GetActProgressReq {
+    // Native页id
+    int64 pageID = 1;
+    // 用户mid
+    int64 mid = 2;
+}
+
+// 获取Native页进度数据-响应
+message GetActProgressReply {
+    // 进度数据
+    bilibili.broadcast.message.main.NativePageEvent event = 1;
+}

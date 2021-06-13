@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package bilibili.app.show.v1;
+
+import "bilibili/app/card/v1/card.proto";
+import "bilibili/app/archive/middleware/v1/preload.proto";
+
+// 热门
+service Popular {
+    // 热门列表
+    rpc Index (PopularResultReq) returns (PopularReply);
+}
+
+// 热门列表-请求
+message PopularResultReq {
+    // 排位索引id，为上此请求末尾项的idx
+    int64 idx = 1;
+    // 登录标识
+    // 1:未登陆用户第一页 2:登陆用户第一页
+    int32 loginEvent = 2;
+    // 清晰度(旧版)
+    int32 qn = 3;
+    // 视频流版本(旧版)
+    int32 fnver = 4;
+    // 视频流功能(旧版)
+    int32 fnval = 5;
+    // 是否强制使用域名(旧版)
+    int32 forceHost = 6;
+    // 是否4K(旧版)
+    int32 fourk = 7;
+    // 当前页面spm
+    string spmid = 8;
+    // 上此请求末尾项的param
+    string lastParam = 9;
+    // 上此请求的ver
+    string ver = 10;
+    // 分品类热门的入口ID
+    int64 entranceId = 11;
+    // 热门定位id集合
+    string locationIds = 12;
+    // 0:tag页 1:中间页
+    int32 sourceId = 13;
+    // 数据埋点上报
+    // 0:代表手动刷新 1:代表自动刷新
+    int32 flush = 14;
+    // 视频秒开参数
+    bilibili.app.archive.middleware.v1.PlayerArgs playerArgs = 15;
+}
+
+// 热门列表-响应
+message PopularReply {
+    // 卡片列表
+    repeated bilibili.app.card.v1.Card items = 1;
+    // 配置信息
+    Config config = 2;
+    // 版本
+    string ver = 3;
+}
+
+// 配置信息
+message Config {
+    // 标题
+    string itemTitle = 1;
+    // 底部文案
+    string bottomText = 2;
+    // 底部图片url
+    string bottomTextCover = 3;
+    // 底部跳转页url
+    string bottomTextUrl = 4;
+    // 顶部按钮信息列表
+    repeated EntranceShow topItems = 5;
+    // 头图url
+    string headImage = 6;
+    // 当前页按钮信息
+    repeated EntranceShow pageItems = 7;
+    //
+    int32 hit = 8;
+}
+
+// 按钮信息
+message EntranceShow {
+    // 按钮图标url
+    string icon = 1;
+    // 按钮名
+    string title = 2;
+    // 入口模块id
+    string moduleId = 3;
+    // 跳转uri
+    string uri = 4;
+    // 气泡信息
+    Bubble bubble = 5;
+    // 入口id
+    int64 entranceId = 6;
+    // 头图url
+    string topPhoto = 7;
+    // 入口类型
+    int32 entranceType = 8;
+}
+
+// 气泡信息
+message Bubble {
+    // 文案
+    string bubbleContent = 1;
+    // 版本
+    int32 version = 2;
+    // 起始时间
+    int64 stime = 3;
+}

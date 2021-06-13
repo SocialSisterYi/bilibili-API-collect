@@ -1,0 +1,324 @@
+syntax = "proto3";
+
+package bilibili.app.card.v1;
+
+import "bilibili/app/card/v1/ad.proto";
+
+// 条目基本信息
+message Base {
+    // 卡片类型
+    string cardType = 1;
+    // 卡片跳转类型?
+    string cardGoto = 2;
+    // 跳转类型
+    // av:视频稿件 mid:用户空间
+    string goto = 3;
+    // 目标参数
+    string param = 4;
+    // 封面url
+    string cover = 5;
+    // 标题
+    string title = 6;
+    // 跳转uri
+    string uri = 7;
+    //
+    ThreePoint threePoint = 8;
+    //
+    Args args = 9;
+    //
+    PlayerArgs playerArgs = 10;
+    // 条目排位序号
+    int64 idx = 11;
+    //
+    AdInfo adInfo = 12;
+    //
+    Mask mask = 13;
+    //来源标识
+    // recommend:推荐 operation:管理?
+    string fromType = 14;
+    //
+    repeated ThreePointV2 threePointV2 = 15;
+    //
+    repeated ThreePointV3 threePointV3 = 16;
+    //
+    Button descButton = 17;
+    // 三点v4
+    ThreePointV4 threePointV4 = 18;
+}
+
+// 按钮信息
+message Button {
+    // 文案
+    string text = 1;
+    // 参数
+    string param = 2;
+    //
+    string uri = 3;
+    // 事件
+    string event = 4;
+    //
+    int32 selected = 5;
+    // 类型
+    int32 type = 6;
+    // 事件v2
+    string eventV2 = 7;
+    // 关系信息
+    Relation relation = 8;
+}
+
+//
+message ThreePoint {
+    //
+    repeated DislikeReason dislikeReasons = 1;
+    //
+    repeated DislikeReason feedbacks = 2;
+    //稍后再看
+    int32 watchLater = 3;
+}
+
+//
+message DislikeReason {
+    //
+    int64 id = 1;
+    //
+    string name = 2;
+}
+
+//
+message Args {
+    //
+    int32 type = 1;
+    //
+    int64 up_id = 2;
+    //
+    string up_name = 3;
+    //
+    int32 rid = 4;
+    //
+    string rname = 5;
+    //
+    int64 tid = 6;
+    //
+    string tname = 7;
+    //
+    string track_id = 8;
+    //
+    string state = 9;
+    //
+    int32 converge_type = 10;
+    //
+    int64 aid = 11;
+}
+
+//
+message PlayerArgs {
+    //
+    int32 is_live = 1;
+    //
+    int64 aid = 2;
+    //
+    int64 cid = 3;
+    //
+    int32 sub_type = 4;
+    //
+    int64 room_id = 5;
+    //
+    int64 ep_id = 7;
+    //
+    int32 is_preview = 8;
+    //
+    string type = 9;
+    //
+    int64 duration = 10;
+    //
+    int64 season_id = 11;
+}
+
+//
+message Mask {
+    //
+    Avatar avatar = 1;
+    //
+    Button button = 2;
+}
+
+//
+message Avatar {
+    //
+    string cover = 1;
+    //
+    string text = 2;
+    //
+    string uri = 3;
+    //
+    int32 type = 4;
+    //
+    string event = 5;
+    //
+    string event_v2 = 6;
+    //
+    int32 defalut_cover = 7;
+}
+
+//
+message ThreePointV2 {
+    //
+    string title = 1;
+    //
+    string subtitle = 2;
+    //
+    repeated DislikeReason reasons = 3;
+    //
+    string type = 4;
+    //
+    int64 id = 5;
+}
+
+//
+message ThreePointV3 {
+    //
+    string title = 1;
+    //
+    string selected_title = 2;
+    //
+    string subtitle = 3;
+    //
+    repeated DislikeReason reasons = 4;
+    //
+    string type = 5;
+    //
+    int64 id = 6;
+    //
+    int32 selected = 7;
+    //
+    string icon = 8;
+    //
+    string selected_icon = 9;
+    //
+    string url = 10;
+    //
+    int32 default_id = 11;
+}
+
+// 三点v4
+message ThreePointV4 {
+    // 分享面板信息
+    SharePlane share_plane = 1;
+    // 稍后再看
+    WatchLater watch_later = 2;
+}
+
+// 分享面板信息
+message SharePlane {
+    // 标题
+    string title = 1;
+    // 副标贴文案
+    string shareSubtitle = 2;
+    // 备注
+    string desc = 3;
+    // 封面url
+    string cover = 4;
+    // 稿件avid
+    int64 aid = 5;
+    // 稿件bvid
+    string bvid = 6;
+    // 允许分享方式
+    map<string,bool> shareTo = 7;
+    // UP主昵称
+    string author = 8;
+    // UP主mid
+    int64 authorId = 9;
+    // 短连接
+    string shortLink = 10;
+    // 播放次数文案
+    string playNumber = 11;
+}
+
+// 稍后再看信息
+message WatchLater {
+    // 稿件avid
+    int64 aid = 1;
+    // 稿件bvid
+    string bvid = 2;
+}
+
+// 标签框信息
+message ReasonStyle {
+    // 文案
+    string text = 1;
+    // 文字颜色
+    string textColor = 2;
+    // 背景色
+    string bgColor = 3;
+    // 边框色
+    string borderColor = 4;
+    // 图标url
+    string iconUrl = 5;
+    // 文字颜色-夜间
+    string textColorNight = 6;
+    // 背景色-夜间
+    string bgColorNight = 7;
+    // 边框色-夜间
+    string borderColorNight = 8;
+    // 图标url-夜间
+    string iconNightUrl = 9;
+    // 背景风格id
+    // 1:无背景 2:有背景
+    int32 bgStyle = 10;
+    //
+    string uri = 11;
+    //
+    string iconBgUrl = 12;
+    //
+    string event = 13;
+    //
+    string eventV2 = 14;
+    //
+    int32 rightIconType = 15;
+    //
+    string leftIconType = 16;
+}
+
+//
+message LikeButton {
+    //
+    int64 Aid = 1;
+    //
+    int32 count = 2;
+    //
+    bool show_count = 3;
+    //
+    string event = 4;
+    //
+    int32 selected = 5;
+    //
+    string event_v2 = 6;
+}
+
+//
+message Up {
+    //
+    int64 id = 1;
+    //
+    string name = 2;
+    //
+    string desc = 3;
+    //
+    Avatar avatar = 4;
+    //
+    int32 official_icon = 5;
+    //
+    Button desc_button = 6;
+    //
+    string cooperation = 7;
+}
+
+// 关系信息
+message Relation {
+    // 关系状态
+    int32 status = 1;
+    // 是否关注
+    int32 isFollow = 2;
+    // 是否粉丝
+    int32 isFollowed = 3;
+}

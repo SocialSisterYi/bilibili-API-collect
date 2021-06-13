@@ -1,29 +1,75 @@
-//APP端视频播放v1接口
 syntax = "proto3";
 
 package bilibili.app.playurl.v1;
 
 //视频url
 service PlayURL {
-    //获取播放界面配置
-    //https://app.bilibili.com/bilibili.app.playurl.v1.PlayURL/PlayConf
-    rpc PlayConf (PlayConfReq) returns (PlayConfReply);
-
-    //
-    //
-    rpc PlayConfEdit (PlayConfEditReq) returns (PlayConfEditReply);
-
-    //获取视频url
-    //
+    // 获取视频url
     rpc PlayURL (PlayURLReq) returns (PlayURLReply);
-
-    //获取视频播放业务数据
-    //https://app.bilibili.com/bilibili.app.playurl.v1.PlayURL/PlayView
-    rpc PlayView (PlayViewReq) returns (PlayViewReply);
-
-    //
-    //
+    // 获取投屏url
     rpc Project (ProjectReq) returns (ProjectReply);
+    // 获取视频url及播放界面配置
+    rpc PlayView (PlayViewReq) returns (PlayViewReply);
+    // 编辑播放界面配置
+    rpc PlayConfEdit (PlayConfEditReq) returns (PlayConfEditReply);
+    // 获取播放界面配置
+    rpc PlayConf (PlayConfReq) returns (PlayConfReply);
+}
+
+// 获取视频url-请求
+message PlayURLReq {
+	// 稿件avid
+    int64 aid = 1;
+    // 视频cid
+    int64 cid = 2;
+    // 清晰度
+    int64 qn = 3;
+    // 视频流版本
+    int32 fnver = 4;
+    // 视频流格式
+    int32 fnval = 5;
+    // 下载模式
+    // 0:播放 1:flv下载 2:dash下载
+    uint32 download = 6;
+    // 流url强制是用域名
+    // 0:允许使用ip 1:使用http 2:使用https
+    int32 forceHost = 7;
+    // 允许4K
+    bool fourk = 8;
+    // 当前页spm
+    string spmid = 9;
+    // 上一页spm
+    string fromSpmid = 10;
+}
+
+// 视频url-回复
+message PlayURLReply {
+    // 清晰的
+    uint32 quality = 1;
+    // 格式
+    string format = 2;
+    // 总时长(单位为ms)
+    uint64 timelength = 3;
+    // 编码id
+    uint32 videoCodecid = 4;
+    // 视频流版本
+    uint32 fnver = 5;
+    // 视频流格式
+    uint32 fnval = 6;
+    // 是否支持投影
+    bool videoProject = 7;
+    // 分段视频流
+    repeated ResponseUrl durl = 8;
+    // dash视频流
+    ResponseDash dash = 9;
+    // 是否非全二压
+    int32 noRexcode = 10;
+    //
+    UpgradeLimit upgradeLimit = 11;
+    //
+    repeated FormatDescription supportFormats = 12;
+    // 视频格式
+    VideoType type = 13;
 }
 
 //获取播放界面配置-请求
@@ -48,82 +94,9 @@ message PlayConfEditReply {
 
 }
 
-//视频url-请求
-message PlayURLReq {
-	//稿件avid
-    int64 aid = 1;
-    
-    //视频cid
-    int64 cid = 2;
-    
-    //清晰度
-    int64 qn = 3;
-    
-    //视频流版本
-    int32 fnver = 4;
-    
-    //视频流功能
-    int32 fnval = 5;
-    
-    //下载模式
-    //0:播放 1:flv下载 2:dash下载
-    uint32 download = 6;
-    
-    //流url强制是用域名
-    //0:允许使用ip 1:使用http 2:使用https
-    int32 forceHost = 7;
-    
-    //允许4K
-    bool fourk = 8;
-    
-    //
-    string spmid = 9;
-    
-    //
-    string fromSpmid = 10;
-}
 
-//视频url-回复
-message PlayURLReply {
-    //
-    uint32 quality = 1;
 
-    //
-    string format = 2;
 
-    //
-    uint64 timelength = 3;
-
-    //
-    uint32 videoCodecid = 4;
-
-    //
-    uint32 fnver = 5;
-
-    //
-    uint32 fnval = 6;
-
-    //
-    bool videoProject = 7;
-
-    //
-    repeated ResponseUrl durl = 8;
-
-    //
-    ResponseDash dash = 9;
-
-    //
-    int32 noRexcode = 10;
-
-    //
-    UpgradeLimit upgradeLimit = 11;
-
-    //
-    repeated FormatDescription supportFormats = 12;
-
-    //
-    VideoType type = 13;
-}
 
 //获取视频播放业务数据-请求
 message PlayViewReq {
@@ -261,15 +234,13 @@ message CloudConf {
     FieldValue fieldValue = 3;
 }
 
-//编码类型
+// 编码类型
 enum CodeType {
-    //默认
+    // 默认
 	NOCODE = 0;
-
-    //H.264
+    // H.264
 	CODE264 = 1;
-
-    //H.265
+    // H.265
 	CODE265 = 2;
 }
 
@@ -277,88 +248,60 @@ enum CodeType {
 enum ConfType {
     //
     NoType_VALUE = 0;
-
     //
     FLIPCONF_VALUE = 1;
-
     //
     CASTCONF_VALUE = 2;
-
     //
     FEEDBACK_VALUE = 3;
-
     //
     SUBTITLE_VALUE = 4;
-
     //
     PLAYBACKRATE_VALUE = 5;
-
     //
     TIMEUP_VALUE = 6;
-
     //
     PLAYBACKMODE_VALUE = 7;
-
     //
     SCALEMODE_VALUE = 8;
-
     //
     BACKGROUNDPLAY_VALUE = 9;
-
     //
     LIKE_VALUE = 10;
-
     //
     DISLIKE_VALUE = 11;
-
     //
     COIN_VALUE = 12;
-
     //
     ELEC_VALUE = 13;
-
     //
     SHARE_VALUE = 14;
-
     //
     SCREENSHOT_VALUE = 15;
-
     //
     LOCKSCREEN_VALUE = 16;
-
     //
     RECOMMEND_VALUE = 17;
-
     //
     PLAYBACKSPEED_VALUE = 18;
-
     //
     DEFINITION_VALUE = 19;
-
     //
     SELECTIONS_VALUE = 20;
-
     //
     NEXT_VALUE = 21;
-
     //
     EDITDM_VALUE = 22;
-
     //
     SMALLWINDOW_VALUE = 23;
-
     //
     SHAKE_VALUE = 24;
-
     //
     OUTERDM_VALUE = 25;
-
     //
     INNERDM_VALUE = 26;
-
     //
     PANORAMA_VALUE = 27;
-
     //
     DOLBY_VALUE = 28;
 }
@@ -367,22 +310,16 @@ enum ConfType {
 message DashItem {
 	//
 	uint32 id=1;
-	
 	//主线流
 	string baseUrl=2;
-	
 	//备用流
 	repeated string backupUrl=3;
-	
 	//带宽
 	uint32 bandwidth=4;
-	
 	//
 	uint32 codecid=5;
-	
 	//md5
 	string md5=6;
-	
 	//大小
 	uint64 size=7;
 }
@@ -550,85 +487,58 @@ message PlayAbilityConf {
 message PlayArcConf {
 	//后台播放
     ArcConf backgroundPlayConf=1;
-    
     //镜像反转
     ArcConf flipConf=2;
-    
     //投屏
     ArcConf castConf=3;
-    
     //反馈
     ArcConf feedbackConf=4;
-    
     //字幕
     ArcConf subtitleConf=5;
-    
     //播放速度
     ArcConf playbackRateConf=6;
-    
     //定时停止
     ArcConf timeUpConf=7;
-    
     //播放方式
     ArcConf playbackModeConf=8;
-    
     //画面尺寸
     ArcConf scaleModeConf=9;
-    
     //赞
     ArcConf likeConf=10;
-    
     //踩
     ArcConf dislikeConf=11;
-    
     //投币
     ArcConf coinConf=12;
-    
     //充电
     ArcConf elecConf=13;
-    
     //分享
     ArcConf shareConf=14;
-    
     //截图
     ArcConf screenShotConf=15;
-    
     //锁定
     ArcConf lockScreenConf=16;
-    
     //相关推荐
     ArcConf recommendConf=17;
-    
     //播放速度
     ArcConf playbackSpeedConf=18;
-    
     //清晰度
     ArcConf definitionConf=19;
-    
     //选集
     ArcConf selectionsConf=20;
-    
     //下一集
     ArcConf nextConf=21;
-    
     //编辑弹幕
     ArcConf editDmConf=22;
-    
     //小窗
     ArcConf smallWindowConf=23;
-    
     //震动
     ArcConf shakeConf=24;
-    
     //
     ArcConf outerDmConf=25;
-    
     //
     ArcConf innerDmConf=26;
-    
     //
     ArcConf freyaEnterConf=27;
-    
     //杜比音效
     ArcConf dolbyConf=28;
 }
@@ -730,40 +640,28 @@ message Stream {
 message StreamInfo {
 	//清晰度 qn
 	uint32 quality=1;
-	
 	//格式
 	string format=2;
-	
 	//格式描述
 	string description=3;
-	
 	//错误码
 	uint32 errCode=4;
-	
 	//不满足条件信息
 	Limit limit=5;
-	
 	//是否需要vip
 	bool needVip=6;
-	
 	//是否需要登录
 	bool needLogin=7;
-	
 	//是否完整
 	bool intact=8;
-	
 	//是否非全二压
 	bool noRexcode=9;
-	
 	//
 	int64 attribute=10;
-	
 	//新版格式描述
 	string newDescription=11;
-	
 	//格式文字
 	string displayDesc=12;
-	
 	//新版格式描述备注
 	string superscript=13;
 }
@@ -828,17 +726,14 @@ message VideoInfo {
     DolbyItem dolby=7;
 }
 
-//
+// 视频类型
 enum VideoType {
     //
     Unknown_VALUE = 0;
-
-    //
+    // flv格式
     FLV_VALUE = 1;
-
-    //
+    // dash格式
     DASH_VALUE = 2;
-
-    //
+    // mp4格式
     MP4_VALUE = 3;
 }
