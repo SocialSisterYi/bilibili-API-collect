@@ -87,6 +87,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
