@@ -14,22 +14,10 @@
 
 认证方式：Cookie（SESSDATA）
 
-**注：本接口为课程视频专用，故与普通视频不互通**
+**注：**
 
----
-
-关于视频流会员鉴权：
-
-- 获取720P及以上清晰度视频时需要登录（Cookie）
-
-- 获取高帧率（1080P60）/高码率（1080P+）视频时需要有大会员的账号登录（Cookie）
-- 获取正式课程视频（非试看）时需要有已经购买的账号登录（Cookie）
-
----
-
-获取的url有效时间为120min，超时失效需要重新获取
-
-**部分视频**会有**分段**，需要特别注意
+1. 本接口为课程视频专用，故与普通视频不互通
+2. 大部分使用方法及视频的取流方法继承[视频流url文档](../video/videostream_url.md)
 
 **url参数：**
 
@@ -38,21 +26,10 @@
 | avid   | num  | 课程avID       | 必要   |                                                              |
 | ep_id  | num  | 课程epID       | 必要   |                                                              |
 | cid    | num  | 视频CID        | 必要   |                                                              |
-| qn     | num  | 视频清晰度选择 | 非必要 | 未登录默认32（480P）<br />登录默认64（720P）<br />**值含义见下表** |
+| qn     | num  | 视频清晰度选择 | 非必要 | 参考[qn定义](../video/videostream_url.md#qn视频清晰度标识)   |
+| fnver  | num  | 视频流版本     | 非必要 | 参考[fnver定义](../video/videostream_url.md#fnver视频流版本标识) |
+| fnval  | num  | 视频流类型     | 非必要 | 参考[fnval定义](../video/videostream_url.md#fnval视频流格式标识) |
 | fourk  | num  | 是否允许4K视频 | 非必要 | 默认为0<br />画质最高1080P：0<br />画质最高4K：1             |
-
-分辨率代码：
-
-| 值   | 含义                   |
-| ---- | ---------------------- |
-| 16   | 360P 流畅              |
-| 32   | 480P 清晰              |
-| 64   | 720P 高清（登录）      |
-| 74   | 720P60 高清（大会员）  |
-| 80   | 1080P 高清（登录）     |
-| 112  | 1080P+ 高清（大会员）  |
-| 116  | 1080P60 高清（大会员） |
-| 120  | 4K 超清（大会员）      |
 
 **json回复：**
 
@@ -247,23 +224,3 @@ curl -G 'http://api.bilibili.com/pugv/player/web/playurl' \
 ```
 
 </details>
-
-
-
-## 视频的获取
-
-将`data`.`durl`.`[1-n]`.`url`或`data`.`durl`.`[1-n]`.`backup_url`.`[0]`中的内容作为url进行GET操作, 如果有多个视频, 需要手动合并处理
-
-需要验证请求`referer`为 `.bilibili.com`域名下（防盗链），且`user-agent` 不为空
-
-**referer或user-agent错误的情况会返回403 Forbidden**故无法获取
-
-**以上述视频url为例：**
-
-```shell
-wget 'https://upos-sz-mirrorks3c.bilivideo.com/upgcxcode/93/59/132105993/132105993_da2-1-116.flv?e=ig8euxZM2rNcNbNghzTBhwdlhbNz7bUVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1591596728&gen=playurl&os=ks3cbv&oi=606633803&trid=76bea9a9e56f4cb89a9aff2f8213c9acu&platform=pc&upsig=b271bf493bff32ffe62969582c8d18b4&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=0&orderid=1,2&logo=40000000' \
--e 'https://www.bilibili.com' \
--O 'Download_video.flv'
-```
-
-响应正文将返回一个flv文件
