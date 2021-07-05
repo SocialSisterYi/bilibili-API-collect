@@ -177,6 +177,7 @@
 | like       | num  | 获赞数       |         |
 | dislike    | num  | 点踩数       | 恒为`0` |
 | evaluation | str  | 视频评分     |         |
+| argue_msg | str  | 警告/争议提示信息    |         |
 
 `data`中的`pages`数组：
 
