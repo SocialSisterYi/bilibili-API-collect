@@ -585,7 +585,7 @@ message UserSeason {
 }
 
 //
-message SeasonPlayer{
+message SeasonPlayer {
     //
     int64 aid = 1;
     //
@@ -898,9 +898,9 @@ enum SeasonType {
     //
     Unknown = 0;
     //
-    Base    = 1;
+    Base = 1;
     //
-    Good    = 2;
+    Good = 2;
 }
 
 // UGC视频合集信息
@@ -1085,7 +1085,7 @@ message Node {
 }
 
 // 稿件播放中数据-请求
-message ViewProgressReq{
+message ViewProgressReq {
     // 稿件avid
     int64 aid = 1;
     // 视频cid
@@ -1095,7 +1095,7 @@ message ViewProgressReq{
 }
 
 // 稿件播放中数据-回复
-message ViewProgressReply{
+message ViewProgressReply {
     // 视频引导信息
     VideoGuide videoGuide = 1;
     // Chronos灰度管理
@@ -1171,7 +1171,7 @@ message OperationCardNew {
     oneof renderCase {
         // 标准卡
         StandardCard standardCard= 6;
-        // 老运营卡片（原B剪跳转卡）
+        // 老运营卡片(原B剪跳转卡)
         OperationCard operationCard = 7;
     }
     //
@@ -1200,7 +1200,7 @@ enum OperationCardType {
 }
 
 // 标准卡
-message StandardCard{
+message StandardCard {
     // 卡片文案
     string title = 1;
     // 按钮文字 未操作
@@ -1212,7 +1212,7 @@ message StandardCard{
 }
 
 // 老运营卡片
-message OperationCard{
+message OperationCard {
     // 开始时间(单位为秒)
     int32 startTime = 1;
     // 结束时间(单位为秒)
@@ -1230,7 +1230,7 @@ message OperationCard{
 }
 
 // 互动弹幕条目信息
-message CommandDm{
+message CommandDm {
     // 弹幕id
     int64 id = 1;
     // 对象视频cid
@@ -1306,7 +1306,7 @@ message subTFPanel {
 }
 
 // 短视频下载-请求
-message ShortFormVideoDownloadReq{
+message ShortFormVideoDownloadReq {
     // 稿件avid
     int64 aid = 1;
     // 视频cid
@@ -1379,7 +1379,7 @@ message BizFollowVideoParam {
 }
 
 // 预约活动参数
-message BizReserveActivityParam{
+message BizReserveActivityParam {
     // 活动id
     int64 activityId = 1;
     // 场景

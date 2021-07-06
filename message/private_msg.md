@@ -34,7 +34,7 @@
 
 **示例：**
 
-以下信息代表了为未关注用户未读私信数为`10`条，已关注用户未读私信数为`3`条
+以下信息代表了为未关注用户未读私信数为`1`条，已关注用户未读私信数为`6`条
 
 ```shell
 curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \

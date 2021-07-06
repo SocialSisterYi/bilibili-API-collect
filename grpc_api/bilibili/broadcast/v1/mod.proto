@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package bilibili.broadcast.v1;
+
+import "google/protobuf/empty.proto";
+
+message ModResourceResp {}
+
+// ModManager
+service ModManager {
+    //
+    rpc WatchResource(google.protobuf.Empty) returns (stream ModResourceResp);
+}

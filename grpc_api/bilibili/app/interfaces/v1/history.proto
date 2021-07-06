@@ -1,0 +1,374 @@
+syntax = "proto3";
+
+package bilibili.app.interfaces.v1;
+
+import "bilibili/app/archive/middleware/v1/preload.proto";
+
+// 历史记录
+service History {
+    // 获取历史记录tab
+    rpc HistoryTab (HistoryTabReq) returns (HistoryTabReply);
+    // 获取历史记录列表(旧版)
+    rpc Cursor (CursorReq) returns (CursorReply);
+    // 获取历史记录列表
+    rpc CursorV2 (CursorV2Req) returns (CursorV2Reply);
+    // 删除历史记录
+    rpc Delete (DeleteReq) returns (NoReply);
+    // 搜索历史记录
+    rpc Search (SearchReq) returns (SearchReply);
+    // 清空历史记录
+    rpc Clear (ClearReq) returns (NoReply);
+    // 获取最新的历史记录
+    rpc LatestHistory (LatestHistoryReq) returns (LatestHistoryReply);
+}
+
+// 获取历史记录tab-请求
+message HistoryTabReq {
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 1;
+    // 查询请求来源
+    HistorySource source = 2;
+    // 搜索关键词
+    string keyword = 3;
+}
+
+// 获取历史记录tab-响应
+message HistoryTabReply {
+    // tab列表
+    repeated CursorTab tab = 1;
+}
+
+// 搜索历史记录来源
+enum HistorySource {
+    // 主站历史记录页
+    history_VALUE = 0;
+    // 会员购浏览记录
+    shopping_VALUE = 1;
+}
+
+// 获取历史记录列表(旧版)-请求
+message CursorReq {
+    // 游标信息
+    Cursor cursor = 1;
+    // 业务类型
+    // all:全部 archive:视频 live:直播 article:专栏
+    string business = 2;
+    // 秒开参数(旧版)
+    PlayerPreloadParams playerPreload = 3;
+    // 秒开参数
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+}
+
+// 获取历史记录列表(旧版)-响应
+message CursorReply {
+    // 卡片内容
+    repeated CursorItem items = 1;
+    // 顶部tab
+    repeated CursorTab tab = 2;
+    // 游标信息
+    Cursor cursor = 3;
+    // 是否未拉取完
+    bool hasMore = 4;
+}
+
+// 获取历史记录列表-请求
+message CursorV2Req {
+    // 游标信息
+    Cursor cursor = 1;
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 2;
+    // 秒开参数(旧版)
+    PlayerPreloadParams playerPreload = 3;
+    // 秒开参数
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 是否选择本机的播放历史
+    bool is_local = 5;
+}
+
+// 获取历史记录列表-响应
+message CursorV2Reply {
+    // 卡片内容
+    repeated CursorItem items = 1;
+    // 游标信息
+    Cursor cursor = 2;
+    // 是否未拉取完
+    bool hasMore = 3;
+}
+
+// 历史记录卡片信息
+message CursorItem {
+    // 主体数据
+    oneof card_item {
+        // ugc稿件
+        CardUGC cardUGC = 1;
+        // pgc稿件
+        CardOGV cardOGV = 2;
+        // 专栏
+        CardArticle cardArticle = 3;
+        // 直播
+        CardLive cardLive = 4;
+        // 课程
+        CardCheese cardCheese = 5;
+    }
+    // 标题
+    string title = 6;
+    // 目标uri/url
+    string uri = 7;
+    // 观看时间
+    int64 viewAt = 8;
+    // 历史记录id
+    int64 kid = 9;
+    // 业务id
+    int64 oid = 10;
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 11;
+    // 业务类型代码
+    int32 tp = 12;
+    // 设备标识
+    DeviceType dt = 13;
+    // 是否有分享按钮
+    bool hasShare = 14;
+}
+
+// ugc稿件卡片
+message CardUGC {
+    // 封面url
+    string cover = 1;
+    // 观看进度
+    int64 progress = 2;
+    // 视频长度
+    int64 duration = 3;
+    // UP主昵称
+    string name = 4;
+    // UP主mid
+    int64 mid = 5;
+    // 是否展示关注按钮
+    bool displayAttention = 6;
+    // 历史观看视频cid
+    int64 cid = 7;
+    // 历史观看视频分P
+    int32 page = 8;
+    // 历史观看视频分P的标题
+    string subtitle = 9;
+    // 关系信息
+    Relation relation = 10;
+    // 稿件bvid
+    string bvid = 11;
+    // 总分P数
+    int64 videos = 12;
+    // 短链接
+    string shortLink = 13;
+    // 分享副标题
+    string shareSubtitle = 14;
+    // 播放数
+    int64 view = 15;
+}
+
+// pgc稿件卡片
+message CardOGV {
+    // 封面url
+    string cover = 1;
+    // 观看进度
+    int64 progress = 2;
+    // 总计时长
+    int64 duration = 3;
+    // 单集标题
+    string subtitle = 4;
+}
+
+// 专栏卡片
+message CardArticle {
+    // 封面url
+    repeated string covers = 1;
+    // UP主昵称
+    string name = 2;
+    // UP主mid
+    int64 mid = 3;
+    // 是否展示关注按钮
+    bool displayAttention = 4;
+    // 角标
+    string badge = 5;
+    // 关系信息
+    Relation relation = 6;
+}
+
+// 直播卡片
+message CardLive {
+    // 封面url
+    string cover = 1;
+    // 主播昵称
+    string name = 2;
+    // 主播mid
+    int64 mid = 3;
+    // 直播分区名
+    string tag = 4;
+    // 直播状态
+    int32 ststus = 5;
+    // 是否展示关注按钮
+    bool displayAttention = 6;
+    // 关系信息
+    Relation relation = 7;
+}
+
+// 课程卡片
+message CardCheese {
+    // 封面url
+    string cover = 1;
+    // 观看进度
+    int64 progress = 2;
+    // 总计时长
+    int64 duration = 3;
+    // 单集标题
+    string subtitle = 4;
+}
+
+// 业务分类表
+message CursorTab {
+    // 业务类型
+    string business = 1;
+    // 名称
+    string name = 2;
+    // 路由uri
+    string router = 3;
+    // tab定位
+    bool focus = 4;
+}
+
+// 游标信息
+message Cursor {
+    // 本页最大值游标值
+    int64 max = 1;
+    // 本页最大值游标类型
+    int32 maxTp = 2;
+}
+
+// 删除历史记录-请求
+message DeleteReq {
+    // 历史记录信息
+    HisInfo hisInfo = 1;
+}
+
+// 历史记录信息
+message HisInfo {
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 1;
+    // 历史记录id
+    int64 kid = 2;
+}
+
+// 空响应
+message NoReply {}
+
+// 设备类型
+message DeviceType {
+    // 设备标识代码
+    DT type = 1;
+    // 图标url
+    string icon = 2;
+}
+
+//设备标识代码
+enum DT {
+    // 未知
+    Un known = 0;
+    //手机端
+    Phone   = 1;
+    // ipad端
+    Pad     = 2;
+    // web端
+    PC      = 3;
+    // TV端
+    TV      = 4;
+    //
+    Car     = 5;
+    //
+    Iot     = 6;
+    // apad端
+    AndPad  = 7;
+}
+
+// 关系信息
+message Relation {
+    // 关系状态
+    // 1:未关注 2:已关注 3:被关注 4:互关
+    int32 status = 1;
+    // 用户关注UP主
+    int32 isFollow = 2;
+    // UP主关注用户
+    int32 isFollowed = 3;
+}
+
+// 搜索历史记录-请求
+message SearchReq {
+    // 关键词
+    string keyword = 1;
+    // 页码
+    int64 pn = 2;
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 3;
+}
+
+// 搜索历史记录-响应
+message SearchReply {
+    // 卡片内容
+    repeated CursorItem items = 1;
+    // 是否未拉取完
+    bool hasMore = 2;
+    // 页面信息
+    Page page = 3;
+}
+
+// 页面信息
+message Page {
+    // 当前页码
+    int64 pn = 1;
+    // 总计条目数
+    int64 total = 2;
+}
+
+// 秒开参数
+message PlayerPreloadParams {
+    //清晰度
+    int64 qn = 1;
+    // 流版本
+    int64 fnver = 2;
+    // 流类型
+    int64 fnval = 3;
+    // 是否强制域名
+    int64 forceHost = 4;
+    // 是否4K
+    int64 fourk = 5;
+}
+
+// 清空历史记录-请求
+message ClearReq {
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 1;
+}
+
+// 获取最新的历史记录-请求
+message LatestHistoryReq {
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 1;
+    // 秒开参数
+    PlayerPreloadParams playerPreload = 2;
+}
+
+// 获取最新的历史记录-响应
+message LatestHistoryReply {
+    // 卡片内容
+    CursorItem items = 1;
+    // 场景
+    string scene = 2;
+    // 弹窗停留时间
+    int64 rtime = 3;
+    // 分组的标志(客户端埋点上报)
+    string flag = 4;
+}

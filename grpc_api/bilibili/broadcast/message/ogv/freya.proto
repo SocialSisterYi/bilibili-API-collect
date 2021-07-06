@@ -1,0 +1,228 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.ogv;
+
+// 播放状态
+enum PlayStatus {
+    // 暂停
+    Pause = 0;
+    // 播放
+    Play = 1;
+    // 终止
+    End = 2;
+}
+
+// 房间类型
+enum RoomType {
+    // 私密
+    Private = 0;
+    // 公开
+    Open = 1;
+}
+
+// 信息通知发送领域
+enum MessageDomain {
+    // 默认
+    DefaultDomain = 0;
+    // 房间用户
+    RoomMid = 1;
+    // 系统通知
+    SystemInfo = 2;
+}
+
+// 通知信息类型
+enum MessageType {
+    // 默认
+    DefaultType = 0;
+    // 房间用户
+    ChatMessage = 1;
+    // 系统通知
+    SystemMessage = 2;
+}
+
+// 触发通知类型
+enum TriggerType {
+    // 默认
+    DefaultTrigger = 0;
+    // 关注、取消关注
+    Relation = 1;
+}
+
+// 房间人员变更事件
+message RoomMemberChangeEvent {
+    // 房间id
+    int64 room_id = 1;
+    // 房主id
+    int64 owner_id = 2;
+    // 房间成员列表
+    repeated UserInfoProto members = 3;
+    // 提示信息
+    MessageProto message = 4;
+}
+
+// 播放进度同步事件
+message ProgressSyncEvent {
+    // 房间id
+    int64 room_id = 1;
+    // 播放中的season_id
+    int64 season_id = 2;
+    // 播放中的episode_id
+    int64 episode_id = 3;
+    // 播放状态
+    PlayStatus status = 4;
+    // 房主播放进度
+    int64 progress = 5;
+    // 提示信息
+    MessageProto message = 6;
+}
+
+// 房间状态更新
+message RoomUpdateEvent {
+    // 房间id
+    int64 room_id = 1;
+    // 房间变更状态
+    RoomType type = 2;
+    // 提示信息
+    MessageProto message = 3;
+}
+
+// 房间销毁通知
+message RoomDestroyEvent {
+    // 房间id
+    int64 room_id = 1;
+    // 提示信息
+    MessageProto message = 4;
+}
+
+// 房间触发通知
+message RoomTriggerEvent {
+    // 操作人
+    int64 mid = 1;
+    // 提示信息
+    MessageProto message = 2;
+    // 触发类型
+    TriggerType trigger = 3;
+}
+
+//用户信息
+message UserInfoProto {
+    // 用户id
+    int64 mid = 1;
+    // 用户头像url
+    string face = 2;
+    // 昵称
+    string nickname = 3;
+    // 等级
+    int32 level = 4;
+    // 签名
+    string sign = 5;
+    // 大会员信息
+    VipProto vip = 6;
+    // 身份认证信息
+    OfficialProto official = 7;
+    // 挂件信息
+    PendantProto pendant = 8;
+    // 设备buvid
+    string buvid = 9;
+}
+
+//通知信息
+message MessageProto {
+    // 可带占位符匹配的消息体 ep "还没有其他小伙伴，[去邀请>]<https://big.bilibili.com/mobile/giftIndex?mid=123>"
+    string content = 1;
+    // 消息体类型
+    // 0:json格式的文本消息 1:支持全文本可点(破冰)
+    int32 content_type = 2;
+}
+
+//大会员信息
+message VipProto {
+    int32 type = 1;
+    int32 status = 2;
+    int64 due_date = 3;
+    int32 vip_pay_type = 4;
+    int32 theme_type = 5;
+    // 大会员角标
+    // 0:无角标 1:粉色大会员角标 2:绿色小会员角标
+    int32 avatar_subscript = 6;
+    // 昵称色值，可能为空，色值示例：#FFFB9E60
+    string nickname_color = 7;
+}
+
+//认证信息
+message OfficialProto {
+    int32 role = 1;
+    string title = 2;
+    string desc = 3;
+    int32 type = 4;
+}
+
+//挂件信息
+message PendantProto {
+    int32 pid = 1;
+    string name = 2;
+    string image = 3;
+    int64 expire = 4;
+    string image_enhance = 5;
+}
+
+// 通用信息通知
+message MessageEvent {
+    // 房间id
+    int64 room_id = 1;
+    // 消息id
+    int64 msg_id = 2;
+    // 消息发送服务端时间 时间戳 单位秒
+    int64 ts = 3;
+    // 信息通知发送主体id
+    int64 oid = 4;
+    // 信息通知发送领域
+    MessageDomain domain = 5;
+    // 通知信息类型
+    MessageType type = 6;
+    // 提示信息
+    MessageProto message = 7;
+    // 消息发送用户信息
+    UserInfoProto user = 8;
+    // 消息id str类型
+    string msg_id2 = 9;
+}
+
+// 聊天信息清除通知
+message RemoveChatEvent {
+    // 房间id
+    int64 room_id = 1;
+    // 撤回的聊天信息id
+    int64 msg_id = 2;
+    // 提示信息
+    MessageProto message = 3;
+}
+
+// "一起看"房间事件
+message FreyaEventBody {
+    // 房间id
+    int64 room_id = 1;
+    // 接收事件消息的白名单用户
+    repeated int64 white_mid = 2;
+    // 不处理信息的黑名单用户 优先级低于白名单 当白名单有数据时 忽略黑名单
+    repeated int64 ignore_mid = 3;
+    //命令类型
+    oneof event {
+        // 房间人员变更事件
+        RoomMemberChangeEvent member_change = 4;
+        // 播放进度同步事件
+        ProgressSyncEvent progress = 5;
+        // 房间状态更新
+        RoomUpdateEvent room_update = 6;
+        // 通用信息通知
+        MessageEvent message = 7;
+        // 聊天信息清除通知
+        RemoveChatEvent remove_chat = 8;
+        // 房间销毁通知
+        RoomDestroyEvent room_destroy = 9;
+        // 房间触发通知
+        RoomTriggerEvent room_trigger = 10;
+    }
+    // 消息序列号
+    int64 sequence_id = 100;
+}

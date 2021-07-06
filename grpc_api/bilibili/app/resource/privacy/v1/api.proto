@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package bilibili.app.resource.privacy.v1;
+
+// 隐私
+service Privacy {
+    // 获取隐私设置
+    rpc PrivacyConfig(NoArgRequest) returns(PrivacyConfigReply);
+    // 修改隐私设置
+    rpc SetPrivacyConfig(SetPrivacyConfigRequest) returns(NoReply);
+}
+
+// 空请求
+message NoArgRequest{}
+
+// 空响应
+message NoReply{}
+
+// 获取隐私设置-响应
+message PrivacyConfigReply {
+    // 隐私设置
+    PrivacyConfigItem privacy_config_item = 1;
+}
+
+// 隐私设置
+message PrivacyConfigItem {
+    // 隐私开关类型
+    PrivacyConfigType privacy_config_type = 1;
+    //
+    string title = 2;
+    // 隐私开关状态
+    PrivacyConfigState state = 3;
+    //
+    string sub_title = 4;
+    //
+    string sub_title_uri = 5;
+}
+
+// 隐私开关类型
+enum PrivacyConfigType {
+    //
+    none = 0;
+    // 动态同城
+    dynamic_city = 1;
+}
+
+// 隐私开关状态
+enum PrivacyConfigState {
+    // 关闭
+    close = 0;
+    // 打开
+    open = 1;
+}
+
+// 修改隐私设置-请求
+message SetPrivacyConfigRequest {
+    // 隐私开关类型
+    PrivacyConfigType privacy_config_type = 1;
+    // 隐私开关状态
+    PrivacyConfigState state = 2;
+}

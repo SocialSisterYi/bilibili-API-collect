@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.tv;
+
+import "google/protobuf/empty.proto";
+
+//
+service Tv {
+    // 投屏
+    rpc Proj(google.protobuf.Empty) returns (stream ProjReply);
+    // 直播状态
+    rpc LiveStatus(google.protobuf.Empty) returns (stream LiveStatusNotify);
+    // 赛事比分通知
+    rpc Esports(google.protobuf.Empty) returns (stream EsportsNotify);
+    // 直播插卡
+    rpc Publicity(google.protobuf.Empty) returns (stream PublicityNotify);
+    // 直转点
+    rpc LiveSkip(google.protobuf.Empty) returns (stream LiveSkipNotify);
+}
+
+// 投屏
+message ProjReply {
+    // 投屏命令
+    // 1:起播 2:快进 3:快退 4:seek播放进度 5:暂停 6:暂停恢复
+    int64 cmd_type = 1;
+    // 用户id
+    int64 mid = 2;
+    // 稿件id
+    int64 aid  = 3;
+    // 视频id
+    int64 cid = 4;
+    // 视频类型
+    // 0:ugc 1:pgc 2:pugv
+    int64 video_type = 5;
+    // 单集id，pgc和pugv需要传
+    int64 ep_id = 6;
+    // 剧集id
+    int64 season_id = 7;
+    // seek 的位置，cmd位seek时有值，单位秒
+    int64 seek_ts = 8;
+    // 其他指令对应内容
+    string extra = 9;
+}
+
+// 直播状态
+message LiveStatusNotify {
+    // 直播状态
+    // 1:开播 2:关播 3:截流 4:截流恢复
+    int64 status = 1;
+    // 文案
+    string msg = 2;
+    // 直播房间号
+    int64 cid  = 3;
+}
+
+//
+message EsportsNotify {
+    // 直播房间号
+    int64 cid = 1;
+}
+
+// 直播插卡
+message PublicityNotify {
+    // 插卡id
+    int64 publicity_id = 1;
+    // 直播房间号
+    int64 room_id = 2;
+    // 直播间状态
+    // 0:未开播 1:直播中 2:轮播中
+    int64 status = 3;
+}
+
+// 直转点
+message LiveSkipNotify {
+    // 直播id
+    int64 live_id = 1;
+}

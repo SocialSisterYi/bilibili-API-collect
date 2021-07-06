@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package bilibili.broadcast.v1;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+
+// 服务端下发的测试专用消息，客户端debug/release包都会通过弹窗响应该消息
+// 后端平台 必须 限制该消息只能针对单个用户发送
+
+// Test
+service Test {
+    // 监听上报事件
+    rpc WatchTestEvent(google.protobuf.Empty) returns (stream TestResp);
+}
+
+message TestResp {
+    // 任务id
+    int64 taskid = 1 [json_name="taskid"];
+    // 时间戳
+    int64 timestamp = 2 [json_name="timestamp"];
+    // 消息
+    string message = 3 [json_name="message"];
+    // 扩展
+    google.protobuf.Any extra = 4;
+}

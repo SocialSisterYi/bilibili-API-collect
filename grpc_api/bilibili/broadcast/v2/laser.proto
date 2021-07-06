@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package bilibili.broadcast.v2;
+
+import "google/protobuf/empty.proto";
+
+// Laser
+service Laser {
+    // 监听Laser事件
+    rpc WatchEvent(google.protobuf.Empty) returns (stream LaserEventResp);
+}
+
+// 服务端下发Laser事件
+message LaserEventResp {
+    // 任务id
+    int64 taskid = 1;
+    // 指令名
+    string action = 2;
+    // 指令参数json字符串
+    string params = 3;
+}

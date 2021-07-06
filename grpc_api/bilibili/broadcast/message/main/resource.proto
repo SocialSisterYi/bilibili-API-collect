@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.main;
+
+import "google/protobuf/empty.proto";
+
+//
+service Resource {
+    //
+    rpc TopActivity(google.protobuf.Empty) returns (stream TopActivityReply);
+}
+
+//
+message TopActivityReply {
+    // 当前生效的资源
+    TopOnline online = 1;
+    // 对online内容进行hash和上次结果一样则不重新加载
+    string hash = 2;
+}
+
+// 当前生效的资源
+message TopOnline {
+    // 活动类型
+    // 1:七日活动 2:后台配置
+    int32 type = 1;
+    // 图标
+    string icon = 2;
+    // 跳转链接
+    string uri = 3;
+    // 资源状态标识(后台配置)
+    string unique_id = 4;
+    // 动画资源
+    Animate animate = 5;
+    // 红点
+    RedDot red_dot = 6;
+    // 活动名称
+    string name = 7;
+    // 轮询间隔 单位秒
+    int64 interval = 8;
+}
+
+// 动画资源
+message Animate {
+    // 动效结束展示icon
+    string icon = 1;
+    // 7日活动动画
+    string json = 2;
+    // s10活动svg动画
+    string svg = 3;
+    // 循环次数(默认0不返回 表示无限循环)
+    int32 loop = 4;
+}
+
+// 红点
+message RedDot {
+    // 红点类型
+    // 1:纯红点 2:数字红点
+    int32 type = 1;
+    // 如果是数字红点 显示的数字
+    int32 number = 2;
+}

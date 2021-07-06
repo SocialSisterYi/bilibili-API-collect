@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.editor;
+
+import "google/protobuf/empty.proto";
+
+//
+service OperationNotify {
+    //
+	rpc OperationNotify(google.protobuf.Empty) returns (stream Notify);
+}
+
+message Notify {
+    // 消息唯一标示
+    int64   msg_id = 1;
+    // 消息类型
+    int32   msg_type = 2;
+    // 接收方uid
+    int64   receiver_uid = 3;
+    //接收方类型 
+    int32   receiver_type = 4;
+    // 故事的版本
+    int64   story_version = 5;
+    // 操作结果的hash值
+    int64   op_hash = 6;
+    // 操作产生用户的uid
+    int64   op_sender = 7;
+    // patch内容
+    string  op_content = 8;
+}

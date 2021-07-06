@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.im;
+
+import "google/protobuf/empty.proto";
+
+//
+service Notify {
+    //
+	rpc WatchNotify(google.protobuf.Empty) returns (stream NotifyRsp);
+}
+
+//
+enum PLType {
+    //
+    EN_PAYLOAD_NORMAL = 0;
+    //
+    EN_PAYLOAD_BASE64 = 1;
+}
+
+//
+enum CmdId {
+    // 非法cmd
+    EN_CMD_ID_INVALID = 0; 
+    // 服务端主动发起
+    EN_CMD_ID_MSG_NOTIFY = 1;
+    //
+    EN_CMD_ID_KICK_OUT = 2;
+}
+
+//
+message NotifyRsp {
+    //
+    uint64 uid=1;
+    // 命令id
+	uint64 cmd=2;
+    //
+	bytes payload=3;
+    //
+	PLType payload_type=4;
+}
+
+//
+message Msg {
+    // 发送方uid
+    uint64 sender_uid = 1;
+    // 接收方类型
+    int32  receiver_type = 2;
+    // 接收方id
+    uint64 receiver_id = 3;
+    // 客户端的序列id 用于服务端去重
+    uint64 cli_msg_id = 4;
+    // 消息类型
+    int32  msg_type = 5;
+    // 消息内容
+    string content = 6;
+    // 服务端的序列号
+    uint64 msg_seqno = 7;
+    // 消息发送时间（服务端时间）
+    uint64 timestamp = 8;
+    // at用户列表
+    repeated uint64 at_uids = 9;
+    // 多人消息
+    repeated uint64 recver_ids = 10;
+    // 消息唯一标示
+    uint64 msg_key = 11;
+    // 消息状态
+    uint32 msg_status = 12;
+    // 是否为系统撤销
+	bool sys_cancel = 13;
+    // 是否是多聊消息 目前群通知管理员的部分通知属于该类消息
+	uint32 is_multi_chat = 14;
+    // 表示撤回的消息的session_seqno 用以后续的比较 实现未读数的正确显示
+	uint64 withdraw_seqno = 15;
+    // 通知码
+	string notify_code =16;
+    // 消息来源
+	uint32 msg_source = 17;
+}
+
+//
+message NotifyInfo {
+    //
+	uint32 msg_type = 1;
+    //
+	uint64 talker_id = 2;
+    //
+	uint32 session_type =3;
+}
+
+//
+message ReqServerNotify {
+    // 最新序列号
+	uint64 lastest_seqno = 1;
+    // 即时消息 该类消息主要用于系统通知 当客户端sync msg时 不会sync到此类消息
+    Msg instant_msg = 2;
+    //
+	NotifyInfo notify_info = 3;
+}

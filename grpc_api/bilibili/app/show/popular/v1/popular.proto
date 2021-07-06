@@ -43,7 +43,7 @@ message PopularResultReq {
     // 数据埋点上报
     // 0:代表手动刷新 1:代表自动刷新
     int32 flush = 14;
-    // 视频秒开参数
+    // 秒开参数
     bilibili.app.archive.middleware.v1.PlayerArgs playerArgs = 15;
 }
 

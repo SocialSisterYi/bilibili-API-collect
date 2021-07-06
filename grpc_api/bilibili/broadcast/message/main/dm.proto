@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.main;
+
+// 实时弹幕事件
+message DanmukuEvent {
+    // 弹幕列表
+    repeated DanmakuElem elems = 1;
+}
+
+// 弹幕条目
+message DanmakuElem {
+    // 弹幕dmid
+    int64 id = 1;
+    // 弹幕出现位置(单位为ms)
+    int32 progress = 2;
+    // 弹幕类型
+    int32 mode = 3;
+    // 弹幕字号
+    int32 fontsize = 4;
+    // 弹幕颜色
+    uint32 color = 5;
+    // 发送着mid hash
+    string mid_hash = 6;
+    // 弹幕正文
+    string content = 7;
+    // 发送时间
+    int64 ctime = 8;
+    // 弹幕动作
+    string action = 9;
+    // 弹幕池
+    int32 pool = 10;
+    // 弹幕id str
+    string id_str = 11;
+}
+
+// 互动弹幕
+message CommandDm {
+    // 弹幕id
+    int64 id = 1;
+    // 对象视频cid
+    int64 oid = 2;
+    // 发送者mid
+    int64 mid = 3;
+    // 
+    int32 type = 4;
+    // 互动弹幕指令
+    string command = 5;
+    // 互动弹幕正文
+    string content = 6;
+    // 弹幕状态
+    int32 state = 7;
+    // 出现时间
+    int32 progress = 8;
+    // 创建时间
+    string ctime = 9;
+    // 发布时间
+    string mtime = 10;
+    // 扩展json数据
+    string extra = 11;
+    // 弹幕id str类型
+    string idStr = 12;
+}

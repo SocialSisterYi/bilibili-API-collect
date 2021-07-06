@@ -66,12 +66,12 @@ porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api
 
 获取视频`av810872(CID=1176840)`（炮姐）的实时弹幕分包1
 
-**注：proto定义需要编译**
+**注：[proto定义](../grpc_api/bilibili/community/service/dm/v1/dm.proto)需要编译，`bilibili.community.service.dm.v1.dm_pb2`并非通过pypi安装**
 
 ```python
 import requests
 import google.protobuf.text_format as text_format
-import bilibili.community.service.dm.v1_pb2 as Danmaku
+import bilibili.community.service.dm.v1.dm_pb2 as Danmaku
 
 url = 'http://api.bilibili.com/x/v2/dm/web/seg.so'
 params = {

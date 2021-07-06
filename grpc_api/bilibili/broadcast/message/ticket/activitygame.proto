@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.ticket;
+
+//
+enum RoomStatus {
+    // 暂停:
+    Pause = 0;
+    // 播放:
+    Play = 1;
+    // 终止:
+    End = 2;
+}
+
+// 推送选项
+message RoomEvent {
+    // RoomStatus 类型
+    RoomStatus room_status = 1;
+    //
+    string room_message = 2;
+}

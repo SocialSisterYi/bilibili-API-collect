@@ -1,0 +1,126 @@
+syntax = "proto3";
+
+package bilibili.broadcast.v1;
+
+import "google/protobuf/empty.proto";
+
+// Push
+service Push {
+    rpc WatchMessage(google.protobuf.Empty) returns (stream PushMessageResp);
+}
+
+//
+message PushMessageResp {
+    // 业务类型
+    enum Biz {
+        // 未知
+        BIZ_UNKNOWN = 0;
+        // 视频
+        BIZ_VIDEO = 1;
+        // 直播
+        BIZ_LIVE = 2;
+        // 活动
+        BIZ_ACTIVITY = 3;
+    }
+    // 消息类型
+    enum Type {
+        // 未知
+        TYPE_UNKNOWN = 0;
+        // 默认
+        TYPE_DEFAULT = 1;
+        // 热门
+        TYPE_HOT = 2;
+        // 实时
+        TYPE_REALTIME = 3;
+        // 推荐
+        TYPE_RECOMMEND = 4;
+    }
+    // 展示未知
+    enum Position {
+        // 未知
+        POS_UNKNOWN = 0;
+        // 顶部
+        POS_TOP = 1;
+    }
+    // Deprecated: 推送任务id，使用string
+    int64 old_taskid = 1;
+    // 业务
+    // 1:是视频 2:是直播 3:是活动
+    Biz biz = 2;
+    // 类型
+    // 1:是默认 2:是热门 3:是实时 4:是推荐
+    Type type = 3;
+    // 主标题
+    string title = 4;
+    // 副标题
+    string summary = 5;
+    // 图片地址
+    string img = 6;
+    // 跳转地址
+    string link = 7;
+    // 展示位置，1是顶部
+    Position position = 8;
+    // 展示时长（单位：秒），默认3秒
+    int32 duration = 9;
+    // 失效时间
+    int64 expire = 10;
+    // 推送任务id
+    string taskid = 11;
+    // 应用内推送黑名单
+    // UGC:     ugc-video-detail
+    // PGC:     pgc-video-detail
+    // 一起看:   pgc-video-detail-theater
+    // 直播:     live-room-detail
+    // Story:    ugc-video-detail-vertical
+    // 播单黑名单 playlist-video-detail
+    repeated PageBlackList page_blackList = 12;
+    // 预留pvid
+    repeated PageView page_view = 13;
+    // 跳转资源
+    TargetResource target_resource = 14;
+}
+
+//
+message PageBlackList {
+    //
+    string id = 1;
+}
+
+//
+message PageView {
+    //
+    string id = 1;
+}
+
+//
+enum LinkType {
+    // 未知
+    LINK_TYPE_UNKNOWN = 0;
+    // 番剧
+    LINK_TYPE_BANGUMI = 1;
+    // 视频
+    LINK_TYPE_VIDEO = 2;
+    // 直播
+    LINK_TYPE_LIVE = 3;
+}
+
+//
+message TargetResource {
+    //直播:   roomid
+    //UGC:   avid
+    //PGC:   seasonid
+    //Story: avid
+    //举个例子
+    //Type: LINK_TYPE_BANGUMI (番剧)
+    //Resource: {"seasonid":"123"}
+    //
+    //Type: LINK_TYPE_VIDEO (视频)
+    //Resource: {"avid":"123"}
+    //
+    //Type: LINK_TYPE_LIVE (直播)
+    //Resource: {"roomid":"123"}
+    //
+    LinkType Type = 1;
+    //
+    map<string,string> Resource = 2;
+}

@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package bilibili.app.interfaces.v1;
+
+// 搜索
+service Search {
+    // 获取搜索建议
+    rpc Suggest3 (SuggestionResult3Req) returns (SuggestionResult3Reply);
+}
+
+// 获取搜索建议-请求
+message SuggestionResult3Req {
+    // 关键字
+    string keyword = 1;
+    // 是否语法高亮
+    // 0:不显示 1:显示
+    int32 highlight = 2;
+    // 是否青少年模式
+    // 1:开启青少年模式
+    int32 teenagersMode = 3;
+}
+
+// 获取搜索建议-响应
+message SuggestionResult3Reply {
+    // 搜索追踪id
+    string trackid = 1;
+    // 搜索建议条目列表
+    repeated ResultItem list = 2;
+    // 搜索的abtest 实验信息
+    string expStr = 3;
+}
+
+// 搜索建议条目
+message ResultItem {
+    // 来源
+    string from = 1;
+    // 显示结果(语法高亮)
+    string title = 2;
+    // 搜索关键字
+    string keyword = 3;
+    // 序号
+    int32 position = 4;
+    // 图片
+    string cover = 5;
+    // 图片尺寸
+    double coverSize = 6;
+    // sug词类型
+    string sugType = 7;
+    // 词条大类型
+    int32 termType = 8;
+    // 跳转类型
+    string goto = 9;
+    // 跳转uri
+    string uri = 10;
+    // 认证信息
+    OfficialVerify officialVerify = 11;
+    // 跳转参数
+    string param = 12;
+    // up主mid
+    int64 mid = 13;
+    // 粉丝数
+    int32 fans = 14;
+    // up主等级
+    int32 level = 15;
+    // up主稿件数
+    int32 archives = 16;
+    // 投稿时间
+    int64 ptime = 17;
+    // season类型名称
+    string seasonTypeName = 18;
+    // 地区
+    string area = 19;
+    // 作品风格
+    string style = 20;
+    // 描述信息
+    string label = 21;
+    // 评分
+    double rating = 22;
+    // 投票数
+    int32 vote = 23;
+    // 角标
+    repeated ReasonStyle badges = 24;
+    //
+    string styles = 25;
+    //
+    int64 moduleId = 26;
+    //
+    string liveLink = 27;
+}
+
+// 认证信息
+message OfficialVerify {
+    // 认证类型
+    // 127:未认证 0:个人 1:机构
+    int32 type = 1;
+    // 认证描述
+    string desc = 2;
+}
+
+// 角标
+message ReasonStyle {
+    // 角标文案
+    string text = 1;
+    // 文案日间色值
+    string textColor = 2;
+    // 文案夜间色值
+    string textColorNight = 3;
+    // 背景日间色值
+    string bgColor = 4;
+    // 背景夜间色值
+    string bgColorNight = 5;
+    // 边框日间色值
+    string borderColor = 6;
+    // 边框夜间色值
+    string borderColorNight = 7;
+    // 角标样式
+    // 1:填充模式 2:镂空模式
+    int32 bgStyle = 8;
+}

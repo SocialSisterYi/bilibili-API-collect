@@ -1,0 +1,146 @@
+syntax = "proto3";
+
+package bilibili.cheese.gateway.player.v1;
+
+import "bilibili/app/playurl/v1/playurl.proto";
+
+// 课程视频url
+service PlayURL {
+    // 播放页信息
+    rpc PlayView (PlayViewReq) returns (PlayViewReply);
+    // 投屏地址
+    rpc Project (ProjectReq) returns (ProjectReply);
+}
+
+// 播放页信息-请求
+message PlayViewReq {
+    // 课程epid(与番剧不互通)
+    int64 ep_id = 1;
+    // 视频cid
+    int64 cid = 2;
+    // 清晰度
+    int64 qn = 3;
+    // 视频流版本
+    int32 fnver = 4;
+    // 视频流格式
+    int32 fnval = 5;
+    // 下载模式
+    // 0:播放 1:flv下载 2:dash下载
+    uint32 download = 6;
+    // 流url强制是用域名
+    // 0:允许使用ip 1:使用http 2:使用https
+    int32 force_host = 7;
+    // 是否4K
+    bool fourk = 8;
+    // 当前页spm
+    string spmid = 9;
+    // 上一页spm
+    string from_spmid = 10;
+    // 青少年模式
+    int32 teenagers_mode = 11;
+    // 视频编码
+    bilibili.app.playurl.v1.CodeType prefer_codec_type = 12;
+    // 是否强制请求预览视频
+    bool is_preview = 13;
+}
+
+// 投屏地址-请求
+message ProjectReq {
+    // 课程epid(与番剧不互通)
+    int64 ep_id = 1;
+    // 视频cid
+    int64 cid = 2;
+    // 清晰度
+    int64 qn = 3;
+    // 视频流版本
+    int32 fnver = 4;
+    // 视频流格式
+    int32 fnval = 5;
+    // 下载模式
+    // 0:播放 1:flv下载 2:dash下载
+    uint32 download = 6;
+    // 流url强制是用域名
+    // 0:允许使用ip 1:使用http 2:使用https
+    int32 force_host = 7;
+    // 是否4K
+    bool fourk = 8;
+    // 当前页spm
+    string spmid = 9;
+    // 上一页spm
+    string from_spmid = 10;
+    // 投屏协议
+    // 0:默认乐播 1:自建协议 2:云投屏
+    int32 protocol = 11;
+    // 投屏设备
+    // 0:默认其他 1:OTT设备
+    int32 device_type = 12;
+    // 是否flv格式
+    bool flv_proj = 13;
+}
+
+// 播放页信息-响应
+message PlayViewReply {
+    // 视频url信息
+    bilibili.app.playurl.v1.VideoInfo video_info = 1;
+    // 禁用功能配置
+    PlayAbilityConf play_conf = 2;
+}
+
+// 禁用功能配置
+message PlayAbilityConf {
+    // 后台播放
+    bool background_play_disable = 1;
+    // 镜像反转
+    bool flip_disable = 2;
+    // 返回视频的是否支持投屏
+    bool cast_disable = 3;
+    // 反馈
+    bool feedback_disable = 4;
+    // 字幕
+    bool subtitle_disable = 5;
+    // 播放速度
+    bool playback_rate_disable = 6;
+    // 定时停止播放
+    bool time_up_disable = 7;
+    // 播放方式
+    bool playback_mode_disable = 8;
+    // 画面尺寸
+    bool scale_mode_disable = 9;
+    // 顶
+    bool like_disable = 10;
+    // 踩
+    bool dislike_disable = 11;
+    // 投币
+    bool coin_disable = 12;
+    // 充电
+    bool elec_disable = 13;
+    // 分享
+    bool share_disable = 14;
+    // 截图
+    bool screen_shot_disable = 15;
+    // 锁屏
+    bool lock_screen_disable = 16;
+    // 相关推荐
+    bool recommend_disable = 17;
+    // 倍速
+    bool playback_speed_disable = 18;
+    // 清晰度
+    bool definition_disable = 19;
+    // 选集
+    bool selections_disable = 20;
+    // 下一集
+    bool next_disable = 21;
+    // 编辑弹幕
+    bool edit_dm_disable = 22;
+    // 外层面板弹幕设置
+    bool outer_dm_disable = 25;
+    // 三点内弹幕设置
+    bool inner_dm_disable = 26;
+    // 画中画
+    bool small_window_disable = 27;
+}
+
+// 投屏地址-响应
+message ProjectReply {
+    bilibili.app.playurl.v1.PlayURLReply project = 1;
+}

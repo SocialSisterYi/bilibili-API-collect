@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.ogv;
+
+// 开播事件
+message LiveStartEvent {}
+
+// 直播中止事件
+message LiveEndEvent {}
+
+// 在线人数事件
+message LiveOnlineEvent {
+    //在线人数
+    int64 online = 1;
+}
+
+// 变更通知
+message LiveUpdateEvent {
+    // 直播后状态
+    // 1:下线 2:转点播
+    int32 after_premiere_type = 1;
+    // 直播开始绝对时间 单位ms
+    int64 start_time = 2;
+    // id
+    string id = 3;
+    // 服务端播放进度，未打散，负数表示距离开播时间，正数表示已开播时间，单位：毫秒
+    // 用户实际播放进度：progress - delay_time
+    int64 progress = 4;
+}
+
+// 直播间事件
+message CMDBody {
+    //命令类型
+    oneof event {
+        // 开播事件
+        LiveStartEvent start = 1;
+        // 直播中止事件
+        LiveEndEvent emergency = 2;
+        // 在线人数事件
+        LiveOnlineEvent online = 3;
+        // 变更通知
+        LiveUpdateEvent update = 4;
+    }
+}
