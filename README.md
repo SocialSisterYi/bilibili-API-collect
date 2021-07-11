@@ -193,6 +193,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [获取当前时间戳](other/time_stamp.md)√
 - [web端组件](web_widget)
   - [分区当日投稿数](web_widget/zone_upload.md)√
+  - [404页漫画收集](web_widget/404_manga.md)
 - [APP端组件](APP_widget)
   - [开屏图片](APP_widget/splash.md)√
 - [个性装扮](garb)
@@ -261,7 +262,15 @@ B站空间：<https://space.bilibili.com/293793435>
 - [dd-center/vtbs.moe](https://github.com/dd-center/vtbs.moe):B站VTB数据中心
 - [JunzhouLiu/BILIBILI-HELPER](https://github.com/JunzhouLiu/BILIBILI-HELPER):利用Linux Crontab定时任务,云函数，Docker等方式实现B站，哔哩哔哩（Bilibili）每日自动投币，签到，银瓜子兑换硬币，领取大会员福利，大会员月底给自己充电等。每天轻松获取65经验值。
 - [the1812/Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved):强大的哔哩哔哩增强脚本: 下载视频, 音乐, 封面, 弹幕 / 简化直播间, 评论区, 首页 / 自定义顶栏, 删除广告, 夜间模式 / 触屏设备支持
+- [xlzy520/bili-short-url](https://github.com/xlzy520/bili-short-url): 哔哩哔哩短链生成器
+- [zjkwdy/bili_app_splash](https://github.com/zjkwdy/bili_app_splash): B站壁纸娘和开屏图自动下载，每天使用Actions自动同步
+- [Jannchie/BiliOB](https://github.com/Jannchie/BiliOB): BiliOB观测者是一个观测B站UP主及视频数据变化，并予以分析的Web应用程序
+- [biliob233/biliob233.github.io](https://github.com/biliob233/biliob233.github.io):~~无可奉告~~
 
 ## 其他
 
 - [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
+
+- [uw-labs/bloomrpc](https://github.com/uw-labs/bloomrpc): GUI Client for GRPC Services
+
+- [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#) 
