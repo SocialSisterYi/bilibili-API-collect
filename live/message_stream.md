@@ -4,6 +4,31 @@
 
 数据包为websocket，格式为头部数据+正文数据
 
+
+当前关于ws重要信息
+```
+WS_OP_HEARTBEAT: 2, //心跳
+WS_OP_HEARTBEAT_REPLY: 3, //心跳回应 
+WS_OP_MESSAGE: 5, //弹幕,消息等
+WS_OP_USER_AUTHENTICATION: 7,//用户进入房间
+WS_OP_CONNECT_SUCCESS: 8, //进房回应
+
+WS_PACKAGE_HEADER_TOTAL_LENGTH: 16,//头部字节大小
+WS_PACKAGE_OFFSET: 0,
+WS_HEADER_OFFSET: 4,
+WS_VERSION_OFFSET: 6,
+WS_OPERATION_OFFSET: 8,
+WS_SEQUENCE_OFFSET: 12,
+
+WS_BODY_PROTOCOL_VERSION_NORMAL: 0,//普通消息
+WS_BODY_PROTOCOL_VERSION_BROTLI: 3,//brotli压缩信息
+
+WS_HEADER_DEFAULT_VERSION: 1,
+WS_HEADER_DEFAULT_OPERATION: 1,
+WS_HEADER_DEFAULT_SEQUENCE: 1,
+WS_AUTH_OK: 0,
+WS_AUTH_TOKEN_ERROR: -101
+```
 操作流程：
 
 发送认证包->接收认证包回应->接收普通包&（每30秒发送心跳包->接收心跳回应）
@@ -42,9 +67,9 @@ json格式
 | --------- | ---- | ------------ | -------------- |
 | uid       | num  | 用户UID      | 不可为0        |
 | roomid    | num  | 加入房间的ID |                |
-| protover  | num  | 协议版本     | 现在是2        |
+| protover  | num  | 协议版本     | 现在是2(最新版为3)        |
 | platform  | str  | 平台标识     | 可为"web"      |
-| clientver | str  | 客户端版本   | 现在是"1.10.3" |
+| clientver | str  | 客户端版本   | 现在是"1.10.3"(最新版可不需要) |
 | type      | num  | 必须为2      |                |
 | key       | str  | 认证秘钥     |                |
 
@@ -134,7 +159,6 @@ uint32整数，代表房间当前的人气值
 方式：（下行）
 
 #### 弹幕
-
 
 
 #### 送礼
