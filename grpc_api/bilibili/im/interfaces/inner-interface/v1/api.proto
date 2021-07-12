@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package bilibili.im.interface.inner.interface.v1;
+
+//
+service InnerInterface {
+    //
+    rpc UpdateListInn(ReqOpBlacklist) returns(RspOpBlacklist);
+}
+
+//
+message BanUser {
+    // 用户mid
+    uint64 uid = 1;
+    // 封禁业务
+    int32 limit = 2;
+    // 封禁时间
+    int32 time = 3;
+    // 模式
+    // 1:add 2:remove
+    int32 mode = 4;
+}
+
+//
+message ReqOpBlacklist {
+    // 需要封禁/解封的用户信息
+    repeated BanUser ban_users = 1;
+}
+
+//
+message RspOpBlacklist {
+    //
+    repeated uint64 failed_users = 1;
+}

@@ -17,7 +17,7 @@ message PopularResultReq {
     int64 idx = 1;
     // 登录标识
     // 1:未登陆用户第一页 2:登陆用户第一页
-    int32 loginEvent = 2;
+    int32 login_event = 2;
     // 清晰度(旧版)
     int32 qn = 3;
     // 视频流版本(旧版)
@@ -25,26 +25,26 @@ message PopularResultReq {
     // 视频流功能(旧版)
     int32 fnval = 5;
     // 是否强制使用域名(旧版)
-    int32 forceHost = 6;
+    int32 force_host = 6;
     // 是否4K(旧版)
     int32 fourk = 7;
     // 当前页面spm
     string spmid = 8;
     // 上此请求末尾项的param
-    string lastParam = 9;
+    string last_param = 9;
     // 上此请求的ver
     string ver = 10;
     // 分品类热门的入口ID
-    int64 entranceId = 11;
+    int64 entrance_id = 11;
     // 热门定位id集合
-    string locationIds = 12;
+    string location_ids = 12;
     // 0:tag页 1:中间页
-    int32 sourceId = 13;
+    int32 source_id = 13;
     // 数据埋点上报
     // 0:代表手动刷新 1:代表自动刷新
     int32 flush = 14;
     // 秒开参数
-    bilibili.app.archive.middleware.v1.PlayerArgs playerArgs = 15;
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 15;
 }
 
 // 热门列表-响应
@@ -60,19 +60,19 @@ message PopularReply {
 // 配置信息
 message Config {
     // 标题
-    string itemTitle = 1;
+    string item_title = 1;
     // 底部文案
-    string bottomText = 2;
+    string bottom_text = 2;
     // 底部图片url
-    string bottomTextCover = 3;
+    string bottom_text_cover = 3;
     // 底部跳转页url
-    string bottomTextUrl = 4;
+    string bottom_text_url = 4;
     // 顶部按钮信息列表
-    repeated EntranceShow topItems = 5;
+    repeated EntranceShow top_items = 5;
     // 头图url
-    string headImage = 6;
+    string head_image = 6;
     // 当前页按钮信息
-    repeated EntranceShow pageItems = 7;
+    repeated EntranceShow page_items = 7;
     //
     int32 hit = 8;
 }
@@ -84,23 +84,23 @@ message EntranceShow {
     // 按钮名
     string title = 2;
     // 入口模块id
-    string moduleId = 3;
+    string module_id = 3;
     // 跳转uri
     string uri = 4;
     // 气泡信息
     Bubble bubble = 5;
     // 入口id
-    int64 entranceId = 6;
+    int64 entrance_id = 6;
     // 头图url
-    string topPhoto = 7;
+    string top_photo = 7;
     // 入口类型
-    int32 entranceType = 8;
+    int32 entrance_type = 8;
 }
 
 // 气泡信息
 message Bubble {
     // 文案
-    string bubbleContent = 1;
+    string bubble_content = 1;
     // 版本
     int32 version = 2;
     // 起始时间

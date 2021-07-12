@@ -19,7 +19,7 @@ message SplashReq {
     //
     string birth = 3;
     //
-    string adExtra = 4;
+    string ad_extra = 4;
     //
     string network = 5;
 }
@@ -27,11 +27,11 @@ message SplashReq {
 //-响应
 message SplashReply {
     //
-    int32 maxTime = 1;
+    int32 max_time = 1;
     //
-    int32 minInterval = 2;
+    int32 min_interval = 2;
     //
-    int32 pullInterval = 3;
+    int32 pull_interval = 3;
     //
     repeated SplashItem list = 4;
     //
@@ -55,77 +55,77 @@ message SplashItem {
     //
     int32 type = 2;
     //
-    int32 cardType = 3;
+    int32 card_type = 3;
     //
     int32 duration = 4;
     //
-    int64 beginTime = 5;
+    int64 begin_time = 5;
     //
-    int64 endTime = 6;
+    int64 end_time = 6;
     //
     string thumb = 7;
     //
     string hash = 8;
     //
-    string logoUrl = 9;
+    string logo_url = 9;
     //
-    string logoHash = 10;
+    string logo_hash = 10;
     //
-    string videoUrl = 11;
+    string video_url = 11;
     //
-    string videoHash = 12;
+    string video_hash = 12;
     //
-    int32 videoWidth = 13;
+    int32 video_width = 13;
     //
-    int32 videoHeight = 14;
+    int32 video_height = 14;
     //
     string schema = 15;
     //
-    string schemaTitle = 16;
+    string schema_title = 16;
     //
-    string schemaPackageName = 17;
+    string schema_package_name = 17;
     //
-    repeated string schemaCallupWhiteList = 18;
+    repeated string schema_callup_whiteList = 18;
     //
     int32 skip = 19;
     //
     string uri = 20;
     //
-    string uriTitle = 21;
+    string uri_title = 21;
     //
     int32 source = 22;
     //
-    int32 cmMark = 23;
+    int32 cm_mark = 23;
     //
-    string adCb = 24;
+    string ad_cb = 24;
     //
-    int64 resourceId = 25;
+    int64 resource_id = 25;
     //
-    string requestId = 26;
+    string request_id = 26;
     //
-    string clientIp = 27;
+    string client_ip = 27;
     //
-    bool isAd = 28;
+    bool is_ad = 28;
     //
-    bool isAdLoc = 29;
+    bool is_ad_loc = 29;
     //
     google.protobuf.Any extra = 30;
     //
-    int64 cardIndex = 31;
+    int64 card_index = 31;
     //
-    int64 serverType = 32;
+    int64 server_type = 32;
     //
     int64 index = 33;
     //
-    string clickUrl = 34;
+    string click_url = 34;
     //
-    string showUrl = 35;
+    string show_url = 35;
     //
-    int32 timeTarget = 36;
+    int32 time_target = 36;
     //
     int32 encryption = 37;
     //
-    bool enablePreDownload = 38;
+    bool enable_pre_download = 38;
     //
-    bool enableBackgroundDownload = 39;
+    bool enable_background_download = 39;
 }

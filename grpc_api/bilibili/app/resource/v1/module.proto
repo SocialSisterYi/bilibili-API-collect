@@ -20,13 +20,10 @@ enum EnvType {
 
 //
 enum LevelType {
-    Undefined = 0;
-    // 高，需立即下载
-    High = 1;
-    // 中，可以延迟下载
-    Middle = 2;
-    // 低，仅在业务方使用到时由业务方手动进行下载
-    Low = 3;
+    Undefined = 0; //
+    High = 1;      // 高 需立即下载
+    Middle = 2;    // 中 可以延迟下载
+    Low = 3;       // 低 仅在业务方使用到时由业务方手动进行下载
 }
 
 //
@@ -65,18 +62,14 @@ message VersionReq {
 
 //
 enum IncrementType {
-    // 全量包
-    Total = 0;
-    // 增量包
-    Incremental = 1;
+    Total = 0;       // 全量包
+    Incremental = 1; // 增量包
 }
 
 //
 enum CompressType {
-    // unzip
-    Unzip = 0; 
-    // 不操作
-    Original = 1;
+    Unzip = 0;    // unzip
+    Original = 1; // 不操作
 }
 
 message ListReply {

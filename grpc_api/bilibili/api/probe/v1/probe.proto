@@ -66,5 +66,5 @@ message ProbeSubReq {
 //
 message ProbeSubReply {
     //
-    int64 messageId = 1;
+    int64 message_id = 1;
 }

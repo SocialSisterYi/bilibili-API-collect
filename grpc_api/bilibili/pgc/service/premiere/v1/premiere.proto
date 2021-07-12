@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package bilibili.pgc.service.premiere.v1;
+
+// 首播服务
+service Premiere {
+    // 获取首播状态
+    rpc Status (PremiereStatusReq) returns (PremiereStatusReply);
+}
+
+// 获取首播状态-请求
+message PremiereStatusReq {
+    // 剧集epid
+    int64 ep_id = 1;
+}
+
+// 获取首播状态-响应
+message PremiereStatusReply {
+    // 服务端播放进度 单位ms 用户实际播放进度：progress - delay_time
+    int64 progress = 1;
+    // 起播时间戳 单位ms
+    int64 start_time = 2;
+    // 延迟播放时长 单位ms
+    int64 delay_time = 3;
+    // 首播在线人数
+    int64 online_count = 4;
+    // 首播状态
+    // 1:预热 2:首播中 3:紧急停播 4:已结束
+    int32 status = 5;
+    // 首播结束后跳转类型
+    // 1:下架 2:转点播
+    int32 after_premiere_type = 6;
+}

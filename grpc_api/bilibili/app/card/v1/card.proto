@@ -8,24 +8,24 @@ import "bilibili/app/card/v1/single.proto";
 message Card {
     oneof item {
         // 小封面条目
-        SmallCoverV5 smallCoverV5 = 1;
+        SmallCoverV5 small_cover_v5 = 1;
         //
-        LargeCoverV1 largeCoverV1 = 2;
+        LargeCoverV1 large_cover_v1 = 2;
         //
-        ThreeItemAllV2 threeItemAllV2 = 3;
+        ThreeItemAllV2 three_item_all_v2 = 3;
         //
-        ThreeItemV1 threeItemV1 = 4;
+        ThreeItemV1 three_item_v1 = 4;
         //
-        HotTopic hotTopic = 5;
+        HotTopic hot_topic = 5;
         //
-        DynamicHot dynamicHot = 6;
+        DynamicHot three_item_h_v5 = 6;
         //
-        MiddleCoverV3 middleCoverV3 = 7;
+        MiddleCoverV3 middle_cover_v3 = 7;
         //
-        LargeCoverV4 largeCoverV4 = 8;
+        LargeCoverV4 large_cover_v4 = 8;
         // 热门列表顶部按钮
-        PopularTopEntrance popularTopEntrance = 9;
+        PopularTopEntrance popular_top_entrance = 9;
         //
-        RcmdOneItem rcmdOneItem = 10;
+        RcmdOneItem rcmd_one_item = 10;
     }
 }

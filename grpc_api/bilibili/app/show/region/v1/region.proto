@@ -23,9 +23,9 @@ message RegionReply {
 //
 message RegionConfig {
     //
-    string scenesName = 1;
+    string scenes_name = 1;
     //
-    string scenesType = 2;
+    string scenes_type = 2;
 }
 
 //
@@ -47,7 +47,7 @@ message RegionInfo {
     //
     int32 type = 8;
     //
-    int32 isBangumi = 9;
+    int32 is_bangumi = 9;
     //
     repeated RegionInfo children = 10;
     //

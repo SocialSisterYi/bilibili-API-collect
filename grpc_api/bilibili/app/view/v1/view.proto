@@ -38,7 +38,7 @@ message ViewReq {
     // AI trackid
     string trackid = 4;
     // 广告扩展数据
-    string adExtra = 5;
+    string ad_extra = 5;
     // 清晰度(旧版)
     int32 qn = 6;
     // 流版本(旧版)
@@ -46,17 +46,17 @@ message ViewReq {
     // 流类型(旧版)
     int32 fnval = 8;
     // 是否强制使用域名(旧版)
-    int32 forceHost = 9;
+    int32 force_host = 9;
     // 是否允许4K(旧版)
     int32 fourk = 10;
     // 当前页面spm
     string spmid = 11;
     // 上一页面spm
-    string fromSpmid = 12;
+    string from_spmid = 12;
     //
     int32 autoplay = 13;
     // 视频秒开参数
-    bilibili.app.archive.middleware.v1.PlayerArgs playerArgs = 14;
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 14;
 }
 
 // 视频页信息-响应
@@ -66,17 +66,17 @@ message ViewReply {
     // 分P信息
     repeated ViewPage pages = 2;
     // UP主扩展信息 ("OnwerExt"为源码中拼写错误)
-    OnwerExt ownerExt = 3;
+    OnwerExt owner_ext = 3;
     // 稿件用户操作状态
-    ReqUser reqUser = 4;
+    ReqUser req_user = 4;
     // 稿件TAG
     repeated Tag tag = 5;
     // TAG对应的图标
-    map<string, TIcon> tIcon = 6;
+    map<string, TIcon> t_icon = 6;
     // 稿件映射的PGC剧集信息
     Season season = 7;
     // 充电排行
-    ElecRank elecRank = 8;
+    ElecRank elec_rank = 8;
     // 历史观看进度
     History history = 9;
     // 视频相关推荐列表
@@ -84,59 +84,59 @@ message ViewReply {
     // 不感兴趣原因
     Dislike dislike = 11;
     // 播放图标动画配置档
-    PlayerIcon playerIcon = 12;
+    PlayerIcon player_icon = 12;
     //
-    string vipActive = 13;
+    string vip_active = 13;
     // 稿件bvid
     string bvid = 14;
     // 获得荣誉信息
     Honor honor = 15;
     // 相关推荐顶部tab
-    repeated RelateTab relateTab = 16;
+    repeated RelateTab relate_tab = 16;
     // 参与的活动页面url
-    string activityUrl = 17;
+    string activity_url = 17;
     // 稿件引用bgm列表
     repeated Bgm bgm = 18;
     // 联合投稿成员列表
     repeated Staff staff = 19;
     // 争议信息
-    string argueMsg = 20;
+    string argue_msg = 20;
     // 短链接
-    string shortLink = 21;
+    string short_link = 21;
     // 播放实验
     // 1:相关推荐自动播放
-    int32 playParam = 22;
+    int32 play_param = 22;
     // 标签
     Label label = 23;
     // UGC视频合集信息
-    UgcSeason ugcSeason = 24;
+    UgcSeason ugc_season = 24;
     // 配置信息
     Config config = 25;
     // 分享副标题(已观看xxx次)
-    string shareSubtitle = 26;
+    string share_subtitle = 26;
     // 互动视频信息
     Interaction interaction = 27;
     // 错误码
     // DEFAULT:正常 CODE404:视频被UP主删除
     ECode ecode = 28;
     // 404页信息
-    CustomConfig customConfig = 29;
+    CustomConfig custom_config = 29;
     // 广告
     repeated CM cms = 30;
     // 广告配置
-    CMConfig cmConfig = 31;
+    CMConfig cm_config = 31;
     // 播放页定制tab
     Tab tab = 32;
     // 排行榜
     Rank rank = 33;
     // 免流面板定制
-    TFPanelCustomized tfPanelCustomized = 34;
+    TFPanelCustomized tf_panel_customized = 34;
     // UP主发起活动
-    UpAct upAct = 35;
+    UpAct up_act = 35;
     // 用户装扮
-    UserGarb userGarb = 36;
+    UserGarb user_garb = 36;
     // 大型活动合集
-    ActivitySeason activitySeason = 37;
+    ActivitySeason activity_season = 37;
     // 评论样式
     string badge_url = 38;
     // 直播预约信息
@@ -164,11 +164,11 @@ message ActivitySeason {
     // 分P信息
     repeated ViewPage pages = 2;
     //("OnwerExt"为源码中拼写错误)
-    OnwerExt ownerExt = 3;
+    OnwerExt owner_ext = 3;
     // 稿件用户操作状态
-    ReqUser reqUser = 4;
+    ReqUser req_user = 4;
     // 充电排行
-    ElecRank elecRank = 5;
+    ElecRank elec_rank = 5;
     // 历史观看进度
     History history = 6;
     // 稿件bvid
@@ -178,7 +178,7 @@ message ActivitySeason {
     // 联合投稿成员列表
     repeated Staff staff = 9;
     // UGC视频合集信息
-    UgcSeason ugcSeason = 10;
+    UgcSeason ugc_season = 10;
     // 播放页定制tab
     Tab tab = 11;
     // 排行榜
@@ -186,32 +186,32 @@ message ActivitySeason {
     // 预约模块
     Order order = 13;
     // 是否支持点踩
-    bool supportDislike = 14;
+    bool support_dislike = 14;
     // 相关推荐(运营配置+AI推荐)
-    OperationRelate operationRelate = 15;
+    OperationRelate operation_relate = 15;
     // 活动页资源包
-    ActivityResource activityResource = 16;
+    ActivityResource activity_resource = 16;
     // 短链接
-    string shortLink = 17;
+    string short_link = 17;
     // 标签
     Label label = 18;
     // 不感兴趣原因
     Dislike dislike = 19;
     // 播放图标动画配置档
-    PlayerIcon playerIcon = 20;
+    PlayerIcon player_icon = 20;
     // 分享副标题(已观看xxx次)
-    string shareSubtitle = 21;
+    string share_subtitle = 21;
     // 广告配置
-    CMConfig cmConfig = 22;
+    CMConfig cm_config = 22;
     // 免流面板定制
-    TFPanelCustomized tfPanelCustomized = 23;
+    TFPanelCustomized tf_panel_customized = 23;
     // 争议信息
-    string argueMsg = 24;
+    string argue_msg = 24;
     // 错误码
     // DEFAULT:正常 CODE404:视频被UP主删除
     ECode ecode = 25;
     // 404页信息
-    CustomConfig customConfig = 26;
+    CustomConfig custom_config = 26;
     // 评论样式
     string badge_url = 27;
     // 稿件简介v2
@@ -232,32 +232,29 @@ message DescV2 {
 
 // 枚举-文本类型
 enum DescType {
-    // 占位
-    DescTypeUnknown = 0;
-    // 文本
-    DescTypeText = 1;
-    // @
-    DescTypeAt = 2;
+    DescTypeUnknown = 0; // 占位
+    DescTypeText = 1;    // 文本
+    DescTypeAt = 2;      // @
 }
 
 // 活动页资源包
 message ActivityResource {
     // mod资源池名称
-    string modPoolName = 1;
+    string mod_pool_name = 1;
     // mod资源名称
-    string modResourceName = 2;
+    string mod_resource_name = 2;
     // 背景色
-    string bgColor = 3;
+    string bg_color = 3;
     // 选中背景色
     string selectedBgColor = 4;
     // 文字颜色
-    string textColor = 5;
+    string selected_bg_color = 5;
     // 浅字色
-    string lightTextColor = 6;
+    string light_text_color = 6;
     // 深字色
-    string darkTextColor = 7;
+    string dark_text_color = 7;
     // 分割线色
-    string dividerColor = 8;
+    string divider_color = 8;
 }
 
 // 相关推荐(运营配置+AI推荐)
@@ -265,7 +262,7 @@ message OperationRelate {
     // 模块标题
     string title = 1;
     // 相关推荐模块内容
-    repeated RelateItem relateItem = 2;
+    repeated RelateItem relate_item = 2;
     // AI相关推荐
     repeated Relate ai_relate_item = 3;
 }
@@ -285,21 +282,21 @@ message Order {
     // 模块标题
     string title = 2;
     // 按钮文字 未操作
-    string buttonTitle = 3;
+    string button_title = 3;
     // 按钮文字 已操作
-    string buttonSelectedTitle = 4;
+    string button_selected_title = 4;
     // 合集播放数
-    int64 seasonStatView = 5;
+    int64 season_stat_view = 5;
     // 合集弹幕数
-    int64 seasonStatDanmaku = 6;
+    int64 season_stat_danmaku = 6;
     // 预约类型(点击时透传，直播开始前预约活动，直播开始后收藏合集)
-    BizType orderType = 7;
+    BizType order_type = 7;
     // 预约业务参数
-    oneof orderParamCase {
+    oneof order_param {
         // 预约活动参数
-        BizReserveActivityParam bizReserveActivityParam = 8;
+        BizReserveActivityParam reserve = 8;
         // 收藏合集参数
-        BizFavSeasonParam bizFavSeasonParam = 9;
+        BizFavSeasonParam fav_season = 9;
     }
     // 合集简介
     string intro = 10;
@@ -307,17 +304,12 @@ message Order {
 
 // 业务类型
 enum BizType {
-    BizTypeNone = 0;
-    // 追番追剧
-    BizTypeFollowVideo = 1;
-    // 预约活动
-    BizTypeReserveActivity = 2;
-    // 跳转链接
-    BizTypeJumpLink = 3;
-    // 收藏合集
-    BizTypeFavSeason = 4;
-    // 预约游戏
-    BizTypeReserveGame = 5;
+    BizTypeNone = 0;            //
+    BizTypeFollowVideo = 1;     // 追番追剧
+    BizTypeReserveActivity = 2; // 预约活动
+    BizTypeJumpLink = 3;        // 跳转链接
+    BizTypeFavSeason = 4;       // 收藏合集
+    BizTypeReserveGame = 5;     // 预约游戏
 }
 
 // 用户装扮信息
@@ -331,7 +323,7 @@ message Rank {
     // 排行榜icon
     string icon = 1;
     // 排行榜icon 夜间模式
-    string iconNight = 2;
+    string icon_night = 2;
     // 排行榜文案
     string text = 3;
 }
@@ -351,9 +343,9 @@ message Tab {
     // 文字
     string text = 6;
     // 未选中态字色
-    string textColor = 7;
+    string text_color = 7;
     // 选中态字色
-    string textColorSelected = 8;
+    string text_color_selected = 8;
     // 图片
     string pic = 9;
     // 后台配置自增
@@ -362,30 +354,22 @@ message Tab {
 
 // TAB样式
 enum TabStyle {
-    // 未知样式
-    UnknownStyle = 0;
-    // 文字样式
-    Text = 1;
-    // 图片样式
-    Pic = 2;
+    UnknownStyle = 0; // 未知样式
+    Text = 1;         // 文字样式
+    Pic = 2;          // 图片样式
 }
 
 // TAB跳转类型
 enum TabOtype {
-    // 未知类型
-    UnknownOtype = 0;
-    // url链接
-    URL = 1;
-    // native话题活动
-    TopicNA = 2;
+    UnknownOtype = 0; // 未知类型
+    URL = 1;          // url链接
+    TopicNA = 2;      // native话题活动
 }
 
 // 错误代码
 enum ECode {
-    //正常
-    DEFAULT = 0;
-    // 稿件被UP主删除
-    CODE404 = 1;
+    DEFAULT = 0; // 正常
+    CODE404 = 1; // 稿件被UP主删除
 }
 
 // 分P信息
@@ -397,9 +381,9 @@ message ViewPage {
     // 分P弹幕信息
     DM dm =3;
     // 下载文案
-    string downloadTitle = 4;
+    string download_title = 4;
     // 分P完整标题(视频标题+分P标题)
-    string downloadSubtitle = 5;
+    string download_subtitle = 5;
 }
 
 // 音频稿件信息
@@ -407,19 +391,19 @@ message Audio {
     // 音频标题
     string title = 1;
     // 音频封面url
-    string coverUrl = 2;
+    string cover_url = 2;
     // 音频auid
-    int64 songId = 3;
+    int64 song_id = 3;
     // 音频播放量
-    int64 playCount = 4;
+    int64 play_count = 4;
     // 音频评论数
-    int64 replyCount = 5;
+    int64 reply_count = 5;
     // 音频作者UID
-    int64 upperId = 6;
+    int64 upper_id = 6;
     // 进入按钮文案
     string entrance = 7;
     //
-    int64 songAttr = 8;
+    int64 song_attr = 8;
 }
 
 // 分P弹幕信息
@@ -428,7 +412,7 @@ message DM {
     // 0:正常 1:关闭
     bool closed = 1;
     //
-    bool realName = 2;
+    bool real_name = 2;
     // 分P弹幕总数
     int64 count = 3;
 }
@@ -436,7 +420,7 @@ message DM {
 // UP主扩展信息 ("OnwerExt"为源码中拼写错误)
 message OnwerExt {
     // 认证信息
-    OfficialVerify officialVerify = 1;
+    OfficialVerify official_verify = 1;
     // 直播信息
     Live live = 2;
     // 会员信息
@@ -446,7 +430,7 @@ message OnwerExt {
     // 粉丝数
     int64 fans = 5;
     // 总投稿数
-    string arcCount = 6;
+    string arc_count = 6;
 }
 
 // 认证信息
@@ -467,7 +451,7 @@ message Live {
     // 直播间url
     string uri = 3;
     //
-    string endpageUri = 4;
+    string endpage_uri = 4;
 }
 
 // 会员信息
@@ -475,17 +459,17 @@ message Vip {
     //会员类型
     int32 type = 1;
     //到期时间
-    int64 dueDate = 2;
+    int64 due_date = 2;
     //
-    string dueRemark = 3;
+    string due_remark = 3;
     //
-    int32 accessStatus = 4;
+    int32 access_status = 4;
     //会员状态
-    int32 vipStatus = 5;
+    int32 vip_status = 5;
     //
-    string vipStatusWarn = 6;
+    string vip_status_warn = 6;
     //
-    int32 themeType = 7;
+    int32 theme_type = 7;
     //
     VipLabel label = 8;
 }
@@ -505,7 +489,7 @@ message ReqUser {
     // 用户是否关注UP
     int32 attention = 1;
     // UP是否关注用户
-    int32 guestAttention = 2;
+    int32 guest_attention = 2;
     // 是否收藏
     int32 favorite = 3;
     // 是否点赞
@@ -515,9 +499,9 @@ message ReqUser {
     // 是否投币
     int32 coin = 6;
     // 关注等级
-    int32 attentionLevel = 7;
+    int32 attention_level = 7;
     // 是否收藏合集
-    int32 favSeason = 8;
+    int32 fav_season = 8;
 }
 
 // TAG信息
@@ -538,7 +522,7 @@ message Tag {
     string uri = 7;
     // TAG类型
     // common:普通 new:话题 act:活动
-    string tagType = 8;
+    string tag_type = 8;
 }
 
 // TAG图标信息
@@ -550,27 +534,27 @@ message TIcon {
 // 剧集信息
 message Season {
     //
-    string allowDownload = 1;
+    string allow_download = 1;
     // 剧集ssid
-    int64 seasonId = 2;
+    int64 season_id = 2;
     // 是否重定向跳转
-    int32 isJump = 3;
+    int32 is_jump = 3;
     // 剧集标题
     string title = 4;
     // 剧集封面url
     string cover = 5;
     // 剧集是否完结
-    int32 isFinish = 6;
+    int32 is_finish = 6;
     // 最新一话epid
-    int64 newestEpId = 7;
+    int64 newest_ep_id = 7;
     // 最新一话标题
-    string newestEpIndex = 8;
+    string newest_ep_index = 8;
     // 总集数
-    int64 totalCount = 9;
+    int64 total_count = 9;
     // 更新星期日
     int32 weekday = 10;
     // 用户追番标志
-    UserSeason userSeason = 11;
+    UserSeason user_season = 11;
     //
     SeasonPlayer player = 12;
     // 单集页面url
@@ -647,7 +631,7 @@ message Relate {
     // 跳转uri
     string uri = 9;
     //
-    string jumpUrl = 10;
+    string jump_url = 10;
     // 评分
     double rating = 11;
     //
@@ -658,19 +642,19 @@ message Relate {
     // 备注
     string desc = 14;
     //
-    string rcmdReason = 15;
+    string rcmd_reason = 15;
     // 标志文字
     string badge = 16;
     // 1P cid
     int64 cid = 17;
     //
-    int32 seasonType = 18;
+    int32 season_type = 18;
     //
-    int32 ratingCount = 19;
+    int32 rating_count = 19;
     // 标签文案
-    string tagName = 20;
+    string tag_name = 20;
     // 游戏礼包信息
-    PackInfo packInfo = 21;
+    PackInfo pack_info = 21;
     //
     Notice notice = 22;
     // 按钮信息
@@ -678,16 +662,16 @@ message Relate {
     // spm追踪id
     string trackid = 24;
     // 游戏卡片新样式
-    int32 newCard = 25;
+    int32 new_card = 25;
     // 推荐理由样式
-    ReasonStyle rcmdReasonStyle = 26;
+    ReasonStyle rcmd_reason_style = 26;
     //
-    string coverGif = 27;
+    string cover_gif = 27;
     // 广告
     CM cm = 28;
     // 游戏卡字段
     // 0:下载 1:预约(跳过详情) 2:预约 3:测试 4:测试+预约 5:跳过详情页
-    int64 reserveStatus = 29;
+    int64 reserve_status = 29;
 }
 
 // 推荐理由样式
@@ -695,19 +679,19 @@ message ReasonStyle {
     //
     string text = 1;
     // 日间模式文字
-    string textColor = 2;
+    string text_color = 2;
     //
-    string bgColor = 3;
+    string bg_color = 3;
     //
-    string borderColor = 4;
+    string border_color = 4;
     // 夜间模式文字
-    string textColorNight = 5;
+    string text_color_night = 5;
     //
-    string bgColorNight = 6;
+    string bg_color_night = 6;
     //
-    string borderColorNight = 7;
+    string border_color_night = 7;
     // 1:填充 2:描边 3:填充 + 描边 4:背景不填充 + 背景不描边
-    int32 bgStyle = 8;
+    int32 bg_style = 8;
     //
     int32 selected = 9;
 }
@@ -756,7 +740,7 @@ message DislikeReasons {
     // 相关分区tid
     int32 rid = 3;
     // 相关TAG id
-    int64 tagId = 4;
+    int64 tag_id = 4;
     // 相关名称
     string name = 5;
 }
@@ -775,8 +759,8 @@ message PlayerIcon {
 
 // 广告
 message CM {
-    // 广告数据(需要二次解包)
-    google.protobuf.Any sourceContent = 1;
+    // 广告数据(需解包)
+    google.protobuf.Any source_content = 1;
 }
 
 //
@@ -826,7 +810,7 @@ message CreativeContent {
 // 广告配置
 message CMConfig {
     // 广告配置数据(需要二次解包)
-    google.protobuf.Any adsControl = 1;
+    google.protobuf.Any ads_control = 1;
 }
 
 //
@@ -876,13 +860,13 @@ message Staff {
     // 成员昵称
     string name = 4;
     // 成员官方信息
-    OfficialVerify officialVerify = 5;
+    OfficialVerify official_verify = 5;
     // 成员会员信息
     Vip vip = 6;
     // 是否关注该成员
     int32 attention = 7;
     //
-    int32 labelStyle = 8;
+    int32 label_style = 8;
 }
 
 //
@@ -895,12 +879,9 @@ message Label {
 
 //
 enum SeasonType {
-    //
-    Unknown = 0;
-    //
-    Base = 1;
-    //
-    Good = 2;
+    Unknown = 0; //
+    Base = 1;    //
+    Good = 2;    //
 }
 
 // UGC视频合集信息
@@ -917,26 +898,28 @@ message UgcSeason {
     repeated Section sections = 5;
     // 合集状态数
     UgcSeasonStat stat = 6;
-    //
-    string labelText = 7;
-    //
-    string labelTextColor = 8;
-    //
-    string labelBgColor = 9;
-    //
-    string labelBgNightColor = 11;
-    //
-    string labelTextNightColor = 10;
+    // 标签字色
+    string label_text = 7;
+    // 标签背景色
+    string label_text_color = 8;
+    // 标签夜间字色
+    string label_bg_color = 9;
+    // 标签夜间背景色
+    string label_text_night_color = 10;
+    // 右侧描述文案
+    string label_bg_night_color = 11;
     // 按钮文案
     string descRight = 12;
     // 分集总数
-    int64 epCount = 13;
+    int64 ep_count = 13;
+    // 合集类型
+    SeasonType season_type = 14;
 }
 
-//ugc视频合集状态数
+// ugc视频合集状态数
 message UgcSeasonStat {
     // 合集id
-    int64 seasonId = 1;
+    int64 season_id = 1;
     // 观看数
     int32 view = 2;
     // 弹幕数
@@ -950,9 +933,9 @@ message UgcSeasonStat {
     // 分享数
     int32 share = 7;
     // 当前排名
-    int32 nowRank = 8;
+    int32 now_rank = 8;
     // 历史最高排名
-    int32 hisRank = 9;
+    int32 his_rank = 9;
     // 总计点赞
     int32 like = 10;
 }
@@ -997,25 +980,25 @@ message Episode {
 //
 message Config {
     // 下方推荐项标题
-    string relatesTitle = 1;
+    string relates_title = 1;
     //
-    int32 relatesStyle = 2;
+    int32 relates_style = 2;
     //
-    int32 relateGifExp = 3;
+    int32 relate_gif_exp = 3;
     //
-    int32 endPageHalf = 4;
+    int32 end_page_half = 4;
     //
-    int32 endPageFull = 5;
+    int32 end_page_full = 5;
     // 退出是否自动小窗
-    bool autoSwindow = 6;
+    bool auto_swindow = 6;
 }
 
 //
 message Interaction {
     //
-    Node historyNode = 1;
+    Node history_node = 1;
     //
-    int64 graphVersion = 2;
+    int64 graph_version = 2;
     //
     string msg = 3;
     //
@@ -1029,23 +1012,23 @@ message Honor {
     // 荣誉栏图标url
     string icon = 1;
     // 荣誉栏图标url 夜间模式
-    string iconNight = 2;
+    string icon_night = 2;
     // 荣誉文案
     string text = 3;
     // 荣誉副文案
-    string textExtra = 4;
+    string text_extra = 4;
     // 标题颜色
-    string textColor = 5;
+    string text_color = 5;
     // 标题颜色 夜间模式
-    string textColorNight = 6;
+    string text_color_night = 6;
     // 背景颜色
-    string bgColor = 7;
+    string bg_color = 7;
     // 背景颜色 夜间模式
-    string bgColorNight = 8;
+    string bg_color_night = 8;
     // 跳转uri
     string url = 9;
     // 跳转角标文案
-    string urlText = 10;
+    string url_text = 10;
 }
 
 //
@@ -1077,7 +1060,7 @@ message UpAct {
 //
 message Node {
     //
-    int64 nodeId = 1;
+    int64 node_id = 1;
     //
     string title = 2;
     //
@@ -1091,13 +1074,13 @@ message ViewProgressReq {
     // 视频cid
     int64 cid = 2;
     // UP主mid
-    int64 upMid = 3;
+    int64 up_mid = 3;
 }
 
 // 稿件播放中数据-回复
 message ViewProgressReply {
     // 视频引导信息
-    VideoGuide videoGuide = 1;
+    VideoGuide video_guide = 1;
     // Chronos灰度管理
     Chronos chronos = 2;
 }
@@ -1117,21 +1100,21 @@ message VideoGuide{
     // 互动弹幕
     repeated CommandDm commandDms = 2;
     // 运营卡片
-    repeated OperationCard operationCard = 3;
+    repeated OperationCard operation_card = 3;
     // 运营卡片新版
-    repeated OperationCardNew operationCardNew = 4;
+    repeated OperationCardNew operation_card_new = 4;
     // 契约卡
-    ContractCard contractCard = 5;
+    ContractCard contract_card = 5;
 }
 
 // 契约卡
 message ContractCard {
     // 需要触发的播放进度百分比
-    float displayProgress = 1;
+    float display_progress = 1;
     // 触发位置的前后误差(单位ms)
-    int64 displayAccuracy = 2;
+    int64 display_accuracy = 2;
     // 展示持续时间(单位ms)
-    int64 displayDuration = 3;
+    int64 display_duration = 3;
     // 弹出模式
     // 0: 原有模式 1: 半屏弹出 2: 全屏、半屏均弹出
     int32 show_mode = 4;
@@ -1166,24 +1149,24 @@ message OperationCardNew {
     // true已操作 false未操作
     bool status = 4;
     // 卡片类型
-    OperationCardType cardType = 5;
+    OperationCardType card_type = 5;
     // 卡片渲染
-    oneof renderCase {
+    oneof render {
         // 标准卡
-        StandardCard standardCard= 6;
+        StandardCard standard = 6;
         // 老运营卡片(原B剪跳转卡)
-        OperationCard operationCard = 7;
+        OperationCard skip = 7;
     }
     //
-    BizType bizType = 8;
+    BizType biz_type = 8;
     //
-    oneof paramCase {
+    oneof param {
         // 追番追剧参数
-        BizFollowVideoParam FollowVideoParam = 9;
+        BizFollowVideoParam follow = 9;
         // 预约活动参数
-        BizReserveActivityParam ReserveActivityParam = 10;
+        BizReserveActivityParam reserve = 10;
         // 跳转参数
-        BizJumpLinkParam LinkParam = 11;
+        BizJumpLinkParam jump = 11;
         // 预约游戏参数
         BizReserveGameParam game = 12;
     }
@@ -1191,12 +1174,9 @@ message OperationCardNew {
 
 // 卡片样式
 enum OperationCardType {
-    //
-    CardTypeNone = 0;
-    // 标准卡
-    CardTypeStandard = 1;
-    // 原跳转卡
-    CardTypeSkip = 2;
+    CardTypeNone = 0;     //
+    CardTypeStandard = 1; // 标准卡
+    CardTypeSkip = 2;     // 原跳转卡
 }
 
 // 标准卡
@@ -1204,25 +1184,25 @@ message StandardCard {
     // 卡片文案
     string title = 1;
     // 按钮文字 未操作
-    string buttonTitle = 2;
+    string button_title = 2;
     // 按钮文字 已操作
-    string buttonSelectedTitle = 3;
+    string button_selected_title = 3;
     // 已操作态是否显示
-    bool showSelected = 4;
+    bool show_selected = 4;
 }
 
 // 老运营卡片
 message OperationCard {
     // 开始时间(单位为秒)
-    int32 startTime = 1;
+    int32 start_time = 1;
     // 结束时间(单位为秒)
-    int32 endTime = 2;
+    int32 end_time = 2;
     // 图标
     string icon = 3;
     // 标题
     string title = 4;
     // 按钮文案
-    string buttonText = 5;
+    string button_text = 5;
     // 跳转链接
     string url = 6;
     // 内容描述
@@ -1256,51 +1236,51 @@ message CommandDm {
 // 关注按钮卡片
 message Attention {
     // 开始时间
-    int32 startTime = 1;
+    int32 start_time = 1;
     // 结束时间
-    int32 endTime = 2;
+    int32 end_time = 2;
     // 位置x坐标
-    double posX = 3;
+    double pos_x = 3;
     // 位置y坐标
-    double posY = 4;
+    double pos_y = 4;
 }
 
 // 404页信息
 message CustomConfig {
     // 重定向页面url
-    string redirectUrl = 1;
+    string redirect_url = 1;
 }
 
 // 免流面板定制
 message TFPanelCustomized {
     // 右侧按钮素材
-    string rightBtnImg = 1;
+    string right_btn_img = 1;
     // 右侧按钮文案
-    string rightBtnText = 2;
+    string right_btn_text = 2;
     // 右侧按钮字体颜色
-    string rightBtnTextColor = 3;
+    string right_btn_text_color = 3;
     // 右侧按钮跳转链接
-    string rightBtnLink = 4;
+    string right_btn_link = 4;
     // 中心主文案内容
-    string mainLabel = 5;
+    string main_label = 5;
     // 运营商(cm ct cu)
     string operator = 6;
     // 子面板定制化配置
-    map <string,subTFPanel> entry = 7;
+    map <string,subTFPanel> sub_panel = 7;
 }
 
 // 免流子面板定制化配置
 message subTFPanel {
     // 右侧按钮素材
-    string rightBtnImg = 1;
+    string right_btn_img = 1;
     // 右侧按钮文案
-    string rightBtnText = 2;
+    string right_btn_text = 2;
     // 右侧按钮字体颜色
-    string rightBtnTextColor = 3;
+    string right_btn_text_color = 3;
     // 右侧按钮跳转链接
-    string rightBtnLink = 4;
+    string right_btn_link = 4;
     // 中心主文案内容
-    string mainLabel = 5;
+    string main_label = 5;
     // 运营商
     string operator = 6;
 }
@@ -1316,7 +1296,7 @@ message ShortFormVideoDownloadReq {
     // 设备buvid
     string buvid = 4;
     // 移动端包类型
-    string mobiApp = 5;
+    string mobi_app = 5;
     // 移动端版本号
     int64 build = 6;
     // 运行设备
@@ -1330,9 +1310,9 @@ message ShortFormVideoDownloadReq {
 // 短视频下载-响应
 message ShortFormVideoDownloadReply {
     // 是否有下载分享按钮
-    bool hasDownloadUrl = 1;
+    bool has_download_url = 1;
     // 下载url
-    string downloadUrl = 2;
+    string download_url = 2;
     // 文件md5
     string md5 = 3;
     // 文件大小(单位为Byte)
@@ -1357,15 +1337,15 @@ message ClickPlayerCardReq {
 // 点击大型活动页预约-请求
 message ClickActivitySeasonReq {
     // 预约类型
-    BizType orderType = 1;
+    BizType order_type = 1;
     // 当前页面spm
     string spmid = 2;
     // 业务参数
-    oneof orderParamCase {
+    oneof order_param {
         // 预约活动参数
-        BizReserveActivityParam bizReserveActivityParam = 3;
+        BizReserveActivityParam reserve = 3;
         // 收藏合集参数
-        BizFavSeasonParam bizFavSeasonParam = 4;
+        BizFavSeasonParam fav_season = 4;
     }
     // 操作
     //0:操作 1:取消操作
@@ -1375,13 +1355,13 @@ message ClickActivitySeasonReq {
 //
 message BizFollowVideoParam {
     //
-    int64 seasonId = 1;
+    int64 season_id = 1;
 }
 
 // 预约活动参数
 message BizReserveActivityParam {
     // 活动id
-    int64 activityId = 1;
+    int64 activity_id = 1;
     // 场景
     string from = 2;
     // 类型
@@ -1404,13 +1384,13 @@ message BizReserveGameParam {
 // 收藏合集参数
 message BizFavSeasonParam {
     // 合集id
-    int64 seasonId = 1;
+    int64 season_id = 1;
 }
 
 // 合集详情页-请求
 message SeasonReq {
     // 合集id
-    int64 seasonId = 1;
+    int64 season_id = 1;
 }
 
 // 合集详情页-响应
@@ -1422,7 +1402,7 @@ message SeasonReply {
 // 播放器卡片曝光-请求
 message ExposePlayerCardReq {
     // 卡片类型
-    PlayerCardType cardType = 1;
+    PlayerCardType card_type = 1;
     // 稿件avid
     int64 aid = 2;
     // 视频cid
@@ -1433,14 +1413,10 @@ message ExposePlayerCardReq {
 
 // 卡片类型
 enum PlayerCardType {
-    //
-    PlayerCardTypeNone_VALUE = 0;
-    // 关注卡
-    PlayerCardTypeAttention_VALUE = 1;
-    // 运营卡
-    PlayerCardTypeOperation_VALUE = 2;
-    // 契约卡
-    PlayerCardTypeContract_VALUE = 3;
+    PlayerCardTypeNone_VALUE = 0;      //
+    PlayerCardTypeAttention_VALUE = 1; // 关注卡
+    PlayerCardTypeOperation_VALUE = 2; // 运营卡
+    PlayerCardTypeContract_VALUE = 3;  // 契约卡
 }
 
 // 点击签订契约-请求
@@ -1448,7 +1424,7 @@ message AddContractReq {
     // 稿件avid
     int64 aid = 1;
     // UP主mid
-    int64 upMid = 2;
+    int64 up_mid = 2;
     // 当前页面spm
     string spmid = 3;
 }

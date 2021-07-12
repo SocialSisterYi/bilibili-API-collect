@@ -52,7 +52,7 @@ message Item {
     // 跳转uri
     string uri = 4;
     // 重定向url
-    string redirectUrl = 5;
+    string redirect_url = 5;
     // 跳转类型
     // av:视频稿件
     string goto = 6;
@@ -71,7 +71,7 @@ message Item {
     // 收藏数
     int32 favourite = 13;
     // 发布时间
-    int64 pubDate = 14;
+    int64 pub_date = 14;
     // 分区tid
     int32 rid = 15;
     // 子分区名
@@ -92,7 +92,7 @@ message Item {
     // UP主粉丝数
     int64 follower = 23;
     // UP主认证信息
-    OfficialVerify officialVerify = 24;
+    OfficialVerify official_verify = 24;
     // 同一UP收起子项列表
     repeated Item children = 25;
     // 关系信息
@@ -114,7 +114,7 @@ message Relation {
     // 1:未关注 2:已关注 3:被关注 4:互相关注
     int32 status = 1;
     // 是否关注
-    int32 isFollow = 2;
+    int32 is_follow = 2;
     // 是否粉丝
-    int32 isFollowed = 3;
+    int32 is_followed = 3;
 }

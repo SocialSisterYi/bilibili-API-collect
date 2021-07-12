@@ -7,9 +7,9 @@ import "bilibili/app/card/v1/ad.proto";
 // 条目基本信息
 message Base {
     // 卡片类型
-    string cardType = 1;
+    string card_type = 1;
     // 卡片跳转类型?
-    string cardGoto = 2;
+    string card_goto = 2;
     // 跳转类型
     // av:视频稿件 mid:用户空间
     string goto = 3;
@@ -22,28 +22,28 @@ message Base {
     // 跳转uri
     string uri = 7;
     //
-    ThreePoint threePoint = 8;
+    ThreePoint three_point = 8;
     //
     Args args = 9;
     //
-    PlayerArgs playerArgs = 10;
+    PlayerArgs player_args = 10;
     // 条目排位序号
     int64 idx = 11;
     //
-    AdInfo adInfo = 12;
+    AdInfo ad_info = 12;
     //
     Mask mask = 13;
     //来源标识
     // recommend:推荐 operation:管理?
-    string fromType = 14;
+    string from_type = 14;
     //
-    repeated ThreePointV2 threePointV2 = 15;
+    repeated ThreePointV2 three_point_v2 = 15;
     //
-    repeated ThreePointV3 threePointV3 = 16;
+    repeated ThreePointV3 three_point_v3 = 16;
     //
-    Button descButton = 17;
+    Button desc_button = 17;
     // 三点v4
-    ThreePointV4 threePointV4 = 18;
+    ThreePointV4 three_point_v4 = 18;
 }
 
 // 按钮信息
@@ -61,7 +61,7 @@ message Button {
     // 类型
     int32 type = 6;
     // 事件v2
-    string eventV2 = 7;
+    string event_v2 = 7;
     // 关系信息
     Relation relation = 8;
 }
@@ -69,11 +69,11 @@ message Button {
 //
 message ThreePoint {
     //
-    repeated DislikeReason dislikeReasons = 1;
+    repeated DislikeReason dislike_reasons = 1;
     //
     repeated DislikeReason feedbacks = 2;
     //稍后再看
-    int32 watchLater = 3;
+    int32 watch_later = 3;
 }
 
 //
@@ -213,7 +213,7 @@ message SharePlane {
     // 标题
     string title = 1;
     // 副标贴文案
-    string shareSubtitle = 2;
+    string share_subtitle = 2;
     // 备注
     string desc = 3;
     // 封面url
@@ -223,15 +223,15 @@ message SharePlane {
     // 稿件bvid
     string bvid = 6;
     // 允许分享方式
-    map<string,bool> shareTo = 7;
+    map<string,bool> share_to = 7;
     // UP主昵称
     string author = 8;
     // UP主mid
-    int64 authorId = 9;
+    int64 author_id = 9;
     // 短连接
-    string shortLink = 10;
+    string short_link = 10;
     // 播放次数文案
-    string playNumber = 11;
+    string play_number = 11;
 }
 
 // 稍后再看信息
@@ -247,36 +247,36 @@ message ReasonStyle {
     // 文案
     string text = 1;
     // 文字颜色
-    string textColor = 2;
+    string text_color = 2;
     // 背景色
-    string bgColor = 3;
+    string bg_color = 3;
     // 边框色
-    string borderColor = 4;
+    string border_color = 4;
     // 图标url
-    string iconUrl = 5;
+    string icon_url = 5;
     // 文字颜色-夜间
-    string textColorNight = 6;
+    string text_color_night = 6;
     // 背景色-夜间
-    string bgColorNight = 7;
+    string bg_color_night = 7;
     // 边框色-夜间
-    string borderColorNight = 8;
+    string border_color_night = 8;
     // 图标url-夜间
-    string iconNightUrl = 9;
+    string icon_night_url = 9;
     // 背景风格id
     // 1:无背景 2:有背景
-    int32 bgStyle = 10;
+    int32 bg_style = 10;
     //
     string uri = 11;
     //
-    string iconBgUrl = 12;
+    string icon_bg_url = 12;
     //
     string event = 13;
     //
-    string eventV2 = 14;
+    string event_v2 = 14;
     //
-    int32 rightIconType = 15;
+    int32 right_icon_type = 15;
     //
-    string leftIconType = 16;
+    string left_icon_type = 16;
 }
 
 //
@@ -318,7 +318,7 @@ message Relation {
     // 关系状态
     int32 status = 1;
     // 是否关注
-    int32 isFollow = 2;
+    int32 is_follow = 2;
     // 是否粉丝
-    int32 isFollowed = 3;
+    int32 is_followed = 3;
 }

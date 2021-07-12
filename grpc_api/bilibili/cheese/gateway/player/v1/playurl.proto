@@ -88,56 +88,31 @@ message PlayViewReply {
 
 // 禁用功能配置
 message PlayAbilityConf {
-    // 后台播放
-    bool background_play_disable = 1;
-    // 镜像反转
-    bool flip_disable = 2;
-    // 返回视频的是否支持投屏
-    bool cast_disable = 3;
-    // 反馈
-    bool feedback_disable = 4;
-    // 字幕
-    bool subtitle_disable = 5;
-    // 播放速度
-    bool playback_rate_disable = 6;
-    // 定时停止播放
-    bool time_up_disable = 7;
-    // 播放方式
-    bool playback_mode_disable = 8;
-    // 画面尺寸
-    bool scale_mode_disable = 9;
-    // 顶
-    bool like_disable = 10;
-    // 踩
-    bool dislike_disable = 11;
-    // 投币
-    bool coin_disable = 12;
-    // 充电
-    bool elec_disable = 13;
-    // 分享
-    bool share_disable = 14;
-    // 截图
-    bool screen_shot_disable = 15;
-    // 锁屏
-    bool lock_screen_disable = 16;
-    // 相关推荐
-    bool recommend_disable = 17;
-    // 倍速
-    bool playback_speed_disable = 18;
-    // 清晰度
-    bool definition_disable = 19;
-    // 选集
-    bool selections_disable = 20;
-    // 下一集
-    bool next_disable = 21;
-    // 编辑弹幕
-    bool edit_dm_disable = 22;
-    // 外层面板弹幕设置
-    bool outer_dm_disable = 25;
-    // 三点内弹幕设置
-    bool inner_dm_disable = 26;
-    // 画中画
-    bool small_window_disable = 27;
+    bool background_play_disable = 1; // 后台播放
+    bool flip_disable = 2;            // 镜像反转
+    bool cast_disable = 3;            // 支持投屏
+    bool feedback_disable = 4;        // 反馈
+    bool subtitle_disable = 5;        // 字幕
+    bool playback_rate_disable = 6;   // 播放速度
+    bool time_up_disable = 7;         // 定时停止播放
+    bool playback_mode_disable = 8;   // 播放方式
+    bool scale_mode_disable = 9;      // 画面尺寸
+    bool like_disable = 10;           // 顶
+    bool dislike_disable = 11;        // 踩
+    bool coin_disable = 12;           // 投币
+    bool elec_disable = 13;           // 充电
+    bool share_disable = 14;          // 分享
+    bool screen_shot_disable = 15;    // 截图
+    bool lock_screen_disable = 16;    // 锁屏
+    bool recommend_disable = 17;      // 相关推荐
+    bool playback_speed_disable = 18; // 倍速
+    bool definition_disable = 19;     // 清晰度
+    bool selections_disable = 20;     // 选集
+    bool next_disable = 21;           // 下一集
+    bool edit_dm_disable = 22;        // 编辑弹幕
+    bool outer_dm_disable = 25;       // 外层面板弹幕设置
+    bool inner_dm_disable = 26;       // 三点内弹幕设置
+    bool small_window_disable = 27;   // 画中画
 }
 
 // 投屏地址-响应

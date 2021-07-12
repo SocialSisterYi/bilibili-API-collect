@@ -193,7 +193,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [获取当前时间戳](other/time_stamp.md)√
 - [web端组件](web_widget)
   - [分区当日投稿数](web_widget/zone_upload.md)√
-  - [404页漫画收集](web_widget/404_manga.md)
+  - [404页漫画收集](web_widget/404_manga.md)√
 - [APP端组件](APP_widget)
   - [开屏图片](APP_widget/splash.md)√
 - [个性装扮](garb)

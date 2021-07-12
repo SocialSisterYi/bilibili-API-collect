@@ -1,0 +1,262 @@
+syntax = "proto3";
+
+package bilibili.pgc.gateway.player.v1;
+
+import "bilibili/app/playurl/v1/playurl.proto";
+
+// PlayURL 播放地址
+service PlayURL {
+    // 播放页信息
+    rpc PlayView (PlayViewReq) returns (PlayViewReply);
+    // 获取投屏地址
+    rpc Project (ProjectReq) returns (ProjectReply);
+    // 直播播放页信息
+    rpc LivePlayView (LivePlayViewReq) returns (LivePlayViewReply);
+}
+
+// 播放页信息-请求
+message PlayViewReq {
+    // 剧集epid
+    int64 epid = 1;
+    // 视频cid
+    int64 cid = 2;
+    // 清晰度
+    int64 qn = 3;
+    // 视频流版本
+    int32 fnver = 4;
+    // 视频流格式
+    int32 fnval = 5;
+    // 下载模式
+    // 0:播放 1:flv下载 2:dash下载
+    uint32 download = 6;
+    // 流url强制是用域名
+    // 0:允许使用ip 1:使用http 2:使用https
+    int32 force_host = 7;
+    // 是否4K
+    bool fourk = 8;
+    // 当前页spm
+    string spmid = 9;
+    // 上一页spm
+    string from_spmid = 10;
+    // 青少年模式
+    int32 teenagers_mode = 11;
+    // 视频编码
+    bilibili.app.playurl.v1.CodeType prefer_codec_type = 12;
+    // 是否强制请求预览视频
+    bool is_preview = 13;
+    // 一起看房间id
+    int64 room_id = 14;
+}
+
+// 投屏地址-请求
+message ProjectReq {
+    // 剧集epid
+    int64 ep_id = 1;
+    // 视频cid
+    int64 cid = 2;
+    // 清晰度
+    int64 qn = 3;
+    // 视频流版本
+    int32 fnver = 4;
+    // 视频流格式
+    int32 fnval = 5;
+    // 下载模式
+    // 0:播放 1:flv下载 2:dash下载
+    uint32 download = 6;
+    // 流url强制是用域名
+    // 0:允许使用ip 1:使用http 2:使用https
+    int32 forceHost = 7;
+    // 是否4K
+    bool fourk = 8;
+    // 当前页spm
+    string spmid = 9;
+    // 上一页spm
+    string fromSpmid = 10;
+    // 使用协议
+    // 0:默认乐播 1:自建协议 2:云投屏 3:airplay
+    int32 protocol = 11;
+    // 投屏设备
+    // 0:默认其他 1:OTT设备
+    int32 device_type = 12;
+}
+
+//  播放页信息-响应
+message PlayViewReply {
+    // 视频流信息
+    bilibili.app.playurl.v1.VideoInfo video_info = 1;
+    // 播放控件用户自定义配置
+    PlayAbilityConf play_conf = 2;
+    // 业务需要的其他信息
+    BusinessInfo business = 3;
+    // 事件
+    Event event = 4;
+}
+
+// 事件
+message Event {
+    // 震动
+    Shake shake = 1;
+}
+
+// 震动
+message Shake {
+    // 文件地址
+    string file = 1;
+}
+
+// 其他业务信息
+message BusinessInfo {
+    // 当前视频是否是预览
+    bool is_preview = 1;
+    // 用户是否承包过
+    bool bp = 2;
+    // drm使用
+    string marlin_token = 3;
+}
+
+// 禁用功能配置
+message PlayAbilityConf {
+    bool background_play_disable = 1; // 后台播放
+    bool flip_disable = 2;            // 镜像反转
+    bool cast_disable = 3;            // 投屏
+    bool feedback_disable = 4;        // 反馈
+    bool subtitle_disable = 5;        // 字幕
+    bool playback_rate_disable = 6;   // 播放速度
+    bool time_up_disable = 7;         // 定时停止
+    bool playback_mode_disable = 8;   // 播放方式
+    bool scale_mode_disable = 9;      // 画面尺寸
+    bool like_disable = 10;           // 赞
+    bool dislike_disable = 11;        // 踩
+    bool coin_disable = 12;           // 投币
+    bool elec_disable = 13;           // 充电
+    bool share_disable = 14;          // 分享
+    bool screen_shot_disable = 15;    // 截图
+    bool lock_screen_disable = 16;    // 锁定
+    bool recommend_disable = 17;      // 相关推荐
+    bool playback_speed_disable = 18; // 播放速度
+    bool definition_disable = 19;     // 清晰度
+    bool selections_disable = 20;     // 选集
+    bool next_disable = 21;           // 下一集
+    bool edit_dm_disable = 22;        // 编辑弹幕
+    bool small_window_disable = 23;   // 小窗
+    bool shake_disable = 24;          // 震动
+    bool outer_dm_disable = 25;       // 外层面板弹幕设置
+    bool inner_dm_disable = 26;       // 三点内弹幕设置
+    bool freya_enter_disable = 27;    // 一起看入口
+    bool dolby_disable = 28;          // 杜比音效
+    bool freya_full_disable = 29;     // 全屏一起看入口
+}
+
+// 投屏地址-响应
+message ProjectReply {
+    bilibili.app.playurl.v1.PlayURLReply project = 1;
+}
+
+// 直播播放页信息-请求
+message LivePlayViewReq {
+    // 剧集epid
+    int64 ep_id = 1;
+    // 清晰度
+    // 0,10000:原画 400:蓝光 250:超清 150:高清 80:流畅
+    uint32 quality = 2;
+    // 类型
+    // 0:音频 2:hevc 4:dash 8:p2p, 16:蒙版
+    uint32 ptype = 3;
+    // 是否请求https
+    bool https = 4;
+    // 0:默认直播间播放 1:投屏播放
+    uint32 play_type = 5;
+    // 投屏设备
+    // 0:默认其他 1:OTT设备
+    int32 device_type = 6;
+}
+
+// 直播播放页信息-响应
+message LivePlayViewReply {
+    // 房间信息
+    RoomInfo room_info = 1;
+    // 播放信息
+    LivePlayInfo play_info = 2;
+}
+
+// 房间信息
+message RoomInfo {
+    // 房间长号
+    int64 room_id = 1;
+    // 主播mid
+    int64 uid = 2;
+    // 状态相关
+    RoomStatusInfo status = 3;
+    // 展示相关
+    RoomShowInfo show = 4;
+}
+
+// 房间信息-状态相关
+message RoomStatusInfo {
+    // 直播间状态
+    // 0:未开播 1:直播中 2:轮播中
+    int64 live_status = 1;
+    // 横竖屏方向
+    // 0:横屏 1:竖屏
+    int64 live_screen_type = 2;
+    // 是否开播过标识
+    int64 live_mark = 3;
+    // 封禁状态
+    // 0:未封禁 1:审核封禁 2:全网封禁
+    int64 lock_status = 4;
+    // 封禁时间戳
+    int64 lock_time = 5;
+    // 隐藏状态
+    // 0:不隐藏 1:隐藏
+    int64 hidden_status = 6;
+    // 隐藏时间戳
+    int64 hidden_time = 7;
+    // 直播类型
+    // 0:默认 1:摄像头直播 2;录屏直播 3:语音直播
+    int64 live_type = 8;
+    //
+    int64 room_shield = 9;
+}
+
+// 房间信息-展示相关
+message RoomShowInfo {
+    // 短号
+    int64 short_id = 1;
+    // 人气值
+    int64 popularity_count = 8;
+    // 最近一次开播时间戳
+    int64 live_start_time = 10;
+}
+
+// 播放信息
+message LivePlayInfo {
+    //
+    int32 current_qn = 1;
+    //
+    repeated QualityDescription quality_description = 2;
+    //
+    repeated ResponseDataUrl durl = 3;
+}
+
+//
+message QualityDescription {
+    //
+    int32 qn = 1;
+    //
+    string desc = 2;
+}
+
+//
+message ResponseDataUrl {
+    string url = 1;
+    // 表示stream类型,按位表示
+    // Value|  1   |  1  |  1   |  1   |     1
+    // --------------------------------------------
+    // desc | mask | p2p | dash | hevc | only-audio
+    uint32 stream_type = 2;
+    // 表示支持p2p的cdn厂商,按位表示
+    // 值   | 1  |  1  |  1  | 1  |  1  | 1  | 1  | 1
+    // -----------------------------------------------
+    // CDN	| hw | bdy | bsy | ws | txy | qn | js | bvc
+    uint32 ptag = 3;
+}

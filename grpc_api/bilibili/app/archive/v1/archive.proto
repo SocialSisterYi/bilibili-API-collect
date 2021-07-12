@@ -9,9 +9,9 @@ message Arc{
 	// 稿件分P数
 	int64 videos = 2;
 	// 分区id
-	int32 typeId = 3;
+	int32 type_id = 3;
 	// 二级分区名
-	string typeName = 4;
+	string type_name = 4;
 	// 稿件类型
 	// 1:原创 2:转载
 	int32 copyright = 5;
@@ -32,19 +32,19 @@ message Arc{
 	int32 access = 12;
 	// 属性位配置(现在无了)
 	int32 attribute = 13;
-	//
+	// 空
 	string tag = 14;
-	//
+	// 空
 	repeated string tags = 15;
 	// 稿件总时长(单位为秒)
 	int64 duration = 16;
 	// 参与的活动id
-	int64 missionId = 17;
+	int64 mission_id = 17;
 	// 绑定的商单id
-	int64 orderId = 18;
+	int64 order_id = 18;
 	// PGC稿件强制重定向url(如番剧、影视)
-	string redirectUrl = 19;
-	//
+	string redirect_url = 19;
+	// 空
 	int64 forward = 20;
 	// 控制标志
 	Rights rights = 21;
@@ -52,20 +52,20 @@ message Arc{
 	Author author = 22;
 	// 状态数
 	Stat stat = 23;
-	//
-	string reportResult = 24;
+	// 空
+	string report_result = 24;
 	// 投稿时发送的动态内容
 	string dynamic = 25;
 	// 稿件1P cid
-	int64 firstCid = 26;
+	int64 first_cid = 26;
 	// 稿件1P 分辨率
 	Dimension dimension = 27;
 	// 合作组成员列表
-	repeated StaffInfo staffInfo = 28;
+	repeated StaffInfo staff_info = 28;
 	// UGC合集id
-	int64 seasonId = 29;
+	int64 season_id = 29;
 	// 新版属性位配置(也没用)
-	int64 attributeV2 = 30;
+	int64 attribute_v2 = 30;
 }
 
 // UP主信息
@@ -127,17 +127,17 @@ message Rights{
     // 是否高码率
     int32 hd5 = 6;
     // 是否禁止转载标志
-    int32 noReprint = 7;
+    int32 no_reprint = 7;
     // 是否允许自动播放
     int32 autoplay = 8;
     // UGC稿件需要付费
-    int32 ugcPay = 9;
+    int32 ugc_pay = 9;
     // 是否联合投稿
-    int32 isCooperation = 10;
+    int32 is_cooperation = 10;
     // 是否UGC付费预览
-    int32 ugcPayPreview = 11;
+    int32 ugc_pay_preview = 11;
     // 是否禁止后台播放
-    int32 noBackground = 12;
+    int32 no_background = 12;
 }
 
 // 合作成员信息
@@ -168,9 +168,9 @@ message Stat{
 	// 分享数
 	int32 share = 7;
 	// 当前排名
-	int32 nowRank = 8;
+	int32 now_rank = 8;
 	// 历史最高排名
-	int32 hisRank = 9;
+	int32 his_rank = 9;
 	// 点赞数
 	int32 like = 10;
 	// 点踩数(前端不可见故恒为0)

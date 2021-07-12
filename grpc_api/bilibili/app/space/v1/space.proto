@@ -27,7 +27,7 @@ message ArchiveReply {
     //
     int32 count = 2;
     //
-    EpisodicButton episodicButton = 3;
+    EpisodicButton episodic_button = 3;
     //
     repeated OrderConfig order = 4;
 }
@@ -37,19 +37,19 @@ message Badge {
     //
     string text = 1;
     //
-    string textColor = 2;
+    string text_color = 2;
     //
-    string textColorNight = 3;
+    string text_color_night = 3;
     //
-    string bgColor = 4;
+    string bg_color = 4;
     //
-    string bgColorNight = 5;
+    string bg_color_night = 5;
     //
-    string borderColor = 6;
+    string border_color = 6;
     //
-    string borderColorNight = 7;
+    string border_color_night = 7;
     //
-    int32 bgStyle = 8;
+    int32 bg_style = 8;
 }
 
 //
@@ -75,19 +75,19 @@ message BiliSpaceVideo {
     //
     bool state = 10;
     //
-    bool isPopular = 11;
+    bool is_popular = 11;
     //
     repeated Badge badges = 12;
     //
-    string coverRight = 13;
+    string cover_right = 13;
     //
     string bvid = 14;
     //
-    bool isSteins = 15;
+    bool is_steins = 15;
     //
-    bool isUgcpay = 16;
+    bool is_ugcpay = 16;
     //
-    bool isCooperation = 17;
+    bool is_cooperation = 17;
 }
 
 //

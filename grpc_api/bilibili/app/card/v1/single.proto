@@ -290,22 +290,22 @@ message EntranceItem {
     // 标题
     string title = 3;
     // 入口模块id
-    string moduleId = 4;
+    string module_id = 4;
     // 跳转uri
     string uri = 5;
     // 入口id
-    int64 entranceId = 6;
+    int64 entrance_id = 6;
     // 气泡信息
     Bubble bubble = 7;
     // 入口类型
     // 1:代表分品类热门
-    int32 entranceType = 8;
+    int32 entrance_type = 8;
 }
 
 // 气泡信息
 message Bubble {
     // 文案
-    string bubbleContent = 1;
+    string bubble_content = 1;
     // 版本
     int32 version = 2;
     // 起始时间

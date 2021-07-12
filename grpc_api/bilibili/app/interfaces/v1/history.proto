@@ -55,7 +55,7 @@ message CursorReq {
     // all:全部 archive:视频 live:直播 article:专栏
     string business = 2;
     // 秒开参数(旧版)
-    PlayerPreloadParams playerPreload = 3;
+    PlayerPreloadParams player_preload = 3;
     // 秒开参数
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
 }
@@ -80,7 +80,7 @@ message CursorV2Req {
     // archive:视频 live:直播 article:专栏 goods:商品 show:展演
     string business = 2;
     // 秒开参数(旧版)
-    PlayerPreloadParams playerPreload = 3;
+    PlayerPreloadParams player_preload = 3;
     // 秒开参数
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
     // 是否选择本机的播放历史
@@ -102,15 +102,15 @@ message CursorItem {
     // 主体数据
     oneof card_item {
         // ugc稿件
-        CardUGC cardUGC = 1;
+        CardUGC card_ugc = 1;
         // pgc稿件
-        CardOGV cardOGV = 2;
+        CardOGV card_ogv = 2;
         // 专栏
-        CardArticle cardArticle = 3;
+        CardArticle card_article = 3;
         // 直播
-        CardLive cardLive = 4;
+        CardLive card_live = 4;
         // 课程
-        CardCheese cardCheese = 5;
+        CardCheese card_cheese = 5;
     }
     // 标题
     string title = 6;
@@ -130,7 +130,7 @@ message CursorItem {
     // 设备标识
     DeviceType dt = 13;
     // 是否有分享按钮
-    bool hasShare = 14;
+    bool has_share = 14;
 }
 
 // ugc稿件卡片
@@ -146,7 +146,7 @@ message CardUGC {
     // UP主mid
     int64 mid = 5;
     // 是否展示关注按钮
-    bool displayAttention = 6;
+    bool display_attention = 6;
     // 历史观看视频cid
     int64 cid = 7;
     // 历史观看视频分P
@@ -160,9 +160,9 @@ message CardUGC {
     // 总分P数
     int64 videos = 12;
     // 短链接
-    string shortLink = 13;
+    string short_link = 13;
     // 分享副标题
-    string shareSubtitle = 14;
+    string share_subtitle = 14;
     // 播放数
     int64 view = 15;
 }
@@ -208,7 +208,7 @@ message CardLive {
     // 直播状态
     int32 ststus = 5;
     // 是否展示关注按钮
-    bool displayAttention = 6;
+    bool display_attention = 6;
     // 关系信息
     Relation relation = 7;
 }
@@ -248,7 +248,7 @@ message Cursor {
 // 删除历史记录-请求
 message DeleteReq {
     // 历史记录信息
-    HisInfo hisInfo = 1;
+    HisInfo his_info = 1;
 }
 
 // 历史记录信息
@@ -273,22 +273,14 @@ message DeviceType {
 
 //设备标识代码
 enum DT {
-    // 未知
-    Un known = 0;
-    //手机端
-    Phone   = 1;
-    // ipad端
-    Pad     = 2;
-    // web端
-    PC      = 3;
-    // TV端
-    TV      = 4;
-    //
-    Car     = 5;
-    //
-    Iot     = 6;
-    // apad端
-    AndPad  = 7;
+    Unknown = 0; // 未知
+    Phone = 1;   // 手机端
+    Pad = 2;     // ipad端
+    PC = 3;      // web端
+    TV = 4;      // TV端
+    Car = 5;     //
+    Iot = 6;     //
+    AndPad = 7;  // apad端
 }
 
 // 关系信息
@@ -297,9 +289,9 @@ message Relation {
     // 1:未关注 2:已关注 3:被关注 4:互关
     int32 status = 1;
     // 用户关注UP主
-    int32 isFollow = 2;
+    int32 is_follow = 2;
     // UP主关注用户
-    int32 isFollowed = 3;
+    int32 is_followed = 3;
 }
 
 // 搜索历史记录-请求
@@ -358,7 +350,7 @@ message LatestHistoryReq {
     // archive:视频 live:直播 article:专栏 goods:商品 show:展演
     string business = 1;
     // 秒开参数
-    PlayerPreloadParams playerPreload = 2;
+    PlayerPreloadParams player_preload = 2;
 }
 
 // 获取最新的历史记录-响应

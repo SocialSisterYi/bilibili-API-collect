@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package bilibili.main.common.arch.doll.v1;
+
+//
+service Echo {
+    //
+    rpc Ping(PingRequest) returns(PingResponse);
+    //
+    rpc Say(SayRequest) returns(SayResponse);
+    //
+    rpc Error(ErrorRequest) returns(ErrorResponse);
+}
+
+//
+message PingRequest {
+    /
+    int64  time = 1;
+}
+
+//
+message PingResponse {
+    //
+    string host = 1;
+    //
+    int64  time = 3;
+}
+
+//
+message SayRequest {
+    //
+    string content = 1;
+}
+
+//
+message SayResponse {
+    //
+    string host = 1;
+    //
+    string content = 2;
+    //
+    int64  time = 3;
+}
+
+//
+message ErrorRequest {
+    //
+    int32  error = 2;
+    //
+    int64  time = 1;
+    //
+    int64  delay = 3;
+}
+
+//
+message ErrorResponse {
+    //
+    string host = 1;
+    //
+    int64  time = 3;
+}

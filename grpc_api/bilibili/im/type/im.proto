@@ -1,0 +1,323 @@
+syntax = "proto3";
+
+package bilibili.im.type;
+
+//
+enum ENUM_BIZ_MSG_TYPE {
+    //
+    BIZ_MSG_TYPE_NORMAL = 0;
+    //
+    BIZ_MSG_TYPE_CARD_VIDEO = 1;
+}
+
+//
+enum RecverType{
+    //
+    EN_NO_MEANING = 0;
+    //单人
+    EN_RECVER_TYPE_PEER = 1;
+    //群
+    EN_RECVER_TYPE_GROUP = 2;
+    //多人
+    EN_RECVER_TYPE_PEERS = 3;
+}
+
+//
+enum CmdId {
+    EN_CMD_ID_INVALID = 0;                             //非法cmd
+
+    //msg_svr
+    EN_CMD_ID_SEND_MSG = 200001;                       // 发消息
+
+    //sync_msg_svr
+    EN_CMD_ID_SYNC_MSG = 500001;                       // 同步消息
+    EN_CMD_ID_SYNC_RELATION = 500002;                  // 同步相关链
+    EN_CMD_ID_SYNC_ACK = 500003;                       // 客户端同步消息完成后，向服务器确认同步进度
+    EN_CMD_ID_SYNC_FETCH_SESSION_MSGS = 500006;        // 多端同步版本拉取消息
+
+    //session_svr
+    EN_CMD_ID_SESSION_SVR_GET_SESSIONS = 1000001;      // 拉会话列表
+    EN_CMD_ID_SESSION_SVR_NEW_SESSIONS = 1000002;      // 新消息到达时获取会话列表
+    EN_CMD_ID_SESSION_SVR_ACK_SESSIONS = 1000003;      // 获取已读位置有更新的会话列表
+    EN_CMD_ID_SESSION_SVR_UPDATE_ACK   = 1000004;      // 更新已读进度
+    EN_CMD_ID_SESSION_SVR_SET_TOP      = 1000005;      // 置顶/取消置顶
+    EN_CMD_ID_SESSION_SVR_REMOVE_SESSION = 1000007;    // 删除会话
+    EN_CMD_ID_SESSION_SVR_SINGLE_UNREAD = 1000008;     // 单聊未读信息数
+    EN_CMD_ID_SESSION_SVR_MY_GROUP_UNREAD = 1000009;   // 我创建的应援团未读数
+    EN_CMD_ID_SESSION_SVR_UPDATE_UNFLW_READ = 1000010; // 未关注的人批量设置为已读
+    EN_CMD_ID_SESSION_SVR_GROUP_ASSIS_MSG = 1000011;   // 应援团消息助手
+    EN_CMD_ID_SESSION_SVR_ACK_ASSIS_MSG = 1000012;     // 更新应援团小助手消息已拉取进度
+    EN_CMD_ID_SESSION_SVR_SESSION_DETAIL = 1000015;    // 拉会话详情
+    EN_CMD_ID_SESSION_SVR_BATCH_SESS_DETAIL = 1000016; // 批量拉会话详情
+    EN_CMD_ID_SESSION_SVR_BATCH_RM_SESSIONS = 1000017; // 批量删除会话
+}
+
+//
+enum RelationLogType {
+    EN_INVALID_LOG_TYPE = 0; //
+    EN_ADD_FRIEND  = 1;      // 添加好友
+    EN_REMOVE_FRIEND = 2;    // 删除好友
+    EN_JOIN_GROUP = 3;       // 加入群
+    EN_EXIT_GROUP = 4;       // 退出群
+}
+
+//
+enum MsgSource {
+    EN_MSG_SOURCE_UNKONW = 0;                   //
+    EN_MSG_SOURCE_IOS = 1;                      //
+    EN_MSG_SOURCE_ANDRIOD = 2;                  //
+    EN_MSG_SOURCE_H5 = 3;                       //
+    EN_MSG_SOURCE_PC = 4;                       //
+    EN_MSG_SOURCE_BACKSTAGE = 5;                //
+    EN_MSG_SOURCE_BIZ = 6;                      //
+    EN_MSG_SOURCE_WEB = 7;                      //
+    EN_MSG_SOURCE_AUTOREPLY_BY_FOLLOWED=8;      //
+    EN_MSG_SOURCE_AUTOREPLY_BY_RECEIVE_MSG = 9; //
+    EN_MSG_SOURCE_AUTOREPLY_BY_KEYWORDS = 10;   //
+    EN_MSG_SOURCE_AUTOREPLY_BY_VOYAGE = 11;     //
+    EN_MSG_SOURCE_VC_ATTACH_MSG = 12;           //
+};
+
+//消息类型
+enum MsgType {
+    // 基础消息类型
+    EN_INVALID_MSG_TYPE = 0;                               // 空空的~
+    EN_MSG_TYPE_TEXT = 1;                                  // 文本消息
+    EN_MSG_TYPE_PIC = 2;                                   // 图片消息
+    EN_MSG_TYPE_AUDIO = 3;                                 // 语音消息
+    EN_MSG_TYPE_SHARE = 4;                                 // 分享消息
+    EN_MSG_TYPE_DRAW_BACK = 5;                             // 撤回消息
+    EN_MSG_TYPE_CUSTOM_FACE = 6;                           // 自定义表情
+    EN_MSG_TYPE_SHARE_V2 = 7;                              // 分享v2消息
+    EN_MSG_TYPE_SYS_CANCEL = 8;                            // 系统撤销
+    EN_MSG_TYPE_MINI_PROGRAM = 9;                          // 小程序
+
+    // 扩展消息类型
+    EN_MSG_TYPE_NOTIFY_MSG = 10;                           // 业务通知
+    EN_MSG_TYPE_VIDEO_CARD = 11;                           // 视频卡片
+    EN_MSG_TYPE_ARTICLE_CARD = 12;                         // 专栏卡片
+    EN_MSG_TYPE_PICTURE_CARD = 13;                         // 图片卡
+    EN_MSG_TYPE_COMMON_SHARE_CARD = 14;                    // 异形卡
+    EN_MSG_TYPE_BIZ_MSG_TYPE = 50;                         //
+
+    // 功能类系统消息类型
+    EN_MSG_TYPE_GROUP_MEMBER_CHANGED = 101;                // 群成员变更
+    EN_MSG_TYPE_GROUP_STATUS_CHANGED = 102;                // 群状态变更
+    EN_MSG_TYPE_GROUP_DYNAMIC_CHANGED = 103;               // 群动态变更
+    EN_MSG_TYPE_GROUP_LIST_CHANGED = 104;                  // 群列表变更
+    EM_MSG_TYPE_FRIEND_LIST_CHANGED = 105;                 // 好友列表变更
+    EN_MSG_TYPE_GROUP_DETAIL_CHANGED = 106;                // 群详情发生变化
+    EN_MSG_TYPE_GROUP_MEMBER_ROLE_CHANGED = 107;           // 群成员角色发生变化
+    EN_MSG_TYPE_NOTICE_WATCH_LIST = 108;                   //
+    EN_MSG_TYPE_NOTIFY_NEW_REPLY_RECIEVED = 109;           // 消息系统，收到新的reply
+    EN_MSG_TYPE_NOTIFY_NEW_AT_RECIEVED = 110;              //
+    EN_MSG_TYPE_NOTIFY_NEW_PRAISE_RECIEVED = 111;          //
+    EN_MSG_TYPE_NOTIFY_NEW_UP_RECIEVED = 112;              //
+    EN_MSG_TYPE_NOTIFY_NEW_REPLY_RECIEVED_V2 = 113;        //
+    EN_MSG_TYPE_NOTIFY_NEW_AT_RECIEVED_V2 = 114;           //
+    EN_MSG_TYPE_NOTIFY_NEW_PRAISE_RECIEVED_V2 = 115;       //
+    EN_MSG_TYPE_GROUP_DETAIL_CHANGED_MULTI = 116;          // 群详情发生变化,多端同步版本需要即时消息，无需落地
+    EN_MSG_TYPE_GROUP_MEMBER_ROLE_CHANGED_MULTI = 117;     // 群成员角色发生变化,多端同步版本需要即时消息，无需落地
+    EN_MSG_TYPE_NOTIFY_ANTI_DISTURB = 118;                 //
+
+    // 系统通知栏消息类型
+    EN_MSG_TYPE_SYS_GROUP_DISSOLVED = 201;                 // 群解散
+    EN_MSG_TYPE_SYS_GROUP_JOINED = 202;                    // 入群
+    EN_MSG_TYPE_SYS_GROUP_MEMBER_EXITED = 203;             // 成员主动退群
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_FIRED = 204;               // 房管被撤
+    EN_MSG_TYPE_SYS_GROUP_MEMBER_KICKED = 205;             // 成员被T
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_KICK_OFF = 206;            // 管理T人
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_DUTY = 207;                // 管理上任
+    EN_MSG_TYPE_SYS_GROUP_AUTO_CREATED = 208;              // 自动创建
+    EN_MSG_TYPE_SYS_FRIEND_APPLY = 210;                    // 好友申请
+    EN_MSG_TYPE_SYS_FRIEND_APPLY_ACK = 211;                // 好友申请通过
+    EN_MSG_TYPE_SYS_GROUP_APPLY_FOR_JOINING = 212;         // 用户加群申请
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_ACCEPTED_USER_APPLY = 213; // 通知管理员,有其他管理员已经同意用户加群
+
+    // 聊天窗口通知消息类型
+    EN_MSG_TYPE_CHAT_MEMBER_JOINED = 301;                  // 入群
+    EN_MSG_TYPE_CHAT_MEMBER_EXITED = 302;                  // 退群
+    EN_MSG_TYPE_CHAT_GROUP_FREEZED = 303;                  // 冻结
+    EN_MSG_TYPE_CHAT_GROUP_DISSOLVED = 304;                // 解散
+    EN_MSG_TYPE_CHAT_GROUP_CREATED = 305;                  // 开通应援团
+    EN_MSG_TYPE_CHAT_POPUP_SESSION = 306;                  // 弹出会话
+}
+
+//
+enum SESSION_TYPE {
+    INVALID_SESSION_TYPE = 0;     //
+    UN_FOLD_SESSION = 1;          //
+    UN_FOLLOW_SINGLE_SESSION = 2; //
+    MY_GROUP_SESSION = 3;         //
+    ALL_SESSION = 4;              //
+}
+
+// 关键词高亮文本
+message HighText {
+    //
+    string title = 1;
+    //
+    string url = 2;
+    // 表示高亮文本应该高亮第几个匹配的文本，ps：比如，“有疑问请联系客服，联系客服时，请说明具体的情况”，一共有2个匹配的文本，要高亮第一个匹配的，则index=1
+    uint32 index = 3;
+}
+
+//关键词命中信息
+message KeyHitInfos {
+    //
+    string toast = 1;
+    //
+    uint32 rule_id = 2;
+    //
+    repeated HighText high_text = 3;
+    //
+}
+
+//
+message Msg {
+    // 发送方mid
+    uint64 sender_uid = 1;
+    // 接收方类型
+    int32 receiver_type = 2;
+    // 接收方mid
+    uint64 receiver_id = 3;
+    // 客户端的序列id,用于服务端去重
+    uint64 cli_msg_id = 4;
+    // 消息类型
+    int32 msg_type = 5;
+    // 消息内容
+    string content = 6;
+    // 服务端的序列号x
+    uint64 msg_seqno = 7;
+    // 消息发送时间（服务端时间）
+    uint64 timestamp = 8;
+    // @用户列表
+    repeated uint64 at_uids = 9;
+    // 多人消息
+    repeated uint64 recver_ids = 10;
+    // 消息唯一标示
+    uint64 msg_key = 11;
+    // 消息状态
+    uint32 msg_status = 12;
+    // 是否为系统撤销
+    bool sys_cancel = 13;
+    // 通知码
+    string notify_code = 14;
+    // 消息来源
+    uint32 msg_source = 15;
+    // 如果msg.content有表情字符，则该参数需要置为1
+    int32 new_face_version = 16;
+    // 命中关键词信息
+    KeyHitInfos key_hit_infos = 17;
+}
+
+// 会话详情
+message SessionInfo {
+    //
+    uint64 talker_id = 1;
+    //
+    uint32 session_type = 2;
+    //
+    uint64 at_seqno = 3;
+    //
+    uint64 top_ts = 4;
+    //
+    string group_name = 5;
+    //
+    string group_cover = 6;
+    //
+    uint32 is_follow = 7;
+    //
+    uint32 is_dnd = 8;
+    //
+    uint64 ack_seqno = 9;
+    //
+    uint64 ack_ts = 10;
+    //
+    uint64 session_ts = 11;
+    //
+    uint32 unread_count = 12;
+    //
+    Msg last_msg = 13;
+    //
+    uint32 group_type = 14;
+    //
+    uint32 can_fold = 15;
+    //
+    uint32 status = 16;
+    //
+    uint64 max_seqno = 17;
+    // 会话是否有业务通知
+    uint32 new_push_msg = 18;
+    // 接收方是否设置接受推送
+    uint32 setting = 19;
+    //
+    uint32 is_guardian = 20;
+}
+
+//
+message RelationLog {
+    // 操作类型
+    int32 log_type = 1;
+    // 操作seqno
+    uint64 oplog_seqno = 2;
+    // 好友信息
+    FriendRelation friend_relation = 3;
+    // 群信息
+    GroupRelation group_relation = 4;
+}
+
+//
+message FriendRelation {
+    // 用户mid
+    uint64 uid = 1;
+    // 用户昵称
+    string user_name = 2;
+    // 头像url
+    string face = 3;
+    // vip类型
+    // 0:无 1:月度大会员 2:年度大会员
+    uint32 vip_level = 4;
+}
+
+//
+message ImgInfo{
+    //
+    string url = 1;
+    //
+    int32 width = 2;
+    //
+    int32 height = 3;
+    //
+    string imageType = 4;
+}
+
+//
+message GroupRelation {
+    //
+    uint64 group_id = 1;
+    //
+    uint64 owner_uid = 2;
+    //
+    uint32 group_type = 3;
+    //
+    uint32 group_level = 4;
+    //
+    string group_cover = 5;
+    //
+    string group_name = 6;
+    //
+    string group_notice = 7;
+    //
+    int32 status = 8;
+    //
+    int32 member_role = 9;
+    //
+    string fans_medal_name = 10;
+    //
+    uint64 room_id = 11;
+}
+
+
+
+

@@ -22,7 +22,7 @@ message EntranceReply {
     // 活动跳转链接
     string url = 3;
     // 动画效果
-    AnimateIcon animateIcon = 4;
+    AnimateIcon animate_icon = 4;
 }
 
 // 首页弹窗-请求
@@ -36,7 +36,7 @@ message WindowReply {
     // 跳转链接
     string url = 2;
     // 上报数据字段
-    string reportData = 3;
+    string report_data = 3;
 }
 
 //动画效果
