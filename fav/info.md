@@ -36,9 +36,9 @@
 
 | 字段        | 类型 | 内容                 | 备注                                               |
 | ----------- | ---- | -------------------- | -------------------------------------------------- |
-| id          | num  | 收藏夹mlid（完整id） | 收藏夹原始id+创建者UID尾号2位                      |
+| id          | num  | 收藏夹mlid（完整id） | 收藏夹原始id+创建者mid尾号2位                      |
 | fid         | num  | 收藏夹原始id         |                                                    |
-| mid         | num  | 创建者UID            |                                                    |
+| mid         | num  | 创建者mid            |                                                    |
 | attr        | num  | 属性位（？）         |                                                    |
 | title       | str  | 收藏夹标题           |                                                    |
 | cover       | str  | 收藏夹封面图片url    |                                                    |
@@ -59,7 +59,7 @@
 
 | 字段       | 类型 | 内容             | 备注                                            |
 | ---------- | ---- | ---------------- | ----------------------------------------------- |
-| mid        | num  | 创建者UID        |                                                 |
+| mid        | num  | 创建者mid        |                                                 |
 | name       | str  | 创建者昵称       |                                                 |
 | face       | str  | 创建者头像url    |                                                 |
 | followed   | bool | 是否已关注创建者 |                                                 |
@@ -77,7 +77,7 @@
 
 **示例：**
 
-查询收藏夹`ID=1052622027`的元数据
+查询收藏夹`id=1052622027`的元数据
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
@@ -145,7 +145,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注                                     |
 | ------ | ---- | ------------ | ------ | ---------------------------------------- |
-| up_mid | num  | 目标用户UID  | 必要   |                                          |
+| up_mid | num  | 目标用户mid  | 必要   |                                          |
 | type   | num  | 目标内容属性 | 非必要 | 默认为全部<br />0：全部<br />2：视频稿件 |
 | rid    | num  | 目标内容id   | 非必要 | 视频稿件：视频稿件avid                   |
 
@@ -179,9 +179,9 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
 
 | 字段        | 类型 | 内容                     | 备注                                       |
 | ----------- | ---- | ------------------------ | ------------------------------------------ |
-| id          | num  | 收藏夹mlid（完整id）     | 收藏夹原始id+创建者UID尾号2位              |
+| id          | num  | 收藏夹mlid（完整id）     | 收藏夹原始id+创建者mid尾号2位              |
 | fid         | num  | 收藏夹原始id             |                                            |
-| mid         | num  | 创建者UID                |                                            |
+| mid         | num  | 创建者mid                |                                            |
 | attr        | num  | 属性位（？）             |                                            |
 | title       | str  | 收藏夹标题               |                                            |
 | fav_state   | num  | 目标id是否存在于该收藏夹 | 存在于该收藏夹：1<br />不存在于该收藏夹：0 |
@@ -189,7 +189,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
 
 **示例：**
 
-查询用户`UID=509372`的所有创建收藏夹列表
+查询用户`mid=509372`的所有创建收藏夹列表
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
@@ -291,7 +291,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 
 | 字段 | 类型 | 内容        | 备注 |
 | ---- | ---- | ----------- | ---- |
-| mid  | num  | UP主UID     |      |
+| mid  | num  | UP主mid     |      |
 | name | str  | UP主昵称    |      |
 | face | str  | UP主头像url |      |
 

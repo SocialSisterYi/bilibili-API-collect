@@ -25,9 +25,9 @@
 
 | 参数名 | 类型 | 内容               | 必要性       | 备注                                |
 | ------ | ---- | ------------------ | ------------ | ----------------------------------- |
-| aid    | num  | 稿件avID           | 必要（可选） | avID与bvID任选一个                  |
-| bvid   | str  | 稿件bvID           | 必要（可选） | avID与bvID任选一个                  |
-| cid    | num  | 分P CID            | 非必要       | 默认为1P                            |
+| aid    | num  | 稿件avid           | 必要（可选） | avid与bvid任选一个                  |
+| bvid   | str  | 稿件bvid           | 必要（可选） | avid与bvid任选一个                  |
+| cid    | num  | 分P cid            | 非必要       | 默认为1P                            |
 | index  | num  | json数组截取时间表 | 非必要       | 1：需要<br />0：不需要<br />默认为0 |
 
 **json回复：**
@@ -74,7 +74,7 @@
 
 获取视频`av26273789`/`BV1os411H7wm`的快照
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/player/videoshot' \
@@ -82,7 +82,7 @@ curl -G 'http://api.bilibili.com/x/player/videoshot' \
 --data-urlencode 'index=1'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/player/videoshot' \
@@ -125,8 +125,8 @@ curl -G 'http://api.bilibili.com/x/player/videoshot' \
 | 参数名 | 类型 | 内容       | 必要性      | 备注 |
 | ------ | ---- | ---------- | ----------- | ---- |
 | appkey | str  | APP密钥    | APP方式必要 |      |
-| aid    | num  | 稿件avID   | 必要        |      |
-| cid    | num  | 分P CID    | 必要        |      |
+| aid    | num  | 稿件avid   | 必要        |      |
+| cid    | num  | 分P cid    | 必要        |      |
 | ts     | num  | 当前时间戳 | APP方式必要 |      |
 | sign   | str  | APP签名    | APP方式必要 |      |
 
@@ -162,7 +162,7 @@ curl -G 'http://api.bilibili.com/x/player/videoshot' \
 
 示例：
 
-获取视频`av26273789`（`CID=49075258`）的快照
+获取视频`av26273789`（`cid=49075258`）的快照
 
 ```shell
 curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
@@ -209,7 +209,7 @@ curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| aid    | num  | 稿件avID | 必要   |      |
+| aid    | num  | 稿件avid | 必要   |      |
 
 **json回复：**
 

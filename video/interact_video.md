@@ -20,9 +20,9 @@
 
 | 参数名        | 类型 | 内容     | 必要性       | 备注               |
 | ------------- | ---- | -------- | ------------ | ------------------ |
-| aid           | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid          | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
-| graph_version | num  | 剧情图ID | 必要         | 位于`player.so`中  |
+| aid           | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid          | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
+| graph_version | num  | 剧情图id | 必要         | 位于`player.so`中  |
 | edge_id       | num  | 模块编号 | 非必要       | 0或留空为起始模块  |
 
 **json回复：**
@@ -41,7 +41,7 @@
 | 字段            | 类型  | 内容                | 备注                                             |
 | --------------- | ----- | ------------------- | ------------------------------------------------ |
 | title           | str   | 视频模块（分P）标题 |                                                  |
-| edge_id         | num   | 当前模块ID          |                                                  |
+| edge_id         | num   | 当前模块id          |                                                  |
 | story_list      | array | 进度回溯信息        | 未登录仅有起始模块                               |
 | edges           | obj   | 当前模块信息        |                                                  |
 | preload         | obj   | 预加载的分P         |                                                  |
@@ -66,7 +66,7 @@
 | node_id    | num  | 模块编号         |                               |
 | edge_id    | num  | **同上**         |                               |
 | title      | str  | 模块（分P）标题  |                               |
-| cid        | num  | 模块（分P）CID   |                               |
+| cid        | num  | 模块（分P）cid   |                               |
 | start_pos  | num  | 记录播放开始位置 | 单位为毫秒                    |
 | cover      | str  | 分P封面url       |                               |
 | is_current | num  | 是否为当前模块   | 1：是<br />仅为当前模块时存在 |
@@ -121,11 +121,11 @@
 
 | 字段            | 类型 | 内容                 | 备注                                  |
 | --------------- | ---- | -------------------- | ------------------------------------- |
-| id              | num  | 选项所跳转的模块ID   |                                       |
-| platform_action | str  | 跳转信息文字         | JUMP+{所跳转的模块编号}+{所跳转的CID} |
+| id              | num  | 选项所跳转的模块id   |                                       |
+| platform_action | str  | 跳转信息文字         | JUMP+{所跳转的模块编号}+{所跳转的cid} |
 | native_action   | str  | 点击后对变量运算语句 | 每项间用分号隔开<br />无为空          |
 | condition       | str  | 选项出现条件判断语句 | 无为空                                |
-| cid             | num  | 选项所跳转分P的CID   |                                       |
+| cid             | num  | 选项所跳转分P的cid   |                                       |
 | x               | num  | 选项出现的x坐标      | 仅坐标模式有此项                      |
 | y               | num  | 选项出现的y坐标      | 仅坐标模式有此项                      |
 | text_align      | num  | 选项文本对齐方式     |                                       |
@@ -166,8 +166,8 @@
 
 | 字段 | 类型 | 内容     | 备注 |
 | ---- | ---- | -------- | ---- |
-| aid  | num  | 稿件avID |      |
-| cid  | num  | 分P CID  |      |
+| aid  | num  | 稿件avid |      |
+| cid  | num  | 分P cid  |      |
 
 `data`中的`hidden_vars`数组：
 
@@ -193,7 +193,7 @@
 
 查询互动视频`av73267982`下剧情图`155446`模块`5556092`的信息
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \
@@ -203,7 +203,7 @@ curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \

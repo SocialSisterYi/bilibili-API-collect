@@ -52,15 +52,15 @@
 | summary         | str  | 笔记预览文本 |                        |
 | mtime           | str  | 提交时间     |                        |
 | arc             | obj  | 视频信息     |                        |
-| note_id         | num  | 笔记ID       |                        |
+| note_id         | num  | 笔记id       |                        |
 | audit_status    | num  | 0            | 作用尚不明确           |
 
 `list`中的`arc`中的对象：
 
 | 字段   | 类型 | 内容         | 备注                   |
 | ------ | ---- | ------------ | ---------------------- |
-| aid    | num  | 稿件avID     |                        |
-| bvid   | str  | 稿件bvID     |                        |
+| aid    | num  | 稿件avid     |                        |
+| bvid   | str  | 稿件bvid     |                        |
 | pic    | str  | 稿件封面图片url |                     |
 | desc   | str  | 视频简介     |                        |
 | status | num  | 0            |                        |

@@ -46,7 +46,7 @@
 
 | 字段       | 类型 | 内容         | 备注                            |
 | ---------- | ---- | ------------ | ------------------------------- |
-| id         | num  | 颜色ID       |                                 |
+| id         | num  | 颜色id       |                                 |
 | name       | str  | 颜色名称     |                                 |
 | is_free    | bool | 是否免费     | false：收费<br />true：免费     |
 | price      | num  | 价格         | 单位为硬币                      |
@@ -184,7 +184,7 @@ curl -G 'http://club.bilibili.com/api/query.skin.list.do' \
 
 | 字段       | 类型 | 内容         | 备注                            |
 | ---------- | ---- | ------------ | ------------------------------- |
-| id         | num  | 颜色ID       |                                 |
+| id         | num  | 颜色id       |                                 |
 | name       | str  | 颜色名称     |                                 |
 | is_free    | bool | 是否免费     | false：收费<br />true：免费     |
 | price      | num  | 价格         | 单位为硬币                      |

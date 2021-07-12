@@ -20,14 +20,14 @@
 | 字段           | 类型  | 内容           | 备注                                      |
 | -------------- | ----- | -------------- | ----------------------------------------- |
 | type           | str   | 结果类型       | 固定为video                               |
-| id             | num   | 结果ID         | 为稿件avID                                |
+| id             | num   | 结果         | 为稿件avid                                |
 | author         | str   | UP主昵称       |                                           |
-| mid            | num   | UP主UID        |                                           |
-| typeid         | str   | 视频分区tID    |                                           |
+| mid            | num   | UP主mid        |                                           |
+| typeid         | str   | 视频分区tid    |                                           |
 | typename       | str   | 视频子分区名   |                                           |
 | arcurl         | str   | 视频重定向url  |                                           |
-| aid            | num   | 稿件avID       |                                           |
-| bvid           | str   | 稿件bvID       |                                           |
+| aid            | num   | 稿件avid       |                                           |
+| bvid           | str   | 稿件bvid       |                                           |
 | title          | str   | 视频标题       | 关键字用xml标签`<em class="keyword">`标注 |
 | description    | str   | 视频简介       |                                           |
 | arcrank        | str   | 0              | **作用尚不明确**                          |
@@ -107,8 +107,8 @@
 | 字段             | 类型                            | 内容                         | 备注                                                         |
 | ---------------- | ------------------------------- | ---------------------------- | ------------------------------------------------------------ |
 | type             | str                             | 结果类型                     | media_bangumi：番剧<br />media_ft：影视                      |
-| media_id         | num                             | 剧集mdID                     |                                                              |
-| season_id        | num                             | 剧集ssID                     |                                                              |
+| media_id         | num                             | 剧集mdid                     |                                                              |
+| season_id        | num                             | 剧集ssid                     |                                                              |
 | title            | str                             | 剧集标题                     | 关键字用xml标签`<em class="keyword">`标注                    |
 | org_title        | str                             | 剧集原名                     | 关键字用xml标签`<em class="keyword">`标注<br />可为空        |
 | cover            | str                             | 剧集封面url                  |                                                              |
@@ -133,8 +133,8 @@
 | angle_title      | str                             | 角标内容                     |                                                              |
 | angle_color      | num                             | 角标颜色                     | 0：红色<br />2：橙色                                         |
 | display_info     | array                           | 剧集标志信息                 |                                                              |
-| hit_epids        | str                             | 关键字匹配分集标题的分集epID | 多个用`,`分隔                                                |
-| pgc_season_id    | num                             | 剧集ssID                     |                                                              |
+| hit_epids        | str                             | 关键字匹配分集标题的分集epid | 多个用`,`分隔                                                |
+| pgc_season_id    | num                             | 剧集ssid                     |                                                              |
 | season_type      | num                             | 剧集类型                     | 1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
 | season_type_name | str                             | 剧集类型文字                 |                                                              |
 | selection_style  | str                             | 分集选择按钮风格             | horizontal：横排式<br />grid：按钮式                         |
@@ -192,7 +192,7 @@
 
 | 字段         | 类型  | 内容          | 备注 |
 | ------------ | ----- | ------------- | ---- |
-| id           | num   | 分集epID      |      |
+| id           | num   | 分集epid      |      |
 | cover        | str   | 分集封面url   |      |
 | title        | str   | 完整标题      |      |
 | url          | str   | 分集重定向url |      |
@@ -337,7 +337,7 @@
 | ----------- | ----- | -------------- | ----------------------------------------- |
 | type        | str   | 结果类型       | 固定为live_room                           |
 | rank_offset | num   | 搜索结果排名值 |                                           |
-| uid         | num   | 主播UID        |                                           |
+| uid         | num   | 主播mid        |                                           |
 | tas         | str   | 直播间TAG      | 多个用`,`分隔                             |
 | hit_columns | array | 关键字匹配类型 |                                           |
 | live_time   | str   | 开播时间       | YYYY-MM-DD HH:MM:SS                       |
@@ -353,7 +353,7 @@
 | online      | num   | 在线人数       |                                           |
 | rank_index  | num   | 0              | **作用尚不明确**                          |
 | rank_score  | num   | 结果排序量化值 |                                           |
-| roomid      | num   | 直播间ID       |                                           |
+| roomid      | num   | 直播间id       |                                           |
 | attentions  | num   | 主播粉丝数     |                                           |
 
 `直播间条目`中的`hit_columns`数组：
@@ -405,7 +405,7 @@
 | ----------- | ----- | -------------- | ------------------------------------------------------ |
 | type        | str   | 结果类型       | 固定为live_user                                        |
 | rank_offset | num   | 搜索结果排名值 |                                                        |
-| uid         | num   | 主播UID        |                                                        |
+| uid         | num   | 主播mid        |                                                        |
 | tas         | str   | 直播间TAG      | 多个用`,`分隔                                          |
 | live_time   | str   | 开播时间       | YYYY-MM-DD HH:MM:SS<br />如未开播为0000-00-00 00:00:00 |
 | hit_columns | array | 关键字匹配类型 |                                                        |
@@ -464,16 +464,16 @@
 | pub_time      | num   | 投稿时间       | 时间戳           |
 | like          | num   | 获赞数         |                  |
 | title         | str   | 标题           |                  |
-| mid           | num   | UP主UID        |                  |
+| mid           | num   | UP主mid        |                  |
 | image_urls    | array | 封面图组       |                  |
 | template_id   | num   | ？？？         | **作用尚不明确** |
-| category_id   | num   | 专栏分区ID     |                  |
+| category_id   | num   | 专栏分区     |                  |
 | view          | num   | 阅读数         |                  |
 | reply         | num   | 评论数         |                  |
 | rank_index    | num   | 0              | **作用尚不明确** |
 | desc          | str   | 文章预览       |                  |
 | rank_score    | num   | 结果排序量化值 |                  |
-| id            | num   | 专栏cvID       |                  |
+| id            | num   | 专栏cvid       |                  |
 | category_name | str   | 子分区名       |                  |
 
 `专栏条目`中的`covers`数组：
@@ -532,7 +532,7 @@
 | click       | num   | ？？？            | **作用尚不明确** |
 | tp_type     | num   | ？？？            | **作用尚不明确** |
 | keyword     | str   | 空                | **作用尚不明确** |
-| tp_id       | num   | 话题tpID          |                  |
+| tp_id       | num   | 话题tp          |                  |
 | rank_index  | num   | 0                 | **作用尚不明确** |
 | author      | str   | UP主昵称          |                  |
 | arcurl      | str   | 话题页面重定向url |                  |
@@ -584,7 +584,7 @@
 | 字段            | 类型  | 内容           | 备注                          |
 | --------------- | ----- | -------------- | ----------------------------- |
 | type            | str   | 结果类型       | 固定为bili_user               |
-| mid             | num   | 用户UID        |                               |
+| mid             | num   | 用户mid        |                               |
 | uname           | str   | 用户昵称       |                               |
 | usign           | str   | 用户签名       |                               |
 | fans            | num   | 用户粉丝数     |                               |
@@ -595,7 +595,7 @@
 | gender          | num   | 用户性别       | 1：男<br />2：女<br />3：私密 |
 | is_upuser       | num   | 是否为UP主     | 0：否<br />1：是              |
 | is_live         | num   | 是否正在直播   | 0：否<br />1：是              |
-| room_id         | num   | 用户直播间ID   |                               |
+| room_id         | num   | 用户直播间id   |                               |
 | res             | array | 用户投稿内容   |                               |
 | official_verify | obj   | 用户认证信息   |                               |
 | hit_columns     | array | 关键字匹配类型 |                               |
@@ -612,8 +612,8 @@
 
 | 字段           | 类型 | 内容              | 备注             |
 | -------------- | ---- | ----------------- | ---------------- |
-| aid            | num  | 稿件avID          |                  |
-| bvid           | str  | 稿件bvID          |                  |
+| aid            | num  | 稿件avid          |                  |
+| bvid           | str  | 稿件bvid          |                  |
 | title          | str  | 视频标题          |                  |
 | pubdate        | num  | 视频投稿时间      | 时间戳           |
 | arcurl         | str  | 视频页面重定向url |                  |
@@ -735,11 +735,11 @@
 | hit_columns | array | 关键字匹配类型 |                  |
 | rank_offset | num   | 搜索结果排名值 |                  |
 | cover       | str   | 相簿封面url    |                  |
-| mid         | num   | UP主UID        |                  |
+| mid         | num   | UP主mid        |                  |
 | uname       | str   | UP主昵称       |                  |
 | rank_index  | num   | 0              | **作用尚不明确** |
 | view        | num   | 观看次数       |                  |
-| id          | num   | 相簿ID         |                  |
+| id          | num   | 相簿id         |                  |
 | rank_score  | num   | 结果排序量化值 |                  |
 
 `相簿条目`中的`hit_columns`数组：

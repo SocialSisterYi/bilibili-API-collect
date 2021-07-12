@@ -131,7 +131,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 
 **示例：**
 
-例如手机号为`13888888888`，国际ID为`1（中国大陆）`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
+例如手机号为`13888888888`，国际id为`1（中国大陆）`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
 
 ```shell
 curl 'http://passport.bilibili.com/web/sms/general/v2/send' \

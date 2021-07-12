@@ -71,8 +71,8 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 | 参数名              | 类型                                  | 内容                     | 必要性 | 备注                                   |
 | ------------------ | ------------------------------------ | ------------------------ | ------ | -------------------------------------- |
-| msg[sender_uid]    | num                                  | 发送者UID                | 必要   |                                        |
-| msg[receiver_id]   | num                                  | 接收者UID                | 必要   |                                        |
+| msg[sender_uid]    | num                                  | 发送者mid                | 必要   |                                        |
+| msg[receiver_id]   | num                                  | 接收者mid                | 必要   |                                        |
 | msg[receiver_type] | num                                  | 1                        | 必要   | 固定为1                                |
 | msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1:发送文字<br>2:发送图片<br>5:撤回消息      |
 | msg[msg_status]    | num                                  | 0                        | 非必要 |                                        |
@@ -148,7 +148,7 @@ const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (functi
 
 **示例：**
 
-给目标用户`UID=1`发一条文字私信：
+给目标用户`mid=1`发一条文字私信：
 
 > up主你好，
 >
@@ -182,7 +182,7 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 </details>
 
-给目标用户`UID=1`发一条图片私信：
+给目标用户`mid=1`发一条图片私信：
 
 > <img src="https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg" style="zoom:50%;" >
 

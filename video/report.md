@@ -18,8 +18,8 @@
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                  |
 | ---------- | ---- | ------------------------ | -------------- | --------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                       |
-| aid        | num  | 稿件avID                 | 必要           |                       |
-| cid        | num  | 视频CID                  | 必要           | 用于识别分P           |
+| aid        | num  | 稿件avid                 | 必要           |                       |
+| cid        | num  | 视频cid                  | 必要           | 用于识别分P           |
 | progress   | num  | 观看进度                 | 非必要         | 单位为秒<br />默认为0 |
 | platform   | str  | 平台标识                 | 非必要         | 可为android           |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                       |
@@ -36,7 +36,7 @@
 
 **示例：**
 
-记录视频`av13662970`（`CID=126654047`）的观看记录位于`1248`秒
+记录视频`av13662970`（`cid=126654047`）的观看记录位于`1248`秒
 
 Cookie方式：
 
@@ -91,12 +91,12 @@ curl 'http://api.bilibili.com/x/v2/history/report' \
 
 | 参数名      | 类型 | 内容                     | 必要性       | 备注                                                         |
 | ----------- | ---- | ------------------------ | ------------ | ------------------------------------------------------------ |
-| aid         | num  | 稿件avID                 | 必要（可选） | avID与bvID任选一个                                           |
-| bvid        | str  | 稿件bvID                 | 必要（可选） | avID与bvID任选一个                                           |
-| cid         | num  | 视频CID                  | 非必要       | 用于识别分P                                                  |
-| epid        | num  | 番剧epID                 | 非必要       |                                                              |
-| sid         | num  | 番剧ssID                 | 非必要       |                                                              |
-| mid         | num  | 当前用户UID              | 非必要       |                                                              |
+| aid         | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个                                           |
+| bvid        | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个                                           |
+| cid         | num  | 视频cid                  | 非必要       | 用于识别分P                                                  |
+| epid        | num  | 番剧epid                 | 非必要       |                                                              |
+| sid         | num  | 番剧ssid                 | 非必要       |                                                              |
+| mid         | num  | 当前用户mid              | 非必要       |                                                              |
 | played_time | num  | 视频播放进度             | 非必要       | 单位为秒<br />默认为0                                        |
 | realtime    | num  | 总计播放时间             | 非必要       | 单位为秒                                                     |
 | start_ts    | num  | 开始播放时刻             | 非必要       | 时间戳                                                       |

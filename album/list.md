@@ -61,7 +61,7 @@
 
 | 字段     | 类型 | 内容    | 备注 |
 | -------- | ---- | ------- | ---- |
-| uid      | num  | 作者UID |      |
+| uid      | num  | 作者mid |      |
 | head_url | str  | 头像url |      |
 | name     | str  | 昵称    |      |
 
@@ -69,8 +69,8 @@
 
 | 字段          | 类型  | 内容       | 备注                              |
 | ------------- | ----- | ---------- | --------------------------------- |
-| doc_id        | num   | 相簿ID     |                                   |
-| poster_uid    | num   | 作者UID    |                                   |
+| doc_id        | num   | 相簿id     |                                   |
+| poster_uid    | num   | 作者mid    |                                   |
 | pictures      | array | 相簿图片   |                                   |
 | title         | str   | 标题       |                                   |
 | category      | str   | 子分区名   |                                   |
@@ -1340,7 +1340,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/list' \
 | 参数名     | 类型 | 内容     | 必要性 | 备注                                          |
 | ---------- | ---- | -------- | ------ | --------------------------------------------- |
 | biz        | num  | 分区     | 非必要 | 0：全部<br />1：画友<br/>2：摄影<br />默认为0 |
-| poster_uid | num  | 作者UID  | 必要   | 默认为20                                      |
+| poster_uid | num  | 作者mid  | 必要   | 默认为20                                      |
 | page_num   | num  | 页码     | 非必要 | 默认为1                                       |
 | page_size  | num  | 每页项数 | 非必要 | 默认为45                                      |
 
@@ -1367,7 +1367,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/list' \
 
 | 字段     | 类型 | 内容    | 备注 |
 | -------- | ---- | ------- | ---- |
-| uid      | str  | 作者UID |      |
+| uid      | str  | 作者mid |      |
 | head_url | str  | 头像url |      |
 | name     | str  | 昵称    |      |
 

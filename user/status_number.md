@@ -19,7 +19,7 @@
 | 参数名     | 类型 | 内容         | 必要性      | 备注 |
 | ---------- | ---- | ------------ | ----------- | ---- |
 | access_key | str  | APP登录Token | APP方式必要 |      |
-| vmid       | num  | 目标用户UID  | 必要        |      |
+| vmid       | num  | 目标用户mid  | 必要        |      |
 
 **json回复：**
 
@@ -36,7 +36,7 @@
 
 | 字段      | 类型 | 内容        | 备注                                             |
 | --------- | ---- | ----------- | ------------------------------------------------ |
-| mid       | num  | 目标用户UID |                                                  |
+| mid       | num  | 目标用户mid |                                                  |
 | following | num  | 关注数      |                                                  |
 | whisper   | num  | 悄悄关注数  | 需要登录(Cooklie或APP) <br />未登录或非自己恒为0 |
 | black     | num  | 黑名单数    | 需要登录(Cooklie或APP) <br />未登录或非自己恒为0 |
@@ -44,7 +44,7 @@
 
 **示例：**
 
-查询用户`UID=332704117`的关系状态数
+查询用户`mid=332704117`的关系状态数
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/stat' \
@@ -87,7 +87,7 @@ curl -G 'http://api.bilibili.com/x/relation/stat' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注 |
 | ---------- | ---- | ------------ | ----------- | ---- |
 | access_key | str  | APP登录Token | APP方式必要 |      |
-| mid        | num  | 目标用户UID  | 必要        |      |
+| mid        | num  | 目标用户mid  | 必要        |      |
 
 **json回复：**
 
@@ -122,7 +122,7 @@ curl -G 'http://api.bilibili.com/x/relation/stat' \
 
 **示例：**
 
-查询用户`UID=456664753`的UP主状态数
+查询用户`mid=456664753`的UP主状态数
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/upstat' \
@@ -164,7 +164,7 @@ curl -G 'http://api.bilibili.com/x/space/upstat' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -209,7 +209,7 @@ curl -G 'http://api.bilibili.com/x/space/upstat' \
 
 **示例：**
 
-查询用户`UID=239202390`的订阅&投稿状态数
+查询用户`mid=239202390`的订阅&投稿状态数
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/navnum' \
@@ -260,7 +260,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| uid    | num  | 目标用户UID | 必要   |      |
+| uid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -284,7 +284,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum' \
 
 **示例：**
 
- 查询用户`UID=53456`的投稿相簿数
+ 查询用户`mid=53456`的投稿相簿数
 
 ```shell
 curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count' \

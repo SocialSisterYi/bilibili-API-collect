@@ -31,10 +31,10 @@
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                              |
 | type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                                                  |
-| oid        | num  | 视频CID                  | 必要           |                                                              |
+| oid        | num  | 视频cid                  | 必要           |                                                              |
 | msg        | str  | 弹幕内容                 | 必要           | 长度小于100字符                                              |
-| bvid       | str  | 稿件bvID                 | 必要（可选）   | avID与bvID任选一个                                           |
-| aid        | num  | 稿件avID                 | 必要（可选）   | avID与bvID任选一个                                           |
+| bvid       | str  | 稿件bvid                 | 必要（可选）   | avid与bvid任选一个                                           |
+| aid        | num  | 稿件avid                 | 必要（可选）   | avid与bvid任选一个                                           |
 | progress   | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
 | color      | num  | 弹幕颜色设置             | 非必要         | 十进制RGB888值<br />默认为16777215（#FFFFFF）白色            |
 | fontsize   | num  | 弹幕字号设置             | 非必要         | 默认为25<br />极小：12<br />超小：16<br />小：18<br />标准：25<br />大：36<br />超大：45<br />极大：64 |
@@ -59,13 +59,13 @@
 | 字段     | 类型 | 内容     | 备注         |
 | -------- | ---- | -------- | ------------ |
 | action   | str  | 空       | 作用尚不明确 |
-| dmid     | num  | 弹幕dmID |              |
-| dmid_str | str  | 弹幕dmID | 字串形式     |
+| dmid     | num  | 弹幕dmid |              |
+| dmid_str | str  | 弹幕dmid | 字串形式     |
 | visible  | bool | true     | 作用尚不明确 |
 
 **示例：**
 
-为视频`av2`/`BV1xx411c7mD`（CID为`62131`）的5000ms位置发送一条弹幕`前来考古`（颜色为#FFFFFF，字号25，普通弹幕，游动弹幕）
+为视频`av2`/`BV1xx411c7mD`（cid为`62131`）的5000ms位置发送一条弹幕`前来考古`（颜色为#FFFFFF，字号25，普通弹幕，游动弹幕）
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/dm/post' \
@@ -124,12 +124,12 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                              |
 | type       | num  | 互动弹幕类型             | 必要           | 1：UP主头像弹幕<br />2：关联视频弹幕<br />5：视频内嵌引导关注按钮 |
-| aid        | num  | 稿件avID                 | 必要           |                                                              |
-| cid        | num  | 视频CID                  | 必要           |                                                              |
+| aid        | num  | 稿件avid                 | 必要           |                                                              |
+| cid        | num  | 视频cid                  | 必要           |                                                              |
 | progress   | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
 | plat       | num  | 平台标识                 | 必要           | 1：web端<br />2：安卓端<br />8：视频管理页面                 |
 | data       | str  | json序列                 | 必要           |                                                              |
-| dmid       | num  | 修改互动弹幕的弹幕ID     | 非必要         | 注：修改弹幕`plat`必须为8                                    |
+| dmid       | num  | 修改互动弹幕的弹幕id     | 非必要         | 注：修改弹幕`plat`必须为8                                    |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
 
 `data`参数json序列：
@@ -145,7 +145,7 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 | 字段 | 类型 | 内容           | 备注 |
 | ---- | ---- | -------------- | ---- |
 | msg  | str  | 弹幕内容       |      |
-| bvid | str  | 关联视频的bvID |      |
+| bvid | str  | 关联视频的bvid |      |
 
 类型为【视频内嵌引导关注按钮】时：
 
@@ -161,7 +161,7 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 
 | 字段    | 类型                          | 内容     | 备注                                                         |
 | ------- | ----------------------------- | -------- | ------------------------------------------------------------ |
-| code    | num                           | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />-500：服务器错误<br />36711：该视频禁止发送弹幕<br />79026：发送失败，请勿填写当前稿件BVID<br />79024：发送失败，请输入正确的BVID<br />79036：该指令弹幕超出限制<br />79037：关注弹幕坐标溢出 |
+| code    | num                           | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />-500：服务器错误<br />36711：该视频禁止发送弹幕<br />79026：发送失败，请勿填写当前稿件bvid<br />79024：发送失败，请输入正确的bvid<br />79036：该指令弹幕超出限制<br />79037：关注弹幕坐标溢出 |
 | message | str                           | 错误信息 | 默认为0                                                      |
 | ttl     | num                           | 1        |                                                              |
 | data    | 正确时：obj<br />错误时：null | 信息本体 |                                                              |
@@ -173,10 +173,10 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 | command  | str  | 指令？                 | UP主头像弹幕：#UP#<br />关联视频弹幕：#LINK#<br />视频内嵌引导关注按钮：#ATTENTION# |
 | content  | str  | 弹幕内容               |                                                              |
 | extra    | str  | 弹幕数据               | json序列                                                     |
-| id       | num  | 弹幕dmID               |                                                              |
-| idStr    | str  | 弹幕dmID               | 字串形式                                                     |
-| mid      | num  | 用户UID                |                                                              |
-| oid      | num  | 视频CID                |                                                              |
+| id       | num  | 弹幕dmid               |                                                              |
+| idStr    | str  | 弹幕dmid               | 字串形式                                                     |
+| mid      | num  | 用户mid                |                                                              |
+| oid      | num  | 视频cid                |                                                              |
 | progress | num  | 弹幕出现在视频内的时间 |                                                              |
 | type     | num  | 互动弹幕类型           | 1：UP主头像弹幕<br />2：关联视频弹幕<br />5：视频内嵌引导关注按钮 |
 
@@ -192,9 +192,9 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 
 | 字段  | 类型 | 内容           | 备注 |
 | ----- | ---- | -------------- | ---- |
-| aid   | num  | 关联视频的avID |      |
+| aid   | num  | 关联视频的avid |      |
 | title | str  | 关联视频的标题 |      |
-| bvid  | str  | 关联视频的bvID |      |
+| bvid  | str  | 关联视频的bvid |      |
 
 类型为【视频内嵌引导关注按钮】时：
 
@@ -208,7 +208,7 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 
 **示例：**
 
-为视频`av201947622`（CID为`230709860`）的5000ms位置发送一条UP主头像弹幕`test`
+为视频`av201947622`（cid为`230709860`）的5000ms位置发送一条UP主头像弹幕`test`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/dm/command/post' \
@@ -245,7 +245,7 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 
 </details>
 
-为视频`av201947622`（CID为`230709860`）的5000ms位置发送一条发送关联视频弹幕`测试1234`关联视频为`BV1kz4y1X7XP`
+为视频`av201947622`（cid为`230709860`）的5000ms位置发送一条发送关联视频弹幕`测试1234`关联视频为`BV1kz4y1X7XP`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/dm/command/post' \
@@ -284,7 +284,7 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 </details>
 
 
-为视频`av201947622`（CID为`230709860`）的5000ms位置发送视频内嵌引导关注按钮，X坐标为118，Y坐标为82，持续时间为5000ms
+为视频`av201947622`（cid为`230709860`）的5000ms位置发送视频内嵌引导关注按钮，X坐标为118，Y坐标为82，持续时间为5000ms
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/dm/command/post' \
@@ -337,8 +337,8 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注 |
 | ---------- | ---- | ------------------------ | -------------- | ---- |
 | access_key | str  | APP登录Token             | APP方式必要    |      |
-| dmid       | num  | 弹幕dmID                 | 必要           |      |
-| cid        | num  | 视频CID                  | 必要           |      |
+| dmid       | num  | 弹幕dmid                 | 必要           |      |
+| cid        | num  | 视频cid                  | 必要           |      |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |      |
 
 **json回复：**
@@ -353,7 +353,7 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 
 **示例：**
 
-撤回`CID=168901231`下的弹幕`32310301474947077`的弹幕
+撤回`cid=168901231`下的弹幕`32310301474947077`的弹幕
 
 ```shell
 curl 'http://api.bilibili.com/x/dm/recall' \
@@ -391,7 +391,7 @@ curl 'http://api.bilibili.com/x/dm/recall' \
 | ---------- | ---- | ------------------------ | -------------- | ---- |
 | access_key | str  | APP登录Token             | APP方式必要    |      |
 | mode       | str  | sp                       | 必要           |      |
-| cid        | num  | 视频CID                  | 必要           |      |
+| cid        | num  | 视频cid                  | 必要           |      |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |      |
 
 **json回复：**
@@ -406,7 +406,7 @@ curl 'http://api.bilibili.com/x/dm/recall' \
 
 示例：
 
-购买视频CID为`168901231`的高级弹幕发送权限
+购买视频cid为`168901231`的高级弹幕发送权限
 
 ```shell
 curl 'http://api.bilibili.com/x/dm/adv/buy' \
@@ -442,7 +442,7 @@ curl 'http://api.bilibili.com/x/dm/adv/buy' \
 | ---------- | ---- | ------------ | ----------- | ---- |
 | access_key | str  | APP登录Token | APP方式必要 |      |
 | mode       | str  | sp           | 必要        |      |
-| cid        | num  | 视频CID      | 必要        |      |
+| cid        | num  | 视频cid      | 必要        |      |
 
 **json回复：**
 
@@ -466,7 +466,7 @@ curl 'http://api.bilibili.com/x/dm/adv/buy' \
 
 **示例：**
 
-查询视频CID为`168901231`的视频高级弹幕权限购买状态
+查询视频cid为`168901231`的视频高级弹幕权限购买状态
 
 当前状态为已购买且同意
 
@@ -508,8 +508,8 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注                |
 | ---------- | ---- | ------------ | ----------- | ------------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                     |
-| oid        | num  | 视频CID      | 必要        |                     |
-| ids        | nums | 弹幕dmID列表 | 必要        | 多个ID之间用`,`分隔 |
+| oid        | num  | 视频cid      | 必要        |                     |
+| ids        | nums | 弹幕dmid列表 | 必要        | 多个id之间用`,`分隔 |
 
 **json回复**
 
@@ -526,20 +526,20 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state' \
 
 | 字段     | 类型 | 内容             | 备注                              |
 | -------- | ---- | ---------------- | --------------------------------- |
-| {弹幕ID} | obj  | 弹幕id对应的信息 | id分别对应请求参数中的`ids`，下同 |
+| {弹幕id} | obj  | 弹幕id对应的信息 | id分别对应请求参数中的`ids`，下同 |
 | ……       | obj  | 弹幕id对应的信息 |                                   |
 
-`{弹幕ID}`对象：
+`{弹幕id}`对象：
 
 | 字段      | 类型 | 内容     | 备注                                                         |
 | --------- | ---- | -------- | ------------------------------------------------------------ |
 | likes     | num  | 点赞数   |                                                              |
 | user_like | num  | 是否点赞 | 0：未点赞<br />1：已点赞<br />需要登录(Cookie或APP) <br />未登录恒为0 |
-| id_str    | str  | 弹幕dmID |                                                              |
+| id_str    | str  | 弹幕dmid |                                                              |
 
 **示例**
 
-查询`CID=236871317`下的弹幕`35600074482384899`、`38880975220375559`、`39052528418553863`点赞数
+查询`cid=236871317`下的弹幕`35600074482384899`、`38880975220375559`、`39052528418553863`点赞数
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats' \
@@ -591,8 +591,8 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                     |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                          |
-| dmid       | num  | 弹幕dmID                 | 必要           |                          |
-| oid        | num  | 视频CID                  | 必要           |                          |
+| dmid       | num  | 弹幕dmid                 | 必要           |                          |
+| oid        | num  | 视频cid                  | 必要           |                          |
 | op         | num  | 操作                     | 必要           | 1：点赞<br />2：取消点赞 |
 | platform   | str  | 平台                     | 非必要         |                          |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                          |
@@ -609,7 +609,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats' \
 
 **示例**
 
-为`CID=145928946`下的弹幕`35600074482384899`点赞
+为`cid=145928946`下的弹幕`35600074482384899`点赞
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/dm/thumbup/add' \
@@ -647,8 +647,8 @@ curl 'http://api.bilibili.com/x/v2/dm/thumbup/add' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注               |
 | ---------- | ---- | ------------------------ | -------------- | ------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                    |
-| cid        | num  | 视频CID                  | 必要           |                    |
-| dmid       | num  | 弹幕dmID                 | 必要           |                    |
+| cid        | num  | 视频cid                  | 必要           |                    |
+| dmid       | num  | 弹幕dmid                 | 必要           |                    |
 | reason     | num  | 举报类型                 | 必要           | **类型代码见下表** |
 | content    | str  | 其他举报备注             | 非必要         | `reason=11`时有效  |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                    |
@@ -682,7 +682,7 @@ curl 'http://api.bilibili.com/x/v2/dm/thumbup/add' \
 
 **示例**
 
-举报`CID=145928946`下的弹幕`35600074482384899`，理由是`引战`
+举报`cid=145928946`下的弹幕`35600074482384899`，理由是`引战`
 
 ```shell
 curl 'http://api.bilibili.com/x/dm/report/add' \
@@ -721,8 +721,8 @@ curl 'http://api.bilibili.com/x/dm/report/add' \
 | ---------- | ---- | ------------------------ | -------------- | --------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                               |
 | type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                                   |
-| oid        | num  | 视频CID                  | 必要           |                                               |
-| dmids      | nums | 弹幕dmID                 | 必要           | 多个ID之间用`,`分隔                           |
+| oid        | num  | 视频cid                  | 必要           |                                               |
+| dmids      | nums | 弹幕dmid                 | 必要           | 多个id之间用`,`分隔                           |
 | state      | num  | 操作代码                 | 必要           | 1：删除弹幕<br />2：弹幕保护<br />3：取消保护 |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                               |
 
@@ -738,7 +738,7 @@ curl 'http://api.bilibili.com/x/dm/report/add' \
 
 **示例**
 
-删除`CID=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`
+删除`cid=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
@@ -779,8 +779,8 @@ curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
 | ---------- | ---- | ------------------------ | -------------- | -------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                  |
 | type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                      |
-| oid        | num  | 视频CID                  | 必要           |                                  |
-| dmids      | nums | 弹幕dmID                 | 必要           | 多个ID之间用`,`分隔              |
+| oid        | num  | 视频cid                  | 必要           |                                  |
+| dmids      | nums | 弹幕dmid                 | 必要           | 多个id之间用`,`分隔              |
 | pool       | num  | 操作代码                 | 必要           | 0：移出字幕池<br />1：移入字幕池 |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                  |
 
@@ -796,7 +796,7 @@ curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
 
 **示例**
 
-将`CID=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`移入字幕池
+将`cid=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`移入字幕池
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/dm/edit/state' \

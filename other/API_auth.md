@@ -15,8 +15,8 @@ Token有效期为1月，更改密码或过期失效
 
 | cookie项          | 含义              | 备注                                       |
 | ----------------- | ----------------- | ------------------------------------------ |
-| DedeUserID        | 当前用户UID       |                                            |
-| DedeUserID__ckMd5 | 用户UID md5校验值 |                                            |
+| DedeUserID        | 当前用户mid       |                                            |
+| DedeUserID__ckMd5 | 用户mid md5校验值 |                                            |
 | SESSDATA          | 登录Token         | 用于用户识别与鉴权<br />作用同`access_key` |
 | bili_jct          | CSRF Token        | 用于操作性接口                             |
 

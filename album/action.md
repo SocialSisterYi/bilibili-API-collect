@@ -18,7 +18,7 @@
 
 | 参数名     | 类型 | 内容                     | 必要性 | 备注                   |
 | ---------- | ---- | ------------------------ | ------ | ---------------------- |
-| doc_id     | num  | 相簿ID                   | 必要   |                        |
+| doc_id     | num  | 相簿id                   | 必要   |                        |
 | type       | num  | 操作方式                 | 必要   | 1：点赞<br />2：取消赞 |
 | csrf_token | str  | CSRF Token（位于cookie） | 非必要 |                        |
 
@@ -41,7 +41,7 @@
 
 **示例：**
 
-点赞相簿`ID=99184721`
+点赞相簿`id=99184721`
 
 ```shell
 curl 'http://api.vc.bilibili.com/link_draw/v2/Vote/operate' \
@@ -79,7 +79,7 @@ curl 'http://api.vc.bilibili.com/link_draw/v2/Vote/operate' \
 
 | 参数名     | 类型 | 内容                     | 必要性 | 备注         |
 | ---------- | ---- | ------------------------ | ------ | ------------ |
-| fav_id     | num  | 相簿ID                   | 必要   |              |
+| fav_id     | num  | 相簿id                   | 必要   |              |
 | biz_type   | num  | 2                        | 必要   | 作用尚不明确 |
 | csrf_token | str  | CSRF Token（位于cookie） | 非必要 |              |
 
@@ -96,7 +96,7 @@ curl 'http://api.vc.bilibili.com/link_draw/v2/Vote/operate' \
 
 **示例：**
 
-收藏相簿`ID=99184721`
+收藏相簿`id=99184721`
 
 ```shell
 curl 'http:///api.vc.bilibili.com/user_plus/v1/Fav/add' \
@@ -133,7 +133,7 @@ curl 'http:///api.vc.bilibili.com/user_plus/v1/Fav/add' \
 
 | 参数名     | 类型 | 内容                     | 必要性 | 备注         |
 | ---------- | ---- | ------------------------ | ------ | ------------ |
-| fav_id     | num  | 相簿ID                   | 必要   |              |
+| fav_id     | num  | 相簿id                   | 必要   |              |
 | biz_type   | num  | 2                        | 必要   | 作用尚不明确 |
 | csrf_token | str  | CSRF Token（位于cookie） | 非必要 |              |
 
@@ -150,7 +150,7 @@ curl 'http:///api.vc.bilibili.com/user_plus/v1/Fav/add' \
 
 **示例：**
 
-取消收藏相簿`ID=99184721`
+取消收藏相簿`id=99184721`
 
 ```shell
 curl 'http://api.vc.bilibili.com/user_plus/v1/Fav/delete' \

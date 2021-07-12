@@ -16,7 +16,7 @@
 
 | 参数名 | 类型 | 内容       | 必要性 | 备注 |
 | ------ | ---- | ---------- | ------ | ---- |
-| doc_id | num  | 目标相簿ID | 必要   |      |
+| doc_id | num  | 目标相簿id | 必要   |      |
 
 **json回复：**
 
@@ -40,7 +40,7 @@
 
 | 字段         | 类型 | 内容       | 备注 |
 | ------------ | ---- | ---------- | ---- |
-| uid          | num  | 作者UID    |      |
+| uid          | num  | 作者mid    |      |
 | head_url     | str  | 头像url    |      |
 | name         | str  | 昵称       |      |
 | vip          | obj  | 会员信息   |      |
@@ -70,8 +70,8 @@
 | 字段              | 类型  | 内容               | 备注                                                         |
 | ----------------- | ----- | ------------------ | ------------------------------------------------------------ |
 | biz               | num   | 相簿分区           | 1：画友<br />2：摄影<br />3：日常                            |
-| doc_id            | num   | 相簿ID             |                                                              |
-| poster_uid        | num   | 作者UID            |                                                              |
+| doc_id            | num   | 相簿id             |                                                              |
+| poster_uid        | num   | 作者mid            |                                                              |
 | category          | str   | 子分区标识         | cos：cosplay<br />daily：日常<br />illustration：插画<br />comic：漫画<br />draw：其他<br />sifu：私服 |
 | type              | num   | 相簿类型           | 0：原创<br />1：同人                                         |
 | title             | str   | 标题               |                                                              |
@@ -140,7 +140,7 @@
 
 **示例：**
 
-查询相簿`ID=99184721`的详细信息
+查询相簿`id=99184721`的详细信息
 
 ```shell
 curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/detail' \

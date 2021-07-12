@@ -31,7 +31,7 @@
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | num  | 音频auID | 必要   |      |
+| sid    | num  | 音频auid | 必要   |      |
 
 **json回复：**
 
@@ -47,7 +47,7 @@
 
 | 字段      | 类型  | 内容      | 备注                                    |
 | --------- | ----- | --------- | --------------------------------------- |
-| sid       | num   | 音频auID  |                                         |
+| sid       | num   | 音频auid  |                                         |
 | type      | num   | 音质标识  | -1：试听片段（192K）<br />1：192K       |
 | info      | str   | 空        | **作用尚不明确**                        |
 | timeout   | num   | 有效时长  | 单位为秒<br />一般为3h                  |
@@ -115,10 +115,10 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/url' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注           |
 | ---------- | ---- | ------------ | ----------- | -------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                |
-| songid     | num  | 音频auID     | 必要        |                |
+| songid     | num  | 音频auid     | 必要        |                |
 | quality    | num  | 音质代码     | 必要        | **详情见上表** |
 | privilege  | num  | 必须为`2`    | 必要        |                |
-| mid        | num  | 当前用户UID  | 必要        | 可为任意值     |
+| mid        | num  | 当前用户mid  | 必要        | 可为任意值     |
 | platform   | str  | 平台标识     | 必要        | 可为任意值     |
 
 **json回复：**
@@ -135,7 +135,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/url' \
 
 | 字段      | 类型  | 内容        | 备注                                                         |
 | --------- | ----- | ----------- | ------------------------------------------------------------ |
-| sid       | num   | 音频auID    |                                                              |
+| sid       | num   | 音频auid    |                                                              |
 | type      | num   | 音质标识    | -1：试听片段（192K）<br />0：128K<br />1：192K<br />2：320K<br />3：FLAC |
 | info      | str   | 空          | **作用尚不明确**                                             |
 | timeout   | num   | 有效时长    | 单位为秒<br />一般为3h                                       |

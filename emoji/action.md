@@ -19,7 +19,7 @@
 
 | 参数名     | 类型 | 内容                     | 必要性 | 备注                             |
 | ---------- | ---- | ------------------------ | ------ | -------------------------------- |
-| package_id | num  | 表情包ID                 | 必要   |                                  |
+| package_id | num  | 表情包id                 | 必要   |                                  |
 | business   | str  | 使用场景                 | 必要   | reply：评论区<br />dynamic：动态 |
 | csrf       | str  | CSRF Token（位于cookie） | 必要   |                                  |
 
@@ -35,7 +35,7 @@
 
 **示例：**
 
-添加ID为`25`的表情包，使用场景为评论区
+添加id为`25`的表情包，使用场景为评论区
 
 ```shell
 curl 'http://api.bilibili.com/x/emote/package/add' \
@@ -70,7 +70,7 @@ curl 'http://api.bilibili.com/x/emote/package/add' \
 
 | 参数名     | 类型 | 内容                     | 必要性 | 备注                             |
 | ---------- | ---- | ------------------------ | ------ | -------------------------------- |
-| package_id | num  | 表情包ID                 | 必要   |                                  |
+| package_id | num  | 表情包id                 | 必要   |                                  |
 | business   | str  | 使用场景                 | 必要   | reply：评论区<br />dynamic：动态 |
 | csrf       | str  | CSRF Token（位于cookie） | 必要   |                                  |
 
@@ -86,7 +86,7 @@ curl 'http://api.bilibili.com/x/emote/package/add' \
 
 **示例：**
 
-移除ID为`25`的表情包，使用场景为评论区
+移除id为`25`的表情包，使用场景为评论区
 
 ```shell
 curl 'http://api.bilibili.com/x/emote/package/remove' \

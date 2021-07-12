@@ -18,8 +18,8 @@
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
 | ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -44,7 +44,7 @@
 
 | 字段          | 类型 | 内容           | 备注                                                         |
 | ------------- | ---- | -------------- | ------------------------------------------------------------ |
-| tag_id        | num  | TAGID          |                                                              |
+| tag_id        | num  | tag_id          |                                                              |
 | tag_name      | str  | TAG名称        |                                                              |
 | cover         | str  | TAG图片url     |                                                              |
 | head_cover    | str  | TAG页面头图url |                                                              |
@@ -73,7 +73,7 @@
 
 查询视频`av89772773`/`BV1M741177Kg`的TAG
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
@@ -81,7 +81,7 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
@@ -222,8 +222,8 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| aid    | num  | 稿件avID                 | 必要   |      |
-| tag_id | num  | TAGID                    | 必要   |      |
+| aid    | num  | 稿件avid                 | 必要   |      |
+| tag_id | num  | tag_id                    | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
@@ -275,8 +275,8 @@ curl 'http://api.bilibili.com/x/tag/archive/like2' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| aid    | num  | 稿件avID                 | 必要   |      |
-| tag_id | num  | TAGID                    | 必要   |      |
+| aid    | num  | 稿件avid                 | 必要   |      |
+| tag_id | num  | tag_id                    | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**

@@ -19,7 +19,7 @@
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | num  | 音频auID | 必要   |      |
+| sid    | num  | 音频auid | 必要   |      |
 
 **json回复：**
 
@@ -68,7 +68,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-col
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | num  | 音频auID | 必要   |      |
+| sid    | num  | 音频auid | 必要   |      |
 
 **json回复：**
 

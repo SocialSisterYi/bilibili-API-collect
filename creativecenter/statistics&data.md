@@ -503,8 +503,8 @@ curl -G 'http://member.bilibili.com/x/web/data/article/thirty' \
 
 | 字段        | 类型 | 内容           | 备注         |
 | ----------- | ---- | -------------- | ------------ |
-| aid         | num  | 稿件avID       |              |
-| bvid        | str  | 稿件bvID       |              |
+| aid         | num  | 稿件avid       |              |
+| bvid        | str  | 稿件bvid       |              |
 | daytime     | num  | 统计时间       | 时间戳       |
 | incr        | num  | 稿件增长情况数 |              |
 | interactive | num  | 0              | 作用尚不明确 |

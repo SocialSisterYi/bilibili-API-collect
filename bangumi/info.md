@@ -1,11 +1,11 @@
 # 剧集基本信息
 
-- [剧集基本信息（mdID方式）](#剧集基本信息（mdID方式）)
-- [获取剧集明细（web端）（ssID/epID方式）](#获取剧集明细（web端）（ssID/epID方式）)
+- [剧集基本信息（mdid方式）](#剧集基本信息（mdid方式）)
+- [获取剧集明细（web端）（ssid/epid方式）](#获取剧集明细（web端）（ssid/epid方式）)
 
 ---
 
-## 剧集基本信息（mdID方式）
+## 剧集基本信息（mdid方式）
 
 
 > http://api.bilibili.com/pgc/review/user
@@ -18,7 +18,7 @@
 
 | 参数名   | 类型 | 内容     | 必要性 | 备注 |
 | -------- | ---- | -------- | ------ | ---- |
-| media_id | str  | 剧集mdID | 必要   |      |
+| media_id | str  | 剧集mdid | 必要   |      |
 
 **json回复：**
 
@@ -43,10 +43,10 @@
 | --------- | ----- | -------------- | -------------------------- |
 | areas     | array | 地区           |                            |
 | cover     | str   | 封面图片url    |                            |
-| media_id  | num   | 剧集mdID       |                            |
+| media_id  | num   | 剧集mdid       |                            |
 | new_ep    | obj   | 最新一话信息   |                            |
 | rating    | obj   | 评分信息       |                            |
-| season_id | int   | 剧集ssID       |                            |
+| season_id | int   | 剧集ssid       |                            |
 | share_url | url   | 剧集详情页连接 |                            |
 | title     | str   | 标题           |                            |
 | type_name | str   | 剧集类型       | `番剧`、`国创`、`电影`等等 |
@@ -70,7 +70,7 @@
 
 | 字段       | 类型 | 内容             | 备注                       |
 | ---------- | ---- | ---------------- | -------------------------- |
-| id         | int  | 最新一话的epID   |                            |
+| id         | int  | 最新一话的epid   |                            |
 | index      | str  | 最新一话名称     |                            |
 | index_show | str  | 最新一话显示名称 | eg. `第1话`、`更新至第4话` |
 
@@ -139,7 +139,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 
 </details>
 
-## 获取剧集明细（web端）（ssID/epID方式）
+## 获取剧集明细（web端）（ssid/epid方式）
 
 > http://api.bilibili.com/pgc/view/web/season
 
@@ -149,8 +149,8 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 
 | 参数名    | 类型 | 内容     | 必要性       | 备注                     |
 | --------- | ---- | -------- | ------------ | ------------------------ |
-| season_id | num  | 番剧ssID | 必要（可选） | season_id与ep_id任选其一 |
-| ep_id     | num  | 剧集epID | 必要（可选） | season_id与ep_id任选其一 |
+| season_id | num  | 番剧ssid | 必要（可选） | season_id与ep_id任选其一 |
+| ep_id     | num  | 剧集epid | 必要（可选） | season_id与ep_id任选其一 |
 
 **json回复：**
 
@@ -175,7 +175,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | evaluate        | str    | 简介                       |                                            |
 | jp_title        | str    | 空                         | 作用尚不明确                               |
 | link            | str    | 简介页面url              |                                            |
-| media_id        | num    | 剧集mdID                 |                                            |
+| media_id        | num    | 剧集mdid                 |                                            |
 | mode            | num    | 2 | 作用尚不明确 |
 | new_ep          | obj    | 更新信息                   |                                            |
 | payment         | obj    | 会员&付费信息              | 若无相关内容则无此项                       |
@@ -184,7 +184,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | rating          | obj    | 评分信息                   | 若无相关内容则无此项                       |
 | record          | str    | 备案号                     | 无则为空                                   |
 | rights          | obj    | 属性标志信息               |                                            |
-| season_id       | num    | 番剧ssID                   |                                            |
+| season_id       | num    | 番剧ssid                   |                                            |
 | season_title    | str    | 剧集标题                   |                                            |
 | seasons         | array | 同系列所以季信息         |                                    |
 | section         | array | 花絮、PV、番外等非正片内容 | 若无相关内容则无此项                       |
@@ -222,16 +222,16 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 
 | 字段         | 类型 | 内容                              | 备注                 |
 | ------------ | ---- | --------------------------------- | -------------------- |
-| aid          | num  | 单集稿件avID                      |                      |
+| aid          | num  | 单集稿件avid                      |                      |
 | badge        | str  | 标签文字                          | 例如`会员`、`限免`等 |
 | badge_info   | obj  |                                   |                      |
 | badge_type   | num  |                                   |                      |
-| bvid         | str  | 单集稿件bvID                      |                      |
-| cid          | num  | 视频CID                           |                      |
+| bvid         | str  | 单集稿件bvid                      |                      |
+| cid          | num  | 视频cid                           |                      |
 | cover        | str  | 单集封面url                       |                      |
 | dimension    | obj  | 分辨率信息                        |                      |
 | from         | str  |                                   |                      |
-| id           | num  | 单集epID                          |                      |
+| id           | num  | 单集epid                          |                      |
 | link         | str  | 单集网页url                       |                      |
 | long_title   | str  | 单集完整标题                      |                      |
 | pub_time     | num  | 发布时间                          | 时间戳               |
@@ -244,7 +244,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | status       | num  |                                   |                      |
 | subtitle     | str  | 单集副标题                        | 观看次数文字         |
 | title        | str  | 单集标题                          |                      |
-| vid          | str  | 单集vID                           | vupload_+{CID}       |
+| vid          | str  | 单集vid                           | vupload_+{cid}       |
 
 
 
@@ -257,7 +257,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | 字段   | 类型 | 内容         | 备注             |
 | ------ | ---- | ------------ | ---------------- |
 | desc   | str  | 更新备注     |                  |
-| id     | num  | 最新一话epID |                  |
+| id     | num  | 最新一话epid |                  |
 | is_new | num  | 是否最新发布 | 0：否<br />1：是 |
 | title  | str  | 最新一话标题 |                  |
 
@@ -365,7 +365,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | ---------- | ----- | -------- | ---- |
 | episode_id | num   | 0        |      |
 | episodes   | array | 板块内容 |      |
-| id         | num   | 板块ID？ |      |
+| id         | num   | 板块id？ |      |
 | title      | str   | 板块标题 |      |
 | type       | num   | ？       |      |
 
@@ -383,7 +383,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 
 | 字段         | 类型 | 内容   | 备注 |
 | ------------ | ---- | ------ | ---- |
-| series_id    | num  | 系列ID |      |
+| series_id    | num  | 系列id |      |
 | series_title | str  | 系列名 |      |
 
 `result`中的`show`对象：
@@ -411,7 +411,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | avatar      | str  | 头像图片url |      |
 | follower    | num  | 粉丝数      |      |
 | is_follow   | num  | 0           |      |
-| mid         | num  | UP主UID     |      |
+| mid         | num  | UP主mid     |      |
 | pendant     | obj  |             |      |
 | theme_type  | num  | 0           |      |
 | uname       | str  | UP主昵称    |      |

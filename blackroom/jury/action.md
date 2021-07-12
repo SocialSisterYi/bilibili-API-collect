@@ -96,7 +96,7 @@ curl 'http://api.bilibili.com/x/credit/jury/apply' \
 
 | 字段 | 类型 | 内容       | 备注 |
 | ---- | ---- | ---------- | ---- |
-| id   | num  | 仲裁案件ID |      |
+| id   | num  | 仲裁案件id |      |
 
 **示例：**
 
@@ -143,7 +143,7 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
 
 | 参数名        | 类型 | 内容                     | 必要性         | 备注                                    |
 | ------------- | ---- | ------------------------ | -------------- | --------------------------------------- |
-| cid           | num  | 案件ID                   | 必要           |                                         |
+| cid           | num  | 案件id                   | 必要           |                                         |
 | vote          | num  | 投票类型                 | 必要           | 见「[众裁信息](judgement_info.md)」中表 |
 | content       | str  | 理由                     | 非必要         | 见「[众裁信息](judgement_info.md)」中表 |
 | likes         | nums | 支持的观点               | 非必要         |                                         |

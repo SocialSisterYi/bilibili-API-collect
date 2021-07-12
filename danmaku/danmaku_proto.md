@@ -31,8 +31,8 @@
 | 参数名        | 类型 | 内容     | 必要性 | 备注        |
 | ------------- | ---- | -------- | ------ | ----------- |
 | type          | num  | 弹幕类   | 必要   | 1：视频弹幕 |
-| oid           | num  | 视频CID  | 必要   |             |
-| pid           | num  | 稿件avID | 非必要 |             |
+| oid           | num  | 视频cid  | 必要   |             |
+| pid           | num  | 稿件avid | 非必要 |             |
 | segment_index | num  | 分包     | 必要   | 6分钟一包   |
 
 **proto回复：**
@@ -49,22 +49,22 @@ porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api
 
 | 名称     | 类型   | 含义               | 备注                                                         |
 | -------- | ------ | ------------------ | ------------------------------------------------------------ |
-| id       | int64  | 弹幕dmID           | 唯一  可用于操作参数                                         |
+| id       | int64  | 弹幕dmid           | 唯一  可用于操作参数                                         |
 | progress | int32  | 视频内弹幕出现时间 | 毫秒                                                         |
 | mode     | int32  | 弹幕类型           | 1 2 3：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />6：逆向弹幕<br />7：高级弹幕<br />8：代码弹幕<br />9：BAS弹幕（仅限于特殊弹幕专包） |
 | fontsize | int32  | 弹幕字号           | 18：小<br />25：标准<br />36：大                             |
 | color    | uint32 | 弹幕颜色           | 十进制RGB888值                                               |
-| midHash  | string | 发送者UID的HASH    | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |
+| midHash  | string | 发送者mid的HASH    | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户id        |
 | content  | string | 弹幕内容           | utf-8编码                                                    |
 | ctime    | int64  | 弹幕发送时间       | 时间戳                                                       |
 | weight   | int32  | 权重               | 用于智能屏蔽，根据弹幕语义及长度通过AI识别得出<br />范围：[0-10]<br />值越大权重越高 |
 | action   | string | 动作？             | 作用尚不明确                                                 |
 | pool     | int32  | 弹幕池             | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）      |
-| idStr    | string | 弹幕dmID           | 字串形式<br />唯一  可用于操作参数                           |
+| idStr    | string | 弹幕dmid           | 字串形式<br />唯一  可用于操作参数                           |
 
 **示例：**
 
-获取视频`av810872(CID=1176840)`（炮姐）的实时弹幕分包1
+获取视频`av810872(cid=1176840)`（炮姐）的实时弹幕分包1
 
 **注：[proto定义](../grpc_api/bilibili/community/service/dm/v1/dm.proto)需要编译，`bilibili.community.service.dm.v1.dm_pb2`并非通过pypi安装**
 

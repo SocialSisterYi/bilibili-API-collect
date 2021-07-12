@@ -20,9 +20,9 @@
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| cid    | num  | 视频CID  | 必要   |      |
-| aid    | num  | 稿件avID | 非必要 |      |
-| bvid   | num  | 稿件bvID | 非必要 |      |
+| cid    | num  | 视频cid  | 必要   |      |
+| aid    | num  | 稿件avid | 非必要 |      |
+| bvid   | num  | 稿件bvid | 非必要 |      |
 
 **json回复：**
 
@@ -51,7 +51,7 @@
 
 **示例：**
 
-获取视频`CID=3724723`的获取弹幕趋势顶点列表
+获取视频`cid=3724723`的获取弹幕趋势顶点列表
 
 ```shell
 curl -G 'http://api.bilibili.com/pbp/data' \

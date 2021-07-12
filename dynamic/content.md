@@ -54,7 +54,7 @@
 | face  | str  | 直播者头像 |      |
 | link  | str  | 直播链接   |      |
 | title | str  | 直播标题   |      |
-| uid   | num  | 直播者ID   |      |
+| uid   | num  | 直播者id   |      |
 | uname | str  | 直播者昵称 |      |
 
 **示例：**

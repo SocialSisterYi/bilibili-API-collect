@@ -32,7 +32,7 @@
 | 参数名 | 类型 | 内容          | 必要性 | 备注           |
 | ------ | ------------ | ------ | ------------- | ------------- |
 | access_key | str | APP登录Token | APP方式必要 |  |
-| cid    | num | 案件ID     |  必要  |                |
+| cid    | num | 案件id     |  必要  |                |
 
 **json回复：**
 
@@ -49,8 +49,8 @@
 
 | 字段      | 类型   | 内容      | 备注         |
 | --------- | ------ | -------- | ------------ |
-| id        | num    | 案件ID |              |
-| mid       | num    | 被举报用户UID |              |
+| id        | num    | 案件id |              |
+| mid       | num    | 被举报用户mid |              |
 | status    | num    | 裁决状态   | 1：投票中<br />2：停止发放<br />3：复核中（结案中）<br />4：已裁决<br />5：待重启<br />6：未裁决<br />7：冻结中<br />8：队列中 |
 | statusTitle | str  | 封禁时间文字 | `judgeType`=1时有效 |
 | originType | num   | 来源类型 | 见「封禁公示」中表 |
@@ -70,7 +70,7 @@
 | ctime     | num    | 举报创建时间 | 时间戳 |
 | mtime     | num    | 开始拉取时间 | 时间戳 |
 | originTitle | str  | 来源标题 |              |
-| relationId | str   | 违规关系标识字 | ｛评论rpID｝-｛违规类型ID｝-｛来源对象ID｝ |
+| relationId | str   | 违规关系标识字 | {评论rpid}-{违规类型id}-{来源对象id} |
 | face      | str    | 被举报用户头像url |           |
 | uname     | str    | 被举报用户昵称 |              |
 | vote      | num    | 我的投票 | **见上表** |
@@ -149,7 +149,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 
 | 参数名 | 类型 | 内容   | 必要性 | 备注 |
 | ------ | ---- | ------ | ------ | ---- |
-| cid    | num  | 案件ID | 必要   |      |
+| cid    | num  | 案件id | 必要   |      |
 
 **json回复：**
 
@@ -166,8 +166,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 
 | 字段          | 类型 | 内容              | 备注                                                         |
 | ------------- | ---- | ----------------- | ------------------------------------------------------------ |
-| id            | num  | 案件ID            |                                                              |
-| mid           | num  | 被举报用户UID     |                                                              |
+| id            | num  | 案件id            |                                                              |
+| mid           | num  | 被举报用户mid     |                                                              |
 | status        | num  | 裁决状态          | 1：投票中<br />2：停止发放<br />3：复核中（结案中）<br />4：已裁决<br />5：待重启<br />6：未裁决<br />7：冻结中<br />8：队列中 |
 | originType    | num  | 来源类型          | 见「封禁公示」中表                                           |
 | reasonType    | num  | 原因类型          | 见「封禁公示」中表                                           |
@@ -185,7 +185,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 | ctime         | num  | 举报创建时间      | 时间戳                                                       |
 | mtime         | num  | 开始拉取时间      | 时间戳                                                       |
 | originTitle   | str  | 来源标题          |                                                              |
-| relationId    | str  | 违规关系标识字    | ｛评论rpID｝-｛违规类型ID｝-｛来源对象ID｝                   |
+| relationId    | str  | 违规关系标识字    | {评论rpid}-{违规类型id}-{来源对象id}                   |
 | face          | str  | 被举报用户头像url |                                                              |
 | uname         | str  | 被举报用户昵称    |                                                              |
 | vote          | num  | 0                 | 固定为0                                                      |
@@ -278,8 +278,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 
 | 字段          | 类型 | 内容              | 备注                                                         |
 | ------------- | ---- | ----------------- | ------------------------------------------------------------ |
-| id            | num  | 案件ID            |                                                              |
-| mid           | num  | 被举报用户UID     |                                                              |
+| id            | num  | 案件id            |                                                              |
+| mid           | num  | 被举报用户mid     |                                                              |
 | status        | num  | 裁决状态          | 1：投票中<br />2：停止发放<br />3：复核中（结案中）<br />4：已裁决<br />5：待重启<br />6：未裁决<br />7：冻结中<br />8：队列中 |
 | originType    | num  | 来源类型          | 见「封禁公示」中表                                           |
 | reasonType    | num  | 原因类型          | 见「封禁公示」中表                                           |
@@ -298,7 +298,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 | ctime         | num  | 举报创建时间      | 时间戳                                                       |
 | mtime         | num  | 开始拉取时间      | 时间戳                                                       |
 | originTitle   | str  | 来源标题          |                                                              |
-| relationId    | str  | 违规关系标识字    | ｛评论rpID｝-｛违规类型ID｝-｛来源对象ID｝                   |
+| relationId    | str  | 违规关系标识字    | {评论rpid}-{违规类型id}-{来源对象id}                   |
 | face          | str  | 被举报用户头像url |                                                              |
 | uname         | str  | 被举报用户昵称    |                                                              |
 | vote          | num  | 我的投票          | **见上表**                                                   |
@@ -413,10 +413,10 @@ curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
 
 | 字段      | 类型   | 内容      | 备注         |
 | --------- | ------ | -------- | ------------ |
-| mid       | num    | 用户UID | 仅非匿名有此项 |
+| mid       | num    | 用户mid | 仅非匿名有此项 |
 | face      | str    | 用户头像  | 仅非匿名有此项 |
 | name      | str    | 用户昵称  | 仅非匿名有此项 |
-| opid      | num    | 观点ID  |              |
+| opid      | num    | 观点id  |              |
 | vote      | num    | 投票选择  | **见上表** |
 | content   | str    | 观点内容  |              |
 | attr      | num    | 是否匿名    | 0：匿名<br />1：不匿名 |

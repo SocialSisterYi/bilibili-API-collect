@@ -16,7 +16,7 @@
 
 | 参数名 | 类型     | 内容               | 必要性 | 备注 |
 | ------ | -------- | ------------------ | ------ | ---- |
-| aid    | num或str | 稿件avID或稿件bvID | 必要   |      |
+| aid    | num或str | 稿件avid或稿件bvid | 必要   |      |
 
 **json回复：**
 
@@ -42,14 +42,14 @@
 
 获取视频`av43337021`/`BV1rb411m7gE`的弹幕快照，总计20条
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \
 --data-urlencode 'aid=43337021'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \

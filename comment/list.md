@@ -23,7 +23,7 @@
 | ---------- | ---- | -------------- | ----------- | -------------------------------------------------------- |
 | access_key | str  | APP登录Token   | APP方式必要 |                                                          |
 | type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码)                 |
-| oid        | num  | 目标评论区ID   | 必要        |                                                          |
+| oid        | num  | 目标评论区id   | 必要        |                                                          |
 | sort       | num  | 排序方式       | 非必要      | 默认为0<br />0：按时间<br />1：按点赞数<br />2：按回复数 |
 | nohot      | num  | 是否不显示热评 | 非必要      | 默认为0<br />1：不显示<br />0：显示                      |
 | pn         | num  | 页码           | 非必要      | 默认为1                                                  |
@@ -102,7 +102,7 @@
 
 | 字段 | 类型                          | 内容       | 备注                                   |
 | ---- | ----------------------------- | ---------- | -------------------------------------- |
-| mid  | num                           | UP主UID    |                                        |
+| mid  | num                           | UP主mid    |                                        |
 | top  | 有效时：obj<br />无效时：null | 置顶条目   | [对象定义见表](readme.md#评论条目对象) |
 | vote | 有效时：obj<br />无效时：null | 投票评论？ |                                        |
 
@@ -111,7 +111,7 @@
 | 字段    | 类型 | 内容            | 备注 |
 | ------- | ---- | --------------- | ---- |
 | content | str  | 公告正文        |      |
-| id      | num  | 公告ID          |      |
+| id      | num  | 公告id          |      |
 | link    | str  | 公告页面链接url |      |
 | title   | str  | 公告标题        |      |
 
@@ -2342,7 +2342,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply' \
 | ---------- | ---- | -------------- | ----------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token   | APP方式必要 |                                                              |
 | type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码)                     |
-| oid        | num  | 目标评论区ID   | 必要        |                                                              |
+| oid        | num  | 目标评论区id   | 必要        |                                                              |
 | mode       | num  | 排序方式       | 非必要      | 默认为0<br />0 3：仅按热度<br />1：按热度+按时间<br />2：仅按时间 |
 | next       | num  | 评论页选择     | 非必要      | 按热度时：热度顺序页码（0为第一页）<br />按时间时：时间倒序楼层号<br />默认为0 |
 | ps         | num  | 每页项数       | 非必要      | 默认为20<br />定义域：1-49                                   |
@@ -2442,14 +2442,14 @@ curl -G 'http://api.bilibili.com/x/v2/reply' \
 
 | 字段 | 类型 | 内容    | 备注 |
 | ---- | ---- | ------- | ---- |
-| mid  | num  | UP主UID |      |
+| mid  | num  | UP主mid |      |
 
 `data`中的`notice`对象：
 
 | 字段    | 类型 | 内容            | 备注 |
 | ------- | ---- | --------------- | ---- |
 | content | str  | 公告正文        |      |
-| id      | num  | 公告ID          |      |
+| id      | num  | 公告id          |      |
 | link    | str  | 公告页面链接url |      |
 | title   | str  | 公告标题        |      |
 
@@ -4724,8 +4724,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 | ---------- | ---- | ---------------- | ----------- | ---------------------------------------- |
 | access_key | str  | APP登录Token     | APP方式必要 |                                          |
 | type       | num  | 评论区类型代码   | 必要        | [类型代码见表](readme.md#评论区类型代码) |
-| oid        | num  | 目标评论区ID     | 必要        |                                          |
-| root       | num  | 目标一级评论rpID | 必要        |                                          |
+| oid        | num  | 目标评论区id     | 必要        |                                          |
+| root       | num  | 目标一级评论rpid | 必要        |                                          |
 | pn         | num  | 二级评论页码     | 非必要      | 默认为1                                  |
 | ps         | num  | 二级评论每页项数 | 非必要      | 默认为20<br />定义域：1-49               |
 
@@ -4750,7 +4750,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 | replies      | array | 二级评论列表 |                  |
 | root      | obj   | 根评论         | [对象定义见表](readme.md#评论条目对象) |
 | show_bvid    | bool                             | true     | **作用尚不明确** |
-| upper    | obj                           | UP主UID  |  |
+| upper    | obj                           | UP主mid  |  |
 
 `data`中的`page`对象：
 
@@ -4785,11 +4785,11 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 
 | 字段 | 类型 | 内容    | 备注 |
 | ---- | ---- | ------- | ---- |
-| mid  | num  | UP主UID |      |
+| mid  | num  | UP主mid |      |
 
 **示例：**
 
-获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
+获取视频`av2`下评论`rpid=476670`的二级评论，每页5项，查看第1页
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
@@ -5462,8 +5462,8 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 | ---------- | ---- | -------------- | ----------- | ---------------------------------------- |
 | access_key | str  | APP登录Token   | APP方式必要 |                                          |
 | type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码) |
-| oid        | num  | 目标评论区ID   | 必要        |                                          |
-| root       | num  | 根回复rpID     | 必要        |                                          |
+| oid        | num  | 目标评论区id   | 必要        |                                          |
+| root       | num  | 根回复rpid     | 必要        |                                          |
 | next       | num  | 评论页选择     | 非必要      | 第一页为0<br />默认为0<br />顺序楼层号   |
 | ps         | num  | 每页项数       | 非必要      | 默认为0                                  |
 
@@ -5488,7 +5488,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 | vote      | num  | 0              | **作用尚不明确**                       |
 | lottery   | num  | 0              | **作用尚不明确**                       |
 | config    | obj  | 评论区显示控制 |                                        |
-| upper     | obj  | UP主UID        |                                        |
+| upper     | obj  | UP主mid        |                                        |
 | show_bvid | bool | true           | **作用尚不明确**                       |
 | control   | obj  | 评论区输入属性 |                                        |
 | root      | obj  | 根评论         | [对象定义见表](readme.md#评论条目对象) |
@@ -5519,7 +5519,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 
 | 字段 | 类型 | 内容    | 备注 |
 | ---- | ---- | ------- | ---- |
-| mid  | num  | UP主UID |      |
+| mid  | num  | UP主mid |      |
 
 `data`中的`control`对象：
 
@@ -5537,7 +5537,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 
 **示例：**
 
-获取视频`av2`下评论`rpID=476670`的二级评论，每页5项，查看第1页
+获取视频`av2`下评论`rpid=476670`的二级评论，每页5项，查看第1页
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/reply/detail' \
@@ -6219,9 +6219,9 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail' \
 | ---------- | ---- | -------------- | ----------- | ---------------------------------------- |
 | access_key | str  | APP登录Token   | APP方式必要 |                                          |
 | type       | num  | 评论区类型代码 | 必要        | [类型代码见表](readme.md#评论区类型代码) |
-| oid        | num  | 目标评论区ID   | 必要        |                                          |
-| root       | num  | 根回复rpID     | 必要        |                                          |
-| dialog     | num  | 对话树根rpID   | 必要        |                                          |
+| oid        | num  | 目标评论区id   | 必要        |                                          |
+| root       | num  | 根回复rpid     | 必要        |                                          |
+| dialog     | num  | 对话树根rpid   | 必要        |                                          |
 | size       | num  | 每页最大项数   | 必要        |                                          |
 
 **json回复：**
@@ -6247,7 +6247,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail' \
 | vote      | num   | 0              | **作用尚不明确** |
 | lottery   | num   | 0              | **作用尚不明确** |
 | config    | obj   | 评论区显示控制 |                  |
-| upper     | obj   | UP主UID        |                  |
+| upper     | obj   | UP主mid        |                  |
 | show_bvid | bool  | true           | **作用尚不明确** |
 | control   | obj   | 评论区输入属性 |                  |
 
@@ -6290,7 +6290,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail' \
 
 | 字段 | 类型 | 内容    | 备注 |
 | ---- | ---- | ------- | ---- |
-| mid  | num  | UP主UID |      |
+| mid  | num  | UP主mid |      |
 
 `data`中的`control`对象：
 
@@ -6308,7 +6308,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/detail' \
 
 **示例：**
 
-获取视频`av201022189`下评论`rpID=3030790837`的对话`rpID=3030978856`，每页最大5项
+获取视频`av201022189`下评论`rpid=3030790837`的对话`rpid=3030978856`，每页最大5项
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor' \
@@ -7087,7 +7087,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor' \
 | 参数名 | 类型 | 内容           | 必要性 | 备注                                         |
 | ------ | ---- | -------------- | ------ | -------------------------------------------- |
 | type   | num  | 评论区类型代码 | 必要   | **[类型代码见表](readme.md#评论区类型代码)** |
-| oid    | num  | 目标评论区ID   | 必要   |                                              |
+| oid    | num  | 目标评论区id   | 必要   |                                              |
 
 **json回复：**
 

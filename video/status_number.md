@@ -1,11 +1,11 @@
 # 视频状态数
 
-- [视频状态数（仅avID）](#视频状态数（仅avID）)
-- [视频状态数（bvID/avID）](#视频状态数（bvID/avID）)
+- [视频状态数（仅avid）](#视频状态数（仅avid）)
+- [视频状态数（bvid/avid）](#视频状态数（bvid/avid）)
 
 ---
 
-## 视频状态数（仅avID）
+## 视频状态数（仅avid）
 > http://api.bilibili.com/archive_stat/stat
 
 *请求方式：GET*
@@ -14,7 +14,7 @@
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| aid    | num  | 稿件avID | 必要   |      |
+| aid    | num  | 稿件avid | 必要   |      |
 
 **json回复：**
 
@@ -31,7 +31,7 @@
 
 | 字段       | 类型                     | 内容                           | 备注                 |
 | ---------- | ------------------------ | ------------------------------ | -------------------- |
-| aid        | num                      | 稿件avID                       |                      |
+| aid        | num                      | 稿件avid                       |                      |
 | view       | 正常：num<br />屏蔽：str | 正常：播放次数<br />屏蔽："--" |                      |
 | danmaku    | num                      | 弹幕条数                       |                      |
 | reply      | num                      | 评论条数                       |                      |
@@ -49,7 +49,7 @@
 
 查询视频`av91572143`的状态数
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/archive_stat/stat' \
@@ -84,7 +84,7 @@ curl -G 'http://api.bilibili.com/archive_stat/stat' \
 
 </details>
 
-## 视频状态数（bvID/avID）
+## 视频状态数（bvid/avid）
 
 > http://api.bilibili.com/x/web-interface/archive/stat
 
@@ -96,8 +96,8 @@ curl -G 'http://api.bilibili.com/archive_stat/stat' \
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
 | ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -114,8 +114,8 @@ curl -G 'http://api.bilibili.com/archive_stat/stat' \
 
 | 字段       | 类型                     | 内容                           | 备注                 |
 | ---------- | ------------------------ | ------------------------------ | -------------------- |
-| aid        | num                      | 稿件avID                       |                      |
-| bvid       | str                      | 稿件bvID                       |                      |
+| aid        | num                      | 稿件avid                       |                      |
+| bvid       | str                      | 稿件bvid                       |                      |
 | view       | 正常：num<br />屏蔽：str | 正常：播放次数<br />屏蔽："--" |                      |
 | danmaku    | num                      | 弹幕条数                       |                      |
 | reply      | num                      | 评论条数                       |                      |
@@ -135,14 +135,14 @@ curl -G 'http://api.bilibili.com/archive_stat/stat' \
 
 查询视频`av2271112`/`BV1es411D7sW`的状态数
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
 --data-urlencode 'aid=2271112'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \

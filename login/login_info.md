@@ -37,7 +37,7 @@
 | email_verified       | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证                          |
 | face                 | str  | 用户头像url      |                                                   |
 | level_info           | obj  | 等级信息         |                                                   |
-| mid                  | num  | 用户UID          |                                                   |
+| mid                  | num  | 用户mid          |                                                   |
 | mobile_verified      | num  | 是否验证手机号   | 0：未验证<br />1：已验证                          |
 | money                | num  | 拥有硬币数       |                                                   |
 | moral                | num  | 当前节操值       | 上限为70                                          |
@@ -106,7 +106,7 @@
 
 | 字段            | 类型 | 内容          | 备注         |
 | --------------- | ---- | ------------- | ------------ |
-| mid             | num  | 登录用户UID   |              |
+| mid             | num  | 登录用户mid   |              |
 | bcoin_balance   | num  | 拥有B币数     |              |
 | coupon_balance  | num  | 每月奖励B币数 |              |
 | coupon_due_time | num  | 0             | 作用尚不明确 |
@@ -313,7 +313,7 @@ curl 'http://account.bilibili.com/home/userInfo' \
 
 | 字段           | 类型 | 内容             | 备注                          |
 | -------------- | ---- | ---------------- | ----------------------------- |
-| mid            | num  | 用户UID          |                               |
+| mid            | num  | 用户mid          |                               |
 | name           | str  | 用户昵称         |                               |
 | sign           | str  | 用户签名         |                               |
 | coins          | num  | 拥有硬币数       |                               |

@@ -8,7 +8,7 @@
 
 | 参数名 | 类型 | 内容       | 必要性 | 备注     |
 | ------------ | ---- | ---------- | ------ | -------- |
-| dynamic_id   | id  | 动态ID | 必要 | |
+| dynamic_id   | id  | 动态id | 必要 | |
 
 **json回复：**
 
@@ -73,7 +73,7 @@
 
 **示例：**
 
-获取`哔哩哔哩弹幕网`的动态ID为`507420325550127049`动态
+获取`哔哩哔哩弹幕网`的动态id为`507420325550127049`动态
 
 ```shell
 curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/get_dynamic_detail' \

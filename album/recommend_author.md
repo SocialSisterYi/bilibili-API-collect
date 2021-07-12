@@ -40,7 +40,7 @@
 
 | 字段        | 类型 | 内容    | 备注         |
 | ----------- | ---- | ------- | ------------ |
-| uid         | num  | 作者UID |              |
+| uid         | num  | 作者mid |              |
 | head_url    | str  | 头像url |              |
 | name        | str  | 昵称    |              |
 | is_followed | num  | 0       | 作用尚不明确 |

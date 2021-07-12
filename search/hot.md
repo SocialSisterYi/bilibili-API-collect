@@ -28,13 +28,13 @@
 
 | 字段       | 类型 | 内容            | 备注           |
 | ---------- | ---- | --------------- | -------------- |
-| seid       | str  | 搜索seID        |                |
-| id         | num  | 默认搜索ID      |                |
+| seid       | str  | 搜索seid        |                |
+| id         | num  | 默认搜索id      |                |
 | type       | num  | 0               |                |
 | show_name  | str  | 显示文字        |                |
 | name       | str  | 空              |                |
 | goto_type  | num  | 跳转类型        | 1：视频        |
-| goto_value | str  | 搜索目标ID      | 视频：稿件avID |
+| goto_value | str  | 搜索目标id      | 视频：稿件avid |
 | url        | str  | 搜索目标跳转url |                |
 
 **示例：**
@@ -85,7 +85,7 @@ curl 'http://api.bilibili.com/x/web-interface/search/default'
 | exp_str   | str   | ？？？       |               |
 | code      | num   | 返回值       | 0：成功       |
 | cost      | obj   | 详细搜索用时 | 大概是吧？    |
-| seid      | str   | 搜索seID     |               |
+| seid      | str   | 搜索seid     |               |
 | timestamp | num   | 榜单统计时间 | 时间戳        |
 | message   | str   | 错误信息     | 默认为success |
 | list      | array | 热搜列表     |               |

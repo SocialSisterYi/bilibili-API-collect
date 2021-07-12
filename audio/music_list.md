@@ -47,16 +47,16 @@
 
 | 项   | 类型 | 内容              | 备注 |
 | ---- | ---- | ----------------- | ---- |
-| 0    | obj  | 音频收藏夹ID1     |      |
-| n    | obj  | 音频收藏夹ID(n+1) |      |
+| 0    | obj  | 音频收藏夹mlid1     |      |
+| n    | obj  | 音频收藏夹mlid(n+1) |      |
 | ……   | obj  | ……                | ……   |
 
 `data`数组中的对象：
 
 | 字段      | 类型   | 内容                     | 备注                             |
 | --------- | ------ | ------------------------ | -------------------------------- |
-| id        | num    | 音频收藏夹ID             |                                  |
-| uid       | num    | 创建用户UID              |                                  |
+| id        | num    | 音频收藏夹mlid             |                                  |
+| uid       | num    | 创建用户mid              |                                  |
 | uname     | str    | 创建用户昵称             |                                  |
 | title     | str    | 歌单标题                 |                                  |
 | type      | num    | 收藏夹属性               | 0：普通收藏夹<br />1：默认收藏夹 |
@@ -66,22 +66,22 @@
 | song      | num    | 歌单中的音乐数量         |                                  |
 | desc      | str    | 歌单备注信息             |                                  |
 | sids      | array | 歌单中的音乐             |                                  |
-| menuId    | num    | 音频收藏夹对应的歌单amID |                                  |
+| menuId    | num    | 音频收藏夹对应的歌单amid |                                  |
 | statistic | obj    | 歌单状态数信息           |                                  |
 
 `data`中的`sids`数组：
 
 | 项   | 类型 | 内容                | 备注             |
 | ---- | ---- | ------------------- | ---------------- |
-| 0    | num  | 收藏的音频auID1     |                  |
-| n    | num  | 收藏的音频auID(n+1) | 按照歌单顺序排列 |
+| 0    | num  | 收藏的音频auid1     |                  |
+| n    | num  | 收藏的音频auid(n+1) | 按照歌单顺序排列 |
 | ……   | num  | ……                  | ……               |
 
 `data`中的`statistic`对象：
 
 | 字段    | 类型 | 内容                     | 备注 |
 | ------- | ---- | ------------------------ | ---- |
-| sid     | num  | 音频收藏夹对应的歌单amID |      |
+| sid     | num  | 音频收藏夹对应的歌单amid |      |
 | play    | num  | 播放次数                 |      |
 | collect | num  | 点赞次数                 |      |
 | comment | null | -                        |      |
@@ -188,7 +188,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注               |
 | ------ | ---- | ------------ | ------ | ------------------ |
-| sid    | num  | 音频收藏夹ID | 必要   | 必须为默认收藏夹ID |
+| sid    | num  | 音频收藏夹mlid | 必要   | 必须为默认收藏夹mlid |
 
 **json回复：**
 
@@ -204,8 +204,8 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
 
 | 字段      | 类型   | 内容                     | 备注                   |
 | --------- | ------ | ------------------------ | ---------------------- |
-| id        | num    | 音频收藏夹ID             |                        |
-| uid       | num    | 创建用户UID              |                        |
+| id        | num    | 音频收藏夹mlid             |                        |
+| uid       | num    | 创建用户mid              |                        |
 | uname     | str    | 创建用户昵称             |                        |
 | title     | str    | 默认歌单                 | 恒为`默认歌单`         |
 | type      | num    | 1                        | 恒为`1`                |
@@ -215,22 +215,22 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
 | song      | num    | 歌单中的音乐数量         |                        |
 | desc      | str    | 空                       | 恒为空                 |
 | sids      | array | 歌单中的音乐             |                        |
-| menuId    | num    | 音频收藏夹对应的歌单amID | 与普通歌单不同通用     |
+| menuId    | num    | 音频收藏夹对应的歌单amid | 与普通歌单不同通用     |
 | statistic | obj    | 歌单状态数信息           |                        |
 
 `data`中的`sids`数组：
 
 | 项   | 类型 | 内容                | 备注             |
 | ---- | ---- | ------------------- | ---------------- |
-| 0    | num  | 收藏的音频auID1     |                  |
-| n    | num  | 收藏的音频auID(n+1) | 按照歌单顺序排列 |
+| 0    | num  | 收藏的音频auid1     |                  |
+| n    | num  | 收藏的音频auid(n+1) | 按照歌单顺序排列 |
 | ……   | num  | ……                  | ……               |
 
 `data`中的`statistic`对象：
 
 | 字段    | 类型 | 内容                     | 备注 |
 | ------- | ---- | ------------------------ | ---- |
-| sid     | num  | 音频收藏夹对应的歌单amID |      |
+| sid     | num  | 音频收藏夹对应的歌单amid |      |
 | play    | num  | 0                        |      |
 | collect | num  | 0                        |      |
 | comment | null | -                        |      |
@@ -238,7 +238,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
 
 **示例：**
 
-查询我的默认歌单，ID为` 15967839 `
+查询我的默认歌单，id为` 15967839 `
 
 ```shell
 curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/info' \

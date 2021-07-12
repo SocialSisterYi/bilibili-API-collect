@@ -23,9 +23,9 @@
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                              |
 | type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)**                 |
-| oid        | num  | 目标评论区ID             | 必要           |                                                              |
-| root       | num  | 根评论rpID               | 非必要         | 二级评论以上使用                                             |
-| parent     | num  | 父评论rpID               | 非必要         | 二级评论同根评论ID<br />大于二级评论为要回复的评论ID         |
+| oid        | num  | 目标评论区id             | 必要           |                                                              |
+| root       | num  | 根评论rpid               | 非必要         | 二级评论以上使用                                             |
+| parent     | num  | 父评论rpid               | 非必要         | 二级评论同根评论id<br />大于二级评论为要回复的评论id         |
 | message    | str  | 发送评论内容             | 必要           | 最大1000字符<br />表情使用表情转义符                         |
 | plat       | num  | 发送平台标识             | 非必要         | 1：web端<br />2：安卓客户端<br />3：ios客户端<br />4：wp客户端<br />默认为1 |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
@@ -49,14 +49,14 @@
 | success_toast  | str                           | 状态文字       |                                                              |
 | need_captcha   | bool                          | false          | 评论需要验证码(未证实)                                       |
 | url            | str                           | 空             | **作用尚不明确**                                             |
-| rpid           | num                           | 评论rpID       |                                                              |
-| rpid_str       | str                           | 评论rpID       | 字串格式                                                     |
-| dialog         | num                           | 回复对方rpID   | 若为一级评论则为0<br />若为二级评论则为该评论ID<br />大于二级评论为上一级评论ID |
-| dialog_str     | str                           | 回复对方rpID   | 字串格式                                                     |
-| root           | num                           | 根评论rpID     | 若为一级评论则为0<br />大于一级评论则为根评论ID              |
-| root_str       | str                           | 根评论rpID     | 字串格式                                                     |
-| parent         | num                           | 回复父评论rpID | 若为一级评论则为0<br />若为二级评论则为根评论ID<br />大于二级评论为上一级评论ID |
-| parent_str     | str                           | 回复父评论rpID | 字串格式                                                     |
+| rpid           | num                           | 评论rpid       |                                                              |
+| rpid_str       | str                           | 评论rpid       | 字串格式                                                     |
+| dialog         | num                           | 回复对方rpid   | 若为一级评论则为0<br />若为二级评论则为该评论id<br />大于二级评论为上一级评论id |
+| dialog_str     | str                           | 回复对方rpid   | 字串格式                                                     |
+| root           | num                           | 根评论rpid     | 若为一级评论则为0<br />大于一级评论则为根评论id              |
+| root_str       | str                           | 根评论rpid     | 字串格式                                                     |
+| parent         | num                           | 回复父评论rpid | 若为一级评论则为0<br />若为二级评论则为根评论id<br />大于二级评论为上一级评论id |
+| parent_str     | str                           | 回复父评论rpid | 字串格式                                                     |
 | emote          | obj                           | 表情转义符信息 | [对象定义见表](readme.md#评论条目对象)                       |
 | reply          | 有效时：obj<br />无效时：null |                | [对象定义见表](readme.md#评论条目对象)                       |
 
@@ -249,8 +249,8 @@ curl 'http://api.bilibili.com/x/v2/reply/add' \
 | ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                              |
 | type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
-| oid        | num  | 目标评论区ID             | 必要           |                                              |
-| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| oid        | num  | 目标评论区id             | 必要           |                                              |
+| rpid       | num  | 目标评论rpid             | 必要           |                                              |
 | action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消赞<br />1：点赞          |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
@@ -266,7 +266,7 @@ curl 'http://api.bilibili.com/x/v2/reply/add' \
 
 **示例：**
 
-点赞视频`av243322853`下评论`rpID=3039053308`
+点赞视频`av243322853`下评论`rpid=3039053308`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/reply/action' \
@@ -307,8 +307,8 @@ curl 'http://api.bilibili.com/x/v2/reply/action' \
 | ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                              |
 | type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
-| oid        | num  | 目标评论区ID             | 必要           |                                              |
-| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| oid        | num  | 目标评论区id             | 必要           |                                              |
+| rpid       | num  | 目标评论rpid             | 必要           |                                              |
 | action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消踩<br />1：点踩          |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
@@ -324,7 +324,7 @@ curl 'http://api.bilibili.com/x/v2/reply/action' \
 
 **示例：**
 
-点踩视频`av243322853`下评论`rpID=3039053308`
+点踩视频`av243322853`下评论`rpid=3039053308`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/reply/hate' \
@@ -365,8 +365,8 @@ curl 'http://api.bilibili.com/x/v2/reply/hate' \
 | ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                              |
 | type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
-| oid        | num  | 目标评论区ID             | 必要           |                                              |
-| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| oid        | num  | 目标评论区id             | 必要           |                                              |
+| rpid       | num  | 目标评论rpid             | 必要           |                                              |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
 **json回复：**
@@ -381,7 +381,7 @@ curl 'http://api.bilibili.com/x/v2/reply/hate' \
 
 **示例：**
 
-删除`av243322853`下评论`rpID=3039053308`
+删除`av243322853`下评论`rpid=3039053308`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/reply/del' \
@@ -421,8 +421,8 @@ curl 'http://api.bilibili.com/x/v2/reply/del' \
 | ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                              |
 | type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
-| oid        | num  | 目标评论区ID             | 必要           |                                              |
-| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| oid        | num  | 目标评论区id             | 必要           |                                              |
+| rpid       | num  | 目标评论rpid             | 必要           |                                              |
 | action     | num  | 操作代码                 | 非必要         | 默认为0<br />0：取消置顶<br />1：设为置顶    |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
 
@@ -438,7 +438,7 @@ curl 'http://api.bilibili.com/x/v2/reply/del' \
 
 **示例：**
 
-置顶视频`av243322853`下评论`rpID=2940645593`
+置顶视频`av243322853`下评论`rpid=2940645593`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/reply/top' \
@@ -477,8 +477,8 @@ curl 'http://api.bilibili.com/x/v2/reply/top' \
 | ---------- | ---- | ------------------------ | -------------- | -------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                              |
 | type       | num  | 评论区类型代码           | 必要           | **[类型代码见表](readme.md#评论区类型代码)** |
-| oid        | num  | 目标评论区ID             | 必要           |                                              |
-| rpid       | num  | 目标评论rpID             | 必要           |                                              |
+| oid        | num  | 目标评论区id             | 必要           |                                              |
+| rpid       | num  | 目标评论rpid             | 必要           |                                              |
 | reason     | num  | 举报类型                 | 必要           | **类型代码见下表**                           |
 | content    | str  | 其他举报备注             | 非必要         | `reason=0`时有效                             |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                              |
@@ -518,7 +518,7 @@ curl 'http://api.bilibili.com/x/v2/reply/top' \
 
 **示例：**
 
-举报视频` av752881391 `下评论`rpID=3062537442`，理由是`引战`
+举报视频` av752881391 `下评论`rpid=3062537442`，理由是`引战`
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/reply/report' \

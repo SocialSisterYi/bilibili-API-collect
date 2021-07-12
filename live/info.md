@@ -16,7 +16,7 @@
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -40,13 +40,13 @@
 | title          | str  | 直播间标题       |                          |
 | cover          | str  | 直播间封面url    |                          |
 | online         | num  | 直播间人气       | 值为上次直播时刷新       |
-| roomid         | num  | 直播间ID（短号） |                          |
+| roomid         | num  | 直播间id（短号） |                          |
 | broadcast_type | num  | 0                |                          |
 | online_hidden  | num  | 0                |                          |
 
 **示例：**
 
-查询用户`UID=322892`的直播间信息
+查询用户`mid=322892`的直播间信息
 
 ```shell
 curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
@@ -105,9 +105,9 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 
 | 字段           | 类型 | 内容          | 备注                     |
 | -------------- | ---- | ------------- | ------------------------ |
-| room_id         | num  | 直播间真实ID      |                          |
-| short_id         | num  | 直播间ID（短号） |                          |
-| uid         | num  | 主播用户UID    |                          |
+| room_id         | num  | 直播间真实id      |                          |
+| short_id         | num  | 直播间id（短号） |                          |
+| uid         | num  | 主播用户mid    |                          |
 | need_p2p         | num  | 是否p2p |                          |
 | is_hidden         | bool   | 是否隐藏  |                          |
 | is_locked         | bool   | 是否锁定  |                          |
@@ -124,7 +124,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 
 **示例：**
 
-查询直播间`ID=76`的直播间信息
+查询直播间`id=76`的直播间信息
 
 ```shell
 curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
@@ -172,7 +172,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| uid    | num  | 目标用户UID | 必要   |      |
+| uid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -192,7 +192,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 | info           | obj  | 主播信息         |                  |
 | exp            | obj  | 经验等级         |                  |
 | follower_num   | num  | 主播粉丝数       |                  |
-| room_id        | num  | 直播间ID（短号） |                  |
+| room_id        | num  | 直播间id（短号） |                  |
 | medal_name     | str  | 粉丝勋章名       |                  |
 | glory_count    | int  | 主播荣誉数       |                  |
 | pendant        | str  | 直播间头像框url  |                  |
@@ -203,7 +203,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 
 | 字段            | 类型 | 内容        | 备注                           |
 | --------------- | ---- | ----------- | ------------------------------ |
-| uid             | num  | 主播UID     |                                |
+| uid             | num  | 主播mid     |                                |
 | uname           | str  | 主播用户名  |                                |
 | face            | str  | 主播头像url |                                |
 | official_verify | obj  | 认证信息    |                                |
@@ -254,7 +254,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 
 **示例：**
 
-查询直播间`UID=76`的主播信息
+查询直播间`mid=76`的主播信息
 
 ```shell
 curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \

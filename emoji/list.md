@@ -234,7 +234,7 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web' \
 | 参数名   | 类型 | 内容     | 必要性 | 备注                             |
 | -------- | ---- | -------- | ------ | -------------------------------- |
 | business | str  | 使用场景 | 必要   | reply：评论区<br />dynamic：动态 |
-| ids      | nums | 表情包ID | 必要   |                                  |
+| ids      | nums | 表情包id | 必要   |                                  |
 
 **json回复：**
 
@@ -263,7 +263,7 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web' \
 
 **示例：**
 
-获取表情包ID为`93`的表情包明细
+获取表情包id为`93`的表情包明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/emote/package' \
@@ -586,7 +586,7 @@ curl -G 'http://api.bilibili.com/x/emote/setting/panel' \
 
 | 字段  | 类型  | 内容              | 备注                                                     |
 | ----- | ----- | ----------------- | -------------------------------------------------------- |
-| id    | num   | 表情包ID          |                                                          |
+| id    | num   | 表情包id          |                                                          |
 | text  | str   | 表情包名称        |                                                          |
 | url   | str   | 表情包标志图片url |                                                          |
 | mtime | num   | 创建时间          | 时间戳                                                   |
@@ -607,7 +607,7 @@ curl -G 'http://api.bilibili.com/x/emote/setting/panel' \
 | 字段     | 类型 | 内容            | 备注             |
 | -------- | ---- | --------------- | ---------------- |
 | size     | num  | 表情尺寸信息    | 1：小<br />2：大 |
-| item_id  | num  | 购买物品ID      |                  |
+| item_id  | num  | 购买物品id      |                  |
 | item_url | num  | 购买物品页面url | 无则无此项       |
 
 `表情包对象`中的`emote`数组：
@@ -622,8 +622,8 @@ curl -G 'http://api.bilibili.com/x/emote/setting/panel' \
 
 | 字段       | 类型 | 内容        | 备注                                                     |
 | ---------- | ---- | ----------- | -------------------------------------------------------- |
-| id         | num  | 表情ID      |                                                          |
-| package_id | num  | 表情包ID    |                                                          |
+| id         | num  | 表情id      |                                                          |
+| package_id | num  | 表情包id    |                                                          |
 | text       | str  | 表情转义符  | 颜文字时为该字串                                         |
 | url        | str  | 表情图片url | 颜文字时为该字串                                         |
 | mtime      | num  | 创建时间    | 时间戳                                                   |

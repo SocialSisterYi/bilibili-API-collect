@@ -15,7 +15,7 @@
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -23,7 +23,7 @@
 
 | 字段 | 类型 | 内容     | 备注                          |
 | ---- | ---- | -------- | ----------------------------- |
-| code | num  | 返回值   | 0：成功 <br />500011：UID错误 |
+| code | num  | 返回值   | 0：成功 <br />500011：mid错误 |
 | msg  | str  | 错误信息 | 正确时无此项                  |
 | data | obj  | 数据本体 |                               |
 
@@ -50,8 +50,8 @@
 
 | 字段        | 类型 | 内容             | 备注             |
 | ----------- | ---- | ---------------- | ---------------- |
-| mid         | num  | 充电对象UID      |                  |
-| pay_mid     | num  | 充电用户UID      |                  |
+| mid         | num  | 充电对象mid      |                  |
+| pay_mid     | num  | 充电用户mid      |                  |
 | rank        | num  | 充电用户排名     | 取决于充电的多少 |
 | uname       | str  | 充电用户昵称     |                  |
 | avatar      | str  | 充电用户头像url  |                  |
@@ -70,7 +70,7 @@
 
 **示例：**
 
-查询用户`UID=53456`的充电公示列表
+查询用户`mid=53456`的充电公示列表
 
 ```shell
 curl -G 'http://elec.bilibili.com/api/query.rank.do' \
@@ -152,9 +152,9 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 
 | 参数名 | 类型 | 内容         | 必要性       | 备注               |
 | ------ | ---- | ------------ | ------------ | ------------------ |
-| mid    | num  | 目标用户UID  | 必要         |                    |
-| aid    | num  | 目标稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 目标稿件bvID | 必要（可选） | avID与bvID任选一个 |
+| mid    | num  | 目标用户mid  | 必要         |                    |
+| aid    | num  | 目标稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 目标稿件bvid | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -200,8 +200,8 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 
 | 字段        | 类型 | 内容             | 备注             |
 | ----------- | ---- | ---------------- | ---------------- |
-| mid         | num  | 充电对象UID      |                  |
-| pay_mid     | num  | 充电用户UID      |                  |
+| mid         | num  | 充电对象mid      |                  |
+| pay_mid     | num  | 充电用户mid      |                  |
 | rank        | num  | 充电用户排名     | 取决于充电的多少 |
 | uname       | str  | 充电用户昵称     |                  |
 | avatar      | str  | 充电用户头像url  |                  |
@@ -220,9 +220,9 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 
 **示例：**
 
-获取视频`av967773538`/` BV1up4y1y77i `，用户`UID=53456`的视频充电鸣谢名单
+获取视频`av967773538`/` BV1up4y1y77i `，用户`mid=53456`的视频充电鸣谢名单
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
@@ -230,7 +230,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
 --data-urlencode 'aid=967773538'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \

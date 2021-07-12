@@ -35,8 +35,8 @@
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注                   |
 | ------ | ---- | ------------------------ | ------------ | ---------------------- |
-| aid    | num  | 稿件avID                 | 必要（可选） | avID与bvID任选一个     |
-| bvid   | str  | 稿件bvID                 | 必要（可选） | avID与bvID任选一个     |
+| aid    | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个     |
+| bvid   | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个     |
 | like   | num  | 操作方式                 | 必要         | 1：点赞<br />2：取消赞 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                        |
 
@@ -54,7 +54,7 @@
 
 点赞视频`av79677524`/`BV1uJ411r7hL`
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/web-interface/archive/like' \
@@ -64,7 +64,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/web-interface/archive/like' \
@@ -100,7 +100,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注                   |
 | ---------- | ---- | ------------ | ----------- | ---------------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                        |
-| aid        | num  | 稿件avID     | 必要        |                        |
+| aid        | num  | 稿件avid     | 必要        |                        |
 | like       | num  | 操作方式     | 必要        | 0：点赞<br />1：取消赞 |
 
 **json回复：**
@@ -160,8 +160,8 @@ curl 'http://app.bilibili.com/x/v2/view/like' \
 | 参数名     | 类型 | 内容         | 必要性       | 备注               |
 | ---------- | ---- | ------------ | ------------ | ------------------ |
 | access_key | str  | APP登录Token | APP方式必要  |                    |
-| aid        | num  | 稿件avID     | 必要（可选） | avID与bvID任选一个 |
-| bvid       | str  | 稿件bvID     | 必要（可选） | avID与bvID任选一个 |
+| aid        | num  | 稿件avid     | 必要（可选） | avid与bvid任选一个 |
+| bvid       | str  | 稿件bvid     | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -178,7 +178,7 @@ curl 'http://app.bilibili.com/x/v2/view/like' \
 
 视频`av39330059`/`BV1Bt411z799`的状态为已点赞
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/archive/has/like' \
@@ -186,7 +186,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/has/like' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
@@ -225,8 +225,8 @@ curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
 
 | 参数名      | 类型 | 内容                     | 必要性       | 备注                                    |
 | ----------- | ---- | ------------------------ | ------------ | --------------------------------------- |
-| aid         | num  | 稿件avID                 | 必要（可选） | avID与bvID任选一个                      |
-| bvid        | str  | 稿件bvID                 | 必要（可选） | avID与bvID任选一个                      |
+| aid         | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个                      |
+| bvid        | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个                      |
 | multiply    | num  | 投币数量                 | 必要         | 上限为2                                 |
 | select_like | num  | 是否附加点赞             | 非必要       | 0：不点赞<br />1：同时点赞<br />默认为0 |
 | csrf        | str  | CSRF Token（位于cookie） | 必要         |                                         |
@@ -252,7 +252,7 @@ data 对象：
 
 为视频`av90671873`/`BV1N7411A7wC`投币2枚
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/web-interface/coin/add' \
@@ -263,7 +263,7 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/web-interface/coin/add' \
@@ -303,7 +303,7 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 | 参数名      | 类型 | 内容         | 必要性      | 备注                                    |
 | ----------- | ---- | ------------ | ----------- | --------------------------------------- |
 | access_key  | str  | APP登录Token | APP方式必要 |                                         |
-| aid         | num  | 稿件avID     | 必要        |                                         |
+| aid         | num  | 稿件avid     | 必要        |                                         |
 | multiply    | num  | 投币数量     | 必要        | 上限为2                                 |
 | select_like | num  | 附加点赞     | 非必要      | 0：不点赞<br />1：同时点赞<br />默认为0 |
 
@@ -363,8 +363,8 @@ curl 'http://app.bilibili.com/x/v2/view/coin/add' \
 | 参数名     | 类型 | 内容         | 必要性       | 备注               |
 | ---------- | ---- | ------------ | ------------ | ------------------ |
 | access_key | str  | APP登录Token | APP方式必要  |                    |
-| aid        | num  | 稿件avID     | 必要（可选） | avID与bvID任选一个 |
-| bvid       | str  | 稿件bvID     | 必要（可选） | avID与bvID任选一个 |
+| aid        | num  | 稿件avid     | 必要（可选） | avid与bvid任选一个 |
+| bvid       | str  | 稿件bvid     | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -387,7 +387,7 @@ curl 'http://app.bilibili.com/x/v2/view/coin/add' \
 
 视频`av37896701`/`BV18t411q7zz`的投币数为2枚
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
@@ -395,7 +395,7 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
@@ -440,10 +440,10 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
 | 参数名        | 类型 | 内容                     | 必要性         | 备注                           |
 | ------------- | ---- | ------------------------ | -------------- | ------------------------------ |
 | access_key    | str  | APP登录Token             | APP方式必要    |                                |
-| rid           | num  | 稿件avID                 | 必要           |                                |
+| rid           | num  | 稿件avid                 | 必要           |                                |
 | type          | num  | 必须为2                  | 必要           |                                |
-| add_media_ids | nums | 需要加入的收藏夹ID       | 非必要         | 同时添加多个，用`,`（%2C）分隔 |
-| del_media_ids | nums | 需要取消的收藏夹ID       | 非必要         | 同时取消多个，用`,`（%2C）分隔 |
+| add_media_ids | nums | 需要加入的收藏夹mlid       | 非必要         | 同时添加多个，用`,`（%2C）分隔 |
+| del_media_ids | nums | 需要取消的收藏夹mlid       | 非必要         | 同时取消多个，用`,`（%2C）分隔 |
 | csrf          | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                |
 
 **json回复：**
@@ -518,7 +518,7 @@ curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 | 参数名     | 类型     | 内容               | 必要性      | 备注 |
 | ---------- | -------- | ------------------ | ----------- | ---- |
 | access_key | str      | APP登录Token       | APP方式必要 |      |
-| aid        | num或str | 稿件avID或稿件bvID | 必要        |      |
+| aid        | num或str | 稿件avid或稿件bvid | 必要        |      |
 
 **json回复：**
 
@@ -542,7 +542,7 @@ data 对象：
 
 视频`av46281123`/`BV1Bb411H7Dv`的状态为已收藏
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
@@ -550,7 +550,7 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
@@ -593,8 +593,8 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注               |
 | ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 稿件avID                 | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID                 | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
 
 **json回复：**
@@ -621,7 +621,7 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
 
 将视频`av91003840`/`BV1Wj411f79U`一键三连
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
@@ -630,7 +630,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
@@ -673,7 +673,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注 |
 | ---------- | ---- | ------------ | ----------- | ---- |
 | access_key | str  | APP登录Token | APP方式必要 |      |
-| aid        | num  | 稿件avID     | 必要        |      |
+| aid        | num  | 稿件avid     | 必要        |      |
 
 **json回复：**
 
@@ -738,8 +738,8 @@ curl 'http://app.bilibili.com/x/v2/view/like/triple' \
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注               |
 | ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 稿件avID                 | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID                 | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
 
 **json回复：**

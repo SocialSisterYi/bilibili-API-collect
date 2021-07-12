@@ -14,7 +14,7 @@
 | 参数名 | 类型 | 内容       | 必要性 | 备注     |
 | ------------ | ---- | ---------- | ------ | -------- |
 | topic_name   | str  | 话题名称 | 必要（可选） | topic_id与topic_name任选一个 |
-| topic_id   | num  | 话题ID | 必要（可选） | topic_id与topic_name任选一个 |
+| topic_id   | num  | 话题id | 必要（可选） | topic_id与topic_name任选一个 |
 | sortby | num | 排序方式 | 非必要 | 一般情况下带上参数2，在部分话题中使用可以排除热门部分|
 | offset | num | 偏移值 | 非必要| 可用于偏移显示的动态列表（为`0`时获取不包含置顶及热门的最新动态） |
 
@@ -55,7 +55,7 @@
 
 **示例：**
 
-获取话题`哔哩哔哩漫画`（话题ID`7539944`）的当前动态列表（包含置顶&热门）
+获取话题`哔哩哔哩漫画`（话题id`7539944`）的当前动态列表（包含置顶&热门）
 
 topic_name方式：
 ```shell
@@ -3354,7 +3354,7 @@ curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
 | 参数名 | 类型 | 内容       | 必要性 | 备注     |
 | ------------ | ---- | ---------- | ------ | -------- |
 | topic_name   | str  | 话题名称 | 必要（可选） | topic_id与topic_name任选一个 |
-| topic_id   | num  | 话题ID | 必要（可选） | topic_id与topic_name任选一个 |
+| topic_id   | num  | 话题id | 必要（可选） | topic_id与topic_name任选一个 |
 | offset_dynamic_id | num | 偏移值 | 必要| 可用于偏移显示的动态列表（为`0`时获取最新动态） |
 
 **json回复：**
@@ -3392,7 +3392,7 @@ curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
 
 **示例：**
 
-获取话题`哔哩哔哩漫画`（话题ID`7539944`）的当前动态列表
+获取话题`哔哩哔哩漫画`（话题id`7539944`）的当前动态列表
 
 topic_name方式：
 ```shell

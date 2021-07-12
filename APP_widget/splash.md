@@ -53,7 +53,7 @@
 
 | 字段     | 类型 | 内容                  | 备注 |
 | -------- | ---- | --------------------- | ---- |
-| id       | num  | 开屏图片ID            |      |
+| id       | num  | 开屏图片id            |      |
 | thumb    | str  | 开屏图片url           |      |
 | logo_url | str  | “bilibili”logo图片url |      |
 
@@ -67,7 +67,7 @@
 
 | 字段        | 类型 | 内容       | 备注         |
 | ----------- | ---- | ---------- | ------------ |
-| id          | num  | 开屏图片ID |              |
+| id          | num  | 开屏图片id |              |
 | begin_time  | num  | 起始时间？ | 时间戳       |
 | end_time    | num  | 结束时间？ | 时间戳       |
 | probability | num  | 0          | 作用尚不明确 |
@@ -136,7 +136,7 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 
 </details>
 
-如ID=11的图片为：
+如id=11的图片为：
 
 ![]( http://i0.hdslb.com/bfs/archive/fe737da5cdedf9dad038e5fd30e957be8a063bc2.png )
 

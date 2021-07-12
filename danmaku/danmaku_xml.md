@@ -22,7 +22,7 @@
 
 | 参数名 | 类型 | 内容    | 必要性 | 备注 |
 | ------ | ---- | ------- | ------ | ---- |
-| oid    | num  | 视频CID | 必要   |      |
+| oid    | num  | 视频cid | 必要   |      |
 
 **示例：**
 
@@ -46,7 +46,7 @@ curl -G 'http://api.bilibili.com/x/v1/dm/list.so' \
 
 | 参数名 | 类型 | 内容    | 必要性 | 备注 |
 | ------ | ---- | ------- | ------ | ---- |
-| cid    | num  | 视频CID | 必要   |      |
+| cid    | num  | 视频cid | 必要   |      |
 
 **示例：**
 
@@ -98,7 +98,7 @@ curl 'http://comment.bilibili.com/144541892.xml'
 - 标签 i
 
   - 标签 chatserver：chat.bilibili.com
-  - 标签 chatid：视频CID
+  - 标签 chatid：视频cid
   - 标签 mission：0
   - 标签 maxlimit：实时弹幕池最大容量
   - 标签 state：弹幕状态（0：正常 1：弹幕已关闭）
@@ -119,8 +119,8 @@ curl 'http://comment.bilibili.com/144541892.xml'
 | 3    | 弹幕颜色           | int32  | 十进制RGB888值                                               |
 | 4    | 弹幕发送时间       | int32  | 时间戳                                                       |
 | 5    | 弹幕池类型         | int32  | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）      |
-| 6    | 发送者UID的HASH    | string | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户ID        |
-| 7    | 弹幕dmID           | int64  | 唯一  可用于操作参数                                         |
+| 6    | 发送者mid的HASH    | string | 用于屏蔽用户和查看用户发送的所有弹幕   也可反查用户id        |
+| 7    | 弹幕dmid           | int64  | 唯一  可用于操作参数                                         |
 
 ```xml
 <d p="490.19100,1,25,16777215,1584268892,0,a16fe0dd,29950852386521095">从结尾回来看这里，更感动了！</d>

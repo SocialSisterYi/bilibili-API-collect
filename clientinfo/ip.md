@@ -32,7 +32,7 @@
 | isp          | str  | 运营商名      |              |
 | latitude     | num  | 纬度          |              |
 | longitude    | num  | 经度          |              |
-| zone_id      | num  | ip数据库ID    |              |
+| zone_id      | num  | ip数据库id    |              |
 | country_code | num  | 国家/地区代码 |              |
 
 **示例：**

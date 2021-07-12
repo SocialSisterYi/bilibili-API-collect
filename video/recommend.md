@@ -16,8 +16,8 @@
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
 | ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -47,14 +47,14 @@
 
 查询视频`av7`/`BV1xx411c7m9`的推荐视频列表
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'aid=7'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \

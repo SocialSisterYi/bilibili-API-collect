@@ -16,7 +16,7 @@
 
 | 参数名 | 类型 | 内容       | 必要性 | 备注                                                         |
 | ------ | ---- | ---------- | ------ | ------------------------------------------------------------ |
-| mid    | num  | 用户UID    | 必要   |                                                              |
+| mid    | num  | 用户mid    | 必要   |                                                              |
 | buvid  | str  | 设备虚拟id | 非必要 | web端为操作登录接口时Cookie中的`buvid3`<br />若登录设备无`buvid`则留空 |
 
 **json回复：**
@@ -34,7 +34,7 @@
 
 | 字段        | 类型 | 内容        | 备注                       |
 | ----------- | ---- | ----------- | -------------------------- |
-| mid         | num  | 登录用户UID |                            |
+| mid         | num  | 登录用户mid |                            |
 | device_name | str  | 登录设备    | 依靠操作登录接口时的UA决定 |
 | login_type  | str  | 登录方式    | 根据登录接口决定           |
 | login_time  | str  | 登录时间    | YYYY-MM-DD hh:mm:ss        |
@@ -43,7 +43,7 @@
 
 **示例：**
 
-查询用户`293793435`设备ID为`fuck_chenrui`的登录记录
+查询用户`293793435`设备id为`fuck_chenrui`的登录记录
 
 ```shell
 curl -G 'http://api.bilibili.com/x/safecenter/login_notice' \

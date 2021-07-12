@@ -2,28 +2,28 @@
 
 <img src="/imgs/ploading.gif" width="100" height="100"/>
 
-- [获取视频详细信息（web端）](#获取视频详细信息（web端）)
+- [获取视频详细信息(web端)](#获取视频详细信息(web端))
 - [获取视频简介](#获取视频简介)
-- [查询视频分P列表  (avID/bvID转CID)](#查询视频分P列表  (avID/bvID转CID))
+- [查询视频分P列表  (avid/bvid转cid)](#查询视频分P列表  (avid/bvid转cid))
 
 ---
 
-## 获取视频详细信息（web端）
+## 获取视频详细信息(web端)
 
 > http://api.bilibili.com/x/web-interface/view
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie(SESSDATA)
 
 限制游客访问的视频需要登录
 
 **url参数：**
 
-| 参数名 | 类型 | 内容     | 必要性       | 备注               |
-| ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
+| 参数名 | 类型 | 内容     | 必要性     | 备注               |
+| ------ | ---- | -------- | ---------- | ------------------ |
+| aid    | num  | 稿件avid | 必要(可选) | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid | 必要(可选) | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -38,102 +38,51 @@
 
 `data`对象：
 
-| 字段                            | 类型    | 内容                           | 备注                                                         |
-| ------------------------------- | ------- | ------------------------------ | ------------------------------------------------------------ |
-| bvid                            | str     | 稿件bvID                       |                                                              |
-| aid                             | num     | 稿件avID                       |                                                              |
-| videos                          | num     | 稿件分P总数                    | 默认为1                                                      |
-| tid                             | num     | 分区tID                        |                                                              |
-| tname                           | str     | 子分区名称                     |                                                              |
-| copyright                       | num     | 视频类型                       | 1：原创<br />2：转载                                         |
-| pic                             | str     | 稿件封面图片url                |                                                              |
-| title                           | str     | 稿件标题                       |                                                              |
-| pubdate                         | num     | 稿件发布时间                   | 时间戳                                                       |
-| ctime                           | num     | 用户投稿时间                   | 时间戳                                                       |
-| desc                            | str     | 视频简介                       |                                                              |
-| state                           | num     | 视频状态                       | **详情见下表**                                               |
-| ~~attribute~~（已经弃用）       | ~~num~~ | ~~稿件属性位配置~~             | **详情见下表**|
-| duration                        | num     | 稿件总时长（所有分P）          | 单位为秒                                                     |
-| forward                         | num     | 撞车视频跳转avid               | 仅撞车视频存在此字段                                         |
-| mission_id                      | num     | 稿件参与的活动ID               |                                                              |
-| redirect_url                    | str     | 重定向url                      | 仅番剧或影视视频存在此字段<br />用于番剧&影视的av/bv->ep     |
-| rights                          | obj     | 视频属性标志                   |                                                              |
-| owner                           | obj     | 视频UP主信息                   |                                                              |
-| stat                            | obj     | 视频状态数                     |                                                              |
-| dynamic                         | str     | 视频同步发布的的动态的文字内容 |                                                              |
-| cid                             | num     | 视频1P CID                     |                                                              |
-| dimension                       | obj     | 视频1P分辨率                   |                                                              |
-| no_cache                        | bool    | true                           | 作用尚不明确                                                 |
-| pages                           | array   | 视频分P列表                    |                                                              |
-| subtitle                        | obj     | 视频CC字幕信息                 |                                                              |
-| staff                           | array   | 合作成员列表                   | 非合作视频无此项                                             |
-| user_garb                       | obj     | 用户装扮信息                   |                                                              |
+| 字段                    | 类型    | 内容                           | 备注                                                         |
+| ----------------------- | ------- | ------------------------------ | ------------------------------------------------------------ |
+| bvid                    | str     | 稿件bvid                       |                                                              |
+| aid                     | num     | 稿件avid                       |                                                              |
+| videos                  | num     | 稿件分P总数                    | 默认为1                                                      |
+| tid                     | num     | 分区tid                        |                                                              |
+| tname                   | str     | 子分区名称                     |                                                              |
+| copyright               | num     | 视频类型                       | 1：原创<br />2：转载                                         |
+| pic                     | str     | 稿件封面图片url                |                                                              |
+| title                   | str     | 稿件标题                       |                                                              |
+| pubdate                 | num     | 稿件发布时间                   | 时间戳                                                       |
+| ctime                   | num     | 用户投稿时间                   | 时间戳                                                       |
+| desc                    | str     | 视频简介                       |                                                              |
+| desc_v2                 | array   | 新版视频简介                   |                                                              |
+| state                   | num     | 视频状态                       | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
+| ~~attribute~~(已经弃用) | ~~num~~ | ~~稿件属性位配置~~             | 详情见[属性数据文档](attribute_data.md#state字段值(稿件状态)) |
+| duration                | num     | 稿件总时长(所有分P)            | 单位为秒                                                     |
+| forward                 | num     | 撞车视频跳转avid               | 仅撞车视频存在此字段                                         |
+| mission_id              | num     | 稿件参与的活动id               |                                                              |
+| redirect_url            | str     | 重定向url                      | 仅番剧或影视视频存在此字段<br />用于番剧&影视的av/bv->ep     |
+| rights                  | obj     | 视频属性标志                   |                                                              |
+| owner                   | obj     | 视频UP主信息                   |                                                              |
+| stat                    | obj     | 视频状态数                     |                                                              |
+| dynamic                 | str     | 视频同步发布的的动态的文字内容 |                                                              |
+| cid                     | num     | 视频1P cid                     |                                                              |
+| dimension               | obj     | 视频1P分辨率                   |                                                              |
+| no_cache                | bool    | true                           | 作用尚不明确                                                 |
+| pages                   | array   | 视频分P列表                    |                                                              |
+| subtitle                | obj     | 视频CC字幕信息                 |                                                              |
+| staff                   | array   | 合作成员列表                   | 非合作视频无此项                                             |
+| user_garb               | obj     | 用户装扮信息                   |                                                              |
 
-`attribute`字段属性位二进制值表：
+`data`中的`desc_v2`数组：
 
- （PS：以下部分内容来源不明，有待验证，下表只做历史保留，无实际作用）
+| 项   | 类型 | 内容         | 备注 |
+| ---- | ---- | ------------ | ---- |
+| 0    | obj  | 新版简介内容 |      |
 
- | 位   | 内容                   | 备注                                          |
- | ---- | ---------------------- | --------------------------------------------- |
- | 0    | 禁止排行               |                                               |
- | 1    | 动态禁止               | 禁止APP推送动态                               |
- | 2    | 禁止网页输出           |                                               |
- | 3    | 禁止客户端列表         |                                               |
- | 4    | 搜索禁止               | 打全标题或av/bv号都搜索不到的那种                                               |
- | 5    | 海外禁止               |                                               |
- | 6    | 禁止推荐               | 禁止被APP端天马列表推荐                       |
- | 7    | 是否显示“禁止转载“标志 | **注：未经作者授权 禁止转载**                      |
- | 8    | 是否高清               | 视频清晰度>=1080P                             |
- | 9    | 是否PGC稿件            | 番剧&影视                                     |
- | 10   | 允许承包               |                                               |
- | 11   | 是否番剧               |                                               |
- | 12   | 是否私单               | 存在商业推广恰饭内容                          |
- | 13   | 是否限制地区           | 大多数番剧&影视                               |
- | 14   | 禁止其他人添加TAG      |                                               |
- | 15   | ？                     |                                               |
- | 16   | 跳转                   | 番剧及影视av/bv->ep跳转                       |
- | 17   | 是否影视               |                                               |
- | 18   | 是否付费               |                                               |
- | 19   | 推送动态               |                                               |
- | 20   | 家长模式               |                                               |
- | 21   | 是否限制游客和外链     | 分为两种情况，默认全部网页限制referer跳转，但第二种未登录无法访问，可以通过未登陆b站访问http://api.bilibili.com/x/web-interface/view 返回的code为-403来判断 |
- | 22   | ？                     |                                               |
- | 23   | ？                     |                                               |
- | 24   | 是否为联合投稿         |                                               |
- | 25   | ？                     |                                               |
- | 26   | ？                     |                                               |
- | 27   | ？                     |                                               |
- | 28   | ？                     |                                               |
- | 29   | 是否为互动视频         |                                               |
+`desc_v2`数组中的对象：
 
-`state`字段值：
-
-（PS：以下部分内容来源不明，且部分值前端不可见，有待验证）
-
-| 值   | 内容         | 备注       |
-| ---- | ------------ | ---------- |
-| 1    | 橙色通过     |            |
-| 0    | 开放浏览     |            |
-| -1   | 待审         |            |
-| -2   | 被打回       |            |
-| -3   | 网警锁定     |            |
-| -4   | 被锁定       | 视频撞车了 |
-| -5   | 管理员锁定   |            |
-| -6   | 修复待审     |            |
-| -7   | 暂缓审核     |            |
-| -8   | 补档待审     |            |
-| -9   | 等待转码     |            |
-| -10  | 延迟审核     |            |
-| -11  | 视频源待修   |            |
-| -12  | 转储失败     |            |
-| -13  | 允许评论待审 |            |
-| -14  | 临时回收站   |            |
-| -15  | 分发中       |            |
-| -16  | 转码失败     |            |
-| -20  | 创建未提交   |            |
-| -30  | 创建已提交   |            |
-| -40  | 定时发布     |            |
-| -100 | 用户删除     |            |
+| 字段     | 类型 | 内容     | 备注 |
+| -------- | ---- | -------- | ---- |
+| raw_text | num  | 简介内容 |      |
+| type     | num  | ?        |      |
+| biz_id   | num  | ?        |      |
 
 `data`中的`rights`对象：
 
@@ -157,7 +106,7 @@
 
 | 字段 | 类型 | 内容     | 备注 |
 | ---- | ---- | -------- | ---- |
-| mid  | num  | UP主UID  |      |
+| mid  | num  | UP主mid  |      |
 | name | str  | UP主昵称 |      |
 | face | str  | UP主头像 |      |
 
@@ -165,7 +114,7 @@
 
 | 字段       | 类型 | 内容         | 备注    |
 | ---------- | ---- | ------------ | ------- |
-| aid        | num  | 稿件avID     |         |
+| aid        | num  | 稿件avid     |         |
 | view       | num  | 播放数       |         |
 | danmaku    | num  | 弹幕数       |         |
 | reply      | num  | 评论数       |         |
@@ -191,7 +140,7 @@
 
 | 字段      | 类型 | 内容            | 备注                                                      |
 | --------- | ---- | --------------- | --------------------------------------------------------- |
-| cid       | num  | 当前分P CID     |                                                           |
+| cid       | num  | 当前分P cid     |                                                           |
 | page      | num  | 当前分P         |                                                           |
 | from      | str  | 视频来源        | vupload：普通上传（B站）<br />hunan：芒果TV<br />qq：腾讯 |
 | part      | str  | 当前分P标题     |                                                           |
@@ -227,11 +176,11 @@
 
 | 字段         | 类型 | 内容                | 备注 |
 | ------------ | ---- | ------------------- | ---- |
-| id           | num  | 字幕ID              |      |
+| id           | num  | 字幕id              |      |
 | lan          | str  | 字幕语言            |      |
 | lan_doc      | str  | 字幕语言名称        |      |
 | is_lock      | bool | 是否锁定            |      |
-| author_mid   | num  | 字幕上传者UID       |      |
+| author_mid   | num  | 字幕上传者mid       |      |
 | subtitle_url | str  | json格式字幕文件url |      |
 | author       | obj  | 字幕上传者信息      |      |
 
@@ -239,7 +188,7 @@
 
 | 字段            | 类型 | 内容              | 备注         |
 | --------------- | ---- | ----------------- | ------------ |
-| mid             | num  | 字幕上传者UID     |              |
+| mid             | num  | 字幕上传者mid     |              |
 | name            | str  | 字幕上传者昵称    |              |
 | sex             | str  | 字幕上传者性别    | 男 女 保密   |
 | face            | str  | 字幕上传者头像url |              |
@@ -261,7 +210,7 @@
 
 | 字段     | 类型 | 内容           | 备注 |
 | -------- | ---- | -------------- | ---- |
-| mid      | num  | 成员UID        |      |
+| mid      | num  | 成员mid        |      |
 | title    | str  | 成员名称       |      |
 | name     | str  | 成员昵称       |      |
 | face     | str  | 成员头像url    |      |
@@ -288,8 +237,6 @@
 
 `data`中的`user_garb`对象：
 
-
-
 | 字段              | 类型 | 内容    | 备注 |
 | ----------------- | ---- | ------- | ---- |
 | url_image_ani_cut | str  | 某url？ |      |
@@ -298,14 +245,14 @@
 
 获取视频`av85440373`/`BV117411r7R1`的基本信息
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/view' \
 --data-urlencode 'aid=85440373'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/view' \
@@ -332,6 +279,13 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
         "pubdate": 1580377255,
         "ctime": 1580212263,
         "desc": "【CB想说的】看完拜年祭之后最爱的一个节目！给有快板的部分简单加了一些不同风格的配乐hhh，感谢沃玛画的我！太可爱了哈哈哈哈哈哈哈！！！\n【Warma想说的】我画了打碟的CB，画风为了还原原版视频所以参考了四迹老师的画风，四迹老师的画真的太可爱啦！不过其实在画的过程中我遇到了一个问题，CB的耳机……到底是戴在哪个耳朵上呢？\n\n原版：av78977080\n编曲（配乐）：Crazy Bucket\n人声（配音）：Warma/谢拉\n曲绘：四迹/Warma\n动画：四迹/Crazy Bucket\n剧本：Mokurei-木灵君\n音频后期：DMYoung/纳兰寻风/Crazy Bucket\n包装：破晓天",
+        "desc_v2": [
+            {
+                "raw_text": "【CB想说的】看完拜年祭之后最爱的一个节目！给有快板的部分简单加了一些不同风格的配乐hhh，感谢沃玛画的我！太可爱了哈哈哈哈哈哈哈！！！\n【Warma想说的】我画了打碟的CB，画风为了还原原版视频所以参考了四迹老师的画风，四迹老师的画真的太可爱啦！不过其实在画的过程中我遇到了一个问题，CB的耳机……到底是戴在哪个耳朵上呢？\n\n原版：av78977080\n编曲（配乐）：Crazy Bucket\n人声（配音）：Warma/谢拉\n曲绘：四迹/Warma\n动画：四迹/Crazy Bucket\n剧本：Mokurei-木灵君\n音频后期：DMYoung/纳兰寻风/Crazy Bucket\n包装：破晓天",
+                "type": 1,
+                "biz_id": 0
+            }
+        ],
         "state": 0,
         "duration": 486,
         "mission_id": 11838,
@@ -358,15 +312,15 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
         },
         "stat": {
             "aid": 85440373,
-            "view": 1936852,
-            "danmaku": 11189,
-            "reply": 2626,
-            "favorite": 56572,
-            "coin": 66857,
-            "share": 9032,
+            "view": 2087084,
+            "danmaku": 11495,
+            "reply": 2669,
+            "favorite": 58113,
+            "coin": 68710,
+            "share": 9190,
             "now_rank": 0,
             "his_rank": 55,
-            "like": 142449,
+            "like": 148621,
             "dislike": 0,
             "evaluation": "",
             "argue_msg": ""
@@ -408,8 +362,22 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
                 "vip": {
                     "type": 2,
                     "status": 1,
-                    "vip_pay_type": 0,
-                    "theme_type": 0
+                    "due_date": 1642694400000,
+                    "vip_pay_type": 1,
+                    "theme_type": 0,
+                    "label": {
+                        "path": "",
+                        "text": "年度大会员",
+                        "label_theme": "annual_vip",
+                        "text_color": "#FFFFFF",
+                        "bg_style": 1,
+                        "bg_color": "#FB7299",
+                        "border_color": ""
+                    },
+                    "avatar_subscript": 1,
+                    "nickname_color": "#FB7299",
+                    "role": 3,
+                    "avatar_subscript_url": "http://i0.hdslb.com/bfs/vip/icon_Certification_big_member_22_3x.png"
                 },
                 "official": {
                     "role": 2,
@@ -417,7 +385,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
                     "desc": "",
                     "type": 0
                 },
-                "follower": 628808,
+                "follower": 662460,
                 "label_style": 0
             },
             {
@@ -428,8 +396,22 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
                 "vip": {
                     "type": 2,
                     "status": 1,
+                    "due_date": 1637424000000,
                     "vip_pay_type": 0,
-                    "theme_type": 0
+                    "theme_type": 0,
+                    "label": {
+                        "path": "",
+                        "text": "年度大会员",
+                        "label_theme": "annual_vip",
+                        "text_color": "#FFFFFF",
+                        "bg_style": 1,
+                        "bg_color": "#FB7299",
+                        "border_color": ""
+                    },
+                    "avatar_subscript": 1,
+                    "nickname_color": "#FB7299",
+                    "role": 3,
+                    "avatar_subscript_url": "http://i0.hdslb.com/bfs/vip/icon_Certification_big_member_22_3x.png"
                 },
                 "official": {
                     "role": 1,
@@ -437,7 +419,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
                     "desc": "",
                     "type": 0
                 },
-                "follower": 2268492,
+                "follower": 2655737,
                 "label_style": 0
             }
         ],
@@ -452,7 +434,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
 
 视频标题为：`当我给拜年祭的快板加了电音配乐…`
 
-视频分区为：`tid=28（音乐->原创音乐）`
+视频分区为：`tid=28(音乐->原创音乐)`
 
 视频时长：`486s`
 
@@ -462,15 +444,15 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
 
 视频分P为：`1`
 
-视频类型为：`1（原创）`
+视频类型为：`1(原创)`
 
-视频UP主为：`66606350（Crazy_Bucket）`
+视频UP主为：`66606350(Crazy_Bucket)`
 
 视频简介为：
 
-`【CB想说的】看完拜年祭之后最爱的一个节目！给有快板的部分简单加了一些不同风格的配乐hhh，感谢沃玛画的我！太可爱了哈哈哈哈哈哈哈！！！\n【Warma想说的】我画了打碟的CB，画风为了还原原版视频所以参考了四迹老师的画风，四迹老师的画真的太可爱啦！不过其实在画的过程中我遇到了一个问题，CB的耳机……到底是戴在哪个耳朵上呢？\n\n原版：av78977080\n编曲（配乐）：Crazy Bucket\n人声（配音）：Warma/谢拉\n曲绘：四迹/Warma\n动画：四迹/Crazy Bucket\n剧本：Mokurei-木灵君\n音频后期：DMYoung/纳兰寻风/Crazy Bucket\n包装：破晓天`
+`【CB想说的】看完拜年祭之后最爱的一个节目！给有快板的部分简单加了一些不同风格的配乐hhh，感谢沃玛画的我！太可爱了哈哈哈哈哈哈哈！！！\n【Warma想说的】我画了打碟的CB，画风为了还原原版视频所以参考了四迹老师的画风，四迹老师的画真的太可爱啦！不过其实在画的过程中我遇到了一个问题，CB的耳机……到底是戴在哪个耳朵上呢？\n\n原版：av78977080\n编曲(配乐)：Crazy Bucket\n人声(配音)：Warma/谢拉\n曲绘：四迹/Warma\n动画：四迹/Crazy Bucket\n剧本：Mokurei-木灵君\n音频后期：DMYoung/纳兰寻风/Crazy Bucket\n包装：破晓天`
 
-视频状态为：`0（开放浏览）`
+视频状态为：`0(开放浏览)`
 
 视频属性为： `显示“禁止转载“标志`、`高清`、`禁止其他人添加TAG`、`联合投稿视频`
 
@@ -492,8 +474,8 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
 | ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -508,16 +490,16 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 **示例：**
 
-查看视频（教主的咕鸽）`av39330059`/`BV1Bt411z799`的简介
+查看视频(教主的咕鸽)`av39330059`/`BV1Bt411z799`的简介
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/archive/desc' \
 --data-urlencode 'aid=39330059'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/archive/desc' \
@@ -538,7 +520,7 @@ curl -G 'http://api.bilibili.com/x/archive/desc' \
 
 </details>
 
-## 查询视频分P列表  (avID/bvID转CID)
+## 查询视频分P列表  (avid/bvid转cid)
 
 > http://api.bilibili.com/x/player/pagelist
 
@@ -548,8 +530,8 @@ curl -G 'http://api.bilibili.com/x/archive/desc' \
 
 | 参数名 | 类型 | 内容     | 必要性       | 备注               |
 | ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 稿件avID | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
@@ -574,7 +556,7 @@ curl -G 'http://api.bilibili.com/x/archive/desc' \
 
 | 字段      | 类型 | 内容            | 备注                                                      |
 | --------- | ---- | --------------- | --------------------------------------------------------- |
-| cid       | num  | 当前分P CID     |                                                           |
+| cid       | num  | 当前分P cid     |                                                           |
 | page      | num  | 当前分P         |                                                           |
 | from      | str  | 视频来源        | vupload：普通上传（B站）<br />hunan：芒果TV<br />qq：腾讯 |
 | part      | str  | 当前分P标题     |                                                           |
@@ -595,14 +577,14 @@ curl -G 'http://api.bilibili.com/x/archive/desc' \
 
 查询视频`av13502509`/`BV1ex411J7GE`的分P列表
 
-avID方式：
+avid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/player/pagelist' \
 --data-urlencode 'aid=13502509'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/x/player/pagelist' \
@@ -676,5 +658,4 @@ curl -G 'http://api.bilibili.com/x/player/pagelist' \
 ```
 
 </details>
-
 

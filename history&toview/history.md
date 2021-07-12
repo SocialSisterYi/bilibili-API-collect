@@ -23,8 +23,8 @@
 
 | 参数名   | 类型 | 内容                   | 必要性 | 备注                                                         |
 | -------- | ---- | ---------------------- | ------ | ------------------------------------------------------------ |
-| max      | num  | 历史记录截止目标ID     | 非必要 | 默认为0<br />稿件：稿件avID<br />番剧（影视）：剧集ssID<br />直播：直播间ID<br />文集：文集rlID<br />文章：文章cvID |
-| business | num  | 历史记录截止目标ID类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：番剧（影视）<br />live：直播<br />article-list：文集<br />article：文章 |
+| max      | num  | 历史记录截止目标id     | 非必要 | 默认为0<br />稿件：稿件avid<br />番剧（影视）：剧集ssid<br />直播：直播间id<br />文集：文集rlid<br />文章：文章cvid |
+| business | num  | 历史记录截止目标id类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：番剧（影视）<br />live：直播<br />article-list：文集<br />article：文章 |
 | view_at  | num  | 历史记录截止时间       | 非必要 | 时间戳<br />默认为0<br />0为当前时间                         |
 | ps       | num  | 每页项数               | 非必要 | 默认为20                                                     |
 
@@ -51,9 +51,9 @@
 
 | 字段     | 类型 | 内容               | 备注               |
 | -------- | ---- | ------------------ | ------------------ |
-| max      | num  | 最后一项目标ID     | **详细内容见参数** |
+| max      | num  | 最后一项目标id     | **详细内容见参数** |
 | view_at  | num  | 最后一项时间节点   | 时间戳             |
-| business | str  | 最后一项目标ID类型 | **详细内容见参数** |
+| business | str  | 最后一项目标id类型 | **详细内容见参数** |
 | ps       | num  | 每页项数           |                    |
 
 `data`中的`tab`数组：
@@ -92,7 +92,7 @@
 | videos      | num                             | 视频分P数目          | 仅用于稿件视频                           |
 | author_name | str                             | UP主昵称             |                                          |
 | author_face | str                             | UP主头像url          |                                          |
-| author_mid  | num                             | UP主UID              |                                          |
+| author_mid  | num                             | UP主mid              |                                          |
 | view_at     | num                             | 查看时间             | 时间戳                                   |
 | progress    | num                             | 视频观看进度         | 单位为秒<br />用于稿件视频或剧集         |
 | badge       | str                             | 条目备注标识         | 用于稿件视频或剧集                       |
@@ -103,7 +103,7 @@
 | new_desc    | str                             | 最新一话/最新一P标识 | 用于稿件视频或剧集                       |
 | is_finish   | num                             | 是否已完结           | 仅用于剧集<br />0：未完结<br />1：已完结 |
 | is_fav      | num                             | 是否收藏             | 0：未收藏<br />1：已收藏                 |
-| kid         | num                             | 条目目标ID           | **详细内容见参数**                       |
+| kid         | num                             | 条目目标id           | **详细内容见参数**                       |
 | tag_name    | str                             | 子分区名             | 用于稿件视频和直播                       |
 | live_status | num                             | 直播状态             | 仅用于直播<br />0：未开播<br />1：已开播 |
 
@@ -119,11 +119,11 @@
 
 | 字段     | 类型 | 内容                | 备注                                                         |
 | -------- | ---- | ------------------- | ------------------------------------------------------------ |
-| oid      | num  | 目标ID              | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：稿件avID<br />直播（当`business=live`时）：直播间ID<br />文章（当`business=article`时）：文章cvID<br />文集（当`business=article-list`时）：文集rlID |
-| epid     | num  | 剧集epID            | 仅用于剧集                                                   |
-| bvid     | str  | 稿件bvID            | 仅用于稿件视频                                               |
+| oid      | num  | 目标id              | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：稿件avid<br />直播（当`business=live`时）：直播间id<br />文章（当`business=article`时）：文章cvid<br />文集（当`business=article-list`时）：文集rlid |
+| epid     | num  | 剧集epid            | 仅用于剧集                                                   |
+| bvid     | str  | 稿件bvid            | 仅用于稿件视频                                               |
 | page     | num  | 观看到的视频分P数   | 仅用于稿件视频                                               |
-| cid      | num  | 观看到的对象ID      | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频CID<br />文集（当`business=article-list`时）：文章cvID |
+| cid      | num  | 观看到的对象id      | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频cid<br />文集（当`business=article-list`时）：文章cvid |
 | part     | str  | 观看到的视频分P标题 | 仅用于稿件视频                                               |
 | business | str  | 条目类型            | **详细内容见参数**                                           |
 | dt       | num  | 查看平台代码        | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
@@ -387,9 +387,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 
 | 字段                            | 类型    | 内容                           | 备注                                                         |
 | ------------------------------- | ------- | ------------------------------ | ------------------------------------------------------------ |
-| aid                             | num     | 稿件avID                       |                                                              |
+| aid                             | num     | 稿件avid                       |                                                              |
 | videos                          | num     | 视频分P总数                    | 默认为1                                                      |
-| tid                             | num     | 分区tID                        |                                                              |
+| tid                             | num     | 分区tid                        |                                                              |
 | tname                           | str     | 子分区名称                     |                                                              |
 | copyright                       | num     | 是否转载                       | 1：原创<br />2：转载                                         |
 | pic                             | str     | 视频封面图片url                |                                                              |
@@ -404,7 +404,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 | owner                           | obj     | 视频UP主信息                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
 | stat                            | obj     | 视频状态数                     | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
 | dynamic                         | str     | 视频同步发布的的动态的文字内容 | 无为空                                                       |
-| cid                             | num     | 视频1P CID                     |                                                              |
+| cid                             | num     | 视频1P cid                     |                                                              |
 | dimension                       | obj     | 视频1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
 | bangumi                         | obj     | 番剧/影视信息                  | 非番剧/影视无此项                                            |
 | cheese                          | obj     | 课程信息                       | 非课程无此项                                                 |
@@ -416,17 +416,17 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 | count                           | num     | 分P数                          | 非投稿视频无此项                                             |
 | progress                        | num     | 观看进度                       | 单位为秒                                                     |
 | view_at                         | num     | 观看时间                       | 时间戳                                                       |
-| kid                             | num     | 稿件avID                       |                                                              |
+| kid                             | num     | 稿件avid                       |                                                              |
 | business                        | str     | 视频类型标识                   | archive：用户投稿视频<br />pgc：番剧/影视<br />cheese：课程  |
 | redirect_link                   | str     | 重定向url                      |                                                              |
-| bvid                            | str     | 稿件bvID                       |                                                              |
+| bvid                            | str     | 稿件bvid                       |                                                              |
 
 `data`数组中的对象`bangumi`对象：
 
 | 字段           | 类型 | 内容            | 备注         |
 | -------------- | ---- | --------------- | ------------ |
 | cover          | str  | 番剧封面图片url |              |
-| ep_id          | num  | 番剧epID        |              |
+| ep_id          | num  | 番剧epid        |              |
 | episode_status | num  | ？？？          |              |
 | follow         | num  | 0               | 作用尚不明确 |
 | long_title     | str  | 单集标题        |              |
@@ -438,9 +438,9 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 | 字段            | 类型 | 内容         | 备注                   |
 | --------------- | ---- | ------------ | ---------------------- |
 | is_finish       | num  | 是否完结     | 0：连载中<br />1：完结 |
-| newest_ep_id    | num  | 最细一话epID |                        |
+| newest_ep_id    | num  | 最细一话epid |                        |
 | newest_ep_index | str  | 最细一话集数 |                        |
-| season_id       | num  | 番剧ssID     |                        |
+| season_id       | num  | 番剧ssid     |                        |
 | season_status   | num  | ？？？       |                        |
 | season_type     | num  | ？？？       |                        |
 | title           | str  | 番剧标题     |                        |
@@ -453,7 +453,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 | cover       | str  | 课程封面图片url |      |
 | long_title  | str  | 完整标题        |      |
 | number      | str  | 本集数          |      |
-| season_id   | num  | 课程ssID        |      |
+| season_id   | num  | 课程ssid        |      |
 | update_info | str  | 总集数          |      |
 
 **示例：**
@@ -671,7 +671,7 @@ curl -G 'http://api.bilibili.com/x/v2/history' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| kid    | str  | 删除的目标记录           | 必要   | 视频：archive\_{稿件avID}<br />直播：live_{直播间ID}<br />专栏：article\_{专栏cvID}<br />剧集：pgc\_{剧集ssID}<br />文集：article-list\_{文集rlID} |
+| kid    | str  | 删除的目标记录           | 必要   | 视频：archive\_{稿件avid}<br />直播：live_{直播间id}<br />专栏：article\_{专栏cvid}<br />剧集：pgc\_{剧集ssid}<br />文集：article-list\_{文集rlid} |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
 **json回复：**

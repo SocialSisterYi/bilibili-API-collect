@@ -49,9 +49,9 @@
 
 | 字段        | 类型 | 内容                 | 备注                                               |
 | ----------- | ---- | -------------------- | -------------------------------------------------- |
-| id          | num  | 收藏夹mlid（完整id） | 收藏夹原始id+创建者UID尾号2位                      |
+| id          | num  | 收藏夹mlid（完整id） | 收藏夹原始id+创建者mid尾号2位                      |
 | fid         | num  | 收藏夹原始id         |                                                    |
-| mid         | num  | 创建者UID            |                                                    |
+| mid         | num  | 创建者mid            |                                                    |
 | attr        | num  | 属性                 | 0：正常<br />1：失效                               |
 | title       | str  | 收藏夹标题           |                                                    |
 | cover       | str  | 收藏夹封面图片url    |                                                    |
@@ -72,7 +72,7 @@
 
 | 字段       | 类型 | 内容             | 备注                                            |
 | ---------- | ---- | ---------------- | ----------------------------------------------- |
-| mid        | num  | 创建者UID        |                                                 |
+| mid        | num  | 创建者mid        |                                                 |
 | name       | str  | 创建者昵称       |                                                 |
 | face       | str  | 创建者头像url    |                                                 |
 | followed   | bool | 是否已关注创建者 |                                                 |
@@ -122,7 +122,7 @@
 
 | 字段 | 类型 | 内容        | 备注 |
 | ---- | ---- | ----------- | ---- |
-| mid  | num  | UP主UID     |      |
+| mid  | num  | UP主mid     |      |
 | name | str  | UP主昵称    |      |
 | face | str  | UP主头像url |      |
 
@@ -136,7 +136,7 @@
 
 **示例：**
 
-查询收藏夹`ID=1052622027`，每页5个视频，第`1`页的内容明细
+查询收藏夹`id=1052622027`，每页5个视频，第`1`页的内容明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v3/fav/resource/list' \
@@ -377,7 +377,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/resource/list' \
 
 **示例：**
 
-查询收藏夹`ID=1052622027`的全部内容id
+查询收藏夹`id=1052622027`的全部内容id
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v3/fav/resource/ids' \

@@ -1,6 +1,6 @@
-# bvID说明
+# bvid说明
 
-2020-03-23 B站推出了全新的稿件视频ID“bvID”来接替之前的“avID”，其用法与性质等价于“avID”
+2020-03-23 B站推出了全新的稿件视频id“bvid”来接替之前的“avid”，其用法与性质等价于“avid”
 
 详见：
 
@@ -9,23 +9,23 @@
 
 ## 格式：
 
-“bvID”恒为长度为12的字符串，前两个字母为大写“BV”，后10个位base58计算结果
+“bvid”恒为长度为12的字符串，前两个字母为大写“BV”，后10个位base58计算结果
 
 ## 实质：
 
-“bvID"为“avID”的base58编码，可通过算法进行相互转化
+“bvid"为“avid”的base58编码，可通过算法进行相互转化
 
-## avID发放方式的变化：
+## avid发放方式的变化：
 
-从2009-09-09 09:09:09 [av2](https://www.bilibili.com/video/av2)的发布到2020-03-28  19:45:02 [av99999999](https://www.bilibili.com/video/av99999999)的发布B站结束了以投稿时间为顺序的avID发放，改为随机发放avID
+从2009-09-09 09:09:09 [av2](https://www.bilibili.com/video/av2)的发布到2020-03-28  19:45:02 [av99999999](https://www.bilibili.com/video/av99999999)的发布B站结束了以投稿时间为顺序的avid发放，改为随机发放avid
 
 ~~暗示B站东方要完？泪目~~
 
 ## av->bv算法：
 
-注：本算法及示例程序仅能编码及解码avID<` 29460791296  `，无法验证avID>=` 29460791296  `的正确性
+注：本算法及示例程序仅能编码及解码avid<` 29460791296  `，无法验证avid>=` 29460791296  `的正确性
 
-1. a=(avID⊕177451812)+8728348608
+1. a=(avid⊕177451812)+8728348608
 2. 以i为循环变量循环6次b[i]=(a/58^i)%58
 3. 将b[i]中各个数字转换为以下码表中的字符
 
@@ -112,14 +112,12 @@ const unsigned long long add = 8728348608; //固定加法值
 const int s[] = {11, 10, 3, 8, 4, 6}; //位置编码表
 
 //初始化反查码表
-void tr_init()
-{
+void tr_init() {
 	for (int i = 0; i < 58; i++)
 		tr[table[i]] = i;
 }
 
-unsigned long long bv2av(char bv[])
-{
+unsigned long long bv2av(char bv[]) {
 	unsigned long long r = 0;
 	unsigned long long av;
 	for (int i = 0; i < 6; i++)
@@ -128,8 +126,7 @@ unsigned long long bv2av(char bv[])
 	return av;
 }
 
-char* av2bv(unsigned long long av)
-{
+char* av2bv(unsigned long long av) {
 	char* result = (char*)malloc(13);
 	strcpy(result,"BV1  4 1 7  ");
 	av = (av ^ Xor) + add;
@@ -138,8 +135,7 @@ char* av2bv(unsigned long long av)
 	return result;
 }
 
-int main()
-{
+int main() {
 	tr_init();
 	printf("%s\n",av2bv(170001));
 	printf("%u\n",bv2av("BV17x411w7KC"));

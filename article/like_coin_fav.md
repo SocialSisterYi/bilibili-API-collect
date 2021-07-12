@@ -20,7 +20,7 @@
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注                   |
 | ------ | ---- | ------------------- | ------ | ---------------------- |
-| id     | num  | 文章cvID            | 必要   |                        |
+| id     | num  | 文章cvid            | 必要   |                        |
 | type   | num  | 操作方式            | 必要   | 1：点赞<br />2：取消赞 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                        |
 
@@ -73,7 +73,7 @@ curl 'http://api.bilibili.com/x/article/like' \
 
 | 参数名   | 类型 | 内容                | 必要性 | 备注    |
 | -------- | ---- | ------------------- | ------ | ------- |
-| aid      | num  | 文章cvID            | 必要   |         |
+| aid      | num  | 文章cvid            | 必要   |         |
 | multiply | num  | 投币数量            | 必要   | 上限为2 |
 | avtype | num | 2 | 必要 | 必须为2 |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |         |
@@ -138,7 +138,7 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 
 | 参数名 | 类型 | 内容                | 必要性 | 备注 |
 | ------ | ---- | ------------------- | ------ | ---- |
-| id     | num  | 文章cvID            | 必要   |      |
+| id     | num  | 文章cvid            | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**

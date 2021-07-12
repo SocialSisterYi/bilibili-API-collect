@@ -95,10 +95,10 @@
 
 | 字段                | 类型 | 内容            | 备注                         |
 | ------------------- | ---- | --------------- | ---------------------------- |
-| id                  | num  | 封禁公示ID      |                              |
+| id                  | num  | 封禁公示id      |                              |
 | uname               | str  | 对象用户名      |                              |
 | face                | str  | 对象用户头像url |                              |
-| uid                 | num  | 对象用户UID     |                              |
+| uid                 | num  | 对象用户mid     |                              |
 | originTitle         | str  | 来源标题        |                              |
 | blockedRemark       | str  |                 |                              |
 | originUrl           | str  | 来源url         |                              |
@@ -117,7 +117,7 @@
 | reasonType          | num  | 违规类型        | **见上表**                   |
 | reasonTypeName      | str  | 违规类型名称    |                              |
 | operatorName        | str  | 空              | 作用尚不明确                 |
-| caseId              | num  | 仲裁信息ID      | 系统封禁时固定为0            |
+| caseId              | num  | 仲裁信息id      | 系统封禁时固定为0            |
 | ctime               | num  | 创建时间        | 时间戳                       |
 | commentSum          | num  | 该条目评论数    |                              |
 
@@ -210,7 +210,7 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
 
 | 参数名 | 类型 | 内容       | 必要性 | 备注 |
 | ------ | ---- | ---------- | ------ | ---- |
-| id     | num  | 封禁公示ID | 必要   |      |
+| id     | num  | 封禁公示id | 必要   |      |
 
 **json回复：**
 
@@ -227,10 +227,10 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
 
 | 字段                | 类型 | 内容            | 备注                         |
 | ------------------- | ---- | --------------- | ---------------------------- |
-| id                  | num  | 封禁公示ID      |                              |
+| id                  | num  | 封禁公示id      |                              |
 | uname               | str  | 对象用户名      |                              |
 | face                | str  | 对象用户头像url |                              |
-| uid                 | num  | 对象用户UID     |                              |
+| uid                 | num  | 对象用户mid     |                              |
 | originTitle         | str  | 来源标题        |                              |
 | blockedRemark       | str  |                 |                              |
 | originUrl           | str  | 来源url         |                              |
@@ -255,7 +255,7 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
 
 **示例：**
 
-查询公示ID为`1091621`的公示详情
+查询公示id为`1091621`的公示详情
 
 ```shell
 curl -G 'http://api.bilibili.com/x/credit/blocked/info' \

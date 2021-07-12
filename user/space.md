@@ -65,7 +65,7 @@
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| vmid   | num  | 目标用户UID | 必要   |      |
+| vmid   | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -82,9 +82,9 @@
 
 | 字段        | 类型 | 内容                           | 备注                                                         |
 | ----------- | ---- | ------------------------------ | ------------------------------------------------------------ |
-| aid         | num  | 稿件avID                       |                                                              |
+| aid         | num  | 稿件avid                       |                                                              |
 | videos      | num  | 视频分P总数                    | 默认为1                                                      |
-| tid         | num  | 分区tID                        |                                                              |
+| tid         | num  | 分区tid                        |                                                              |
 | tname       | str  | 子分区名称                     |                                                              |
 | copyright   | num  | 是否转载                       | 1：原创<br />2：转载                                         |
 | pic         | str  | 视频封面图片url                |                                                              |
@@ -99,15 +99,15 @@
 | owner       | obj  | 视频UP主信息                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
 | stat        | obj  | 视频状态数                     | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
 | dynamic     | str  | 视频同步发布的的动态的文字内容 | 无为空                                                       |
-| cid         | num  | 视频1P CID                     |                                                              |
+| cid         | num  | 视频1P cid                     |                                                              |
 | dimension   | obj  | 视频1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
-| bvid        | str  | 稿件bvID                       |                                                              |
+| bvid        | str  | 稿件bvid                       |                                                              |
 | reason      | str  | 置顶视频备注                   |                                                              |
 | inter_video | bool | 是否为合作视频                 | false：否<br />true：是                                      |
 
 **示例：**
 
-查询用户`UID=23215368`的置顶视频
+查询用户`mid=23215368`的置顶视频
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/top/arc' \
@@ -196,8 +196,8 @@ curl -G 'http://api.bilibili.com/x/space/top/arc' \
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注                             |
 | ------ | ---- | ------------------------ | ------------ | -------------------------------- |
-| aid    | num  | 置顶目标稿件avID         | 必要（可选） | avID与bvID任选一个               |
-| bvid   | str  | 置顶目标稿件bvID         | 必要（可选） | avID与bvID任选一个               |
+| aid    | num  | 置顶目标稿件avid         | 必要（可选） | avid与bvid任选一个               |
+| bvid   | str  | 置顶目标稿件bvid         | 必要（可选） | avid与bvid任选一个               |
 | reason | str  | 置顶视频备注             | 非必要       | 置顶备注最大40字符<br />默认为空 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                                  |
 
@@ -215,7 +215,7 @@ curl -G 'http://api.bilibili.com/x/space/top/arc' \
 
 置顶视频`av98948772`/`BV1n741127LD`
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/space/top/arc/set' \
@@ -223,7 +223,7 @@ curl 'http://api.bilibili.com/x/space/top/arc/set' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/space/top/arc/set' \
@@ -305,7 +305,7 @@ curl 'http://api.bilibili.com/x/space/top/arc/cancel' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| vmid   | num  | 目标用户UID | 必要   |      |
+| vmid   | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -332,7 +332,7 @@ curl 'http://api.bilibili.com/x/space/top/arc/cancel' \
 
 **示例：**
 
-查询用户`UID=23215368`的代表作视频列表
+查询用户`mid=23215368`的代表作视频列表
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/masterpiece' \
@@ -536,8 +536,8 @@ curl -G 'http://api.bilibili.com/x/space/masterpiece' \
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注                             |
 | ------ | ---- | ------------------------ | ------------ | -------------------------------- |
-| aid    | num  | 置顶目标稿件avID         | 必要（可选） | avID与bvID任选一个               |
-| bvid   | str  | 置顶目标稿件bvID         | 必要（可选） | avID与bvID任选一个               |
+| aid    | num  | 置顶目标稿件avid         | 必要（可选） | avid与bvid任选一个               |
+| bvid   | str  | 置顶目标稿件bvid         | 必要（可选） | avid与bvid任选一个               |
 | reason | str  | 代表作备注               | 非必要       | 置顶备注最大40字符<br />默认为空 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                                  |
 
@@ -555,7 +555,7 @@ curl -G 'http://api.bilibili.com/x/space/masterpiece' \
 
 添加视频`av94916552`/`BV1ZE411K7ux`到代表作列表
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/space/masterpiece/add' \
@@ -564,7 +564,7 @@ curl 'http://api.bilibili.com/x/space/masterpiece/add' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/space/masterpiece/add' \
@@ -598,8 +598,8 @@ curl 'http://api.bilibili.com/x/space/masterpiece/add' \
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注               |
 | ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 要删除的目标稿件avID     | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 要删除的目标稿件bvID     | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 要删除的目标稿件avid     | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 要删除的目标稿件bvid     | 必要（可选） | avid与bvid任选一个 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
 
 **json回复：**
@@ -616,7 +616,7 @@ curl 'http://api.bilibili.com/x/space/masterpiece/add' \
 
 删除置顶视频`av59765630`/`BV1Yt41137T6`
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'api.bilibili.com/x/space/masterpiece/cancel' \
@@ -625,7 +625,7 @@ curl 'api.bilibili.com/x/space/masterpiece/cancel' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/space/masterpiece/cancel' \
@@ -650,7 +650,7 @@ curl 'http://api.bilibili.com/x/space/masterpiece/cancel' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -673,7 +673,7 @@ curl 'http://api.bilibili.com/x/space/masterpiece/cancel' \
 
 | 字段 | 类型  | 内容        | 备注 |
 | ---- | ----- | ----------- | ---- |
-| mid  | num   | 目标用户UID |      |
+| mid  | num   | 目标用户mid |      |
 | tags | array | TAG名称     |      |
 
 `data`数组中的对象中的`tags`数组：
@@ -687,7 +687,7 @@ curl 'http://api.bilibili.com/x/space/masterpiece/cancel' \
 
 **示例：**
 
-查看用户`UID=53456`的个人TAG
+查看用户`mid=53456`的个人TAG
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/acc/tags' \
@@ -782,7 +782,7 @@ curl 'http://api.bilibili.com/x/space/acc/tags/set' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -797,7 +797,7 @@ curl 'http://api.bilibili.com/x/space/acc/tags/set' \
 
 **示例：**
 
-查看用户`UID=53456`的空间公告
+查看用户`mid=53456`的空间公告
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/notice' \
@@ -881,7 +881,7 @@ curl 'http://api.bilibili.com/x/space/notice/set' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -950,7 +950,7 @@ curl 'http://api.bilibili.com/x/space/notice/set' \
 
 **示例：**
 
-查看`UID=2`的空间设置
+查看`mid=2`的空间设置
 
 ```shell
 curl -G 'http://space.bilibili.com/ajax/settings/getSettings' \
@@ -1196,7 +1196,7 @@ curl 'http://space.bilibili.com/ajax/settings/setPrivacy' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -1227,7 +1227,7 @@ curl 'http://space.bilibili.com/ajax/settings/setPrivacy' \
 
 **示例：**
 
-查询`UID=2`的最近玩过的游戏
+查询`mid=2`的最近玩过的游戏
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/lastplaygame' \
@@ -1288,7 +1288,7 @@ curl -G 'http://api.bilibili.com/x/space/lastplaygame' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| vmid   | num  | 目标用户UID | 必要   |      |
+| vmid   | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -1315,7 +1315,7 @@ curl -G 'http://api.bilibili.com/x/space/lastplaygame' \
 
 **示例：**
 
-查看用户`UID=15858903`的最近投币视频
+查看用户`mid=15858903`的最近投币视频
 
 ```shell
 curl -G 'http://space.bilibili.com/x/space/coin/video' \
@@ -1531,9 +1531,9 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 | 参数名  | 类型 | 内容         | 必要性 | 备注                                                         |
 | ------- | ---- | ------------ | ------ | ------------------------------------------------------------ |
-| mid     | num  | 目标用户UID  | 必要   |                                                              |
+| mid     | num  | 目标用户mid  | 必要   |                                                              |
 | order   | str  | 排序方式     | 非必要 | 默认为pubdate<br />最新发布：pubdate<br />最多播放：click<br />最多收藏：stow |
-| tid     | num  | 筛选目标分区 | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tID为所筛选的分区    |
+| tid     | num  | 筛选目标分区 | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区    |
 | keyword | str  | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                             |
 | pn      | num  | 页码         | 必要   |                                                              |
 | ps      | num  | 每页项数     | 必要   |                                                              |
@@ -1568,16 +1568,16 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 | 字段  | 类型 | 内容         | 备注                  |
 | ----- | ---- | ------------ | --------------------- |
-| {tID} | obj  | 该分区的详情 | 字段名为存在的分区tID |
+| {tid} | obj  | 该分区的详情 | 字段名为存在的分区tid |
 | ……    | obj  | ……           | 向下扩展              |
 
-`tlist`中的`{tID}`对象：
+`tlist`中的`{tid}`对象：
 
 | 字段  | 类型 | 内容                 | 备注 |
 | ----- | ---- | -------------------- | ---- |
 | count | num  | 投稿至该分区的视频数 |      |
 | name  | str  | 该分区名称           |      |
-| tid   | num  | 该分区tID            |      |
+| tid   | num  | 该分区tid            |      |
 
 `list`中的`vlist`数组：
 
@@ -1591,9 +1591,9 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 | 字段           | 类型 | 内容           | 备注                         |
 | -------------- | ---- | -------------- | ---------------------------- |
-| aid            | num  | 稿件avID       |                              |
+| aid            | num  | 稿件avid       |                              |
 | author         | str  | 视频UP主       | 不一定为目标用户（合作视频） |
-| bvid           | str  | 稿件bvID       |                              |
+| bvid           | str  | 稿件bvid       |                              |
 | comment        | num  | 视频评论数     |                              |
 | copyright      | str  | 空             | 作用尚不明确                 |
 | created        | num  | 投稿时间       | 时间戳                       |
@@ -1602,13 +1602,13 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 | is_pay         | num  | 0              | 作用尚不明确                 |
 | is_union_video | num  | 是否为合作视频 | 0：否<br />1：是             |
 | length         | str  | 视频长度       | MM:SS                        |
-| mid            | num  | 视频UP主UID    | 不一定为目标用户（合作视频） |
+| mid            | num  | 视频UP主mid    | 不一定为目标用户（合作视频） |
 | pic            | str  | 视频封面       |                              |
 | play           | num  | 视频播放次数   |                              |
 | review         | num  | 0              | 作用尚不明确                 |
 | subtitle       | str  | 空             | 作用尚不明确                 |
 | title          | str  | 视频标题       |                              |
-| typeid         | num  | 视频分区tID    |                              |
+| typeid         | num  | 视频分区tid    |                              |
 | video_review   | num  | 视频弹幕数     |                              |
 
 `data`中的`page`对象：
@@ -1630,7 +1630,7 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 `pn`（页码）和`ps`（每页项数）只改变`vlist`中成员的多少与内容
 
-以每页2项查询用户`UID=53456`的第1页投稿视频明细
+以每页2项查询用户`mid=53456`的第1页投稿视频明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/arc/search' \
@@ -1750,7 +1750,7 @@ curl -G 'http://api.bilibili.com/x/space/arc/search' \
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注    |
 | ------ | ---- | ------------ | ------ | ------- |
-| mid    | num  | 目标用户UID  | 必要   |         |
+| mid    | num  | 目标用户mid  | 必要   |         |
 | ps     | num  | 获取的相簿量 | 非必要 | 默认为8 |
 
 **json回复：**
@@ -1779,10 +1779,10 @@ curl -G 'http://api.bilibili.com/x/space/arc/search' \
 | count       | num    | 总计图片数  |                |
 | ctime       | num    | 发布时间    | 时间戳         |
 | description | str    | 简介        |                |
-| doc_id      | num    | 相簿ID     | 非动态ID！！！ |
+| doc_id      | num    | 相簿id     | 非动态！！！ |
 | like        | num    | 点赞数      |                |
 | pictures    | array | 图片内容    |                |
-| poster_uid  | num    | 上传用户UID |                |
+| poster_uid  | num    | 上传用户mid |                |
 | title       | str    | 标题        | 动态内容无     |
 | view        | num    | 浏览数      |                |
 
@@ -1805,7 +1805,7 @@ curl -G 'http://api.bilibili.com/x/space/arc/search' \
 
 **示例：**
 
-查询用户`UID=53456`的投稿相簿预览
+查询用户`mid=53456`的投稿相簿预览
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/album/index' \
@@ -1877,7 +1877,7 @@ curl -G 'http://api.bilibili.com/x/space/album/index' \
 
 | 参数名    | 类型 | 内容        | 必要性 | 备注                                                         |
 | --------- | ---- | ----------- | ------ | ------------------------------------------------------------ |
-| uid       | num  | 目标用户UID | 必要   |                                                              |
+| uid       | num  | 目标用户mid | 必要   |                                                              |
 | page_num  | num  | 页码        | 非必要 | 默认为1                                                      |
 | page_size | num  | 每页项数    | 非必要 | 默认为20                                                     |
 | biz       | str  | 查询类型    | 非必要 | 全部：all<br />绘画：draw<br />摄影：photo<br />日常：daily<br />默认为all |
@@ -1914,10 +1914,10 @@ curl -G 'http://api.bilibili.com/x/space/album/index' \
 | count       | num    | 总计图片数  |                |
 | ctime       | num    | 发布时间    | 时间戳         |
 | description | str    | 简介        |                |
-| doc_id      | num    | 相簿ID     | 非动态ID！！！ |
+| doc_id      | num    | 相簿id     | 非动态！！！ |
 | like        | num    | 点赞数      |                |
 | pictures    | array | 图片内容    |                |
-| poster_uid  | num    | 上传用户UID |                |
+| poster_uid  | num    | 上传用户mid |                |
 | title       | str    | 标题        | 动态内容无     |
 | view        | num    | 浏览数      |                |
 
@@ -1940,7 +1940,7 @@ curl -G 'http://api.bilibili.com/x/space/album/index' \
 
 **示例：**
 
-查询用户`UID=53456`的投稿明细中的全部类型
+查询用户`mid=53456`的投稿明细中的全部类型
 
 ```shell
 curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
@@ -2025,7 +2025,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -2057,17 +2057,17 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 
 | 字段  | 类型 | 内容           | 备注     |
 | ----- | ---- | -------------- | -------- |
-| cid   | num  | 频道ID         |          |
+| cid   | num  | 频道id         |          |
 | count | num  | 频道内含视频数 |          |
 | cover | str  | 封面图片url    |          |
 | intro | str  | 简介           | 无则为空 |
-| mid   | num  | 创建用户UID    |          |
+| mid   | num  | 创建用户mid    |          |
 | mtime | num  | 创建时间       | 时间戳   |
 | name  | str  | 标题           |          |
 
 **示例：**
 
-查询用户`UID=53456`的频道列表
+查询用户`mid=53456`的频道列表
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/channel/list' \
@@ -2151,8 +2151,8 @@ curl -G 'http://api.bilibili.com/x/space/channel/list' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注      |
 | ------ | ---- | ----------- | ------ | --------- |
-| mid    | num  | 目标用户UID | 必要   |           |
-| cid    | num  | 目标频道ID  | 必要   |           |
+| mid    | num  | 目标用户mid | 必要   |           |
+| cid    | num  | 目标频道id  | 必要   |           |
 | pn     | num  | 页码        | 非必要 | 默认为1   |
 | ps     | num  | 每页项数    | 非必要 | 默认为100 |
 
@@ -2179,11 +2179,11 @@ curl -G 'http://api.bilibili.com/x/space/channel/list' \
 | 字段     | 类型   | 内容           | 备注     |
 | -------- | ------ | -------------- | -------- |
 | archives | array | 包含的视频列表 |          |
-| cid      | num    | 频道ID         |          |
+| cid      | num    | 频道id         |          |
 | count    | num    | 频道内含视频数 |          |
 | cover    | str    | 封面图片url    |          |
 | intro    | str    | 简介           | 无则为空 |
-| mid      | num    | 创建用户UID    |          |
+| mid      | num    | 创建用户mid    |          |
 | mtime    | num    | 创建时间       | 时间戳   |
 | name     | str    | 标题           |          |
 
@@ -2197,7 +2197,7 @@ curl -G 'http://api.bilibili.com/x/space/channel/list' \
 
 `list`中的`archives`数组中的对象：
 
-基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avID/bvID互转）)」中的data对象
+基本同「[视频详细信息](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/video/info.md#视频详细信息（avid/bvid互转）)」中的data对象
 
 `data`中的`page`对象：
 
@@ -2209,7 +2209,7 @@ curl -G 'http://api.bilibili.com/x/space/channel/list' \
 
 **示例：**
 
-查询用户`UID=53456`的频道`170`中的视频
+查询用户`mid=53456`的频道`170`中的视频
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/channel/video' \
@@ -2368,7 +2368,7 @@ curl -G 'http://api.bilibili.com/x/space/channel/video' \
 
 认证方式：Cookie（SESSDATA）
 
-创建成功后会返回新建频道的ID
+创建成功后会返回新建频道的id
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -2393,7 +2393,7 @@ curl -G 'http://api.bilibili.com/x/space/channel/video' \
 
 | 字段 | 类型 | 内容   | 备注 |
 | ---- | ---- | ------ | ---- |
-| cid  | num  | 频道ID |      |
+| cid  | num  | 频道id |      |
 
 **示例：**
 
@@ -2435,7 +2435,7 @@ curl 'http://api.bilibili.com/x/space/channel/add' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| cid    | num  | 频道ID                   | 必要   |      |
+| cid    | num  | 频道id                   | 必要   |      |
 | name   | str  | 频道名                   | 必要   |      |
 | intro  | str  | 频道简介                 | 非必要 |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
@@ -2488,7 +2488,7 @@ curl 'http://api.bilibili.com/x/space/channel/edit' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| cid    | num  | 需要删除的频道ID         | 必要   |      |
+| cid    | num  | 需要删除的频道id         | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
@@ -2543,8 +2543,8 @@ curl 'http://api.bilibili.com/x/space/channel/del' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                   |
 | ------ | ---- | ------------------------ | ------ | ---------------------- |
-| cid    | num  | 频道ID                   | 必要   |                        |
-| aids   | nums | 要添加的目标稿件avID     | 必要   | 多个使用","（%2C）分隔 |
+| cid    | num  | 频道id                   | 必要   |                        |
+| aids   | nums | 要添加的目标稿件avid     | 必要   | 多个使用","（%2C）分隔 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                        |
 
 **json回复：**
@@ -2556,14 +2556,14 @@ curl 'http://api.bilibili.com/x/space/channel/del' \
 | code    | num   | 返回值           | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />53003：本频道里的视频已满<br />53006：提交视频已失效或频道里有（非该视频UP主） |
 | message | str   | 错误信息         | 默认为0                                                      |
 | ttl     | num   | 1                |                                                              |
-| data    | array | 出错稿件avID列表 |                                                              |
+| data    | array | 出错稿件avid列表 |                                                              |
 
 `data`数组：
 
 | 项   | 类型 | 内容                | 备注 |
 | ---- | ---- | ------------------- | ---- |
-| 0    | num  | 出错稿件avID1       |      |
-| n    | num  | 出错稿件avID（n+1） |      |
+| 0    | num  | 出错稿件avid1       |      |
+| n    | num  | 出错稿件avid（n+1） |      |
 | ……   | num  | ……                  | ……   |
 
 **示例：**
@@ -2606,8 +2606,8 @@ curl 'http://api.bilibili.com/x/space/channel/video/add' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| cid    | num  | 频道ID                   | 必要   |      |
-| aid    | num  | 要删除的目标稿件avID     | 必要   |      |
+| cid    | num  | 频道id                   | 必要   |      |
+| aid    | num  | 要删除的目标稿件avid     | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
@@ -2657,8 +2657,8 @@ curl 'http://api.bilibili.com/x/space/channel/video/del' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| cid    | num  | 频道ID                   | 必要   |                                                              |
-| aid    | num  | 要移动的目标稿件avID     | 必要   |                                                              |
+| cid    | num  | 频道id                   | 必要   |                                                              |
+| aid    | num  | 要移动的目标稿件avid     | 必要   |                                                              |
 | to     | num  | 视频排序倒数位置         | 非必要 | 默认为1<br />1为列表底部，视频总数为首端<br />与显示顺序恰好相反 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
@@ -2710,7 +2710,7 @@ curl 'http://api.bilibili.com/x/space/channel/video/sort' \
 
 | 参数名 | 类型 | 内容       | 必要性 | 备注 |
 | ------ | ---- | ---------- | ------ | ---- |
-| cid    | num  | 目标频道ID | 必要   |      |
+| cid    | num  | 目标频道id | 必要   |      |
 
 **json回复：**
 
@@ -2763,7 +2763,7 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| up_mid | num  | 目标用户UID | 必要   |      |
+| up_mid | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -2795,9 +2795,9 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
 
 | 字段        | 类型 | 内容             | 备注            |
 | ----------- | ---- | ---------------- | --------------- |
-| id          | num  | 收藏夹mlID       |                 |
-| fid         | num  | 原始收藏夹ID     | 去除两位UID尾号 |
-| mid         | num  | 创建用户UID      |                 |
+| id          | num  | 收藏夹mlid       |                 |
+| fid         | num  | 原始收藏夹mlid     | 去除两位mid尾号 |
+| mid         | num  | 创建用户mid      |                 |
 | attr        | num  | 收藏夹属性位配置 |                 |
 | title       | str  | 收藏夹标题       |                 |
 | fav_state   | num  | 0                | 作用尚不明确    |
@@ -2813,7 +2813,7 @@ curl -G 'http://api.bilibili.com/x/space/channel/video/check
 
 **示例：**
 
-查询用户`UID=7792521`的收藏夹列表
+查询用户`mid=7792521`的收藏夹列表
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
@@ -2890,7 +2890,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 | ------ | ---- | ----------- | ------ | ---- |
 | ps     | num  | 每页项数    | 必要   |      |
 | pn     | num  | 页码        | 必要   |      |
-| up_mid | num  | 目标用户UID | 必要   |      |
+| up_mid | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -2922,9 +2922,9 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 
 | 字段        | 类型 | 内容               | 备注                                      |
 | ----------- | ---- | ------------------ | ----------------------------------------- |
-| id          | num  | 收藏夹mlID         |                                           |
-| fid         | num  | 原始收藏夹ID       | 去除两位UID尾号                           |
-| mid         | num  | 创建用户UID        |                                           |
+| id          | num  | 收藏夹ml         |                                           |
+| fid         | num  | 原始收藏夹mlid       | 去除两位mid尾号                           |
+| mid         | num  | 创建用户mid        |                                           |
 | attr        | num  | 收藏夹属性         | 转换成8-bit二进制处理<br />详细说明见下表 |
 | title       | str  | 收藏夹标题         |                                           |
 | cover       | str  | 收藏夹封面图片url  |                                           |
@@ -2947,13 +2947,13 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 
 | 字段 | 类型 | 内容       | 备注         |
 | ---- | ---- | ---------- | ------------ |
-| mid  | num  | 创建人UID  |              |
+| mid  | num  | 创建人mid  |              |
 | name | str  | 创建人昵称 |              |
 | face | str  | 空         | 作用尚不明确 |
 
 **示例：**
 
-查询用户`UID=293793435`的收藏夹收藏列表
+查询用户`mid=293793435`的收藏夹收藏列表
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v3/fav/folder/collected/list' \
@@ -3032,7 +3032,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/collected/list' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注     |
 | ------ | ---- | ----------- | ------ | -------- |
-| mid    | num  | 目标用户UID | 必要   |          |
+| mid    | num  | 目标用户mid | 必要   |          |
 | pn     | num  | 页码        | 非必要 | 默认为1  |
 | ps     | num  | 每页项数    | 非必要 | 默认为20 |
 
@@ -3080,14 +3080,14 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/collected/list' \
 | link      | str  | 课程页面url  | 手机版页面url |
 | page      | num  | 1            | 作用尚不明确  |
 | play      | num  | 课程播放数   |               |
-| season_id | num  | 课程ssID     |               |
+| season_id | num  | 课程ssid     |               |
 | status    | str  | 更新状态说明 |               |
 | subtitle  | str  | 课程副标题   |               |
 | title     | str  | 课程标题     |               |
 
 **示例：**
 
-查询用户`UID=33683045`的课程发布列表
+查询用户`mid=33683045`的课程发布列表
 
 ```shell
 curl -G 'http://api.bilibili.com/pugv/app/web/season/page' \
@@ -3193,7 +3193,7 @@ curl -G 'http://api.bilibili.com/pugv/app/web/season/page' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -3232,14 +3232,14 @@ curl -G 'http://api.bilibili.com/pugv/app/web/season/page' \
 | is_finish       | num  | 是否已完结      | 0：未完结<br />1：已完结          |
 | last_ep_index   | num  | 0               | 作用尚不明确                      |
 | newest_ep_index | num  | 最新一话        | 可能为0                           |
-| season_id       | str  | 番剧ssID        |                                   |
+| season_id       | str  | 番剧ssid        |                                   |
 | share_url       | str  | 播放页面链接url |                                   |
 | title           | str  | 标题            |                                   |
 | total_count     | num  | 总计集数        | 未完结：-1<br />已完结：非0正整数 |
 
 **示例：**
 
-查看用户`UID=14082`的追番预览列表
+查看用户`mid=14082`的追番预览列表
 
 ```shell
 curl -G 'http://space.bilibili.com/ajax/Bangumi/getList' \
@@ -3303,7 +3303,7 @@ curl -G 'http://space.bilibili.com/ajax/Bangumi/getList' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注                 |
 | ------ | ---- | ----------- | ------ | -------------------- |
-| vmid   | num  | 目标用户UID | 必要   |                      |
+| vmid   | num  | 目标用户mid | 必要   |                      |
 | pn     | num  | 页码        | 非必要 | 默认为1              |
 | ps     | num  | 每页项数    | 非必要 | 默认为15             |
 | type   | num  | 查询类型    | 必要   | 1：追番<br />2：追剧 |
@@ -3342,7 +3342,7 @@ curl -G 'http://space.bilibili.com/ajax/Bangumi/getList' \
 
 **示例：**
 
-查看用户`UID=14082`的追番明细
+查看用户`mid=14082`的追番明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/bangumi/follow/list' \
@@ -3571,7 +3571,7 @@ curl -G 'http://api.bilibili.com/x/space/bangumi/follow/list' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户UID | 必要   |      |
+| mid    | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
@@ -3606,12 +3606,12 @@ curl -G 'http://api.bilibili.com/x/space/bangumi/follow/list' \
 | cover         | str  | TAG图片url          | 无则为空     |
 | name          | str  | TAG名               |              |
 | notify        | num  | 1                   | 作用尚不明确 |
-| tag_id        | num  | TAGID               |              |
+| tag_id        | num  | tag_id               |              |
 | updated_ts    | str  | 1970-01-01 08:00:00 | 作用尚不明确 |
 
 **示例：**
 
-查询用户`UID=2`的关注TAG
+查询用户`mid=2`的关注TAG
 
 ```shell
 curl -G 'http://space.bilibili.com/ajax/tags/getSubList' \

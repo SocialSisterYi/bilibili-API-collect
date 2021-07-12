@@ -24,8 +24,8 @@
 
 | 参数名 | 类型 | 内容                     | 必要性       | 备注               |
 | ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 稿件avID                 | 必要（可选） | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID                 | 必要（可选） | avID与bvID任选一个 |
+| aid    | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个 |
 | csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
 
 **json回复：**
@@ -42,7 +42,7 @@
 
 添加视频`av41687433`/`BV1ht41147kj`到稍后再看列表
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/history/toview/add' \
@@ -51,7 +51,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/v2/history/toview/add' \
@@ -91,8 +91,8 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add' \
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| cid    | num  | 目标频道ID               | 必要   |      |
-| mid    | num  | 目标频道所属的用户UID    | 必要   |      |
+| cid    | num  | 目标频道id               | 必要   |      |
+| mid    | num  | 目标频道所属的用户mid    | 必要   |      |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
 
 **json回复：**
@@ -106,7 +106,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add' \
 
 **示例：**
 
-添加用户`UID=282994`下的频道`4693`中所有视频到稍后再看
+添加用户`mid=282994`下的频道`4693`中所有视频到稍后再看
 
 ```shell
 curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
@@ -168,9 +168,9 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
 
 | 字段                            | 类型    | 内容                           | 备注                                                         |
 | ------------------------------- | ------- | ------------------------------ | ------------------------------------------------------------ |
-| aid                             | num     | 稿件avID                       |                                                              |
+| aid                             | num     | 稿件avid                       |                                                              |
 | videos                          | num     | 稿件分P总数                    | 默认为1                                                      |
-| tid                             | num     | 分区tID                        |                                                              |
+| tid                             | num     | 分区tid                        |                                                              |
 | tname                           | str     | 子分区名称                     |                                                              |
 | copyright                       | num     | 是否转载                       | 1：原创<br />2：转载                                         |
 | pic                             | str     | 稿件封面图片url                |                                                              |
@@ -187,10 +187,10 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
 | dynamic                         | str     | 视频同步发布的的动态的文字内容 | 无为空                                                       |
 | dimension                       | obj     | 稿件1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
 | count                           | num     | 稿件分P数                      | 非投稿视频无此项                                             |
-| cid                             | num     | 视频CID                        |                                                              |
+| cid                             | num     | 视频cid                        |                                                              |
 | progress                        | num     | 观看进度时间                   | 单位为秒                                                     |
 | add_at                          | num     | 添加时间                       | 时间戳                                                       |
-| bvid                            | str     | 稿件bvID                       |                                                              |
+| bvid                            | str     | 稿件bvid                       |                                                              |
 
 **示例：**
 
@@ -363,7 +363,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview' \
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
 | viewed | bool | 是否删除所有已观看的视频 | 非必要 | true：删除已观看视频<br />false：不删除已观看视频<br />默认为false |
-| aid    | num  | 删除的目标记录的avID     | 非必要 |                                                              |
+| aid    | num  | 删除的目标记录的avid     | 非必要 |                                                              |
 | csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
 
 **json回复：**

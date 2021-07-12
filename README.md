@@ -45,7 +45,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [API认证与鉴权（APP与Cookie方式）](other/API_auth.md)×
 - [公共错误码](other/errcode.md)√
 - [图片格式化](other/picture.md)√
-- [bvID说明](other/bvID.md)√
+- [bvid说明](other/bvid_desc.md)√
 - [grpc接口](grpc_api)×
 - [登录](login)
   - [登录操作（人机认证）](login/login_action)√
@@ -79,6 +79,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [互动视频](video/interact_video.md)×
   - [高能进度条](video/pbp.md)√
   - [信息上报（心跳及记录历史）](video/report.md)×
+  - [视频属性数据](video/attribute_data.md)√
 - [剧集（番剧、影视）](bangumi)
   - [基本信息](bangumi/info.md)×
   - 状态数

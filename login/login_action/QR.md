@@ -207,9 +207,9 @@ X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 
 https://passport.biligame.com/crossDomain?
 
-DedeUserID=(登录UID)&
+DedeUserID=(登录mid)&
 
-DedeUserID__ckMd5=(登录UID MD5值)&
+DedeUserID__ckMd5=(登录mid MD5值)&
 
 Expires=(过期时间 秒)&
 
@@ -236,7 +236,7 @@ gourl=(跳转网址 默认为主页)
 | 参数名   | 类型 | 内容       | 必要性      | 备注                     |
 | -------- | ---- | ---------- | ----------- | ------------------------ |
 | appkey   | str  | APP密钥    | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
-| local_id | str  | TV端ID     | TV端必要    | 可为0                    |
+| local_id | str  | TV端id     | TV端必要    | 可为0                    |
 | ts       | num  | 当前时间戳 | APP方式必要 |                          |
 | sign     | str  | APP签名    | APP方式必要 |                          |
 
@@ -303,7 +303,7 @@ curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code' \
 | --------- | ---- | ---------- | ----------- | ------------------------ |
 | appkey    | str  | APP密钥    | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
 | auth_code | str  | 扫码秘钥   | 必要        |                          |
-| local_id  | str  | TV端ID     | TV端必要    | 可为0                    |
+| local_id  | str  | TV端id     | TV端必要    | 可为0                    |
 | ts        | num  | 当前时间戳 | APP方式必要 |                          |
 | sign      | str  | APP签名    | APP方式必要 |                          |
 
@@ -322,7 +322,7 @@ curl 'http://passport.bilibili.com/x/passport-tv-login/qrcode/auth_code' \
 
 | 字段          | 类型 | 内容         | 备注                 |
 | ------------- | ---- | ------------ | -------------------- |
-| mid           | num  | 登录用户UID  |                      |
+| mid           | num  | 登录用户mid  |                      |
 | access_token  | str  | APP登录Token |                      |
 | refresh_token | str  | APP刷新Token |                      |
 | expires_in    | num  | 有效时间     | 单位为秒  一般为30天 |

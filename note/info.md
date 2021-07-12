@@ -17,8 +17,8 @@
 
 | 参数名  | 类型 | 内容         | 必要性      | 备注     |
 | ------- | ---- | ------------ | ----------- | -------- |
-| aid    | num  | 稿件avID | 必要（可选）  | avID与bvID任选一个 |
-| bvid   | str  | 稿件bvID | 必要（可选）  | avID与bvID任选一个 |
+| aid    | num  | 稿件avid | 必要（可选）  | avid与bvid任选一个 |
+| bvid   | str  | 稿件bvid | 必要（可选）  | avid与bvid任选一个 |
 | csrf   | str  | CSRF Token（位于cookie） | 非必要   |         |
 
 **json回复：**
@@ -42,13 +42,13 @@
 
 | 项   | 类型 | 内容        | 备注             |
 | ---- | ---- | ----------- | ---------------- |
-| 0    | num  | 笔记ID      |                  |
+| 0    | num  | 笔记id      |                  |
 
 **示例：**
 
-查询视频`av970322090`/`BV1op4y167Uo`的笔记ID
+查询视频`av970322090`/`BV1op4y167Uo`的笔记id
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/note/list/archive' \
@@ -56,7 +56,7 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/note/list/archive' \
@@ -94,9 +94,9 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 
 | 参数名  | 类型 | 内容       | 必要性      | 备注     |
 | ------- | ---- | ---------- | ----------- | -------- |
-| aid     | num  | 稿件avID   | 必要（可选）| avID与bvID任选一个，不与笔记所属稿件avID相同不影响返回 |
-| bvid    | str  | 稿件bvID   | 必要（可选）| avID与bvID任选一个，不与笔记所属稿件bvID相同不影响返回 |
-| note_id | num  | 笔记ID     | 必要        |          |
+| aid     | num  | 稿件avid   | 必要（可选）| avid与bvid任选一个，不与笔记所属稿件avid相同不影响返回 |
+| bvid    | str  | 稿件bvid   | 必要（可选）| avid与bvid任选一个，不与笔记所属稿件bvid相同不影响返回 |
+| note_id | num  | 笔记id     | 必要        |          |
 
 **json回复：**
 
@@ -119,7 +119,7 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 | tags         | array | 笔记跳转标签列表 |                |
 | cid_count    | num   | 视频分P数        |                |
 | audit_status | num   | 0                | 作用暂不明确   |
-| aid          | num   | 稿件avID         |                |
+| aid          | num   | 稿件avid         |                |
 
 `data`中的`tags`数组：
 
@@ -143,7 +143,7 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 
 查询视频`av583785685`/`BV1kz4y1X7XP`中笔记`7165769906913287`的内容
 
-avID方式：
+avid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/note/info' \
@@ -152,7 +152,7 @@ curl 'http://api.bilibili.com/x/note/info' \
 -b 'SESSDATA=xxx'
 ```
 
-bvID方式：
+bvid方式：
 
 ```shell
 curl 'http://api.bilibili.com/x/note/info' \

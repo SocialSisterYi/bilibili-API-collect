@@ -35,7 +35,7 @@
 
 | 字段 | 类型 | 内容       | 备注 |
 | ---- | ---- | ---------- | ---- |
-| id   | num  | 父分区ID   |      |
+| id   | num  | 父分区id   |      |
 | name | name | 父分区名   |      |
 | list | list | 子分区列表 |      |
 
@@ -51,9 +51,9 @@
 
 | 字段        | 类型 | 内容              | 备注             |
 | ----------- | ---- | ----------------- | ---------------- |
-| id          | str  | 子分区ID          |                  |
-| parent_id   | str  | 父分区ID          |                  |
-| old_area_id | str  | 旧分区ID          |                  |
+| id          | str  | 子分区id          |                  |
+| parent_id   | str  | 父分区id          |                  |
+| old_area_id | str  | 旧分区id          |                  |
 | name        | str  | 子分区名          |                  |
 | act_id      | str  | 0                 | **作用尚不明确** |
 | pk_status   | str  | ？？？            | **作用尚不明确** |
@@ -65,7 +65,7 @@
 
 **示例：**
 
-如想在`网游`父分区下的`英雄联盟`分区开播，则查到子分区ID为`86`
+如想在`网游`父分区下的`英雄联盟`分区开播，则查到子分区id为`86`
 
 ```shell
 curl 'http://api.live.bilibili.com/room/v1/Area/getList'

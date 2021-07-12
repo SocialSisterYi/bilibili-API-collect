@@ -15,7 +15,7 @@
   - [查询关注分组列表](#查询关注分组列表)
   - [查询关注分组明细](#查询关注分组明细)
   - [查询目标用户所在的分组](#查询目标用户所在的分组 ) 
-  - [查询所有特别关注的UID](#查询所有特别关注的UID)
+  - [查询所有特别关注的mid](#查询所有特别关注的mid)
   - [创建分组](#创建分组)
   - [重命名分组](#重命名分组)
   - [删除分组](#删除分组)
@@ -42,7 +42,7 @@
 | 参数名     | 类型 | 内容         | 必要性      | 备注                               |
 | ---------- | ---- | ------------ | ----------- | ---------------------------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                                    |
-| vmid       | num  | 目标用户UID  | 必要        |                                    |
+| vmid       | num  | 目标用户mid  | 必要        |                                    |
 | ps         | num  | 每页项数     | 非必要      | 默认为50                           |
 | pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页 |
 
@@ -77,7 +77,7 @@
 
 | 字段            | 类型 | 内容         | 备注                                    |
 | --------------- | ---- | ------------ | --------------------------------------- |
-| mid             | num  | 用户UID      |                                         |
+| mid             | num  | 用户mid      |                                         |
 | attribute       | num  | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num  | 成为粉丝时间 | 时间戳<br />互关后刷新                  |
 | tag             | null |              |                                         |
@@ -116,7 +116,7 @@
 
 **示例：**
 
-获取用户`UID=293793435`的粉丝明细
+获取用户`mid=293793435`的粉丝明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/followers' \
@@ -211,7 +211,7 @@ curl -G 'http://api.bilibili.com/x/relation/followers' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注                                                    |
 | ---------- | ---- | ------------ | ----------- | ------------------------------------------------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                                                         |
-| vmid       | num  | 目标用户UID  | 必要        |                                                         |
+| vmid       | num  | 目标用户mid  | 必要        |                                                         |
 | order_type | str  | 排序方式     | 非必要      | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
 | ps         | num  | 每页项数     | 非必要      | 默认为50                                                |
 | pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页                      |
@@ -247,10 +247,10 @@ data 对象：
 
 | 字段            | 类型                                     | 内容         | 备注                                    |
 | --------------- | ---------------------------------------- | ------------ | --------------------------------------- |
-| mid             | num                                      | 用户UID      |                                         |
+| mid             | num                                      | 用户mid      |                                         |
 | attribute       | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num                                      | 关注对方时间 | 时间戳<br />互关后刷新                  |
-| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                             |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组id       |                             |
 | special         | num                                      | 特别关注标志 | 0：否<br />1：是                        |
 | uname           | str                                      | 用户昵称     |                                         |
 | face            | str                                      | 用户头像url  |                                         |
@@ -262,8 +262,8 @@ data 对象：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组ID       |      |
-| n    | num  | 位于分组（n+1）的分组ID |      |
+| 0    | num  | 位于分组1的分组id       |      |
+| n    | num  | 位于分组（n+1）的分组id |      |
 | ……   | num  | ……                      | ……   |
 
 `list`中的对象中的`official_verify`对象：
@@ -294,7 +294,7 @@ data 对象：
 
 **示例：**
 
-获取用户`UID=293793435`的关注明细，按照关注顺序
+获取用户`mid=293793435`的关注明细，按照关注顺序
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/ollowings' \
@@ -388,7 +388,7 @@ curl -G 'http://api.bilibili.com/x/relation/ollowings' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注     |
 | ---------- | ---- | ------------ | ----------- | -------- |
 | access_key | str  | APP登录Token | APP方式必要 |          |
-| vmid       | str  | 目标用户UID  | 必要        |          |
+| vmid       | str  | 目标用户mid  | 必要        |          |
 | name       | str  | 搜索关键词   | 必要        |          |
 | ps         | num  | 每页项数     | 非必要      | 默认为50 |
 | pn         | num  | 页码         | 非必要      | 默认为1  |
@@ -413,10 +413,10 @@ data 对象：
 
 | 字段            | 类型                                        | 内容         | 备注                                    |
 | --------------- | ------------------------------------------- | ------------ | --------------------------------------- |
-| mid             | num                                         | 用户UID      |                                         |
+| mid             | num                                         | 用户mid      |                                         |
 | attribute       | num                                         | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num                                         | 关注对方时间 | 时间戳<br />互关后刷新                  |
-| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                                         |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组id       |                                         |
 | special         | num                                         | 特别关注标志 | 0：否<br />1：是                        |
 | uname           | str                                         | 用户昵称     |                                         |
 | face            | str                                         | 用户头像url  |                                         |
@@ -428,8 +428,8 @@ data 对象：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组ID       |      |
-| n    | num  | 位于分组（n+1）的分组ID |      |
+| 0    | num  | 位于分组1的分组id       |      |
+| n    | num  | 位于分组（n+1）的分组id |      |
 | ……   | num  | ……                      | ……   |
 
 `list`中的对象中的`official_verify`对象：
@@ -533,7 +533,7 @@ curl -G 'http://api.bilibili.com/x/relation/followings/search' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注     |
 | ---------- | ---- | ------------ | ----------- | -------- |
 | access_key | str  | APP登录Token | APP方式必要 |          |
-| vmid       | num  | 目标用户UID  | 必要        |          |
+| vmid       | num  | 目标用户mid  | 必要        |          |
 | ps         | num  | 每页项数     | 非必要      | 默认为50 |
 | pn         | num  | 页码         | 非必要      | 默认为1  |
 
@@ -568,10 +568,10 @@ data 对象：
 
 | 字段            | 类型                                        | 内容         | 备注                                    |
 | --------------- | ------------------------------------------- | ------------ | --------------------------------------- |
-| mid             | num                                         | 用户UID      |                                         |
+| mid             | num                                         | 用户mid      |                                         |
 | attribute       | num                                         | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num                                         | 关注对方时间 | 时间戳<br />互关后刷新                  |
-| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                                         |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组id       |                                         |
 | special         | num                                         | 特别关注标志 | 0：否<br />1：是                        |
 | uname           | str                                         | 用户昵称     |                                         |
 | face            | str                                         | 用户头像url  |                                         |
@@ -583,8 +583,8 @@ data 对象：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组ID       |      |
-| n    | num  | 位于分组（n+1）的分组ID |      |
+| 0    | num  | 位于分组1的分组id       |      |
+| n    | num  | 位于分组（n+1）的分组id |      |
 | ……   | num  | ……                      | ……   |
 
 `list`中的对象中的`official_verify`对象：
@@ -615,7 +615,7 @@ data 对象：
 
 **示例：**
 
-获取自己与用户`UID=2`的共同关注明细
+获取自己与用户`mid=2`的共同关注明细
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/same/followings' \
@@ -746,10 +746,10 @@ data 对象：
 
 | 字段            | 类型                                        | 内容         | 备注                                    |
 | --------------- | ------------------------------------------- | ------------ | --------------------------------------- |
-| mid             | num                                         | 用户UID      |                                         |
+| mid             | num                                         | 用户mid      |                                         |
 | attribute       | num                                         | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
 | mtime           | num                                         | 关注对方时间 | 时间戳<br />互关后刷新                  |
-| tag             | 默认分组：null<br />存在至少一个分组：array | 分组ID       |                                         |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组id       |                                         |
 | special         | num                                         | 特别关注标志 | 0：否<br />1：是                        |
 | uname           | str                                         | 用户昵称     |                                         |
 | face            | str                                         | 用户头像url  |                                         |
@@ -761,8 +761,8 @@ data 对象：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组ID       |      |
-| n    | num  | 位于分组（n+1）的分组ID |      |
+| 0    | num  | 位于分组1的分组id       |      |
+| n    | num  | 位于分组（n+1）的分组id |      |
 | ……   | num  | ……                      | ……   |
 
 `list`中的对象中的`official_verify`对象：
@@ -894,7 +894,7 @@ data 对象：
 
 | 字段            | 类型 | 内容         | 备注                   |
 | --------------- | ---- | ------------ | ---------------------- |
-| mid             | num  | 用户UID      |                        |
+| mid             | num  | 用户mid      |                        |
 | attribute       | num  | 关注属性     | 128：已拉黑            |
 | mtime           | num  | 关注对方时间 | 时间戳<br />互关后刷新 |
 | tag             | null |              |                        |
@@ -1029,7 +1029,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                     |
 | ---------- | ---- | ------------------------ | -------------- | -------------------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                          |
-| fid        | num  | 目标用户UID              | 必要           |                                                          |
+| fid        | num  | 目标用户mid              | 必要           |                                                          |
 | act        | num  | 操作代码                 | 必要           | **操作代码见下表**                                       |
 | re_src     | num  | 关注来源代码             | 必要           | 空间：11<br />视频：14<br />文章：115<br />活动页面：222 |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                          |
@@ -1058,7 +1058,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 
 **示例：**
 
-关注`UID=14082`的用户
+关注`mid=14082`的用户
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/modify' \
@@ -1095,7 +1095,7 @@ curl 'http://api.bilibili.com/x/relation/modify' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                           |
 | ---------- | ---- | ------------------------ | -------------- | ---------------------------------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                                                |
-| fids       | nums | 目标用户UID              | 必要           | 每个ID之间用`,`间隔                            |
+| fids       | nums | 目标用户mid              | 必要           | 每个之间用`,`间隔                            |
 | act        | num  | 操作代码                 | 必要           | 同上<br />仅可为1或5，故只能进行批量关注和拉黑 |
 | re_src     | num  | 关注来源代码             | 必要           | 同上                                           |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                |
@@ -1115,19 +1115,19 @@ curl 'http://api.bilibili.com/x/relation/modify' \
 
 | 字段        | 类型  | 内容          | 备注 |
 | ----------- | ----- | ------------- | ---- |
-| failed_fids | array | 操作失败的UID |      |
+| failed_fids | array | 操作失败的mid |      |
 
 `data`中的`failed_fids`数组：
 
 | 项   | 类型 | 内容                 | 备注 |
 | ---- | ---- | -------------------- | ---- |
-| 0    | num  | 操作失败的UID 1      |      |
-| n    | num  | 操作失败的UID（n+1） |      |
+| 0    | num  | 操作失败的mid 1      |      |
+| n    | num  | 操作失败的mid（n+1） |      |
 | ……   | num  | ……                   | ……   |
 
 **示例：**
 
-批量关注`UID=1,2,3,4,5`的用户
+批量关注`mid=1,2,3,4,5`的用户
 
 ```shell
 curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
@@ -1166,7 +1166,7 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注 |
 | ---------- | ---- | ------------ | ----------- | ---- |
 | access_key | str  | APP登录Token | APP方式必要 |      |
-| fid        | num  | 目标用户UID  | 必要        |      |
+| fid        | num  | 目标用户mid  | 必要        |      |
 
 **json回复：**
 
@@ -1183,23 +1183,23 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
 
 | 字段      | 类型                                     | 内容         | 备注                                    |
 | --------- | ---------------------------------------- | ------------ | --------------------------------------- |
-| mid       | num                                      | 目标用户UID  |                                         |
+| mid       | num                                      | 目标用户mid  |                                         |
 | attribute | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
 | mtime     | num                                      | 关注对方时间 | 时间戳<br />未关注为0                   |
-| tag       | null默认分组<br />array存在至少一个分组 | 分组ID       |                                         |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组id       |                                         |
 | special   | num                                      | 特别关注标志 | 0：否<br />1：是                        |
 
 `tag`数组：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组ID       |      |
-| n    | num  | 位于分组（n+1）的分组ID |      |
+| 0    | num  | 位于分组1的分组       |      |
+| n    | num  | 位于分组（n+1）的分组 |      |
 | ……   | num  | ……                      | ……   |
 
 **示例：**
 
-可得对于`UID=258150656`的用户，在`2018/10/28 0:51:41`时关注，且设为特别关注，并位于ID为`-10`分组中
+可得对于`mid=258150656`的用户，在`2018/10/28 0:51:41`时关注，且设为特别关注，并位于为`-10`分组中
 
 ```shell
 curl -G 'http://http://api.bilibili.com/x/relation' \
@@ -1240,7 +1240,7 @@ curl -G 'http://http://api.bilibili.com/x/relation' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注 |
 | ---------- | ---- | ------------ | ----------- | ---- |
 | access_key | str  | APP登录Token | APP方式必要 |      |
-| mid        | num  | 目标用户UID  | 必要        |      |
+| mid        | num  | 目标用户mid  | 必要        |      |
 
 **json回复：**
 
@@ -1264,33 +1264,33 @@ curl -G 'http://http://api.bilibili.com/x/relation' \
 
 | 字段      | 类型                                     | 内容         | 备注           |
 | --------- | ---------------------------------------- | ------------ | -------------- |
-| mid       | num                                      | 对方用户UID  |                |
+| mid       | num                                      | 对方用户mid  |                |
 | attribute | num                                      | 关注属性 | 0：未关注<br />1：悄悄关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
 | mtime     | num                                      | 关注对方时间 | 互关后刷新时间 |
-| tag       | null默认分组<br />array存在至少一个分组 | 分组ID |                |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组id |                |
 | special   | num                                      | 特别关注标志 | 0：否<br />1：是 |
 
 `data`中的`be_relation`对象：
 
 | 字段      | 类型                                     | 内容         | 备注           |
 | --------- | ---------------------------------------- | ------------ | -------------- |
-| mid       | num                                      | 自己的UID |                |
+| mid       | num                                      | 自己的mid |                |
 | attribute | num                                      | 关注属性 | 0：未关注<br />1：悄悄关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
 | mtime     | num                                      | 成为粉丝时间 | 互关后刷新时间 |
-| tag       | null默认分组<br />array存在至少一个分组 | 分组ID |                |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组id |                |
 | special   | num                                      | 特别关注标志 | 0：否<br />1：是 |
 
 `be_relation`与`relation`中的`tag`数组：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组ID       |      |
-| n    | num  | 位于分组（n+1）的分组ID |      |
+| 0    | num  | 位于分组1的分组id       |      |
+| n    | num  | 位于分组（n+1）的分组id |      |
 | ……   | num  | ……                      | ……   |
 
 **示例：**
 
-可得对于`UID=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于ID为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于ID为`-10`和`56502`的分组中（虽然我看不到）
+可得对于`mid=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于为`-10`和`56502`的分组中（虽然我看不到）
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/acc/relation' \
@@ -1342,7 +1342,7 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注                |
 | ---------- | ---- | ------------ | ----------- | ------------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                     |
-| fids       | nums | 目标用户UID  | 必要        | 每个ID之间用`,`间隔 |
+| fids       | nums | 目标用户mid  | 必要        | 每个之间用`,`间隔 |
 
 **json回复：**
 
@@ -1359,30 +1359,30 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation' \
 
 | 字段      | 类型 | 内容       | 备注 |
 | --------- | ---- | ---------- | ---- |
-| {用户UID} | obj  | 关注的用户 | 下同 |
+| {用户mid} | obj  | 关注的用户 | 下同 |
 | ……        | obj  | ……         |      |
 
-`{用户UID}`对象：
+`{用户mid}`对象：
 
 | 字段      | 类型                                    | 内容         | 备注                                                         |
 | --------- | --------------------------------------- | ------------ | ------------------------------------------------------------ |
-| mid       | num                                     | 目标用户UID  |                                                              |
+| mid       | num                                     | 目标用户mid  |                                                              |
 | attribute | num                                     | 关注属性     | 0：未关注<br />1：悄悄关注<br />2：已关注<br />6：已互粉<br />128：拉黑 |
 | mtime     | num                                     | 关注对方时间 | 时间戳<br />未关注为0                                        |
-| tag       | null默认分组<br />array存在至少一个分组 | 分组ID       |                                                              |
+| tag       | null默认分组<br />array存在至少一个分组 | 分组id       |                                                              |
 | special   | num                                     | 特别关注标志 | 0：否<br />1：是                                             |
 
 `tag`数组：
 
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组ID       |      |
-| n    | num  | 位于分组（n+1）的分组ID |      |
+| 0    | num  | 位于分组1的分组id       |      |
+| n    | num  | 位于分组（n+1）的分组id |      |
 | ……   | num  | ……                      | ……   |
 
 **示例：**
 
-批量查询`UID=1,2,3,4,5`的关系
+批量查询`mid=1,2,3,4,5`的关系
 
 ```shell
 curl -G 'http://http://api.bilibili.com/x/relation/relations' \
@@ -1459,13 +1459,13 @@ curl -G 'http://http://api.bilibili.com/x/relation/relations' \
 
 | 字段  | 类型 | 内容       | 备注                               |
 | ----- | ---- | ---------- | ---------------------------------- |
-| tagid | num  | 分组ID     | 特别关注恒为-10<br />默认分组恒为0 |
+| tagid | num  | 分组id     | 特别关注恒为-10<br />默认分组恒为0 |
 | name  | str  | 分组名称   |                                    |
 | count | num  | 分组成员数 |                                    |
 
 **示例：**
 
-查询所有的分组的名字以及ID
+查询所有的分组的名字以及id
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/tags' \
@@ -1513,7 +1513,7 @@ curl 'http://api.bilibili.com/x/relation/tags' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注                                                    |
 | ---------- | ---- | ------------ | ----------- | ------------------------------------------------------- |
 | access_key | str  | APP登录Token | APP方式必要 |                                                         |
-| tagid      | num  | 分组ID       | 必要        | 特别关注恒为-10<br />默认分组恒为0                      |
+| tagid      | num  | 分组id       | 必要        | 特别关注恒为-10<br />默认分组恒为0                      |
 | order_type | str  | 排序方式     | 非必要      | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
 | ps         | num  | 每页项数     | 非必要      | 默认为50                                                |
 | pn         | num  | 页数         | 非必要      | 默认为1                                                 |
@@ -1541,7 +1541,7 @@ curl 'http://api.bilibili.com/x/relation/tags' \
 
 | 字段            | 类型 | 内容        | 备注 |
 | --------------- | ---- | ----------- | ---- |
-| mid             | num  | 用户UID     |      |
+| mid             | num  | 用户mid     |      |
 | uname           | str  | 用户昵称    |      |
 | face            | str  | 用户头像url |      |
 | sign            | str  | 用户签名    |      |
@@ -1576,7 +1576,7 @@ curl 'http://api.bilibili.com/x/relation/tags' \
 
 **示例：**
 
-以每页2项的方式获取了ID为`207542`分组的第1页的粉丝明细，按照关注顺序
+以每页2项的方式获取了id为`207542`分组的第1页的粉丝明细，按照关注顺序
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/tag' \
@@ -1656,7 +1656,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag' \
 | 参数名     | 类型 | 内容         | 必要性      | 备注 |
 | ---------- | ---- | ------------ | ----------- | ---- |
 | access_key | str  | APP登录Token | APP方式必要 |      |
-| fid        | num  | 目标用户UID  | 必要        |      |
+| fid        | num  | 目标用户mid  | 必要        |      |
 
 **json回复：**
 
@@ -1673,13 +1673,13 @@ curl -G 'http://api.bilibili.com/x/relation/tag' \
 
 | 字段                | 类型 | 内容      | 备注 |
 | ------------------- | ---- | --------- | ---- |
-| ｛加入的分组ID  1｝ | str  | 分组1名称 |      |
-| ｛加入的分组ID  n｝ | str  | 分组n名称 |      |
+| {加入的分组id  1} | str  | 分组1名称 |      |
+| {加入的分组id  n} | str  | 分组n名称 |      |
 | ……                  | str  | ……        |      |
 
 **示例：**
 
-查询用户`UID=319214221`存在的所有分组ID和名称
+查询用户`mid=319214221`存在的所有分组和名称
 
 ```shell
 curl -G 'http://api.bilibili.com/x/relation/tag/user' \
@@ -1704,7 +1704,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user' \
 
 </details>
 
-### 查询所有特别关注的UID
+### 查询所有特别关注的mid
 
 > http://api.bilibili.com/x/relation/tag/special
 
@@ -1733,8 +1733,8 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user' \
 
 | 项   | 类型 | 内容           | 备注 |
 | ---- | ---- | -------------- | ---- |
-| 0    | num  | 成员1UID       |      |
-| n    | num  | 成员（n+1）UID |      |
+| 0    | num  | 成员1mid       |      |
+| n    | num  | 成员（n+1）mid |      |
 | ……   | num  | ……             | ……   |
 
 **示例：**
@@ -1810,11 +1810,11 @@ curl 'http://api.bilibili.com/x/relation/tag/special' \
 
 | 字段  | 类型 | 内容           | 备注 |
 | ----- | ---- | -------------- | ---- |
-| tagid | num  | 创建的分组的ID |      |
+| tagid | num  | 创建的分组的id |      |
 
 **示例：**
 
-创建了名为`测试`的分组，得到ID为`216677`
+创建了名为`测试`的分组，得到id为`216677`
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/tag/create' \
@@ -1852,7 +1852,7 @@ curl 'http://api.bilibili.com/x/relation/tag/create' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注       |
 | ---------- | ---- | ------------------------ | -------------- | ---------- |
 | access_key | str  | APP登录Token             | APP方式必要    |            |
-| tagid      | num  | 分组ID                   | 必要           |            |
+| tagid      | num  | 分组id                   | 必要           |            |
 | name       | str  | 新名称                   | 必要           | 最长16字符 |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |            |
 
@@ -1868,7 +1868,7 @@ curl 'http://api.bilibili.com/x/relation/tag/create' \
 
 **示例：**
 
-把ID为`194112`的分组更名为`膜法师`
+把id为`194112`的分组更名为`膜法师`
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/tag/update' \
@@ -1906,7 +1906,7 @@ curl 'http://api.bilibili.com/x/relation/tag/update' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注 |
 | ---------- | ---- | ------------------------ | -------------- | ---- |
 | access_key | str  | APP登录Token             | APP方式必要    |      |
-| tagid      | num  | 分组ID                   | 必要           |      |
+| tagid      | num  | 分组id                   | 必要           |      |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |      |
 
 **json回复：**
@@ -1921,7 +1921,7 @@ curl 'http://api.bilibili.com/x/relation/tag/update' \
 
 示例：
 
-删除分组ID为`216699`的分组
+删除分组id为`216699`的分组
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/tag/del' \
@@ -1958,8 +1958,8 @@ curl 'http://api.bilibili.com/x/relation/tag/del' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                |
 | ---------- | ---- | ------------------------ | -------------- | ------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                     |
-| fids       | nums | 目标用户UID              | 必要           | 每个ID之间用`,`间隔 |
-| tagids     | nums | 分组ID                   | 必要           | 每个ID之间用`,`间隔 |
+| fids       | nums | 目标用户mid              | 必要           | 每个之间用`,`间隔 |
+| tagids     | nums | 分组id                   | 必要           | 每个之间用`,`间隔 |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
 
 **json回复：**
@@ -1974,7 +1974,7 @@ curl 'http://api.bilibili.com/x/relation/tag/del' \
 
 **示例：**
 
-把关注用户`UID=205631797`同时添加分组关系到ID为`-10`和`207542`的分组中
+把关注用户`mid=205631797`同时添加分组关系到id为`-10`和`207542`的分组中
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
@@ -2010,8 +2010,8 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                |
 | ---------- | ---- | ------------------------ | -------------- | ------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                     |
-| fids       | nums | 待复制的用户UID          | 必要           | 每个ID之间用`,`间隔 |
-| tagids     | nums | 目标分组ID               | 必要           | 每个ID之间用`,`间隔 |
+| fids       | nums | 待复制的用户mid          | 必要           | 每个之间用`,`间隔 |
+| tagids     | nums | 目标分组id               | 必要           | 每个之间用`,`间隔 |
 | csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
 
 **json回复：**
@@ -2026,7 +2026,7 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
 
 **示例：**
 
-把关注用户`UID=4856007`和`UID=326499679`同时复制到ID为`231305`的分组中
+把关注用户`mid=4856007`和`mid=326499679`同时复制到为`231305`的分组id中
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
@@ -2062,9 +2062,9 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
 | 参数名       | 类型 | 内容                     | 必要性         | 备注                |
 | ------------ | ---- | ------------------------ | -------------- | ------------------- |
 | access_key   | str  | APP登录Token             | APP方式必要    |                     |
-| beforeTagids | nums | 原分组ID                 | 必要           | 每个ID之间用`,`间隔 |
-| afterTagids  | nums | 新分组ID                 | 必要           | 每个ID之间用`,`间隔 |
-| fids         | nums | 待移动的用户UID          | 必要           | 每个ID之间用`,`间隔 |
+| beforeTagids | nums | 原分组id                 | 必要           | 每个之间用`,`间隔 |
+| afterTagids  | nums | 新分组id                 | 必要           | 每个之间用`,`间隔 |
+| fids         | nums | 待移动的用户mid          | 必要           | 每个之间用`,`间隔 |
 | csrf         | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
 
 **json回复：**
@@ -2079,7 +2079,7 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
 
 **示例：**
 
-把关注用户`UID=321173469`和`UID=327086920`同时从ID为`207542`的分组移动到ID为`231305`的分组中
+把关注用户`mid=321173469`和`mid=327086920`同时从id为`207542`的分组移动到为`231305`的分组中
 
 ```shell
 curl 'http://api.bilibili.com/x/relation/tags/moveUsers' \

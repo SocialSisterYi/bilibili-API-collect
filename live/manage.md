@@ -20,7 +20,7 @@
 
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
-| room_id | num  | 直播间ID                 | 必要   | 必须为自己的直播间ID |
+| room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
 | title   | str  | 直播间标题               | 必要   | 最大20字符           |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
 
@@ -77,8 +77,8 @@ curl 'http://api.live.bilibili.com/room/v1/Room/update' \
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                |
 | -------- | ---- | ------------------------ | ------ | ----------------------------------- |
-| room_id  | num  | 直播间ID                 | 必要   | 必须为自己的直播间ID                |
-| area_v2  | num  | 直播分区ID（子分区ID）   | 必要   | 详见[直播分区](live_area.md)        |
+| room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                |
+| area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)        |
 | platform | str  | 直播平台                 | 必要   | web端：<br />bililink：android_link |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                     |
 
@@ -144,7 +144,7 @@ curl 'http://api.live.bilibili.com/room/v1/Room/update' \
 
 **示例：**
 
-以`27`作为分区ID开播直播间`10352053`
+以`27`作为分区id开播直播间`10352053`
 
 其中`"data"."rtmp"."addr"`为推流地址
 
@@ -216,7 +216,7 @@ curl 'http://api.live.bilibili.com/room/v1/Room/startLive' \
 
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
-| room_id | num  | 直播间ID                 | 必要   | 必须为自己的直播间ID |
+| room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
 
 **json回复：**

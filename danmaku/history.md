@@ -23,7 +23,7 @@
 | 参数名 | 类型 | 内容         | 必要性 | 备注    |
 | ------ | ---- | ------------ | ------ | ------- |
 | type   | num  | 1            | 必要   |         |
-| oid    | num  | 视频CID      | 必要   |         |
+| oid    | num  | 视频cid      | 必要   |         |
 | month  | str  | 查询目标年月 | 必要   | YYYY-MM |
 
 **json回复：**
@@ -120,7 +120,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
 | 参数名 | 类型 | 内容     | 必要性 | 备注        |
 | ------ | ---- | -------- | ------ | ----------- |
 | type   | num  | 弹幕类   | 必要   | 1：视频弹幕 |
-| oid    | num  | 视频CID  | 必要   |             |
+| oid    | num  | 视频cid  | 必要   |             |
 | date   | str  | 弹幕日期 | 必要   | YYYY-MM-DD  |
 
 **proto回复：**
@@ -129,7 +129,7 @@ porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api
 
 详细说明见[protobuf弹幕](danmaku_proto.md)
 
-获取视频`av84271171(CID=144541892)`2020-01-21的历史弹幕
+获取视频`av84271171(cid=144541892)`2020-01-21的历史弹幕
 
 **注：proto定义需要编译**
 
@@ -192,12 +192,12 @@ idStr: "27532611677585408"
 | 参数名 | 类型 | 内容     | 必要性 | 备注       |
 | ------ | ---- | -------- | ------ | ---------- |
 | type   | num  | 1        | 必要   |            |
-| oid    | num  | 视频CID  | 必要   |            |
+| oid    | num  | 视频cid  | 必要   |            |
 | date   | str  | 弹幕日期 | 必要   | YYYY-MM-DD |
 
 **示例：**
 
-获取视频`av84271171(CID=144541892)`2020-01-21的历史弹幕
+获取视频`av84271171(cid=144541892)`2020-01-21的历史弹幕
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/dm/history' \

@@ -84,7 +84,7 @@
 
 **示例：**
 
-查询直播间`CID=14073662`的直播间信息
+查询直播间`cid=14073662`的直播间信息
 
 ```shell
 curl -G 'http://api.live.bilibili.com/room/v1/Room/playUrl' \

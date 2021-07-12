@@ -30,8 +30,8 @@
 | 参数名 | 类型 | 内容     | 必要性 | 备注        |
 | ------ | ---- | -------- | ------ | ----------- |
 | type   | num  | 弹幕类   | 必要   | 1：视频弹幕 |
-| oid    | num  | 视频CID  | 必要   |             |
-| pid    | num  | 稿件avID | 非必要 |             |
+| oid    | num  | 视频cid  | 必要   |             |
+| pid    | num  | 稿件avid | 非必要 |             |
 
 **proto回复：**
 
@@ -69,16 +69,16 @@
 
 | 名称     | 类型   | 含义         | 备注                                                         |
 | -------- | ------ | ------------ | ------------------------------------------------------------ |
-| id       | int64  | 弹幕dmID     |                                                              |
-| oid      | int64  | 视频CID      |                                                              |
-| mid      | int64  | 发送者UID    |                                                              |
+| id       | int64  | 弹幕dmid     |                                                              |
+| oid      | int64  | 视频cid      |                                                              |
+| mid      | int64  | 发送者mid    |                                                              |
 | command  | string | 弹幕指令     | `#UP#`：UP主头像弹幕<br />`#LINK#`：关联视频弹幕<br />`#ATTENTION#`：视频内嵌引导关注按钮 |
 | content  | string | 弹幕文字     |                                                              |
 | progress | int32  | 弹幕出现时间 | 单位为毫秒                                                   |
 | ctime    | string | 创建时间？   | 此项为空                                                     |
 | mtime    | string | 修改时间？   | 此项为空                                                     |
 | extra    | string | 弹幕负载数据 | json序列字串                                                 |
-| idStr    | string | 弹幕dmID     | 字串形式                                                     |
+| idStr    | string | 弹幕dmid     | 字串形式                                                     |
 
 `extra`json序列：
 
@@ -92,10 +92,10 @@
 
 | 字段  | 类型 | 内容                | 备注 |
 | ----- | ---- | ------------------- | ---- |
-| aid   | num  | 关联视频的avID      |      |
+| aid   | num  | 关联视频的avid      |      |
 | title | str  | 关联视频的标题      |      |
 | icon  | str  | 关联视频按钮图片url |      |
-| bvid  | str  | 关联视频的bvID      |      |
+| bvid  | str  | 关联视频的bvid      |      |
 
 类型为【视频内嵌引导关注按钮】时：
 
@@ -154,16 +154,16 @@ message DanmakuFlagConfig {
 
 // 互动弹幕条目
 message CommandDm {
-    int64 id = 1;       //弹幕dmID
-    int64 oid = 2;      //视频CID
-    int64 mid = 3;      //发送者UID
+    int64 id = 1;       //弹幕dmid
+    int64 oid = 2;      //视频cid
+    int64 mid = 3;      //发送者mid
     string command = 4; //弹幕指令
     string content = 5; //弹幕文字
     int32 progress = 6; //弹幕出现时间
     string ctime = 7;   //
     string mtime = 8;   //
     string extra = 9;   //弹幕负载数据
-    string idStr = 10;  //弹幕dmID（字串形式）
+    string idStr = 10;  //弹幕dmid（字串形式）
 }
 
 //弹幕个人配置
@@ -206,7 +206,7 @@ message DmWebViewReply {
 
 **示例：**
 
-获取视频`av797164471(CID=236871317)`的弹幕元数据
+获取视频`av797164471(cid=236871317)`的弹幕元数据
 
 ```shell
 curl -G 'http://api.bilibili.com/x/v2/dm/web/view' \
@@ -223,7 +223,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/web/view' \
 
 ### 获取互动弹幕
 
-获取并显示视频`av797164471(CID=236871317)`的所有互动弹幕
+获取并显示视频`av797164471(cid=236871317)`的所有互动弹幕
 
 ```python
 import web_dmview_pb2
@@ -241,8 +241,8 @@ print(f'互动弹幕数={len(target.commandDms)}')
 for i in target.commandDms:
 	print(f'''\
 ---弹幕ID={i.id}
----视频CID={i.oid}
----发送者UID={i.mid}
+---视频cid={i.oid}
+---发送者mid={i.mid}
 ---弹幕指令={i.command}
 ---弹幕文字={i.content}
 ---弹幕出现时间={i.progress}
@@ -256,8 +256,8 @@ for i in target.commandDms:
 ```
 互动弹幕数=1
 ---弹幕ID=38469676112019463
----视频CID=236871317
----发送者UID=501183549
+---视频cid=236871317
+---发送者mid=501183549
 ---弹幕指令=#UP#
 ---弹幕文字=这个视频没有恰饭！别紧张！
 ---弹幕出现时间=157818
@@ -269,7 +269,7 @@ for i in target.commandDms:
 
 BAS弹幕（`pool=2` `mode=9`）只能从此包获取，代码弹幕（`pool=2` `mode=8`）也能从此包获取
 
-获取并显示视频`av2(CID=62131)`的所有BAS（代码）弹幕专包
+获取并显示视频`av2(cid=62131)`的所有BAS（代码）弹幕专包
 
 ```python
 import web_dmview_pb2

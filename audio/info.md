@@ -19,7 +19,7 @@
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | num  | 音频auID | 必要   |      |
+| sid    | num  | 音频auid | 必要   |      |
 
 **json回复：**
 
@@ -35,8 +35,8 @@
 
 | 字段       | 类型   | 内容               | 备注               |
 | ---------- | ------ | ------------------ | ------------------ |
-| id         | num    | 音频auID           |                    |
-| uid        | num    | UP主UID            |                    |
+| id         | num    | 音频auid           |                    |
+| uid        | num    | UP主mid            |                    |
 | uname      | str    | UP主昵称           |                    |
 | author     | str    | 作者名             |                    |
 | title      | str    | 歌曲标题           |                    |
@@ -47,9 +47,9 @@
 | duration   | num    | 歌曲时间长度       | 单位为秒           |
 | passtime   | num    | 歌曲发布时间       | 时间戳             |
 | curtime    | num    | 当前请求时间       | 时间戳             |
-| aid        | num    | 关联稿件avID       | 无为0              |
-| bvid       | str    | 关联稿件bvID       | 无为空             |
-| cid        | num    | 关联视频CID        | 无为0              |
+| aid        | num    | 关联稿件avid       | 无为0              |
+| bvid       | str    | 关联稿件bvid       | 无为空             |
+| cid        | num    | 关联视频cid        | 无为0              |
 | msid       | num    | 0                  | **作用尚不明确**   |
 | attr       | num    | 0                  | **作用尚不明确**   |
 | limit      | num    | 0                  | **作用尚不明确**   |
@@ -58,14 +58,14 @@
 | ctime      | null   | -                  | **作用尚不明确**   |
 | statistic  | obj    | 状态数             |                    |
 | vipInfo    | obj    | UP主会员状态       |                    |
-| collectIds | array | 歌曲所在的收藏夹ID | 需要登录(SESSDATA) |
+| collectIds | array | 歌曲所在的收藏夹mlid | 需要登录(SESSDATA) |
 | coin_num   | num    | 投币数             |                    |
 
 `data`中的`statistic`对象：
 
 | 字段    | 类型 | 内容     | 备注 |
 | ------- | ---- | -------- | ---- |
-| sid     | num  | 音频auID |      |
+| sid     | num  | 音频auid |      |
 | play    | num  | 播放次数 |      |
 | collect | num  | 收藏数   |      |
 | comment | num  | 评论数   |      |
@@ -84,8 +84,8 @@
 
 | 项   | 类型 | 内容                      | 备注 |
 | ---- | ---- | ------------------------- | ---- |
-| 0    | num  | 第1个所在的收藏夹ID       |      |
-| n    | num  | 第（n+1）个所在的收藏夹ID |      |
+| 0    | num  | 第1个所在的收藏夹mlid       |      |
+| n    | num  | 第（n+1）个所在的收藏夹mlid |      |
 | ……   | num  | ……                        | ……   |
 
 **示例：**
@@ -160,7 +160,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/info' \
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | num  | 音频auID | 必要   |      |
+| sid    | num  | 音频auid | 必要   |      |
 
 **json回复：**
 
@@ -186,7 +186,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/info' \
 | ------- | ---- | ---------- | ---------------- |
 | type    | str  | song       | **作用尚不明确** |
 | subtype | num  | ？？？     | **作用尚不明确** |
-| key     | num  | TAG ID？？ | **作用尚不明确** |
+| key     | num  | TAG id？？ | **作用尚不明确** |
 | info    | str  | TAG名      |                  |
 
 **示例：**
@@ -258,7 +258,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/tag/song' \
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | num  | 音频auID | 必要   |      |
+| sid    | num  | 音频auid | 必要   |      |
 
 **json回复：**
 
@@ -299,7 +299,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/tag/song' \
 | --------- | ---- | ---------- | ---------------- |
 | mid       | num  | 0          | **作用尚不明确** |
 | name      | str  | 成员名     |                  |
-| member_id | num  | 成员ID？？ | **作用尚不明确** |
+| member_id | num  | 成员id？？ | **作用尚不明确** |
 
 **示例：**
 
@@ -396,7 +396,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/member/song' \
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| sid    | num  | 音频auID | 必要   |      |
+| sid    | num  | 音频auid | 必要   |      |
 
 **json回复：**
 

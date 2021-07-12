@@ -183,7 +183,7 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 **需验证手机号或邮箱时**
 | 字段     | 类型 | 内容                     | 备注             |
 | -------- | ---- | ------------------------ | ---------------- |
-| mid      | num  | 用户UID                  |                  |
+| mid      | num  | 用户mid                  |                  |
 | tel      | str  | 绑定的手机号             | 星号隐藏部分信息 |
 | email    | str  | 绑定的邮箱               | 星号隐藏部分信息 |
 | sorce    | num  | 0                        | **作用尚不明确** |
@@ -252,9 +252,9 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 
 https://passport.biligame.com/crossDomain?
 
-DedeUserID=(登录UID)&
+DedeUserID=(登录mid)&
 
-DedeUserID__ckMd5=(登录UID MD5值)&
+DedeUserID__ckMd5=(登录mid MD5值)&
 
 Expires=(过期时间 秒)&
 

@@ -27,9 +27,9 @@
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
 | bp_num   | num  | 贝壳数量                 | 必要   | 必须在20-99990之间                                |
 | is_bp_remains_prior | bool  | 是否优先扣除B币余额                 | 必要   | [true,false]，B币充电请选择true                                |
-| up_mid   | num  | 充电对象用户UID          | 必要   |                                                   |
+| up_mid   | num  | 充电对象用户mid          | 必要   |                                                   |
 | otype    | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电               |
-| oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：稿件avID |
+| oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户mid<br />视频充电：稿件avid |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                   |
 
 **json回复：**
@@ -47,8 +47,8 @@
 
 | 字段     | 类型 | 内容        | 备注                                             |
 | -------- | ---- | ----------- | ------------------------------------------------ |
-| mid      | num  | 本用户UID   |                                                  |
-| up_mid   | num  | 目标用户UID |                                                  |
+| mid      | num  | 本用户mid   |                                                  |
+| up_mid   | num  | 目标用户mid |                                                  |
 | order_no | str  | 留言token   | 用于添加充电留言                                 |
 | bp_num | num  | 充电贝壳数  |                                                  |
 | exp      | num  | 获得经验数  |                                                  |
@@ -57,7 +57,7 @@
 
 **示例：**
 
-以空间的方式向用户`UID=293793435`充了2贝壳，得到2经验，留言token为`BPRG5CEC3VUPOOANA540`
+以空间的方式向用户`mid=293793435`充了2贝壳，得到2经验，留言token为`BPRG5CEC3VUPOOANA540`
 
 此时`data`.`status`=`4`
 
@@ -188,9 +188,9 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                              |
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
 | elec_num | num  | 充电电池数量             | 必要   | 必须在20-99990之间                                |
-| up_mid   | num  | 充电对象用户UID          | 必要   |                                                   |
+| up_mid   | num  | 充电对象用户mid          | 必要   |                                                   |
 | otype    | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电               |
-| oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户UID<br />视频充电：稿件avID |
+| oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户mid<br />视频充电：稿件avid |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                   |
 
 **json回复：**
@@ -208,8 +208,8 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 
 | 字段     | 类型 | 内容        | 备注                                             |
 | -------- | ---- | ----------- | ------------------------------------------------ |
-| mid      | num  | 本用户UID   |                                                  |
-| up_mid   | num  | 目标用户UID |                                                  |
+| mid      | num  | 本用户mid   |                                                  |
+| up_mid   | num  | 目标用户mid |                                                  |
 | order_no | str  | 留言token   | 用于添加充电留言                                 |
 | elec_num | num  | 充电电池数  |                                                  |
 | exp      | num  | 获得经验数  |                                                  |
@@ -218,7 +218,7 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 
 **示例：**
 
-以空间的方式向用户`UID=293793435`充了20电池，得到2经验，留言token为`BPRG5CEC3VUPOOANA540`
+以空间的方式向用户`mid=293793435`充了20电池，得到2经验，留言token为`BPRG5CEC3VUPOOANA540`
 
 此时`data`.`status`=`4`
 

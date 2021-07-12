@@ -5,17 +5,17 @@
 
 ---
 
-课程ssID与epID和番剧不互通
+课程ssid与epid和番剧不互通
 
-课程avID与普通视频绝大部分api接口不能互通，少部分互通接口如下：
+课程avid与普通视频绝大部分api接口不能互通，少部分互通接口如下：
 
 1. 获取视频简介
 2. 查询视频状态数
 3. 查询分P列表
 4. 视频快照
-5. 获取弹幕（使用CID）
+5. 获取弹幕（使用cid）
 6. 发送弹幕
-7. 高能进度条（使用CID）
+7. 高能进度条（使用cid）
 
 ## 获取课程基本信息
 
@@ -31,8 +31,8 @@
 
 | 参数名    | 类型 | 内容     | 必要性       | 备注                                               |
 | --------- | ---- | -------- | ------------ | -------------------------------------------------- |
-| season_id | num  | 课程ssID | 必要（可选） | season_id与ep_id任选其一<br />**与番剧ssID不互通** |
-| ep_id     | num  | 课程epID | 必要（可选） | season_id与ep_id任选其一<br />**与番剧epID不互通** |
+| season_id | num  | 课程ssid | 必要（可选） | season_id与ep_id任选其一<br />**与番剧ssid不互通** |
+| ep_id     | num  | 课程epid | 必要（可选） | season_id与ep_id任选其一<br />**与番剧epid不互通** |
 
 **json回复：**
 
@@ -63,7 +63,7 @@
 | release_info        | str    | 更新状态文字+更新连载状态文字 |                                                              |
 | release_info2       | str    | 更新连载状态文字              |                                                              |
 | release_status      | str    | 更新状态文字                  |                                                              |
-| season_id           | num    | 课程ssID                      | **与番剧ssID不互通**                                         |
+| season_id           | num    | 课程ssid                      | **与番剧ssid不互通**                                         |
 | share_url           | str    | 页面url                       |                                                              |
 | short_link          | str    | bilibili uri链接              |                                                              |
 | stat                | obj    | 播放数信息                    |                                                              |
@@ -129,11 +129,11 @@
 
 | 字段           | 类型 | 内容             | 备注                                                         |
 | -------------- | ---- | ---------------- | ------------------------------------------------------------ |
-| aid            | num  | 课程分集avID     | **与普通稿件avID部分不互通**                                 |
-| cid            | num  | 课程分集CID      | **与普通视频CID部分不互通**                                  |
+| aid            | num  | 课程分集avid     | **与普通稿件avid部分不互通**                                 |
+| cid            | num  | 课程分集cid      | **与普通视频cid部分不互通**                                  |
 | duration       | num  | 课程分集时间长度 | 单位为秒                                                     |
 | from           | str  | pugv             |                                                              |
-| id             | num  | 课程分集epID     | **与番剧epID不互通**                                         |
+| id             | num  | 课程分集epid     | **与番剧epid不互通**                                         |
 | index          | num  | 课程分集数       |                                                              |
 | page           | num  | 1                |                                                              |
 | play           | num  | 课程分集播放量   |                                                              |
@@ -240,7 +240,7 @@
 
 | 字段          | 类型 | 内容               | 备注     |
 | ------------- | ---- | ------------------ | -------- |
-| last_ep_id    | num  | 最后观看的epID     |          |
+| last_ep_id    | num  | 最后观看的epid     |          |
 | last_ep_index | str  | 最后观看的标题     |          |
 | last_time     | num  | 最后观看的时间进度 | 单位为秒 |
 
@@ -248,7 +248,7 @@
 
 查询课程`ss61`或分集`ep790`的信息
 
-ssID方式：
+ssid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/pugv/view/web/season' \
@@ -257,7 +257,7 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season' \
 -e 'https://www.bilibili.com'
 ```
 
-epID方式：
+epid方式：
 
 ```shell
 curl -G 'http://api.bilibili.com/pugv/view/web/season' \
@@ -478,7 +478,7 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season' \
 
 | 参数名    | 类型 | 内容     | 必要性 | 备注                 |
 | --------- | ---- | -------- | ------ | -------------------- |
-| season_id | num  | 课程ssID | 必要   | **与番剧ssID不互通** |
+| season_id | num  | 课程ssid | 必要   | **与番剧ssid不互通** |
 | ps        | num  | 每页项数 | 非必要 | 默认为50             |
 | pn        | num  | 页码     | 非必要 | 默认为1              |
 
@@ -511,11 +511,11 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season' \
 
 | 字段           | 类型 | 内容             | 备注                                                         |
 | -------------- | ---- | ---------------- | ------------------------------------------------------------ |
-| aid            | num  | 课程分集avID     | **与普通稿件avID部分不互通**                                 |
-| cid            | num  | 课程分集CID      | **与普通视频CID部分不互通**                                  |
+| aid            | num  | 课程分集avid     | **与普通稿件avid部分不互通**                                 |
+| cid            | num  | 课程分集cid      | **与普通视频cid部分不互通**                                  |
 | duration       | num  | 课程分集时间长度 | 单位为秒                                                     |
 | from           | str  | pugv             |                                                              |
-| id             | num  | 课程分集epID     | **与番剧epID不互通**                                         |
+| id             | num  | 课程分集epid     | **与番剧epid不互通**                                         |
 | index          | num  | 课程分集数       |                                                              |
 | page           | num  | 1                |                                                              |
 | play           | num  | 课程分集播放量   |                                                              |

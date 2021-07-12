@@ -40,8 +40,8 @@ json格式
 
 | 字段      | 类型 | 内容         | 备注           |
 | --------- | ---- | ------------ | -------------- |
-| uid       | num  | 用户UID      | 不可为0        |
-| roomid    | num  | 加入房间的ID |                |
+| uid       | num  | 用户mid      | 不可为0        |
+| roomid    | num  | 加入房间的id |                |
 | protover  | num  | 协议版本     | 现在是2        |
 | platform  | str  | 平台标识     | 可为"web"      |
 | clientver | str  | 客户端版本   | 现在是"1.10.3" |
