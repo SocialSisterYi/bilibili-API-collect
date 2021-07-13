@@ -79,7 +79,7 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 | msg[dev_id]        | string                               | 372778FD-E359-461D-86A3-EA2BCC6FF52A | 必要 |  **获取方式在下面**            |
 | msg[timestamp]     | num                                  | 时间戳（秒）               | 必要 |                                         |
 | msg[content]       | 发送文字时：str<br />撤回消息时：num     | 消息内容                 | 必要   | **详见下表**                             |
-| csrf_token         | str                                  | CSRF Token（位于cookie） | 必要   |                                        |
+| csrf        | str                                  | CSRF Token（位于cookie） | 必要   |                                        |
 
 ---
 
@@ -136,7 +136,7 @@ const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (functi
 | ------- | ---- | -------- | ----------- |
 | code    | num  | 返回值   | 0：成功<br> |
 | message | str  | 错误信息 | 默认为ok    |
-| msg     | str  | 错误信息 | 默认为ok    |
+| ttl     | num  |  | 默认为1    |
 | data    | obj  | 主体     | 出错时为空  |
 
 `data`对象：
@@ -144,7 +144,8 @@ const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (functi
 | 字段    | 类型 | 内容 | 备注         |
 | ------- | ---- | ---- | ------------ |
 | msg_key | num  |      | 作用尚不明确 |
-| \_gt\_  | num  | 0    | 作用尚不明确 |
+| msg_content | str | 0    | 发送的消息 |
+| key_hit_infos | dic | 空    | 空字典 |
 
 **示例：**
 
@@ -160,8 +161,10 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 --data-urlencode 'msg[receiver_id]=1' \
 --data-urlencode 'msg[receiver_type] =1' \
 --data-urlencode 'msg[msg_type]=1' \
+--data-urlencode 'msg[dev_id] =372778FD-E359-461D-86A3-EA2BCC6FF52A' \
+--data-urlencode 'msg[timestamp] =1626181379' \
 --data-urlencode 'msg[content]={"content":"up主你好，\n催更[doge]"}' \
---data-urlencode 'csrf_token=xxx' \
+--data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -169,15 +172,12 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 <summary>查看响应示例：</summary>
 
 ```json
-{
-    "code":0,
-    "msg":"ok",
-    "message":"ok",
-    "data":{
-        "msg_key":6852559688104417870,
-	"_gt_":0
-    }
-}
+{"code":0,
+"message":"0",
+"ttl":1,
+"data":{"msg_key":6984393491767669026,
+	"msg_content":"up主你好，\n催更[doge]",
+	"key_hit_infos":{}}}
 ```
 
 </details>
