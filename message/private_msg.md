@@ -141,11 +141,11 @@ const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (functi
 
 `data`对象：
 
-| 字段    | 类型 | 内容 | 备注         |
-| ------- | ---- | ---- | ------------ |
-| msg_key | num  |      | 作用尚不明确 |
-| msg_content | str | 0    | 发送的消息 |
-| key_hit_infos | dic | 空    | 空字典 |
+| 字段          | 类型 | 内容       | 备注         |
+| ------------- | ---- | ---------- | ------------ |
+| msg_key       | num  | 消息唯一id |              |
+| msg_content   | str  | 发送的消息 |              |
+| key_hit_infos | obj  |            | 作用尚不明确 |
 
 **示例：**
 
