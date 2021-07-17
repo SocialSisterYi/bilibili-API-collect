@@ -127,6 +127,21 @@
 | ~~摄影摄像~~(已下线) | ~~photography~~     | ~~190~~ | ~~摄影摄像器材、拍摄剪辑技巧、拍摄作品分享等相关视频~~     | ~~/v/digital/photography~~                                   |
 | ~~影音智能~~(已下线) | ~~intelligence_av~~ | ~~191~~ | ~~影音设备、智能产品等相关视频~~                           | ~~/v/digital/intelligence_av~~                               |
 
+## 运动
+
+(新分区)
+
+<img src="/imgs/zone/sports.svg" width="100" height="100"/>
+
+| 名称           | 代号               | tid  | 简介                                                         | url路由                                                      |
+| -------------- | ------------------ | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 运动（主分区） | sports             | 234  |                                                              | [/v/sports](https://www.bilibili.com/v/sports)               |
+| 篮球·足球      | basketballfootball | 235  | 与篮球、足球相关的视频，包括但不限于篮足球赛事、教学、评述、剪辑、剧情等相关内容 | [/v/sports/basketballfootball](https://www.bilibili.com/v/sports/basketballfootball) |
+| 健身           | aerobics           | 164  | 与健身相关的视频，包括但不限于瑜伽、CrossFit、健美、力量举、普拉提、街健等相关内容 | [/v/sports/aerobics](https://www.bilibili.com/v/sports/aerobics) |
+| 竞技体育       | athletic           | 236  | 与竞技体育相关的视频，包括但不限于乒乓、羽毛球、排球、赛车等竞技项目的赛事、评述、剪辑、剧情等相关内容 | [/v/sports/culture](https://www.bilibili.com/v/sports/culture) |
+| 运动文化       | culture            | 237  | 与运动文化相关的视频，包络但不限于球鞋、球衣、球星卡等运动衍生品的分享、解读，体育产业的分析、科普等相关内容 | [/v/sports/culture](https://www.bilibili.com/v/sports/culture) |
+| 运动综合       | comprehensive      | 238  | 与运动综合相关的视频，包括但不限于钓鱼、骑行、滑板等日常运动分享、教学、Vlog等相关内容 | [/v/sports/comprehensive](https://www.bilibili.com/v/sports/comprehensive) |
+
 ## 汽车
 
 (新分区)
@@ -209,14 +224,14 @@
 
 <img src="/imgs/zone/fashion.svg" width="100" height="100"/>
 
-| 名称           | 代号     | tid  | 简介                                                         | url路由                                                      |
-| -------------- | -------- | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 时尚（主分区） | fashion  | 155  |                                                              | [/v/fashion](https://www.bilibili.com/v/fashion)             |
-| 美妆           | makeup   | 157  | 涵盖妆容、发型、美甲等教程，彩妆、护肤相关产品测评、分享等   | [/v/fashion/makeup](https://www.bilibili.com/v/fashion/makeup) |
-| 服饰           | clothing | 158  | 服饰风格、搭配技巧相关的展示和教程视频                       | [/v/fashion/clothing](https://www.bilibili.com/v/fashion/clothing) |
-| 健身           | aerobics | 164  | 器械、有氧、拉伸运动等，以达到强身健体、减肥瘦身、形体塑造目的 | [/v/fashion/aerobics](https://www.bilibili.com/v/fashion/aerobics) |
-| T台            | catwalk  | 159  | 发布会走秀现场及模特相关时尚片、采访、后台花絮               | [/v/fashion/catwalk](https://www.bilibili.com/v/fashion/catwalk) |
-| 风尚标         | trends   | 192  | 时尚明星专访、街拍、时尚购物相关知识科普                     | [/v/fashion/trends](https://www.bilibili.com/v/fashion/trends) |
+| 名称                           | 代号         | tid     | 简介                                                         | url路由                                                      |
+| ------------------------------ | ------------ | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 时尚（主分区）                 | fashion      | 155     |                                                              | [/v/fashion](https://www.bilibili.com/v/fashion)             |
+| 美妆                           | makeup       | 157     | 涵盖妆容、发型、美甲等教程，彩妆、护肤相关产品测评、分享等   | [/v/fashion/makeup](https://www.bilibili.com/v/fashion/makeup) |
+| 服饰                           | clothing     | 158     | 服饰风格、搭配技巧相关的展示和教程视频                       | [/v/fashion/clothing](https://www.bilibili.com/v/fashion/clothing) |
+| ~~健身~~(重定向至“运动->健身”) | ~~aerobics~~ | ~~164~~ | ~~器械、有氧、拉伸运动等，以达到强身健体、减肥瘦身、形体塑造目的~~ | ~~/v/fashion/aerobics~~                                      |
+| T台                            | catwalk      | 159     | 发布会走秀现场及模特相关时尚片、采访、后台花絮               | [/v/fashion/catwalk](https://www.bilibili.com/v/fashion/catwalk) |
+| 风尚标                         | trends       | 192     | 时尚明星专访、街拍、时尚购物相关知识科普                     | [/v/fashion/trends](https://www.bilibili.com/v/fashion/trends) |
 
 ## 资讯
 
