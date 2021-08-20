@@ -2,19 +2,19 @@
 
 <img src="/imgs/akari.jpg" width="200" height="200"/>
 
-- [用户详细信息1 (用于空间)](#用户详细信息1 (用于空间))
-- [用户详细信息2 (用于名片)](#用户详细信息2 (用于名片))
-- [本用户详细信息](#本用户详细信息)
+- [用户空间详细信息 ](#用户空间详细信息)
+- [用户名片信息](#用户名片信息)
+- [登录用户空间详细信息](#登录用户空间详细信息)
 
 ---
 
-## 用户详细信息1 (用于空间)
+## 用户空间详细信息
 
 > http://api.bilibili.com/x/space/acc/info
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie(SESSDATA)
 
 **url参数：**
 
@@ -35,39 +35,45 @@
 
 `data`对象：
 
-| 字段        | 类型 | 内容             | 备注                                                         |
-| ----------- | ---- | ---------------- | ------------------------------------------------------------ |
-| mid         | num  | mid              |                                                              |
-| name        | str  | 昵称             |                                                              |
-| sex         | str  | 性别             | 男/女/保密                                                   |
-| face        | str  | 头像链接         |                                                              |
-| sign        | str  | 签名             |                                                              |
-| rank        | num  | 10000            |                                                              |
-| level       | num  | 当前等级         | 0-6级                                                        |
-| jointime    | num  | 0                |                                                              |
-| moral       | num  | 0                |                                                              |
-| silence     | num  | 封禁状态         | 0：正常<br />1：被封                                         |
-| birthday    | str  | 生日             | MM-DD<br />如设置隐私为空                                    |
-| coins       | num  | 硬币数           | 需要登录(Cookie) <br />只能查看自己的<br />默认为0           |
-| fans_badge  | bool | 是否具有粉丝勋章 | false：无<br />true：有                                      |
-| official    | obj  | 认证信息         |                                                              |
-| vip         | obj  | 会员信息         |                                                              |
-| pendant     | obj  | 头像框信息       |                                                              |
-| nameplate   | obj  | 勋章信息         |                                                              |
-| is_followed | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录恒为false |
-| top_photo   | str  | 主页头图链接     |                                                              |
-| theme       | obj  | 空               | **作用尚不明确**                                             |
-| sys_notice  | obj  | 系统通知         | 无内容则为空对象<br />主要用于展示如用户争议、纪念账号等等   |
-| live_room   | obj  | 直播间信息       |                                                              |
+| 字段             | 类型 | 内容             | 备注                                                         |
+| ---------------- | ---- | ---------------- | ------------------------------------------------------------ |
+| mid              | num  | mid              |                                                              |
+| name             | str  | 昵称             |                                                              |
+| sex              | str  | 性别             | 男/女/保密                                                   |
+| face             | str  | 头像链接         |                                                              |
+| sign             | str  | 签名             |                                                              |
+| rank             | num  | 10000            |                                                              |
+| level            | num  | 当前等级         | 0-6级                                                        |
+| jointime         | num  | 0                |                                                              |
+| moral            | num  | 0                |                                                              |
+| silence          | num  | 封禁状态         | 0：正常<br />1：被封                                         |
+| coins            | num  | 硬币数           | 需要登录(Cookie) <br />只能查看自己的<br />默认为0           |
+| fans_badge       | bool | 是否具有粉丝勋章 | false：无<br />true：有                                      |
+| fans_medal       | obj  |                  |                                                              |
+| official         | obj  | 认证信息         |                                                              |
+| vip              | obj  | 会员信息         |                                                              |
+| pendant          | obj  | 头像框信息       |                                                              |
+| nameplate        | obj  | 勋章信息         |                                                              |
+| user_honour_info | obj  |                  |                                                              |
+| is_followed      | bool | 是否关注此用户   | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录恒为false |
+| top_photo        | str  | 主页头图链接     |                                                              |
+| theme            | obj  | 空               | **作用尚不明确**                                             |
+| sys_notice       | obj  | 系统通知         | 无内容则为空对象<br />主要用于展示如用户争议、纪念账号等等   |
+| live_room        | obj  | 直播间信息       |                                                              |
+| birthday         | str  | 生日             | MM-DD<br />如设置隐私为空                                    |
+| school           | obj  |                  |                                                              |
+| profession       | obj  |                  |                                                              |
+| tags             | null |                  |                                                              |
+| series           | obj  |                  |                                                              |
 
 `data`中的`official`对象：
 
-| 字段  | 类型 | 内容     | 备注                                            |
-| ----- | ---- | -------- | ----------------------------------------------- |
-| role  | num  | 认证类型 | 0：无<br />1 2：个人认证<br />3 4 5 6：机构认证 |
-| title | str  | 认证信息 | 无为空                                          |
-| desc  | str  | 认证备注 | 无为空                                          |
-| type  | num  | 是否认证 | -1：无<br />0：认证                             |
+| 字段  | 类型 | 内容     | 备注                                              |
+| ----- | ---- | -------- | ------------------------------------------------- |
+| role  | num  | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
+| title | str  | 认证信息 | 无为空                                            |
+| desc  | str  | 认证备注 | 无为空                                            |
+| type  | num  | 是否认证 | -1：无<br />0：认证                               |
 
 `data`中的`vip`对象：
 
@@ -123,17 +129,17 @@
 
 `data`中的`live_room`对象：
 
-| 字段           | 类型 | 内容             | 备注                     |
-| -------------- | ---- | ---------------- | ------------------------ |
-| roomStatus     | num  | 直播间状态       | 0：无房间<br />1：有房间 |
-| liveStatus     | num  | 直播状态         | 0：未开播<br />1：直播中 |
-| url            | str  | 直播间网页url    |                          |
-| title          | str  | 直播间标题       |                          |
-| cover          | str  | 直播间封面url    |                          |
-| online         | num  | 直播间人气       | 值为上次直播时刷新       |
-| roomid         | num  | 直播间id（短号） |                          |
-| roundStatus    | num  | 轮播状态         | 0：未轮播<br />1：轮播   |
-| broadcast_type | num  | 0                |                          |
+| 字段           | 类型 | 内容           | 备注                     |
+| -------------- | ---- | -------------- | ------------------------ |
+| roomStatus     | num  | 直播间状态     | 0：无房间<br />1：有房间 |
+| liveStatus     | num  | 直播状态       | 0：未开播<br />1：直播中 |
+| url            | str  | 直播间网页url  |                          |
+| title          | str  | 直播间标题     |                          |
+| cover          | str  | 直播间封面url  |                          |
+| online         | num  | 直播间人气     | 值为上次直播时刷新       |
+| roomid         | num  | 直播间id(短号) |                          |
+| roundStatus    | num  | 轮播状态       | 0：未轮播<br />1：轮播   |
+| broadcast_type | num  | 0              |                          |
 
 **示例：**
 
@@ -157,16 +163,37 @@ curl -G 'http://api.bilibili.com/x/space/acc/info' \
         "mid": 2,
         "name": "碧诗",
         "sex": "男",
-        "face": "http://i0.hdslb.com/bfs/face/ef0457addb24141e15dfac6fbf45293ccf1e32ab.jpg",
+        "face": "http://i2.hdslb.com/bfs/face/ef0457addb24141e15dfac6fbf45293ccf1e32ab.jpg",
         "sign": "kami.im 直男过气网红 # av362830 “We Are Star Dust”",
         "rank": 20000,
         "level": 6,
         "jointime": 0,
         "moral": 0,
         "silence": 0,
-        "birthday": "09-19",
         "coins": 0,
         "fans_badge": true,
+        "fans_medal": {
+            "show": true,
+            "wear": true,
+            "medal": {
+                "uid": 2,
+                "target_id": 335115,
+                "medal_id": 45408,
+                "level": 21,
+                "medal_name": "伍千万",
+                "medal_color": 1725515,
+                "intimacy": 1980,
+                "next_intimacy": 2000,
+                "day_limit": 250000,
+                "medal_color_start": 1725515,
+                "medal_color_end": 5414290,
+                "medal_color_border": 1725515,
+                "is_lighted": 1,
+                "light_status": 1,
+                "wearing_status": 1,
+                "score": 50001980
+            }
+        },
         "official": {
             "role": 2,
             "title": "bilibili创始人（站长）",
@@ -176,44 +203,70 @@ curl -G 'http://api.bilibili.com/x/space/acc/info' \
         "vip": {
             "type": 2,
             "status": 1,
+            "due_date": 3896524800000,
+            "vip_pay_type": 0,
             "theme_type": 0,
             "label": {
                 "path": "",
                 "text": "十年大会员",
-                "label_theme": "ten_annual_vip"
+                "label_theme": "ten_annual_vip",
+                "text_color": "#FFFFFF",
+                "bg_style": 1,
+                "bg_color": "#FB7299",
+                "border_color": ""
             },
             "avatar_subscript": 1,
-            "nickname_color": "#FB7299"
+            "nickname_color": "#FB7299",
+            "role": 7,
+            "avatar_subscript_url": "http://i0.hdslb.com/bfs/vip/icon_Certification_big_member_22_3x.png"
         },
         "pendant": {
             "pid": 0,
             "name": "",
             "image": "",
             "expire": 0,
-            "image_enhance": ""
+            "image_enhance": "",
+            "image_enhance_frame": ""
         },
         "nameplate": {
             "nid": 10,
             "name": "见习偶像",
             "image": "http://i0.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png",
-            "image_small": "http://i0.hdslb.com/bfs/face/275b468b043ec246737ab8580a2075bee0b1263b.png",
+            "image_small": "http://i1.hdslb.com/bfs/face/275b468b043ec246737ab8580a2075bee0b1263b.png",
             "level": "普通勋章",
-            "condition": "所有自制视频总播放数>=10万"
+            "condition": "所有自制视频总播放数\u003e=10万"
+        },
+        "user_honour_info": {
+            "mid": 0,
+            "colour": null,
+            "tags": null
         },
         "is_followed": true,
-        "top_photo": "http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
+        "top_photo": "http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
         "theme": {},
         "sys_notice": {},
         "live_room": {
             "roomStatus": 1,
             "liveStatus": 0,
             "url": "https://live.bilibili.com/1024",
-            "title": "劲夫专业户",
-            "cover": "http://i0.hdslb.com/bfs/vc/266c730abfe5a4716844b1f4d2e308a0020199ee.jpg",
-            "online": 16433,
+            "title": "试图恰鸡",
+            "cover": "http://i0.hdslb.com/bfs/live/new_room_cover/96ee5bfd0279a0f18b190340334f43f473038288.jpg",
+            "online": 16808,
             "roomid": 1024,
             "roundStatus": 0,
             "broadcast_type": 0
+        },
+        "birthday": "09-19",
+        "school": {
+            "name": ""
+        },
+        "profession": {
+            "name": ""
+        },
+        "tags": null,
+        "series": {
+            "user_upgrade_status": 1,
+            "show_upgrade_window": false
         }
     }
 }
@@ -241,7 +294,7 @@ http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg
 
 **认证**：个人认证
 
-**认证名称**： bilibili创始人（站长） 
+**认证名称**： bilibili创始人(站长) 
 
 **大会员类型**：年度
 
@@ -267,13 +320,13 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 
 
-## 用户详细信息2 (用于名片)
+## 用户名片信息
 
 > http://api.bilibili.com/x/web-interface/card
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie(SESSDATA)
 
 **url参数：**
 
@@ -362,12 +415,12 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 `card`中的`Official`对象：
 
-| 字段  | 类型 | 内容     | 备注                                            |
-| ----- | ---- | -------- | ----------------------------------------------- |
-| role  | num  | 认证类型 | 0：无<br />1 2：个人认证<br />3 4 5 6：机构认证 |
-| title | str  | 认证信息 | 无为空                                          |
-| desc  | str  | 认证备注 | 无为空                                          |
-| type  | num  | 是否认证 | -1：无<br />0：认证                             |
+| 字段  | 类型 | 内容     | 备注                                              |
+| ----- | ---- | -------- | ------------------------------------------------- |
+| role  | num  | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
+| title | str  | 认证信息 | 无为空                                            |
+| desc  | str  | 认证备注 | 无为空                                            |
+| type  | num  | 是否认证 | -1：无<br />0：认证                               |
 
 `card`中的`official_verify`对象：
 
@@ -408,89 +461,105 @@ curl -G 'api.bilibili.com/x/web-interface/card' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"card": {
-			"mid": "2",
-			"name": "碧诗",
-			"approve": false,
-			"sex": "男",
-			"rank": "20000",
-			"face": "http://i1.hdslb.com/bfs/face/3e60b20604b6fdc7d081eb6a1ec72aa47c5a3964.jpg",
-			"DisplayRank": "0",
-			"regtime": 0,
-			"spacesta": 0,
-			"birthday": "",
-			"place": "",
-			"description": "",
-			"article": 0,
-			"attentions": [],
-			"fans": 810968,
-			"friend": 192,
-			"attention": 192,
-			"sign": "kami.im 直男过气网红 # av362830 “We Are Star Dust”",
-			"level_info": {
-				"current_level": 6,
-				"current_min": 0,
-				"current_exp": 0,
-				"next_exp": 0
-			},
-			"pendant": {
-				"pid": 76,
-				"name": "管理员",
-				"image": "http://i2.hdslb.com/bfs/face/02a3b79edef0f0e682de7f5dca7b6b5fe36d5f65.png",
-				"expire": 0
-			},
-			"nameplate": {
-				"nid": 10,
-				"name": "见习偶像",
-				"image": "http://i0.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png",
-				"image_small": "http://i1.hdslb.com/bfs/face/275b468b043ec246737ab8580a2075bee0b1263b.png",
-				"level": "普通勋章",
-				"condition": "所有自制视频总播放数\u003e=10万"
-			},
-			"Official": {
-				"role": 2,
-				"title": "bilibili创始人（站长）",
-				"desc": "",
-				"type": 0
-			},
-			"official_verify": {
-				"type": 0,
-				"desc": "bilibili创始人（站长）"
-			},
-			"vip": {
-				"vipType": 2,
-				"dueRemark": "",
-				"accessStatus": 0,
-				"vipStatus": 1,
-				"vipStatusWarn": "",
-				"theme_type": 0
-			}
-		},
-		"space": {
-			"s_img": "http://i2.hdslb.com/bfs/space/768cc4fd97618cf589d23c2711a1d1a729f42235.png",
-			"l_img": "http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png"
-		},
-		"following": true,
-		"archive_count": 35,
-		"article_count": 0,
-		"follower": 810968
-	}
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "card": {
+            "mid": "2",
+            "name": "碧诗",
+            "approve": false,
+            "sex": "男",
+            "rank": "20000",
+            "face": "http://i2.hdslb.com/bfs/face/ef0457addb24141e15dfac6fbf45293ccf1e32ab.jpg",
+            "DisplayRank": "0",
+            "regtime": 0,
+            "spacesta": 0,
+            "birthday": "",
+            "place": "",
+            "description": "",
+            "article": 0,
+            "attentions": [],
+            "fans": 969999,
+            "friend": 234,
+            "attention": 234,
+            "sign": "kami.im 直男过气网红 # av362830 “We Are Star Dust”",
+            "level_info": {
+                "current_level": 6,
+                "current_min": 0,
+                "current_exp": 0,
+                "next_exp": 0
+            },
+            "pendant": {
+                "pid": 0,
+                "name": "",
+                "image": "",
+                "expire": 0,
+                "image_enhance": "",
+                "image_enhance_frame": ""
+            },
+            "nameplate": {
+                "nid": 10,
+                "name": "见习偶像",
+                "image": "http://i2.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png",
+                "image_small": "http://i2.hdslb.com/bfs/face/275b468b043ec246737ab8580a2075bee0b1263b.png",
+                "level": "普通勋章",
+                "condition": "所有自制视频总播放数\u003e=10万"
+            },
+            "Official": {
+                "role": 2,
+                "title": "bilibili创始人（站长）",
+                "desc": "",
+                "type": 0
+            },
+            "official_verify": {
+                "type": 0,
+                "desc": "bilibili创始人（站长）"
+            },
+            "vip": {
+                "type": 2,
+                "status": 1,
+                "due_date": 3896524800000,
+                "vip_pay_type": 0,
+                "theme_type": 0,
+                "label": {
+                    "path": "",
+                    "text": "十年大会员",
+                    "label_theme": "ten_annual_vip",
+                    "text_color": "#FFFFFF",
+                    "bg_style": 1,
+                    "bg_color": "#FB7299",
+                    "border_color": ""
+                },
+                "avatar_subscript": 1,
+                "nickname_color": "#FB7299",
+                "role": 7,
+                "avatar_subscript_url": "http://i0.hdslb.com/bfs/vip/icon_Certification_big_member_22_3x.png",
+                "vipType": 2,
+                "vipStatus": 1
+            }
+        },
+        "space": {
+            "s_img": "http://i1.hdslb.com/bfs/space/768cc4fd97618cf589d23c2711a1d1a729f42235.png",
+            "l_img": "http://i1.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png"
+        },
+        "following": true,
+        "archive_count": 37,
+        "article_count": 0,
+        "follower": 969999
+    }
 }
 ```
 
 </details>
 
-## 本用户详细信息
+## 登录用户空间详细信息
 
 > http://api.bilibili.com/x/space/myinfo
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie(SESSDATA)
 
 **json回复：**
 
@@ -572,12 +641,12 @@ curl -G 'api.bilibili.com/x/web-interface/card' \
 
 `data`中的`Official`对象：
 
-| 字段  | 类型 | 内容     | 备注                                            |
-| ----- | ---- | -------- | ----------------------------------------------- |
-| role  | num  | 认证类型 | 0：无<br />1 2：个人认证<br />3 4 5 6：机构认证 |
-| title | str  | 认证信息 | 无为空                                          |
-| desc  | str  | 认证备注 | 无为空                                          |
-| type  | num  | 是否认证 | -1：无<br />0：认证                             |
+| 字段  | 类型 | 内容     | 备注                                              |
+| ----- | ---- | -------- | ------------------------------------------------- |
+| role  | num  | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
+| title | str  | 认证信息 | 无为空                                            |
+| desc  | str  | 认证备注 | 无为空                                            |
+| type  | num  | 是否认证 | -1：无<br />0：认证                               |
 
 `data`中的`level_exp`对象：
 
@@ -608,7 +677,7 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
         "name": "社会易姐QwQ",
         "sex": "男",
         "face": "http://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
-        "sign": "高中技术宅一枚，爱好MC&电子&8-bit音乐&数码&编程，粉丝群：1136462265",
+        "sign": "高考刚结束的普通技术宅一枚，喜欢MC和编程以及电子，是车车人也是术术人，粉丝群:1136462265",
         "rank": 10000,
         "level": 5,
         "jointime": 0,
@@ -620,31 +689,38 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
         "vip": {
             "type": 2,
             "status": 1,
-            "due_date": 1612454400000,
-            "vip_pay_type": 1,
+            "due_date": 1644163200000,
+            "vip_pay_type": 0,
             "theme_type": 0,
             "label": {
                 "path": "",
                 "text": "年度大会员",
-                "label_theme": "annual_vip"
+                "label_theme": "annual_vip",
+                "text_color": "#FFFFFF",
+                "bg_style": 1,
+                "bg_color": "#FB7299",
+                "border_color": ""
             },
             "avatar_subscript": 1,
-            "nickname_color": "#FB7299"
+            "nickname_color": "#FB7299",
+            "role": 3,
+            "avatar_subscript_url": "http://i0.hdslb.com/bfs/vip/icon_Certification_big_member_22_3x.png"
         },
         "pendant": {
             "pid": 2511,
             "name": "初音未来13周年",
             "image": "http://i0.hdslb.com/bfs/garb/item/4f8f3f1f2d47f0dad84f66aa57acd4409ea46361.png",
             "expire": 0,
-            "image_enhance": "http://i0.hdslb.com/bfs/garb/item/fe0b83b53e2342b16646f6e7a9370d8a867decdb.webp"
+            "image_enhance": "http://i0.hdslb.com/bfs/garb/item/fe0b83b53e2342b16646f6e7a9370d8a867decdb.webp",
+            "image_enhance_frame": "http://i0.hdslb.com/bfs/garb/item/127c507ec8448be30cf5f79500ecc6ef2fd32f2c.png"
         },
         "nameplate": {
             "nid": 4,
             "name": "青铜殿堂",
-            "image": "http://i2.hdslb.com/bfs/face/2879cd5fb8518f7c6da75887994c1b2a7fe670bd.png",
+            "image": "http://i0.hdslb.com/bfs/face/2879cd5fb8518f7c6da75887994c1b2a7fe670bd.png",
             "image_small": "http://i0.hdslb.com/bfs/face/6707c120e00a3445933308fd9b7bd9fad99e9ec4.png",
             "level": "普通勋章",
-            "condition": "单个自制视频总播放数>=1万"
+            "condition": "单个自制视频总播放数\u003e=1万"
         },
         "official": {
             "role": 0,
@@ -657,15 +733,22 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
         "is_fake_account": 0,
         "pin_prompting": 0,
         "is_deleted": 0,
+        "in_reg_audit": 0,
+        "is_rip_user": false,
+        "profession": {
+            "id": 0,
+            "name": "",
+            "show_name": ""
+        },
         "level_exp": {
             "current_level": 5,
             "current_min": 10800,
-            "current_exp": 20528,
+            "current_exp": 27125,
             "next_exp": 28800
         },
-        "coins": 40.2,
-        "following": 888,
-        "follower": 888
+        "coins": 9,
+        "following": 1122,
+        "follower": 1122
     }
 }
 ```

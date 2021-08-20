@@ -6,10 +6,10 @@
 - [查询共同关注明细](#查询共同关注明细)
 - [查询悄悄关注明细](#查询悄悄关注明细)
 - [查询黑名单明细](#查询黑名单明细)
-- [操作用户关系（关注/取关 等）](#操作用户关系（关注/取关 等）)
-- [批量操作用户关系（仅关注&拉黑）](#批量操作用户关系（仅关注&拉黑）)
-- [查询用户与自己关系（仅查关注）](#查询用户与自己关系（仅查关注）)
-- [查询用户与自己关系（互相）](#查询用户与自己关系（互相）)
+- [操作用户关系](#操作用户关系)
+- [批量操作用户关系](#批量操作用户关系)
+- [查询用户与自己关系_仅查关注](#查询用户与自己关系_仅查关注)
+- [查询用户与自己关系_互相](#查询用户与自己关系_互相)
 - [批量查询用户与自己关系](#批量查询用户与自己关系)
 - [关注分组相关](#关注分组相关)
   - [查询关注分组列表](#查询关注分组列表)
@@ -19,7 +19,7 @@
   - [创建分组](#创建分组)
   - [重命名分组](#重命名分组)
   - [删除分组](#删除分组)
-  - [修改分组成员（添加/删除）](#修改分组成员（添加/删除）)
+  - [修改分组成员](#修改分组成员)
   - [复制关注到分组](#复制关注到分组)
   - [移动关注到分组](#移动关注到分组)
 
@@ -33,7 +33,7 @@
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 登录可看自己前1000名，其他用户仅可查看前100名
 
@@ -67,11 +67,11 @@
 
 `data`中的`list`数组：
 
-| 项   | 类型 | 内容        | 备注             |
-| ---- | ---- | ----------- | ---------------- |
-| 0    | obj  | 粉丝1       |                  |
-| n    | obj  | 粉丝（n+1） | 按照关注顺序排列 |
-| ……   | obj  | ……          | ……               |
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 粉丝1     |                  |
+| n    | obj  | 粉丝(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……        | ……               |
 
 `list`中的对象：
 
@@ -202,7 +202,7 @@ curl -G 'http://api.bilibili.com/x/relation/followers' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 登录可看自己全部，其他用户仅可查看前5页
 
@@ -237,11 +237,11 @@ data 对象：
 
 `data`中的`list`数组：
 
-| 项   | 类型 | 内容        | 备注             |
-| ---- | ---- | ----------- | ---------------- |
-| 0    | obj  | 关注1       |                  |
-| n    | obj  | 关注（n+1） | 按照关注顺序排列 |
-| ……   | obj  | ……          | ……               |
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 关注1     |                  |
+| n    | obj  | 关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……        | ……               |
 
 数组`list`中的对象：
 
@@ -260,11 +260,11 @@ data 对象：
 
 数组`list`中的对象中的`tag`数组：
 
-| 项   | 类型 | 内容                    | 备注 |
-| ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组id       |      |
-| n    | num  | 位于分组（n+1）的分组id |      |
-| ……   | num  | ……                      | ……   |
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
 
 `list`中的对象中的`official_verify`对象：
 
@@ -381,7 +381,7 @@ curl -G 'http://api.bilibili.com/x/relation/ollowings' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -403,11 +403,11 @@ data 对象：
 
 `data`中的`list`数组：
 
-| 项   | 类型 | 内容            | 备注             |
-| ---- | ---- | --------------- | ---------------- |
-| 0    | obj  | 共同关注1       |                  |
-| n    | obj  | 共同关注（n+1） | 按照关注顺序排列 |
-| ……   | obj  | ……              | ……               |
+| 项   | 类型 | 内容          | 备注             |
+| ---- | ---- | ------------- | ---------------- |
+| 0    | obj  | 共同关注1     |                  |
+| n    | obj  | 共同关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……            | ……               |
 
 数组`list`中的对象：
 
@@ -426,11 +426,11 @@ data 对象：
 
 数组`list`中的对象中的`tag`数组：
 
-| 项   | 类型 | 内容                    | 备注 |
-| ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组id       |      |
-| n    | num  | 位于分组（n+1）的分组id |      |
-| ……   | num  | ……                      | ……   |
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
 
 `list`中的对象中的`official_verify`对象：
 
@@ -526,7 +526,7 @@ curl -G 'http://api.bilibili.com/x/relation/followings/search' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -558,11 +558,11 @@ data 对象：
 
 `data`中的`list`数组：
 
-| 项   | 类型 | 内容            | 备注             |
-| ---- | ---- | --------------- | ---------------- |
-| 0    | obj  | 共同关注1       |                  |
-| n    | obj  | 共同关注（n+1） | 按照关注顺序排列 |
-| ……   | obj  | ……              | ……               |
+| 项   | 类型 | 内容          | 备注             |
+| ---- | ---- | ------------- | ---------------- |
+| 0    | obj  | 共同关注1     |                  |
+| n    | obj  | 共同关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……            | ……               |
 
 数组`list`中的对象：
 
@@ -581,11 +581,11 @@ data 对象：
 
 数组`list`中的对象中的`tag`数组：
 
-| 项   | 类型 | 内容                    | 备注 |
-| ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组id       |      |
-| n    | num  | 位于分组（n+1）的分组id |      |
-| ……   | num  | ……                      | ……   |
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
 
 `list`中的对象中的`official_verify`对象：
 
@@ -706,7 +706,7 @@ curl -G 'http://api.bilibili.com/x/relation/same/followings' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -736,11 +736,11 @@ data 对象：
 
 `data`中的`list`数组：
 
-| 项   | 类型 | 内容        | 备注             |
-| ---- | ---- | ----------- | ---------------- |
-| 0    | obj  | 关注1       |                  |
-| n    | obj  | 关注（n+1） | 按照关注顺序排列 |
-| ……   | obj  | ……          | ……               |
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 关注1     |                  |
+| n    | obj  | 关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……        | ……               |
 
 数组`list`中的对象：
 
@@ -759,11 +759,11 @@ data 对象：
 
 数组`list`中的对象中的`tag`数组：
 
-| 项   | 类型 | 内容                    | 备注 |
-| ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组id       |      |
-| n    | num  | 位于分组（n+1）的分组id |      |
-| ……   | num  | ……                      | ……   |
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
 
 `list`中的对象中的`official_verify`对象：
 
@@ -853,7 +853,7 @@ curl -G 'http://api.bilibili.com/x/relation/whispers' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -884,11 +884,11 @@ data 对象：
 
 `data`中的`list`数组：
 
-| 项   | 类型 | 内容        | 备注             |
-| ---- | ---- | ----------- | ---------------- |
-| 0    | obj  | 关注1       |                  |
-| n    | obj  | 关注（n+1） | 按照关注顺序排列 |
-| ……   | obj  | ……          | ……               |
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 关注1     |                  |
+| n    | obj  | 关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……        | ……               |
 
 数组`list`中的对象：
 
@@ -1014,7 +1014,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 
 </details>
 
-## 操作用户关系（关注/取关 等）
+## 操作用户关系
 
 <img src="/imgs/follow.svg" width="200" height="100" />
 
@@ -1022,17 +1022,17 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数( application/x-www-form-urlencoded )：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                     |
-| ---------- | ---- | ------------------------ | -------------- | -------------------------------------------------------- |
-| access_key | str  | APP登录Token             | APP方式必要    |                                                          |
-| fid        | num  | 目标用户mid              | 必要           |                                                          |
-| act        | num  | 操作代码                 | 必要           | **操作代码见下表**                                       |
-| re_src     | num  | 关注来源代码             | 必要           | 空间：11<br />视频：14<br />文章：115<br />活动页面：222 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                          |
+| 参数名     | 类型 | 内容                   | 必要性         | 备注                                                     |
+| ---------- | ---- | ---------------------- | -------------- | -------------------------------------------------------- |
+| access_key | str  | APP登录Token           | APP方式必要    |                                                          |
+| fid        | num  | 目标用户mid            | 必要           |                                                          |
+| act        | num  | 操作代码               | 必要           | **操作代码见下表**                                       |
+| re_src     | num  | 关注来源代码           | 必要           | 空间：11<br />视频：14<br />文章：115<br />活动页面：222 |
+| csrf       | str  | CSRF Token(位于cookie) | Cookie方式必要 |                                                          |
 
 操作代码`act`：
 
@@ -1082,23 +1082,25 @@ curl 'http://api.bilibili.com/x/relation/modify' \
 
 </details>
 
-## 批量操作用户关系（仅关注&拉黑）
+## 批量操作用户关系
 
 > http://api.bilibili.com/x/relation/batch/modify
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+此接口只支持关注和拉黑操作
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                           |
-| ---------- | ---- | ------------------------ | -------------- | ---------------------------------------------- |
-| access_key | str  | APP登录Token             | APP方式必要    |                                                |
-| fids       | nums | 目标用户mid              | 必要           | 每个之间用`,`间隔                            |
-| act        | num  | 操作代码                 | 必要           | 同上<br />仅可为1或5，故只能进行批量关注和拉黑 |
-| re_src     | num  | 关注来源代码             | 必要           | 同上                                           |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                |
+**正文参数( application/x-www-form-urlencoded )：**
+
+| 参数名     | 类型 | 内容                   | 必要性         | 备注                                           |
+| ---------- | ---- | ---------------------- | -------------- | ---------------------------------------------- |
+| access_key | str  | APP登录Token           | APP方式必要    |                                                |
+| fids       | nums | 目标用户mid            | 必要           | 每个之间用`,`间隔                              |
+| act        | num  | 操作代码               | 必要           | 同上<br />仅可为1或5，故只能进行批量关注和拉黑 |
+| re_src     | num  | 关注来源代码           | 必要           | 同上                                           |
+| csrf       | str  | CSRF Token(位于cookie) | Cookie方式必要 |                                                |
 
 **json回复：**
 
@@ -1119,11 +1121,11 @@ curl 'http://api.bilibili.com/x/relation/modify' \
 
 `data`中的`failed_fids`数组：
 
-| 项   | 类型 | 内容                 | 备注 |
-| ---- | ---- | -------------------- | ---- |
-| 0    | num  | 操作失败的mid 1      |      |
-| n    | num  | 操作失败的mid（n+1） |      |
-| ……   | num  | ……                   | ……   |
+| 项   | 类型 | 内容               | 备注 |
+| ---- | ---- | ------------------ | ---- |
+| 0    | num  | 操作失败的mid 1    |      |
+| n    | num  | 操作失败的mid(n+1) |      |
+| ……   | num  | ……                 | ……   |
 
 **示例：**
 
@@ -1153,13 +1155,13 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
 
 </details>
 
-## 查询用户与自己关系（仅查关注）
+## 查询用户与自己关系_仅查关注
 
 > http://api.bilibili.com/x/relation
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -1194,7 +1196,7 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
 | 项   | 类型 | 内容                    | 备注 |
 | ---- | ---- | ----------------------- | ---- |
 | 0    | num  | 位于分组1的分组       |      |
-| n    | num  | 位于分组（n+1）的分组 |      |
+| n    | num  | 位于分组(n+1)的分组 |      |
 | ……   | num  | ……                      | ……   |
 
 **示例：**
@@ -1227,13 +1229,13 @@ curl -G 'http://http://api.bilibili.com/x/relation' \
 
 </details>
 
-## 查询用户与自己关系（互相）
+## 查询用户与自己关系_互相
 
 > http://api.bilibili.com/x/space/acc/relation
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -1282,15 +1284,15 @@ curl -G 'http://http://api.bilibili.com/x/relation' \
 
 `be_relation`与`relation`中的`tag`数组：
 
-| 项   | 类型 | 内容                    | 备注 |
-| ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组id       |      |
-| n    | num  | 位于分组（n+1）的分组id |      |
-| ……   | num  | ……                      | ……   |
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
 
 **示例：**
 
-可得对于`mid=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于为`-10`和`56502`的分组中（虽然我看不到）
+可得对于`mid=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于为`-10`和`56502`的分组中(虽然我看不到)
 
 ```shell
 curl -G 'http://api.bilibili.com/x/space/acc/relation' \
@@ -1335,7 +1337,7 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -1374,11 +1376,11 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation' \
 
 `tag`数组：
 
-| 项   | 类型 | 内容                    | 备注 |
-| ---- | ---- | ----------------------- | ---- |
-| 0    | num  | 位于分组1的分组id       |      |
-| n    | num  | 位于分组（n+1）的分组id |      |
-| ……   | num  | ……                      | ……   |
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
 
 **示例：**
 
@@ -1427,7 +1429,7 @@ curl -G 'http://http://api.bilibili.com/x/relation/relations' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -1506,7 +1508,7 @@ curl 'http://api.bilibili.com/x/relation/tags' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -1531,11 +1533,11 @@ curl 'http://api.bilibili.com/x/relation/tags' \
 
 `data`数组：
 
-| 项   | 类型 | 内容            | 备注             |
-| ---- | ---- | --------------- | ---------------- |
-| 0    | obj  | 成员信息1       |                  |
-| n    | obj  | 成员信息（n+1） | 按照添加顺序排序 |
-| ……   | obj  | ……              | ……               |
+| 项   | 类型 | 内容          | 备注             |
+| ---- | ---- | ------------- | ---------------- |
+| 0    | obj  | 成员信息1     |                  |
+| n    | obj  | 成员信息(n+1) | 按照添加顺序排序 |
+| ……   | obj  | ……            | ……               |
 
 数组`data`中的对象：
 
@@ -1649,7 +1651,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -1710,7 +1712,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
 **url参数：**
 
@@ -1731,11 +1733,11 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user' \
 
 `data`数组：
 
-| 项   | 类型 | 内容           | 备注 |
-| ---- | ---- | -------------- | ---- |
-| 0    | num  | 成员1mid       |      |
-| n    | num  | 成员（n+1）mid |      |
-| ……   | num  | ……             | ……   |
+| 项   | 类型 | 内容         | 备注 |
+| ---- | ---- | ------------ | ---- |
+| 0    | num  | 成员1mid     |      |
+| n    | num  | 成员(n+1)mid |      |
+| ……   | num  | ……           | ……   |
 
 **示例：**
 
@@ -1785,15 +1787,15 @@ curl 'http://api.bilibili.com/x/relation/tag/special' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数( application/x-www-form-urlencoded )：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注       |
-| ---------- | ---- | ------------------------ | -------------- | ---------- |
-| access_key | str  | APP登录Token             | APP方式必要    |            |
-| tag        | str  | 分组名                   | 必要           | 最长16字符 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |            |
+| 参数名     | 类型 | 内容                   | 必要性         | 备注       |
+| ---------- | ---- | ---------------------- | -------------- | ---------- |
+| access_key | str  | APP登录Token           | APP方式必要    |            |
+| tag        | str  | 分组名                 | 必要           | 最长16字符 |
+| csrf       | str  | CSRF Token(位于cookie) | Cookie方式必要 |            |
 
 **json回复：**
 
@@ -1845,16 +1847,16 @@ curl 'http://api.bilibili.com/x/relation/tag/create' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数( application/x-www-form-urlencoded )：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注       |
-| ---------- | ---- | ------------------------ | -------------- | ---------- |
-| access_key | str  | APP登录Token             | APP方式必要    |            |
-| tagid      | num  | 分组id                   | 必要           |            |
-| name       | str  | 新名称                   | 必要           | 最长16字符 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |            |
+| 参数名     | 类型 | 内容                   | 必要性         | 备注       |
+| ---------- | ---- | ---------------------- | -------------- | ---------- |
+| access_key | str  | APP登录Token           | APP方式必要    |            |
+| tagid      | num  | 分组id                 | 必要           |            |
+| name       | str  | 新名称                 | 必要           | 最长16字符 |
+| csrf       | str  | CSRF Token(位于cookie) | Cookie方式必要 |            |
 
 **json回复：**
 
@@ -1899,15 +1901,15 @@ curl 'http://api.bilibili.com/x/relation/tag/update' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数( application/x-www-form-urlencoded )：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注 |
-| ---------- | ---- | ------------------------ | -------------- | ---- |
-| access_key | str  | APP登录Token             | APP方式必要    |      |
-| tagid      | num  | 分组id                   | 必要           |      |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |      |
+| 参数名     | 类型 | 内容                   | 必要性         | 备注 |
+| ---------- | ---- | ---------------------- | -------------- | ---- |
+| access_key | str  | APP登录Token           | APP方式必要    |      |
+| tagid      | num  | 分组id                 | 必要           |      |
+| csrf       | str  | CSRF Token(位于cookie) | Cookie方式必要 |      |
 
 **json回复：**
 
@@ -1943,7 +1945,7 @@ curl 'http://api.bilibili.com/x/relation/tag/del' \
 
 </details>
 
-### 修改分组成员（添加/删除）
+### 修改分组成员
 
 <img src="/imgs/add.svg" width="100" height="100" />
 
@@ -1951,16 +1953,18 @@ curl 'http://api.bilibili.com/x/relation/tag/del' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+如需删除分组中的成员，请将`tagids`设为0，即移动至默认分组，而不是取关
+
+**正文参数( application/x-www-form-urlencoded )：**
 
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                |
 | ---------- | ---- | ------------------------ | -------------- | ------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                     |
 | fids       | nums | 目标用户mid              | 必要           | 每个之间用`,`间隔 |
 | tagids     | nums | 分组id                   | 必要           | 每个之间用`,`间隔 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
+| csrf       | str  | CSRF Token(位于cookie) | Cookie方式必要 |                     |
 
 **json回复：**
 
@@ -2003,16 +2007,16 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数( application/x-www-form-urlencoded )：**
 
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                |
 | ---------- | ---- | ------------------------ | -------------- | ------------------- |
 | access_key | str  | APP登录Token             | APP方式必要    |                     |
 | fids       | nums | 待复制的用户mid          | 必要           | 每个之间用`,`间隔 |
 | tagids     | nums | 目标分组id               | 必要           | 每个之间用`,`间隔 |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
+| csrf       | str  | CSRF Token(位于cookie) | Cookie方式必要 |                     |
 
 **json回复：**
 
@@ -2055,9 +2059,9 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie(SESSDATA)或APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数( application/x-www-form-urlencoded )：**
 
 | 参数名       | 类型 | 内容                     | 必要性         | 备注                |
 | ------------ | ---- | ------------------------ | -------------- | ------------------- |
@@ -2065,7 +2069,7 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
 | beforeTagids | nums | 原分组id                 | 必要           | 每个之间用`,`间隔 |
 | afterTagids  | nums | 新分组id                 | 必要           | 每个之间用`,`间隔 |
 | fids         | nums | 待移动的用户mid          | 必要           | 每个之间用`,`间隔 |
-| csrf         | str  | CSRF Token（位于cookie） | Cookie方式必要 |                     |
+| csrf         | str  | CSRF Token(位于cookie) | Cookie方式必要 |                     |
 
 **json回复：**
 

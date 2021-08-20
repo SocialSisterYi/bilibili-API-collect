@@ -80,6 +80,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [高能进度条](video/pbp.md)√
   - [信息上报（心跳及记录历史）](video/report.md)×
   - [视频属性数据](video/attribute_data.md)√
+  - [视频在线人数](video/online.md)√
 - [剧集（番剧、影视）](bangumi)
   - [基本信息](bangumi/info.md)×
   - 状态数

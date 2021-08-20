@@ -391,7 +391,7 @@ message FieldValue {
     //
     oneof value {
         // 开关
-        bool value = 1;
+        bool switch = 1;
     }
 }
 

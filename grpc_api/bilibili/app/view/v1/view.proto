@@ -246,9 +246,9 @@ message ActivityResource {
     // 背景色
     string bg_color = 3;
     // 选中背景色
-    string selectedBgColor = 4;
+    string selected_bg_color = 4;
     // 文字颜色
-    string selected_bg_color = 5;
+    string text_color = 5;
     // 浅字色
     string light_text_color = 6;
     // 深字色
