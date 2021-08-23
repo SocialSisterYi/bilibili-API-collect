@@ -371,3 +371,44 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 | title     | str  | 直播间标题      |            |
 | uid       | str  | 主播mid        |            |
 | uname     | str  | 主播用户名     |            |
+
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"msg": "success",
+	"message": "success",
+	"data": {
+		"194484313": {
+			"title": "中元节可爱鬼来喽！",
+			"room_id": 6154037,
+			"uid": 194484313,
+			"online": 955261,
+			"live_time": 0,
+			"live_status": 2,
+			"short_id": 732,
+			"area": 1,
+			"area_name": "单机联机",
+			"area_v2_id": 236,
+			"area_v2_name": "主机游戏",
+			"area_v2_parent_name": "单机游戏",
+			"area_v2_parent_id": 6,
+			"uname": "Asaki大人",
+			"face": "https://i1.hdslb.com/bfs/face/e8f57fd6992f7d2ef6e6bcee957fb6cf6bca3d80.jpg",
+			"tag_name": "以撒,minecraft,饥荒,彩虹六号,东方",
+			"tags": "",
+			"cover_from_user": "https://i0.hdslb.com/bfs/live/new_room_cover/0a0a8eb5bd7fb64a036b55c748f02ad79a210ec9.jpg",
+			"keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe0823020500000615403721k8sp.jpg",
+			"lock_till": "0000-00-00 00:00:00",
+			"hidden_till": "0000-00-00 00:00:00",
+			"broadcast_type": 0
+		}
+	}
+}
+
+```
+
+</details>
