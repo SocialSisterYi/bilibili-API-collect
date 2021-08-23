@@ -355,7 +355,7 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 | area_v2_name | str  | 直播间新版分区名  |            |
 | area_v2_parent_id | num  | 直播间父分区id  |            |
 | area_v2_parent_name | str  | 直播间父分区名  |            |
-| broadcast_type | num  | 直播类型  |            |
+| broadcast_type | num  | 直播类型  |  0:普通直播，1：手机直播(sound only)          |
 | cover_from_user | str  | 直播间封面url  |            |
 | face      | str  | 主播头像url  |            |
 | hidden_till | str  | 直播间隐藏信息  |            |
