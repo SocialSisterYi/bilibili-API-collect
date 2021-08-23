@@ -349,27 +349,27 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 | 字段     | 类型 | 内容     | 备注         |
 | -------- | ---- | -------- | ------------ |
-| area      | num  | 直播间分区信息  |            |
-| area_name | str  | 直播间分区信息  |            |
-| area_v2_id | num  | 直播间分区信息  |            |
-| area_v2_name | str  | 直播间分区信息  |            |
-| area_v2_parent_id | num  | 直播间分区信息  |            |
-| area_v2_parent_name | str  | 直播间分区信息  |            |
-| broadcast_type | num  | 直播间分区信息  |            |
-| cover_from_user | str  | 直播间分区信息  |            |
-| face      | str  | 直播间封面url  |            |
-| hidden_till | str  | 直播间分区信息  |            |
-| keyframe  | str  | 直播间关键帧urllive_status  |            |
+| area      | num  | 直播间分区id  |            |
+| area_name | str  | 直播间分区名  |            |
+| area_v2_id | num  | 直播间新版分区id  |            |
+| area_v2_name | str  | 直播间新版分区名  |            |
+| area_v2_parent_id | num  | 直播间父分区id  |            |
+| area_v2_parent_name | str  | 直播间父分区名  |            |
+| broadcast_type | num  | 直播类型  |            |
+| cover_from_user | str  | 直播间封面url  |            |
+| face      | str  | 主播头像url  |            |
+| hidden_till | str  | 直播间隐藏信息  |            |
+| keyframe  | str  | 直播间关键帧url  |            |
 | live_status | num  | 直播间开播状态  |  0：未开播，1：正在直播，2：轮播中          |
 | live_time      | num  | 直播持续时长  |            |
-| lock_till | str  | 直播间分区信息  |            |
+| lock_till | str  | 直播间封禁信息  |            |
 | online    | num  | 直播间在线人数  |            |
-| room_id   | str  | 直播间房间号    | 直播间实际房间号   |
+| room_id   | num  | 直播间房间号    | 直播间实际房间号   |
 | short_id  | num  | 直播间房间号    | 直播间短房间号，常见于签约主播   |
 | tag_name  | str  | 直播间标签      |            |
 | tags      | str  | 直播间自定标签   |            |
 | title     | str  | 直播间标题      |            |
-| uid       | str  | 主播mid        |            |
+| uid       | num  | 主播mid        |            |
 | uname     | str  | 主播用户名     |            |
 
 
