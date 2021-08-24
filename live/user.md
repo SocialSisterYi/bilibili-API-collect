@@ -120,6 +120,13 @@
 | mobile_verify        | num  |            |                          |
 | official_verify        | obj  | 认证信息   |                          |
 
+**示例：**
+
+```shell
+curl https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal \
+-b "SESSDATA=xxx"
+```
+
 <details>
 <summary>查看响应示例：</summary>
 
