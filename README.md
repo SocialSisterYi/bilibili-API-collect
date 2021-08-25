@@ -87,46 +87,47 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 操作
 - [视频弹幕](danmaku)
   - [protobuf实时弹幕](danmaku/danmaku_proto.md)√
-  - [protobuf弹幕元数据（BAS弹幕/互动弹幕）](danmaku/danmaku_view_proto.md)√
-  - [xml实时弹幕](danmaku/danmaku_xml.md)√
-  - [历史弹幕](danmaku/history.md)√
+  - <details><summary><a href="danmaku/danmaku_view_proto.md">protobuf弹幕元数据（BAS弹幕/互动弹幕）</a>√</summary><ul><li><a href="danmaku/danmaku_view_proto.md#获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）">获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）</a></li><li><a href="danmaku/danmaku_view_proto.md#实例">实例</a></li><ul><li><a href="danmaku/danmaku_view_proto.md#获取互动弹幕">获取互动弹幕</a></li><li><a href="danmaku/danmaku_view_proto.md#获取BAS（代码）弹幕专包">获取BAS（代码）弹幕专包</a></li></ul></ul></details>
+  - <details><summary><a href="danmaku/danmaku_xml.md">xml实时弹幕</a>√</summary><ul><li><a href="danmaku/danmaku_xml.md#获取实时弹幕1">获取实时弹幕1</a></li><li><a href="danmaku/danmaku_xml.md#获取实时弹幕2">获取实时弹幕2</a></li><li><a href="danmaku/danmaku_xml.md#弹幕格式">弹幕格式</a></li></ul></details>
+  - <details><summary><a href="danmaku/history.md">历史弹幕</a>√</summary><ul><li><a href="danmaku/history.md#查询历史弹幕日期">查询历史弹幕日期</a></li><li><a href="danmaku/history.md#获取历史弹幕protobuf接口">获取历史弹幕protobuf接口</a></li></ul></details>
   - [快照](danmaku/snapshot.md)√
-  - [弹幕操作](danmaku/action.md)×
+  - <details><summary><a href="danmaku/action.md">弹幕操作</a>×</summary><ul><li><a href="danmaku/action.md#发送视频弹幕">发送视频弹幕</a></li><li><a href="danmaku/action.md#发送互动弹幕">发送互动弹幕</a></li><li><a href="danmaku/action.md#撤回弹幕">撤回弹幕</a></li><li><a href="danmaku/action.md#购买高级弹幕发送权限">购买高级弹幕发送权限</a></li><li><a href="danmaku/action.md#检测高级弹幕发送权限">检测高级弹幕发送权限</a></li><li><a href="danmaku/action.md#查询弹幕点赞数">查询弹幕点赞数</a></li><li><a href="danmaku/action.md#点赞弹幕">点赞弹幕</a></li><li><a href="danmaku/action.md#举报弹幕">举报弹幕</a></li><li><a href="danmaku/action.md#保护&删除弹幕">保护&删除弹幕</a></li><li><a href="danmaku/action.md#修改字幕池">修改字幕池</a></li></ul></details>
   - 高级弹幕
   - 屏蔽管理
   - 智能防挡弹幕
   - [弹幕个人配置修改](danmaku/config.md)√
 - [视频笔记](note)√
   - [笔记列表](note/list.md)√
-  - [笔记详细信息](note/info.md)√
-  - [笔记操作](note/action.md)√
+  - <details><summary><a href="note/info.md">笔记详细信息</a>√</summary><ul><li><a href="note/info.md#查询视频笔记">查询视频笔记</a></li><li><a href="note/info.md#查询笔记内容">查询笔记内容</a></li></ul></details>
+  - <details><summary><a href="note/action.md">笔记操作</a>√</summary><ul><li><a href="note/action.md#保存视频笔记">保存视频笔记</a></li><li><a href="note/action.md#删除视频笔记">删除视频笔记</a></li></ul></details>
 - [专栏](article)
   - 分区
   - [基本信息](article/info.md)×
-  - [点赞&投币&收藏&分享](article/like_coin_fav.md)×
+  - <details><summary><a href="article/like_coin_fav.md">专栏投币&点赞&收藏</a>×</summary><ul><li><a href="article/like_coin_fav.md#点赞文章">点赞文章</a></li><li><a href="article/like_coin_fav.md#投币文章">投币文章</a></li><li><a href="article/like_coin_fav.md#收藏文章">收藏文章</a></li></ul></details>
   - [文集基本信息](article/articles.md)×
 - [音频](audio)
-  - [歌曲基本信息](audio/info.md)√
-  - [歌单&音频收藏夹详细信息](audio/music_list.md)×
+  - <details><summary><a href="audio/info.md">歌曲基本信息</a>√</summary><ul><li><a href="audio/info.md#查询歌曲基本信息">查询歌曲基本信息</a></li><li><a href="audio/info.md#查询歌曲TAG">查询歌曲TAG</a></li><li><a href="audio/info.md#查询歌曲创作成员列表">查询歌曲创作成员列表</a></li><li><a href="audio/info.md#获取歌曲歌词">获取歌曲歌词</a></li></ul></details>
+  - <details><summary><a href="audio/music_list.md">歌单&音频收藏夹详细信息</a>×</summary><ul><li><a href="audio/music_list.md#查询自己创建的歌单">查询自己创建的歌单</a></li><li><a href="audio/music_list.md#查询音频收藏夹（默认歌单）信息">查询音频收藏夹（默认歌单）信息</a></li></ul></details>
   - [状态数](audio/status_number.md)×
-  - [投币&收藏](audio/coin&fav.md)×
-  - [播放&下载地址（音频流）](audio/musicstream_url.md)√
+  - <details><summary><a href="audio/coin&fav.md">投币&收藏</a>×</summary><ul><li><a href="audio/coin&fav.md#查询音频收藏状态">查询音频收藏状态</a></li><li><a href="audio/coin&fav.md#查询音频投币数">查询音频投币数</a></li></ul></details>
+  - <details><summary><a href="audio/musicstream_url.md">播放&下载地址（音频流）</a>√</summary><ul><li><a href="audio/musicstream_url.md#获取音频流URL（无法获取付费音频）（web端）">获取音频流URL（无法获取付费音频）（web端）</a></li><li><a href="audio/musicstream_url.md#获取音频流URL（可获取付费音频）（双端）">获取音频流URL（可获取付费音频）（双端）</a></li><li><a href="audio/musicstream_url.md#音频流的获取">音频流的获取</a></li></ul></details>
   - 音频榜单
 - [排行榜&最新视频](ranking&dynamic)
   - [排行榜](ranking&dynamic/ranking.md)×
   - [最新视频](ranking&dynamic/dynamic.md)×
 - [搜索](search)
   - [搜索请求](search/search_request.md)√
-  - [搜索结果](search/search_response.md)√
-  - [默认搜索&热搜](search/hot.md)√
+  - <details><summary><a href="search/search_request.md">搜索请求</a>√</summary><ul><li><a href="search/search_request.md#综合搜索（web端）">综合搜索（web端）</a></li><li><a href="search/search_request.md#分类搜索（web端）">分类搜索（web端）</a></li></ul></details>
+  - <details><summary><a href="search/search_response.md">搜索结果</a>√</summary><ul><li><a href="search/search_response.md#对象类型1-结果为视频">对象类型1-结果为视频</a></li><li><a href="search/search_response.md#对象类型2-结果为番剧&影视">对象类型2-结果为番剧&影视</a></li><li><a href="search/search_response.md#对象类型3-结果为直播间">对象类型3-结果为直播间</a></li><li><a href="search/search_response.md#对象类型4-结果为主播">对象类型4-结果为主播</a></li><li><a href="search/search_response.md#对象类型5-结果为专栏">对象类型5-结果为专栏</a></li><li><a href="search/search_response.md#对象类型6-结果为话题">对象类型6-结果为话题</a></li><li><a href="search/search_response.md#对象类型7-结果为用户">对象类型7-结果为用户</a></li><li><a href="search/search_response.md#对象类型8-结果为相簿">对象类型8-结果为相簿</a></li></ul></details>
+  - <details><summary><a href="search/hot.md">默认搜索&热搜</a>√</summary><ul><li><a href="search/hot.md#获取默认搜索内容（web端）">获取默认搜索内容（web端）</a></li><li><a href="search/hot.md#获取热搜列表（web端）">获取热搜列表（web端）</a></li></ul></details>
   - [搜索建议](search/suggest.md)√
 - [小黑屋](blackroom)
   - 基本信息
-  - [封禁公示](blackroom/banlist.md)√
+  - <details><summary><a href="blackroom/banlist.md">封禁公示</a>√</summary><ul><li><a href="blackroom/banlist.md#获取封禁用户公示列表">获取封禁用户公示列表</a></li><li><a href="blackroom/banlist.md#封禁处理公示详情">封禁处理公示详情</a></li></ul></details>
   - [风纪委员及众裁案件相关](blackroom/jury)√
-    - [风纪委员基本信息](blackroom/jury/base_info.md)√
-    - [众裁案件基本信息](blackroom/jury/judgement_info.md)√
-    - [裁决操作](blackroom/jury/action.md)√
+    - <details><summary><a href="blackroom/jury/base_info.md">风纪委员基本信息</a>√</summary><ul><li><a href="blackroom/jury/base_info.md#基本数据">基本数据</a></li><li><a href="blackroom/jury/base_info.md#统计信息">统计信息</a></li><li><a href="blackroom/jury/base_info.md#检查申请风纪委员会资格">检查申请风纪委员会资格</a></li></ul></details>
+    - <details><summary><a href="blackroom/jury/judgement_info.md">众裁案件基本信息</a>√</summary><ul><li><a href="blackroom/jury/judgement_info.md#查询投票过的单个案件">查询投票过的单个案件</a></li><li><a href="blackroom/jury/judgement_info.md#查询案件众裁信息">查询案件众裁信息</a></li><li><a href="blackroom/jury/judgement_info.md#查询我的众裁记录">查询我的众裁记录</a></li><li><a href="blackroom/jury/judgement_info.md#获取众议观点">获取众议观点</a></li></ul></details>
+    - <details><summary><a href="blackroom/jury/action.md">裁决操作</a>√</summary><ul><li><a href="blackroom/jury/action.md#申请加入风纪委员会">申请加入风纪委员会</a></li><li><a href="blackroom/jury/action.md#拉取新案件">拉取新案件</a></li><li><a href="blackroom/jury/action.md#进行仲裁投票">进行仲裁投票</a></li></ul></details>
 - [评论区](comment)√
   - [评论区明细](comment/list.md)√
   - [操作](comment/action.md)√
