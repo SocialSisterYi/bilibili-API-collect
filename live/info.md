@@ -372,6 +372,15 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 | uid       | num  | 主播mid        |            |
 | uname     | str  | 主播用户名     |            |
 
+**示例：**
+
+查询用户`mid=194484313`的直播间信息
+
+```shell
+curl https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids \
+-H "Content-Type: application/json" \
+-d "{\"uids\": [194484313]}" 
+```
 
 <details>
 <summary>查看响应示例：</summary>
