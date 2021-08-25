@@ -72,13 +72,13 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - <details><summary><a href="video/info.md">基本信息</a>√</summary><ul><li><a href="video/info.md#获取视频详细信息(web端)">获取视频详细信息(web端)</a></li><li><a href="video/info.md#获取视频简介">获取视频简介</a></li><li><a href="video/info.md#查询视频分P列表 (avid/bvid转cid)">查询视频分P列表 (avid/bvid转cid)</a></li></ul></details>
   - <details><summary><a href="video/status_number.md">状态数</a>√</summary><ul><li><a href="video/status_number.md#视频状态数（仅avid）">视频状态数（仅avid）</a></li><li><a href="video/status_number.md#视频状态数（bvid/avid）">视频状态数（bvid/avid）</a></li></ul></details>
   - <details><summary><a href="video/snapshot.md">快照</a>√</summary><ul><li><a href="video/snapshot.md#获取视频快照（web端）">获取视频快照（web端）</a></li><li><a href="video/snapshot.md#获取视频快照（APP端）">获取视频快照（APP端）</a></li><li><a href="video/snapshot.md#获取视频快照（web端）（用于封面预览）">获取视频快照（web端）（用于封面预览）</a></li><li><a href="video/snapshot.md#图片拼版">图片拼版</a></li><li><a href="video/snapshot.md#bin格式截取时间表">bin格式截取时间表</a></li></ul></details>
-  - [点赞&投币&收藏](video/like_coin_fav.md)√
-  - [TAG](video/tags.md)x
+  - <details><summary><a href="video/info.md">点赞&投币&收藏</a>√</summary><ul><li><a href="video/like_coin_fav.md#点赞">点赞</a></li><ul><li><a href="video/like_coin_fav.md#点赞视频（web端）">点赞视频（web端）</a></li><li><a href="video/like_coin_fav.md#点赞视频（APP端）">点赞视频（APP端）</a></li><li><a href="video/like_coin_fav.md#判断视频是否被点赞（双端）">判断视频是否被点赞（双端）</a></li></ul><li><a href="video/like_coin_fav.md#投币">投币</a></li><ul><li><a href="video/like_coin_fav.md#投币视频（web端）">投币视频（web端）</a></li><li><a href="video/like_coin_fav.md#投币视频（APP端）">投币视频（APP端）</a></li><li><a href="video/like_coin_fav.md#判断视频是否被投币（双端）">判断视频是否被投币（双端）</a></li></ul><li><a href="video/like_coin_fav.md#收藏">收藏</a></li><ul><li><a href="video/like_coin_fav.md#收藏视频（双端）">收藏视频（双端）</a></li><li><a href="video/like_coin_fav.md#判断视频是否被收藏（双端）">判断视频是否被收藏（双端）</a></li></ul><li><a href="video/like_coin_fav.md#一键三连">一键三连</a></li><ul><li><a href="video/like_coin_fav.md#一键三连视频（web端）">一键三连视频（web端）</a></li><li><a href="video/like_coin_fav.md#一键三连视频（APP端）">一键三连视频（APP端）</a></li></ul><li><a href="video/like_coin_fav.md#分享"></a></li><ul><li><a href="video/like_coin_fav.md#分享视频 （Web端）">分享视频 （Web端）</a></li></ul></ul></details>
+  - <details><summary><a href="video/tags.md">TAG</a>x</summary><ul><li><a href="video/tags.md#获取视频TAG信息">获取视频TAG信息</a></li><li><a href="video/tags.md#点赞&取消点赞视频TAG">点赞&取消点赞视频TAG</a></li><li><a href="video/tags.md#点踩&取消点踩视频TAG">点踩&取消点踩视频TAG</a></li></ul></details>
   - [视频推荐](video/recommend.md)√
-  - [播放&下载地址（视频流）](video/videostream_url.md)√
+  - <details><summary><a href="video/videostream_url.md">播放&下载地址（视频流）</a>√</summary><ul><li><a href="video/videostream_url.md#qn视频清晰度标识">qn视频清晰度标识</a></li><li><a href="video/videostream_url.md#fnver视频流版本标识">fnver视频流版本标识</a></li><li><a href="video/videostream_url.md#fnval视频流格式标识">fnval视频流格式标识</a></li><li><a href="video/videostream_url.md#视频伴音音质代码">视频伴音音质代码</a></li><li><a href="video/videostream_url.md#获取视频流URL（web端）">获取视频流URL（web端）</a></li><li><a href="video/videostream_url.md#视频的取流（web端及APP端）">视频的取流（web端及APP端）</a></li></ul></details>
   - [互动视频](video/interact_video.md)×
   - [高能进度条](video/pbp.md)√
-  - [信息上报（心跳及记录历史）](video/report.md)×
+  - <details><summary><a href="video/report.md">信息上报（心跳及记录历史）</a>×</summary><ul><li><a href="video/report.md#上报观看进度（双端）">上报观看进度（双端）</a></li><li><a href="video/report.md#上报视频播放心跳（web端）">上报视频播放心跳（web端）</a></li></ul></details>
   - [视频属性数据](video/attribute_data.md)√
   - [视频在线人数](video/online.md)√
 - [剧集（番剧、影视）](bangumi)
