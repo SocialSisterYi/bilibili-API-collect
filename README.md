@@ -56,6 +56,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [登录基本信息](login/login_info.md)√
     <details>
     <summary></summary>
+    <a href="../login/login_info.md#导航栏用户信息">导航栏用户信息</a>
     - [导航栏用户信息](login/login_info.md#导航栏用户信息)
     - [登录用户信息（APP端）](login/login_info.md#登录用户信息（APP端）)
     - [登录用户状态数（双端）](login/login_info.md#登录用户状态数（双端）)
