@@ -79,10 +79,10 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [互动视频](video/interact_video.md)×
   - [高能进度条](video/pbp.md)√
   - <details><summary><a href="video/report.md">信息上报（心跳及记录历史）</a>×</summary><ul><li><a href="video/report.md#上报观看进度（双端）">上报观看进度（双端）</a></li><li><a href="video/report.md#上报视频播放心跳（web端）">上报视频播放心跳（web端）</a></li></ul></details>
-  - [视频属性数据](video/attribute_data.md)√
-  - [视频在线人数](video/online.md)√
+  - <details><summary><a href="video/attribute_data.md">视频属性数据</a>√</summary><ul><li><a href="video/attribute_data.md#attribute字段值(视频属性位)">attribute字段值(视频属性位)</a></li><li><a href="video/attribute_data.md#state字段值(稿件状态)">state字段值(稿件状态)</a></li></ul></details>
+  - <details><summary><a href="video/online.md">视频在线人数</a>√</summary><ul><li><a href="video/online.md#获取视频在线人数_web端">获取视频在线人数_web端</a></li><li><a href="video/online.md#获取视频在线人数_APP端">获取视频在线人数_APP端</a></li></ul></details>
 - [剧集（番剧、影视）](bangumi)
-  - [基本信息](bangumi/info.md)×
+  - <details><summary><a href="bangumi/info.md">基本信息</a>×</summary><ul><li><a href="bangumi/info.md#剧集基本信息（mdid方式）">剧集基本信息（mdid方式）</a></li><li><a href="bangumi/info.md#获取剧集明细（web端）（ssid/epid方式）">获取剧集明细（web端）（ssid/epid方式）</a></li></ul></details>
   - 状态数
   - 操作
 - [视频弹幕](danmaku)
