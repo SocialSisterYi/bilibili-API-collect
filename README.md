@@ -53,26 +53,18 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
     - [密码登录](login/login_action/password.md)√
     - [二维码登录](login/login_action/QR.md)√
     - SNS登录（QQ&微博）
-  - [登录基本信息](login/login_info.md)√
-    <details>
-    <summary></summary>
-    <a href="login/login_info.md#导航栏用户信息">导航栏用户信息</a>
-    - [导航栏用户信息](login/login_info.md#导航栏用户信息)
-    - [登录用户信息（APP端）](login/login_info.md#登录用户信息（APP端）)
-    - [登录用户状态数（双端）](login/login_info.md#登录用户状态数（双端）)
-    - [获取硬币数](login/login_info.md#获取硬币数)
-    </details>
-  - [个人中心](login/member_center.md)×
+  - <details><summary><a href="login/login_info.md">登录基本信息</a>√</summary><ul><li><a href="login/login_info.md#导航栏用户信息">导航栏用户信息</a></li><li><a href="login/login_info.md#登录用户信息（APP端）">登录用户信息（APP端）</a></li><li><a href="login/login_info.md#登录用户状态数（双端）">登录用户状态数（双端）</a></li><li><a href="login/login_info.md#获取硬币数">获取硬币数</a></li></ul></details>
+  - <details><summary><a href="login/member_center.md">个人中心</a>×</summary><ul><li><a href="login/member_center.md#获取我的信息">获取我的信息</a></li><li><a href="login/member_center.md#查询每日奖励状态">查询每日奖励状态</a></li><li><a href="login/member_center.md#查询每日投币获得经验数">查询每日投币获得经验数</a></li><li><a href="login/member_center.md#查询大会员状态">查询大会员状态</a></li><li><a href="login/member_center.md#查询账号安全情况">查询账号安全情况</a></li><li><a href="login/member_center.md#查询账号实名认证状态">查询账号实名认证状态</a></li><li><a href="login/member_center.md#查询实名认证详细信息">查询实名认证详细信息</a></li><li><a href="login/member_center.md#查询硬币变化情况">查询硬币变化情况</a></li><li><a href="login/member_center.md#修改个人签名">修改个人签名</a></li></ul></details>
   - [注销登录](login/exit.md)×
   - [登录记录](login/login_notice.md)√
 - [消息中心](message)
   - [通知类消息](message/msg.md)×
-  - [私信](message/private_msg.md)×
+  - <details><summary><a href="message/private_msg.md">私信</a>×</summary><ul><li><a href="message/private_msg.md#未读私信数">未读私信数</a></li><li><a href="message/private_msg.md#发送私信（web端）">发送私信（web端）</a></li></ul></details>
   - [设置](message/config.md)×
 - [用户](user)
-  - [基本信息](user/info.md)√
-  - [状态数](user/status_number.md)√
-  - [关系](user/relation.md)√
+  - <details><summary><a href="user/info.md">基本信息</a>√</summary><ul><li><a href="user/info.md#用户空间详细信息">用户空间详细信息</a></li><li><a href="user/info.md#用户名片信息">用户名片信息</a></li><li><a href="user/info.md#登录用户空间详细信息">登录用户空间详细信息</a></li></ul></details>
+  - <details><summary><a href="user/status_number.md">状态数</a>√</summary><ul><li><a href="user/status_number.md#关系状态数">关系状态数</a></li><li><a href="user/status_number.md#UP主状态数">UP主状态数</a></li><li><a href="user/status_number.md#相簿投稿数">相簿投稿数</a></li></ul></details>
+  - <details><summary><a href="user/relation.md">关系</a>√</summary><ul><li><a href="user/status_number.md#关系状态数">关系状态数</a></li><li><a href="user/status_number.md#UP主状态数">UP主状态数</a></li><li><a href="user/status_number.md#相簿投稿数">相簿投稿数</a></li></ul></details>
   - [个人空间](user/space.md)x
   - [检查昵称是否可注册](user/check_nickname.md)√
 - [视频](video)
