@@ -213,7 +213,7 @@ curl https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal \
                 "roomid": 21692711
             }
         ],
-        "name": "藍地球",
+        "name": "xxx",
         "pageinfo": {
             "totalpages": 2,
             "curPage": 2
