@@ -180,9 +180,9 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [直播信息流](live/message_stream.md)×
   - <details><summary><a href="live/user.md">直播间用户相关</a>×</summary><ul><li><a href="live/user.md#获取用户持有的粉丝勋章信息">获取用户持有的粉丝勋章信息</a></li><li><a href="live/user.md#佩戴勋章">佩戴勋章</a></li><li><a href="live/user.md#直播签到">直播签到</a></li></ul></details>
 - [转正答题](newbie_exam)
-  - [查询信息](newbie_exam/info.md)×
-  - [拉取题目](newbie_exam/fetch.md)√
-  - [操作](newbie_exam/action.md)×
+  - <details><summary><a href="newbie_exam/info.md">查询信息</a>×</summary><ul><li><a href="newbie_exam/info.md#查询答题状态">查询答题状态</a></li><li><a href="newbie_exam/info.md#查询自选题分类">查询自选题分类</a></li><li><a href="newbie_exam/info.md#查询答题结果">查询答题结果</a></li></ul></details>
+  - <details><summary><a href="newbie_exam/fetch.md">拉取题目</a>√</summary><ul><li><a href="newbie_exam/fetch.md#拉取基础题">拉取基础题</a></li><li><a href="newbie_exam/fetch.md#拉取附加题">拉取附加题</a></li><li><a href="newbie_exam/fetch.md#拉取自选题">拉取自选题</a></li></ul></details>
+  - <details><summary><a href="newbie_exam/action.md">操作</a>×</summary><ul><li><a href="newbie_exam/action.md#提交答题">提交答题</a></li><ul><li><a href="newbie_exam/action.md#提交基础题">提交基础题</a></li><li>提交附加题</li><li>提交自选题</li></ul><li>获取极验验证码</li><li>提交自选题分类</li><li>提前交卷</li></ul></details>
 - B币钱包
   - 基本信息
   - B币充值
@@ -194,15 +194,15 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [基于ip的地理位置查询](clientinfo/ip.md)√
   - [终端信息查询](clientinfo/client_info.md)√
 - [其他](other)
-  - [获取当前时间戳](other/time_stamp.md)√
+  - <details><summary><a href="other/time_stamp.md">获取当前时间戳</a>√</summary><ul><li><a href="other/time_stamp.md#获取当前时间戳">获取当前时间戳</a></li><li><a href="other/time_stamp.md#获取服务器端UTC时间">获取服务器端UTC时间</a></li></ul></details>
 - [web端组件](web_widget)
   - [分区当日投稿数](web_widget/zone_upload.md)√
-  - [404页漫画收集](web_widget/404_manga.md)√
+  - <details><summary><a href="web_widget/404_manga.md">404页漫画收集</a>√</summary><ul><li><a href="web_widget/404_manga.md#视频稿件错误提示图">视频稿件错误提示图</a></li><li><a href="web_widget/404_manga.md#static类型">static类型</a></li><li><a href="web_widget/404_manga.md#dynamic类型">dynamic类型</a></li></ul></details>
 - [APP端组件](APP_widget)
   - [开屏图片](APP_widget/splash.md)√
 - [个性装扮](garb)
-  - [APP主题](garb/skin.md)√
-  - [主题色](garb/color.md)√
+  - <details><summary><a href="garb/skin.md">APP主题</a>√</summary><ul><li><a href="garb/skin.md#获取主题及加载动画">获取主题及加载动画</a></li><li><a href="garb/skin.md#主题包结构">主题包结构</a></li></ul></details>
+  - <details><summary><a href="garb/color.md">主题色</a>√</summary><ul><li><a href="garb/color.md#获取主题色基本信息1">获取主题色基本信息1</a></li><li><a href="garb/color.md#获取主题色基本信息2">获取主题色基本信息2</a></li></ul></details>
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
