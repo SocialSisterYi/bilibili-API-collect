@@ -129,55 +129,56 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
     - <details><summary><a href="blackroom/jury/judgement_info.md">众裁案件基本信息</a>√</summary><ul><li><a href="blackroom/jury/judgement_info.md#查询投票过的单个案件">查询投票过的单个案件</a></li><li><a href="blackroom/jury/judgement_info.md#查询案件众裁信息">查询案件众裁信息</a></li><li><a href="blackroom/jury/judgement_info.md#查询我的众裁记录">查询我的众裁记录</a></li><li><a href="blackroom/jury/judgement_info.md#获取众议观点">获取众议观点</a></li></ul></details>
     - <details><summary><a href="blackroom/jury/action.md">裁决操作</a>√</summary><ul><li><a href="blackroom/jury/action.md#申请加入风纪委员会">申请加入风纪委员会</a></li><li><a href="blackroom/jury/action.md#拉取新案件">拉取新案件</a></li><li><a href="blackroom/jury/action.md#进行仲裁投票">进行仲裁投票</a></li></ul></details>
 - [评论区](comment)√
-  - [评论区明细](comment/list.md)√
-  - [操作](comment/action.md)√
+  - <details><summary><a href="comment/list.md">评论区明细</a>√</summary><ul><li><a href="comment/list.md#获取评论区明细（无楼层号）">获取评论区明细（无楼层号）</a></li><li><a href="comment/list.md#获取评论区明细（带有楼层号 ）">获取评论区明细（带有楼层号 ）</a></li><li><a href="comment/list.md#获取指定评论条目及二级回复明细（分离结构 无楼层号）">获取指定评论条目及二级回复明细（分离结构 无楼层号）</a></li><li><a href="comment/list.md#获取指定评论条目及二级回复明细（嵌套结构 带有楼层号）">获取指定评论条目及二级回复明细（嵌套结构 带有楼层号）</a></li><li><a href="comment/list.md#获取指定评论对话树（带有楼层）">获取指定评论对话树（带有楼层）</a></li><li><a href="comment/list.md#获取评论区评论总数">获取评论区评论总数</a></li></ul></details>
+  - <details><summary><a href="comment/action.md">操作</a>√</summary><ul><li><a href="comment/action.md#发表评论">发表评论</a></li><li><a href="comment/action.md#点赞评论">点赞评论</a></li><li><a href="comment/action.md#点踩评论">点踩评论</a></li><li><a href="comment/action.md#删除评论">删除评论</a></li><li><a href="comment/action.md#置顶评论">置顶评论</a></li><li><a href="comment/action.md#举报评论">举报评论</a></li></ul></details>
 - [表情](emoji)
-  - [表情及表情包信息](emoji/list.md)√
-  - [操作](emoji/action.md)√
+  - <details><summary><a href="emoji/list.md">表情及表情包信息</a>√</summary><ul><li><a href="emoji/list.md#获取我的表情列表">获取我的表情列表</a></li><li><a href="emoji/list.md#取指定的表情包明细">取指定的表情包明细</a></li><li><a href="emoji/list.md#获取所有表情包列表">获取所有表情包列表</a></li><li><a href="emoji/list.md#附表-表情包对象">附表-表情包对象</a></li></ul></details>
+  - <details><summary><a href="emoji/action.md">操作</a>√</summary><ul><li><a href="emoji/action.md#添加表情包">添加表情包</a></li><li><a href="emoji/action.md#移除表情包">移除表情包</a></li></ul></details>
 - [创作中心](creativecenter)
-  - [统计与数据](creativecenter/statistics&data.md)×
+  - <details><summary><a href="creativecenter/statistics&data.md">统计与数据</a>×</summary><ul><li><a href="creativecenter/statistics&data.md#UP主视频状态数据">UP主视频状态数据</a></li><li><a href="creativecenter/statistics&data.md#UP主专栏状态数据">UP主专栏状态数据</a></li><li><a href="creativecenter/statistics&data.md#视频数据增量趋势">视频数据增量趋势</a></li><li><a href="creativecenter/statistics&data.md#专栏数据增量趋势">专栏数据增量趋势</a></li><li><a href="creativecenter/statistics&data.md#稿件操作来源占比情况">稿件操作来源占比情况</a></li><li><a href="creativecenter/statistics&data.md#播放来源占比情况（平台及方式）">播放来源占比情况（平台及方式）</a></li><li><a href="creativecenter/statistics&data.md#播放分布情况（粉丝与路人）">播放分布情况（粉丝与路人）</a></li></ul></details>
   - 列表查询相关
-  - [电磁力数据](creativecenter/railgun.md)√
+  - <details><summary><a href="creativecenter/railgun.md">电磁力数据</a>√</summary><ul><li><a href="creativecenter/railgun.md#获取电磁力等级（web端）">获取电磁力等级（web端）</a></li><li><a href="creativecenter/railgun.md#获取电磁力详细数值（双端）">获取电磁力详细数值（双端）</a></li><li><a href="creativecenter/railgun.md#获取电磁力数值历史变化（双端）">获取电磁力数值历史变化（双端）</a></li></ul></details>
 - [实时广播（通讯协议）](broadcast)√
-  - [视频内广播](broadcast/video_room.md)√
+  - <details><summary><a href="broadcast/video_room.md">视频内广播</a>√</summary><ul><li><a href="broadcast/video_room.md#认证包（上行）">认证包（上行）</a></li><li><a href="broadcast/video_room.md#认证包回复（下行）">认证包回复（下行）</a></li><li><a href="broadcast/video_room.md#心跳包（上行）">心跳包（上行）</a></li><li><a href="broadcast/video_room.md#心跳包回复（实时观看数）（下行）">心跳包回复（实时观看数）（下行）</a></li><li><a href="broadcast/video_room.md#普通包（实时弹幕）（下行）">普通包（实时弹幕）（下行）</a></li></ul></details>
 - [充电](electric)
-  - [B币方式](electric/Bcoin.md)√
-  - [微信&支付宝方式](electric/WeChat&Alipay.md)√
+  - <details><summary><a href="electric/Bcoin.md">B币方式</a>√</summary><ul><li><a href="electric/Bcoin.md#新版本接口">新版本接口</a></li><li><a href="electric/Bcoin.md#老版本接口">老版本接口</a></li></ul></details>
+  - <details><summary><a href="electric/WeChat&Alipay.md">微信&支付宝方式</a>√</summary><ul><li><a href="electric/WeChat&Alipay.md#申请充电二维码及扫码秘钥">申请充电二维码及扫码秘钥</a></li><li><a href="electric/WeChat&Alipay.md#检查扫码支付结果">检查扫码支付结果</a></li></ul></details>
   - [充电留言](electric/charge_msg.md)√
-  - [充电列表](electric/charge_list.md)√
+  - <details><summary><a href="electric/charge_list.md">充电列表</a>√</summary><ul><li><a href="electric/charge_list.md#获取空间充电公示列表">获取空间充电公示列表</a></li><li><a href="electric/charge_list.md#获取视频充电鸣谢名单">获取视频充电鸣谢名单</a></li></ul></details>
 - [动态](dynamic)
   - [发送&转载动态](dynamic/publish.md)×
   - 动态列表
-    - [特定话题动态列表](/dynamic/tag_dynamics.md)√
+    - <details><summary><a href="/dynamic/tag_dynamics.md">特定话题动态列表</a>√</summary><ul><li><a href="/dynamic/tag_dynamics.md#获取包含置顶及热门的动态列表">获取包含置顶及热门的动态列表</a></li><li><a href="/dynamic/tag_dynamics.md#获取历史动态列表">获取历史动态列表</a></li></ul></details>
   - [动态内容](/dynamic/get_dynamic_detail.md)×
   - 操作
 - [相簿](album)
   - [基本信息](album/info.md)√
-  - [相簿列表](album/list.md)√
-  - [推荐作者](album/recommend_author.md)√
+  - <details><summary><a href="album/list.md">相簿列表</a>√</summary><ul><li><a href="album/list.md#获取画友首页列表">获取画友首页列表</a></li><li><a href="album/list.md#获取摄影首页列表">获取摄影首页列表</a></li><li><a href="album/list.md#获取画友列表">获取画友列表</a></li><li><a href="album/list.md#获取摄影列表">获取摄影列表</a></li><li><a href="album/list.md#获取指定用户的相簿列表">获取指定用户的相簿列表</a></li></ul></details>
+  - <details><summary><a href="album/recommend_author.md">推荐作者</a>√</summary><ul><li><a href="album/recommend_author.md#获取摄影推荐作者">获取摄影推荐作者</a></li><li><a href="album/recommend_author.md#获取画友推荐作者">获取画友推荐作者</a></li></ul></details>
   - [活动列表](album/activity_list.md)√
-  - [操作](album/action.md)√
+  - <details><summary><a href="album/action.md">操作</a>√</summary><ul><li><a href="album/action.md#点赞相簿">点赞相簿</a></li><li><a href="album/action.md#收藏相簿">收藏相簿</a></li><li><a href="album/action.md#取消收藏相簿">取消收藏相簿</a></li></ul></details>
   - 投稿
 - [历史记录&稍后再看](history&toview)
-  - [历史记录](history&toview/history.md)√
-  - [稍后再看](history&toview/toview.md)√
+  - <details><summary><a href="history&toview/history.md">历史记录</a>√</summary><ul><li><a href="history&toview/history.md#获取历史记录列表（视频、直播、专栏）">获取历史记录列表（视频、直播、专栏）</a></li><li><a href="history&toview/history.md#获取全部视频历史记录（旧）">获取全部视频历史记录（旧）</a></li><li><a href="history&toview/history.md#删除历史记录">删除历史记录</a></li><li><a href="history&toview/history.md#清空历史记录">清空历史记录</a></li><li><a href="history&toview/history.md#停用历史记录">停用历史记录</a></li><li><a href="history&toview/history.md#查询历史记录停用状态">查询历史记录停用状态</a></li></ul></details>
+  - <details><summary><a href="history&toview/toview.md">稍后再看</a>√</summary><ul><li><a href="history&toview/toview.md#视频添加稍后再看">视频添加稍后再看</a></li><li><a href="history&toview/toview.md#添加频道中所有视频到稍后再看">添加频道中所有视频到稍后再看</a></li><li><a href="history&toview/toview.md#获取稍后再看视频列表">获取稍后再看视频列表</a></li><li><a href="history&toview/toview.md#删除稍后再看视频">删除稍后再看视频</a></li><li><a href="history&toview/toview.md#清空稍后再看视频列表">清空稍后再看视频列表</a></li></ul></details>
 - [收藏夹](fav)
-  - [基本信息](fav/info.md)√
-  - [收藏夹内容](fav/list.md)√
-  - [收藏夹操作](fav/action.md)×
+  - <details><summary><a href="fav/info.md">基本信息</a>√</summary><ul><li><a href="fav/info.md#获取收藏夹元数据">获取收藏夹元数据</a></li><li><a href="fav/info.md#获取指定用户创建的所有收藏夹信息">获取指定用户创建的所有收藏夹信息</a></li><li><a href="fav/info.md#批量获取指定收藏id的内容">批量获取指定收藏id的内容</a></li></ul></details>
+  - <details><summary><a href="fav/list.md">收藏夹内容</a>√</summary><ul><li><a href="fav/list.md#获取收藏夹内容明细列表">获取收藏夹内容明细列表</a></li><li><a href="fav/list.md#获取收藏夹全部内容id">获取收藏夹全部内容id</a></li></ul></details>
+  - <details><summary><a href="fav/action.md">收藏夹操作</a>×</summary><ul><li><a href="fav/action.md#管理收藏夹">管理收藏夹</a></li><ul><li><a href="fav/action.md#新建收藏夹">新建收藏夹</a></li><li><a href="fav/action.md#修改收藏夹">修改收藏夹</a></li><li><a href="fav/action.md#删除收藏夹">删除收藏夹</a></li></ul><li><a href="fav/action.md#管理收藏内容">管理收藏内容</a></li><ul><li><a href="fav/action.md#批量复制内容">批量复制内容</a></li><li><a href="fav/action.md#清空所有失效内容">清空所有失效内容</a></li></ul></ul></details>
 - [课程](cheese)
-  - [课程基本信息](cheese/info.md)√
+  - <details><summary><a href="cheese/info.md">课程基本信息</a>√</summary><ul><li><a href="cheese/info.md#获取课程基本信息">获取课程基本信息</a></li><li><a href="cheese/info.md#获取课程分集列表">获取课程分集列表</a></li></ul></details>
   - 已购课程
   - 分区推荐列表
   - 操作
   - [播放&下载地址（视频流）](cheese/videostream_url.md)√
 - [直播](live)
-  - [直播间基本信息](live/info.md)×
+  - <details><summary><a href="live/info.md">直播间基本信息</a>×</summary><ul><li><a href="live/info.md#获取用户对应的直播间状态">获取用户对应的直播间状态</a></li><li><a href="live/info.md#获取房间页初始化信息">获取房间页初始化信息</a></li><li><a href="live/info.md#获取主播信息">获取主播信息</a></li><li><a href="live/info.md#批量查询直播间状态">批量查询直播间状态</a></li></ul></details>
   - [直播分区](live/live_area.md)×
-  - [直播间管理](live/manage.md)×
+  - <details><summary><a href="live/manage.md">直播间管理</a>×</summary><ul><li><a href="live/manage.md#更新直播间标题">更新直播间标题</a></li><li><a href="live/manage.md#开始直播">开始直播</a></li><li><a href="live/manage.md#关闭直播">关闭直播</a></li></ul></details>
   - 直播间操作
   - [直播视频流](live/live_stream.md)×
   - [直播信息流](live/message_stream.md)×
+  - <details><summary><a href="live/user.md">直播间用户相关</a>×</summary><ul><li><a href="live/user.md#获取用户持有的粉丝勋章信息">获取用户持有的粉丝勋章信息</a></li><li><a href="live/user.md#佩戴勋章">佩戴勋章</a></li><li><a href="live/user.md#直播签到">直播签到</a></li></ul></details>
 - [转正答题](newbie_exam)
   - [查询信息](newbie_exam/info.md)×
   - [拉取题目](newbie_exam/fetch.md)√
