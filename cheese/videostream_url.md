@@ -23,9 +23,7 @@
 
 | 参数名 | 类型 | 内容           | 必要性 | 备注                                                         |
 | ------ | ---- | -------------- | ------ | ------------------------------------------------------------ |
-| avid   | num  | 课程avid       | 必要   |                                                              |
 | ep_id  | num  | 课程epid       | 必要   |                                                              |
-| cid    | num  | 视频cid        | 必要   |                                                              |
 | qn     | num  | 视频清晰度选择 | 非必要 | 参考[qn定义](../video/videostream_url.md#qn视频清晰度标识)   |
 | fnver  | num  | 视频流版本     | 非必要 | 参考[fnver定义](../video/videostream_url.md#fnver视频流版本标识) |
 | fnval  | num  | 视频流类型     | 非必要 | 参考[fnval定义](../video/videostream_url.md#fnval视频流格式标识) |
