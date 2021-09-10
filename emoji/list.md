@@ -234,7 +234,7 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web' \
 | 参数名   | 类型 | 内容     | 必要性 | 备注                             |
 | -------- | ---- | -------- | ------ | -------------------------------- |
 | business | str  | 使用场景 | 必要   | reply：评论区<br />dynamic：动态 |
-| ids      | nums | 表情包id | 必要   |                                  |
+| ids      | nums | 表情包id | 必要   | id之间以`,`隔开                 |
 
 **json回复：**
 
