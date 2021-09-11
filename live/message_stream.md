@@ -1,5 +1,103 @@
 # 直播间信息流
 
+- [获取信息流认证秘钥](#获取信息流认证秘钥)
+
+---
+
+## 获取信息流认证秘钥
+
+> http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo
+
+*请求方式：GET*
+
+**url参数：**
+
+| 参数名 | 类型 | 内容         | 必要性 | 备注 |
+| ------ | ---- | ------------ | ------ | ---- |
+| id     | num  | 直播间真实id | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误<br />60009：分区不存在<br />**（其他错误码有待补充）** |
+| message | str  | 错误信息 | 默认为空                                                     |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
+
+`data`对象：
+
+| 字段               | 类型  | 内容       | 备注 |
+| ------------------ | ----- | ---------- | ---- |
+| group              | str   | live       |      |
+| business_id        | num   | 0          |      |
+| refresh_row_factor | num   | 0.125      |      |
+| refresh_rate       | num   | 100        |      |
+| max_delay          | num   | 5000       |      |
+| token              | str   | 认证秘钥   |      |
+| host_list          | array | 服务器列表 |      |
+
+`host_list`数组中的对象：
+
+| 字段     | 类型 | 内容       | 备注 |
+| -------- | ---- | ---------- | ---- |
+| host     | str  | 服务器域名 |      |
+| port     | num  | tcp端口    |      |
+| wss_port | num  | wss端口    |      |
+| ws_port  | num  | ws端口     |      |
+
+**示例：**
+
+获得直播间`22824550`的信息流认证秘钥
+
+```shell
+curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
+--data-urlencode 'id=22824550'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "group": "live",
+    "business_id": 0,
+    "refresh_row_factor": 0.125,
+    "refresh_rate": 100,
+    "max_delay": 5000,
+    "token": "Eac3Lm1JADzny-YnB5MW0MQcd23rw_mgMFZAnu40I-J2ecP2Qj6CH-UqjdfvwiqVEZcEksG1ONSOi1dGzm0wM4FxqA-ZYXtcQyHXPXqxmrx3AmDx8Z5-d4TuKQkaU0zxevH1B-gnu7g8TDtIE4lns4BYlw==",
+    "host_list": [
+      {
+        "host": "tx-sh-live-comet-02.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244
+      },
+      {
+        "host": "tx-bj-live-comet-02.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244
+      },
+      {
+        "host": "broadcastlv.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244
+      }
+    ]
+  }
+}
+```
+
+</details>
+
 ## 数据包格式
 
 数据包为websocket，格式为头部数据+正文数据
