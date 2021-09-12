@@ -29,15 +29,15 @@
 
 `data`对象：
 
-| 字段               | 类型  | 内容       | 备注 |
-| ------------------ | ----- | ---------- | ---- |
-| group              | str   | live       |      |
-| business_id        | num   | 0          |      |
-| refresh_row_factor | num   | 0.125      |      |
-| refresh_rate       | num   | 100        |      |
-| max_delay          | num   | 5000       |      |
-| token              | str   | 认证秘钥   |      |
-| host_list          | array | 服务器列表 |      |
+| 字段               | 类型  | 内容                 | 备注 |
+| ------------------ | ----- | ------------------- | ---- |
+| group              | str   | live                |      |
+| business_id        | num   | 0                   |      |
+| refresh_row_factor | num   | 0.125               |      |
+| refresh_rate       | num   | 100                 |      |
+| max_delay          | num   | 5000                |      |
+| token              | str   | 认证秘钥            |      |
+| host_list          | array | 信息流服务器节点列表 |      |
 
 `host_list`数组中的对象：
 
@@ -100,7 +100,7 @@ curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 
 ## 数据包格式
 
-数据包为websocket，格式为头部数据+正文数据
+数据包为MQ（消息队列）使用websocket或tcp作为通道，具体格式为头部数据+正文数据
 
 操作流程：
 
@@ -114,7 +114,7 @@ curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 | 4      | 2    | uint16 | 头部大小（一般为0x0010，16字节）                             |
 | 6      | 2    | uint16 | 协议版本:<br />0普通包正文不使用压缩 <br />1心跳及认证包正文不使用压缩<br />2普通包正文使用zlib压缩<br/>3普通包正文使用brotli压缩,解压为一个带头部的协议0普通包 |
 | 8      | 4    | uint32 | 操作码（封包类型）                                           |
-| 12     | 4    | uint32 | sequence，可以取常数1                                        |
+| 12     | 4    | uint32 | sequence，每次发包时向上递增                                 |
 
 操作码：
 
@@ -197,9 +197,7 @@ json格式
 
 正文：
 
-特定字符
-
-[object Object]
+可以为空或任意字符
 
 示例：
 
@@ -225,7 +223,7 @@ uint32整数，代表房间当前的人气值
 00000010  00 00 14 83                                       |....|
 ```
 
-可见房间内人气值为5251人
+可见房间内人气值为5251
 
 ### 普通包
 
