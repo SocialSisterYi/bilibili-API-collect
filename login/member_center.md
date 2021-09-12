@@ -286,30 +286,33 @@ curl 'http://api.bilibili.com/x/vip/web/user/info' \
 
 `data`中的`account_info`对象：
 
-| 字段           | 类型 | 内容           | 备注                            |
-| -------------- | ---- | -------------- | ------------------------------- |
-| hide_tel       | str  | 绑定的手机号   | 星号隐藏部分信息                |
-| hide_mail      | str  | 绑定的邮箱     | 星号隐藏部分信息                |
-| bind_tel       | bool | 是否绑定手机号 | false：未绑定<br />true：已绑定 |
-| bind_mail      | bool | 是否绑定邮箱   | false：未绑定<br />true：已绑定 |
-| tel_verify     | bool | 是否验证手机号 | false：未验证<br />true：已验证 |
-| mail_verify    | bool | 是否验证邮箱   | false：未验证<br />true：已验证 |
-| unneeded_check | bool | 是否未设置密码 | false：已设置<br />true：未设置 |
+| 字段               | 类型 | 内容           | 备注                            |
+| ------------------ | ---- | -------------- | ------------------------------- |
+| hide_tel           | str  | 绑定的手机号   | 星号隐藏部分信息                |
+| hide_mail          | str  | 绑定的邮箱     | 星号隐藏部分信息                |
+| bind_tel           | bool | 是否绑定手机号 | false：未绑定<br />true：已绑定 |
+| bind_mail          | bool | 是否绑定邮箱   | false：未绑定<br />true：已绑定 |
+| tel_verify         | bool | 是否验证手机号 | false：未验证<br />true：已验证 |
+| mail_verify        | bool | 是否验证邮箱   | false：未验证<br />true：已验证 |
+| unneeded_check     | bool | 是否未设置密码 | false：已设置<br />true：未设置 |
+| realname_certified | bool | 是否实名认证   | false：已认证<br />true：未认证 |
 
 `data`中的`account_safe`对象：
 
 | 字段      | 类型 | 内容             | 备注                          |
 | --------- | ---- | ---------------- | ----------------------------- |
-| Score     | num  | 当前密码强度     | 0-100                         |
+| Score     | num  | 账号安全等级     | 0-100<br />已弃用？          |
+| score_new | num  | 新版账号安全等级 | 0-100                        |
 | pwd_level | num  | 当前密码强度等级 | 1：弱<br />2：中<br />3：强   |
 | security  | bool | 当前密码是否安全 | false：不安全<br />true：安全 |
 
 `data`中的`account_sns`对象：
 
-| 字段       | 类型 | 内容         | 备注                     |
-| ---------- | ---- | ------------ | ------------------------ |
-| weibo_bind | num  | 是否绑定微博 | 0：未绑定<br />1：已绑定 |
-| qq_bind    | num  | 是否绑定qq   | 0：未绑定<br />1：已绑定 |
+| 字段        | 类型 | 内容         | 备注                     |
+| ----------- | ---- | ------------ | ------------------------ |
+| weibo_bind  | num  | 是否绑定微博 | 0：未绑定<br />1：已绑定 |
+| qq_bind     | num  | 是否绑定qq   | 0：未绑定<br />1：已绑定 |
+| wechat_bind | num  | 是否绑定微信 | 0：未绑定<br />1：已绑定 |
 
 `data`中的`account_other`对象：
 
@@ -338,16 +341,19 @@ curl 'http://passport.bilibili.com/web/site/user/info' \
             "bind_mail": true,
             "tel_verify": true,
             "mail_verify": true,
-            "unneeded_check": false
+            "unneeded_check": false,
+            "realname_certified": true
         },
         "account_safe": {
             "Score": 90,
+            "score_new": 100,
             "pwd_level": 3,
             "security": true
         },
         "account_sns": {
             "weibo_bind": 1,
-            "qq_bind": 1
+            "qq_bind": 1,
+            "wechat_bind": 1
         },
         "account_other": {
             "skipVerify": false
