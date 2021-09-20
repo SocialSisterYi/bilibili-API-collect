@@ -20,7 +20,7 @@
 
 ## 申请充电二维码及扫码秘钥
 
-> https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/qr_code/create
+> http://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/qr_code/create
 
 *请求方式：POST*
 
