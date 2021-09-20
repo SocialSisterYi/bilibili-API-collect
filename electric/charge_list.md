@@ -177,7 +177,6 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 | total_count | num    | 总计充电人数     |              |
 | special_day | num    | 0                | 作用尚不明确 |
 | display_num | num    | 0                | 作用尚不明确 |
-| av_list     | array | 目标视频充电列表 |              |
 | list        | array | 本月充电用户列表 |              |
 
 `data`中的`show_info`对象：
@@ -187,7 +186,7 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 | show  | bool | 是否展示视频充电鸣谢名单 | false：不展示<br />true：展示 |
 | state | num  | 0                        |                               |
 
-`data`中的`list`数组（`av_list`数组）：
+`data`中的`list`数组：
 
 | 项   | 类型 | 内容          | 备注             |
 | ---- | ---- | ------------- | ---------------- |
@@ -196,7 +195,7 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 | ……   | obj  | ……            | ……               |
 | 29   | obj  | 充电用户30    | 最后一项         |
 
-`data`中的`list`数组（`av_list`数组）中的对象：
+`data`中的`list`数组中的对象：
 
 | 字段        | 类型 | 内容             | 备注             |
 | ----------- | ---- | ---------------- | ---------------- |
@@ -210,7 +209,7 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 | vip_info    | obj  | 充电用户会员信息 |                  |
 | trend_type  | num  | 0                | 作用尚不明确     |
 
-`data`中的`list`数组（`av_list`数组）中的对象中的`vip_info`对象：
+`data`中的`list`数组中的对象中的`vip_info`对象：
 
 | 字段       | 类型 | 内容       | 备注                                |
 | ---------- | ---- | ---------- | ----------------------------------- |
@@ -243,130 +242,53 @@ curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "show_info": {
-            "show": true,
-            "state": 0
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "show_info": {
+      "show": true,
+      "state": 0
+    },
+    "av_count": 0,
+    "count": 0,
+    "total_count": 19422,
+    "special_day": 0,
+    "display_num": 0,
+    "list": [
+      {
+        "mid": 53456,
+        "pay_mid": 1216085164,
+        "rank": 1,
+        "uname": "JZ72",
+        "avatar": "http://i1.hdslb.com/bfs/face/3d741682fafc286999b5e8089a844ae4f46651fe.jpg",
+        "message": "Warma YYDS ",
+        "msg_deleted": 0,
+        "vip_info": {
+          "vipType": 2,
+          "vipDueMsec": 0,
+          "vipStatus": 1
         },
-        "av_count": 4,
-        "count": 226,
-        "total_count": 11528,
-        "special_day": 0,
-        "display_num": 0,
-        "av_list": [
-            {
-                "mid": 53456,
-                "pay_mid": 326994943,
-                "rank": 1,
-                "uname": "此人不在线hhh",
-                "avatar": "http://i0.hdslb.com/bfs/face/d2540c20f569554e62dd88cc78cbf2fe07268903.jpg",
-                "message": "",
-                "msg_deleted": 0,
-                "vip_info": {
-                    "vipType": 1,
-                    "vipDueMsec": 0,
-                    "vipStatus": 1
-                },
-                "trend_type": 0
-            },
-            {
-                "mid": 53456,
-                "pay_mid": 328473637,
-                "rank": 2,
-                "uname": "SkJ_17",
-                "avatar": "http://i1.hdslb.com/bfs/face/42b50918e8b7288009e55332322f991dcbce960a.jpg",
-                "message": "",
-                "msg_deleted": 0,
-                "vip_info": {
-                    "vipType": 2,
-                    "vipDueMsec": 0,
-                    "vipStatus": 1
-                },
-                "trend_type": 0
-            },
-            {
-                "mid": 53456,
-                "pay_mid": 31345826,
-                "rank": 3,
-                "uname": "Aries梦落",
-                "avatar": "http://i2.hdslb.com/bfs/face/206a58430c3e11675cacf3b7d7b4a8d9e44de3b2.jpg",
-                "message": "",
-                "msg_deleted": 0,
-                "vip_info": {
-                    "vipType": 2,
-                    "vipDueMsec": 0,
-                    "vipStatus": 1
-                },
-                "trend_type": 0
-            },
-            {
-                "mid": 53456,
-                "pay_mid": 349867059,
-                "rank": 4,
-                "uname": "铭月zsm",
-                "avatar": "http://i0.hdslb.com/bfs/face/b8cd7533376d80a1d8b36092f433c39ba1761cbc.jpg",
-                "message": "",
-                "msg_deleted": 0,
-                "vip_info": {
-                    "vipType": 1,
-                    "vipDueMsec": 0,
-                    "vipStatus": 0
-                },
-                "trend_type": 0
-            }
-        ],
-        "list": [
-            {
-                "mid": 53456,
-                "pay_mid": 346545025,
-                "rank": 1,
-                "uname": "还有什么名字没人用",
-                "avatar": "http://i1.hdslb.com/bfs/face/76d4b1ecd13e992a6c7303d77bf716dd922ab234.jpg",
-                "message": "早日康复，五月快乐",
-                "msg_deleted": 0,
-                "vip_info": {
-                    "vipType": 2,
-                    "vipDueMsec": 0,
-                    "vipStatus": 1
-                },
-                "trend_type": 0
-            },
-            {
-                "mid": 53456,
-                "pay_mid": 8826056,
-                "rank": 2,
-                "uname": "煋痕",
-                "avatar": "http://i2.hdslb.com/bfs/face/35b7c752d0eb1bb7a924804f240b9bfd9199625f.jpg",
-                "message": "",
-                "msg_deleted": 0,
-                "vip_info": {
-                    "vipType": 2,
-                    "vipDueMsec": 0,
-                    "vipStatus": 1
-                },
-                "trend_type": 0
-            },
-            {
-                "mid": 53456,
-                "pay_mid": 356668487,
-                "rank": 3,
-                "uname": "舞象祥",
-                "avatar": "http://i1.hdslb.com/bfs/face/574f6203ef5bd0d56b95ded6a2736676d9cc5307.jpg",
-                "message": "warma  hayo",
-                "msg_deleted": 0,
-                "vip_info": {
-                    "vipType": 1,
-                    "vipDueMsec": 0,
-                    "vipStatus": 1
-                },
-                "trend_type": 0
-            },
-            …………
-        ]
-    }
+        "trend_type": 0
+      },
+      {
+        "mid": 53456,
+        "pay_mid": 305858373,
+        "rank": 2,
+        "uname": "适应性神经系统",
+        "avatar": "http://i0.hdslb.com/bfs/face/2ad38dec879f66c32b5e5cb1750cb3f3e446bf91.jpg",
+        "message": "",
+        "msg_deleted": 0,
+        "vip_info": {
+          "vipType": 1,
+          "vipDueMsec": 0,
+          "vipStatus": 0
+        },
+        "trend_type": 0
+      },
+      ......
+    ]
+  }
 }
 ```
 
