@@ -209,7 +209,7 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 | vip_info    | obj  | 充电用户会员信息 |                  |
 | trend_type  | num  | 0                | 作用尚不明确     |
 
-`data`中的`list`数组中的对象中的`vip_info`对象：
+`data`中的`list`数组中的`vip_info`对象：
 
 | 字段       | 类型 | 内容       | 备注                                |
 | ---------- | ---- | ---------- | ----------------------------------- |
