@@ -14,7 +14,7 @@ service Echo {
 
 //
 message PingRequest {
-    /
+    //
     int64  time = 1;
 }
 
