@@ -2,9 +2,7 @@ syntax = "proto3";
 
 package bilibili.gaia.gw;
 
-import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 import "google/protobuf/empty.proto";
-//import "extension/wdcli/wdcli.proto";
 
 // 应用列表上报
 service Gaia {
