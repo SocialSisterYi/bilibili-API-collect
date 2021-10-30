@@ -249,6 +249,7 @@ B站空间：<https://space.bilibili.com/293793435>
 - [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API)
 - [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
 - [simon300000/bili-api](https://github.com/simon300000/bili-api)
+- [iyear/biligo](https://github.com/iyear/biligo) Bilibili API SDK in Golang
 
 ## 成品
 
