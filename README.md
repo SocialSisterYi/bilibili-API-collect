@@ -222,6 +222,8 @@ protobuf序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 QQ粉丝交流群：[1136462265](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
 
+Telegram讨论组：[bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
+
 B站空间：<https://space.bilibili.com/293793435>
 
 个人博客：<https://shakaianee.top>
