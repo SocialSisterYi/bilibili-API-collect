@@ -88,9 +88,9 @@ curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload' \
 | content | str | 动态内容 |
 | up_choose_comment | num | 0 |
 | up_close_comment | num | 0 |
-| extension | json | 常量见下,未知 |
-| at_uids | |
-| ctrl | |
+| extension | obj | 常量见下,未知 |
+| at_uids | str | 动态中at到的用户的uid,逗号分隔 |
+| ctrl | obj[] | 特殊格式控制(如at别人时的蓝字体和链接) |
 | csrf_token | str | csrf |
 | csrf | str | csrf(好像有上边那个就够了 这个不用) |
 
@@ -98,6 +98,14 @@ extension参数值:
 ```json
 {"emoji_type":1,"from":{"emoji_type":1},"flag_cfg":{}}
 ```
+
+ctrl单个对象(注意用的时候是数组出现):
+| 参数名 | 类型 | 内容 |
+| --- | --- | --- |
+| location | num | 从全文第几个字开始变蓝 |
+| type | num | 1 (可能1代表链接到用户uid) |
+| length | num | 这一段变蓝多少字 |
+| data | str | 链接目标(被at人的uid) |
 
 **json回复：**
 
@@ -122,7 +130,7 @@ data对象:
 | \_gt_ | num | 0 |
 
 <details>
-<summary>查看示例</summary>
+<summary>查看示例(纯文本)</summary>
 
 ```bash
 curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
@@ -149,6 +157,39 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
   }
 }
 
+```
+
+</details>
+
+<details>
+<summary>查看示例(at两个人)</summary>
+
+动态正文
+```
+[热词系列_神仙UP]@暮光小猿wzt @社会易姐QwQ 
+```
+
+at_uids
+```
+15858903,293793435
+```
+
+ctrl
+```json
+[
+  { "location": 11, "type": 1, "length": 9, "data": "15858903" },
+  { "location": 20, "type": 1, "length": 9, "data": "293793435" }
+]
+```
+
+命令
+```bash
+curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
+    -X POST -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0' \
+    -H 'Accept: application/json, text/plain, */*' \
+    -H 'Referer: https://t.bilibili.com/' \
+    -H 'Cookie: SESSDATA=******; bili_jct=de2731532b4ab96bc8536da948932668' \
+    --data-raw 'dynamic_id=0&type=4&rid=0&content=%5B%E7%83%AD%E8%AF%8D%E7%B3%BB%E5%88%97_%E7%A5%9E%E4%BB%99UP%5D%40%E6%9A%AE%E5%85%89%E5%B0%8F%E7%8C%BFwzt%20%40%E7%A4%BE%E4%BC%9A%E6%98%93%E5%A7%90QwQ%20&up_choose_comment=0&up_close_comment=0&extension=%7B%22emoji_type%22%3A1%2C%22from%22%3A%7B%22emoji_type%22%3A1%7D%2C%22flag_cfg%22%3A%7B%7D%7D&at_uids=15858903%2C293793435&ctrl=%5B%7B%22location%22%3A11%2C%22type%22%3A1%2C%22length%22%3A9%2C%22data%22%3A%2215858903%22%7D%2C%7B%22location%22%3A20%2C%22type%22%3A1%2C%22length%22%3A9%2C%22data%22%3A%22293793435%22%7D%5D&csrf_token=de2731532b4ab96bc8536da948932668&csrf=de2731532b4ab96bc8536da948932668'
 ```
 
 </details>
