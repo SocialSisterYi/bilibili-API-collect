@@ -146,6 +146,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [充电列表](electric/charge_list.md)√
 - [动态](dynamic)
   - [发送&转载动态](dynamic/publish.md)×
+  - [删除动态](dynamic/delete.md)
   - 动态列表
     - [特定话题动态列表](/dynamic/tag_dynamics.md)√
   - [动态内容](/dynamic/get_dynamic_detail.md)×
