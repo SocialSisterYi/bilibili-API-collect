@@ -140,7 +140,7 @@ curl https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal \
         "count": 19,
         "fansMedalList": [
             {
-                "uid": 3831650,
+                "uid": 1,
                 "target_id": 3821157,
                 "medal_id": 283582,
                 "score": 16031,
