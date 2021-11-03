@@ -67,6 +67,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [关系](user/relation.md)√
   - [个人空间](user/space.md)x
   - [检查昵称是否可注册](user/check_nickname.md)√
+  - [用户注册](user/register.md)
 - [视频](video)
   - [视频分区一览（分区代码）](video/video_zone.md)√
   - [基本信息](video/info.md)√
@@ -147,6 +148,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 - [动态](dynamic)
   - [发送&转载动态](dynamic/publish.md)×
   - [根据关键字搜索用户(at别人时的填充列表)](dynamic/atlist.md)
+  - [删除动态](dynamic/delete.md)
   - 动态列表
     - [特定话题动态列表](/dynamic/tag_dynamics.md)√
   - [动态内容](/dynamic/get_dynamic_detail.md)×
@@ -250,6 +252,7 @@ B站空间：<https://space.bilibili.com/293793435>
 - [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API)
 - [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
 - [simon300000/bili-api](https://github.com/simon300000/bili-api)
+- [iyear/biligo](https://github.com/iyear/biligo) Bilibili API SDK in Golang
 
 ## 成品
 
