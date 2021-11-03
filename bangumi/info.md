@@ -186,7 +186,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | rights          | obj    | 属性标志信息               |                                            |
 | season_id       | num    | 番剧ssid                   |                                            |
 | season_title    | str    | 剧集标题                   |                                            |
-| seasons         | array | 同系列所以季信息         |                                    |
+| seasons         | array | 同系列所有季信息         |                                    |
 | section         | array | 花絮、PV、番外等非正片内容 | 若无相关内容则无此项                       |
 | series          | obj    | 系列信息                   |                                            |
 | share_copy      | str    | 《{标题}》+{备注}        |                                            |
