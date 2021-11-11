@@ -296,7 +296,7 @@ curl -G 'http://api.bilibili.com/pvideo' \
 
 bin的内容为uint16数组（2Byte对齐），与json数组一一对应
 
-0第项恒为0，从第1项开始作为截取图片的时间（秒）
+第0项恒为0，从第1项开始作为截取图片的时间（秒）
 
 示例bin格式截取时间表：http://i0.hdslb.com/bfs/videoshot/49075258.bin
 
