@@ -398,7 +398,7 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 | start_with_sap | num   | **同上**              |                                                 |
 | SegmentBase    | obj   | 见下表                | url 对应 m4s 文件中，头部的位置                   |
 | segment_base   | obj   | **同上**              |                                                 |
-| codecid        | num   | 视频: 7或12<br />音频: 0 | 7=AVC，12=HEVC <br />出处是 FLV 格式里 VideoTag 中的 CodecId 域<br />AVC 的值是官方标准，HEVC 的值为非官方标准并且不被 ffmpeg 支持 |
+| codecid        | num   | 视频: 7或12<br />音频: 0 | 7=AVC，12=HEVC <br />出处是 FLV 格式里 VideoTag 中的 CodecId 域；<br />FLV 标准不支持 HEVC，但 codecId 值为 12 是各厂共识 |
 
 `video`数组中的对象中的`backup_url`数组：
 
@@ -412,8 +412,8 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 
 | 字段           | 类型 | 内容                                          | 备注                                                         |
 | -------------- | ---- | --------------------------------------------- | ------------------------------------------------------------ |
-| initialization | str  | \<init-start\>-\<init-end\><br />如：0-821    | ftyp (file type) box 加上 moov box 在文件中的范围（单位为 bytes）<br />在 DASH 下，这一结构并不重要，web 端播放时该段不被请求 |
-| index_range    | str  | \<sidx-start\>-\<sidx-end\><br />如：822-1309 | sidx (segment index) box 在文件中的范围（单位为 bytes）<br />该结构的核心是一个数组，记录了各关键帧的时间戳及其在文件中的位置<br />其作用是索引 (拖进度条) |
+| initialization | str  | \<init-first\>-\<init-last\><br />如：0-821    | ftyp (file type) box 加上 moov box 在文件中的范围（单位为 bytes）<br />如 0-821 表示开头 820 个字节<br />在 DASH 下，这一结构并不重要，web 端播放时该部分不被请求 |
+| index_range    | str  | \<sidx-first\>-\<sidx-last\><br />如：822-1309 | sidx (segment index) box 在文件中的范围（单位为 bytes）<br />该结构的核心是一个数组，记录了各关键帧的时间戳及其在文件中的位置<br />其作用是索引 (拖进度条) |
 
 > 常规 MP4 文件的索引信息放在 moov box 中，其中包含每一帧 (不止是关键帧) 的一些信息。在 DASH 方式下，关键帧信息移到了 sidx box 里，其他的则分散到了各个 moof (movie fragment) box 中。<br>对这里的文件结构感兴趣的，可以参考标准文档 ISO/IEC 14496-12，如果不想那么深入的话可以百度「MP4 文件结构」。
 
