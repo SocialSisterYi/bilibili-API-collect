@@ -120,6 +120,13 @@
 | mobile_verify        | num  |            |                          |
 | official_verify        | obj  | 认证信息   |                          |
 
+**示例：**
+
+```shell
+curl https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal \
+-b "SESSDATA=xxx"
+```
+
 <details>
 <summary>查看响应示例：</summary>
 
@@ -133,7 +140,7 @@
         "count": 19,
         "fansMedalList": [
             {
-                "uid": 3831650,
+                "uid": 1,
                 "target_id": 3821157,
                 "medal_id": 283582,
                 "score": 16031,
@@ -206,7 +213,7 @@
                 "roomid": 21692711
             }
         ],
-        "name": "藍地球",
+        "name": "xxx",
         "pageinfo": {
             "totalpages": 2,
             "curPage": 2
