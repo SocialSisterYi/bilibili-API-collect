@@ -25,22 +25,25 @@
 
 `data`对象：
 
-| 字段         | 类型 | 内容             | 备注                                                         |
-| ------------ | ---- | ---------------- | ------------------------------------------------------------ |
-| hid          | num  | 答题会话id       |                                                              |
-| mid          | num  | 答题用户mid      |                                                              |
-| score        | num  | 当前得分         |                                                              |
-| status       | num  | 答题状态         | 0：未答题<br />2：答题中<br />3：已通过                      |
-| number       | num  | 当前题号         |                                                              |
-| result       | str  | 是否通过答题     | failed：未通过<br />succeed：已通过                          |
-| stage        | str  | 当前答题阶段     | base：基础题<br />extra：附加题<br />pro_type：等待选择自选题类型<br />pro：自选题<br />complete：已完成 |
-| version      | str  | 答题版本         |                                                              |
-| start_time   | num  | 本次答题开始时间 |                                                              |
-| first_answer | num  | （？）           |                                                              |
-| progress     | str  | 当前答题进度     | 百分比<br />60分为100%                                       |
-| text         | str  | 提示文案         |                                                              |
-| url          | str  | 答题页面url      |                                                              |
-| in_reg_audit | bool | （？）           |                                                              |
+| 字段         | 类型 | 内容               | 备注                                                         |
+| ------------ | ---- | ------------------ | ------------------------------------------------------------ |
+| hid          | num  | 答题会话id         |                                                              |
+| mid          | num  | 答题用户mid        |                                                              |
+| score        | num  | 当前得分           |                                                              |
+| status       | num  | 答题状态           | 0：未答题<br />2：答题中<br />3：已通过                      |
+| number       | num  | 当前题号           |                                                              |
+| result       | str  | 是否通过答题       | failed：未通过<br />succeed：已通过                          |
+| stage        | str  | 当前答题阶段       | base：基础题<br />extra：附加题<br />pro_type：等待选择自选题类型<br />pro：自选题<br />complete：已完成 |
+| version      | str  | 答题版本           | 当前为`v4`                                                   |
+| start_time   | num  | 本次答题开始时间   | 时间戳                                                       |
+| first_answer | num  | （?）              |                                                              |
+| progress     | str  | 当前答题进度       | 百分比<br />60分为100%                                       |
+| text         | str  | 提示文案           |                                                              |
+| url          | str  | 答题页面url        |                                                              |
+| in_reg_audit | bool | 是否为第一次答题   |                                                              |
+| edition      | num  | 答题版本           | 0：旧版（40+10+50）<br />2：新版（40+30+30）                 |
+| rewards      | null | (?)                |                                                              |
+| captcha      | num  | 是否已经提交验证码 | 1：已提交<br />仅新版提交验证码后存在                        |
 
 **示例：**
 
@@ -58,20 +61,22 @@ curl -G 'http://api.bilibili.com/x/answer/v4/status' \
     "message": "0",
     "ttl": 1,
     "data": {
-        "hid": 1614593296356209,
-        "mid": 1386643599,
-        "score": 28,
+        "hid": 1623207905520705,
+        "mid": 293793435,
+        "score": 2,
         "status": 2,
-        "number": 28,
+        "number": 2,
         "result": "failed",
         "stage": "base",
         "version": "v4",
-        "start_time": 1614593296,
+        "start_time": 1623207905,
         "first_answer": 2,
-        "progress": "47",
+        "progress": "3",
         "text": "继续答题",
         "url": "https://www.bilibili.com/h5/newbie/entry?navhide=1",
-        "in_reg_audit": false
+        "in_reg_audit": false,
+        "edition": 0,
+        "rewards": null
     }
 }
 ```
@@ -85,6 +90,8 @@ curl -G 'http://api.bilibili.com/x/answer/v4/status' \
 *请求方式：GET*
 
 认证方式：Cookie或APP
+
+当字段`edition`的值不同时，该接口返回的数据也不同
 
 **json回复：**
 
@@ -132,6 +139,8 @@ curl -G 'http://api.bilibili.com/x/answer/v4/status' \
 curl -G 'http://api.bilibili.com/x/answer/v4/pro/type' \
 -b 'SESSDATA=xxx'
 ```
+
+旧版`edition=0`返回：
 
 <details>
 <summary>查看响应示例：</summary>
@@ -294,13 +303,111 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro/type' \
 
 </details>
 
+新版`edition=2`返回：
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": [
+        {
+            "id": 1,
+            "name": "游戏",
+            "fields": [
+                {
+                    "id": 1,
+                    "name": "游戏"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "影视",
+            "fields": [
+                {
+                    "id": 2,
+                    "name": "影视"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "科教/知识",
+            "fields": [
+                {
+                    "id": 3,
+                    "name": "科教/知识"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "动画/动漫",
+            "fields": [
+                {
+                    "id": 4,
+                    "name": "动画/动漫"
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "音乐/舞蹈",
+            "fields": [
+                {
+                    "id": 5,
+                    "name": "音乐/舞蹈"
+                }
+            ]
+        },
+        {
+            "id": 32,
+            "name": "明星/娱乐",
+            "fields": [
+                {
+                    "id": 32,
+                    "name": "明星/娱乐"
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "name": "鬼畜",
+            "fields": [
+                {
+                    "id": 35,
+                    "name": "鬼畜"
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "name": "时尚/健身",
+            "fields": [
+                {
+                    "id": 42,
+                    "name": "时尚/健身"
+                }
+            ]
+        }
+    ]
+}
+```
+
+</details>
+
+
 ## 查询答题结果
 
 > http://api.bilibili.com/x/answer/v4/result 
 
 *请求方式：GET*
 
-认证方式：Cookie或APP
+认证方式：无
 
 **url参数：**
 
@@ -310,39 +417,40 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro/type' \
 
 **json回复：**
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />41014：答题过快或错误太多<br />41023：用户答题记录不存在 |
-| message | str  | 错误信息 | 默认为0                                                      |
-| ttl     | num  | 1        |                                                              |
-| data    | obj  | 信息本体 |                                                              |
+| 字段    | 类型 | 内容     | 备注                                                       |
+| ------- | ---- | -------- | ---------------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />41023：用户答题记录不存在 |
+| message | str  | 错误信息 | 默认为0                                                    |
+| ttl     | num  | 1        |                                                            |
+| data    | obj  | 信息本体 |                                                            |
 
 `data`对象：
 
-| 字段              | 类型  | 内容               | 备注   |
-| ----------------- | ----- | ------------------ | ------ |
-| hid               | num   | 答题会话id         |        |
-| mid               | num   | 答题用户mid        |        |
-| member            | num   |                    |        |
-| score             | num   | 得分               |        |
-| level             | num   |                    |        |
-| first_pass        | num   |                    |        |
-| uname             | str   | 答题用户昵称       |        |
-| face              | str   | 答题用户头像url    |        |
-| status            | str   | 答题结果           |        |
-| question_types    | array | 已选择的自选题列表 |        |
-| power             | array | 自选题分类得分情况 |        |
-| start_time        | num   | 开始答题时间       | 时间戳 |
-| share             | array |                    |        |
-| can_show_rank_btn | bool  |                    |        |
-| is_same_user      | bool  |                    |        |
-| view_more         | str   |                    |        |
-| video_info        | obj   |                    |        |
-| main_tids         | array |                    |        |
-| sub_tids          | array |                    |        |
-| power_result      | null  |                    |        |
-| score_rate        | num   |                    |        |
-| permission        | obj   |                    |        |
+| 字段              | 类型  | 内容                     | 备注                                |
+| ----------------- | ----- | ------------------------ | ----------------------------------- |
+| hid               | num   | 答题会话id               |                                     |
+| mid               | num   | 答题用户mid              |                                     |
+| member            | num   |                          |                                     |
+| score             | num   | 得分                     |                                     |
+| level             | num   | 用户等级                 |                                     |
+| first_pass        | num   |                          |                                     |
+| uname             | str   | 用户昵称                 |                                     |
+| face              | str   | 用户头像url              |                                     |
+| status            | str   | 答题结果                 | failed：未通过<br />succeed：已通过 |
+| question_types    | array | 已选择的自选题列表       |                                     |
+| power             | array | 自选题分类得分情况       |                                     |
+| start_time        | num   | 开始答题时间             | 时间戳                              |
+| share             | obj   |                          |                                     |
+| can_show_rank_btn | bool  |                          |                                     |
+| is_same_user      | bool  |                          |                                     |
+| view_more         | str   |                          |                                     |
+| video_info        | obj   |                          |                                     |
+| main_tids         | array |                          |                                     |
+| sub_tids          | array |                          |                                     |
+| power_result      | null  |                          |                                     |
+| score_rate        | num   | 分数超过平均用户的百分比 |                                     |
+| permission        | obj   |                          |                                     |
+| rewards           | null  |                          |                                     |
 
 **示例：**
 

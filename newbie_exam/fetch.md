@@ -35,11 +35,11 @@
 
 | 字段       | 类型  | 内容               | 备注                                                         |
 | ---------- | ----- | ------------------ | ------------------------------------------------------------ |
-| id         | num   | 问题id             |                                                              |
+| id         | num   | 问题id             | **问题id不代表题图，因为选项是打乱的**                       |
 | number     | num   | 当前题号           |                                                              |
 | q_height   | num   | 问题部分总高度     |                                                              |
 | q_coord_y  | num   | 问题部分Y裁剪起始  | 当然是0                                                      |
-| image      | str   | 题图url            | 题目+所有的选项                                              |
+| image      | str   | 题图url            | 题目文字+所有的选项文字排版成一张图，存储在bfs中             |
 | from       | str   | 问题来源页面url    | 如：“xx弹幕是否违规”所在的视频页                             |
 | options    | array | 选项列表           |                                                              |
 | type_id    | num   | 题目父类型id       | 见[查询自选题分类](info.md#查询自选题分类)<br />**注：36为基础题** |
@@ -62,7 +62,7 @@
 | number  | num  | 选项序号          | 如：1为A 2为B            |
 | high    | num  | 选项部分总高度    |                          |
 | coord_y | num  | 选项部分Y裁剪起始 |                          |
-| hash    | str  | 选项hash          | 作为提交对应选项时的参数 |
+| hash    | str  | 选项hash          | 作为提交对应选项时应传参 |
 
 **示例：**
 
@@ -211,8 +211,6 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro' \
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```json
 {
     "code": 0,
@@ -261,3 +259,4 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro' \
 ```
 
 </details>
+

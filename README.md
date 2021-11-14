@@ -13,11 +13,12 @@
         <img src="https://img.shields.io/github/forks/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub forks"/>
     </a>
     <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration:none" >
-        <img src="https://img.shields.io/github/license/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub license"/>
+        <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="GitHub license"/>
     </a>
 </p>
 <h3 align="center">野生API文档</h3>  
 <h3 align="center">不断更新中....</h3>  
+
 本项目旨在对B站web端、移动端以及TV端散落在世界各地的野生api进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js逆向分析法、apk拆包及反编译法、网络抓包法等研究办法
 
 所有api均为标准http协议，返回数据大都为json或protobuf
@@ -181,10 +182,10 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 直播间操作
   - [直播视频流](live/live_stream.md)×
   - [直播信息流](live/message_stream.md)×
-- [转正答题](newbie_exam)
-  - [查询信息](newbie_exam/info.md)×
+- [转正答题](newbie_exam)×
+  - [查询信息](newbie_exam/info.md)√
   - [拉取题目](newbie_exam/fetch.md)√
-  - [操作](newbie_exam/action.md)×
+  - [操作](newbie_exam/action.md)√
 - B币钱包
   - 基本信息
   - B币充值
