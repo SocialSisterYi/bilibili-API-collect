@@ -60,7 +60,8 @@ curl 'http://api.bilibili.com/x/answer/v4/base/check' \
 
 <details>
 <summary>查看响应示例：</summary>
-```json  
+
+```json
 {
     "code": 0,
     "message": "0",
@@ -121,7 +122,7 @@ curl 'http://api.bilibili.com/x/answer/v4/base/check' \
 <details>
 <summary>查看响应示例：</summary>
 
-```json  
+```json
 {
     "code": 0,
     "message": "0",
@@ -182,7 +183,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro/check' \
 <details>
 <summary>查看响应示例：</summary>
 
-```json  
+```json
 {
     "code": 0,
     "message": "0",
@@ -234,7 +235,7 @@ curl 'http://api.bilibili.com/x/answer/v4/captcha' \
 <details>
 <summary>查看响应示例：</summary>
 
-```json  
+```json
 {
     "code": 0,
     "message": "0",
@@ -306,7 +307,7 @@ curl 'http://api.bilibili.com/x/answer/v4/captcha/check' \
 <details>
 <summary>查看响应示例：</summary>
 
-```json  
+```json
 {
     "code": 0,
     "message": "0",
@@ -355,7 +356,7 @@ curl 'http://api.bilibili.com/x/answer/v4/pro/type/check' \
 <details>
 <summary>查看响应示例：</summary>
 
-```json  
+```json
 {
     "code": 0,
     "message": "0",
@@ -424,7 +425,8 @@ curl 'http://api.bilibili.com/x/answer/v4/submit' \
 
 <details>
 <summary>查看响应示例：</summary>
-```json  
+
+```json
 {
     "code": 0,
     "message": "0",
