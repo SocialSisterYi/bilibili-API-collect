@@ -153,6 +153,7 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - [删除动态](dynamic/delete.md)
   - 动态列表
     - [特定话题动态列表](/dynamic/tag_dynamics.md)√
+  - [获取动态列表](/dynamic/dynamic_new.md)
   - [动态内容](/dynamic/get_dynamic_detail.md)×
   - 操作
 - [相簿](album)
