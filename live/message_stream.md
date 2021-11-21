@@ -1,8 +1,106 @@
 # 直播间信息流
 
+- [获取信息流认证秘钥](#获取信息流认证秘钥)
+
+---
+
+## 获取信息流认证秘钥
+
+> http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo
+
+*请求方式：GET*
+
+**url参数：**
+
+| 参数名 | 类型 | 内容         | 必要性 | 备注 |
+| ------ | ---- | ------------ | ------ | ---- |
+| id     | num  | 直播间真实id | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误<br />60009：分区不存在<br />**（其他错误码有待补充）** |
+| message | str  | 错误信息 | 默认为空                                                     |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
+
+`data`对象：
+
+| 字段               | 类型  | 内容                 | 备注 |
+| ------------------ | ----- | ------------------- | ---- |
+| group              | str   | live                |      |
+| business_id        | num   | 0                   |      |
+| refresh_row_factor | num   | 0.125               |      |
+| refresh_rate       | num   | 100                 |      |
+| max_delay          | num   | 5000                |      |
+| token              | str   | 认证秘钥            |      |
+| host_list          | array | 信息流服务器节点列表 |      |
+
+`host_list`数组中的对象：
+
+| 字段     | 类型 | 内容       | 备注 |
+| -------- | ---- | ---------- | ---- |
+| host     | str  | 服务器域名 |      |
+| port     | num  | tcp端口    |      |
+| wss_port | num  | wss端口    |      |
+| ws_port  | num  | ws端口     |      |
+
+**示例：**
+
+获得直播间`22824550`的信息流认证秘钥
+
+```shell
+curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
+--data-urlencode 'id=22824550'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "group": "live",
+    "business_id": 0,
+    "refresh_row_factor": 0.125,
+    "refresh_rate": 100,
+    "max_delay": 5000,
+    "token": "Eac3Lm1JADzny-YnB5MW0MQcd23rw_mgMFZAnu40I-J2ecP2Qj6CH-UqjdfvwiqVEZcEksG1ONSOi1dGzm0wM4FxqA-ZYXtcQyHXPXqxmrx3AmDx8Z5-d4TuKQkaU0zxevH1B-gnu7g8TDtIE4lns4BYlw==",
+    "host_list": [
+      {
+        "host": "tx-sh-live-comet-02.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244
+      },
+      {
+        "host": "tx-bj-live-comet-02.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244
+      },
+      {
+        "host": "broadcastlv.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 443,
+        "ws_port": 2244
+      }
+    ]
+  }
+}
+```
+
+</details>
+
 ## 数据包格式
 
-数据包为websocket，格式为头部数据+正文数据
+数据包为MQ（消息队列）使用websocket或tcp作为通道，具体格式为头部数据+正文数据
 
 操作流程：
 
@@ -16,7 +114,7 @@
 | 4      | 2    | uint16 | 头部大小（一般为0x0010，16字节）                             |
 | 6      | 2    | uint16 | 协议版本:<br />0普通包正文不使用压缩 <br />1心跳及认证包正文不使用压缩<br />2普通包正文使用zlib压缩<br/>3普通包正文使用brotli压缩,解压为一个带头部的协议0普通包 |
 | 8      | 4    | uint32 | 操作码（封包类型）                                           |
-| 12     | 4    | uint32 | sequence，可以取常数1                                        |
+| 12     | 4    | uint32 | sequence，每次发包时向上递增                                 |
 
 操作码：
 
@@ -38,34 +136,34 @@
 
 json格式
 
-| 字段      | 类型 | 内容         | 备注           |
-| --------- | ---- | ------------ | -------------- |
-| uid       | num  | 用户mid      | 不可为0        |
-| roomid    | num  | 加入房间的id |                |
-| protover  | num  | 协议版本     | 现在是2        |
-| platform  | str  | 平台标识     | 可为"web"      |
-| clientver | str  | 客户端版本   | 现在是"1.10.3" |
-| type      | num  | 必须为2      |                |
-| key       | str  | 认证秘钥     |                |
+| 字段     | 类型 | 内容         | 必要性 | 备注         |
+| -------- | ---- | ------------ | ------ | ------------ |
+| uid      | num  | 用户mid      | 非必要 |              |
+| roomid   | num  | 加入房间的id | 必要   | 直播间真实id |
+| protover | num  | 协议版本     | 非必要 | 3            |
+| platform | str  | 平台标识     | 非必要 | "web"        |
+| type     | num  | 2            | 非必要 |              |
+| key      | str  | 认证秘钥     | 非必要 |              |
 
 示例：
 
 ```
-00000000  00 00 00 f0 00 10 00 01  00 00 00 07 00 00 00 01  |................|
-00000010  7b 22 75 69 64 22 3a 32  39 33 37 39 33 34 33 35  |{"uid":293793435|
-00000020  2c 22 72 6f 6f 6d 69 64  22 3a 32 31 36 38 36 32  |,"roomid":216862|
-00000030  33 37 2c 22 70 72 6f 74  6f 76 65 72 22 3a 32 2c  |37,"protover":2,|
-00000040  22 70 6c 61 74 66 6f 72  6d 22 3a 22 77 65 62 22  |"platform":"web"|
-00000050  2c 22 63 6c 69 65 6e 74  76 65 72 22 3a 22 31 2e  |,"clientver":"1.|
-00000060  31 30 2e 33 22 2c 22 74  79 70 65 22 3a 32 2c 22  |10.3","type":2,"|
-00000070  6b 65 79 22 3a 22 43 6f  4b 68 5f 61 49 46 42 6c  |key":"CoKh_aIFBl|
-00000080  51 32 4c 57 77 64 79 4e  43 6b 2d 69 5f 42 76 72  |Q2LWwdyNCk-i_Bvr|
-00000090  64 72 72 55 4d 32 78 57  6c 74 62 35 77 6b 54 50  |drrUM2xWltb5wkTP|
-000000a0  4e 72 44 55 49 2d 73 46  32 41 56 56 4f 44 78 43  |NrDUI-sF2AVVODxC|
-000000b0  52 42 39 69 64 76 74 34  46 32 4d 50 31 45 4a 6c  |RB9idvt4F2MP1EJl|
-000000c0  4d 68 49 57 6b 31 5a 69  73 67 6e 32 67 67 66 6c  |MhIWk1Zisgn2ggfl|
-000000d0  68 72 65 6e 4f 4b 65 39  7a 56 65 6d 78 35 7a 5f  |hrenOKe9zVemx5z_|
-000000e0  5a 4d 43 61 55 77 4c 31  65 70 6d 7a 5a 53 22 7d  |ZMCaUwL1epmzZS"}|
+00000000: 0000 00ff 0010 0001 0000 0007 0000 0001  ................
+00000001: 7b22 7569 6422 3a31 3630 3134 3836 3234  {"uid":160148624
+00000002: 2c22 726f 6f6d 6964 223a 3232 3630 3831  ,"roomid":226081
+00000003: 3132 2c22 7072 6f74 6f76 6572 223a 332c  12,"protover":3,
+00000004: 2270 6c61 7466 6f72 6d22 3a22 7765 6222  "platform":"web"
+00000005: 2c22 7479 7065 223a 322c 226b 6579 223a  ,"type":2,"key":
+00000006: 2230 7670 5448 5737 7757 556e 6c6f 5270  "0vpTHW7wWUnloRp
+00000007: 5251 6b47 764e 626e 7776 7364 6d2d 7159  RQkGvNbnwvsdm-qY
+00000008: 4777 4243 5875 2d59 5164 6e57 7653 5547  GwBCXu-YQdnWvSUG
+00000009: 7373 4139 7962 4b68 7932 6a78 3952 6f63  ssA9ybKhy2jx9Roc
+0000000a: 4150 4651 6d54 4f6b 5277 6b4b 687a 4479  APFQmTOkRwkKhzDy
+0000000b: 4839 5054 756f 5468 6834 4630 7562 584c  H9PTuoThh4F0ubXL
+0000000c: 4964 6e69 3734 5539 304b 4242 6972 3248  Idni74U90KBBir2H
+0000000d: 7451 3941 3777 674b 3438 4b7a 495f 5a5a  tQ9A7wgK48KzI_ZZ
+0000000e: 3838 7557 4e59 6652 4f48 6964 4e6a 3732  88uWNYfROHidNj72
+0000000f: 7061 796e 3479 3071 4268 513d 3d22 7d    payn4y0qBhQ=="}
 ```
 
 
@@ -99,9 +197,7 @@ json格式
 
 正文：
 
-特定字符
-
-[object Object]
+可以为空或任意字符
 
 示例：
 
@@ -127,7 +223,7 @@ uint32整数，代表房间当前的人气值
 00000010  00 00 14 83                                       |....|
 ```
 
-可见房间内人气值为5251人
+可见房间内人气值为5251
 
 ### 普通包
 

@@ -26,7 +26,7 @@
 | max      | num  | 历史记录截止目标id     | 非必要 | 默认为0<br />稿件：稿件avid<br />番剧（影视）：剧集ssid<br />直播：直播间id<br />文集：文集rlid<br />文章：文章cvid |
 | business | num  | 历史记录截止目标id类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：番剧（影视）<br />live：直播<br />article-list：文集<br />article：文章 |
 | view_at  | num  | 历史记录截止时间       | 非必要 | 时间戳<br />默认为0<br />0为当前时间                         |
-| ps       | num  | 每页项数               | 非必要 | 默认为20                                                     |
+| ps       | num  | 每页项数               | 非必要 | 默认为20，最大30                                                     |
 
 **json回复：**
 

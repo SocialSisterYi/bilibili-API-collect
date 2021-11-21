@@ -20,7 +20,7 @@
 
 ## 申请充电二维码及扫码秘钥
 
-> http://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/create 
+> http://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/qr_code/create
 
 *请求方式：POST*
 
@@ -32,7 +32,7 @@
 
 | 参数名              | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------------------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| elec_num            | num  | 充电电池数量             | 必要   | 必须在20-99990之间<br />1-19区间视为充值B币                  |
+| bp_num            | num  | 充电B币数量             | 必要   | 必须在2-9999之间                  |
 | up_mid              | num  | 充电对象用户mid          | 必要   |                                                              |
 | is_bp_remains_prior | bool | 是否优先扣除B币          | 必要   | true：是<br />false：否<br />在B币不足时剩余的部分利用支付平台支付 |
 | otype               | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电                          |

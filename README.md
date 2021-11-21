@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="imgs/Mylogo.png" width="250" height="200">
+    <img src="imgs/logo.png" width="250" height="200">
 </p>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
 <p align="center">
@@ -13,11 +13,12 @@
         <img src="https://img.shields.io/github/forks/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub forks"/>
     </a>
     <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration:none" >
-        <img src="https://img.shields.io/github/license/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub license"/>
+        <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="GitHub license"/>
     </a>
 </p>
 <h3 align="center">野生API文档</h3>  
 <h3 align="center">不断更新中....</h3>  
+
 本项目旨在对B站web端、移动端以及TV端散落在世界各地的野生api进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js逆向分析法、apk拆包及反编译法、网络抓包法等研究办法
 
 所有api均为标准http协议，返回数据大都为json或protobuf
@@ -32,11 +33,11 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
 
 **声明**：
 
-1. 本项目遵守CC-BY-4.0协议，如需转载请标明作者ID
+1. 本项目遵守CC-BY-NC 4.0协议，禁止一切商业使用，如需转载请注明作者ID
 2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
-3. 由于使用本项目提供的接口、文档等造成的不良影响和后果与本人无关
+3. 利用本项目提供的接口、文档等造成不良影响及后果与本人无关
 4. 由于本项目的特殊性，可能随时停止开发或删档
-5. 本项目为开源项目，不接受任何的催单和索取行为
+5. 本项目为开源项目，不接受任何形式的催单和索取行为，更不容许存在付费内容
 
 ---
 
@@ -181,10 +182,10 @@ PS：所有http协议地址均可使用https，文档中为了统一写作`http`
   - 直播间操作
   - [直播视频流](live/live_stream.md)×
   - [直播信息流](live/message_stream.md)×
-- [转正答题](newbie_exam)
-  - [查询信息](newbie_exam/info.md)×
+- [转正答题](newbie_exam)×
+  - [查询信息](newbie_exam/info.md)√
   - [拉取题目](newbie_exam/fetch.md)√
-  - [操作](newbie_exam/action.md)×
+  - [操作](newbie_exam/action.md)√
 - B币钱包
   - 基本信息
   - B币充值

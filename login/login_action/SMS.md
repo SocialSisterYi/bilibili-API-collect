@@ -99,7 +99,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 
 ## 发送短信验证码（web端）
 
-> http://passport.bilibili.com/web/sms/general/v2/send
+> https://passport.bilibili.com/x/passport-login/web/sms/send
 
 *请求方式：POST*
 

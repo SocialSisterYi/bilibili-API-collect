@@ -22,7 +22,7 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 | 6    | 240P 极速      | 仅mp4方式支持                                                |
 | 16   | 360P 流畅      |                                                              |
 | 32   | 480P 清晰      |                                                              |
-| 64   | 720P 高清      | web端默认值<br />需要认证登录账号<br />**无720P时则为720P60** |
+| 64   | 720P 高清      | web端默认值<br />B站前端需要登录才能选择，但是直接发送请求可以不登录就拿到720P的取流地址<br />**无720P时则为720P60** |
 | 74   | 720P60 高帧率  | 需要认证登录账号                                             |
 | 80   | 1080P 高清     | TV端与APP端默认值<br />需要认证登录账号                      |
 | 112  | 1080P+ 高码率  | 大多情况需求认证大会员账号                                   |
@@ -38,7 +38,7 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 
 ## fnval视频流格式标识
 
-该代码为二进制属性位，如需组合功能需要使用`AND`运算结合一下数值
+该代码为二进制属性位，如需组合功能需要使用`OR`运算结合一下数值
 
 | 值   | 含义             | 备注                                                         |
 | ---- | ---------------- | ------------------------------------------------------------ |
@@ -393,12 +393,12 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 | height         | num   | 视频高度              | 单位为像素<br />仅视频有效                      |
 | frameRate      | str   | 视频帧率              | 仅视频有效                                      |
 | frame_rate     | str   | **同上**              |                                                 |
-| sar            | str   | 1:1                   | 作用尚不明确                                    |
-| startWithSap   | num   | 1                     | 作用尚不明确                                    |
+| sar            | str   | 1:1                   | Sample Aspect Ratio，单个像素的宽高比           |
+| startWithSap   | num   | 1                     | Stream Access Point                             |
 | start_with_sap | num   | **同上**              |                                                 |
-| SegmentBase    | obj   | ？？？                | 作用尚不明确                                    |
+| SegmentBase    | obj   | 见下表                | url 对应 m4s 文件中，头部的位置                   |
 | segment_base   | obj   | **同上**              |                                                 |
-| codecid        | num   | 7                     | 作用尚不明确                                    |
+| codecid        | num   | 视频: 7或12<br />音频: 0 | 7=AVC，12=HEVC <br />出处是 FLV 格式里 VideoTag 中的 CodecId 域；<br />FLV 标准不支持 HEVC，但 codecId 值为 12 是各厂共识 |
 
 `video`数组中的对象中的`backup_url`数组：
 
@@ -408,12 +408,15 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 | n    | str  | 备用视频/音频流url (n+1) |                                                 |
 | ……   | str  | ……                       |                                                 |
 
-`video`数组中的对象中的`backup_url`对象：
+`video`数组中的对象中的`SegmentBase`对象：
 
-| 字段           | 类型 | 内容   | 备注         |
-| -------------- | ---- | ------ | ------------ |
-| index_range    | str  | ？？？ | 作用尚不明确 |
-| initialization | str  | ？？？ | 作用尚不明确 |
+| 字段           | 类型 | 内容                                          | 备注                                                         |
+| -------------- | ---- | --------------------------------------------- | ------------------------------------------------------------ |
+| initialization | str  | \<init-first\>-\<init-last\><br />如：0-821    | ftyp (file type) box 加上 moov box 在 m4s 文件中的范围（单位为 bytes）<br />如 0-821 表示开头 820 个字节 |
+| index_range    | str  | \<sidx-first\>-\<sidx-last\><br />如：822-1309 | sidx (segment index) box 在 m4s 文件中的范围（单位为 bytes）<br />sidx 的核心是一个数组，记录了各关键帧的时间戳及其在文件中的位置，<br />其作用是索引 (拖进度条) |
+
+> 常规 MP4 文件的索引信息放在 moov box 中，其中包含每一帧 (不止是关键帧) 的一些信息。在 DASH 方式下，关键帧信息移到了 sidx box 里，其他的则分散到了各个 moof (movie fragment) box 中。<br>对这里的文件结构感兴趣的，可以参考标准文档 ISO/IEC 14496-12，如果不想那么深入的话可以百度「MP4 文件结构」。
+
 
 **示例：**
 

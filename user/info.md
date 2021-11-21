@@ -61,7 +61,7 @@
 | sys_notice       | obj  | 系统通知         | 无内容则为空对象<br />主要用于展示如用户争议、纪念账号等等   |
 | live_room        | obj  | 直播间信息       |                                                              |
 | birthday         | str  | 生日             | MM-DD<br />如设置隐私为空                                    |
-| school           | obj  |                  |                                                              |
+| school           | obj  | 学校             |                                                              |
 | profession       | obj  |                  |                                                              |
 | tags             | null |                  |                                                              |
 | series           | obj  |                  |                                                              |
@@ -126,6 +126,12 @@
 | icon        | str  | 提示图标url     | 此字段非必须                                    |
 | text_color  | str  | 提示文字颜色    | 此字段非必须<br />颜色码                        |
 | bg_color    | str  | 提示背景颜色    | 此字段非必须<br />颜色码                        |
+
+`data`中的`school`对象：
+
+| 字段        | 类型 | 内容            | 备注             |
+| ----------- | ---- | --------------- | -------------- |
+| name        | str  | 就读大学名称     | 没有则为空      |
 
 `data`中的`live_room`对象：
 
