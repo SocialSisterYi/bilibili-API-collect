@@ -287,8 +287,6 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/del' \
 
 将id为`1288061499`的收藏夹中视频稿件`av21822819` `av21918689` `av22288065`复制到id为`1178751999`的收藏夹中
 
-清理id为`1161340172`的收藏夹
-
 ```shell
 curl 'http://api.bilibili.com/x/v3/fav/resource/copy' \
 --data-urlencode 'src_media_id=1288061499' \
@@ -348,8 +346,6 @@ curl 'http://api.bilibili.com/x/v3/fav/resource/copy' \
 **示例：**
 
 将id为`1288061499`的收藏夹中视频稿件`av21822819` `av21918689` `av22288065`移动到id为`1178751999`的收藏夹中
-
-清理id为`1161340172`的收藏夹
 
 ```shell
 curl 'http://api.bilibili.com/x/v3/fav/resource/move' \
