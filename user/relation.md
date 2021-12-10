@@ -297,7 +297,7 @@ data 对象：
 获取用户`mid=293793435`的关注明细，按照关注顺序
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/ollowings' \
+curl -G 'http://api.bilibili.com/x/relation/followings' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'order_type=' \
 --data-urlencode 'ps=2' \
