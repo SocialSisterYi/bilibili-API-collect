@@ -96,7 +96,6 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 ```
 
 </details>
-
 ## 发送短信验证码（web端）
 
 > https://passport.bilibili.com/x/passport-login/web/sms/send
@@ -113,9 +112,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | --- | --- | --- | --- | --- |
 | tel | num | 手机号码 | 必要 | |
 | cid         | num  | 国际地区代码       | 必要 |  |
-| type | num | 21 | 必要 | 必须为`21` |
-| captchaType | num | 6 | 必要 | 必须为`6` |
-| key | str | 登录秘钥 | 必要 | 从B站API获取 |
+| token | str  | 在获取gt,challenge处url有  | 必要 |  |
 | challenge | str | 极验challenge | 必要 | 从B站API获取 |
 | validate | str | 极验结果 | 必要 | 从极验获取 |
 | seccode | str | 极验结果+`|jordan` | 必要   | 从极验获取   |
@@ -127,8 +124,10 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | 字段   | 类型 | 内容     | 备注         |
 | ------ | ---- | -------- | --------- |
 | code | num | 返回值 | 0：成功<br />-400：请求错误<br />1002：手机号格式错误<br />86203：短信发送次数已达上限<br />1003：验证码已经发送<br />1025：该手机号在哔哩哔哩有过永久封禁记录，无法再次注册或绑定新账号<br />2400：登录秘钥错误<br />2406：验证极验服务出错 |
-| message | str | 错误信息 | 成功为"验证码短信已下发" |
+| message | str | 错误信息 | 成功为0 |
+| data | str | 数据 | 内含captcha_key |
 
+captcha_key在下方传参时需要,请备用.
 **示例：**
 
 例如手机号为`13888888888`，国际id为`1（中国大陆）`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
@@ -149,17 +148,18 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 <summary>查看响应示例：</summary>
 
 ```json
-{
-  "code": 0,
-  "message": "验证码短信已下发"
-}
+{"code":0,
+    "message":"0",
+    "ttl":1,
+    "data":{"captcha_key":"7542f109c3318d74847626495c68c321"}
+    }
 ```
 
 </details>
 
 ## 使用短信验证码登录（web端）
 
-> http://passport.bilibili.com/web/login/rapid
+> https://passport.bilibili.com/x/passport-login/web/login/sms
 
 *请求方式：POST*
 
@@ -173,8 +173,11 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 | --- | --- | --- | --- | --- |
 | cid | num | 国际地区代码 | 必要 |  |
 | tel | num | 手机号码 | 必要 | |
-| smsCode | num | 短信验证码 | 必要 | 超时时间为5min |
+| code | num | 短信验证码 | 必要 | 超时时间为5min |
+| captcha_key | str | 上方发送短信验证码时的一个参数 | 必要 |  |
 | goUrl | str | 跳转url | 非必要 | 默认为https://www.bilibili.com |
+| keep | str | 未知 | 非必要 | 默认为true |
+
 
 **json回复：**
 
