@@ -7,7 +7,7 @@
 
 ## 退出登录（web 端）
 
-> https://passport.bilibili.com/login/exit/v2
+> http://passport.bilibili.com/login/exit/v2
 
 _请求方式：POST_
 

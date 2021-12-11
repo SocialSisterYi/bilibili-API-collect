@@ -8,9 +8,10 @@ web端短信登录流程：
 
 ---
 
-- [获取国际地区代码（web端）](#获取国际地区代码（web端）)
-- [发送短信验证码（web端）](#发送短信验证码（web端）)
-- [使用短信验证码登录（web端）](#使用短信验证码登录（web端）)
+- [短信登录](#短信登录)
+  - [获取国际地区代码（web端）](#获取国际地区代码web端)
+  - [发送短信验证码（web端）](#发送短信验证码web端)
+  - [使用短信验证码登录（web端）](#使用短信验证码登录web端)
 
 ---
 
@@ -98,7 +99,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 </details>
 ## 发送短信验证码（web端）
 
-> https://passport.bilibili.com/x/passport-login/web/sms/send
+> http://passport.bilibili.com/x/passport-login/web/sms/send
 
 *请求方式：POST*
 
@@ -159,7 +160,7 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 
 ## 使用短信验证码登录（web端）
 
-> https://passport.bilibili.com/x/passport-login/web/login/sms
+> http://passport.bilibili.com/x/passport-login/web/login/sms
 
 *请求方式：POST*
 

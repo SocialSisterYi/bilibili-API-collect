@@ -9,7 +9,7 @@
 
 ## 获取用户持有的粉丝勋章信息
 
-> https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal
+> http://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal
 
 *请求方式：GET*
 
@@ -226,7 +226,7 @@ curl https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal \
 
 ## 佩戴勋章
 
-> https://api.live.bilibili.com/xlive/web-room/v1/fansMedal/wear
+> http://api.live.bilibili.com/xlive/web-room/v1/fansMedal/wear
 
 *请求方式：POST*
 
@@ -291,7 +291,7 @@ $.ajax({
 
 ## 直播签到
 
-> https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign
+> http://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign
 
 *请求方式：GET*
 

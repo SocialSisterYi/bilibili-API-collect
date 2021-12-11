@@ -1,8 +1,12 @@
 # 歌单&音频收藏夹详细信息
 
-- [查询自己创建的歌单](#查询自己创建的歌单)
+- [歌单&音频收藏夹详细信息](#歌单音频收藏夹详细信息)
+  - [查询自己创建的歌单](#查询自己创建的歌单)
+  - [查询音频收藏夹（默认歌单）信息](#查询音频收藏夹默认歌单信息)
 
-- [查询音频收藏夹（默认歌单）信息](#查询音频收藏夹（默认歌单）信息)
+- [歌单&音频收藏夹详细信息](#歌单音频收藏夹详细信息)
+  - [查询自己创建的歌单](#查询自己创建的歌单)
+  - [查询音频收藏夹（默认歌单）信息](#查询音频收藏夹默认歌单信息)
 
 ---
 
@@ -176,7 +180,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
 
 ## 查询音频收藏夹（默认歌单）信息
 
-> https://www.bilibili.com/audio/music-service-c/web/collections/info
+> http://www.bilibili.com/audio/music-service-c/web/collections/info
 
 *请求方式：GET*
 
