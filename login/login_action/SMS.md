@@ -126,7 +126,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | ------ | ---- | -------- | --------- |
 | code | num | 返回值 | 0：成功<br />-400：请求错误<br />1002：手机号格式错误<br />86203：短信发送次数已达上限<br />1003：验证码已经发送<br />1025：该手机号在哔哩哔哩有过永久封禁记录，无法再次注册或绑定新账号<br />2400：登录秘钥错误<br />2406：验证极验服务出错 |
 | message | str | 错误信息 | 成功为0 |
-| data | str | 数据 | 内含captcha_key |
+| data | obj | 数据 | 内含captcha_key |
 
 captcha_key在下方传参时需要,请备用.
 **示例：**
