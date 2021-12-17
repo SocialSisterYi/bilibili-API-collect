@@ -50,6 +50,7 @@
 
 ```shell
 curl -G 'https://api.bilibili.com/x/vip/privilege/my' \
+-b "SESSDATA=xxx"
 ```
 
 <details>
@@ -73,11 +74,11 @@ curl -G 'https://api.bilibili.com/x/vip/privilege/my' \
 
 
 ## 兑换
-> http://api.bilibili.com/x/vip/privilege/my
+> https://api.bilibili.com/x/vip/privilege/receive
 
 *请求方式:POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA, bili_jct）
 注意：请求头中的Origin字段必须为"https://www.bilibili.com/"
 
 
@@ -91,9 +92,10 @@ curl -G 'https://api.bilibili.com/x/vip/privilege/my' \
 **示例：**
 
 ```shell
-curl -G 'https://api.bilibili.com/x/vip/privilege/my' \
+curl 'https://api.bilibili.com/x/vip/privilege/receive' \
 -H "Origin: https://www.bilibili.com/" \
--d "{\"type\": 1, \"csrf\": csrf_token}" 
+-b "SESSDATA=xxx; bili_jct=xxx" \
+-d "type=1&csrf=csrf_token"
 ```
 
 **响应：**
