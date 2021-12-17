@@ -8,9 +8,10 @@ web端短信登录流程：
 
 ---
 
-- [获取国际地区代码（web端）](#获取国际地区代码（web端）)
-- [发送短信验证码（web端）](#发送短信验证码（web端）)
-- [使用短信验证码登录（web端）](#使用短信验证码登录（web端）)
+- [短信登录](#短信登录)
+  - [获取国际地区代码（web端）](#获取国际地区代码web端)
+  - [发送短信验证码（web端）](#发送短信验证码web端)
+  - [使用短信验证码登录（web端）](#使用短信验证码登录web端)
 
 ---
 
@@ -98,7 +99,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 </details>
 ## 发送短信验证码（web端）
 
-> https://passport.bilibili.com/x/passport-login/web/sms/send
+> http://passport.bilibili.com/x/passport-login/web/sms/send
 
 *请求方式：POST*
 
@@ -125,7 +126,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | ------ | ---- | -------- | --------- |
 | code | num | 返回值 | 0：成功<br />-400：请求错误<br />1002：手机号格式错误<br />86203：短信发送次数已达上限<br />1003：验证码已经发送<br />1025：该手机号在哔哩哔哩有过永久封禁记录，无法再次注册或绑定新账号<br />2400：登录秘钥错误<br />2406：验证极验服务出错 |
 | message | str | 错误信息 | 成功为0 |
-| data | str | 数据 | 内含captcha_key |
+| data | obj | 数据 | 内含captcha_key |
 
 captcha_key在下方传参时需要,请备用.
 **示例：**
@@ -159,7 +160,7 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 
 ## 使用短信验证码登录（web端）
 
-> https://passport.bilibili.com/x/passport-login/web/login/sms
+> http://passport.bilibili.com/x/passport-login/web/login/sms
 
 *请求方式：POST*
 

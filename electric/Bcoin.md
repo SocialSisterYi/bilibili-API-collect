@@ -8,14 +8,15 @@
 
 ---
 
-- [新版本接口](#新版本B币充电)
-- [老版本接口](#老版本B币充电)
+- [B币方式充电](#b币方式充电)
+  - [新版本B币充电](#新版本b币充电)
+  - [老版本B币充电](#老版本b币充电)
 
 ---
 
 ## 新版本B币充电
 
-> https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick
+> http://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick
 
 *请求方式：POST*
 

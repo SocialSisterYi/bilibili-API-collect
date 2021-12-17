@@ -1,9 +1,10 @@
 # 直播间基本信息
 
-- [获取用户对应的直播间状态](#获取用户对应的直播间状态)
-- [获取房间页初始化信息](#获取房间页初始化信息)
-- [获取主播信息](#获取主播信息)
-- [批量查询直播间状态](#批量查询直播间状态)
+- [直播间基本信息](#直播间基本信息)
+	- [获取用户对应的直播间状态](#获取用户对应的直播间状态)
+	- [获取房间页初始化信息](#获取房间页初始化信息)
+	- [获取主播信息](#获取主播信息)
+	- [批量查询直播间状态](#批量查询直播间状态)
 
 ---
 
@@ -314,7 +315,7 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 ## 批量查询直播间状态
 
-> https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
+> http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
 
 *请求方式：POST*
 

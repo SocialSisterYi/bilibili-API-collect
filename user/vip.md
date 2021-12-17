@@ -1,13 +1,14 @@
 # 大会员兑换福利
 
-- [兑换状态查询](#兑换状态查询)
-- [兑换](#兑换)
+- [大会员兑换福利](#大会员兑换福利)
+	- [兑换状态查询](#兑换状态查询)
+	- [兑换](#兑换)
 
 ---
 
 ## 兑换状态查询
 
-> https://api.bilibili.com/x/vip/privilege/my
+> http://api.bilibili.com/x/vip/privilege/my
 
 *请求方式:GET*
 
@@ -72,7 +73,7 @@ curl -G 'https://api.bilibili.com/x/vip/privilege/my' \
 
 
 ## 兑换
-> https://api.bilibili.com/x/vip/privilege/my
+> http://api.bilibili.com/x/vip/privilege/my
 
 *请求方式:POST*
 
