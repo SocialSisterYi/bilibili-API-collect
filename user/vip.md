@@ -74,7 +74,7 @@ curl -G 'https://api.bilibili.com/x/vip/privilege/my' \
 
 
 ## 兑换
-> https://api.bilibili.com/x/vip/privilege/receive
+> http://api.bilibili.com/x/vip/privilege/receive
 
 *请求方式:POST*
 
