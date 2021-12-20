@@ -23,7 +23,7 @@
 | tid      | num  | 分区tid                  | 非必要 | 默认为全部分区<br />0：全部分区<br />[详见说明](../video/video_zone.md) |
 | keyword  | str  | 搜索关键字               | 非必要 |                                                              |
 | order    | str  | 排序方式                 | 非必要 | 按收藏时间:mtime<br />按播放量: view<br />按投稿时间：pubtime |
-| type     | num  | 内容类型（？）           | 非必要 | 可为0                                                        |
+| type     | num  | 查询范围           | 非必要 | 0：在当前收藏夹（对应media_id）<br /> 1：全部收藏夹                                                       |
 | ps       | num  | 每页数量                 | 必要   |                                                              |
 | pn       | num  | 页码                     | 非必要 | 默认为1                                                      |
 | platform | str  | 平台标识                 | 非必要 | 可为web（影响内容列表类型）                                  |
