@@ -1,9 +1,11 @@
 # 直播间用户实用API
 
 - [直播间用户实用API](#直播间用户实用api)
-  - [获取用户持有的粉丝勋章信息](#获取用户持有的粉丝勋章信息)
-  - [佩戴勋章](#佩戴勋章)
-  - [直播签到](#直播签到)
+- [获取用户持有的粉丝勋章信息](#获取用户持有的粉丝勋章信息)
+- [佩戴勋章](#佩戴勋章)
+- [进入直播间/当前用户信息](#进入直播间)
+- [直播签到](#直播签到)
+
 
 ---
 
@@ -309,3 +311,239 @@ $.ajax({
 | data    | obj  | 信息本体 | 默认为空                 |
 
 
+## 进入直播间
+
+> https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByUser
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+当拦截或修改room_id参数即可阻止显示进入直播间。但会导致直播间关注/粉丝团显示异常以及房管权限异常。
+
+**url参数：**
+
+|    参数名   | 类型 |          内容        | 必要性 | 备注 |
+| ---------- | ---- | -------------------- | ---- | ---- |
+| room_id   | num  |         房间id       | 必要 |  可以为短号    |
+
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功                      |
+| ttl     | str  |   1     |                              |
+| message | str  | 错误信息 | 默认为佩戴成功                |
+| data    | obj  | 信息本体 |                              |
+
+**示例：**
+
+查询账户在直播间545的信息
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/index/getInfoByUser?room_id=545' \
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "user_level": {
+      "level": 26,
+      "next_level": 27,
+      "color": 5805790,
+      "level_rank": "\u003e50000"
+    },
+    "vip": {
+      "vip": 0,
+      "vip_time": "0000-00-00 00:00:00",
+      "svip": 0,
+      "svip_time": "0000-00-00 00:00:00"
+    },
+    "title": {
+      "title": ""
+    },
+    "badge": {
+      "is_room_admin": false
+    },
+    "privilege": {
+      "target_id": 0,
+      "privilege_type": 0,
+      "privilege_uname_color": "",
+      "buy_guard_notice": null,
+      "sub_level": 0,
+      "notice_status": 1,
+      "expired_time": "",
+      "auto_renew": 0,
+      "renew_remind": null
+    },
+    "info": {
+      "uid": 0,
+      "uname": "xxx",
+      "uface": "xxx",
+      "main_rank": 10000,
+      "bili_vip": 2,
+      "mobile_verify": 1,
+      "identification": 0
+    },
+    "property": {
+      "uname_color": "",
+      "bubble": 0,
+      "danmu": {
+        "mode": 1,
+        "color": 5566168,
+        "length": 30,
+        "room_id": 573893
+      },
+      "bubble_color": ""
+    },
+    "recharge": {
+      "status": 0,
+      "type": 1,
+      "value": "",
+      "color": "fb7299",
+      "config_id": 0
+    },
+    "relation": {
+      "is_followed": true,
+      "is_fans": false,
+      "is_in_fansclub": true
+    },
+    "wallet": {
+      "gold": 0,
+      "silver": 0
+    },
+    "medal": {
+      "cnt": 1,
+      "is_weared": true,
+      "curr_weared": {
+        "target_id": ,
+        "target_name": "xxx",
+        "medal_name": "xxx",
+        "target_roomid": ,
+        "level": 1,
+        "intimacy": 1,
+        "next_intimacy": 200,
+        "day_limit": 1500,
+        "today_feed": 0,
+        "is_union": 0,
+        "medal_color_start": ,
+        "medal_color_end": ,
+        "medal_color_border": ,
+        "is_lighted": 1,
+        "guard_level": 0,
+        "icon_id": 0,
+        "score": 
+      },
+      "up_medal": {
+        "uid": 15641218,
+        "medal_name": "boba",
+        "medal_color": 6067854,
+        "level": 1
+      }
+    },
+    "extra_config": {
+      "show_bag": true,
+      "show_vip_broadcast": true
+    },
+    "mailbox": {
+      "switch_status": 0,
+      "red_notice": 0
+    },
+    "user_reward": {
+      "entry_effect": {
+        "id": 0,
+        "privilege_type": 0,
+        "priority": 0,
+        "web_basemap_url": "",
+        "web_effective_time": 0,
+        "web_effect_close": 0,
+        "web_close_time": 0,
+        "copy_writing": "",
+        "copy_color": "",
+        "highlight_color": "",
+        "mock_effect": 0,
+        "business": 0,
+        "face": "",
+        "basemap_url": "",
+        "show_avatar": 0,
+        "effective_time": 0
+      },
+      "welcome": {
+        "allow_mock": 1
+      }
+    },
+    "shield_info": {
+      "shield_user_list": [
+        {
+          "uid": 000,
+          "uname": "xxx"
+        },
+        {
+          "uid": 000,
+          "uname": "xxx"
+        },
+        {
+          "uid": 000,
+          "uname": "xxx"
+        },
+        {
+          "uid": 000,
+          "uname": "xxx"
+        },
+        {
+          "uid": 000,
+          "uname": "xxx"
+        }
+      ],
+      "keyword_list": [],
+      "shield_rules": {
+        "rank": 1,
+        "verify": 0,
+        "level": 1
+      }
+    },
+    "super_chat_message": {
+      "list": []
+    },
+    "lpl_info": {
+      "lpl": 0
+    },
+    "cd": {
+      "guide_free_medal_cost": 0,
+      "guide_light_medal": 0,
+      "guide_follow": 0,
+      "guard_compensate": 0,
+      "interact_toasts": []
+    }
+  }
+}
+```
+
+</details>
+
+## 直播签到
+
+> https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或APP
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                    |
+| ------- | ---- | -------- | ---------------------- |
+| code    | num  | 返回值   |   0：成功<br>1：参数错误 |
+| ttl     | str  |    1    |                         |
+| message | str  | 错误信息 | 默认为当日签到奖励内容    |
+| data    | obj  | 信息本体 | 默认为空                 |

@@ -2,6 +2,7 @@
 
 - [发送视频弹幕](#发送视频弹幕)
 - [发送互动弹幕](#发送互动弹幕)
+- [发送直播弹幕](#发送直播弹幕)
 - [撤回弹幕](#撤回弹幕)
 - [购买高级弹幕发送权限](#购买高级弹幕发送权限)
 - [检测高级弹幕发送权限](#检测高级弹幕发送权限)
@@ -316,6 +317,94 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
         "extra": "{\"duration\":5000,\"posX\":118,\"posY\":82}",
         "idStr": "39055158405496839"
     }
+}
+```
+
+</details>
+
+
+## 发送直播弹幕
+
+> https://api.live.bilibili.com/msg/send 
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）或APP
+
+此接口与漫画弹幕相同
+
+`mode=6`的逆向弹幕与`mode=8`的代码弹幕不可发送
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
+| ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
+| bubble   | num  | 0 |                    |        |
+| msg       | str  | 弹幕内容               | 必要 |          |
+| color      | num  | 弹幕颜色设置             | 非必要         | 十进制RGB888值<br />默认为16777215（#FFFFFF）白色            |
+| fontsize   | num  | 弹幕字号设置             | 非必要         | 默认为25<br />, 目前只有25                                 |
+| rnd        | num  | 时间戳                  | 非必要         | 精确到秒                                                |
+| roomid     | num  | 目标房间号               |      必要      |          不接受短号，必须为真实直播间号                         |
+| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
+| csrf_token | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注      |
+| ------- | ---- | -------- | -------- |
+| code    | num  | 返回值   | 0：成功    |
+| message | str  | 错误信息 | 默认为"" |
+| msg     | str  | 错误信息 | 默认为"" |
+| ttl     | num  | 1        |      |
+| data    | obj  | 信息本体 |         |
+
+`data`对象：
+
+| 字段     | 类型 | 内容     | 备注         |
+| -------- | ---- | -------- | ------------ |
+| mode_info | obj  | 回传信息 |             |
+
+`mode_info`对象：
+| 字段     | 类型 | 内容     | 备注         |
+| -------- | ---- | -------- | ------------ |
+| extra | str  | 回传信息内容 | obj以str回传，可以转为obj |
+| mode | num  | 0 |      |
+| show_player_type | num  | 0 |       |
+
+**示例：**
+
+为直播间`545`（真实直播间为`573893`）位置发送一条弹幕
+
+```shell
+curl 'https://api.live.bilibili.com/msg/send' \
+--data-urlencode 'bubble=0' \
+--data-urlencode 'msg=打卡' \
+--data-urlencode 'color=1639221611' \
+--data-urlencode 'mode=1' \
+--data-urlencode 'rnd=3456789987654321' \
+--data-urlencode 'roomid=573893' \
+--data-urlencode 'csrf=xxx' \
+--data-urlencode 'csrf_token=xxx' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code":0,
+    "data":{
+        "mode_info":{
+            "mode":0,
+            "show_player_type":0,
+            "extra":"{\"send_from_me\":true,\"mode\":0,\"color\":1639221611,\"dm_type\":0,\"font_size\":25,\"player_mode\":1,\"show_player_type\":0,\"content\":\"打卡\",\"user_hash\":\"xxx\",\"emoticon_unique\":\"\",\"direction\":0,\"pk_direction\":0,\"space_type\":\"\",\"space_url\":\"\"}"
+        }
+    },
+    "message":"",
+    "msg":""
 }
 ```
 
