@@ -76,3 +76,4 @@ curl 'https://interface.bilibili.com/serverdate.js'
 ```js
 window.serverdate = Date.UTC(2021, 4, 16, 17, 31, 8);
 ```
+</details>
