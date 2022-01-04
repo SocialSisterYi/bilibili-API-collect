@@ -19,7 +19,7 @@
 
 ### 申请验证码参数
 
-> http://passport.bilibili.com/web/captcha/combine?plat=6
+> https://passport.bilibili.com/x/passport-login/captcha?source=main_web
 
 *请求方式：GET*
 
@@ -30,28 +30,30 @@
 | 字段   | 类型 | 内容     | 备注         |
 | ------ | ---- | -------- | --------- |
 | code   | num  | 返回值   | 0：成功     |
+| message   | str  | 返回信息   | |
+| ttl   | num  | 1 | **作用尚不明确** |
 | data   | obj  | 信息本体 | |
 
 `data`对象：
 
 | 字段      | 类型  | 内容     | 备注     |
 | -------- | ----- | ------ | -------- |
-| result   | obj   | 套了个娃 |  |
-| type     | num   | 1      | **作用尚不明确** |
+| geetest   | obj   | 套了个娃 |  |
+| tencent   | obj   | 套了个娃 | **作用尚不明确** |
+| token    | str   | 极验token | 与人机验证无关，与登录接口有关 |
+| type     | str   | 验证方式 | 用于判断使用哪一种验证方式，目前所见只有极验 |
 
-`result`对象：
+`geetest`对象：
 
 | 字段      | 类型  | 内容     | 备注     |
 | -------- | ----- | ------ | -------- |
-| success | num | 1 | **作用尚不明确** |
 | gt | str | 极验id | 一般为固定值 |
 | challenge | str | 极验KEY | 由B站后端产生用于人机验证 |
-| key | str | 登录秘钥 | 与人机验证无关，与登录接口有关，但与极验KEY对应 |
 
 **示例：**
 
 ```shell
-curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
+curl 'https://passport.bilibili.com/x/passport-login/captcha?source=main_web'
 ```
 
 <details>
@@ -59,16 +61,20 @@ curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
 
 ```json
 {
-  "code": 0,
-  "data": {
-    "result": {
-      "success": 1,
-      "gt": "bd111e81eda1cbb9f54425aafc0908ac",
-      "challenge": "2903a8eb967a1d990444cb23ea42f417",
-      "key": "76fb59fbd83a4d9d816162c5156fc964"
-    },
-    "type": 1
-  }
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "type": "geetest",
+        "token": "00fbe75cc2864ba0af969231f193a974",
+        "geetest": {
+            "challenge": "a57d9be17505d4a15ed84694c48fbf74",
+            "gt": "ac597a4506fee079629df5d8b66dd4fe"
+        },
+        "tencent": {
+            "appid": ""
+        }
+    }
 }
 ```
 
