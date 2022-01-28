@@ -97,6 +97,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 ```
 
 </details>
+
 ## 发送短信验证码（web端）
 
 > http://passport.bilibili.com/x/passport-login/web/sms/send
