@@ -14,6 +14,8 @@ service DM {
     rpc DmSegOtt(DmSegOttReq) returns(DmSegOttReply);
     // SDK弹幕列表
     rpc DmSegSDK(DmSegSDKReq) returns(DmSegSDKReply);
+    //
+    rpc DmExpoReport (DmExpoReportReq) returns (DmExpoReportRes);
 }
 
 // 弹幕SDK-请求

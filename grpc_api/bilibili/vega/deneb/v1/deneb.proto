@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package bilibili.vega.deneb.v1;
+
+//
+service VegaDenebRPC {
+    //
+    rpc MessagePulls (MessagePullsReq) returns (MessagePullsReply);
+}

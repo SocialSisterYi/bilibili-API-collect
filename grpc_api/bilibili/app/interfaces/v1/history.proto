@@ -22,79 +22,113 @@ service History {
     rpc LatestHistory (LatestHistoryReq) returns (LatestHistoryReply);
 }
 
-// 获取历史记录tab-请求
-message HistoryTabReq {
+// 专栏卡片
+message CardArticle {
+    // 封面url
+    repeated string covers = 1;
+    // UP主昵称
+    string name = 2;
+    // UP主mid
+    int64 mid = 3;
+    // 是否展示关注按钮
+    bool displayAttention = 4;
+    // 角标
+    string badge = 5;
+    // 关系信息
+    Relation relation = 6;
+}
+
+// 课程卡片
+message CardCheese {
+    // 封面url
+    string cover = 1;
+    // 观看进度
+    int64 progress = 2;
+    // 总计时长
+    int64 duration = 3;
+    // 单集标题
+    string subtitle = 4;
+}
+
+// 直播卡片
+message CardLive {
+    // 封面url
+    string cover = 1;
+    // 主播昵称
+    string name = 2;
+    // 主播mid
+    int64 mid = 3;
+    // 直播分区名
+    string tag = 4;
+    // 直播状态
+    int32 ststus = 5;
+    // 是否展示关注按钮
+    bool display_attention = 6;
+    // 关系信息
+    Relation relation = 7;
+}
+
+// pgc稿件卡片
+message CardOGV {
+    // 封面url
+    string cover = 1;
+    // 观看进度
+    int64 progress = 2;
+    // 总计时长
+    int64 duration = 3;
+    // 单集标题
+    string subtitle = 4;
+}
+
+// ugc稿件卡片
+message CardUGC {
+    // 封面url
+    string cover = 1;
+    // 观看进度
+    int64 progress = 2;
+    // 视频长度
+    int64 duration = 3;
+    // UP主昵称
+    string name = 4;
+    // UP主mid
+    int64 mid = 5;
+    // 是否展示关注按钮
+    bool display_attention = 6;
+    // 历史观看视频cid
+    int64 cid = 7;
+    // 历史观看视频分P
+    int32 page = 8;
+    // 历史观看视频分P的标题
+    string subtitle = 9;
+    // 关系信息
+    Relation relation = 10;
+    // 稿件bvid
+    string bvid = 11;
+    // 总分P数
+    int64 videos = 12;
+    // 短链接
+    string short_link = 13;
+    // 分享副标题
+    string share_subtitle = 14;
+    // 播放数
+    int64 view = 15;
+    //
+    int64 state = 16;
+}
+
+// 清空历史记录-请求
+message ClearReq {
     // 业务类型
     // archive:视频 live:直播 article:专栏 goods:商品 show:展演
     string business = 1;
-    // 查询请求来源
-    HistorySource source = 2;
-    // 搜索关键词
-    string keyword = 3;
 }
 
-// 获取历史记录tab-响应
-message HistoryTabReply {
-    // tab列表
-    repeated CursorTab tab = 1;
-}
-
-// 搜索历史记录来源
-enum HistorySource {
-    // 主站历史记录页
-    history_VALUE = 0;
-    // 会员购浏览记录
-    shopping_VALUE = 1;
-}
-
-// 获取历史记录列表(旧版)-请求
-message CursorReq {
-    // 游标信息
-    Cursor cursor = 1;
-    // 业务类型
-    // all:全部 archive:视频 live:直播 article:专栏
-    string business = 2;
-    // 秒开参数(旧版)
-    PlayerPreloadParams player_preload = 3;
-    // 秒开参数
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
-}
-
-// 获取历史记录列表(旧版)-响应
-message CursorReply {
-    // 卡片内容
-    repeated CursorItem items = 1;
-    // 顶部tab
-    repeated CursorTab tab = 2;
-    // 游标信息
-    Cursor cursor = 3;
-    // 是否未拉取完
-    bool hasMore = 4;
-}
-
-// 获取历史记录列表-请求
-message CursorV2Req {
-    // 游标信息
-    Cursor cursor = 1;
-    // 业务类型
-    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
-    string business = 2;
-    // 秒开参数(旧版)
-    PlayerPreloadParams player_preload = 3;
-    // 秒开参数
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
-    // 是否选择本机的播放历史
-    bool is_local = 5;
-}
-
-// 获取历史记录列表-响应
-message CursorV2Reply {
-    // 卡片内容
-    repeated CursorItem items = 1;
-    // 游标信息
-    Cursor cursor = 2;
-    // 是否未拉取完
-    bool hasMore = 3;
+// 游标信息
+message Cursor {
+    // 本页最大值游标值
+    int64 max = 1;
+    // 本页最大值游标类型
+    int32 maxTp = 2;
 }
 
 // 历史记录卡片信息
@@ -133,96 +167,29 @@ message CursorItem {
     bool has_share = 14;
 }
 
-// ugc稿件卡片
-message CardUGC {
-    // 封面url
-    string cover = 1;
-    // 观看进度
-    int64 progress = 2;
-    // 视频长度
-    int64 duration = 3;
-    // UP主昵称
-    string name = 4;
-    // UP主mid
-    int64 mid = 5;
-    // 是否展示关注按钮
-    bool display_attention = 6;
-    // 历史观看视频cid
-    int64 cid = 7;
-    // 历史观看视频分P
-    int32 page = 8;
-    // 历史观看视频分P的标题
-    string subtitle = 9;
-    // 关系信息
-    Relation relation = 10;
-    // 稿件bvid
-    string bvid = 11;
-    // 总分P数
-    int64 videos = 12;
-    // 短链接
-    string short_link = 13;
-    // 分享副标题
-    string share_subtitle = 14;
-    // 播放数
-    int64 view = 15;
+// 获取历史记录列表(旧版)-响应
+message CursorReply {
+    // 卡片内容
+    repeated CursorItem items = 1;
+    // 顶部tab
+    repeated CursorTab tab = 2;
+    // 游标信息
+    Cursor cursor = 3;
+    // 是否未拉取完
+    bool hasMore = 4;
 }
 
-// pgc稿件卡片
-message CardOGV {
-    // 封面url
-    string cover = 1;
-    // 观看进度
-    int64 progress = 2;
-    // 总计时长
-    int64 duration = 3;
-    // 单集标题
-    string subtitle = 4;
-}
-
-// 专栏卡片
-message CardArticle {
-    // 封面url
-    repeated string covers = 1;
-    // UP主昵称
-    string name = 2;
-    // UP主mid
-    int64 mid = 3;
-    // 是否展示关注按钮
-    bool displayAttention = 4;
-    // 角标
-    string badge = 5;
-    // 关系信息
-    Relation relation = 6;
-}
-
-// 直播卡片
-message CardLive {
-    // 封面url
-    string cover = 1;
-    // 主播昵称
-    string name = 2;
-    // 主播mid
-    int64 mid = 3;
-    // 直播分区名
-    string tag = 4;
-    // 直播状态
-    int32 ststus = 5;
-    // 是否展示关注按钮
-    bool display_attention = 6;
-    // 关系信息
-    Relation relation = 7;
-}
-
-// 课程卡片
-message CardCheese {
-    // 封面url
-    string cover = 1;
-    // 观看进度
-    int64 progress = 2;
-    // 总计时长
-    int64 duration = 3;
-    // 单集标题
-    string subtitle = 4;
+// 获取历史记录列表(旧版)-请求
+message CursorReq {
+    // 游标信息
+    Cursor cursor = 1;
+    // 业务类型
+    // all:全部 archive:视频 live:直播 article:专栏
+    string business = 2;
+    // 秒开参数(旧版)
+    PlayerPreloadParams player_preload = 3;
+    // 秒开参数
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
 }
 
 // 业务分类表
@@ -237,41 +204,34 @@ message CursorTab {
     bool focus = 4;
 }
 
-// 游标信息
-message Cursor {
-    // 本页最大值游标值
-    int64 max = 1;
-    // 本页最大值游标类型
-    int32 maxTp = 2;
+// 获取历史记录列表-响应
+message CursorV2Reply {
+    // 卡片内容
+    repeated CursorItem items = 1;
+    // 游标信息
+    Cursor cursor = 2;
+    // 是否未拉取完
+    bool hasMore = 3;
+    //
+    string empty_link = 4;
 }
 
-// 删除历史记录-请求
-message DeleteReq {
-    // 历史记录信息
-    HisInfo his_info = 1;
-}
-
-// 历史记录信息
-message HisInfo {
+// 获取历史记录列表-请求
+message CursorV2Req {
+    // 游标信息
+    Cursor cursor = 1;
     // 业务类型
     // archive:视频 live:直播 article:专栏 goods:商品 show:展演
-    string business = 1;
-    // 历史记录id
-    int64 kid = 2;
+    string business = 2;
+    // 秒开参数(旧版)
+    PlayerPreloadParams player_preload = 3;
+    // 秒开参数
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 是否选择本机的播放历史
+    bool is_local = 5;
 }
 
-// 空响应
-message NoReply {}
-
-// 设备类型
-message DeviceType {
-    // 设备标识代码
-    DT type = 1;
-    // 图标url
-    string icon = 2;
-}
-
-//设备标识代码
+// 设备标识代码
 enum DT {
     Unknown = 0; // 未知
     Phone = 1;   // 手机端
@@ -283,36 +243,76 @@ enum DT {
     AndPad = 7;  // apad端
 }
 
-// 关系信息
-message Relation {
-    // 关系状态
-    // 1:未关注 2:已关注 3:被关注 4:互关
-    int32 status = 1;
-    // 用户关注UP主
-    int32 is_follow = 2;
-    // UP主关注用户
-    int32 is_followed = 3;
+// 删除历史记录-请求
+message DeleteReq {
+    // 历史记录信息
+    HisInfo his_info = 1;
 }
 
-// 搜索历史记录-请求
-message SearchReq {
-    // 关键词
-    string keyword = 1;
-    // 页码
-    int64 pn = 2;
+// 设备类型
+message DeviceType {
+    // 设备标识代码
+    DT type = 1;
+    // 图标url
+    string icon = 2;
+}
+
+// 历史记录信息
+message HisInfo {
     // 业务类型
     // archive:视频 live:直播 article:专栏 goods:商品 show:展演
-    string business = 3;
+    string business = 1;
+    // 历史记录id
+    int64 kid = 2;
 }
 
-// 搜索历史记录-响应
-message SearchReply {
+// 搜索历史记录来源
+enum HistorySource {
+    history_VALUE = 0;  // 主站历史记录页
+    shopping_VALUE = 1; // 会员购浏览记录
+}
+
+// 获取历史记录tab-响应
+message HistoryTabReply {
+    // tab列表
+    repeated CursorTab tab = 1;
+}
+
+// 获取历史记录tab-请求
+message HistoryTabReq {
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 1;
+    // 查询请求来源
+    HistorySource source = 2;
+    // 搜索关键词
+    string keyword = 3;
+}
+
+// 获取最新的历史记录-响应
+message LatestHistoryReply {
     // 卡片内容
-    repeated CursorItem items = 1;
-    // 是否未拉取完
-    bool hasMore = 2;
-    // 页面信息
-    Page page = 3;
+    CursorItem items = 1;
+    // 场景
+    string scene = 2;
+    // 弹窗停留时间
+    int64 rtime = 3;
+    // 分组的标志(客户端埋点上报)
+    string flag = 4;
+}
+
+// 获取最新的历史记录-请求
+message LatestHistoryReq {
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 1;
+    // 秒开参数
+    PlayerPreloadParams player_preload = 2;
+}
+
+// 空响应
+message NoReply {
+
 }
 
 // 页面信息
@@ -337,30 +337,34 @@ message PlayerPreloadParams {
     int64 fourk = 5;
 }
 
-// 清空历史记录-请求
-message ClearReq {
-    // 业务类型
-    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
-    string business = 1;
+// 关系信息
+message Relation {
+    // 关系状态
+    // 1:未关注 2:已关注 3:被关注 4:互关
+    int32 status = 1;
+    // 用户关注UP主
+    int32 is_follow = 2;
+    // UP主关注用户
+    int32 is_followed = 3;
 }
 
-// 获取最新的历史记录-请求
-message LatestHistoryReq {
-    // 业务类型
-    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
-    string business = 1;
-    // 秒开参数
-    PlayerPreloadParams player_preload = 2;
-}
-
-// 获取最新的历史记录-响应
-message LatestHistoryReply {
+// 搜索历史记录-响应
+message SearchReply {
     // 卡片内容
-    CursorItem items = 1;
-    // 场景
-    string scene = 2;
-    // 弹窗停留时间
-    int64 rtime = 3;
-    // 分组的标志(客户端埋点上报)
-    string flag = 4;
+    repeated CursorItem items = 1;
+    // 是否未拉取完
+    bool hasMore = 2;
+    // 页面信息
+    Page page = 3;
+}
+
+// 搜索历史记录-请求
+message SearchReq {
+    // 关键词
+    string keyword = 1;
+    // 页码
+    int64 pn = 2;
+    // 业务类型
+    // archive:视频 live:直播 article:专栏 goods:商品 show:展演
+    string business = 3;
 }
