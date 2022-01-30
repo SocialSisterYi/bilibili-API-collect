@@ -41,6 +41,7 @@
 | name             | str  | 昵称             |                                                              |
 | sex              | str  | 性别             | 男/女/保密                                                   |
 | face             | str  | 头像链接         |                                                              |
+| face_nft         | num  | 是否为 nft 头像  | `0`不是nft头像<br />`1`是 nft 头像                           |
 | sign             | str  | 签名             |                                                              |
 | rank             | num  | 10000            |                                                              |
 | level            | num  | 当前等级         | 0-6级                                                        |
@@ -49,7 +50,7 @@
 | silence          | num  | 封禁状态         | 0：正常<br />1：被封                                         |
 | coins            | num  | 硬币数           | 需要登录(Cookie) <br />只能查看自己的<br />默认为0           |
 | fans_badge       | bool | 是否具有粉丝勋章 | false：无<br />true：有                                      |
-| fans_medal       | obj  |                  |                                                              |
+| fans_medal       | obj  | 粉丝勋章信息     |                                                              |
 | official         | obj  | 认证信息         |                                                              |
 | vip              | obj  | 会员信息         |                                                              |
 | pendant          | obj  | 头像框信息       |                                                              |
@@ -65,6 +66,7 @@
 | profession       | obj  |                  |                                                              |
 | tags             | null |                  |                                                              |
 | series           | obj  |                  |                                                              |
+| is_senior_member | num  |                  |                                                              |
 
 `data`中的`official`对象：
 
@@ -102,7 +104,7 @@
 | pid    | num  | 头像框id      | **详细说明有待补充** |
 | name   | str  | 头像框名称    |                      |
 | image  | str  | 头像框图片url |                      |
-| expire | num  | 0             | **作用尚不明确**     |
+| expire | num  | (?)           |                      |
 
 `data`中的`nameplate`对象：
 
@@ -127,12 +129,6 @@
 | text_color  | str  | 提示文字颜色    | 此字段非必须<br />颜色码                        |
 | bg_color    | str  | 提示背景颜色    | 此字段非必须<br />颜色码                        |
 
-`data`中的`school`对象：
-
-| 字段        | 类型 | 内容            | 备注             |
-| ----------- | ---- | --------------- | -------------- |
-| name        | str  | 就读大学名称     | 没有则为空      |
-
 `data`中的`live_room`对象：
 
 | 字段           | 类型 | 内容           | 备注                     |
@@ -146,6 +142,25 @@
 | roomid         | num  | 直播间id(短号) |                          |
 | roundStatus    | num  | 轮播状态       | 0：未轮播<br />1：轮播   |
 | broadcast_type | num  | 0              |                          |
+
+`data`中的`school`对象：
+
+| 字段 | 类型 | 内容         | 备注       |
+| ---- | ---- | ------------ | ---------- |
+| name | str  | 就读大学名称 | 没有则为空 |
+
+`data`中的`profession`对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| name | str  | (?)  |      |
+
+`data`中的`series`对象：
+
+| 字段                | 类型 | 内容 | 备注 |
+| ------------------- | ---- | ---- | ---- |
+| user_upgrade_status | num  | (?)  |      |
+| show_upgrade_window | bool | (?)  |      |
 
 **示例：**
 
