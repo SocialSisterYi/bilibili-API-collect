@@ -1,0 +1,396 @@
+syntax = "proto3";
+
+package bilibili.app.topic.v1;
+
+import "bilibili/app/dynamic/v2/dynamic.proto";
+import "bilibili/app/card/v1/common.proto";
+import "bilibili/app/archive/middleware/v1/preload.proto";
+
+//
+service Topic {
+    //
+    rpc TopicDetailsAll(TopicDetailsAllReq) returns (TopicDetailsAllReply);
+    //
+    rpc TopicDetailsFold(TopicDetailsFoldReq) returns (TopicDetailsFoldReply);
+}
+
+//
+message DetailsTopInfo {
+    //
+    TopicInfo topic_info = 1;
+    //
+    User user = 2;
+    //
+    string stats_desc = 3;
+    //
+    bool has_create_jurisdiction = 4;
+    //
+    OperationContent operation_content = 5;
+    //
+    string head_img_url = 6;
+    //
+    string head_img_backcolor = 7;
+    //
+    int32 word_color = 8;
+}
+
+//
+message FoldCardItem {
+    //
+    int32 is_show_fold = 1;
+    //
+    int64 fold_count = 2;
+    //
+    string card_show_desc = 3;
+    //
+    string fold_desc = 4;
+}
+
+//
+message FunctionalCard {
+    //
+    repeated TopicCapsule capsules = 1;
+    //
+    TrafficCard traffic_card = 2;
+    //
+    GameCard game_card = 3;
+}
+
+//
+message GameCard {
+    //
+    int64 game_id = 1;
+    //
+    string game_icon = 2;
+    //
+    string game_name = 3;
+    //
+    string score = 4;
+    //
+    string game_tags = 5;
+    //
+    string notice = 6;
+    //
+    string game_link = 7;
+}
+
+//
+message InlineProgressBar {
+    //
+    string icon_drag = 1;
+    //
+    string icon_drag_hash = 2;
+    //
+    string icon_stop = 3;
+    //
+    string icon_stop_hash = 4;
+}
+
+//
+message LargeCoverInline {
+    //
+    bilibili.app.card.v1.Base base = 1;
+    //
+    string cover_left_text1 = 2;
+    //
+    int32 cover_left_icon1 = 3;
+    //
+    string cover_left_text2 = 4;
+    //
+    int32 cover_left_icon2 = 5;
+    //
+    RightTopLiveBadge right_top_live_badge = 6;
+    //
+    string extra_uri = 7;
+    //
+    InlineProgressBar inline_progress_bar = 8;
+    //
+    TopicThreePoint topic_three_point = 9;
+    //
+    string cover_left_desc = 10;
+    //
+    bool hide_danmu_switch = 11;
+    //
+    bool disable_danmu = 12;
+    //
+    int32 can_play = 13;
+    //
+    string duration_text = 14;
+    //
+    RelationData relation_data = 15;
+}
+
+//
+message LiveBadgeResource {
+    //
+    string text = 1;
+    //
+    string animation_url = 2;
+    //
+    string animation_url_hash = 3;
+    //
+    string background_color_light = 4;
+    //
+    string background_color_night = 5;
+    //
+    int64 alpha_light = 6;
+    //
+    int64 alpha_night = 7;
+    //
+    string font_color = 8;
+}
+
+//
+message OperationCard {
+    oneof card {
+        //
+        LargeCoverInline large_cover_inline = 1;
+    }
+}
+
+//
+message OperationContent {
+    //
+    OperationCard operation_card = 1;
+}
+
+//
+message RelationData {
+    //
+    bool is_fav = 1;
+    //
+    bool is_coin = 2;
+    //
+    bool is_follow = 3;
+    //
+    bool is_like = 4;
+    //
+    int64 like_count = 5;
+}
+
+//
+message RightTopLiveBadge {
+    //
+    int64 live_status = 1;
+    //
+    LiveBadgeResource in_live = 2;
+    //
+    string live_stats_desc = 3;
+}
+
+//
+message SortContent {
+    //
+    int64 sort_by = 1;
+    //
+    string sort_name = 2;
+}
+
+//
+message ThreePointItem {
+    //
+    string title = 1;
+    //
+    string jump_url = 2;
+}
+
+//
+message TopicActivities {
+    //
+    repeated TopicActivity activity = 1;
+    //
+    string act_list_title = 2;
+}
+
+//
+message TopicActivity {
+    //
+    int64 activity_id = 1;
+    //
+    string activity_name = 2;
+    //
+    string jump_url = 3;
+    //
+    string icon_url = 4;
+}
+
+//
+message TopicCapsule {
+    //
+    string name = 1;
+    //
+    string jump_url = 2;
+    //
+    string icon_url = 3;
+}
+
+//
+message TopicCardItem {
+    //
+    int32 type = 1;
+    //
+    bilibili.app.dynamic.v2.DynamicItem dynamic_item = 2;
+    //
+    FoldCardItem ford_card_item = 3;
+}
+
+//
+message TopicCardList {
+    //
+    repeated TopicCardItem topic_card_items = 1;
+    //
+    string offset = 2;
+    //
+    bool has_more = 3;
+    //
+    TopicSortByConf topic_sort_by_conf = 4;
+}
+
+//
+enum TopicCardType {
+    ILLEGAL_TYPE = 0; //
+    DYNAMIC = 1;      //
+    FOLD = 2;         //
+}
+
+//
+message TopicDetailsAllReply {
+    //
+    DetailsTopInfo details_top_info = 1;
+    //
+    TopicActivities topic_activities = 2;
+    //
+    TopicCardList topic_card_list = 3;
+    //
+    FunctionalCard functional_card = 4;
+}
+
+//
+message TopicDetailsAllReq {
+    //
+    int64 topic_id = 1;
+    //
+    int64 sort_by = 2;
+    //
+    string offset = 3;
+    //
+    int32 page_size = 4;
+    //
+    int32 local_time = 5;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 6;
+    //
+    int32 need_refresh = 7;
+    //
+    string source = 8;
+}
+
+//
+message TopicDetailsFoldReply {
+    //
+    TopicCardList topic_card_list = 1;
+    //
+    int64 fold_count = 2;
+}
+
+//
+message TopicDetailsFoldReq {
+    //
+    int64 topic_id = 1;
+    //
+    string offset = 2;
+    //
+    int32 page_size = 3;
+    //
+    int32 local_time = 4;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    //
+    int64 from_sort_by = 6;
+}
+
+//
+message TopicInfo {
+    //
+    int64 id = 1;
+    //
+    string name = 2;
+    //
+    int64 uid = 3;
+    //
+    int64 view = 4;
+    //
+    int64 discuss = 5;
+    //
+    int64 fav = 6;
+    //
+    int64 dynamics = 7;
+    //
+    int32 state = 8;
+    //
+    string jump_url = 9;
+    //
+    string backcolor = 10;
+    //
+    bool is_fav = 11;
+    //
+    string description = 12;
+    //
+    int32 create_source = 13;
+    //
+    string share_pic = 14;
+    //
+    int64 share = 15;
+    //
+    int64 like = 16;
+    //
+    string share_url = 17;
+    //
+    bool is_like = 18;
+}
+
+//
+message TopicSortByConf {
+    //
+    int64 default_sort_by = 1;
+    //
+    repeated SortContent all_sort_by = 2;
+    //
+    int64 show_sort_by = 3;
+}
+
+//
+message TopicThreePoint {
+    //
+    repeated ThreePointItem dyn_three_point_items = 1;
+}
+
+//
+message TrafficCard {
+    //
+    string name = 1;
+    //
+    string jump_url = 2;
+    //
+    string icon_url = 3;
+    //
+    string base_pic = 4;
+    //
+    string benefit_point = 5;
+    //
+    string card_desc = 6;
+    //
+    string jump_title = 7;
+}
+
+//
+message User {
+    //
+    int64 uid = 1;
+    //
+    string face = 2;
+    //
+    string name = 3;
+    //
+    string name_desc = 4;
+}

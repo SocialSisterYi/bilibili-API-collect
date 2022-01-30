@@ -10,37 +10,6 @@ service Rank {
     rpc RankRegion (RankRegionResultReq) returns (RankListReply);
 }
 
-// 全站排行榜-请求
-message RankAllResultReq {
-    // 必须为"all"
-    string order = 1;
-    // 页码
-    // 默认1页
-    int32 pn = 2;
-    // 每页项数
-    // 默认100项，最大100
-    int32 ps = 3;
-}
-
-// 分区排行榜-请求
-message RankRegionResultReq {
-    // 一级分区tid(二级分区不可用)
-    // 0:全站
-    int32 rid = 1;
-    // 页码
-    // 默认1页
-    int32 pn = 2;
-    // 每页项数
-    // 默认100项，最大100
-    int32 ps = 3;
-}
-
-// 排行榜信息-响应
-message RankListReply {
-    // 排行榜列表
-    repeated Item items = 1;
-}
-
 // 排行榜列表项
 message Item {
     // 标题
@@ -106,6 +75,37 @@ message OfficialVerify {
     int32 type = 1;
     // 认证描述
     string desc = 2;
+}
+
+// 全站排行榜-请求
+message RankAllResultReq {
+    // 必须为"all"
+    string order = 1;
+    // 页码
+    // 默认1页
+    int32 pn = 2;
+    // 每页项数
+    // 默认100项，最大100
+    int32 ps = 3;
+}
+
+// 排行榜信息-响应
+message RankListReply {
+    // 排行榜列表
+    repeated Item items = 1;
+}
+
+// 分区排行榜-请求
+message RankRegionResultReq {
+    // 一级分区tid(二级分区不可用)
+    // 0:全站
+    int32 rid = 1;
+    // 页码
+    // 默认1页
+    int32 pn = 2;
+    // 每页项数
+    // 默认100项，最大100
+    int32 ps = 3;
 }
 
 // 关系信息

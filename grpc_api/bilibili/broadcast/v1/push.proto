@@ -10,6 +10,26 @@ service Push {
 }
 
 //
+enum LinkType {
+    LINK_TYPE_UNKNOWN = 0; // 未知
+    LINK_TYPE_BANGUMI = 1; // 番剧
+    LINK_TYPE_VIDEO = 2;   // 视频
+    LINK_TYPE_LIVE = 3;    // 直播
+}
+
+//
+message PageBlackList {
+    //
+    string id = 1;
+}
+
+//
+message PageView {
+    //
+    string id = 1;
+}
+
+//
 message PushMessageResp {
     // 业务类型
     enum Biz {
@@ -78,30 +98,14 @@ message PushMessageResp {
     repeated PageView page_view = 13;
     // 跳转资源
     TargetResource target_resource = 14;
-}
-
-//
-message PageBlackList {
     //
-    string id = 1;
-}
-
-//
-message PageView {
+    int32 image_frame = 15;
     //
-    string id = 1;
-}
-
-//
-enum LinkType {
-    // 未知
-    LINK_TYPE_UNKNOWN = 0;
-    // 番剧
-    LINK_TYPE_BANGUMI = 1;
-    // 视频
-    LINK_TYPE_VIDEO = 2;
-    // 直播
-    LINK_TYPE_LIVE = 3;
+    int32 image_marker = 16;
+    //
+    int32 image_position = 17;
+    //
+    int64 job = 18;
 }
 
 //

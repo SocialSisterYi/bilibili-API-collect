@@ -26,6 +26,13 @@ service BroadcastTunnel {
     rpc CreateTunnel(stream BroadcastFrame) returns (stream BroadcastFrame);
 }
 
+//
+enum Action {
+    UNKNOWN = 0; //
+    UPDATE = 1;  //
+    DELETE = 2;  //
+}
+
 // 鉴权请求，通过authorization验证绑定用户mid
 message AuthReq {
     // 冷启动id，算法uuid，重新起启会变
@@ -35,28 +42,21 @@ message AuthReq {
     // 最后收到的消息id，用于过虑重连后获取未读的消息
     int64 last_msg_id = 3;
 }
+
 // 鉴权返回
-message AuthResp {}
+message AuthResp {
 
-// 心跳请求
-message HeartbeatReq{}
-// 心跳返回
-message HeartbeatResp{}
-
-// target_path
-message TargetPath {
-    // 需要订阅的target_paths
-    repeated string target_paths = 1;
 }
 
-// 消息回执
-message MessageAckReq {
-    // 消息id
-    int64 ack_id = 1;
-    // ack来源，由业务指定用于埋点跟踪
-    string ack_origin = 2;
-    // 消息对应的target_path，方便业务区分和监控统计
-    string target_path = 3;
+// target_path:
+//   "/" Service-Name "/" {method name} 参考 gRPC Request Path
+message BroadcastFrame {
+    // 请求消息信息
+    FrameOption options = 1;
+    // 业务target_path
+    string target_path = 2;
+    // 业务pb内容
+    google.protobuf.Any body = 3;
 }
 
 // message_id: 
@@ -79,18 +79,33 @@ message FrameOption {
     // 业务状态码
     bilibili.rpc.Status status = 4; 
     // 业务ack来源, 仅downstream时候由服务端填写.
-    string ack_origin = 5;          
+    string ack_origin = 5;
+    //
+    int64 timestamp = 6;
 }
 
-// target_path:
-//   "/" Service-Name "/" {method name} 参考 gRPC Request Path
-message BroadcastFrame {
-    // 请求消息信息
-    FrameOption options = 1;
-    // 业务target_path
-    string target_path = 2;
-    // 业务pb内容
-    google.protobuf.Any body = 3;
+// 心跳请求
+message HeartbeatReq{
+
 }
 
+// 心跳返回
+message HeartbeatResp{
 
+}
+
+// 消息回执
+message MessageAckReq {
+    // 消息id
+    int64 ack_id = 1;
+    // ack来源，由业务指定用于埋点跟踪
+    string ack_origin = 2;
+    // 消息对应的target_path，方便业务区分和监控统计
+    string target_path = 3;
+}
+
+// target_path
+message TargetPath {
+    // 需要订阅的target_paths
+    repeated string target_paths = 1;
+}

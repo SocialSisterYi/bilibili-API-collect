@@ -12,15 +12,19 @@ service BroadcastRoom {
 }
 
 //
-message RoomJoinEvent {}
-
-//
-message RoomLeaveEvent {}
-
-//
-message RoomOnlineEvent {
+message RoomErrorEvent {
     //
-    int32 online = 1;
+    bilibili.rpc.Status status = 1;
+}
+
+//
+message RoomJoinEvent {
+
+}
+
+//
+message RoomLeaveEvent {
+
 }
 
 //
@@ -32,9 +36,11 @@ message RoomMessageEvent {
 }
 
 //
-message RoomErrorEvent {
+message RoomOnlineEvent {
     //
-    bilibili.rpc.Status status = 1;
+    int32 online = 1;
+    //
+    int32 all_online = 2;
 }
 
 //

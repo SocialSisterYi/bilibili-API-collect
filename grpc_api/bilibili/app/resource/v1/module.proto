@@ -9,13 +9,22 @@ service Module {
 }
 
 //
+enum CompressType {
+    Unzip = 0;    // unzip
+    Original = 1; // 不操作
+}
+
+//
 enum EnvType {
-    //
-    Unknown = 0;
-    //
-    Release = 1;
-    //
-    Test = 2;
+    Unknown = 0; //
+    Release = 1; //
+    Test = 2;    //
+}
+
+//
+enum IncrementType {
+    Total = 0;       // 全量包
+    Incremental = 1; // 增量包
 }
 
 //
@@ -24,6 +33,15 @@ enum LevelType {
     High = 1;      // 高 需立即下载
     Middle = 2;    // 中 可以延迟下载
     Low = 3;       // 低 仅在业务方使用到时由业务方手动进行下载
+}
+
+message ListReply {
+    //
+    string env = 1;
+    //
+    repeated PoolReply pools = 2;
+    //
+    int64 list_version = 3;
 }
 
 //
@@ -42,50 +60,11 @@ message ListReq {
     int32 scale = 6;
     //
     int32 arch = 7;
+    //
+    int64 list_version = 8;
 }
 
 //
-message VersionListReq {
-    //
-    string pool_name = 1;
-    //
-    repeated VersionReq versions = 2;
-}
-
-//
-message VersionReq {
-    //
-    string module_name = 1;
-    //
-    int64 version = 2;
-}
-
-//
-enum IncrementType {
-    Total = 0;       // 全量包
-    Incremental = 1; // 增量包
-}
-
-//
-enum CompressType {
-    Unzip = 0;    // unzip
-    Original = 1; // 不操作
-}
-
-message ListReply {
-    //
-    string env = 1;
-    //
-    repeated PoolReply pools = 2;
-}
-
-message PoolReply {
-    //
-    string name = 1;
-    //
-    repeated ModuleReply modules = 2;
-}
-
 message ModuleReply {
     //
     string name = 1;
@@ -123,4 +102,27 @@ message ModuleReply {
     int64 file_id = 17;
     //
     bool zip_check = 18;
+}
+
+message PoolReply {
+    //
+    string name = 1;
+    //
+    repeated ModuleReply modules = 2;
+}
+
+//
+message VersionListReq {
+    //
+    string pool_name = 1;
+    //
+    repeated VersionReq versions = 2;
+}
+
+//
+message VersionReq {
+    //
+    string module_name = 1;
+    //
+    int64 version = 2;
 }

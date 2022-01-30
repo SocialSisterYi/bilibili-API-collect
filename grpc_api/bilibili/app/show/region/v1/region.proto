@@ -9,18 +9,6 @@ service Region {
 }
 
 //
-message RegionReq {
-    //
-    string lang = 1;
-}
-
-//
-message RegionReply {
-    //
-    repeated RegionInfo regions = 1;
-}
-
-//
 message RegionConfig {
     //
     string scenes_name = 1;
@@ -52,4 +40,16 @@ message RegionInfo {
     repeated RegionInfo children = 10;
     //
     repeated RegionConfig config = 11;
+}
+
+//
+message RegionReply {
+    //
+    repeated RegionInfo regions = 1;
+}
+
+//
+message RegionReq {
+    //
+    string lang = 1;
 }
