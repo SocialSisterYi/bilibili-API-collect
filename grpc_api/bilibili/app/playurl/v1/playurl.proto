@@ -104,20 +104,12 @@ enum ConfType {
 //
 message ConfValue {
     oneof value {
+        //
         bool switch_val = 1;
+        //
         int64 selected_val = 2;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 // dash条目
 message DashItem {
