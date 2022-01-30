@@ -337,8 +337,8 @@ curl -G 'http://api.bilibili.com/x/v2/dm/buzzword/list' \
 
 | 字段     | 类型 | 内容         | 备注     |
 | -------- | ---- | ------------ | -------- |
-| aid      | num  | 视频 avid    |          |
-| cid      | num  | 视频 1P cid  |          |
+| aid      | num  | 稿件 avid    |          |
+| cid      | num  | 视频 cid     |          |
 | name     | str  | 视频标题     |          |
 | link     | str  | 空           |          |
 | play     | num  | 播放数       |          |
