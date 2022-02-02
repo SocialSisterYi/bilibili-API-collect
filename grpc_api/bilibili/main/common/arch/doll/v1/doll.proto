@@ -13,6 +13,24 @@ service Echo {
 }
 
 //
+message ErrorRequest {
+    //
+    int32  error = 2;
+    //
+    int64  time = 1;
+    //
+    int64  delay = 3;
+}
+
+//
+message ErrorResponse {
+    //
+    string host = 1;
+    //
+    int64  time = 3;
+}
+
+//
 message PingRequest {
     //
     int64  time = 1;
@@ -38,24 +56,6 @@ message SayResponse {
     string host = 1;
     //
     string content = 2;
-    //
-    int64  time = 3;
-}
-
-//
-message ErrorRequest {
-    //
-    int32  error = 2;
-    //
-    int64  time = 1;
-    //
-    int64  delay = 3;
-}
-
-//
-message ErrorResponse {
-    //
-    string host = 1;
     //
     int64  time = 3;
 }

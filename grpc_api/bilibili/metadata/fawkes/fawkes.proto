@@ -2,6 +2,15 @@ syntax = "proto3";
 
 package bilibili.metadata.fawkes;
 
+//
+message FawkesReply {
+    // 客户端在fawkes系统中对应的已发布最新的config版本号
+    string config = 1;
+    // 客户端在fawkes系统中对应的已发布最新的ff版本号
+    string ff = 2;
+}
+
+//
 message FawkesReq {
     // 客户端在fawkes系统的唯一名
     string appkey = 1;
@@ -9,11 +18,4 @@ message FawkesReq {
     string env = 2;
     // 启动id
     string session_id = 3;
-}
-
-message FawkesReply {
-    // 客户端在fawkes系统中对应的已发布最新的config版本号
-    string config = 1;
-    // 客户端在fawkes系统中对应的已发布最新的ff版本号
-    string ff = 2;
 }

@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package bilibili.live.app.room.v1;
+
+//
+message GetStudioListReq {
+    //
+    int64 room_id = 1;
+}
+
+//
+message GetStudioListResp {
+    //
+    message Pendants {
+        //
+        Pendant frame = 1;
+        //
+        Pendant badge = 2;
+    }
+    //
+    message Pendant {
+        //
+        string name = 1;
+        //
+        int64 position = 2;
+        //
+        string value = 3;
+        //
+        string desc = 4;
+    }
+    //
+    message StudioMaster {
+        //
+        int64 uid = 1;
+        //
+        int64 room_id = 2;
+        //
+        string uname = 3;
+        //
+        string face = 4;
+        //
+        Pendants pendants = 5;
+        //
+        string tag = 6;
+        //
+        int64 tag_type = 7;
+    }
+    //
+    int64 status = 1;
+    //
+    repeated StudioMaster master_list = 2;
+}

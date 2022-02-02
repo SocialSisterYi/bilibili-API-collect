@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.dynamic.interfaces.feed.v1;
+package bilibili.main.dynamic.feed.v1;
 
 import "bilibili/dynamic/common.proto";
 

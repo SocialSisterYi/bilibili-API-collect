@@ -3,23 +3,11 @@ syntax = "proto3";
 package bilibili.im.type;
 
 //
-enum ENUM_BIZ_MSG_TYPE {
+message AccountInfo {
     //
-    BIZ_MSG_TYPE_NORMAL = 0;
+    string name = 1;
     //
-    BIZ_MSG_TYPE_CARD_VIDEO = 1;
-}
-
-//
-enum RecverType{
-    //
-    EN_NO_MEANING = 0;
-    //单人
-    EN_RECVER_TYPE_PEER = 1;
-    //群
-    EN_RECVER_TYPE_GROUP = 2;
-    //多人
-    EN_RECVER_TYPE_PEERS = 3;
+    string pic_url = 2;
 }
 
 //
@@ -53,15 +41,122 @@ enum CmdId {
 }
 
 //
-enum RelationLogType {
-    EN_INVALID_LOG_TYPE = 0; //
-    EN_ADD_FRIEND  = 1;      // 添加好友
-    EN_REMOVE_FRIEND = 2;    // 删除好友
-    EN_JOIN_GROUP = 3;       // 加入群
-    EN_EXIT_GROUP = 4;       // 退出群
+enum ENUM_BIZ_MSG_TYPE {
+    BIZ_MSG_TYPE_NORMAL = 0;     //
+    BIZ_MSG_TYPE_CARD_VIDEO = 1; //
 }
 
 //
+message FriendRelation {
+    // 用户mid
+    uint64 uid = 1;
+    // 用户昵称
+    string user_name = 2;
+    // 头像url
+    string face = 3;
+    // vip类型
+    // 0:无 1:月度大会员 2:年度大会员
+    uint32 vip_level = 4;
+}
+
+//
+message GroupRelation {
+    //
+    uint64 group_id = 1;
+    //
+    uint64 owner_uid = 2;
+    //
+    uint32 group_type = 3;
+    //
+    uint32 group_level = 4;
+    //
+    string group_cover = 5;
+    //
+    string group_name = 6;
+    //
+    string group_notice = 7;
+    //
+    int32 status = 8;
+    //
+    int32 member_role = 9;
+    //
+    string fans_medal_name = 10;
+    //
+    uint64 room_id = 11;
+}
+
+// 关键词高亮文本
+message HighText {
+    //
+    string title = 1;
+    //
+    string url = 2;
+    // 表示高亮文本应该高亮第几个匹配的文本，ps：比如，“有疑问请联系客服，联系客服时，请说明具体的情况”，一共有2个匹配的文本，要高亮第一个匹配的，则index=1
+    uint32 index = 3;
+}
+
+//
+message ImgInfo{
+    //
+    string url = 1;
+    //
+    int32 width = 2;
+    //
+    int32 height = 3;
+    //
+    string imageType = 4;
+}
+
+// 关键词命中信息
+message KeyHitInfos {
+    //
+    string toast = 1;
+    //
+    uint32 rule_id = 2;
+    //
+    repeated HighText high_text = 3;
+    //
+}
+
+//
+message Msg {
+    // 发送方mid
+    uint64 sender_uid = 1;
+    // 接收方类型
+    RecverType receiver_type = 2;
+    // 接收方mid
+    uint64 receiver_id = 3;
+    // 客户端的序列id,用于服务端去重
+    uint64 cli_msg_id = 4;
+    // 消息类型
+    MsgType msg_type = 5;
+    // 消息内容
+    string content = 6;
+    // 服务端的序列号x
+    uint64 msg_seqno = 7;
+    // 消息发送时间（服务端时间）
+    uint64 timestamp = 8;
+    // @用户列表
+    repeated uint64 at_uids = 9;
+    // 多人消息
+    repeated uint64 recver_ids = 10;
+    // 消息唯一标示
+    uint64 msg_key = 11;
+    // 消息状态
+    uint32 msg_status = 12;
+    // 是否为系统撤销
+    bool sys_cancel = 13;
+    // 通知码
+    string notify_code = 14;
+    // 消息来源
+    MsgSource msg_source = 15;
+    // 如果msg.content有表情字符，则该参数需要置为1
+    int32 new_face_version = 16;
+    // 命中关键词信息
+    KeyHitInfos key_hit_infos = 17;
+}
+
+// 消息来源
 enum MsgSource {
     EN_MSG_SOURCE_UNKONW = 0;                   //
     EN_MSG_SOURCE_IOS = 1;                      //
@@ -78,7 +173,7 @@ enum MsgSource {
     EN_MSG_SOURCE_VC_ATTACH_MSG = 12;           //
 };
 
-//消息类型
+// 消息类型
 enum MsgType {
     // 基础消息类型
     EN_INVALID_MSG_TYPE = 0;                               // 空空的~
@@ -143,6 +238,35 @@ enum MsgType {
     EN_MSG_TYPE_CHAT_POPUP_SESSION = 306;                  // 弹出会话
 }
 
+// 接收方类型
+enum RecverType {
+    EN_NO_MEANING = 0;        //
+    EN_RECVER_TYPE_PEER = 1;  // 单人
+    EN_RECVER_TYPE_GROUP = 2; // 群
+    EN_RECVER_TYPE_PEERS = 3; // 多人
+}
+
+//
+message RelationLog {
+    // 操作类型
+    RelationLogType log_type = 1;
+    // 操作seqno
+    uint64 oplog_seqno = 2;
+    // 好友信息
+    FriendRelation friend_relation = 3;
+    // 群信息
+    GroupRelation group_relation = 4;
+}
+
+//
+enum RelationLogType {
+    EN_INVALID_LOG_TYPE = 0; //
+    EN_ADD_FRIEND  = 1;      // 添加好友
+    EN_REMOVE_FRIEND = 2;    // 删除好友
+    EN_JOIN_GROUP = 3;       // 加入群
+    EN_EXIT_GROUP = 4;       // 退出群
+}
+
 //
 enum SESSION_TYPE {
     INVALID_SESSION_TYPE = 0;     //
@@ -150,65 +274,6 @@ enum SESSION_TYPE {
     UN_FOLLOW_SINGLE_SESSION = 2; //
     MY_GROUP_SESSION = 3;         //
     ALL_SESSION = 4;              //
-}
-
-// 关键词高亮文本
-message HighText {
-    //
-    string title = 1;
-    //
-    string url = 2;
-    // 表示高亮文本应该高亮第几个匹配的文本，ps：比如，“有疑问请联系客服，联系客服时，请说明具体的情况”，一共有2个匹配的文本，要高亮第一个匹配的，则index=1
-    uint32 index = 3;
-}
-
-//关键词命中信息
-message KeyHitInfos {
-    //
-    string toast = 1;
-    //
-    uint32 rule_id = 2;
-    //
-    repeated HighText high_text = 3;
-    //
-}
-
-//
-message Msg {
-    // 发送方mid
-    uint64 sender_uid = 1;
-    // 接收方类型
-    int32 receiver_type = 2;
-    // 接收方mid
-    uint64 receiver_id = 3;
-    // 客户端的序列id,用于服务端去重
-    uint64 cli_msg_id = 4;
-    // 消息类型
-    int32 msg_type = 5;
-    // 消息内容
-    string content = 6;
-    // 服务端的序列号x
-    uint64 msg_seqno = 7;
-    // 消息发送时间（服务端时间）
-    uint64 timestamp = 8;
-    // @用户列表
-    repeated uint64 at_uids = 9;
-    // 多人消息
-    repeated uint64 recver_ids = 10;
-    // 消息唯一标示
-    uint64 msg_key = 11;
-    // 消息状态
-    uint32 msg_status = 12;
-    // 是否为系统撤销
-    bool sys_cancel = 13;
-    // 通知码
-    string notify_code = 14;
-    // 消息来源
-    uint32 msg_source = 15;
-    // 如果msg.content有表情字符，则该参数需要置为1
-    int32 new_face_version = 16;
-    // 命中关键词信息
-    KeyHitInfos key_hit_infos = 17;
 }
 
 // 会话详情
@@ -253,71 +318,14 @@ message SessionInfo {
     uint32 setting = 19;
     //
     uint32 is_guardian = 20;
+    //
+    int32 is_intercept = 21;
+    //
+    int32 is_trust = 22;
+    //
+    int32 system_msg_type = 23;
+    //
+    AccountInfo account_info = 24;
+    //
+    int32 live_status = 25;
 }
-
-//
-message RelationLog {
-    // 操作类型
-    int32 log_type = 1;
-    // 操作seqno
-    uint64 oplog_seqno = 2;
-    // 好友信息
-    FriendRelation friend_relation = 3;
-    // 群信息
-    GroupRelation group_relation = 4;
-}
-
-//
-message FriendRelation {
-    // 用户mid
-    uint64 uid = 1;
-    // 用户昵称
-    string user_name = 2;
-    // 头像url
-    string face = 3;
-    // vip类型
-    // 0:无 1:月度大会员 2:年度大会员
-    uint32 vip_level = 4;
-}
-
-//
-message ImgInfo{
-    //
-    string url = 1;
-    //
-    int32 width = 2;
-    //
-    int32 height = 3;
-    //
-    string imageType = 4;
-}
-
-//
-message GroupRelation {
-    //
-    uint64 group_id = 1;
-    //
-    uint64 owner_uid = 2;
-    //
-    uint32 group_type = 3;
-    //
-    uint32 group_level = 4;
-    //
-    string group_cover = 5;
-    //
-    string group_name = 6;
-    //
-    string group_notice = 7;
-    //
-    int32 status = 8;
-    //
-    int32 member_role = 9;
-    //
-    string fans_medal_name = 10;
-    //
-    uint64 room_id = 11;
-}
-
-
-
-

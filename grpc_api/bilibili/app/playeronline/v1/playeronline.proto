@@ -5,7 +5,7 @@ package bilibili.app.playeronline.v1;
 // 在线人数
 service PlayerOnline {
     // 获取在线人数
-    rpc GetPlayerOnline (PlayerOnlineReq) returns (PlayerOnlineReply);
+    rpc PlayerOnline (PlayerOnlineReq) returns (PlayerOnlineReply);
 }
 
 // 获取在线人数-请求
