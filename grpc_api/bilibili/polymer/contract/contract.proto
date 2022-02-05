@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package bilibili.polymer.contract;
+
+import "google/protobuf/empty.proto";
+
+//
+service Contract {
+    //
+    rpc AddContract(AddContractReq) returns (google.protobuf.Empty);
+}
+
+//
+message AddContractReq {
+    //
+    CommonReq common = 1;
+    //
+    int64 mid = 2;
+    //
+    int64 up_mid = 3;
+    //
+    int64 aid = 4;
+}
+
+//
+message CommonReq {
+    //
+    string platform = 1;
+    //
+    int32 build = 2;
+    //
+    string buvid = 3;
+    //
+    string mobi_app = 4;
+    //
+    string device = 5;
+    //
+    string ip = 6;
+    //
+    string spmid = 7;
+}
+

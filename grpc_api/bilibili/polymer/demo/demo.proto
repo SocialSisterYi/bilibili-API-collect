@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package bilibili.polymer.demo;
+
+//
+message HelloWorldReq {
+    //
+    string content = 1;
+}
+
+//
+message HelloWorldResp {
+    //
+    string data = 1;
+}

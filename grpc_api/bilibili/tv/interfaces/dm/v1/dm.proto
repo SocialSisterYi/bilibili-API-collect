@@ -1,0 +1,291 @@
+syntax = "proto3";
+
+package bilibili.tv.interfaces.dm.v1;
+
+//
+message CommandDmOtt {
+    //
+    int64 id = 1;
+    //
+    int64 oid = 2;
+    //
+    int64 mid = 3;
+    //
+    int32 type = 4;
+    //
+    string command = 5;
+    //
+    string content = 6;
+    //
+    int32 state = 7;
+    //
+    int32 progress = 8;
+    //
+    string ctime = 9;
+    //
+    string mtime = 10;
+    //
+    string extra = 11;
+    //
+    string id_str = 12;
+}
+
+//
+message CommandDmsOttReply {
+    //
+    repeated CommandDmOtt command_dms_ott = 1;
+}
+
+//
+message CommandDmsOttReq {
+    //
+    int64 aid = 1;
+    //
+    int64 cid = 2;
+    //
+    int64 mid = 3;
+}
+
+// 弹幕ai云屏蔽列表
+message DanmakuAIFlag {
+    // 弹幕ai云屏蔽条目
+    repeated DanmakuFlag dm_flags = 1;
+}
+
+// 弹幕条目
+message DanmakuElem {
+    // 弹幕dmid
+    int64 id = 1;
+    // 弹幕出现位置(单位ms)
+    int32 progress = 2;
+    // 弹幕类型
+    int32 mode = 3;
+    // 弹幕字号
+    int32 fontsize = 4;
+    // 弹幕颜色
+    uint32 color = 5;
+    // 发送着mid hash
+    string midHash = 6;
+    // 弹幕正文
+    string content = 7;
+    // 发送时间
+    int64 ctime = 8;
+    // 权重 区间:[1,10]
+    int32 weight = 9;
+    // 动作
+    string action = 10;
+    // 弹幕池
+    int32 pool = 11;
+    // 弹幕dmid str
+    string idStr = 12;
+    // 弹幕属性位(bin求AND)
+    // bit0:保护 bit1:直播 bit2:高赞
+    int32 attr = 13;
+}
+
+// 弹幕ai云屏蔽条目
+message DanmakuFlag {
+    int64 dmid = 1;  // 弹幕dmid
+    uint32 flag = 2; // 评分
+}
+
+// 云屏蔽配置信息
+message DanmakuFlagConfig {
+    // 云屏蔽等级
+    int32 rec_flag = 1;
+    // 云屏蔽文案
+    string rec_text = 2;
+    // 云屏蔽开关
+    int32 rec_switch = 3;
+}
+
+// 弹幕默认配置
+message DanmuDefaultPlayerConfig {
+    bool player_danmaku_use_default_config = 1;    // 是否使用推荐弹幕设置
+    bool player_danmaku_ai_recommended_switch = 4; // 是否开启智能云屏蔽
+    int32 player_danmaku_ai_recommended_level = 5; // 智能云屏蔽等级
+    bool player_danmaku_blocktop = 6;              // 是否屏蔽顶端弹幕
+    bool player_danmaku_blockscroll = 7;           // 是否屏蔽滚动弹幕
+    bool player_danmaku_blockbottom = 8;           // 是否屏蔽底端弹幕
+    bool player_danmaku_blockcolorful = 9;         // 是否屏蔽彩色弹幕
+    bool player_danmaku_blockrepeat = 10;          // 是否屏蔽重复弹幕
+    bool player_danmaku_blockspecial = 11;         // 是否屏蔽高级弹幕
+    float player_danmaku_opacity = 12;             // 弹幕不透明度
+    float player_danmaku_scalingfactor = 13;       // 弹幕缩放比例
+    float player_danmaku_domain = 14;              // 弹幕显示区域
+    int32 player_danmaku_speed = 15;               // 弹幕速度
+    bool inline_player_danmaku_switch = 16;        // 是否开启弹幕
+    int32 player_danmaku_senior_mode_switch = 17;  //
+}
+
+// 弹幕配置
+message DanmuPlayerConfig {
+    bool player_danmaku_switch = 1;                // 是否开启弹幕
+    bool player_danmaku_switch_save = 2;           // 是否记录弹幕开关设置
+    bool player_danmaku_use_default_config = 3;    // 是否使用推荐弹幕设置
+    bool player_danmaku_ai_recommended_switch = 4; // 是否开启智能云屏蔽
+    int32 player_danmaku_ai_recommended_level = 5; // 智能云屏蔽等级
+    bool player_danmaku_blocktop = 6;              // 是否屏蔽顶端弹幕
+    bool player_danmaku_blockscroll = 7;           // 是否屏蔽滚动弹幕
+    bool player_danmaku_blockbottom = 8;           // 是否屏蔽底端弹幕
+    bool player_danmaku_blockcolorful = 9;         // 是否屏蔽彩色弹幕
+    bool player_danmaku_blockrepeat = 10;          // 是否屏蔽重复弹幕
+    bool player_danmaku_blockspecial = 11;         // 是否屏蔽高级弹幕
+    float player_danmaku_opacity = 12;             // 弹幕不透明度
+    float player_danmaku_scalingfactor = 13;       // 弹幕缩放比例
+    float player_danmaku_domain = 14;              // 弹幕显示区域
+    int32 player_danmaku_speed = 15;               // 弹幕速度
+    bool player_danmaku_enableblocklist = 16;      // 是否开启屏蔽列表
+    bool inline_player_danmaku_switch = 17;        // 是否开启弹幕
+    int32 inline_player_danmaku_config = 18;       //
+    int32 player_danmaku_ios_switch_save = 19;     //
+}
+
+// 弹幕显示区域自动配置
+message DanmuPlayerDynamicConfig {
+    // 时间
+    int32 progress = 1;
+    // 弹幕显示区域
+    float player_danmaku_domain = 14;
+}
+
+// 弹幕配置信息
+message DanmuPlayerViewConfig {
+    // 弹幕默认配置
+    DanmuDefaultPlayerConfig danmuku_default_player_config = 1;
+    // 弹幕用户配置
+    DanmuPlayerConfig danmuku_player_config = 2;
+    // 弹幕显示区域自动配置列表
+    repeated DanmuPlayerDynamicConfig danmuku_player_dynamic_config = 3;
+}
+
+// 获取弹幕-响应
+message DmSegMobileReply {
+    // 弹幕列表
+    repeated DanmakuElem elems = 1;
+    // 是否已关闭弹幕
+    // 0:未关闭 1:已关闭
+    int32 state = 2;
+    // 弹幕云屏蔽ai评分值
+    DanmakuAIFlag ai_flag = 3;
+}
+
+// 获取弹幕-请求
+message DmSegMobileReq {
+    // 稿件avid/漫画epid
+    int64 pid = 1;
+    // 视频cid/漫画cid
+    int64 oid = 2;
+    // 弹幕类型
+    // 1:视频 2:漫画
+    int32 type = 3;
+    // 分段(6min)
+    int64 segment_index = 4;
+    // 是否青少年模式
+    int32 teenagers_mode = 5;
+    //
+    int64 from = 6;
+}
+
+// 客户端弹幕元数据-响应
+message DmViewReply {
+    // 是否已关闭弹幕
+    // 0:未关闭 1:已关闭
+    bool closed = 1;
+    // 智能防挡弹幕蒙版信息
+    VideoMask mask = 2;
+    // 视频字幕
+    VideoSubtitle subtitle = 3;
+    // 高级弹幕专包url(bfs)
+    repeated string special_dms = 4;
+    // 云屏蔽配置信息
+    DanmakuFlagConfig ai_flag = 5;
+    // 弹幕配置信息
+    DanmuPlayerViewConfig player_config = 6;
+    // 弹幕发送框样式
+    int32 send_box_style = 7;
+    // 是否允许
+    bool allow = 8;
+    // check box 是否展示
+    string check_box = 9;
+    // check box 展示文本
+    string check_box_show_msg = 10;
+    // 展示文案
+    string text_placeholder = 11;
+    // 弹幕输入框文案
+    string input_placeholder = 12;
+}
+
+// 客户端弹幕元数据-请求
+message DmViewReq {
+    // 稿件avid/漫画epid
+    int64 pid = 1;
+    // 视频cid/漫画cid
+    int64 oid = 2;
+    // 弹幕类型
+    // 1:视频 2:漫画
+    int32 type = 3;
+    // 页面spm
+    string spmid = 4;
+    // 是否冷启
+    int32 is_hard_boot = 5;
+    //
+    int64 from = 6;
+}
+
+// 单个字幕信息
+message SubtitleItem {
+    // 字幕id
+    int64 id = 1;
+    // 字幕id str
+    string id_str = 2;
+    // 字幕语言代码
+    string lan = 3;
+    // 字幕语言
+    string lan_doc = 4;
+    // 字幕文件url
+    string subtitle_url = 5;
+    // 字幕作者信息
+    UserInfo author = 6;
+}
+
+// 字幕作者信息
+message UserInfo {
+    // 用户mid
+    int64 mid = 1;
+    // 用户昵称
+    string name = 2;
+    // 用户性别
+    string sex = 3;
+    // 用户头像url
+    string face = 4;
+    // 用户签名
+    string sign = 5;
+    // 用户等级
+    int32 rank = 6;
+}
+
+// 智能防挡弹幕蒙版信息
+message VideoMask {
+    // 视频cid
+    int64 cid = 1;
+    // 平台
+    // 0:web端 1:客户端
+    int32 plat = 2;
+    // 帧率
+    int32 fps = 3;
+    // 间隔时间
+    int64 time = 4;
+    // 蒙版url
+    string mask_url = 5;
+}
+
+// 视频字幕信息
+message VideoSubtitle {
+    // 视频原语言代码
+    string lan = 1;
+    // 视频原语言
+    string lanDoc = 2;
+    // 视频字幕列表
+    repeated SubtitleItem subtitles = 3;
+}

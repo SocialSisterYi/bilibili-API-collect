@@ -1,0 +1,875 @@
+syntax = "proto3";
+
+package bilibili.dynamic;
+
+import "bilibili/app/dynamic/v2/dynamic.proto";
+
+// at分组信息
+message AtGroup {
+    // 分组类型
+    AtGroupType group_type = 1;
+    // 分组名称
+    string group_name = 2;
+    // items
+    repeated AtItem items = 3;
+}
+
+// at分组类型
+enum AtGroupType {
+    AT_GROUP_TYPE_DEFAULT = 0; // 默认
+    AT_GROUP_TYPE_RECENT  = 1; // 最近联系
+    AT_GROUP_TYPE_FOLLOW  = 2; // 我的关注（互相关注 > 单向关注）
+    AT_GROUP_TYPE_FANS    = 3; // 我的粉丝
+    AT_GROUP_TYPE_OTHERS  = 4; // 其他
+}
+
+// at返回单条信息
+message AtItem {
+    // mid
+    int64 uid = 1;
+    // 昵称
+    string name = 2;
+    // 头像
+    string face = 3;
+    // 粉丝数
+    int32 fans = 4;
+    // 认证信息
+    int32 official_verify_type = 5;
+}
+
+// at列表-请求
+message AtListReq {
+    // mid
+    int64 uid = 1;
+}
+
+// at列表-响应
+message AtListRsp {
+    // 分组信息
+    repeated AtGroup groups = 1;
+}
+
+// at搜索-请求
+message AtSearchReq {
+    // mid
+    int64 uid = 1;
+    // 关键字
+    string keyword = 2;
+}
+
+//
+enum AttachCardType {
+    ATTACH_CARD_NONE              = 0;   // 无
+    ATTACH_CARD_GOODS             = 1;   // 商品卡
+    ATTACH_CARD_VOTE              = 2;   // 投票卡
+    ATTACH_CARD_UGC               = 3;   // ugc视频卡
+    ATTACH_CARD_ACTIVITY          = 4;   // 帮推
+    ATTACH_CARD_OFFICIAL_ACTIVITY = 5;   // 官方活动
+    ATTACH_CARD_TOPIC             = 6;   // 话题活动
+    ATTACH_CARD_OGV               = 7;   // OGV
+    ATTACH_CARD_AUTO_OGV          = 8;   // OGV自动出卡
+    ATTACH_CARD_GAME              = 9;   // 游戏
+    ATTACH_CARD_MANGA             = 10;  // 漫画
+    ATTACH_CARD_DECORATION        = 11;  // 装扮
+    ATTACH_CARD_MATCH             = 12;  // 赛事
+    ATTACH_CARD_PUGV              = 13;  // 课程
+    ATTACH_CARD_RESERVE           = 14;  // 预约
+    ATTACH_CARD_UP_TOPIC          = 15;  // up主话题活动
+}
+
+//
+message BottomBusiness {
+    // 业务方资源id
+    int64 rid = 1;
+    // 业务方类型，定义在BottomBizType中
+    int64 type = 2;
+}
+
+//
+enum ContentType {
+    CONTENT_TYPE_NONE = 0;   // 占位
+    TEXT              = 1;   // 文本，简单内容，biz_id就是文本
+    AT                = 2;   // @用户，简单内容，biz_id是用户uid
+    LOTTERY           = 3;   // 抽奖，简单内容，biz_id是抽奖id
+    VOTE              = 4;   // 投票，简单内容，biz_id是投票id
+    TOPIC             = 5;   // 话题，简单内容，biz_id是话题id
+    GOODS             = 6;   // 商品文字链，复杂内容，定义在GoodsContent结构，biz_id为空
+    BV                = 7;   // bv，简单内容，biz_id是bvid，包括"BV1"等内容
+    AV                = 8;   // av，简单内容，biz_id是avid
+    EMOJI             = 9;   // 表情，简单内容，biz_id为空
+    USER              = 10;  // 外露用户，暂未使用
+    CV                = 11;  // 专栏，简单内容，biz_id是cvid
+    VC                = 12;  // 废弃业务，无用
+    WEB               = 13;  // 网址，简单内容，biz_id是网页链接
+    TAOBAO            = 14;  // 淘宝内容，暂时不用
+    MAIL              = 15;  // 邮箱，简单内容，biz_id是邮箱地址
+    OGV_SEASON        = 16;  // 番剧season，简单内容，biz_id是番剧的season_id
+    OGV_EP            = 17;  // 番剧ep，简单内容，biz_id是番剧的epid
+}
+
+//
+message CreateActivity {
+    //
+    int64 activity_id = 1;
+    //
+    int32 activity_state = 2;
+    //
+    int32 is_new_activity = 3;
+    //
+    int32 action = 4;
+}
+
+// 动态附带的附加大卡
+message CreateAttachCard {
+    // 商品大卡
+    CreateGoodsCard goods = 1;
+    // 通用附加大卡，目前仅限定Match,Game,Ugc,Pugv,Reserve，且同时只能有一个
+    CreateCommonAttachCard common_card = 2;
+}
+
+// 发布页预校验-响应
+message CreateCheckResp {
+    // 发布相关的配置项
+    PublishSetting setting = 1;
+    // 用户具有的发布权限
+    UpPermission permission = 2;
+    // 分享渠道信息
+    ShareChannel share_info = 3;
+    // 小黄条
+    PublishYellowBar yellow_bar = 4;
+    //
+    PlusRedDot plus_red_dot = 5;
+}
+
+// 创建动态时附带的通用附加卡详情
+message CreateCommonAttachCard {
+    // 通用附加卡的类型
+    AttachCardType type = 1;
+    // 通用附加卡的业务id
+    int64 biz_id = 2;
+    //
+    int32 reserve_source = 3;
+    //
+    int32 reserve_lottery = 4;
+}
+
+// 动态-描述文字模块
+message CreateContent {
+    // 描述信息（已按高亮拆分）
+    repeated CreateContentItem contents = 1;
+}
+
+// 文本描述
+message CreateContentItem {
+    // 原始文案
+    string raw_text = 1;
+    // 类型
+    ContentType type = 2;
+    // 简单内容，可能为文字，BVID，AVID，uid等；复杂内容需要单独定义结构体
+    string biz_id = 3;
+    // 商品内容
+    GoodsContent goods = 4;
+}
+
+//
+message CreateDynVideo {
+    // 投稿平台来源，具体写什么@产品
+    string relation_from = 1;
+    // 1 — 投稿入口 + 相册选择视频 2 — 投稿入口 + 拍摄 3 — 小视频入口 + 相册选择视频 4 — 小视频入口 + 拍摄
+    int32 biz_from = 3;
+    // 投稿类型:  2-转载、1-自制
+    int32 copyright = 4;
+    // 是否公开投稿 0允许公开，1不允许公开 默认 0公开
+    int32 no_public = 5;
+    // 是否允许转载字段 0允许，1不允许，默认为0    copyright = 1 自制的时候默认勾选上no_reprint=1
+    int32 no_reprint = 6;
+    // 转载的时候必须填写，非空字符串
+    string source = 7;
+    // 稿件封面必须填写,不能为空 封面不支持其他源站链接 请确保 cover 是 先经过上传接口
+    string cover = 8;
+    // 稿件标题
+    string title = 9;
+    // 稿件分区ID 必须是有效的二级分区ID
+    int64 tid = 10;
+    // 标签 多个标签请使用英文逗号连接
+    string tag = 11;
+    // 稿件描述
+    string desc = 12;
+    // 当前输入环境下有，就输入http://domain/x/app/archive/desc/format返回的desc_format值
+    // 如果返回null就输入默认为0， 表示当前环境（分区+投稿类型）不参与简介格式化
+    int64 desc_format_id = 13;
+    // 稿件是否开启充电面板，1为是, 0为否
+    int32 open_elec = 14;
+    // 定时发布的时间
+    int32 dtime = 15;
+    // 分P聚合字段
+    repeated DynVideoMultiP videos = 16;
+    // 水印信息
+    DynVideoWatermark watermark = 17;
+    // 新增加通过tag来参加活动
+    int64 mission_id = 18;
+    // 新增加可以添加动态内容
+    string dynamic = 19;
+    // 序列化后的extend_info扩展信息
+    string dynamic_extension = 20;
+    // 客户端控制字段
+    string dynamic_ctrl = 21;
+    // 动态来源
+    string dynamic_from = 22;
+    // 抽奖服务生成的ID
+    int64 lottery_id = 23;
+    //
+    DynVideoVote vote = 24;
+    // 精选评论开关, true为开
+    bool up_selection_reply = 25;
+    // up主关闭评论
+    bool up_close_reply = 26;
+    // up主关闭弹幕
+    bool up_close_danmu = 27;
+    // 稿件投稿来源
+    int64 up_from = 28;
+    //
+    int64 duration = 29;
+}
+
+// 创建动态视频的应答包（透传给客户端）
+message CreateDynVideoResult {
+    // 稿件id
+    int64 aid = 1;
+    // 说明信息
+    string message = 2;
+    // 推荐的活动信息
+    DynVideoSubmitActBanner submitact_banner = 3;
+    //
+    DynVideoPushIntro push_intro = 4;
+}
+
+// 创建动态时附带的商品大卡详情
+message CreateGoodsCard {
+    // 商品大卡中的商品id
+    repeated string item_id = 1;
+}
+
+// 发布页预校验场景
+enum CreateInitCheckScene {
+    CREATE_INIT_CHECK_SCENE_INVALID       = 0; //
+    CREATE_INIT_CHECK_SCENE_NORMAL        = 1; // 动态页面右上角点击进入发布页
+    CREATE_INIT_CHECK_SCENE_REPOST        = 2; // 动态feed流转发、三点分享，动态详情页转发
+    CREATE_INIT_CHECK_SCENE_SHARE         = 3; // 其他页面分享到动态
+    CREATE_INIT_CHECK_SCENE_RESERVE_SHARE = 4; //
+}
+
+// 动态创建时的特殊选项
+message CreateOption {
+    // 评论区展示UP自己精选的评论
+    int32 up_choose_comment = 1;
+    // 初始评论区是关闭状态
+    int32 close_comment = 2;
+    // 该动态不会被折叠
+    // 目前仅抽奖开奖动态不会被折叠
+    int32 fold_exclude = 3;
+    // 审核等级，仅服务端发布时有效
+    // 100：自动过审
+    // 非100：默认的内网审核
+    // 默认为0
+    int32 audit_level = 4;
+    // 根据转发内容同步生成一条源动态/资源的评论
+    // 仅转发和分享时有效
+    int32 sync_to_comment = 5;
+    //
+    VideoShareInfo video_share_info = 6;
+    //
+    CreateActivity activity = 7;
+}
+
+// 创建图文动态时的图片信息
+message CreatePic {
+    // 上传图片URL
+    string img_src = 1;
+    // 图片宽度
+    double img_width = 2;
+    // 图片高度
+    double img_height = 3;
+    // 图片大小，单位KB
+    double img_size = 4;
+    //
+    repeated CreatePicTag img_tags = 5;
+}
+
+//
+message CreatePicTag {
+    //
+    int64 item_id = 1;
+    //
+    int64 tid = 2;
+    //
+    int64 mid = 3;
+    //
+    string text = 4;
+    //
+    string text_string = 5;
+    //
+    int64 type = 6;
+    //
+    int64 source_type = 7;
+    //
+    string url = 8;
+    //
+    string schema_url = 9;
+    //
+    string jump_url = 10;
+    //
+    int64 orientation = 11;
+    //
+    int64 x = 12;
+    //
+    int64 y = 13;
+    //
+    string poi = 14;
+}
+
+// 创建动态-响应
+message CreateResp {
+    // 动态id
+    int64 dyn_id = 1;
+    // 动态id str
+    string dyn_id_str = 2;
+    // 动态的类型
+    int64 dyn_type = 3;
+    // 动态id
+    int64 dyn_rid = 4;
+    // 假卡
+    bilibili.app.dynamic.v2.DynamicItem fake_card = 5;
+    // 视频
+    CreateDynVideoResult video_result = 6;
+}
+
+// 发布类型（场景）
+enum CreateScene {
+    CREATE_SCENE_INVALID               = 0;  //
+    CREATE_SCENE_CREATE_WORD           = 1;  // 发布纯文字动态
+    CREATE_SCENE_CREATE_DRAW           = 2;  // 发布图文动态
+    CREATE_SCENE_CREATE_DYN_VIDEO      = 3;  // 发布动态视频
+    CREATE_SCENE_REPOST                = 4;  // 转发动态
+    CREATE_SCENE_SHARE_BIZ             = 5;  // 分享业务方资源
+    CREATE_SCENE_SHARE_PAGE            = 6;  // 分享网页（通用模板）
+    CREATE_SCENE_SHARE_PROGRAM         = 7;  // 分享小程序
+    CREATE_SCENE_REPLY_SYNC            = 8;  // 评论同步到动态
+    CREATE_SCENE_REPLY_CREATE_ACTIVITY = 9;  // 评论同步到动态并且发起活动
+}
+
+// 动态附带的小卡
+message CreateTag {
+    // lbs小卡
+    ExtLbs lbs = 1;
+    // 游戏通过SDK发布的动态需要带上游戏小卡
+    BottomBusiness sdk_game = 2;
+    // 必剪发布的动态需要带上必剪小卡
+    BottomBusiness diversion = 3;
+}
+
+//
+message CreateTopic {
+    //
+    int64 id = 1;
+    //
+    string name = 2;
+}
+
+// 动态的标识
+message DynIdentity {
+    // 动态id
+    int64 dyn_id = 1;
+    // 动态反向id，通过(type+rid组合)也可以唯一标识一个动态，与dyn_id出现任意一个即可
+    DynRevsId revs_id = 2;
+}
+
+//
+message DynRevsId {
+    // 动态类型
+    int64 dyn_type = 1;
+    // 业务id
+    int64 rid = 2;
+}
+
+// 动态视频分P视频编辑环境上报信息
+message DynVideoEditor {
+    //
+    int64 cid = 1;
+    //
+    int32 upfrom = 2;
+    // 滤镜
+    string filters = 3;
+    // 字体
+    string fonts = 4;
+    // 字幕
+    string subtitles = 5;
+    // bgm
+    string bgms = 6;
+    // 3d拍摄贴纸
+    string stickers = 7;
+    // 2d投稿贴纸
+    string videoup_stickers = 8;
+    // 视频转场特效
+    string trans = 9;
+    // 编辑器的主题使用相关
+    string makeups = 10;
+    // 整容之外科手术
+    string surgerys = 11;
+    // 美摄特定的videofx
+    string videofxs = 12;
+    // 编辑器的主题使用相关
+    string themes = 13;
+    // 拍摄之稿件合拍
+    string cooperates = 14;
+    // 拍摄之音乐卡点视频
+    string rhythms = 15;
+    // mvp特效
+    string effects = 16;
+    // mvp背景
+    string backgrounds = 17;
+    // mvp视频
+    string videos = 18;
+    // mvp音效
+    string sounds = 19;
+    // mvp花字
+    string flowers = 20;
+    // mvp封面模板
+    string cover_templates = 21;
+    // tts
+    string tts = 22;
+    // openings
+    string openings = 23;
+    // 录音题词
+    bool record_text = 24;
+    // 虚拟形象上报
+    string vupers = 25;
+    //
+    string features = 26;
+    //
+    string bcut_features = 27;
+    //
+    int32 audio_record = 28;
+    //
+    int32 camera = 29;
+    //
+    int32 speed = 30;
+    //
+    int32 camera_rotate = 31;
+    //
+    int32 screen_record = 32;
+    //
+    int32 default_end = 33;
+    //
+    int32 duration = 34;
+    //
+    int32 pic_count = 35;
+    //
+    int32 video_count = 36;
+    //
+    int32 shot_duration = 37;
+    //
+    string shot_game = 38;
+    //
+    bool highlight = 39;
+    //
+    int32 highlight_cnt = 40;
+    //
+    int32 pip_count = 41;
+}
+
+//
+message DynVideoHotAct {
+    //
+    int64 act_id = 1;
+    //
+    int64 etime = 2;
+    //
+    int64 id = 3;
+    //
+    string pic = 4;
+    //
+    int64 stime = 5;
+    //
+    string title = 6;
+    //
+    string link = 7;
+}
+
+// 动态视频分P聚合字段
+message DynVideoMultiP {
+    // 分P标题
+    string title = 1;
+    // 分P的文件名
+    string filename = 2;
+    //
+    int64 cid = 3;
+    // 编辑环境上报信息
+    DynVideoEditor editor = 4;
+}
+
+//
+message DynVideoPushIntro {
+    //
+    int32 show = 1;
+    //
+    string text = 2;
+}
+
+//
+message DynVideoSubmitActBanner {
+    //
+    string hotact_text = 1;
+    //
+    string hotact_url = 2;
+    //
+    repeated DynVideoHotAct list = 3;
+}
+
+//
+message DynVideoVote {
+    //
+    int64 vote_id = 1;
+    //
+    string vote_title = 2;
+    //
+    int32 top_for_reply = 3;
+}
+
+// 动态视频水印信息
+message DynVideoWatermark {
+    // 水印状态 
+    // 0-关闭 1-打开 2-预览
+    int32 state = 1;
+    // 类型
+    // 1-用户昵称类型 2-用户id类型 3-用户名在logo下面
+    int32 type = 2;
+    // 位置
+    // 1-左上 2-右上 3-左下 4-右下
+    int32 position = 3;
+}
+
+//
+message ExtLbs {
+    //
+    string address = 1;
+    //
+    int64 distance = 2;
+    //
+    int64 type = 3;
+    //
+    string poi = 4;
+    //
+    LbsLoc location = 5;
+    //
+    string show_title = 6;
+    //
+    string title = 7;
+    //
+    string show_distance = 8;
+}
+
+// 根据name取uid-请求
+message GetUidByNameReq {
+    // 查询昵称列表
+    repeated string names = 1;
+}
+
+// 根据name取uid-响应
+message GetUidByNameRsp {
+    // k:昵称 v:mid
+    map<string, int64> uids = 1;
+}
+
+// 发布时附带的商品卡的详细内容
+message GoodsContent {
+    // 商品类型
+    // 1淘宝、2会员购
+    int32 source_type = 1;
+    // 商品的id
+    int64 item_id = 2;
+    // 店铺的id，兼容老版本
+    int64 shop_id = 3;
+}
+
+// UP已经创建的活动列表
+message LaunchedActivity {
+    // 模块名称，示例："已创建的活动"
+    string module_title = 1;
+    // 已创建的活动列表
+    repeated LaunchedActivityItem activities = 2;
+    // 展示更多按钮
+    // 已创建活动大于5个时下发
+    ShowMoreLaunchedActivity show_more = 3;
+}
+
+// UP已经创建的活动详情
+message LaunchedActivityItem {
+    // 活动id
+    int64 activity_id = 1;
+    // 活动名称
+    string activity_name = 2;
+    // 活动是否已上线
+    // 0未上线 1已上线
+    int32 activity_state = 3;
+}
+
+//
+message LbsLoc {
+    // 经度
+    double lat = 1;
+    // 纬度
+    double lng = 2;
+}
+
+//
+message MetaDataCtrl {
+    // 客户端平台
+    string platform = 1;
+    // 客户端build号
+    string build = 2;
+    // 客户端移动设备类型
+    string mobi_app = 3;
+    // 客户端buvid
+    string buvid = 4;
+    // 用户设备信息
+    string device = 5;
+    // 请求来源页面的spmid
+    string from_spmid = 6;
+    // 请求来源页面
+    string from = 7;
+    // 请求的trace_id
+    string trace_id = 8;
+    // 青少年模式
+    int32 teenager_mode = 9;
+    // 0:正常 1:冷启动
+    int32 cold_start = 10;
+    // 客户端版本号
+    string version = 11;
+    // 网络状态
+    // Unknown=0 WIFI=1 WWAN=2
+    int32 network = 12;
+    // 用户ip地址
+    string ip = 13;
+}
+
+//
+message PlusRedDot {
+    //
+    int64 plus_has_red_dot = 1;
+}
+
+// 小程序内容定义
+message Program {
+    // 标题
+    string title = 1;
+    // 描述文字
+    string desc = 2;
+    // 封面图
+    string cover = 3;
+    // 跳转链接
+    string target_url = 4;
+    // 小程序icon
+    string icon = 5;
+    // 小程序名称
+    string program_text = 6;
+    // 跳转链接文案，如：去看看
+    string jump_text = 7;
+}
+
+// 发布相关的设置项
+message PublishSetting {
+    // 提示转为专栏的最小字数，使用utf-16编码计算字符数
+    int32 min_words_to_article = 1;
+    // 提示转为专栏的最大字数，使用utf-16编码计算字符数
+    int32 max_words_to_article = 2;
+    // gif上传的最大值，单位：MB
+    int32 upload_size = 3;
+}
+
+// 发布页小黄条
+message PublishYellowBar {
+    // 展示文案
+    string text = 1;
+    // 跳转链接
+    string url = 2;
+    // 展示图标
+    string icon = 3;
+}
+
+//
+message RepostInitCheck {
+    //
+    DynIdentity repost_src = 1;
+    //
+    string share_id = 2;
+    //
+    int32 share_mode = 3;
+}
+
+//
+enum ReserveSource {
+    RESERVE_SOURCE_NEW        = 0; //
+    RESERVE_SOURCE_ASSOCIATED = 1; //
+}
+
+// 分享渠道信息
+message ShareChannel {
+    // 业务类型，如动态是"dynamic"
+    string share_origin = 1;
+    // 业务资源id
+    string oid = 2;
+    // 辅助id, 非必返回字段
+    string sid = 3;
+    // 渠道列表
+    repeated ShareChannelItem share_channels = 4;
+}
+
+// 渠道
+message ShareChannelItem {
+    // 展示文案
+    string name = 1;
+    // 展示图标
+    string picture = 2;
+    // 渠道名称
+    string share_channel = 3;
+    // 预约卡分享图信息，仅分享有预约信息的动态时存在
+    ShareReserve reserve = 4;
+}
+
+//
+message ShareReserve {
+    // 标题
+    string title = 1;
+    // 描述（时间+类型）
+    string desc = 2;
+    // 二维码附带icon
+    string qr_code_icon = 3;
+    // 二维码附带文本
+    string qr_code_text = 4;
+    // 二维码链接
+    string qr_code_url = 5;
+    //
+    string name = 6;
+    //
+    string face = 7;
+    //
+    ShareReservePoster poster = 8;
+    //
+    ShareReserveLottery reserve_lottery = 9;
+}
+
+//
+message ShareReserveLottery {
+    //
+    string icon = 1;
+    //
+    string text = 2;
+}
+
+//
+message ShareReservePoster {
+    //
+    string url = 1;
+    //
+    double width = 2;
+    //
+    double height = 3;
+}
+
+//
+message ShareResult {
+    //
+    int64 share_enable = 1;
+    //
+    string toast = 2;
+}
+
+// UP已经创建的活动列表中的展示更多按钮详情
+message ShowMoreLaunchedActivity {
+    // 按钮的文案
+    string button_text = 1;
+    // 按钮的跳转链接
+    string jump_url = 2;
+}
+
+// 通用模板的网页元内容(sketch结构)定义
+message Sketch {
+    // 元内容标题，长度30限制
+    string title = 1;
+    // 描述文字（文本内容第二行），长度233限制
+    string desc_text = 2;
+    // 文本文字（文本内容第三行），仅限竖图通用卡片使用，长度233限制
+    string text = 3;
+    // 表示业务方的id表示，对于在业务方有唯一标示的必填
+    int64 biz_id = 4;
+    // 业务类型，与展示时的右上角标有关，需要业务方向动态申请
+    int64 biz_type = 5;
+    // 封面图片链接地址，域名需要符合白名单
+    string cover_url = 6;
+    // 跳转链接地址，域名需要符合白名单
+    string target_url = 7;
+}
+
+// 发布相关的权限内容
+message UpPermission {
+    // 通用权限列表
+    repeated UpPermissionItem items = 1;
+    // 已经创建的活动列表
+    LaunchedActivity launched_activity = 2;
+    //
+    ShareResult share_result = 3;
+}
+
+// 通用发布权限内容的详细定义
+message UpPermissionItem {
+    // 类型，enum UpPermissionType
+    int32 type = 1;
+    // UP是否有权限
+    // 1-有，2-限制（展示但不可点，仅预约使用）
+    int32 permission = 2;
+    // 按钮文案
+    string title = 3;
+    // 功能开关的副标题
+    string subtitle = 4;
+    // 按钮图标的url地址
+    string icon = 5;
+    // 跳转链接，permission=1时点击按钮跳到此链接
+    string jump_url = 6;
+    // 错误提示，permission=2时点击按钮会弹出此提示，目前仅预约使用
+    string toast = 7;
+    //
+    int64 has_red_dot = 8;
+}
+
+//
+enum UpPermissionType {
+    UP_PERMISSION_TYPE_NONE              = 0;  // 占位
+    UP_PERMISSION_TYPE_LOTTERY           = 1;  // 是否是抽奖的灰度用户，默认不是
+    UP_PERMISSION_TYPE_CLIP_PUBLISHED    = 2;  // 之前是否发过小视频，默认没发过
+    UP_PERMISSION_TYPE_UGC_ATTACH_CARD   = 3;  // 是否可以添加ugc附加卡，默认不可以
+    UP_PERMISSION_TYPE_GOODS_ATTACH_CARD = 4;  // 是否有权限添加商品附加卡
+    UP_PERMISSION_TYPE_CHOOSE_COMMENT    = 5;  // 是否有权限自主精选评论白名单，默认没有
+    UP_PERMISSION_TYPE_CONTROL_COMMENT   = 6;  // 是否有权限关闭评论区，默认有
+    UP_PERMISSION_TYPE_CONTROL_DANMU     = 7;  // 是否有权限关闭弹幕（仅对动态视频生效），默认有
+    UP_PERMISSION_TYPE_VIDEO_RESERVE     = 8;  // 是否可以发起稿件预约
+    UP_PERMISSION_TYPE_LIVE_RESERVE      = 9;  // 是否可以发起直播预约
+}
+
+// 用户主动发布（app/web发布）时的meta信息
+message UserCreateMeta {
+    // 用户发布客户端的meta信息
+    MetaDataCtrl app_meta = 1;
+    // 用户发布时的位置信息（经纬度）
+    LbsLoc loc = 2;
+    // 1-发布页转发 2-立即转发
+    int32 repost_mode = 3;
+}
+
+//
+message VideoShareInfo {
+    //
+    int64 cid = 1;
+    //
+    int32 part = 2;
+}
