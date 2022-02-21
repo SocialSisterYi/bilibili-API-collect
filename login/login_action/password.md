@@ -133,7 +133,7 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 
 ## 使用账号密码登录（web端）
 
-> http://passport.bilibili.com/web/login/v2
+> http://passport.bilibili.com/x/passport-login/web/login
 
 *请求方式：POST*
 
@@ -145,11 +145,11 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 
 | 参数名      | 类型 | 内容             | 必要性 | 备注             |
 | ----------- | ---- | ---------------- | ------ | ---------------- |
-| captchaType | num  | 6                | 必要   | 必须为`6`        |
+| source      | str  | main_web         | 必要   | 必须为`main_web`  |
 | username    | str  | 用户登录账号     | 必要   | 手机号或邮箱地址 |
 | password    | str  | 加密后的带盐密码 | 必要   | base64格式       |
 | keep        | bool | true             | 必要   | 必须为`true`     |
-| key         | str  | 登录秘钥         | 必要   | 从B站API获取     |
+| token       | str  | 极验token        | 必要   | 从B站API获取     |
 | challenge   | str  | 极验challenge    | 必要   | 从B站API获取     |
 | validate    | str  | 极验结果         | 必要   | 从极验获取       |
 | seccode     | str  | 极验结果         | 必要   | 从极验获取       |
@@ -161,24 +161,17 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 | 字段    | 类型 | 内容       | 备注                                                         |
 | ------- | ---- | ---------- | ------------------------------------------------------------ |
 | code    | num  | 返回值     | 0：成功<br />-400：请求错误<br />-629：账号或密码错误<br />-653：用户名或密码不能为空<br />-662：提交超时,请重新提交<br />-2001：缺少必要的的参数<br />-2100：需验证手机号或邮箱<br />2400：登录秘钥错误<br />2406：验证极验服务出错<br />86000：RSA解密失败 |
-| ts      | num  | 当前时间戳 | 成功时无此项                                                 |
+| ttl     | num  | 1         |                                                             |
 | message | str  | 错误信息   | 默认为0                                                      |
 | data    | obj  | 数据本体   | 成功时有此项                                                 |
 
 `data`对象：
 
-**未登录时：**
-
-| 字段        | 类型 | 内容                | 备注 |
-| ----------- | ---- | ------------------- | ---- |
-| redirectUrl | str  | 游戏分站跨域登录url |      |
-
-**已登录时：**
-
-| 字段    | 类型 | 内容                     | 备注 |
-| ------- | ---- | ------------------------ | ---- |
-| isLogin | bool | true                     |      |
-| goUrl   | str  | https://www.bilibili.com |      |
+| 字段        | 类型 | 内容                 | 备注                           |
+| ----------- | --- | -------------------- | ----------------------------- |
+| status      | num | 0                    | 未知,可能0就是成功吧            |
+| message     | str | 错误信息              | 空                            |
+| url         | str | 跳转url              | 默认为https://www.bilibili.com |
 
 **需验证手机号或邮箱时**
 | 字段     | 类型 | 内容                     | 备注             |
@@ -195,12 +188,12 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 例如用户账号为`12345678900`，加密后的密码为`xxx`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行验证登录操作
 
 ```shell
-curl 'https://passport.bilibili.com/web/login/v2' \
---data-urlencode 'captchaType=6' \
+curl 'https://passport.bilibili.com/x/passport-login/web/login' \
+--data-urlencode 'source=main_web' \
 --data-urlencode 'username=12345678900' \
 --data-urlencode 'password=xxx' \
 --data-urlencode 'keep=true' \
---data-urlencode 'key=aabbccdd' \
+--data-urlencode 'token=aabbccdd' \
 --data-urlencode 'challenge=2333' \
 --data-urlencode 'validate=666666' \
 --data-urlencode 'seccode=666666|jordan'
@@ -212,8 +205,12 @@ curl 'https://passport.bilibili.com/web/login/v2' \
 ```json
 {
     "code": 0,
+	"message":"0",
+	"ttl":1,
     "data": {
-        "redirectUrl": "https://passport.biligame.com/crossDomain?DedeUserID=***&DedeUserID__ckMd5=***&Expires=15551000&SESSDATA=***&bili_jct=***&gourl=https%3A%2F%2Fwww.bilibili.com"
+		"status":0,
+		"message":"",
+        "url": "https://passport.biligame.com/crossDomain?DedeUserID=***&DedeUserID__ckMd5=***&Expires=15551000&SESSDATA=***&bili_jct=***&gourl=https%3A%2F%2Fwww.bilibili.com"
     }
 }
 ```
