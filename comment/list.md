@@ -4578,7 +4578,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 }
 ```
 
-</detail>
+</details>
 
 ## 获取指定评论对话树
 
