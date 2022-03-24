@@ -1,6 +1,6 @@
 # 签到
 
-> https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn
+> http://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn
 
 *请求方式：POST*
 
@@ -22,8 +22,22 @@
 | msg | str  | 错误信息 | 成功：空<br />已签到：clockin clockin is duplicate                                                      |
 | meta     | obj  | 错误信息       |    今日已签到时存在                                                          |
 
+根对象：
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| data | str  | 错误信息 |      |
+
+**示例：**
+
+```bash
+curl 'http://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' \
+-b 'SESSDATA=xxx'
+```
+
 <details>
-<summary>成功示例：</summary>
+<summary>签到成功：</summary>
+
 
 ```json
 {
@@ -36,7 +50,8 @@
 </details>
 
 <details>
-<summary>今日已签到示例：</summary>
+<summary>今日已签到：</summary>
+
 
 ```json
 {

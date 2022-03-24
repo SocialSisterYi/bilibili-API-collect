@@ -1,10 +1,18 @@
 # 积分商城
+
+- [获取当前持有点数](#获取当前持有点数)
+- [获取兑换奖品列表](#获取兑换奖品列表)
+- [兑换物品](#兑换物品)
+- [获取兑换历史记录](#获取兑换历史记录)
+- [获取玩法说明](#获取玩法说明)
+
 *积分商城由web页面提供功能，地址为：*
+
 > https://manga.bilibili.com/eden/credits-exchange.html
 
-# 获取当前持有点数
+## 获取当前持有点数
 
-> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint
+> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint
 
 *请求方式：POST*
 
@@ -16,8 +24,8 @@
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 总是为0 |
-| msg | str  | 错误信息 | 为空                                                      | |
+| code    | num  | 返回值   |  |
+| msg | str  | 错误信息 |                                                       |
 | data    | obj  | 信息本体 |                                                              |
 
 `data`对象：
@@ -26,8 +34,16 @@
 | -------- | ---- | -------- | ------------ |
 | point   | str  | 点数       | 不登录时为0 |
 
+**示例：**
+
+```bash
+curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint' \
+-b 'SESSDATA=xxx'
+```
+
 <details>
-<summary>返回示例：</summary>
+<summary>查看响应示例：</summary>
+
 
 ```json
 {
@@ -41,13 +57,11 @@
 
 </details>
 
-# 获取兑换奖品列表
+## 获取兑换奖品列表
 
-> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct
+> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct
 
 *请求方式：POST*
-
-认证方式：不登录可访问
 
 **json回复：**
 
@@ -56,10 +70,18 @@
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
 | code    | num  | 返回值   | |
-| msg | str  | 错误信息 | 为空                                                      | |
-| data    | obj  | 信息本体 |                                                              |
+| msg | str  | 错误信息 |      |
+| data    | array | 奖品列表 |                                                              |
 
-`data`对象：
+`data`数组：
+
+| 项   | 类型 | 内容      | 备注 |
+| ---- | ---- | --------- | ---- |
+| 0    | obj  | 奖品1     |      |
+| n    | obj  | 奖品(n+1) |      |
+| ……   | obj  | ……        | ……   |
+
+`data`数组中的对象：
 
 | 字段     | 类型 | 内容     | 备注         |
 | -------- | ---- | -------- | ------------ |
@@ -73,20 +95,27 @@
 | remain_amount   | num  | 库存剩余数       |  |
 | comic_id   | num  | 相关漫画id       |  |
 | limits   | array  | 限定使用范围（漫画）       | 限免券所适用的漫画 |
-| discount   | num  | 未知       | 目前恒为0 |
+| discount   | num  | (?)    | 目前恒为0 |
 | product_type   | num  | 物品类型       | 1：限免券、福利券<br />4：商城满99立减10元券、商城5元无门槛券<br />5：商城5魔晶 |
-| pendant_url   | str  | 未知       |  |
-| pendant_expire   | num  | 未知       | 0：限免券、福利券<br />7：商城满99立减10元券、商城5元无门槛券、商城5魔晶 |
+| pendant_url   | str  | (?)    |  |
+| pendant_expire   | num  | (?)    | 0：限免券、福利券<br />7：商城满99立减10元券、商城5元无门槛券、商城5魔晶 |
 | exchange_limit   | num  | 兑换次数限制       |  |
-| address_deadline   | datetime  | 未知       |  |
-| act_type   | num  | 未知       | 目前恒为0 |
+| address_deadline   | str | (?)    |  |
+| act_type   | num  | (?)    | 目前恒为0 |
 | has_exchanged   | bool  | 是否兑换过该物品       |  |
-| main_coupon_deadline   | datetime  | 兑换后使用截止时间       |  |
+| main_coupon_deadline   | str | 兑换后使用截止时间       |  |
 | deadline   | str  | 兑换后使用截止时间       |  |
-| point   | str  | 未知       | 目前恒为0 |
+| point   | str  | (?)    | 目前恒为0 |
+
+**示例：**
+
+```bash
+curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct'
+```
 
 <details>
-<summary>返回示例：</summary>
+<summary>查看响应示例：</summary>
+
 
 ```json
 {
@@ -220,17 +249,16 @@
 
 </details>
 
-# 兑换物品
 
-> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange
+## 兑换物品
+
+> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange
 
 *请求方式：POST*
 
 认证方式：Cookie（SESSDATA）/ APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
-
-以json方式请求也可以
+**正文参数（ application/x-www-form-urlencoded 或 application/json）：**
 
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
@@ -244,21 +272,40 @@
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：兑换成功<br /> 1：积分不足<br />2：库存不足<br />3：product point mismatch（point填写错误）<br />3：超过用户最大可兑换数量<br />4：现在抢票的人太多啦，再点一下有机会优先上车喔 ε=ε=(ノ≧∇≦)ノ|
-| message | str  | 错误信息 |                                                       | |
-| data    | obj  | 信息本体 |
+| code    | num  | 返回值   | 0：兑换成功<br />1：积分不足<br />2：库存不足<br />3：product point mismatch（point填写错误）<br />3：超过用户最大可兑换数量<br />4：现在抢票的人太多啦，再点一下有机会优先上车喔 ε=ε=(ノ≧∇≦)ノ |
+| message | str  | 错误信息 |                                                              |
 
-# 获取兑换历史记录
+**示例：**
 
-> https://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList
+```bash
+curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange' \
+--data-urlencode 'product_id=195' \
+--data-urlencode 'product_num=1' \
+--data-urlencode 'point=real_cost' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": ""
+}
+```
+
+</details>
+
+## 获取兑换历史记录
+
+> http://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList
 
 *请求方式：POST*
 
 认证方式：Cookie（SESSDATA）/ APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
-
-以json方式请求也可以
+**正文参数（ application/x-www-form-urlencoded 或 application/json）：**
 
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
@@ -274,17 +321,32 @@
 | msg | str  | 错误信息 |                                                       | |
 | data    | obj  | 信息本体 |
 
-`data`对象`prizes`节点：
+`data`对象：
+
+| 字段   | 类型 | 内容     | 备注 |
+| ------ | ---- | -------- | ---- |
+| prizes | obj  | 兑换记录 |      |
+| addr   | obj  | (?)      |      |
+
+`data`中的`prizes`对象：
 
 | 字段     | 类型 | 内容     | 备注         |
 | -------- | ---- | -------- | ------------ |
-| user_prize_id   | str  |        |  |
+| user_prize_id   | str  | 兑换id? |  |
 | prize_id   | num  | 兑换的物品id       |  |
-| ctime   | datetime  | 兑换时间       |  |
-| addr   |   | 未知       |  |
-| deadline   | datetime  | 未知       |  |
-| type   | num  | 未知       | 1：限免券、福利券<br />8：商城5魔晶 |
+| ctime   | str | 兑换时间       |  |
+| addr   | null | (?)    |  |
+| deadline   | str | 过期时间 |  |
+| type   | num  | 类型     | 1：限免券、福利券<br />8：商城5魔晶 |
 | name   | str  | 物品名       |  |
+
+**示例：**
+
+```bash
+curl 'http://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList' \
+--data-urlencode 'act_id=90018' \
+-b 'SESSDATA=xxx'
+```
 
 <details>
 <summary>查看响应示例：</summary>
@@ -344,16 +406,37 @@
 
 </details>
 
-# 获取玩法说明
+## 获取玩法说明
 
-> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetExchangeRule
+> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetExchangeRule
 
 *请求方式：POST*
 
-认证方式：可不登录访问
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| code | num  | 返回值   |      |
+| msg  | str  | 错误信息 |      |
+| data | obj  | 信息本体 |      |
+
+`data`对象：
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| rule | str  | 玩法说明 |      |
+
+**示例：**
+
+```bash
+curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetExchangeRule'
+```
 
 <details>
-<summary>返回示例：</summary>
+<summary>查看响应示例：</summary>
+
 
 ```json
 {
