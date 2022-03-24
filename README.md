@@ -191,7 +191,10 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [ ] 基本信息
   - [ ] B币充值
   - [ ] 贝壳相关
-- [ ] 哔哩哔哩漫画
+- [ ] [哔哩哔哩漫画](manga)
+  - [x] [签到](manga/clockin.md)
+  - [x] [积分商城](manga/point_shop.md)
+
 - [ ] 哔哩哔哩游戏
 - [ ] 轻视频
 - [ ] [终端网络查询](clientinfo)
