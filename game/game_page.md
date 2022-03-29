@@ -1,5 +1,14 @@
 # 游戏主页
 
+- [buvid](#buvid)
+- [用户get_crypto_url](#用户get_crypto_url)
+- [游戏信息](#游戏信息)
+- [评论回复统计](#评论回复统计)
+- [game官方账户](#game官方账户)
+- [游戏详情](#游戏详情)
+- [Wiki](#Wiki)
+- [介绍视频](#介绍视频)
+
 ## buvid
 
 ```shell
