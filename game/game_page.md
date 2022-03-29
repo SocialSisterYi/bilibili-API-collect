@@ -280,7 +280,7 @@ data对象：
 | grade                | num   | 游戏评分   |                        |
 | comment_number       | num   | 评论数     |                        |
 | valid_comment_number | num   | 有效评论数 | **暂未知和评论数区别** |
-| star_number_list     | array | 打分列表   |                        |
+| star_number_list     | array | 打分列表   | 1-5分                  |
 | state                | num   |            | 未知                   |
 
 **示例：**
