@@ -659,7 +659,7 @@ curl -G 'http://api.bilibili.com/x/player/pagelist' \
 
 </details>
 
-## 批量视频信息 (支持bvid/avid)  
+## 批量查询视频信息 (支持bvid/avid)  
 
 > http://api.bilibili.com/x/web-interface/gateway/dynamic/material/info  
 
@@ -718,6 +718,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/gateway/dynamic/material/info' 
 ```
 <details>
 <summary>查看响应示例：</summary>  
+
 ```json
 {
 	"code": 0,
