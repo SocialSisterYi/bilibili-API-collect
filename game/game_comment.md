@@ -88,7 +88,91 @@ curl 'https://line1-h5-pc-api.biligame.com/game/comment/page?game_base_id=103496
 
 ## 二级评论
 
+| 参数名       | 类型 | 内容   | 必要性 | 备注 |
+| ------------ | ---- | ------ | ------ | ---- |
+| game_base_id | str  | 游戏id | 必要   |      |
+| comment_no   | str  | 评论id | 必要   |      |
+| page_num     | str  | 页数   | 必要   |      |
+| page_size    | str  | 页大小 | 必要   |      |
+| _            | str  | 时间戳 | 必要   |      |
+
+**示例：**
+
+```shell
+curl 'https://line1-h5-pc-api.biligame.com/game/comment/reply/page?game_base_id=103496&comment_no=CM1240466882918748160&page_num=1&page_size=10&_=1648540048383'
+```
+
+结构同reply_list
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{"code":0,"message":"成功","request_id":"37382a9e991d4882b56c746a0c98d0b2","ts":1648540048594,"data":{"page_number":1,"page_size":10,"page_count":51,"list":[{"comment_no":"CM1240466882918748160","reply_no":"RP1240468466444668928","uid":29257745,"user_name":"不喜欢橘子的李宝贝-","user_face":"//i2.hdslb.com/bfs/face/13cc8c3d00e024c1533aa46dc4ad8d3673bab9b1.jpg","user_level":5,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 10:41:44","content":"哈哈哈哈哈哈哈哈","up_count":157,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false},{"comment_no":"CM1240466882918748160","reply_no":"RP1240473800613695488","uid":259265941,"user_name":"Xj_辰","user_face":"//i1.hdslb.com/bfs/face/bc5edc49530f15af6e10c7f1899d3f15727c3600.jpg","user_level":5,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 11:02:56","content":"上去吧兄弟我支持你","up_count":93,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false},{"comment_no":"CM1240466882918748160","reply_no":"RP1240477605799530496","uid":35957769,"user_name":"Goddmait","user_face":"//i0.hdslb.com/bfs/face/fc5d568a7f8493e19f86756d838daa1e3ea47891.jpg","user_level":6,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 11:18:03","content":"xswl","up_count":30,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false},{"comment_no":"CM1240466882918748160","reply_no":"RP1240481149130772480","uid":360203140,"user_name":"不要插进来啊喂","user_face":"//i1.hdslb.com/bfs/face/07eee04896d4d12b167f0fe38064e6c1422feb1b.jpg","user_level":5,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 11:32:07","content":"《从社畜到喜当爹只是因为等原神公测这样的事情真是让人忍不住笑出声》","up_count":1168,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false},{"comment_no":"CM1240466882918748160","reply_no":"RP1240496511951966208","uid":74013427,"user_name":"NikeXKZ","user_face":"//i1.hdslb.com/bfs/face/dd188bc05290335d6d2d320be962f33de1b38dfc.jpg","user_level":5,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 12:33:10","content":"这番我追定了","up_count":178,"report_status":0,"evaluate_status":0,"reply_type":2,"is_official_reply":false,"to_uid":360203140,"to_user_name":"轩墨gdy"},{"comment_no":"CM1240466882918748160","reply_no":"RP1240507382128316416","uid":37671203,"user_name":"归零道一","user_face":"//i2.hdslb.com/bfs/face/96d1a2e782fb3725da21b7d0402709a065fbbab0.jpg","user_level":6,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 13:16:22","content":"哈哈哈哈哈哈哈哈哈哈哈哈真实","up_count":16,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false},{"comment_no":"CM1240466882918748160","reply_no":"RP1240512311995797504","uid":410952578,"user_name":"南桥-归尘","user_face":"//i2.hdslb.com/bfs/face/3015b5ef30a0bb0544b5d3ac9e0f4c84c1a9bbfe.jpg","user_level":2,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 13:35:57","content":"不会的,兄弟","up_count":10,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false},{"comment_no":"CM1240466882918748160","reply_no":"RP1240516533583745024","uid":74929802,"user_name":"你的b站网友小l","user_face":"//i2.hdslb.com/bfs/face/60d3d23247af35431b4666676d707483be834069.jpg","user_level":6,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 13:52:44","content":"《只要书名写的足够长什么都可以变成轻小说这件事》","up_count":252,"report_status":0,"evaluate_status":0,"reply_type":2,"is_official_reply":false,"to_uid":360203140,"to_user_name":"轩墨gdy"},{"comment_no":"CM1240466882918748160","reply_no":"RP1240524869502898176","uid":6453357,"user_name":"强力打野","user_face":"//i0.hdslb.com/bfs/face/e829c7131dc683031ee31c522f61612e52c0a385.jpg","user_level":6,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 14:25:51","content":"若干年后,你的孙子会继承的意志","up_count":90,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false},{"comment_no":"CM1240466882918748160","reply_no":"RP1240526255594541056","uid":110519969,"user_name":"墨辉影","user_face":"//i2.hdslb.com/bfs/face/3994bc1f835d2381f7ca8a1620f4cb707fcc0829.jpg","user_level":4,"user_official_verify_type":-1,"user_official_verify_desc":"","publish_time":"2020-03-19 14:31:22","content":"你已经来了","up_count":6,"report_status":0,"evaluate_status":0,"reply_type":1,"is_official_reply":false}]}}
+```
+
+</details>
+
 
 
 ## 攻略
 
+https://line1-h5-pc-api.biligame.com/game/strategy/page
+
+*请求方式：GET*
+
+**请求参数：**
+
+| 参数名       | 类型 | 内容     | 必要性 | 备注                         |
+| ------------ | ---- | -------- | ------ | ---------------------------- |
+| game_base_id | str  | 游戏id   | 必要   |                              |
+| page_num     | str  | 页数     | 必要   |                              |
+| page_size    | str  | 页大小   | 必要   |                              |
+| _            | str  | 时间戳   | 必要   |                              |
+
+**json回复：**
+
+list对象：
+
+| 字段       | 类型 | 内容     | 备注 |
+| ---------- | ---- | -------- | ---- |
+|article_id| str | 文章id |      |
+|article_type| num  | 文章类型 | 类型未知 |
+|cover_image| str | 头图 |      |
+|clip_cover_image| str | 点击头图 |      |
+|is_show_cover| num  |          | 未知 |
+|article_title| num  | 标题 |      |
+|view_count| num  | 阅读数 |      |
+|publish_time| str | 发布时间 | 时间戳 |
+|av_id| str | 视频av号 | content_type为2存在 |
+|bv_id| str | 视频bv号 | content_type为2存在 |
+|content_type| num  | 内容类型 | 1:文章 2:视频 |
+|source| num  | 来源 | 未知 |
+|user_id| num  |          |      |
+|user_name| str |          |      |
+|user_avatar| str | 用户头像 |      |
+|aid| num  | 视频id |      |
+|image_list| array |          |      |
+|strategy_id| str | 攻略id |      |
+|strategy_category_name| str | 攻略分类名称 |      |
+|strategy_summary| str | 攻略简介 |      |
+|is_supreme| num  |          | 猜测是否继承其他文章 |
+|game_base_id| num  | 游戏id |      |
+|game_name| str | 游戏名称 |      |
+|up_count| num  | 点赞数 |      |
+|contribute_code| num  |          | 未知 |
+
+**示例：**
+
+```shell
+curl 'https://line1-h5-pc-api.biligame.com/game/strategy/page?game_base_id=103496&page_num=1&page_size=10&_=1648540349410'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{"code":0,"message":"成功","request_id":"b0120f2f79744945ae02331a738843cb","ts":1648540349801,"data":{"page_number":1,"page_size":10,"list":[{"article_id":"1648535253025813","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/e8130225bc6f97c3d23c9c2dd60fe40e6cfa95a1.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/e8130225bc6f97c3d23c9c2dd60fe40e6cfa95a1.jpg","is_show_cover":1,"article_title":"史上最细节雷九万班手法教学 0.3倍慢放学不会你打我","view_count":13,"publish_time":"1648582058000","av_id":"980176234","bv_id":"BV1a44y1A7Ht","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"阵容搭配","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648535058263370","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/23e0d442e8a640d7d16890642377abb59c72d6f0.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/23e0d442e8a640d7d16890642377abb59c72d6f0.jpg","is_show_cover":1,"article_title":"《岩厨杂谈》未来岩系组队只有纯色吗？还有什么思路可以发散一下？「原神」","view_count":3,"publish_time":"1648581863000","av_id":"297656855","bv_id":"BV1kF411W7Kn","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"阵容搭配","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648534549397437","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/94724c529cd72b86b7bd8d345aba00e5fb7f3830.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/94724c529cd72b86b7bd8d345aba00e5fb7f3830.jpg","is_show_cover":1,"article_title":"【原神】雷神国家队队伍分析，香菱武器到底用哪一把？","view_count":7,"publish_time":"1648581408000","av_id":"895181578","bv_id":"BV1LP4y1M7MN","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"阵容搭配","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648534173453257","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/b311415c7197cf055a19c9f219c49aba868b145a.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/b311415c7197cf055a19c9f219c49aba868b145a.jpg","is_show_cover":1,"article_title":"【原神2.6】提升“温迪”游戏体验的5个操作技巧！温迪玩法攻略 第2篇(辅助向)","view_count":3,"publish_time":"1648580978000","av_id":"425154972","bv_id":"BV1c3411W7xD","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"游戏攻略","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648534041290391","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/4c71b5efbe1fac56495f9d3be9925a490407d96f.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/4c71b5efbe1fac56495f9d3be9925a490407d96f.jpg","is_show_cover":1,"article_title":"【原神】2.6版本温迪全面养成攻略，带妹界天花板风神温迪的最全攻略","view_count":3,"publish_time":"1648580845000","av_id":"425134952","bv_id":"BV1N3411W7jW","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"角色评测","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648533771353017","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/1f6c1e62621056e4cdddb754f84941c83225ca84.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/1f6c1e62621056e4cdddb754f84941c83225ca84.jpg","is_show_cover":1,"article_title":"凭啥我不建议任何人抽绫人？设计正常的角色当然可以抽！【原神】神里绫人抽卡建议","view_count":9,"publish_time":"1648580576000","av_id":"212726584","bv_id":"BV1Na41147qT","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"角色评测","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648456048145530","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/4b30376650af37319eec6180e90ca8ed8ac207e6.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/4b30376650af37319eec6180e90ca8ed8ac207e6.jpg","is_show_cover":1,"article_title":"【原神】神里绫人干货分享(圣遗物，武器，技能加点推荐","view_count":148,"publish_time":"1648502852000","av_id":"382522937","bv_id":"BV1VZ4y1B7kb","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"角色评测","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648186258124982","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/2ff90e9641a3f34f538c89f3272d1593ed4da74e.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/2ff90e9641a3f34f538c89f3272d1593ed4da74e.jpg","is_show_cover":1,"article_title":"[原神 尘歌壶] 复刻心海的神秘宫殿教程正序-感谢空哥我爱你一辈子提供的心海外网搬运视频","view_count":371,"publish_time":"1648233062000","av_id":"640001234","bv_id":"BV1EY4y1s7g8","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"其他相关","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648186028233701","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/f9557b5e3edf697d541caf030617ccd8d7fd0e39.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/f9557b5e3edf697d541caf030617ccd8d7fd0e39.jpg","is_show_cover":1,"article_title":"绫人宵宫的关键先生！技能互补，不浪费一个增伤！速切新体系到来！绫人前瞻第二篇","view_count":293,"publish_time":"1648232833000","av_id":"637594522","bv_id":"BV1fY4y1i7Ku","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"阵容搭配","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false},{"article_id":"1648185727795638","article_type":4,"cover_image":"//i0.hdslb.com/bfs/game/3ad7882b719e894d893ffaed9beb5ca8161ed349.jpg","clip_cover_image":"//i0.hdslb.com/bfs/game/3ad7882b719e894d893ffaed9beb5ca8161ed349.jpg","is_show_cover":1,"article_title":"【简明扼要】“温迪”快速入门攻略，精通和双爆如何选择？看后必有收获！","view_count":253,"publish_time":"1648232532000","av_id":"255022015","bv_id":"BV1oY411n7bS","content_type":2,"source":0,"user_id":181733419,"user_name":"BWIKI游戏姬","user_avatar":"//i0.hdslb.com/bfs/face/14362822fd665e6012f3fb1c4299e4f97f15d24a.jpg","image_list":[],"strategy_id":"1560326883937821","strategy_category_name":"角色评测","strategy_summary":"","is_supreme":0,"game_base_id":103496,"game_name":"原神","up_count":0,"contribute_code":false}]}}
+```
+
+</details>
