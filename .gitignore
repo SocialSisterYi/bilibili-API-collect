@@ -1,2 +1,3 @@
 mkdocs/html/*
 README.md
+.DS_Store

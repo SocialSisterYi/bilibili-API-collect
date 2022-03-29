@@ -201,43 +201,119 @@ curl 'https://line1-h5-pc-api.biligame.com/game/detail/account?game_base_id=1034
 
 
 
-游戏detail
+## 游戏详情
+
+https://line1-h5-pc-api.biligame.com/game/detail/content
+
+*请求方式：GET*
+
+**请求参数：**
+
+| 参数名       | 类型 | 内容    | 必要性 | 备注 |
+| ------------ | ---- | ------- | ------ | ---- |
+| game_base_id | str  | game id | 必要   |      |
+| _            | str  | 时间戳  | 必要   |      |
+
+**json回复：**
+
+data对象：
+
+| 字段                       | 类型  | 内容         | 备注       |
+| -------------------------- | ----- | ------------ | ---------- |
+| game_base_id               | num   | 游戏id       |            |
+| title                      | str   | 游戏名称     |            |
+| screen_shots               | array | 头图地址     |            |
+| tag_list                   | array | 游戏标签     | type值未知 |
+| dev_introduction           | str   | 版本介绍     |            |
+| editor_recommend           | str   | 编辑推荐     |            |
+| book_award                 | str   |              |            |
+| qq_group_list              | array | qq群         |            |
+| forum_link                 | str   |              |            |
+| android_latest_update      | str   | 安卓更新内容 |            |
+| android_version            | str   | 安卓版本号   |            |
+| android_update_time        | str   | 安卓更新时间 |            |
+| ios_latest_update          | str   |              |            |
+| ios_version                | str   |              |            |
+| ios_update_time            | str   |              |            |
+| game_weixin_image          | str   |              |            |
+| game_weibo_url             | str   |              |            |
+| custom_title               | str   |              |            |
+| custom_desc                | str   |              |            |
+| android_latest_update_time | str   |              |            |
+| ios_latest_update_time     | str   |              |            |
+| desc                       | str   | 游戏介绍     |            |
+
+**示例：**
 
 ```shell
-curl -H 'Host: line1-h5-pc-api.biligame.com' -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"' -H 'accept: */*' -H 'sec-ch-ua-mobile: ?0' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36' -H 'sec-ch-ua-platform: "macOS"' -H 'origin: https://www.biligame.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'sec-fetch-dest: empty' -H 'referer: https://www.biligame.com/' -H 'accept-language: zh-CN,zh;q=0.9' --compressed 'https://line1-h5-pc-api.biligame.com/game/detail/content?game_base_id=103496&_=1648450569599'
+curl 'https://line1-h5-pc-api.biligame.com/game/detail/content?game_base_id=103496&_=1648450569599'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {"code":0,"message":"成功","request_id":"6fe9512c15314d8db681404a4fef7f3c","ts":1648450570119,"data":{"game_base_id":103496,"title":"原神","screen_shots":[{"url":"//i0.hdslb.com/bfs/game/c05928de5998f943008f33710c8cda0085268742.jpg","height":720,"width":1280},{"url":"//i0.hdslb.com/bfs/game/877af6490d324599027c2b115c160107438ba8be.jpg","height":720,"width":1280},{"url":"//i0.hdslb.com/bfs/game/f88945fad60a5ab13f9794eb553afde1b48f338f.jpg","height":720,"width":1280},{"url":"//i0.hdslb.com/bfs/game/7ff09549ba90ac34f3306a0c7074403a8249b0fc.jpg","height":720,"width":1280},{"url":"//i0.hdslb.com/bfs/game/8becc029871d537e1db48440711017cf5ea83aa9.jpg","height":720,"width":1280}],"tag_list":[{"tag_id":"101484810399608196","name":"角色扮演","type":0},{"tag_id":"101492585310862419","name":"二次元","type":1},{"tag_id":"101492590455678785","name":"冒险","type":1},{"tag_id":"101492587413816225","name":"动作","type":1}],"dev_introduction":"亲爱的旅行者，全新2.5版本「薄樱初绽时」现已推出！\n各位旅行者重新下载客户端后即可继续进行体验。此次更新资源较大，建议旅行者在WiFi环境下进行版本升级。\n\n〓更新内容简介〓\n【新角色】八重神子\n「浮世笑百姿·八重神子(雷)」，使用法器的限定五星雷元素角色。\n\n【新活动】版本主题活动「三界路飨祭」\n渊下宫被不明源头的黑雾所笼罩。为了海祇岛的未来，心海提出了再探渊下宫的委托… \n活动期间内，旅行者可以探索调查黑暗笼罩的渊下宫，通过收集光界之印来升级「睦疏之匣」，对抗黑雾的侵蚀。\n \n【新剧情】传说任务更新\n八重神子传说任务 狐仙之章·第一幕「鸣神御祓祈愿祭」\n雷电将军传说任务 天下人之章·第二幕「须臾百梦」\n \n【新武器】神乐之真意\n限定五星武器「法器·神乐之真意」开放获取。\n \n【新怪物】祸津御建鸣神命\n祸津御建鸣神命——代行雷电将军权能的人偶，在对抗威胁「永恒」之敌时展现出的形态。\n\n\n•在数据方面：同在B站服务器的情况下，PC、Android平台之间的账号数据互通，旅行者可以在同一账号下切换设备，畅玩游戏。\n•在玩法方面：同在B站服务器的情况下，达到一定的冒险等阶且完成相应任务后，旅行者可申请加入彼此的游戏世界，参与联机活动。","editor_recommend":"","book_award":"","qq_group_list":[],"forum_link":"","android_latest_update":"全新2.5版本「薄樱初绽时」现已推出！\n\n【新角色】八重神子\n「浮世笑百姿·八重神子(雷)」，使用法器的限定五星雷元素角色。\n\n【新活动】版本主题活动「三界路飨祭」\n渊下宫被不明源头的黑雾所笼罩。为了海祇岛的未来，心海提出了再探渊下宫的委托… \n活动期间内，旅行者可以探索调查黑暗笼罩的渊下宫，通过收集光界之印来升级「睦疏之匣」，对抗黑雾的侵蚀。\n \n【新剧情】传说任务更新\n八重神子传说任务 狐仙之章·第一幕「鸣神御祓祈愿祭」\n雷电将军传说任务 天下人之章·第二幕「须臾百梦」\n \n【新武器】神乐之真意\n限定五星武器「法器·神乐之真意」开放获取。\n \n【新怪物】祸津御建鸣神命\n祸津御建鸣神命——代行雷电将军权能的人偶，在对抗威胁「永恒」之敌时展现出的形态。","android_version":"2.5.0_5517525_5674503","android_update_time":"2022-02-16 06:00:00","ios_latest_update":"","ios_version":"","ios_update_time":"","game_weixin_image":"","game_weibo_url":"","custom_title":"","custom_desc":"","android_latest_update_time":"2022-02-16 06:00:00","ios_latest_update_time":"","desc":"在七种元素交汇的大陆——「提瓦特」，每个人都可以成为神。\n\n你从世界之外漂流而来，降临大地。在这广阔的世界中，你自由旅行、结识同伴、寻找掌控尘世元素的七神，直到与分离的血亲重聚，在终点见证一切旅途的沉淀。\n\n维系者正在死去，创造者尚未到来。面对无法掌控的境遇，人类总会喟叹自身的无力……\n但在人生最陡峭的转折处，若有凡人的渴望达到极致，神明的视线就将投射而下。\n\n当失散的双子在尘沙中重聚、世界的谜底在「神之眼」中尽数显现之时——\n旅行者，你将去往何方？\n\n《原神》是由米哈游自研的一款全新开放世界冒险RPG。你将在游戏中探索一个被称作「提瓦特」的幻想世界。\n\n在这广阔的世界中，你可以踏遍七国，邂逅性格各异、能力独特的同伴，与他们一同对抗强敌，踏上寻回血亲之路；也可以不带目的地漫游，沉浸在充满生机的世界里，让好奇心驱使自己发掘各个角落的奥秘……\n"}}
 ```
 
+</detail>
 
+## 评论回复统计
 
-评论回复数
+https://line1-h5-pc-api.biligame.com/game/comment/summary
+
+*请求方式：GET*
+
+**请求参数：**
+
+| 参数名       | 类型 | 内容    | 必要性 | 备注 |
+| ------------ | ---- | ------- | ------ | ---- |
+| game_base_id | str  | game id | 必要   |      |
+| _            | str  | 时间戳  | 必要   |      |
+
+**json回复：**
+
+data对象：
+
+| 字段                 | 类型  | 内容       | 备注                   |
+| -------------------- | ----- | ---------- | ---------------------- |
+| grade                | num   | 游戏评分   |                        |
+| comment_number       | num   | 评论数     |                        |
+| valid_comment_number | num   | 有效评论数 | **暂未知和评论数区别** |
+| star_number_list     | array | 打分列表   |                        |
+| state                | num   |            | 未知                   |
+
+**示例：**
 
 ```shell
-curl -H 'Host: line1-h5-pc-api.biligame.com' -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"' -H 'accept: */*' -H 'sec-ch-ua-mobile: ?0' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36' -H 'sec-ch-ua-platform: "macOS"' -H 'origin: https://www.biligame.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'sec-fetch-dest: empty' -H 'referer: https://www.biligame.com/' -H 'accept-language: zh-CN,zh;q=0.9' --compressed 'https://line1-h5-pc-api.biligame.com/game/comment/summary?game_base_id=103496&_=1648450569600'
+curl 'https://line1-h5-pc-api.biligame.com/game/comment/summary?game_base_id=103496&_=1648450569600'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {"code":0,"message":"成功","request_id":"a7cead31f400417983cd345d5eb14892","ts":1648450570129,"data":{"grade":6.0,"comment_number":332105,"valid_comment_number":325753,"star_number_list":[106230,19307,19878,22674,106708],"state":3}}
 ```
 
+</detail>
 
-
-未知
-
-```shell
-curl -H 'Host: line1-h5-pc-api.biligame.com' -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"' -H 'accept: */*' -H 'sec-ch-ua-mobile: ?0' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36' -H 'sec-ch-ua-platform: "macOS"' -H 'origin: https://www.biligame.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'sec-fetch-dest: empty' -H 'referer: https://www.biligame.com/' -H 'accept-language: zh-CN,zh;q=0.9' --compressed 'https://line1-h5-pc-api.biligame.com/game/detail/character?game_base_id=103496&_=1648450569601'
-```
-
-
-
-Wiki
+## 未知
 
 ```shell
-curl -H 'Host: line1-h5-pc-api.biligame.com' -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"' -H 'accept: */*' -H 'sec-ch-ua-mobile: ?0' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36' -H 'sec-ch-ua-platform: "macOS"' -H 'origin: https://www.biligame.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'sec-fetch-dest: empty' -H 'referer: https://www.biligame.com/' -H 'accept-language: zh-CN,zh;q=0.9' --compressed 'https://line1-h5-pc-api.biligame.com/game/detail/wiki?game_base_id=103496&_=1648450569689'
+curl 'https://line1-h5-pc-api.biligame.com/game/detail/character?game_base_id=103496&_=1648450569601'
 ```
+
+## Wiki
+
+示例：
+
+```shell
+curl 'https://line1-h5-pc-api.biligame.com/game/detail/wiki?game_base_id=103496&_=1648450569689'
+```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -252,15 +328,52 @@ curl -H 'Host: line1-h5-pc-api.biligame.com' -H 'sec-ch-ua: " Not A;Brand";v="99
 }
 ```
 
+</detail>
 
+## 介绍视频
 
+https://line1-h5-pc-api.biligame.com/game/detail/get_video_v2
 
+*请求方式：GET*
 
-介绍视频
+**请求参数：**
+
+| 参数名       | 类型 | 内容    | 必要性 | 备注 |
+| ------------ | ---- | ------- | ------ | ---- |
+| game_base_id | str  | game id | 必要   |      |
+| _            | str  | 时间戳  | 必要   |      |
+
+**json回复：**
+
+data对象：
+
+| 字段       | 类型  | 内容         | 备注 |
+| ---------- | ----- | ------------ | ---- |
+| icon       | str   | icon链接地址 |      |
+| game_name  | str   | 游戏名称     |      |
+| video_list | array | video列表    |      |
+
+video对象：
+
+| 字段         | 类型  | 内容     | 备注 |
+| ------------ | ----- | -------- | ---- |
+| aid          | num   | 游戏id   |      |
+| title        | str   | 游戏名称 |      |
+| pic          | str   | 头图地址 |      |
+| play         | array | 游戏标签 |      |
+| review       | num   | 评论数   |      |
+| video_review | num   | 弹幕数   |      |
+| duration     | str   | 时长     |      |
+| bv_id        | str   | bv号     |      |
+
+**示例：**
 
 ```shell
-curl -H 'Host: line1-h5-pc-api.biligame.com' -H 'sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"' -H 'accept: */*' -H 'sec-ch-ua-mobile: ?0' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36' -H 'sec-ch-ua-platform: "macOS"' -H 'origin: https://www.biligame.com' -H 'sec-fetch-site: same-site' -H 'sec-fetch-mode: cors' -H 'sec-fetch-dest: empty' -H 'referer: https://www.biligame.com/' -H 'accept-language: zh-CN,zh;q=0.9' --compressed 'https://line1-h5-pc-api.biligame.com/game/detail/get_video_v2?game_base_id=103496&_=1648450569690'
+curl 'https://line1-h5-pc-api.biligame.com/game/detail/get_video_v2?game_base_id=103496&_=1648450569690'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {
@@ -456,3 +569,4 @@ curl -H 'Host: line1-h5-pc-api.biligame.com' -H 'sec-ch-ua: " Not A;Brand";v="99
 }
 ```
 
+</detail>
