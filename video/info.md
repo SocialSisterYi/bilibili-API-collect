@@ -659,3 +659,102 @@ curl -G 'http://api.bilibili.com/x/player/pagelist' \
 
 </details>
 
+## 批量视频信息 (支持bvid/avid)  
+
+> http://api.bilibili.com/x/web-interface/gateway/dynamic/material/info  
+
+*请求方式：GET*
+
+**url参数：**  
+
+| 参数名 | 类型 | 内容     | 必要性       | 备注               |
+| ------ | ---- | -------- | ------------ | ------------------ |
+| aids    | str  | 稿件avid列表(,分开 最多50个最少1个) | 必要（可选） | avids与bvids任选一个 |
+| bvids   | str  | 稿件bvid列表(,分开 最多50个最少1个) | 必要（可选） | avids与bvids任选一个 |  
+
+**json回复：**  
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                               |
+| ------- | ---- | -------- | -------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />62002：稿件不可见 |
+| message | str  | 错误信息 | 默认为0                                            |
+| ttl     | num  | 1        |                                                    |
+| data    | obj  | 详细信息 |  对象包含一个名为 "archive" 对象列表              |
+
+archive 对象列表元素：
+| 字段    | 类型 | 内容     | 备注                                               |
+| ------- | ---- | -------- | -------------------------------------------------- |
+| bvid    | str  | 视频BV号   |                                                   |
+| aid      | num  | 视频AV号 |                                                      |
+| title     | str  | 视频标题  |                                                    |
+| desc    | str  | 视频简介 |                                                     |
+| pic    | str  | 视频封面  |                                                    |
+| param    | str  | 字符串类型AV号 |                                              |
+| uri     | str  | 视频链接  |                                                    |
+| goto    | str  |         |       默认 "av"                                        |
+| duration     | num  | 视频时长  |       单位 s                                   |
+| up_name    | str  | UP主名字 |                                                    |
+| view     | num  | 播放量  |                                                    |
+| danmaku    | num  | 弹幕数量 |                                                     |
+
+**示例**
+
+查询视频`av297646987和av810006944`/`BV1mF411W7qs和BV1s34y1b7UN`的视频信息  
+
+aid方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/gateway/dynamic/material/info' \
+--data-urlencode 'aids=297646987,810006944'  
+```
+
+bvid方式：
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/gateway/dynamic/material/info' \
+--data-urlencode 'bvids=BV1mF411W7qs,BV1s34y1b7UN'  
+```
+<details>
+<summary>查看响应示例：</summary>  
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"archive": [
+			{
+				"bvid": "BV1s34y1b7UN",
+				"aid": 810006944,
+				"title": "【A-SOUL/珈乐&乃琳】《冬眠》【直播剪辑】",
+				"desc": "https://live.bilibili.com/22625027/\n直播日期：2022年3月26日\nA-SOUL小剧场【一个魂，请指导我们！】 直播录像\n--------------------------------------------------------\n--------------------------------------\n珈乐Carol\n直播间：https://live.bilibili.com/22634198/\n个人主页：https://space.bilibili.com/",
+				"pic": "http://i2.hdslb.com/bfs/archive/62ed1ec83350396f07aad7c64d2cd609e3908174.png",
+				"param": "810006944",
+				"uri": "https://www.bilibili.com/video/av810006944",
+				"goto": "av",
+				"duration": 534,
+				"up_name": "Asoul二创计画",
+				"view": 33450,
+				"danmaku": 224
+			},
+			{
+				"bvid": "BV1mF411W7qs",
+				"aid": 297646987,
+				"title": "【歌伴舞】贝拉&乃琳 | 三千《繁花》只为你留恋【直播剪辑】",
+				"desc": "（运营代发）\n\n素材来自3月19日小剧场\n歌曲：繁花-董贞\n编舞参考：小影儿-繁花\n唱/跳：乃琳/贝拉\n软件：基于Unity自研\n场景：自制\n动作：动作捕捉",
+				"pic": "http://i2.hdslb.com/bfs/archive/7a71bd39f1840f2898c9de3b8640eef296af1faf.jpg",
+				"param": "297646987",
+				"uri": "https://www.bilibili.com/video/av297646987",
+				"goto": "av",
+				"duration": 140,
+				"up_name": "贝拉kira",
+				"view": 79990,
+				"danmaku": 602
+			}
+		]
+	}
+}
+```
+</details>
