@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package bilibili.community.service.govern.v1;
+
+import "google/protobuf/empty.proto";
+
+//
+service Qoe {
+    //
+    rpc QoeReport (QoeReportReq) returns (google.protobuf.Empty);
+}
+
+//
+message QoeReportReq {
+    //
+    int64 id = 1;
+    //
+    int64 scene = 2;
+    //
+    int32 type = 3;
+    //
+    bool cancel = 4;
+    //
+    string business_type = 5;
+    //
+    QoeScoreResult score_result = 6;
+    //
+    string business_data = 7;
+}
+
+//
+message QoeScoreResult {
+    //
+    float score = 1;
+}

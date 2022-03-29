@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package bilibili.account.fission.v1;
 
-//Fission裂变
+// Fission裂变
 service Fission {
     // 活动入口
     rpc Entrance (EntranceReq) returns (EntranceReply);

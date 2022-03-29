@@ -8,6 +8,96 @@ import "google/protobuf/timestamp.proto";
 service PlayURL {
     // 播放页信息
     rpc PlayView (PlayViewReq) returns (PlayViewReply);
+    //
+    rpc PlayViewComic(PlayViewReq) returns (PlayViewReply);
+}
+
+// 角标信息
+message BadgeInfo {
+    // 角标文案
+    string text = 1;
+    // 角标色值
+    string bg_color = 2;
+    // 角标色值-夜间模式
+    string bg_color_night = 3;
+    // 文案色值
+    string text_color = 4;
+    //
+    GradientColor bg_gradient_color = 5;
+}
+
+//
+message BottomDisplay {
+    //
+    TextInfo title = 1;
+    //
+    string icon = 2;
+}
+
+// 按钮信息
+message ButtonInfo {
+    // 按钮文案
+    string text = 1;
+    // 按钮字体色值
+    string text_color = 2;
+    // 按钮字体色值-夜间模式
+    string text_color_night = 3;
+    // 按钮背景色
+    string bg_color = 4;
+    // 按钮背景色-夜间模式
+    string bg_color_night = 5;
+    // 按钮链接
+    string link = 6;
+    // 按钮动作类型
+    string action_type = 7;
+    // 角标信息
+    BadgeInfo badge_info = 8;
+    // 埋点上报信息
+    Report report = 9;
+    // 左侧删除线样式文案
+    string left_strikethrough_text = 10;
+    // 缩略按钮文案信息
+    TextInfo simple_text_info = 11;
+    // 缩略按钮背景色值
+    string simple_bg_color = 12;
+    // 缩略按钮字体色值-夜间模式
+    string simple_bg_color_night = 13;
+    //
+    GradientColor bg_gradient_color = 14;
+    //
+    map<string, string> order_report_params = 15;
+}
+
+//
+message CastTips {
+    //
+    int32 code = 1;
+    //
+    string message = 2;
+}
+
+//
+message ClipInfo {
+    //
+    int64 material_no = 1;
+    //
+    int32 start = 2;
+    //
+    int32 end = 3;
+    //
+    ClipType clip_type = 4;
+    //
+    string toast_text = 5;
+    //
+    MultiView multi_view = 6;
+}
+
+enum ClipType {
+    NT_UNKNOWN = 0;           //
+    CLIP_TYPE_OP = 1;         //
+    CLIP_TYPE_ED = 2;         //
+    CLIP_TYPE_HE = 3;         //
+    CLIP_TYPE_MULTI_VIEW = 4; //
 }
 
 // 编码类型
@@ -17,20 +107,411 @@ enum CodeType {
     CODE265 = 2; // H.265
 }
 
+//
+message ContinuePlayInfo {
+    //
+    int64 continue_play_ep_id = 1;
+}
+
+// 优惠券
+message Coupon {
+    // 优惠券token
+    string coupon_token = 1;
+    // 优惠券类型
+    // 1:折扣券 2:满减券 3:兑换券
+    int64 type = 2;
+    // 优惠券面值
+    string value = 3;
+    // 优惠券使用描述
+    string use_desc = 4;
+    // 优惠券标题
+    string title = 5;
+    // 优惠券描述
+    string desc = 6;
+    // 优惠券支付按钮文案
+    string pay_button_text = 7;
+    // 优惠券支付按钮删除线文案
+    string pay_button_text_line_through = 8;
+    // 实付金额
+    string real_amount = 9;
+    // 使用过期时间
+    google.protobuf.Timestamp expire_time = 10;
+}
+
+// 优惠券信息
+message CouponInfo {
+    // 提示框信息
+    CouponToast toast = 1;
+    // 弹窗信息
+    PopWin pop_win = 2;
+}
+
+// 优惠券提示框文案信息
+message CouponTextInfo {
+    // 提示框文案-播正片6分钟预览
+    string positive_preview = 1;
+    // 提示框文案-播非正片分节ep
+    string section = 2;
+}
+
+// 优惠券提示框信息
+message CouponToast {
+    // 提示框文案信息
+    CouponTextInfo text_info = 1;
+    // 提示框按钮
+    ButtonInfo button = 2;
+}
+
+// dash条目
+message DashItem {
+    // 清晰度
+    uint32 id = 1;
+    // 主线流
+    string base_url = 2;
+    // 备用流
+    repeated string backup_url = 3;
+    // 带宽
+    uint32 bandwidth = 4;
+    // 编码id
+    uint32 codecid = 5;
+    // md5
+    string md5 = 6;
+    // 大小
+    uint64 size = 7;
+    // 帧率
+    string frame_rate = 8;
+}
+
+// dash视频流
+message DashVideo {
+    // 主线流
+    string base_url = 1;
+    // 备用流
+    repeated string backup_url = 2;
+    // 带宽
+    uint32 bandwidth = 3;
+    // 编码id
+    uint32 codecid = 4;
+    // md5
+    string md5 = 5;
+    // 大小
+    uint64 size = 6;
+    // 伴音质量id
+    uint32 audio_id = 7;
+    // 是否非全二压
+    bool no_rexcode = 8;
+    // 帧率
+    string frame_rate = 9;
+    // 宽
+    int32 width = 10;
+    // 高
+    int32 height = 11;
+}
+
+// 鉴权浮层
+message Dialog {
+    // 鉴权限制码
+    int64 code = 1;
+    // 鉴权限制信息
+    string msg = 2;
+    // 浮层类型
+    string type = 3;
+    // 浮层样式类型
+    string style_type = 4;
+    // 浮层配置
+    DialogConfig config = 5;
+    // 标题
+    TextInfo title = 6;
+    // 副标题
+    TextInfo subtitle = 7;
+    // 图片信息
+    ImageInfo image = 8;
+    // 按钮列表
+    repeated ButtonInfo button = 9;
+    // 底部描述
+    ButtonInfo bottom_desc = 10;
+    // 埋点上报信息
+    Report report = 11;
+    // 倒计时 秒
+    int32 count_down_sec = 12;
+    // 右下描述
+    TextInfo right_bottom_desc = 13;
+    //
+    repeated BottomDisplay bottom_display = 14;
+}
+
+// 鉴权浮层配置
+message DialogConfig {
+    // 是否显示高斯模糊背景图
+    bool is_show_cover = 1;
+    // 是否响应转屏
+    bool is_orientation_enable = 2;
+    // 是否响应上滑吸顶
+    bool is_nested_scroll_enable = 3;
+    // 是否强制竖屏
+    bool is_force_halfscreen_enable = 4;
+}
+
+//
+message Dimension {
+    //
+    int32 width = 1;
+    //
+    int32 height = 2;
+    //
+    int32 rotate = 3;
+}
+
+// 杜比音频信息
+message DolbyItem {
+    // 杜比类型
+    enum Type {
+        NONE = 0;   // NONE
+        COMMON = 1; // 普通杜比音效
+        ATMOS = 2;  // 全景杜比音效
+    }
+    // 杜比类型
+    Type type = 1;
+    // 音频流
+    DashItem audio = 2;
+}
+
+//
+enum DrmTechType {
+    NON = 0;       //
+    FAIR_PLAY = 1; //
+}
+
+// 播放结束页
+message EndPage {
+    // 鉴权浮层
+    Dialog dialog = 1;
+    // 播放完后是否隐藏end_page
+    bool hide = 2;
+}
+
+// 事件
+message Event {
+    // 震动
+    Shake shake = 1;
+}
+
+//
+message FreyaConfig {
+    //
+    string desc = 1;
+    //
+    int32 type = 2;
+    //
+    int32 issued_cnt = 3;
+    //
+    bool is_always_show = 4;
+    //
+    int32 screen_number = 5;
+    //
+    int32 full_screen_number = 6;
+}
+
+//
+message GradientColor {
+    //
+    string start_color = 1;
+    //
+    string end_color = 2;
+}
+
+//
+message HighDefinitionTrialInfo {
+    //
+    bool trial_able = 1;
+    //
+    int32 remaining_times = 2;
+    //
+    int32 start = 3;
+    //
+    int32 time_length = 4;
+    //
+    Toast start_toast = 5;
+    //
+    Toast end_toast = 6;
+    //
+    Report report = 7;
+    //
+    ButtonInfo quality_open_tip_btn = 8;
+    //
+    ButtonInfo no_longer_trial_btn = 9;
+}
+
+// 图片信息
+message ImageInfo {
+    // 图片链接
+    string url = 1;
+}
+
+//
+enum InlineScene {
+    UNKNOWN = 0;    //
+    RELATED_EP = 1; //
+    HE = 2;         //
+    SKIP = 3;       //
+}
+
+//
+enum InlineType {
+    TYPE_UNKNOWN = 0; //
+    TYPE_WHOLE = 1;   //
+    TYPE_HE_CLIP = 2; //
+    TYPE_PREVIEW = 3; //
+}
+
+//
+message MultiView {
+    //
+    string button_material = 1;
+    //
+    int64 ep_id = 2;
+    //
+    int64 cid = 3;
+    //
+    int64 avid = 4;
+}
+
+//
+message PayTip {
+    //
+    string title = 1;
+    //
+    string url = 2;
+    //
+    string icon = 3;
+    //
+    int32 type = 4;
+    //
+    int32 show_type = 5;
+    //
+    string img = 6;
+    //
+    string bg_day_color = 7;
+    //
+    string bg_night_color = 8;
+    //
+    string bg_line_color = 9;
+    //
+    string bg_night_line_color = 10;
+    //
+    string text_color = 11;
+    //
+    string text_night_color = 12;
+    //
+    int64 view_start_time = 13;
+    //
+    repeated ButtonInfo button = 14;
+    //
+    int32 url_open_type = 15;
+    //
+    Report report = 16;
+    //
+    int32 angle_style = 17;
+    //
+    int32 report_type = 18;
+    //
+    map<string, string> order_report_params = 19;
+}
+
+// 禁用功能配置
+message PlayAbilityConf {
+    bool background_play_disable = 1;   // 后台播放
+    bool flip_disable = 2;              // 镜像反转
+    bool cast_disable = 3;              // 投屏
+    bool feedback_disable = 4;          // 反馈
+    bool subtitle_disable = 5;          // 字幕
+    bool playback_rate_disable = 6;     // 播放速度
+    bool time_up_disable = 7;           // 定时停止
+    bool playback_mode_disable = 8;     // 播放方式
+    bool scale_mode_disable = 9;        // 画面尺寸
+    bool like_disable = 10;             // 赞
+    bool dislike_disable = 11;          // 踩
+    bool coin_disable = 12;             // 投币
+    bool elec_disable = 13;             // 充电
+    bool share_disable = 14;            // 分享
+    bool screen_shot_disable = 15;      // 截图
+    bool lock_screen_disable = 16;      // 锁定
+    bool recommend_disable = 17;        // 相关推荐
+    bool playback_speed_disable = 18;   // 播放速度
+    bool definition_disable = 19;       // 清晰度
+    bool selections_disable = 20;       // 选集
+    bool next_disable = 21;             // 下一集
+    bool edit_dm_disable = 22;          // 编辑弹幕
+    bool small_window_disable = 23;     // 小窗
+    bool shake_disable = 24;            // 震动
+    bool outer_dm_disable = 25;         // 外层面板弹幕设置
+    bool inner_dm_disable = 26;         // 三点内弹幕设置
+    bool freya_enter_disable = 27;      // 一起看入口
+    bool dolby_disable = 28;            // 杜比音效
+    bool freya_full_disable = 29;       // 全屏一起看入口
+    bool skip_oped_switch_disable = 30; //
+    bool record_screen_disable = 31;    //
+    bool color_optimize_disable = 32;   //
+}
+
+// 云控扩展配置信息
+message PlayAbilityExtConf {
+    // 自定义配置扩展信息
+    bool allow_close_subtitle = 1;
+    //
+    FreyaConfig freya_config = 2;
+    //
+    CastTips cast_tips = 3;
+}
+
 // 错误码
 enum PlayErr {
     NoErr = 0;                   //
     WithMultiDeviceLoginErr = 1; // 管控类型的错误码
 }
 
-// 清晰度不满足条件信息
-message StreamLimit {
-    // 标题
-    string title = 1;
-    // 跳转地址
-    string uri = 2;
-    // 提示信息
-    string msg = 3;
+// 其他业务信息
+message PlayViewBusinessInfo {
+    // 当前视频是否是预览
+    bool is_preview = 1;
+    // 用户是否承包过
+    bool bp = 2;
+    // drm使用
+    string marlin_token = 3;
+    // 倍速动效色值
+    string playback_speed_color = 4;
+    //
+    ContinuePlayInfo continue_play_info = 5;
+    //
+    repeated ClipInfo clip_info = 6;
+    //
+    InlineType inline_type = 7;
+    //
+    int32 ep_whole_duration = 8;
+    //
+    Dimension dimension = 9;
+    //
+    map<int32, QualityExtInfo> quality_ext_map = 10;
+    //
+    map<string, int32> exp_map = 11;
+    //
+    DrmTechType drm_tech_type = 12;
+}
+
+// 播放页信息-响应
+message PlayViewReply {
+    // 视频流信息
+    VideoInfo video_info = 1;
+    // 播放控件用户自定义配置
+    PlayAbilityConf play_conf = 2;
+    // 业务需要的其他信息
+    PlayViewBusinessInfo business = 3;
+    // 事件
+    Event event = 4;
+    // 展示信息
+    ViewInfo view_info = 5;
+    // 自定义配置扩展信息
+    PlayAbilityExtConf play_ext_conf = 6;
 }
 
 // 播放页信息-请求
@@ -69,134 +550,60 @@ message PlayViewReq {
     bool is_need_view_info = 15;
     // 场景控制
     SceneControl scene_control = 16;
-}
-
-// 场景控制
-message SceneControl {
-    // 是否收藏播单
-    bool fav_playlist = 1;
-    // 是否小窗
-    bool small_window = 2;
-    // 是否画中画
-    bool pip = 3;
-}
-
-// 播放页信息-响应
-message PlayViewReply {
-    // 视频流信息
-    VideoInfo video_info = 1;
-    // 播放控件用户自定义配置
-    PlayAbilityConf play_conf = 2;
-    // 业务需要的其他信息
-    PlayViewBusinessInfo business = 3;
-    // 事件
-    Event event = 4;
-    // 展示信息
-    ViewInfo view_info = 5;
-    // 自定义配置扩展信息
-    PlayAbilityExtConf play_ext_conf = 6;
-}
-
-// 展示信息
-message ViewInfo {
-    // 鉴权浮层
-    Dialog dialog = 1;
-    // toast
-    Toast toast = 2;
-    // 优惠券信息
-    CouponInfo coupon_info = 3;
-    // 未购买的超前点播ep列表
-    repeated int64 demand_no_pay_epids = 4;
-    // 播放结束页
-    EndPage end_page = 5;
     //
-    map<string, bool> exp_config = 6;
-    // 弹窗
-    PopWin pop_win = 7;
+    InlineScene inline_scene = 17;
+    //
+    int64 material_no = 18;
 }
 
-// 播放结束页
-message EndPage {
-    // 鉴权浮层
-    Dialog dialog = 1;
-    // 播放完后是否隐藏end_page
-    bool hide = 2;
+// 弹窗信息
+message PopWin {
+    // 弹窗标题 老字段
+    string title = 1;
+    // 优惠券列表
+    repeated Coupon coupon = 2;
+    // 弹窗按钮列表
+    repeated ButtonInfo button = 3;
+    // 底部文案 老字段
+    string bottom_text = 4;
+    // 弹窗标题 新字段
+    TextInfo pop_title = 5;
+    // 弹窗副标题 
+    TextInfo subtitle = 6;
+    // 底部描述 新字段
+    ButtonInfo bottom_desc = 7;
+    // 弹窗小图
+    string cover = 8;
+    // 弹窗类型
+    string pop_type = 9;
 }
 
-// toast
-message Toast {
-    // toast文案 老字段
-    string text = 1;
-    // toast按钮
-    ButtonInfo button = 2;
-    // 显示样式类型
-    int32 show_style_type = 3;
-    // 图标
-    string icon = 4;
-    // toast文案 新字段
-    TextInfo toast_text = 5;
-    // 埋点上报信息
-    Report report = 6;
+//
+message PromptBar {
+    //
+    TextInfo title = 1;
+    //
+    TextInfo sub_title = 2;
+    //
+    string sub_title_icon = 3;
+    //
+    string bg_image = 4;
+    //
+    GradientColor bg_gradient_color = 5;
+    //
+    repeated ButtonInfo button = 6;
+    //
+    Report report = 7;
+    //
+    string full_screen_ip_icon = 8;
+    //
+    GradientColor full_screen_bg_gradient_color = 9;
 }
 
-// 鉴权浮层
-message Dialog {
-    // 鉴权限制码
-    int64 code = 1;
-    // 鉴权限制信息
-    string msg = 2;
-    // 浮层类型
-    string type = 3;
-    // 浮层样式类型
-    string style_type = 4;
-    // 浮层配置
-    DialogConfig config = 5;
-    // 标题
-    TextInfo title = 6;
-    // 副标题
-    TextInfo subtitle = 7;
-    // 图片信息
-    ImageInfo image = 8;
-    // 按钮列表
-    repeated ButtonInfo button = 9;
-    // 底部描述
-    ButtonInfo bottom_desc = 10;
-    // 埋点上报信息
-    Report report = 11;
-    // 倒计时 秒
-    int32 count_down_sec = 12;
-    // 右下描述
-    TextInfo right_bottom_desc = 13;
-}
-
-// 按钮信息
-message ButtonInfo {
-    // 按钮文案
-    string text = 1;
-    // 按钮字体色值
-    string text_color = 2;
-    // 按钮字体色值-夜间模式
-    string text_color_night = 3;
-    // 按钮背景色
-    string bg_color = 4;
-    // 按钮背景色-夜间模式
-    string bg_color_night = 5;
-    // 按钮链接
-    string link = 6;
-    // 按钮动作类型
-    string action_type = 7;
-    // 角标信息
-    BadgeInfo badge_info = 8;
-    // 埋点上报信息
-    Report report = 9;
-    // 左侧删除线样式文案
-    string left_strikethrough_text = 10;
-    // 缩略按钮文案信息
-    TextInfo simple_text_info = 11;
-    // 缩略按钮背景色值
-    string simple_bg_color = 12;
-    // 缩略按钮字体色值-夜间模式
-    string simple_bg_color_night = 13;
+//
+message QualityExtInfo {
+    //
+    bool trial_support = 1;
 }
 
 // 埋点上报信息
@@ -207,116 +614,6 @@ message Report {
     string click_event_id = 2;
     // 埋点透传参数
     string extends = 3;
-}
-
-// 角标信息
-message BadgeInfo {
-    // 角标文案
-    string text = 1;
-    // 角标色值
-    string bg_color = 2;
-    // 角标色值-夜间模式
-    string bg_color_night = 3;
-    // 文案色值
-    string text_color = 4;
-}
-
-// 图片信息
-message ImageInfo {
-    // 图片链接
-    string url = 1;
-}
-
-// 文案信息
-message TextInfo {
-    // 文案
-    string text = 1;
-    // 字体色值
-    string textColor = 2;
-    // 字体色值-夜间模式
-    string textColorNight = 3;
-}
-
-// 鉴权浮层配置
-message DialogConfig {
-    // 是否显示高斯模糊背景图
-    bool is_show_cover = 1;
-    // 是否响应转屏
-    bool is_orientation_enable = 2;
-    // 是否响应上滑吸顶
-    bool is_nested_scroll_enable = 3;
-    // 是否强制竖屏
-    bool is_force_halfscreen_enable = 4;
-}
-
-// 视频url信息
-message VideoInfo {
-    // 视频清晰度
-    uint32 quality = 1;
-    // 视频格式
-    string format = 2;
-    // 视频时长
-    uint64 timelength = 3;
-    // 视频编码id
-    uint32 video_codecid = 4;
-    // 视频流
-    repeated Stream stream_list = 5;
-    // 伴音流
-    repeated DashItem dash_audio = 6;
-    // 杜比伴音流
-    DolbyItem dolby = 7;
-}
-
-// 杜比音频信息
-message DolbyItem {
-    enum Type {
-        NONE = 0;   // NONE
-        COMMON = 1; // 普通杜比音效
-        ATMOS = 2;  // 全景杜比音效
-    }
-    // 杜比类型
-    Type type = 1;
-    // 音频流
-    DashItem audio = 2;
-}
-
-// dash条目
-message DashItem {
-    // 清晰度
-    uint32 id = 1;
-    // 主线流
-    string base_url = 2;
-    // 备用流
-    repeated string backup_url = 3;
-    // 带宽
-    uint32 bandwidth = 4;
-    // 编码id
-    uint32 codecid = 5;
-    // md5
-    string md5 = 6;
-    // 大小
-    uint64 size = 7;
-    // 帧率
-    string frame_rate = 8;
-}
-
-// 视频流信息
-message Stream {
-    // 元数据
-    StreamInfo info = 1;
-    // 流数据
-    oneof contentCase {
-        // dash流
-        DashVideo dash_video = 2;
-        // 分段流
-        SegmentVideo segment_video = 3;
-    }
-}
-
-//分段视频流
-message SegmentVideo {
-    //分段视频流列表
-    repeated ResponseUrl segment = 1;
 }
 
 // 分段流条目
@@ -333,6 +630,45 @@ message ResponseUrl {
     repeated string backup_url = 5;
     // md5
     string md5 = 6;
+}
+
+// 场景控制
+message SceneControl {
+    // 是否收藏播单
+    bool fav_playlist = 1;
+    // 是否小窗
+    bool small_window = 2;
+    // 是否画中画
+    bool pip = 3;
+    //
+    bool was_he_inline = 4;
+    //
+    bool is_need_trial = 5;
+}
+
+//分段视频流
+message SegmentVideo {
+    //分段视频流列表
+    repeated ResponseUrl segment = 1;
+}
+
+// 震动
+message Shake {
+    // 文件地址
+    string file = 1;
+}
+
+// 视频流信息
+message Stream {
+    // 元数据
+    StreamInfo info = 1;
+    // 流数据
+    oneof content {
+        // dash流
+        DashVideo dash_video = 2;
+        // 分段流
+        SegmentVideo segment_video = 3;
+    }
 }
 
 // 流媒体元数据
@@ -365,156 +701,84 @@ message StreamInfo {
     string superscript = 13;
 }
 
-// dash视频流
-message DashVideo {
-    // 主线流
-    string base_url = 1;
-    // 备用流
-    repeated string backup_url = 2;
-    // 带宽
-    uint32 bandwidth = 3;
-    // 编码id
-    uint32 codecid = 4;
-    // md5
-    string md5 = 5;
-    // 大小
-    uint64 size = 6;
-    // 伴音质量id
-    uint32 audio_id = 7;
-    // 是否非全二压
-    bool no_rexcode = 8;
-}
-
-// 事件
-message Event {
-    // 震动
-    Shake shake = 1;
-}
-
-// 震动
-message Shake {
-    // 文件地址
-    string file = 1;
-}
-
-// 其他业务信息
-message PlayViewBusinessInfo {
-    // 当前视频是否是预览
-    bool is_preview = 1;
-    // 用户是否承包过
-    bool bp = 2;
-    // drm使用
-    string marlin_token = 3;
-    // 倍速动效色值
-    string playback_speed_color = 4;
-}
-
-// 优惠券信息
-message CouponInfo {
-    // 提示框信息
-    CouponToast toast = 1;
-    // 弹窗信息
-    PopWin pop_win = 2;
-}
-
-// 弹窗信息
-message PopWin {
-    // 弹窗标题 老字段
+// 清晰度不满足条件信息
+message StreamLimit {
+    // 标题
     string title = 1;
-    // 优惠券列表
-    repeated Coupon coupon = 2;
-    // 弹窗按钮列表
-    repeated ButtonInfo button = 3;
-    // 底部文案 老字段
-    string bottom_text = 4;
-    // 弹窗标题 新字段
-    TextInfo pop_title = 5;
-    // 弹窗副标题 
-    TextInfo subtitle = 6;
-    // 底部描述 新字段
-    ButtonInfo bottom_desc = 7;
-    // 弹窗小图
-    string cover = 8;
-    // 弹窗类型
-    string pop_type = 9;
+    // 跳转地址
+    string uri = 2;
+    // 提示信息
+    string msg = 3;
 }
 
-// 优惠券
-message Coupon {
-    // 优惠券token
-    string coupon_token = 1;
-    // 优惠券类型
-    // 1:折扣券 2:满减券 3:兑换券
-    int64 type = 2;
-    // 优惠券面值
-    string value = 3;
-    // 优惠券使用描述
-    string use_desc = 4;
-    // 优惠券标题
-    string title = 5;
-    // 优惠券描述
-    string desc = 6;
-    // 优惠券支付按钮文案
-    string pay_button_text = 7;
-    // 优惠券支付按钮删除线文案
-    string pay_button_text_line_through = 8;
-    // 实付金额
-    string real_amount = 9;
-    // 使用过期时间
-    google.protobuf.Timestamp expire_time = 10;
+// 文案信息
+message TextInfo {
+    // 文案
+    string text = 1;
+    // 字体色值
+    string textColor = 2;
+    // 字体色值-夜间模式
+    string textColorNight = 3;
 }
 
-// 提示框信息
-message CouponToast {
-    // 提示框文案信息
-    CouponTextInfo text_info = 1;
-    // 提示框按钮
+// toast
+message Toast {
+    // toast文案 老字段
+    string text = 1;
+    // toast按钮
     ButtonInfo button = 2;
+    // 显示样式类型
+    int32 show_style_type = 3;
+    // 图标
+    string icon = 4;
+    // toast文案 新字段
+    TextInfo toast_text = 5;
+    // 埋点上报信息
+    Report report = 6;
+    //
+    map<string, string> order_report_params = 7;
 }
 
-// 提示框文案信息
-message CouponTextInfo {
-    // 提示框文案-播正片6分钟预览
-    string positive_preview = 1;
-    // 提示框文案-播非正片分节ep
-    string section = 2;
+// 视频url信息
+message VideoInfo {
+    // 视频清晰度
+    uint32 quality = 1;
+    // 视频格式
+    string format = 2;
+    // 视频时长
+    uint64 timelength = 3;
+    // 视频编码id
+    uint32 video_codecid = 4;
+    // 视频流
+    repeated Stream stream_list = 5;
+    // 伴音流
+    repeated DashItem dash_audio = 6;
+    // 杜比伴音流
+    DolbyItem dolby = 7;
 }
 
-// 禁用功能配置
-message PlayAbilityConf {
-    bool background_play_disable = 1; // 后台播放
-    bool flip_disable = 2;            // 镜像反转
-    bool cast_disable = 3;            // 投屏
-    bool feedback_disable = 4;        // 反馈
-    bool subtitle_disable = 5;        // 字幕
-    bool playback_rate_disable = 6;   // 播放速度
-    bool time_up_disable = 7;         // 定时停止
-    bool playback_mode_disable = 8;   // 播放方式
-    bool scale_mode_disable = 9;      // 画面尺寸
-    bool like_disable = 10;           // 赞
-    bool dislike_disable = 11;        // 踩
-    bool coin_disable = 12;           // 投币
-    bool elec_disable = 13;           // 充电
-    bool share_disable = 14;          // 分享
-    bool screen_shot_disable = 15;    // 截图
-    bool lock_screen_disable = 16;    // 锁定
-    bool recommend_disable = 17;      // 相关推荐
-    bool playback_speed_disable = 18; // 播放速度
-    bool definition_disable = 19;     // 清晰度
-    bool selections_disable = 20;     // 选集
-    bool next_disable = 21;           // 下一集
-    bool edit_dm_disable = 22;        // 编辑弹幕
-    bool small_window_disable = 23;   // 小窗
-    bool shake_disable = 24;          // 震动
-    bool outer_dm_disable = 25;       // 外层面板弹幕设置
-    bool inner_dm_disable = 26;       // 三点内弹幕设置
-    bool freya_enter_disable = 27;    // 一起看入口
-    bool dolby_disable = 28;          // 杜比音效
-    bool freya_full_disable = 29;     // 全屏一起看入口
-}
-
-// 云控扩展配置信息
-message PlayAbilityExtConf {
-    // 自定义配置扩展信息
-    bool allow_close_subtitle = 1;
+// 展示信息
+message ViewInfo {
+    // 鉴权浮层
+    Dialog dialog = 1;
+    // toast
+    Toast toast = 2;
+    // 优惠券信息
+    CouponInfo coupon_info = 3;
+    // 未购买的超前点播ep列表
+    repeated int64 demand_no_pay_epids = 4;
+    // 播放结束页
+    EndPage end_page = 5;
+    //
+    map<string, bool> exp_config = 6;
+    // 弹窗
+    PopWin pop_win = 7;
+    //
+    PromptBar try_watch_prompt_bar = 8;
+    //
+    PayTip pay_tip = 9;
+    //
+    HighDefinitionTrialInfo high_definition_trial_info = 10;
+    //
+    map<string, Dialog> ext_dialog = 11;
 }

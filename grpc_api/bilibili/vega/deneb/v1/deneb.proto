@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package bilibili.vega.deneb.v1;
+
+import "google/protobuf/any.proto";
+
+//
+service VegaDenebRPC {
+    //
+    rpc MessagePulls (MessagePullsReq) returns (MessagePullsReply);
+}
+
+//
+message MessagePullsReply {
+    //
+    repeated google.protobuf.Any data = 1;
+    //
+    int32 pn = 2;
+    //
+    int32 ps = 3;
+    //
+    int64 count = 4;
+    //
+    bool has_next = 5;
+}
+
+//
+message MessagePullsReq {
+    //
+    int64 start_seq_id = 1;
+    //
+    int64 end_seq_id = 2;
+    //
+    int32 pn = 3;
+    //
+    int32 ps = 4;
+}
+

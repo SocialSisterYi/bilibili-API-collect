@@ -41,6 +41,7 @@
 | name             | str  | 昵称             |                                                              |
 | sex              | str  | 性别             | 男/女/保密                                                   |
 | face             | str  | 头像链接         |                                                              |
+| face_nft         | num  | 是否为 nft 头像  | `0`不是nft头像<br />`1`是 nft 头像                           |
 | sign             | str  | 签名             |                                                              |
 | rank             | num  | 10000            |                                                              |
 | level            | num  | 当前等级         | 0-6级                                                        |
@@ -49,7 +50,7 @@
 | silence          | num  | 封禁状态         | 0：正常<br />1：被封                                         |
 | coins            | num  | 硬币数           | 需要登录(Cookie) <br />只能查看自己的<br />默认为0           |
 | fans_badge       | bool | 是否具有粉丝勋章 | false：无<br />true：有                                      |
-| fans_medal       | obj  |                  |                                                              |
+| fans_medal       | obj  | 粉丝勋章信息     |                                                              |
 | official         | obj  | 认证信息         |                                                              |
 | vip              | obj  | 会员信息         |                                                              |
 | pendant          | obj  | 头像框信息       |                                                              |
@@ -65,6 +66,7 @@
 | profession       | obj  |                  |                                                              |
 | tags             | null |                  |                                                              |
 | series           | obj  |                  |                                                              |
+| is_senior_member | num  |                  |                                                              |
 
 `data`中的`official`对象：
 
@@ -102,7 +104,7 @@
 | pid    | num  | 头像框id      | **详细说明有待补充** |
 | name   | str  | 头像框名称    |                      |
 | image  | str  | 头像框图片url |                      |
-| expire | num  | 0             | **作用尚不明确**     |
+| expire | num  | (?)           |                      |
 
 `data`中的`nameplate`对象：
 
@@ -127,25 +129,50 @@
 | text_color  | str  | 提示文字颜色    | 此字段非必须<br />颜色码                        |
 | bg_color    | str  | 提示背景颜色    | 此字段非必须<br />颜色码                        |
 
-`data`中的`school`对象：
-
-| 字段        | 类型 | 内容            | 备注             |
-| ----------- | ---- | --------------- | -------------- |
-| name        | str  | 就读大学名称     | 没有则为空      |
-
 `data`中的`live_room`对象：
 
-| 字段           | 类型 | 内容           | 备注                     |
-| -------------- | ---- | -------------- | ------------------------ |
-| roomStatus     | num  | 直播间状态     | 0：无房间<br />1：有房间 |
-| liveStatus     | num  | 直播状态       | 0：未开播<br />1：直播中 |
-| url            | str  | 直播间网页url  |                          |
-| title          | str  | 直播间标题     |                          |
-| cover          | str  | 直播间封面url  |                          |
-| online         | num  | 直播间人气     | 值为上次直播时刷新       |
-| roomid         | num  | 直播间id(短号) |                          |
-| roundStatus    | num  | 轮播状态       | 0：未轮播<br />1：轮播   |
-| broadcast_type | num  | 0              |                          |
+| 字段           | 类型 | 内容            | 备注                     |
+| -------------- | ---- | --------------- | ------------------------ |
+| roomStatus     | num  | 直播间状态      | 0：无房间<br />1：有房间 |
+| liveStatus     | num  | 直播状态        | 0：未开播<br />1：直播中 |
+| url            | str  | 直播间网页 url  |                          |
+| title          | str  | 直播间标题      |                          |
+| cover          | str  | 直播间封面 url  |                          |
+| watched_show   | obj  |                 |                          |
+| roomid         | num  | 直播间 id(短号) |                          |
+| roundStatus    | num  | 轮播状态        | 0：未轮播<br />1：轮播   |
+| broadcast_type | num  | 0               |                          |
+
+`live_room`中的`watched_show`对象：
+
+| 字段          | 类型 | 内容                | 备注 |
+| ------------- | ---- | ------------------- | ---- |
+| switch        | bool | ?                   |      |
+| num           | num  | total watched users |      |
+| text_small    | str  |                     |      |
+| text_large    | str  |                     |      |
+| icon          | str  | watched icon url    |      |
+| icon_location | str  | ?                   |      |
+| icon_web      | str  | watched icon url    |      |
+
+`data`中的`school`对象：
+
+| 字段 | 类型 | 内容         | 备注       |
+| ---- | ---- | ------------ | ---------- |
+| name | str  | 就读大学名称 | 没有则为空 |
+
+`data`中的`profession`对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| name | str  | (?)  |      |
+
+`data`中的`series`对象：
+
+| 字段                | 类型 | 内容 | 备注 |
+| ------------------- | ---- | ---- | ---- |
+| user_upgrade_status | num  | (?)  |      |
+| show_upgrade_window | bool | (?)  |      |
 
 **示例：**
 
@@ -252,15 +279,23 @@ curl -G 'http://api.bilibili.com/x/space/acc/info' \
         "theme": {},
         "sys_notice": {},
         "live_room": {
-            "roomStatus": 1,
-            "liveStatus": 0,
-            "url": "https://live.bilibili.com/1024",
-            "title": "试图恰鸡",
-            "cover": "http://i0.hdslb.com/bfs/live/new_room_cover/96ee5bfd0279a0f18b190340334f43f473038288.jpg",
-            "online": 16808,
-            "roomid": 1024,
-            "roundStatus": 0,
-            "broadcast_type": 0
+          "roomStatus": 1,
+          "liveStatus": 1,
+          "url": "https://live.bilibili.com/80397?broadcast_type=0\u0026is_room_feed=1",
+          "title": "天空一道巨响！",
+          "cover": "http://i0.hdslb.com/bfs/live/new_room_cover/f702ce1b7d1b728dafa57d96bbf7db319ab3aab7.jpg",
+          "roomid": 80397,
+          "roundStatus": 0,
+          "broadcast_type": 0,
+          "watched_show": {
+            "switch": true,
+            "num": 161436,
+            "text_small": "16.1万",
+            "text_large": "16.1万人看过",
+            "icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+            "icon_location": "",
+            "icon_web": "https://i0.hdslb.com/bfs/live/8d9d0f33ef8bf6f308742752d13dd0df731df19c.png"
+          }
         },
         "birthday": "09-19",
         "school": {

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package bilibili.metadata.parabox;
+
+//
+message Exp {
+    //
+    int64 id = 1;
+    //
+    int32 bucket = 2;
+}
+
+//
+message Exps {
+    //
+    repeated Exp exps = 1;
+}

@@ -14,13 +14,33 @@ service Test {
     rpc WatchTestEvent(google.protobuf.Empty) returns (stream TestResp);
 }
 
+//
+service Test2 {
+    //
+    rpc Test(AddParams) returns (google.protobuf.Empty);
+}
+
+//
+message AddParams {
+    //
+    int32 a = 1;
+    //
+    int32 b = 2;
+}
+
+//
+message AddResult {
+    //
+    int32 r = 1;
+}
+
 message TestResp {
     // 任务id
-    int64 taskid = 1 [json_name="taskid"];
+    int64 taskid = 1;
     // 时间戳
-    int64 timestamp = 2 [json_name="timestamp"];
+    int64 timestamp = 2;
     // 消息
-    string message = 3 [json_name="message"];
+    string message = 3;
     // 扩展
     google.protobuf.Any extra = 4;
 }

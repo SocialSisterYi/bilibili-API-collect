@@ -3,14 +3,15 @@
 web端短信登录流程：
 
 1. [完成人机验证](readme.md)
-2. 发送短信，使用国际地区代码`cid`+手机号码`tel`+登录密钥`key`+极验`challenge`+验证结果`validate`+验证结果`seccode`
-3. 提交短信验证码以验证登录操作，使用国际地区代码`cid`+手机号码`tel`+短信验证码`smsCode`
+2. 发送短信，使用国际地区代码`cid`+手机号码`tel`+登录密钥`token`+极验`challenge`+验证结果`validate`+验证结果`seccode`
+3. 提交短信验证码以验证登录操作，使用国际地区代码`cid`+手机号码`tel`+短信验证码`code`
 
 ---
 
-- [获取国际地区代码（web端）](#获取国际地区代码（web端）)
-- [发送短信验证码（web端）](#发送短信验证码（web端）)
-- [使用短信验证码登录（web端）](#使用短信验证码登录（web端）)
+- [短信登录](#短信登录)
+  - [获取国际地区代码（web端）](#获取国际地区代码web端)
+  - [发送短信验证码（web端）](#发送短信验证码web端)
+  - [使用短信验证码登录（web端）](#使用短信验证码登录web端)
 
 ---
 
@@ -99,7 +100,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 
 ## 发送短信验证码（web端）
 
-> https://passport.bilibili.com/x/passport-login/web/sms/send
+> http://passport.bilibili.com/x/passport-login/web/sms/send
 
 *请求方式：POST*
 
@@ -112,10 +113,9 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
 | tel | num | 手机号码 | 必要 | |
-| cid         | num  | 国际地区代码       | 必要 |  |
-| type | num | 21 | 必要 | 必须为`21` |
-| captchaType | num | 6 | 必要 | 必须为`6` |
-| key | str | 登录秘钥 | 必要 | 从B站API获取 |
+| cid | num  | 国际地区代码       | 必要 |  |
+| source | str  | 固定为`main_web`  | 必要 |  |
+| token | str  | 在获取gt,challenge处url有  | 必要 |  |
 | challenge | str | 极验challenge | 必要 | 从B站API获取 |
 | validate | str | 极验结果 | 必要 | 从极验获取 |
 | seccode | str | 极验结果+`|jordan` | 必要   | 从极验获取   |
@@ -127,19 +127,20 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | 字段   | 类型 | 内容     | 备注         |
 | ------ | ---- | -------- | --------- |
 | code | num | 返回值 | 0：成功<br />-400：请求错误<br />1002：手机号格式错误<br />86203：短信发送次数已达上限<br />1003：验证码已经发送<br />1025：该手机号在哔哩哔哩有过永久封禁记录，无法再次注册或绑定新账号<br />2400：登录秘钥错误<br />2406：验证极验服务出错 |
-| message | str | 错误信息 | 成功为"验证码短信已下发" |
+| message | str | 错误信息 | 成功为0 |
+| data | obj | 数据 | 内含captcha_key |
 
+captcha_key在下方传参时需要,请备用.
 **示例：**
 
 例如手机号为`13888888888`，国际id为`1（中国大陆）`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
 
 ```shell
-curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
+curl 'http://passport.bilibili.com/x/passport-login/web/sms/send' \
 --data-urlencode 'tel=13888888888' \
 --data-urlencode 'cid=1' \
---data-urlencode 'type=21' \
---data-urlencode 'captchaType=6' \
---data-urlencode 'key=aabbccdd' \
+--data-urlencode 'source=main_web' \
+--data-urlencode 'token=aabbccdd' \
 --data-urlencode 'challenge=2333' \
 --data-urlencode 'validate=666666' \
 --data-urlencode 'seccode=666666|jordan'
@@ -149,17 +150,18 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 <summary>查看响应示例：</summary>
 
 ```json
-{
-  "code": 0,
-  "message": "验证码短信已下发"
-}
+{"code":0,
+    "message":"0",
+    "ttl":1,
+    "data":{"captcha_key":"7542f109c3318d74847626495c68c321"}
+    }
 ```
 
 </details>
 
 ## 使用短信验证码登录（web端）
 
-> http://passport.bilibili.com/web/login/rapid
+> https://passport.bilibili.com/x/passport-login/web/login/sms
 
 *请求方式：POST*
 
@@ -173,8 +175,12 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 | --- | --- | --- | --- | --- |
 | cid | num | 国际地区代码 | 必要 |  |
 | tel | num | 手机号码 | 必要 | |
-| smsCode | num | 短信验证码 | 必要 | 超时时间为5min |
-| goUrl | str | 跳转url | 非必要 | 默认为https://www.bilibili.com |
+| code | num | 短信验证码 | 必要 | 超时时间为5min |
+| source | str | 固定为`main_web` | 必要 |  |
+| captcha_key | str | 上方发送短信验证码时的一个参数 | 必要 |  |
+| go_url | str | 跳转url | 非必要 | 默认为https://www.bilibili.com |
+| keep | str | 未知 | 非必要 | 默认为true |
+
 
 **json回复：**
 
@@ -199,10 +205,10 @@ curl 'http://passport.bilibili.com/web/sms/general/v2/send' \
 使用手机号`13888888888`，短信验证码为`123456`，进行验证登录操作
 
 ```shell
-curl 'https://passport.bilibili.com/web/login/rapid' 
+curl 'https://passport.bilibili.com/x/passport-login/web/login/sms' 
 --data-urlencode 'cid=1' \
 --data-urlencode 'tel=13888888888' \
---data-urlencode 'smsCode=123456'
+--data-urlencode 'code=123456'
 ```
 
 <details>
@@ -239,6 +245,7 @@ Set-Cookie: DedeUserID=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57
 Set-Cookie: DedeUserID__ckMd5=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/
 Set-Cookie: SESSDATA=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/; HttpOnly
 Set-Cookie: bili_jct=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/
+Set-Cookie: sid=***; Domain=.bilibili.com; Expires=Sat, 18-Jul-2020 09:57:57 GMT; Path=/
 Expires: Mon, 13 Jul 2020 09:57:32 GMT
 Cache-Control: no-cache
 X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01

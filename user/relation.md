@@ -220,12 +220,12 @@ curl -G 'http://api.bilibili.com/x/relation/followers' \
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                |
-| ------- | ---- | -------- | --------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />22007：访问超过5页 |
-| message | str  | 错误信息 | 默认为0                                             |
-| ttl     | num  | 1        |                                                     |
-| data    | obj  | 信息本体 |                                                     |
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />22007：访问超过5页<br />22115：用户已设置隐私，无法查看 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
 
 data 对象：
 
@@ -297,7 +297,7 @@ data 对象：
 获取用户`mid=293793435`的关注明细，按照关注顺序
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/ollowings' \
+curl -G 'http://api.bilibili.com/x/relation/followings' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'order_type=' \
 --data-urlencode 'ps=2' \
@@ -1142,6 +1142,7 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,

@@ -11,50 +11,14 @@ service Popular {
     rpc Index (PopularResultReq) returns (PopularReply);
 }
 
-// 热门列表-请求
-message PopularResultReq {
-    // 排位索引id，为上此请求末尾项的idx
-    int64 idx = 1;
-    // 登录标识
-    // 1:未登陆用户第一页 2:登陆用户第一页
-    int32 login_event = 2;
-    // 清晰度(旧版)
-    int32 qn = 3;
-    // 视频流版本(旧版)
-    int32 fnver = 4;
-    // 视频流功能(旧版)
-    int32 fnval = 5;
-    // 是否强制使用域名(旧版)
-    int32 force_host = 6;
-    // 是否4K(旧版)
-    int32 fourk = 7;
-    // 当前页面spm
-    string spmid = 8;
-    // 上此请求末尾项的param
-    string last_param = 9;
-    // 上此请求的ver
-    string ver = 10;
-    // 分品类热门的入口ID
-    int64 entrance_id = 11;
-    // 热门定位id集合
-    string location_ids = 12;
-    // 0:tag页 1:中间页
-    int32 source_id = 13;
-    // 数据埋点上报
-    // 0:代表手动刷新 1:代表自动刷新
-    int32 flush = 14;
-    // 秒开参数
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 15;
-}
-
-// 热门列表-响应
-message PopularReply {
-    // 卡片列表
-    repeated bilibili.app.card.v1.Card items = 1;
-    // 配置信息
-    Config config = 2;
+// 气泡信息
+message Bubble {
+    // 文案
+    string bubble_content = 1;
     // 版本
-    string ver = 3;
+    int32 version = 2;
+    // 起始时间
+    int64 stime = 3;
 }
 
 // 配置信息
@@ -97,12 +61,56 @@ message EntranceShow {
     int32 entrance_type = 8;
 }
 
-// 气泡信息
-message Bubble {
-    // 文案
-    string bubble_content = 1;
+// 热门列表-响应
+message PopularReply {
+    // 卡片列表
+    repeated bilibili.app.card.v1.Card items = 1;
+    // 配置信息
+    Config config = 2;
     // 版本
-    int32 version = 2;
-    // 起始时间
-    int64 stime = 3;
+    string ver = 3;
 }
+
+// 热门列表-请求
+message PopularResultReq {
+    // 排位索引id，为上此请求末尾项的idx
+    int64 idx = 1;
+    // 登录标识
+    // 1:未登陆用户第一页 2:登陆用户第一页
+    int32 login_event = 2;
+    // 清晰度(旧版)
+    int32 qn = 3;
+    // 视频流版本(旧版)
+    int32 fnver = 4;
+    // 视频流功能(旧版)
+    int32 fnval = 5;
+    // 是否强制使用域名(旧版)
+    int32 force_host = 6;
+    // 是否4K(旧版)
+    int32 fourk = 7;
+    // 当前页面spm
+    string spmid = 8;
+    // 上此请求末尾项的param
+    string last_param = 9;
+    // 上此请求的ver
+    string ver = 10;
+    // 分品类热门的入口ID
+    int64 entrance_id = 11;
+    // 热门定位id集合
+    string location_ids = 12;
+    // 0:tag页 1:中间页
+    int32 source_id = 13;
+    // 数据埋点上报
+    // 0:代表手动刷新 1:代表自动刷新
+    int32 flush = 14;
+    // 秒开参数
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 15;
+}
+
+
+
+
+
+
+
+

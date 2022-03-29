@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package bilibili.app.playeronline.v1;
+
+// 在线人数
+service PlayerOnline {
+    // 获取在线人数
+    rpc PlayerOnline (PlayerOnlineReq) returns (PlayerOnlineReply);
+}
+
+// 获取在线人数-请求
+message PlayerOnlineReq {
+    // 稿件 avid
+    int64 aid = 1;
+    // 视频 cid
+    int64 cid = 2;
+    // 是否在播放中
+    bool play_open = 3;
+}
+
+// 获取在线人数-回复
+message PlayerOnlineReply {
+    //
+    string total_text = 1;
+    // 下次轮询间隔时间
+    int64 sec_next = 2;
+    // 是否底部显示
+    bool bottom_show = 3;
+    //
+    bool sdm_show = 4;
+    //
+    string sdm_text = 5;
+}

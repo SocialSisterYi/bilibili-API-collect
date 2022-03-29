@@ -36,4 +36,6 @@ message Device {
     string version_name = 13;
     // 设备指纹, 不区分本地或远程设备指纹，作为推送目标的索引
     string fp = 14;
+    //
+    int64 fts = 15;
 }

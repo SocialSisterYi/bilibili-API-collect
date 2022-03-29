@@ -1,0 +1,234 @@
+syntax = "proto3";
+
+package bilibili.main.dynamic.feed.v1;
+
+import "bilibili/dynamic/common/dynamic.proto";
+
+//
+service Feed {
+    // 发布页预校验
+    rpc CreateInitCheck(CreateInitCheckReq) returns (bilibili.dynamic.CreateCheckResp);
+    //
+    rpc SubmitCheck(SubmitCheckReq) returns (SubmitCheckRsp);
+    // 创建动态
+    rpc CreateDyn(CreateDynReq) returns (bilibili.dynamic.CreateResp);
+    // 根据name取uid
+    rpc GetUidByName(bilibili.dynamic.GetUidByNameReq) returns (bilibili.dynamic.GetUidByNameRsp);
+    // at用户推荐列表
+    rpc AtList(bilibili.dynamic.AtListReq) returns (bilibili.dynamic.AtListRsp);
+    // at用户搜索列表
+    rpc AtSearch(bilibili.dynamic.AtSearchReq) returns (bilibili.dynamic.AtListRsp);
+    //
+    rpc ReserveButtonClick(ReserveButtonClickReq) returns (ReserveButtonClickResp);
+    //
+    rpc CreatePlusButtonClick(CreatePlusButtonClickReq) returns (CreatePlusButtonClickRsp);
+    //
+    rpc HotSearch(HotSearchReq) returns (HotSearchRsp);
+    //
+    rpc Suggest(SuggestReq) returns (SuggestRsp);
+    //
+    rpc DynamicButtonClick(DynamicButtonClickReq) returns (DynamicButtonClickRsp);
+    //
+    rpc CreatePermissionButtonClick(CreatePermissionButtonClickReq) returns (CreatePermissionButtonClickRsp);
+    //
+    rpc CreatePageInfos(CreatePageInfosReq) returns (CreatePageInfosRsp);
+}
+
+// 创建动态-请求
+message CreateDynReq {
+    // 用户创建接口meta信息
+    bilibili.dynamic.UserCreateMeta meta = 1;
+    // 发布的内容
+    bilibili.dynamic.CreateContent content = 2;
+    // 发布类型
+    bilibili.dynamic.CreateScene scene = 3;
+    // 图片内容
+    repeated bilibili.dynamic.CreatePic pics = 4;
+    // 转发源
+    bilibili.dynamic.DynIdentity repost_src = 5;
+    // 动态视频
+    bilibili.dynamic.CreateDynVideo video = 6;
+    // 通用模板类型：2048方图 2049竖图 其他值无效
+    int64 sketch_type = 7;
+    // 通用模板的元内容（网页内容）
+    bilibili.dynamic.Sketch sketch = 8;
+    // 小程序的内容
+    bilibili.dynamic.Program program = 9;
+    // 动态附加小卡
+    bilibili.dynamic.CreateTag dyn_tag = 10;
+    // 动态附加大卡
+    bilibili.dynamic.CreateAttachCard attach_card = 11;
+    // 特殊的创建选项
+    bilibili.dynamic.CreateOption option = 12;
+    //
+    bilibili.dynamic.CreateTopic topic = 13;
+    //
+    string upload_id = 14;
+}
+
+//
+message CreateInitCheckReq {
+    //
+    int32 scene = 1;
+    //
+    bilibili.dynamic.MetaDataCtrl meta = 2;
+    //
+    bilibili.dynamic.RepostInitCheck repost = 3;
+}
+
+//
+message CreatePageInfosReq {
+    //
+    int64 topic_id = 1;
+}
+
+//
+message CreatePageInfosRsp {
+    //
+    CreatePageTopicInfo topic = 1;
+}
+
+//
+message CreatePageTopicInfo {
+    //
+    int64 topic_id = 1;
+    //
+    string topic_name = 2;
+}
+
+//
+message CreatePermissionButtonClickReq {
+    //
+    DynamicButtonClickBizType type = 1;
+}
+
+//
+message CreatePermissionButtonClickRsp {
+
+}
+
+//
+message CreatePlusButtonClickReq {
+
+}
+
+//
+message CreatePlusButtonClickRsp {
+
+}
+
+//
+enum DynamicButtonClickBizType {
+    DYNAMIC_BUTTON_CLICK_BIZ_TYPE_NONE   = 0; //
+    DYNAMIC_BUTTON_CLICK_BIZ_TYPE_LIVE   = 1; //
+    DYNAMIC_BUTTON_CLICK_BIZ_TYPE_DYN_UP = 2; //
+}
+
+//
+message DynamicButtonClickReq {
+
+}
+
+//
+message DynamicButtonClickRsp {
+
+}
+
+//
+message HotSearchReq {
+
+}
+
+//
+message HotSearchRsp {
+    //
+    message Item {
+        //
+        string words = 1;
+    }
+    //
+    repeated Item items = 1;
+    //
+    string version = 2;
+}
+
+//
+message ReserveButtonClickReq {
+    //
+    int64 uid = 1;
+    //
+    int64 reserve_id = 2;
+    //
+    int64 reserve_total = 3;
+    //
+    int32 cur_btn_status = 4;
+    //
+    string spmid = 5;
+    //
+    int64 dyn_id = 6;
+    //
+    int64 dyn_type = 7;
+}
+
+//
+message ReserveButtonClickResp {
+    //
+    ReserveButtonStatus final_btn_status = 1;
+    //
+    ReserveButtonMode btn_mode = 2;
+    //
+    int64 reserve_update = 3;
+    //
+    string desc_update = 4;
+    //
+    bool has_activity = 5;
+    //
+    string activity_url = 6;
+    //
+    string toast = 7;
+}
+
+//
+enum ReserveButtonMode {
+    RESERVE_BUTTON_MODE_NONE = 0;      //
+    RESERVE_BUTTON_MODE_RESERVE = 1;   //
+    RESERVE_BUTTON_MODE_UP_CANCEL = 2; //
+}
+
+//
+enum ReserveButtonStatus {
+    RESERVE_BUTTON_STATUS_NONE = 0;    //
+    RESERVE_BUTTON_STATUS_UNCHECK = 1; //
+    RESERVE_BUTTON_STATUS_CHECK = 2;   //
+}
+
+//
+message SubmitCheckReq {
+    //
+    bilibili.dynamic.CreateContent content = 1;
+    //
+    repeated bilibili.dynamic.CreatePic pics = 2;
+}
+
+//
+message SubmitCheckRsp {
+
+}
+
+//
+message SuggestReq {
+    //
+    string s = 1;
+    //
+    int32 type = 2;
+}
+
+//
+message SuggestRsp {
+    //
+    repeated string list = 1;
+    //
+    string track_id = 2;
+    //
+    string version = 3;
+}

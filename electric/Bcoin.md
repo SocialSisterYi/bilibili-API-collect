@@ -8,14 +8,15 @@
 
 ---
 
-- [新版本接口](#新版本B币充电)
-- [老版本接口](#老版本B币充电)
+- [B币方式充电](#b币方式充电)
+  - [新版本B币充电](#新版本b币充电)
+  - [老版本B币充电](#老版本b币充电)
 
 ---
 
 ## 新版本B币充电
 
-> https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick
+> http://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick
 
 *请求方式：POST*
 
@@ -187,7 +188,7 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                              |
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
-| elec_num | num  | 充电电池数量             | 必要   | 必须在20-99990之间                                |
+| elec_num | num  | 充电电池数量             | 必要   | 必须在2-9999之间                                |
 | up_mid   | num  | 充电对象用户mid          | 必要   |                                                   |
 | otype    | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电               |
 | oid      | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户mid<br />视频充电：稿件avid |
@@ -256,7 +257,7 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 
 </details>
 
-当所充电池数小于20时，充电不会成功
+当所充电池数小于2时，充电不会成功
 
 此时`data`.`status`=`-2`
 

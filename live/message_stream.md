@@ -126,6 +126,8 @@ curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 | 7    | 认证包               |
 | 8    | 认证包回复           |
 
+*普通包可能包含多条命令，每个命令有一个头部，指示该条命令的长度等信息*
+
 ### 认证包
 
 方式：（上行）
@@ -227,12 +229,284 @@ uint32整数，代表房间当前的人气值
 
 ### 普通包
 
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| code | num  | 返回值 | 0认证成功 |
+
 方式：（下行）
 
 #### 弹幕
 
+方式：（下行）
+
+当收到弹幕时接收到此条消息
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | string  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
+| info | list  | 单条弹幕的用户、内容、粉丝勋章等各种信息 | 待补 |
+
+<details>
+<summary>查看消息示例：</summary>
+
+``` json
+{
+    "cmd": "DANMU_MSG",
+    "info": [
+        [
+            0,
+            4,
+            25,
+            5566168,
+            1644559560263,
+            1644558747,
+            0,
+            "998a531f",
+            0,
+            0,
+            5,
+            "#1453BAFF,#4C2263A2,#3353BAFF",
+            0,
+            "{}",
+            "{}",
+            {
+                "mode": 0,
+                "show_player_type": 0,
+                "extra": ""
+            }
+        ],
+        "测试文本",
+        [
+            1850091,
+            "Jannchie见齐",
+            0,
+            0,
+            0,
+            10000,
+            1,
+            "#00D1F1"
+        ],
+        [
+            21,
+            "観測者",
+            "Jannchie见齐",
+            422915,
+            1725515,
+            "",
+            0,
+            6809855,
+            1725515,
+            5414290,
+            3,
+            1,
+            1850091
+        ],
+        [
+            20,
+            0,
+            6406234,
+            "u003e50000",
+            3
+        ],
+        [
+            "",
+            ""
+        ],
+        0,
+        3,
+        null,
+        {
+            "ts": 1644559560,
+            "ct": "59DEA791"
+        },
+        0,
+        0,
+        null,
+        null,
+        0,
+        210
+    ]
+}
+```
+</details>
+  
+#### 进场或关注消息
+
+方式：（下行）
+
+有用户进入或关注直播间时触发
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | string  | "INTERACT_WORD" | 如果是进场或关注消息，内容则是"INTERACT_WORD" |
+| data | obj  | 进场人信息 |  |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| contribution | obj  | 待调查 |  |
+| dmscore | number  | 待调查 |  |
+| fans_medal | obj  | 粉丝勋章 |  |
+| identities | number  | 待调查 |  |
+| is_spread | number  | 待调查 |  |
+| msg_type | number  | 1为进场，2为关注 |  |
+| roomid | number  | 房间号 |  |
+| is_spread | number  | 待调查 |  |
+| is_spread | number  | 待调查 |  |
+| score | number  | 待调查 |  |
+| spread_desc | string  | 待调查 |  |
+| spread_info | string  | 待调查 |  |
+| tail_icon | number  | 待调查 |  |
+| timestamp | number  | 时间戳 |  |
+| trigger_time | number  | 触发时间 |  |
+| uid | number  | 用户ID |  |
+| uname | string  | 用户名称 |  |
+| uname_color | string  | 用户颜色 |  |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "INTERACT_WORD",
+    "data": {
+        "contribution": {
+            "grade": 0
+        },
+        "dmscore": 4,
+        "fans_medal": {
+            "anchor_roomid": 890976,
+            "guard_level": 0,
+            "icon_id": 0,
+            "is_lighted": 0,
+            "medal_color": 6067854,
+            "medal_color_border": 12632256,
+            "medal_color_end": 12632256,
+            "medal_color_start": 12632256,
+            "medal_level": 1,
+            "medal_name": "小豆皮",
+            "score": 134,
+            "special": "",
+            "target_id": 6574487
+        },
+        "identities": [
+            1
+        ],
+        "is_spread": 0,
+        "msg_type": 1,
+        "roomid": 24143902,
+        "score": 1644563948936,
+        "spread_desc": "",
+        "spread_info": "",
+        "tail_icon": 0,
+        "timestamp": 1644563948,
+        "trigger_time": 1644563947876475000,
+        "uid": 335979315,
+        "uname": "TIM_Init",
+        "uname_color": ""
+    }
+}
+```
+  
+</detail>
 
 
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | string  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
+| info | list  | 单条弹幕的用户、内容、粉丝勋章等各种信息 | 待补 |
+
+<details>
+<summary>查看消息示例：</summary>
+
+``` json
+{
+    "cmd": "DANMU_MSG",
+    "info": [
+        [
+            0,
+            4,
+            25,
+            5566168,
+            1644559560263,
+            1644558747,
+            0,
+            "998a531f",
+            0,
+            0,
+            5,
+            "#1453BAFF,#4C2263A2,#3353BAFF",
+            0,
+            "{}",
+            "{}",
+            {
+                "mode": 0,
+                "show_player_type": 0,
+                "extra": ""
+            }
+        ],
+        "测试文本",
+        [
+            1850091,
+            "Jannchie见齐",
+            0,
+            0,
+            0,
+            10000,
+            1,
+            "#00D1F1"
+        ],
+        [
+            21,
+            "観測者",
+            "Jannchie见齐",
+            422915,
+            1725515,
+            "",
+            0,
+            6809855,
+            1725515,
+            5414290,
+            3,
+            1,
+            1850091
+        ],
+        [
+            20,
+            0,
+            6406234,
+            "u003e50000",
+            3
+        ],
+        [
+            "",
+            ""
+        ],
+        0,
+        3,
+        null,
+        {
+            "ts": 1644559560,
+            "ct": "59DEA791"
+        },
+        0,
+        0,
+        null,
+        null,
+        0,
+        210
+    ]
+}
+```
+</details>
+  
 #### 送礼
 
 

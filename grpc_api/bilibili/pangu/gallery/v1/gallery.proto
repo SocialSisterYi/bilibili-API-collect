@@ -1,0 +1,250 @@
+syntax = "proto3";
+
+package bilibili.pangu.gallery.v1;
+
+import "google/protobuf/empty.proto";
+
+//
+service GalleryInterface {
+    //
+    rpc Ping (google.protobuf.Empty) returns (google.protobuf.Empty);
+    //
+    rpc UserInfo (GetUserInfoReq) returns (GetUserInfoReply);
+    //
+    rpc ListNFTByMid (ListNFTByMidReq) returns (ListNFTByMidReply);
+    //
+    rpc ListOrderByMid (ListOrderByMidReq) returns (ListOrderByMidReply);
+    //
+    rpc BasicInfo (BasicInfoReq) returns (BasicInfoReply);
+    //
+    rpc UserCheck (UserCheckReq) returns (UserCheckReply);
+    //
+    rpc AgreePolicy (AgreePolicyReq) returns (AgreePolicyReply);
+    //
+    rpc GetLastPolicy (GetLastPolicyReq) returns (GetLastPolicyReply);
+}
+
+//
+message AgreePolicyReply {
+
+}
+
+//
+message AgreePolicyReq {  
+    //
+    PolicyType policy_type = 1;
+    //
+    string version = 2;
+}
+
+//
+message BasicInfoReply {
+    //
+    string customer_service_url = 1;
+    //
+    string agreement_url = 2;
+    //
+    string privacy_url = 3;
+    //
+    repeated Link links = 4;
+}
+
+//
+message BasicInfoReq {
+    //
+    int64 mid = 1;
+}
+
+//
+message Display {
+    //
+    string bg_theme_light = 1;
+    //
+    string bg_theme_night = 2;
+    //
+    string nft_poster = 3;
+    //
+    string nft_raw = 4;
+}
+
+//
+enum GT14Status {
+    LT14 = 0;         //
+    GE14 = 1;         //
+    UNKNOWN_GT14 = 2; //
+}
+
+//
+message GetLastPolicyReply {
+    //
+    string short_desc = 1;
+    //
+    string detail_jump = 2;
+    //
+    string version = 3;
+}
+
+//
+message GetLastPolicyReq {
+    //
+    PolicyType policy_type = 1;
+}
+
+//
+message GetUserInfoReply {
+    //
+    int64 mid = 1;
+    //
+    string name = 2;
+    //
+    string address = 3;
+    //
+    string avatar_url = 4;
+    //
+    string help_url = 5;
+}
+
+//
+message GetUserInfoReq {
+    //
+    int64 mid = 1;
+}
+
+//
+message Link {
+    //
+    string name = 1;
+    //
+    string link_url = 2;
+    //
+    string track_event_id = 3;
+}
+
+//
+message ListNFTByMidReply {
+    //
+    repeated NFT nfts = 1;
+    //
+    int64 anchor_id = 2;
+    //
+    bool end = 3;
+}
+
+//
+message ListNFTByMidReq {
+    //
+    int64 mid = 1;
+    //
+    string category = 2;
+    //
+    string biz_type = 3;
+    //
+    int64 anchor_id = 4;
+    //
+    int64 page_size = 5;
+}
+
+//
+message ListOrderByMidReply {
+    //
+    repeated Order orders = 1;
+    //
+    int64 anchor_id = 2;
+    //
+    bool end = 3;
+}
+
+//
+message ListOrderByMidReq {
+    //
+    int64 mid = 1;
+    //
+    int64 anchor_id = 2;
+    //
+    int64 page_size = 3;
+}
+
+//
+message NFT {
+    //
+    string nft_id = 1;
+    //
+    string item_name = 2;
+    //
+    string serial_number = 3;
+    //
+    string issuer = 4;
+    //
+    Display display = 5;
+    //
+    string detail_url = 6;
+    //
+    NFTStatus nft_status = 7;
+    //
+    int64 item_id = 8;
+}
+
+//
+enum NFTStatus {
+    UNDEFINED = 0; //
+    NORMAL = 1;    //
+    DOING = 2;     //
+}
+
+//
+message Order {
+    //
+    string item_name = 1;
+    //
+    string serial_number = 2;
+    //
+    string tx_hash = 3;
+    //
+    string tx_time = 4;
+    //
+    string issuer = 5;
+    //
+    string issue_time = 6;
+    //
+    string token_id = 7;
+    //
+    Display display = 8;
+    //
+    string contract_address = 9;
+    //
+    string hash_jump = 10;
+    //
+    string contract_jump = 11;
+    //
+    bool disable_browser_jump = 12;
+}
+
+//
+enum PolicyAgreeStatus {
+    UNSIGNED = 0; //
+    ACCEPTED = 1; //
+    EXPIRED = 2;  //
+}
+
+//
+enum PolicyType {
+    UNKNOWN_POLICY = 0; //
+    WALLET = 1;         //
+    SALE = 2;           //
+}
+
+//
+message UserCheckReply {
+    //
+    int32 policy_status = 1;
+    //
+    int32 gt14 = 2;
+}
+
+//
+message UserCheckReq {
+    //
+    int64 mid = 1;
+    //
+    int32 policy_type = 2;
+}

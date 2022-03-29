@@ -10,34 +10,6 @@ service Splash {
     rpc List (SplashReq) returns (SplashReply);
 }
 
-//-请求
-message SplashReq {
-    //
-    int32 width = 1;
-    //
-    int32 height = 2;
-    //
-    string birth = 3;
-    //
-    string ad_extra = 4;
-    //
-    string network = 5;
-}
-
-//-响应
-message SplashReply {
-    //
-    int32 max_time = 1;
-    //
-    int32 min_interval = 2;
-    //
-    int32 pull_interval = 3;
-    //
-    repeated SplashItem list = 4;
-    //
-    repeated ShowStrategy show = 5;
-}
-
 //
 message ShowStrategy {
     //
@@ -128,4 +100,32 @@ message SplashItem {
     bool enable_pre_download = 38;
     //
     bool enable_background_download = 39;
+}
+
+//-响应
+message SplashReply {
+    //
+    int32 max_time = 1;
+    //
+    int32 min_interval = 2;
+    //
+    int32 pull_interval = 3;
+    //
+    repeated SplashItem list = 4;
+    //
+    repeated ShowStrategy show = 5;
+}
+
+//-请求
+message SplashReq {
+    //
+    int32 width = 1;
+    //
+    int32 height = 2;
+    //
+    string birth = 3;
+    //
+    string ad_extra = 4;
+    //
+    string network = 5;
 }

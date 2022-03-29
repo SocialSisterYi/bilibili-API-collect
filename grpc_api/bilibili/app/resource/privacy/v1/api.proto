@@ -11,15 +11,13 @@ service Privacy {
 }
 
 // 空请求
-message NoArgRequest{}
+message NoArgRequest{
+
+}
 
 // 空响应
-message NoReply{}
+message NoReply{
 
-// 获取隐私设置-响应
-message PrivacyConfigReply {
-    // 隐私设置
-    PrivacyConfigItem privacy_config_item = 1;
 }
 
 // 隐私设置
@@ -36,20 +34,22 @@ message PrivacyConfigItem {
     string sub_title_uri = 5;
 }
 
-// 隐私开关类型
-enum PrivacyConfigType {
-    //
-    none = 0;
-    // 动态同城
-    dynamic_city = 1;
+// 获取隐私设置-响应
+message PrivacyConfigReply {
+    // 隐私设置
+    PrivacyConfigItem privacy_config_item = 1;
 }
 
 // 隐私开关状态
 enum PrivacyConfigState {
-    // 关闭
-    close = 0;
-    // 打开
-    open = 1;
+    close = 0; // 关闭
+    open = 1;  // 打开
+}
+
+// 隐私开关类型
+enum PrivacyConfigType {
+    none = 0;         //
+    dynamic_city = 1; // 动态同城
 }
 
 // 修改隐私设置-请求

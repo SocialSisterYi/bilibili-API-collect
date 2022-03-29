@@ -4,18 +4,16 @@ package bilibili.im.interfaces.v1;
 
 import "bilibili/im/type/im.proto";
 
-//私信
+// 私信
 service ImInterface {
     // 发送消息
     rpc SendMsg (ReqSendMsg) returns (RspSendMsg);
-
     // 同步关系
     rpc SyncRelation (ReqRelationSync) returns (RspRelationSync);
     // 确认同步进度
     rpc SyncAck (ReqSyncAck) returns (RspSyncAck);
     // 同步版本拉取消息
     rpc SyncFetchSessionMsgs (ReqSessionMsg) returns (RspSessionMsg);
-    
     // 拉取会话记录列表
     rpc GetSessions (ReqGetSessions) returns (RspSessions);
     // 拉取新消息
@@ -46,25 +44,46 @@ service ImInterface {
     rpc BatchRmSessions (ReqBatRmSess) returns (DummyRsp);
     // 拉取最近私信分享列表
     rpc ShareList (ReqShareList) returns (RspShareList);
-
     //
     rpc SpecificSingleUnread (ReqSpecificSingleUnread) returns (RspSpecificSingleUnread);
     //
     rpc GetSpecificSessions (ReqGetSpecificSessions) returns (RspSessions);
+    //
+    rpc GetLiveInfo(ReqLiveInfo) returns (RspLiveInfo);
+    //
+    rpc GetTotalUnread(ReqTotalUnread) returns (RspTotalUnread);      
+    //
+    rpc ShowClearUnreadUI(ReqShowClearUnreadUI) returns (RspShowClearUnreadUI);
+    //
+    rpc CloseClearUnreadUI(ReqCloseClearUnreadUI) returns (RspCloseClearUnreadUI);
+    //
+    rpc UpdateTotalUnread(ReqUpdateTotalUnread) returns (RspUpdateTotalUnread);
 }
 
-// 发送消息-请求
-message ReqSendMsg {
-    // 消息内容
-    bilibili.im.type.Msg msg = 1;
+// 空请求
+message DummyReq {
     //
-    string cookie = 2;
-    //
-    string cookie2 = 3;
-    //
-    int32 error_code = 4;
-    //
-    string dev_id = 5;
+    uint32 idl = 1;
+}
+
+// 空响应
+message DummyRsp {
+    reserved 1;
+}
+
+//
+enum ENUM_FOLD {
+    FOLD_NO = 0;      //
+    FOLD_YES = 1;     //
+    FOLD_UNKNOWN = 2; //
+}
+
+//
+enum ENUM_UNREAD_TYPE{
+    UNREAD_TYPE_ALL = 0;      //
+    UNREAD_TYPE_FOLLOW = 1;   //
+    UNREAD_TYPE_UNFOLLOW = 2; //
+    UNREAD_TYPE_DUSTBIN = 3;  //
 }
 
 // 表情资源信息
@@ -80,77 +99,54 @@ message EmotionInfo {
     string gif_url = 4;
 }
 
-// 发送消息-响应
-message RspSendMsg {
+//
+message MsgDetail {
     //
-    uint64 msg_key = 1;
-    // 表情资源信息
-    repeated EmotionInfo e_infos = 2;
+    int64 msg_key = 1;
     //
-    string msg_content = 3;
-    //
-    bilibili.im.type.KeyHitInfos key_hit_infos = 4;
+    int64 seqno = 2;
 }
 
-// 同步关系-请求
-message ReqRelationSync {
-    // 客户端当前seqno
-    uint64 client_relation_oplog_seqno = 1;
+//
+message MsgFeedUnreadRsp {
+    //
+    map<string, int64> unread = 1;
 }
 
-// 同步关系-响应
-message RspRelationSync {
+// 更新应援团小助手消息已拉取进度-请求
+message ReqAckAssisMsg {
     //
-    int32 full = 1;
-    // 增量日志
-    repeated bilibili.im.type.RelationLog relation_logs = 2;
-    // 全量列表
-    repeated bilibili.im.type.FriendRelation friend_list = 3;
-    // 服务器端最大的relation seqno
-    uint64 server_relation_oplog_seqno = 4;
-    // 全量列表
-    repeated bilibili.im.type.GroupRelation group_list = 5;
+    uint64 ack_seqno = 1;
 }
 
-// 确认同步进度-请求
-message ReqSyncAck {
+// 拉取已读消息-请求
+message ReqAckSessions {
     //
-    uint64 client_seqno = 1;
+    uint64 begin_ts = 1;
+    //
+    uint32 end_ts = 2;
+    //
+    uint32 size = 3;
 }
 
-// 确认同步进度-响应
-message RspSyncAck {}
+// 批量删除会话-请求
+message ReqBatRmSess {
 
-// 同步版本拉取消息-请求
-message ReqSessionMsg {
+}
+
+//
+message ReqCloseClearUnreadUI {
+
+}
+
+//
+message ReqGetMsg {
     //
-    uint64 talker_id = 1;
+    int64 talker_id = 1;
     //
     int32 session_type = 2;
     //
-    uint64 end_seqno = 3;
-    //
-    uint64 begin_seqno = 4;
-    //
-    int32 size = 5;
-    //
-    int32 order = 6;
-    //
-    string dev_id = 7;
-}
-
-// 同步版本拉取消息-响应
-message RspSessionMsg {
-    //
-    repeated bilibili.im.type.Msg messages = 1;
-    //
-    int32 has_more = 2;
-    //
-    uint64 min_seqno = 3;
-    //
-    uint64 max_seqno = 4;
-    // 表情资源信息
-    repeated EmotionInfo e_infos = 5;
+    repeated MsgDetail msg_detail = 3;
 }
 
 // 拉取会话记录列表-请求
@@ -175,6 +171,28 @@ message ReqGetSessions {
     uint32 lessons_mode = 9;
 }
 
+// -请求
+message ReqGetSpecificSessions {
+    // 具体会话详情
+    repeated SimpleSession talker_sessions = 1;
+}
+
+// 应援团消息助手-请求
+message ReqGroupAssisMsg {
+    //
+    uint64 client_seqno = 1;
+    //
+    uint32 size = 2;
+}
+
+//
+message ReqLiveInfo {
+    //
+    int64 uid = 1;
+    //
+    int64 talker_id = 2;
+}
+
 // 拉取新消息-请求
 message ReqNewSessions {
     //
@@ -187,47 +205,10 @@ message ReqNewSessions {
     uint32 lessons_mode = 4;
 }
 
-// 拉取已读消息-请求
-message ReqAckSessions {
-    //
-    uint64 begin_ts = 1;
-    //
-    uint32 end_ts = 2;
-    //
-    uint32 size = 3;
-}
-
-// 拉取消息-响应
-message RspSessions {
-    //
-    repeated bilibili.im.type.SessionInfo session_list = 1;
-    //
-    uint32 has_more = 2;
-    // 标记反垃圾会话是否在清理中
-    bool anti_disturb_cleaning = 3;
-    // 当session_list为空时，会返回该字段用于判断通讯录是否为空，1表示空，0表示非空
-    int32 is_address_list_empty = 4;
-}
-
-// 更新已读进度-请求
-message ReqUpdateAck {
-    // 聊天对象uid，可以为用户id或者为群id
-    uint64 talker_id = 1;    
-    // 会话类型
-    uint32 session_type = 2;    
-    // 已读的最大seqno
-    uint64 ack_seqno = 3;
-}
-
-// 置顶聊天-请求
-message ReqSetTop {
-    //
-    uint64 talker_id = 1;
-    //
-    uint32 session_type = 2;
-    //
-    // 0:置顶 1:取消置顶
-    uint32 op_type = 3;
+// 同步关系-请求
+message ReqRelationSync {
+    // 客户端当前seqno
+    uint64 client_relation_oplog_seqno = 1;
 }
 
 // 删除会话记录-请求
@@ -238,104 +219,18 @@ message ReqRemoveSession {
     uint32 session_type = 2;
 }
 
-// 空响应
-message DummyRsp {
-    reserved 1;
-}
-
-//
-enum SESSION_TYPE {               //
-    UNKNOWN         = 0;          //
-    UN_FOLD_SESSION = 1;          //
-    UN_FOLLOW_SINGLE_SESSION = 2; //
-    MY_GROUP_SESSION = 3;         //
-    ALL_SESSION = 4;              //
-}
-
-//
-enum ENUM_FOLD {
-    FOLD_NO = 0;      //
-    FOLD_YES = 1;     //
-    FOLD_UNKNOWN = 2; //
-}
-
-//
-enum ENUM_UNREAD_TYPE{
-    UNREAD_TYPE_ALL = 0;      //
-    UNREAD_TYPE_FOLLOW = 1;   //
-    UNREAD_TYPE_UNFOLLOW = 2; //
-}
-
-// 未读私信数-请求
-message ReqSingleUnread {
+// 发送消息-请求
+message ReqSendMsg {
+    // 消息内容
+    bilibili.im.type.Msg msg = 1;
     //
-    uint32 unread_type = 1;
+    string cookie = 2;
     //
-    uint32 show_unfollow_list = 2;
-}
-
-// 未读私信数-响应
-message RspSingleUnread {
-    // 未关注用户私信数
-    uint64 unfollow_unread = 1;
-    // 已关注用户私信数
-    uint64 follow_unread = 2;
-    // 未关注人列表是否有新业务通知
-    uint32 unfollow_push_msg = 3;
-}
-
-//
-message SimpleSession {
-    // 聊天对象uid，可以为用户id或者为群id
-    uint64 talker_id = 1;
-    // 会话类型
-    uint32 session_type = 2;
-}
-
-// -请求
-message ReqSpecificSingleUnread {
-    // 具体会话详情
-    repeated SimpleSession talker_sessions = 1;
-}
-
-// -响应
-message RspSpecificSingleUnread {
-    // key -> 用户uid, value ->未读数
-    map <uint64,uint64> talkerUnreadCnt = 1;
-    // 总未读数
-    uint64 allUnreadCnt = 2;
-}
-
-// -请求
-message ReqGetSpecificSessions {
-    // 具体会话详情
-    repeated SimpleSession talker_sessions = 1;
-}
-
-// 空请求
-message DummyReq {
+    string cookie2 = 3;
     //
-    uint32 idl = 1;
-}
-
-// 我创建的应援团未读数-响应
-message RspMyGroupUnread {
-    // 未读消息数
-    uint32 unread_count = 1;
-}
-
-// 应援团消息助手-请求
-message ReqGroupAssisMsg {
+    int32 error_code = 4;
     //
-    uint64 client_seqno = 1;
-    //
-    uint32 size = 2;
-}
-
-// 更新应援团小助手消息已拉取进度-请求
-message ReqAckAssisMsg {
-    //
-    uint64 ack_seqno = 1;
+    string dev_id = 5;
 }
 
 // 拉取会话详情-请求
@@ -354,19 +249,287 @@ message ReqSessionDetails {
     repeated ReqSessionDetail sess_ids = 1;
 }
 
+// 同步版本拉取消息-请求
+message ReqSessionMsg {
+    //
+    uint64 talker_id = 1;
+    //
+    int32 session_type = 2;
+    //
+    uint64 end_seqno = 3;
+    //
+    uint64 begin_seqno = 4;
+    //
+    int32 size = 5;
+    //
+    int32 order = 6;
+    //
+    string dev_id = 7;
+}
+
+// 置顶聊天-请求
+message ReqSetTop {
+    //
+    uint64 talker_id = 1;
+    //
+    uint32 session_type = 2;
+    //
+    // 0:置顶 1:取消置顶
+    uint32 op_type = 3;
+}
+
+// 拉取最近私信分享列表-请求
+message ReqShareList {
+    // 分页大小 最大20
+    int32 size = 1;
+}
+
+//
+message ReqShowClearUnreadUI {
+    //
+    int32 unread_type = 1;
+    //
+    int32 show_unfollow_list = 2;
+    //
+    int32 show_dustbin = 4;
+}
+
+// 未读私信数-请求
+message ReqSingleUnread {
+    //
+    int32 unread_type = 1;
+    //
+    int32 show_unfollow_list = 2;
+    //
+    int64 uid = 3;
+    //
+    int32 show_dustbin = 4;
+}
+
+// -请求
+message ReqSpecificSingleUnread {
+    // 具体会话详情
+    repeated SimpleSession talker_sessions = 1;
+}
+
+// 确认同步进度-请求
+message ReqSyncAck {
+    //
+    uint64 client_seqno = 1;
+}
+
+//
+message ReqTotalUnread {
+    //
+    int32 unread_type = 1;
+    //
+    int32 show_unfollow_list = 2;
+    //
+    int64 uid = 3;
+    //
+    int32 show_dustbin = 4;
+    //
+    int32 singleunread_on = 5;
+    //
+    int32 msgfeed_on = 6;
+    //
+    int32 sysup_on = 7;
+}
+
+// 更新已读进度-请求
+message ReqUpdateAck {
+    // 聊天对象uid，可以为用户id或者为群id
+    uint64 talker_id = 1;    
+    // 会话类型
+    uint32 session_type = 2;    
+    // 已读的最大seqno
+    uint64 ack_seqno = 3;
+}
+
+//
+message ReqUpdateIntercept {
+    //
+    int64 uid = 1;
+    //
+    int64 talker_id = 2;
+    //
+    int32 status = 3;
+}
+
+//
+message ReqUpdateTotalUnread {
+
+}
+
+//
+message RspCloseClearUnreadUI {
+
+}
+
+//
+message RspGetMsg {
+    //
+    repeated bilibili.im.type.Msg msg = 1;
+}
+
+//
+message RspLiveInfo {
+    //
+    int64 live_status = 1;
+    //
+    string jump_url = 2;
+}
+
+// 我创建的应援团未读数-响应
+message RspMyGroupUnread {
+    // 未读消息数
+    uint32 unread_count = 1;
+}
+
+// 同步关系-响应
+message RspRelationSync {
+    //
+    int32 full = 1;
+    // 增量日志
+    repeated bilibili.im.type.RelationLog relation_logs = 2;
+    // 全量列表
+    repeated bilibili.im.type.FriendRelation friend_list = 3;
+    // 服务器端最大的relation seqno
+    uint64 server_relation_oplog_seqno = 4;
+    // 全量列表
+    repeated bilibili.im.type.GroupRelation group_list = 5;
+}
+
+// 发送消息-响应
+message RspSendMsg {
+    //
+    uint64 msg_key = 1;
+    // 表情资源信息
+    repeated EmotionInfo e_infos = 2;
+    //
+    string msg_content = 3;
+    //
+    bilibili.im.type.KeyHitInfos key_hit_infos = 4;
+}
+
 // 批量拉取会话详情-响应
 message RspSessionDetails {
     // 会话详情列表
     repeated bilibili.im.type.SessionInfo sess_infos = 1;
 }
 
-// 批量删除会话-请求
-message ReqBatRmSess {}
+// 同步版本拉取消息-响应
+message RspSessionMsg {
+    //
+    repeated bilibili.im.type.Msg messages = 1;
+    //
+    int32 has_more = 2;
+    //
+    uint64 min_seqno = 3;
+    //
+    uint64 max_seqno = 4;
+    // 表情资源信息
+    repeated EmotionInfo e_infos = 5;
+}
 
-// 拉取最近私信分享列表-请求
-message ReqShareList {
-    // 分页大小 最大20
-    int32 size = 1;
+// 拉取消息-响应
+message RspSessions {
+    //
+    repeated bilibili.im.type.SessionInfo session_list = 1;
+    //
+    uint32 has_more = 2;
+    // 标记反垃圾会话是否在清理中
+    bool anti_disturb_cleaning = 3;
+    // 当session_list为空时，会返回该字段用于判断通讯录是否为空，1表示空，0表示非空
+    int32 is_address_list_empty = 4;
+    //
+    map<int32, int64> system_msg = 5;
+    //
+    bool show_level = 6;
+}
+
+// 拉取最近私信分享列表-响应
+message RspShareList {
+    // 最近会话列表
+    repeated ShareSessionInfo session_list = 1;
+    //
+    int32 IsAddressListEmpty = 2;
+}
+
+//
+message RspShowClearUnreadUI {
+    //
+    bool display = 1;
+    //
+    string text = 2;
+}
+
+// 未读私信数-响应
+message RspSingleUnread {
+    // 未关注用户私信数
+    uint64 unfollow_unread = 1;
+    // 已关注用户私信数
+    uint64 follow_unread = 2;
+    // 未关注人列表是否有新业务通知
+    uint32 unfollow_push_msg = 3;
+    //
+    int32 dustbin_push_msg = 4;
+    //
+    int64 dustbin_unread = 5;
+}
+
+// -响应
+message RspSpecificSingleUnread {
+    // key -> 用户uid, value ->未读数
+    map <uint64,uint64> talkerUnreadCnt = 1;
+    // 总未读数
+    uint64 allUnreadCnt = 2;
+}
+
+// 确认同步进度-响应
+message RspSyncAck {
+
+}
+
+//
+message RspTotalUnread {
+    //
+    SessionSingleUnreadRsp session_single_unread = 1;
+    //
+    MsgFeedUnreadRsp msg_feed_unread = 2;
+    //
+    SysMsgInterfaceLastMsgRsp sys_msg_interface_last_msg = 3;
+    //
+    int32 total_unread = 4;
+}
+
+//
+message RspUpdateTotalUnread {
+
+}
+
+//
+enum SESSION_TYPE {               //
+    UNKNOWN         = 0;          //
+    UN_FOLD_SESSION = 1;          //
+    UN_FOLLOW_SINGLE_SESSION = 2; //
+    MY_GROUP_SESSION = 3;         //
+    ALL_SESSION = 4;              //
+    DUSTBIN_SESSION = 5;          //
+}
+
+//
+message SessionSingleUnreadRsp {
+    //
+    int64 unfollow_unread = 1;
+    //
+    int64 follow_unread = 2;
+    //
+    int32 unfollow_push_msg = 3;
+    //
+    int32 dustbin_push_msg = 4;
+    //
+    int64 dustbin_unread = 5;
 }
 
 // 会话信息，用于私信分享
@@ -382,10 +545,58 @@ message ShareSessionInfo {
     int32 official_type = 4;
 }
 
-// 拉取最近私信分享列表-响应
-message RspShareList {
-    // 最近会话列表
-    repeated ShareSessionInfo session_list = 1;
-    //
-    int32 IsAddressListEmpty = 2;
+//
+message SimpleSession {
+    // 聊天对象uid，可以为用户id或者为群id
+    uint64 talker_id = 1;
+    // 会话类型
+    uint32 session_type = 2;
 }
+
+//
+message SysMsgInterfaceLastMsgRsp {
+    //
+    int32 unread = 1;
+    //
+    string title = 2;
+    //
+    string time = 3;
+    //
+    int64 id = 4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

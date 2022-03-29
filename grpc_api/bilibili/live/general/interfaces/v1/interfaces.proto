@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package bilibili.live.general.interfaces.v1;
+
+//
+message GetOnlineRankReq {
+    //
+    int64 ruid = 1;
+    //
+    int64 room_id = 2;
+    //
+    int64 page = 3;
+    //
+    int64 page_size = 4;
+    //
+    string platform = 5;
+}
+
+//
+message GetOnlineRankResp {
+    //
+    message OnlineRankItem {
+        //
+        int64 uid = 1;
+        //
+        string uname = 2;
+        //
+        string face = 3;
+        //
+        int64 continue_watch = 4;
+        //
+        MedalInfo medal_info = 5;
+        //
+        int64 guard_level = 6;
+    }
+    //
+    OnlineRankItem item = 1;
+    //
+    int64 online_num = 2;
+}
+
+//
+message MedalInfo {
+    //
+    int64 guard_level = 1;
+    //
+    int64 medal_color_start = 2;
+    //
+    int64 medal_color_end = 3;
+    //
+    int64 medal_color_border = 4;
+    //
+    string medal_name = 5;
+    //
+    int64 level = 6;
+    //
+    int64 target_id = 7;
+    //
+    int64 is_light = 8;
+}

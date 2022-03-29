@@ -19,4 +19,6 @@ message Restriction {
     ModeType mode = 3;
     // app 审核review状态
     bool review = 4;
+    //
+    bool disable_rcmd = 5;
 }

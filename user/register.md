@@ -85,4 +85,4 @@ curl 'https://passport.bilibili.com/web/reg/tel' \
     --data-raw 'nickName=%E8%90%8C%E7%B3%BB%E5%B0%8F%E5%A6%B9%E7%BA%B8%E3%82%8F&code=121314&pwd=Password1234&gourl=https%3A%2F%2Fpassport.bilibili.com%2Flogin%3Fgourl%3Dhttps%3A%2F%2Fspace.bilibili.com&tel=13888888888&cid=1&plat=0'
 ```
 
-<details>
+</details>

@@ -8,18 +8,6 @@ service Space {
     rpc Archive (ArchiveReq) returns (ArchiveReply);
 }
 
-//-请求
-message ArchiveReq {
-    //
-    int64 vmid = 1;
-    //
-    int32 pn = 2;
-    //
-    int32 ps = 3;
-    //
-    string order = 4;
-}
-
 //-响应
 message ArchiveReply {
     //
@@ -30,6 +18,18 @@ message ArchiveReply {
     EpisodicButton episodic_button = 3;
     //
     repeated OrderConfig order = 4;
+}
+
+//-请求
+message ArchiveReq {
+    //
+    int64 vmid = 1;
+    //
+    int32 pn = 2;
+    //
+    int32 ps = 3;
+    //
+    string order = 4;
 }
 
 //

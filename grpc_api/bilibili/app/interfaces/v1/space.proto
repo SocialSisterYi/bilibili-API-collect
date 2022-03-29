@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package bilibili.app.interfaces.v1;
+
+import "bilibili/app/archive/middleware/v1/preload.proto";
+import "bilibili/app/archive/v1/archive.proto";
+import "bilibili/app/dynamic/v2/dynamic.proto";
+
+//
+service Space {
+    //
+    rpc SearchTab(SearchTabReq) returns (SearchTabReply);
+    //
+    rpc SearchArchive(SearchArchiveReq) returns (SearchArchiveReply);
+    //
+    rpc SearchDynamic(SearchDynamicReq) returns (SearchDynamicReply);
+}
+
+//
+message Arc {
+    //
+    bilibili.app.archive.v1.Arc archive = 1;
+    //
+    string uri = 2;
+}
+
+
+//
+message Dynamic {
+    //
+    bilibili.app.dynamic.v2.DynamicItem dynamic = 1;
+}
+
+enum From {
+    ArchiveTab = 0; //
+    DynamicTab = 1; //
+}
+
+//
+message OfficialVerify {
+    //
+    int32 type = 1;
+    //
+    string desc = 2;
+}
+
+//
+message SearchTabReply {
+    //
+    int64 focus = 1;
+    //
+    repeated Tab tabs = 2;
+}
+
+//
+message SearchTabReq {
+    //
+    string keyword = 1;
+    //
+    int64 mid = 2;
+    //
+    int32 from = 3;
+}
+
+//
+message SearchArchiveReply {
+    //
+    repeated Arc archives = 1;
+    //
+    int64 total = 2;
+}
+
+//
+message SearchArchiveReq {
+    //
+    string keyword = 1;
+    //
+    int64 mid = 2;
+    //
+    int64 pn = 3;
+    //
+    int64 ps = 4;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+}
+
+//
+message SearchDynamicReply {
+    //
+    repeated Dynamic dynamics = 1;
+    //
+    int64 total = 2;
+}
+
+//
+message SearchDynamicReq {
+    //
+    string keyword = 1;
+    //
+    int64 mid = 2;
+    //
+    int64 pn = 3;
+    //
+    int64 ps = 4;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+}
+
+//
+message Tab {
+    //
+    string title = 1;
+    //
+    string uri = 2;
+}

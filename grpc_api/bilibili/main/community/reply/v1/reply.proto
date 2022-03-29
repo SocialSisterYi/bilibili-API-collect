@@ -7,17 +7,84 @@ import "google/protobuf/any.proto";
 // 评论区
 service Reply {
     // 主评论列表接口
-    rpc MainList(MainListReq) returns (MainListReply);
+    rpc MainList (MainListReq) returns (MainListReply);
     // 二级评论明细接口
-    rpc DetailList(DetailListReq) returns (DetailListReply);
+    rpc DetailList (DetailListReq) returns (DetailListReply);
     // 对话评论树接口
-    rpc DialogList(DialogListReq) returns (DialogListReply);
+    rpc DialogList (DialogListReq) returns (DialogListReply);
     // 评论预览接口
     rpc PreviewList (PreviewListReq) returns (PreviewListReply);
     // 评论搜索item前置发布接口
-    rpc SearchItemPreHook(SearchItemPreHookReq) returns (SearchItemPreHookReply);
+    rpc SearchItemPreHook (SearchItemPreHookReq) returns (SearchItemPreHookReply);
     // 评论搜索插入项目接口
-    rpc SearchItem(SearchItemReq) returns (SearchItemReply);
+    rpc SearchItem (SearchItemReq) returns (SearchItemReply);
+    //
+    rpc AtSearch (AtSearchReq) returns (AtSearchReply);
+    //
+    rpc ReplyInfo (ReplyInfoReq) returns (ReplyInfoReply);
+    //
+    rpc UserCallback (UserCallbackReq) returns (UserCallbackReply);
+    //
+    rpc ShareRepliesInfo (ShareRepliesInfoReq) returns (ShareRepliesInfoResp);
+}
+
+// 活动
+message Activity {
+    // 活动id
+    int64 activity_id = 1;
+    // 活动状态
+    // -1:待审 1:上线
+    int64 activity_state = 2;
+    // 参与活动的输入框文案
+    string activity_placeholder = 3;
+}
+
+// 文章项目
+message ArticleSearchItem {
+    // 标题
+    string title = 1;
+    // UP主昵称
+    string up_nickname = 2;
+    // 封面
+    repeated string covers = 3;
+}
+
+//
+message AtGroup {
+    //
+    int32 group_type = 1;
+    //
+    string group_name = 2;
+    //
+    repeated AtItem items = 3;
+}
+
+//
+message AtItem {
+    //
+    int64 mid = 1;
+    //
+    string name = 2;
+    //
+    string face = 3;
+    //
+    int32 fans = 4;
+    //
+    int32 official_verify_type = 5;
+}
+
+//
+message AtSearchReply {
+    //
+    repeated AtGroup groups = 1;
+}
+
+//
+message AtSearchReq {
+    //
+    int64 mid = 1;
+    //
+    string keyword = 2;
 }
 
 // 广告
@@ -26,36 +93,61 @@ message CM {
     google.protobuf.Any source_content = 1;
 }
 
-// 对话评论树-请求
-message DialogListReq {
-    // 目标评论区id
-    int64 oid = 1;
-    // 目标评论区类型
-    int64 type = 2;
-    // 根评论rpid
-    int64 root = 3;
-    // 对话评论rpid
-    int64 rpid = 4;
-    // 页面游标
-    CursorReq cursor = 5;
+// 评论主体信息
+message Content {
+    // 评论文本
+    string message = 1;
+    // at到的用户信息
+    map<string, Member> menber = 2;
+    // 需要渲染的表情转义
+    map<string, Emote> emote = 3;
+    // 需要高亮的话题转义
+    map<string, Topic> topic = 4;
+    // 需要高亮的超链转义
+    map<string, Url> url = 5;
+    // 投票信息
+    Vote vote = 6;
 }
 
-// 对话评论树-响应
-message DialogListReply {
+// 页面游标回复
+message CursorReply {
+    // 下页数据
+    int64 next = 1;
+    // 上页数据
+    int64 prev = 2;
+    // 是否到顶
+    bool isBegin = 3;
+    // 是否到底
+    bool isEnd = 4;
+    // 排序方式
+    // 2:时间 3:热度
+    Mode mode = 5;
+    // 当前排序mode在切换按钮上的展示文案 
+    string mode_text = 6;
+}
+
+// 页面游标请求
+message CursorReq {
+    // 下页数据
+    int64 next = 1;
+    // 上页数据
+    int64 prev = 2;
+    // 排序方式
+    Mode mode = 4;
+}
+
+// 二级评论明细-响应
+message DetailListReply {
     // 页面游标
     CursorReply cursor = 1;
     // 评论区显示控制字段
     SubjectControl subject_control = 2;
-    // 子评论列表
-    repeated ReplyInfo replies = 3;
+    // 根评论信息(带二级评论)
+    ReplyInfo root = 3;
     // 评论区的活动
     Activity activity = 4;
-}
-
-// 来源标识
-enum DetailListScene {
-    REPLY = 0;    // 评论区展开
-    MSG_FEED = 1; // 回复消息推送
+    //
+    LikeInfo likes = 5;
 }
 
 // 二级评论明细-请求
@@ -74,70 +166,116 @@ message DetailListReq {
     DetailListScene scene = 6;
 }
 
-// 二级评论明细-响应
-message DetailListReply {
+// 来源标识
+enum DetailListScene {
+    REPLY = 0;    // 评论区展开
+    MSG_FEED = 1; // 回复消息推送
+    NOTIFY = 2;   //
+}
+
+// 对话评论树-响应
+message DialogListReply {
     // 页面游标
     CursorReply cursor = 1;
     // 评论区显示控制字段
     SubjectControl subject_control = 2;
-    // 根评论信息(带二级评论)
-    ReplyInfo root = 3;
+    // 子评论列表
+    repeated ReplyInfo replies = 3;
     // 评论区的活动
     Activity activity = 4;
 }
 
-// 主评论列表-请求
-message MainListReq {
+// 对话评论树-请求
+message DialogListReq {
     // 目标评论区id
     int64 oid = 1;
     // 目标评论区类型
     int64 type = 2;
+    // 根评论rpid
+    int64 root = 3;
+    // 对话评论rpid
+    int64 rpid = 4;
     // 页面游标
-    CursorReq cursor = 3;
-    // 扩展数据json
-    string extra = 4;
-    // 广告扩展json
-    string ad_extra = 5;
-    // 目标评论rpid
-    int64 rpid = 6;
+    CursorReq cursor = 5;
 }
 
-// 评论区预览-请求
-message PreviewListReq {
-    // 目标评论区id
-    int64 oid = 1;
-    // 目标评论区类型
-    int64 type = 2;
-    // 页面游标
-    CursorReq cursor = 3;
+// 特效
+message Effects {
+    //
+    string preloading = 1;
+}
+
+// 表情项
+message Emote {
+    // 表情大小
+    // 1:小 2:大
+    int64 size = 1;
+    // 表情url
+    string url = 2;
+    //
+    string jump_url = 3;
+    //
+    string jump_title = 4;
+    //
+    int64 id = 5;
+    //
+    int64 package_id = 6;
+    //
+    string gif_url = 7;
+}
+
+// 商品项目
+message GoodsSearchItem {
+    // 商品id
+    int64 id = 1;
+    // 商品名
+    string name = 2;
+    // 价钱
+    string price = 3;
+    // 收入
+    string income = 4;
+    // 图片
+    string img = 5;
+    // 标签
+    string label = 6;
 }
 
 //
-message ReplyExtra {
+message LikeInfo {
     //
-    int64 season_id = 1;
+    message Item {
+        //
+        Member member = 1;
+    }
     //
-    int64 season_type = 2;
+    repeated Item items = 1;
     //
-    int64 ep_id = 3;
-    //
-    bool is_story = 4;
+    string title = 2;
 }
 
-// 评论区预览-回复
-message PreviewListReply {
-    // 页面游标
-    CursorReply cursor = 1;
-    // 评论列表
-    repeated ReplyInfo replies = 2;
-    // 评论区显示控制字段
-    SubjectControl subject_control = 3;
-    // UP置顶评论
-    ReplyInfo upTop = 4;
-    // 管理员置顶评论
-    ReplyInfo admin_top = 5;
-    // 投票置顶评论
-    ReplyInfo vote_top = 6;
+// 抽奖
+message Lottery {
+    // 抽奖id
+    int64 lottery_id = 1;
+    // 抽奖状态
+    // 0:未开奖 1:开奖中 2:已开奖
+    int64 lottery_status = 2;
+    // 抽奖人mid
+    int64 lottery_mid = 3;
+    // 开奖时间
+    int64 lottery_time = 4;
+    //
+    int64 oid = 5;
+    //
+    int64 type = 6;
+    // 发送时间
+    int64 ctime = 7;
+    // 抽奖评论正文
+    Content content = 8;
+    // 用户信息
+    Member member = 9;
+    // 评论条目控制字段
+    ReplyControl reply_control = 10;
 }
 
 // 主评论列表-响应
@@ -166,279 +304,30 @@ message MainListReply {
     CM cm = 11;
     // 特效
     Effects effects = 12;
-}
-
-// 特效
-message Effects {
     //
-    string preloading = 1;
-}
-
-//
-message UpSelection {
-    // 待审评论数
-    int64 pending_count = 1;
-    // 忽略评论数
-    int64 ignore_count = 2;
-}
-
-//
-message Notice {
+    Operation operation = 13;
     //
-    int64 id = 1;
+    repeated ReplyInfo top_replies = 14;
     //
-    string content = 2;
+    QoeInfo qoe = 15;
     //
-    string link = 3;
+    map<string, int32> callbacks = 16;
 }
 
-// 活动
-message Activity {
-    // 活动id
-    int64 activity_id = 1;
-    // 活动状态
-    // -1:待审 1:上线
-    int64 activity_state = 2;
-    // 参与活动的输入框文案
-    string activity_placeholder = 3;
-}
-
-// 抽奖
-message Lottery {
-    // 抽奖id
-    int64 lottery_id = 1;
-    // 抽奖状态
-    // 0:未开奖 1:开奖中 2:已开奖
-    int64 lottery_status = 2;
-    // 抽奖人mid
-    int64 lottery_mid = 3;
-    // 开奖时间
-    int64 lottery_time = 4;
-    //
-    int64 oid = 5;
-    //
-    int64 type = 6;
-    // 发送时间
-    int64 ctime = 7;
-    // 抽奖评论正文
-    Content content = 8;
-    // 用户信息
-    Member member = 9;
-    // 评论条目控制字段
-    ReplyControl reply_control = 10;
-}
-
-// 排序方式
-enum Mode {
-    DEFAULT = 0;        //
-    UNSPECIFIED = 1;    // 默认排序
-    MAIN_LIST_TIME = 2; // 按时间
-    MAIN_LIST_HOT = 3;  // 按热度
-}
-
-// 页面游标请求
-message CursorReq {
-    // 下页数据
-    int64 next = 1;
-    // 上页数据
-    int64 prev = 2;
-    // 排序方式
-    Mode mode = 4;
-}
-
-// 页面游标回复
-message CursorReply {
-    // 下页数据
-    int64 next = 1;
-    // 上页数据
-    int64 prev = 2;
-    // 是否到顶
-    bool isBegin = 3;
-    // 是否到底
-    bool isEnd = 4;
-    // 排序方式
-    // 2:时间 3:热度
-    Mode mode = 5;
-    // 当前排序mode在切换按钮上的展示文案 
-    string mode_text = 6;
-}
-
-// 评论区控制字段
-message SubjectControl {
-    // UP主mid
-    int64 up_mid = 1;
-    // 自己是否为协管
-    bool is_assist = 2;
-    // 是否只读
-    bool read_only = 3;
-    // 是否有发起投票权限
-    bool has_vote_access = 4;
-    // 是否有发起抽奖权限
-    bool has_lottery_access = 5;
-    // 是否有被折叠评论
-    bool has_folded_reply = 6;
-    // 空评论区背景文案
-    string bg_text = 7;
-    // 是否被UP拉黑
-    bool up_blocked = 8;
-    // 是否有发起活动权限
-    bool has_activity_access = 9;
-    // 标题展示控制
-    bool show_title = 10;
-    // 是否显示UP主操作标志
-    bool show_up_action = 11;
-    // 是否显示评论区排序切换按钮
-    int64 switcher_type = 12;
-    // 是否禁止输入框
-    bool input_disable = 13;
-    // 根评论输入框背景文案
-    string root_text = 14;
-    // 子评论输入框背景文案
-    string child_text = 15;
-    // 评论总数
-    int64 count = 16;
-    // 评论区标题
-    string title = 17;
-    // 离开态输入框的文案
-    string giveup_text = 18;
-}
-
-// 评论条目信息
-message ReplyInfo {
-    // 二级评论列表
-    repeated ReplyInfo replies = 1;
-    // 评论rpid
-    int64 id = 2;
-    // 评论区对象id
-    int64 oid = 3;
-    // 评论区类型
-    int64 type = 4;
-    // 发布者UID
-    int64 mid = 5;
-    // 根评论rpid
-    int64 root = 6;
-    // 父评论rpid
-    int64 parent = 7;
-    // 对话评论rpid
-    int64 dialog = 8;
-    // 点赞数
-    int64 like = 9;
-    // 发布时间
-    int64 ctime = 10;
-    // 回复数
-    int64 count = 11;
-    // 评论主体信息
-    Content content = 12;
-    // 发布者信息
-    Member member = 13;
-    // 评论控制字段
-    ReplyControl reply_control = 14;
-}
-
-//评论主体信息
-message Content {
-    //评论文本
-    string message = 1;
-    //at到的用户信息
-    map<string,Member> menber = 2;
-    //需要渲染的表情转义
-    map<string,Emote> emote = 3;
-    //需要高亮的话题转义
-    map<string,Topic> topic = 4;
-    //需要高亮的超链转义
-    map<string,Url> url = 5;
-    //投票信息
-    Vote vote = 6;
-}
-
-// 评论条目控制字段
-message ReplyControl {
-    // 操作行为标志
-    // 0:无 1:已点赞 2:已点踩
-    int64 action = 1;
-    // 是否UP觉得很赞
-    bool up_like = 2;
-    // 是否存在UP回复
-    bool up_reply = 3;
-    // 是否显示关注按钮
-    bool show_follow_btn = 4;
-    // 是否协管
-    bool is_assist = 5;
-    // 是否展示标签
-    string label_text = 6;
-    // 是否关注
-    bool following = 7;
-    // 是否粉丝
-    bool followed = 8;
-    // 是否被自己拉黑
-    bool blocked = 9;
-    // 是否存在折叠的二级评论
-    bool has_folded_reply = 10;
-    // 是否折叠
-    bool is_folded_reply = 11;
-    // 是否UP置顶
-    bool is_up_top = 12;
-    // 是否管理置顶
-    bool is_admin_top = 13;
-    // 是否置顶投票评论
-    bool is_vote_top = 14;
-    // 最大收起显示行数
-    int64 max_line = 15;
-    // 该条评论可不可见
-    bool invisible = 16;
-    // 是否和up签订契约
-    bool is_contractor = 17;
-    // 是否是笔记评论
-    bool is_note = 18;
-}
-
-// 超链项
-message Url {
-    // 标题
-    string title = 1;
-    //
-    int64 state = 2;
-    // 图标url
-    string prefix_icon = 3;
-    //
-    string app_url_schema = 4;
-    //
-    string app_name = 5;
-    //
-    string app_package_name = 6;
-    // 上报id
-    string click_report = 7;
-    //
-    bool is_half_screen = 8;
-    //
-    string exposure_report = 9;
-}
-
-// 话题项
-message Topic {
-    // 跳转url
-    string link = 1;
-    // 话题id
-    int64 id = 2;
-}
-
-// 表情项
-message Emote {
-    // 表情大小
-    // 1:小 2:大
-    int64 size = 1;
-    // 表情url
-    string url = 2;
-}
-
-// 投票信息
-message Vote {
-    // 投票id
-    int64 id = 1;
-    // 投票标题
-    string title = 2;
-    // 参与人数
-    int64 count = 3;
+// 主评论列表-请求
+message MainListReq {
+    // 目标评论区id
+    int64 oid = 1;
+    // 目标评论区类型
+    int64 type = 2;
+    // 页面游标
+    CursorReq cursor = 3;
+    // 扩展数据json
+    string extra = 4;
+    // 广告扩展json
+    string ad_extra = 5;
+    // 目标评论rpid
+    int64 rpid = 6;
 }
 
 // 用户信息
@@ -497,82 +386,265 @@ message Member {
     string vip_label_text = 23;
     // 会员标颜色
     string vip_label_theme = 24;
+    //
+    int64 fans_medal_color_end = 25;
+    //
+    int64 fans_medal_color_border = 26;
+    //
+    int64 fans_medal_color_name = 27;
+    //
+    int64 fans_medal_color_level = 28;
+    //
+    int64 fans_guard_level = 29;
+    //
+    int32 face_nft = 30;
+    //
+    int32 face_nft_new = 31;
+    //
+    int32 is_senior_member = 32;
+}
+
+// 排序方式
+enum Mode {
+    DEFAULT = 0;        //
+    UNSPECIFIED = 1;    // 默认排序
+    MAIN_LIST_TIME = 2; // 按时间
+    MAIN_LIST_HOT = 3;  // 按热度
 }
 
 //
-enum SearchItemType {
-    DEFAULT_ITEM_TYPE = 0; //
-    GOODS_VALUE = 1;       //
-    VIDEO_VALUE = 2;       //
-    ARTICLE_VALUE = 3;     //
+message Notice {
+    //
+    int64 id = 1;
+    //
+    string content = 2;
+    //
+    string link = 3;
 }
 
 //
-enum SearchItemVideoSubType {
-    UGC = 0; //
-    PGC = 1; //
+message Operation {
+    //
+    int32 type = 1;
+    //
+    int64 id = 2;
+    //
+    OperationTitle title = 3;
+    //
+    OperationTitle subtitle = 4;
+    //
+    string link = 5;
+    //
+    string report_extra = 6;
 }
 
-// 评论搜索item前置发布-请求
-message SearchItemPreHookReq {
+//
+message OperationTitle {
+    //
+    string content = 1;
+    //
+    bool is_highlight = 2;
+}
+
+// PGC视频项目
+message PGCVideoSearchItem {
+    // 标题
+    string title = 1;
+    // 类别
+    string category = 2;
+    // 封面
+    string cover = 3;
+}
+
+// 评论区预览-回复
+message PreviewListReply {
+    // 页面游标
+    CursorReply cursor = 1;
+    // 评论列表
+    repeated ReplyInfo replies = 2;
+    // 评论区显示控制字段
+    SubjectControl subject_control = 3;
+    // UP置顶评论
+    ReplyInfo upTop = 4;
+    // 管理员置顶评论
+    ReplyInfo admin_top = 5;
+    // 投票置顶评论
+    ReplyInfo vote_top = 6;
+}
+
+// 评论区预览-请求
+message PreviewListReq {
     // 目标评论区id
     int64 oid = 1;
     // 目标评论区类型
     int64 type = 2;
-}
-
-// 评论搜索item前置发布-响应
-message SearchItemPreHookReply {
-    // 输入框的文案
-    string placeholder_text = 1;
-    // 背景空白的时候的文案
-    string background_text = 2;
-    // 有权限的tab栏的顺序
-    repeated SearchItemType ordered_type = 3;
-}
-
-// 评论搜索插入项目-请求
-message SearchItemReq {
-    //页面游标
-    SearchItemCursorReq cursor = 1;
-    //目标评论区id
-    int64 oid = 2;
-    //评论区类型
-    int64 type = 3;
-    //搜索关键词
-    string keyword = 4;
+    // 页面游标
+    CursorReq cursor = 3;
 }
 
 //
-message SearchItemReplyExtraInfo {
+message QoeInfo {
     //
-    string event_id = 1;
-}
-
-// 评论搜索插入项目-回复
-message SearchItemReply {
+    int64 id = 1;
     //
-    SearchItemCursorReply cursor = 1;
-    // 搜索的结果
-    repeated SearchItem items = 2;
-    // 附加信息
-    SearchItemReplyExtraInfo extra = 3;
+    int32 type = 2;
+    //
+    int32 style = 3;
+    //
+    string title = 4;
+    //
+    string feedback_title = 5;
+    //
+    repeated QoeScoreItem score_items = 6;
+    //
+    int64 display_rank = 7;
 }
 
-// 评论搜索插入项目请求游标
-message SearchItemCursorReq {
-    // 下一页
-    int64 next = 1;
-    // tab类型
-    SearchItemType item_type = 2;
+//
+message QoeScoreItem {
+    //
+    string title = 1;
+    //
+    string url = 2;
+    //
+    float score = 3;
 }
 
-// 评论搜索插入项目响应游标
-message SearchItemCursorReply {
-    // 是否有下一页
-    bool has_next = 1;
-    // 下页
-    int64 next = 2;
+//
+message ReplyCardLabel {
+    //
+    string text_content = 1;
+    //
+    string text_color_day = 2;
+    //
+    string text_color_night = 3;
+    //
+    string label_color_day = 4;
+    //
+    string label_color_night = 5;
+    //
+    string image = 6;
+    //
+    int32 type = 7;
+    //
+    string background = 8;
+    //
+    double background_width = 9;
+    //
+    double background_height = 10;
+    //
+    string jump_url = 11;
+}
+
+// 评论条目控制字段
+message ReplyControl {
+    // 操作行为标志
+    // 0:无 1:已点赞 2:已点踩
+    int64 action = 1;
+    // 是否UP觉得很赞
+    bool up_like = 2;
+    // 是否存在UP回复
+    bool up_reply = 3;
+    // 是否显示关注按钮
+    bool show_follow_btn = 4;
+    // 是否协管
+    bool is_assist = 5;
+    // 是否展示标签
+    string label_text = 6;
+    // 是否关注
+    bool following = 7;
+    // 是否粉丝
+    bool followed = 8;
+    // 是否被自己拉黑
+    bool blocked = 9;
+    // 是否存在折叠的二级评论
+    bool has_folded_reply = 10;
+    // 是否折叠
+    bool is_folded_reply = 11;
+    // 是否UP置顶
+    bool is_up_top = 12;
+    // 是否管理置顶
+    bool is_admin_top = 13;
+    // 是否置顶投票评论
+    bool is_vote_top = 14;
+    // 最大收起显示行数
+    int64 max_line = 15;
+    // 该条评论可不可见
+    bool invisible = 16;
+    // 是否和up签订契约
+    bool is_contractor = 17;
+    // 是否是笔记评论
+    bool is_note = 18;
+    //
+    repeated ReplyCardLabel card_labels = 19;
+    //
+    string sub_reply_entry_text = 20;
+    //
+    string sub_reply_title_text = 21;
+    //
+    string contract_desc = 22;
+    //
+    string time_desc = 23;
+    //
+    string biz_scene = 24;
+}
+
+//
+message ReplyExtra {
+    //
+    int64 season_id = 1;
+    //
+    int64 season_type = 2;
+    //
+    int64 ep_id = 3;
+    //
+    bool is_story = 4;
+}
+
+// 评论条目信息
+message ReplyInfo {
+    // 二级评论列表
+    repeated ReplyInfo replies = 1;
+    // 评论rpid
+    int64 id = 2;
+    // 评论区对象id
+    int64 oid = 3;
+    // 评论区类型
+    int64 type = 4;
+    // 发布者UID
+    int64 mid = 5;
+    // 根评论rpid
+    int64 root = 6;
+    // 父评论rpid
+    int64 parent = 7;
+    // 对话评论rpid
+    int64 dialog = 8;
+    // 点赞数
+    int64 like = 9;
+    // 发布时间
+    int64 ctime = 10;
+    // 回复数
+    int64 count = 11;
+    // 评论主体信息
+    Content content = 12;
+    // 发布者信息
+    Member member = 13;
+    // 评论控制字段
+    ReplyControl reply_control = 14;
+}
+
+//
+message ReplyInfoReply {
+    //
+    ReplyInfo reply = 1;
+}
+
+//
+message ReplyInfoReq {
+    //
+    int64 rpid = 1;
+    //
+    int32 scene = 2;
 }
 
 // 评论搜索插入项目
@@ -590,20 +662,262 @@ message SearchItem {
     }
 }
 
-// 商品项目
-message GoodsSearchItem {
-    // 商品id
-    int64 id = 1;
-    // 商品名
-    string name = 2;
-    // 价钱
-    string price = 3;
-    // 收入
-    string income = 4;
-    // 图片
-    string img = 5;
-    // 标签
-    string label = 6;
+// 评论搜索插入项目响应游标
+message SearchItemCursorReply {
+    // 是否有下一页
+    bool has_next = 1;
+    // 下页
+    int64 next = 2;
+}
+
+// 评论搜索插入项目请求游标
+message SearchItemCursorReq {
+    // 下一页
+    int64 next = 1;
+    // tab类型
+    SearchItemType item_type = 2;
+}
+
+// 评论搜索item前置发布-响应
+message SearchItemPreHookReply {
+    // 输入框的文案
+    string placeholder_text = 1;
+    // 背景空白的时候的文案
+    string background_text = 2;
+    // 有权限的tab栏的顺序
+    repeated SearchItemType ordered_type = 3;
+}
+
+// 评论搜索item前置发布-请求
+message SearchItemPreHookReq {
+    // 目标评论区id
+    int64 oid = 1;
+    // 目标评论区类型
+    int64 type = 2;
+}
+
+// 评论搜索插入项目-回复
+message SearchItemReply {
+    //
+    SearchItemCursorReply cursor = 1;
+    // 搜索的结果
+    repeated SearchItem items = 2;
+    // 附加信息
+    SearchItemReplyExtraInfo extra = 3;
+}
+
+//
+message SearchItemReplyExtraInfo {
+    //
+    string event_id = 1;
+}
+
+// 评论搜索插入项目-请求
+message SearchItemReq {
+    //页面游标
+    SearchItemCursorReq cursor = 1;
+    //目标评论区id
+    int64 oid = 2;
+    //评论区类型
+    int64 type = 3;
+    //搜索关键词
+    string keyword = 4;
+}
+
+//
+enum SearchItemType {
+    DEFAULT_ITEM_TYPE = 0; //
+    GOODS = 1;             //
+    VIDEO = 2;             //
+    ARTICLE = 3;           //
+}
+
+//
+enum SearchItemVideoSubType {
+    UGC = 0; //
+    PGC = 1; //
+}
+
+//
+message ShareRepliesInfoReq {
+    //
+    int64 oid = 2;
+    //
+    int64 type = 3;
+}
+
+//
+message ShareRepliesInfoResp {
+    //
+    message ShareExtra {
+        //
+        bool is_pgc = 1;  
+    }
+    //
+    repeated ShareReplyInfo infos = 1;
+    //
+    string from_title = 2;
+    //
+    string from_up = 3;
+    //
+    string from_pic = 4;
+    //
+    string url = 5;
+    //
+    string slogan_pic = 6;
+    //
+    string slogan_text = 7;
+    //
+    ShareReplyTopic topic = 8;
+    //
+    ShareExtra extra = 9;
+}
+
+//
+message ShareReplyInfo {
+    //
+    Member member = 1;
+    //
+    Content content = 2;
+    //
+    string title = 3;
+    //
+    string sub_title = 4;
+    //
+    string achievement_text = 5;
+    //
+    string label_url = 6;
+}
+
+//
+message ShareReplyTopic {
+    //
+    Topic topic = 1;
+    //
+    string origin_text = 2;
+}
+
+// 评论区控制字段
+message SubjectControl {
+    // UP主mid
+    int64 up_mid = 1;
+    // 自己是否为协管
+    bool is_assist = 2;
+    // 是否只读
+    bool read_only = 3;
+    // 是否有发起投票权限
+    bool has_vote_access = 4;
+    // 是否有发起抽奖权限
+    bool has_lottery_access = 5;
+    // 是否有被折叠评论
+    bool has_folded_reply = 6;
+    // 空评论区背景文案
+    string bg_text = 7;
+    // 是否被UP拉黑
+    bool up_blocked = 8;
+    // 是否有发起活动权限
+    bool has_activity_access = 9;
+    // 标题展示控制
+    bool show_title = 10;
+    // 是否显示UP主操作标志
+    bool show_up_action = 11;
+    // 是否显示评论区排序切换按钮
+    int64 switcher_type = 12;
+    // 是否禁止输入框
+    bool input_disable = 13;
+    // 根评论输入框背景文案
+    string root_text = 14;
+    // 子评论输入框背景文案
+    string child_text = 15;
+    // 评论总数
+    int64 count = 16;
+    // 评论区标题
+    string title = 17;
+    // 离开态输入框的文案
+    string giveup_text = 18;
+    //
+    bool has_note_access = 19;
+    //
+    bool disable_jump_emote = 20;
+}
+
+// 话题项
+message Topic {
+    // 跳转url
+    string link = 1;
+    // 话题id
+    int64 id = 2;
+}
+
+// UGC视频项目
+message UGCVideoSearchItem {
+    // 标题
+    string title = 1;
+    // UP主昵称
+    string up_nickname = 2;
+    // 时长(单位为秒)
+    int64 duration = 3;
+    // 封面
+    string cover = 4;
+}
+
+//
+message UpSelection {
+    // 待审评论数
+    int64 pending_count = 1;
+    // 忽略评论数
+    int64 ignore_count = 2;
+}
+
+// 超链项
+message Url {
+    // 标题
+    string title = 1;
+    //
+    int64 state = 2;
+    // 图标url
+    string prefix_icon = 3;
+    //
+    string app_url_schema = 4;
+    //
+    string app_name = 5;
+    //
+    string app_package_name = 6;
+    // 上报id
+    string click_report = 7;
+    //
+    bool is_half_screen = 8;
+    //
+    string exposure_report = 9;
+}
+
+//
+enum UserCallbackAction {
+    Dismiss = 0; //
+}
+
+//
+message UserCallbackReply {
+
+}
+
+//
+message UserCallbackReq {
+    //
+    int64 mid = 1;
+    //
+    UserCallbackScene scene = 2;
+    //
+    UserCallbackAction action = 3;
+    //
+    int64 oid = 4;
+    //
+    int64 type = 5;
+}
+
+//
+enum UserCallbackScene {
+    Insert = 0; //
 }
 
 // 视频项目
@@ -619,34 +933,12 @@ message VideoSearchItem {
     }
 }
 
-// UGC视频项目
-message UGCVideoSearchItem {
-    // 标题
-    string title = 1;
-    // UP主昵称
-    string up_nickname = 2;
-    // 时长(单位为秒)
-    int64 duration = 3;
-    // 封面
-    string cover = 4;
-}
-
-// PGC视频项目
-message PGCVideoSearchItem {
-    // 标题
-    string title = 1;
-    // 类别
-    string category = 2;
-    // 封面
-    string cover = 3;
-}
-
-// 文章项目
-message ArticleSearchItem {
-    // 标题
-    string title = 1;
-    // UP主昵称
-    string up_nickname = 2;
-    // 封面
-    repeated string covers = 3;
+// 投票信息
+message Vote {
+    // 投票id
+    int64 id = 1;
+    // 投票标题
+    string title = 2;
+    // 参与人数
+    int64 count = 3;
 }

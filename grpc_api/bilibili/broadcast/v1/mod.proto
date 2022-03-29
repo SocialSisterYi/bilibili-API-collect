@@ -4,10 +4,24 @@ package bilibili.broadcast.v1;
 
 import "google/protobuf/empty.proto";
 
-message ModResourceResp {}
-
 // ModManager
 service ModManager {
     //
     rpc WatchResource(google.protobuf.Empty) returns (stream ModResourceResp);
+}
+
+//
+message ModResourceResp {
+    //
+    int32 atcion = 1;
+    //
+    string app_key = 2;
+    //
+    string pool_name = 3;
+    //
+    string module_name = 4;
+    //
+    int64 module_version = 5;
+    //
+    int64 list_version = 6;
 }
