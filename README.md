@@ -243,7 +243,11 @@ B 站空间：<https://space.bilibili.com/293793435>
 
 ~~请可爱的易姐喝杯奶茶~~
 
+WeChat & Alipay：
+
 <img src="imgs/sponsorQR.jpg" width="300" height="300">
+
+OR Aifadian：https://afdian.net/@ShakaiAneE
 
 # 相关项目
 
