@@ -66,7 +66,7 @@
 | profession       | obj  |                  |                                                              |
 | tags             | null |                  |                                                              |
 | series           | obj  |                  |                                                              |
-| is_senior_member | num  |                  |                                                              |
+| is_senior_member | num  |  是否为硬核会员   | 0：否<br />1：是                                              |
 
 `data`中的`official`对象：
 
