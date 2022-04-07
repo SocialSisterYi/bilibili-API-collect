@@ -37,7 +37,7 @@
 
 **proto回复：**
 
-porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api/bilibili/community/service/dm/v1.proto)
+porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api/bilibili/community/service/dm/v1/dm.proto)
 
 消息`DmSegMobileReply`：
 
