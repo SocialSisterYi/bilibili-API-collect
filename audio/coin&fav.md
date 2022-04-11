@@ -104,7 +104,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio' \
 
 ## 投币音频
 
-> https://www.bilibili.com/audio/music-service-c/web/coin/add
+> http://www.bilibili.com/audio/music-service-c/web/coin/add
 
 *请求方式：POST*
 
@@ -122,11 +122,11 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio' \
 
 根对象：
 
-| 字段 | 类型 | 内容     | 备注                                                         |
-| ---- | ---- | -------- | ------------------------------------------------------------ |
-| code | num  | 返回值   | 0：成功<br />72000000：参数错误<br />72010002：账号未登陆<br />7201006：该音频不存在或已被下架 |
-| msg  | str  | 错误信息 | 默认为 0                                               |
-| data | str  | 投币数量 | "0" 为未投币，上限为2                                           |
+| 字段 | 类型 |   内容     | 备注                                                         |
+| ---- | ---- | --------- | ------------------------------------------------------------ |
+| code | num  |   返回值   | 0：成功<br />72000000：参数错误<br />72010002：账号未登陆<br />7201006：该音频不存在或已被下架 |
+| msg  | str  |   错误信息  | 默认为 0                                               |
+| data | str  | 当前投币数量 | 0 为未投币，上限为 2                                            |
 
 **示例：**
 
