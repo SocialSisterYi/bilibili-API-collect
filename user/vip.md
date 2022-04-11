@@ -102,7 +102,7 @@ curl -G 'http://api.bilibili.com/x/vip/privilege/my' \
 
 | 参数名     | 类型 | 内容        | 必要性         | 备注                      |
 | ---------- | ---- | ---------- | -------- | ---------------------- |
-| type       | num  | 兑换类型 | 必要          | 1：B币<br />2：会员购优惠券<br />3：漫画福利券 |
+| type       | num  | 兑换类型 | 必要          | 1：B币<br />2：会员购优惠券<br />3：漫画福利券<br />4.会员购运费券 |
 | csrf       | num  | CSRF token  | 必要          | Cookie bili_jct字段 |
 
 **json回复：**
