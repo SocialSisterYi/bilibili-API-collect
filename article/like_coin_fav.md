@@ -74,6 +74,7 @@ curl 'http://api.bilibili.com/x/article/like' \
 | 参数名   | 类型 | 内容                | 必要性 | 备注    |
 | -------- | ---- | ------------------- | ------ | ------- |
 | aid      | num  | 文章cvid            | 必要   |         |
+| upid     | num  | 文章作者mid         | 必要   |         |
 | multiply | num  | 投币数量            | 必要   | 上限为2 |
 | avtype | num | 2 | 必要 | 必须为2 |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |         |
@@ -102,6 +103,7 @@ data 对象：
 ```shell
 curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 --data-urlencode 'aid=5806746' \
+--data-urlencode 'upid=486980924' \
 --data-urlencode 'multiply=1' \
 --data-urlencode 'avtype=2' \
 --data-urlencode 'csrf=xxx' \
