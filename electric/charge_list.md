@@ -293,3 +293,136 @@ curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
 ```
 
 </details>
+
+## 查询我收到的充电列表
+
+> https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名   | 类型 | 内容     | 必要性 | 备注                             |
+| -------- | ---- | -------- | ------ | -------------------------------- |
+| currentPage | num  | 页数 | 必要   |  |
+| pageSize | num  | 分页大小 | 必要   | 取值范围[1,50] |
+| customerId | num  | (?) | 必要   | 目前为固定值：10026 |
+| beginTime | str  | 开始日期 |    | yyyy-MM-dd |
+| endTime | str  | 结束日期 |    | yyyy-MM-dd |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />800501007：user not login<br />800501008：内部错误<br /> 800501011：请求参数有误|
+| errno | num  |  |                      |
+| msg     | str  |         |                             |
+| showMsg     | str  |        |                             |
+| success     | bool  |         |                             |
+| data    | obj  | 信息本体 |                             |
+
+`data`对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| page | obj | 分页信息 |      |
+| result | array | 充电信息本体 |      |
+| config | array | (?) |      |
+
+`page`对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| currentPage | num | 当前页数 |      |
+| pageSize | num | 当前分页大小 |      |
+| totalCount | num | 记录总数 |      |
+| totalPage | num | 总页数 |      |
+
+`config`数组中的对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| mid | num |  |   总是为null   |
+| name | str |  |    总是为null   |
+| avatar | str |  |    总是为null   |
+| originalThirdCoin | num |  |    总是为null   |
+| brokerage | num |  |   总是为null    |
+| remark | str |  |    总是为null   |
+| ctime | str |  |    总是为null   |
+
+`result`数组中的对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| mid | num | 充电人mid |      |
+| name | str | 充电人昵称 |      |
+| avatar | str | 充电人头像 |      |
+| originalThirdCoin | num | 原始B币数 |      |
+| brokerage | num | 实际收到的贝壳数 |      |
+| remark | str | 充电渠道 |  Web/安卓/iOS    |
+| ctime | str | 充电时间 |   yyyy-MM-dd HH:mm:ss   |
+
+**示例：**
+
+```shell
+curl -L -X GET 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord?currentPage=1&pageSize=2&customerId=10026' \
+-H 'Cookie: SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "errno": 0,
+  "msg": "SUCCESS",
+  "showMsg": "交易成功",
+  "data": {
+    "page": {
+      "currentPage": 1,
+      "pageSize": 2,
+      "totalCount": 311,
+      "totalPage": 156
+    },
+    "result": [
+      {
+        "mid": 2233,
+        "name": "2233",
+        "avatar": "http://i2.hdslb.com/bfs/face/f42b7f47c80648d2ee1231f2435b527c60302289.jpg",
+        "originalThirdCoin": 2,
+        "brokerage": 1.34,
+        "remark": "Web",
+        "ctime": "2022-04-12 17:34:47"
+      },
+      {
+        "mid": 2233,
+        "name": "2233",
+        "avatar": "http://i0.hdslb.com/bfs/face/member/noface.jpg",
+        "originalThirdCoin": 2,
+        "brokerage": 0.68,
+        "remark": "iOS",
+        "ctime": "2022-04-10 03:41:10"
+      }
+    ],
+    "config": [
+      {
+        "mid": null,
+        "name": null,
+        "avatar": null,
+        "originalThirdCoin": null,
+        "brokerage": null,
+        "remark": null,
+        "ctime": null
+      }
+    ]
+  },
+  "success": true
+}
+```
+
+</details>
