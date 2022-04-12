@@ -46,14 +46,14 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ```json
 {
-	"code": 0,
-	"msg": "ok",
-	"message": "ok",
-	"data": {
-		"unfollow_unread": 1,
-		"follow_unread": 6,
-		"_gt_": 0
-	}
+  "code": 0,
+  "msg": "ok",
+  "message": "ok",
+  "data": {
+    "unfollow_unread": 1,
+    "follow_unread": 6,
+    "_gt_": 0
+  }
 }
 ```
 
@@ -76,9 +76,11 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 | msg[receiver_type] | num                                  | 1                        | 必要   | 固定为1                                |
 | msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1:发送文字<br>2:发送图片<br>5:撤回消息      |
 | msg[msg_status]    | num                                  | 0                        | 非必要 |                                        |
-| msg[dev_id]        | string                               | 372778FD-E359-461D-86A3-EA2BCC6FF52A | 必要 |  **获取方式在下面**            |
+| msg[dev_id]        | string                               | 372778FD-E359-461D-86A3-EA2BCC6FF52A | 必要 |  **
+获取方式在下面**            |
 | msg[timestamp]     | num                                  | 时间戳（秒）               | 必要 |                                         |
-| msg[content]       | 发送文字时：str<br />撤回消息时：num     | 消息内容                 | 必要   | **详见下表**                             |
+| msg[content]       | 发送文字时：str<br />撤回消息时：num     | 消息内容                 | 必要   | **
+详见下表**                             |
 | csrf        | str                                  | CSRF Token（位于cookie） | 必要   |                                        |
 
 ---
@@ -89,12 +91,35 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ```javascript
 const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function (name) {
-  let randomInt = 16 * Math.random() | 0;
-  return ("x" === name ? randomInt : 3 & randomInt | 8).toString(16).toUpperCase()
+    let randomInt = 16 * Math.random() | 0;
+    return ("x" === name ? randomInt : 3 & randomInt | 8).toString(16).toUpperCase()
 }));
 ```
 
 代码来自 [andywang425/BLTH](https://github.com/andywang425/BLTH/blob/45fe93e31754ca8bf07059d46266398e787dbf45/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.js#L6618)
+
+以Java为例
+
+````java
+public class Util {
+    private String getDevId() {
+        char[] b = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+        char[] s = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".toCharArray();
+        for (int i = 0; i < s.length; i++) {
+            if ('-' == s[i] || '4' == s[i]) {
+                continue;
+            }
+            int randomInt = (int) (16 * Math.random());
+            if ('x' == s[i]) {
+                s[i] = b[randomInt];
+            } else {
+                s[i] = b[3 & randomInt | 8];
+            }
+        }
+        return new String(s);
+    }
+}
+````
 
 ---
 
@@ -131,13 +156,8 @@ const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (functi
 
 **json回复：**
 
-根对象：
-| 字段    | 类型 | 内容     | 备注        |
-| ------- | ---- | -------- | ----------- |
-| code    | num  | 返回值   | 0：成功<br> |
-| message | str  | 错误信息 | 默认为ok    |
-| ttl     | num  |  | 默认为1    |
-| data    | obj  | 主体     | 出错时为空  |
+根对象： | 字段 | 类型 | 内容 | 备注 | | ------- | ---- | -------- | ----------- | | code | num | 返回值 | 0：成功<br> | | message | str |
+错误信息 | 默认为ok | | ttl | num | | 默认为1 | | data | obj | 主体 | 出错时为空 |
 
 `data`对象：
 
@@ -172,12 +192,16 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 <summary>查看响应示例：</summary>
 
 ```json
-{"code":0,
-"message":"0",
-"ttl":1,
-"data":{"msg_key":6984393491767669026,
-	"msg_content":"up主你好，\n催更[doge]",
-	"key_hit_infos":{}}}
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "msg_key": 6984393491767669026,
+    "msg_content": "up主你好，\n催更[doge]",
+    "key_hit_infos": {}
+  }
+}
 ```
 
 </details>
@@ -202,13 +226,13 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 ```json
 {
-    "code":0,
-    "msg":"ok",
-    "message":"ok",
-    "data":{
-        "msg_key":6852570013146024354,
-        "_gt_":0
-    }
+  "code": 0,
+  "msg": "ok",
+  "message": "ok",
+  "data": {
+    "msg_key": 6852570013146024354,
+    "_gt_": 0
+  }
 }
 ```
 
