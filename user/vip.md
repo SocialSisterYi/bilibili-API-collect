@@ -30,6 +30,8 @@
 | 字段           | 类型 | 内容             | 备注                     |
 | ----- | -------|----------------|------ |
 | list  | array | 卡券列表 |              |
+| is_short_vip  | bool | (?) |              |
+| is_freight_open  | bool | (?) |              |
 
 `list`数组：
 
@@ -37,15 +39,19 @@
 | ----- | -------|-----------------|------ |
 | 0    | obj   | B币兑换状态 |              |
 | 1    | obj   | 会员购优惠券兑换状态 |      |
+| 2    | obj   | 漫画福利券兑换状态 |      |
+| 3    | obj   | 会员购运费券兑换状态 |      |
 
 `list`中的对象：
 
 |        字段    | 类型  | 内容             | 备注 |
 | -------------- | -----|------------------|------ |
-| type           | num  | 卡券类型 | 1：B币<br />2：会员购优惠券<br />3：漫画福利券 |
+| type           | num  | 卡券类型 | 1：B币<br />2：会员购优惠券<br />3：漫画福利券<br />4：会员购运费券 |
 | state        | num  | 兑换状态 | 0：当月未兑换<br />1：已兑换 |
 | expire_time    | num  | 当月过期时间 | 当月月底 |
-| vip_type | num | (?) |  |
+| vip_type | num |  | 2：年度大会员可兑换 |
+| next_receive_days | num | 距下一轮兑换剩余天数 |  |
+| period_end_unix | num | 距下一轮兑换截止时间戳 | 秒级时间戳 |
 
 
 **示例：**
@@ -60,31 +66,55 @@ curl -G 'http://api.bilibili.com/x/vip/privilege/my' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "list": [
-            {
-                "type": 1,
-                "state": 1,
-                "expire_time": 1640966399,
-                "vip_type": 2
-            },
-            {
-                "type": 2,
-                "state": 1,
-                "expire_time": 1640966399,
-                "vip_type": 2
-            },
-            {
-                "type": 3,
-                "state": 0,
-                "expire_time": 1640966399,
-                "vip_type": 2
-            }
-        ]
-    }
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"list": [
+			{
+				"type": 1,
+				"state": 1,
+				"expire_time": 1651334399,
+				"vip_type": 2,
+				"next_receive_days": 20,
+				"period_end_unix": 1651420800
+			},
+			{
+				"type": 2,
+				"state": 0,
+				"expire_time": 1651334399,
+				"vip_type": 2,
+				"next_receive_days": 20,
+				"period_end_unix": 1651420800
+			},
+			{
+				"type": 3,
+				"state": 1,
+				"expire_time": 1651334399,
+				"vip_type": 2,
+				"next_receive_days": 20,
+				"period_end_unix": 1651420800
+			},
+			{
+				"type": 4,
+				"state": 0,
+				"expire_time": 1651334399,
+				"vip_type": 2,
+				"next_receive_days": 20,
+				"period_end_unix": 1651420800
+			},
+			{
+				"type": 5,
+				"state": 0,
+				"expire_time": 1651334399,
+				"vip_type": 2,
+				"next_receive_days": 20,
+				"period_end_unix": 1651420800
+			}
+		],
+		"is_short_vip": false,
+		"is_freight_open": true
+	}
 }
 ```
 
@@ -102,7 +132,7 @@ curl -G 'http://api.bilibili.com/x/vip/privilege/my' \
 
 | 参数名     | 类型 | 内容        | 必要性         | 备注                      |
 | ---------- | ---- | ---------- | -------- | ---------------------- |
-| type       | num  | 兑换类型 | 必要          | 1：B币<br />2：会员购优惠券<br />3：漫画福利券<br />4.会员购运费券 |
+| type       | num  | 兑换类型 | 必要          | 1：B币<br />2：会员购优惠券<br />3：漫画福利券<br />4：会员购运费券 |
 | csrf       | num  | CSRF token  | 必要          | Cookie bili_jct字段 |
 
 **json回复：**
