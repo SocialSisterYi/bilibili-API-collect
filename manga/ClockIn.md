@@ -1,6 +1,6 @@
 # 签到
 
-> http://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn
+> https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn
 
 *请求方式：POST*
 
@@ -31,8 +31,10 @@
 **示例：**
 
 ```bash
-curl 'http://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' \
--b 'SESSDATA=xxx'
+curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' \
+-H 'Cookie: SESSDATA=xxx' \
+-H 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'platform=android'
 ```
 
 <details>
