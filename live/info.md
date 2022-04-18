@@ -317,9 +317,15 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 > http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
 
-*请求方式：POST*
+*请求方式：GET/POST*
 
 认证方式：无，请不要在标头中添加cookie。
+
+**url参数：**
+
+| 参数名 | 类型  | 内容            | 必要性 | 备注 |
+| ------ | ----- | --------------- | ------ | ---- |
+| uids[] | array | 要查询的主播mid | 必要   |      |
 
 
 **正文参数：**
@@ -376,120 +382,15 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 **示例：**
 
-查询用户`mid=194484313`的直播间信息
+查询用户`mid=672328094的直播间信息
 
 ```shell
+curl http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids?uids[]=672328094 \
+-H 'Accept: application/json'
+
 curl https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids \
 -H "Content-Type: application/json" \
--d "{\"uids\": [194484313]}" 
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-	"code": 0,
-	"msg": "success",
-	"message": "success",
-	"data": {
-		"194484313": {
-			"title": "中元节可爱鬼来喽！",
-			"room_id": 6154037,
-			"uid": 194484313,
-			"online": 955261,
-			"live_time": 0,
-			"live_status": 2,
-			"short_id": 732,
-			"area": 1,
-			"area_name": "单机联机",
-			"area_v2_id": 236,
-			"area_v2_name": "主机游戏",
-			"area_v2_parent_name": "单机游戏",
-			"area_v2_parent_id": 6,
-			"uname": "Asaki大人",
-			"face": "https://i1.hdslb.com/bfs/face/e8f57fd6992f7d2ef6e6bcee957fb6cf6bca3d80.jpg",
-			"tag_name": "以撒,minecraft,饥荒,彩虹六号,东方",
-			"tags": "",
-			"cover_from_user": "https://i0.hdslb.com/bfs/live/new_room_cover/0a0a8eb5bd7fb64a036b55c748f02ad79a210ec9.jpg",
-			"keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe0823020500000615403721k8sp.jpg",
-			"lock_till": "0000-00-00 00:00:00",
-			"hidden_till": "0000-00-00 00:00:00",
-			"broadcast_type": 0
-		}
-	}
-}
-
-```
-
-</details>
-
-## 批量查询直播间状态
-
-> http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
-
-*请求方式：GET*
-
-认证方式：无，请不要在标头中添加cookie。
-
-**url参数：**
-
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
-| ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
-| uids[]     | array  | 要查询的主播mid         | 必要          |                                                              |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-111：csrf校验失败 |
-| message | str  | 错误信息 | 默认为success                                                  |
-| msg     | str  | 错误信息 | 默认为success                                                  |
-| ttl     | num  | 1        |                                                              |
-| data    | obj  | 信息本体 |                                                              |
-
-`data`对象：
-
-| 字段     | 类型 | 内容     | 备注         |
-| -------- | ---- | -------- | ------------ |
-| uid      | str  | 直播间信息  | 实际字段为主播mid  |
-
-`uid`对象：
-
-| 字段     | 类型 | 内容     | 备注         |
-| -------- | ---- | -------- | ------------ |
-| area      | num  | 直播间分区id  |            |
-| area_name | str  | 直播间分区名  |            |
-| area_v2_id | num  | 直播间新版分区id  |            |
-| area_v2_name | str  | 直播间新版分区名  |            |
-| area_v2_parent_id | num  | 直播间父分区id  |            |
-| area_v2_parent_name | str  | 直播间父分区名  |            |
-| broadcast_type | num  | 直播类型  |  0:普通直播，1：手机直播       |
-| cover_from_user | str  | 直播间封面url  |            |
-| face      | str  | 主播头像url  |            |
-| hidden_till | str  | 直播间隐藏信息  |            |
-| keyframe  | str  | 直播间关键帧url  |            |
-| live_status | num  | 直播间开播状态  |  0：未开播，1：正在直播，2：轮播中          |
-| live_time      | num  | 直播持续时长  |            |
-| lock_till | str  | 直播间封禁信息  |            |
-| online    | num  | 直播间在线人数  |            |
-| room_id   | num  | 直播间房间号    | 直播间实际房间号   |
-| short_id  | num  | 直播间房间号    | 直播间短房间号，常见于签约主播   |
-| tag_name  | str  | 直播间标签      |            |
-| tags      | str  | 直播间自定标签   |            |
-| title     | str  | 直播间标题      |            |
-| uid       | num  | 主播mid        |            |
-| uname     | str  | 主播用户名     |            |
-
-**示例：**
-
-查询用户`mid=194484313`的直播间信息
-
-```shell
-curl http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids?uids[]=672328094&uids[]=672346917 \
--H 'Accept: application/json'
+-d "{\"uids\": [672328094]}" 
 ```
 
 <details>
@@ -501,30 +402,6 @@ curl http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids?uids[]=67
     "msg": "success",
     "message": "success",
     "data": {
-        "672346917": {
-            "title": "【3D】A-SOUL大搜查",
-            "room_id": 22625025,
-            "uid": 672346917,
-            "online": 4248268,
-            "live_time": 0,
-            "live_status": 2,
-            "short_id": 0,
-            "area": 6,
-            "area_name": "生活娱乐",
-            "area_v2_id": 371,
-            "area_v2_name": "虚拟主播",
-            "area_v2_parent_name": "虚拟主播",
-            "area_v2_parent_id": 9,
-            "uname": "向晚大魔王",
-            "face": "http://i0.hdslb.com/bfs/face/566078c52b408571d8ae5e3bcdf57b2283024c27.jpg",
-            "tag_name": "日常,学习,萌宠,厨艺,手机直播",
-            "tags": "真·首播",
-            "cover_from_user": "http://i0.hdslb.com/bfs/live/new_room_cover/b89e06075c1348d932ea3c16710249c5293a4916.jpg",
-            "keyframe": "http://i0.hdslb.com/bfs/live-key-frame/keyframe04152146000022625025apkv9r.jpg",
-            "lock_till": "0000-00-00 00:00:00",
-            "hidden_till": "0000-00-00 00:00:00",
-            "broadcast_type": 0
-        },
         "672328094": {
             "title": "【B限】玩个毛线",
             "room_id": 22637261,
