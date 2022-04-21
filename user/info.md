@@ -146,7 +146,7 @@
 | medal_color       | num  | 颜色 |                      |
 | intimacy       | num  | 当前亲密度 |                      |
 | next_intimacy       | num  |下一等级所需亲密度  |                      |
-| day_limit       | num  |  |                      |
+| day_limit       | num  | 每日亲密度获取上限 |                      |
 | medal_color_start       | num  |  |                      |
 | medal_color_end       | num  |  |                      |
 | medal_color_border       | num  |  |                      |
