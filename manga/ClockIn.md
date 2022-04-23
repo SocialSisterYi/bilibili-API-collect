@@ -85,7 +85,7 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
 | day_count    | num  | 连续签到天数   |  |
-| status | num  |  |                                                       |
+| status | num  | 今日是否已签到 | 0：未签到<br />1：已签到                                                      |
 | credit_icon     | str  |      |                                                              |
 | sign_before_icon     | str  |      |                                                              |
 | sign_today_icon     | str  |      |                                                              |
