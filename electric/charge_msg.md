@@ -54,3 +54,114 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/message' \
 ```
 
 </details>
+
+## 查询我收到的充电留言
+
+> https://member.bilibili.com/x/web/elec/remark/list
+
+*请求方式:GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名 | 类型 | 内容         | 必要性       | 备注               |
+| ------ | ---- | ------------ | ------------ | ------------------ |
+| begin    | str  | 起始日期  |          |      默认2016-01-01              |
+| end    | str  | 结束日期 |  | 默认2050-01-01 |
+| pn   | str  | 页数 |  |  |
+| ps   | str  | 分页大小 |  | 取值范围[1,12] |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录|
+| msg     | str  |   0      |                             |
+| ttl     | num  |   1      |                             |
+| data    | obj  | 信息本体 |                             |
+
+`data`对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| page | obj | 分页信息 |      |
+| list | array | 信息本体 |      |
+
+`page`对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| current | num | 当前页数 |      |
+| size | num | 当前分页大小 |      |
+| total | num | 记录总数 |      |
+
+`list`数组中的对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| aid | num |  |      |
+| bvid | str |  |      |
+| id | num | 留言记录id |      |
+| mid | num |  |      |
+| reply_mid | num |  0|      |
+| elec_num | num | 0 |      |
+| state | num | 是否已经回复这条留言 | 0：未回复<br />1：已回复     |
+| msg | str | 留言信息 |      |
+| aname | str | 空 |      |
+| uname | str |空  |      |
+| avator | str | 空 |      |
+| reply_name | str | 空 |      |
+| reply_avator | str | 空 |      |
+| reply_msg | str | 空 |      |
+| ctime | num | 留言时间 |  秒级时间戳    |
+| reply_time | num | 0 |      |
+
+**示例：**
+
+```shell
+curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/list?begin=2016-01-01&end=2050-01-01&pn=1&ps=10' \
+-H 'Cookie: SESSDATA=xxx;'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "list": [
+      {
+        "aid": 0,
+        "bvid": "",
+        "id": 6715018,
+        "mid": 0,
+        "reply_mid": 0,
+        "elec_num": 0,
+        "state": 0,
+        "msg": "加油",
+        "aname": "",
+        "uname": "",
+        "avator": "",
+        "reply_name": "",
+        "reply_avator": "",
+        "reply_msg": "",
+        "ctime": 1650665119000,
+        "reply_time": 0
+      }
+    ],
+    "pager": {
+      "current": 1,
+      "size": 10,
+      "total": 448
+    }
+  }
+}
+```
+
+</details>
