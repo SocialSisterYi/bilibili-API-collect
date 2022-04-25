@@ -3,6 +3,7 @@
 - [发送充电留言](#发送充电留言)
 - [查询我收到的充电留言](#查询我收到的充电留言)
 - [查询充电留言详情](#查询充电留言详情)
+- [回复充电留言](#回复充电留言)
 
 ---
 
@@ -249,3 +250,40 @@ curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/detail?id=6507563'
 ```
 
 </details>
+
+## 回复充电留言
+
+> https://member.bilibili.com/x/web/elec/remark/reply
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名       | 类型   | 内容                     | 必要性         | 备注                                                         |
+| ------------ | ------ | ------------------------ | -------------- | ------------------------------------------------------------ |
+| csrf   | str    | csrf             |  必要   |                                                              |
+| id   | num    | 留言id             |  必要   |                                                              |
+| msg   | str    | 回复信息             |     |                                                              |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误20004：充电服务异常<br /> |
+| message | str  | 错误信息 |                                                       |
+| ttl     | num  | 1        |                                                              |
+
+**示例：**
+
+```shell
+curl -L -X POST 'https://member.bilibili.com/x/web/elec/remark/reply' \
+-H 'cookie: SESSDATA=xxx' \
+-H 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'csrf=xxx' \
+--data-urlencode 'id=6258929' \
+--data-urlencode 'msg=(￣3￣)'
+```
