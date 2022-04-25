@@ -1,6 +1,8 @@
 # 充电留言
 
 - [发送充电留言](#发送充电留言)
+- [查询我收到的充电留言](#查询我收到的充电留言)
+- [查询充电留言详情](#查询充电留言详情)
 
 ---
 
@@ -108,7 +110,7 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/message' \
 | mid | num |  |      |
 | reply_mid | num |  0|      |
 | elec_num | num | 0 |      |
-| state | num | 是否已经回复这条留言 | 0：未回复<br />1：已回复     |
+| state | num | UP是否已经回复这条留言 | 0：未回复<br />1：已回复     |
 | msg | str | 留言信息 |      |
 | aname | str | 空 |      |
 | uname | str |空  |      |
@@ -116,7 +118,7 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/message' \
 | reply_name | str | 空 |      |
 | reply_avator | str | 空 |      |
 | reply_msg | str | 空 |      |
-| ctime | num | 留言时间 |  秒级时间戳    |
+| ctime | num | 留言时间 |  毫秒级时间戳    |
 | reply_time | num | 0 |      |
 
 **示例：**
@@ -160,6 +162,88 @@ curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/list?begin=2016-01
       "size": 10,
       "total": 448
     }
+  }
+}
+```
+
+</details>
+
+## 查询充电留言详情
+
+> https://member.bilibili.com/x/web/elec/remark/detail?id=6662619
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名   | 类型 | 内容     | 必要性 | 备注                             |
+| -------- | ---- | -------- | ------ | -------------------------------- |
+| id | num  | 留言id | 必要   |  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误|
+| message     | str  |   0      |                             |
+| ttl     | num  |  1       |                             |
+| data    | obj  | 信息本体 |                             |
+
+`data`对象：
+
+| 字段     | 类型  | 内容   | 备注 |
+| -------- | ----- | ------ | ---- |
+| aid | num |  |      |
+| bvid | str |  |      |
+| id | num | 留言id |      |
+| mid | num | 留言者uid（充电用户） |      |
+| reply_mid | num | UP主uid |      |
+| elec_num | num | 0 |      |
+| state | num | UP是否已经回复这条留言 |  0：未回复<br />1：已回复    |
+| msg | str | 留言内容 |     |
+| aname | str | 空 |     |
+| uname | str | 留言者用户名 |     |
+| avator | str | 留言者头像 |     |
+| reply_name | str | UP主用户名 |     |
+| reply_avator | str | UP主头像 |     |
+| reply_msg | str | 回复内容 |     |
+| ctime | num | 留言时间 | 毫秒级时间戳    |
+| reply_time | num | 回复时间 | 毫秒级时间戳    |
+
+**示例：**
+
+```shell
+curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/detail?id=6507563' \
+-H 'cookie: SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "aid": 0,
+    "bvid": "",
+    "id": 6507563,
+    "mid": 19978396,
+    "reply_mid": 2062760,
+    "elec_num": 0,
+    "state": 1,
+    "msg": "感谢搬运",
+    "aname": "",
+    "uname": "HANSOOOOOL",
+    "avator": "http://i1.hdslb.com/bfs/face/5c22af0261b8b3f9a54b6e0038e35430e9ed9cfd.jpg",
+    "reply_name": "一把近战都不给六花",
+    "reply_avator": "http://i2.hdslb.com/bfs/face/1804b716084908d4992bdd35827d0c2d7222fe97.jpg",
+    "reply_msg": "(￣3￣)",
+    "ctime": 1646726966000,
+    "reply_time": 1646811946000
   }
 }
 ```
