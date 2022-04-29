@@ -287,3 +287,17 @@ curl -L -X POST 'https://member.bilibili.com/x/web/elec/remark/reply' \
 --data-urlencode 'id=6258929' \
 --data-urlencode 'msg=(￣3￣)'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": 1
+}
+```
+
+</details>
