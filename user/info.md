@@ -84,10 +84,13 @@
 | type             | num  | 会员类型         | 0：无<br />1：月大会员<br />2：年度及以上大会员 |
 | status           | num  | 会员状态         | 0：无<br />1：有                                |
 | due_date         | num  | 会员过期时间      | Unix时间戳(毫秒) |
+| vip_pay_type         | num  | 1      |  |
 | theme_type       | num  | 0                | 作用尚不明确                                    |
 | label            | obj  | 会员标签         |                                                 |
 | avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示                          |
 | nickname_color   | str  | 会员昵称颜色     | 颜色码                                          |
+| role   | num  | 3     |                                           |
+| avatar_subscript_url   | str  | 大会员角标地址     |                                           |
 
 `vip`中的`label`对象：
 
@@ -96,15 +99,21 @@
 | path        | str  | 空           | 作用尚不明确                                                 |
 | text        | str  | 会员类型文案 |                                                              |
 | label_theme | str  | 会员标签     | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
+| text_color | str  | 会员标签     |  |
+| bg_style | num  |      |  |
+| bg_color | str  |      |  |
+| border_color | str  |      |  |
 
 `data`中的`pendant`对象：
 
 | 字段   | 类型 | 内容          | 备注                 |
 | ------ | ---- | ------------- | -------------------- |
-| pid    | num  | 头像框id      | **详细说明有待补充** |
+| pid    | num  | 头像框id      |  |
 | name   | str  | 头像框名称    |                      |
 | image  | str  | 头像框图片url |                      |
 | expire | num  | (?)           |                      |
+| image_enhance | str  | (?)           |                      |
+| image_enhance_frame | str  | (?)           |                      |
 
 `data`中的`nameplate`对象：
 
@@ -117,17 +126,57 @@
 | level       | str  | 勋章等级         |                      |
 | condition   | str  | 勋章条件         |                      |
 
+`data`中的`fans_medal`对象：
+
+| 字段        | 类型 | 内容             | 备注                 |
+| ----------- | ---- | ---------------- | -------------------- |
+| show         | bool  |            |  |
+| wear        | bool  | 是否佩戴了粉丝勋章         |                      |
+| medal       | obj  | 粉丝勋章信息 |                      |
+
+`fans_medal`中的`medal`对象：
+
+| 字段        | 类型 | 内容             | 备注                 |
+| ----------- | ---- | ---------------- | -------------------- |
+| uid         | num  |     此用户mid       |  |
+| target_id        | num  | 粉丝勋章所属UP的mid         |                      |
+| medal_id       | num  | 粉丝勋章id |                      |
+| level       | num  | 粉丝勋章等级 |                      |
+| medal_name       | str  | 粉丝勋章名称 |                      |
+| medal_color       | num  | 颜色 |                      |
+| intimacy       | num  | 当前亲密度 |                      |
+| next_intimacy       | num  |下一等级所需亲密度  |                      |
+| day_limit       | num  | 每日亲密度获取上限 |                      |
+| medal_color_start       | num  |  |                      |
+| medal_color_end       | num  |  |                      |
+| medal_color_border       | num  |  |                      |
+| is_lighted       | num  |  |                      |
+| light_status       | num  |  |                      |
+| wearing_status       | num  | 当前是否佩戴 | 0：未佩戴<br />1：已佩戴                     |
+| score       | num  |  |                      |
+
 `data`中的`sys_notice`对象：
 
 | 字段        | 类型 | 内容            | 备注                                            |
 | ----------- | ---- | --------------- | ----------------------------------------------- |
-| id          | num  | 系统提示类型id  | 8：争议账号<br />20：纪念账号<br />22：合约诉讼 |
+| id          | num  | 系统提示类型id  | 8：争议账号<br />11：合约争议<br/>20：纪念账号<br />22：合约诉讼<br />24：合约争议<br />25：严重指控 |
 | content     | str  | 提示文案        |                                                 |
 | url         | str  | 提示信息页面url |                                                 |
 | notice_type | num  | ？              | 作用尚不明确<br />此字段非必须                  |
 | icon        | str  | 提示图标url     | 此字段非必须                                    |
 | text_color  | str  | 提示文字颜色    | 此字段非必须<br />颜色码                        |
 | bg_color    | str  | 提示背景颜色    | 此字段非必须<br />颜色码                        |
+
+`sys_notice`示例
+
+| id        |type| 内容 |
+| ----------- | ---- | --------------- |
+| 8        |  |
+| 11        | 1 |该账号涉及合约争议，暂冻结其账号功能使用。详见公告->|
+| 20        | 2|请允许我们在此献上最后的告别，以此纪念其在哔哩哔哩留下的回忆与足迹。请点此查看纪念账号相关说明 |
+| 22        | |该账号涉及合约诉讼，封禁其账号使用。 |
+| 24        | 1|该账号涉及合约争议，暂冻结其账号功能使用。 |
+| 25        | 1|该用户涉及严重指控，暂冻结其账号功能使用 |
 
 `data`中的`live_room`对象：
 
@@ -166,6 +215,17 @@
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | name | str  | (?)  |      |
+| department | str  | (?)  |      |
+| title | str  | (?)  |      |
+| is_show | num  | (?)  |      |
+
+`data`中的`user_honour_info`对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| mid | num  | 0  |      |
+| colour | str  | null  |      |
+| tags | array  | null  |      |
 
 `data`中的`series`对象：
 

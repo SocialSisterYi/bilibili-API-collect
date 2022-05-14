@@ -96,6 +96,28 @@ const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (functi
 
 代码来自 [andywang425/BLTH](https://github.com/andywang425/BLTH/blob/45fe93e31754ca8bf07059d46266398e787dbf45/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.js#L6618)
 
+以Java为例
+
+```java
+public class Util{
+    private String getDevId() {
+        char[] b = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+        char[] s = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".toCharArray();
+        for (int i = 0; i < s.length; i++) {
+            if ('-' == s[i] || '4' == s[i]) {
+                continue;
+            }
+            int randomInt = (int) (16 * Math.random());
+            if ('x' == s[i]) {
+                s[i] = b[randomInt];
+            } else {
+                s[i] = b[3 & randomInt | 8];
+            }
+        }
+        return new String(s);
+    }
+}
+```
 ---
 
 `msg[content]`消息内容：
