@@ -37,14 +37,6 @@ enum From {
 }
 
 //
-message OfficialVerify {
-    //
-    int32 type = 1;
-    //
-    string desc = 2;
-}
-
-//
 message SearchTabReply {
     //
     int64 focus = 1;
