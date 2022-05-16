@@ -263,6 +263,7 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
 - [simon300000/bili-api](https://github.com/simon300000/bili-api)
 - [iyear/biligo](https://github.com/iyear/biligo) Bilibili API SDK in Golang
+- [bilibili-openplatform/demo](https://github.com/bilibili-openplatform/demo): 哔哩哔哩开放平台示例代码库
 
 ## 成品
 
@@ -283,7 +284,8 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [xlzy520/bili-short-url](https://github.com/xlzy520/bili-short-url): 哔哩哔哩短链生成器
 - [zjkwdy/bili_app_splash](https://github.com/zjkwdy/bili_app_splash): B站壁纸娘和开屏图自动下载，每天使用Actions自动同步
 - [Jannchie/BiliOB](https://github.com/Jannchie/BiliOB): BiliOB观测者是一个观测B站UP主及视频数据变化，并予以分析的Web应用程序
-- [biliob233/biliob233.github.io](https://github.com/biliob233/biliob233.github.io):~~无可奉告~~
+- [biliob233/biliob233.github.io](https://github.com/biliob233/biliob233.github.io): ~~无可奉告~~
+- [biliup/biliup](https://github.com/biliup/biliup): 全自动录播、投稿工具，也支持twitch、ytb频道搬运。提供分p上传b站接口，腾讯云内网免流+大幅提速
 
 ## 其他
 

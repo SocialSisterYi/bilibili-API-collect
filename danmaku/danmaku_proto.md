@@ -39,6 +39,10 @@
 
 porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api/bilibili/community/service/dm/v1/dm.proto)
 
+- [protogen.marcgravell](https://protogen.marcgravell.com/): 在线编译protogen工具, 无需再安装本地编译器(生成文件需加后缀‘_pb2.py‘才可使用) 
+
+- [protobuf pip](https://pypi.org/project/protobuf/): 可一键安装的python的protogen解析库
+
 消息`DmSegMobileReply`：
 
 | 名称  | 类型                 | 含义     | 备注 |

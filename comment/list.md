@@ -27,7 +27,7 @@
 | oid        | num  | 目标评论区 id  | 必要         |                                                          |
 | sort       | num  | 排序方式       | 非必要       | 默认为0<br />0：按时间<br />1：按点赞数<br />2：按回复数 |
 | nohot      | num  | 是否不显示热评 | 非必要       | 默认为0<br />1：不显示<br />0：显示                      |
-| ps         | num  | 每页项数       | 非必要       | 默认为20<br />定义域：1-49<br /> 对于data_replies[], 既遍历二级评论用途的定义域有效范围为22      |
+| ps         | num  | 每页项数       | 非必要       | 默认为20<br />定义域：1-49                                 |
 | pn         | num  | 页码           | 非必要       | 默认为1                                                  |
 
 **json回复：**
@@ -47,8 +47,8 @@
 | ------------ | -------------------------------- | -------- | ---------------- |
 | page         | obj                              | 页信息   |                  |
 | config       | obj                              | 评论区显示控制 |                  |
-| replies      | 禁用时：null<br />正常时：array | 评论列表 |  最大容量为22                |
-| hots         | 禁用时：null<br />正常时：array | 热评列表 |  由于ps定义域为45,最大容量可能也为23               |
+| replies      | 禁用时：null<br />正常时：array | 评论列表 |                 |
+| hots         | 禁用时：null<br />正常时：array | 热评列表 |                 |
 | upper        | obj                              | 置顶评论 |                  |
 | top          | null                             | (?)     |  |
 | notice       | 无效时：null<br />有效时：obj            | 评论区公告信息 |  |
@@ -3712,7 +3712,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 | type       | num  | 评论区类型代码 | 必要         | [类型代码见表](readme.md#评论区类型代码) |
 | oid        | num  | 目标评论区 id  | 必要         |                                          |
 | root       | num  | 根回复 rpid    | 必要         |                                          |
-| ps         | num  | 每页项数       | 非必要       | 默认为20<br />定义域：1-49               |
+| ps         | num  | 每页项数       | 非必要       | 默认为20<br />定义域：1-49 <br /> 但 data_replies 的最大内容数为20,因此设置为49其实也只会有20条回复被返回      |
 | pn         | num  | 页码           | 非必要       | 默认为1                                  |
 
 **json回复：**
@@ -3733,7 +3733,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 | config    | obj   | 评论区显示控制 |                                        |
 | control   | obj   | 评论区输入属性 |                                        |
 | page      | obj   | 页面信息       |                                        |
-| replies   | array | 评论对话树列表 |                                        |
+| replies   | array | 评论对话树列表 |  最大内容数为20                                      |
 | root      | obj   | 根评论信息     | [对象定义见表](readme.md#评论条目对象) |
 | show_bvid | bool  | 显示 bvid?     |                                        |
 | show_text | str   | (?)            |                                        |
