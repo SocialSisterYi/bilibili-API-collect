@@ -196,9 +196,9 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 | follower_num   | num  | 主播粉丝数       |                  |
 | room_id        | num  | 直播间id（短号） |                  |
 | medal_name     | str  | 粉丝勋章名       |                  |
-| glory_count    | int  | 主播荣誉数       |                  |
+| glory_count    | num  | 主播荣誉数       |                  |
 | pendant        | str  | 直播间头像框url  |                  |
-| link_group_num | int  | 0                | **作用尚不明确** |
+| link_group_num | num  | 0                | **作用尚不明确** |
 | room_news      | obj  | 主播公告         |                  |
 
 `info`对象：
