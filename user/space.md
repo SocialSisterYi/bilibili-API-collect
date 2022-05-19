@@ -2889,7 +2889,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | ps     | num  | 每页项数    | 必要   |      |
-| pn     | num  | 页码        | 必要   |      |
+| pn     | num  | 页码        | 必要   |   定义域 1 - 大于70   |
 | up_mid | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
