@@ -297,7 +297,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 
 ## 获取首页视频推荐列表（web端）
 
-> https://api.bilibili.com/x/web-interface/index/top/rcmd
+> http://api.bilibili.com/x/web-interface/index/top/rcmd
 
 *请求方式：GET*
 
@@ -352,7 +352,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 获取新版web端首页推荐视频列表
 
 ```shell
-curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
+curl -G 'http://api.bilibili.com/x/web-interface/index/top/rcmd' \
 --data-urlencode 'fresh_type=3' \
 --data-urlencode 'version=1' \
 --data-urlencode 'ps=10' \
@@ -375,7 +375,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
         "bvid": "BV1Cu411z7mG",
         "cid": 717978243,
         "goto": "av",
-        "uri": "https://www.bilibili.com/video/BV1Cu411z7mG",
+        "uri": "http://www.bilibili.com/video/BV1Cu411z7mG",
         "pic": "http://i2.hdslb.com/bfs/archive/e05f487bc9f26baa568f10fe69a0e1ea5e0fbc23.jpg",
         "title": "请大家助力我的梦想！为凑够10万赞，在街头唱《Be Crazy For Me》！",
         "duration": 199,
