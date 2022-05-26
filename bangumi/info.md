@@ -46,7 +46,7 @@
 | media_id  | num   | 剧集mdid       |                            |
 | new_ep    | obj   | 最新一话信息   |                            |
 | rating    | obj   | 评分信息       |                            |
-| season_id | int   | 剧集ssid       |                            |
+| season_id | num   | 剧集ssid       |                            |
 | share_url | url   | 剧集详情页连接 |                            |
 | title     | str   | 标题           |                            |
 | type_name | str   | 剧集类型       | `番剧`、`国创`、`电影`等等 |
@@ -70,7 +70,7 @@
 
 | 字段       | 类型 | 内容             | 备注                       |
 | ---------- | ---- | ---------------- | -------------------------- |
-| id         | int  | 最新一话的epid   |                            |
+| id         | num  | 最新一话的epid   |                            |
 | index      | str  | 最新一话名称     |                            |
 | index_show | str  | 最新一话显示名称 | eg. `第1话`、`更新至第4话` |
 
