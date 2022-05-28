@@ -185,7 +185,7 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 | duration | int | 持续时间？ | |
 | begin_time | int | 开始时间? | 时间戳 |
 | end_time | int | 停止时间？ | 时间戳 | 
-| thumb | url | 广告图片 | 内容不用说了吧 |
+| thumb | url | 广告图片 | [举个例子](#example) |
 | hash | str | 不知道 | |
 | logo_url | str | 不知道 | 空的 |
 | logo_hash | str | 不知道 | 也是空的 |
@@ -221,7 +221,7 @@ curl -G 'http://app.bilibili.com/x/v2/splash/list' \
 --data-urlencode="birth=0101"
 ```
 <details>
-<summary>查看响应示例(慎点，广告多的要命，我的 IDE 加载时都卡了，即使缩减了) ：</summary>
+<summary>点我发现 bilibili 广告的新大陆：</summary>
 
 ``` python
 # Python 格式的 dict, 将就看一下，提取了 data
@@ -457,6 +457,7 @@ dct = {
 
 </details>
 
+<span id="example">
 <details>
 <summary>
 一张广告图片(慎点)：
@@ -465,4 +466,4 @@ dct = {
 ![](https://i0.hdslb.com/bfs/sycp/creative_img/202205/7743233596d9c4addf44289df7f32e3a.jpg)
 
 </details>
-
+</span>
