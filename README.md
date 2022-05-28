@@ -207,10 +207,11 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [分区当日投稿数](web_widget/zone_upload.md)
   - [x] [404 页漫画收集](web_widget/404_manga.md)
 - [ ] [APP端组件](APP_widget)
-  - [x] [开屏图片](APP_widget/splash.md)
+  - [x] [开屏图片 + 恰饭珍贵录像](APP_widget/splash.md)
 - [ ] [个性装扮](garb)
   - [x] [APP 主题](garb/skin.md)
   - [x] [主题色](garb/color.md)
+
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
