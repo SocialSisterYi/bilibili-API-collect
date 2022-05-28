@@ -144,7 +144,7 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 
 ## APP 端的 ~~广告~~ 一些图片
 
-> <https://app.bilibili.com/x/v2/splash/list>
+> https://app.bilibili.com/x/v2/splash/list
 
 *请求方式: GET*
 
