@@ -52,7 +52,7 @@
 
 ```shell
 curl -G 'http://api.bilibili.com/x/web-interface/ranking/region' \
---data-urlencode 'rid=1' \
+--data-urlencode 'tid=1' \
 --data-urlencode 'day=3'
 ```
 
