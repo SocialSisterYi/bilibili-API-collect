@@ -104,6 +104,7 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 | session  | str  |    | 非必要       | 从视频播放页的网页源码中获取             |
 | otype  | str  |    | 非必要       | 固定为json             |
 | type  | str  |    | 非必要       | 目前为空             |
+| platform | str |    | 非必要 | 默认为pc，当指定为html5时，获取的视频流url可以直接使用html的video标签播放 |
 
 **json回复：**
 
