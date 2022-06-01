@@ -85,6 +85,10 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 
 <details>
 <summary>查看响应示例：</summary>
+<<<<<<< HEAD
+=======
+<!--
+>>>>>>> d4f20b5a37730a3665341ec41a48b333bd133ac0
 ```json
 {
     "code": 0,
@@ -148,7 +152,10 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 *请求方式: GET*
 
 | 参数名 | 类型 | 内容       | 必要性      | 备注 |
+<<<<<<< HEAD
 | - | - | - | - | - |
+=======
+>>>>>>> d4f20b5a37730a3665341ec41a48b333bd133ac0
 | build | int | 客户端内部版本号 | 必要 | |
 | mobi_app | str | android, iphone, ipad | 必要 | |
 | platform | str | android, ios | 必要 | |
@@ -168,7 +175,10 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 `data` 字段：
 
 | 字段    | 类型 | 内容     | 备注                                                 |
+<<<<<<< HEAD
 | - | - | - | - |
+=======
+>>>>>>> d4f20b5a37730a3665341ec41a48b333bd133ac0
 | splash_request_id | str | 不知道 | |
 | max_time | int | 最长显示时间？ | |
 | min_interval | int | 最少显示时间？ | 千分之一秒单位 |
