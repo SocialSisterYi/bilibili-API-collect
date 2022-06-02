@@ -85,7 +85,10 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 
 <details>
 <summary>查看响应示例：</summary>
+<<<<<<< HEAD
+=======
 <!--
+>>>>>>> d4f20b5a37730a3665341ec41a48b333bd133ac0
 ```json
 {
     "code": 0,
@@ -149,6 +152,10 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 *请求方式: GET*
 
 | 参数名 | 类型 | 内容       | 必要性      | 备注 |
+<<<<<<< HEAD
+| - | - | - | - | - |
+=======
+>>>>>>> d4f20b5a37730a3665341ec41a48b333bd133ac0
 | build | int | 客户端内部版本号 | 必要 | |
 | mobi_app | str | android, iphone, ipad | 必要 | |
 | platform | str | android, ios | 必要 | |
@@ -168,6 +175,10 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 `data` 字段：
 
 | 字段    | 类型 | 内容     | 备注                                                 |
+<<<<<<< HEAD
+| - | - | - | - |
+=======
+>>>>>>> d4f20b5a37730a3665341ec41a48b333bd133ac0
 | splash_request_id | str | 不知道 | |
 | max_time | int | 最长显示时间？ | |
 | min_interval | int | 最少显示时间？ | 千分之一秒单位 |
@@ -177,13 +188,14 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 `list` 中的对象 ~~(不得不说 bilibili 的广告准备真精良)~~：
 
 | 字段    | 类型 | 内容     | 备注                                                 |
+| - | - | - | - |
 | id | int | 不知道 | |
 | type | int | 不知道 | |
 | card_type | int | 不知道 | |
 | duration | int | 持续时间？ | |
 | begin_time | int | 开始时间? | 时间戳 |
 | end_time | int | 停止时间？ | 时间戳 | 
-| thumb | url | ![](https: //i0.hdslb.com/bfs/sycp/creative_img/202205/7743233596d9c4addf44289df7f32e3a.jpg) | 内容不用说了吧 |
+| thumb | url | 广告图片 | [举个例子](#example) |
 | hash | str | 不知道 | |
 | logo_url | str | 不知道 | 空的 |
 | logo_hash | str | 不知道 | 也是空的 |
@@ -207,8 +219,6 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 | interact_distance | int | 暂不明确 | |
 | guide_button_list | list | 所有的按钮 | |
 
-~~ 真不知道这种 API 有什么解析的作用。。。~~
-
 **示例：**
 
 ```shell
@@ -221,7 +231,7 @@ curl -G 'http://app.bilibili.com/x/v2/splash/list' \
 --data-urlencode="birth=0101"
 ```
 <details>
-<summary>查看响应示例(慎点，广告多的要命，我的 IDE 加载时都卡了，即使缩减了) ~~救命，卡死了~~ ：</summary>
+<summary>点我发现 bilibili 广告的新大陆：</summary>
 
 ``` python
 # Python 格式的 dict, 将就看一下，提取了 data
@@ -454,3 +464,16 @@ dct = {
     "splash_request_id": "1653661460572q172a27a3a3q2165",
 }
 ``` 
+
+</details>
+
+<span id="example">
+<details>
+<summary>
+一张广告图片(慎点)：
+</summary>
+
+![](https://i0.hdslb.com/bfs/sycp/creative_img/202205/7743233596d9c4addf44289df7f32e3a.jpg)
+
+</details>
+</span>
