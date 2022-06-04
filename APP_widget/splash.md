@@ -467,4 +467,3 @@ dct = {
 
 </details>
 </span>
-∑
