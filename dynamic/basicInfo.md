@@ -6,7 +6,7 @@
 
 ## 动态转发列表
 
-> http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta
+> http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail
 
 请求方式：GET
 
