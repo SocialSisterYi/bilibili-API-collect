@@ -1,7 +1,7 @@
 <!--
  * @Author      : Leon
  * @Date        : 2022-06-11 17:37:25
- * @LastEditTime: 2022-06-11 19:51:05
+ * @LastEditTime: 2022-06-13 19:53:55
  * @LastEditors : Leon
  * @Description : 
  * @GitHub      : https://github.com/Kiss-your
@@ -528,6 +528,8 @@ curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta
     }
 }
 ```
+</details>
+
 
 
 ## 动态点赞列表
