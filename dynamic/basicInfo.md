@@ -1,11 +1,3 @@
-<!--
- * @Author      : Leon
- * @Date        : 2022-06-11 17:37:25
- * @LastEditTime: 2022-06-11 19:51:05
- * @LastEditors : Leon
- * @Description : 
- * @GitHub      : https://github.com/Kiss-your
--->
 # 动态基本信息
 - 动态基本信息
   - [动态转发列表](#动态转发列表)
@@ -528,7 +520,7 @@ curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta
     }
 }
 ```
-
+</details>
 
 ## 动态点赞列表
 
