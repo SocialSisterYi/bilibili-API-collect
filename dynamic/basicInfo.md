@@ -49,7 +49,7 @@
 获取`哔哩哔哩弹幕网`的动态id为`669016644742283288`动态
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta' \
+curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail' \
 --data-urlencode 'dynamic_id=669016644742283288'
 ```
 
