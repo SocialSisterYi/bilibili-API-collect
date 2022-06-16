@@ -1,3 +1,12 @@
+<!--
+ * @Author      : Leon
+ * @Date        : 2022-06-11 17:37:25
+ * @LastEditTime: 2022-06-13 19:59:08
+ * @LastEditors : Leon
+ * @Description : 
+ * @GitHub      : https://github.com/Kiss-your
+-->
+
 # 动态基本信息
 - 动态基本信息
   - [动态转发列表](#动态转发列表)
@@ -6,7 +15,7 @@
 
 ## 动态转发列表
 
-> http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta
+> http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail
 
 请求方式：GET
 
@@ -49,7 +58,7 @@
 获取`哔哩哔哩弹幕网`的动态id为`669016644742283288`动态
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta' \
+curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail' \
 --data-urlencode 'dynamic_id=669016644742283288'
 ```
 
@@ -521,6 +530,7 @@ curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta
 }
 ```
 </details>
+
 
 ## 动态点赞列表
 
