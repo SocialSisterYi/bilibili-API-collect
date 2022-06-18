@@ -86,6 +86,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [视频在线人数](video/online.md)
 - [ ] [剧集（番剧、影视）](bangumi)
   - [ ] [基本信息](bangumi/info.md)
+  - [ ] [时间轴](bangumi/timeline.md)
   - [ ] 状态数
   - [ ] 操作
 - [ ] [视频弹幕](danmaku)
@@ -149,6 +150,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [充电留言](electric/charge_msg.md)
   - [x] [充电列表](electric/charge_list.md)
 - [ ] [动态](dynamic)
+  - [ ] [动态基本信息](dynamic/basicInfo.md)
   - [ ] [发送 & 转载动态](dynamic/publish.md)
   - [ ] [根据关键字搜索用户（at 别人时的填充列表）](dynamic/atlist.md)
   - [ ] [删除动态](dynamic/delete.md)
@@ -206,10 +208,11 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [分区当日投稿数](web_widget/zone_upload.md)
   - [x] [404 页漫画收集](web_widget/404_manga.md)
 - [ ] [APP端组件](APP_widget)
-  - [x] [开屏图片](APP_widget/splash.md)
+  - [x] [开屏图片 + 恰饭珍贵录像](APP_widget/splash.md)
 - [ ] [个性装扮](garb)
   - [x] [APP 主题](garb/skin.md)
   - [x] [主题色](garb/color.md)
+
 
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
