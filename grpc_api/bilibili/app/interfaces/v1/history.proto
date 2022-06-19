@@ -234,13 +234,13 @@ message CursorV2Req {
 // 设备标识代码
 enum DT {
     Unknown = 0; // 未知
-    Phone = 1;   // 手机端
-    Pad = 2;     // ipad端
-    PC = 3;      // web端
-    TV = 4;      // TV端
-    Car = 5;     //
-    Iot = 6;     //
-    AndPad = 7;  // apad端
+    Phone   = 1; // 手机端
+    Pad     = 2; // ipad端
+    PC      = 3; // web端
+    TV      = 4; // TV端
+    Car     = 5; // 车机端
+    Iot     = 6; // 物联设备
+    AndPad  = 7; // apad端
 }
 
 // 删除历史记录-请求
