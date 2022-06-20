@@ -12,6 +12,16 @@ service Topic {
     rpc TopicDetailsAll(TopicDetailsAllReq) returns (TopicDetailsAllReply);
     //
     rpc TopicDetailsFold(TopicDetailsFoldReq) returns (TopicDetailsFoldReply);
+    //
+    rpc TopicSetDetails(TopicSetDetailsReq) returns (TopicSetDetailsReply);
+}
+
+//
+message ButtonMeta {
+    //
+    string text = 1;
+    //
+    string icon = 2;
 }
 
 //
@@ -32,6 +42,14 @@ message DetailsTopInfo {
     string head_img_backcolor = 7;
     //
     int32 word_color = 8;
+    //
+    int32 mission_page_show_type = 9;
+    //
+    string mission_url = 10;
+    //
+    string mission_text = 11;
+    //
+    TopicSet topic_set = 12;
 }
 
 //
@@ -155,6 +173,18 @@ message OperationContent {
 }
 
 //
+message PubLayer {
+    //
+    int32 show_type = 1;
+    //
+    string jump_link = 2;
+    //
+    ButtonMeta button_meta = 3;
+    //
+    bool close_pub_layer_entry = 4;
+}
+
+//
 message RelationData {
     //
     bool is_fav = 1;
@@ -195,6 +225,30 @@ message ThreePointItem {
 }
 
 //
+message TimeLineEvents {
+    //
+    int64 event_id = 1;
+    //
+    string title = 2;
+    //
+    string time_desc = 3;
+    //
+    string jump_link = 4;
+}
+
+//
+message TimeLineResource {
+    //
+    int64 time_line_id = 1;
+    //
+    string time_line_title = 2;
+    //
+    repeated TimeLineEvents time_line_events = 3;
+    //
+    bool has_more = 4;
+}
+
+//
 message TopicActivities {
     //
     repeated TopicActivity activity = 1;
@@ -232,6 +286,8 @@ message TopicCardItem {
     bilibili.app.dynamic.v2.DynamicItem dynamic_item = 2;
     //
     FoldCardItem ford_card_item = 3;
+    //
+    VideoSmallCardItem video_small_card_item = 4;
 }
 
 //
@@ -248,9 +304,10 @@ message TopicCardList {
 
 //
 enum TopicCardType {
-    ILLEGAL_TYPE = 0; //
-    DYNAMIC = 1;      //
-    FOLD = 2;         //
+    ILLEGAL_TYPE = 0;     //
+    DYNAMIC = 1;          //
+    FOLD = 2;             //
+    VIDEO_SMALL_CARD = 3; //
 }
 
 //
@@ -263,6 +320,12 @@ message TopicDetailsAllReply {
     TopicCardList topic_card_list = 3;
     //
     FunctionalCard functional_card = 4;
+    //
+    PubLayer pub_layer = 5;
+    //
+    TimeLineResource time_line_resource = 6;
+    //
+    TopicServerConfig topic_server_config = 7;
 }
 
 //
@@ -283,6 +346,14 @@ message TopicDetailsAllReq {
     int32 need_refresh = 7;
     //
     string source = 8;
+    //
+    int32 topic_details_ext_mode = 9;
+}
+
+//
+enum TopicDetailsExtMode {
+    MODE_ILLEGAL_TYPE = 0;  //
+    STORY = 1;              //
 }
 
 //
@@ -347,6 +418,87 @@ message TopicInfo {
     string share_url = 17;
     //
     bool is_like = 18;
+    //
+    int32 type = 19;
+    //
+    string stats_desc = 20;
+    //
+    string fixed_topic_icon = 21;
+}
+
+//
+message TopicServerConfig {
+    //
+    int64 pub_events_increase_threshold = 1;
+    //
+    int64 pub_events_hidden_timeout_threshold = 2;
+    //
+    int64 vert_online_refresh_time = 3;
+}
+
+//
+message TopicSet {
+    //
+    int64 set_id = 1;
+    //
+    string set_name = 2;
+    //
+    string jump_url = 3;
+    //
+    string desc = 4;
+}
+
+//
+message TopicSetDetailsReply {
+    //
+    TopicSetHeadInfo topic_set_head_info = 1;
+    //
+    repeated TopicInfo topic_info = 2;
+    //
+    bool has_more = 3;
+    //
+    string offset = 4;
+    //
+    TopicSetSortCfg sort_cfg = 5;
+}
+
+//
+message TopicSetDetailsReq {
+    //
+    int64 set_id = 1;
+    //
+    int64 sort_by = 2;
+    //
+    string offset = 3;
+    //
+    int32 page_size = 4;
+}
+
+message TopicSetHeadInfo {
+    //
+    TopicSet topic_set = 1;
+    //
+    string topic_cnt_text = 2;
+    //
+    string head_img_url = 3;
+    //
+    string mission_url = 4;
+    //
+    string mission_text = 5;
+    //
+    string icon_url = 6;
+    //
+    bool is_fav = 7;
+    //
+    bool is_first_time = 8;
+}
+
+//
+message TopicSetSortCfg {
+    //
+    int64 default_sort_by = 1;
+    //
+    repeated SortContent all_sort_by = 2;
 }
 
 //
@@ -393,4 +545,36 @@ message User {
     string name = 3;
     //
     string name_desc = 4;
+}
+
+//
+message VideoCardBase {
+    //
+    string cover = 1;
+    //
+    string title = 2;
+    //
+    string up_name = 3;
+    //
+    int64 play = 4;
+    //
+    string jump_link = 5;
+    //
+    int64 aid = 6;
+}
+
+//
+message VideoSmallCardItem {
+    //
+    VideoCardBase video_card_base = 1;
+    //
+    string cover_left_badge_text = 2;
+    //
+    int64 card_stat_icon1 = 3;
+    //
+    string card_stat_text1 = 4;
+    //
+    int64 card_stat_icon2 = 5;
+    //
+    string card_stat_text2 = 6;
 }

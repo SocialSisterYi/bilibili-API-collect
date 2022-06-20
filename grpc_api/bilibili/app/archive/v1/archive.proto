@@ -3,7 +3,7 @@ syntax = "proto3";
 package bilibili.app.archive.v1;
 
 // 稿件基本信息
-message Arc{
+message Arc {
 	// 稿件avid
 	int64 aid = 1;
 	// 稿件分P数
@@ -69,7 +69,7 @@ message Arc{
 }
 
 // UP主信息
-message Author{
+message Author {
 	// UP主mid
 	int64 mid = 1;
 	// UP主昵称
@@ -79,7 +79,7 @@ message Author{
 }
 
 // 分辨率
-message Dimension{
+message Dimension {
 	// 宽度
 	int64 width = 1;
 	// 高度
@@ -90,7 +90,7 @@ message Dimension{
 }
 
 // 分P信息
-message Page{
+message Page {
 	// 视频cid
     int64 cid = 1;
     // 分P序号
@@ -113,7 +113,7 @@ message Page{
 }
 
 // 稿件控制标志
-message Rights{
+message Rights {
 	// 老版是否付费
     int32 bp = 1;
     // 允许充电
@@ -138,10 +138,14 @@ message Rights{
     int32 ugc_pay_preview = 11;
     // 是否禁止后台播放
     int32 no_background = 12;
+	//
+	int32 arc_pay = 13;
+	//
+    int32 pay_free_watch = 14;
 }
 
 // 合作成员信息
-message StaffInfo{
+message StaffInfo {
 	// 成员mid
     int64 mid = 1;
     // 成员角色
@@ -152,7 +156,7 @@ message StaffInfo{
 }
 
 // 状态数
-message Stat{
+message Stat {
 	// 稿件avid
 	int64 aid = 1;
 	// 播放数

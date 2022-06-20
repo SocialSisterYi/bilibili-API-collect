@@ -49,6 +49,18 @@ message Chronos {
 }
 
 //
+message ButtonStyle {
+    //
+    string text = 1;
+    //
+    string text_color = 2;
+    //
+    string bg_color = 3;
+    //
+    string jump_link = 4;
+}
+
+//
 message CloudConf {
     // 是否展示功能
     bool show = 1;
@@ -65,6 +77,7 @@ enum CodeType {
     NOCODE = 0;  // 默认
     CODE264 = 1; // H.264
     CODE265 = 2; // H.265
+    CODEAV1 = 3; // av1
 }
 
 // 设置类型
@@ -129,6 +142,8 @@ message DashItem {
     uint64 size = 7;
     // 帧率
     string frame_rate = 8;
+    //
+    string widevine_pssh = 9;
 }
 
 // dash视频流
@@ -155,6 +170,8 @@ message DashVideo {
     int32 width = 10;
     // 高度
     int32 height = 11;
+    //
+    string widevine_pssh = 12;
 }
 
 // 杜比伴音信息
@@ -333,6 +350,24 @@ enum PlayErr {
     WithMultiDeviceLoginErr = 1; // 管控类型的错误码
 }
 
+//
+message PlayLimit {
+    //
+    PlayLimitCode code = 1;
+    //
+    string message = 2;
+    //
+    string sub_message = 3;
+    //
+    ButtonStyle button = 4;
+}
+
+//
+enum PlayLimitCode {
+    PLCUnkown = 0;      //
+    PLCUgcNotPayed = 1; //
+}
+
 // 视频地址-回复
 message PlayURLReply {
     // 清晰的
@@ -405,6 +440,8 @@ message PlayViewReply {
     Event event = 6;
     //
     AB ab = 7;
+    //
+    PlayLimit play_limit = 8;
 }
 
 // 播放页信息-请求
@@ -574,7 +611,6 @@ message UpgradeButton {
     // 链接
     string link = 2;
 }
-
 
 // 互动视频升级提示
 message UpgradeLimit {
