@@ -279,12 +279,12 @@ message BizReserveGameParam {
 
 // 业务类型
 enum BizType {
-    BizTypeNone = 0;            //
-    BizTypeFollowVideo = 1;     // 追番追剧
+    BizTypeNone            = 0; //
+    BizTypeFollowVideo     = 1; // 追番追剧
     BizTypeReserveActivity = 2; // 预约活动
-    BizTypeJumpLink = 3;        // 跳转链接
-    BizTypeFavSeason = 4;       // 收藏合集
-    BizTypeReserveGame = 5;     // 预约游戏
+    BizTypeJumpLink        = 3; // 跳转链接
+    BizTypeFavSeason       = 4; // 收藏合集
+    BizTypeReserveGame     = 5; // 预约游戏
 }
 
 //
@@ -388,7 +388,7 @@ message CacheViewReq {
 //
 enum Category {
     CategoryUnknown = 0; //
-    CategorySeason = 1;  //
+    CategorySeason  = 1; //
 }
 
 // Chronos灰度管理
@@ -645,8 +645,8 @@ message CustomConfig {
 // 枚举-文本类型
 enum DescType {
     DescTypeUnknown = 0; // 占位
-    DescTypeText = 1;    // 文本
-    DescTypeAt = 2;      // @
+    DescTypeText    = 1; // 文本
+    DescTypeAt      = 2; // @
 }
 
 // 特殊稿件简介
@@ -991,7 +991,7 @@ message MaterialRes {
     //
     string url = 3;
     //
-    int32 typ = 4;
+    MaterialSource type = 4;
     //
     string name = 5;
     //
@@ -1004,8 +1004,8 @@ message MaterialRes {
 
 //
 enum MaterialSource {
-    Default = 0;
-    BiJian = 1;
+    Default = 0; //
+    BiJian  = 1; // 必剪
 }
 
 //
@@ -1119,9 +1119,9 @@ message OperationCardNew {
 
 // 卡片样式
 enum OperationCardType {
-    CardTypeNone = 0;     //
+    CardTypeNone     = 0; //
     CardTypeStandard = 1; // 标准卡
-    CardTypeSkip = 2;     // 原跳转卡
+    CardTypeSkip     = 2; // 原跳转卡
 }
 
 // 相关推荐(运营配置+AI推荐)
@@ -1172,15 +1172,15 @@ message PackInfo {
 //
 enum PayState {
     PayStateUnknown = 0; //
-    PayStateActive = 1;  //
+    PayStateActive  = 1; //
 }
 
 // 卡片类型
 enum PlayerCardType {
-    PlayerCardTypeNone_VALUE = 0;      //
+    PlayerCardTypeNone_VALUE      = 0; //
     PlayerCardTypeAttention_VALUE = 1; // 关注卡
     PlayerCardTypeOperation_VALUE = 2; // 运营卡
-    PlayerCardTypeContract_VALUE = 3;  // 契约卡
+    PlayerCardTypeContract_VALUE  = 3; // 契约卡
 }
 
 // 进度条动画配置
@@ -1301,10 +1301,10 @@ message PremiereResource {
 
 //
 enum PremiereState {
-    premiere_none = 0;   //
+    premiere_none   = 0; //
     premiere_before = 1; //
-    premiere_in = 2;     //
-    premiere_after = 3;  //
+    premiere_in     = 2; //
+    premiere_after  = 3; //
 }
 
 //
@@ -1649,8 +1649,8 @@ message SeasonReq {
 //
 enum SeasonType {
     Unknown = 0; //
-    Base = 1;    //
-    Good = 2;    //
+    Base    = 1; //
+    Good    = 2; //
 }
 
 // 视频合集小节信息
@@ -1817,15 +1817,15 @@ message Tab {
 // TAB跳转类型
 enum TabOtype {
     UnknownOtype = 0; // 未知类型
-    URL = 1;          // url链接
-    TopicNA = 2;      // native话题活动
+    URL          = 1; // url链接
+    TopicNA      = 2; // native话题活动
 }
 
 // TAB样式
 enum TabStyle {
     UnknownStyle = 0; // 未知样式
-    Text = 1;         // 文字样式
-    Pic = 2;          // 图片样式
+    Text         = 1; // 文字样式
+    Pic          = 2; // 图片样式
 }
 
 // TAG信息

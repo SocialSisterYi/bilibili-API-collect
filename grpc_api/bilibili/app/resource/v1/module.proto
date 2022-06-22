@@ -10,7 +10,7 @@ service Module {
 
 //
 enum CompressType {
-    Unzip = 0;    // unzip
+    Unzip    = 0; // unzip
     Original = 1; // 不操作
 }
 
@@ -18,21 +18,21 @@ enum CompressType {
 enum EnvType {
     Unknown = 0; //
     Release = 1; //
-    Test = 2;    //
+    Test    = 2; //
 }
 
 //
 enum IncrementType {
-    Total = 0;       // 全量包
+    Total       = 0; // 全量包
     Incremental = 1; // 增量包
 }
 
 //
 enum LevelType {
     Undefined = 0; //
-    High = 1;      // 高 需立即下载
-    Middle = 2;    // 中 可以延迟下载
-    Low = 3;       // 低 仅在业务方使用到时由业务方手动进行下载
+    High      = 1; // 高 需立即下载
+    Middle    = 2; // 中 可以延迟下载
+    Low       = 3; // 低 仅在业务方使用到时由业务方手动进行下载
 }
 
 message ListReply {

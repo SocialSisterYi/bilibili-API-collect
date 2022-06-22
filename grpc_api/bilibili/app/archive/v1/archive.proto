@@ -126,11 +126,11 @@ message Rights {
     int32 pay = 5;
     // 是否高码率
     int32 hd5 = 6;
-    // 是否禁止转载标志
+    // 是否显示“禁止转载”标志
     int32 no_reprint = 7;
     // 是否允许自动播放
     int32 autoplay = 8;
-    // UGC稿件需要付费
+    // UGC稿件需要付费(旧版)
     int32 ugc_pay = 9;
     // 是否联合投稿
     int32 is_cooperation = 10;
@@ -138,9 +138,9 @@ message Rights {
     int32 ugc_pay_preview = 11;
     // 是否禁止后台播放
     int32 no_background = 12;
-	//
+	// UGC稿件需要付费
 	int32 arc_pay = 13;
-	//
+	// 是否已付费可自由观看
     int32 pay_free_watch = 14;
 }
 
@@ -159,7 +159,7 @@ message StaffInfo {
 message Stat {
 	// 稿件avid
 	int64 aid = 1;
-	// 播放数
+	// 播放数(当屏蔽时为-1)
 	int32 view = 2;
 	// 弹幕数
 	int32 danmaku = 3;
