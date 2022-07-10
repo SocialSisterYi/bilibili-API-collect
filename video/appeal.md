@@ -10,57 +10,7 @@
 
 ## 附件上传
 
-> https://member.bilibili.com/x/vu/web/cover/up
-
-*请求方式：POST*
-
-认证方式：Cookie（SESSDATA）/无
-
-**url参数：**
-
-| 参数名 | 类型 | 内容                   | 必要性 | 备注             |
-| ------ | ---- | ---------------------- | ------ | ---------------- |
-| csrf   | str  | csrf token(位于cookie) | 必要   | 在url params中   |
-| cover  | str  | 图片base64编码         | 必要   | 在request body中 |
-
-**json回复：**
-
-| 参数名  | 类型   | 内容     | 备注    |
-| ------- | ------ | -------- | ------- |
-| code    | num    | 返回码   | 成功为0 |
-| data    | object | 返回主体 |         |
-| message | Str    |          | 成功为0 |
-| ttl     |        | 1        |         |
-
-`data`对象：
-
-| 参数名 | 类型 | 内容            | 备注 |
-| ------ | ---- | --------------- | ---- |
-| url    | str  | 上传后的附件url |      |
-
-**示例：**
-
-上传一个附件：
-
-```bash
-curl --location --request GET 'https://member.bilibili.com/x/vu/web/cover/up?csrf=xxxx' \
---form 'cover="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJwAAACgCAYAAAD5AAWbAAAMbmlDQ1BJQ0MgUHJvZmlsZQAASImVVwdYU8kWnluSkJDQQpcSehNEagApIbQA0otgI......"'```
-```
-
-<details>
-  <summary>查看响应示例</summary>
-```json
-{
-  "code": 0,
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "url": "https://archive.biliimg.com/bfs/archive/b7ebfa6df005dbb10c61e4d2c8e9dd827fc1f550.png"
-  }
-}
-```
-</details>
-
+> 附件上传与视频封面上传共用一个api。
 
 ## 获取投诉类型
 
@@ -313,7 +263,7 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）/无
+认证方式：Cookie（SESSDATA)
 
 **url参数：**
 
@@ -337,7 +287,7 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 **示例：举报av号为61080066的视频，理由为人身攻击，描述为“xxxxx”，并附带了一个图片附件
 
 ```bash
-curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/appeal?jsonp=jsonp&csrf=xxxx' \
+curl --location --request POST 'https://api.bilibili.com/x/web-interface/archive/appeal?jsonp=jsonp&csrf=xxxx' \
 --form 'aid="61080066"' \
 --form 'tid="7"' \
 --form 'desc="xxxxx"' \
