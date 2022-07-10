@@ -265,7 +265,7 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 
 认证方式：Cookie（SESSDATA)
 
-**url参数：**
+**正文参数：**
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                     |
 | ------ | ---- | ------------------------ | ------ | ------------------------ |
