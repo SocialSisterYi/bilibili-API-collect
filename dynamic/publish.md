@@ -88,7 +88,7 @@ curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload' \
 | content | str | 动态内容 |
 | up_choose_comment | num | 0 |
 | up_close_comment | num | 0 |
-| extension | obj | 常量见下,未知 |
+| extension | obj | 位置信息 |
 | at_uids | str | 动态中at到的用户的uid,逗号分隔 |
 | ctrl | obj[] | 特殊格式控制(如at别人时的蓝字体和链接) |
 | csrf_token | str | csrf |
@@ -96,7 +96,7 @@ curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload' \
 
 extension参数值:
 ```json
-{"emoji_type":1,"from":{"emoji_type":1},"flag_cfg":{}}
+{"emoji_type":1,"lbs_cfg":{"title":"**市","poi":"156330200","show_title":"**市","type":1,"address":"**市","location":{"lng":显示的经度数值,"lat":显示的纬度数值},"distance":0},"flag_cfg":{},"from_cfg":{"location":{"lat":用户实际纬度数值,"lng":用户实际经度数值}}}
 ```
 
 ctrl单个对象(注意用的时候是数组出现):
