@@ -457,7 +457,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 | 字段            | 类型  | 内容           | 备注                                                         |
 | --------------- | ----- | -------------- | ------------------------------------------------------------ |
-| mid             | num   | 用户mid        |                                                              |
+| mid             | str   | 用户mid        |                                                              |
 | approve         | bool  | false          | **作用尚不明确**                                             |
 | name            | str   | 用户昵称       |                                                              |
 | sex             | str   | 用户性别       | 男 女 保密                                                   |
