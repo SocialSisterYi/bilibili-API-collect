@@ -271,6 +271,7 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 
 ## 成品
 
+- [Infinity1309/NewpipeEnhanced](https://github.com/InfinityLoop1309/NewPipeEnhanced): 功能完善的Android流媒体综合客户端，支持Bilibili, Youtube, NicoNico
 - [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
 - [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):本地弹幕播放器
 - [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制
