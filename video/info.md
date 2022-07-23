@@ -2,14 +2,14 @@
 
 <img src="/imgs/ploading.gif" width="100" height="100"/>
 
-- [获取视频基本信息(web端)](#获取视频基本信息(web端))
 - [获取视频详细信息(web端)](#获取视频详细信息(web端))
+- [获取视频超详细信息(web端)](#获取视频超详细信息(web端))
 - [获取视频简介](#获取视频简介)
 - [查询视频分P列表  (avid/bvid转cid)](#查询视频分P列表  (avid/bvid转cid))
 
 ---
 
-## 获取视频基本信息(web端)
+## 获取视频详细信息(web端)
 
 > http://api.bilibili.com/x/web-interface/view
 
@@ -463,7 +463,7 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 ![](http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg)
 
-## 获取视频详细信息(web端)
+## 获取视频超详细信息(web端)
 
 > http://api.bilibili.com/x/web-interface/view/detail
 
@@ -508,7 +508,7 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 `data`中的`View`对象：
 
-基本同「[获取视频基本信息(web端)](#获取视频基本信息(web端))」中的data对象
+基本同「[获取视频详细信息(web端)](#获取视频详细信息(web端))」中的data对象
 
 `data`中的`Card`对象：
 
@@ -634,7 +634,7 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 `Related`数组中的对象：
 
-基本同「[获取视频基本信息(web端)](#获取视频基本信息(web端))」中的data对象
+基本同「[获取视频详细信息(web端)](#获取视频详细信息(web端))」中的data对象
 
 `data`中的`hot_share`对象：
 
