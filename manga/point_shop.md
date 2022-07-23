@@ -272,7 +272,7 @@ curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct'
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：兑换成功<br />1：积分不足<br />2：库存不足<br />3：product point mismatch（point填写错误）<br />3：超过用户最大可兑换数量<br />4：现在抢票的人太多啦，再点一下有机会优先上车喔 ε=ε=(ノ≧∇≦)ノ |
+| code    | num  | 返回值   | 0：兑换成功<br />1：积分不足<br />1：您点的太快了~<br />2：库存不足<br />3：product point mismatch（point填写错误）<br />3：超过用户最大可兑换数量<br />4：现在抢票的人太多啦，再点一下有机会优先上车喔 ε=ε=(ノ≧∇≦)ノ |
 | message | str  | 错误信息 |                                                              |
 
 **示例：**
