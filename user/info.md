@@ -2,9 +2,10 @@
 
 <img src="/imgs/akari.jpg" width="200" height="200"/>
 
-- [用户空间详细信息 ](#用户空间详细信息)
+- [用户空间详细信息](#用户空间详细信息)
 - [用户名片信息](#用户名片信息)
 - [登录用户空间详细信息](#登录用户空间详细信息)
+- [多用户详细信息](#多用户详细信息)
 
 ---
 
@@ -851,6 +852,265 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
         "following": 1122,
         "follower": 1122
     }
+}
+```
+
+</details>
+
+## 多用户详细信息
+
+> http://api.vc.bilibili.com/account/v1/user/cards
+
+*请求方式：GET*
+
+认证方式：Cookie(SESSDATA)
+
+**url参数：**
+
+| 参数名 | 类型 | 内容              | 必要性 | 备注                              |
+| ------ | ---- | ----------------- | ------ | --------------------------------- |
+| uids   | nums | 目标用户的UID列表 | 必要   | 每个成员间用`,`分隔，最多50个成员 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型  | 内容     | 备注                                                              |
+| ------- | ----- | -------- | ----------------------------------------------------------------- |
+| code    | num   | 返回值   | 0：成功<br />-400：请求错误<br />600007：超出批量获取用户信息限制 |
+| msg     | str   | 错误信息 | 默认为空                                                          |
+| message | str   | 错误信息 | 默认为空                                                          |
+| data    | array | 信息本体 |                                                                   |
+
+`data`数组：
+
+| 项   | 类型 | 内容      | 备注 |
+| ---- | ---- | --------- | ---- |
+| 0    | obj  | 用户1     |      |
+| n    | obj  | 用户(n+1) |      |
+| ……   | obj  | ……        | ……   |
+
+`data`数组中的对象：
+
+基本同「[用户空间详细信息](#用户空间详细信息)」中的data对象
+
+**示例：**
+
+查询用户`uids=1,2,3`的详细信息
+
+```shell
+curl -G 'http://api.vc.bilibili.com/account/v1/user/cards' \
+--data-urlencode 'uids=1,2,3' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"msg": "",
+	"message": "",
+	"data": [{
+		"mid": 1,
+		"name": "bishi",
+		"sex": "男",
+		"face": "https://i1.hdslb.com/bfs/face/34c5b30a990c7ce4a809626d8153fa7895ec7b63.gif",
+		"sign": "",
+		"rank": 10000,
+		"level": 4,
+		"silence": 0,
+		"vip": {
+			"type": 2,
+			"status": 1,
+			"due_date": 1754496000000,
+			"vip_pay_type": 1,
+			"theme_type": 0,
+			"label": {
+				"path": "",
+				"text": "年度大会员",
+				"label_theme": "annual_vip",
+				"text_color": "#FFFFFF",
+				"bg_style": 1,
+				"bg_color": "#FB7299",
+				"border_color": "",
+				"use_img_label": true,
+				"img_label_uri_hans": "",
+				"img_label_uri_hant": "",
+				"img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/8d4f8bfc713826a5412a0a27eaaac4d6b9ede1d9.png",
+				"img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/VEW8fCC0hg.png"
+			},
+			"avatar_subscript": 1,
+			"nickname_color": "#FB7299",
+			"role": 3,
+			"avatar_subscript_url": "",
+			"tv_vip_status": 0,
+			"tv_vip_pay_type": 0,
+			"tv_due_date": 1633622400
+		},
+		"pendant": {
+			"pid": 0,
+			"name": "",
+			"image": "",
+			"expire": 0,
+			"image_enhance": "",
+			"image_enhance_frame": ""
+		},
+		"nameplate": {
+			"nid": 0,
+			"name": "",
+			"image": "",
+			"image_small": "",
+			"level": "",
+			"condition": ""
+		},
+		"official": {
+			"role": 0,
+			"title": "",
+			"desc": "",
+			"type": -1
+		},
+		"birthday": 622137600,
+		"is_fake_account": 0,
+		"is_deleted": 0,
+		"in_reg_audit": 0,
+		"face_nft": 0,
+		"face_nft_new": 0,
+		"is_senior_member": 0
+	}, {
+		"mid": 2,
+		"name": "碧诗",
+		"sex": "男",
+		"face": "https://i2.hdslb.com/bfs/face/ef0457addb24141e15dfac6fbf45293ccf1e32ab.jpg",
+		"sign": "https://kami.im 直男过气网红 # av362830 “We Are Star Dust”",
+		"rank": 20000,
+		"level": 6,
+		"silence": 0,
+		"vip": {
+			"type": 2,
+			"status": 1,
+			"due_date": 3901881600000,
+			"vip_pay_type": 0,
+			"theme_type": 0,
+			"label": {
+				"path": "",
+				"text": "十年大会员",
+				"label_theme": "ten_annual_vip",
+				"text_color": "#FFFFFF",
+				"bg_style": 1,
+				"bg_color": "#FB7299",
+				"border_color": "",
+				"use_img_label": true,
+				"img_label_uri_hans": "",
+				"img_label_uri_hant": "",
+				"img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/adb599797dd171e2d3d6d012f448b49679258344.png",
+				"img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/sGu57N6pgK.png"
+			},
+			"avatar_subscript": 1,
+			"nickname_color": "#FB7299",
+			"role": 7,
+			"avatar_subscript_url": "",
+			"tv_vip_status": 0,
+			"tv_vip_pay_type": 0,
+			"tv_due_date": 1655481600
+		},
+		"pendant": {
+			"pid": 32257,
+			"name": "EveOneCat2",
+			"image": "https://i2.hdslb.com/bfs/garb/item/488870931b1bba66da36d22848f0720480d3d79a.png",
+			"expire": 0,
+			"image_enhance": "https://i2.hdslb.com/bfs/garb/item/5974f17f9d96a88bafba2f6d18d647a486e88312.webp",
+			"image_enhance_frame": "https://i2.hdslb.com/bfs/garb/item/4316a3910bb0bd6f2f1c267a3e9187f0b9fe5bd0.png"
+		},
+		"nameplate": {
+			"nid": 10,
+			"name": "见习偶像",
+			"image": "https://i0.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png",
+			"image_small": "https://i1.hdslb.com/bfs/face/275b468b043ec246737ab8580a2075bee0b1263b.png",
+			"level": "普通勋章",
+			"condition": "所有自制视频总播放数>=10万"
+		},
+		"official": {
+			"role": 2,
+			"title": "bilibili创始人（站长）",
+			"desc": "",
+			"type": 0
+		},
+		"birthday": 622137600,
+		"is_fake_account": 0,
+		"is_deleted": 0,
+		"in_reg_audit": 0,
+		"face_nft": 0,
+		"face_nft_new": 0,
+		"is_senior_member": 1
+	}, {
+		"mid": 3,
+		"name": "囧囧倉",
+		"sex": "男",
+		"face": "https://i0.hdslb.com/bfs/face/d4de6a84557eea8f18510a3f61115d96832aa071.jpg",
+		"sign": "富强、民主、文明、和谐、自由、平等、公正、法治、爱国、敬业、诚信、友善。",
+		"rank": 10000,
+		"level": 5,
+		"silence": 0,
+		"vip": {
+			"type": 0,
+			"status": 0,
+			"due_date": 0,
+			"vip_pay_type": 0,
+			"theme_type": 0,
+			"label": {
+				"path": "",
+				"text": "",
+				"label_theme": "",
+				"text_color": "",
+				"bg_style": 0,
+				"bg_color": "",
+				"border_color": "",
+				"use_img_label": true,
+				"img_label_uri_hans": "",
+				"img_label_uri_hant": "",
+				"img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/d7b702ef65a976b20ed854cbd04cb9e27341bb79.png",
+				"img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/KJunwh19T5.png"
+			},
+			"avatar_subscript": 0,
+			"nickname_color": "",
+			"role": 0,
+			"avatar_subscript_url": "",
+			"tv_vip_status": 0,
+			"tv_vip_pay_type": 0,
+			"tv_due_date": 0
+		},
+		"pendant": {
+			"pid": 0,
+			"name": "",
+			"image": "",
+			"expire": 0,
+			"image_enhance": "",
+			"image_enhance_frame": ""
+		},
+		"nameplate": {
+			"nid": 0,
+			"name": "",
+			"image": "",
+			"image_small": "",
+			"level": "",
+			"condition": ""
+		},
+		"official": {
+			"role": 0,
+			"title": "",
+			"desc": "",
+			"type": -1
+		},
+		"birthday": 1262275200,
+		"is_fake_account": 0,
+		"is_deleted": 0,
+		"in_reg_audit": 0,
+		"face_nft": 0,
+		"face_nft_new": 0,
+		"is_senior_member": 0
+	}]
 }
 ```
 
