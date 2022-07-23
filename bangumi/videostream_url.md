@@ -66,7 +66,7 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 
 ## 获取番剧视频流URL
 
->  https://api.bilibili.com/pgc/player/web/playurl
+>  http://api.bilibili.com/pgc/player/web/playurl
 
 *请求方式：GET*
 
@@ -94,9 +94,9 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 
 | 参数名 | 类型 | 内容             | 必要性       | 备注                                                         |
 | ------ | ---- | ---------------- | ------------ | ------------------------------------------------------------ |
-| avid   | num  | 稿件avid         | 必要（可选） | avid与bvid任选一个                                           |
-| bvid   | str  | 稿件bvid         | 必要（可选） | avid与bvid任选一个                                           |
-| epid  | str  |    | 稿件epid         | 必要             |
+| avid   | num  | 稿件avid         | 非必要       | avid与bvid任选一个                                           |
+| bvid   | str  | 稿件bvid         | 非必要       | avid与bvid任选一个                                           |
+| ep_id  | str  | 稿件epid         | 非必要       |                                                              |
 | cid    | num  | 视频cid          | 必要         |                                                              |
 | qn     | num  | 视频清晰度选择   | 非必要       | 未登录默认32（480P）<br />登录默认64（720P）<br />**值含义见上表**<br />注：dash方式无效 |
 | fnval  | num  | 视频获取方式选择 | 非必要       | 默认为0<br />0 2：flv方式（可能会有分段）<br />1：低清mp4方式（仅240P与360P，且限速65K/s）<br />16 80：dash方式（音视频分流，支持H.265） |
