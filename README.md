@@ -23,7 +23,7 @@
 
 所有 rest api 均为标准 http 协议，请求数据大多为 url query 表单，返回数据大多为 json 或 protobuf
 
-PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，为了数据安全建议调用接口时使用 https
+PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（除过仅可https协议调用接口），为了数据安全建议调用接口时使用 https
 
 小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/)（[Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk)）
 
@@ -218,6 +218,12 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
 **--Project_by [社会易姐QwQ](https://space.bilibili.com/293793435)**
+
+# 鸣谢
+
+你们的存在，让社区更美好
+
+[![contributors](https://opencollective.com/bilibili-api-collect/contributors.svg?width=860&button=false)](https://github.com/SocialSisterYi/bilibili-API-collect/graphs/contributors)
 
 # 相关协议基础
 
