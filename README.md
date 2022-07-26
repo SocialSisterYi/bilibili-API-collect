@@ -23,7 +23,7 @@
 
 所有 rest api 均为标准 http 协议，请求数据大多为 url query 表单，返回数据大多为 json 或 protobuf
 
-PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，为了数据安全建议调用接口时使用 https
+PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（除过仅可https协议调用接口），为了数据安全建议调用接口时使用 https
 
 小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/)（[Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk)）
 
@@ -86,6 +86,8 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [视频在线人数](video/online.md)
 - [ ] [剧集（番剧、影视）](bangumi)
   - [ ] [基本信息](bangumi/info.md)
+  - [ ] [播放&下载地址（视频流）](bangumi/videostream_url.md)
+  - [ ] [时间轴](bangumi/timeline.md)
   - [ ] 状态数
   - [ ] 操作
 - [ ] [视频弹幕](danmaku)
@@ -149,6 +151,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [充电留言](electric/charge_msg.md)
   - [x] [充电列表](electric/charge_list.md)
 - [ ] [动态](dynamic)
+  - [ ] [动态基本信息](dynamic/basicInfo.md)
   - [ ] [发送 & 转载动态](dynamic/publish.md)
   - [ ] [根据关键字搜索用户（at 别人时的填充列表）](dynamic/atlist.md)
   - [ ] [删除动态](dynamic/delete.md)
@@ -191,7 +194,10 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [ ] 基本信息
   - [ ] B币充值
   - [ ] 贝壳相关
-- [ ] 哔哩哔哩漫画
+- [ ] [哔哩哔哩漫画](manga)
+  - [x] [签到](manga/clockin.md)
+  - [x] [积分商城](manga/point_shop.md)
+
 - [ ] 哔哩哔哩游戏
 - [ ] 轻视频
 - [ ] [终端网络查询](clientinfo)
@@ -203,14 +209,21 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [分区当日投稿数](web_widget/zone_upload.md)
   - [x] [404 页漫画收集](web_widget/404_manga.md)
 - [ ] [APP端组件](APP_widget)
-  - [x] [开屏图片](APP_widget/splash.md)
+  - [x] [开屏图片 + 恰饭珍贵录像](APP_widget/splash.md)
 - [ ] [个性装扮](garb)
   - [x] [APP 主题](garb/skin.md)
   - [x] [主题色](garb/color.md)
 
+
 B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
 
 **--Project_by [社会易姐QwQ](https://space.bilibili.com/293793435)**
+
+# 鸣谢
+
+你们的存在，让社区更美好
+
+[![contributors](https://opencollective.com/bilibili-api-collect/contributors.svg?width=860&button=false)](https://github.com/SocialSisterYi/bilibili-API-collect/graphs/contributors)
 
 # 相关协议基础
 
@@ -240,7 +253,11 @@ B 站空间：<https://space.bilibili.com/293793435>
 
 ~~请可爱的易姐喝杯奶茶~~
 
+WeChat & Alipay：
+
 <img src="imgs/sponsorQR.jpg" width="300" height="300">
+
+OR Aifadian：https://afdian.net/@ShakaiAneE
 
 # 相关项目
 
@@ -256,9 +273,11 @@ B 站空间：<https://space.bilibili.com/293793435>
 - [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
 - [simon300000/bili-api](https://github.com/simon300000/bili-api)
 - [iyear/biligo](https://github.com/iyear/biligo) Bilibili API SDK in Golang
+- [bilibili-openplatform/demo](https://github.com/bilibili-openplatform/demo): 哔哩哔哩开放平台示例代码库
 
 ## 成品
 
+- [Infinity1309/NewpipeEnhanced](https://github.com/InfinityLoop1309/NewPipeEnhanced): 功能完善的Android流媒体综合客户端，支持Bilibili, Youtube, NicoNico
 - [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
 - [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):本地弹幕播放器
 - [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制
@@ -276,7 +295,8 @@ B 站空间：<https://space.bilibili.com/293793435>
 - [xlzy520/bili-short-url](https://github.com/xlzy520/bili-short-url): 哔哩哔哩短链生成器
 - [zjkwdy/bili_app_splash](https://github.com/zjkwdy/bili_app_splash): B站壁纸娘和开屏图自动下载，每天使用Actions自动同步
 - [Jannchie/BiliOB](https://github.com/Jannchie/BiliOB): BiliOB观测者是一个观测B站UP主及视频数据变化，并予以分析的Web应用程序
-- [biliob233/biliob233.github.io](https://github.com/biliob233/biliob233.github.io):~~无可奉告~~
+- [biliob233/biliob233.github.io](https://github.com/biliob233/biliob233.github.io): ~~无可奉告~~
+- [biliup/biliup](https://github.com/biliup/biliup): 全自动录播、投稿工具，也支持twitch、ytb频道搬运。提供分p上传b站接口，腾讯云内网免流+大幅提速
 
 ## 其他
 
@@ -285,3 +305,5 @@ B 站空间：<https://space.bilibili.com/293793435>
 - [uw-labs/bloomrpc](https://github.com/uw-labs/bloomrpc): GUI Client for GRPC Services
 
 - [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#) 
+
+ - [quicktype](https://github.com/quicktype/quicktype) quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages.一键生成多种语言的json反序列化所需类,以便于快速反序列化, 有网页版

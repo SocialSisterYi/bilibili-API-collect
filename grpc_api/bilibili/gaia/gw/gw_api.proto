@@ -24,7 +24,7 @@ message DeviceAppList {
 }
 
 // 加密方式
-enum EncryptType{
+enum EncryptType {
     INVALID_ENCRYPT_TYPE = 0; // 非法值
     CLIENT_AES = 1;           // 同客户端人工约定AES加密私钥，存储在客户端
     SERVER_RSA_AES = 2;       // 客户端随机生成一个用于AES加密的私钥，并用服务端下发的RSA公钥来加密

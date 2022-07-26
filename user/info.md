@@ -66,13 +66,13 @@
 | profession       | obj  |                  |                                                              |
 | tags             | null |                  |                                                              |
 | series           | obj  |                  |                                                              |
-| is_senior_member | num  |                  |                                                              |
+| is_senior_member | num  |  是否为硬核会员   | 0：否<br />1：是                                              |
 
 `data`中的`official`对象：
 
 | 字段  | 类型 | 内容     | 备注                                              |
 | ----- | ---- | -------- | ------------------------------------------------- |
-| role  | num  | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
+| role  | num  | 认证类型 | 0：无<br />1 2 7 9：个人认证<br />3 4 5 6：机构认证 |
 | title | str  | 认证信息 | 无为空                                            |
 | desc  | str  | 认证备注 | 无为空                                            |
 | type  | num  | 是否认证 | -1：无<br />0：认证                               |
@@ -84,10 +84,13 @@
 | type             | num  | 会员类型         | 0：无<br />1：月大会员<br />2：年度及以上大会员 |
 | status           | num  | 会员状态         | 0：无<br />1：有                                |
 | due_date         | num  | 会员过期时间      | Unix时间戳(毫秒) |
+| vip_pay_type         | num  | 1      |  |
 | theme_type       | num  | 0                | 作用尚不明确                                    |
 | label            | obj  | 会员标签         |                                                 |
 | avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示                          |
 | nickname_color   | str  | 会员昵称颜色     | 颜色码                                          |
+| role   | num  | 3     |                                           |
+| avatar_subscript_url   | str  | 大会员角标地址     |                                           |
 
 `vip`中的`label`对象：
 
@@ -96,15 +99,21 @@
 | path        | str  | 空           | 作用尚不明确                                                 |
 | text        | str  | 会员类型文案 |                                                              |
 | label_theme | str  | 会员标签     | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
+| text_color | str  | 会员标签     |  |
+| bg_style | num  |      |  |
+| bg_color | str  |      |  |
+| border_color | str  |      |  |
 
 `data`中的`pendant`对象：
 
 | 字段   | 类型 | 内容          | 备注                 |
 | ------ | ---- | ------------- | -------------------- |
-| pid    | num  | 头像框id      | **详细说明有待补充** |
+| pid    | num  | 头像框id      |  |
 | name   | str  | 头像框名称    |                      |
 | image  | str  | 头像框图片url |                      |
 | expire | num  | (?)           |                      |
+| image_enhance | str  | (?)           |                      |
+| image_enhance_frame | str  | (?)           |                      |
 
 `data`中的`nameplate`对象：
 
@@ -117,11 +126,40 @@
 | level       | str  | 勋章等级         |                      |
 | condition   | str  | 勋章条件         |                      |
 
+`data`中的`fans_medal`对象：
+
+| 字段        | 类型 | 内容             | 备注                 |
+| ----------- | ---- | ---------------- | -------------------- |
+| show         | bool  |            |  |
+| wear        | bool  | 是否佩戴了粉丝勋章         |                      |
+| medal       | obj  | 粉丝勋章信息 |                      |
+
+`fans_medal`中的`medal`对象：
+
+| 字段        | 类型 | 内容             | 备注                 |
+| ----------- | ---- | ---------------- | -------------------- |
+| uid         | num  |     此用户mid       |  |
+| target_id        | num  | 粉丝勋章所属UP的mid         |                      |
+| medal_id       | num  | 粉丝勋章id |                      |
+| level       | num  | 粉丝勋章等级 |                      |
+| medal_name       | str  | 粉丝勋章名称 |                      |
+| medal_color       | num  | 颜色 |                      |
+| intimacy       | num  | 当前亲密度 |                      |
+| next_intimacy       | num  |下一等级所需亲密度  |                      |
+| day_limit       | num  | 每日亲密度获取上限 |                      |
+| medal_color_start       | num  |  |                      |
+| medal_color_end       | num  |  |                      |
+| medal_color_border       | num  |  |                      |
+| is_lighted       | num  |  |                      |
+| light_status       | num  |  |                      |
+| wearing_status       | num  | 当前是否佩戴 | 0：未佩戴<br />1：已佩戴                     |
+| score       | num  |  |                      |
+
 `data`中的`sys_notice`对象：
 
 | 字段        | 类型 | 内容            | 备注                                            |
 | ----------- | ---- | --------------- | ----------------------------------------------- |
-| id          | num  | 系统提示类型id  | 8：争议账号<br />20：纪念账号<br />22：合约诉讼 |
+| id          | num  | 系统提示类型id  | 8：争议账号<br />11：合约争议<br/>20：纪念账号<br />22：合约诉讼<br />24：合约争议<br />25：严重指控 |
 | content     | str  | 提示文案        |                                                 |
 | url         | str  | 提示信息页面url |                                                 |
 | notice_type | num  | ？              | 作用尚不明确<br />此字段非必须                  |
@@ -129,19 +167,42 @@
 | text_color  | str  | 提示文字颜色    | 此字段非必须<br />颜色码                        |
 | bg_color    | str  | 提示背景颜色    | 此字段非必须<br />颜色码                        |
 
+`sys_notice`示例
+
+| id        |type| 内容 |
+| ----------- | ---- | --------------- |
+| 8        |  |
+| 11        | 1 |该账号涉及合约争议，暂冻结其账号功能使用。详见公告->|
+| 20        | 2|请允许我们在此献上最后的告别，以此纪念其在哔哩哔哩留下的回忆与足迹。请点此查看纪念账号相关说明 |
+| 22        | |该账号涉及合约诉讼，封禁其账号使用。 |
+| 24        | 1|该账号涉及合约争议，暂冻结其账号功能使用。 |
+| 25        | 1|该用户涉及严重指控，暂冻结其账号功能使用 |
+
 `data`中的`live_room`对象：
 
-| 字段           | 类型 | 内容           | 备注                     |
-| -------------- | ---- | -------------- | ------------------------ |
-| roomStatus     | num  | 直播间状态     | 0：无房间<br />1：有房间 |
-| liveStatus     | num  | 直播状态       | 0：未开播<br />1：直播中 |
-| url            | str  | 直播间网页url  |                          |
-| title          | str  | 直播间标题     |                          |
-| cover          | str  | 直播间封面url  |                          |
-| online         | num  | 直播间人气     | 值为上次直播时刷新       |
-| roomid         | num  | 直播间id(短号) |                          |
-| roundStatus    | num  | 轮播状态       | 0：未轮播<br />1：轮播   |
-| broadcast_type | num  | 0              |                          |
+| 字段           | 类型 | 内容            | 备注                     |
+| -------------- | ---- | --------------- | ------------------------ |
+| roomStatus     | num  | 直播间状态      | 0：无房间<br />1：有房间 |
+| liveStatus     | num  | 直播状态        | 0：未开播<br />1：直播中 |
+| url            | str  | 直播间网页 url  |                          |
+| title          | str  | 直播间标题      |                          |
+| cover          | str  | 直播间封面 url  |                          |
+| watched_show   | obj  |                 |                          |
+| roomid         | num  | 直播间 id(短号) |                          |
+| roundStatus    | num  | 轮播状态        | 0：未轮播<br />1：轮播   |
+| broadcast_type | num  | 0               |                          |
+
+`live_room`中的`watched_show`对象：
+
+| 字段          | 类型 | 内容                | 备注 |
+| ------------- | ---- | ------------------- | ---- |
+| switch        | bool | ?                   |      |
+| num           | num  | total watched users |      |
+| text_small    | str  |                     |      |
+| text_large    | str  |                     |      |
+| icon          | str  | watched icon url    |      |
+| icon_location | str  | ?                   |      |
+| icon_web      | str  | watched icon url    |      |
 
 `data`中的`school`对象：
 
@@ -154,6 +215,17 @@
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | name | str  | (?)  |      |
+| department | str  | (?)  |      |
+| title | str  | (?)  |      |
+| is_show | num  | (?)  |      |
+
+`data`中的`user_honour_info`对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| mid | num  | 0  |      |
+| colour | str  | null  |      |
+| tags | array  | null  |      |
 
 `data`中的`series`对象：
 
@@ -267,15 +339,23 @@ curl -G 'http://api.bilibili.com/x/space/acc/info' \
         "theme": {},
         "sys_notice": {},
         "live_room": {
-            "roomStatus": 1,
-            "liveStatus": 0,
-            "url": "https://live.bilibili.com/1024",
-            "title": "试图恰鸡",
-            "cover": "http://i0.hdslb.com/bfs/live/new_room_cover/96ee5bfd0279a0f18b190340334f43f473038288.jpg",
-            "online": 16808,
-            "roomid": 1024,
-            "roundStatus": 0,
-            "broadcast_type": 0
+          "roomStatus": 1,
+          "liveStatus": 1,
+          "url": "https://live.bilibili.com/80397?broadcast_type=0\u0026is_room_feed=1",
+          "title": "天空一道巨响！",
+          "cover": "http://i0.hdslb.com/bfs/live/new_room_cover/f702ce1b7d1b728dafa57d96bbf7db319ab3aab7.jpg",
+          "roomid": 80397,
+          "roundStatus": 0,
+          "broadcast_type": 0,
+          "watched_show": {
+            "switch": true,
+            "num": 161436,
+            "text_small": "16.1万",
+            "text_large": "16.1万人看过",
+            "icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+            "icon_location": "",
+            "icon_web": "https://i0.hdslb.com/bfs/live/8d9d0f33ef8bf6f308742752d13dd0df731df19c.png"
+          }
         },
         "birthday": "09-19",
         "school": {
@@ -377,7 +457,7 @@ http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 | 字段            | 类型  | 内容           | 备注                                                         |
 | --------------- | ----- | -------------- | ------------------------------------------------------------ |
-| mid             | num   | 用户mid        |                                                              |
+| mid             | str   | 用户mid        |                                                              |
 | approve         | bool  | false          | **作用尚不明确**                                             |
 | name            | str   | 用户昵称       |                                                              |
 | sex             | str   | 用户性别       | 男 女 保密                                                   |

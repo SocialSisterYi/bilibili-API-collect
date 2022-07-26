@@ -1751,7 +1751,7 @@ curl -G 'http://api.bilibili.com/x/space/arc/search' \
 | 参数名 | 类型 | 内容         | 必要性 | 备注    |
 | ------ | ---- | ------------ | ------ | ------- |
 | mid    | num  | 目标用户mid  | 必要   |         |
-| ps     | num  | 获取的相簿量 | 非必要 | 默认为8 |
+| ps     | num  | 获取的相簿量 | 非必要 | 默认为8 定义域 1-大于1700 (注意滥用风险) | 
 
 **json回复：**
 
@@ -2888,7 +2888,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| ps     | num  | 每页项数    | 必要   |      |
+| ps     | num  | 每页项数    | 必要   |   定义域 1 - 大于70   |
 | pn     | num  | 页码        | 必要   |      |
 | up_mid | num  | 目标用户mid | 必要   |      |
 
@@ -3305,7 +3305,7 @@ curl -G 'http://space.bilibili.com/ajax/Bangumi/getList' \
 | ------ | ---- | ----------- | ------ | -------------------- |
 | vmid   | num  | 目标用户mid | 必要   |                      |
 | pn     | num  | 页码        | 非必要 | 默认为1              |
-| ps     | num  | 每页项数    | 非必要 | 默认为15             |
+| ps     | num  | 每页项数    | 非必要 | 默认为15 定义域1-30            |
 | type   | num  | 查询类型    | 必要   | 1：追番<br />2：追剧 |
 
 **json回复：**

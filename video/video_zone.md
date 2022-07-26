@@ -110,7 +110,7 @@
 
 ## 科技(~~原数码分区~~)
 
-旧：<img src="/imgs/zone/digital.svg" width="100" height="100"/>新：<img src="/imgs/zone/tech.svg" width="100" height="100"/>
+新：<img src="/imgs/zone/tech.svg" width="100" height="100"/>旧：<img src="/imgs/zone/digital.svg" width="100" height="100"/>
 
 | 名称                 | 代号                | tid     | 简介                                                       | url路由                                                      |
 | -------------------- | ------------------- | ------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
@@ -146,7 +146,9 @@
 | 汽车(主分区) | car      | 223  |                                                              | [/v/car](https://www.bilibili.com/v/car)                   |
 | 汽车生活       | life     | 176  | 分享汽车及出行相关的生活体验类视频                           | [/v/car/life](https://www.bilibili.com/v/car/life)         |
 | 汽车文化       | culture  | 224  | 车迷的精神圣地，包括汽车赛事、品牌历史、汽车改装、经典车型和汽车模型等 | [/v/car/culture](https://www.bilibili.com/v/car/culture)   |
+| 赛车 | racing | 245 | F1等汽车运动相关 | [/v/car/racing](https://www.bilibili.com/v/car/racing) |
 | 汽车极客       | geek     | 225  | 汽车硬核达人聚集地，包括DIY造车、专业评测和技术知识分享      | [/v/car/geek](https://www.bilibili.com/v/car/geek)         |
+| 摩托车 | motorcycle | 240 | 骑士们集合啦 | [/v/car/motorcycle](https://www.bilibili.com/v/car/motorcycle) |
 | 智能出行       | smart    | 226  | 探索新能源汽车和未来智能出行的前沿阵地                       | [/v/car/smart](https://www.bilibili.com/v/car/smart)       |
 | 购车攻略       | strategy | 227  | 丰富详实的购车建议和新车体验                                 | [/v/car/strategy](https://www.bilibili.com/v/car/strategy) |
 
@@ -219,7 +221,7 @@
 | 服饰                           | clothing     | 158     | 服饰风格、搭配技巧相关的展示和教程视频                       | [/v/fashion/clothing](https://www.bilibili.com/v/fashion/clothing) |
 | ~~健身~~(重定向) | ~~aerobics~~ | ~~164~~ | ~~器械、有氧、拉伸运动等，以达到强身健体、减肥瘦身、形体塑造目的~~ | ~~/v/fashion/aerobics~~                                      |
 | T台                            | catwalk      | 159     | 发布会走秀现场及模特相关时尚片、采访、后台花絮               | [/v/fashion/catwalk](https://www.bilibili.com/v/fashion/catwalk) |
-| 风尚标                         | trends       | 192     | 时尚明星专访、街拍、时尚购物相关知识科普                     | [/v/fashion/trends](https://www.bilibili.com/v/fashion/trends) |
+| ~~风尚标~~(已下线)                | ~~trends~~   | ~~192~~ | ~~时尚明星专访、街拍、时尚购物相关知识科普~~                 | ~~/v/fashion/trends~~ |
 
 ## 资讯
 
@@ -252,7 +254,9 @@
 | ----------------------- | --------- | ------- | ----------------------------------- | -------------------------------------------------------- |
 | 娱乐(主分区)          | ent       | 5       |                                     | [/v/ent](https://www.bilibili.com/v/ent)                 |
 | 综艺                    | variety   | 71      | 国内外有趣的综艺和综艺相关精彩剪辑  | [/v/ent/variety](https://www.bilibili.com/v/ent/variety) |
-| 明星                    | star      | 137     | 娱乐圈动态、明星资讯相关            | [/v/ent/star](https://www.bilibili.com/v/ent/star)       |
+| 娱乐杂谈 | talker | 241 | 娱乐人物解读、娱乐热点点评、娱乐行业分析 | [/v/ent/talker](https://www.bilibili.com/v/ent/talker) |
+| 粉丝创作 | fans | 242 | 粉丝向创作视频 | [/v/ent/fans](https://www.bilibili.com/v/ent/fans) |
+| 明星综合                | celebrity | 137     | 娱乐圈动态、明星资讯相关 | [/v/ent/celebrity](https://www.bilibili.com/v/ent/celebrity) |
 | ~~Korea相关~~(已下线) | ~~korea~~ | ~~131~~ | ~~Korea相关音乐、舞蹈、综艺等视频~~ | ~~/v/ent/korea~~                                         |
 
 ## 影视

@@ -60,6 +60,7 @@
 | attribute     | num  | 0              | 作用尚不明确                                                 |
 | liked         | num  | 是否已经点赞   | 0：未点赞<br />1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
 | hated         | num  | 是否已经点踩   | 0：未点踩<br />1：已点踩<br />需要登录(Cookie) <br />未登录为0 |
+| extra_attr    | num  | ? ? ?        |                                                              |
 
 `data`数组中的对象中的`count`对象：
 

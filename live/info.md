@@ -196,9 +196,9 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 | follower_num   | num  | 主播粉丝数       |                  |
 | room_id        | num  | 直播间id（短号） |                  |
 | medal_name     | str  | 粉丝勋章名       |                  |
-| glory_count    | int  | 主播荣誉数       |                  |
+| glory_count    | num  | 主播荣誉数       |                  |
 | pendant        | str  | 直播间头像框url  |                  |
-| link_group_num | int  | 0                | **作用尚不明确** |
+| link_group_num | num  | 0                | **作用尚不明确** |
 | room_news      | obj  | 主播公告         |                  |
 
 `info`对象：
@@ -317,16 +317,21 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 > http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
 
-*请求方式：POST*
+*请求方式：GET/POST*
 
-认证方式：无，请不要在标头中添加cookie。
+认证方式：无 (无需添加Cookie)
 
+**url参数 (GET方式)：**
 
-**正文参数：**
+| 参数名 | 类型  | 内容             | 必要性 | 备注 |
+| ------ | ----- | ---------------- | ------ | ---- |
+| uids[] | array | 要查询的主播 mid | 必要   |      |
+
+**正文参数 (POST方式)：**
 
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
-| uids       | array  | 要查询的主播mid         | 必要          |                                                              |
+| uids       | nums | 要查询的主播 mid        | 必要          |                                                              |
 
 
 **json回复：**
@@ -357,12 +362,12 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 | area_v2_name | str  | 直播间新版分区名  |            |
 | area_v2_parent_id | num  | 直播间父分区id  |            |
 | area_v2_parent_name | str  | 直播间父分区名  |            |
-| broadcast_type | num  | 直播类型  |  0:普通直播，1：手机直播       |
+| broadcast_type | num  | 直播类型  |  0:普通直播<br />1：手机直播 |
 | cover_from_user | str  | 直播间封面url  |            |
 | face      | str  | 主播头像url  |            |
 | hidden_till | str  | 直播间隐藏信息  |            |
 | keyframe  | str  | 直播间关键帧url  |            |
-| live_status | num  | 直播间开播状态  |  0：未开播，1：正在直播，2：轮播中          |
+| live_status | num  | 直播间开播状态  | 0：未开播<br />1：正在直播<br />2：轮播中 |
 | live_time      | num  | 直播持续时长  |            |
 | lock_till | str  | 直播间封禁信息  |            |
 | online    | num  | 直播间在线人数  |            |
@@ -376,12 +381,17 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 **示例：**
 
-查询用户`mid=194484313`的直播间信息
+查询用户`mid=672328094的直播间信息
 
 ```shell
-curl https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids \
+# GET方式
+curl -G 'http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids'
+--data-urlencode 'uids[]=672328094'
+
+# POST方式
+curl 'http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
 -H "Content-Type: application/json" \
--d "{\"uids\": [194484313]}" 
+-d "{\"uids\": [672328094]}" 
 ```
 
 <details>
@@ -389,37 +399,36 @@ curl https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids \
 
 ```json
 {
-	"code": 0,
-	"msg": "success",
-	"message": "success",
-	"data": {
-		"194484313": {
-			"title": "中元节可爱鬼来喽！",
-			"room_id": 6154037,
-			"uid": 194484313,
-			"online": 955261,
-			"live_time": 0,
-			"live_status": 2,
-			"short_id": 732,
-			"area": 1,
-			"area_name": "单机联机",
-			"area_v2_id": 236,
-			"area_v2_name": "主机游戏",
-			"area_v2_parent_name": "单机游戏",
-			"area_v2_parent_id": 6,
-			"uname": "Asaki大人",
-			"face": "https://i1.hdslb.com/bfs/face/e8f57fd6992f7d2ef6e6bcee957fb6cf6bca3d80.jpg",
-			"tag_name": "以撒,minecraft,饥荒,彩虹六号,东方",
-			"tags": "",
-			"cover_from_user": "https://i0.hdslb.com/bfs/live/new_room_cover/0a0a8eb5bd7fb64a036b55c748f02ad79a210ec9.jpg",
-			"keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe0823020500000615403721k8sp.jpg",
-			"lock_till": "0000-00-00 00:00:00",
-			"hidden_till": "0000-00-00 00:00:00",
-			"broadcast_type": 0
-		}
-	}
+    "code": 0,
+    "msg": "success",
+    "message": "success",
+    "data": {
+        "672328094": {
+            "title": "【B限】玩个毛线",
+            "room_id": 22637261,
+            "uid": 672328094,
+            "online": 4087370,
+            "live_time": 0,
+            "live_status": 2,
+            "short_id": 0,
+            "area": 6,
+            "area_name": "生活娱乐",
+            "area_v2_id": 371,
+            "area_v2_name": "虚拟主播",
+            "area_v2_parent_name": "虚拟主播",
+            "area_v2_parent_id": 9,
+            "uname": "嘉然今天吃什么",
+            "face": "http://i2.hdslb.com/bfs/face/d399d6f5cf7943a996ae96999ba3e6ae2a2988de.jpg",
+            "tag_name": "日常,学习,萌宠,厨艺,手机直播",
+            "tags": "",
+            "cover_from_user": "http://i0.hdslb.com/bfs/live/new_room_cover/f3ed7a782c13086e536ec8bc6e9593bb4918f905.jpg",
+            "keyframe": "http://i0.hdslb.com/bfs/live-key-frame/keyframe041722000000226372619dr3m8.jpg",
+            "lock_till": "0000-00-00 00:00:00",
+            "hidden_till": "0000-00-00 00:00:00",
+            "broadcast_type": 0
+        }
+    }
 }
-
 ```
 
 </details>

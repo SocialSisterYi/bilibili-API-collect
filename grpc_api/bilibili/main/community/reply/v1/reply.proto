@@ -332,6 +332,26 @@ message MainListReq {
 
 // 用户信息
 message Member {
+    //
+    message Region {
+        //
+        int32 type = 1;
+        //
+        string icon = 2;
+        //
+        int32 show_status = 3;
+    }
+    //
+    message NftInteraction {
+        //
+        string itype = 1;
+        //
+        string metadata_url = 2;
+        //
+        string nft_id = 3;
+        //
+        Region region = 4;
+    }
     /**********基础信息**********/
     // 用户mid
     int64 mid = 1;
@@ -402,6 +422,12 @@ message Member {
     int32 face_nft_new = 31;
     //
     int32 is_senior_member = 32;
+    //
+    NftInteraction nft_interaction = 33;
+    //
+    string fans_guard_icon = 34;
+    //
+    string fans_honor_icon = 35;
 }
 
 // 排序方式
@@ -436,6 +462,8 @@ message Operation {
     string link = 5;
     //
     string report_extra = 6;
+    //
+    string icon = 7;
 }
 
 //
@@ -587,6 +615,8 @@ message ReplyControl {
     string time_desc = 23;
     //
     string biz_scene = 24;
+    //
+    string location = 25;
 }
 
 //
@@ -871,6 +901,19 @@ message UpSelection {
 
 // 超链项
 message Url {
+    //
+    message Extra {
+        //
+        int64 goods_item_id = 1;
+        //
+        string goods_prefetched_cache = 2;
+        //
+        int32 goods_show_type = 3;
+        //
+        bool is_word_search = 4;
+        //
+        int64 goods_cm_control = 5;
+    }
     // 标题
     string title = 1;
     //
@@ -889,6 +932,16 @@ message Url {
     bool is_half_screen = 8;
     //
     string exposure_report = 9;
+    //
+    Extra extra = 10;
+    //
+    bool underline = 11;
+    //
+    bool match_once = 12;
+    //
+    string pc_url = 13;
+    //
+    int32 icon_position = 14;
 }
 
 //
