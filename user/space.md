@@ -2036,7 +2036,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 | code    | num  | 返回值   | 0：成功  |
 | message | str  | 错误信息 | 默认为0  |
 | ttl     | num  | 1        |          |
-| data    | obj  | 信息本体 | 无则为空 |
+| data    | obj  | 信息本体 | 无则为空 所有频道内均无视频则为空，此时code为0 |
 
 `data`对象：
 
