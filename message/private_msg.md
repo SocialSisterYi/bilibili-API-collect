@@ -7,7 +7,7 @@
 
 ## 未读私信数
 
-> http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread
+> https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread
 
 *请求方式：GET*
 
@@ -37,7 +37,7 @@
 以下信息代表了为未关注用户未读私信数为`1`条，已关注用户未读私信数为`6`条
 
 ```shell
-curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
+curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -61,7 +61,7 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ## 发送私信（web端）
 
-> http://api.vc.bilibili.com/web_im/v1/web_im/send_msg
+> https://api.vc.bilibili.com/web_im/v1/web_im/send_msg
 
 *请求方式：POST*
 
@@ -227,7 +227,7 @@ public class Util{
 > 催更[doge]
 
 ```shell
-curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
+curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 --data-urlencode 'msg[sender_uid]=293793435' \
 --data-urlencode 'msg[receiver_id]=1' \
 --data-urlencode 'msg[receiver_type] =1' \
@@ -258,7 +258,7 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 > <img src="https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg" style="zoom:50%;" >
 
 ```shell
-curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
+curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 --data-urlencode 'msg[sender_uid]=293793435' \
 --data-urlencode 'msg[receiver_id]=1' \
 --data-urlencode 'msg[receiver_type] =1' \

@@ -6,7 +6,7 @@
 
 ## 为图片动态（相簿）上传图片
 
-> http://api.vc.bilibili.com/api/v1/drawImage/upload
+> https://api.vc.bilibili.com/api/v1/drawImage/upload
 
 *请求方式：POST*
 
@@ -46,7 +46,7 @@
 上传了一张图片`test.png`类型为`日常`
 
 ```shell
-curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload' \
+curl 'https://api.vc.bilibili.com/api/v1/drawImage/upload' \
 -F 'file_up=@test.png' \
 -F 'category=daily'
 -b 'SESSDATA=xxx'
@@ -72,7 +72,7 @@ curl 'http://api.vc.bilibili.com/api/v1/drawImage/upload' \
 
 ## 发表纯文本动态
 
-> http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create
+> https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create
 
 *请求方式：POST*
 

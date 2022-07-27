@@ -1,6 +1,6 @@
 # 获取特定动态卡片信息
 
-> http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/get_dynamic_detail
+> https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/get_dynamic_detail
 
 *请求方式：GET*
 
@@ -76,7 +76,7 @@
 获取`哔哩哔哩弹幕网`的动态id为`507420325550127049`动态
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/get_dynamic_detail' \
+curl -G 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/get_dynamic_detail' \
 --data-urlencode 'dynamic_id=507420325550127049'
 ```
 

@@ -1869,7 +1869,7 @@ curl -G 'http://api.bilibili.com/x/space/album/index' \
 
 ### 查询用户投稿相簿明细
 
-> http://api.vc.bilibili.com/link_draw/v1/doc/doc_list
+> https://api.vc.bilibili.com/link_draw/v1/doc/doc_list
 
 *请求方式：GET*
 
@@ -1943,7 +1943,7 @@ curl -G 'http://api.bilibili.com/x/space/album/index' \
 查询用户`mid=53456`的投稿明细中的全部类型
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 --data-urlencode 'uid=2' \
 --data-urlencode 'page_num=1' \
 --data-urlencode 'page_size=2' \

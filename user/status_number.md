@@ -252,7 +252,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum' \
 
 ## 相簿投稿数
 
-> http://api.vc.bilibili.com/link_draw/v1/doc/upload_count
+> https://api.vc.bilibili.com/link_draw/v1/doc/upload_count
 
 *请求方式：GET*
 
@@ -287,7 +287,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum' \
  查询用户`mid=53456`的投稿相簿数
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/upload_count' \
 --data-urlencode 'uid=53456'
 ```
 
