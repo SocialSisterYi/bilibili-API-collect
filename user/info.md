@@ -859,7 +859,7 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
 
 ## 多用户详细信息
 
-> http://api.vc.bilibili.com/account/v1/user/cards
+> https://api.vc.bilibili.com/account/v1/user/cards
 
 *请求方式：GET*
 
@@ -899,7 +899,7 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
 查询用户`uids=1,2,3`的详细信息
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/account/v1/user/cards' \
+curl -G 'https://api.vc.bilibili.com/account/v1/user/cards' \
 --data-urlencode 'uids=1,2,3' \
 -b 'SESSDATA=xxx'
 ```
