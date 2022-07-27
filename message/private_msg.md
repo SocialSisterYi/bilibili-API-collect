@@ -73,8 +73,8 @@ curl 'http://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 | ------------------ | ------------------------------------ | ------------------------ | ------ | -------------------------------------- |
 | msg[sender_uid]    | num                                  | 发送者mid                | 必要   |                                        |
 | msg[receiver_id]   | num                                  | 接收用户mid/应援团id     | 必要   |                                        |
-| msg[receiver_type] | num                                  | 接收者类型               | 必要   | 1:用户<br />2:应援团                   |
-| msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1:发送文字<br />2:发送图片<br />5:撤回消息<br />6:发送自定义表情<br />7:分享稿件<br />14:分享直播 |
+| msg[receiver_type] | num                                  | 接收者类型               | 必要   | 1：用户<br />2：应援团                 |
+| msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1：发送文字<br />2：发送图片<br />5：撤回消息<br />6：发送自定义表情<br />7：分享稿件<br />14：分享直播 |
 | msg[msg_status]    | num                                  | 0                        | 非必要 |                                        |
 | msg[dev_id]        | str                                  |                          | 必要   | **获取方式在下面**                     |
 | msg[timestamp]     | num                                  | 时间戳                   | 必要   | 单位为秒                               |
@@ -171,7 +171,7 @@ public class Util{
 | -------- | ---- | -------- | --------------------------------------------- |
 | author   | str  | 稿件作者 |                                               |
 | id       | num  | 稿件ID   |                                               |
-| source   | num  | 稿件类型 | 2:相簿<br />5:视频<br >6:专栏<br />11:动态<br />16:剧集 |
+| source   | num  | 稿件类型 | 2：相簿<br />5：视频<br >6：专栏<br />11：动态<br />16：剧集 |
 | thumb    | str  | 稿件封面 |                                               |
 | title    | str  | 稿件标题 |                                               |
 | bvid     | str  | 视频BV号 | 当`source`为5时才需填写                       |
@@ -301,7 +301,7 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 | ----------------- | ---- | -------------------- | ------ | -------------------- |
 | sender_device_id  | num  | 发送者设备类型       | 非必要 | 默认为1              |
 | talker_id         | num  | 聊天用户mid/应援团id | 必要   |                      |
-| session_type      | num  | 聊天对象的类型       | 必要   | 1:用户<br />2:应援团 |
+| session_type      | num  | 聊天对象的类型       | 必要   | 1：用户<br />2：应援团 |
 | size              | num  | 列出消息条数         | 非必要 | 默认为20             |
 | build             | num  | APP编译版本号        | 非必要 | 默认为0              |
 | mobi_app          | str  | APP类型              | 非必要 | 可为`web`、`android`等等 |
@@ -341,15 +341,15 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 | 字段             | 类型  | 内容                 | 备注                                             |
 | ---------------- | ----- | -------------------- | ------------------------------------------------ |
 | sender_uid       | num   | 发送者mid            | 注意名称是`sender_uid`                           |
-| receiver_type    | num   | 接收者类型           | 1:用户<br />2:应援团                             |
+| receiver_type    | num   | 接收者类型           | 1：用户<br />2：应援团                           |
 | receiver_id      | num   | 接收用户mid/应援团id | 注意名称是`receiver_id`                          |
-| msg_type         | num   | 消息类型             | 1:纯文字<br />2:图片<br />5:撤回消息<br />6:自定义表情<br />7:分享稿件<br />10:通知<br />11:发布视频<br />12:发布专栏<br />13:图片链接<br />14:分享直播 |
+| msg_type         | num   | 消息类型             | 1：纯文字<br />2：图片<br />5：撤回消息<br />6：自定义表情<br />7：分享稿件<br />10：通知<br />11：发布视频<br />12：发布专栏<br />13：图片链接<br />14：分享直播 |
 | content          | str   | 消息内容             | `msg_type`为5时文本内为被撤回的消息id，其他为json |
 | msg_seqno        | num   | 消息seqno            | 估计是作时间先后排序用                           |
 | timestamp        | num   | 消息发送时间戳       | 单位为秒                                         |
 | at_uids          | array | [0]                  | 作用尚不明确                                     |
 | msg_key          | num   | 消息id               |                                                  |
-| msg_status       | num   | 消息状态             | 0:未撤回<br />1:已撤回                           |
+| msg_status       | num   | 消息状态             | 0：未撤回<br />1：已撤回                         |
 | notify_code      | str   | 空                   | 作用尚不明确                                     |
 | new_face_version | num   | 是否使用新版表情     | 旧版表情仅支持小电视表情                         |
 
@@ -363,11 +363,11 @@ curl 'http://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 `e_infos`数组中的对象：
 
-| 字段 | 类型 | 内容     | 备注                   |
-| ---- | ---- | -------- | ---------------------- |
-| text | str  | 表情名称 |                        |
-| url  | str  | 表情链接 |                        |
-| size | num  | 表情尺寸 | 1:小表情<br />2:大表情 |
+| 字段 | 类型 | 内容     | 备注                     |
+| ---- | ---- | -------- | ------------------------ |
+| text | str  | 表情名称 |                          |
+| url  | str  | 表情链接 |                          |
+| size | num  | 表情尺寸 | 1：小表情<br />2：大表情 |
 
 **示例：**
 
