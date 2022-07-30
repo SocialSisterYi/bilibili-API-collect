@@ -1,6 +1,6 @@
 # 根据关键字搜索用户(at别人时的填充列表)
 
-**注意关键字不一定顺序匹配,如最后示例**
+**注意关键字不一定顺序匹配，如最后示例**
 
 > https://api.vc.bilibili.com/dynamic_mix/v1/dynamic_mix/at_search
 
@@ -8,59 +8,78 @@
 
 认证方式：Cookie（SESSDATA）
 
-**正文参数（multipart/form-data）：**
+**url参数：**
 
-| 参数名 | 类型 | 内容 |
-| --- | --- | --- |
-| uid | num | 自己的uid |
-| keyword | str | 搜索关键字 |
+| 参数名  | 类型 | 内容       | 必要性 | 备注 |
+| ------- | ---- | ---------- | ------ | ---- |
+| uid     | num  | 自己的mid  | 必要   |      |
+| keyword | str  | 搜索关键字 | 必要   |      |
 
 **json回复：**
 
 根对象：
 
-| 字段 | 类型 | 内容 |
-| --- | --- | --- |
-| code | num | 0成功 |
-| msg | str | 成功为空文本 |
-| message | str | 同msg |
-| data | obj | 数据本体 |
+| 字段    | 类型 | 内容     | 备注                                                                                          |
+| ------- | ---- | -------- | --------------------------------------------------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />2001：关键字不合法<br />7600001：参数错误<br />7600008：参数uid与自己的mid不匹配 |
+| msg     | str  | 错误信息 | 成功为空文本                                                                                  |
+| message | str  | 错误信息 | 同`msg`                                                                                       |
+| data    | obj  | 数据本体 |                                                                                               |
 
-data对象:
+`data`对象:
 
-| 字段 | 类型 | 内容 |
-| --- | --- | --- |
-| groups | obj[] | 内容分组(好像是根据关注列表分) |
-| \_gt_ | num | 0 |
+| 字段   | 类型  | 内容                             | 备注               |
+| ------ | ----- | -------------------------------- | ------------------ |
+| groups | array | 用户分组（好像是根据关注列表分） | 未找到用户时无此项 |
+| \_gt\_ | num   | 0                                | 作用尚不明确       |
 
-group对象:
+`groups`数组：
 
-| 字段 | 类型 | 内容 |
-| --- | --- | --- |
-| group_type | num | 2:我的关注<br>4:其他 |
-| group_name | str | 分组名字 |
-| items | obj[] | 用户信息 |
+| 项   | 类型 | 内容      | 备注 |
+| ---- | ---- | --------- | ---- |
+| 0    | obj  | 分组1     |      |
+| n    | obj  | 分组(n+1) |      |
+| ……   | obj  | ……        | ……   |
 
-item对象:
+`groups`数组中的对象:
 
-| 字段 | 类型 | 内容 |
-| --- | --- | --- |
-| uid | num | 用户id |
-| uname | str | 用户昵称 |
-| face | str | 用户头像url |
-| fans | num | 用户粉丝数 |
-| official_verify_type | num | 认证信息? |
+| 字段       | 类型  | 内容     | 备注                     |
+| ---------- | ----- | -------- | ------------------------ |
+| group_type | num   | 分组类型 | 2：我的关注<br />4：其他 |
+| group_name | str   | 分组名称 |                          |
+| items      | array | 用户信息 |                          |
 
-<details>
-<summary>查看示例</summary>
+`items`数组：
+
+| 项   | 类型 | 内容      | 备注 |
+| ---- | ---- | --------- | ---- |
+| 0    | obj  | 用户1     |      |
+| n    | obj  | 用户(n+1) |      |
+| ……   | obj  | ……        | ……   |
+
+`item`数组中的对象:
+
+| 字段                 | 类型 | 内容         | 备注                                     |
+| -------------------- | ---- | ------------ | ---------------------------------------- |
+| uid                  | num  | 用户id       |                                          |
+| uname                | str  | 用户昵称     |                                          |
+| face                 | str  | 用户头像url  |                                          |
+| fans                 | num  | 用户粉丝数   |                                          |
+| official_verify_type | num  | 用户认证状态 | -1：无<br />0：个人认证<br />1：机构认证 |
+
+**示例：**
+
+搜索关键字为`社会易`的用户
 
 ```shell
-# 搜索关键字:社会易
-curl 'https://api.vc.bilibili.com/dynamic_mix/v1/dynamic_mix/at_search?uid=15858903&keyword=%e7%a4%be%e4%bc%9a%e6%98%93' \
-    -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0' -H 'Accept: application/json, text/plain, */*' \
-    -H 'Referer: https://t.bilibili.com/' \
-    -H 'Cookie: SESSDATA=******'
+curl -G 'https://api.vc.bilibili.com/dynamic_mix/v1/dynamic_mix/at_search' \
+--data-urlencode 'uid=15858903' \
+--data-urlencode 'keyword=社会易' \
+-b 'SESSDATA=xxx'
 ```
+
+<details>
+<summary>查看响应示例：</summary>
 
 ```json
 {

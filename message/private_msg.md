@@ -374,7 +374,13 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 获取与目标用户`mid=123`私信记录：
 
 ```shell
-curl 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs?sender_device_id=1&talker_id=123&session_type=1&size=20&build=0&mobi_app=web' \
+curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
+--data-urlencode 'sender_device_id=1' \
+--data-urlencode 'talker_id=123' \
+--data-urlencode 'session_type=1' \
+--data-urlencode 'size=20' \
+--data-urlencode 'build=0' \
+--data-urlencode 'mobi_app=web' \
 -b 'SESSDATA=xxx'
 ```
 
