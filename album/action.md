@@ -99,7 +99,7 @@ curl 'https://api.vc.bilibili.com/link_draw/v2/Vote/operate' \
 收藏相簿`id=99184721`
 
 ```shell
-curl 'http:///api.vc.bilibili.com/user_plus/v1/Fav/add' \
+curl 'https://api.vc.bilibili.com/user_plus/v1/Fav/add' \
 --data-urlencode 'fav_id=99184721' \
 --data-urlencode 'biz_type=2' \
 --data-urlencode 'csrf_token=xxx' \
