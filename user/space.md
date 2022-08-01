@@ -1282,7 +1282,7 @@ curl -G 'http://api.bilibili.com/x/space/lastplaygame' \
 
 认证方式：Cookie（SESSDATA）
 
-如设置隐私查看自己的需要认证
+如设置隐私查看自己的需要认证 仅包含最近投币的20个视频，如超过指定时间未投币（也许一个月），列表将为空
 
 **url参数：**
 
