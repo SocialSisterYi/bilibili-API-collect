@@ -25,6 +25,8 @@
   - [查询用户投稿视频明细](#查询用户投稿视频明细)
   - [查询用户投稿相簿预览](#查询用户投稿相簿预览)
   - [查询用户投稿相簿明细](#查询用户投稿相簿明细)
+- [合集](#合集)
+  - [查询用户合集](#查询用户合集)
 - [频道](#频道)
   - [查询用户频道列表](#查询用户频道列表)
   - [查询用户频道中的视频](#查询用户频道中的视频)
@@ -2010,6 +2012,270 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 ```
 
 </details>
+
+## 合集
+
+### 查询用户合集
+
+>https://api.bilibili.com/x/polymer/space/seasons_series_list
+
+*请求方式：GET*
+
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid   | num  | 目标用户mid | 必要   |      |
+| page_num   | num  | 页数 | 必要   |      |
+| page_size   | num  | 每页项数 | 必要   |   定义域1-20   |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                 |
+| ------- | ---- | -------- | ---------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br /> |
+| message | str  | 错误信息 | 默认为0 |
+| ttl     | num  | 1        |      |
+| data    | obj  | 信息本体 |       |
+
+`data`对象：
+
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| items_lists | obj  |   信息本体   |      |
+
+`data`中的`items_lists`对象：
+
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| page | obj  |   页面信息   |      |
+| seasons_list | arr  |   新版内容   |      |
+| series_list | arr  |   旧版内容   |      |
+
+`items_lists`对象中的`page`对象：
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| page_num | num  |   页数   |      |
+| page_size | num  |   每页项数   |      |
+| total | num  |      |      |
+
+`items_lists`对象中的`seasons_list`数组：
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| archives | arr  |   合集内容   |      |
+| meta | obj  |   合集元数据   |      |
+| recent_aids | arr  |   合集内稿件avid汇总   |      |
+
+`seasons_list`数组中的`archives`数组：
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| aid | num  |   稿件avid   |      |
+| bvid | str  |   稿件bvid   |      |
+| ctime | num  |   用户投稿时间   |      |
+| duration | num  |   稿件总时长   |      |
+| interactive_video | bool  |      |      |
+| pic | str  |   稿件封面图片url	   |      |
+| pubdate | num  |   稿件发布时间   |   时间戳   |
+| stat | obj  |      |      |
+| state | num  |      |      |
+| title | str  |   稿件标题   |      |
+| ugc_pay | num  |      |      |
+
+`archives`数组中的`stat`对象：
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| view | num  |   播放数   |      |
+
+`seasons_list`数组中的`meta`对象：
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| category | num  |      |      |
+| cover | str  |   合集封面url   |      |
+| description | str  |      |      |
+| mid | num  |   合集upMID   |      |
+| name | str  |   合集名称   |      |
+| ptime | num  |   合集发布时间？   |   时间戳   |
+| season_id | num  |   合集ID   |      |
+| total | num  |      |      |
+
+`seasons_list`数组中的`recent_aids`数组：
+| 项        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| 0 | num  |   合集内稿件avid1   |      |
+| n | num  |   合集内稿件avid(n+1)   |      |
+| ...... | num  |   ......   |   ......   |
+
+`items_lists`对象中的`series_list`数组：
+
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| archives | obj  |   合集内容   |      |
+| meta | arr  |   合集元数据   |      |
+| recent_aids | arr  |   合集内稿件avid汇总   |      |
+
+`archives`对象和`recent_aids`数组与`seasons_list`数组中的定义基本相同
+
+`series_list`中的`meta`数组：
+| 字段        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| category | num  |      |      |
+| cover | str  |   合集封面图片url   |      |
+| creator | str  |      |      |
+| ctime | num  |   合集创建时间？   |   时间戳   |
+| description | str  |      |      |
+| keywords | arr  |      |      |
+| last_update_ts | num  |   合集更新时间？   |      |
+| mid | num  |   合集创建者mid   |      |
+| mtime | num  |   ？   |   时间戳   |
+| name | str  |   合集名称   |      |
+| raw_keywords | str  |      |      |
+| series_id | num  |   合集ID   |      |
+| state | num  |      |      |
+| total | num  |      |      |
+
+`meta`数组中的`keywords`数组：
+| 项        | 类型 | 内容 | 备注 |
+| ----------- | ---- | ---- | ---- |
+| 0 | str  |      |      |
+
+
+
+
+
+
+**示例：**
+
+查询用户`mid=23215368`的置顶视频
+
+```shell
+https://api.bilibili.com/x/polymer/space/seasons_series_list?&mid=23215368&page_num=1&page_size=20
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "items_lists": {
+            "page": {
+                "page_num": 1,
+                "page_size": 20,
+                "total": 1
+            },
+            "seasons_list": [
+                {
+                    "archives": [
+                        {
+                            "aid": 37896701,
+                            "bvid": "BV18t411q7zz",
+                            "ctime": 1544469671,
+                            "duration": 208,
+                            "interactive_video": false,
+                            "pic": "http://i2.hdslb.com/bfs/archive/cc9e72822d68fffdd0406144f1b5348a13c89652.jpg",
+                            "pubdate": 1544469671,
+                            "stat": {
+                                "view": 1582325
+                            },
+                            "state": 0,
+                            "title": "燃烧吧！铃声！把主流手机铃声编成一首曲子",
+                            "ugc_pay": 0
+                        },
+                        {
+                            "aid": 44721369,
+                            "bvid": "BV1vb411879C",
+                            "ctime": 1551128445,
+                            "duration": 174,
+                            "interactive_video": false,
+                            "pic": "http://i0.hdslb.com/bfs/archive/9887797402599c42f74a7624f3db4a92a0ebf465.jpg",
+                            "pubdate": 1551128445,
+                            "stat": {
+                                "view": 339550
+                            },
+                            "state": 0,
+                            "title": "【铃声串烧系列】华米两开花；中华有为，国之荣耀！把主流手机铃声编成一首曲子",
+                            "ugc_pay": 0
+                        },
+                        {
+                            "aid": 469980710,
+                            "bvid": "BV1aT41157Px",
+                            "ctime": 1654847763,
+                            "duration": 92,
+                            "interactive_video": false,
+                            "pic": "http://i0.hdslb.com/bfs/archive/b7abda68645df8d7dfb08147593a60d148ef3f11.jpg",
+                            "pubdate": 1654847763,
+                            "stat": {
+                                "view": 8285
+                            },
+                            "state": 0,
+                            "title": "【手机铃声串烧】米 为 魅 星 索 MIX RINGTONES",
+                            "ugc_pay": 0
+                        },
+                        {
+                            "aid": 795362165,
+                            "bvid": "BV11C4y1p74C",
+                            "ctime": 1587083626,
+                            "duration": 199,
+                            "interactive_video": false,
+                            "pic": "http://i1.hdslb.com/bfs/archive/42c3259543c1802d09e30748b23b1b5a5a3942de.jpg",
+                            "pubdate": 1587083626,
+                            "stat": {
+                                "view": 12994
+                            },
+                            "state": 0,
+                            "title": "【铃声串烧】盖 乐 族 Over The Flyme",
+                            "ugc_pay": 0
+                        },
+                        {
+                            "aid": 54891249,
+                            "bvid": "BV1K4411T7XG",
+                            "ctime": 1559930986,
+                            "duration": 119,
+                            "interactive_video": false,
+                            "pic": "http://i1.hdslb.com/bfs/archive/8133d4b735cb2459ae30499320ca434887624142.jpg",
+                            "pubdate": 1559930986,
+                            "stat": {
+                                "view": 88382
+                            },
+                            "state": 0,
+                            "title": "【铃声串烧系列v5】LG.Life is good~把主流手机铃声编成一首曲子",
+                            "ugc_pay": 0
+                        }
+                    ],
+                    "meta": {
+                        "category": 0,
+                        "cover": "https://archive.biliimg.com/bfs/archive/b7abda68645df8d7dfb08147593a60d148ef3f11.jpg",
+                        "description": "",
+                        "mid": 23215368,
+                        "name": "合集·手机铃声串烧MIX RINGTONES",
+                        "ptime": 1654847763,
+                        "season_id": 477195,
+                        "total": 5
+                    },
+                    "recent_aids": [
+                        37896701,
+                        44721369,
+                        469980710,
+                        795362165,
+                        54891249
+                    ]
+                }
+            ],
+            "series_list": []
+        }
+    }
+}
+```
+
+</details>
+
+
 
 ## 频道
 
