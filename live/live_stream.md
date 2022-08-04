@@ -6,7 +6,7 @@
 
 ## 根据真实直播间号获取直播视频流
 
-> http://api.live.bilibili.com/room/v1/Room/playUrl
+> https://api.live.bilibili.com/room/v1/Room/playUrl
 
 *请求方式：GET*
 

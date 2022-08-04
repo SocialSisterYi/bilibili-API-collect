@@ -8,7 +8,7 @@
 
 ## 更新直播间标题
 
-> http://api.live.bilibili.com/room/v1/Room/update
+> https://api.live.bilibili.com/room/v1/Room/update
 
 *请求方式：POST*
 
@@ -63,7 +63,7 @@ curl 'http://api.live.bilibili.com/room/v1/Room/update' \
 
 ## 开始直播
 
-> http://api.live.bilibili.com/room/v1/Room/startLive
+> https://api.live.bilibili.com/room/v1/Room/startLive
 
 *请求方式：POST*
 
@@ -204,7 +204,7 @@ curl 'http://api.live.bilibili.com/room/v1/Room/startLive' \
 
 ## 关闭直播
 
-> http://api.live.bilibili.com/room/v1/Room/stopLive
+> https://api.live.bilibili.com/room/v1/Room/stopLive
 
 *请求方式：POST*
 

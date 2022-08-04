@@ -10,7 +10,7 @@
 
 ## 获取用户对应的直播间状态
 
-> http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld
+> https://api.live.bilibili.com/room/v1/Room/getRoomInfoOld
 
 *请求方式：GET*
 
