@@ -2891,7 +2891,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 | ps     | num  | 每页项数    | 必要   |   定义域 1 - 大于70   |
 | pn     | num  | 页码        | 必要   |      |
 | up_mid | num  | 目标用户mid | 必要   |      |
-| platform | str  | 平台类型 | 非必要   |    天写web 返回值才会包含用户收藏的视频合集  |
+| platform | str  | 平台类型 | 非必要   |    填写web 返回值才会包含用户收藏的视频合集  |
 
 **json回复：**
 
