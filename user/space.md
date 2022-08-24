@@ -1536,7 +1536,7 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 | tid     | num  | 筛选目标分区 | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区    |
 | keyword | str  | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                             |
 | pn      | num  | 页码         | 必要   |                                                              |
-| ps      | num  | 每页项数     | 必要   |                                                              |
+| ps      | num  | 每页项数     | 必要   |最小1，最大50  |
 
 **json回复：**
 
