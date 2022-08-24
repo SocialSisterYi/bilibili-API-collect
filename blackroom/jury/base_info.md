@@ -81,11 +81,15 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
 
 ## 统计信息
 
-> http://api.bilibili.com/x/credit/jury/kpi
+#### 旧API
+
+> http://api.bilibili.com/x/credit/jury/kpi （旧）
 
 *方式：GET*
 
 认证方式：Cookie（SESSDATA）或APP
+
+***备注**：该api只统计到2021年9月任期，风纪委员改版之前。风纪委员改版之后的数据未收录*
 
 **url参数：**
 
@@ -114,24 +118,24 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
 
 `data` 数组中的对象：
 
-| 字段          | 类型 | 内容     | 备注 |
-| ------------- | ---- | -------- | ---- |
-| id            | num  | 0        |      |
-| mid           | num  | 用户id   |      |
-| number        | num  | 尚不明确 |      |
-| day           | num  | 开始时间 |      |
-| rate          | num  | 尚不明确 |      |
-| rank          | num  | 尚不明确 |      |
-| rankper       | num  | 尚不明确 |      |
-| rankTotal     | num  | 尚不明确 |      |
-| point         | num  | 32767    |      |
-| activeDays    | num  | 活跃天数 |      |
-| voteTotal     | num  | 投票总数 |      |
-| voteRadio     | num  | 尚不明确 |      |
-| blockedTotal  | num  | 尚不明确 |      |
-| termStart     | num  | 尚不明确 |      |
-| termEnd       | num  | 尚不明确 |      |
-| opinion_likes | num  | 观点获赞 |      |
+| 字段          | 类型 | 内容                             | 备注                  |
+| ------------- | ---- | -------------------------------- | --------------------- |
+| id            | num  | 0                                |                       |
+| mid           | num  | 用户id                           |                       |
+| number        | num  | 风纪委员编号                     |                       |
+| day           | num  | 数据生成时间（也是任期结束时间） | 时间戳，精确到秒      |
+| rate          | num  | 任期完成度                       | 1=A；2=S；3=S+；4=S++ |
+| rank          | num  | 尚不明确                         |                       |
+| rankper       | num  | 尚不明确                         |                       |
+| rankTotal     | num  | 尚不明确                         |                       |
+| point         | num  | 32767                            |                       |
+| activeDays    | num  | 活跃天数                         |                       |
+| voteTotal     | num  | 投票总数                         |                       |
+| voteRadio     | num  | 尚不明确                         |                       |
+| blockedTotal  | num  | 尚不明确                         |                       |
+| termStart     | num  | 任期开始时间                     | 时间戳，精确到秒      |
+| termEnd       | num  | 任期结束时间（数据生成时间一致） | 时间戳，精确到秒      |
+| opinion_likes | num  | 观点获赞                         |                       |
 
 **示例：**
 
@@ -179,6 +183,50 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
     ]
 }
 ```
+
+#### 新API（2021年10月任期之后）
+
+>https://api.bilibili.com/x/credit/v2/jury/kpi
+
+*方式：GET*
+
+认证方式：Cookie
+
+***备注**：该api只收录2021年10月开始，风纪委员改版之后的数据，且每次只返回一次任期的数据。*
+
+**url参数：**
+
+| 参数名  | 类型 | 内容    | 必要性       | 备注                                   |
+| ------- | ---- | ------- | ------------ | -------------------------------------- |
+| term_id | num  | 任期 id | 可不填或留空 | 不填或留空时，**只**返回上一任期的数据 |
+
+**json回复：**
+
+根对象**同旧版API**
+
+`data` 数组：
+
+| 项              | 类型 | 内容               | 备注                                          |
+| --------------- | ---- | ------------------ | --------------------------------------------- |
+| mid             | num  | 7156596            | 用户 UID                                      |
+| uname           | NULL | 留空               |                                               |
+| face            | NULL | 留空               |                                               |
+| term_id         | num  | 任期 ID            |                                               |
+| term_start      | num  | 任期开始时间       | 时间戳，精确到秒                              |
+| term_end        | num  | 任期结束时间       | 时间戳，精确到秒                              |
+| case_total      | num  | 任内总投票数       |                                               |
+| active_days     | num  | 活跃天数           |                                               |
+| like_num        | num  | 发表观点，被点赞数 |                                               |
+| accuracy_rate   | num  | 投中率             | 所选观点与大多数风纪委员一致，记为一次“投中”  |
+| pass            | num  | 1                  | 尚不明确                                      |
+| status          | num  | 1                  | 尚不明确                                      |
+| apply_status    | num  | 3                  | 尚不明确                                      |
+| prev_term_id    | num  | 上一任期的任期ID   | 新版风纪委员启用后的第一个任期，此项的值为0   |
+| next_term_id    | num  | 下一任期的任期ID   | 本次任期统计结果未出来时，上一任期此项的值为0 |
+| rewards.pendant | num  | 头像挂件礼包 ID |  |
+| rewards.coin    | num  | 硬币礼包 ID |                                               |
+
+
 
 </details>
 
