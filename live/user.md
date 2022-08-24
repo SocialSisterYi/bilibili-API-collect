@@ -126,7 +126,7 @@ curl https://api.live.bilibili.com/xlive/app-ucenter/v1/user/GetMyMedals?page=1&
 
 ## 佩戴勋章
 
-> http://api.live.bilibili.com/xlive/web-room/v1/fansMedal/wear
+> https://api.live.bilibili.com/xlive/web-room/v1/fansMedal/wear
 
 _请求方式：POST_
 
@@ -191,7 +191,7 @@ $.ajax({
 
 ## 直播签到
 
-> http://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign
+> https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign
 
 _请求方式：GET_
 
