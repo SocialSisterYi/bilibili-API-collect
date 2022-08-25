@@ -6,7 +6,7 @@
 
 ## 获取信息流认证秘钥
 
-> http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo
+> https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo
 
 *请求方式：GET*
 

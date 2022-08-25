@@ -133,6 +133,9 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 
 ## 使用账号密码登录（web端）
 
+<details>
+<summary>旧接口：</summary>
+
 > http://passport.bilibili.com/web/login/v2
 
 *请求方式：POST*
@@ -153,6 +156,30 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 | challenge   | str  | 极验challenge    | 必要   | 从B站API获取     |
 | validate    | str  | 极验结果         | 必要   | 从极验获取       |
 | seccode     | str  | 极验结果         | 必要   | 从极验获取       |
+
+</details>    
+
+> https://passport.bilibili.com/x/passport-login/web/login
+
+*请求方式：POST*
+
+验证登录成功后会进行设置以下cookie项：
+
+`sid` `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名      | 类型 | 内容             | 必要性 | 备注             |
+| ----------- | ---- | ---------------- | ------ | ---------------- |
+| username    | str  | 用户登录账号     | 必要   | 手机号或邮箱地址 |
+| password    | str  | 加密后的带盐密码 | 必要   | base64格式       |
+| keep        | bool | true             | 必要   | 必须为`true`     |
+| token       | str  | 登录秘钥         | 必要   | 从B站API获取(本文档有时描述为Key)|
+| challenge   | str  | 极验challenge    | 必要   | 从B站API获取     |
+| validate    | str  | 极验结果         | 必要   | 从极验获取       |
+| seccode     | str  | 极验结果         | 必要   | 从极验获取       |
+| go_url      | str  | 跳转链接         | 可选   |                 |
+| source      | str  | 来源             | 可选   | 例如`main_web`之类 |
 
 **json回复：**
 
@@ -196,11 +223,10 @@ YgpjxAQ22pKa9socHIKPCZX0a/NS6Ng9Zzy+rp16b0LJGT6RHw2ERs3+ijCpG96PKTY1Baavwf0xgotm
 
 ```shell
 curl 'https://passport.bilibili.com/web/login/v2' \
---data-urlencode 'captchaType=6' \
 --data-urlencode 'username=12345678900' \
 --data-urlencode 'password=xxx' \
 --data-urlencode 'keep=true' \
---data-urlencode 'key=aabbccdd' \
+--data-urlencode 'token=aabbccdd' \
 --data-urlencode 'challenge=2333' \
 --data-urlencode 'validate=666666' \
 --data-urlencode 'seccode=666666|jordan'

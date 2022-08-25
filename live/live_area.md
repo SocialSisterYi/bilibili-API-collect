@@ -6,7 +6,7 @@
 
 ## 获取全部直播间分区列表
 
-> http://api.live.bilibili.com/room/v1/Area/getList
+> https://api.live.bilibili.com/room/v1/Area/getList
 
 *请求方式：GET*
 
