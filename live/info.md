@@ -239,7 +239,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/get_info' \
 | -------------- | ---- | ---------------- | ------------------------ |
 | roomStatus     | num  | 直播间状态       | 0：无房间<br />1：有房间 |
 | roundStatus    | num  | 轮播状态         | 0：未轮播<br />1：轮播   |
-| liveStatus     | num  | 直播状态         | 0：未开播<br />1：直播中 |
+| live_status     | num  | 直播状态         | 0：未开播<br />1：直播中 |
 | url            | str  | 直播间网页url    |                          |
 | title          | str  | 直播间标题       |                          |
 | cover          | str  | 直播间封面url    |                          |
@@ -268,7 +268,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 	"data": {
 		"roomStatus": 1,
 		"roundStatus": 0,
-		"liveStatus": 1,
+		"live_status": 1,
 		"url": "https://live.bilibili.com/5441",
 		"title": "好久没当黑铁主播了",
 		"cover": "http://i0.hdslb.com/bfs/live/room_cover/833f7ff506bac17c06010e8834922993657505b2.jpg",
