@@ -10,10 +10,6 @@
 
 ## 基本数据
 
-## 基本数据
-
-### 新API（2021年10月任期之后）
-
 > https://api.bilibili.com/x/credit/v2/jury/jury
 
 _请求方式：GET_
@@ -50,14 +46,14 @@ _请求方式：GET_
 | term_end     | num  | 任期结束时间 | 时间戳（秒级），无任期时为 0                                                                       |
 | uname        | str  | 用户昵称     |                                                                                                    |
 
-### 旧API
+**旧API**
 
 部分字段信息停留在 2021 年 10 月。
 
 <details>
 <summary>查看旧 api：</summary>
 
-> https://api.bilibili.com/x/credit/jury/jury
+> https://api.bilibili.com/x/credit/jury/jury （旧）
   
 根数据与新 API 一致，`data` 对象：
 
