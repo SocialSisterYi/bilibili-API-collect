@@ -12,6 +12,8 @@
 
 ## 基本数据
 
+**旧版API**
+
 <details>
 <summary>查看旧 api（部分字段失效所以折叠）：</summary>
 
@@ -66,6 +68,8 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
 ```
 
 </details>
+
+**旧版API**
 
 > https://api.bilibili.com/x/credit/v2/jury/jury
 
