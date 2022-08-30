@@ -12,64 +12,7 @@
 
 ## 基本数据
 
-**旧版API**
-
-<details>
-<summary>查看旧 api（部分字段失效所以折叠）：</summary>
-
-> https://api.bilibili.com/x/credit/jury/jury
-
-_请求方式：GET_
-
-认证方式：Cookie（SESSDATA）或 APP
-
-**url 参数：**
-
-| 参数名     | 类型 | 内容           | 必要性       | 备注 |
-| ---------- | ---- | -------------- | ------------ | ---- |
-| access_key | str  | APP 登录 Token | APP 方式必要 |      |
-
-**json 回复：**
-
-根对象：
-
-| 字段    | 类型   | 内容     | 备注                          |
-| ------- | ------ | -------- | ----------------------------- |
-| code    | num    | 返回值   | 0：成功<br />-101：账号未登录 |
-| message | str    | 信息     | 默认为 0                      |
-| ttl     | num    | 1        |                               |
-| data    | object | 数据本体 |                               |
-
-`data` 对象：
-
-| 字段       | 类型 | 内容                 | 备注                         |
-| ---------- | ---- | -------------------- | ---------------------------- |
-| caseTotal  | num  | 总众裁数             |                              |
-| face       | str  | 用户头像 url         |                              |
-| restDays   | num  | 当前资格剩余天数     | 自 2021 年 10 月起，固定为 0 |
-| rightRadio | num  | 当前裁决正确率百分比 | 裁决数小于 3 时固定为 50     |
-| status     | num  | 当前状态             | 1：具有资格<br />2：资格失效 |
-| uname      | str  | 用户昵称             |                              |
-
-**示例：**
-
-Cookie 方式：
-
-```shell
-curl 'http://api.bilibili.com/x/credit/jury/jury' \
--b 'SESSDATA=xxx'
-```
-
-APP 方式：
-
-```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
---data-urlencode 'access_key=xxx'
-```
-
-</details>
-
-**新版API**
+### 新API（2021年10月任期之后）
 
 > https://api.bilibili.com/x/credit/v2/jury/jury
 
@@ -106,6 +49,28 @@ _请求方式：GET_
 | status       | num  | 当前资格状态 | 0 未曾拥有资格<br />1 任期内<br />2 资格失效                                                       |
 | term_end     | num  | 任期结束时间 | 时间戳（秒级），无任期时为 0                                                                       |
 | uname        | str  | 用户昵称     |                                                                                                    |
+
+### 旧API
+
+部分字段信息停留在 2021 年 10 月。
+
+<details>
+<summary>查看旧 api：</summary>
+
+> https://api.bilibili.com/x/credit/jury/jury
+  
+根数据与新 API 一致，`data` 对象：
+
+| 字段       | 类型 | 内容                 | 备注                         |
+| ---------- | ---- | -------------------- | ---------------------------- |
+| caseTotal  | num  | 总众裁数             |                              |
+| face       | str  | 用户头像 url         |                              |
+| restDays   | num  | 当前资格剩余天数     | 自 2021 年 10 月起，固定为 0 |
+| rightRadio | num  | 当前裁决正确率百分比 | 裁决数小于 3 时固定为 50     |
+| status     | num  | 当前状态             | 1：具有资格<br />2：资格失效 |
+| uname      | str  | 用户昵称             |                              |
+
+</details>
 
 ## 统计信息
 
