@@ -69,7 +69,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
 
 </details>
 
-**旧版API**
+**新版API**
 
 > https://api.bilibili.com/x/credit/v2/jury/jury
 
