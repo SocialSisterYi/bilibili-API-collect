@@ -120,6 +120,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（�
   - [ ] 音频榜单
 - [ ] [排行榜 & 最新视频](ranking&dynamic)
   - [ ] [排行榜](ranking&dynamic/ranking.md)
+  - [ ] [热门视频](ranking&dynamic/popular.md)
   - [ ] [最新视频](ranking&dynamic/dynamic.md)
 - [ ] [搜索](search)
   - [x] [搜索请求](search/search_request.md)
