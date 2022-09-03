@@ -10,74 +10,61 @@
 
 ## 基本数据
 
-> http://api.bilibili.com/x/credit/jury/jury
+> https://api.bilibili.com/x/credit/v2/jury/jury
 
-*请求方式：GET*
+_请求方式：GET_
 
-认证方式：Cookie（SESSDATA）或APP
+认证方式：Cookie（SESSDATA）或 APP
 
-**url参数：**
+**url 参数：**
 
-| 参数名     | 类型 | 内容         | 必要性      | 备注 |
-| ---------- | ---- | ------------ | ----------- | ---- |
-| access_key | str  | APP登录Token | APP方式必要 |      |
+| 参数名     | 类型 | 内容           | 必要性       | 备注 |
+| ---------- | ---- | -------------- | ------------ | ---- |
+| access_key | str  | APP 登录 Token | APP 方式必要 |      |
 
-**json回复：**
+**json 回复：**
 
 根对象：
 
 | 字段    | 类型   | 内容     | 备注                          |
 | ------- | ------ | -------- | ----------------------------- |
 | code    | num    | 返回值   | 0：成功<br />-101：账号未登录 |
-| message | str    | 信息     | 默认为0                       |
+| message | str    | 信息     | 默认为 0                      |
 | ttl     | num    | 1        |                               |
 | data    | object | 数据本体 |                               |
 
 `data` 对象：
 
+| 字段         | 类型 | 内容         | 备注                                                                                               |
+| ------------ | ---- | ------------ | -------------------------------------------------------------------------------------------------- |
+| allow_apply  | bool | true         | 尚不明确（用户从未担任风纪委员时也为 true）                                                        |
+| apply_status | num  | 任期审核状态 | -1 资格失效，且未申请<br />0 刚申请连任时<br />5 申请后，等待审核<br />3 申请连任成功，status 为 1 |
+| case_total   | num  | 总众裁数     |                                                                                                    |
+| err_msg      | str  | 空           | 尚不明确                                                                                           |
+| face         | str  | 用户头像 url |                                                                                                    |
+| status       | num  | 当前资格状态 | 0 未曾拥有资格<br />1 任期内<br />2 资格失效                                                       |
+| term_end     | num  | 任期结束时间 | 时间戳（秒级），无任期时为 0                                                                       |
+| uname        | str  | 用户昵称     |                                                                                                    |
+
+**旧API**
+
+部分字段信息停留在 2021 年 10 月。
+
+<details>
+<summary>查看旧 api：</summary>
+
+> https://api.bilibili.com/x/credit/jury/jury （旧）
+  
+根数据与新 API 一致，`data` 对象：
+
 | 字段       | 类型 | 内容                 | 备注                         |
 | ---------- | ---- | -------------------- | ---------------------------- |
 | caseTotal  | num  | 总众裁数             |                              |
-| face       | str  | 用户头像url          |                              |
-| restDays   | num  | 当前资格剩余天数     |                              |
-| rightRadio | num  | 当前裁决正确率百分比 | 裁决数小于3时固定为50        |
+| face       | str  | 用户头像 url         |                              |
+| restDays   | num  | 当前资格剩余天数     | 自 2021 年 10 月起，固定为 0 |
+| rightRadio | num  | 当前裁决正确率百分比 | 裁决数小于 3 时固定为 50     |
 | status     | num  | 当前状态             | 1：具有资格<br />2：资格失效 |
 | uname      | str  | 用户昵称             |                              |
-
-**示例：**
-
-Cookie方式：
-
-```shell
-curl 'http://api.bilibili.com/x/credit/jury/jury' \
--b 'SESSDATA=xxx'
-```
-
-APP方式：
-
-```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
---data-urlencode 'access_key=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "caseTotal": 7,
-        "face": "http://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
-        "restDays": 30,
-        "rightRadio": 80,
-        "status": 1,
-        "uname": "社会易姐QwQ"
-    }
-}
-```
 
 </details>
 
@@ -125,7 +112,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/jury' \
 | like_num        | num  | 发表观点，被点赞数 |                                                                                                    |
 | accuracy_rate   | num  | 投中率             | 所选观点与大多数风纪委员一致，记为一次“投中”                                                       |
 | pass            | num  | 任期是否合格       | 0 不合格<br />1 合格                                                                               |
-| status          | num  | 当前资格状态       | 1 任期内<br />2 资格失效                                                                           |
+| status          | num  | 当前资格状态       | 0 未曾拥有资格<br />1 任期内<br />2 资格失效                                                       |
 | apply_status    | num  | 当前资格申请状态   | -1 资格失效，且未申请<br />0 刚申请连任时<br />5 申请后，等待审核<br />3 申请连任成功，status 为 1 |
 | prev_term_id    | num  | 上一任期的任期 ID  | 新版风纪委员启用后的第一个任期，此项的值为 0                                                       |
 | next_term_id    | num  | 下一任期的任期 ID  | 本次任期统计结果未出来时，上一任期此项的值为 0                                                     |
@@ -239,13 +226,17 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
 
 ## 检查申请风纪委员会资格
 
-> http://api.bilibili.com/x/credit/jury/requirement
+> http://api.bilibili.com/x/credit/jury/requirement （旧版）
+
+> http://api.bilibili.com/x/credit/v2/jury/requirement （新版）
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或APP
 
-只有用户会员等级≥Lv4、90天内无违规、实名认证且非封禁状态才可以申请加入风纪委员会
+新版 api 与旧版的区别仅在新版没有 `level` 字段（新版风纪委员没有等级限制）。
+
+只有用户~~会员等级≥Lv4、~~ 90 天内无违规、实名认证且非封禁状态才可以申请加入风纪委员会。
 
 **url参数：**
 
@@ -270,7 +261,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
 | ------- | ---- | ---------------- | ------------------------------------- |
 | blocked | bool | 是否被封禁       | true：是<br />false：否<br />**下同** |
 | cert    | bool | 是否实名认证     |                                       |
-| level   | bool | 等级是否>=4      |                                       |
+| level   | bool | 等级是否>=4      | 新版无该字段                          |
 | rule    | bool | 是否90天内无违规 |                                       |
 
 **示例：**
@@ -278,14 +269,14 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/requirement' \
+curl 'https://api.bilibili.com/x/credit/v2/jury/requirement' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/requirement' \
+curl -G 'https://api.bilibili.com/x/credit/v2/jury/requirement' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -300,7 +291,6 @@ curl -G 'http://api.bilibili.com/x/credit/jury/requirement' \
     "data": {
         "blocked": false,
         "cert": true,
-        "level": true,
         "rule": true
     }
 }
