@@ -4,7 +4,7 @@
 
 - [扫码登录流程(伪代码)](#扫码登录流程(伪代码))
 - [web端扫码登录](#web端扫码登录)
-  - [申请二维码 (web端)](#申请二维码(web端))
+  - [申请二维码(web端)](#申请二维码(web端))
   - [扫码登录(web端)](#扫码登录(web端))
 - [web端扫码登录-旧版](#web端扫码登录-旧版)
   - [申请二维码(web端-旧版)](#申请二维码(web端-旧版))
@@ -75,8 +75,6 @@ curl 'http://passport.bilibili.com/x/passport-login/web/qrcode/generate'
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```json
 {
     "code": 0,
@@ -189,8 +187,6 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```json
 {
     "code": 0,
@@ -214,8 +210,6 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```http
 HTTP/1.1 200 OK
 Date: Mon, 05 Sep 2022 07:30:09 GMT
@@ -238,7 +232,7 @@ x-cache-webcdn: BYPASS from blzone02
 
 ## web端扫码登录-旧版
 
-以下为旧版扫码登录api，尚可正常访问
+以下为旧版扫码登录 API，尚可正常访问
 
 ### 申请二维码(web端-旧版)
 
@@ -276,8 +270,6 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```json
 {
 	"code": 0,
@@ -343,8 +335,6 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```json
 {
     "status":false,
@@ -359,8 +349,6 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```json
 {
     "status":false,
@@ -375,8 +363,6 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```json
 {
 	"code": 0,
@@ -396,8 +382,6 @@ curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
 
 <details>
 <summary>查看响应示例：</summary>
-
-
 ```http
 HTTP/1.1 200 OK
 Date: Wed, 04 Mar 2020 10:36:37 GMT
