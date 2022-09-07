@@ -88,13 +88,13 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 以JavaScript为例：
 
 ```js
-const dev_id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, name => {
+const deviceid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (name) {
   let randomInt = 16 * Math.random() | 0;
   return ("x" === name ? randomInt : 3 & randomInt | 8).toString(16).toUpperCase();
 });
 ```
 
-代码改编自 [andywang425/BLTH](https://github.com/andywang425/BLTH/blob/45fe93e31754ca8bf07059d46266398e787dbf45/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.js#L6618)
+代码来自 [andywang425/BLTH](https://github.com/andywang425/BLTH/blob/45fe93e31754ca8bf07059d46266398e787dbf45/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.js#L6618)
 
 以Java为例：
 
