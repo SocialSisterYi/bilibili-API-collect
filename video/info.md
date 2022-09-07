@@ -589,13 +589,13 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 | role  | num  | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
 | title | str  | 认证信息 | 无为空                                            |
 | desc  | str  | 认证备注 | 无为空                                            |
-| type  | num  | 是否认证 | -1：无<br />0：认证                               |
+| type  | num  | 认证类型 | -1：无<br />0：个人认证<br />1：机构认证                               |
 
 `card`中的`official_verify`对象：
 
 | 字段 | 类型 | 内容     | 备注                |
 | ---- | ---- | -------- | ------------------- |
-| type | num  | 是否认证 | -1：无<br />0：认证 |
+| type | num  | 认证类型 | -1：无<br />0：个人认证<br />1：机构认证 |
 | desc | str  | 认证信息 | 无为空              |
 
 `card`中的`vip`对象：

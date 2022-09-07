@@ -76,13 +76,13 @@
 | role  | num  | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
 | title | str  | 认证信息 | 无为空                                            |
 | desc  | str  | 认证备注 | 无为空                                            |
-| type  | num  | 是否认证 | -1：无<br />0：认证                               |
+| type  | num  | 认证类型 | -1：无<br />0：个人认证<br />1：机构认证                               |
 
 `data`中的`official_verify`对象：
 
 | 字段 | 类型 | 内容     | 备注                |
 | ---- | ---- | -------- | ------------------- |
-| type | num  | 是否认证 | -1：无<br />0：认证 |
+| type | num  | 认证类型 | -1：无<br />0：个人认证<br />1：机构认证 |
 | desc | str  | 认证信息 | 无为空              |
 
 `data`中的`pendant`对象：
@@ -227,7 +227,7 @@ curl 'http://api.bilibili.com/nav' \
 | userStatus        | str  | 登录用户状态      |                                 |
 | vipType           | num  | 大会员类型        | 0：无<br />1：月度<br />2：年度 |
 | vipStatus         | num  | 会员开通状态      | 0：无<br />1：有                |
-| official_verify   | num  | 是否认证          | -1：无<br />0：认证             |
+| official_verify   | num  | 认证类型          | -1：无<br />0：个人认证<br />1：机构认证             |
 | pointBalance      | num  | 0                 | 作用尚不明确                    |
 
 `data`中的`level_info`对象：
