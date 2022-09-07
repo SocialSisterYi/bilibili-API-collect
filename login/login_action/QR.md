@@ -4,14 +4,14 @@
 
 - [扫码登录流程(伪代码)](#扫码登录流程(伪代码))
 - [web端扫码登录](#web端扫码登录)
-  - [申请二维码(web端)](#申请二维码(web端))
-  - [扫码登录(web端)](#扫码登录(web端))
+    - [申请二维码(web端)](#申请二维码(web端))
+    - [扫码登录(web端)](#扫码登录(web端))
 - [web端扫码登录-旧版](#web端扫码登录-旧版)
-  - [申请二维码(web端-旧版)](#申请二维码(web端-旧版))
-  - [扫码登录(web端-旧版)](#扫码登录(web端-旧版))
+    - [申请二维码(web端-旧版)](#申请二维码(web端-旧版))
+    - [扫码登录(web端-旧版)](#扫码登录(web端-旧版))
 - [TV端扫码登录](#TV端扫码登录)
-  - [申请二维码(TV端)](#申请二维码(TV端))
-  - [扫码登录(TV端)](#扫码登录(TV端))
+    - [申请二维码(TV端)](#申请二维码(TV端))
+    - [扫码登录(TV端)](#扫码登录(TV端))
 
 ---
 
@@ -41,7 +41,7 @@ while True:
 
 ### 申请二维码(web端)
 
-> http://passport.bilibili.com/x/passport-login/web/qrcode/generate
+> https://passport.bilibili.com/x/passport-login/web/qrcode/generate
 
 *请求方式：GET*
 
@@ -51,30 +51,31 @@ while True:
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注    |
-| ------- | ---- | -------- | ------- |
-| code    | num  | 返回值   | 0：成功 |
-| message | str  | 错误信息 |         |
-| ttl     | num  | 1        |         |
-| data    | obj  | 信息本体 |         |
+| 字段      | 类型  | 内容   | 备注   |
+|---------|-----|------|------|
+| code    | num | 返回值  | 0：成功 |
+| message | str | 错误信息 |      |
+| ttl     | num | 1    |      |
+| data    | obj | 信息本体 |      |
 
 `data`对象：
 
-| 字段       | 类型 | 内容                      | 备注       |
-| ---------- | ---- | ------------------------- | ---------- |
-| url        | str  | 二维码内容 (登录页面 url) |            |
-| qrcode_key | str  | 扫码登录秘钥              | 恒为32字符 |
+| 字段         | 类型  | 内容               | 备注     |
+|------------|-----|------------------|--------|
+| url        | str | 二维码内容 (登录页面 url) |        |
+| qrcode_key | str | 扫码登录秘钥           | 恒为32字符 |
 
 **示例：**
 
 `url`中的值生成二维码，等待手机客户端扫描，并将`qrcode_key`保存备用
 
-```shell
-curl 'http://passport.bilibili.com/x/passport-login/web/qrcode/generate'
+```
+curl 'https://passport.bilibili.com/x/passport-login/web/qrcode/generate'
 ```
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -91,7 +92,7 @@ curl 'http://passport.bilibili.com/x/passport-login/web/qrcode/generate'
 
 ### 扫码登录(web端)
 
-> http://passport.bilibili.com/x/passport-login/web/qrcode/poll
+> https://passport.bilibili.com/x/passport-login/web/qrcode/poll
 
 *请求方式：GET*
 
@@ -99,40 +100,40 @@ curl 'http://passport.bilibili.com/x/passport-login/web/qrcode/generate'
 
 验证登录成功后会进行设置以下cookie项：
 
- `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
+`DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
 
 **url参数：**
 
-| 参数名     | 类型 | 内容         | 必要性 | 备注 |
-| ---------- | ---- | ------------ | ------ | ---- |
-| qrcode_key | str  | 扫码登录秘钥 | 非必要 |      |
+| 参数名        | 类型  | 内容     | 必要性 | 备注  |
+|------------|-----|--------|-----|-----|
+| qrcode_key | str | 扫码登录秘钥 | 非必要 |     |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注    |
-| ------- | ---- | -------- | ------- |
-| code    | num  | 返回值   | 0：成功 |
-| message | str  | 错误信息 |         |
-| data    | obj  | 信息本体 |         |
+| 字段      | 类型  | 内容   | 备注   |
+|---------|-----|------|------|
+| code    | num | 返回值  | 0：成功 |
+| message | str | 错误信息 |      |
+| data    | obj | 信息本体 |      |
 
 data 对象：
 
-| 字段          | 类型 | 内容                                                         | 备注                               |
-| ------------- | ---- | ------------------------------------------------------------ | ---------------------------------- |
-| url           | str  | 游戏分站跨域登录 url                                         | 未登录为空                         |
-| refresh_token | str  | 刷新`refresh_token`                                          | 未登录为空                         |
-| timestamp     | num  | 登录时间                                                     | 未登录为`0`<br />时间戳 单位为毫秒 |
-| code          | num  | 0：扫码登录成功<br />86038：二维码已失效<br />86090：二维码已扫码未确认<br />86101：未扫码 |                                    |
-| message       | str  | 扫码状态信息                                                 |                                    |
+| 字段            | 类型  | 内容                                                             | 备注                     |
+|---------------|-----|----------------------------------------------------------------|------------------------|
+| url           | str | 游戏分站跨域登录 url                                                   | 未登录为空                  |
+| refresh_token | str | 刷新`refresh_token`                                              | 未登录为空                  |
+| timestamp     | num | 登录时间                                                           | 未登录为`0`<br />时间戳 单位为毫秒 |
+| code          | num | 0：扫码登录成功<br />86038：二维码已失效<br />86090：二维码已扫码未确认<br />86101：未扫码 |                        |
+| message       | str | 扫码状态信息                                                         |                        |
 
 **示例：**
 
 使用扫描秘钥`c3bd5286a2b40a822f5f60e9bf3f602e`登录
 
 ```shell
-curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
+curl -G "https://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 --data-urlencode 'qrcode_key=c3bd5286a2b40a822f5f60e9bf3f602e' \
 -c 'cookie.txt'
 ```
@@ -142,19 +143,18 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 <details>
 <summary>查看响应示例：</summary>
 
-
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "url": "",
-        "refresh_token": "",
-        "timestamp": 0,
-        "code": 86101,
-        "message": "未扫码"
-    }
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "url": "",
+    "refresh_token": "",
+    "timestamp": 0,
+    "code": 86101,
+    "message": "未扫码"
+  }
 }
 ```
 
@@ -165,19 +165,18 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 <details>
 <summary>查看响应示例：</summary>
 
-
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "url": "",
-        "refresh_token": "",
-        "timestamp": 0,
-        "code": 86090,
-        "message": "二维码已扫码未确认"
-    }
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "url": "",
+    "refresh_token": "",
+    "timestamp": 0,
+    "code": 86090,
+    "message": "二维码已扫码未确认"
+  }
 }
 ```
 
@@ -210,6 +209,7 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```http
 HTTP/1.1 200 OK
 Date: Mon, 05 Sep 2022 07:30:09 GMT
@@ -235,19 +235,18 @@ x-cache-webcdn: BYPASS from blzone02
 <details>
 <summary>查看响应示例：</summary>
 
-
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-      "url": "",
-      "refresh_token": "",
-      "timestamp": 0,
-      "code": 86038,
-      "message": "二维码已失效"
-    }
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "url": "",
+    "refresh_token": "",
+    "timestamp": 0,
+    "code": 86038,
+    "message": "二维码已失效"
+  }
 }
 ```
 
@@ -259,7 +258,7 @@ x-cache-webcdn: BYPASS from blzone02
 
 ### 申请二维码(web端-旧版)
 
-> http://passport.bilibili.com/qrcode/getLoginUrl
+> https://passport.bilibili.com/qrcode/getLoginUrl
 
 *请求方式：GET*
 
@@ -269,30 +268,31 @@ x-cache-webcdn: BYPASS from blzone02
 
 根对象：
 
-| 字段   | 类型 | 内容     | 备注         |
-| ------ | ---- | -------- | ------------ |
-| code   | num  | 返回值   | 0：成功      |
-| status | bool | true     | 作用尚不明确 |
-| ts     | num  | 请求时间 | 时间戳       |
-| data   | obj  | 信息本体 |              |
+| 字段     | 类型   | 内容   | 备注     |
+|--------|------|------|--------|
+| code   | num  | 返回值  | 0：成功   |
+| status | bool | true | 作用尚不明确 |
+| ts     | num  | 请求时间 | 时间戳    |
+| data   | obj  | 信息本体 |        |
 
 `data`对象：
 
-| 字段     | 类型 | 内容                      | 备注       |
-| -------- | ---- | ------------------------- | ---------- |
-| url      | str  | 二维码内容 (登录页面 url) |            |
-| oauthKey | str  | 扫码登录秘钥              | 恒为32字符 |
+| 字段       | 类型  | 内容               | 备注     |
+|----------|-----|------------------|--------|
+| url      | str | 二维码内容 (登录页面 url) |        |
+| oauthKey | str | 扫码登录秘钥           | 恒为32字符 |
 
 **示例：**
 
 `url`中的值生成二维码，等待手机客户端扫描，并将`oauthKey`保存备用
 
 ```shell
-curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
+curl 'https://passport.bilibili.com/qrcode/getLoginUrl'
 ```
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
 	"code": 0,
@@ -309,7 +309,7 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 
 ### 扫码登录(web端-旧版)
 
-> http://passport.bilibili.com/qrcode/getLoginInfo
+> https://passport.bilibili.com/qrcode/getLoginInfo
 
 *请求方式：POST*
 
@@ -317,39 +317,39 @@ curl 'http://passport.bilibili.com/qrcode/getLoginUrl'
 
 验证登录成功后会进行设置以下cookie项：
 
- `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
+`DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容         | 必要性 | 备注                          |
-| -------- | ---- | ------------ | ------ | ----------------------------- |
-| oauthKey | str  | 扫码登录秘钥 | 必要   |                               |
-| gourl    | str  | 跳转url      | 非必要 | 默认为http://www.bilibili.com |
+| 参数名      | 类型  | 内容     | 必要性 | 备注                         |
+|----------|-----|--------|-----|----------------------------|
+| oauthKey | str | 扫码登录秘钥 | 必要  |                            |
+| gourl    | str | 跳转url  | 非必要 | 默认为http://www.bilibili.com |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型                         | 内容                                      | 备注                                                         |
-| ------- | ---------------------------- | ----------------------------------------- | ------------------------------------------------------------ |
-| code    | num                          | 返回值                                    | 0：成功                                                      |
-| message | str                          |                                           | 正确无                                                       |
-| ts      | num                          | 扫码时间                                  | 错误无                                                       |
-| status  | bool                         | 扫码是否成功                              | true：成功<br />false：未成功                                |
+| 字段      | 类型                   | 内容                        | 备注                                                      |
+|---------|----------------------|---------------------------|---------------------------------------------------------|
+| code    | num                  | 返回值                       | 0：成功                                                    |
+| message | str                  |                           | 正确无                                                     |
+| ts      | num                  | 扫码时间                      | 错误无                                                     |
+| status  | bool                 | 扫码是否成功                    | true：成功<br />false：未成功                                  |
 | data    | 正确时：obj<br />错误时：num | 正确时：游戏分站url<br />错误时：错误代码 | 未成功时：<br />-1：密钥错误<br />-2：密钥超时<br />-4：未扫描<br />-5：未确认 |
 
 data 对象：
 
-| 字段 | 类型 | 内容                 | 备注 |
-| ---- | ---- | -------------------- | ---- |
-| url  | str  | 游戏分站跨域登录 url |      |
+| 字段  | 类型  | 内容           | 备注  |
+|-----|-----|--------------|-----|
+| url | str | 游戏分站跨域登录 url |     |
 
 **示例：**
 
 使用扫描秘钥`c3bd5286a2b40a822f5f60e9bf3f602e`登录
 
 ```shell
-curl "http://passport.bilibili.com/qrcode/getLoginInfo"\
+curl "https://passport.bilibili.com/qrcode/getLoginInfo"\
 --data-urlencode 'oauthKey=c3bd5286a2b40a822f5f60e9bf3f602e' \
 -c 'cookie.txt'
 ```
@@ -440,35 +440,35 @@ X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容       | 必要性      | 备注                     |
-| -------- | ---- | ---------- | ----------- | ------------------------ |
-| appkey   | str  | APP密钥    | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
-| local_id | str  | TV端id     | TV端必要    | 可为`0`                  |
-| ts       | num  | 当前时间戳 | APP方式必要 |                          |
-| sign     | str  | APP签名    | APP方式必要 |                          |
+| 参数名      | 类型  | 内容    | 必要性     | 备注                    |
+|----------|-----|-------|---------|-----------------------|
+| appkey   | str | APP密钥 | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
+| local_id | str | TV端id | TV端必要   | 可为`0`                 |
+| ts       | num | 当前时间戳 | APP方式必要 |                       |
+| sign     | str | APP签名 | APP方式必要 |                       |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                 |
-| ------- | ---- | -------- | ---------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误 |
-| message | str  | 错误信息 | 默认为0                                              |
-| ttl     | num  | 1        |                                                      |
-| data    | obj  | 信息本体 |                                                      |
+| 字段      | 类型  | 内容   | 备注                                    |
+|---------|-----|------|---------------------------------------|
+| code    | num | 返回值  | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误 |
+| message | str | 错误信息 | 默认为0                                  |
+| ttl     | num | 1    |                                       |
+| data    | obj | 信息本体 |                                       |
 
 `data`对象：
 
-| 字段     | 类型 | 内容          | 备注       |
-| -------- | ---- | ------------- | ---------- |
-| url      | str  | 二维码内容url |            |
-| oauthKey | str  | 扫码登录秘钥  | 恒为32字符 |
+| 字段       | 类型  | 内容       | 备注     |
+|----------|-----|----------|--------|
+| url      | str | 二维码内容url |        |
+| oauthKey | str | 扫码登录秘钥   | 恒为32字符 |
 
 **示例：**
 
 ```shell
-curl 'http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
+curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 --data-urlencode 'appkey=4409e2ce8ffd12b8' \
 --data-urlencode 'local_id=0' \
 --data-urlencode 'ts=0' \
@@ -480,13 +480,13 @@ curl 'http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "url": "https://passport.snm0516.aisee.tv/x/passport-tv-login/h5/qrcode/auth?auth_code=0eeb635a64526709d70cb4c854a3b001",
-        "auth_code": "0eeb635a64526709d70cb4c854a3b001"
-    }
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "url": "https://passport.snm0516.aisee.tv/x/passport-tv-login/h5/qrcode/auth?auth_code=0eeb635a64526709d70cb4c854a3b001",
+    "auth_code": "0eeb635a64526709d70cb4c854a3b001"
+  }
 }
 ```
 
@@ -494,7 +494,7 @@ curl 'http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 ### 扫码登录(TV端)
 
-> http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll
+> https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll
 
 *请求方式：POST*
 
@@ -506,40 +506,40 @@ curl 'http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 **正文参数 (application/x-www-form-urlencoded)：**
 
-| 参数名    | 类型 | 内容       | 必要性      | 备注                     |
-| --------- | ---- | ---------- | ----------- | ------------------------ |
-| appkey    | str  | APP密钥    | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
-| auth_code | str  | 扫码秘钥   | 必要        |                          |
-| local_id  | str  | TV端id     | TV端必要    | 可为0                    |
-| ts        | num  | 当前时间戳 | APP方式必要 |                          |
-| sign      | str  | APP签名    | APP方式必要 |                          |
+| 参数名       | 类型  | 内容    | 必要性     | 备注                    |
+|-----------|-----|-------|---------|-----------------------|
+| appkey    | str | APP密钥 | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
+| auth_code | str | 扫码秘钥  | 必要      |                       |
+| local_id  | str | TV端id | TV端必要   | 可为0                   |
+| ts        | num | 当前时间戳 | APP方式必要 |                       |
+| sign      | str | APP签名 | APP方式必要 |                       |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型                          | 内容     | 备注                                                         |
-| ------- | ----------------------------- | -------- | ------------------------------------------------------------ |
-| code    | num                           | 返回值   | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误<br />86038：二维码已失效<br />86039：二维码尚未确认 |
-| message | str                           | 错误信息 | 默认为0                                                      |
-| ttl     | num                           | 1        |                                                              |
-| data    | 有效时：obj<br />无效时：null | 信息本体 |                                                              |
+| 字段      | 类型                    | 内容   | 备注                                                                         |
+|---------|-----------------------|------|----------------------------------------------------------------------------|
+| code    | num                   | 返回值  | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误<br />86038：二维码已失效<br />86039：二维码尚未确认 |
+| message | str                   | 错误信息 | 默认为0                                                                       |
+| ttl     | num                   | 1    |                                                                            |
+| data    | 有效时：obj<br />无效时：null | 信息本体 |                                                                            |
 
 `data`对象：
 
-| 字段          | 类型 | 内容         | 备注                 |
-| ------------- | ---- | ------------ | -------------------- |
-| mid           | num  | 登录用户mid  |                      |
-| access_token  | str  | APP登录Token |                      |
-| refresh_token | str  | APP刷新Token |                      |
-| expires_in    | num  | 有效时间     | 单位为秒  一般为30天 |
+| 字段            | 类型  | 内容         | 备注           |
+|---------------|-----|------------|--------------|
+| mid           | num | 登录用户mid    |              |
+| access_token  | str | APP登录Token |              |
+| refresh_token | str | APP刷新Token |              |
+| expires_in    | num | 有效时间       | 单位为秒  一般为30天 |
 
 **示例：**
 
 使用扫描秘钥`6214464b3025541abf6f654cf7569a01`进行验证登录
 
 ```shell
-curl 'http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
+curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
 --data-urlencode 'appkey=4409e2ce8ffd12b8' \
 --data-urlencode 'auth_code=6214464b3025541abf6f654cf7569a01' \
 --data-urlencode 'local_id=0' \
@@ -552,15 +552,15 @@ curl 'http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "mid": 293793435,
-        "access_token": "***",
-        "refresh_token": "***",
-        "expires_in": 2592000
-    }
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "mid": 293793435,
+    "access_token": "***",
+    "refresh_token": "***",
+    "expires_in": 2592000
+  }
 }
 ```
 
