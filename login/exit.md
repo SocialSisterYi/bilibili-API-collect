@@ -7,7 +7,7 @@
 
 ## 退出登录（web 端）
 
-> http://passport.bilibili.com/login/exit/v2
+> https://passport.bilibili.com/login/exit/v2
 
 _请求方式：POST_
 
@@ -19,12 +19,13 @@ _请求方式：POST_
 
 并在服务器注销该登录 Token（SESSDATA），该 Token 即失效
 
+请求必须包含以下cookie项：`DedeUserID` `bili_jct` `SESSDATA`
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                      | 必要性          | 备注                               |
-| -------- | ---- | ------------------------- | --------------- | ---------------------------------- |
-| biliCSRF | str  | CSRF Token（位于 cookie） | Cookie 方式必要 |                                    |
-| gourl    | str  | 成功后跳转到的页面        | 非必要          | 默认为 `javascript:history.go(-1)` |
+| 参数名      | 类型  | 内容                              | 必要性         | 备注                              |
+|----------|-----|---------------------------------|-------------|---------------------------------|
+| biliCSRF | str | CSRF Token（位于 cookie中的bili_jct） | Cookie 方式必要 |                                 |
 
 **json 回复：**
 
@@ -32,24 +33,27 @@ _请求方式：POST_
 
 根对象：
 
-| 字段    | 类型                            | 内容     | 备注                               |
-| ------- | ------------------------------- | -------- | ---------------------------------- |
-| code    | num                             | 返回值   | 0：成功 <br />-2202：csrf 请求非法 |
-| status  | num/不存在                      | 返回值   | true：成功，失败时可能不存在       |
-| ts      | num                             | 返回值   | 时间戳（例如：1631796826）         |
-| message | str<br />无效时：不存在         | 错误信息 |                                    |
-| data    | 有效时：obj<br />无效时：不存在 | 信息本体 |                                    |
+| 字段      | 类型      | 内容   | 备注                        |
+|---------|---------|------|---------------------------|
+| code    | num     | 返回值  | 0：成功 <br />2202：csrf 请求非法 |
+| status  | bool    | 返回值  | true：成功，失败时不存在            |
+| ts      | num     | 返回值  | 时间戳（例如：1662538854）        |
+| message | str     | 错误信息 | 成功时不存在                    |
+| data    | 有效时：obj | 信息本体 | 失败时不存在                    |
 
 `data`对象：
 
-redirectUrl 重定向 url
+| 字段          | 类型  | 内容      | 备注  |
+|-------------|-----|---------|-----|
+| redirectUrl | str | 重定向 url |     |
 
 **示例：**
 
 ```shell
-curl -X POST https://passport.bilibili.com/login/exit/v2 \
--b "cookie字符串" \
--d "biliCSRF=xxxxxx&gourl=https://www.bilibili.com"
+curl -L -X POST 'https://passport.bilibili.com/login/exit/v2' \
+-H 'cookie: DedeUserID=xxx; bili_jct=xxx; SESSDATA=xxx' \
+-H 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'biliCSRF=xxx'
 ```
 
 <details>
@@ -59,11 +63,10 @@ curl -X POST https://passport.bilibili.com/login/exit/v2 \
 {
   "code": 0,
   "status": true,
-  "ts": 1631796826,
+  "ts": 1662538176,
   "data": {
-    "redirectUrl": "https://passport.biligame.com/crossDomain?DedeUserID=&DedeUserID__ckMd5=&SESSDATA=&bili_jct=&gourl=https%3A%2F%2Fwww.bilibili.com"
+    "redirectUrl": "https://passport.biligame.com/crossDomain?DedeUserID=当前用户UID&DedeUserID__ckMd5=&SESSDATA=&bili_jct=&gourl=javascript%3Ahistory.go%28-1%29"
   }
 }
 ```
-
 </details>
