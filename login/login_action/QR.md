@@ -137,7 +137,7 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 -c 'cookie.txt'
 ```
 
-当密钥正确时但未扫描时`message`为`86101`
+当密钥正确时但未扫描时`code`为`86101`
 
 <details>
 <summary>查看响应示例：</summary>
@@ -160,7 +160,7 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 
 </details>
 
-扫描成功但手机端未确认时`message`为`86038`
+扫描成功但手机端未确认时`code`为`86090`
 
 <details>
 <summary>查看响应示例：</summary>
@@ -183,7 +183,7 @@ curl -G "http://passport.bilibili.com/x/passport-login/web/qrcode/poll"\
 
 </details>
 
-扫描成功手机端确认登录后，`message`为`0`，并向浏览器写入cookie
+扫描成功手机端确认登录后，`code`为`0`，并向浏览器写入cookie
 
 <details>
 <summary>查看响应示例：</summary>
@@ -226,6 +226,29 @@ set-cookie: DedeUserID__ckMd5=***; Path=/; Domain=bilibili.com; Expires=Sat, 04 
 set-cookie: sid=***; Path=/; Domain=bilibili.com; Expires=Sat, 04 Mar 2023 07:30:09 GMT
 x-bili-trace-id: 2fbd8abd97dbd4db0d23fe044a6315a5
 x-cache-webcdn: BYPASS from blzone02
+```
+
+</details>
+
+二维码失效时`code`为`86038`
+
+<details>
+<summary>查看响应示例：</summary>
+
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+      "url": "",
+      "refresh_token": "",
+      "timestamp": 0,
+      "code": 86038,
+      "message": "二维码已失效"
+    }
+}
 ```
 
 </details>
