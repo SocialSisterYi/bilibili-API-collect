@@ -30,6 +30,42 @@ message SmallCoverV5 {
     int32 right_icon_2 = 11;
     // 左上角角标
     ReasonStyle left_corner_mark_style = 12;
+    //
+    string cover_right_text_content_description = 13;
+    //
+    string right_desc1_content_description = 14;
+}
+
+//
+message SmallCoverV5Ad {
+    //
+    Base base = 1;
+    //
+    string cover_gif = 2;
+    //
+    Up up = 3;
+    //
+    string cover_right_text1 = 4;
+    //
+    string right_desc1 = 5;
+    //
+    string right_desc2 = 6;
+    //
+    ReasonStyle rcmd_reason_style = 7;
+    //
+    HotwordEntrance hotword_entrance = 8;
+    //
+    ReasonStyle corner_mark_style = 9;
+    //
+    int32 right_icon1 = 10;
+    //
+    int32 right_icon2 = 11;
+    //
+    ReasonStyle left_corner_mark_style = 12;
+    //
+    string cover_right_text_content_description = 13;
+    //
+    string right_desc1_content_description = 14;
 }
 
 //
@@ -157,6 +193,10 @@ message SmallCoverRcmdItem {
     int32 rightIcon1 = 10;
     // 右侧文案2图标id
     int32 rightIcon2 = 11;
+    //
+    string cover_right_text_content_description = 12;
+    //
+    string right_desc1_content_description = 13;
 }
 
 //

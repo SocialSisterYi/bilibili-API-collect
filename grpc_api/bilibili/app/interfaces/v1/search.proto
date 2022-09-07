@@ -1,11 +1,85 @@
 syntax = "proto3";
 
-package bilibili.app.interfaces.v1;
+package bilibili.app.interface.v1;
 
 // 搜索
 service Search {
     // 获取搜索建议
     rpc Suggest3 (SuggestionResult3Req) returns (SuggestionResult3Reply);
+    //
+    rpc DefaultWords(DefaultWordsReq) returns (DefaultWordsReply);
+}
+
+//
+service SearchTest {
+    //
+    rpc NotExist(SuggestionResult3Req) returns (SuggestionResult3Reply);
+}
+
+//
+message DefaultWordsReply {
+    //
+    string trackid = 1;
+    //
+    string param = 2;
+    //
+    string show = 3;
+    //
+    string word = 4;
+    //
+    int64 show_front = 5;
+    //
+    string exp_str = 6;
+    //
+    string goto = 7;
+    //
+    string value = 8;
+    //
+    string uri = 9;
+}
+
+//
+message NftFaceIcon {
+    //
+    int32 region_type = 1;
+    //
+    string icon = 2;
+    //
+    int32 show_status = 3;
+}
+
+//
+message DefaultWordsReq {
+    //
+    int64 from = 1;
+    //
+    int64 login_event = 2;
+    //
+    int32 teenagers_mode = 3;
+    //
+    int32 lessons_mode = 4;
+    //
+    string tab = 5;
+    //
+    string event_id = 6;
+    //
+    string avid = 7;
+    //
+    string query = 8;
+    //
+    int64 an = 9;
+    //
+    int64 is_fresh = 10;
+}
+
+// 获取搜索建议-响应
+message SuggestionResult3Reply {
+    // 搜索追踪id
+    string trackid = 1;
+    // 搜索建议条目列表
+    repeated ResultItem list = 2;
+    // 搜索的abtest 实验信息
+    string exp_str = 3;
 }
 
 // 获取搜索建议-请求
@@ -18,16 +92,6 @@ message SuggestionResult3Req {
     // 是否青少年模式
     // 1:开启青少年模式
     int32 teenagers_mode = 3;
-}
-
-// 获取搜索建议-响应
-message SuggestionResult3Reply {
-    // 搜索追踪id
-    string trackid = 1;
-    // 搜索建议条目列表
-    repeated ResultItem list = 2;
-    // 搜索的abtest 实验信息
-    string expStr = 3;
 }
 
 // 搜索建议条目
@@ -86,6 +150,10 @@ message ResultItem {
     int64 module_id = 26;
     //
     string live_link = 27;
+    //
+    int32 face_nft_new = 28;
+    //
+    NftFaceIcon nft_face_icon = 29;
 }
 
 // 认证信息

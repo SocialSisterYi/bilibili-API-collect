@@ -43,12 +43,12 @@ message PrivacyConfigReply {
 // 隐私开关状态
 enum PrivacyConfigState {
     close = 0; // 关闭
-    open = 1;  // 打开
+    open  = 1; // 打开
 }
 
 // 隐私开关类型
 enum PrivacyConfigType {
-    none = 0;         //
+    none         = 0; //
     dynamic_city = 1; // 动态同城
 }
 

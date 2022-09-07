@@ -8,14 +8,16 @@ web端短信登录流程：
 
 ---
 
-- [短信登录](#短信登录)
-  - [获取国际地区代码（web端）](#获取国际地区代码web端)
-  - [发送短信验证码（web端）](#发送短信验证码web端)
-  - [使用短信验证码登录（web端）](#使用短信验证码登录web端)
+- [短信登录(web端)](#短信登录(web端))
+  - [获取国际冠字码(web端)](#获取国际冠字码(web端))
+  - [发送短信验证码(web端)](#发送短信验证码(web端))
+  - [使用短信验证码登录(web端)](#使用短信验证码登录(web端))
 
 ---
 
-## 获取国际地区代码（web端）
+## 短信登录(web端)
+
+### 获取国际冠字码(web端)
 
 > http://passport.bilibili.com/web/generic/country/list
 
@@ -32,26 +34,26 @@ web端短信登录流程：
 
 `data`对象：
 
-| 字段   | 类型  | 内容           | 备注 |
-| ------ | ----- | -------------- | ---- |
-| common | array | 常用国家或地区 |      |
-| others | array | 其他国家或地区 |      |
+| 字段   | 类型  | 内容          | 备注 |
+| ------ | ----- | ------------- | ---- |
+| common | array | 常用国家&地区 |      |
+| others | array | 其他国家&地区 |      |
 
 `data`中的`common`和`others`数组：
 
-| 项   | 类型 | 内容            | 备注 |
-| ---- | ---- | --------------- | ---- |
-| 0    | obj  | 国家或地区1     |      |
-| n    | obj  | 国家或地区(n+1) |      |
-| ……   | obj  | ……              | ……   |
+| 项   | 类型 | 内容           | 备注 |
+| ---- | ---- | -------------- | ---- |
+| 0    | obj  | 国家&地区1     |      |
+| n    | obj  | 国家&地区(n+1) |      |
+| ……   | obj  | ……             | ……   |
 
 `common`和`others`数组中的对象：
 
-| 字段       | 类型 | 内容           | 备注 |
-| ---------- | ---- | -------------- | ---- |
-| id         | num  | 国际代码值     |      |
-| cname      | str  | 国家或地区名   |      |
-| country_id | str  | 国家或地区区号 |      |
+| 字段       | 类型 | 内容          | 备注 |
+| ---------- | ---- | ------------- | ---- |
+| id         | num  | 国际代码值    |      |
+| cname      | str  | 国家&地区名   |      |
+| country_id | str  | 国家&地区区号 |      |
 
 **示例：**
 
@@ -98,27 +100,27 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 
 </details>
 
-## 发送短信验证码（web端）
+### 发送短信验证码(web端)
 
 > http://passport.bilibili.com/x/passport-login/web/sms/send
 
 *请求方式：POST*
 
-短信发送CD时间为60s
+同手机号短信发送 CD 时间为 60s
 
-短信验证码超时时间为5min
+短信验证码 timeout 为 5min
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数 (application/x-www-form-urlencoded)：**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
+| cid | num  | 国际冠字码    | 必要 | 可以从[获取国际冠字码](#获取国际冠字码(web端))获取 |
 | tel | num | 手机号码 | 必要 | |
-| cid | num  | 国际地区代码       | 必要 |  |
-| source | str  | 固定为`main_web`  | 必要 |  |
-| token | str  | 在获取gt,challenge处url有  | 必要 |  |
-| challenge | str | 极验challenge | 必要 | 从B站API获取 |
-| validate | str | 极验结果 | 必要 | 从极验获取 |
-| seccode | str | 极验结果+`|jordan` | 必要   | 从极验获取   |
+| source | str  | 登录来源 | 必要 | `main_web`：独立登录页<br />`main_mini`：小窗登录 |
+| token | str  | 登录 API token | 必要 | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
+| challenge | str | 极验 challenge | 必要 | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
+| validate | str | 极验 result | 必要 | 极验验证后得到 |
+| seccode | str | 极验 result +`|jordan` | 必要   | 极验验证后得到 |
 
 **json回复：**
 
@@ -128,12 +130,17 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | ------ | ---- | -------- | --------- |
 | code | num | 返回值 | 0：成功<br />-400：请求错误<br />1002：手机号格式错误<br />86203：短信发送次数已达上限<br />1003：验证码已经发送<br />1025：该手机号在哔哩哔哩有过永久封禁记录，无法再次注册或绑定新账号<br />2400：登录秘钥错误<br />2406：验证极验服务出错 |
 | message | str | 错误信息 | 成功为0 |
-| data | obj | 数据 | 内含captcha_key |
+| data | obj | 信息本体 |                                                              |
 
-captcha_key在下方传参时需要,请备用.
+`data`对象：
+
+| 字段        | 类型 | 内容           | 备注                     |
+| ----------- | ---- | -------------- | ------------------------ |
+| captcha_key | str  | 短信登录 token | 在下方传参时需要，请备用 |
+
 **示例：**
 
-例如手机号为`13888888888`，国际id为`1（中国大陆）`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
+例如手机号为`13888888888`，国际id为`1 (中国大陆)`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
 
 ```shell
 curl 'http://passport.bilibili.com/x/passport-login/web/sms/send' \
@@ -153,13 +160,15 @@ curl 'http://passport.bilibili.com/x/passport-login/web/sms/send' \
 {"code":0,
     "message":"0",
     "ttl":1,
-    "data":{"captcha_key":"7542f109c3318d74847626495c68c321"}
+    "data":{
+        "captcha_key":"7542f109c3318d74847626495c68c321"
     }
+}
 ```
 
 </details>
 
-## 使用短信验证码登录（web端）
+### 使用短信验证码登录(web端)
 
 > https://passport.bilibili.com/x/passport-login/web/login/sms
 
@@ -169,18 +178,17 @@ curl 'http://passport.bilibili.com/x/passport-login/web/sms/send' \
 
  `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数 (application/x-www-form-urlencoded)：**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
-| cid | num | 国际地区代码 | 必要 |  |
+| cid         | num  | 国际冠字码     | 必要   | 可以从[获取国际冠字码](#获取国际冠字码(web端))获取 |
 | tel | num | 手机号码 | 必要 | |
-| code | num | 短信验证码 | 必要 | 超时时间为5min |
-| source | str | 固定为`main_web` | 必要 |  |
-| captcha_key | str | 上方发送短信验证码时的一个参数 | 必要 |  |
-| go_url | str | 跳转url | 非必要 | 默认为https://www.bilibili.com |
-| keep | str | 未知 | 非必要 | 默认为true |
-
+| code | num | 短信验证码 | 必要 | timeout 为 5min |
+| source      | str  | 登录来源       | 必要   | `main_web`：独立登录页<br />`main_mini`：小窗登录 |
+| captcha_key | str | 短信登录 token | 必要 | 从[上述API](#发送短信验证码(web端))请求成功后返回 |
+| go_url | str | 跳转url | 非必要 | 默认为 https://www.bilibili.com |
+| keep | bool | 是否记住登录 | 非必要 | `true`：记住登录<br />`false`：不记住登录 |
 
 **json回复：**
 
@@ -196,9 +204,9 @@ curl 'http://passport.bilibili.com/x/passport-login/web/sms/send' \
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| is_new | bool | false | 未知,估计是未注册时自动注册新用户 |
-| status | num | 0 | 未知,可能0就是成功吧 |
-| url | str | 跳转url | 默认为https://www.bilibili.com |
+| is_new | bool | 是否为新注册用户 | false：非新注册用户<br />true：新注册用户 |
+| status | num | 0 | 未知，可能0就是成功吧 |
+| url | str | 跳转 url | 默认为 https://www.bilibili.com |
 
 **示例：**
 

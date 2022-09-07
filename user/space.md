@@ -1282,7 +1282,7 @@ curl -G 'http://api.bilibili.com/x/space/lastplaygame' \
 
 认证方式：Cookie（SESSDATA）
 
-如设置隐私查看自己的需要认证
+如设置隐私查看自己的需要认证 仅包含最近投币的20个视频，如超过指定时间未投币（也许一个月），列表将为空
 
 **url参数：**
 
@@ -1536,7 +1536,7 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 | tid     | num  | 筛选目标分区 | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区    |
 | keyword | str  | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                             |
 | pn      | num  | 页码         | 必要   |                                                              |
-| ps      | num  | 每页项数     | 必要   |                                                              |
+| ps      | num  | 每页项数     | 必要   |最小1，最大50  |
 
 **json回复：**
 
@@ -2036,7 +2036,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 | code    | num  | 返回值   | 0：成功  |
 | message | str  | 错误信息 | 默认为0  |
 | ttl     | num  | 1        |          |
-| data    | obj  | 信息本体 | 无则为空 |
+| data    | obj  | 信息本体 | 无则为空 所有频道内均无视频则为空，此时code为0 |
 
 `data`对象：
 

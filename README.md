@@ -23,7 +23,7 @@
 
 所有 rest api 均为标准 http 协议，请求数据大多为 url query 表单，返回数据大多为 json 或 protobuf
 
-PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，为了数据安全建议调用接口时使用 https
+PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（除过仅可https协议调用接口），为了数据安全建议调用接口时使用 https
 
 小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/)（[Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk)）
 
@@ -86,6 +86,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [x] [视频在线人数](video/online.md)
 - [ ] [剧集（番剧、影视）](bangumi)
   - [ ] [基本信息](bangumi/info.md)
+  - [ ] [播放&下载地址（视频流）](bangumi/videostream_url.md)
   - [ ] [时间轴](bangumi/timeline.md)
   - [ ] 状态数
   - [ ] 操作
@@ -119,6 +120,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`，�
   - [ ] 音频榜单
 - [ ] [排行榜 & 最新视频](ranking&dynamic)
   - [ ] [排行榜](ranking&dynamic/ranking.md)
+  - [ ] [热门视频](ranking&dynamic/popular.md)
   - [ ] [最新视频](ranking&dynamic/dynamic.md)
 - [ ] [搜索](search)
   - [x] [搜索请求](search/search_request.md)
@@ -218,6 +220,12 @@ B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/rea
 
 **--Project_by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 
+# 鸣谢
+
+你们的存在，让社区更美好
+
+[![contributors](https://opencollective.com/bilibili-api-collect/contributors.svg?width=860&button=false)](https://github.com/SocialSisterYi/bilibili-API-collect/graphs/contributors)
+
 # 相关协议基础
 
 http 协议：[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
@@ -270,6 +278,7 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 
 ## 成品
 
+- [Infinity1309/NewpipeEnhanced](https://github.com/InfinityLoop1309/NewPipeEnhanced): 功能完善的Android流媒体综合客户端，支持Bilibili, Youtube, NicoNico
 - [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
 - [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):本地弹幕播放器
 - [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制

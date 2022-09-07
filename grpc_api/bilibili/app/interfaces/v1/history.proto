@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.app.interfaces.v1;
+package bilibili.app.interface.v1;
 
 import "bilibili/app/archive/middleware/v1/preload.proto";
 
@@ -48,6 +48,8 @@ message CardCheese {
     int64 duration = 3;
     // 单集标题
     string subtitle = 4;
+    //
+    int64 state = 5;
 }
 
 // 直播卡片
@@ -78,6 +80,10 @@ message CardOGV {
     int64 duration = 3;
     // 单集标题
     string subtitle = 4;
+    //
+    string badge = 5;
+    //
+    int64 state = 6;
 }
 
 // ugc稿件卡片
@@ -234,13 +240,13 @@ message CursorV2Req {
 // 设备标识代码
 enum DT {
     Unknown = 0; // 未知
-    Phone = 1;   // 手机端
-    Pad = 2;     // ipad端
-    PC = 3;      // web端
-    TV = 4;      // TV端
-    Car = 5;     //
-    Iot = 6;     //
-    AndPad = 7;  // apad端
+    Phone   = 1; // 手机端
+    Pad     = 2; // ipad端
+    PC      = 3; // web端
+    TV      = 4; // TV端
+    Car     = 5; // 车机端
+    Iot     = 6; // 物联设备
+    AndPad  = 7; // apad端
 }
 
 // 删除历史记录-请求
@@ -268,7 +274,7 @@ message HisInfo {
 
 // 搜索历史记录来源
 enum HistorySource {
-    history_VALUE = 0;  // 主站历史记录页
+    history_VALUE  = 0; // 主站历史记录页
     shopping_VALUE = 1; // 会员购浏览记录
 }
 

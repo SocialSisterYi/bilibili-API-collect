@@ -37,7 +37,7 @@ message ArcConf {
 // 业务类型
 enum Business {
     UNKNOWN = 0; // 未知类型
-    STORY = 1;   // story业务
+    STORY   = 1; // story业务
 }
 
 // Chronos灰度管理
@@ -46,6 +46,18 @@ message Chronos {
     string md5 = 1;
     // 资源文件
     string file = 2;
+}
+
+//
+message ButtonStyle {
+    //
+    string text = 1;
+    //
+    string text_color = 2;
+    //
+    string bg_color = 3;
+    //
+    string jump_link = 4;
 }
 
 //
@@ -62,43 +74,44 @@ message CloudConf {
 
 // 编码类型
 enum CodeType {
-    NOCODE = 0;  // 默认
+    NOCODE  = 0; // 默认
     CODE264 = 1; // H.264
     CODE265 = 2; // H.265
+    CODEAV1 = 3; // av1
 }
 
 // 设置类型
 enum ConfType {
-    NoType = 0;         // 
-    FLIPCONF = 1;       // 镜像反转
-    CASTCONF = 2;       // 视频投屏
-    FEEDBACK = 3;       // 反馈
-    SUBTITLE = 4;       // 字幕
-    PLAYBACKRATE = 5;   // 播放速度
-    TIMEUP = 6;         // 定时停止播放
-    PLAYBACKMODE = 7;   // 播放方式
-    SCALEMODE = 8;      // 画面尺寸
+    NoType         = 0; // 
+    FLIPCONF       = 1; // 镜像反转
+    CASTCONF       = 2; // 视频投屏
+    FEEDBACK       = 3; // 反馈
+    SUBTITLE       = 4; // 字幕
+    PLAYBACKRATE   = 5; // 播放速度
+    TIMEUP         = 6; // 定时停止播放
+    PLAYBACKMODE   = 7; // 播放方式
+    SCALEMODE      = 8; // 画面尺寸
     BACKGROUNDPLAY = 9; // 后台播放
-    LIKE = 10;          // 顶
-    DISLIKE = 11;       // 踩
-    COIN = 12;          // 投币
-    ELEC = 13;          // 充电
-    SHARE = 14;         // 分享
-    SCREENSHOT = 15;    // 截图
-    LOCKSCREEN = 16;    // 锁屏
-    RECOMMEND = 17;     // 推荐
-    PLAYBACKSPEED = 18; // 倍速
-    DEFINITION = 19;    // 清晰度
-    SELECTIONS = 20;    // 选集
-    NEXT = 21;          // 下一集
-    EDITDM = 22;        // 编辑弹幕
-    SMALLWINDOW = 23;   // 小窗
-    SHAKE = 24;         // 播放震动
-    OUTERDM = 25;       // 外层面板弹幕设置
-    INNERDM = 26;       // 三点内弹幕设置
-    PANORAMA = 27;      // 全景
-    DOLBY = 28;         // 杜比
-    COLORFILTER = 29;   //
+    LIKE           = 10; // 顶
+    DISLIKE        = 11; // 踩
+    COIN           = 12; // 投币
+    ELEC           = 13; // 充电
+    SHARE          = 14; // 分享
+    SCREENSHOT     = 15; // 截图
+    LOCKSCREEN     = 16; // 锁屏
+    RECOMMEND      = 17; // 推荐
+    PLAYBACKSPEED  = 18; // 倍速
+    DEFINITION     = 19; // 清晰度
+    SELECTIONS     = 20; // 选集
+    NEXT           = 21; // 下一集
+    EDITDM         = 22; // 编辑弹幕
+    SMALLWINDOW    = 23; // 小窗
+    SHAKE          = 24; // 播放震动
+    OUTERDM        = 25; // 外层面板弹幕设置
+    INNERDM        = 26; // 三点内弹幕设置
+    PANORAMA       = 27; // 全景
+    DOLBY          = 28; // 杜比
+    COLORFILTER    = 29; // 颜色滤镜
 }
 
 //
@@ -129,6 +142,8 @@ message DashItem {
     uint64 size = 7;
     // 帧率
     string frame_rate = 8;
+    //
+    string widevine_pssh = 9;
 }
 
 // dash视频流
@@ -155,14 +170,16 @@ message DashVideo {
     int32 width = 10;
     // 高度
     int32 height = 11;
+    //
+    string widevine_pssh = 12;
 }
 
 // 杜比伴音信息
 message DolbyItem {
     enum Type {
-        NONE = 0;   // NONE
+        NONE   = 0; // NONE
         COMMON = 1; // 普通杜比音效
-        ATMOS = 2;  // 全景杜比音效
+        ATMOS  = 2; // 全景杜比音效
     }
     // 杜比类型
     Type type = 1;
@@ -221,76 +238,76 @@ message Glance {
 //
 enum Group { 
     UnknownGroup = 0; //
-    A = 1;            //
-    B = 2;            //
-    C = 3;            //
+    A            = 1; //
+    B            = 2; //
+    C            = 3; //
 }
 
 // 禁用功能配置
 message PlayAbilityConf {
-    CloudConf background_play_conf = 1; // 后台播放
-    CloudConf flip_conf = 2;            // 镜像反转
-    CloudConf cast_conf = 3;            // 投屏
-    CloudConf feedback_conf = 4;        // 反馈
-    CloudConf subtitle_conf = 5;        // 字幕
-    CloudConf playback_rate_conf = 6;   // 播放速度
-    CloudConf time_up_conf = 7;         // 定时停止
-    CloudConf playback_mode_conf = 8;   // 播放方式
-    CloudConf scale_mode_conf = 9;      // 画面尺寸
-    CloudConf like_conf = 10;           // 赞
-    CloudConf dislike_conf = 11;        // 踩
-    CloudConf coin_conf = 12;           // 投币
-    CloudConf elec_conf = 13;           // 充电
-    CloudConf share_conf = 14;          // 分享
-    CloudConf screen_shot_conf = 15;    // 截图
-    CloudConf lock_screen_conf = 16;    // 锁定
-    CloudConf recommend_conf = 17;      // 相关推荐
-    CloudConf playback_speed_conf = 18; // 播放速度
-    CloudConf definition_conf = 19;     // 清晰度
-    CloudConf selections_conf = 20;     // 选集
-    CloudConf next_conf = 21;           // 下一集
-    CloudConf edit_dm_conf = 22;        // 编辑弹幕
-    CloudConf small_window_conf = 23;   // 小窗
-    CloudConf shake_conf = 24;          // 震动
-    CloudConf outer_dm_conf = 25;       // 外层面板弹幕设置
-    CloudConf innerDmDisable = 26;      // 三点内弹幕设置
-    CloudConf inner_dm_conf = 27;       // 一起看入口
-    CloudConf dolby_conf = 28;          // 杜比音效
-    CloudConf color_filter_conf = 29;   //
+    CloudConf background_play_conf = 1;  // 后台播放
+    CloudConf flip_conf            = 2;  // 镜像反转
+    CloudConf cast_conf            = 3;  // 投屏
+    CloudConf feedback_conf        = 4;  // 反馈
+    CloudConf subtitle_conf        = 5;  // 字幕
+    CloudConf playback_rate_conf   = 6;  // 播放速度
+    CloudConf time_up_conf         = 7;  // 定时停止
+    CloudConf playback_mode_conf   = 8;  // 播放方式
+    CloudConf scale_mode_conf      = 9;  // 画面尺寸
+    CloudConf like_conf            = 10; // 赞
+    CloudConf dislike_conf         = 11; // 踩
+    CloudConf coin_conf            = 12; // 投币
+    CloudConf elec_conf            = 13; // 充电
+    CloudConf share_conf           = 14; // 分享
+    CloudConf screen_shot_conf     = 15; // 截图
+    CloudConf lock_screen_conf     = 16; // 锁定
+    CloudConf recommend_conf       = 17; // 相关推荐
+    CloudConf playback_speed_conf  = 18; // 播放速度
+    CloudConf definition_conf      = 19; // 清晰度
+    CloudConf selections_conf      = 20; // 选集
+    CloudConf next_conf            = 21; // 下一集
+    CloudConf edit_dm_conf         = 22; // 编辑弹幕
+    CloudConf small_window_conf    = 23; // 小窗
+    CloudConf shake_conf           = 24; // 震动
+    CloudConf outer_dm_conf        = 25; // 外层面板弹幕设置
+    CloudConf innerDmDisable       = 26; // 三点内弹幕设置
+    CloudConf inner_dm_conf        = 27; // 一起看入口
+    CloudConf dolby_conf           = 28; // 杜比音效
+    CloudConf color_filter_conf    = 29; // 颜色滤镜
 }
 
 // 播放控件稿件配置
 message PlayArcConf {
-    ArcConf background_play_conf = 1;   // 后台播放
-    ArcConf flip_conf = 2;              // 镜像反转
-    ArcConf cast_conf = 3;              // 投屏
-    ArcConf feedback_conf = 4;          // 反馈
-    ArcConf subtitle_conf = 5;          // 字幕
-    ArcConf playback_rate_conf = 6;     // 播放速度
-    ArcConf time_up_conf = 7;           // 定时停止
-    ArcConf playback_mode_conf = 8;     // 播放方式
-    ArcConf scale_mode_conf = 9;        // 画面尺寸
-    ArcConf like_conf = 10;             // 赞
-    ArcConf dislike_conf = 11;          // 踩
-    ArcConf coin_conf = 12;             // 投币
-    ArcConf elec_conf = 13;             // 充电
-    ArcConf share_conf = 14;            // 分享
-    ArcConf screen_shot_conf = 15;      // 截图
-    ArcConf lock_screen_conf = 16;      // 锁定
-    ArcConf recommend_conf = 17;        // 相关推荐
-    ArcConf playback_speed_conf = 18;   // 播放速度
-    ArcConf definition_conf = 19;       // 清晰度
-    ArcConf selections_conf = 20;       // 选集
-    ArcConf next_conf = 21;             // 下一集
-    ArcConf edit_dm_conf = 22;          // 编辑弹幕
-    ArcConf small_window_conf = 23;     // 小窗
-    ArcConf shake_conf = 24;            // 震动
-    ArcConf outer_dm_conf = 25;         // 外层面板弹幕设置
-    ArcConf inner_dm_conf = 26;         // 三点内弹幕设置
-    ArcConf panorama_conf = 27;         // 一起看入口
-    ArcConf dolby_conf = 28;            // 杜比音效
-    ArcConf screen_recording_conf = 29; //
-    ArcConf color_filter_conf = 30;     //
+    ArcConf background_play_conf  = 1;  // 后台播放
+    ArcConf flip_conf             = 2;  // 镜像反转
+    ArcConf cast_conf             = 3;  // 投屏
+    ArcConf feedback_conf         = 4;  // 反馈
+    ArcConf subtitle_conf         = 5;  // 字幕
+    ArcConf playback_rate_conf    = 6;  // 播放速度
+    ArcConf time_up_conf          = 7;  // 定时停止
+    ArcConf playback_mode_conf    = 8;  // 播放方式
+    ArcConf scale_mode_conf       = 9;  // 画面尺寸
+    ArcConf like_conf             = 10; // 赞
+    ArcConf dislike_conf          = 11; // 踩
+    ArcConf coin_conf             = 12; // 投币
+    ArcConf elec_conf             = 13; // 充电
+    ArcConf share_conf            = 14; // 分享
+    ArcConf screen_shot_conf      = 15; // 截图
+    ArcConf lock_screen_conf      = 16; // 锁定
+    ArcConf recommend_conf        = 17; // 相关推荐
+    ArcConf playback_speed_conf   = 18; // 播放速度
+    ArcConf definition_conf       = 19; // 清晰度
+    ArcConf selections_conf       = 20; // 选集
+    ArcConf next_conf             = 21; // 下一集
+    ArcConf edit_dm_conf          = 22; // 编辑弹幕
+    ArcConf small_window_conf     = 23; // 小窗
+    ArcConf shake_conf            = 24; // 震动
+    ArcConf outer_dm_conf         = 25; // 外层面板弹幕设置
+    ArcConf inner_dm_conf         = 26; // 三点内弹幕设置
+    ArcConf panorama_conf         = 27; // 一起看入口
+    ArcConf dolby_conf            = 28; // 杜比音效
+    ArcConf screen_recording_conf = 29; // 屏幕录制
+    ArcConf color_filter_conf     = 30; // 颜色滤镜
 }
 
 // 编辑播放界面配置-响应
@@ -329,8 +346,26 @@ message PlayConfState {
 
 // 错误码
 enum PlayErr {
-    NoErr = 0;                   //
+    NoErr                   = 0; //
     WithMultiDeviceLoginErr = 1; // 管控类型的错误码
+}
+
+//
+message PlayLimit {
+    //
+    PlayLimitCode code = 1;
+    //
+    string message = 2;
+    //
+    string sub_message = 3;
+    //
+    ButtonStyle button = 4;
+}
+
+//
+enum PlayLimitCode {
+    PLCUnkown      = 0; //
+    PLCUgcNotPayed = 1; //
 }
 
 // 视频地址-回复
@@ -405,6 +440,8 @@ message PlayViewReply {
     Event event = 6;
     //
     AB ab = 7;
+    //
+    PlayLimit play_limit = 8;
 }
 
 // 播放页信息-请求
@@ -536,7 +573,7 @@ message StreamInfo {
     // 格式描述
     string description = 3;
     // 错误码
-    uint32 err_code = 4;
+    PlayErr err_code = 4;
     // 不满足条件信息
     StreamLimit limit = 5;
     // 是否需要vip
@@ -575,7 +612,6 @@ message UpgradeButton {
     string link = 2;
 }
 
-
 // 互动视频升级提示
 message UpgradeLimit {
     // 错误码
@@ -611,9 +647,9 @@ message VideoInfo {
 // 视频类型
 enum VideoType {
     Unknown_VALUE = 0; //
-    FLV_VALUE = 1;     // flv格式
-    DASH_VALUE = 2;    // dash格式
-    MP4_VALUE = 3;     // mp4格式
+    FLV_VALUE     = 1; // flv格式
+    DASH_VALUE    = 2; // dash格式
+    MP4_VALUE     = 3; // mp4格式
 }
 
 //
