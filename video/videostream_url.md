@@ -417,27 +417,27 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 
 `video`及`audio`数组中的对象：
 
-| 字段             | 类型    | 内容                  | 备注                                                                                               |
-|----------------|-------|---------------------|--------------------------------------------------------------------------------------------------|
-| id             | num   | 音视频清晰度代码            | **见上表**                                                                                          |
-| baseUrl        | str   | 默认视频/音频流url         | **注：url内容存在转义符**<br />有效时间为120min                                                                |
-| base_url       | str   | **同上**              |                                                                                                  |
-| backupUrl      | array | 备用视频/音频流url         |                                                                                                  |
-| backup_url     | array | **同上**              |                                                                                                  |
-| bandwidth      | num   | 视频/音频所需最低带宽         |                                                                                                  |
-| mimeType       | str   | 视频/音频格式类型           |                                                                                                  |
-| mime_type      | str   | **同上**              |                                                                                                  |
-| codecs         | str   | 编码/音频类型             |                                                                                                  |
-| width          | num   | 视频宽度                | 单位为像素<br />仅视频有效                                                                                 |
-| height         | num   | 视频高度                | 单位为像素<br />仅视频有效                                                                                 |
-| frameRate      | str   | 视频帧率                | 仅视频有效                                                                                            |
-| frame_rate     | str   | **同上**              |                                                                                                  |
-| sar            | str   | 1:1                 | Sample Aspect Ratio，单个像素的宽高比                                                                     |
-| startWithSap   | num   | 1                   | Stream Access Point                                                                              |
-| start_with_sap | num   | **同上**              |                                                                                                  |
-| SegmentBase    | obj   | 见下表                 | url 对应 m4s 文件中，头部的位置                                                                             |
-| segment_base   | obj   | **同上**              |                                                                                                  |
-| codecid        | num   | 视频: 7或12<br />音频: 0 | 7=AVC，12=HEVC <br />出处是 FLV 格式里 VideoTag 中的 CodecId 域；<br />FLV 标准不支持 HEVC，但 codecId 值为 12 是各厂共识 |
+| 字段             | 类型    | 内容                     | 备注                                                                                                      |
+|----------------|-------|------------------------|---------------------------------------------------------------------------------------------------------|
+| id             | num   | 音视频清晰度代码               | **见上表**                                                                                                 |
+| baseUrl        | str   | 默认视频/音频流url            | **注：url内容存在转义符**<br />有效时间为120min                                                                       |
+| base_url       | str   | **同上**                 |                                                                                                         |
+| backupUrl      | array | 备用视频/音频流url            |                                                                                                         |
+| backup_url     | array | **同上**                 |                                                                                                         |
+| bandwidth      | num   | 视频/音频所需最低带宽            |                                                                                                         |
+| mimeType       | str   | 视频/音频格式类型              |                                                                                                         |
+| mime_type      | str   | **同上**                 |                                                                                                         |
+| codecs         | str   | 编码/音频类型                |                                                                                                         |
+| width          | num   | 视频宽度                   | 单位为像素<br />仅视频有效                                                                                        |
+| height         | num   | 视频高度                   | 单位为像素<br />仅视频有效                                                                                        |
+| frameRate      | str   | 视频帧率                   | 仅视频有效                                                                                                   |
+| frame_rate     | str   | **同上**                 |                                                                                                         |
+| sar            | str   | 1:1                    | Sample Aspect Ratio，单个像素的宽高比                                                                            |
+| startWithSap   | num   | 1                      | Stream Access Point                                                                                     |
+| start_with_sap | num   | **同上**                 |                                                                                                         |
+| SegmentBase    | obj   | 见下表                    | url 对应 m4s 文件中，头部的位置                                                                                    |
+| segment_base   | obj   | **同上**                 |                                                                                                         |
+| codecid        | num   | 视频: 7,12,13<br />音频: 0 | 7=AVC，12=HEVC，13=AV1 <br />出处是 FLV 格式里 VideoTag 中的 CodecId 域；<br />FLV 标准不支持 HEVC，但 codecId 值为 12 是各厂共识 |
 
 `video`数组中的对象中的`backup_url`数组：
 
