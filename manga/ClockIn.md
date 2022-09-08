@@ -62,9 +62,7 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' 
 
 </details>
 
-# ~~查询签到状态（已弃用）~~
-
-> 该接口已弃用，返回day_count恒为0。
+# 查询签到状态
 
 > https://manga.bilibili.com/twirp/activity.v1.Activity/GetClockInInfo
 

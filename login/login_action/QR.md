@@ -41,7 +41,7 @@ while True:
 
 ### 申请二维码(web端)
 
-> https://passport.bilibili.com/x/passport-login/web/qrcode/generate
+> http://passport.bilibili.com/x/passport-login/web/qrcode/generate
 
 *请求方式：GET*
 
@@ -92,7 +92,7 @@ curl 'https://passport.bilibili.com/x/passport-login/web/qrcode/generate'
 
 ### 扫码登录(web端)
 
-> https://passport.bilibili.com/x/passport-login/web/qrcode/poll
+> http://passport.bilibili.com/x/passport-login/web/qrcode/poll
 
 *请求方式：GET*
 
@@ -258,7 +258,7 @@ x-cache-webcdn: BYPASS from blzone02
 
 ### 申请二维码(web端-旧版)
 
-> https://passport.bilibili.com/qrcode/getLoginUrl
+> http://passport.bilibili.com/qrcode/getLoginUrl
 
 *请求方式：GET*
 
@@ -309,7 +309,7 @@ curl 'https://passport.bilibili.com/qrcode/getLoginUrl'
 
 ### 扫码登录(web端-旧版)
 
-> https://passport.bilibili.com/qrcode/getLoginInfo
+> http://passport.bilibili.com/qrcode/getLoginInfo
 
 *请求方式：POST*
 
@@ -405,6 +405,7 @@ curl "https://passport.bilibili.com/qrcode/getLoginInfo"\
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```http
 HTTP/1.1 200 OK
 Date: Wed, 04 Mar 2020 10:36:37 GMT
@@ -494,7 +495,7 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 ### 扫码登录(TV端)
 
-> https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll
+> http://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll
 
 *请求方式：POST*
 
@@ -563,5 +564,4 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
   }
 }
 ```
-
 </details>
