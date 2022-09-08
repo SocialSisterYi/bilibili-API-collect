@@ -20,47 +20,47 @@
 
 **json回复：**
 
-| 参数名  | 类型          | 内容 | 备注    |
-| ------- | ------------- | ---- | ------- |
-| code    | num           |      | 成功为0 |
-| message | str           |      | 成功为0 |
-| ttl     | num           | 1    |         |
-| data    | List\<object> |      |         |
+| 参数名     | 类型            | 内容  | 备注   |
+|---------|---------------|-----|------|
+| code    | num           |     | 成功为0 |
+| message | str           |     | 成功为0 |
+| ttl     | num           | 1   |      |
+| data    | List\<object> |     |      |
 
 `data`数组：
 
-| 项   | 类型 | 内容           | 备注               |
-| ---- | ---- | -------------- | ------------------ |
-| 0    | obj  | 类型条目 1     |                    |
-| n    | obj  | 类型条目 (n+1) | 按照指定的顺序排列 |
-| ……   | obj  | ……             | ……                 |
+| 项   | 类型  | 内容         | 备注        |
+|-----|-----|------------|-----------|
+| 0   | obj | 类型条目 1     |           |
+| n   | obj | 类型条目 (n+1) | 按照指定的顺序排列 |
+| ……  | obj | ……         | ……        |
 
 `data`数组中的对象
 
-| 项       | 类型                           | 内容             | 备注     |
-| -------- | ------------------------------ | ---------------- | -------- |
-| tid      | num                            | 类型tid          |          |
-| business | num                            |                  | 意义不明 |
-| weight   | num                            | 权重             |          |
-| round    | num                            |                  | 意义不明 |
-| state    | num                            |                  | 意义不明 |
-| name     | str                            | 类型名称         |          |
-| remark   | str                            | 类型备注         |          |
-| ctime    | str                            |                  | 意义不明 |
-| mtime    | str                            |                  | 意义不明 |
-| controls | 拥有时：object<br>没有时：null | 详细信息填写提示 |          |
+| 项        | 类型                     | 内容       | 备注   |
+|----------|------------------------|----------|------|
+| tid      | num                    | 类型tid    |      |
+| business | num                    |          | 意义不明 |
+| weight   | num                    | 权重       |      |
+| round    | num                    |          | 意义不明 |
+| state    | num                    |          | 意义不明 |
+| name     | str                    | 类型名称     |      |
+| remark   | str                    | 类型备注     |      |
+| ctime    | str                    |          | 意义不明 |
+| mtime    | str                    |          | 意义不明 |
+| controls | 拥有时：object<br>没有时：null | 详细信息填写提示 |      |
 
 `data`数组中的对象中的`controls`对象：
 
-| 项          | 类型 | 内容           | 备注     |
-| ----------- | ---- | -------------- | -------- |
-| tid         | num  | 同上           |          |
-| bid         | num  |                | 意义不明 |
-| name        | str  | 提示名称       |          |
-| title       | str  | 提示标题       |          |
-| component   | str  | 需要填入的类型 |          |
-| placeholder | str  | 文本框占位符   |          |
-| required    | num  | 是否为必填     |          |
+| 项           | 类型  | 内容      | 备注   |
+|-------------|-----|---------|------|
+| tid         | num | 同上      |      |
+| bid         | num |         | 意义不明 |
+| name        | str | 提示名称    |      |
+| title       | str | 提示标题    |      |
+| component   | str | 需要填入的类型 |      |
+| placeholder | str | 文本框占位符  |      |
+| required    | num | 是否为必填   |      |
 
 **示例：**
 
@@ -69,7 +69,8 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 ```
 
 <details>
-  <summary>查看响应示例</summary>
+<summary>查看响应示例</summary>
+
 ```json
 {
     "code": 0,
@@ -267,14 +268,14 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 
 **正文参数：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注                     |
-| ------ | ---- | ------------------------ | ------ | ------------------------ |
-| csrf   | str  | csrf token(位于cookie)   | 必要   | 在url params中           |
-| jsonp  | str  | jsonp                    | 必要?  | 意义不明，位于url params |
-| aid    | num  | 稿件aid                  | 必要   | 位于request body         |
-| tid    | num  | 投诉理由tid              | 必要   | 位于request body         |
-| desc   | str  | 投诉理由详细描述         | 必要   | 位于request body         |
-| attach | str  | 附件（多个附件用逗号隔开 | 非必要 | 位于request body         |
+| 参数名    | 类型  | 内容                   | 必要性 | 备注                |
+|--------|-----|----------------------|-----|-------------------|
+| csrf   | str | csrf token(位于cookie) | 必要  | 在url params中      |
+| jsonp  | str | jsonp                | 必要? | 意义不明，位于url params |
+| aid    | num | 稿件aid                | 必要  | 位于request body    |
+| tid    | num | 投诉理由tid              | 必要  | 位于request body    |
+| desc   | str | 投诉理由详细描述             | 必要  | 位于request body    |
+| attach | str | 附件（多个附件用逗号隔开         | 非必要 | 位于request body    |
 
 **json回复：**
 
@@ -295,7 +296,8 @@ curl --location --request POST 'https://api.bilibili.com/x/web-interface/archive
 ```
 
 <details>
-  <summary>查看响应示例</summary>
+<summary>查看响应示例</summary>
+
 ```json
 {
 	"code":0,

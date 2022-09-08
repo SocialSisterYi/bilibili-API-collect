@@ -16,59 +16,59 @@
 
 **url参数：**
 
-| 参数名 | 类型 | 内容     | 必要性       | 备注               |
-| ------ | ---- | -------- | ------------ | ------------------ |
-| aid    | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
-| bvid   | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
+| 参数名  | 类型  | 内容     | 必要性    | 备注            |
+|------|-----|--------|--------|---------------|
+| aid  | num | 稿件avid | 必要（可选） | avid与bvid任选一个 |
+| bvid | str | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型   | 内容     | 备注                         |
-| ------- | ------ | -------- | ---------------------------- |
-| code    | num    | 返回值   | 0：成功 <br />-400：请求错误 |
-| message | str    | 错误信息 | 默认为0                      |
-| ttl     | num    | 1        |                  |
-| data    | array | TAG列表  | 无TAG为空                    |
+| 字段      | 类型    | 内容    | 备注                   |
+|---------|-------|-------|----------------------|
+| code    | num   | 返回值   | 0：成功 <br />-400：请求错误 |
+| message | str   | 错误信息  | 默认为0                 |
+| ttl     | num   | 1     |                      |
+| data    | array | TAG列表 | 无TAG为空               |
 
 `data`数组：
 
-| 项   | 类型 | 内容           | 备注 |
-| ---- | ---- | -------------- | ---- |
-| 0    | obj  | 第1个TAG       |      |
-| n    | obj  | 第（n+1）个TAG |      |
-| ……   | obj  | ……             | ……   |
+| 项   | 类型  | 内容         | 备注  |
+|-----|-----|------------|-----|
+| 0   | obj | 第1个TAG     |     |
+| n   | obj | 第（n+1）个TAG |     |
+| ……  | obj | ……         | ……  |
 
 `data`数组中的对象：
 
-| 字段          | 类型 | 内容           | 备注                                                         |
-| ------------- | ---- | -------------- | ------------------------------------------------------------ |
-| tag_id        | num  | tag_id          |                                                              |
-| tag_name      | str  | TAG名称        |                                                              |
-| cover         | str  | TAG图片url     |                                                              |
-| head_cover    | str  | TAG页面头图url |                                                              |
-| content       | str  | TAG介绍        |                                                              |
-| short_content | str  | TAG简介        |                                                              |
-| type          | num  | ？？？         |                                                              |
-| state         | num  | 0              |                                                              |
-| ctime         | num  | 创建时间       | 时间戳                                                       |
-| count         | obj  | 状态数         |                                                              |
-| is_atten      | num  | 是否关注       | 0：未关注<br />1：已关注<br />需要登录(Cookie) <br />未登录为0 |
-| likes         | num  | 0              | 作用尚不明确                                                 |
-| hates         | num  | 0              | 作用尚不明确                                                 |
-| attribute     | num  | 0              | 作用尚不明确                                                 |
-| liked         | num  | 是否已经点赞   | 0：未点赞<br />1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
-| hated         | num  | 是否已经点踩   | 0：未点踩<br />1：已点踩<br />需要登录(Cookie) <br />未登录为0 |
-| extra_attr    | num  | ? ? ?        |                                                              |
+| 字段            | 类型  | 内容         | 备注                                             |
+|---------------|-----|------------|------------------------------------------------|
+| tag_id        | num | tag_id     |                                                |
+| tag_name      | str | TAG名称      |                                                |
+| cover         | str | TAG图片url   |                                                |
+| head_cover    | str | TAG页面头图url |                                                |
+| content       | str | TAG介绍      |                                                |
+| short_content | str | TAG简介      |                                                |
+| type          | num | ？？？        |                                                |
+| state         | num | 0          |                                                |
+| ctime         | num | 创建时间       | 时间戳                                            |
+| count         | obj | 状态数        |                                                |
+| is_atten      | num | 是否关注       | 0：未关注<br />1：已关注<br />需要登录(Cookie) <br />未登录为0 |
+| likes         | num | 0          | 作用尚不明确                                         |
+| hates         | num | 0          | 作用尚不明确                                         |
+| attribute     | num | 0          | 作用尚不明确                                         |
+| liked         | num | 是否已经点赞     | 0：未点赞<br />1：已点赞<br />需要登录(Cookie) <br />未登录为0 |
+| hated         | num | 是否已经点踩     | 0：未点踩<br />1：已点踩<br />需要登录(Cookie) <br />未登录为0 |
+| extra_attr    | num | ? ? ?      |                                                |
 
 `data`数组中的对象中的`count`对象：
 
-| 字段  | 类型 | 内容          | 备注         |
-| ----- | ---- | ------------- | ------------ |
-| view  | num  | 0             | 作用尚不明确 |
-| use   | num  | 视频添加TAG数 |              |
-| atten | num  | TAG关注       |              |
+| 字段    | 类型  | 内容       | 备注     |
+|-------|-----|----------|--------|
+| view  | num | 0        | 作用尚不明确 |
+| use   | num | 视频添加TAG数 |        |
+| atten | num | TAG关注    |        |
 
 **示例：**
 
@@ -221,21 +221,21 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
-| ------ | ---- | ------------------------ | ------ | ---- |
-| aid    | num  | 稿件avid                 | 必要   |      |
-| tag_id | num  | tag_id                    | 必要   |      |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| 参数名    | 类型  | 内容                   | 必要性 | 备注  |
+|--------|-----|----------------------|-----|-----|
+| aid    | num | 稿件avid               | 必要  |     |
+| tag_id | num | tag_id               | 必要  |     |
+| csrf   | str | CSRF Token（位于cookie） | 必要  |     |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                         |
-| ------- | ---- | -------- | ---------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
-| message | str  | 错误信息 | 默认为0                      |
-| ttl     | num  | 1        |                              |
+| 字段      | 类型  | 内容   | 备注                   |
+|---------|-----|------|----------------------|
+| code    | num | 返回值  | 0：成功 <br />-400：请求错误 |
+| message | str | 错误信息 | 默认为0                 |
+| ttl     | num | 1    |                      |
 
 **示例：**
 
@@ -274,21 +274,21 @@ curl 'http://api.bilibili.com/x/tag/archive/like2' \
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
-| ------ | ---- | ------------------------ | ------ | ---- |
-| aid    | num  | 稿件avid                 | 必要   |      |
-| tag_id | num  | tag_id                    | 必要   |      |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| 参数名    | 类型  | 内容                   | 必要性 | 备注  |
+|--------|-----|----------------------|-----|-----|
+| aid    | num | 稿件avid               | 必要  |     |
+| tag_id | num | tag_id               | 必要  |     |
+| csrf   | str | CSRF Token（位于cookie） | 必要  |     |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                         |
-| ------- | ---- | -------- | ---------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
-| message | str  | 错误信息 | 默认为0                      |
-| ttl     | num  | 1        |                              |
+| 字段      | 类型  | 内容   | 备注                   |
+|---------|-----|------|----------------------|
+| code    | num | 返回值  | 0：成功 <br />-400：请求错误 |
+| message | str | 错误信息 | 默认为0                 |
+| ttl     | num | 1    |                      |
 
 **示例：**
 
@@ -312,5 +312,4 @@ curl 'http://pi.bilibili.com/x/tag/archive/hate2' \
     "ttl": 1
 }
 ```
-
 </details>
