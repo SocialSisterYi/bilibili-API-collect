@@ -59,9 +59,9 @@
 
 ## 转换程序
 
-使用Python、C以及TypeScript作为示例，欢迎社区提交更多例程
+使用Python、C、TypeScript以及Java作为示例，欢迎社区提交更多例程
 
-### python
+### Python
 
 ```python
 table = 'fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF' # 码表
@@ -196,4 +196,45 @@ console.log(bvcode.av2bv(170001));
 ```
 BV17x411w7KC
 170001
+```
+
+### Java
+
+```java
+/**
+ * 算法来自：https://www.zhihu.com/question/381784377/answer/1099438784
+ */
+public class Util {
+    private static final String TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF";
+    private static final int[] S = new int[]{11, 10, 3, 8, 4, 6};
+    private static final int XOR = 177451812;
+    private static final long ADD = 8728348608L;
+    private static final Map<Character, Integer> MAP = new HashMap<>();
+
+    static {
+        for (int i = 0; i < 58; i++) {
+            MAP.put(TABLE.charAt(i), i);
+        }
+    }
+
+    public static String aidToBvid(int aid) {
+        long x = (aid ^ XOR) + ADD;
+        char[] chars = new char[]{'B', 'V', '1', ' ', ' ', '4', ' ', '1', ' ', '7', ' ', ' '};
+        for (int i = 0; i < 6; i++) {
+            int pow = (int) Math.pow(58, i);
+            long i1 = x / pow;
+            int index = (int) (i1 % 58);
+            chars[S[i]] = TABLE.charAt(index);
+        }
+        return String.valueOf(chars);
+    }
+
+    public static int bvidToAid(String bvid) {
+        long r = 0;
+        for (int i = 0; i < 6; i++) {
+            r += MAP.get(bvid.charAt(S[i])) * Math.pow(58, i);
+        }
+        return (int) ((r - ADD) ^ XOR);
+    }
+}
 ```
