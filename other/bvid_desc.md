@@ -305,3 +305,48 @@ object VideoUtils {
 
 }
 ```
+
+### Golang
+```golang
+package main
+
+import "math"
+
+const TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF"
+
+var S = [11]uint{11, 10, 3, 8, 4, 6}
+
+const XOR = 177451812
+const ADD = 8728348608
+
+var TR = map[string]int64{}
+
+// 初始化 TR
+func init() {
+	for i := 0; i < 58; i++ {
+		TR[TABLE[i:i+1]] = int64(i)
+	}
+}
+
+func BV2AV(bv string) int64 {
+	r := int64(0)
+	for i := 0; i < 6; i++ {
+		r += TR[bv[S[i]:S[i]+1]] * int64(math.Pow(58, float64(i)))
+	}
+	return (r - ADD) ^ XOR
+}
+
+func AV2BV(av int64) string {
+	x := (av ^ XOR) + ADD
+	r := []rune("BV1  4 1 7  ")
+	for i := 0; i < 6; i++ {
+		r[S[i]] = rune(TABLE[x/int64(math.Pow(58, float64(i)))%58])
+	}
+	return string(r)
+}
+
+func main() {
+	println(AV2BV(170001))
+	println(BV2AV("BV17x411w7KC"))
+}
+```
