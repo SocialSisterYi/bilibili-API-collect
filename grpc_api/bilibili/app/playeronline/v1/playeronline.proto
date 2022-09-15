@@ -13,9 +13,7 @@ service PlayerOnline {
 }
 
 // 空回复
-message NoReply {
-
-}
+message NoReply {}
 
 // 获取在线人数-回复
 message PlayerOnlineReply {
