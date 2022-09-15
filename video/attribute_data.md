@@ -2,8 +2,8 @@
 
 （PS：以下部分内容来源不明，且部分值前端不可见，有待验证）
 
-- [attribute字段值(视频属性位)](#attribute字段值(视频属性位))
-- [state字段值(稿件状态)](#state字段值(稿件状态))
+- [attribute字段值(视频属性位)](#attribute字段值视频属性位)
+- [state字段值(稿件状态)](#state字段值稿件状态)
 
 ## attribute字段值(稿件属性位)
 
