@@ -1,3 +1,224 @@
+# 获取404漫画列表
+
+> http://api.bilibili.com/x/activity/operation/list
+
+*请求方式：GET*
+
+**url参数：**
+
+| 参数名       | 类型  | 内容                       | 必要性 | 备注               |
+|-----------|-----|--------------------------|-----|------------------|
+| source_id | str | 630edcfddbd0b39ca7371ad2 | 必要  |                  |
+| ps        | num | 分页大小                     | 非必要 | 默认20, 取值范围[1,50] |
+| pn        | num | 查询页数                     | 非必要 | 默认1              |
+
+**json回复：**
+
+根对象：
+
+| 字段      | 类型  | 内容   | 备注   |
+|---------|-----|------|------|
+| code    | num | 返回值  | 0：成功 |
+| message | num | 0    |      |
+| ttl     | num |      |      |
+| data    | obj | 信息本体 |      |
+
+`data`对象：
+
+| 字段   | 类型    | 内容   | 备注  |
+|------|-------|------|-----|
+| list | array | 数据列表 |     |
+| page | obj   | 分页信息 |     |
+
+`list`数组中的对象：
+
+| 字段          | 类型    | 内容    | 备注  |
+|-------------|-------|-------|-----|
+| id          | str   |       |     |
+| source_id   | str   |       |     |
+| object_id   | str   | 图片url |     |
+| object_type | num   | 5     |     |
+| properties  |       | null  |     |
+| children    | array |       |     |
+| order_id    | num   | 100   |     |
+| object      |       | null  |     |
+| state       | num   | 1     |     |
+| ctime       | num   | 创建时间  |     |
+| mtime       | num   | 修改时间  |     |
+
+`page`对象：
+
+| 字段    | 类型  | 内容    | 备注  |
+|-------|-----|-------|-----|
+| num   | num | 当前页数  |     |
+| ps    | num | 分页大小  |     |
+| total | num | 记录总条数 |     |
+
+**示例：**
+
+```shell
+curl -L -X GET 'https://api.bilibili.com/x/activity/operation/list?source_id=630edcfddbd0b39ca7371ad2&pn=1&ps=5'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "id": "63108364dbd0b39ca7371b50",
+                "source_id": "630edcfddbd0b39ca7371ad2",
+                "object_id": "https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/0Wp3GSTqa2.png",
+                "object_type": 5,
+                "properties": null,
+                "children": [],
+                "order_id": 100,
+                "object": null,
+                "state": 1,
+                "ctime": 1662026596,
+                "mtime": 1662026596
+            },
+            {
+                "id": "6310835edbd0b39ca7371b4f",
+                "source_id": "630edcfddbd0b39ca7371ad2",
+                "object_id": "https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/HtPXYfpuXU.png",
+                "object_type": 5,
+                "properties": null,
+                "children": [],
+                "order_id": 100,
+                "object": null,
+                "state": 1,
+                "ctime": 1662026590,
+                "mtime": 1662026590
+            },
+            {
+                "id": "63108358dbd0b39ca7371b4e",
+                "source_id": "630edcfddbd0b39ca7371ad2",
+                "object_id": "https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/00FlTw9i50.png",
+                "object_type": 5,
+                "properties": null,
+                "children": [],
+                "order_id": 100,
+                "object": null,
+                "state": 1,
+                "ctime": 1662026584,
+                "mtime": 1662026584
+            },
+            {
+                "id": "6310835215c40fd83d5924c8",
+                "source_id": "630edcfddbd0b39ca7371ad2",
+                "object_id": "https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/wqP0BMH8vp.png",
+                "object_type": 5,
+                "properties": null,
+                "children": [],
+                "order_id": 100,
+                "object": null,
+                "state": 1,
+                "ctime": 1662026578,
+                "mtime": 1662026578
+            },
+            {
+                "id": "6310834bdbd0b39ca7371b4d",
+                "source_id": "630edcfddbd0b39ca7371ad2",
+                "object_id": "https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/XHhqvtddUA.png",
+                "object_type": 5,
+                "properties": null,
+                "children": [],
+                "order_id": 100,
+                "object": null,
+                "state": 1,
+                "ctime": 1662026571,
+                "mtime": 1662026571
+            }
+        ],
+        "page": {
+            "num": 1,
+            "ps": 5,
+            "total": 69
+        }
+    }
+}
+```
+</details>
+
+<details>
+<summary>2022-09-15共抓取69条记录，去重后共65张图：</summary>
+
+```text
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/00FlTw9i50.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/0Wp3GSTqa2.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/0gu9qonH7t.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/2ETVB2F8Pq.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/3wdVaSoWjI.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/4gKxYMNEd7.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/5NYt7b0jWy.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/6cLRxO9RkR.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/86Og1GMuE6.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/8Ri6Xlk826.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/Bk5vekQZoa.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/CvPAnLwfLB.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/DUmMBOlW5E.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/E738vcDvd3.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/FFBsId9kkU.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/GI167h1ubu.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/HKynZO2AxL.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/HtPXYfpuXU.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/I2ep6rPv8i.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/I6DotAbsU0.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/IcRizWqXCq.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/J8BB0k7uKM.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/JGrXDA8RKH.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/JnqnvZTKxf.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/KNH7Hz104m.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/LJjOhuzi2l.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/Okx4iJ1PLv.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/PEXod21DmE.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/PSI3OAv9Hs.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/QBchCuhVFr.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/UM9bnucVhq.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/V8wFvnEm3T.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/VUahg7oVIp.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/VZkCQV3H8N.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/VrYZXfmehY.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/Wwzw0XTwUl.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/XHhqvtddUA.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/XywNN8KlpA.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/Yg8QV17GKZ.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/aA5e4coXVQ.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/abiv2iRJiN.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/aoqhUIvZ3x.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/dFQfkypPWA.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/dKua3o3HRw.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/dtYHFq8LIq.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/duwQurWqyy.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/egQQvfxwvY.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/els4Nwd0F6.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/f1BYK2oCwp.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/fzjTcKtbOA.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/h4ytfrWZID.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/hJo8sPKDkj.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/hinEAw6Abq.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/hr97jf0KpZ.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/i8sLpoa4Wn.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/j8PQollWgb.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/jvNq7sSxAT.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/laYMWQCnnY.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/moCBusxHG2.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/nNEBpbZlI0.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/pMst3j1Wh2.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/vocgKB4Bjl.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/wT6pn2O18p.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/wqP0BMH8vp.png
+https://i0.hdslb.com/bfs/activity-plat/static/2cf2b9af5d3c5781d611d6e36f405144/zRespfCkmo.png
+
+```
+</details>
+
 # 404页漫画收集
 
 ## 视频稿件错误提示图
