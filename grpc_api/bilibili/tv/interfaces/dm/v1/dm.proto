@@ -34,6 +34,8 @@ message CommandDm {
     string extra = 9;
     // 弹幕id str类型
     string idStr = 10;
+    //
+    int64 display = 11;
 }
 
 // ott互动弹幕条目信息
@@ -119,8 +121,10 @@ message DanmakuElem {
 
 // 弹幕ai云屏蔽条目
 message DanmakuFlag {
-    int64 dmid = 1;  // 弹幕dmid
-    uint32 flag = 2; // 评分
+    // 弹幕dmid
+    int64 dmid = 1;
+    // 评分
+    uint32 flag = 2;
 }
 
 // 云屏蔽配置信息
@@ -315,6 +319,8 @@ message TvViewProgressReq {
     int64 from = 9;
     //
     string guest_access_key = 10;
+    //
+    int64 epid = 11;
 }
 
 // 字幕作者信息

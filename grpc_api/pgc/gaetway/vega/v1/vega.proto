@@ -25,14 +25,10 @@ service VegaFrameDoc {
 }
 
 //
-message AuthReq {
-
-}
+message AuthReq {}
 
 //
-message AuthResp {
-
-}
+message AuthResp {}
 
 //
 message FrameOption {
@@ -53,14 +49,10 @@ message FrameOption {
 }
 
 //
-message HeartbeatReq {
-
-}
+message HeartbeatReq {}
 
 //
-message HeartbeatResp {
-
-}
+message HeartbeatResp {}
 
 //
 message MessageAckReq {

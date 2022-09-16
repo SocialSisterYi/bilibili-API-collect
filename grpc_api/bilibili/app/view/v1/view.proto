@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package bilibili.app.view.v1;
 
 import "google/protobuf/any.proto";
@@ -33,7 +34,7 @@ service View {
     rpc CacheView(CacheViewReq) returns (CacheViewReply);
     //
     rpc ContinuousPlay(ContinuousPlayReq) returns (ContinuousPlayReply);
-    // 
+    // 播放页推荐IFS
     rpc RelatesFeed(RelatesFeedReq) returns (RelatesFeedReply);
     //
     rpc PremiereArchive(PremiereArchiveReq) returns (PremiereArchiveReply);
@@ -1662,7 +1663,7 @@ message RelateItem {
     string cover = 2;
 }
 
-//
+// 播放页推荐IFS-响应
 message RelatesFeedReply {
     //
     repeated Relate list = 1;
@@ -1672,7 +1673,7 @@ message RelatesFeedReply {
     bilibili.pagination.PaginationReply pagination = 3;
 }
 
-//
+// 播放页推荐IFS-请求
 message RelatesFeedReq {
     //
     int64 aid = 1;
