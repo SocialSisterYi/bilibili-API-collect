@@ -2,10 +2,10 @@
 
 <img src="/imgs/ploading.gif" width="100" height="100"/>
 
-- [获取视频详细信息(web端)](#获取视频详细信息(web端))
-- [获取视频超详细信息(web端)](#获取视频超详细信息(web端))
+- [获取视频详细信息(web端)](#获取视频详细信息web端)
+- [获取视频超详细信息(web端)](#获取视频超详细信息web端)
 - [获取视频简介](#获取视频简介)
-- [查询视频分P列表  (avid/bvid转cid)](#查询视频分P列表  (avid/bvid转cid))
+- [查询视频分P列表 (avid/bvid转cid)](#查询视频分p列表-avidbvid转cid)
 
 ---
 
@@ -3231,7 +3231,7 @@ curl -G 'http://api.bilibili.com/x/archive/desc' \
 
 </details>
 
-## 查询视频分P列表  (avid/bvid转cid)
+## 查询视频分P列表 (avid/bvid转cid)
 
 > http://api.bilibili.com/x/player/pagelist
 
