@@ -22,7 +22,7 @@ service Reply {
     rpc AtSearch(AtSearchReq) returns (AtSearchReply);
     // 查询单条评论接口
     rpc ReplyInfo(ReplyInfoReq) returns (ReplyInfoReply);
-    //
+    // 用户回调上报接口
     rpc UserCallback(UserCallbackReq) returns (UserCallbackReply);
     // 评论分享材料接口
     rpc ShareRepliesInfo(ShareRepliesInfoReq) returns (ShareRepliesInfoResp);
@@ -344,16 +344,28 @@ message MainListReq {
 
 // 用户信息
 message Member {
-    //
-    message Region {
-        //
-        int32 type = 1;
-        //
-        string icon = 2;
-        //
-        int32 show_status = 3;
+    // 地区类型
+    enum RegionType {
+        DEFAULT  = 0; // 默认
+        MAINLAND = 1; // 大陆地区
+        GAT      = 2; //
     }
     //
+    enum ShowStatus {
+        SHOWDEFAULT    = 0; // 默认
+        ZOOMINMAINLAND = 1; //
+        RAW            = 2; //
+    }
+    // NFT地区
+    message Region {
+        // 地区类型
+        RegionType type = 1;
+        // 角标url
+        string icon = 2;
+        //
+        ShowStatus show_status = 3;
+    }
+    // NFT信息
     message NftInteraction {
         //
         string itype = 1;
@@ -361,7 +373,7 @@ message Member {
         string metadata_url = 2;
         //
         string nft_id = 3;
-        //
+        // NFT地区
         Region region = 4;
     }
     /**********基础信息**********/
@@ -430,11 +442,11 @@ message Member {
     int64 fans_guard_level = 29;
     //
     int32 face_nft = 30;
-    //
+    // 是否NFT头像
     int32 face_nft_new = 31;
-    //
+    // 是否为硬核会员
     int32 is_senior_member = 32;
-    //
+    // NFT信息
     NftInteraction nft_interaction = 33;
     //
     string fans_guard_icon = 34;
@@ -522,22 +534,28 @@ message MemberV2 {
         //
         int64 level_bg_color = 11;
     }
-    //
+    // 地区类型
     enum RegionType {
-        DEFAULT  = 0; //
-        MAINLAND = 1; //
+        DEFAULT  = 0; // 默认
+        MAINLAND = 1; // 大陆地区
         GAT      = 2; //
     }
     //
+    enum ShowStatus {
+        SHOWDEFAULT    = 0; //
+        ZOOMINMAINLAND = 1; //
+        RAW            = 2; //
+    }
+    // NFT地区
     message Region {
-        //
+        // 地区类型
         RegionType type = 1;
-        //
+        // 角标url
         string icon = 2;
         //
-        int32 show_status = 3;
+        ShowStatus show_status = 3;
     }
-    //
+    // NFT信息
     message Interaction {
         //
         string itype = 1;
@@ -545,7 +563,7 @@ message MemberV2 {
         string metadata_url = 2;
         //
         string nft_id = 3;
-        //
+        // NFT地区
         Region region = 4;
 
     }
@@ -563,16 +581,10 @@ message MemberV2 {
     }
     // 契约
     message Contractor {
-        //
+        // 是否和up签订契约
         bool is_contractor = 1;
-        //
+        // 契约显示文案
         string contract_desc = 2;
-    }
-    //
-    enum ShowStatus {
-        SHOWDEFAULT    = 0; //
-        ZOOMINMAINLAND = 1; //
-        RAW            = 2; //
     }
     // 基本信息
     Basic basic = 1;
@@ -594,10 +606,10 @@ message MemberV2 {
 
 // 排序方式
 enum Mode {
-    DEFAULT = 0;        //
-    UNSPECIFIED = 1;    // 默认排序
+    DEFAULT        = 0; //
+    UNSPECIFIED    = 1; // 默认排序
     MAIN_LIST_TIME = 2; // 按时间
-    MAIN_LIST_HOT = 3;  // 按热度
+    MAIN_LIST_HOT  = 3; // 按热度
 }
 
 //
@@ -714,7 +726,7 @@ message ReplyCardLabel {
     string label_color_night = 5;
     //
     string image = 6;
-    //
+    // 标签类型 0:UP主觉得很赞 1:妙评
     int32 type = 7;
     // 背景url
     string background = 8;
@@ -775,7 +787,7 @@ message ReplyControl {
     string sub_reply_entry_text = 20;
     // 子评论数文案 "相关回复共x条"
     string sub_reply_title_text = 21;
-    //
+    // 契约显示文案
     string contract_desc = 22;
     // 发布时间文案 "x天前发布"
     string time_desc = 23;
@@ -856,13 +868,13 @@ message RichText {
 
 // 笔记
 message RichTextNote {
-    //
+    // 预览文本
     string summary = 1;
-    //
+    // 笔记预览图片url列表
     repeated string images = 2;
-    //
+    // 笔记页面url
     string click_url = 3;
-    //
+    // 发布日期 YYYY-mm-dd
     string last_mtime_text = 4;
 }
 
@@ -1146,11 +1158,11 @@ message Url {
     string app_name = 5;
     //
     string app_package_name = 6;
-    // 上报id
+    // 点击上报数据
     string click_report = 7;
     // 是否半屏打开
     bool is_half_screen = 8;
-    //
+    // 展现上报数据
     string exposure_report = 9;
     // 扩展字段
     Extra extra = 10;
@@ -1169,20 +1181,20 @@ enum UserCallbackAction {
     Dismiss = 0; //
 }
 
-//
+// 用户回调上报-响应
 message UserCallbackReply {}
 
-//
+// 用户回调上报-请求
 message UserCallbackReq {
-    //
+    // 用户mid
     int64 mid = 1;
     //
     UserCallbackScene scene = 2;
     //
     UserCallbackAction action = 3;
-    //
+    // 目标评论区id
     int64 oid = 4;
-    //
+    // 目标评论区业务type
     int64 type = 5;
 }
 
