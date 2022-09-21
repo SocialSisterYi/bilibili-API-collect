@@ -154,9 +154,9 @@
 | 摩托车           | motorcycle       | 240 | 与摩托车相关的视频，包括但不限于摩托车骑行、试驾、装备测评、教学、赛事、剪辑等相关内容                                  | [/v/car/motorcycle](https://www.bilibili.com/v/car/motorcycle)             |
 | 购车攻略          | strategy         | 227 | 丰富详实的购车建议和新车体验                                                               | [/v/car/strategy](https://www.bilibili.com/v/car/strategy)                 |
 | 汽车生活          | life             | 176 | 和汽车等交通工具相关的一切泛化内容的视频                                                         | [/v/car/life](https://www.bilibili.com/v/car/life)                         |
-| ~~汽车文化~~(已下线) | culture          | 224 | 车迷的精神圣地，包括汽车赛事、品牌历史、汽车改装、经典车型和汽车模型等                                          | [/v/car/culture](https://www.bilibili.com/v/car/culture)                   |
-| ~~汽车极客~~(已下线) | geek             | 225 | 汽车硬核达人聚集地，包括DIY造车、专业评测和技术知识分享                                                | [/v/car/geek](https://www.bilibili.com/v/car/geek)                         |
-| ~~智能出行~~(已下线) | smart            | 226 | 探索新能源汽车和未来智能出行的前沿阵地                                                          | [/v/car/smart](https://www.bilibili.com/v/car/smart)                       |
+| ~~汽车文化~~(已下线) | culture          | 224 | 车迷的精神圣地，包括汽车赛事、品牌历史、汽车改装、经典车型和汽车模型等                                          | ~~/v/car/culture~~                                                         |
+| ~~汽车极客~~(已下线) | geek             | 225 | 汽车硬核达人聚集地，包括DIY造车、专业评测和技术知识分享                                                | ~~/v/car/geek~~                                                            |
+| ~~智能出行~~(已下线) | smart            | 226 | 探索新能源汽车和未来智能出行的前沿阵地                                                          | ~~/v/car/smart~~                                                           |
 
 ## 生活
 
