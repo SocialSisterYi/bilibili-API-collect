@@ -161,7 +161,7 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 | dash               | obj   | dash音视频流信息                        | **注：仅dash存在此项**            |
 | support_formats    | array | 支持格式的详细信息                         |                            |
 | clip_info_list     | array |                                   | 空，待补充                      |
-| record_info        | obj   | 备案登记信息                            | 备案信息                       |
+| record_info        | obj   | 备案登记信息                            |                            |
 
 `result`中的`accept_description`数组：
 
