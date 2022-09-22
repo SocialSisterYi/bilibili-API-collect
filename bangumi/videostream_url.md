@@ -98,6 +98,8 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 
 若视频有分P，仅为单P的视频的url，换P则需更换cid重新获取
 
+需要设置Referer为`https://www.bilibili.com`，否则无法获取1080清晰度以上的流信息。
+
 **url参数：**
 
 | 参数名           | 类型  | 内容       | 必要性    | 备注                                                                                               |
@@ -135,7 +137,7 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 | fnver              | num   | 请求时提供的fnver                       |                            |
 | fnval              | num   | 请求时提供的fnval                       |                            |
 | video_project      | bool  | true                              |                            |
-| type               | str   | 视频流类型                             | DASH                       |
+| type               | str   | 视频流类型（DASH、FLV、MP4）               | DASH                       |
 | bp                 | num   | 是否可以承包                            | 0                          |
 | vip_type           | num   | 当前用户大会员类型                         |                            |
 | vip_status         | num   | 当前用户大会员状态                         |                            |
@@ -159,7 +161,7 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 | dash               | obj   | dash音视频流信息                        | **注：仅dash存在此项**            |
 | support_formats    | array | 支持格式的详细信息                         |                            |
 | clip_info_list     | array |                                   | 空，待补充                      |
-| record_info        | obj   |                                   | 备案信息                       |
+| record_info        | obj   | 备案登记信息                            | 备案信息                       |
 
 `result`中的`accept_description`数组：
 
@@ -198,7 +200,6 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 | codecs          | array | 编码格式列表  |     |
 | need_login      | bool  | 需要登录    |     |
 | need_vip        | bool  | 需要大会员   |     |
-| quality         | num   | 清晰度编号   |     |
 
 `support_formats`中的`codecs`数组：
 
@@ -211,7 +212,7 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 
 | 项           | 类型  | 内容   | 备注                    |
 |-------------|-----|------|-----------------------|
-| record_icon | str |      |                       |
+| record_icon | str | 空串   |                       |
 | record      | str | 显示文案 | 登记号：10417060172092207 |
 
 ---
