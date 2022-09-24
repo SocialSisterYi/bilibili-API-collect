@@ -7,7 +7,7 @@ service DM {
     // 获取分段弹幕
     rpc DmSegMobile (DmSegMobileReq) returns (DmSegMobileReply);
     // 客户端弹幕元数据 字幕、分段、防挡蒙版等
-    rpc DmView (DmViewReq) returns (DmViewReply);
+    rpc DmView(DmViewReq) returns (DmViewReply);
     // 修改弹幕配置
     rpc DmPlayerConfig (DmPlayerConfigReq) returns (Response);
     // ott弹幕列表
@@ -15,7 +15,7 @@ service DM {
     // SDK弹幕列表
     rpc DmSegSDK(DmSegSDKReq) returns(DmSegSDKReply);
     //
-    rpc DmExpoReport (DmExpoReportReq) returns (DmExpoReportRes);
+    rpc DmExpoReport(DmExpoReportReq) returns (DmExpoReportRes);
 }
 
 //
@@ -40,6 +40,27 @@ message Bubble {
     string text = 1;
     //
     string url = 2;
+}
+
+//
+enum BubbleType {
+    BubbleTypeNone           = 0; //
+    BubbleTypeClickButton    = 1; //
+    BubbleTypeDmSettingPanel = 2; //
+}
+
+//
+message BubbleV2 {
+    //
+    string text = 1;
+    //
+    string url = 2;
+    //
+    BubbleType bubble_type = 3;
+    //
+    bool exposure_once = 4;
+    //
+    ExposureType exposure_type = 5;
 }
 
 //
@@ -92,6 +113,16 @@ enum CheckboxType {
 }
 
 //
+message CheckBoxV2 {
+    //
+    string text = 1;
+    //
+    int32 type = 2;
+    //
+    bool default_value = 3;
+}
+
+//
 message ClickButton {
     //
     repeated string portrait_text = 1;
@@ -107,6 +138,26 @@ message ClickButton {
     bool show = 6;
     //
     Bubble bubble = 7;
+}
+
+//
+message ClickButtonV2 {
+    //
+    repeated string portrait_text = 1;
+    //
+    repeated string landscape_text = 2;
+    //
+    repeated string portrait_text_focus = 3;
+    //
+    repeated string landscape_text_focus = 4;
+    //
+    int32 render_type = 5;
+    //
+    bool text_input_post = 6;
+    //
+    bool exposure_once = 7;
+    //
+    int32 exposure_type = 8;
 }
 
 // 互动弹幕条目信息
@@ -145,7 +196,7 @@ message DanmakuElem {
     int64 id = 1;
     // 弹幕出现位置(单位ms)
     int32 progress = 2;
-    // 弹幕类型
+    // 弹幕类型 1 2 3:普通弹幕 4:底部弹幕 5:顶部弹幕 6:逆向弹幕 7:高级弹幕 8:代码弹幕 9:BAS弹幕(pool必须为2)
     int32 mode = 3;
     // 弹幕字号
     int32 fontsize = 4;
@@ -157,11 +208,11 @@ message DanmakuElem {
     string content = 7;
     // 发送时间
     int64 ctime = 8;
-    // 权重 区间:[1,10]
+    // 权重 用于屏蔽等级 区间:[1,10]
     int32 weight = 9;
     // 动作
     string action = 10;
-    // 弹幕池
+    // 弹幕池 0:普通池 1:字幕池 2:特殊池(代码/BAS弹幕)
     int32 pool = 11;
     // 弹幕dmid str
     string idStr = 12;
@@ -237,6 +288,12 @@ message DanmuPlayerConfig {
     map<int32, int32> player_danmaku_ai_recommended_level_v2_map = 22; //
 }
 
+//
+message DanmuPlayerConfigPanel {
+    //
+    string selection_text = 1;
+}
+
 // 弹幕显示区域自动配置
 message DanmuPlayerDynamicConfig {
     // 时间
@@ -253,6 +310,8 @@ message DanmuPlayerViewConfig {
     DanmuPlayerConfig danmuku_player_config = 2;
     // 弹幕显示区域自动配置列表
     repeated DanmuPlayerDynamicConfig danmuku_player_dynamic_config = 3;
+    //
+    DanmuPlayerConfigPanel danmuku_player_config_panel = 4;
 }
 
 // web端用户弹幕配置
@@ -300,9 +359,7 @@ message DmExpoReportReq {
 }
 
 //
-message DmExpoReportRes {
-
-}
+message DmExpoReportRes {}
 
 // 修改弹幕配置-请求
 message DmPlayerConfigReq {
@@ -453,6 +510,8 @@ message DmViewReply {
     repeated PostPanel post_panel = 17;
     //
     repeated string activity_meta = 18;
+    //
+    repeated PostPanelV2 post_panel2 = 19;
 }
 
 // 客户端弹幕元数据-请求
@@ -471,6 +530,7 @@ message DmViewReq {
 }
 
 // web端弹幕元数据-响应
+// https://api.bilibili.com/x/v2/dm/web/view
 message DmWebViewReply {
     // 是否已关闭弹幕
     // 0:未关闭 1:已关闭
@@ -510,6 +570,12 @@ message ExpoReport {
 }
 
 //
+enum ExposureType {
+    ExposureTypeNone   = 0; //
+    ExposureTypeDMSend = 1; //
+}
+
+//
 message Expression {
     //
     repeated string keyword = 1;
@@ -525,12 +591,30 @@ message Expressions {
     repeated Expression data = 1;
 }
 
+// 是否开启弹幕
+message InlinePlayerDanmakuSwitch {
+    //
+    bool value = 1;
+} 
+
 //
 message Label {
     //
     string title = 1;
     //
     repeated string content = 2;
+}
+
+//
+message LabelV2 {
+    //
+    string title = 1;
+    //
+    repeated string content = 2;
+    //
+    bool exposure_once = 3;
+    //
+    int32 exposure_type = 4;
 }
 
 //
@@ -541,44 +625,24 @@ message Period {
     int64 end = 2;
 }
 
-// 是否开启弹幕
-message InlinePlayerDanmakuSwitch {bool value = 1;}
-// 智能云屏蔽等级
-message PlayerDanmakuAiRecommendedLevel {bool value = 1;}
-//
-message PlayerDanmakuAiRecommendedLevelV2 {int32 value = 1;}
-// 是否开启智能云屏蔽
-message PlayerDanmakuAiRecommendedSwitch {bool value = 1;}
-// 是否屏蔽底端弹幕
-message PlayerDanmakuBlockbottom {bool value = 1;}
-// 是否屏蔽彩色弹幕
-message PlayerDanmakuBlockcolorful {bool value = 1;}
-// 是否屏蔽重复弹幕
-message PlayerDanmakuBlockrepeat {bool value = 1;}
-// 是否屏蔽滚动弹幕
-message PlayerDanmakuBlockscroll {bool value = 1;}
-// 是否屏蔽高级弹幕
-message PlayerDanmakuBlockspecial {bool value = 1;}
-// 是否屏蔽顶端弹幕
-message PlayerDanmakuBlocktop {bool value = 1;}
-// 弹幕显示区域
-message PlayerDanmakuDomain {float value = 1;}
-// 是否开启屏蔽列表
-message PlayerDanmakuEnableblocklist {bool value = 1;}
-// 弹幕不透明度
-message PlayerDanmakuOpacity {float value = 1;}
-// 弹幕缩放比例
-message PlayerDanmakuScalingfactor {float value = 1;}
-//
-message PlayerDanmakuSeniorModeSwitch {int32 value = 1;}
-// 弹幕速度
-message PlayerDanmakuSpeed {int32 value = 1;}
-// 是否开启弹幕
-message PlayerDanmakuSwitch {bool value = 1;bool canIgnore = 2;}
-// 是否记录弹幕开关设置
-message PlayerDanmakuSwitchSave {bool value = 1;}
-// 是否使用推荐弹幕设置
-message PlayerDanmakuUseDefaultConfig {bool value = 1;}
+message PlayerDanmakuAiRecommendedLevel   {bool  value = 1;} // 智能云屏蔽等级
+message PlayerDanmakuAiRecommendedLevelV2 {int32 value = 1;} //
+message PlayerDanmakuAiRecommendedSwitch  {bool  value = 1;} // 是否开启智能云屏蔽
+message PlayerDanmakuBlockbottom          {bool  value = 1;} // 是否屏蔽底端弹幕
+message PlayerDanmakuBlockcolorful        {bool  value = 1;} // 是否屏蔽彩色弹幕
+message PlayerDanmakuBlockrepeat          {bool  value = 1;} // 是否屏蔽重复弹幕
+message PlayerDanmakuBlockscroll          {bool  value = 1;} // 是否屏蔽滚动弹幕
+message PlayerDanmakuBlockspecial         {bool  value = 1;} // 是否屏蔽高级弹幕
+message PlayerDanmakuBlocktop             {bool  value = 1;} // 是否屏蔽顶端弹幕
+message PlayerDanmakuDomain               {float value = 1;} // 弹幕显示区域
+message PlayerDanmakuEnableblocklist      {bool  value = 1;} // 是否开启屏蔽列表
+message PlayerDanmakuOpacity              {float value = 1;} // 弹幕不透明度
+message PlayerDanmakuScalingfactor        {float value = 1;} // 弹幕缩放比例
+message PlayerDanmakuSeniorModeSwitch     {int32 value = 1;} //
+message PlayerDanmakuSpeed                {int32 value = 1;} // 弹幕速度
+message PlayerDanmakuSwitch               {bool  value = 1; bool can_ignore = 2;} // 是否开启弹幕
+message PlayerDanmakuSwitchSave           {bool  value = 1;} // 是否记录弹幕开关设置
+message PlayerDanmakuUseDefaultConfig     {bool  value = 1;} // 是否使用推荐弹幕设置
 
 //
 message PostPanel {
@@ -610,6 +674,30 @@ enum PostPanelBizType {
     PostPanelBizTypeNFTDM     = 3; //
     PostPanelBizTypeFragClose = 4; //
     PostPanelBizTypeRecommend = 5; //
+}
+
+//
+message PostPanelV2 {
+    //
+    int64 start = 1;
+    //
+    int64 end = 2;
+    //
+    int32 biz_type = 3;
+    //
+    ClickButtonV2 click_button = 4;
+    //
+    TextInputV2 text_input = 5;
+    //
+    CheckBoxV2 check_box = 6;
+    //
+    ToastV2 toast = 7;
+    //
+    BubbleV2 bubble = 8;
+    //
+    LabelV2 label = 9;
+    //
+    int32 post_status = 10;
 }
 
 //
@@ -696,6 +784,22 @@ message TextInput {
 }
 
 //
+message TextInputV2 {
+    //
+    repeated string portrait_placeholder = 1;
+    //
+    repeated string landscape_placeholder = 2;
+    //
+    RenderType render_type = 3;
+    //
+    bool placeholder_post = 4;
+    //
+    repeated Avatar avatar = 5;
+    //
+    int32 text_input_limit = 6;
+}
+
+//
 message Toast {
     //
     string text = 1;
@@ -708,9 +812,27 @@ message Toast {
 }
 
 //
+message ToastButtonV2 {
+    //
+    string text = 1;
+    //
+    int32 action = 2;
+}
+
+//
 enum ToastFunctionType {
     ToastFunctionTypeNone      = 0; //
     ToastFunctionTypePostPanel = 1; //
+}
+
+//
+message ToastV2 {
+    //
+    string text = 1;
+    //
+    int32 duration = 2;
+    //
+    ToastButtonV2 toast_button_v2 = 3;
 }
 
 // 字幕作者信息

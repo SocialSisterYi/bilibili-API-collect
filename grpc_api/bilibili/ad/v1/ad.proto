@@ -2,199 +2,91 @@ syntax = "proto3";
 
 package bilibili.ad.v1;
 
+import "google/protobuf/any.proto";
 import "google/protobuf/wrappers.proto";
 
-// 广告控制
-message AdsControlDto {
-    // 视频是否有弹幕，如有，需请求弹幕广告
-    int32 has_danmu = 1;
-    // 有弹幕的分P视频的cid
-    repeated int64 cids = 2;
-    // 有弹幕的ogv ep
-    repeated AdOgvEpDto eps = 3;
-}
-
-// 有弹幕的ogv ep
-message AdOgvEpDto {
-    // 分集epid
-    int64 epid = 1;
-    // 是否显示 "荐"
-    bool has_recommend = 2;
-}
-
-// 广告数据
-message SourceContentDto {
-    // 广告请求id
-    string request_id = 1;
-    // 广告资源位source ID
-    int32 source_id = 2;
-    // 广告资源位resource ID
-    int32 resource_id = 3;
-    // 广告位上报标记,对广告返回数据恒为true
-    bool is_ad_loc = 4;
-    // 与天马现有逻辑一致, 0有含义
-    // 0:内容 1:广告
-    google.protobuf.Int32Value server_type = 5;
-    // 客户端IP回传拼接
-    string client_ip = 6;
-    // 广告卡片位置在一刷中的位置, 天马用, 0有含义
-    google.protobuf.Int32Value card_index = 7;
-    // 广告资源位source 位次
-    int32 index = 8;
-    // 广告内容
-    AdDto ad_content = 9;
-}
-
-// 广告内容
-message AdDto {
-    // 广告创意ID
-    int64 creative_id = 1;
-    // 广告闭环上报回传数据
-    string ad_cb = 2;
-    // 额外广告数据
-    AdContentExtraDto extra = 3;
-    // 广告标记
-    int32 cm_mark = 4;
+// 自动播放视频
+message AdAutoPlayVideoDto {
+    // avid
+    int64 avid = 1;
+    // cid
+    int64 cid = 2;
+    // 分P
+    int64 page = 3;
     //
-    int64 top_view_id = 5;
-    //
-    int32 creative_type = 6;
-    //
-    int32 card_type = 7;
-    //
-    int32 creative_style = 8;
-    //
-    int32 is_ad = 9;
-    //
-    CreativeDto creative_content = 10;
-}
-
-// 额外广告数据
-message AdContentExtraDto {
-    // 动态布局
-    string layout = 1;
-    // 展现监控url
-    repeated string show_urls = 2;
-    // 点击监控url
-    repeated string click_urls = 3;
-    // 弹幕创意列表展示第三方上报
-    repeated string danmu_list_show_urls = 4;
-    // 弹幕创意列表点击第三方上报
-    repeated string danmu_list_click_urls = 5;
-    // 弹幕详情页展示第三方上报
-    repeated string danmu_detail_show_urls = 6;
-    // 弹幕商品添加购物车第三方上报
-    repeated string danmu_trolley_add_urls = 7;
-    // useWebView默认false
-    bool use_ad_web_v2 = 8;
-    // app唤起白名单
-    repeated string open_whitelist = 9;
-    // app下载白名单
-    AppPackageDto download_whitelist = 10;
-    // 卡片相关信息
-    AdCardDto card = 11;
-    // 视频播放和弹幕播放上报控制时间 ms
-    int32 report_time = 12;
-    // 是否优先唤起app store
-    int32 appstore_priority = 13;
-    // 广告售卖类型
-    int32 sales_type = 14;
-    // 落地页是否预加载
-    int32 preload_landingpage = 15;
-    // 是否需要展示风险行业提示
-    bool special_industry = 16;
-    // 风险行业提示
-    string special_industry_tips = 17;
-    // 是否展示下载弹框
-    bool enable_download_dialog = 18;
-    // 是否允许分享
-    bool enable_share = 19;
-    // 个人空间广告入口类型
-    // 1:橱窗 2:商品店铺 3:小程序
-    int32 upzone_entrance_type = 20;
-    // 个人空间广告入口上报id,橱窗id(当前用Mid)、店铺id或者小程序id
-    int32 upzone_entrance_report_id = 21;
-    // 分享数据
-    AdShareInfoDto share_info = 22;
-    // topview图片链接，闪屏预下载用
-    string topview_pic_url = 23;
-    // topview视频链接，闪屏预下载用
-    string topview_video_url = 24;
-    // 点击区域
-    // 0:表示banner可点击 1:表示素材可点击
-    int32 click_area = 25;
-    // 店铺
-    int64 shop_id = 26;
-    // up主
-    int64 up_mid = 27;
-    // 回传id
-    string track_id = 28;
-    // 商店直投
-    int32 enable_store_direct_launch = 29;
-    // DPA2.0商品ID
-    int64 product_id = 30;
-}
-
-//
-message CreativeDto {
-    //
-    string title = 1;
-    //
-    string description = 2;
-    //
-    string image_url = 3;
-    //
-    string image_md5 = 4;
-    //
+    string from = 4;
+    // 是否自动播放
     string url = 5;
-    //
-    string click_url = 6;
-    //
-    string show_url = 7;
-    //
-    int64 video_id = 8;
-    //
-    string thumbnail_url = 9;
-    //
-    string thumbnail_url_md5 = 10;
-    //
-    string logo_url = 11;
-    //
-    string logo_md5 = 12;
-    //
-    string username = 13;
+    // 是否自动播放
+    string cover = 6;
+    // 是否自动播放
+    bool auto_play = 7;
+    // 按钮是否动态变色
+    bool btn_dyc_color = 8;
+    // 按钮动态变色时间 ms
+    int32 btn_dyc_time = 9;
+    // 用于做联播是否是同一个视频的id
+    int64 biz_id = 10;
+    // 开始播放三方监控
+    repeated string process0_urls = 11;
+    // 播放3S三方监控
+    repeated string play_3s_urls = 12;
+    // 播放5S三方监控
+    repeated string play_5s_urls = 13;
+    // 横竖屏
+    int32 orientation = 14;
 }
 
-// app下载白名单
-message AppPackageDto {
-    // 包大小(单位bytes)
-    int64 size = 1;
+// 商业标信息
+message AdBusinessMarkDto {
+    // 商业标样式
+    // 0:不展示标 1:实心+文字 2:空心框+文字 3:纯文字标 4:纯图片标
+    int32 type = 1;
+    // 商业标文案
+    string text = 2;
+    // 商业标文案颜色,如#80FFFFFF RGBA
+    string text_color = 3;
+    // 夜间模式文字色
+    string text_color_night = 4;
+    // 背景色
+    string bg_color = 5;
+    // 夜间模式背景色
+    string bg_color_night = 6;
+    // 边框色
+    string border_color = 7;
+    // 夜间模式边框色
+    string border_color_night = 8;
+    // 图片商业标
+    string img_url = 9;
+    // 图片高度
+    int32 img_height = 10;
+    // 图片宽度
+    int32 img_width = 11;
     //
-    string display_name = 2;
+    string bg_border_color = 12;
+}
+
+// 按钮
+message AdButtonDto {
+    // 类型
+    // 1:落地页 2:应用唤起 3:应用下载
+    int32 type = 1;
+    // 按钮文案
+    string text = 2;
+    // 按钮跳转地址
+    string jump_url = 3;
+    // 跳转监测链接
+    string report_urls = 4;
+    // 唤起schema
+    string dlsuc_callup_url = 5;
+    // 游戏id
+    int32 game_id = 6;
+    // 游戏监控字段
+    string game_monitor_param = 7;
     //
-    string apk_name = 3;
-    // url
-    string url = 4;
-    // bili schema url
-    string bili_url = 5;
-    // 包md5
-    string md5 = 6;
-    // 包icon
-    string icon = 7;
-    // 开发者姓名
-    string dev_name = 8;
-    // 权限地址
-    string auth_url = 9;
-    // 权限名，逗号隔开
-    string auth_name = 10;
-    // 版本
-    string version = 11;
-    // 更新时间,yy-mm-hh格式
-    string update_time = 12;
-    // 隐私协议标题
-    string privacy_name = 13;
-    // 隐私协议url
-    string privacy_url = 14;
+    int32 game_channel_id = 8;
+    //
+    string game_channel_extra = 9;
 }
 
 // 卡片
@@ -289,16 +181,130 @@ message AdCardDto {
     AdverDto adver = 44;
     // 评分
     int32 grade_level = 45;
+    //
+    bool support_transition = 46;
+    //
+    string transition = 47;
+    //
+    int32 under_player_interaction_style = 48;
+    //
+    string imax_landing_page_v2 = 49;
+    //
+    SubCardModule subcard_module = 50;
+    //
+    int32 grade_denominator = 51;
+    //
+    int32 star_level = 52;
+    //
+    Bulletin bulletin = 53;
+    //
+    Gift gift = 54;
+    //
+    repeated string game_tags = 55;
+    //
+    int32 ori_mark_hidden = 56;
+    //
+    bool use_multi_cover = 57;
+    //
+    WxProgramInfo wx_program_info = 58;
+    //
+    AndroidGamePageRes android_game_page_res = 59;
+    //
+    NotClickableArea not_clickable_area = 60;
+    //
+    ForwardReply forward_reply = 61;
 }
 
-// 分享
-message AdShareInfoDto {
-    // 分享标题
-    string title = 1;
-    // 分享副标题
-    string subtitle = 2;
-    // 分享图片url
-    string image_url = 3;
+// 额外广告数据
+message AdContentExtraDto {
+    // 动态布局
+    string layout = 1;
+    // 展现监控url
+    repeated string show_urls = 2;
+    // 点击监控url
+    repeated string click_urls = 3;
+    // 弹幕创意列表展示第三方上报
+    repeated string danmu_list_show_urls = 4;
+    // 弹幕创意列表点击第三方上报
+    repeated string danmu_list_click_urls = 5;
+    // 弹幕详情页展示第三方上报
+    repeated string danmu_detail_show_urls = 6;
+    // 弹幕商品添加购物车第三方上报
+    repeated string danmu_trolley_add_urls = 7;
+    // useWebView默认false
+    bool use_ad_web_v2 = 8;
+    // app唤起白名单
+    repeated string open_whitelist = 9;
+    // app下载白名单
+    AppPackageDto download_whitelist = 10;
+    // 卡片相关信息
+    AdCardDto card = 11;
+    // 视频播放和弹幕播放上报控制时间 ms
+    int32 report_time = 12;
+    // 是否优先唤起app store
+    int32 appstore_priority = 13;
+    // 广告售卖类型
+    int32 sales_type = 14;
+    // 落地页是否预加载
+    int32 preload_landingpage = 15;
+    // 是否需要展示风险行业提示
+    bool special_industry = 16;
+    // 风险行业提示
+    string special_industry_tips = 17;
+    // 是否展示下载弹框
+    bool enable_download_dialog = 18;
+    // 是否允许分享
+    bool enable_share = 19;
+    // 个人空间广告入口类型
+    // 1:橱窗 2:商品店铺 3:小程序
+    int32 upzone_entrance_type = 20;
+    // 个人空间广告入口上报id,橱窗id(当前用Mid)、店铺id或者小程序id
+    int32 upzone_entrance_report_id = 21;
+    // 分享数据
+    AdShareInfoDto share_info = 22;
+    // topview图片链接，闪屏预下载用
+    string topview_pic_url = 23;
+    // topview视频链接，闪屏预下载用
+    string topview_video_url = 24;
+    // 点击区域
+    // 0:表示banner可点击 1:表示素材可点击
+    int32 click_area = 25;
+    // 店铺
+    int64 shop_id = 26;
+    // up主
+    int64 up_mid = 27;
+    // 回传id
+    string track_id = 28;
+    // 商店直投
+    int32 enable_store_direct_launch = 29;
+    // DPA2.0商品ID
+    int64 product_id = 30;
+    //
+    bool enable_double_jump = 31;
+    //
+    repeated string show1s_urls = 32;
+    //
+    string from_track_id = 33;
+    //
+    bool store_callup_card = 34;
+    //
+    int32 landingpage_download_style = 35;
+    //
+    int32 special_industry_style = 36;
+    //
+    bool enable_h5_alert = 37;
+    //
+    int32 macro_replace_priority = 38;
+    //
+    int32 feedback_panel_style = 39;
+    //
+    string appstore_url = 40;
+    //
+    int32 enable_h5_pre_load = 41;
+    //
+    string h5_pre_load_url = 42;
+    //
+    string cm_from_track_id = 43;
 }
 
 // 广告卡片封面数据
@@ -318,84 +324,28 @@ message AdCoverDto {
     int32 image_width = 6;
 }
 
-// 按钮
-message AdButtonDto {
-    // 类型
-    // 1:落地页 2:应用唤起 3:应用下载
-    int32 type = 1;
-    // 按钮文案
-    string text = 2;
-    // 按钮跳转地址
-    string jump_url = 3;
-    // 跳转监测链接
-    string report_urls = 4;
-    // 唤起schema
-    string dlsuc_callup_url = 5;
-    //游戏id
-    int32 game_id = 6;
-    //游戏监控字段
-    string game_monitor_param = 7;
-}
-
-// 商业标信息
-message AdBusinessMarkDto {
-    // 商业标样式
-    // 0:不展示标 1:实心+文字 2:空心框+文字 3:纯文字标 4:纯图片标
-    int32 type = 1;
-    // 商业标文案
-    string text = 2;
-    // 商业标文案颜色,如#80FFFFFF RGBA
-    string text_color = 3;
-    // 夜间模式文字色
-    string text_color_night = 4;
-    // 背景色
-    string bg_color = 5;
-    // 夜间模式背景色
-    string bg_color_night = 6;
-    // 边框色
-    string border_color = 7;
-    // 夜间模式边框色
-    string border_color_night = 8;
-    // 图片商业标
-    string img_url = 9;
-    // 图片高度
-    int32 img_height = 10;
-    // 图片宽度
-    int32 img_width = 11;
+// 广告内容
+message AdDto {
+    // 广告创意ID
+    int64 creative_id = 1;
+    // 广告闭环上报回传数据
+    string ad_cb = 2;
+    // 额外广告数据
+    AdContentExtraDto extra = 3;
+    // 广告标记
+    int32 cm_mark = 4;
     //
-    string bg_border_color = 12;
-}
-
-// 自动播放视频
-message AdAutoPlayVideoDto {
-    // avid
-    int64 avid = 1;
-    // cid
-    int64 cid = 2;
-    // 分P
-    int64 page = 3;
+    int64 top_view_id = 5;
     //
-    string from = 4;
-    // 是否自动播放
-    string url = 5;
-    // 是否自动播放
-    string cover = 6;
-    // 是否自动播放
-    bool auto_play = 7;
-    // 按钮是否动态变色
-    bool btn_dyc_color = 8;
-    // 按钮动态变色时间 ms
-    int32 btn_dyc_time = 9;
-    // 用于做联播是否是同一个视频的id
-    int64 biz_id = 10;
-    // 开始播放三方监控
-    repeated string process0_urls = 11;
-    // 播放3S三方监控
-    repeated string play_3s_urls = 12;
-    // 播放5S三方监控
-    repeated string play_5s_urls = 13;
-    // 横竖屏
-    int32 orientation = 14;
+    int32 creative_type = 6;
+    //
+    int32 card_type = 7;
+    //
+    int32 creative_style = 8;
+    //
+    int32 is_ad = 9;
+    //
+    CreativeDto creative_content = 10;
 }
 
 // 反馈面板功能模块
@@ -404,6 +354,12 @@ message AdFeedbackPanelDto {
     string panel_type_text = 1;
     // 反馈面版信息
     repeated AdFeedbackPanelModuleDto feedback_panel_detail = 2;
+    //
+    string toast = 3;
+    //
+    string open_rec_tips = 4;
+    //
+    string close_rec_tips = 5;
 }
 
 // 反馈面版信息
@@ -421,14 +377,8 @@ message AdFeedbackPanelModuleDto {
     string text = 5;
     // 二级文案数组
     repeated AdSecondFeedbackPanelDto secondary_panel = 6;
-}
-
-// 二级文案
-message AdSecondFeedbackPanelDto {
-    // 屏蔽理由id
-    int32 reason_id = 1;
-    // 理由文案
-    string text = 2;
+    //
+    string sub_text = 7;
 }
 
 // 开放平台商品
@@ -443,18 +393,40 @@ message AdGoodDto {
     int64 sku_num = 4;
 }
 
-//
-message QualityInfo {
-    //
-    string icon = 1;
-    //
+// 有弹幕的ogv ep
+message AdOgvEpDto {
+    // 分集epid
+    int64 epid = 1;
+    // 是否显示 "荐"
+    bool has_recommend = 2;
+}
+
+// 广告控制
+message AdsControlDto {
+    // 视频是否有弹幕，如有，需请求弹幕广告
+    int32 has_danmu = 1;
+    // 有弹幕的分P视频的cid，已弃用
+    repeated int64 cids = 2;
+    // 有弹幕的ogv ep
+    repeated AdOgvEpDto eps = 3;
+}
+
+// 二级文案
+message AdSecondFeedbackPanelDto {
+    // 屏蔽理由id
+    int32 reason_id = 1;
+    // 理由文案
     string text = 2;
-    //
-    bool is_bg = 3;
-    //
-    string bg_color = 4;
-    //
-    string bg_color_night = 5;
+}
+
+// 分享
+message AdShareInfoDto {
+    // 分享标题
+    string title = 1;
+    // 分享副标题
+    string subtitle = 2;
+    // 分享图片url
+    string image_url = 3;
 }
 
 // 广告主信息
@@ -471,4 +443,569 @@ message AdverDto {
     string adver_page_url = 5;
     //
     string adver_desc = 6;
+}
+
+//
+message AndroidGamePageRes {
+    //
+    Module1 module1 = 1;
+    //
+    Module3 module3 = 2;
+    //
+    Module4 module4 = 3;
+    //
+    Module5 module5 = 4;
+    //
+    Module6 module6 = 5;
+    //
+    Module7 module7 = 6;
+    //
+    Module8 module8 = 7;
+    //
+    Module9 module9 = 8;
+    //
+    Module10 module10 = 9;
+    //
+    Module11 module11 = 10;
+    //
+    Module12 module12 = 11;
+    //
+    Module13 module13 = 12;
+    //
+    repeated int32 module_seq = 13;
+    //
+    string background_color = 14;
+    //
+    Module14 module14 = 15;
+}
+
+//
+message AndroidTag {
+    //
+    string text = 1;
+    //
+    int32 type = 2;
+}
+
+// app下载白名单
+message AppPackageDto {
+    // 包大小(单位bytes)
+    int64 size = 1;
+    //
+    string display_name = 2;
+    //
+    string apk_name = 3;
+    // url
+    string url = 4;
+    // bili schema url
+    string bili_url = 5;
+    // 包md5
+    string md5 = 6;
+    // 包icon
+    string icon = 7;
+    // 开发者姓名
+    string dev_name = 8;
+    // 权限地址
+    string auth_url = 9;
+    // 权限名，逗号隔开
+    string auth_name = 10;
+    // 版本
+    string version = 11;
+    // 更新时间,yy-mm-hh格式
+    string update_time = 12;
+    // 隐私协议标题
+    string privacy_name = 13;
+    // 隐私协议url
+    string privacy_url = 14;
+}
+
+//
+message Bulletin {
+    //
+    string tag_text = 1;
+    //
+    string text = 2;
+}
+
+//
+message Comment {
+    //
+    int64 game_base_id = 1;
+    //
+    string user_name = 2;
+    //
+    string user_face = 3;
+    //
+    int32 user_level = 4;
+    //
+    string comment_no = 5;
+    //
+    int32 grade = 6;
+    //
+    string content = 7;
+    //
+    int32 up_count = 8;
+}
+
+//
+message CreativeDto {
+    //
+    string title = 1;
+    //
+    string description = 2;
+    //
+    string image_url = 3;
+    //
+    string image_md5 = 4;
+    //
+    string url = 5;
+    //
+    string click_url = 6;
+    //
+    string show_url = 7;
+    //
+    int64 video_id = 8;
+    //
+    string thumbnail_url = 9;
+    //
+    string thumbnail_url_md5 = 10;
+    //
+    string logo_url = 11;
+    //
+    string logo_md5 = 12;
+    //
+    string username = 13;
+}
+
+//
+message CustomPlayUrl {
+    //
+    int32 play_time = 1;
+    //
+    repeated string urls = 2;
+}
+
+//
+message ForwardReply {
+    //
+    int64 comment_id = 1;
+    //
+    string message = 2;
+    //
+    string highlight_text = 3;
+    //
+    string highlight_prefix_icon = 4;
+    //
+    string callup_url = 5;
+    //
+    string jump_url = 6;
+    //
+    int32 jump_type = 7;
+    //
+    string author_name = 8;
+    //
+    string author_icon = 9;
+}
+
+//
+message Gift {
+    //
+    string icon = 1;
+    //
+    string night_icon = 2;
+    //
+    string text = 3;
+    //
+    string url = 4;
+}
+
+//
+message IosGamePageRes {
+    //
+    string logo = 1;
+    //
+    string name = 2;
+    //
+    string sub_titile = 3;
+    //
+    repeated string image_url = 4;
+    //
+    string desc = 5;
+    //
+    AdButtonDto game_button = 6;
+    //
+    double grade = 7;
+    //
+    string rank_num = 8;
+    //
+    string rank_name = 9;
+}
+
+//
+message Module1 {
+    //
+    string game_name = 1;
+    //
+    string game_icon = 2;
+    //
+    string developer_input_name = 3;
+    //
+    repeated AndroidTag tag_list = 4;
+}
+
+//
+message Module3 {
+    //
+    bool display = 1;
+    //
+    repeated QualityParmas quality_params = 3;
+}
+
+//
+message Module4 {
+    //
+    bool display = 1;
+    //
+    int32 gift_num = 2;
+    //
+    string gift_name = 3;
+    //
+    int32 gift_icon_num = 4;
+    //
+    repeated string icon_urls = 5;
+}
+
+//
+message Module5 {
+    //
+    bool display = 1;
+    //
+    string game_summary = 2;
+}
+
+//
+message Module6 {
+    //
+    bool display = 1;
+    //
+    string game_desc = 2;
+}
+
+//
+message Module7 {
+    //
+    bool display = 1;
+    //
+    repeated ScreenShots screen_shots = 2;
+}
+
+//
+message Module8 {
+    //
+    bool display = 1;
+    //
+    repeated string tag_list = 2;
+}
+
+//
+message Module9 {
+    //
+    bool display = 1;
+    //
+    string dev_introduction = 2;
+}
+
+//
+message Module10 {
+    //
+    bool display = 1;
+    //
+    string latest_update = 2;
+}
+
+//
+message Module11 {
+    //
+    bool display = 1;
+    //
+    repeated int32 star_number_list = 2;
+    //
+    string comment_str = 3;
+    //
+    double grade = 4;
+}
+
+//
+message Module12 {
+    //
+    bool display = 1;
+    //
+    repeated Comment comment_list = 2;
+    //
+    string comment_num = 3;
+    //
+    bool show_all_comment = 4;
+}
+
+//
+message Module13 {
+    //
+    int64 pkg_size = 1;
+    //
+    string customer_service = 2;
+    //
+    string website = 3;
+    //
+    string authority = 4;
+    //
+    string privacy = 5;
+    //
+    string developer_name = 6;
+    //
+    string update_time = 7;
+    //
+    string game_version = 8;
+    //
+    string android_pkg_name = 9;
+}
+
+//
+message Module14 {
+    //
+    repeated Reward reward_list = 1;
+    //
+    bool display = 2;
+}
+
+//
+message NotClickableArea {
+    //
+    int32 x = 1;
+    //
+    int32 y = 2;
+    //
+    int32 z = 3;
+}
+
+//
+message QualityInfo {
+    //
+    string icon = 1;
+    //
+    string text = 2;
+    //
+    bool is_bg = 3;
+    //
+    string bg_color = 4;
+    //
+    string bg_color_night = 5;
+}
+
+//
+message QualityParmas {
+    //
+    string first_line = 1;
+    //
+    string second_line = 2;
+    //
+    double grade = 3;
+    //
+    string rank_icon = 4;
+    //
+    int32 quality_type = 5;
+}
+
+//
+message Reward {
+    //
+    int32 level = 1;
+    //
+    string title = 2;
+    //
+    string content = 3;
+    //
+    string pic = 4;
+    //
+    bool reach = 5;
+}
+
+//
+message ScreenShots {
+    //
+    string url = 1;
+    //
+    int32 height = 2;
+    //
+    int32 width = 3;
+    //
+    int32 seq = 4;
+}
+
+// 广告数据
+message SourceContentDto {
+    // 广告请求id
+    string request_id = 1;
+    // 广告资源位source ID
+    int32 source_id = 2;
+    // 广告资源位resource ID
+    int32 resource_id = 3;
+    // 广告位上报标记,对广告返回数据恒为true
+    bool is_ad_loc = 4;
+    // 与天马现有逻辑一致, 0有含义
+    // 0:内容 1:广告
+    google.protobuf.Int32Value server_type = 5;
+    // 客户端IP回传拼接
+    string client_ip = 6;
+    // 广告卡片位置在一刷中的位置, 天马用, 0有含义
+    google.protobuf.Int32Value card_index = 7;
+    // 广告资源位source 位次
+    int32 index = 8;
+    // 广告内容
+    AdDto ad_content = 9;
+}
+
+//
+message SubCardModule {
+    //
+    string subcard_type = 1;
+    //
+    string icon = 2;
+    //
+    string desc = 3;
+    //
+    string rank_stars = 4;
+    //
+    string amount_number = 5;
+    //
+    string avatar = 6;
+    //
+    string title = 7;
+    //
+    AdButtonDto button = 8;
+    //
+    repeated TagInfo tag_infos = 9;
+}
+
+//
+message Tab2ExtraDto {
+    //
+    string cover_url = 1;
+    //
+    string title = 2;
+    //
+    string desc = 3;
+    //
+    AdButtonDto button = 5;
+    //
+    int32 auto_animate_time_ms = 6;
+    //
+    bool enable_click = 7;
+    //
+    string panel_url = 8;
+    //
+    repeated AppPackageDto download_whitelist = 9;
+    //
+    repeated string open_whitelist = 10;
+    //
+    bool use_ad_web_v2 = 11;
+    //
+    bool enable_store_direct_launch = 12;
+    //
+    int32 sales_type = 13;
+    //
+    int32 landingpage_download_style = 15;
+    //
+    int32 appstore_priority = 16;
+    //
+    string appstore_url = 17;
+    //
+    int32 appstore_delay_time = 18;
+    //
+    int32 page_cover_type = 19;
+    //
+    int32 page_pull_type = 20;
+    //
+    AndroidGamePageRes android_game_page_res = 21;
+    //
+    IosGamePageRes ios_game_page_res = 22;
+    //
+    AdBusinessMarkDto ad_tag_style = 23;
+    //
+    AdFeedbackPanelDto feedback_panel = 24;
+    //
+    string ad_cb = 25;
+    //
+    int32 url_type = 26;
+}
+
+//
+message TabExtraDto {
+    //
+    string tab_url = 1;
+    //
+    int32 enable_store_direct_launch = 2;
+    //
+    int32 store_callup_card = 3;
+    //
+    int32 sales_type = 4;
+    //
+    repeated AppPackageDto download_whitelist = 5;
+    //
+    bool special_industry = 6;
+    //
+    string special_industry_tips = 7;
+    //
+    repeated string open_whitelist = 8;
+    //
+    int32 landingpage_download_style = 9;
+    //
+    int32 appstore_priority = 10;
+    //
+    bool use_ad_web_v2 = 11;
+    //
+    bool enable_download_dialog = 12;
+    //
+    string appstore_url = 13;
+    //
+    int32 appstore_delay_time = 14;
+}
+
+//
+message TabInfoDto {
+    //
+    string tab_name = 1;
+    //
+    google.protobuf.Any extra = 2;
+    //
+    int32 tab_version = 3;
+}
+
+//
+message TagInfo {
+    //
+    string text = 1;
+    //
+    string text_color = 2;
+    //
+    string text_color_night = 3;
+    //
+    string bg_color = 4;
+    //
+    string bg_color_night = 5;
+    //
+    string border_color = 6;
+    //
+    string border_color_night = 7;
+    //
+    string type = 8;
+}
+
+//
+message WxProgramInfo {
+    //
+    string org_id = 1;
+    //
+    string name = 2;
+    //
+    string path = 3;
 }

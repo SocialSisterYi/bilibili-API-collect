@@ -1,27 +1,58 @@
 # bvid说明
 
-2020-03-23 B站推出了全新的稿件视频id“bvid”来接替之前的“avid”，其用法与性质等价于“avid”
+2020-03-23 B站推出了全新的稿件视频id`bvid`来接替之前的`avid`，其意义与之相同
 
 详见：
 
 1. [【升级公告】AV号全面升级至BV号（专栏）](https://www.bilibili.com/read/cv5167957)
 2. [【升级公告】AV号全面升级至BV号](https://www.bilibili.com/blackboard/activity-BV-PC.html)
 
-## 格式
+---
+
+- [概述](#概述)
+  - [格式](#格式)
+  - [实质](#实质)
+  - [avid发号方式的变化](#avid发号方式的变化)
+
+- [算法概述](#算法概述)
+  - [av->bv算法](#av->bv算法)
+  - [bv->av算法](#bv->av算法)
+
+- [编程实现](#编程实现)
+
+  - [Python](#Python)
+
+  - [C](#C)
+
+  - [TypeScript](#TypeScript)
+
+  - [Java](#Java)
+
+  - [Kotlin](#Kotlin)
+
+  - [Golang](#Golang)
+
+---
+
+## 概述
+
+### 格式
 
 “bvid”恒为长度为12的字符串，前两个字母为大写“BV”，后10个为base58计算结果
 
-## 实质
+### 实质
 
 “bvid"为“avid”的base58编码，可通过算法进行相互转化
 
-## avid发放方式的变化
+### avid发号方式的变化
 
 从2009-09-09 09:09:09 [av2](https://www.bilibili.com/video/av2)的发布到2020-03-28  19:45:02 [av99999999](https://www.bilibili.com/video/av99999999)的发布B站结束了以投稿时间为顺序的avid发放，改为随机发放avid
 
 ~~暗示B站东方要完？泪目~~
 
-## av->bv算法
+## 算法概述
+
+### av->bv算法
 
 注：本算法及示例程序仅能编码及解码avid<` 29460791296  `，无法验证avid>=` 29460791296  `的正确性
 
@@ -53,15 +84,15 @@
 
 算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)
 
-## bv->av算法
+### bv->av算法
 
 为以上算法的逆运算
 
-## 转换程序
+## 编程实现
 
-使用Python、C以及TypeScript作为示例，欢迎社区提交更多例程
+使用Python、C、TypeScript、Java、Kotlin以及Golang作为示例，欢迎社区提交更多例程
 
-### python
+### Python
 
 ```python
 table = 'fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF' # 码表
@@ -97,7 +128,7 @@ BV17x411w7KC
 170001
 ```
 
-### C语言
+### C
 
 ```c
 #include <stdio.h>
@@ -187,8 +218,168 @@ export default class BvCode {
 
 const bvcode = new BvCode();
 
-console.log(bvcode.bv2av('BV17x411w7KC'));
 console.log(bvcode.av2bv(170001));
+console.log(bvcode.bv2av('BV17x411w7KC'));
+```
+
+输出为：
+
+```
+BV17x411w7KC
+170001
+```
+
+### Java
+
+```java
+/**
+ * 算法来自：https://www.zhihu.com/question/381784377/answer/1099438784
+ */
+public class Util {
+    private static final String TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF";
+    private static final int[] S = new int[]{11, 10, 3, 8, 4, 6};
+    private static final int XOR = 177451812;
+    private static final long ADD = 8728348608L;
+    private static final Map<Character, Integer> MAP = new HashMap<>();
+
+    static {
+        for (int i = 0; i < 58; i++) {
+            MAP.put(TABLE.charAt(i), i);
+        }
+    }
+
+    public static String aidToBvid(int aid) {
+        long x = (aid ^ XOR) + ADD;
+        char[] chars = new char[]{'B', 'V', '1', ' ', ' ', '4', ' ', '1', ' ', '7', ' ', ' '};
+        for (int i = 0; i < 6; i++) {
+            int pow = (int) Math.pow(58, i);
+            long i1 = x / pow;
+            int index = (int) (i1 % 58);
+            chars[S[i]] = TABLE.charAt(index);
+        }
+        return String.valueOf(chars);
+    }
+
+    public static int bvidToAid(String bvid) {
+        long r = 0;
+        for (int i = 0; i < 6; i++) {
+            r += MAP.get(bvid.charAt(S[i])) * Math.pow(58, i);
+        }
+        return (int) ((r - ADD) ^ XOR);
+    }
+}
+```
+
+### Kotlin
+```kotlin
+/**
+ * 此程序非完全原创，改编自GH站内某大佬的Java程序，修改了部分代码，且转换为Kotlin
+ * 算法来源同上
+ */
+object VideoUtils {
+    //这里是由知乎大佬不知道用什么方法得出的转换用数字
+    var ss = intArrayOf(11, 10, 3, 8, 4, 6, 2, 9, 5, 7)
+    var xor: Long = 177451812 //二进制时加减数1
+
+    var add = 8728348608L //十进制时加减数2
+
+    //变量初始化工作，加载哈希表
+    private const val table = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF"
+    private val mp = HashMap<String, Int>()
+    private val mp2 = HashMap<Int, String>()
+
+    //现在，定义av号和bv号互转的方法
+//定义一个power乘方方法，这是转换进制必要的
+    fun power(a: Int, b: Int): Long {
+        var power: Long = 1
+        for (c in 0 until b) power *= a.toLong()
+        return power
+    }
+
+    //bv转av方法
+    fun bv2av(s: String): String {
+        var r: Long = 0
+        //58进制转换
+        for (i in 0..57) {
+            val s1 = table.substring(i, i + 1)
+            mp[s1] = i
+        }
+        for (i in 0..5) {
+            r += mp[s.substring(ss[i], ss[i] + 1)]!! * power(58, i)
+        }
+        //转换完成后，需要处理，带上两个随机数
+        return (r - add xor xor).toString()
+    }
+
+    //av转bv方法
+    fun av2bv(st: String): String {
+        try {
+            var s = java.lang.Long.valueOf(st.split("av".toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()[1])
+            val sb = StringBuffer("BV1  4 1 7  ")
+            //逆向思路，先将随机数还原
+            s = (s xor xor) + add
+            //58进制转回
+            for (i in 0..57) {
+                val s1 = table.substring(i, i + 1)
+                mp2[i] = s1
+            }
+            for (i in 0..5) {
+                val r = mp2[(s / power(58, i) % 58).toInt()]
+                sb.replace(ss[i], ss[i] + 1, r!!)
+            }
+            return sb.toString()
+        } catch (e: ArrayIndexOutOfBoundsException) {
+            return ""
+        }
+    }
+
+}
+```
+
+### Golang
+```golang
+package main
+
+import "math"
+
+const TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF"
+
+var S = [11]uint{11, 10, 3, 8, 4, 6}
+
+const XOR = 177451812
+const ADD = 8728348608
+
+var TR = map[string]int64{}
+
+// 初始化 TR
+func init() {
+	for i := 0; i < 58; i++ {
+		TR[TABLE[i:i+1]] = int64(i)
+	}
+}
+
+func BV2AV(bv string) int64 {
+	r := int64(0)
+	for i := 0; i < 6; i++ {
+		r += TR[bv[S[i]:S[i]+1]] * int64(math.Pow(58, float64(i)))
+	}
+	return (r - ADD) ^ XOR
+}
+
+func AV2BV(av int64) string {
+	x := (av ^ XOR) + ADD
+	r := []rune("BV1  4 1 7  ")
+	for i := 0; i < 6; i++ {
+		r[S[i]] = rune(TABLE[x/int64(math.Pow(58, float64(i)))%58])
+	}
+	return string(r)
+}
+
+func main() {
+	println(AV2BV(170001))
+	println(BV2AV("BV17x411w7KC"))
+}
 ```
 
 输出为：

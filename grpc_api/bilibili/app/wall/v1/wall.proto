@@ -24,9 +24,7 @@ message RuleInfo {
 }
 
 // 获取免流规则信息-请求
-message RuleRequest {
-
-}
+message RuleRequest {}
 
 // 免流规则信息组
 message RulesInfo {

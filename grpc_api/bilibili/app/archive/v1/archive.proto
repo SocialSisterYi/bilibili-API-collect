@@ -66,6 +66,14 @@ message Arc {
 	int64 season_id = 29;
 	// 新版属性位配置(也没用)
 	int64 attribute_v2 = 30;
+	//
+	SeasonTheme season_theme = 31;
+	//
+    string short_link_v2 = 40;
+	//
+    int32 up_from_v2 = 41;
+	//
+    string first_frame = 42;
 }
 
 // UP主信息
@@ -110,6 +118,8 @@ message Page {
     string webLink = 8;
     // 分P分辨率
     Dimension dimension = 9;
+	//
+	string first_frame = 10;
 }
 
 // 稿件控制标志
@@ -142,6 +152,16 @@ message Rights {
 	int32 arc_pay = 13;
 	// 是否已付费可自由观看
     int32 pay_free_watch = 14;
+}
+
+//
+message SeasonTheme {
+	//
+    string bg_color = 1;
+	//
+    string selected_bg_color = 2;
+	//
+    string text_color = 3;
 }
 
 // 合作成员信息

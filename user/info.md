@@ -85,25 +85,25 @@
 | type             | num  | 会员类型         | 0：无<br />1：月大会员<br />2：年度及以上大会员 |
 | status           | num  | 会员状态         | 0：无<br />1：有                                |
 | due_date         | num  | 会员过期时间      | Unix时间戳(毫秒) |
-| vip_pay_type         | num  | 1      |  |
+| vip_pay_type     | num  | 支付类型         | 0：未支付（常见于官方账号）<br />1：已支付（以正常渠道获取的大会员均为此值） |
 | theme_type       | num  | 0                | 作用尚不明确                                    |
 | label            | obj  | 会员标签         |                                                 |
 | avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示                          |
-| nickname_color   | str  | 会员昵称颜色     | 颜色码                                          |
+| nickname_color   | str  | 会员昵称颜色     | 颜色码，一般为`#FB7299`，曾用于愚人节改变大会员配色 |
 | role   | num  | 3     |                                           |
 | avatar_subscript_url   | str  | 大会员角标地址     |                                           |
 
 `vip`中的`label`对象：
 
-| 字段        | 类型 | 内容         | 备注                                                         |
-| ----------- | ---- | ------------ | ------------------------------------------------------------ |
-| path        | str  | 空           | 作用尚不明确                                                 |
-| text        | str  | 会员类型文案 |                                                              |
-| label_theme | str  | 会员标签     | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
-| text_color | str  | 会员标签     |  |
-| bg_style | num  |      |  |
-| bg_color | str  |      |  |
-| border_color | str  |      |  |
+| 字段          | 类型 | 内容         | 备注                                                         |
+| ------------ | ---- | ------------ | ------------------------------------------------------------ |
+| path         | str  | 空           | 作用尚不明确                                                 |
+| text         | str  | 会员类型文案  |                                                              |
+| label_theme  | str  | 会员标签      | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
+| text_color   | str  | 会员标签      |  |
+| bg_style     | num  | 1            |  |
+| bg_color     | str  | 会员标签背景颜色 | 颜色码，一般为`#FB7299`，曾用于愚人节改变大会员配色 |
+| border_color | str  | 会员标签边框颜色 | 未使用 |
 
 `data`中的`pendant`对象：
 
