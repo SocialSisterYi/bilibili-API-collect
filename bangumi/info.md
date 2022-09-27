@@ -429,10 +429,10 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 
 | 字段       | 类型    | 内容                           | 备注  |
 |----------|-------|------------------------------|-----|
-| episodes | array | 正片分集信息                       |     |
-| id       | num   |                              |     |
+| episodes | array | 分集信息                         |     |
+| id       | num   | 分组id                         |     |
 | type     | num   | 0：正片<br/>1：PV&其他<br/>2：OP&ED |     |
-| title    | str   | 正片                           |     |
+| title    | str   |                              |     |
 
 `episodes`数组中的对象：
 
