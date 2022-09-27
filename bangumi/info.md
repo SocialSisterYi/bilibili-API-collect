@@ -247,12 +247,6 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | title        | str  | 单集标题                          |                      |
 | vid          | str  | 单集vid                           | vupload_+{cid}       |
 
-
-
-
-
-
-
 `result`中的`new_ep`对象：
 
 | 字段   | 类型 | 内容         | 备注             |
@@ -274,8 +268,6 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | vip_discount        | num  |      |      |
 | vip_first_promotion | str  |      |      |
 | vip_promotion       | str  |      |      |
-
-
 
 `result`中的`positive`对象：
 
@@ -343,14 +335,6 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | season_title | num  |      |      |
 | season_type  | str  |      |      |
 | stat         | obj  |      |      |
-
-
-
-
-
-
-
-
 
 `result`中的`section`数组：
 
