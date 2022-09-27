@@ -2,6 +2,7 @@
 
 - [剧集基本信息（mdid方式）](#剧集基本信息mdid方式)
 - [获取剧集明细（web端）（ssid/epid方式）](#获取剧集明细web端ssidepid方式)
+- [获取剧集分集信息](#获取剧集分集信息)
 
 ---
 
@@ -369,16 +370,6 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | title      | str   | 板块标题 |      |
 | type       | num   | ？       |      |
 
-
-
-
-
-
-
-
-
-
-
 `result`中的`series`对象：
 
 | 字段         | 类型 | 内容   | 备注 |
@@ -419,4 +410,636 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | vip_status  | num  |             |      |
 | vip_type    | num  |             |      |
 
-## 
+## 获取剧集分集信息
+
+> https://api.bilibili.com/pgc/web/season/section?season_id=42291
+
+*请求方式：GET*
+
+鉴权方式：Cookie（SESSDATA）或APP
+
+**url参数：**
+
+| 参数名       | 类型  | 内容     | 必要性 | 备注  |
+|-----------|-----|--------|-----|-----|
+| season_id | str | 剧集ssid | 必要  |     |
+
+**json回复：**
+
+根对象：
+
+| 字段      | 类型  | 内容   | 备注                |
+|---------|-----|------|-------------------|
+| code    | num | 返回值  | 0：成功<br />-404：错误 |
+| message | str | 错误信息 | 默认为success        |
+| result  | obj | 信息本体 |                   |
+
+`result`对象：
+
+| 字段           | 类型    | 内容     | 备注  |
+|--------------|-------|--------|-----|
+| main_section | obj   | 正片信息   |     |
+| section      | array | 花絮、PV等 |     |
+
+`result`中的`main_section`对象：
+
+| 字段       | 类型    | 内容                           | 备注  |
+|----------|-------|------------------------------|-----|
+| episodes | array | 正片分集信息                       |     |
+| id       | num   |                              |     |
+| type     | num   | 0：正片<br/>1：PV&其他<br/>2：OP&ED |     |
+| title    | str   | 正片                           |     |
+
+`episodes`数组中的对象：
+
+| 字段          | 类型  | 内容       | 备注  |
+|-------------|-----|----------|-----|
+| aid         | num | 视频av号    |     |
+| badge       | str |          |     |
+| badge_info  | obj |          |     |
+| badge_type  | num | 0        |     |
+| cid         | num | 分集cid    |     |
+| cover       | str | 分集封面     |     |
+| from        | str | bangumi  |     |
+| id          | num | 分集epId   |     |
+| is_premiere | num | 0        |     |
+| long_title  | str | 长标题      |     |
+| share_url   | str | 分集播放页url |     |
+| status      | num | 2        |     |
+| title       | str | 短标题      |     |
+| vid         | str |          |     |
+
+`badge_info`对象：
+
+| 字段             | 类型  | 内容  | 备注  |
+|----------------|-----|-----|-----|
+| bg_color       | str |     |     |
+| bg_color_night | str |     |     |
+| text           | str |     |     |
+
+`section`数组中的对象：
+
+**同`main_section`对象**
+
+**示例：**
+
+```shell
+curl -L -X GET 'https://api.bilibili.com/pgc/web/season/section?season_id=42290'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "success",
+    "result": {
+        "main_section": {
+            "episodes": [
+                {
+                    "aid": 300876247,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 772096113,
+                    "cover": "http://i0.hdslb.com/bfs/archive/c09aec64c1787e287b0187498a4443177cc2112c.jpg",
+                    "from": "bangumi",
+                    "id": 606591,
+                    "is_premiere": 0,
+                    "long_title": "瞒天过海！罪犯新选组",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606591",
+                    "status": 2,
+                    "title": "1",
+                    "vid": ""
+                },
+                {
+                    "aid": 555940678,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 779868818,
+                    "cover": "http://i0.hdslb.com/bfs/archive/52ccef75fc179c7f8a4f2ff989a1249c78f564e0.jpg",
+                    "from": "bangumi",
+                    "id": 606592,
+                    "is_premiere": 0,
+                    "long_title": "光芒四射！遗物日本刀",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606592",
+                    "status": 2,
+                    "title": "2",
+                    "vid": ""
+                },
+                {
+                    "aid": 216208730,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 779450100,
+                    "cover": "http://i0.hdslb.com/bfs/archive/7eee64ff758fb426b6cd16bc7d525f4de98fd4dc.jpg",
+                    "from": "bangumi",
+                    "id": 606596,
+                    "is_premiere": 0,
+                    "long_title": "乔装打扮！潜入花街",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606596",
+                    "status": 2,
+                    "title": "3",
+                    "vid": ""
+                },
+                {
+                    "aid": 386385026,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 786667756,
+                    "cover": "http://i0.hdslb.com/bfs/archive/6851be597e1fa496a8b1486000e83654c2fac45c.jpg",
+                    "from": "bangumi",
+                    "id": 606597,
+                    "is_premiere": 0,
+                    "long_title": "一探究竟！神秘妖刀",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606597",
+                    "status": 2,
+                    "title": "4",
+                    "vid": ""
+                },
+                {
+                    "aid": 729094525,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 793386614,
+                    "cover": "http://i0.hdslb.com/bfs/archive/5dfa30d48188b26c616a05745132a59f6823dade.jpg",
+                    "from": "bangumi",
+                    "id": 606598,
+                    "is_premiere": 0,
+                    "long_title": "展现无遗！和尚与医生的决心",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606598",
+                    "status": 2,
+                    "title": "5",
+                    "vid": ""
+                },
+                {
+                    "aid": 599314561,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 798315932,
+                    "cover": "http://i0.hdslb.com/bfs/archive/3daae9ee434d335ff9e5a9d8244bc1e6b7ffa8d0.jpg",
+                    "from": "bangumi",
+                    "id": 606599,
+                    "is_premiere": 0,
+                    "long_title": "直捣敌巢！败德白川屋",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606599",
+                    "status": 2,
+                    "title": "6",
+                    "vid": ""
+                },
+                {
+                    "aid": 259686552,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 807199844,
+                    "cover": "http://i0.hdslb.com/bfs/archive/9ff73932c210abe64373be6f3959c2eee6c7470b.jpg",
+                    "from": "bangumi",
+                    "id": 606600,
+                    "is_premiere": 0,
+                    "long_title": "全力阻止！新选组解散",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606600",
+                    "status": 2,
+                    "title": "7",
+                    "vid": ""
+                },
+                {
+                    "aid": 514942530,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 814175863,
+                    "cover": "http://i0.hdslb.com/bfs/archive/31a19bf3af61e58f1e8c4a387779fc3272cb47a7.jpg",
+                    "from": "bangumi",
+                    "id": 606601,
+                    "is_premiere": 0,
+                    "long_title": "激烈战斗！池田屋事件",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606601",
+                    "status": 2,
+                    "title": "8",
+                    "vid": ""
+                },
+                {
+                    "aid": 515024193,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 819960797,
+                    "cover": "http://i0.hdslb.com/bfs/archive/68a0a12a74e99b6cd85cfa0fb7be70d82d8b6558.jpg",
+                    "from": "bangumi",
+                    "id": 606602,
+                    "is_premiere": 0,
+                    "long_title": "真心炸裂！人之思绪 鬼之念想",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606602",
+                    "status": 2,
+                    "title": "9",
+                    "vid": ""
+                },
+                {
+                    "aid": 430293537,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 827739564,
+                    "cover": "http://i0.hdslb.com/bfs/archive/6411f71c947ba9b011ca0fe2891334147ef1e14d.jpg",
+                    "from": "bangumi",
+                    "id": 606603,
+                    "is_premiere": 0,
+                    "long_title": "全力守护！美利坚黑船",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606603",
+                    "status": 2,
+                    "title": "10",
+                    "vid": ""
+                },
+                {
+                    "aid": 858116183,
+                    "badge": "",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": ""
+                    },
+                    "badge_type": 0,
+                    "cid": 833436271,
+                    "cover": "http://i0.hdslb.com/bfs/archive/48736284b5cf0f3515cddb95f1c1b8658ec6c5ff.jpg",
+                    "from": "bangumi",
+                    "id": 606604,
+                    "is_premiere": 0,
+                    "long_title": "勇往直前！京都大决战",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606604",
+                    "status": 2,
+                    "title": "11",
+                    "vid": ""
+                },
+                {
+                    "aid": 773279679,
+                    "badge": "会员",
+                    "badge_info": {
+                        "bg_color": "#FB7299",
+                        "bg_color_night": "#BB5B76",
+                        "text": "会员"
+                    },
+                    "badge_type": 0,
+                    "cid": 840839493,
+                    "cover": "http://i0.hdslb.com/bfs/archive/316f7c8a750699bf53ee44d43669fabb0271be86.jpg",
+                    "from": "bangumi",
+                    "id": 606605,
+                    "is_premiere": 0,
+                    "long_title": "替身传说！罪犯新选组",
+                    "share_url": "https://www.bilibili.com/bangumi/play/ep606605",
+                    "status": 13,
+                    "title": "12",
+                    "vid": ""
+                }
+            ],
+            "id": 81861,
+            "title": "正片",
+            "type": 0
+        },
+        "section": [
+            {
+                "episodes": [
+                    {
+                        "aid": 898153042,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 766274696,
+                        "cover": "http://i0.hdslb.com/bfs/archive/ac27ed20081e99fc36720ef0714f81d8df2c279a.png",
+                        "from": "bangumi",
+                        "id": 576387,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep576387",
+                        "status": 2,
+                        "title": "PV",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 215937670,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 773008915,
+                        "cover": "http://i0.hdslb.com/bfs/archive/0a6b589e9175dfee1d9699fb55c5c0677941994a.png",
+                        "from": "bangumi",
+                        "id": 606995,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep606995",
+                        "status": 2,
+                        "title": "西川贵教",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 813460609,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 773007362,
+                        "cover": "http://i0.hdslb.com/bfs/archive/6c8f4136731c1c2f8171f5c006f79f0603d11bdf.png",
+                        "from": "bangumi",
+                        "id": 606998,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep606998",
+                        "status": 2,
+                        "title": "幕末替身声优采访",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 556287340,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 785468206,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 660464,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep660464",
+                        "status": 2,
+                        "title": "声优对谈 01",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 984099086,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 792637456,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 669591,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep669591",
+                        "status": 2,
+                        "title": "声优对谈 02",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 259364452,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 798995285,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 670446,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep670446",
+                        "status": 2,
+                        "title": "声优对谈 03",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 772146427,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 808201440,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 672539,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep672539",
+                        "status": 2,
+                        "title": "声优对谈 04",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 687381109,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 814826609,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 676133,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep676133",
+                        "status": 2,
+                        "title": "声优对谈 05",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 730289528,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 826951152,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 676134,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep676134",
+                        "status": 2,
+                        "title": "声优对谈 07",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 602813211,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 826951370,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 676135,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep676135",
+                        "status": 2,
+                        "title": "声优对谈 08",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 515295782,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 826951255,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 676137,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep676137",
+                        "status": 2,
+                        "title": "声优对谈 09",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 815269384,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 826951558,
+                        "cover": "http://i0.hdslb.com/bfs/archive/77564ca30f1a4d3a64cfc292a7fd989c09a30027.png",
+                        "from": "bangumi",
+                        "id": 676138,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep676138",
+                        "status": 2,
+                        "title": "声优对谈 10",
+                        "vid": ""
+                    }
+                ],
+                "id": 82126,
+                "title": "PV&其他",
+                "type": 1
+            },
+            {
+                "episodes": [
+                    {
+                        "aid": 556712105,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 794382832,
+                        "cover": "http://i0.hdslb.com/bfs/archive/1f4ab8b9af0689900e7c486c4e676e27988091be.png",
+                        "from": "bangumi",
+                        "id": 670062,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep670062",
+                        "status": 2,
+                        "title": "NCOP",
+                        "vid": ""
+                    },
+                    {
+                        "aid": 259129266,
+                        "badge": "",
+                        "badge_info": {
+                            "bg_color": "#FB7299",
+                            "bg_color_night": "#BB5B76",
+                            "text": ""
+                        },
+                        "badge_type": 0,
+                        "cid": 794382772,
+                        "cover": "http://i0.hdslb.com/bfs/archive/d08738a452187a0229c3b99beaf1cb4ff868a030.png",
+                        "from": "bangumi",
+                        "id": 670063,
+                        "is_premiere": 0,
+                        "long_title": "",
+                        "share_url": "https://www.bilibili.com/bangumi/play/ep670063",
+                        "status": 2,
+                        "title": "NCED",
+                        "vid": ""
+                    }
+                ],
+                "id": 85065,
+                "title": "OP&ED",
+                "type": 2
+            }
+        ]
+    }
+}
+```
+
+</details>
