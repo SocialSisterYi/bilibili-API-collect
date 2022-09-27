@@ -394,7 +394,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 | vip_status  | num  |             |      |
 | vip_type    | num  |             |      |
 
-## 获取剧集分集信息
+# 获取剧集分集信息
 
 > https://api.bilibili.com/pgc/web/season/section?season_id=42291
 
