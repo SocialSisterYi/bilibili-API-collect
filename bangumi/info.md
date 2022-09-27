@@ -396,7 +396,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 
 # 获取剧集分集信息
 
-> https://api.bilibili.com/pgc/web/season/section?season_id=42291
+> https://api.bilibili.com/pgc/web/season/section
 
 *请求方式：GET*
 
