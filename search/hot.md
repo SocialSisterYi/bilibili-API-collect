@@ -2,12 +2,13 @@
 
 - [获取默认搜索内容（web端）](#获取默认搜索内容web端)
 - [获取热搜列表（web端）](#获取热搜列表web端)
+- [获取热搜列表（手机端）](#获取热搜列表手机端)
 
 ---
 
 ## 获取默认搜索内容（web端）
 
-> http://api.bilibili.com/x/web-interface/search/default
+> https://api.bilibili.com/x/web-interface/search/default
 
 *请求方式：GET*
 
@@ -40,7 +41,7 @@
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/search/default'
+curl 'https://api.bilibili.com/x/web-interface/search/default'
 ```
 
 <details>
@@ -68,11 +69,11 @@ curl 'http://api.bilibili.com/x/web-interface/search/default'
 
 ## 获取热搜列表（web端）
 
-> http://s.search.bilibili.com/main/hotword
+> https://s.search.bilibili.com/main/hotword
 
 *请求方式：GET*
 
-榜单每隔固定时间统计一次，请求后返回搜索前20的关键词
+榜单每隔固定时间统计一次，请求后返回搜索前10的关键词
 
 带有转义
 
@@ -96,26 +97,31 @@ curl 'http://api.bilibili.com/x/web-interface/search/default'
 | ---- | ---- | --------------- | ------------ |
 | 0    | obj  | 榜单第1名       |              |
 | n    | obj  | 榜单第（n+1）名 | 按照名次顺序 |
-| 19   | obj  | 榜单第20名      | 最后一项     |
+| 10   | obj  | 榜单第10名      | 最后一项     |
 
 `list`数组中的对象：
 
-| 字段       | 类型 | 内容     | 备注                          |
-| ---------- | ---- | -------- | ----------------------------- |
-| status     | str  | 空       |                               |
-| keyword    | str  | 关键词   |                               |
-| goto_type  | num  | 0        |                               |
-| pos        | num  | 名次     | 1-20                          |
-| word_type  | num  | 条目属性 | 1：正常<br />4：新<br />5：热 |
-| id         | num  | 名次     | 1-20                          |
-| goto_value | str  | 空       |                               |
-| name_type  | str  | 空       |                               |
-| icon       | str  | 图标url  |                               |
+| 字段       | 类型 | 内容     | 备注    |
+| ---------- | ---- | -------- | ------- |
+| status     | str  | 空       |         |
+| hot_id     | num  | 热词id  | 大概是吧？    |
+| keyword    | str  | 关键词   |         |
+| resource_id| num  | 资源id   |         |
+| goto_type  | num  | 0       |         |
+| res        | array| null    |         |
+| show_name  | str  | 完整关键词|         |
+| pos        | num  | 名次     | 1-10    |
+| word_type  | num  | 条目属性 | 均返回8 |
+| id         | num  | 名次     | 1-10    |
+| goto_value | str  | 空       |         |
+| live_id    | array| null    |         |
+| name_type  | str  | 空       |         |
+| icon       | str  | 图标url  |         |
 
 **示例：**
 
 ```shell
-curl 'http://s.search.bilibili.com/main/hotword'
+curl 'https://s.search.bilibili.com/main/hotword'
 ```
 
 <details>
@@ -123,242 +129,440 @@ curl 'http://s.search.bilibili.com/main/hotword'
 
 ```json
 {
-    "exp_str": "8104#8200#8300#8401#8500#5502#6699",
-    "code": 0,
-    "cost": {
-        "reas_request": "0.001895",
-        "params_check": "0.000127",
-        "reas_response_format": "0.000098",
-        "deserialize_response": "0.000080",
-        "reas_request_format": "0.000076",
-        "total": "0.002479",
-        "main_handler": "0.002252"
-    },
-    "seid": "9318821020548476185",
-    "timestamp": 1596034742,
-    "message": "success",
+	"exp_str": "8104#8200#8300#8401#8500#5502#6699",
+	"code": 0,
+	"cost": {
+		"reas_request": "0.001895",
+		"params_check": "0.000127",
+		"reas_response_format": "0.000098",
+		"deserialize_response": "0.000080",
+		"reas_request_format": "0.000076",
+		"total": "0.002479",
+		"main_handler": "0.002252"
+	},
+	"seid": "9318821020548476185",
+	"timestamp": 1596034742,
+	"message": "success",
+	"list": [{
+			"status": "",
+			"hot_id": 11003,
+			"keyword": "流浪地球2刘德华",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "流浪地球2刘德华造型",
+			"pos": 1,
+			"word_type": 8,
+			"id": 1,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png"
+		},
+		{
+			"status": "",
+			"hot_id": 11012,
+			"keyword": "QQ飞车手游飞跃黄河",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "QQ飞车手游飞跃黄河",
+			"pos": 2,
+			"word_type": 8,
+			"id": 2,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png"
+		},
+		{
+			"status": "",
+			"hot_id": 10996,
+			"keyword": "西工大遭网络攻击最新调查",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "西工大遭网络攻击最新调查",
+			"pos": 3,
+			"word_type": 8,
+			"id": 3,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png"
+		},
+		{
+			"status": "",
+			"hot_id": 11004,
+			"keyword": "EDG 起诉",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "EDGJieJie已起诉多家企业",
+			"pos": 4,
+			"word_type": 8,
+			"id": 4,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png"
+		},
+		{
+			"status": "",
+			"hot_id": 10992,
+			"keyword": "隐入尘烟",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "隐入尘烟全平台下架",
+			"pos": 5,
+			"word_type": 8,
+			"id": 5,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png"
+		},
+		{
+			"status": "",
+			"hot_id": 10987,
+			"keyword": "原神半年内最良心封神池",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "原神半年内最良心封神池",
+			"pos": 6,
+			"word_type": 8,
+			"id": 6,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": ""
+		},
+		{
+			"status": "",
+			"hot_id": 10988,
+			"keyword": "高校回应设国内首个元宇宙院系",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "高校回应设国内首个元宇宙院系",
+			"pos": 7,
+			"word_type": 8,
+			"id": 7,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": ""
+		},
+		{
+			"status": "",
+			"hot_id": 10994,
+			"keyword": "美宇宙飞船成功撞击小行星",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "美宇宙飞船成功撞击小行星",
+			"pos": 8,
+			"word_type": 8,
+			"id": 8,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": ""
+		},
+		{
+			"status": "",
+			"hot_id": 10991,
+			"keyword": "你薅的羊毛可能已违法",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "你薅的羊毛可能已违法",
+			"pos": 9,
+			"word_type": 8,
+			"id": 9,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": ""
+		},
+		{
+			"status": "",
+			"hot_id": 11013,
+			"keyword": "辛普森一家",
+			"resource_id": 0,
+			"goto_type": 0,
+			"res": [
+
+			],
+			"show_name": "辛普森一家",
+			"pos": 10,
+			"word_type": 8,
+			"id": 10,
+			"goto_value": "",
+			"live_id": [
+
+			],
+			"name_type": "",
+			"icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png"
+		}
+	]
+}
+```
+
+</details>
+
+## 获取热搜列表（手机端）
+
+> https://app.bilibili.com/x/v2/search/trending/ranking
+
+*请求方式：GET*
+
+榜单每隔固定时间统计一次，请求后返回搜索前20的关键词
+
+带有转义
+
+**json回复：**
+
+根对象：
+
+| 字段      | 类型  | 内容         | 备注          |
+| --------- | ----- | ------------ | ------------- |
+| code      | num   | 返回值       | 0：成功       |
+| message   | str   | 错误信息     | 默认为0 |
+| ttl       | num   | 返回值       |  默认为1 |
+
+`data`对象：
+
+| 字段      | 类型  | 内容         | 备注          |
+| ---- | ---- | --------------- | ------------ |
+| trackid    | num  |           |    不知用途   |
+| list       | array | 热搜列表   |               |
+
+`list`数组：
+
+| 项   | 类型 | 内容            | 备注         |
+| ---- | ---- | --------------- | ------------ |
+| 0    | obj  | 榜单第1名       |              |
+| n    | obj  | 榜单第（n+1）名 | 按照名次顺序 |
+| 20   | obj  | 榜单第20名      | 最后一项     |
+
+`list`数组中的对象：
+
+| 字段       | 类型 | 内容     | 备注    |
+| ---------- | ---- | -------- | ------- |
+| position   | num  | 名次      |  1-20   |
+| keyword    | str  | 关键词   |         |
+| show_name  | str  | 完整关键词|         |
+| word_type  | num  | 条目属性 | 均返回8 |
+| icon       | str  | 图标url  |         |
+| hot_id     | num  | 热词id  | 大概是吧？    |
+
+**示例：**
+
+```shell
+curl 'https://app.bilibili.com/x/v2/search/trending/ranking'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "trackid": "12666380188451258075",
     "list": [
-        {
-            "status": "",
-            "keyword": "特朗普",
-            "goto_type": 0,
-            "pos": 1,
-            "word_type": 1,
-            "id": 1,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "武汉协和医院",
-            "goto_type": 0,
-            "pos": 2,
-            "word_type": 5,
-            "id": 2,
-            "goto_value": "",
-            "name_type": "",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png"
-        },
-        {
-            "status": "",
-            "keyword": "元龙",
-            "goto_type": 0,
-            "pos": 3,
-            "word_type": 5,
-            "id": 3,
-            "goto_value": "",
-            "name_type": "",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png"
-        },
-        {
-            "status": "",
-            "keyword": "周深",
-            "goto_type": 0,
-            "pos": 4,
-            "word_type": 4,
-            "id": 4,
-            "goto_value": "",
-            "name_type": "",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png"
-        },
-        {
-            "status": "",
-            "keyword": "徐大sao",
-            "goto_type": 0,
-            "pos": 5,
-            "word_type": 4,
-            "id": 5,
-            "goto_value": "",
-            "name_type": "",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png"
-        },
-        {
-            "status": "",
-            "keyword": "FPX",
-            "goto_type": 0,
-            "pos": 6,
-            "word_type": 4,
-            "id": 6,
-            "goto_value": "",
-            "name_type": "",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png"
-        },
-        {
-            "status": "",
-            "keyword": "BLACKPINK",
-            "goto_type": 0,
-            "pos": 7,
-            "word_type": 1,
-            "id": 7,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "沈力",
-            "goto_type": 0,
-            "pos": 8,
-            "word_type": 1,
-            "id": 8,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "老番茄",
-            "goto_type": 0,
-            "pos": 9,
-            "word_type": 1,
-            "id": 9,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "JDG",
-            "goto_type": 0,
-            "pos": 10,
-            "word_type": 4,
-            "id": 10,
-            "goto_value": "",
-            "name_type": "",
-            "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png"
-        },
-        {
-            "status": "",
-            "keyword": "荒废工厂",
-            "goto_type": 0,
-            "pos": 11,
-            "word_type": 1,
-            "id": 11,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "活着",
-            "goto_type": 0,
-            "pos": 12,
-            "word_type": 1,
-            "id": 12,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "明日方舟",
-            "goto_type": 0,
-            "pos": 13,
-            "word_type": 1,
-            "id": 13,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "创造营2020",
-            "goto_type": 0,
-            "pos": 14,
-            "word_type": 1,
-            "id": 14,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "黑人抬棺",
-            "goto_type": 0,
-            "pos": 15,
-            "word_type": 1,
-            "id": 15,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "名侦探柯南",
-            "goto_type": 0,
-            "pos": 16,
-            "word_type": 1,
-            "id": 16,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "fpx",
-            "goto_type": 0,
-            "pos": 17,
-            "word_type": 1,
-            "id": 17,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "csgo",
-            "goto_type": 0,
-            "pos": 18,
-            "word_type": 1,
-            "id": 18,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "正道的光",
-            "goto_type": 0,
-            "pos": 19,
-            "word_type": 1,
-            "id": 19,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        },
-        {
-            "status": "",
-            "keyword": "bts",
-            "goto_type": 0,
-            "pos": 20,
-            "word_type": 1,
-            "id": 20,
-            "goto_value": "",
-            "name_type": "",
-            "icon": ""
-        }
-    ]
+      {
+        "position": 1,
+        "keyword": "流浪地球2刘德华",
+        "show_name": "流浪地球2刘德华造型",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
+        "hot_id": 11003
+      },
+      {
+        "position": 2,
+        "keyword": "QQ飞车手游飞跃黄河",
+        "show_name": "QQ飞车手游飞跃黄河",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
+        "hot_id": 11012
+      },
+      {
+        "position": 3,
+        "keyword": "西工大遭网络攻击最新调查",
+        "show_name": "西工大遭网络攻击最新调查",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png",
+        "hot_id": 10996
+      },
+      {
+        "position": 4,
+        "keyword": "EDG 起诉",
+        "show_name": "EDGJieJie已起诉多家企业",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
+        "hot_id": 11004
+      },
+      {
+        "position": 5,
+        "keyword": "隐入尘烟",
+        "show_name": "隐入尘烟全平台下架",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png",
+        "hot_id": 10992
+      },
+      {
+        "position": 6,
+        "keyword": "原神半年内最良心封神池",
+        "show_name": "原神半年内最良心封神池",
+        "word_type": 8,
+        "hot_id": 10987
+      },
+      {
+        "position": 7,
+        "keyword": "高校回应设国内首个元宇宙院系",
+        "show_name": "高校回应设国内首个元宇宙院系",
+        "word_type": 8,
+        "hot_id": 10988
+      },
+      {
+        "position": 8,
+        "keyword": "美宇宙飞船成功撞击小行星",
+        "show_name": "美宇宙飞船成功撞击小行星",
+        "word_type": 8,
+        "hot_id": 10994
+      },
+      {
+        "position": 9,
+        "keyword": "你薅的羊毛可能已违法",
+        "show_name": "你薅的羊毛可能已违法",
+        "word_type": 8,
+        "hot_id": 10991
+      },
+      {
+        "position": 10,
+        "keyword": "火锅店剩锅底重新给顾客",
+        "show_name": "火锅店剩锅底重新给顾客",
+        "word_type": 1,
+        "hot_id": 11014
+      },
+      {
+        "position": 11,
+        "keyword": "海月",
+        "show_name": "王者海月逆天",
+        "word_type": 8,
+        "hot_id": 10999
+      },
+      {
+        "position": 12,
+        "keyword": "周琦重返NBL",
+        "show_name": "徐静雨评周琦重返NBL",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
+        "hot_id": 11007
+      },
+      {
+        "position": 13,
+        "keyword": "小超梦剑魔连招",
+        "show_name": "小超梦剑魔QA连招",
+        "word_type": 8,
+        "hot_id": 11006
+      },
+      {
+        "position": 14,
+        "keyword": "东八区的先生们已下架",
+        "show_name": "东八区的先生们已下架",
+        "word_type": 8,
+        "hot_id": 10955
+      },
+      {
+        "position": 15,
+        "keyword": "三国杀新武将全惠解",
+        "show_name": "三国杀新武将全惠解",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
+        "hot_id": 11009
+      },
+      {
+        "position": 16,
+        "keyword": "ALGS训练赛",
+        "show_name": "ALGS训练赛",
+        "word_type": 8,
+        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
+        "hot_id": 11011
+      },
+      {
+        "position": 17,
+        "keyword": "王者青白蛇皮肤优化",
+        "show_name": "王者青白蛇皮肤优化",
+        "word_type": 8,
+        "hot_id": 11000
+      },
+      {
+        "position": 18,
+        "keyword": "普京授予斯诺登俄公民身份",
+        "show_name": "普京授予斯诺登俄公民身份",
+        "word_type": 1,
+        "hot_id": 10977
+      },
+      {
+        "position": 19,
+        "keyword": "赛诺角色演示",
+        "show_name": "原神赛诺角色演示",
+        "word_type": 8,
+        "hot_id": 10998
+      },
+      {
+        "position": 20,
+        "keyword": "COD19被玩坏了",
+        "show_name": "COD19被玩坏了",
+        "word_type": 8,
+        "hot_id": 10971
+      }
+    ],
+    "exp_str": "8000#5509#6605#7708"
+  }
 }
 ```
 
