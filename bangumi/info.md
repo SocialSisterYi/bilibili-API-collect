@@ -40,19 +40,19 @@
 
 `result`中的`media`对象：
 
-| 字段                 | 类型    | 内容        | 备注                                                  |
-|--------------------|-------|-----------|-----------------------------------------------------|
-| areas              | array | 地区        |                                                     |
-| cover              | str   | 封面图片url   |                                                     |
-| horizontal_picture | str   | 横板封面图片url |                                                     |
-| media_id           | num   | 剧集mdid    |                                                     |
-| new_ep             | obj   | 最新一话信息    |                                                     |
-| rating             | obj   | 评分信息      |                                                     |
-| season_id          | num   | 剧集ssid    |                                                     |
-| share_url          | url   | 剧集详情页连接   |                                                     |
-| title              | str   | 标题        |                                                     |
-| type               | num   | 剧集类型id    | 1：番剧<br/>2：电影<br/>3：纪录片<br/>4：国创<br/>5：电视剧<br/>7：综艺 |
-| type_name          | str   | 剧集类型      |                                                     |
+| 字段                 | 类型    | 内容        | 备注                                                           |
+|--------------------|-------|-----------|--------------------------------------------------------------|
+| areas              | array | 地区        |                                                              |
+| cover              | str   | 封面图片url   |                                                              |
+| horizontal_picture | str   | 横板封面图片url |                                                              |
+| media_id           | num   | 剧集mdid    |                                                              |
+| new_ep             | obj   | 最新一话信息    |                                                              |
+| rating             | obj   | 评分信息      |                                                              |
+| season_id          | num   | 剧集ssid    |                                                              |
+| share_url          | url   | 剧集详情页连接   |                                                              |
+| title              | str   | 标题        |                                                              |
+| type               | num   | 剧集类型id    | 1：番剧<br/>2：电影<br/>3：纪录片<br/>4：国创<br/>5：电视剧<br/>6：漫画<br/>7：综艺 |
+| type_name          | str   | 剧集类型      |                                                              |
 
 `media`中的`areas`数组：
 
