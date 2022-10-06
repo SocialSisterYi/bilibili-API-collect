@@ -250,7 +250,7 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | string  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
 | info | list  | 单条弹幕的用户、内容、粉丝勋章等各种信息 | 待补 |
-
+| tx | string  | 用户发送弹幕的时间 | unix时间戳 |
 <details>
 <summary>查看消息示例：</summary>
 
