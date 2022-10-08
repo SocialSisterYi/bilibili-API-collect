@@ -120,7 +120,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 | token | str  | 登录 API token | 必要 | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
 | challenge | str | 极验 challenge | 必要 | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
 | validate | str | 极验 result | 必要 | 极验验证后得到 |
-| seccode | str | 极验 result +`|jordan` | 必要   | 极验验证后得到 |
+| seccode | str | 极验 result +`\|jordan` | 必要   | 极验验证后得到 |
 
 **json回复：**
 

@@ -97,17 +97,17 @@ curl 'http://passport.bilibili.com/x/passport-login/web/key'
 
 **正文参数 (application/x-www-form-urlencoded)：**
 
-| 参数名       | 类型  | 内容           | 必要性     | 备注                                             |
-|-----------|-----|--------------|---------|------------------------------------------------|
-| username  | str | 用户登录账号       | 必要      | 手机号或邮箱地址                                       |
-| password  | str | 加密后的带盐密码     | 必要      | base64 格式                                      |
-| keep      | num | 0            | 必要      |                                                |
-| token     | str | 登录 token     | 必要      | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
-| challenge | str | 极验 challenge | 必要      | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
-| validate  | str | 极验 result    | 必要      | 极验验证后得到                                        |
-| seccode   | str | 极验 result +` | jordan` | 必要                                             | 极验验证后得到                                               |
-| go_url    | str | 跳转 url       | 非必要     | 默认为 https://www.bilibili.com                   |
-| source    | str | 登录来源         | 非必要     | `main_web`：独立登录页<br />`main_mini`：小窗登录         |
+| 参数名    | 类型 | 内容                   | 必要性 | 备注                                                         |
+| --------- | ---- | ---------------------- | ------ | ------------------------------------------------------------ |
+| username  | str  | 用户登录账号           | 必要   | 手机号或邮箱地址                                             |
+| password  | str  | 加密后的带盐密码       | 必要   | base64 格式                                                  |
+| keep      | num  | 0                      | 必要   |                                                              |
+| token     | str  | 登录 token             | 必要   | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
+| challenge | str  | 极验 challenge         | 必要   | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
+| validate  | str  | 极验 result            | 必要   | 极验验证后得到                                               |
+| seccode   | str  | 极验 result +`\|jordan` | 必要   | 极验验证后得到                                               |
+| go_url    | str  | 跳转 url               | 非必要 | 默认为 https://www.bilibili.com                              |
+| source    | str  | 登录来源               | 非必要 | `main_web`：独立登录页<br />`main_mini`：小窗登录            |
 
 **json回复：**
 
@@ -243,16 +243,19 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 
 **正文参数 (application/x-www-form-urlencoded ）：**
 
-| 参数名         | 类型   | 内容           | 必要性     | 备注                                             |
-|-------------|------|--------------|---------|------------------------------------------------|
-| captchaType | num  | 6            | 必要      | 必须为`6`                                         |
-| username    | str  | 用户登录账号       | 必要      | 手机号或邮箱地址                                       |
-| password    | str  | 加密后的带盐密码     | 必要      | base64 格式                                      |
-| keep        | bool | 是否记住登录       | 必要      | `true`：记住登录<br />`false`：不记住登录                 |
-| key         | str  | 登录 token     | 必要      | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
-| challenge   | str  | 极验 challenge | 必要      | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
-| validate    | str  | 极验 result    | 必要      | 极验验证后得到                                        |
-| seccode     | str  | 极验 result +` | jordan` | 必要                                             | 极验验证后得到                                               |
+
+| 参数名      | 类型 | 内容                   | 必要性 | 备注                                                         |
+| ----------- | ---- | ---------------------- | ------ | ------------------------------------------------------------ |
+| captchaType | num  | 6                      | 必要   | 必须为`6`                                                    |
+| username    | str  | 用户登录账号           | 必要   | 手机号或邮箱地址                                             |
+| password    | str  | 加密后的带盐密码       | 必要   | base64 格式                                                  |
+| keep        | bool | 是否记住登录           | 必要   | `true`：记住登录<br />`false`：不记住登录                    |
+| key         | str  | 登录 token             | 必要   | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
+| challenge   | str  | 极验 challenge         | 必要   | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
+| validate    | str  | 极验 result            | 必要   | 极验验证后得到                                               |
+| seccode     | str  | 极验 result +`\|jordan` | 必要   | 极验验证后得到                                               |
+
+</details>    
 
 **json回复：**
 
