@@ -1,8 +1,8 @@
 # 大会员兑换福利
 
 - [大会员兑换福利](#大会员兑换福利)
-	- [兑换状态查询](#兑换状态查询)
-	- [兑换](#兑换)
+    - [卡券状态查询](#卡券状态查询)
+    - [兑换卡券](#兑换卡券)
 
 ---
 
@@ -18,41 +18,41 @@
 
 根对象：
 
-| 字段    | 类型 | 内容       | 备注                        |
-| ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值 | -101：账号未登录<br />-400：请求错误<br />0：成功 |
-| message | str  | 错误信息 |                             |
-| ttl | num | 1 | |
-| data    | obj  | 信息本体  |                              |
+| 字段      | 类型  | 内容   | 备注                                  |
+|---------|-----|------|-------------------------------------|
+| code    | num | 返回值  | -101：账号未登录<br />-400：请求错误<br />0：成功 |
+| message | str | 错误信息 |                                     |
+| ttl     | num | 1    |                                     |
+| data    | obj | 信息本体 |                                     |
 
 `data`对象：
 
-| 字段           | 类型 | 内容             | 备注                     |
-| ----- | -------|----------------|------ |
-| list  | array | 卡券列表 |              |
-| is_short_vip  | bool | (?) |              |
-| is_freight_open  | bool | (?) |              |
+| 字段              | 类型    | 内容     | 备注  |
+|-----------------|-------|--------|-----|
+| list            | array | 卡券信息列表 |     |
+| is_short_vip    | bool  | (?)    |     |
+| is_freight_open | bool  | (?)    |     |
 
 `list`数组：
 
-| 字段    | 类型 | 内容             | 备注 |
-| ----- | -------|-----------------|------ |
-| 0    | obj   | B币兑换状态 |              |
-| 1    | obj   | 会员购优惠券兑换状态 |      |
-| 2    | obj   | 漫画福利券兑换状态 |      |
-| 3    | obj   | 会员购运费券兑换状态 |      |
+| 字段  | 类型  | 内容          | 备注  |
+|-----|-----|-------------|-----|
+| 0   | obj | B币兑换状态      |     |
+| 1   | obj | 会员购优惠券兑换状态  |     |
+| 2   | obj | 漫画福利券兑换状态   |     |
+| 3   | obj | 会员购包邮券兑换状态  |     |
+| 4   | obj | 漫画商城优惠券兑换状态 |     |
 
 `list`中的对象：
 
-|        字段    | 类型  | 内容             | 备注 |
-| -------------- | -----|------------------|------ |
-| type           | num  | 卡券类型 | 1：B币<br />2：会员购优惠券<br />3：漫画福利券<br />4：会员购运费券 |
-| state        | num  | 兑换状态 | 0：当月未兑换<br />1：已兑换 |
-| expire_time    | num  | 当月过期时间 | 当月月底 |
-| vip_type | num |  | 2：年度大会员可兑换 |
-| next_receive_days | num | 距下一轮兑换剩余天数 |  |
-| period_end_unix | num | 距下一轮兑换截止时间戳 | 秒级时间戳 |
-
+| 字段                | 类型  | 内容         | 备注                                                           |
+|-------------------|-----|------------|--------------------------------------------------------------|
+| type              | num | 卡券类型       | 1：B币券<br />2：会员购优惠券<br />3：漫画福利券<br />4：会员购包邮券<br/>5：漫画商城优惠券 |
+| state             | num | 兑换状态       | 0：当月未兑换<br />1：已兑换                                           |
+| expire_time       | num | 本轮卡券过期时间戳  | 当月月底                                                         |
+| vip_type          | num |            | 2：年度大会员可兑换                                                   |
+| next_receive_days | num | 距下一轮兑换剩余天数 |                                                              |
+| period_end_unix   | num | 下一轮兑换开始时间戳 | 秒级时间戳                                                        |
 
 **示例：**
 
@@ -66,62 +66,62 @@ curl -G 'http://api.bilibili.com/x/vip/privilege/my' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"list": [
-			{
-				"type": 1,
-				"state": 1,
-				"expire_time": 1651334399,
-				"vip_type": 2,
-				"next_receive_days": 20,
-				"period_end_unix": 1651420800
-			},
-			{
-				"type": 2,
-				"state": 0,
-				"expire_time": 1651334399,
-				"vip_type": 2,
-				"next_receive_days": 20,
-				"period_end_unix": 1651420800
-			},
-			{
-				"type": 3,
-				"state": 1,
-				"expire_time": 1651334399,
-				"vip_type": 2,
-				"next_receive_days": 20,
-				"period_end_unix": 1651420800
-			},
-			{
-				"type": 4,
-				"state": 0,
-				"expire_time": 1651334399,
-				"vip_type": 2,
-				"next_receive_days": 20,
-				"period_end_unix": 1651420800
-			},
-			{
-				"type": 5,
-				"state": 0,
-				"expire_time": 1651334399,
-				"vip_type": 2,
-				"next_receive_days": 20,
-				"period_end_unix": 1651420800
-			}
-		],
-		"is_short_vip": false,
-		"is_freight_open": true
-	}
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "list": [
+      {
+        "type": 1,
+        "state": 0,
+        "expire_time": 1667231999,
+        "vip_type": 2,
+        "next_receive_days": 29,
+        "period_end_unix": 1667491200
+      },
+      {
+        "type": 2,
+        "state": 0,
+        "expire_time": 1667231999,
+        "vip_type": 2,
+        "next_receive_days": 29,
+        "period_end_unix": 1667491200
+      },
+      {
+        "type": 3,
+        "state": 0,
+        "expire_time": 1667231999,
+        "vip_type": 2,
+        "next_receive_days": 29,
+        "period_end_unix": 1667491200
+      },
+      {
+        "type": 4,
+        "state": 0,
+        "expire_time": 1667231999,
+        "vip_type": 2,
+        "next_receive_days": 29,
+        "period_end_unix": 1667491200
+      },
+      {
+        "type": 5,
+        "state": 0,
+        "expire_time": 1667231999,
+        "vip_type": 2,
+        "next_receive_days": 29,
+        "period_end_unix": 1667491200
+      }
+    ],
+    "is_short_vip": false,
+    "is_freight_open": true
+  }
 }
 ```
 
 </details>
 
+## 兑换卡券
 
-## 兑换
 > http://api.bilibili.com/x/vip/privilege/receive
 
 *请求方式:POST*
@@ -130,20 +130,20 @@ curl -G 'http://api.bilibili.com/x/vip/privilege/my' \
 
 **正文参数：**
 
-| 参数名     | 类型 | 内容        | 必要性         | 备注                      |
-| ---------- | ---- | ---------- | -------- | ---------------------- |
-| type       | num  | 兑换类型 | 必要          | 1：B币<br />2：会员购优惠券<br />3：漫画福利券<br />4：会员购运费券 |
-| csrf       | num  | CSRF token  | 必要          | Cookie bili_jct字段 |
+| 参数名  | 类型  | 内容         | 必要性 | 备注                                                           |
+|------|-----|------------|-----|--------------------------------------------------------------|
+| type | num | 兑换类型       | 必要  | 1：B币券<br />2：会员购优惠券<br />3：漫画福利券<br />4：会员购包邮券<br/>5：漫画商城优惠券 |
+| csrf | num | CSRF token | 必要  | Cookie bili_jct字段                                            |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | -101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />69800：网络繁忙 请稍后再试<br />69801：你已领取过该权益<br />0：成功 |
-| message | str  | 错误信息 |                                                              |
-| ttl     | num  | 1        |                                                              |
+| 字段      | 类型  | 内容   | 备注                                                                                                |
+|---------|-----|------|---------------------------------------------------------------------------------------------------|
+| code    | num | 返回值  | -101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />69800：网络繁忙 请稍后再试<br />69801：你已领取过该权益<br />0：成功 |
+| message | str | 错误信息 |                                                                                                   |
+| ttl     | num | 1    |                                                                                                   |
 
 **示例：**
 
@@ -159,9 +159,9 @@ curl 'http://api.bilibili.com/x/vip/privilege/receive' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1
+  "code": 0,
+  "message": "0",
+  "ttl": 1
 }
 ```
 
