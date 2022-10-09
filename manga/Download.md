@@ -96,227 +96,51 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/comic.v1.Comic/GetImageIndex' 
 
 ```json
 {
-	'code': 0,
-	'msg': '',
-	'data': {
-		'path': '/bfs/manga/26564/321912/data.index?token=80eab62fef85c1c134a6399f817a938f&ts=63404145',
-		'images': [{
-			'path': '/bfs/manga/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/bf1c48540b68f473b429317d8f6fa8cdb6eed3a5.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/a46cfe90cfb49c67a4dbfc0002e5bc3d87d02963.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/e137d30cd488435d09bea68dc909d1a27b3db21a.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/b61ac5bfb85c73697838dc54f5a5507df1e3df57.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/bd06d129d6dc1e044d50968757a27d67c4c9ec51.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/a48b9a69fbc506f3fd56bb22fa730998f923f5d9.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/13437d1549190a651f89abd5764dde4373f83ab4.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/6e9d66e37e34e52afd4c42f9a07afd38707bf432.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/36dd3a6af93c2a4f66ca9bd0b5af14390c227465.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/8d2f93ba06ffa0601763ad40af9d7ac0a990e0d6.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/2c1fb3254d59afcf0885228b9601771afd6fe16b.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/b5534d33f563c41b19f0dc0b68f8ec12cb900f80.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/6385459e8a1dee45a66b3d99e124c07332d06b4f.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/dea85c0059f479f69df4219b7c73084a52d5da16.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/e7e63ffdf0fe868084d015dcfa61a530fbac09ab.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/fe7365b899a19516af9a976c5ded45a5445a9dad.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/8d5e5c465d98d7921a6ea86bde7d831502b6b578.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/dca2df814894d41e6014e9e0cca853fb7c2fb484.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/426ec296667397aaa7715993a2dd72101ebcf8e5.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/aad57ca06ca5eeaf3e159ee6b8e13c7315926163.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/8907d7518a14b80dd0e1ea3642727023df549a1f.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/389d77503b5619c49f4f7561338b916bb53a78e5.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/3d1527fbf8e50bc6b28a44651d4fd004383cbe70.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/d8e2baf7ec7cd697704490c71e981f49dae42d61.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/f5dc5f93b2d66cdcb6a817cabbba7b58416c8c3e.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/cb7345c41f7cc7ae02a00ce0432a470a26164e6f.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/e7313961ab6c599947e997b4679dd038e666cea5.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/d23c22bf0ffeb6c51562a2b91de0baa6f7da074d.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/bf20d8aa1b4384d1ffcf4e63a12f1eae6dbca162.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/ef5efade82fd5ad456eace5de27cd97092cf9578.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/774750ad7c413d1396c1027b482a073c55ca0bbe.jpg',
-			'x': 1600,
-			'y': 2268,
-			'video_path': '',
-			'video_size': '0'
-		}, {
-			'path': '/bfs/manga/419efa404cd2009771718ad908dc487ed4f0db08.jpg',
-			'x': 1600,
-			'y': 2282,
-			'video_path': '',
-			'video_size': '0'
-		}],
-		'last_modified': '2019-05-13 21:15:53',
-		'host': 'https://manga.hdslb.com',
-		'video': {
-			'svid': '',
-			'filename': '',
-			'route': '',
-			'resource': [],
-			'raw_width': '0',
-			'raw_height': '0',
-			'raw_rotate': '0',
-			'img_urls': [],
-			'bin_url': '',
-			'img_x_len': 10,
-			'img_x_size': 160,
-			'img_y_len': 10,
-			'img_y_size': 90
-		}
-	}
+  "code": 0,
+  "msg": "",
+  "data": {
+    "path": "/bfs/manga/26564/321912/data.index?token=80eab62fef85c1c134a6399f817a938f&ts=63404145",
+    "images": [
+      {
+        "path": "/bfs/manga/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg",
+        "x": 1600,
+        "y": 2268,
+        "video_path": "",
+        "video_size": "0"
+      },
+      {
+        "path": "/bfs/manga/bf1c48540b68f473b429317d8f6fa8cdb6eed3a5.jpg",
+        "x": 1600,
+        "y": 2268,
+        "video_path": "",
+        "video_size": "0"
+      },
+      {
+        "path": "/bfs/manga/a46cfe90cfb49c67a4dbfc0002e5bc3d87d02963.jpg",
+        "x": 1600,
+        "y": 2268,
+        "video_path": "",
+        "video_size": "0"
+      }
+    ],
+    "last_modified": "2019-05-13 21:15:53",
+    "host": "https://manga.hdslb.com",
+    "video": {
+      "svid": "",
+      "filename": "",
+      "route": "",
+      "resource": [],
+      "raw_width": "0",
+      "raw_height": "0",
+      "raw_rotate": "0",
+      "img_urls": [],
+      "bin_url": "",
+      "img_x_len": 10,
+      "img_x_size": 160,
+      "img_y_len": 10,
+      "img_y_size": 90
+    }
+  }
 }
 ```
 
@@ -389,12 +213,14 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/comic.v1.Comic/ImageToken' \
 
 ```json
 {
-	'code': 0,
-	'msg': '',
-	'data': [{
-		'url': 'https://manga.hdslb.com/bfs/manga/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg',
-		'token': '36931815abb35857627a22c347dc1c86&ts=634045c2'
-	}]
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "url": "https://manga.hdslb.com/bfs/manga/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg",
+      "token": "36931815abb35857627a22c347dc1c86&ts=634045c2"
+    }
+  ]
 }
 ```
 
@@ -410,12 +236,14 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/comic.v1.Comic/ImageToken' \
 
 ```
 {
-	'code': 0,
-	'msg': '',
-	'data': [{
-		'url': 'https://manga.hdslb.com/bfs/manga/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg',
-		'token': '36931815abb35857627a22c347dc1c86&ts=634045c2'
-	}]
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "url": "https://manga.hdslb.com/bfs/manga/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg",
+      "token": "36931815abb35857627a22c347dc1c86&ts=634045c2"
+    }
+  ]
 }
 ```
 
