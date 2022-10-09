@@ -47,19 +47,19 @@ SSO登录页面跳转()
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注    |
-| ------- | ---- | -------- | ------- |
-| code    | num  | 返回值   | 0：成功 |
-| message | str  | 错误信息 |         |
-| ttl     | num  | 1        |         |
-| data    | obj  | 信息本体 |         |
+| 字段      | 类型  | 内容   | 备注   |
+|---------|-----|------|------|
+| code    | num | 返回值  | 0：成功 |
+| message | str | 错误信息 |      |
+| ttl     | num | 1    |      |
+| data    | obj | 信息本体 |      |
 
 `data`对象：
 
-| 字段 | 类型 | 内容     | 备注                                                         |
-| ---- | ---- | -------- | ------------------------------------------------------------ |
-| hash | str  | 密码盐值 | 有效时间为 20s<br />恒为 16 字符<br />需要拼接在明文密码之前 |
-| key  | str  | rsa 公钥 | PEM 格式编码<br />加密密码时需要使用                         |
+| 字段   | 类型  | 内容     | 备注                                       |
+|------|-----|--------|------------------------------------------|
+| hash | str | 密码盐值   | 有效时间为 20s<br />恒为 16 字符<br />需要拼接在明文密码之前 |
+| key  | str | rsa 公钥 | PEM 格式编码<br />加密密码时需要使用                  |
 
 **示例：**
 
@@ -113,21 +113,21 @@ curl 'http://passport.bilibili.com/x/passport-login/web/key'
 
 根对象：
 
-| 字段    | 类型                          | 内容     | 备注                                                         |
-| ------- | ----------------------------- | -------- | ------------------------------------------------------------ |
-| code    | num                           | 返回值   | 0：成功<br />-105：验证码错误<br />-400：请求错误<br />-629：账号或密码错误<br />-653：用户名或密码不能为空<br />-662：提交超时,请重新提交<br />-2001：缺少必要的的参数<br />-2100：需验证手机号或邮箱<br />2400：登录秘钥错误<br />2406：验证极验服务出错<br />86000：RSA解密失败 |
-| message | str                           | 错误信息 |                                                              |
-| data    | 成功时：obj<br />失败时：null | 数据本体 |                                                              |
+| 字段      | 类型                    | 内容   | 备注                                                                                                                                                                                              |
+|---------|-----------------------|------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code    | num                   | 返回值  | 0：成功<br />-105：验证码错误<br />-400：请求错误<br />-629：账号或密码错误<br />-653：用户名或密码不能为空<br />-662：提交超时,请重新提交<br />-2001：缺少必要的的参数<br />-2100：需验证手机号或邮箱<br />2400：登录秘钥错误<br />2406：验证极验服务出错<br />86000：RSA解密失败 |
+| message | str                   | 错误信息 |                                                                                                                                                                                                 |
+| data    | 成功时：obj<br />失败时：null | 数据本体 |                                                                                                                                                                                                 |
 
 data 对象：
 
-| 字段          | 类型 | 内容                 | 备注                               |
-| ------------- | ---- | -------------------- | ---------------------------------- |
-| message       | str  | 扫码状态信息         |                                    |
-| refresh_token | str  | 刷新`refresh_token`  |                                    |
-| status        | num  | 0                    |                                    |
-| timestamp     | num  | 登录时间             | 未登录为`0`<br />时间戳 单位为毫秒 |
-| url           | str  | 游戏分站跨域登录 url |                                    |
+| 字段            | 类型  | 内容                | 备注                     |
+|---------------|-----|-------------------|------------------------|
+| message       | str | 扫码状态信息            |                        |
+| refresh_token | str | 刷新`refresh_token` |                        |
+| status        | num | 0                 |                        |
+| timestamp     | num | 登录时间              | 未登录为`0`<br />时间戳 单位为毫秒 |
+| url           | str | 游戏分站跨域登录 url      |                        |
 
 **示例：**
 
@@ -174,7 +174,6 @@ curl 'http://passport.bilibili.com/x/passport-login/web/login' \
 <details>
 <summary>查看响应示例：</summary>
 
-
 ```http
 HTTP/1.1 200 OK
 Date: Mon, 13 Jul 2020 06:56:00 GMT
@@ -208,10 +207,10 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 
 根对象：
 
-| 字段      | 类型  | 内容     | 备注         |
-|---------|-----|--------|-----------------|
-| hash | str  | 密码盐值 | 有效时间为 20s<br />恒为 16 字符<br />需要拼接在明文密码之前 |
-| key  | str  | rsa 公钥 | PEM 格式编码<br />加密密码时需要使用                         |
+| 字段   | 类型  | 内容     | 备注                                       |
+|------|-----|--------|------------------------------------------|
+| hash | str | 密码盐值   | 有效时间为 20s<br />恒为 16 字符<br />需要拼接在明文密码之前 |
+| key  | str | rsa 公钥 | PEM 格式编码<br />加密密码时需要使用                  |
 
 **示例：**
 
@@ -244,6 +243,7 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 
 **正文参数 (application/x-www-form-urlencoded ）：**
 
+
 | 参数名      | 类型 | 内容                   | 必要性 | 备注                                                         |
 | ----------- | ---- | ---------------------- | ------ | ------------------------------------------------------------ |
 | captchaType | num  | 6                      | 必要   | 必须为`6`                                                    |
@@ -261,38 +261,38 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 
 根对象：
 
-| 字段    | 类型 | 内容       | 备注                                                         |
-| ------- | ---- | ---------- | ------------------------------------------------------------ |
-| code    | num  | 返回值     | 0：成功<br />-400：请求错误<br />-629：账号或密码错误<br />-653：用户名或密码不能为空<br />-662：提交超时,请重新提交<br />-2001：缺少必要的的参数<br />-2100：需验证手机号或邮箱<br />2400：登录秘钥错误<br />2406：验证极验服务出错<br />86000：RSA解密失败 |
-| ts      | num  | 当前时间戳 | 成功时无此项                                                 |
-| message | str  | 错误信息   | 默认为0                                                      |
-| data    | obj  | 数据本体   | 成功时有此项                                                 |
+| 字段      | 类型  | 内容    | 备注                                                                                                                                                                              |
+|---------|-----|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| code    | num | 返回值   | 0：成功<br />-400：请求错误<br />-629：账号或密码错误<br />-653：用户名或密码不能为空<br />-662：提交超时,请重新提交<br />-2001：缺少必要的的参数<br />-2100：需验证手机号或邮箱<br />2400：登录秘钥错误<br />2406：验证极验服务出错<br />86000：RSA解密失败 |
+| ts      | num | 当前时间戳 | 成功时无此项                                                                                                                                                                          |
+| message | str | 错误信息  | 默认为0                                                                                                                                                                            |
+| data    | obj | 数据本体  | 成功时有此项                                                                                                                                                                          |
 
 `data`对象：
 
 **未登录时：**
 
-| 字段        | 类型 | 内容                 | 备注 |
-| ----------- | ---- | -------------------- | ---- |
-| redirectUrl | str  | 游戏分站跨域登录 url |      |
+| 字段          | 类型  | 内容           | 备注  |
+|-------------|-----|--------------|-----|
+| redirectUrl | str | 游戏分站跨域登录 url |     |
 
 **已登录时：**
 
-| 字段    | 类型 | 内容                     | 备注 |
-| ------- | ---- | ------------------------ | ---- |
-| isLogin | bool | true                     |      |
-| goUrl   | str  | https://www.bilibili.com |      |
+| 字段      | 类型   | 内容                       | 备注  |
+|---------|------|--------------------------|-----|
+| isLogin | bool | true                     |     |
+| goUrl   | str  | https://www.bilibili.com |     |
 
 **需验证手机号或邮箱时**
 
-| 字段     | 类型 | 内容                     | 备注             |
-| -------- | ---- | ------------------------ | ---------------- |
-| mid      | num  | 用户 mid                 |                  |
-| tel      | str  | 绑定的手机号             | 星号隐藏部分信息 |
-| email    | str  | 绑定的邮箱               | 星号隐藏部分信息 |
-| sorce    | num  | 0                        | **作用尚不明确** |
-| keeptime | num  | 1                        | **作用尚不明确** |
-| goUrl    | str  | https://www.bilibili.com |                  |
+| 字段       | 类型  | 内容                       | 备注         |
+|----------|-----|--------------------------|------------|
+| mid      | num | 用户 mid                   |            |
+| tel      | str | 绑定的手机号                   | 星号隐藏部分信息   |
+| email    | str | 绑定的邮箱                    | 星号隐藏部分信息   |
+| sorce    | num | 0                        | **作用尚不明确** |
+| keeptime | num | 1                        | **作用尚不明确** |
+| goUrl    | str | https://www.bilibili.com |            |
 
 **示例：**
 
@@ -332,7 +332,6 @@ curl 'https://passport.bilibili.com/web/login/v2' \
 <details>
 <summary>查看响应示例：</summary>
 
-
 ```http
 HTTP/1.1 200 OK
 Date: Mon, 13 Jul 2020 06:56:00 GMT
@@ -364,19 +363,19 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容    | 必要性      | 备注 |
-| ------ | ---- | ------- | ----------- | ---- |
-| appkey | str  | APP密钥 | APP方式必要 |      |
-| sign   | str  | APP签名 | APP方式必要 |      |
+| 参数名    | 类型  | 内容    | 必要性     | 备注  |
+|--------|-----|-------|---------|-----|
+| appkey | str | APP密钥 | APP方式必要 |     |
+| sign   | str | APP签名 | APP方式必要 |     |
 
 **json回复：**
 
 根对象：
 
-| 字段 | 类型 | 内容     | 备注                                                         |
-| ---- | ---- | -------- | ------------------------------------------------------------ |
-| hash | str  | 密码盐值 | 有效时间为 20s<br />恒为 16 字符<br />需要拼接在明文密码之前 |
-| key  | str  | rsa 公钥 | PEM 格式编码<br />加密密码时需要使用                         |
+| 字段   | 类型  | 内容     | 备注                                       |
+|------|-----|--------|------------------------------------------|
+| hash | str | 密码盐值   | 有效时间为 20s<br />恒为 16 字符<br />需要拼接在明文密码之前 |
+| key  | str | rsa 公钥 | PEM 格式编码<br />加密密码时需要使用                  |
 
 **示例：**
 
@@ -463,3 +462,38 @@ print('result =', b64Password)
 result = fZzUzYiSp96F26tt19MIAkB4b4Wk4RHQb4ADLiTIbL66O/7upyj4U5UekTA2pB3Pjr6NlEGGc/kiEgwTNbu84d4bkAkpUOupj1hZXYMYgWYKOtvhvugeuhwgRDhkfUIX+YrwaScxpcQFJqo7bvh7oDL/Wc5sVdWvikpL3PFAvJM=
 ```
 
+以下为密码加密的Java实现：
+
+```java
+package com.ho.test;
+
+import cn.hutool.core.codec.Base64;
+
+import javax.crypto.Cipher;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.spec.X509EncodedKeySpec;
+
+public class Test3 {
+  public static void main(String[] args) throws Exception {
+    //用户密码
+    String password = "abcdef";
+    //获取到的证书内容
+    String key = "-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDjb4V7EidX/ym28t2ybo0U6t0n\n6p4ej8VjqKHg100va6jkNbNTrLQqMCQCAYtXMXXp2Fwkk6WR+12N9zknLjf+C9sx\n/+l48mjUU8RqahiFD1XT/u2e0m2EN029OhCgkHx3Fc/KlFSIbak93EH/XlYis0w+\nXl69GV6klzgxW6d2xQIDAQAB\n-----END PUBLIC KEY-----\n";
+    //获取到的盐值
+    String hash = "bb73382121594c46";
+    String[] split = key.strip().split("\n");
+    String newKey = split[1] + split[2] + split[3] + split[4];
+    //进行加密
+    KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+    X509EncodedKeySpec keySpec = new X509EncodedKeySpec(Base64.decode(newKey));
+    PublicKey publicKey = keyFactory.generatePublic(keySpec);
+    Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+    cipher.init(Cipher.PUBLIC_KEY, publicKey);
+    byte[] bytes = cipher.doFinal((hash + password).getBytes());
+    String encode = Base64.encode(bytes);
+    System.out.println(encode);
+  }
+}
+
+```
