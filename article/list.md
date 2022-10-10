@@ -1,6 +1,7 @@
-# 获取用户专栏文章列表
+# 获取用户专栏信息
 
 - [获取用户专栏文章列表](#获取用户专栏文章列表)
+- [获取用户专栏文集列表](#获取用户专栏文集列表)
 
 ---
 
@@ -435,6 +436,238 @@ curl -L -X GET 'https://api.bilibili.com/x/space/article?mid=300021061&pn=1&ps=2
     "pn": 1,
     "ps": 2,
     "count": 1563
+  }
+}
+```
+
+</details>
+
+## 获取用户专栏文集列表
+
+> http://api.bilibili.com/x/space/article
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名      | 类型  | 内容    | 必要性 | 备注                |
+|----------|-----|-------|-----|-------------------|
+| mid      | num | 用户uid | √   |                   |
+| sort     | num | 排序方式  |     | 0：最近更新<br/>1：最多阅读 |
+| jsonp    | str |       |     |                   |
+| callback | str |       |     |                   |
+
+**json回复：**
+
+### 根对象
+
+| 字段名     | 类型  | 内容   | 备注                 |
+|---------|-----|------|--------------------|
+| code    | num | 响应码  | 0：成功<br/>-400：请求错误 |
+| message | str | 0    |                    |
+| ttl     | num | 1    |                    |
+| data    | obj | 信息本体 |                    |
+
+### `data`对象
+
+| 字段名   | 类型    | 内容     | 备注  |
+|-------|-------|--------|-----|
+| lists | array | 文集信息列表 |     |
+| total | num   | 文集总数   |     |
+
+### `data`对象 -> `lists`数组中的对象
+
+| 字段名            | 类型  | 内容      | 备注   |
+|----------------|-----|---------|------|
+| id             | num | 文集id    |      |
+| mid            | num | 作者uid   |      |
+| name           | str | 文集名称    |      |
+| image_url      | str | 封面      |      |
+| update_time    | num | 最后更新时间戳 | 单位：秒 |
+| ctime          | num | 创建时间戳   | 单位：秒 |
+| publish_time   | num |         | 单位：秒 |
+| summary        | str | `空串`    |      |
+| words          | num | 总字数     |      |
+| read           | num | 阅读量     |      |
+| articles_count | num | 包含文章数   |      |
+| state          | num | `1`     |      |
+| reason         | str | `空串`    |      |
+| apply_time     | str | `空串`    |      |
+| check_time     | str | `空串`    |      |
+
+**示例：**
+
+```shell
+curl -L -X GET 'https://api.bilibili.com/x/article/up/lists?mid=2859372&sort=0'
+```
+
+<details>
+<summary>点击查看</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "lists": [
+      {
+        "id": 77163,
+        "mid": 2859372,
+        "name": "碟报",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1664854854,
+        "ctime": 1554785697,
+        "publish_time": 1664863200,
+        "summary": "",
+        "words": 71532,
+        "read": 478726,
+        "articles_count": 113,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 26407,
+        "mid": 2859372,
+        "name": "周榜",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1664721205,
+        "ctime": 1537942450,
+        "publish_time": 1664721307,
+        "summary": "",
+        "words": 102099,
+        "read": 1366280,
+        "articles_count": 206,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 107952,
+        "mid": 2859372,
+        "name": "制作委员会",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1646663919,
+        "ctime": 1563107348,
+        "publish_time": 1646910000,
+        "summary": "",
+        "words": 47564,
+        "read": 72911,
+        "articles_count": 10,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 26457,
+        "mid": 2859372,
+        "name": "实时榜",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1603115712,
+        "ctime": 1537955117,
+        "publish_time": 1603115719,
+        "summary": "",
+        "words": 206741,
+        "read": 1136352,
+        "articles_count": 76,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 49769,
+        "mid": 2859372,
+        "name": "预测",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1593933314,
+        "ctime": 1546153226,
+        "publish_time": 1593933314,
+        "summary": "",
+        "words": 2518,
+        "read": 55123,
+        "articles_count": 6,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 96916,
+        "mid": 2859372,
+        "name": "书籍周榜",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1559815260,
+        "ctime": 1559815159,
+        "publish_time": 1559815577,
+        "summary": "",
+        "words": 272,
+        "read": 2955,
+        "articles_count": 1,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 96610,
+        "mid": 2859372,
+        "name": "原始周榜存档",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1559721231,
+        "ctime": 1559720762,
+        "publish_time": 1559721271,
+        "summary": "",
+        "words": 290,
+        "read": 1498,
+        "articles_count": 1,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 26453,
+        "mid": 2859372,
+        "name": "杂谈",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1557303117,
+        "ctime": 1537954625,
+        "publish_time": 1557303168,
+        "summary": "",
+        "words": 10673,
+        "read": 38363,
+        "articles_count": 4,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      },
+      {
+        "id": 59028,
+        "mid": 2859372,
+        "name": "新春访谈",
+        "image_url": "https://i0.hdslb.com/bfs/article/96d2b3d2a72e6497a011c885ab9245c51507ce18.png",
+        "update_time": 1549878596,
+        "ctime": 1549343048,
+        "publish_time": 1549884125,
+        "summary": "",
+        "words": 33472,
+        "read": 34597,
+        "articles_count": 13,
+        "state": 1,
+        "reason": "",
+        "apply_time": "",
+        "check_time": ""
+      }
+    ],
+    "total": 9
   }
 }
 ```
