@@ -108,9 +108,10 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（�
   - [x] [笔记操作](note/action.md)
 - [ ] [专栏](article)
   - [ ] 分区
-  - [ ] [基本信息](article/info.md)
-  - [ ] [点赞 & 投币 & 收藏 & 分享](article/like_coin_fav.md)
-  - [ ] [文集基本信息](article/articles.md)
+  - [X] [基本信息](article/info.md)
+  - [X] [点赞 & 投币 & 收藏 & 分享](article/like_coin_fav.md)
+  - [X] [文集基本信息](article/articles.md)
+  - [X] [获取用户专栏文章列表](article/list.md)
 - [ ] [音频](audio)
   - [x] [歌曲基本信息](audio/info.md)
   - [ ] [歌单 & 音频收藏夹详细信息](audio/music_list.md)
