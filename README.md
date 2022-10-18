@@ -201,6 +201,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（�
   - [x] [漫画操作](manga/Comic.md)
   - [x] [漫读券/已购相关](manga/User.md)
   - [x] [下载](manga/Download.md)
+  - [x] [data.index解析](manga/index_file.md)
   
 - [ ] 哔哩哔哩游戏
 - [ ] 轻视频
