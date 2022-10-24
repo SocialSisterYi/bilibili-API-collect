@@ -29,10 +29,11 @@
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                              |
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
 | epId   | num  |     章节id             |  必要  |                                 |
-| buyMethod   | num  |     购买方式             | 必要   |  2：漫读券<br />5：通用券                         |
+| buyMethod   | num  |     购买方式             | 必要   |  2：漫读券<br />4：新人等免<br />5：通用券                         |
 | couponId   | num  |     漫读券id             | 必要   |                             |
-| autoPayGoldStatus   | num  |     2             | 必要   |                             |
-| isPresale   | num  |     0            | 必要   |                             |
+|  comicId   |  num   |   漫画id             | 可选 | buyMethod：4为必要|
+| autoPayGoldStatus   | num  |     2             | 可选   |  buyMethod：2,5 为必要<br />buyMethod：4为不必要                           |
+| isPresale   | num  |     0            | 可选   |    buyMethod：2,5 为必要<br />buyMethod：4为不必要                         |
 
 漫读券购买
 
@@ -43,6 +44,15 @@
     "couponId": 7461430,
     "autoPayGoldStatus": 2,
     "isPresale": 0
+}
+```
+
+等就免费（新人等免）
+```
+{
+  "ep_id": 321913,
+  "comic_id": 26564,
+  "buy_method": 4
 }
 ```
 
