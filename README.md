@@ -19,13 +19,13 @@
 <h3 align="center">野生API文档</h3>  
 <h3 align="center">不断更新中....</h3>  
 
-本项目旨在对 B 站 web 端、移动端以及 TV 端散落在世界各地的野生 api 进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js 逆向分析法、apk 拆包及反编译法、网络抓包法等研究办法
+本项目旨在对 B 站 web、APP、TV 等客户端中，散落在世界各地的野生 API 进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js 逆向分析法、apk 拆包及反编译法、网络抓包法等研究办法
 
 所有 rest api 均为标准 http 协议，请求数据大多为 url query 表单，返回数据大多为 json 或 protobuf
 
-PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（除过仅可https协议调用接口），为了数据安全建议调用接口时使用 https
+PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除过仅可https协议调用接口)，为了数据安全建议调用接口时使用 https
 
-小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/)（[Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk)）
+小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/) ([Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk))
 
 联动项目：[Hsury/Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
 
@@ -41,19 +41,19 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（�
 
 ---
 
-计划整理分类 & 目录：（文档已完结请选中 checkbox）二级目录正在建设中.....
+计划整理分类 & 目录：(文档已完结请选中 checkbox) 二级目录正在建设中.....
 
 - [x] [API 签名](other/API_sign.md)
-- [ ] [公共错误码](other/errcode.md)
+- [x] [公共错误码](other/errcode.md)
 - [x] [图片格式化](other/picture.md)
 - [x] [bvid 说明](other/bvid_desc.md)
 - [ ] [gRPC API 接口定义](grpc_api)
 - [ ] [登录](login)
-  - [x] [登录操作（人机认证）](login/login_action)
+  - [x] [登录操作 (人机认证)](login/login_action)
     - [x] [短信登录](login/login_action/SMS.md)
     - [x] [密码登录](login/login_action/password.md)
     - [x] [二维码登录](login/login_action/QR.md)
-    - [ ] SNS 登录（QQ & 微博）
+    - [ ] SNS 登录 (QQ & 微信 & 微博)
   - [x] [登录基本信息](login/login_info.md)
   - [ ] [个人中心](login/member_center.md)
   - [ ] [注销登录](login/exit.md)
@@ -71,20 +71,20 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（�
   - [x] [用户注册](user/register.md)
   - [x] [大会员福利兑换](user/vip.md)
 - [ ] [视频](video)
-  - [x] [视频分区一览（分区代码）](video/video_zone.md)
+  - [x] [视频分区一览 (分区代码)](video/video_zone.md)
   - [x] [基本信息](video/info.md)
   - [x] [状态数](video/status_number.md)
   - [x] [快照](video/snapshot.md)
   - [x] [点赞 & 投币 & 收藏](video/like_coin_fav.md)
   - [ ] [TAG](video/tags.md)
   - [x] [视频推荐](video/recommend.md)
-  - [x] [播放&下载地址（视频流）](video/videostream_url.md)
+  - [x] [播放&下载地址 (视频流)](video/videostream_url.md)
   - [ ] [互动视频](video/interact_video.md)
   - [x] [高能进度条](video/pbp.md)
-  - [ ] [信息上报（心跳及记录历史）](video/report.md)
+  - [ ] [信息上报 (心跳及记录历史)](video/report.md)
   - [x] [视频属性数据](video/attribute_data.md)
   - [x] [视频在线人数](video/online.md)
-- [ ] [剧集（番剧、影视）](bangumi)
+- [ ] [剧集 (番剧、影视)](bangumi)
   - [ ] [基本信息](bangumi/info.md)
   - [ ] [播放&下载地址（视频流）](bangumi/videostream_url.md)
   - [ ] [时间轴](bangumi/timeline.md)
@@ -203,9 +203,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（�
   - [x] [漫读券/已购相关](manga/User.md)
   - [x] [下载](manga/Download.md)
   - [x] [data.index解析](manga/index_file.md)
-  
 - [ ] 哔哩哔哩游戏
-- [ ] 轻视频
 - [ ] [终端网络查询](clientinfo)
   - [x] [基于ip的地理位置查询](clientinfo/ip.md)
   - [x] [终端信息查询](clientinfo/client_info.md)
@@ -219,11 +217,6 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http`（�
 - [ ] [个性装扮](garb)
   - [x] [APP 主题](garb/skin.md)
   - [x] [主题色](garb/color.md)
-
-
-B站专栏同步推出[《B站api研究记》](https://www.bilibili.com/read/readlist/rl207146)系列（更新状态：咕咕......），~~欢迎关注~~
-
-**--Project_by [社会易姐QwQ](https://space.bilibili.com/293793435)**
 
 # 鸣谢
 
@@ -245,6 +238,8 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 <img src="imgs/up_face.jpg" width="100" height="100">
 
+⚠注意：开源社群欢迎交流探讨，**拒绝**咨询，**黑产号**一经发现立即拉黑并举报相关 SRC
+
 QQ 粉丝交流群：[1136462265](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
 
 Telegram 讨论组：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
@@ -265,7 +260,7 @@ WeChat & Alipay：
 
 OR Aifadian：https://afdian.net/@ShakaiAneE
 
-# 相关项目
+# 相关项目推荐
 
 ## 库及文档
 
@@ -280,6 +275,8 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [simon300000/bili-api](https://github.com/simon300000/bili-api)
 - [iyear/biligo](https://github.com/iyear/biligo) Bilibili API SDK in Golang
 - [bilibili-openplatform/demo](https://github.com/bilibili-openplatform/demo): 哔哩哔哩开放平台示例代码库
+- [ddiu8081/blive-message-listener](https://github.com/ddiu8081/blive-message-listener): Bilibili-live danmu listener with type. Bilibili 直播间弹幕监听库，支持类型输出。
+- [Nemo2011/bilibili-api](https://github.com/Nemo2011/bilibili-api): 哔哩哔哩常用API调用。支持视频、番剧、用户、频道、音频等功能。工具齐全。
 
 ## 成品
 
@@ -303,6 +300,10 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [Jannchie/BiliOB](https://github.com/Jannchie/BiliOB): BiliOB观测者是一个观测B站UP主及视频数据变化，并予以分析的Web应用程序
 - [biliob233/biliob233.github.io](https://github.com/biliob233/biliob233.github.io): ~~无可奉告~~
 - [biliup/biliup](https://github.com/biliup/biliup): 全自动录播、投稿工具，也支持twitch、ytb频道搬运。提供分p上传b站接口，腾讯云内网免流+大幅提速
+- [ddiu8081/bilicli](https://github.com/ddiu8081/bilicli): Bilibili-live danmu dashboard in your terminal. 
+- [MotooriKashin/Bilibili-Old](https://github.com/MotooriKashin/Bilibili-Old): 恢复旧版Bilibili页面，为了那些念旧的人。
+- [SocialSisterYi/bcut-asr](https://github.com/SocialSisterYi/bcut-asr): 使用必剪API的语音字幕识别
+- [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
 
 ## 其他
 
