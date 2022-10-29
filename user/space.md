@@ -2751,7 +2751,7 @@ curl -L -X GET 'http://api.bilibili.com/x/space/like/video?vmid=15858903'
 | length         | str  | 视频长度     | MM:SS          |
 | mid            | num  | 视频UP主mid | 不一定为目标用户（合作视频） |
 | pic            | str  | 视频封面     |                |
-| play           | num  | 视频播放次数   |                |
+| play           | num  | 视频播放次数   |  如果视频基本信息API对应的状态为-403视频访问权限不足，数据类型将变为str，如（"play": "--",），于mid79发表的av5132474可见          |
 | review         | num  | 0        | 作用尚不明确         |
 | subtitle       | str  | 空        | 作用尚不明确         |
 | title          | str  | 视频标题     |                |
