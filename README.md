@@ -69,7 +69,12 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除
   - [ ] [个人空间](user/space.md)
   - [x] [检查昵称是否可注册](user/check_nickname.md)
   - [x] [用户注册](user/register.md)
-  - [x] [大会员福利兑换](user/vip.md)
+- [ ] [大会员](vip)
+  - [ ] [大会员基本信息](vip/info.md)
+  - [ ] [大会员中心](vip/center.md)
+  - [ ] [大会员签到](vip/clockin.md)
+  - [ ] [大会员操作](vip/action.md)
+  
 - [ ] [视频](video)
   - [x] [视频分区一览 (分区代码)](video/video_zone.md)
   - [x] [基本信息](video/info.md)
