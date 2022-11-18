@@ -1,12 +1,12 @@
 # 相簿操作
 
-- [点赞相簿](#点赞相簿)
-- [收藏相簿](#收藏相簿)
+- [~~点赞相簿~~](#~~点赞相簿~~)
+- [~~收藏相簿~~](#~~收藏相簿~~)
 - [取消收藏相簿](#取消收藏相簿)
 
 ---
 
-## 点赞相簿
+## ~~点赞相簿~~
 
 > http://api.vc.bilibili.com/link_draw/v2/Vote/operate
 
@@ -67,7 +67,7 @@ curl 'http://api.vc.bilibili.com/link_draw/v2/Vote/operate' \
 
 </details>
 
-## 收藏相簿
+## ~~收藏相簿~~
 
 > http://api.vc.bilibili.com/user_plus/v1/Fav/add
 
