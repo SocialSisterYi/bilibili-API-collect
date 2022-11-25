@@ -36,44 +36,45 @@
 
 `data`对象：
 
-| 字段               | 类型   | 内容         | 备注                                                            |
-|------------------|------|------------|---------------------------------------------------------------|
-| mid              | num  | mid        |                                                               |
-| name             | str  | 昵称         |                                                               |
-| sex              | str  | 性别         | 男/女/保密                                                        |
-| face             | str  | 头像链接       |                                                               |
-| face_nft         | num  | 是否为 nft 头像 | `0`不是nft头像<br />`1`是 nft 头像                                   |
-| face_nft_type    | num  |            | 0,1                                                           |
-| sign             | str  | 签名         |                                                               |
-| rank             | num  | 用户权限等级 | 目前应该无任何作用<br/>5000：0级未答题<br/>10000：普通会员<br/>20000：字幕君<br/>25000：VIP<br/>30000：真·职人<br/>32000：管理员 |
-| level            | num  | 当前等级       | 0-6级                                                          |
-| jointime         | num  | 注册时间       | 此接口返回恒为`0`                                                    |
-| moral            | num  | 节操值        | 此接口返回恒为`0`                                                    |
-| silence          | num  | 封禁状态       | 0：正常<br />1：被封                                                |
-| coins            | num  | 硬币数        | 需要登录(Cookie) <br />只能查看自己的<br />默认为0                          |
-| fans_badge       | bool | 是否具有粉丝勋章   | false：无<br />true：有                                           |
-| fans_medal       | obj  | 粉丝勋章信息     |                                                               |
-| official         | obj  | 认证信息       |                                                               |
-| vip              | obj  | 会员信息       |                                                               |
-| pendant          | obj  | 头像框信息      |                                                               |
-| nameplate        | obj  | 勋章信息       |                                                               |
-| user_honour_info | obj  |            |                                                               |
-| is_followed      | bool | 是否关注此用户    | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录恒为false    |
-| top_photo        | str  | 主页头图链接     |                                                               |
-| theme            | obj  | 空          | **作用尚不明确**                                                    |
-| sys_notice       | obj  | 系统通知       | 无内容则为空对象<br />主要用于展示如用户争议、纪念账号等等                              |
-| live_room        | obj  | 直播间信息      |                                                               |
-| birthday         | str  | 生日         | MM-DD<br />如设置隐私为空                                            |
-| school           | obj  | 学校         |                                                               |
-| profession       | obj  | 专业资质信息     |                                                               |
-| tags             | null | 个人标签       |                                                               |
-| series           | obj  |            |                                                               |
-| is_senior_member | num  | 是否为硬核会员    | 0：否<br />1：是                                                  |
-| mcn_info         | null |            |                                                               |
-| gaia_res_type    | num  |            |                                                               |
-| gaia_data        | null |            |                                                               |
-| is_risk          | bool |            |                                                               |
-| elec             | obj  | 充电信息       |                                                               |
+| 字段               | 类型   | 内容         | 备注                                                                                               |
+|------------------|------|------------|--------------------------------------------------------------------------------------------------|
+| mid              | num  | mid        |                                                                                                  |
+| name             | str  | 昵称         |                                                                                                  |
+| sex              | str  | 性别         | 男/女/保密                                                                                           |
+| face             | str  | 头像链接       |                                                                                                  |
+| face_nft         | num  | 是否为 nft 头像 | `0`不是nft头像<br />`1`是 nft 头像                                                                      |
+| face_nft_type    | num  |            | 0,1                                                                                              |
+| sign             | str  | 签名         |                                                                                                  |
+| rank             | num  | 用户权限等级     | 目前应该无任何作用<br/>5000：0级未答题<br/>10000：普通会员<br/>20000：字幕君<br/>25000：VIP<br/>30000：真·职人<br/>32000：管理员 |
+| level            | num  | 当前等级       | 0-6级                                                                                             |
+| jointime         | num  | 注册时间       | 此接口返回恒为`0`                                                                                       |
+| moral            | num  | 节操值        | 此接口返回恒为`0`                                                                                       |
+| silence          | num  | 封禁状态       | 0：正常<br />1：被封                                                                                   |
+| coins            | num  | 硬币数        | 需要登录(Cookie) <br />只能查看自己的<br />默认为0                                                             |
+| fans_badge       | bool | 是否具有粉丝勋章   | false：无<br />true：有                                                                              |
+| fans_medal       | obj  | 粉丝勋章信息     |                                                                                                  |
+| official         | obj  | 认证信息       |                                                                                                  |
+| vip              | obj  | 会员信息       |                                                                                                  |
+| pendant          | obj  | 头像框信息      |                                                                                                  |
+| nameplate        | obj  | 勋章信息       |                                                                                                  |
+| user_honour_info | obj  |            |                                                                                                  |
+| is_followed      | bool | 是否关注此用户    | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录恒为false                                       |
+| top_photo        | str  | 主页头图链接     |                                                                                                  |
+| theme            | obj  | 空          | **作用尚不明确**                                                                                       |
+| sys_notice       | obj  | 系统通知       | 无内容则为空对象<br />主要用于展示如用户争议、纪念账号等等                                                                 |
+| live_room        | obj  | 直播间信息      |                                                                                                  |
+| birthday         | str  | 生日         | MM-DD<br />如设置隐私为空                                                                               |
+| school           | obj  | 学校         |                                                                                                  |
+| profession       | obj  | 专业资质信息     |                                                                                                  |
+| tags             | null | 个人标签       |                                                                                                  |
+| series           | obj  |            |                                                                                                  |
+| is_senior_member | num  | 是否为硬核会员    | 0：否<br />1：是                                                                                     |
+| mcn_info         | null |            |                                                                                                  |
+| gaia_res_type    | num  |            |                                                                                                  |
+| gaia_data        | null |            |                                                                                                  |
+| is_risk          | bool |            |                                                                                                  |
+| elec             | obj  | 充电信息       |                                                                                                  |
+| contract         | obj  | 是否显示老粉计划   |                                                                                                  |
 
 `rank`示例
 
@@ -310,6 +311,13 @@
 | title    | str  | `空串`    |                  |
 | icon     | str  | `空串`    |                  |
 | jump_url | str  | `空串`    |                  |
+
+`data`中的`contract`对象：
+
+| 字段名               | 类型   | 内容        | 备注                        |
+|-------------------|------|-----------|---------------------------|
+| is_display        | bool |           | true/false<br/>在页面中未使用此字段 |
+| is_follow_display | bool | 是否在显示老粉计划 | true：显示<br/>false：不显示     |
 
 **示例：**
 
