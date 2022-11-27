@@ -10,8 +10,6 @@
 
 **正文参数 (application/x-www-form-urlencoded)：**
 
-## FORM参数
-
 | 参数名      | 类型  | 内容     | 必要性 | 备注  |
 |----------|-----|--------|-----|-----|
 | aid      | str | `空串`   |     |     |
@@ -78,8 +76,6 @@ curl --location --request POST 'https://api.bilibili.com/x/v1/contract/add_contr
 认证方式：Cookie (SESSDATA)
 
 **正文参数 (application/x-www-form-urlencoded)：**
-
-## FORM参数
 
 | 参数名     | 类型  | 内容     | 必要性 | 备注  |
 |---------|-----|--------|-----|-----|
