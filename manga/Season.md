@@ -26,36 +26,47 @@ _请求方式：POST_
 | msg  | str  | 错误信息 |      |
 | data | obj  | 信息本体 |      |
 
-`data`对象：
+`data` 对象：
 
-| 字段               | 类型                   | 内容               | 备注            |
-| ------------------ | ---------------------- | ------------------ | --------------- |
-| current_time       | str                    | 当前时间字符串     | ISO             |
-| start_time         | str                    | 赛季开始           |                 |
-| end_time           | str                    | 赛季结束           |                 |
-| remain_amount      | num                    | 拥有积分           | 未登录为 0      |
-| season_id          | str                    | 第几个赛季         |                 |
-| tasks              | `[]`                   |                    |                 |
-| welfare            | `welfare` 对象数组     | 赛季奖励           |                 |
-| next               | `next` 对象            | 未知               | 未登录为 `null` |
-| cover              | str                    | 版头图片           |                 |
-| today_tasks        | `today_tasks` 对象数组 | 今日的任务完成情况 |                 |
-| text               | `text`对象             | 赛季相关文案       | 未登录为 `null` |
-| season_clock_in    | `season_clock_in` 对象 |                    |                 |
-| announcement       | `announcement` 对象    | 未知               | 未登录为 `null` |
-| lottery            | `lottery` 对象         |                    |                 |
-| mission_point_rate | str                    |                    |                 |
-| season_title       | str                    | 赛季标题           |                 |
-| point_rate         | `point_rate` 对象      |                    |                 |
-| rank               | `rank` 对象            |                    |                 |
+| 字段               | 类型  | 内容               | 备注                       |
+| ------------------ | ----- | ------------------ | -------------------------- |
+| current_time       | str   | 当前时间字符串     | ISO 8601                   |
+| start_time         | str   | 赛季开始           | ISO 8601                   |
+| end_time           | str   | 赛季结束           | ISO 8601                   |
+| remain_amount      | num   | 拥有积分           | 未登录为 `0`               |
+| season_id          | str   | 第几个赛季         |                            |
+| tasks              | array | 待领取奖励的任务   | 未登录/没有可领取时为 `[]` |
+| welfare            | array | 赛季奖励           |                            |
+| next               | obj   | 未知               | 未登录为 `null`            |
+| cover              | str   | 版头图片           |                            |
+| today_tasks        | array | 今日的任务完成情况 |                            |
+| text               | obj   | 赛季相关文案       | 未登录为 `null`            |
+| season_clock_in    | obj   |                    |                            |
+| announcement       | obj   | 未知               | 未登录为 `null`            |
+| lottery            | obj   |                    |                            |
+| mission_point_rate | str   |                    |                            |
+| season_title       | str   | 赛季标题           |                            |
+| point_rate         | obj   |                    |                            |
+| rank               | obj   |                    |                            |
 
-`rank`对象：
+`data` 对象的 `rank`：
 
 | 字段       | 类型 | 内容  | 备注 |
 | ---------- | ---- | ----- | ---- |
 | is_visible | bool | false |      |
 
-`next`对象：
+`data` 对象的 `tasks`：
+
+| 字段   | 类型 | 内容       | 备注                    |
+| ------ | ---- | ---------- | ----------------------- |
+| title  | str  | 任务描述   |                         |
+| id     | str  |            |                         |
+| status | num  | 任务状态   | 应该都是`1`：待领取奖励 |
+| type   | num  |            | 与 today_tasks 的一致   |
+| amount | num  | 可获取积分 |                         |
+| ctime  | str  | 完成时间   | ISO 8601                |
+
+`data` 对象的 `next`：
 
 | 字段         | 类型 | 内容 | 备注 |
 | ------------ | ---- | ---- | ---- |
@@ -64,14 +75,14 @@ _请求方式：POST_
 | gap_time     | num  | 0    |      |
 | current_time | num  | 0    |      |
 
-`text`对象：
+`data` 对象的 `text`：
 
 | 字段         | 类型 | 内容         | 备注 |
 | ------------ | ---- | ------------ | ---- |
 | notice       | str  | 赛季公告     |      |
 | clonckInRule | str  | 赛季签到规则 |      |
 
-`announcement`对象：
+`data` 对象的 `announcement`：
 
 | 字段     | 类型 | 内容  | 备注 |
 | -------- | ---- | ----- | ---- |
@@ -79,7 +90,7 @@ _请求方式：POST_
 | jump_url | str  | 空    |      |
 | enable   | bool | false |      |
 
-`point_rate`对象：
+`data` 对象的 `point_rate`：
 
 | 字段          | 类型 | 内容 | 备注 |
 | ------------- | ---- | ---- | ---- |
@@ -88,7 +99,7 @@ _请求方式：POST_
 | daily_mission | num  | 0    |      |
 | week_mission  | num  | 0    |      |
 
-`lottery`对象：
+`data` 对象的 `lottery`：
 
 | 字段                   | 类型 | 内容         | 备注 |
 | ---------------------- | ---- | ------------ | ---- |
@@ -98,44 +109,44 @@ _请求方式：POST_
 | advance_lottery_act_id | str  | '0'          |      |
 | advance_pool_id        | str  | '0'          |      |
 
-`season_clock_in`对象：
+`data` 对象的 `season_clock_in`：
 
-| 字段              | 类型 | 内容 | 备注 |
-| ----------------- | ---- | ---- | ---- |
-| is_super_luck     | bool |      |      |
-| draw_luck_time    | str  |      |      |
-| prize_type        | num  |      |      |
-| prize_title       | str  |      |      |
-| add_up_sign       | num  |      |      |
-| title             | str  |      |      |
-| sign_old_amount   | num  |      |      |
-| preluck_amount    | num  |      |      |
-| continuous_days   | num  |      |      |
-| address_id        | str  |      |      |
-| has_super_prize   | bool |      |      |
-| subtitle          | str  |      |      |
-| prize_image       | str  |      |      |
-| prize_target_days | num  |      |      |
-| prize_amount      | num  |      |      |
-| tomorrow_amount   | num  |      |      |
-| entrance_tag      | str  |      |      |
+| 字段              | 类型 | 内容             | 备注 |
+| ----------------- | ---- | ---------------- | ---- |
+| is_super_luck     | bool |                  |      |
+| draw_luck_time    | str  |                  |      |
+| prize_type        | num  |                  |      |
+| prize_title       | str  |                  |      |
+| add_up_sign       | num  | 赛季连续签到天数 |      |
+| title             | str  | 签到标题         |      |
+| sign_old_amount   | num  |                  |      |
+| preluck_amount    | num  |                  |      |
+| continuous_days   | num  | 连续签到天数     |      |
+| address_id        | str  |                  |      |
+| has_super_prize   | bool |                  |      |
+| subtitle          | str  | 签到子标题       |      |
+| prize_image       | str  |                  |      |
+| prize_target_days | num  |                  |      |
+| prize_amount      | num  |                  |      |
+| tomorrow_amount   | num  | 明日签到积分     |      |
+| entrance_tag      | str  |                  |      |
 
-`today_tasks`对象：
+`data` 对象的 `today_tasks`：
 
-| 字段       | 类型       | 内容         | 备注                                  |
-| ---------- | ---------- | ------------ | ------------------------------------- |
-| type       | num        |              |                                       |
-| title      | str        | 任务标题     | 可能为空字符串                        |
-| amount     | num        | 可获得积分   |                                       |
-| status     | num        | 完成状态     | 0-未完成                              |
-| duration   | num        | 耗时（分）   | 直接完成的为 0                        |
-| comics     | comic 数组 | 任务指定漫画 | 仅`type=22`时有内容，所有账号是一致的 |
-| page_url   | str        | 空           |                                       |
-| progress   | num        | 已完成进度   |                                       |
-| sub_id     | num        |              | `type` 一致时有效                     |
-| share_type | num        | `0`          |                                       |
+| 字段       | 类型       | 内容         | 备注                                        |
+| ---------- | ---------- | ------------ | ------------------------------------------- |
+| type       | num        |              |                                             |
+| title      | str        | 任务标题     | 可能为空字符串                              |
+| amount     | num        | 可获得积分   |                                             |
+| status     | num        | 完成状态     | 0：未完成<br />1：待领取奖励<br />2：已完成 |
+| duration   | num        | 耗时（分）   | 直接完成的为 0                              |
+| comics     | comic 数组 | 任务指定漫画 | 仅`type=22`时有内容，所有账号是一致的       |
+| page_url   | str        | 空           |                                             |
+| progress   | num        | 已完成进度   |                                             |
+| sub_id     | num        |              | `type` 一致时有效                           |
+| share_type | num        | `0`          |                                             |
 
-`today_tasks.comic`对象：
+`today_tasks`对象的 `comics`：
 
 | 字段           | 类型     | 内容     | 备注 |
 | -------------- | -------- | -------- | ---- |
@@ -144,7 +155,7 @@ _请求方式：POST_
 | vertical_cover | str      | 漫画封面 |      |
 | styles         | str 数组 | 漫画类型 |      |
 
-`welfare`对象：
+`data` 对象的 `welfare`：
 
 | 字段            | 类型 | 内容         | 备注                                                      |
 | --------------- | ---- | ------------ | --------------------------------------------------------- |
