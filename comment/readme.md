@@ -71,6 +71,7 @@
 | up_action     | obj                             | 评论 UP 主操作信息 |                                                              |
 | show_follow   | bool                            | (?)                |                                                              |
 | invisible     | bool                            |                    |                                                              |
+| card_label    | obj                             | 右上角卡片标签信息   |                                                              |
 | reply_control | obj                             | 评论提示文案信息   |                                                              |
 
 `评论条目`中的`member`对象：
@@ -306,6 +307,25 @@
 | ----- | ---- | ---------------- | ----------------------- |
 | like  | bool | 是否UP主觉得很赞 | false：否<br />true：是 |
 | reply | bool | 是否被UP主回复   | false：否<br />true：是 |
+
+`评论条目`中的`card_label`对象：
+
+| 字段                 | 类型  | 内容         | 备注                          |
+| -------------------- | ---- | ------------ | ----------------------------- |
+| rpid                 | num  | 评论 rpid    |                               |
+| text_content         | str  | 标签文本     | 已知有`妙评`                   |
+| text_color_day       | str  | 日间文本颜色  | 十六进制颜色值，下同            |
+| text_color_night     | str  | 夜间文本颜色  |                               |
+| label_color_day      | str  | 日间标签颜色  |                               |
+| label_color_night    | str  | 夜间标签颜色  |                               |
+| image                | str  |              | 作用不明                       |
+| type                 | str  | 1            | 作用不明                       |
+| background           | str  | 背景图片 url  |                               |
+| background_width     | num  | 背景图片宽度  |                               |
+| background_height    | num  | 背景图片高度  |                               |
+| jump_url             | str  | 跳转链接      |                               |
+| effect               | num  | 0            | 作用不明，可能用于控制动画，下同 |
+| effect_start_time    | num  | 0            |                               |
 
 `评论条目`中的`reply_control`对象：
 

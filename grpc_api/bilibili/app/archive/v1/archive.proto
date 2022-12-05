@@ -3,7 +3,7 @@ syntax = "proto3";
 package bilibili.app.archive.v1;
 
 // 稿件基本信息
-message Arc{
+message Arc {
 	// 稿件avid
 	int64 aid = 1;
 	// 稿件分P数
@@ -66,10 +66,18 @@ message Arc{
 	int64 season_id = 29;
 	// 新版属性位配置(也没用)
 	int64 attribute_v2 = 30;
+	//
+	SeasonTheme season_theme = 31;
+	//
+    string short_link_v2 = 40;
+	//
+    int32 up_from_v2 = 41;
+	//
+    string first_frame = 42;
 }
 
 // UP主信息
-message Author{
+message Author {
 	// UP主mid
 	int64 mid = 1;
 	// UP主昵称
@@ -79,7 +87,7 @@ message Author{
 }
 
 // 分辨率
-message Dimension{
+message Dimension {
 	// 宽度
 	int64 width = 1;
 	// 高度
@@ -90,7 +98,7 @@ message Dimension{
 }
 
 // 分P信息
-message Page{
+message Page {
 	// 视频cid
     int64 cid = 1;
     // 分P序号
@@ -110,10 +118,12 @@ message Page{
     string webLink = 8;
     // 分P分辨率
     Dimension dimension = 9;
+	//
+	string first_frame = 10;
 }
 
 // 稿件控制标志
-message Rights{
+message Rights {
 	// 老版是否付费
     int32 bp = 1;
     // 允许充电
@@ -126,11 +136,11 @@ message Rights{
     int32 pay = 5;
     // 是否高码率
     int32 hd5 = 6;
-    // 是否禁止转载标志
+    // 是否显示“禁止转载”标志
     int32 no_reprint = 7;
     // 是否允许自动播放
     int32 autoplay = 8;
-    // UGC稿件需要付费
+    // UGC稿件需要付费(旧版)
     int32 ugc_pay = 9;
     // 是否联合投稿
     int32 is_cooperation = 10;
@@ -138,10 +148,24 @@ message Rights{
     int32 ugc_pay_preview = 11;
     // 是否禁止后台播放
     int32 no_background = 12;
+	// UGC稿件需要付费
+	int32 arc_pay = 13;
+	// 是否已付费可自由观看
+    int32 pay_free_watch = 14;
+}
+
+//
+message SeasonTheme {
+	//
+    string bg_color = 1;
+	//
+    string selected_bg_color = 2;
+	//
+    string text_color = 3;
 }
 
 // 合作成员信息
-message StaffInfo{
+message StaffInfo {
 	// 成员mid
     int64 mid = 1;
     // 成员角色
@@ -152,10 +176,10 @@ message StaffInfo{
 }
 
 // 状态数
-message Stat{
+message Stat {
 	// 稿件avid
 	int64 aid = 1;
-	// 播放数
+	// 播放数(当屏蔽时为-1)
 	int32 view = 2;
 	// 弹幕数
 	int32 danmaku = 3;

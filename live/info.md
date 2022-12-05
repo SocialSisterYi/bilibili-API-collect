@@ -1,16 +1,218 @@
 # 直播间基本信息
 
 - [直播间基本信息](#直播间基本信息)
-	- [获取用户对应的直播间状态](#获取用户对应的直播间状态)
-	- [获取房间页初始化信息](#获取房间页初始化信息)
-	- [获取主播信息](#获取主播信息)
-	- [批量查询直播间状态](#批量查询直播间状态)
+  - [获取直播间信息](#获取直播间信息)
+  - [获取用户对应的直播间状态](#获取用户对应的直播间状态)
+  - [获取房间页初始化信息](#获取房间页初始化信息)
+  - [获取主播信息](#获取主播信息)
+  - [批量查询直播间状态](#批量查询直播间状态)
 
 ---
 
+## 获取直播间信息
+
+> http://api.live.bilibili.com/room/v1/Room/get_info
+
+*请求方式: GET*
+
+**URL参数：**
+| 参数名 | 类型 | 内容         | 必要性 | 备注      |
+| ------ | ---- | ----------- | ----- | --------- |
+| room_id| num  | 直播间号     | 必要  | 可以为短号 |
+
+**json回复：**
+
+根对象：
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 返回值   | 0：成功<br />1：不存在       |
+| message | str  | 错误信息 |                             |
+| msg     | str  | 错误信息 |                             |
+| data    | obj  | 信息本体 |                             |
+
+`data`对象：
+| 字段               | 类型 | 内容     | 备注                        |
+| ------------------ | ---- | -------- | --------------------------- |
+| uid                | num  | 主播mid  |                             |
+| room_id            | num  | 直播间长号|                             |
+| short_id           | num  | 直播间短号| 为0是无短号                  |
+| attention          | num  | 关注数量  |                             |
+| online             | num  | 观看人数  |                             |
+| is_portrait        | bool | 是否竖屏  |                             |
+| description        | str  | 描述      |                             |
+| live_status         | num  | 直播状态  | 0：未开播<br />1：直播中<br />2：轮播中 |
+| area_id            | num  | 分区id   |                               |
+| area_name          | str  | 分区名称  |                              |
+| parent_area_id     | num  | 父分区id  |                              |
+| parent_area_name   | str | 父分区名称 |                            |
+| old_area_id        | num  | 旧版分区id |                             |
+| background         | str  | 背景图片链接|                            |
+| title              | str  | 标题       |                            |
+| user_cover         | str  | 封面       |                            |
+| keyframe           | str  | 关键帧     | 用于网页端悬浮展示           |
+| is_strict_room     | bool | 未知       | 未知                       |
+| live_time          | str  | 直播开始时间 | YYYY-MM-DD HH:mm:ss       |
+| tags               | str  | 标签        | ','分隔                    |
+| is_anchor          | num  | 未知        | 未知                      |
+| room_silent_type   | str  | 禁言状态   |                          |
+| room_silent_level  | num  | 禁言等级  |                          |
+| room_silent_second | num | 禁言时间  | 单位是秒                  |
+| pardants           | str  | 未知       | 未知                       |
+| area_pardants      | str  | 未知       | 未知                       |
+| hot_words          | list(str) | 热词  |                            |
+| hot_words_status   | num | 热词状态  |                            |
+| verify             | str | 未知       | 未知                       |
+| new_pendants       | obj | 头像框\大v |                            |
+| up_session         | str | 未知       |                            |
+| pk_status          | num | pk状态     |                            |
+| pk_id              | num | pk id      |                            |
+| battle_id          | num | 未知       |                             |
+
+`new_pendants`对象：
+| 字段         | 类型 | 内容     | 备注                        |
+| ------------ | ---- | -------- | --------------------------- |
+| frame        | obj  | 头像框    |                            |
+| mobile_frame | obj  | 同上      | 手机版, 结构一致, 可能null  |
+| badge        | obj  | 大v       |                           |
+| mobile_badge | obj  | 同上      | 手机版, 结构一致, 可能null  |
+
+`frame`对象：
+| 字段         | 类型 | 内容     | 备注                        |
+| ------------ | ---- | -------- | --------------------------- |
+| name         | str  | 名称     ||
+| value        | str  | 值       ||
+| position     | num  | 位置     ||
+| desc         | str  | 描述     ||
+| area         | num  | 分区     ||
+| area_old     | num  | 旧分区   ||
+| bg_color     | str  | 背景色   ||
+| bg_pic       | str  | 背景图   ||
+| use_old_area | bool | 是否旧分区号 ||
+
+`badge`对象：
+| 字段         | 类型 | 内容     | 备注                        |
+| ------------ | ---- | -------- | --------------------------- |
+| name         | str  | 类型     | v_person: 个人认证(黄) <br> v_company: 企业认证(蓝) |
+| position     | num  | 位置     ||
+| value        | str  | 值       ||
+| desc         | str  | 描述     ||
+
+**示例：**
+
+查询直播间`room_id=1`信息
+
+```shell
+curl -G 'http://api.live.bilibili.com/room/v1/Room/get_info' \
+--data-urlencode 'room_id=1'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "msg": "ok",
+    "message": "ok",
+    "data": {
+        "uid": 9617619,
+        "room_id": 5440,
+        "short_id": 1,
+        "attention": 11919499,
+        "online": 0,
+        "is_portrait": false,
+        "description": "欢迎加入bilibili《快乐运动研究社》，和B站UP主们一起探讨有关运动的经历感受，解决身体和情绪的“疑难杂症”，寻找适合自己的运动，一起跟练！本期我们一起探讨：运动健身能缓解社交恐惧吗？",
+        "live_status": 2,
+        "area_id": 145,
+        "parent_area_id": 1,
+        "parent_area_name": "娱乐",
+        "old_area_id": 6,
+        "background": "",
+        "title": "快乐运动研究社",
+        "user_cover": "https://i0.hdslb.com/bfs/live/new_room_cover/96943b8d106a777a34cf796421bb4254163b30e1.jpg",
+        "keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe08121926000000005440np0q7a.jpg",
+        "is_strict_room": false,
+        "live_time": "0000-00-00 00:00:00",
+        "tags": "",
+        "is_anchor": 0,
+        "room_silent_type": "",
+        "room_silent_level": 1,
+        "room_silent_second": 0,
+        "area_name": "视频聊天",
+        "pendants": "",
+        "area_pendants": "",
+        "hot_words": [
+            "2333333",
+            "喂，妖妖零吗",
+            "红红火火恍恍惚惚",
+            "FFFFFFFFFF",
+            "Yooooooo",
+            "啪啪啪啪啪",
+            "666666666",
+            "老司机带带我",
+            "你为什么这么熟练啊",
+            "gg",
+            "prprpr",
+            "向大佬低头",
+            "请大家注意弹幕礼仪哦！",
+            "还有这种操作！",
+            "囍",
+            "打call",
+            "你气不气？",
+            "队友呢？"
+        ],
+        "hot_words_status": 0,
+        "verify": "",
+        "new_pendants": {
+            "frame": {
+                "name": "",
+                "value": "",
+                "position": 0,
+                "desc": "",
+                "area": 0,
+                "area_old": 0,
+                "bg_color": "",
+                "bg_pic": "",
+                "use_old_area": false
+            },
+            "badge": {
+                "name": "v_company",
+                "position": 3,
+                "value": "",
+                "desc": "哔哩哔哩直播官方账号"
+            },
+            "mobile_frame": {
+                "name": "",
+                "value": "",
+                "position": 0,
+                "desc": "",
+                "area": 0,
+                "area_old": 0,
+                "bg_color": "",
+                "bg_pic": "",
+                "use_old_area": false
+            },
+            "mobile_badge": null
+        },
+        "up_session": "",
+        "pk_status": 0,
+        "pk_id": 0,
+        "battle_id": 0,
+        "allow_change_area_time": 0,
+        "allow_upload_cover_time": 0,
+        "studio_info": {
+            "status": 0,
+            "master_list": []
+        }
+    }
+}
+```
+
+</details>
+
 ## 获取用户对应的直播间状态
 
-> http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld
+> https://api.live.bilibili.com/room/v1/Room/getRoomInfoOld
 
 *请求方式：GET*
 
@@ -37,7 +239,7 @@
 | -------------- | ---- | ---------------- | ------------------------ |
 | roomStatus     | num  | 直播间状态       | 0：无房间<br />1：有房间 |
 | roundStatus    | num  | 轮播状态         | 0：未轮播<br />1：轮播   |
-| liveStatus     | num  | 直播状态         | 0：未开播<br />1：直播中 |
+| live_status     | num  | 直播状态         | 0：未开播<br />1：直播中 |
 | url            | str  | 直播间网页url    |                          |
 | title          | str  | 直播间标题       |                          |
 | cover          | str  | 直播间封面url    |                          |
@@ -66,7 +268,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 	"data": {
 		"roomStatus": 1,
 		"roundStatus": 0,
-		"liveStatus": 1,
+		"live_status": 1,
 		"url": "https://live.bilibili.com/5441",
 		"title": "好久没当黑铁主播了",
 		"cover": "http://i0.hdslb.com/bfs/live/room_cover/833f7ff506bac17c06010e8834922993657505b2.jpg",
@@ -196,9 +398,9 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 | follower_num   | num  | 主播粉丝数       |                  |
 | room_id        | num  | 直播间id（短号） |                  |
 | medal_name     | str  | 粉丝勋章名       |                  |
-| glory_count    | int  | 主播荣誉数       |                  |
+| glory_count    | num  | 主播荣誉数       |                  |
 | pendant        | str  | 直播间头像框url  |                  |
-| link_group_num | int  | 0                | **作用尚不明确** |
+| link_group_num | num  | 0                | **作用尚不明确** |
 | room_news      | obj  | 主播公告         |                  |
 
 `info`对象：
@@ -317,16 +519,21 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 > http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
 
-*请求方式：POST*
+*请求方式：GET/POST*
 
-认证方式：无，请不要在标头中添加cookie。
+认证方式：无 (无需添加Cookie)
 
+**url参数 (GET方式)：**
 
-**正文参数：**
+| 参数名 | 类型  | 内容             | 必要性 | 备注 |
+| ------ | ----- | ---------------- | ------ | ---- |
+| uids[] | array | 要查询的主播 mid | 必要   |      |
+
+**正文参数 (POST方式)：**
 
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
-| uids       | array  | 要查询的主播mid         | 必要          |                                                              |
+| uids       | nums | 要查询的主播 mid        | 必要          |                                                              |
 
 
 **json回复：**
@@ -357,12 +564,12 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 | area_v2_name | str  | 直播间新版分区名  |            |
 | area_v2_parent_id | num  | 直播间父分区id  |            |
 | area_v2_parent_name | str  | 直播间父分区名  |            |
-| broadcast_type | num  | 直播类型  |  0:普通直播，1：手机直播       |
+| broadcast_type | num  | 直播类型  |  0:普通直播<br />1：手机直播 |
 | cover_from_user | str  | 直播间封面url  |            |
 | face      | str  | 主播头像url  |            |
 | hidden_till | str  | 直播间隐藏信息  |            |
 | keyframe  | str  | 直播间关键帧url  |            |
-| live_status | num  | 直播间开播状态  |  0：未开播，1：正在直播，2：轮播中          |
+| live_status | num  | 直播间开播状态  | 0：未开播<br />1：正在直播<br />2：轮播中 |
 | live_time      | num  | 直播持续时长  |            |
 | lock_till | str  | 直播间封禁信息  |            |
 | online    | num  | 直播间在线人数  |            |
@@ -376,12 +583,17 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 **示例：**
 
-查询用户`mid=194484313`的直播间信息
+查询用户`mid=672328094的直播间信息
 
 ```shell
-curl https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids \
+# GET方式
+curl -G 'http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids'
+--data-urlencode 'uids[]=672328094'
+
+# POST方式
+curl 'http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
 -H "Content-Type: application/json" \
--d "{\"uids\": [194484313]}" 
+-d "{\"uids\": [672328094]}" 
 ```
 
 <details>
@@ -389,37 +601,36 @@ curl https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids \
 
 ```json
 {
-	"code": 0,
-	"msg": "success",
-	"message": "success",
-	"data": {
-		"194484313": {
-			"title": "中元节可爱鬼来喽！",
-			"room_id": 6154037,
-			"uid": 194484313,
-			"online": 955261,
-			"live_time": 0,
-			"live_status": 2,
-			"short_id": 732,
-			"area": 1,
-			"area_name": "单机联机",
-			"area_v2_id": 236,
-			"area_v2_name": "主机游戏",
-			"area_v2_parent_name": "单机游戏",
-			"area_v2_parent_id": 6,
-			"uname": "Asaki大人",
-			"face": "https://i1.hdslb.com/bfs/face/e8f57fd6992f7d2ef6e6bcee957fb6cf6bca3d80.jpg",
-			"tag_name": "以撒,minecraft,饥荒,彩虹六号,东方",
-			"tags": "",
-			"cover_from_user": "https://i0.hdslb.com/bfs/live/new_room_cover/0a0a8eb5bd7fb64a036b55c748f02ad79a210ec9.jpg",
-			"keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe0823020500000615403721k8sp.jpg",
-			"lock_till": "0000-00-00 00:00:00",
-			"hidden_till": "0000-00-00 00:00:00",
-			"broadcast_type": 0
-		}
-	}
+    "code": 0,
+    "msg": "success",
+    "message": "success",
+    "data": {
+        "672328094": {
+            "title": "【B限】玩个毛线",
+            "room_id": 22637261,
+            "uid": 672328094,
+            "online": 4087370,
+            "live_time": 0,
+            "live_status": 2,
+            "short_id": 0,
+            "area": 6,
+            "area_name": "生活娱乐",
+            "area_v2_id": 371,
+            "area_v2_name": "虚拟主播",
+            "area_v2_parent_name": "虚拟主播",
+            "area_v2_parent_id": 9,
+            "uname": "嘉然今天吃什么",
+            "face": "http://i2.hdslb.com/bfs/face/d399d6f5cf7943a996ae96999ba3e6ae2a2988de.jpg",
+            "tag_name": "日常,学习,萌宠,厨艺,手机直播",
+            "tags": "",
+            "cover_from_user": "http://i0.hdslb.com/bfs/live/new_room_cover/f3ed7a782c13086e536ec8bc6e9593bb4918f905.jpg",
+            "keyframe": "http://i0.hdslb.com/bfs/live-key-frame/keyframe041722000000226372619dr3m8.jpg",
+            "lock_till": "0000-00-00 00:00:00",
+            "hidden_till": "0000-00-00 00:00:00",
+            "broadcast_type": 0
+        }
+    }
 }
-
 ```
 
 </details>

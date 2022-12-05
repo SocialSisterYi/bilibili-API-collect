@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package pgc.gateway.vega.v1;
 
+import "bilibili/rpc/status.proto";
 import "google/protobuf/any.proto";
 import "google/protobuf/empty.proto";
 
@@ -24,14 +25,10 @@ service VegaFrameDoc {
 }
 
 //
-message AuthReq {
-
-}
+message AuthReq {}
 
 //
-message AuthResp {
-
-}
+message AuthResp {}
 
 //
 message FrameOption {
@@ -44,7 +41,7 @@ message FrameOption {
     //
     bool is_ack = 4;
     //
-    Status status = 5;
+    bilibili.rpc.Status status = 5;
     //
     string ack_origin = 6;
     //
@@ -52,14 +49,10 @@ message FrameOption {
 }
 
 //
-message HeartbeatReq {
-
-}
+message HeartbeatReq {}
 
 //
-message HeartbeatResp {
-
-}
+message HeartbeatResp {}
 
 //
 message MessageAckReq {

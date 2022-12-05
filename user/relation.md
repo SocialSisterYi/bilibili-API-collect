@@ -2,6 +2,7 @@
 
 - [查询用户粉丝明细](#查询用户粉丝明细)
 - [查询用户关注明细](#查询用户关注明细)
+- [查询用户关注明细2](#查询用户关注明细2)
 - [搜索关注明细](#搜索关注明细)
 - [查询共同关注明细](#查询共同关注明细)
 - [查询悄悄关注明细](#查询悄悄关注明细)
@@ -29,13 +30,13 @@
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
-> http://api.bilibili.com/x/relation/followers
+> https://api.bilibili.com/x/relation/followers
 
 *请求方式：GET*
 
 认证方式：Cookie(SESSDATA)或APP
 
-登录可看自己前1000名，其他用户仅可查看前100名
+登录可看自己前1000名，其他用户可查看前250名（网页端请求时ps为20，所以直接查看只能看到前100名）
 
 **url参数：**
 
@@ -119,7 +120,7 @@
 获取用户`mid=293793435`的粉丝明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/followers' \
+curl -G 'https://api.bilibili.com/x/relation/followers' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1' \
@@ -142,7 +143,7 @@ curl -G 'http://api.bilibili.com/x/relation/followers' \
 			"tag": null,
 			"special": 0,
 			"uname": "L_E_M_O_H_E",
-			"face": "http://i1.hdslb.com/bfs/face/8ec537db75eeb292faa8dc85a9ff8aba83148c86.jpg",
+			"face": "https://i1.hdslb.com/bfs/face/8ec537db75eeb292faa8dc85a9ff8aba83148c86.jpg",
 			"sign": "暂时断更。。Back later",
 			"official_verify": {
 				"type": -1,
@@ -167,7 +168,7 @@ curl -G 'http://api.bilibili.com/x/relation/followers' \
 			"tag": null,
 			"special": 0,
 			"uname": "哥本哈根iii",
-			"face": "http://i1.hdslb.com/bfs/face/e53c0fe9315176d48bd294b1f381f0da70131cd7.jpg",
+			"face": "https://i1.hdslb.com/bfs/face/e53c0fe9315176d48bd294b1f381f0da70131cd7.jpg",
 			"sign": "",
 			"official_verify": {
 				"type": -1,
@@ -198,7 +199,7 @@ curl -G 'http://api.bilibili.com/x/relation/followers' \
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
-> http://api.bilibili.com/x/relation/followings
+> https://api.bilibili.com/x/relation/followings
 
 *请求方式：GET*
 
@@ -297,7 +298,7 @@ data 对象：
 获取用户`mid=293793435`的关注明细，按照关注顺序
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/followings' \
+curl -G 'https://api.bilibili.com/x/relation/followings' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'order_type=' \
 --data-urlencode 'ps=2' \
@@ -321,7 +322,7 @@ curl -G 'http://api.bilibili.com/x/relation/followings' \
 			"tag": null,
 			"special": 0,
 			"uname": "山新",
-			"face": "http://i0.hdslb.com/bfs/face/74c82caee6d9eb623e56161ea8ed6d68afabfeae.jpg",
+			"face": "https://i0.hdslb.com/bfs/face/74c82caee6d9eb623e56161ea8ed6d68afabfeae.jpg",
 			"sign": "都说了是天依爹地，不是妈咪。\r私信有点多回复不过来～商业合作啥的请移步Weibo私信@山新 哦哦哦～",
 			"official_verify": {
 				"type": 0,
@@ -346,7 +347,186 @@ curl -G 'http://api.bilibili.com/x/relation/followings' \
 			"tag": [207542],
 			"special": 0,
 			"uname": "支付宝Alipay",
-			"face": "http://i2.hdslb.com/bfs/face/aaf18aeb2d9822e28a590bd8d878572ca8c59e04.jpg",
+			"face": "https://i2.hdslb.com/bfs/face/aaf18aeb2d9822e28a590bd8d878572ca8c59e04.jpg",
+			"sign": "阿支来了，关注点赞转发投币四连走起！",
+			"official_verify": {
+				"type": 1,
+				"desc": "支付宝官方账号"
+			},
+			"vip": {
+				"vipType": 1,
+				"vipDueDate": 1585065600000,
+				"dueRemark": "",
+				"accessStatus": 0,
+				"vipStatus": 1,
+				"vipStatusWarn": "",
+				"themeType": 0,
+				"label": {
+					"path": ""
+				}
+			}
+		}],
+		"re_version": 3228575555,
+		"total": 699
+	}
+}
+```
+
+</details>
+
+## 查询用户关注明细2
+
+<img src="/imgs/relation.svg" width="100" height="100" />
+
+> https://app.biliapi.net/x/v2/relation/followings
+
+*请求方式：GET*
+
+认证方式：Cookie(SESSDATA)或APP
+
+登录可看自己全部，其他用户仅可查看前5页，可以获取已设置可见性隐私的关注列表
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注                                                    |
+| ---------- | ---- | ------------ | ----------- | ------------------------------------------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                                                         |
+| vmid       | num  | 目标用户mid  | 必要        |                                                         |
+| order_type | str  | 排序方式     | 非必要      | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
+| ps         | num  | 每页项数     | 非必要      | 默认为50                                                |
+| pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页                      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />22007：访问超过5页 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
+
+data 对象：
+
+| 字段       | 类型  | 内容     | 备注         |
+| ---------- | ----- | -------- | ------------ |
+| list       | array | 明细列表 |              |
+| re_version | num   | ？？？   | 作用尚不明确 |
+| total      | num   | 关注总数 |              |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 关注1     |                  |
+| n    | obj  | 关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……        | ……               |
+
+数组`list`中的对象：
+
+| 字段            | 类型                                     | 内容         | 备注                                    |
+| --------------- | ---------------------------------------- | ------------ | --------------------------------------- |
+| mid             | num                                      | 用户mid      |                                         |
+| attribute       | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
+| mtime           | num                                      | 关注对方时间 | 时间戳<br />互关后刷新                  |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组id       |                             |
+| special         | num                                      | 特别关注标志 | 0：否<br />1：是                        |
+| uname           | str                                      | 用户昵称     |                                         |
+| face            | str                                      | 用户头像url  |                                         |
+| sign            | str                                      | 用户签名     |                                         |
+| official_verify | obj                                      | 认证信息     |                                         |
+| vip             | obj                                      | 会员信息     |                                         |
+
+数组`list`中的对象中的`tag`数组：
+
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
+
+`list`中的对象中的`official_verify`对象：
+
+| 字段 | 类型 | 内容         | 备注                |
+| ---- | ---- | ------------ | ------------------- |
+| type | num  | 用户认证类型 | -1：无<br />1：认证 |
+| desc | str  | 用户认证信息 | 无为空              |
+
+`list`中的对象中的`vip`对象：
+
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
+
+`vip`中的`label`对象：
+
+| 字段 | 类型 | 内容 | 备注         |
+| ---- | ---- | ---- | ------------ |
+| path | str  | 空   | 作用尚不明确 |
+
+**示例：**
+
+获取用户`mid=293793435`的关注明细，按照关注顺序
+
+```shell
+curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
+--data-urlencode 'vmid=293793435' \
+--data-urlencode 'order_type=' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"list": [{
+			"mid": 14082,
+			"attribute": 2,
+			"mtime": 1584271945,
+			"tag": null,
+			"special": 0,
+			"uname": "山新",
+			"face": "https://i0.hdslb.com/bfs/face/74c82caee6d9eb623e56161ea8ed6d68afabfeae.jpg",
+			"sign": "都说了是天依爹地，不是妈咪。\r私信有点多回复不过来～商业合作啥的请移步Weibo私信@山新 哦哦哦～",
+			"official_verify": {
+				"type": 0,
+				"desc": "配音演员、声优。洛天依声源提供者。"
+			},
+			"vip": {
+				"vipType": 2,
+				"vipDueDate": 1601654400000,
+				"dueRemark": "",
+				"accessStatus": 0,
+				"vipStatus": 1,
+				"vipStatusWarn": "",
+				"themeType": 0,
+				"label": {
+					"path": ""
+				}
+			}
+		}, {
+			"mid": 420831218,
+			"attribute": 2,
+			"mtime": 1584208169,
+			"tag": [207542],
+			"special": 0,
+			"uname": "支付宝Alipay",
+			"face": "https://i2.hdslb.com/bfs/face/aaf18aeb2d9822e28a590bd8d878572ca8c59e04.jpg",
 			"sign": "阿支来了，关注点赞转发投币四连走起！",
 			"official_verify": {
 				"type": 1,
@@ -377,7 +557,7 @@ curl -G 'http://api.bilibili.com/x/relation/followings' \
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
->  http://api.bilibili.com/x/relation/followings/search
+>  https://api.bilibili.com/x/relation/followings/search
 
 *请求方式：GET*
 
@@ -463,7 +643,7 @@ data 对象：
 搜索我的关注列表中关键词`warma`
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/followings/search' \
+curl -G 'https://api.bilibili.com/x/relation/followings/search' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'name=warma' \
 --data-urlencode 'ps=2' \
@@ -491,7 +671,7 @@ curl -G 'http://api.bilibili.com/x/relation/followings/search' \
                 ],
                 "special": 1,
                 "uname": "Warma",
-                "face": "http://i2.hdslb.com/bfs/face/c1bbee6d255f1e7fc434e9930f0f288c8b24293a.jpg",
+                "face": "https://i2.hdslb.com/bfs/face/c1bbee6d255f1e7fc434e9930f0f288c8b24293a.jpg",
                 "sign": "我是沃玛，做点傻开心的视频。日常发在微博：@_warma_ ",
                 "official_verify": {
                     "type": 0,
@@ -522,7 +702,7 @@ curl -G 'http://api.bilibili.com/x/relation/followings/search' \
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
-> http://api.bilibili.com/x/relation/same/followings
+> https://api.bilibili.com/x/relation/same/followings
 
 *请求方式：GET*
 
@@ -618,7 +798,7 @@ data 对象：
 获取自己与用户`mid=2`的共同关注明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/same/followings' \
+curl -G 'https://api.bilibili.com/x/relation/same/followings' \
 --data-urlencode 'vmid=2' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1' \
@@ -642,7 +822,7 @@ curl -G 'http://api.bilibili.com/x/relation/same/followings' \
                 "tag": null,
                 "special": 0,
                 "uname": "=咬人猫=",
-                "face": "http://i0.hdslb.com/bfs/face/8fad84a4470f3d894d8f0dc95555ab8f2cb10a83.jpg",
+                "face": "https://i0.hdslb.com/bfs/face/8fad84a4470f3d894d8f0dc95555ab8f2cb10a83.jpg",
                 "sign": "面瘫女仆酱~小粗腿~事业线什么的！！吐槽你就输了！喵~",
                 "official_verify": {
                     "type": 0,
@@ -670,7 +850,7 @@ curl -G 'http://api.bilibili.com/x/relation/same/followings' \
                 ],
                 "special": 0,
                 "uname": "上海爱丽丝幻乐团",
-                "face": "http://i0.hdslb.com/bfs/face/851a9191cbe93e66304d7577c0f6f83834e52109.jpg",
+                "face": "https://i0.hdslb.com/bfs/face/851a9191cbe93e66304d7577c0f6f83834e52109.jpg",
                 "sign": "日本同人社团 上海爱丽丝幻乐团",
                 "official_verify": {
                     "type": 0,
@@ -702,7 +882,7 @@ curl -G 'http://api.bilibili.com/x/relation/same/followings' \
 
 <img src="/imgs/relation.svg" width="100" height="100" />
 
-> http://api.bilibili.com/x/relation/whispers 
+> https://api.bilibili.com/x/relation/whispers 
 
 *请求方式：GET*
 
@@ -796,7 +976,7 @@ data 对象：
 获取悄悄关注明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/whispers' \
+curl -G 'https://api.bilibili.com/x/relation/whispers' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
@@ -820,7 +1000,7 @@ curl -G 'http://api.bilibili.com/x/relation/whispers' \
                 "tag": null,
                 "special": 0,
                 "uname": "老弟一号",
-                "face": "http://i2.hdslb.com/bfs/face/21426275f3d3149b96b88783275205ba574c09e3.jpg",
+                "face": "https://i2.hdslb.com/bfs/face/21426275f3d3149b96b88783275205ba574c09e3.jpg",
                 "sign": "萌新硬件玩家，前垃圾佬～(◦˙▽˙◦某宝店 老弟一号 粉丝群679540094商务合作V13869651328",
                 "official_verify": {
                     "type": 0,
@@ -849,7 +1029,7 @@ curl -G 'http://api.bilibili.com/x/relation/whispers' \
 
 ## 查询黑名单明细
 
-> http://api.bilibili.com/x/relation/blacks 
+> https://api.bilibili.com/x/relation/blacks 
 
 *请求方式：GET*
 
@@ -936,7 +1116,7 @@ data 对象：
 获取黑名单明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/blacks' \
+curl -G 'https://api.bilibili.com/x/relation/blacks' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
@@ -960,7 +1140,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
                 "tag": null,
                 "special": 0,
                 "uname": "咩2016",
-                "face": "http://i0.hdslb.com/bfs/face/41fe435a7e62eae605a5908652f32f3afff2ae74.jpg",
+                "face": "https://i0.hdslb.com/bfs/face/41fe435a7e62eae605a5908652f32f3afff2ae74.jpg",
                 "sign": "",
                 "official_verify": {
                     "type": 0,
@@ -986,7 +1166,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
                 "tag": null,
                 "special": 0,
                 "uname": "其实死亡没有那么痛",
-                "face": "http://i2.hdslb.com/bfs/face/79257f5a2e7194a71337ccca5927afba7706d316.jpg",
+                "face": "https://i2.hdslb.com/bfs/face/79257f5a2e7194a71337ccca5927afba7706d316.jpg",
                 "sign": "等我，我马上就来",
                 "official_verify": {
                     "type": 0,
@@ -1018,7 +1198,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 
 <img src="/imgs/follow.svg" width="200" height="100" />
 
-> http://api.bilibili.com/x/relation/modify
+> https://api.bilibili.com/x/relation/modify
 
 *请求方式：POST*
 
@@ -1061,7 +1241,7 @@ curl -G 'http://api.bilibili.com/x/relation/blacks' \
 关注`mid=14082`的用户
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/modify' \
+curl 'https://api.bilibili.com/x/relation/modify' \
 --data-urlencode 'fid=14082' \
 --data-urlencode 'act=1' \
 --data-urlencode 're_src=11' \
@@ -1084,7 +1264,7 @@ curl 'http://api.bilibili.com/x/relation/modify' \
 
 ## 批量操作用户关系
 
-> http://api.bilibili.com/x/relation/batch/modify
+> https://api.bilibili.com/x/relation/batch/modify
 
 *请求方式：POST*
 
@@ -1132,7 +1312,7 @@ curl 'http://api.bilibili.com/x/relation/modify' \
 批量关注`mid=1,2,3,4,5`的用户
 
 ```shell
-curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
+curl 'https://api.bilibili.com/x/relation/batch/modify' \
 --data-urlencode 'fid=1,2,3,4,5' \
 --data-urlencode 'act=1' \
 --data-urlencode 're_src=11' \
@@ -1158,7 +1338,7 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
 
 ## 查询用户与自己关系_仅查关注
 
-> http://api.bilibili.com/x/relation
+> https://api.bilibili.com/x/relation
 
 *请求方式：GET*
 
@@ -1205,7 +1385,7 @@ curl 'http://http://api.bilibili.com/x/relation/batch/modify' \
 可得对于`mid=258150656`的用户，在`2018/10/28 0:51:41`时关注，且设为特别关注，并位于为`-10`分组中
 
 ```shell
-curl -G 'http://http://api.bilibili.com/x/relation' \
+curl -G 'https://api.bilibili.com/x/relation' \
 --data-urlencode 'fid=258150656' \
 -b 'SESSDATA=xxx'
 ```
@@ -1232,7 +1412,7 @@ curl -G 'http://http://api.bilibili.com/x/relation' \
 
 ## 查询用户与自己关系_互相
 
-> http://api.bilibili.com/x/space/acc/relation
+> https://api.bilibili.com/x/space/acc/relation
 
 *请求方式：GET*
 
@@ -1296,7 +1476,7 @@ curl -G 'http://http://api.bilibili.com/x/relation' \
 可得对于`mid=15858903`的用户，在`2019/1/24 14:24:19`时关注了对方，且互相关注，自己将对方特别关注，并同时位于为`-10`和`194110`的分组中，对方也将自己设为特别关注，并同时位于为`-10`和`56502`的分组中(虽然我看不到)
 
 ```shell
-curl -G 'http://api.bilibili.com/x/space/acc/relation' \
+curl -G 'https://api.bilibili.com/x/space/acc/relation' \
 --data-urlencode 'mid=15858903' \
 -b 'SESSDATA=xxx'
 ```
@@ -1334,7 +1514,7 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation' \
 
 ## 批量查询用户与自己关系
 
-> http://api.bilibili.com/x/relation/relations
+> https://api.bilibili.com/x/relation/relations
 
 *请求方式：GET*
 
@@ -1388,7 +1568,7 @@ curl -G 'http://api.bilibili.com/x/space/acc/relation' \
 批量查询`mid=1,2,3,4,5`的关系
 
 ```shell
-curl -G 'http://http://api.bilibili.com/x/relation/relations' \
+curl -G 'https://api.bilibili.com/x/relation/relations' \
 --data-urlencode 'fid=258150656' \
 -b 'SESSDATA=xxx'
 ```
@@ -1426,7 +1606,7 @@ curl -G 'http://http://api.bilibili.com/x/relation/relations' \
 
 ### 查询关注分组列表
 
-> http://api.bilibili.com/x/relation/tags
+> https://api.bilibili.com/x/relation/tags
 
 *请求方式：GET*
 
@@ -1471,7 +1651,7 @@ curl -G 'http://http://api.bilibili.com/x/relation/relations' \
 查询所有的分组的名字以及id
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags' \
+curl 'https://api.bilibili.com/x/relation/tags' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1505,7 +1685,7 @@ curl 'http://api.bilibili.com/x/relation/tags' \
 
 ### 查询关注分组明细
 
-> http://api.bilibili.com/x/relation/tag
+> https://api.bilibili.com/x/relation/tag
 
 *请求方式：GET*
 
@@ -1582,7 +1762,7 @@ curl 'http://api.bilibili.com/x/relation/tags' \
 以每页2项的方式获取了id为`207542`分组的第1页的粉丝明细，按照关注顺序
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/tag' \
+curl -G 'https://api.bilibili.com/x/relation/tag' \
 --data-urlencode 'tagid=207542' \
 --data-urlencode 'order_type=' \
 --data-urlencode 'ps=2' \
@@ -1601,7 +1781,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag' \
 	"data": [{
 		"mid": 420831218,
 		"uname": "支付宝Alipay",
-		"face": "http://i2.hdslb.com/bfs/face/aaf18aeb2d9822e28a590bd8d878572ca8c59e04.jpg",
+		"face": "https://i2.hdslb.com/bfs/face/aaf18aeb2d9822e28a590bd8d878572ca8c59e04.jpg",
 		"sign": "阿支来了，关注点赞转发投币四连走起！",
 		"official_verify": {
 			"type": 1,
@@ -1622,7 +1802,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag' \
 	}, {
 		"mid": 125086406,
 		"uname": "MSI微星科技",
-		"face": "http://i1.hdslb.com/bfs/face/a844760e4e491677615b39399bc761e74c579bb4.jpg",
+		"face": "https://i1.hdslb.com/bfs/face/a844760e4e491677615b39399bc761e74c579bb4.jpg",
 		"sign": "你好，这里是微星显卡官方！专注显卡三十年，欢迎私信咨询或提问MSI",
 		"official_verify": {
 			"type": 1,
@@ -1648,7 +1828,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag' \
 
 ### 查询目标用户所在的分组 
 
-> http://api.bilibili.com/x/relation/tag/user
+> https://api.bilibili.com/x/relation/tag/user
 
 *请求方式：GET*
 
@@ -1685,7 +1865,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag' \
 查询用户`mid=319214221`存在的所有分组和名称
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/tag/user' \
+curl -G 'https://api.bilibili.com/x/relation/tag/user' \
 --data-urlencode 'fid=319214221' \
 -b 'SESSDATA=xxx'
 ```
@@ -1709,7 +1889,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user' \
 
 ### 查询所有特别关注的mid
 
-> http://api.bilibili.com/x/relation/tag/special
+> https://api.bilibili.com/x/relation/tag/special
 
 *请求方式：GET*
 
@@ -1743,7 +1923,7 @@ curl -G 'http://api.bilibili.com/x/relation/tag/user' \
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/special' \
+curl 'https://api.bilibili.com/x/relation/tag/special' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -1784,7 +1964,7 @@ curl 'http://api.bilibili.com/x/relation/tag/special' \
 
 <img src="/imgs/add.svg" width="100" height="100" />
 
-> http://api.bilibili.com/x/relation/tag/create
+> https://api.bilibili.com/x/relation/tag/create
 
 *请求方式：POST*
 
@@ -1820,7 +2000,7 @@ curl 'http://api.bilibili.com/x/relation/tag/special' \
 创建了名为`测试`的分组，得到id为`216677`
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/create' \
+curl 'https://api.bilibili.com/x/relation/tag/create' \
 --data-urlencode 'tag=测试' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -1844,7 +2024,7 @@ curl 'http://api.bilibili.com/x/relation/tag/create' \
 
 ### 重命名分组
 
-> http://api.bilibili.com/x/relation/tag/update
+> https://api.bilibili.com/x/relation/tag/update
 
 *请求方式：POST*
 
@@ -1874,7 +2054,7 @@ curl 'http://api.bilibili.com/x/relation/tag/create' \
 把id为`194112`的分组更名为`膜法师`
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/update' \
+curl 'https://api.bilibili.com/x/relation/tag/update' \
 --data-urlencode 'tagid=194112' \
 --data-urlencode 'name=膜法师' \
 --data-urlencode 'csrf=xxx' \
@@ -1898,7 +2078,7 @@ curl 'http://api.bilibili.com/x/relation/tag/update' \
 
 <img src="/imgs/delete.svg" width="100" height="100" />
 
-> http://api.bilibili.com/x/relation/tag/del
+> https://api.bilibili.com/x/relation/tag/del
 
 *请求方式：POST*
 
@@ -1927,7 +2107,7 @@ curl 'http://api.bilibili.com/x/relation/tag/update' \
 删除分组id为`216699`的分组
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tag/del' \
+curl 'https://api.bilibili.com/x/relation/tag/del' \
 --data-urlencode 'tagid=216699' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -1950,7 +2130,7 @@ curl 'http://api.bilibili.com/x/relation/tag/del' \
 
 <img src="/imgs/add.svg" width="100" height="100" />
 
-> http://api.bilibili.com/x/relation/tags/addUsers
+> https://api.bilibili.com/x/relation/tags/addUsers
 
 *请求方式：POST*
 
@@ -1982,7 +2162,7 @@ curl 'http://api.bilibili.com/x/relation/tag/del' \
 把关注用户`mid=205631797`同时添加分组关系到id为`-10`和`207542`的分组中
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
+curl 'https://api.bilibili.com/x/relation/tags/addUsers' \
 --data-urlencode 'fids=205631797' \
 --data-urlencode 'tagids=-10,207542' \
 --data-urlencode 'csrf=xxx' \
@@ -2004,7 +2184,7 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
 
 ### 复制关注到分组
 
-> http://api.bilibili.com/x/relation/tags/copyUsers 
+> https://api.bilibili.com/x/relation/tags/copyUsers 
 
 *请求方式：POST*
 
@@ -2034,7 +2214,7 @@ curl 'http://api.bilibili.com/x/relation/tags/addUsers' \
 把关注用户`mid=4856007`和`mid=326499679`同时复制到为`231305`的分组id中
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
+curl 'https://api.bilibili.com/x/relation/tags/copyUsers' \
 --data-urlencode 'fids=4856007,326499679' \
 --data-urlencode 'tagids=231305' \
 --data-urlencode 'csrf=xxx' \
@@ -2056,7 +2236,7 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
 
 ### 移动关注到分组
 
-> http://api.bilibili.com/x/relation/tags/moveUsers 
+> https://api.bilibili.com/x/relation/tags/moveUsers 
 
 *请求方式：POST*
 
@@ -2087,7 +2267,7 @@ curl 'http://api.bilibili.com/x/relation/tags/copyUsers' \
 把关注用户`mid=321173469`和`mid=327086920`同时从id为`207542`的分组移动到为`231305`的分组中
 
 ```shell
-curl 'http://api.bilibili.com/x/relation/tags/moveUsers' \
+curl 'https://api.bilibili.com/x/relation/tags/moveUsers' \
 --data-urlencode 'beforeTagids=207542' \
 --data-urlencode 'afterTagids=23130' \
 --data-urlencode 'fids=321173469,327086920' \

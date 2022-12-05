@@ -57,16 +57,23 @@
 
 `user_equip`中的`data`对象：
 
-| 字段                | 类型 | 内容           | 备注                        |
-| ------------------- | ---- | -------------- | --------------------------- |
-| color_mode          | str  | 颜色模式       | light：亮色<br />dark：暗色 |
-| color               | str  | 前景色？       |                             |
-| color_second_page   | str  | 背景色？       |                             |
-| side_bg_color       | str  | ？             |                             |
-| tail_color          | str  | 底边栏颜色？   |                             |
-| tail_color_selected | str  | ？             |                             |
-| tail_icon_ani       | bool | 有无底边栏动画 | false：无<br />true：有     |
-| tail_icon_ani_mode  | str  | once           | 作用尚不明确                |
+| 字段                | 类型 | 内容                | 必要性    | 备注                        |
+| ------------------- | ---- | ----------------- | -------- | --------------------------- |
+| color_mode          | str  | 颜色模式           |  必要  | light：亮色<br />dark：暗色 |
+| color               | str  | 前景色？           |  必要  | 颜色<br />1. 使用十六进制颜色值<br />2. 颜色值的大小写不限，下同<br />3. 例：#ffffff |
+| color_second_page   | str  | 背景色？           |  必要  | 颜色                         |
+| tail_color          | str  | 底边栏颜色         |  必要  | 颜色                          |
+| tail_color_selected | str  | 底边栏颜色(选择时)  |  必要  | 颜色                       |
+| tail_icon_ani       | bool | 有无底边栏动画      |  必要  | false：无<br />true：有     |
+| tail_icon_ani_mode  | str  | 底边栏动画循环播放   |  必要  | once：播放一次   |
+| head_myself_mp4_play| str  | 我的页面头图（视频）循环 |  必要  | once：播放一次<br />loop：循环播放   |
+| tail_icon_mode      | str  | 底栏改图标或改颜色  |  必要  | img：图标<br />color：颜色   |
+| side_bg_color       | str  | 侧边栏颜色         | 非必要 |  颜色<br />5.x 版本客户端的侧边栏         |
+| side_line_color     | str  | 侧边栏线条颜色？    | 非必要 |  颜色<br />5.x 版本客户端的侧边栏         |
+| tail_icon_color     | str  | 底栏图标颜色      | 可能必要 |  颜色<br />若 tail_icon_mode = "color"，则必要 |
+| tail_icon_color_dark| str  | 底栏图标颜色(夜间模式) | 可能必要 |  颜色<br />若 tail_icon_mode = "color"，则必要 |
+| tail_icon_color_selected| str  | 底栏图标颜色(选择时) | 可能必要 |  颜色<br />若 tail_icon_mode = "color"，则必要 |
+| tail_icon_color_selected_dark| str  | 底栏图标颜色(选择时)(夜间模式) | 可能必要 |  颜色<br />若 tail_icon_mode = "color"，则必要 |
 
 `skin_colors`数组：
 
@@ -201,27 +208,33 @@ curl -G 'http://app.bilibili.com/x/resource/show/skin' \
 
 主题包为app端付费主题（套装）的整合包，以zip格式通过url分发
 
-包内的图片文件为app对应的资源替换
+包内的图片文件为app对应的资源替换，替换时可随意修改后缀 jpg 或 png
 
-| 文件名                         | 说明                       |
-| ------------------------------ | -------------------------- |
-| tail_icon_selected_myself.png  | 【我的】按钮（选中状态）   |
-| head_bg.jpg                    | 首页顶部栏背景             |
-| head_tab_bg.jpg                | 顶部栏背景                 |
-| side_bg.jpg                    | 侧边栏背景                 |
-| side_bg_bottom.jpg             | 侧边栏底部背景             |
-| tail_bg.png                    | 底部栏背景                 |
-| tail_icon_main.png             | 【首页】按钮               |
-| tail_icon_selected_main.png    | 【首页】按钮（选中状态）   |
-| tail_icon_selected_channel.png | 【频道】按钮（选中状态）   |
-| head_myself_squared_bg.jpg     | 【我的】页面头图（大）     |
-| tail_icon_channel.png          | 【频道】按钮               |
-| tail_icon_selected_dynamic.png | 【动态】按钮（选中状态）   |
-| head_myself_bg.jpg             | 【我的】页面头图（小）     |
-| tail_icon_dynamic.png          | 【动态】按钮               |
-| tail_icon_shop.png             | 【会员购】按钮             |
-| tail_icon_selected_shop.png    | 【会员购】按钮（选中状态） |
-| tail_icon_myself.png           | 【我的】按钮               |
+必要性：head_bg 及 head_tab_bg 为必要，其他非必要
+
+| 文件名                             | 说明                       |
+| --------------------------------- | -------------------------- |
+| head_bg.jpg                       | 首页顶部栏背景             |
+| head_tab_bg.jpg                   | 顶部栏背景                 |
+| head_myself_bg.jpg                | 【我的】页面头图（小）     |
+| head_myself_squared_bg.jpg        | 【我的】页面头图（大）     |
+| head_myself_mp4_bg.mp4            | 【我的】页面头图（视频）<br />格式参考：后缀必须 mp4、分辨率 1242 x 1074、60 FPS、去掉音轨(音频) |
+| side_bg.jpg                       | 侧边栏背景                 |
+| side_bg_bottom.jpg                | 侧边栏底部背景             |
+| tail_bg.png                       |  底部栏背景                |
+| tail_icon_main.png                | 【首页】按钮               |
+| tail_icon_channel.png             | 【频道】按钮               |
+| tail_icon_dynamic.png             | 【动态】按钮               |
+| tail_icon_shop.png                | 【会员购】按钮             |
+| tail_icon_myself.png              | 【我的】按钮               |
+| tail_icon_pub_btn_bg.png          | 【发布】按钮               |
+| tail_icon_selected_main.png       | 【首页】按钮（选中状态）   |
+| tail_icon_selected_channel.png    | 【频道】按钮（选中状态）   |
+| tail_icon_selected_dynamic.png    | 【动态】按钮（选中状态）   |
+| tail_icon_selected_shop.png       | 【会员购】按钮（选中状态） |
+| tail_icon_selected_myself.png     | 【我的】按钮（选中状态）   |
+| tail_icon_selected_pub_btn_bg.png | 【发布】按钮（选中状态）   |
+
 
 以`id=2529（初音未来-日版）`的资源为例
 

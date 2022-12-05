@@ -5,6 +5,8 @@
 		- [点赞视频（web端）](#点赞视频web端)
 		- [点赞视频（APP端）](#点赞视频app端)
 		- [判断视频是否被点赞（双端）](#判断视频是否被点赞双端)
+	- [点踩](#点踩)
+		- [点踩视频（APP端）](#点踩视频app端)
 	- [投币](#投币)
 		- [投币视频（web端）](#投币视频web端)
 		- [投币视频（APP端）](#投币视频app端)
@@ -208,6 +210,54 @@ curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
 ```
 
 </details>
+
+## 点踩
+
+### 点踩视频（App端）
+
+> http://app.biliapi.net/x/v2/view/dislike
+
+*请求方式：POST*
+
+认证方式：仅可App
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名        | 类型  | 内容        | 必要性 | 备注              |
+|------------|-----|-----------|-----|-----------------|
+| access_key | str | APP Token | 必要  |                 |
+| aid        | num | 视频aid     | 必要  |                 |
+| dislike    | num | 操作类型      | 必要  | 0：点踩<br/>1：取消点踩 |
+
+**json回复：**
+
+| 字段      | 类型  | 内容   | 备注                                                                                      |
+|---------|-----|------|-----------------------------------------------------------------------------------------|
+| code    | num | 返回值  | 0：成功 <br />-101：账号未登录<br />-400：请求错误<br />-404：啥都木有<br/> 65005：取消踩失败 未点踩过<br/>65007：已踩过 |
+| message | str | 错误信息 | 默认为0                                                                                    |
+| ttl     | num | 1    |                                                                                         |
+
+**示例：**
+
+点踩视频
+
+```shell
+curl -L -X POST 'http://app.biliapi.net/x/v2/view/dislike' \
+-H 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'aid=xxx' \
+--data-urlencode 'dislike=0'
+```
+
+取消点踩
+
+```shell
+curl -L -X POST 'http://app.biliapi.net/x/v2/view/dislike' \
+-H 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'access_key=xxx' \
+--data-urlencode 'aid=xxx' \
+--data-urlencode 'dislike=1'
+```
 
 ## 投币
 

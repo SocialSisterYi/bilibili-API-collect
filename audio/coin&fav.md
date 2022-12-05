@@ -2,6 +2,7 @@
 
 - [查询音频收藏状态](#查询音频收藏状态)
 - [查询音频投币数](#查询音频投币数)
+- [投币音频](#投币音频)
 
 ---
 
@@ -98,6 +99,53 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio' \
     "code": 0,
     "msg": "success",
     "data": 1
+}
+```
+
+## 投币音频
+
+> http://www.bilibili.com/audio/music-service-c/web/coin/add
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名   | 类型 | 内容                      | 必要性 | 备注 |
+| -------- | ---- | ------------------------- | ------ | ---- |
+| sid      | num  | 音频 auid                 | 必要   |      |
+| multiply | num  | 投币数量（最大为 2）      | 必要   |      |
+| csrf     | str  | CSRF Token（位于 cookie） | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 |   内容     | 备注                                                         |
+| ---- | ---- | --------- | ------------------------------------------------------------ |
+| code | num  |   返回值   | 0：成功<br />72000000：参数错误<br />72010002：账号未登陆<br />7201006：该音频不存在或已被下架 |
+| msg  | str  |   错误信息  | 默认为 0                                               |
+| data | str  | 当前投币数量 | 0 为未投币，上限为 2                                            |
+
+**示例：**
+
+为音频`au13598`投币
+
+```shell
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/coin/add' \
+--data-urlencode 'sid=15664' \
+-b 'SESSDATA=xxx;DedeUserID=1;'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "msg": "0",
+    "data": "1"
 }
 ```
 

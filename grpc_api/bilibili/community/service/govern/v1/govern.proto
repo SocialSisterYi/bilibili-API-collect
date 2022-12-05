@@ -23,9 +23,11 @@ message QoeReportReq {
     //
     string business_type = 5;
     //
-    QoeScoreResult score_result = 6;
+    int64 oid = 6;
     //
-    string business_data = 7;
+    QoeScoreResult score_result = 7;
+    //
+    string business_data = 8;
 }
 
 //

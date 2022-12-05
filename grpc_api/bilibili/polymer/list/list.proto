@@ -41,6 +41,4 @@ message FavoriteTabReply {
 }
 
 //
-message FavoriteTabReq {
-
-}
+message FavoriteTabReq {}

@@ -2591,6 +2591,10 @@ message MixUpListItem {
     VipInfo vip = 8;
     // 关注状态
     Relation relation = 9;
+    //
+    int32 permire_state = 10;
+    //
+    string uri = 11;
 }
 
 message MixUpListLiveItem {
@@ -2736,6 +2740,10 @@ message ModuleAuthor {
     bool show_follow = 12;
     // 是否置顶
     bool is_top = 13;
+    // ip属地
+    string ptime_location_text = 14;
+    //
+    bool show_level = 15;
 }
 
 // 动态列表渲染部分-用户模块-按钮

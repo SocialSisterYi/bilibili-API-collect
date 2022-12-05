@@ -2,8 +2,8 @@
 
 <img src="/imgs/history.png" width="25" height="20"/>
 
-- [获取历史记录列表（视频、直播、专栏）](#获取历史记录列表（视频、直播、专栏）)
-- [获取全部视频历史记录（旧）](#获取全部视频历史记录（旧）)
+- [获取历史记录列表_web端](#获取历史记录列表_web端)
+- [获取视频观看历史记录_web端旧版](#获取视频观看历史记录_旧版)
 - [删除历史记录](#删除历史记录)
 - [清空历史记录](#清空历史记录)
 - [停用历史记录](#停用历史记录)
@@ -11,22 +11,24 @@
 
 ---
 
-## 获取历史记录列表（视频、直播、专栏）
+## 获取历史记录列表_web端
 
 >http://api.bilibili.com/x/web-interface/history/cursor
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie (SESSDATA)
+
+注：`max`、`business`、`view_at`参数用于历史记录列表的IFS (无限滚动)，其用法类似链表的next指针
 
 **url参数：**
 
-| 参数名   | 类型 | 内容                   | 必要性 | 备注                                                         |
-| -------- | ---- | ---------------------- | ------ | ------------------------------------------------------------ |
-| max      | num  | 历史记录截止目标id     | 非必要 | 默认为0<br />稿件：稿件avid<br />番剧（影视）：剧集ssid<br />直播：直播间id<br />文集：文集rlid<br />文章：文章cvid |
-| business | num  | 历史记录截止目标id类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：番剧（影视）<br />live：直播<br />article-list：文集<br />article：文章 |
-| view_at  | num  | 历史记录截止时间       | 非必要 | 时间戳<br />默认为0<br />0为当前时间                         |
-| ps       | num  | 每页项数               | 非必要 | 默认为20，最大30                                                     |
+| 参数名   | 类型 | 内容                     | 必要性 | 备注                                                         |
+| -------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
+| max      | num  | 历史记录截止目标 id      | 非必要 | 默认为 0<br />稿件：稿件 avid<br />剧集 (番剧 / 影视)：剧集 ssid<br />直播：直播间 id<br />文集：文集 rlid<br />文章：文章 cvid |
+| business | num  | 历史记录截止目标业务类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：剧集 (番剧 / 影视)<br />live：直播<br />article-list：文集<br />article：文章 |
+| view_at  | num  | 历史记录截止时间         | 非必要 | 时间戳<br />默认为 0<br />0 为当前时间                       |
+| ps       | num  | 每页项数                 | 非必要 | 默认为 20，最大 30                                           |
 
 **json回复：**
 
@@ -35,7 +37,7 @@
 | 字段    | 类型  | 内容         | 备注                                              |
 | ------- | ----- | ------------ | ------------------------------------------------- |
 | code    | num   | 返回值       | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
-| message | str   | 错误信息     | 默认为0                                           |
+| message | str   | 错误信息     | 默认为 0                                          |
 | ttl     | num   | 1            |                                                   |
 | data    | array | 历史记录列表 |                                                   |
 
@@ -49,20 +51,20 @@
 
 `data`中的`cursor`对象：
 
-| 字段     | 类型 | 内容               | 备注               |
-| -------- | ---- | ------------------ | ------------------ |
-| max      | num  | 最后一项目标id     | **详细内容见参数** |
-| view_at  | num  | 最后一项时间节点   | 时间戳             |
-| business | str  | 最后一项目标id类型 | **详细内容见参数** |
-| ps       | num  | 每页项数           |                    |
+| 字段     | 类型 | 内容             | 备注           |
+| -------- | ---- | ---------------- | -------------- |
+| max      | num  | 最后一项目标 id  | **见请求参数** |
+| view_at  | num  | 最后一项时间节点 | 时间戳         |
+| business | str  | 最后一项业务类型 | **见请求参数** |
+| ps       | num  | 每页项数         |                |
 
 `data`中的`tab`数组：
 
-| 项   | 类型 | 内容              | 备注 |
-| ---- | ---- | ----------------- | ---- |
-| 0    | obj  | 历史记录筛选类型1 |      |
-| 1    | obj  | 历史记录筛选类型2 |      |
-| 2    | obj  | 历史记录筛选类型3 |      |
+| 项   | 类型 | 内容               | 备注 |
+| ---- | ---- | ------------------ | ---- |
+| 0    | obj  | 历史记录筛选类型 1 |      |
+| 1    | obj  | 历史记录筛选类型 2 |      |
+| 2    | obj  | 历史记录筛选类型 3 |      |
 
 `tab`数组中的对象：
 
@@ -71,62 +73,62 @@
 | type | str  | 类型   |      |
 | name | str  | 类型名 |      |
 
-`data`中的`tab`数组：
+`data`中的`list`数组：
 
-| 项   | 类型 | 内容            | 备注             |
-| ---- | ---- | --------------- | ---------------- |
-| 0    | obj  | 历史记录1       |                  |
-| n    | obj  | 历史记录（n+1） | 按照查看顺序排列 |
-| ……   | obj  |                 |                  |
+| 项   | 类型 | 内容           | 备注             |
+| ---- | ---- | -------------- | ---------------- |
+| 0    | obj  | 历史记录 1     |                  |
+| n    | obj  | 历史记录 (n+1) | 按照查看顺序排列 |
+| ……   | obj  |                |                  |
 
-`tab`数组中的对象：
+`list`数组中的对象：
 
-| 字段        | 类型                            | 内容                 | 备注                                     |
-| ----------- | ------------------------------- | -------------------- | ---------------------------------------- |
-| title       | str                             | 条目标题             |                                          |
-| long_title  | str                             | 条目副标题           |                                          |
-| cover       | str                             | 条目封面图url        | 用于专栏以外的条目                       |
-| covers      | 有效时：array<br />无效时：null | 条目封面图组         | 仅用于专栏                               |
-| uri         | str                             | 重定向url            | 仅用于剧集和直播                         |
-| history     | obj                             | 条目详细信息         |                                          |
-| videos      | num                             | 视频分P数目          | 仅用于稿件视频                           |
-| author_name | str                             | UP主昵称             |                                          |
-| author_face | str                             | UP主头像url          |                                          |
-| author_mid  | num                             | UP主mid              |                                          |
-| view_at     | num                             | 查看时间             | 时间戳                                   |
-| progress    | num                             | 视频观看进度         | 单位为秒<br />用于稿件视频或剧集         |
-| badge       | str                             | 条目备注标识         | 用于稿件视频或剧集                       |
-| show_title  | str                             | 分P标题              | 用于稿件视频或剧集                       |
-| duration    | num                             | 视频总时长           | 用于稿件视频或剧集                       |
-| current     | str                             | 空                   | **作用尚不明确**                         |
-| total       | num                             | 总计分集数           | 仅用于剧集                               |
-| new_desc    | str                             | 最新一话/最新一P标识 | 用于稿件视频或剧集                       |
-| is_finish   | num                             | 是否已完结           | 仅用于剧集<br />0：未完结<br />1：已完结 |
-| is_fav      | num                             | 是否收藏             | 0：未收藏<br />1：已收藏                 |
-| kid         | num                             | 条目目标id           | **详细内容见参数**                       |
-| tag_name    | str                             | 子分区名             | 用于稿件视频和直播                       |
-| live_status | num                             | 直播状态             | 仅用于直播<br />0：未开播<br />1：已开播 |
+| 字段        | 类型                            | 内容                     | 备注                                     |
+| ----------- | ------------------------------- | ------------------------ | ---------------------------------------- |
+| title       | str                             | 条目标题                 |                                          |
+| long_title  | str                             | 条目副标题               |                                          |
+| cover       | str                             | 条目封面图 url           | 用于专栏以外的条目                       |
+| covers      | 有效时：array<br />无效时：null | 条目封面图组             | 仅用于专栏                               |
+| uri         | str                             | 重定向 url               | 仅用于剧集和直播                         |
+| history     | obj                             | 条目详细信息             |                                          |
+| videos      | num                             | 视频分 P 数目            | 仅用于稿件视频                           |
+| author_name | str                             | UP 主昵称                |                                          |
+| author_face | str                             | UP 主头像 url            |                                          |
+| author_mid  | num                             | UP 主 mid                |                                          |
+| view_at     | num                             | 查看时间                 | 时间戳                                   |
+| progress    | num                             | 视频观看进度             | 单位为秒<br />用于稿件视频或剧集         |
+| badge       | str                             | 角标文案                 | 稿件视频 / 剧集 / 笔记                   |
+| show_title  | str                             | 分 P 标题                | 用于稿件视频或剧集                       |
+| duration    | num                             | 视频总时长               | 用于稿件视频或剧集                       |
+| current     | str                             | (?)                      |                                          |
+| total       | num                             | 总计分集数               | 仅用于剧集                               |
+| new_desc    | str                             | 最新一话 / 最新一 P 标识 | 用于稿件视频或剧集                       |
+| is_finish   | num                             | 是否已完结               | 仅用于剧集<br />0：未完结<br />1：已完结 |
+| is_fav      | num                             | 是否收藏                 | 0：未收藏<br />1：已收藏                 |
+| kid         | num                             | 条目目标 id              | **详细内容见参数**                       |
+| tag_name    | str                             | 子分区名                 | 用于稿件视频和直播                       |
+| live_status | num                             | 直播状态                 | 仅用于直播<br />0：未开播<br />1：已开播 |
 
-`tab`数组中的对象中的`covers`数组：
+`list`数组中的对象中的`covers`数组：
 
-| 项   | 类型 | 内容            | 备注 |
-| ---- | ---- | --------------- | ---- |
-| 0    | str  | 封面图片1       |      |
-| n    | str  | 封面图片（n+1） |      |
-| ……   | str  | ……              |      |
+| 项   | 类型 | 内容           | 备注 |
+| ---- | ---- | -------------- | ---- |
+| 0    | str  | 封面图片 1     |      |
+| n    | str  | 封面图片 (n+1) |      |
+| ……   | str  | ……             |      |
 
-`tab`数组中的对象中的`history`对象：
+`list`数组中的对象中的`history`对象：
 
-| 字段     | 类型 | 内容                | 备注                                                         |
-| -------- | ---- | ------------------- | ------------------------------------------------------------ |
-| oid      | num  | 目标id              | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：稿件avid<br />直播（当`business=live`时）：直播间id<br />文章（当`business=article`时）：文章cvid<br />文集（当`business=article-list`时）：文集rlid |
-| epid     | num  | 剧集epid            | 仅用于剧集                                                   |
-| bvid     | str  | 稿件bvid            | 仅用于稿件视频                                               |
-| page     | num  | 观看到的视频分P数   | 仅用于稿件视频                                               |
-| cid      | num  | 观看到的对象id      | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频cid<br />文集（当`business=article-list`时）：文章cvid |
-| part     | str  | 观看到的视频分P标题 | 仅用于稿件视频                                               |
-| business | str  | 条目类型            | **详细内容见参数**                                           |
-| dt       | num  | 查看平台代码        | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
+| 字段     | 类型 | 内容                  | 备注                                                         |
+| -------- | ---- | --------------------- | ------------------------------------------------------------ |
+| oid      | num  | 目标id                | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：稿件avid<br />直播（当`business=live`时）：直播间id<br />文章（当`business=article`时）：文章cvid<br />文集（当`business=article-list`时）：文集rlid |
+| epid     | num  | 剧集epid              | 仅用于剧集                                                   |
+| bvid     | str  | 稿件bvid              | 仅用于稿件视频                                               |
+| page     | num  | 观看到的视频分P数     | 仅用于稿件视频                                               |
+| cid      | num  | 观看到的对象id        | 稿件视频&剧集（当`business=archive`或`business=pgc`时）：视频cid<br />文集（当`business=article-list`时）：文章cvid |
+| part     | str  | 观看到的视频分 P 标题 | 仅用于稿件视频                                               |
+| business | str  | 业务类型              | **见请求参数**                                               |
+| dt       | num  | 记录查看的平台代码    | 1 3 5 7：手机端<br />2：web端<br />4 6：pad端<br />33：TV端<br />0：其他 |
 
 **示例：**
 
@@ -349,13 +351,13 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 
 </details>
 
-## 获取全部视频历史记录（旧）
+## 获取视频观看历史记录_web端旧版
 
 > http://api.bilibili.com/x/v2/history
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie (SESSDATA)
 
 **url参数：**
 
@@ -665,14 +667,14 @@ curl -G 'http://api.bilibili.com/x/v2/history' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie (SESSDATA)
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注                                                         |
-| ------ | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| kid    | str  | 删除的目标记录           | 必要   | 视频：archive\_{稿件avid}<br />直播：live_{直播间id}<br />专栏：article\_{专栏cvid}<br />剧集：pgc\_{剧集ssid}<br />文集：article-list\_{文集rlid} |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |                                                              |
+| 参数名 | 类型 | 内容                                                | 必要性 | 备注                                                         |
+| ------ | ---- | --------------------------------------------------- | ------ | ------------------------------------------------------------ |
+| kid    | str  | 删除的目标记录，格式为`{业务类型}_{目标id}`详见备注 | 必要   | 视频：archive\_{稿件avid}<br />直播：live_{直播间id}<br />专栏：article\_{专栏cvid}<br />剧集：pgc\_{剧集ssid}<br />文集：article-list\_{文集rlid} |
+| csrf   | str  | CSRF Token（位于cookie）                            | 必要   |                                                              |
 
 **json回复：**
 
@@ -714,7 +716,7 @@ curl 'http://api.bilibili.com/x/v2/history/delete' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie (SESSDATA)
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -761,7 +763,7 @@ curl 'http://api.bilibili.com/x/v2/history/clear' \
 
 *请求方式：POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie (SESSDATA)
 
 该操作不会影响原有历史记录
 
@@ -812,7 +814,7 @@ curl 'http://api.bilibili.com/x/v2/history/shadow/set' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie (SESSDATA)
 
 **json回复：**
 

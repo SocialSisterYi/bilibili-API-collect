@@ -8,8 +8,8 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 - [fnver视频流版本标识](#fnver视频流版本标识)
 - [fnval视频流格式标识](#fnval视频流格式标识)
 - [视频伴音音质代码](#视频伴音音质代码)
-- [获取视频流URL（web端）](#获取视频流URL（web端）)
-- [视频的取流（web端及APP端）](#视频的取流（web端及APP端）)
+- [获取视频流URL（web端）](#获取视频流URLweb端)
+- [视频的取流（web端及APP端）](#视频的取流web端及APP端)
 
 ---
 
@@ -27,10 +27,10 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 | 80   | 1080P 高清     | TV端与APP端默认值<br />需要认证登录账号                      |
 | 112  | 1080P+ 高码率  | 大多情况需求认证大会员账号                                   |
 | 116  | 1080P60 高帧率 | 大多情况需求认证大会员账号                                   |
-| 120  | 4K 超清        | 需要`fnver&128=128`且`fourk=1`<br />大多情况需求认证大会员账号 |
-| 125  | HDR 真彩色     | 仅支持dash方式<br />需要`fnver&64=64`<br />大多情况需求认证大会员账号 |
-| 126  | 杜比视界       | 仅支持dash方式<br />需要`fnver&512=512`<br />大多情况需求认证大会员账号 |
-| 127  | 8K 超高清      | 仅支持dash方式<br />需要`fnver&1024=1024`<br />大多情况需求认证大会员账号 |
+| 120  | 4K 超清        | 需要`fnval&128=128`且`fourk=1`<br />大多情况需求认证大会员账号 |
+| 125  | HDR 真彩色     | 仅支持dash方式<br />需要`fnval&64=64`<br />大多情况需求认证大会员账号 |
+| 126  | 杜比视界       | 仅支持dash方式<br />需要`fnval&512=512`<br />大多情况需求认证大会员账号 |
+| 127  | 8K 超高清      | 仅支持dash方式<br />需要`fnval&1024=1024`<br />大多情况需求认证大会员账号 |
 
 例如：请求1080P+的视频，则`qn=112`
 
@@ -47,7 +47,7 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 | 0    | flv格式            | 仅H.264编码<br />部分老视频存在分段现象<br />与mp4格式及dash格式互斥 |
 | 1    | mp4格式            | 仅H.264编码<br />不存在视频分段<br />与flv格式及dash格式互斥 |
 | 16   | dash格式           | H.264编码或H.265编码<br />部分老视频的清晰度上限低于flv格式<br />与mp4格式及flv格式互斥 |
-| 64   | 是否需求 HDR 视频  | 必须为dash格式<br />需要`qn=125`<br />大多情况需求认证大会员账号 |
+| 64   | 是否需求 杜比世界（HDR） 视频  | 必须为dash格式<br />需要`qn=125`<br />大多情况需求认证大会员账号 |
 | 128  | 是否需求 4K 分辨率 | 该值与`fourk`字段协同作用<br />需要`qn=120`<br />大多情况需求认证大会员账号 |
 | 256  | 是否需求杜比音频   | 必须为dash格式<br />大多情况需求认证大会员账号               |
 | 512  | 是否需求杜比视界   | 必须为dash格式<br />大多情况需求认证大会员账号               |
@@ -56,6 +56,14 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 
 例如：请求dash格式且需要HDR的视频流，则`fnval=16|64=80`
 
+## 视频编码代码
+
+| 值 | 含义     | 备注           |
+| ---- | ---------- | ---------------- |
+| 7  | AVC编码  | 8K视频无此格式 |
+| 12 | HEVC编码 |                |
+| 13 | AV1编码  |                |
+
 ## 视频伴音音质代码
 
 | 值    | 含义 |
@@ -63,6 +71,8 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 | 30216 | 64K  |
 | 30232 | 132K |
 | 30280 | 192K |
+| 30250 | 杜比全景声 |
+| 30251 | Hi-Res无损 |
 
 ## 获取视频流URL（web端）
 
@@ -101,6 +111,10 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 | fnval  | num  | 视频获取方式选择 | 非必要       | 默认为0<br />0 2：flv方式（可能会有分段）<br />1：低清mp4方式（仅240P与360P，且限速65K/s）<br />16 80：dash方式（音视频分流，支持H.265） |
 | fnver  | num  | 0                | 非必要       | 固定为0                                                      |
 | fourk  | num  | 是否允许4K视频   | 非必要       | 默认为0<br />画质最高1080P：0<br />画质最高4K：1             |
+| session  | str  |    | 非必要       | 从视频播放页的网页源码中获取             |
+| otype  | str  |    | 非必要       | 固定为json             |
+| type  | str  |    | 非必要       | 目前为空             |
+| platform | str |    | 非必要 | 默认为pc，当指定为html5时，获取的视频流url可以直接使用html的video标签播放 |
 
 **json回复：**
 
@@ -115,22 +129,26 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 
 `data`对象：
 
-| 字段               | 类型   | 内容                     | 备注                                     |
-| ------------------ | ------ | ------------------------ | ---------------------------------------- |
-| from               | str    | local                    | 作用尚不明确                     |
-| result             | str    | suee                     | 作用尚不明确                         |
-| message            | str    | 空                       | 作用尚不明确                         |
-| quality            | num    | 当前的视频分辨率代码        | **值含义见上表**                         |
-| format             | str    | 视频格式                 |                                          |
-| timelength         | num    | 视频长度                 | 单位为毫秒<br />不同分辨率/格式可能有略微差异 |
-| accept_format      | str    | 视频支持的全部格式 | 每项用`,`分隔 |
-| accept_description | array | 视频支持的分辨率列表     |                                          |
-| accept_quality     | array | 视频支持的分辨率代码列表 | **值含义见上表**                         |
-| video_codecid      | num    | 7                  | 作用尚不明确                         |
-| seek_param         | str    | start                    | 作用尚不明确                         |
-| seek_type          | str    | ？？？                | 作用尚不明确                 |
-| durl               | array | 视频分段                 | **注：仅flv/mp4存在此项** |
-| dash | obj | dash音视频流信息 | **注：仅dash存在此项** |
+| 字段                 | 类型    | 内容                                | 备注                         |
+|--------------------|-------|-----------------------------------|----------------------------|
+| from               | str   | local                             | 作用尚不明确                     |
+| result             | str   | suee                              | 作用尚不明确                     |
+| message            | str   | 空                                 | 作用尚不明确                     |
+| quality            | num   | 当前的视频分辨率代码                        | **值含义见上表**                 |
+| format             | str   | 视频格式                              |                            |
+| timelength         | num   | 视频长度（毫秒值）                         | 单位为毫秒<br />不同分辨率/格式可能有略微差异 |
+| accept_format      | str   | 视频支持的全部格式                         | 每项用`,`分隔                   |
+| accept_description | array | 视频支持的分辨率列表                        |                            |
+| accept_quality     | array | 视频支持的分辨率代码列表                      | **值含义见上表**                 |
+| video_codecid      | num   | 默认选择视频流的编码id                      | 见**视频编码代码**                |
+| seek_param         | str   | 固定值：start                         | 作用尚不明确                     |
+| seek_type          | str   | offset（dash、flv）<br/> second（mp4） | 作用尚不明确                     |
+| durl               | array | 视频分段                              | **注：仅flv/mp4存在此项**         |
+| dash               | obj   | dash音视频流信息                        | **注：仅dash存在此项**            |
+| support_formats    | array | 支持格式的详细信息                         |                            |
+| high_format        |       | null                              |                            |
+| last_play_time     | num   | 上次播放进度                            | 毫秒值                        |
+| last_play_cid      | num   | 上次播放分p的cid                        |                            |
 
 `data`中的`accept_description`数组：
 
@@ -148,6 +166,34 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 | n    | str  | 分辨率代码(n+1) |      |
 | ……   | str  | ……              |      |
 
+`data`中的`support_formats`数组：
+
+| 项   | 类型 | 内容            | 备注 |
+| ---- | ---- | --------------- | ---- |
+| 0    | obj  | 播放格式详细信息1     |      |
+| n    | obj  | 播放格式详细信息(n+1) |      |
+| ……   | obj  | ……              |      |
+
+`support_formats`数组中的对象：
+
+| 字段       | 类型   | 内容         | 备注                               |
+| ---------- | ------ | ------------ | ---------------------------------- |
+| quality      | num    | 视频清晰度代码 |      |
+| format     | str    | 视频格式     |                          |
+| new_description       | str    | 格式描述     |                          |
+| display_desc      | str    | 格式描述           |                        |
+| superscript      | str    | (?)           |                        |
+| codecs        | array    | 可用编码格式列表    |  |
+
+`support_formats`中的`codecs`数组：
+
+| 项   | 类型 | 内容            | 备注 |
+| ---- | ---- | --------------- | ---- |
+| 0    | str  |  例：av01.0.13M.08.0.110.01.01.01.0    |  使用AV1编码    |
+| 1    | str  | 例子：avc1.640034  |   使用AVC编码   |
+| 2    | str  | 例子：hev1.1.6.L153.90 |   使用HEVC编码   |
+
+
 ---
 
 **flv/mp4方式：**
@@ -156,7 +202,7 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 
 | 项   | 类型 | 内容              | 备注                      |
 | ---- | ---- | ----------------- | ------------------------- |
-| 0    | obj  | 视频分段1信息     | **注：仅flv方式具有分段** |
+| 0    | obj  | 视频分段1信息     | **注：仅flv、mp4方式具有分段** |
 | n    | obj  | 视频分段(n+1)信息 |                           |
 | ……   | obj  | ……                |                           |
 
@@ -217,48 +263,94 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "from": "local",
-        "result": "suee",
-        "message": "",
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "from": "local",
+    "result": "suee",
+    "message": "",
+    "quality": 64,
+    "format": "flv720",
+    "timelength": 283801,
+    "accept_format": "hdflv2,flv,flv720,flv480,mp4",
+    "accept_description": [
+      "高清 1080P+",
+      "高清 1080P",
+      "高清 720P",
+      "清晰 480P",
+      "流畅 360P"
+    ],
+    "accept_quality": [
+      112,
+      80,
+      64,
+      32,
+      16
+    ],
+    "video_codecid": 7,
+    "seek_param": "start",
+    "seek_type": "offset",
+    "durl": [
+      {
+        "order": 1,
+        "length": 283801,
+        "size": 70486426,
+        "ahead": "",
+        "vhead": "",
+        "url": "https://upos-sz-mirrorcos.bilivideo.com/upgcxcode/08/62/171776208/171776208_nb2-1-64.flv?e=ig8euxZM2rNcNbNMnwdVhwdlhbK3hwdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1662808778&gen=playurlv2&os=cosbv&oi=3719461929&trid=31dc1934e77141bfbdf5ae88aca0b29fu&mid=0&platform=pc&upsig=a4d5f1713e1ba313041d034a958c2414&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&orderid=0,3&agrr=1&bw=249068&logo=80000000",
+        "backup_url": [
+          "https://upos-sz-mirrorcos.bilivideo.com/upgcxcode/08/62/171776208/171776208_nb2-1-64.flv?e=ig8euxZM2rNcNbNMnwdVhwdlhbK3hwdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1662808778&gen=playurlv2&os=cosbv&oi=3719461929&trid=31dc1934e77141bfbdf5ae88aca0b29fu&mid=0&platform=pc&upsig=a4d5f1713e1ba313041d034a958c2414&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&orderid=1,3&agrr=1&bw=249068&logo=40000000",
+          "https://upos-sz-mirrorcosb.bilivideo.com/upgcxcode/08/62/171776208/171776208_nb2-1-64.flv?e=ig8euxZM2rNcNbNMnwdVhwdlhbK3hwdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1662808778&gen=playurlv2&os=cosbbv&oi=3719461929&trid=31dc1934e77141bfbdf5ae88aca0b29fu&mid=0&platform=pc&upsig=7b8a6924948864944815ec0748cc108f&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&bvc=vod&nettype=0&orderid=2,3&agrr=1&bw=249068&logo=40000000"
+        ]
+      }
+    ],
+    "support_formats": [
+      {
         "quality": 112,
         "format": "hdflv2",
-        "timelength": 283701,
-        "accept_format": "hdflv2,flv,flv720,flv480,mp4",
-        "accept_description": [
-            "高清 1080P+",
-            "高清 1080P",
-            "高清 720P",
-            "清晰 480P",
-            "流畅 360P"
-        ],
-        "accept_quality": [
-            112,
-            80,
-            64,
-            32,
-            16
-        ],
-        "video_codecid": 7,
-        "seek_param": "start",
-        "seek_type": "offset",
-        "durl": [
-            {
-                "order": 1,
-                "length": 283701,
-                "size": 219827828,
-                "ahead": "",
-                "vhead": "",
-                "url": "http://upos-sz-mirrorhw.bilivideo.com/upgcxcode/08/62/171776208/171776208-1-112.flv?e=ig8euxZM2rNcNbhMnwhVhwdlhzK3hzdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1589565412&gen=playurl&os=hwbv&oi=606631998&trid=e0fa5f9a7610440a871279a28fae85aau&platform=pc&upsig=5f469cb4c190ed54b89bd40cc37eddff&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=293793435&logo=80000000",
-                "backup_url": [
-                    "http://upos-sz-mirrorks3c.bilivideo.com/upgcxcode/08/62/171776208/171776208-1-112.flv?e=ig8euxZM2rNcNbhMnwhVhwdlhzK3hzdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1589565412&gen=playurl&os=ks3cbv&oi=606631998&trid=e0fa5f9a7610440a871279a28fae85aau&platform=pc&upsig=914ef921c5258e067c382601a4b1f81c&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=293793435&logo=40000000"
-                ]
-            }
-        ]
-    }
+        "new_description": "1080P 高码率",
+        "display_desc": "1080P",
+        "superscript": "高码率",
+        "codecs": null
+      },
+      {
+        "quality": 80,
+        "format": "flv",
+        "new_description": "1080P 高清",
+        "display_desc": "1080P",
+        "superscript": "",
+        "codecs": null
+      },
+      {
+        "quality": 64,
+        "format": "flv720",
+        "new_description": "720P 高清",
+        "display_desc": "720P",
+        "superscript": "",
+        "codecs": null
+      },
+      {
+        "quality": 32,
+        "format": "flv480",
+        "new_description": "480P 清晰",
+        "display_desc": "480P",
+        "superscript": "",
+        "codecs": null
+      },
+      {
+        "quality": 16,
+        "format": "mp4",
+        "new_description": "360P 流畅",
+        "display_desc": "360P",
+        "superscript": "",
+        "codecs": null
+      }
+    ],
+    "high_format": null,
+    "last_play_time": 0,
+    "last_play_cid": 0
+  }
 }
 ```
 
@@ -357,11 +449,13 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 
 | 字段            | 类型  | 内容       | 备注         |
 | --------------- | ----- | ---------- | ------------ |
-| duration        | num   | 677        | 作用尚不明确 |
+| duration        | num   | 视频长度        | 秒值 |
 | minBufferTime   | num   | 1.5        | 作用尚不明确 |
 | min_buffer_time | num   | 1.5        | 作用尚不明确 |
 | video           | array | 视频流信息 |              |
 | audio           | array | 音频流信息 |              |
+| dolby           | obj | 杜比全景声音轨信息 |              |
+| flac           | obj | 无损音轨信息 |              |
 
 `dash`中的`video`数组：
 
@@ -403,7 +497,7 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 | start_with_sap | num   | **同上**              |                                                 |
 | SegmentBase    | obj   | 见下表                | url 对应 m4s 文件中，头部的位置                   |
 | segment_base   | obj   | **同上**              |                                                 |
-| codecid        | num   | 视频: 7或12<br />音频: 0 | 7=AVC，12=HEVC <br />出处是 FLV 格式里 VideoTag 中的 CodecId 域；<br />FLV 标准不支持 HEVC，但 codecId 值为 12 是各厂共识 |
+| codecid        | num   |  |  |
 
 `video`数组中的对象中的`backup_url`数组：
 
@@ -422,6 +516,44 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 
 > 常规 MP4 文件的索引信息放在 moov box 中，其中包含每一帧 (不止是关键帧) 的一些信息。在 DASH 方式下，关键帧信息移到了 sidx box 里，其他的则分散到了各个 moof (movie fragment) box 中。<br>对这里的文件结构感兴趣的，可以参考标准文档 ISO/IEC 14496-12，如果不想那么深入的话可以百度「MP4 文件结构」。
 
+`dash`中的`dolby`对象：
+
+此项为”杜比视界“视频独有
+
+| 字段           | 类型 | 内容                                          | 备注                                                         |
+| -------------- | ---- | --------------------------------------------- | ------------------------------------------------------------ |
+| type | num  |  2   |  |
+| audio    | array  | 杜比音轨列表 |  |
+
+`dolby`对象中的`audio`数组：
+
+| 项   | 类型 | 内容                     | 备注                                            |
+| ---- | ---- | ------------------------ | ----------------------------------------------- |
+| 0    | obj  | 杜比音轨信息     |  |
+
+`audio`数组中的对象：
+
+| 项   | 类型 | 内容                     | 备注                                            |
+| ---- | ---- | ------------------------ | ----------------------------------------------- |
+| id    | num  | 音轨代码，固定为：30250     |  |
+| base_url    | str  | 音频流url     |  |
+| backup_url    | array  | 音频流备用url列表    |  |
+| bandwidth    | num  | 音频所需最低带宽    |  |
+| mime_type    | num  | 音频格式类型    |  |
+| codecs    | num  | 音频编码信息（ec-3）    |  |
+| segment_base   | obj   | **同上**              |                                                 |
+| size   | num   | 音轨文件大小            |单位为Byte                                                 |
+
+`dash`中的`flac`对象：
+
+| 项   | 类型 | 内容                     | 备注                                            |
+| ---- | ---- | ------------------------ | ----------------------------------------------- |
+| display    | bool  | 是否在播放器显示切换Hi-Res无损音轨按钮     |  |
+| audio    | obj  | 音频流信息     |  |
+
+`flac`中的`audio`对象：
+
+同：`video`及`audio`数组中的对象
 
 **示例：**
 

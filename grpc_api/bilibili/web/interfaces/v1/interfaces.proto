@@ -377,6 +377,10 @@ message Arc {
     int64 season_id = 29;
     //
     repeated DescV2 desc_v2 = 30;
+    //
+    bool is_chargeable_season = 31;
+    //
+    bool is_blooper = 32;
 }
 
 //
@@ -523,9 +527,7 @@ message NameplateInfo {
 }
 
 //
-message NoReply {
-
-}
+message NoReply {}
 
 //
 message OfficialInfo {
@@ -557,10 +559,10 @@ message OperationRelate {
 
 //
 enum OrderType {
-    TypeNone = 0;          //
+    TypeNone          = 0; //
     TypeOrderActivity = 1; //
-    TypeFavSeason = 2;     //
-    TypeClick = 3;         //
+    TypeFavSeason     = 2; //
+    TypeClick         = 3; //
 }
 
 //
@@ -595,6 +597,12 @@ message PendantInfo {
     string image = 3;
     //
     int64 expire = 4;
+}
+
+//
+message ReasonStyle {
+    //
+    string text = 1;
 }
 
 //
@@ -744,8 +752,8 @@ message ReplyEmoteMeta {
 //
 enum ReplyEmoteMetaSize {
     EMOTE_META_SIZE_UNSPECIFIED = 0; //
-    EMOTE_META_SIZE_SMALL = 1;       //
-    EMOTE_META_SIZE_BIG = 2;         //
+    EMOTE_META_SIZE_SMALL       = 1; //
+    EMOTE_META_SIZE_BIG         = 2; //
 }
 
 //
@@ -952,6 +960,10 @@ message Rights {
     int32 is_cooperation = 10;
     //
     int32 ugc_pay_preview = 11;
+    //
+    int32 arc_pay = 12;
+    //
+    int32 free_watch = 13;
 }
 
 //
@@ -976,6 +988,8 @@ message SeasonEpisode {
     Page page = 9;
     //
     string bvid = 10;
+    //
+    ReasonStyle badge_style = 11;
 }
 
 //
@@ -1188,6 +1202,8 @@ message UGCSeason {
     int64 ep_count = 10;
     //
     int64 season_type = 11;
+    //
+    bool is_pay_season = 12;
 }
 
 //
