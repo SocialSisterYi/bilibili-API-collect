@@ -51,7 +51,7 @@
 | mid      | num  | 本用户mid   |                                                  |
 | up_mid   | num  | 目标用户mid |                                                  |
 | order_no | str  | 留言token   | 用于添加充电留言                                 |
-| bp_num | num  | 充电贝壳数  |                                                  |
+| bp_num   | str  | 充电贝壳数  |                                                  |
 | exp      | num  | 获得经验数  |                                                  |
 | status   | num  | 返回结果    | 4：成功<br />-2：低于20电池下限<br />-4：B币不足 |
 | msg      | str  | 错误信息    | 默认为空                                         |
@@ -88,7 +88,7 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
         "up_mid":293793435,
         "order_no":"BPRG5CEC3VUPOOANA540",
         "bp_num":2,
-        "exp":2,
+        "exp":"2",
         "status":4,
         "msg":""
     }
@@ -123,7 +123,7 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
         "mid":0,
         "up_mid":0,
         "order_no":"",
-        "bp_num":0,
+        "bp_num":"0",
         "exp":0,
         "status":-2,
         "msg":"elec raw order create failed: 88201"
@@ -160,7 +160,7 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
         "mid":0,
         "up_mid":0,
         "order_no":"",
-        "bp_num":0,
+        "bp_num":"0",
         "exp":0,
         "status":-4,
         "msg":"bp.to.battery http failed, invalid args, errNo=800409904: B 币余额不足"
