@@ -16,14 +16,16 @@
 
 认证方式：Cookie (SESSDATA) / access_key
 
-鉴权方式：Cookie 方式下需要`Referer`在`*.bilibili.com`域名下
+Cookie 鉴权方式下需要满足以下条件：
+- `Referer`在`*.bilibili.com`域名下
+- `SESSDATA` 需要进行 url 编码，即 `,` 替换为 `%2C`
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名     | 类型 | 内容                    | 必要性         | 备注 |
 | ---------- | ---- | ----------------------- | -------------- | ---- |
 | access_key | str  | APP登录Token            | APP方式必要    |      |
-| csrf       | str  | CSRF Token (位于cookie) | Cookie方式必要 |      |
+| csrf       | str  | CSRF Token (位于cookie) | 非必要         |      |
 
 **json回复：**
 
