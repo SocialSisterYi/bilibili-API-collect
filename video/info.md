@@ -88,9 +88,9 @@
 
 | 字段       | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
-| raw_text | str | 简介内容 |     |
-| type     | num | ?    |     |
-| biz_id   | num | ?    |     |
+| raw_text | str | 简介内容 |type==2时会显示为链接[['@'+raw_text+' ' space.bilibili.com/{bix_id}]]|
+| type     | num | 类型 |1：文本，2：@用户|
+| biz_id   | num | 被@的用户的mid |=0，当type==1|
 
 `data`中的`rights`对象：
 
