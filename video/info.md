@@ -88,9 +88,9 @@
 
 | 字段       | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
-| raw_text | str | 简介内容 |type=1时显示原文<br>type=2时显示'@'+raw_text+' '并链接至biz_id的主页|
-| type     | num | 类型 |1：普通，2：@他人|
-| biz_id   | num |被@用户的mid|=0，当type=1|
+| raw_text | str | 简介内容 |     |
+| type     | num | ?    |     |
+| biz_id   | num | ?    |     |
 
 `data`中的`rights`对象：
 
