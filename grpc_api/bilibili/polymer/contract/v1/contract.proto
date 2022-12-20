@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.polymer.contract;
+package bilibili.polymer.contract.v1;
 
 import "google/protobuf/empty.proto";
 
