@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.im.interfaces.v1;
+package bilibili.im.interface.v1;
 
 import "bilibili/im/type/im.proto";
 

@@ -8,10 +8,17 @@ service Fission {
     rpc Entrance (EntranceReq) returns (EntranceReply);
     // 首页弹窗
     rpc Window (WindowReq) returns (WindowReply);
+    //
+    rpc Privacy(PrivacyReq) returns (PrivacyReply);
 }
 
-// 活动入口-请求
-message EntranceReq {}
+// 动画效果
+message AnimateIcon {
+    // icon文件
+    string icon = 1;
+    // 动效json文件
+    string json = 2;
+}
 
 // 活动入口-响应
 message EntranceReply {
@@ -25,8 +32,20 @@ message EntranceReply {
     AnimateIcon animate_icon = 4;
 }
 
-// 首页弹窗-请求
-message WindowReq {}
+// 活动入口-请求
+message EntranceReq {}
+
+//
+message PrivacyReply {
+    //
+    string message = 1;
+}
+
+//
+message PrivacyReq {
+    //
+    string activity_uid = 1;
+}
 
 //首页弹窗-响应
 message WindowReply {
@@ -39,10 +58,5 @@ message WindowReply {
     string report_data = 3;
 }
 
-//动画效果
-message AnimateIcon {
-    // icon文件
-    string icon = 1;
-    // 动效json文件
-    string json = 2;
-}
+// 首页弹窗-请求
+message WindowReq {}

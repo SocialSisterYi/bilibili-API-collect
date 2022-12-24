@@ -17,9 +17,9 @@
 3. 返回验证结果`validate`与`seccode`，进行短信或密码登录
 
 
-### 申请验证码参数
+### 申请captcha验证码
 
-> https://passport.bilibili.com/x/passport-login/captcha?source=main_web
+> http://passport.bilibili.com/x/passport-login/captcha?source=main_web
 
 *请求方式：GET*
 
@@ -31,17 +31,17 @@
 | ------ | ---- | -------- | --------- |
 | code   | num  | 返回值   | 0：成功     |
 | message   | str  | 返回信息   | |
-| ttl   | num  | 1 | **作用尚不明确** |
+| ttl   | num  | 1 |  |
 | data   | obj  | 信息本体 | |
 
 `data`对象：
 
 | 字段      | 类型  | 内容     | 备注     |
 | -------- | ----- | ------ | -------- |
-| geetest   | obj   | 套了个娃 |  |
-| tencent   | obj   | 套了个娃 | **作用尚不明确** |
-| token    | str   | 极验token | 与人机验证无关，与登录接口有关 |
-| type     | str   | 验证方式 | 用于判断使用哪一种验证方式，目前所见只有极验 |
+| geetest   | obj   | 极验captcha数据 |  |
+| tencent   | obj   | (?) | **作用尚不明确** |
+| token    | str   | 登录 API token | 与 captcha 无关，与登录接口有关 |
+| type     | str   | 验证方式 | 用于判断使用哪一种验证方式，目前所见只有极验<br />geetest：极验 |
 
 `geetest`对象：
 

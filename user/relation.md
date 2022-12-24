@@ -2,6 +2,7 @@
 
 - [查询用户粉丝明细](#查询用户粉丝明细)
 - [查询用户关注明细](#查询用户关注明细)
+- [查询用户关注明细2](#查询用户关注明细2)
 - [搜索关注明细](#搜索关注明细)
 - [查询共同关注明细](#查询共同关注明细)
 - [查询悄悄关注明细](#查询悄悄关注明细)
@@ -298,6 +299,185 @@ data 对象：
 
 ```shell
 curl -G 'https://api.bilibili.com/x/relation/followings' \
+--data-urlencode 'vmid=293793435' \
+--data-urlencode 'order_type=' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"list": [{
+			"mid": 14082,
+			"attribute": 2,
+			"mtime": 1584271945,
+			"tag": null,
+			"special": 0,
+			"uname": "山新",
+			"face": "https://i0.hdslb.com/bfs/face/74c82caee6d9eb623e56161ea8ed6d68afabfeae.jpg",
+			"sign": "都说了是天依爹地，不是妈咪。\r私信有点多回复不过来～商业合作啥的请移步Weibo私信@山新 哦哦哦～",
+			"official_verify": {
+				"type": 0,
+				"desc": "配音演员、声优。洛天依声源提供者。"
+			},
+			"vip": {
+				"vipType": 2,
+				"vipDueDate": 1601654400000,
+				"dueRemark": "",
+				"accessStatus": 0,
+				"vipStatus": 1,
+				"vipStatusWarn": "",
+				"themeType": 0,
+				"label": {
+					"path": ""
+				}
+			}
+		}, {
+			"mid": 420831218,
+			"attribute": 2,
+			"mtime": 1584208169,
+			"tag": [207542],
+			"special": 0,
+			"uname": "支付宝Alipay",
+			"face": "https://i2.hdslb.com/bfs/face/aaf18aeb2d9822e28a590bd8d878572ca8c59e04.jpg",
+			"sign": "阿支来了，关注点赞转发投币四连走起！",
+			"official_verify": {
+				"type": 1,
+				"desc": "支付宝官方账号"
+			},
+			"vip": {
+				"vipType": 1,
+				"vipDueDate": 1585065600000,
+				"dueRemark": "",
+				"accessStatus": 0,
+				"vipStatus": 1,
+				"vipStatusWarn": "",
+				"themeType": 0,
+				"label": {
+					"path": ""
+				}
+			}
+		}],
+		"re_version": 3228575555,
+		"total": 699
+	}
+}
+```
+
+</details>
+
+## 查询用户关注明细2
+
+<img src="/imgs/relation.svg" width="100" height="100" />
+
+> https://app.biliapi.net/x/v2/relation/followings
+
+*请求方式：GET*
+
+认证方式：Cookie(SESSDATA)或APP
+
+登录可看自己全部，其他用户仅可查看前5页，可以获取已设置可见性隐私的关注列表
+
+**url参数：**
+
+| 参数名     | 类型 | 内容         | 必要性      | 备注                                                    |
+| ---------- | ---- | ------------ | ----------- | ------------------------------------------------------- |
+| access_key | str  | APP登录Token | APP方式必要 |                                                         |
+| vmid       | num  | 目标用户mid  | 必要        |                                                         |
+| order_type | str  | 排序方式     | 非必要      | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
+| ps         | num  | 每页项数     | 非必要      | 默认为50                                                |
+| pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页                      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />22007：访问超过5页 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
+
+data 对象：
+
+| 字段       | 类型  | 内容     | 备注         |
+| ---------- | ----- | -------- | ------------ |
+| list       | array | 明细列表 |              |
+| re_version | num   | ？？？   | 作用尚不明确 |
+| total      | num   | 关注总数 |              |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 关注1     |                  |
+| n    | obj  | 关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……        | ……               |
+
+数组`list`中的对象：
+
+| 字段            | 类型                                     | 内容         | 备注                                    |
+| --------------- | ---------------------------------------- | ------------ | --------------------------------------- |
+| mid             | num                                      | 用户mid      |                                         |
+| attribute       | num                                      | 关注属性     | 0：未关注<br />2：已关注<br />6：已互粉 |
+| mtime           | num                                      | 关注对方时间 | 时间戳<br />互关后刷新                  |
+| tag             | 默认分组：null<br />存在至少一个分组：array | 分组id       |                             |
+| special         | num                                      | 特别关注标志 | 0：否<br />1：是                        |
+| uname           | str                                      | 用户昵称     |                                         |
+| face            | str                                      | 用户头像url  |                                         |
+| sign            | str                                      | 用户签名     |                                         |
+| official_verify | obj                                      | 认证信息     |                                         |
+| vip             | obj                                      | 会员信息     |                                         |
+
+数组`list`中的对象中的`tag`数组：
+
+| 项   | 类型 | 内容                  | 备注 |
+| ---- | ---- | --------------------- | ---- |
+| 0    | num  | 位于分组1的分组id     |      |
+| n    | num  | 位于分组(n+1)的分组id |      |
+| ……   | num  | ……                    | ……   |
+
+`list`中的对象中的`official_verify`对象：
+
+| 字段 | 类型 | 内容         | 备注                |
+| ---- | ---- | ------------ | ------------------- |
+| type | num  | 用户认证类型 | -1：无<br />1：认证 |
+| desc | str  | 用户认证信息 | 无为空              |
+
+`list`中的对象中的`vip`对象：
+
+| 字段          | 类型 | 内容         | 备注                                            |
+| ------------- | ---- | ------------ | ----------------------------------------------- |
+| vipType       | num  | 会员类型     | 0：无<br />1：月度大会员<br />2：年度以上大会员 |
+| vipDueDate    | num  | 会员到期时间 | 时间戳 毫秒                                     |
+| dueRemark     | str  | 空           | 作用尚不明确                                    |
+| accessStatus  | num  | 0            | 作用尚不明确                                    |
+| vipStatus     | num  | 大会员状态   | 0：无<br />1：有                                |
+| vipStatusWarn | str  | 空           | 作用尚不明确                                    |
+| themeType     | num  | 0            | 作用尚不明确                                    |
+| label         | obj  | ？？？       | 作用尚不明确                                    |
+
+`vip`中的`label`对象：
+
+| 字段 | 类型 | 内容 | 备注         |
+| ---- | ---- | ---- | ------------ |
+| path | str  | 空   | 作用尚不明确 |
+
+**示例：**
+
+获取用户`mid=293793435`的关注明细，按照关注顺序
+
+```shell
+curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'order_type=' \
 --data-urlencode 'ps=2' \

@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package bilibili.polymer.contract.v1;
+
+import "google/protobuf/empty.proto";
+
+// 契约
+service Contract {
+    //
+    rpc AddContract(AddContractReq) returns (google.protobuf.Empty);
+    //
+    rpc AddContractV2(AddContractReq) returns (AddContractReply);
+    //
+    rpc ContractConfig(ContractConfigReq) returns (ContractConfigReply);
+}
+
+//
+message AddContractReply {
+    //
+    bool allow_message = 1;
+    //
+    bool allow_reply = 2;
+    //
+    string input_text = 3;
+    //
+    string input_title = 4;
+}
+
+//
+message AddContractReq {
+    //
+    CommonReq common = 1;
+    //
+    int64 mid = 2;
+    //
+    int64 up_mid = 3;
+    //
+    int64 aid = 4;
+    //
+    int32 source = 5;
+}
+
+//
+message CommonReq {
+    //
+    string platform = 1;
+    //
+    int32 build = 2;
+    //
+    string buvid = 3;
+    //
+    string mobi_app = 4;
+    //
+    string device = 5;
+    //
+    string ip = 6;
+    //
+    string spmid = 7;
+}
+
+//
+message ContractCard {
+    //
+    string title = 1;
+    //
+    string sub_title = 2;
+}
+
+//
+message ContractConfigReply {
+    //
+    int32 is_follow_display = 1;
+    //
+    int32 is_triple_display = 2;
+    //
+    ContractCard contract_card = 3;
+}
+
+//
+message ContractConfigReq {
+    //
+    CommonReq common = 1;
+    //
+    int64 mid = 2;
+    //
+    int64 up_mid = 3;
+    //
+    int64 aid = 4;
+    //
+    int32 source = 5;
+}

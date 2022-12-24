@@ -1,11 +1,11 @@
 # 直播间基本信息
 
 - [直播间基本信息](#直播间基本信息)
-	- [获取直播间信息](#获取直播间信息)
-	- [获取用户对应的直播间状态](#获取用户对应的直播间状态)
-	- [获取房间页初始化信息](#获取房间页初始化信息)
-	- [获取主播信息](#获取主播信息)
-	- [批量查询直播间状态](#批量查询直播间状态)
+  - [获取直播间信息](#获取直播间信息)
+  - [获取用户对应的直播间状态](#获取用户对应的直播间状态)
+  - [获取房间页初始化信息](#获取房间页初始化信息)
+  - [获取主播信息](#获取主播信息)
+  - [批量查询直播间状态](#批量查询直播间状态)
 
 ---
 
@@ -40,7 +40,7 @@
 | online             | num  | 观看人数  |                             |
 | is_portrait        | bool | 是否竖屏  |                             |
 | description        | str  | 描述      |                             |
-| liveStatus         | num  | 直播状态  | 0：未开播<br />1：直播中<br />2：轮播中 |
+| live_status         | num  | 直播状态  | 0：未开播<br />1：直播中<br />2：轮播中 |
 | area_id            | num  | 分区id   |                               |
 | area_name          | str  | 分区名称  |                              |
 | parent_area_id     | num  | 父分区id  |                              |
@@ -239,7 +239,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/get_info' \
 | -------------- | ---- | ---------------- | ------------------------ |
 | roomStatus     | num  | 直播间状态       | 0：无房间<br />1：有房间 |
 | roundStatus    | num  | 轮播状态         | 0：未轮播<br />1：轮播   |
-| liveStatus     | num  | 直播状态         | 0：未开播<br />1：直播中 |
+| live_status     | num  | 直播状态         | 0：未开播<br />1：直播中 |
 | url            | str  | 直播间网页url    |                          |
 | title          | str  | 直播间标题       |                          |
 | cover          | str  | 直播间封面url    |                          |
@@ -268,7 +268,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 	"data": {
 		"roomStatus": 1,
 		"roundStatus": 0,
-		"liveStatus": 1,
+		"live_status": 1,
 		"url": "https://live.bilibili.com/5441",
 		"title": "好久没当黑铁主播了",
 		"cover": "http://i0.hdslb.com/bfs/live/room_cover/833f7ff506bac17c06010e8834922993657505b2.jpg",

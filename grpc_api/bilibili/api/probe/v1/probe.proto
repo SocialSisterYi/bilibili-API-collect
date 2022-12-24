@@ -15,20 +15,66 @@ service Probe {
 }
 
 //
-message CodeReq {
-    //
-    int64 code = 1;
+enum Category {
+    CATEGORY_UNSPECIFIED = 0; //
+    CATEGORY_ONE         = 1; //
+    CATEGORY_TWO         = 2; //
+    CATEGORY_THREE       = 3; //
 }
 
 //
 message CodeReply {}
 
 //
-message ProbeReq {
+message CodeReq {
     //
-    int64 mid = 1;
+    int64 code = 1;
+}
+
+//
+message DynamicMessageUpdate {
     //
-    string buvid = 2;
+    SimpleMessage body = 1;
+}
+
+//
+message Embedded {
+    //
+    bool bool_val = 1;
+    //
+    int32 int32_val = 2;
+    //
+    int64 int64_val = 3;
+    //
+    float float_val = 4;
+    //
+    double double_val = 5;
+    //
+    string string_val = 6;
+    //
+    repeated int32 repeated_int32_val = 8;
+    //
+    repeated string repeated_string_val = 12;
+    //
+    map<string, string> map_string_val = 13;
+    //
+    map<string, ErrorMessage> map_error_val = 14;
+}
+
+//
+message ErrorMessage {
+    //
+    int64 code = 1;
+    //
+    string reason = 2;
+    //
+    string message = 3;
+}
+
+//
+enum ErrorReason {
+    PROBE_UNSPECIFIED       = 0; //
+    PROBE_CATEGORY_NOTFOUND = 1; //
 }
 
 //
@@ -40,11 +86,11 @@ message ProbeReply {
 }
 
 //
-message ProbeStreamReq {
+message ProbeReq {
     //
     int64 mid = 1;
     //
-    int64 sequence = 2;
+    string buvid = 2;
 }
 
 //
@@ -58,13 +104,35 @@ message ProbeStreamReply {
 }
 
 //
-message ProbeSubReq {
+message ProbeStreamReq {
     //
-    int64 buvid = 1;
+    int64 mid = 1;
+    //
+    int64 sequence = 2;
 }
 
 //
 message ProbeSubReply {
     //
     int64 message_id = 1;
+}
+
+//
+message ProbeSubReq {
+    //
+    int64 buvid = 1;
+}
+
+//
+message SimpleMessage {
+    //
+    int32 id = 1;
+    //
+    int64 num = 2;
+    //
+    string lang = 3;
+    //
+    int32 cate = 4;
+    //
+    Embedded embedded = 5;
 }
