@@ -115,11 +115,13 @@ _请求方式：GET_
 | status          | num  | 当前资格状态       | 0 未曾拥有资格<br />1 任期内<br />2 资格失效                                                       |
 | apply_status    | num  | 当前资格申请状态   | -1 资格失效，且未申请<br />0 刚申请连任时<br />5 申请后，等待审核<br />3 申请连任成功，status 为 1 |
 | prev_term_id    | num  | 上一任期的任期 ID  | 新版风纪委员启用后的第一个任期，此项的值为 0                                                       |
-| next_term_id    | num  | 下一任期的任期 ID  | 本次任期统计结果未出来时，上一任期此项的值为 0                                                     |
+| next_term_id    | num  | 下一任期的任期 ID  | 若任期尚未结束，此项的值为 0                                                     |
 | rewards.pendant | num  | 头像挂件礼包 ID    | 合格后一般为 1，不合格为 0                                                                         |
 | rewards.coin    | num  | 硬币礼包 ID        | 合格后一般为 3，不合格为 0                                                                         |
 
 #### 旧API
+<details>
+<summary>查看旧 api：</summary>
 
 > http://api.bilibili.com/x/credit/jury/kpi （旧）
 
@@ -223,10 +225,11 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
 ```
 
 </details>
+</details>
 
 ## 检查申请风纪委员会资格
 
-> http://api.bilibili.com/x/credit/jury/requirement （旧版）
+> ~~http://api.bilibili.com/x/credit/jury/requirement~~ （旧版）
 
 > http://api.bilibili.com/x/credit/v2/jury/requirement （新版）
 

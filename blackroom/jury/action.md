@@ -8,6 +8,51 @@
 
 ## 申请加入风纪委员会
 
+> https://api.bilibili.com/x/credit/v2/jury/apply
+
+*请求方式：POST*
+
+认证方式：Cookie
+
+只有用户会员90天内无违规、实名认证且非封禁状态才可以申请加入风纪委员会
+
+
+申请成功后可获得30天资格
+
+**正文参数（ application/x-www-form-urlencoded）：**
+
+| 参数名 | 类型 | 内容                   | 必要性 |
+| ------ | ---- | ---------------------- | ------ |
+| csrf   | str  | cookie中`bili_jct`的值 | 必要   |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容   | 备注                                                         |
+| ------- | ---- | ------ | ------------------------------------------------------------ |
+| code    | num  | 返回值 | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />25001：申请等级限制(会员等级<3)<br />25002：没有实名认证<br />25003：90天内有封禁记录<br />25013：不能重复申请风纪委资格<br />25016：当日风纪委员名额已发完 |
+| message | str  | 信息   | 默认为0                                                      |
+| ttl     | num  | 1      |                                                              |
+
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+</details>
+
+#### 旧API
+<details>
+<summary>查看旧版API：</summary>
+
 > http://api.bilibili.com/x/credit/jury/apply
 
 *请求方式：POST*
@@ -65,8 +110,68 @@ curl 'http://api.bilibili.com/x/credit/jury/apply' \
 ```
 
 </details>
+</details>
 
 ## 拉取新案件
+
+> https://api.bilibili.com/x/credit/v2/jury/case/next
+
+*请求方式：GET*
+
+认证方式：Cookie
+
+**标头参数（Headers）：**
+
+| 参数名 | 类型 | 内容   | 必要性 | 备注 |
+| ------ | ---- | ------ | ------ | ---- |
+| Cookie | str  | Cookie | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型   | 内容     | 备注                                                         |
+| ------- | ------ | -------- | ------------------------------------------------------------ |
+| code    | num    | 返回值   | 0：成功<br/>25006：风纪委员资格已过期<br />25008：没有案件<br/>25014：已审满 |
+| message | str    | 信息     | 默认为0，当code不为0时，显示错误信息                         |
+| ttl     | num    | 1        | 作用尚不明确                                                 |
+| data    | object | 数据本体 |                                                              |
+
+`data`对象：
+
+| 字段    | 类型 | 内容       | 备注 |
+| ------- | ---- | ---------- | ---- |
+| case_id | str  | 仲裁案件id |      |
+
+**示例：**
+
+Cookie方式：
+
+```shell
+curl -G 'https://api.bilibili.com/x/credit/v2/jury/case/next' \
+--header 'cookie: XXXXX'
+```
+
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "case_id": "AC2m4HlrIrHv"
+    }
+}
+```
+
+</details>
+
+#### 旧API
+<details>
+<summary>查看旧版API：</summary>
 
 > http://api.bilibili.com/x/credit/jury/caseObtain
 
@@ -130,9 +235,55 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
 ```
 
 </details>
+</details>
+
 
 ## 进行仲裁投票
 
+> https://api.bilibili.com/x/credit/v2/jury/vote
+
+*请求方式：POST*
+
+认证方式：Cookie
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名    | 类型 | 内容                   | 必要性 | 备注                                                  |
+| --------- | ---- | ---------------------- | ------ | ----------------------------------------------------- |
+| case_id   | str  | 案件id                 | 必要   |                                                       |
+| vote      | num  | 投票类型               | 必要   | 见「[众裁信息](judgement_info.md)」中表               |
+| insiders  | num  | 是否观看此类视频       | 非必要 | 默认值为0<br/>见「[众裁信息](judgement_info.md)」中表 |
+| content   | str  | 理由                   | 非必要 |                                                       |
+| anonymous | num  | 是否匿名               | 非必要 | 默认值为0<br/>0：不匿名<br />1：匿名                  |
+| csrf      | str  | cookie中`bili_jct`的值 | 必要   |                                                       |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容   | 备注                                                         |
+| ------- | ---- | ------ | ------------------------------------------------------------ |
+| code    | num  | 返回值 | 0：成功<br/>-101：未登录<br />-111：csrf 错误<br />-400：请求错误（投票类型错误）<br />25005：不是风纪委员<br />25011：投票类型错误<br />25018：不能进行此操作<br/><br/>*注：新版本对于一个不存在的`case_id`，不会报错。* |
+| message | str  | 信息   | 默认为0                                                      |
+| ttl     | num  | 1      | 作用尚不明确                                                 |
+
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+</details>
+
+#### 旧API
+<details>
+<summary>查看旧版API：</summary>
 > http://api.bilibili.com/x/credit/jury/vote
 
 *请求方式：POST*
@@ -212,4 +363,5 @@ curl 'http://api.bilibili.com/x/credit/jury/vote' \
 }
 ```
 
+</details>
 </details>
