@@ -132,18 +132,18 @@
 | result | num  | 众议结论 | 见开头「投票选项码总览」 |
 | result_text | str | 众议结论文本 |  |
 | title | str | 视频标题 |              |
-| case_info | object | 案件信息 | 见「[附表1](#####附表1：`data` 对象下的`case_info`对象)」 |
-| my_point | object | 我的观点 | 见「[附表4](#####附表4：`data` 对象下的`my_point`对象)」 |
-| vote_info | object | 投票信息 | 见「[附表5](#####附表5：`data` 对象下的`vote_info`对象)」 |
+| case_info | object | 案件信息 | 见「[附表1](#附表1data-对象下的case_info对象)」 |
+| my_point | object | 我的观点 | 见「[附表4](#附表4data-对象下的my_point对象)」 |
+| vote_info | object | 投票信息 | 见「[附表5](#附表5data-对象下的vote_info对象)」 |
 
 ###### 附表1：`data` 对象下的`case_info`对象
 
 | 字段 | 类型 | 内容 | 备注 |
 | ------------ | ------ | ------------ | ------------------------------------------------------------ |
-| comment      | object | 单条评论信息 | 仅当`case_type`为`1`有值。见「[附表2](#####附表2：评论信息)」 |
+| comment      | object | 单条评论信息 | 仅当`case_type`为`1`有值。见「[附表2](#附表2评论信息)」 |
 | danmu_img    | str    | 弹幕截图     | 仅当`case_type`为`4`有值，截图URL                            |
-| comments     | object | 若干条评论   | 仅当`case_type`为`2`有值。见「[附表2](#####附表2：评论信息)」 |
-| single_danmu | str    | 单条弹幕信息 | 仅当`case_type`为`3`有值。见「[附表3](#####附表3：弹幕信息)」 |
+| comments     | object | 若干条评论   | 仅当`case_type`为`2`有值。见「[附表2](#附表2评论信息)」 |
+| single_danmu | str    | 单条弹幕信息 | 仅当`case_type`为`3`有值。见「[附表3](#附表3弹幕信息)」 |
 
 ###### 附表2：评论信息
 
@@ -153,7 +153,7 @@
 | uname | str | 用户名 |      |
 | face | str | 用户头像 | 头像URL |
 | content | str | 评论内容 |      |
-| child_comments | object | 子评论（对该评论的回复） | 见「[附表2](#####附表2：评论信息)」，单条评论和子评论下无`child_comments`字段 |
+| child_comments | object | 子评论（对该评论的回复） | 见「[附表2](#附表2评论信息)」，单条评论和子评论下无`child_comments`字段 |
 
 ###### 附表3：弹幕信息
 
@@ -750,7 +750,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
 | total | num   | 当前案件众议观点总数       |      |
 | list  | array | 无数据时是一个空数组：“[]” |      |
 
-`data.list`对象是一个数组，里面包含`ps`个object（参数`ps`见上文，object结构见「[附表4](#####附表4：`data` 对象下的`my_point`对象)」）
+`data.list`对象是一个数组，里面包含`ps`个object（参数`ps`见上文，object结构见「[附表4](#附表4data-对象下的my_point对象)」）
 
 **示例：**
 
