@@ -244,8 +244,8 @@
             }
         },
         "my_point": {
-            "opid": 000001,
-            "mid": 000001,
+            "opid": 10001,
+            "mid": 10001,
             "uname": "风纪委员用户名",
             "face": "http://i0.hdslb.com/bfs/face/e48952d599dbf011c2235239fafa2bf0deccef5a.jpg",
             "vote": 3,
