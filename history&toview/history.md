@@ -19,15 +19,16 @@
 
 认证方式：Cookie (SESSDATA)
 
-注：`max`、`business`、`view_at`参数用于历史记录列表的IFS (无限滚动)，其用法类似链表的next指针
+注：`max`、`business`、`view_at`参数用于历史记录列表的 IFS (无限滚动)，其用法类似链表的 next 指针
 
 **url参数：**
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                                         |
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| max      | num  | 历史记录截止目标 id      | 非必要 | 默认为 0<br />稿件：稿件 avid<br />剧集 (番剧 / 影视)：剧集 ssid<br />直播：直播间 id<br />文集：文集 rlid<br />文章：文章 cvid |
-| business | num  | 历史记录截止目标业务类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：剧集 (番剧 / 影视)<br />live：直播<br />article-list：文集<br />article：文章 |
+| max      | num  | 历史记录截止目标 id      | 非必要 | 默认为 0<br />稿件：稿件 avid<br />剧集（番剧 / 影视）：剧集 ssid<br />直播：直播间 id<br />文集：文集 rlid<br />文章：文章 cvid |
+| business | str  | 历史记录截止目标业务类型 | 非必要 | 默认为空<br />archive：稿件<br />pgc：剧集（番剧 / 影视）<br />live：直播<br />article-list：文集<br />article：文章 |
 | view_at  | num  | 历史记录截止时间         | 非必要 | 时间戳<br />默认为 0<br />0 为当前时间                       |
+| type     | str  | 历史记录分类筛选         | 非必要 | all：全部类型（默认）<br />archive：稿件<br />live：直播<br />article：文章 |
 | ps       | num  | 每页项数                 | 非必要 | 默认为 20，最大 30                                           |
 
 **json回复：**
