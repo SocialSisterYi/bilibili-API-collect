@@ -108,13 +108,13 @@
 | originTypeName      | str  | 来源名           |                                             |
 | punishTitle         | str  | 公示标题         |                                             |
 | punishTime          | num  | 处罚时间         | 时间戳                                      |
-| punishType          | num  | 处理手段类型     | 2：封禁<br />3：永久封禁                    |
+| punishType          | num  | 处理手段类型     | `2`：封禁<br />`3`：永久封禁                |
 | punishTypeName      | str  | 处理手段名       |                                             |
 | moralNum            | num  | `0`节操值        | 被封禁用户节操值均为`0`                     |
 | blockedDays         | num  | 封禁天数         | 永封为`0`                                   |
-| publishStatus       | num  | 1                | 作用尚不明确                                |
-| blockedType         | num  | 处理来源         | 0：系统封禁<br />1：风纪仲裁                |
-| blockedForever      | num  | 是否永封         | 0：非永封<br />1：永封                      |
+| publishStatus       | num  | `1`              | 作用尚不明确                                |
+| blockedType         | num  | 处理来源         | `0`：系统封禁<br />1：风纪仲裁              |
+| blockedForever      | num  | 是否永封         | `0`：非永封<br />`1`：永封                  |
 | reasonType          | num  | 封禁原因类型     | **见[表1](#表1已知的封禁原因类型代码总览)** |
 | reasonTypeName      | str  | 封禁原因类型名称 |                                             |
 | operatorName        | str  | 空               | 作用尚不明确                                |
@@ -220,7 +220,7 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
 | 字段    | 类型 | 内容     | 备注                                            |
 | ------- | ---- | -------- | ----------------------------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />-404：无此信息 |
-| message | str  | 错误信息 | 默认为0                                         |
+| message | str  | 错误信息 | 默认为`0`                                       |
 | ttl     | num  | 1        |                                                 |
 | data    | obj  | 信息本体 |                                                 |
 
@@ -240,13 +240,13 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
 | originTypeName      | str  | 来源名           |                                             |
 | punishTitle         | str  | 公示标题         |                                             |
 | punishTime          | num  | 处罚时间         | 时间戳                                      |
-| punishType          | num  | 处理手段类型     | 2：封禁<br />3：永久封禁                    |
+| punishType          | num  | 处理手段类型     | `2`：封禁<br />`3`：永久封禁                |
 | punishTypeName      | str  | 处理手段名       |                                             |
 | moralNum            | num  | `0`节操值        | 被封禁用户节操值均为`0`                     |
 | blockedDays         | num  | 封禁天数         | 永封为`0`                                   |
-| publishStatus       | num  | 1                | 作用尚不明确                                |
-| blockedType         | num  | 处理来源         | 0：系统封禁<br />1：风纪仲裁                |
-| blockedForever      | num  | 是否永封         | 0：非永封<br />1：永封                      |
+| publishStatus       | num  | `1`              | 作用尚不明确                                |
+| blockedType         | num  | 处理来源         | `0`：系统封禁<br />`1`：风纪仲裁            |
+| blockedForever      | num  | 是否永封         | `0`：非永封<br />`1`：永封                  |
 | reasonType          | num  | 封禁原因类型     | **见[表1](#表1已知的封禁原因类型代码总览)** |
 | reasonTypeName      | str  | 封禁原因类型名称 |                                             |
 | operatorName        | str  | 空               | 作用尚不明确                                |
