@@ -113,6 +113,20 @@ message Content {
     map<string, int64> at_name_to_mid = 7;
     // 富文本
     RichText rich_text = 8;
+    // 评论图片
+    repeated  Picture pictures = 9;
+}
+
+// 图片信息
+message Picture {
+    // 图片URL
+    string img_src = 1;
+    // 图片宽度
+    double img_width = 2;
+    // 图片高度
+    double img_height = 3;
+    // 图片大小，单位KB
+    double img_size = 4;
 }
 
 // 页面游标回复
