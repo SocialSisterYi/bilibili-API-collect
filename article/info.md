@@ -51,7 +51,9 @@
 | in_list           | bool   | 是否收于文集     | false：否<br />true：是                                      |
 | pre               | num    | 上一篇文章cvid   | 无为0                                                        |
 | next              | num    | 下一篇文章cvid   | 无为0                                                        |
-| share_channels    | array | 分享方式列表     |                                                              |
+| share_channels    | array | 分享方式列表     |                                                               |
+| type              | num    | 文章类别   | 0：文章<br />2：笔记                                                |
+
 
 `stats`对象：
 
