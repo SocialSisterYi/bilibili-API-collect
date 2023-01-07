@@ -173,7 +173,7 @@ _请求方式：GET_
     "ttl": 1,
     "data": {
         "is_surplus": 1,
-        "status": 2,
+        "status": 3,
         "progress": 5,
         "target": 5,
         "wallet": {
@@ -203,7 +203,7 @@ _请求方式：GET_
         "week_total": 4,
         "week_group": 1,
         "day_task": {
-            "status": 2,
+            "status": 3,
             "progress": 5,
             "target": 5
         }
