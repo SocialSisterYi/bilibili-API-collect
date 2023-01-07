@@ -46,6 +46,7 @@ curl 'http://api.bilibili.com/x/note/info' \
 
 <details>
 <summary>查看响应示例：</summary>
+    
 ```json
 {
     "code": 0,
