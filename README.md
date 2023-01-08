@@ -193,6 +193,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除
   - [ ] 直播间操作
   - [ ] [直播视频流](live/live_stream.md)
   - [ ] [直播信息流](live/message_stream.md)
+  - [ ] [直播流水](live/live_bill.md)
 - [ ] [转正答题](newbie_exam)
   - [x] [查询信息](newbie_exam/info.md)
   - [x] [拉取题目](newbie_exam/fetch.md)
