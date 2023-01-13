@@ -1310,7 +1310,7 @@ json格式
 
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
-| cmd | str | "STOP_LIVE_ROOM_LIST" | 直播间高能用户数，内容是"STOP_LIVE_ROOM_LIST" |
+| cmd | str | "STOP_LIVE_ROOM_LIST" | |
 | data | obj | 下播的直播间ID列表 | |
 
 data字段
