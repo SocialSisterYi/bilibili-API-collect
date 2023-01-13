@@ -234,7 +234,7 @@ json格式
 
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
-| code | num  | 返回值 | 0认证成功 |
+| code | num  | 返回值 | 0即为认证成功 |
 
 方式：（下行）
 
@@ -248,9 +248,8 @@ json格式
 
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
-| cmd | string  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
-| info | list  | 单条弹幕的用户、内容、粉丝勋章等各种信息 | 待补 |
-| ts | string  | 用户发送弹幕的时间 | unix时间戳 |
+| cmd | str  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
+| info | array  | 单条弹幕的用户、内容、粉丝勋章等各种信息 | 待补 |
 
 <details>
 <summary>查看消息示例：</summary>
@@ -340,37 +339,37 @@ json格式
 
 方式：（下行）
 
-有用户进入或关注直播间时触发
+有用户进入直播间或关注主播时触发
 
 json格式
 
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
-| cmd | string  | "INTERACT_WORD" | 如果是进场或关注消息，内容则是"INTERACT_WORD" |
-| data | obj  | 进场人信息 |  |
+| cmd | str  | "INTERACT_WORD" | 如果是进入直播间或关注消息，内容则是"INTERACT_WORD" |
+| data | obj  | 进入直播间的用户的信息 |  |
 
 data字段
 
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
 | contribution | obj  | 待调查 |  |
-| dmscore | number  | 待调查 |  |
-| fans_medal | obj  | 粉丝勋章 |  |
-| identities | number  | 待调查 |  |
-| is_spread | number  | 待调查 |  |
-| msg_type | number  | 1为进场，2为关注 |  |
-| roomid | number  | 房间号 |  |
-| is_spread | number  | 待调查 |  |
-| is_spread | number  | 待调查 |  |
-| score | number  | 待调查 |  |
-| spread_desc | string  | 待调查 |  |
-| spread_info | string  | 待调查 |  |
-| tail_icon | number  | 待调查 |  |
-| timestamp | number  | 时间戳 |  |
-| trigger_time | number  | 触发时间 |  |
-| uid | number  | 用户ID |  |
-| uname | string  | 用户名称 |  |
-| uname_color | string  | 用户颜色 |  |
+| dmscore | num | 待调查 |  |
+| fans_medal | obj | 粉丝勋章 |  |
+| identities | num | 待调查 |  |
+| is_spread | num | 待调查 |  |
+| msg_type | num  | 1为进场，2为关注 |  |
+| roomid | num | 房间号 |  |
+| is_spread | num  | 待调查 |  |
+| is_spread | num  | 待调查 |  |
+| score | num | 待调查 |  |
+| spread_desc | str  | 待调查 |  |
+| spread_info | str  | 待调查 |  |
+| tail_icon | num  | 待调查 |  |
+| timestamp | num  | 时间戳 |  |
+| trigger_time | num  | 触发时间 |  |
+| uid | num | 用户ID |  |
+| uname | str  | 用户名称 |  |
+| uname_color | str  | 用户名称颜色 |  |
 
 <details>
 <summary>查看消息示例：</summary>
@@ -417,103 +416,223 @@ data字段
 }
 ```
 
-</detail>
+</details>
 
+#### 送礼
 
 json格式
 
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
-| cmd | string  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
-| info | list  | 单条弹幕的用户、内容、粉丝勋章等各种信息 | 待补 |
+| cmd | str | "SEND_GIFT" | 投喂礼物等，内容则是"SEND_GIFT" |
+| data | obj | 礼物投喂人、礼物信息、礼物数量等 |  |
+
+data字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| action | string | 礼物操作，一般为"投喂" | |
+| batch_combo_id | string | 待调查 | 有时为空字符串 |
+| batch_combo_send | obj | 待调查 | 有时为null |
+| beatId | string | 待调查 | |
+| biz_source | string | 待调查 | |
+| blind_gift | | 待调查 | |
+| broadcast_id | number | 待调查 | |
+| coin_type | string | 待调查 | |
+| combo_resources_id | number | 待调查 | |
+| combo_send | | 待调查 | |
+| comber_stay_time | number | 待调查 | |
+| combo_total_coin | number | 待调查 | |
+| crit_prob | number | 待调查 | |
+| demarcation | number | 待调查 | |
+| discount_price | number | 待调查 | |
+| dmscore | number | 待调查 | |
+| draw | number | 待调查 | |
+| effect | number | 待调查 | |
+| effect_block | number | 待调查 | |
+| face | string | 一段URL | 礼物投喂者的头像URL |
+| face_effect_id | number | | |
+| face_effect_type | number | | |
+| float_sc_resource_id | number | | |
+| giftId | number | 待调查 | |
+| giftName | string | 礼物名称 | |
+| giftType | number | 待调查 | |
+| gold | number | 待调查 | |
+| guard_level | number | 待调查 | |
+| is_first | bool | 待调查 | |
+| is_join_receiver | bool | 待调查 | |
+| is_naming | bool | 待调查 | |
+| is_special_batch | number | 待调查 | |
+| magnification | number | 待调查 | |
+| medal_info | obj | 礼物投喂者粉丝奖牌信息 | |
+| name_color | string | 待调查 | |
+| num | number | 该次投喂的礼物数量 | |
+| original_gift_name | string | 待调查 | |
+| price | number | 待调查 | |
+| rcost | number | 待调查 | |
+| receive_user_info | obj | 礼物接收者信息，一般是主播 | |
+| remain | number | 待调查 | |
+| rnd | number | 礼物发送时的时间戳，以及后面9位未知数字 | |
+| send_master | | 待调查 | |
+| silver | number | 待调查 | |
+| super | number | 待调查 | |
+| super_batch_gift_num | number | 待调查 | |
+| super_gift_num | number | 待调查 | |
+| svga_block | number | 待调查 | |
+| switch | bool | 待调查 | |
+| tag_image | string | 待调查 | |
+| tid | number | 礼物发送时的时间戳，以及后面9位未知数字 | 似乎与rnd字段相同 |
+| timestamp | number | 礼物发送时的时间戳 | |
+| top_list | | 待调查 | |
+| total_coin | number | 待调查 | |
+| uid | number | 礼物投喂者的UID | |
+| uname | string | 礼物投喂者的名称 | |
+
+batch_combo_send字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| action | string | 礼物操作，一般为"投喂" | |
+| batch_combo_id | string | 待调查 | |
+| batch_combo_num | number | 待调查 | |
+| blind_gift | | 待调查 | |
+| gift_id | number | 待调查 | |
+| gift_name | string | 投喂的礼物名称 | 待调查 |
+| gift_num | number | 投喂礼物数量 | 待调查 |
+| send_master | | 待调查 | |
+| uid | number | 礼物投喂者的UID | |
+| uname | string | 礼物投喂者的名称 | |
+
+medal_info字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| anchor_roomid | number | 待调查 | |
+| anchor_uname | string | 待调查 | |
+| guard_level | number | 待调查 | |
+| icon_id | number | 待调查 | |
+| is_lighted | number | 待调查 | |
+| medal_color | number | 礼物投喂者的粉丝奖牌颜色 | 十六进制颜色值转为了十进制表示 |
+| medal_border_color | number | 礼物投喂者的粉丝奖牌边框颜色 | 十六进制颜色值的十进制表示 |
+| medal_color_end | number | 待调查 | |
+| medal_color_start | number | 待调查 | |
+| medal_level | number | 礼物投喂者的粉丝奖牌等级 | |
+| medal_name | string | 礼物投喂者的粉丝奖牌名称 | |
+| special | string | 待调查 | |
+| target_id | number | 待调查 | |
+
+receive_user_info字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| uid | number | 礼物接收者的UID | 一般为主播的UID |
+| uname | string | 礼物接收者的名称 | 一般为主播的名称 |
 
 <details>
 <summary>查看消息示例：</summary>
 
-``` json
+```json
 {
-    "cmd": "DANMU_MSG",
-    "info": [
-        [
-            0,
-            4,
-            25,
-            5566168,
-            1644559560263,
-            1644558747,
-            0,
-            "998a531f",
-            0,
-            0,
-            5,
-            "#1453BAFF,#4C2263A2,#3353BAFF",
-            0,
-            "{}",
-            "{}",
-            {
-                "mode": 0,
-                "show_player_type": 0,
-                "extra": ""
-            }
-        ],
-        "测试文本",
-        [
-            1850091,
-            "Jannchie见齐",
-            0,
-            0,
-            0,
-            10000,
-            1,
-            "#00D1F1"
-        ],
-        [
-            21,
-            "観測者",
-            "Jannchie见齐",
-            422915,
-            1725515,
-            "",
-            0,
-            6809855,
-            1725515,
-            5414290,
-            3,
-            1,
-            1850091
-        ],
-        [
-            20,
-            0,
-            6406234,
-            "u003e50000",
-            3
-        ],
-        [
-            "",
-            ""
-        ],
-        0,
-        3,
-        null,
-        {
-            "ts": 1644559560,
-            "ct": "59DEA791"
+    "cmd": "SEND_GIFT",
+    "data": {
+        "action": "投喂",
+        "batch_combo_id": "batch:gift:combo_id:510149209:36047134:31036:1673622464.8445",
+        "batch_combo_send": {
+            "action": "投喂",
+            "batch_combo_id": "batch:gift:combo_id:510149209:36047134:31036:1673622464.8445",
+            "batch_combo_num": 1,
+            "blind_gift": null,
+            "gift_id": 31036,
+            "gift_name": "小花花",
+            "gift_num": 1,
+            "send_master": null,
+            "uid": 510149209,
+            "uname": "12138额83121"
         },
-        0,
-        0,
-        null,
-        null,
-        0,
-        210
-    ]
+        "beatId": "",
+        "biz_source": "live",
+        "blind_gift": null,
+        "broadcast_id": 0,
+        "coin_type": "gold",
+        "combo_resources_id": 1,
+        "combo_send": {
+            "action": "投喂",
+            "combo_id": "gift:combo_id:510149209:36047134:31036:1673622464.8434",
+            "combo_num": 1,
+            "gift_id": 31036,
+            "gift_name": "小花花",
+            "gift_num": 1,
+            "send_master": null,
+            "uid": 510149209,
+            "uname": "12138额83121"
+        },
+        "combo_stay_time": 3,
+        "combo_total_coin": 100,
+        "crit_prob": 0,
+        "demarcation": 1,
+        "discount_price": 100,
+        "dmscore": 8,
+        "draw": 0,
+        "effect": 0,
+        "effect_block": 0,
+        "face": "https://i1.hdslb.com/bfs/face/fb79103e8b33547023e2010030b6889bba2b49bf.jpg",
+        "face_effect_id": 0,
+        "face_effect_type": 0,
+        "float_sc_resource_id": 0,
+        "giftId": 31036,
+        "giftName": "小花花",
+        "giftType": 0,
+        "gold": 0,
+        "guard_level": 0,
+        "is_first": true,
+        "is_join_receiver": false,
+        "is_naming": false,
+        "is_special_batch": 0,
+        "magnification": 1,
+        "medal_info": {
+            "anchor_roomid": 0,
+            "anchor_uname": "",
+            "guard_level": 0,
+            "icon_id": 0,
+            "is_lighted": 0,
+            "medal_color": 0,
+            "medal_color_border": 0,
+            "medal_color_end": 0,
+            "medal_color_start": 0,
+            "medal_level": 0,
+            "medal_name": "",
+            "special": "",
+            "target_id": 0
+        },
+        "name_color": "",
+        "num": 1,
+        "original_gift_name": "",
+        "price": 100,
+        "rcost": 164536872,
+        "receive_user_info": {
+            "uid": 36047134,
+            "uname": "小霖QL"
+        },
+        "remain": 0,
+        "rnd": "1673622464121900003",
+        "send_master": null,
+        "silver": 0,
+        "super": 0,
+        "super_batch_gift_num": 1,
+        "super_gift_num": 1,
+        "svga_block": 0,
+        "switch": true,
+        "tag_image": "",
+        "tid": "1673622464121900003",
+        "timestamp": 1673622464,
+        "top_list": null,
+        "total_coin": 100,
+        "uid": 510149209,
+        "uname": "12138额83121"
+    }
 }
 ```
 </details>
-
-#### 送礼
-
-
 
 #### 欢迎加入房间
 
@@ -523,9 +642,136 @@ json格式
 
 
 
-#### 系统消息
+#### 通知消息
 
+json格式
 
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "NOTICE_MSG" | 通知消息，内容则是"NOTICE_MSG" |
+| id | num | 待调查 | |
+| data | obj | 通知数据 | |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| full | obj | 待调查 | |
+| half | obj | 待调查 | |
+| side | obj | 待调查 | |
+| roomid | num | 目标直播间短号 | |
+| real_roomid | num | 目标直播间真实ID | |
+| msg_common | str | 显示的消息内容 | |
+| msg_self | str | 消息内容本身 | 剔除额外文本 |
+| link_rel | str | 通知消息跳转的URL | |
+| msg_type | num | 待调查 | |
+| shield_uid | num | 待调查 | |
+| business_id | str | 待调查 | |
+| scatter | obj | 待调查 | |
+| marquee_id | str | 待调查 | |
+| notice_type | num | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    "cmd": "NOTICE_MSG",
+    "id": 804,
+    "name": "人气榜第一名",
+    "full": {
+        "head_icon": "https://i0.hdslb.com/bfs/live/f74b09c7fb83123a0dd66c536b6d5b143d271b08.png",
+        "tail_icon": "https://i0.hdslb.com/bfs/live/822da481fdaba986d738db5d8fd469ffa95a8fa1.webp",
+        "head_icon_fa": "https://i0.hdslb.com/bfs/live/f74b09c7fb83123a0dd66c536b6d5b143d271b08.png",
+        "tail_icon_fa": "https://i0.hdslb.com/bfs/live/38cb2a9f1209b16c0f15162b0b553e3b28d9f16f.png",
+        "head_icon_fan": 1,
+        "tail_icon_fan": 4,
+        "background": "#FFE6BD",
+        "color": "#9D5412",
+        "highlight": "#FF6933",
+        "time": 20
+    },
+    "half": {
+        "head_icon": "https://i0.hdslb.com/bfs/live/f74b09c7fb83123a0dd66c536b6d5b143d271b08.png",
+        "tail_icon": "https://i0.hdslb.com/bfs/live/822da481fdaba986d738db5d8fd469ffa95a8fa1.webp",
+        "background": "#FFE6BD",
+        "color": "#9D5412",
+        "highlight": "#FF6933",
+        "time": 0
+    },
+    "side": {
+        "head_icon": "",
+        "background": "",
+        "color": "",
+        "highlight": "",
+        "border": ""
+    },
+    "roomid": 23919301,
+    "real_roomid": 23919301,
+    "msg_common": "恭喜主播<%AG超玩会王者荣耀一诺%>荣获上小时人气榜第<%1%>名！点击传送查看精彩内容！",
+    "msg_self": "恭喜主播<%AG超玩会王者荣耀一诺%>荣获上小时人气榜第<%1%>名！",
+    "link_url": "https://live.bilibili.com/23919301?broadcast_type=0&is_room_feed=1&from=28003&extra_jump_from=28003",
+    "msg_type": 1,
+    "shield_uid": -1,
+    "business_id": "",
+    "scatter": {
+        "min": 0,
+        "max": 0
+    },
+    "marquee_id": "",
+    "notice_type": 0
+}
+```
+```json
+{
+    "cmd": "NOTICE_MSG",
+    "id": 814,
+    "name": "幻影飞船专用",
+    "full": {
+        "head_icon": "https://i0.hdslb.com/bfs/live/08978f1721200e11328d1f7d6231b21bcca20488.gif",
+        "tail_icon": "https://i0.hdslb.com/bfs/live/822da481fdaba986d738db5d8fd469ffa95a8fa1.webp",
+        "head_icon_fa": "https://i0.hdslb.com/bfs/live/08978f1721200e11328d1f7d6231b21bcca20488.gif",
+        "tail_icon_fa": "https://i0.hdslb.com/bfs/live/38cb2a9f1209b16c0f15162b0b553e3b28d9f16f.png",
+        "head_icon_fan": 1,
+        "tail_icon_fan": 4,
+        "background": "#F09153",
+        "color": "#FFFFFF",
+        "highlight": "#FFE600",
+        "time": 15
+    },
+    "half": {
+        "head_icon": "https://i0.hdslb.com/bfs/live/08978f1721200e11328d1f7d6231b21bcca20488.gif",
+        "tail_icon": "",
+        "background": "#F09153",
+        "color": "#FFFFFFFF",
+        "highlight": "#FFE600",
+        "time": 15
+    },
+    "side": {
+        "head_icon": "",
+        "background": "",
+        "color": "",
+        "highlight": "",
+        "border": ""
+    },
+    "roomid": 25207004,
+    "real_roomid": 25207004,
+    "msg_common": "<%咖啡_ミシェル%>投喂<%夜月瓜瓜sukuyi%>1个幻影飞船，向着浩瀚星辰出发！",
+    "msg_self": "<%咖啡_ミシェル%>投喂<%夜月瓜瓜sukuyi%>1个幻影飞船，向着浩瀚星辰出发！",
+    "link_url": "https://live.bilibili.com/25207004?broadcast_type=0&is_room_feed=1&from=28003&extra_jump_from=28003&live_lottery_type=1",
+    "msg_type": 2,
+    "shield_uid": -1,
+    "business_id": "32356",
+    "scatter": {
+        "min": 0,
+        "max": 0
+    },
+    "marquee_id": "",
+    "notice_type": 0
+}
+```
+
+</details>
 
 #### 主播准备中
 
@@ -538,3 +784,731 @@ json格式
 #### 直播状态更新
 
 
+
+#### 直播间高能榜
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "ONLINE_RANK_V2" | 直播间高能用户数据刷新，内容则是"ONLINE_RANK_V2" |
+| data | obj | 直播间高能用户数据 | |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| list | array | 在直播间高能用户中的用户信息 | |
+| rank_type | str | 待调查 | |
+
+list数组中的对象
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| uid | num | 用户UID | |
+| face | str | 用户头像URL | |
+| score | num | 该用户的贡献值 | |
+| uname | str | 用户名称 | |
+| rank | num | 该用户在高能榜中的排名 | |
+| guard_level | num | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "ONLINE_RANK_V2",
+    "data": {
+        "list": [
+            {
+                "uid": 2082621455,
+                "face": "https://i2.hdslb.com/bfs/face/9de6050277fa13d830eb97e3453d89843de46a31.jpg",
+                "score": "20",
+                "uname": "8级萌新_小华",
+                "rank": 1,
+                "guard_level": 0
+            },
+            {
+                "uid": 50500335,
+                "face": "https://i0.hdslb.com/bfs/face/ca722209251478ef0ffb45c3adeafb9dab283c57.jpg",
+                "score": "20",
+                "uname": "属官一号",
+                "rank": 2,
+                "guard_level": 0
+            },
+            {
+                "uid": 29857468,
+                "face": "https://i1.hdslb.com/bfs/face/7b4ae2e7e950f2dfb2bd969859c813487ce3b64c.jpg",
+                "score": "12",
+                "uname": "露萌不要雨草",
+                "rank": 3,
+                "guard_level": 0
+            }
+        ],
+        "rank_type": "gold-rank"
+    }
+}
+```
+  
+</details>
+
+
+#### 直播间高能用户数量
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "ONLINE_RANK_COUNT" | 直播间高能用户数，内容是"ONLINE_RANK_COUNT" |
+| data | obj | 直播间高能用户数量 | |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| count | num | 直播间高能用户数量 | |
+
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "ONLINE_RANK_COUNT",
+    "data": {
+        "count": 4
+    }
+}
+```
+  
+</details>
+
+#### 直播间用户点赞
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "LIKE_INFO_V3_CLICK" | 若直播间被赞，则内容是"LIKE_INFO_V3_CLICK" |
+| data | obj | 点赞的用户的信息 | |
+
+data字段
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| show_area | num | 待调查 | |
+| msg_type | num | 待调查 | |
+| like_icon | str | 点赞图标的URL | |
+| uid | num | 点赞的用户的UID | |
+| like_text | str | 点赞文本 | |
+| uname | str | 点赞的用户的名称 | |
+| uname_color | str | 点赞的用户的名称颜色 | |
+| identities | array | 待调查 | |
+| fans_medal | obj | 点赞的用户的粉丝勋章信息 | |
+| contribution_info | obj | 待调查 | |
+| dmscore | num | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "LIKE_INFO_V3_CLICK",
+    "data": {
+        "show_area": 0,
+        "msg_type": 6,
+        "like_icon": "https://i0.hdslb.com/bfs/live/23678e3d90402bea6a65251b3e728044c21b1f0f.png",
+        "uid": 32174213,
+        "like_text": "为主播点赞了",
+        "uname": "MeiDngS",
+        "uname_color": "",
+        "identities": [
+            1
+        ],
+        "fans_medal": {
+            "target_id": 0,
+            "medal_level": 0,
+            "medal_name": "",
+            "medal_color": 0,
+            "medal_color_start": 12632256,
+            "medal_color_end": 12632256,
+            "medal_color_border": 12632256,
+            "is_lighted": 0,
+            "guard_level": 0,
+            "special": "",
+            "icon_id": 0,
+            "anchor_roomid": 0,
+            "score": 0
+        },
+        "contribution_info": {
+            "grade": 0
+        },
+        "dmscore": 20
+    }
+}
+```
+
+</details>
+
+#### 直播间点赞数
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "LIKE_INFO_V3_UPDATE" | 若直播间点赞数更新，则内容是"LIKE_INFO_V3_UPDATE" |
+| data | obj | 直播间点赞数 | |
+
+data字段
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| click_count | num | 直播间点赞数 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "LIKE_INFO_V3_UPDATE",
+    "data": {
+        "click_count": 3227
+    }
+}
+```
+
+</details>
+
+#### 直播间看过人数
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "WATCHED_CHANGE" | 若直播间看过人数更新，则内容是"WATCHED_CHANGE" |
+| data | obj | 直播间看过人数 | |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| num        | num  | | |
+| text_small | str | | |
+| text_large | str | | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "WATCHED_CHANGE",
+    "data": {
+        "num": 17903,
+        "text_small": "1.7万",
+        "text_large": "1.7万人看过"
+    }
+}
+```
+
+</details>
+
+#### 用户进场特效
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "ENTRY_EFFECT" | 有进场特效的用户进入直播间，则内容是"ENTRY_EFFECT" |
+| data | obj | 进场用户、进场特效信息 | |
+
+data字段
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| id | num | 待调查 | |
+| uid | num | 进场用户的UID | |
+| target_id | num | 主播的UID？ | |
+| mock_effect | num | 待调查 | |
+| face | str | 进场用户的头像URL | |
+| privilege_type | num | 待调查 | |
+| copy_writing | str | 进场欢迎文本 | |
+| copy_color | str | 进场欢迎文本的十六进制颜色值 | |
+| highlight_color | str | 待调查 | |
+| priority | num | 待调查 | |
+| basemap_url | str | 进场特效背景图片URL | APP端使用该URL |
+| show_avatar | num | 是否显示用户头像 | 1显示<br/>0不显示 |
+| web_basemap_url | str | 进场特效背景图片URL | 网页端使用该URL |
+| web_effective_time | num | 进场特效生存时间 | 网页端 |
+| web_effect_close | num | 待调查 | |
+| web_close_time | num | 待调查 | |
+| business | num | 待调查 | |
+| copy_writing_v2 | str | 进场欢迎文本的复制？ | |
+| icon_list | array | 待调查 | |
+| max_delay_time | num | 待调查 | |
+| trigger_time | num | 触发的Unix时间戳，以及后面9位未知数字 | |
+| identities | num | 待调查 | |
+| effect_silent_time | num | 待调查 | |
+| effective_time_new | num | 待调查 | |
+| web_dynamic_url_webp | str | 待调查 | |
+| web_dynamic_url_apng | str | 待调查 | |
+| mobile_dynamic_url_webp | str | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "ENTRY_EFFECT",
+    "data": {
+        "id": 4,
+        "uid": 489893482,
+        "target_id": 27717502,
+        "mock_effect": 0,
+        "face": "https://i0.hdslb.com/bfs/face/member/noface.jpg",
+        "privilege_type": 3,
+        "copy_writing": "欢迎舰长 <%天使雨晰%> 进入直播间",
+        "copy_color": "#ffffff",
+        "highlight_color": "#E6FF00",
+        "priority": 1,
+        "basemap_url": "https://i0.hdslb.com/bfs/live/mlive/11a6e8eb061c3e715d0a6a2ac0ddea2faa15c15e.png",
+        "show_avatar": 1,
+        "effective_time": 2,
+        "web_basemap_url": "https://i0.hdslb.com/bfs/live/mlive/11a6e8eb061c3e715d0a6a2ac0ddea2faa15c15e.png",
+        "web_effective_time": 2,
+        "web_effect_close": 0,
+        "web_close_time": 0,
+        "business": 1,
+        "copy_writing_v2": "欢迎舰长 <%天使雨晰%> 进入直播间",
+        "icon_list": [],
+        "max_delay_time": 7,
+        "trigger_time": 1673625604373633300,
+        "identities": 6,
+        "effect_silent_time": 0,
+        "effective_time_new": 0,
+        "web_dynamic_url_webp": "",
+        "web_dynamic_url_apng": "",
+        "mobile_dynamic_url_webp": ""
+    }
+}
+```
+
+</details>
+
+
+#### 直播间在所属分区排名改变
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "AREA_RANK_CHANGED" | 若直播间在所属分区的排名改变，则内容是"AREA_RANK_CHANGED" |
+| data | obj | 直播间在所属分区的排名信息 | |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| conf_id | num | 待调查 | |
+| rank_name | str | 排行榜名称 | |
+| uid | num | 主播的UID | |
+| rank | num | 直播间在分区的排名 | |
+| icon_url_blue | str | 蓝色排名图标URL | |
+| icon_url_pink | str | 粉色排名图标URL | |
+| icon_url_grey | str | 灰色排名图标URL | |
+| action_type | num | 待调查 | |
+| timestamp | num | 触发时的Unix时间戳 | |
+| msg_id | str | 待调查 | |
+| jump_url_link | str | 排行榜跳转链接 | APP端页面 |
+| jump_url_pc | str | 排行榜跳转链接 | APP端页面 |
+| jump_url_pink | str | 排行榜跳转链接 | APP端页面 |
+| jump_url_web | str | 排行榜跳转链接 | APP端页面 |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "AREA_RANK_CHANGED",
+    "data": {
+        "conf_id": 23,
+        "rank_name": "手游航海",
+        "uid": 27717502,
+        "rank": 4,
+        "icon_url_blue": "https://i0.hdslb.com/bfs/live/18e2990a546d33368200f9058f3d9dbc4038eb5c.png",
+        "icon_url_pink": "https://i0.hdslb.com/bfs/live/a6c490c36e88c7b191a04883a5ec15aed187a8f7.png",
+        "icon_url_grey": "https://i0.hdslb.com/bfs/live/cb7444b1faf1d785df6265bfdc1fcfc993419b76.png",
+        "action_type": 1,
+        "timestamp": 1673625610,
+        "msg_id": "e93c7860-b901-41ca-aad8-fe538a5fac9c",
+        "jump_url_link": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=3&ruid=27717502&conf_id=23&is_live_half_webview=1&hybrid_rotate_d=1&is_cling_player=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,0,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,0,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0#/area-rank",
+        "jump_url_pc": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=4&ruid=27717502&conf_id=23&pc_ui=338,465,f4eefa,0#/area-rank",
+        "jump_url_pink": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=1&ruid=27717502&conf_id=23&is_live_half_webview=1&hybrid_rotate_d=1&is_cling_player=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,0,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,0,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0#/area-rank",
+        "jump_url_web": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=2&ruid=27717502&conf_id=23#/area-rank"
+    }
+}
+```
+
+</details>
+
+
+#### 直播间在所属分区排名提升的祝福
+
+会分多个普通包发送
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "COMMON_NOTICE_DANMAKU" | 例如提示“恭喜主播 时雨ioo 成为手游航海当前第5名”，<br/>，则内容是"COMMON_NOTICE_DANMAKU" |
+| data | obj | 直播间在所属分区排名提升的祝福的信息 | |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| biz_id | num | 待调查 | |
+| content_segments | array | 文本分段 | |
+| danmaku_style | obj | 文本样式信息 | |
+| danmaku_url | str | 待调查 | |
+| dmscore | num | 待调查 | |
+| terminals | array | 待调查 | |
+
+content_segments数组中的对象
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| font_color | str | text字段的十六进制颜色值 | |
+| font_color_dark | str | text字段的十六进制颜色值 | APP端设置为深色模式时使用 |
+| text | str | 祝贺文本 | |
+| type | num | 待调查 | |
+
+danmaku_style字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| background_color | str | 文本背景颜色的十六进制颜色值 | |
+| background_color_dark | str | 文本背景颜色的十六进制颜色值 | APP端设置为深色模式时使用 |
+
+<details>
+<summary>查看消息示例：</summary>
+
+第一条数据：
+```json
+{
+    "cmd": "COMMON_NOTICE_DANMAKU",
+    "data": {
+        "biz_id": 0,
+        "content_segments": [
+            {
+                "font_color": "#CCCCCC",
+                "font_color_dark": "#CCCCCC",
+                "text": "恭喜主播 时雨ioo ",
+                "type": 1
+            },
+            {
+                "font_color": "#F494AF",
+                "font_color_dark": "#F494AF",
+                "text": "成为手游航海当前第5名",
+                "type": 1
+            }
+        ],
+        "danmaku_style": {
+            "background_color": null,
+            "background_color_dark": null
+        },
+        "danmaku_uri": "",
+        "dmscore": 144,
+        "terminals": [
+            1,
+            2,
+            3
+        ]
+    }
+}
+```
+第二条数据：
+```json
+{
+    "cmd": "COMMON_NOTICE_DANMAKU",
+    "data": {
+        "biz_id": 0,
+        "content_segments": [
+            {
+                "font_color": "#99A5AE",
+                "font_color_dark": "#99A5AE",
+                "text": "恭喜主播 时雨ioo 成为手游航海当前第5名",
+                "type": 1
+            }
+        ],
+        "danmaku_style": {
+            "background_color": null,
+            "background_color_dark": null
+        },
+        "danmaku_uri": "",
+        "dmscore": 144,
+        "terminals": [
+            5
+        ]
+    }
+}
+```
+第三条数据：
+```json
+{
+    "cmd": "COMMON_NOTICE_DANMAKU",
+    "data": {
+        "biz_id": 0,
+        "content_segments": [
+            {
+                "font_color": "#998EFF",
+                "font_color_dark": "#998EFF",
+                "text": "恭喜主播 时雨ioo 成为手游航海第5名",
+                "type": 1
+            }
+        ],
+        "danmaku_style": {
+            "background_color": null,
+            "background_color_dark": null
+        },
+        "danmaku_uri": "",
+        "dmscore": 144,
+        "terminals": [
+            4
+        ]
+    }
+}
+```
+
+</details>
+
+#### 下播的直播间
+
+json格式
+
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "STOP_LIVE_ROOM_LIST" | 直播间高能用户数，内容是"STOP_LIVE_ROOM_LIST" |
+| data | obj | 下播的直播间ID列表 | |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| room_id_list | array | 下播的直播间ID | |
+
+room_id_list数组中的数字
+
+| 内容  | 备注 |
+| ---- | ---- |
+| 下播的直播间ID | 未知是真实ID还是短号 |
+
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "STOP_LIVE_ROOM_LIST",
+    "data": {
+        "room_id_list": [
+            22629205,
+            23130005,
+            25963791,
+            5532805,
+            668631,
+            21409011,
+            21559541,
+            23499952,
+            26700301,
+            26785971,
+            11673798,
+            13766041,
+            22980849,
+            23719726,
+            23865141,
+            24984476,
+            6134501,
+            13782552,
+            22276717,
+            24107587,
+            25023546,
+            25404621,
+            25516925,
+            26527626,
+            3392341,
+            34027,
+            502153,
+            6479194,
+            7636554,
+            12237172,
+            22821330,
+            24484883,
+            25641623,
+            26230536,
+            26792222,
+            3642143,
+            21774100,
+            22797418,
+            23698420,
+            24020165,
+            23969235,
+            24207417,
+            24541492,
+            24900566,
+            25385044,
+            4484938,
+            11113452,
+            21442530,
+            22046176,
+            22184897,
+            22386835,
+            23499007,
+            26129631,
+            26866037,
+            5971876,
+            22779750,
+            24132482,
+            25789722,
+            26251362,
+            26822052,
+            26835655,
+            5122088,
+            6668191,
+            12439052,
+            23690850,
+            24458365,
+            26189089,
+            26676322,
+            26872742,
+            4917898,
+            826723,
+            22886872,
+            24752347,
+            25108137,
+            5796786,
+            6176498,
+            6208022,
+            7578115,
+            14218725,
+            22659435,
+            23774701,
+            24804876,
+            25081572,
+            25275744,
+            26430916,
+            730392,
+            9505076,
+            25467274,
+            3015372,
+            5764087,
+            9407015,
+            21356836,
+            24302940,
+            25469360,
+            25666252,
+            26564899,
+            26574306,
+            9391864,
+            136707,
+            15163029,
+            22001560,
+            22642183,
+            24168773,
+            24197349,
+            26750190,
+            59670,
+            6545138,
+            7538431,
+            12568128,
+            22865116,
+            26566675,
+            26658222,
+            26778289,
+            26856746,
+            3386215,
+            1270737,
+            1856866,
+            22371951,
+            22953580,
+            23026533,
+            9316759,
+            13628231,
+            25166176,
+            6736476,
+            7745491,
+            893989,
+            25349228,
+            25684996,
+            26835833,
+            763132,
+            1282353,
+            14333573,
+            26677056,
+            5553188,
+            1549629,
+            22807502,
+            25633167,
+            26062956,
+            26558451,
+            9312947,
+            14366742,
+            1864809,
+            25581444,
+            26656406,
+            11454847,
+            13507879,
+            187331,
+            22626880,
+            23187177,
+            23481929,
+            24042533,
+            24501754,
+            26776408,
+            2315619,
+            24320832,
+            24708829,
+            26236176,
+            26575516,
+            3105045,
+            6164089,
+            21145740,
+            21258252,
+            23211964,
+            23610573,
+            26873451,
+            10452273,
+            21300836,
+            26076163,
+            26510266,
+            933508,
+            21751571,
+            24043374,
+            26045578,
+            26784723,
+            26811618,
+            22836140,
+            23558501,
+            24429614,
+            24476599,
+            2681976,
+            26867816,
+            7802886,
+            13617926,
+            2049112,
+            26233820,
+            6868338,
+            23458654,
+            24370731,
+            26126954,
+            5070119,
+            24416075
+        ]
+    }
+}
+```
+  
+</details>
+  
+其它未知消息CMD：
+`ROOM_REAL_TIME_MESSAGE_UPDATE`
