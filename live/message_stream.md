@@ -100,7 +100,7 @@ curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 
 ## 数据包格式
 
-数据包为MQ（消息队列）使用websocket或tcp作为通道，具体格式为头部数据+正文数据
+数据包为MQ（Message Queue，消息队列）使用Websocket或TCP连接作为通道，具体格式为头部数据+正文数据
 
 操作流程：
 
@@ -646,13 +646,135 @@ receive_user_info字段
 ```
 </details>
 
+#### 礼物星球点亮
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "GIFT_STAR_PROCESS" | 主播的礼物星球其一点亮之后，则内容为"GIFT_STAR_PROCESS" |
+| data | obj | 消息文本 |  |
+
+data字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| status | num | 待调查 | |
+| tip | str | 点亮星球的消息文本 | |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    "cmd": "GIFT_STAR_PROCESS",
+    "data": {
+        "status": 1,
+        "tip": "情书已点亮"
+    }
+}
+```
+</details>
+
+#### 礼物连击
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "COMBO_SEND" | |
+| data | obj | 礼物投喂者、礼物信息等 | |
+
+data字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| action | str | 礼物操作，一般为"投喂" | |
+| batch_combo_id | str | 待调查 | |
+| batch_combo_num | num | 连击礼物数量 | |
+| combo_id | str | 待调查 | |
+| combo_num | str | 连击礼物数量 | |
+| combo_total_coin | num | 待调查 | |
+| dmscore | num | 待调查 | |
+| gift_id | num | 待调查 | |
+| gift_name | str | 连击礼物的名称 | |
+| gift_num | num | 0 | |
+| is_join_receiver | bool | 待调查 | |
+| is_naming | bool | 待调查 | |
+| is_show | num | 待调查 | |
+| medal_info | obj | 礼物投喂者的粉丝勋章信息 | |
+| name_color | str | 待调查 | |
+| r_uname | str | 主播的名称 | |
+| receive_user_info | obj | 主播的UID和名称 | |
+| ruid | num | 主播的UID | |
+| send_master | | 待调查 | |
+| total_num | num | 连击礼物数量 | |
+| uid | num | 礼物投喂者的UID | |
+| uname | str | 礼物投喂者的名称 | |
+
+receive_user_info字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| uid | number | 礼物接收者的UID | 一般为主播的UID |
+| uname | string | 礼物接收者的名称 | 一般为主播的名称 |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    "cmd": "COMBO_SEND",
+    "data": {
+        "action": "投喂",
+        "batch_combo_id": "batch:gift:combo_id:3493090830584635:29857468:31036:1673774515.6190",
+        "batch_combo_num": 2,
+        "combo_id": "gift:combo_id:3493090830584635:29857468:31036:1673774515.6180",
+        "combo_num": 2,
+        "combo_total_coin": 200,
+        "dmscore": 112,
+        "gift_id": 31036,
+        "gift_name": "小花花",
+        "gift_num": 0,
+        "is_join_receiver": false,
+        "is_naming": false,
+        "is_show": 1,
+        "medal_info": {
+            "anchor_roomid": 0,
+            "anchor_uname": "",
+            "guard_level": 0,
+            "icon_id": 0,
+            "is_lighted": 1,
+            "medal_color": 6067854,
+            "medal_color_border": 6067854,
+            "medal_color_end": 6067854,
+            "medal_color_start": 6067854,
+            "medal_level": 3,
+            "medal_name": "爱珞珞",
+            "special": "",
+            "target_id": 3493076559465366
+        },
+        "name_color": "",
+        "r_uname": "露萌不要雨草",
+        "receive_user_info": {
+            "uid": 29857468,
+            "uname": "露萌不要雨草"
+        },
+        "ruid": 29857468,
+        "send_master": null,
+        "total_num": 2,
+        "uid": 3493090830584635,
+        "uname": "DOC-Neo"
+    }
+}
+```
+</details>
+
+<!--
 #### 欢迎加入房间
 
-
-
 #### 欢迎房管加入房间
-
-
+-->
 
 #### 通知消息
 
@@ -788,14 +910,8 @@ data字段
 #### 主播准备中
 
 
-
 #### 直播开始
-
-
-
-#### 直播状态更新
-
-
+  
 
 #### 直播间高能榜
 
@@ -1299,9 +1415,9 @@ awards字段
 
 #### 直播间看过人数
 
-该数据包的正文中，前19位的信息未知。
-  
-前19位信息示例：
+该数据包的正文中，前19字节的信息未知。
+
+前19字节信息示例：
 ```
 00000001: 8b38 8000 0000 7200 1000 0000 0000 0500  .8....r.........
 00000002: 0000 00                                  ...
@@ -1437,7 +1553,7 @@ data字段
 | conf_id | num | 待调查 | |
 | rank_name | str | 排行榜名称 | |
 | uid | num | 主播的UID | |
-| rank | num | 直播间在分区的排名 | |
+| rank | num | 直播间在分区的排名 | 若没有上榜则为0 |
 | icon_url_blue | str | 蓝色排名图标URL | |
 | icon_url_pink | str | 粉色排名图标URL | |
 | icon_url_grey | str | 灰色排名图标URL | |
