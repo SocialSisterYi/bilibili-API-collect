@@ -2035,6 +2035,7 @@ room_id_list数组中的数字
 
 `ROOM_REAL_TIME_MESSAGE_UPDATE`
 `PLAY_TOGETHER`
+`SUPER_CHAT_ENTRANCE`
 <details>
 <summary>查看消息示例：</summary>
 
