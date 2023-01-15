@@ -100,7 +100,7 @@ curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 
 ## 数据包格式
 
-数据包为MQ（消息队列）使用websocket或tcp作为通道，具体格式为头部数据+正文数据
+数据包为MQ（Message Queue，消息队列）使用Websocket或TCP连接作为通道，具体格式为头部数据+正文数据
 
 操作流程：
 
@@ -127,6 +127,16 @@ curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 | 8    | 认证包回复           |
 
 *普通包可能包含多条命令，每个命令有一个头部，指示该条命令的长度等信息*
+
+## 数据包
+
+- [认证包](#认证包)
+- [认证包回复](#认证包回复)
+- [心跳包](#心跳包)
+- [心跳包回复](#心跳包回复人气值)
+- [普通包](#普通包)
+
+---
 
 ### 认证包
 
@@ -185,8 +195,8 @@ json格式
 示例：
 
 ```
-00000000  00 00 00 1a 00 10 00 01  00 00 00 08 00 00 00 01  |................|
-00000010  7b 22 63 6f 64 65 22 3a  30 7d                    |{"code":0}|
+00000000: 0000 001a 0010 0001 0000 0008 0000 0001  ................
+00000001: 7b22 636f 6465 223a 307d                 {"code":0}
 ```
 
 
@@ -225,10 +235,10 @@ json格式
 ```
 00000000: 0000 0014 0010 0001 0000 0003 0000 0000  ................
 00000001: 0000 09a2 5b6f 626a 6563 7420 4f62 6a65  ....[object Obje
-00000002: 6374 5d
+00000002: 6374 5d                                  ct]
 ```
 
-可见房间内人气值为2466(0x000009a2)
+可见房间内人气值为2466（0x000009a2）
 
 ### 普通包
 
@@ -254,6 +264,37 @@ json格式
 00000008: bf87 227d 7d03                           .."}}.
 ```
 
+---
+
+- [弹幕](#弹幕)
+- [进场或关注消息](#进场或关注消息)
+- [送礼](#送礼)
+- [礼物星球点亮](#礼物星球点亮)
+- [礼物连击](#礼物连击)
+- [通知消息](#通知消息)
+- [主播准备中](#主播准备中)
+- [直播开始](#直播开始)
+- [直播间高能榜](#直播间高能榜)
+- [直播间高能用户数量](#直播间高能用户数量)
+- [用户到达直播间高能榜前三名的消息](#用户到达直播间高能榜前三名的消息)
+- [直播间用户点赞](#直播间用户点赞)
+- [直播间点赞数](#直播间点赞数)
+- [直播间发红包弹幕](#直播间发红包弹幕)
+- [直播间红包](#直播间红包)
+- [直播间抢到红包的用户](#直播间抢到红包的用户)
+- [直播间看过人数](#直播间看过人数)
+- [用户进场特效](#用户进场特效)
+- [直播间在所属分区的排名改变](#直播间在所属分区的排名改变)
+- [直播间在所属分区排名提升的祝福](#直播间在所属分区排名提升的祝福)
+- [直播间信息更改](#直播间信息更改)
+- [醒目留言按钮](#醒目留言按钮)
+- [顶部横幅](#顶部横幅)
+- [下播的直播间](#下播的直播间)
+- [未知消息](#未知消息)
+
+---
+
+
 #### 弹幕
 
 当收到弹幕时接收到此条消息
@@ -263,7 +304,69 @@ json格式
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
 | cmd | str  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
-| info | array  | 单条弹幕的用户、内容、粉丝勋章等各种信息 | 待补 |
+| info | array | 这条弹幕的用户、内容与粉丝勋章等各种信息 | 待调查其中每个数据的含义 |
+
+info字段
+
+| 索引 | 类型 | 内容   |    备注   |
+| ---- | ---- | ------ | -------- |
+| 0 | array | 弹幕信息 | |
+| 1 | str | 弹幕文本 | |
+| 2 | array | 发送者信息 | |
+| 3 | array | 发送者粉丝勋章信息 | 若没有粉丝勋章则为空数组 |
+| 4 | array | 发送者UL等级信息 | |
+| 5 | array | 待调查 | |
+| 6 | num | 待调查 | |
+| 7 | num | 待调查 | |
+| 8 | | 待调查 | |
+| 9 | obj | 弹幕发送的Unix时间戳 | |
+| 10 | num | 待调查 | |
+| 11 | num | 待调查 | |
+| 12 | | 待调查 | |
+| 13 | | 待调查 | |
+| 14 | num | 待调查 | |
+| 15 | num | 待调查 | |
+
+0索引
+
+| 索引 | 类型 | 内容   |    备注   |
+| ---- | ---- | ------ | -------- |
+| 0 | num | 待调查 | |
+| 1 | num | 弹幕模式 | 弹幕的mode字段 |
+| 2 | num | 弹幕字体大小 | 弹幕的fontsize字段 |
+| 3 | num | 弹幕颜色 | 弹幕的color字段<br />十六进制颜色值的十进制数字 |
+| 4 | num | 待调查 | |
+| 5 | num | 弹幕发送时的Unix时间戳 | 弹幕的rnd字段 |
+| 6 | num | 待调查 | |
+| 7 | str | 待调查 | |
+| 8 | num | 待调查 | |
+| 9 | num | 待调查 | |
+| 10 | num | 待调查 | |
+| 11 | str | 待调查 | |
+| 12 | num | 待调查 | |
+| 13 | str | 待调查 | |
+| 14 | str | 待调查 | |
+| 15 | obj | 弹幕信息 | |
+| 16 | obj | 待调查 | |
+
+0索引的15索引
+
+| 字段 | 类型 | 内容   |    备注   |
+| ---- | ---- | ------ | -------- |
+| mode | num | 待调查 | |
+| show_player_type | num | 待调查 | |
+| extra | str | 弹幕信息 | |
+
+0索引的16索引
+
+| 字段 | 类型 | 内容   |    备注   |
+| ---- | ---- | ------ | -------- |
+| activity_identity | str | 待调查 | |
+| activity_source | num | 待调查 | |
+| not_show | num | 待调查 | |
+
+
+
 
 <details>
 <summary>查看消息示例：</summary>
@@ -274,84 +377,87 @@ json格式
     "info": [
         [
             0,
-            4,
+            1,
             25,
-            5566168,
-            1644559560263,
-            1644558747,
+            16777215,
+            1673789362967,
+            1673770572,
             0,
-            "998a531f",
+            "81240bc1",
             0,
             0,
-            5,
-            "#1453BAFF,#4C2263A2,#3353BAFF",
+            0,
+            "",
             0,
             "{}",
             "{}",
             {
                 "mode": 0,
                 "show_player_type": 0,
-                "extra": ""
+                "extra": "{\"send_from_me\":false,\"mode\":0,\"color\":16777215,\"dm_type\":0,\"font_size\":25,\"player_mode\":1,\"show_player_type\":0,\"content\":\"测试文本\",\"user_hash\":\"2166623169\",\"emoticon_unique\":\"\",\"bulge_display\":0,\"recommend_score\":8,\"main_state_dm_color\":\"\",\"objective_state_dm_color\":\"\",\"direction\":0,\"pk_direction\":0,\"quartet_direction\":0,\"anniversary_crowd\":0,\"yeah_space_type\":\"\",\"yeah_space_url\":\"\",\"jump_to_url\":\"\",\"space_type\":\"\",\"space_url\":\"\",\"animation\":{},\"emots\":null}"
+            },
+            {
+                "activity_identity": "",
+                "activity_source": 0,
+                "not_show": 0
             }
         ],
         "测试文本",
         [
-            1850091,
-            "Jannchie见齐",
+            50500335,
+            "属官一号",
             0,
             0,
             0,
             10000,
             1,
-            "#00D1F1"
+            ""
         ],
         [
-            21,
-            "観測者",
-            "Jannchie见齐",
-            422915,
-            1725515,
+            5,
+            "小纸鱼",
+            "薄海纸鱼",
+            706667,
+            6126494,
             "",
             0,
-            6809855,
-            1725515,
-            5414290,
-            3,
-            1,
-            1850091
+            12632256,
+            12632256,
+            12632256,
+            0,
+            0,
+            1837617
         ],
         [
-            20,
             0,
-            6406234,
-            "u003e50000",
-            3
+            0,
+            9868950,
+            ">50000",
+            2
         ],
         [
             "",
             ""
         ],
         0,
-        3,
+        0,
         null,
         {
-            "ts": 1644559560,
-            "ct": "59DEA791"
+            "ts": 1673789362,
+            "ct": "A4721FE3"
         },
         0,
         0,
         null,
         null,
         0,
-        210
+        21
     ]
 }
 ```
 </details>
 
 #### 进场或关注消息
-
-方式：（下行）
 
 有用户进入直播间或关注主播时触发
 
@@ -648,13 +754,135 @@ receive_user_info字段
 ```
 </details>
 
+#### 礼物星球点亮
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "GIFT_STAR_PROCESS" | 主播的礼物星球其一点亮之后，则内容为"GIFT_STAR_PROCESS" |
+| data | obj | 消息文本 |  |
+
+data字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| status | num | 待调查 | |
+| tip | str | 点亮星球的消息文本 | |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    "cmd": "GIFT_STAR_PROCESS",
+    "data": {
+        "status": 1,
+        "tip": "情书已点亮"
+    }
+}
+```
+</details>
+
+#### 礼物连击
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "COMBO_SEND" | |
+| data | obj | 礼物投喂者、礼物信息等 | |
+
+data字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| action | str | 礼物操作，一般为"投喂" | |
+| batch_combo_id | str | 待调查 | |
+| batch_combo_num | num | 连击礼物数量 | |
+| combo_id | str | 待调查 | |
+| combo_num | str | 连击礼物数量 | |
+| combo_total_coin | num | 待调查 | |
+| dmscore | num | 待调查 | |
+| gift_id | num | 待调查 | |
+| gift_name | str | 连击礼物的名称 | |
+| gift_num | num | 0 | |
+| is_join_receiver | bool | 待调查 | |
+| is_naming | bool | 待调查 | |
+| is_show | num | 待调查 | |
+| medal_info | obj | 礼物投喂者的粉丝勋章信息 | |
+| name_color | str | 待调查 | |
+| r_uname | str | 主播的名称 | |
+| receive_user_info | obj | 主播的UID和名称 | |
+| ruid | num | 主播的UID | |
+| send_master | | 待调查 | |
+| total_num | num | 连击礼物数量 | |
+| uid | num | 礼物投喂者的UID | |
+| uname | str | 礼物投喂者的名称 | |
+
+receive_user_info字段
+
+| 字段 |    类型   |  内容  |    备注    |
+| ---- | -------- | ------ | --------- |
+| uid | number | 礼物接收者的UID | 一般为主播的UID |
+| uname | string | 礼物接收者的名称 | 一般为主播的名称 |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    "cmd": "COMBO_SEND",
+    "data": {
+        "action": "投喂",
+        "batch_combo_id": "batch:gift:combo_id:3493090830584635:29857468:31036:1673774515.6190",
+        "batch_combo_num": 2,
+        "combo_id": "gift:combo_id:3493090830584635:29857468:31036:1673774515.6180",
+        "combo_num": 2,
+        "combo_total_coin": 200,
+        "dmscore": 112,
+        "gift_id": 31036,
+        "gift_name": "小花花",
+        "gift_num": 0,
+        "is_join_receiver": false,
+        "is_naming": false,
+        "is_show": 1,
+        "medal_info": {
+            "anchor_roomid": 0,
+            "anchor_uname": "",
+            "guard_level": 0,
+            "icon_id": 0,
+            "is_lighted": 1,
+            "medal_color": 6067854,
+            "medal_color_border": 6067854,
+            "medal_color_end": 6067854,
+            "medal_color_start": 6067854,
+            "medal_level": 3,
+            "medal_name": "爱珞珞",
+            "special": "",
+            "target_id": 3493076559465366
+        },
+        "name_color": "",
+        "r_uname": "露萌不要雨草",
+        "receive_user_info": {
+            "uid": 29857468,
+            "uname": "露萌不要雨草"
+        },
+        "ruid": 29857468,
+        "send_master": null,
+        "total_num": 2,
+        "uid": 3493090830584635,
+        "uname": "DOC-Neo"
+    }
+}
+```
+</details>
+
+<!--
 #### 欢迎加入房间
 
-
-
 #### 欢迎房管加入房间
-
-
+-->
 
 #### 通知消息
 
@@ -790,14 +1018,8 @@ data字段
 #### 主播准备中
 
 
-
 #### 直播开始
-
-
-
-#### 直播状态更新
-
-
+  
 
 #### 直播间高能榜
 
@@ -897,6 +1119,50 @@ data字段
   
 </details>
 
+#### 用户到达直播间高能榜前三名的消息
+
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "ONLINE_RANK_TOP3" | |
+| data | obj | 消息内容、高能榜排名等 | |
+
+data字段
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| dmscore | num | 待调查 | |
+| list | array | 消息内容和高能榜排名 | |
+
+list数组中的对象
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| msg | str | 消息内容 | |
+| rank | num | 该用户的高能榜排名 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "ONLINE_RANK_TOP3",
+    "data": {
+        "dmscore": 112,
+        "list": [
+            {
+                "msg": "恭喜 <%你干嘛哈哈哎哟%> 成为高能用户",
+                "rank": 1
+            }
+        ]
+    }
+}
+```
+
+</details>
+
 #### 直播间用户点赞
 
 json格式
@@ -993,11 +1259,273 @@ data字段
 
 </details>
 
+#### 直播间发红包弹幕
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "POPULARITY_RED_POCKET_START" | |
+| data | obj | 送红包的老板的信息、里面的礼物信息 | |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| lot_id | num | 发送的红包的ID | |
+| sender_uid | num | 发送者的UID | |
+| sender_name | str | 发送者的名称 | |
+| sender_face | str | 发送者的头像的URL | |
+| join_requirement | num | 待调查 | |
+| danmu | str | 用户参与红包时自动发送的弹幕内容 | |
+| current_time | num | 服务器发送数据包的Unix时间戳 | |
+| start_time | num | 可以开始抢红包的Unix时间戳 | |
+| end_time | num | 抢红包的结束时间Unix时间戳 | |
+| last_time | num | 红包的持续时间（秒） | start_time - end_time |
+| remove_time | num | 待调查 | |
+| replace_time | num | 待调查 | |
+| lot_status | num | 待调查 | |
+| h5_url | str | 红包页面的URL | |
+| user_status | num | 用户参与状态，但是不知道是哪个用户 | 1已参与<br />2未参与 |
+| awards | array | 红包内包含的礼物的信息 | |
+| lot_config_id | num | 待调查 | |
+| total_price | num | 红包总价格 | |
+| wait_num | num | 待调查 | |
+
+awards数组中的对象
+  
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| gift_id | num | 礼物ID | |
+| gift_name | str | 礼物名称 | |
+| gift_pic | str | 礼物图标URL | |
+| num | num | 该礼物的数量 | |
+
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "POPULARITY_RED_POCKET_START",
+    "data": {
+        "lot_id": 8445764,
+        "sender_uid": 38554435,
+        "sender_name": "我的0019",
+        "sender_face": "https://i1.hdslb.com/bfs/face/282c3055de94c74d69094fad91a56f9ed73a270a.jpg",
+        "join_requirement": 1,
+        "danmu": "点点红包，关注主播抽礼物～",
+        "current_time": 1673684632,
+        "start_time": 1673684631,
+        "end_time": 1673684811,
+        "last_time": 180,
+        "remove_time": 1673684826,
+        "replace_time": 1673684821,
+        "lot_status": 1,
+        "h5_url": "https://live.bilibili.com/p/html/live-app-red-envelope/popularity.html?is_live_half_webview=1&hybrid_half_ui=1,5,100p,100p,000000,0,50,0,0,1;2,5,100p,100p,000000,0,50,0,0,1;3,5,100p,100p,000000,0,50,0,0,1;4,5,100p,100p,000000,0,50,0,0,1;5,5,100p,100p,000000,0,50,0,0,1;6,5,100p,100p,000000,0,50,0,0,1;7,5,100p,100p,000000,0,50,0,0,1;8,5,100p,100p,000000,0,50,0,0,1\&hybrid_rotate_d=1&hybrid_biz=popularityRedPacket&lotteryId=8445764",
+        "user_status": 2,
+        "awards": [
+            {
+                "gift_id": 31212,
+                "gift_name": "打call",
+                "gift_pic": "https://s1.hdslb.com/bfs/live/461be640f60788c1d159ec8d6c5d5cf1ef3d1830.png",
+                "num": 2
+            },
+            {
+                "gift_id": 31214,
+                "gift_name": "牛哇",
+                "gift_pic": "https://s1.hdslb.com/bfs/live/91ac8e35dd93a7196325f1e2052356e71d135afb.png",
+                "num": 3
+            },
+            {
+                "gift_id": 31216,
+                "gift_name": "i了i了",
+                "gift_pic": "https://s1.hdslb.com/bfs/live/1157a445487b39c0b7368d91b22290c60fa665b2.png",
+                "num": 3
+            }
+        ],
+        "lot_config_id": 3,
+        "total_price": 1600,
+        "wait_num": 0
+    }
+}
+```
+
+</details>
+  
+
+#### 直播间红包
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "POPULARITY_RED_POCKET_NEW" | 与“直播间发红包弹幕”不同<br />那个是发红包的弹幕信息<br />这个则和“送礼”的信息相似，但也有前者的一些字段 |
+| data | obj | 发送者信息和红包（礼物）信息 | |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| lot_id | num | 发送的红包的ID | |
+| start_time | num | 开始抢红包的Unix时间戳 | |
+| current_time | num | 服务器发送数据包的Unix时间戳 | |
+| wait_num | num | 待调查 | |
+| uname | str | 发送者的名称 | |
+| uid | num | 发送者的UID | |
+| action | str | 礼物操作 | |
+| num | num | 礼物数量 | |
+| gift_name | str | "红包" | |
+| gift_id | num | 礼物ID | |
+| price | num | 待调查 | |
+| name_color | str | 发送者的名称的颜色 | |
+| medal_info | obj | 发送者的粉丝勋章信息 | |
+  
+  
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "POPULARITY_RED_POCKET_NEW",
+    "data": {
+        "lot_id": 8445764,
+        "start_time": 1673684631,
+        "current_time": 1673684631,
+        "wait_num": 0,
+        "uname": "我的0019",
+        "uid": 38554435,
+        "action": "送出",
+        "num": 1,
+        "gift_name": "红包",
+        "gift_id": 13000,
+        "price": 20,
+        "name_color": "",
+        "medal_info": {
+            "target_id": 400963649,
+            "special": "",
+            "icon_id": 0,
+            "anchor_uname": "",
+            "anchor_roomid": 0,
+            "medal_level": 21,
+            "medal_name": "憨憨酥",
+            "medal_color": 1725515,
+            "medal_color_start": 12632256,
+            "medal_color_end": 12632256,
+            "medal_color_border": 12632256,
+            "is_lighted": 0,
+            "guard_level": 0
+        }
+    }
+}
+```
+</details>
+
+
+#### 直播间抢到红包的用户
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "POPULARITY_RED_POCKET_WINNER_LIST" | |
+| data | obj | 抢到红包的用户信息、红包内的礼物信息 | |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| lot_id | num | 该红包的ID | |
+| total_num | num | 该红包内所有礼物的总数 | |
+| winner_info | array | 抢到红包的用户的信息<br />抢到的礼物ID等 | |
+| awards | obj | 该红包内的礼物信息 | |
+| version | num | 待调查 | |
+
+winner_info数组中的数组
+
+| 索引 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| 0 | num | 该抢到红包的用户的UID | |
+| 1 | str | 该抢到红包的用户的名称 | |
+| 2 | num | 待调查 | |
+| 3 | num | 该用户抢到的礼物的ID | |
+
+awards字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| 礼物ID | obj | 礼物信息 | |
+| ... | obj | | |
+
+礼物ID 对象
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| award_type | num | 待调查 | |
+| award_name | str | 该礼物的名称 | |
+| award_pic | str | 该礼物的图标URL | |
+| award_big_pic | str | 该礼物的高分辨率图标URL | |
+| award_price | num | 待调查 | |
+  
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "POPULARITY_RED_POCKET_WINNER_LIST",
+    "data": {
+        "lot_id": 8445764,
+        "total_num": 8,
+        "winner_info": [
+            [
+                38554435,
+                "我的0019",
+                4581509,
+                31212
+            ],
+            [
+                516174930,
+                "云来海遛鸟大爷",
+                4606389,
+                31212
+            ]
+        ],
+        "awards": {
+            "31212": {
+                "award_type": 1,
+                "award_name": "打call",
+                "award_pic": "https://s1.hdslb.com/bfs/live/461be640f60788c1d159ec8d6c5d5cf1ef3d1830.png",
+                "award_big_pic": "https://i0.hdslb.com/bfs/live/9e6521c57f24c7149c054d265818d4b82059f2ef.png",
+                "award_price": 500
+            },
+            "31214": {
+                "award_type": 1,
+                "award_name": "牛哇",
+                "award_pic": "https://s1.hdslb.com/bfs/live/91ac8e35dd93a7196325f1e2052356e71d135afb.png",
+                "award_big_pic": "https://i0.hdslb.com/bfs/live/3b74c117b4f265edcea261bc5608a58d3a7c300a.png",
+                "award_price": 100
+            },
+            "31216": {
+                "award_type": 1,
+                "award_name": "i了i了",
+                "award_pic": "https://s1.hdslb.com/bfs/live/1157a445487b39c0b7368d91b22290c60fa665b2.png",
+                "award_big_pic": "https://i0.hdslb.com/bfs/live/cfb9c3d9bdd2c25c95b7d859ebaa590ca9362adb.png",
+                "award_price": 100
+            }
+        },
+        "version": 1
+    }
+}
+```
+</details>
+
+
+
 #### 直播间看过人数
 
-该数据包的正文中，前19位的信息未知。
-  
-前19位信息示例：
+该数据包的正文中，前19字节的信息未知。
+
+前19字节信息示例：
 ```
 00000001: 8b38 8000 0000 7200 1000 0000 0000 0500  .8....r.........
 00000002: 0000 00                                  ...
@@ -1117,7 +1645,7 @@ data字段
 </details>
 
 
-#### 直播间在所属分区排名改变
+#### 直播间在所属分区的排名改变
 
 json格式
 
@@ -1133,7 +1661,7 @@ data字段
 | conf_id | num | 待调查 | |
 | rank_name | str | 排行榜名称 | |
 | uid | num | 主播的UID | |
-| rank | num | 直播间在分区的排名 | |
+| rank | num | 直播间在分区的排名 | 若没有上榜则为0 |
 | icon_url_blue | str | 蓝色排名图标URL | |
 | icon_url_pink | str | 粉色排名图标URL | |
 | icon_url_grey | str | 灰色排名图标URL | |
@@ -1303,6 +1831,175 @@ danmaku_style字段
 
 </details>
 
+
+#### 直播间信息更改
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "ROOM_CHANGE" | 例如直播间标题更改、直播间分区更改 |
+| data | obj | | |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| title | str | 直播间标题 | |
+| area_id | num | 当前直播间所属分区的ID | |
+| parent_area_id | num | 待调查 | |
+| area_name | str | 当前直播间所属分区的名称 | |
+| parent_area_name | str | 待调查 | |
+| live_key | str | 待调查 | |
+| sub_session_key | str | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    "cmd": "ROOM_CHANGE",
+    "data": {
+        "title": "开始白给CS",
+        "area_id": 371,
+        "parent_area_id": 9,
+        "area_name": "虚拟主播",
+        "parent_area_name": "虚拟主播",
+        "live_key": "320830629635915849",
+        "sub_session_key": "320830629635915849sub_time:1673690546"
+    }
+}
+```
+</details>
+
+
+#### 醒目留言按钮
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "SUPER_CHAT_ENTRANCE" | 不知道有什么意义 |
+| data | obj | 醒目留言按钮的信息 | |
+| roomid | num | 直播间ID | 未知是短号还是真实ID |
+
+data字段
+
+|    字段    | 类型 |  内容  |    备注   |
+| ---------- | --- | ------ | --------- |
+| status | num | 待调查 | |
+| jump_url | str | 按下“醒目留言”按钮后弹出小窗的页面URL | |
+| icon | str | “醒目留言”按钮图标的URL | |
+| broadcast_type | num | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    "cmd": "SUPER_CHAT_ENTRANCE",
+    "data": {
+        "status": 1,
+        "jump_url": "https://live.bilibili.com/p/html/live-app-superchat2/index.html?is_live_half_webview=1&hybrid_half_ui=1,3,100p,70p,ffffff,0,30,100;2,2,375,100p,ffffff,0,30,100;3,3,100p,70p,ffffff,0,30,100;4,2,375,100p,ffffff,0,30,100;5,3,100p,60p,ffffff,0,30,100;6,3,100p,60p,ffffff,0,30,100;7,3,100p,60p,ffffff,0,30,100",
+        "icon": "https://i0.hdslb.com/bfs/live/0a9ebd72c76e9cbede9547386dd453475d4af6fe.png",
+        "broadcast_type": 1
+    },
+    "roomid": "8618057"
+}
+```
+</details>
+
+#### 顶部横幅
+
+网页端在直播间标题下面的横幅
+
+例如“限时任务”等
+
+json格式
+
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "WIDGET_BANNER" | |
+| data | obj | 横幅信息 | |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| timestamp | num | 服务器发送数据包时的Unix时间戳 | |
+| widget_list | obj | 横幅信息 | 待调查 |
+
+widget_list字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| 横幅ID | obj | 横幅信息 | |
+| ... | obj | | |
+
+横幅ID 字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| id | num | 横幅ID | |
+| title | str | 待调查 | |
+| cover | str | 待调查 | |
+| web_cover | str | 待调查 | |
+| tip_text | str | 待调查 | |
+| tip_text_color | str | 待调查 | |
+| tip_bottom_color | str | 待调查 | |
+| jump_url | str | 点击横幅后出现小窗的页面的URL | |
+| url | str | 待调查 | |
+| stay_time | num | 待调查 | |
+| site | num | 待调查 | |
+| platform_in | array | 待调查 | |
+| type | num | 待调查 | |
+| band_id | num | 待调查 | |
+| sub_key | str | 待调查 | |
+| sub_data | str | 横幅数据 | |
+| is_add | bool | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "WIDGET_BANNER",
+    "data": {
+        "timestamp": 1673684868,
+        "widget_list": {
+            "308": {
+                "id": 308,
+                "title": "一月限时任务",
+                "cover": "",
+                "web_cover": "",
+                "tip_text": "限时任务",
+                "tip_text_color": "",
+                "tip_bottom_color": "",
+                "jump_url": "https://live.bilibili.com/activity/live-activity-battle/index.html?app_name=time_limited_task_jan_2023&is_live_half_webview=1&hybrid_rotate_d=1&hybrid_half_ui=1,3,100p,70p,0,0,0,0,12,0;2,2,375,100p,0,0,0,0,12,0;3,3,100p,70p,0,0,0,0,12,0;4,2,375,100p,0,0,0,0,12,0;5,3,100p,70p,0,0,0,0,12,0;6,3,100p,70p,0,0,0,0,12,0;7,3,100p,70p,0,0,0,0,12,0;8,3,100p,70p,0,0,0,0,12,0&room_id=8618057&uid=29857468#/",
+                "url": "",
+                "stay_time": 5,
+                "site": 1,
+                "platform_in": [
+                    "live",
+                    "blink",
+                    "live_link",
+                    "web",
+                    "pc_link"
+                ],
+                "type": 1,
+                "band_id": 101558,
+                "sub_key": "",
+                "sub_data": "%7B%22task_status%22%3A0%2C%22current_val%22%3A10%2C%22target_val%22%3A1200%2C%22timeout%22%3A1673687024%2C%22reward_price%22%3A8%2C%22reward_type%22%3A1%7D",
+                "is_add": true
+            }
+        }
+    }
+}
+```
+
+</details>
+
 #### 下播的直播间
 
 json格式
@@ -1321,9 +2018,10 @@ data字段
 
 room_id_list数组中的数字
 
-| 内容  | 备注 |
-| ---- | ---- |
-| 下播的直播间ID | 未知是真实ID还是短号 |
+| 类型 | 内容 | 备注 |
+| --- | ---- | ---- |
+| num | 下播的直播间ID | 未知是真实ID还是短号 |
+| num | ... | |
 
 
 <details>
@@ -1534,7 +2232,53 @@ room_id_list数组中的数字
   
 #### 未知消息
 
-`ROOM_REAL_TIME_MESSAGE_UPDATE`
+`ROOM_REAL_TIME_MESSAGE_UPDATE`  
+`PLAY_TOGETHER`  
+<details>
+<summary>查看消息示例：</summary>
 
+示例1：
+```json
+{
+    "cmd": "PLAY_TOGETHER",
+    "data": {
+        "ruid": 29857468,
+        "roomid": 8618057,
+        "action": "switch_off",
+        "uid": 0,
+        "timestamp": 1673690546,
+        "message": "",
+        "message_type": 0,
+        "jump_url": "",
+        "web_url": "",
+        "apply_number": 0,
+        "refresh_tool": false,
+        "cur_fleet_num": 0,
+        "max_fleet_num": 0
+    }
+}
+```
+示例2
+```json
+{
+    "cmd": "PLAY_TOGETHER",
+    "data": {
+        "ruid": 29857468,
+        "roomid": 8618057,
+        "action": "switch_off",
+        "uid": 0,
+        "timestamp": 1673690549,
+        "message": "系统提示：主播已切换分区",
+        "message_type": 3,
+        "jump_url": "",
+        "web_url": "",
+        "apply_number": 0,
+        "refresh_tool": true,
+        "cur_fleet_num": 0,
+        "max_fleet_num": 0
+    }
+}
+```
+</details>
   
   
