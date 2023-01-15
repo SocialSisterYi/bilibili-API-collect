@@ -304,7 +304,6 @@ json格式
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
 | cmd | str  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
-<<<<<<< HEAD
 | info | array | 这条弹幕的用户、内容与粉丝勋章等各种信息 | 待调查其中每个数据的含义 |
 
 info字段
@@ -368,9 +367,6 @@ info字段
 
 
 
-=======
-| info | array  | 这条弹幕的用户、内容与粉丝勋章等各种信息 | 待调查其中每个数据的含义 |
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 
 <details>
 <summary>查看消息示例：</summary>
@@ -1281,7 +1277,6 @@ data字段
 | sender_name | str | 发送者的名称 | |
 | sender_face | str | 发送者的头像的URL | |
 | join_requirement | num | 待调查 | |
-<<<<<<< HEAD
 | danmu | str | 用户参与红包时自动发送的弹幕内容 | |
 | current_time | num | 服务器发送数据包的Unix时间戳 | |
 | start_time | num | 可以开始抢红包的Unix时间戳 | |
@@ -1295,32 +1290,13 @@ data字段
 | awards | array | 红包内包含的礼物的信息 | |
 | lot_config_id | num | 待调查 | |
 | total_price | num | 红包总价格 | |
-=======
-| danmu | str | 发送者在发红包之后会自动发送一条弹幕<br />这条弹幕的内容 | |
-| current_time | num | 服务器发送数据包的Unix时间戳 | |
-| start_time | num | 可以开始抢红包的Unix时间戳 | |
-| end_time | num | 抢红包的结束时间Unix时间戳 | |
-| last_time | num | 红包的持续时间Unix时间戳 | start_time - end_time |
-| remove_time | num | 待调查 | |
-| replace_time | num | 待调查 | |
-| lot_status | num | 待调查 | |
-| h5_url | str | 待调查 | |
-| user_status | num | 待调查 | |
-| awards | array | 红包内包含的礼物的信息 | |
-| lot_config_id | num | 待调查 | |
-| total_price | num | 待调查 | |
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 | wait_num | num | 待调查 | |
 
 awards数组中的对象
   
 |    字段    | 类型 |  内容  |    备注   |
 | ---------- | --- | ------ | --------- |
-<<<<<<< HEAD
 | gift_id | num | 礼物ID | |
-=======
-| gift_id | num | 待调查 | |
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 | gift_name | str | 礼物名称 | |
 | gift_pic | str | 礼物图标URL | |
 | num | num | 该礼物的数量 | |
@@ -1400,11 +1376,7 @@ data字段
 | action | str | 礼物操作 | |
 | num | num | 礼物数量 | |
 | gift_name | str | "红包" | |
-<<<<<<< HEAD
 | gift_id | num | 礼物ID | |
-=======
-| gift_id | num | 待调查 | |
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 | price | num | 待调查 | |
 | name_color | str | 发送者的名称的颜色 | |
 | medal_info | obj | 发送者的粉丝勋章信息 | |
@@ -1485,11 +1457,7 @@ awards字段
 | 礼物ID | obj | 礼物信息 | |
 | ... | obj | | |
 
-<<<<<<< HEAD
 礼物ID 对象
-=======
-礼物ID对象
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 
 |    字段    | 类型 |  内容  |    备注   |
 | ---------- | --- | ------ | --------- |
@@ -1912,11 +1880,7 @@ json格式
 | 字段 | 类型 |   内容  |    备注   |
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "SUPER_CHAT_ENTRANCE" | 不知道有什么意义 |
-<<<<<<< HEAD
 | data | obj | 醒目留言按钮的信息 | |
-=======
-| data | obj | | |
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 | roomid | num | 直播间ID | 未知是短号还是真实ID |
 
 data字段
@@ -1924,11 +1888,7 @@ data字段
 |    字段    | 类型 |  内容  |    备注   |
 | ---------- | --- | ------ | --------- |
 | status | num | 待调查 | |
-<<<<<<< HEAD
 | jump_url | str | 按下“醒目留言”按钮后弹出小窗的页面URL | |
-=======
-| jump_url | str | 按下“醒目留言”按钮后弹出小窗的页面 | |
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 | icon | str | “醒目留言”按钮图标的URL | |
 | broadcast_type | num | 待调查 | |
 
@@ -1949,7 +1909,6 @@ data字段
 ```
 </details>
 
-<<<<<<< HEAD
 #### 顶部横幅
 
 网页端在直播间标题下面的横幅
@@ -2040,8 +1999,6 @@ widget_list字段
 ```
 
 </details>
-=======
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 
 #### 下播的直播间
 
@@ -2275,14 +2232,8 @@ room_id_list数组中的数字
   
 #### 未知消息
 
-<<<<<<< HEAD
 `ROOM_REAL_TIME_MESSAGE_UPDATE`  
 `PLAY_TOGETHER`  
-=======
-`ROOM_REAL_TIME_MESSAGE_UPDATE`
-`PLAY_TOGETHER`
-`SUPER_CHAT_ENTRANCE`
->>>>>>> bb123efcdc1b5677914c24699e89ba9e078dd2f3
 <details>
 <summary>查看消息示例：</summary>
 
