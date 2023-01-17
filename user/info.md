@@ -560,9 +560,14 @@ https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
 `data`对象：
 
-| 字段 | 类型  | 内容     | 备注 |
-| ---- | ----- | -------- | ---- |
-| card | obj   | 卡片信息 |      |
+| 字段          | 类型  | 内容           | 备注                                                         |
+| ------------- | ----- | -------------- | ------------------------------------------------------------ |
+| card          | obj   | 卡片信息       |                                                              |
+| following     | bool  | 是否关注此用户 | true：已关注<br />false：未关注<br />需要登录(Cookie)<br />未登录为false |
+| archive_count | num   | 用户稿件数     |                                                              |
+| article_count | num   | 0              | **作用尚不明确**                                             |
+| follower      | num   | 粉丝数         |                                                              |
+| like_num      | num   | 点赞数         |                                                              |
 
 `data`中的`card`对象：
 
@@ -591,10 +596,6 @@ https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 | official_verify | obj   | 认证信息2      |                                                              |
 | vip             | obj   | 大会员状态     |                                                              |
 | space           | obj   | 主页头图       |                                                              |
-| following       | bool  | 是否关注此用户 | true：已关注<br />false：未关注<br />需要登录(Cookie) <br />未登录为false |
-| archive_count   | num   | 用户稿件数     |                                                              |
-| article_count   | num   | 0              | **作用尚不明确**                                             |
-| follower        | num   | 粉丝数         |                                                              |
 
 `card`中的`level_info`对象：
 
@@ -754,12 +755,13 @@ curl -G 'api.bilibili.com/x/web-interface/card' \
         "space": {
             "s_img": "http://i1.hdslb.com/bfs/space/768cc4fd97618cf589d23c2711a1d1a729f42235.png",
             "l_img": "http://i1.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png"
-        },
-        "following": true,
-        "archive_count": 37,
-        "article_count": 0,
-        "follower": 969999
-    }
+        }
+    },
+    "following": true,
+    "archive_count": 37,
+    "article_count": 0,
+    "follower": 969999,
+    "like_num": 3547978
 }
 ```
 
