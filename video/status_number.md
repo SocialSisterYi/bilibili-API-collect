@@ -6,7 +6,7 @@
 ---
 
 ## 视频状态数（仅avid）
-> http://api.bilibili.com/archive_stat/stat
+> https://api.bilibili.com/archive_stat/stat
 
 *请求方式：GET*
 
@@ -52,7 +52,7 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/archive_stat/stat' \
+curl -G 'https://api.bilibili.com/archive_stat/stat' \
 --data-urlencode 'aid=91572143'
 ```
 
@@ -86,7 +86,7 @@ curl -G 'http://api.bilibili.com/archive_stat/stat' \
 
 ## 视频状态数（bvid/avid）
 
-> http://api.bilibili.com/x/web-interface/archive/stat
+> https://api.bilibili.com/x/web-interface/archive/stat
 
 *请求方式：GET*
 
@@ -138,14 +138,14 @@ curl -G 'http://api.bilibili.com/archive_stat/stat' \
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/stat' \
 --data-urlencode 'aid=2271112'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/stat' \
 --data-urlencode 'bvid=BV1es411D7sW'
 ```
 
@@ -182,7 +182,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
 当UA为`2333python2333`时，则无法访问此接口：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/stat' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/stat' \
 --data-urlencode 'aid=2271112' \
 -A '2333python2333'
 ```

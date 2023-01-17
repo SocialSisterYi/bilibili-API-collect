@@ -9,7 +9,7 @@
 
 ## 获取用户持有的粉丝勋章信息
 
-> ~~http://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal~~
+> ~~https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal~~
 >
 > https://api.live.bilibili.com/xlive/app-ucenter/v1/user/GetMyMedals
 

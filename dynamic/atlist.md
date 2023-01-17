@@ -2,7 +2,7 @@
 
 **注意关键字不一定顺序匹配,如最后示例**
 
-> http://api.vc.bilibili.com/dynamic_mix/v1/dynamic_mix/at_search
+> https://api.vc.bilibili.com/dynamic_mix/v1/dynamic_mix/at_search
 
 *请求方式：GET*
 

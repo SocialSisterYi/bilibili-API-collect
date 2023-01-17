@@ -17,7 +17,7 @@
 ---
 
 ## 获取视频快照（web端）
-> http://api.bilibili.com/x/player/videoshot
+> https://api.bilibili.com/x/player/videoshot
 
 *请求方式：GET* 
 
@@ -77,7 +77,7 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/videoshot' \
+curl -G 'https://api.bilibili.com/x/player/videoshot' \
 --data-urlencode 'aid=26273789' \
 --data-urlencode 'index=1'
 ```
@@ -85,7 +85,7 @@ curl -G 'http://api.bilibili.com/x/player/videoshot' \
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/videoshot' \
+curl -G 'https://api.bilibili.com/x/player/videoshot' \
 --data-urlencode 'bvid=BV1os411H7wm' \
 --data-urlencode 'index=1'
 ```
@@ -114,7 +114,7 @@ curl -G 'http://api.bilibili.com/x/player/videoshot' \
 
 ## 获取视频快照（APP端）
 
-> http://app.bilibili.com/x/v2/view/video/shot 
+> https://app.bilibili.com/x/v2/view/video/shot 
 
 *请求方式：GET*
 
@@ -165,7 +165,7 @@ curl -G 'http://api.bilibili.com/x/player/videoshot' \
 获取视频`av26273789`（`cid=49075258`）的快照
 
 ```shell
-curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
+curl -G 'https://app.bilibili.com/x/v2/view/video/shot' \
 --data-urlencode 'appkey=1d8b6e7d45233436' \
 --data-urlencode 'aid=26273789' \
 --data-urlencode 'cid=49075258' \
@@ -182,14 +182,14 @@ curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
     "message": "0",
     "ttl": 1,
     "data": {
-        "pvdata": "http://i0.hdslb.com/bfs/videoshot/49075258.bin",
+        "pvdata": "https://i0.hdslb.com/bfs/videoshot/49075258.bin",
         "img_x_len": 10,
         "img_y_len": 10,
         "img_x_size": 160,
         "img_y_size": 90,
         "image": [
-            "http://i0.hdslb.com/bfs/videoshot/49075258.jpg",
-            "http://i0.hdslb.com/bfs/videoshot/49075258-1.jpg"
+            "https://i0.hdslb.com/bfs/videoshot/49075258.jpg",
+            "https://i0.hdslb.com/bfs/videoshot/49075258-1.jpg"
         ]
     }
 }
@@ -199,7 +199,7 @@ curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
 
 ## 获取视频快照（web端）（用于封面预览）
 
-> http://api.bilibili.com/pvideo
+> https://api.bilibili.com/pvideo
 
 *请求方式：GET*
 
@@ -256,7 +256,7 @@ curl -G 'http://app.bilibili.com/x/v2/view/video/shot' \
 获取视频`av26273789`的快照
 
 ```shell
-curl -G 'http://api.bilibili.com/pvideo' \
+curl -G 'https://api.bilibili.com/pvideo' \
 --data-urlencode 'aid=26273789'
 ```
 
@@ -290,7 +290,7 @@ curl -G 'http://api.bilibili.com/pvideo' \
 
 示例拼版图片url：http://i0.hdslb.com/bfs/videoshot/49075258.jpg
 
-![](http://i0.hdslb.com/bfs/videoshot/49075258.jpg)
+![](https://i0.hdslb.com/bfs/videoshot/49075258.jpg)
 
 ## bin格式截取时间表
 

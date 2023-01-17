@@ -7,7 +7,7 @@
 
 ## 添加表情包
 
-> http://api.bilibili.com/x/emote/package/add
+> https://api.bilibili.com/x/emote/package/add
 
 *请求方式：POST*
 
@@ -38,7 +38,7 @@
 添加id为`25`的表情包，使用场景为评论区
 
 ```shell
-curl 'http://api.bilibili.com/x/emote/package/add' \
+curl 'https://api.bilibili.com/x/emote/package/add' \
 --data-urlencode 'package_id=25' \
 --data-urlencode 'business=reply' \
 --data-urlencode 'csrf=xxx' \
@@ -60,7 +60,7 @@ curl 'http://api.bilibili.com/x/emote/package/add' \
 
 ## 移除表情包
 
-> http://api.bilibili.com/x/emote/package/remove
+> https://api.bilibili.com/x/emote/package/remove
 
 *请求方式：POST*
 
@@ -89,7 +89,7 @@ curl 'http://api.bilibili.com/x/emote/package/add' \
 移除id为`25`的表情包，使用场景为评论区
 
 ```shell
-curl 'http://api.bilibili.com/x/emote/package/remove' \
+curl 'https://api.bilibili.com/x/emote/package/remove' \
 --data-urlencode 'package_id=25' \
 --data-urlencode 'business=reply' \
 --data-urlencode 'csrf=xxx' \

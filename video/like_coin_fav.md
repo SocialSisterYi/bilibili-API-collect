@@ -28,7 +28,7 @@
 
 ### 点赞视频（web端）
 
-> http://api.bilibili.com/x/web-interface/archive/like
+> https://api.bilibili.com/x/web-interface/archive/like
 
 *请求方式：POST*
 
@@ -60,7 +60,7 @@
 avid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like' \
+curl 'https://api.bilibili.com/x/web-interface/archive/like' \
 --data-urlencode 'aid=79677524' \
 --data-urlencode 'like=1' \
 --data-urlencode 'csrf=xxx' \
@@ -70,7 +70,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like' \
 bvid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like' \
+curl 'https://api.bilibili.com/x/web-interface/archive/like' \
 --data-urlencode 'bvid=BV1uJ411r7hL' \
 --data-urlencode 'like=1' \
 --data-urlencode 'csrf=xxx' \
@@ -92,7 +92,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like' \
 
 ### 点赞视频（APP端）
 
-> http://app.bilibili.com/x/v2/view/like
+> https://app.bilibili.com/x/v2/view/like
 
 *请求方式：POST*
 
@@ -128,7 +128,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like' \
 点赞视频`av79677524`
 
 ```shell
-curl 'http://app.bilibili.com/x/v2/view/like' \
+curl 'https://app.bilibili.com/x/v2/view/like' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'aid=79677524' \
 --data-urlencode 'like=0'
@@ -152,7 +152,7 @@ curl 'http://app.bilibili.com/x/v2/view/like' \
 
 ### 判断视频是否被点赞（双端）
 
-> http://api.bilibili.com/x/web-interface/archive/has/like
+> https://api.bilibili.com/x/web-interface/archive/has/like
 
 *请求方式：GET*
 
@@ -184,7 +184,7 @@ curl 'http://app.bilibili.com/x/v2/view/like' \
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/has/like' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/has/like' \
 --data-urlencode 'aid=39330059' \
 -b 'SESSDATA=xxx'
 ```
@@ -215,7 +215,7 @@ curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
 
 ### 点踩视频（App端）
 
-> http://app.biliapi.net/x/v2/view/dislike
+> https://app.biliapi.net/x/v2/view/dislike
 
 *请求方式：POST*
 
@@ -242,7 +242,7 @@ curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
 点踩视频
 
 ```shell
-curl -L -X POST 'http://app.biliapi.net/x/v2/view/dislike' \
+curl -L -X POST 'https://app.biliapi.net/x/v2/view/dislike' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'aid=xxx' \
@@ -252,7 +252,7 @@ curl -L -X POST 'http://app.biliapi.net/x/v2/view/dislike' \
 取消点踩
 
 ```shell
-curl -L -X POST 'http://app.biliapi.net/x/v2/view/dislike' \
+curl -L -X POST 'https://app.biliapi.net/x/v2/view/dislike' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'aid=xxx' \
@@ -266,7 +266,7 @@ curl -L -X POST 'http://app.biliapi.net/x/v2/view/dislike' \
 
 ### 投币视频（web端）
 
-> http://api.bilibili.com/x/web-interface/coin/add
+> https://api.bilibili.com/x/web-interface/coin/add
 
 *请求方式：POST*
 
@@ -306,7 +306,7 @@ data 对象：
 avid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/coin/add' \
+curl 'https://api.bilibili.com/x/web-interface/coin/add' \
 --data-urlencode 'aid=90671873' \
 --data-urlencode 'select_like=1' \
 --data-urlencode 'multiply=2' \
@@ -317,7 +317,7 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 bvid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/coin/add' \
+curl 'https://api.bilibili.com/x/web-interface/coin/add' \
 --data-urlencode 'bvid=BV1N7411A7wC' \
 --data-urlencode 'select_like=1' \
 --data-urlencode 'multiply=2' \
@@ -343,7 +343,7 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 
 ### 投币视频（APP端）
 
-> http://app.bilibili.com/x/v2/view/coin/add
+> https://app.bilibili.com/x/v2/view/coin/add
 
 *请求方式：POST*
 
@@ -378,7 +378,7 @@ data 对象：
 为视频`av90671873`投币2枚
 
 ```shell
-curl 'http://app.bilibili.com/x/v2/view/coin/add' \
+curl 'https://app.bilibili.com/x/v2/view/coin/add' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'aid=90671873' \
 --data-urlencode 'select_like=1' \
@@ -403,7 +403,7 @@ curl 'http://app.bilibili.com/x/v2/view/coin/add' \
 
 ### 判断视频是否被投币（双端）
 
-> http://api.bilibili.com/x/web-interface/archive/coins
+> https://api.bilibili.com/x/web-interface/archive/coins
 
 *请求方式：GET*
 
@@ -476,9 +476,9 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
 
 ### 收藏视频（双端）
 
-> http://api.bilibili.com/medialist/gateway/coll/resource/deal
+> https://api.bilibili.com/medialist/gateway/coll/resource/deal
 >
->  http://api.bilibili.com/x/v3/fav/resource/deal
+>  https://api.bilibili.com/x/v3/fav/resource/deal
 
 *请求方式：POST*
 
@@ -520,7 +520,7 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal' \
+curl 'https://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 --data-urlencode 'rid=90671873' \
 --data-urlencode 'type=2' \
 --data-urlencode 'add_media_ids=49166435' \
@@ -533,7 +533,7 @@ curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal' \
+curl 'https://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'rid=90671873' \
 --data-urlencode 'type=2' \
@@ -558,7 +558,7 @@ curl 'http://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 
 ### 判断视频是否被收藏（双端）
 
-> http://api.bilibili.com/x/v2/fav/video/favoured
+> https://api.bilibili.com/x/v2/fav/video/favoured
 
 *请求方式：GET*
 
@@ -596,7 +596,7 @@ data 对象：
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
+curl -G 'https://api.bilibili.com/x/v2/fav/video/favoured' \
 --data-urlencode 'aid=46281123' \
 -b 'SESSDATA=xxx'
 ```
@@ -604,7 +604,7 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
+curl -G 'https://api.bilibili.com/x/v2/fav/video/favoured' \
 --data-urlencode 'aid=BV1Bb411H7Dv' \
 -b 'SESSDATA=xxx'
 ```
@@ -632,7 +632,7 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
 
 ### 一键三连视频（web端）
 
-> http://api.bilibili.com/x/web-interface/archive/like/triple
+> https://api.bilibili.com/x/web-interface/archive/like/triple
 
 *请求方式：POST*
 
@@ -675,7 +675,7 @@ curl -G 'http://api.bilibili.com/x/v2/fav/video/favoured' \
 avid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
+curl 'https://api.bilibili.com/x/web-interface/archive/like/triple' \
 --data-urlencode 'aid=91003840' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -684,7 +684,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
 bvid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
+curl 'https://api.bilibili.com/x/web-interface/archive/like/triple' \
 --data-urlencode 'bvid=BV1Wj411f79U' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -711,7 +711,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
 
 ### 一键三连视频（APP端）
 
-> http://app.bilibili.com/x/v2/view/like/triple
+> https://app.bilibili.com/x/v2/view/like/triple
 
 *请求方式：POST*
 
@@ -751,7 +751,7 @@ curl 'http://api.bilibili.com/x/web-interface/archive/like/triple' \
 将视频`av91003840`一键三连
 
 ```shell
-curl 'http://app.bilibili.com/x/v2/view/like/triple' \
+curl 'https://app.bilibili.com/x/v2/view/like/triple' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'aid=91003840'
 ```
@@ -779,7 +779,7 @@ curl 'http://app.bilibili.com/x/v2/view/like/triple' \
 
 ### 分享视频 （Web端）
 
-> http://api.bilibili.com/x/web-interface/share/add
+> https://api.bilibili.com/x/web-interface/share/add
 
 *请求方式：POST*
 
@@ -810,7 +810,7 @@ curl 'http://app.bilibili.com/x/v2/view/like/triple' \
 分享视频`BV1oA411776z`
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/share/add' \
+curl 'https://api.bilibili.com/x/web-interface/share/add' \
 --data-urlencode 'csrf=xxx' \
 --data-urlencode 'bvid=BV1oA411776z'
 ```

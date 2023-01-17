@@ -12,7 +12,7 @@
 
 ## 获取弹幕趋势顶点列表
 
-> http://bvc.bilivideo.com/pbp/data
+> https://bvc.bilivideo.com/pbp/data
 
 *请求方式：GET*
 
@@ -54,7 +54,7 @@
 获取视频`cid=3724723`的获取弹幕趋势顶点列表
 
 ```shell
-curl -G 'http://api.bilibili.com/pbp/data' \
+curl -G 'https://api.bilibili.com/pbp/data' \
 --data-urlencode 'cid=3724723'
 ```
 

@@ -10,7 +10,7 @@
 
 ## 获取画友首页列表
 
-> http://api.vc.bilibili.com/link_draw/v2/Doc/index
+> https://api.vc.bilibili.com/link_draw/v2/Doc/index
 
 *请求方式：GET*
 
@@ -99,7 +99,7 @@
 用按热度排序方式获取画友首页列表
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v2/Doc/index' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v2/Doc/index' \
 --data-urlencode 'type=hot' \
 --data-urlencode 'page_num=1' \
 --data-urlencode 'page_size=5' \
@@ -275,7 +275,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Doc/index' \
 
 ## 获取摄影首页列表
 
-> http://api.vc.bilibili.com/link_draw/v2/Photo/index
+> https://api.vc.bilibili.com/link_draw/v2/Photo/index
 
 *请求方式：GET*
 
@@ -298,7 +298,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Doc/index' \
 用推荐方式获取画友首页列表
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/index' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v2/Photo/index' \
 --data-urlencode 'type=recommend' \
 --data-urlencode 'page_num=1' \
 --data-urlencode 'page_size=5' \
@@ -667,7 +667,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/index' \
 
 ## 获取画友列表
 
-> http://api.vc.bilibili.com/link_draw/v2/Doc/list
+> https://api.vc.bilibili.com/link_draw/v2/Doc/list
 
 *请求方式：GET*
 
@@ -691,7 +691,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/index' \
 用按热度排序方式获取`全部`类型的画友列表
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v2/Doc/list' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v2/Doc/list' \
 --data-urlencode 'category=all' \
 --data-urlencode 'type=hot' \
 --data-urlencode 'page_num=1' \
@@ -941,7 +941,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Doc/list' \
 
 ## 获取摄影列表
 
-> http://api.vc.bilibili.com/link_draw/v2/Photo/list
+> https://api.vc.bilibili.com/link_draw/v2/Photo/list
 
 *请求方式：GET*
 
@@ -965,7 +965,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Doc/list' \
 用按热度排序方式获取`Cosplay`类型的摄影列表
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/list' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v2/Photo/list' \
 --data-urlencode 'category=cos' \
 --data-urlencode 'type=hot' \
 --data-urlencode 'page_num=1' \
@@ -1329,7 +1329,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/list' \
 
 ## 获取指定用户的相簿列表
 
-> http://api.vc.bilibili.com/link_draw/v1/doc/others
+> https://api.vc.bilibili.com/link_draw/v1/doc/others
 
 *请求方式：GET*
 
@@ -1380,7 +1380,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/list' \
 获取用户` 1360010 `的所有类型相簿
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/others' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/others' \
 --data-urlencode 'biz=0' \
 --data-urlencode 'poster_uid=1360010' \
 --data-urlencode 'page_num=1' \

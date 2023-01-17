@@ -46,7 +46,7 @@
 
 <span id="85videos">## 获取入站必刷85个视频</span>
 
-> http://api.bilibili.com/x/web-interface/popular/precious
+> https://api.bilibili.com/x/web-interface/popular/precious
 
 **url参数**
 
@@ -111,7 +111,7 @@
 **示例：**
 
 ``` shell
-curl 'http://api.bilibili.com/x/web-interface/popular/precious'
+curl 'https://api.bilibili.com/x/web-interface/popular/precious'
 ```
 <details>
 <summary>查看响应事例:</summary>

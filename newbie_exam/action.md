@@ -15,7 +15,7 @@
 
 ### 提交基础题
 
-> http://api.bilibili.com/x/answer/v4/base/check
+> https://api.bilibili.com/x/answer/v4/base/check
 
 *请求方式：POST*
 
@@ -51,7 +51,7 @@
 提交题目id为`104`的题，选项hash为`cb4c8cc9424fc771f7c1598e74de498f`
 
 ```shell
-curl 'http://api.bilibili.com/x/answer/v4/base/check' \
+curl 'https://api.bilibili.com/x/answer/v4/base/check' \
 --data-urlencode 'question_id=104' \
 --data-urlencode 'ans_hash=cb4c8cc9424fc771f7c1598e74de498f' \
 --data-urlencode 'csrf=xxxx' \
@@ -76,7 +76,7 @@ curl 'http://api.bilibili.com/x/answer/v4/base/check' \
 
 ### 提交附加题
 
-> http://api.bilibili.com/x/answer/v4/base/check
+> https://api.bilibili.com/x/answer/v4/base/check
 
 *请求方式：POST*
 
@@ -112,7 +112,7 @@ curl 'http://api.bilibili.com/x/answer/v4/base/check' \
 提交题目id为`104`的题，选项hash为`cb4c8cc9424fc771f7c1598e74de498f`
 
 ```shell
-curl 'http://api.bilibili.com/x/answer/v4/base/check' \
+curl 'https://api.bilibili.com/x/answer/v4/base/check' \
 --data-urlencode 'question_id=104' \
 --data-urlencode 'ans_hash=cb4c8cc9424fc771f7c1598e74de498f' \
 --data-urlencode 'csrf=xxxx' \
@@ -137,7 +137,7 @@ curl 'http://api.bilibili.com/x/answer/v4/base/check' \
 
 ### 提交自选题
 
-> http://api.bilibili.com/x/answer/v4/pro/check
+> https://api.bilibili.com/x/answer/v4/pro/check
 
 *请求方式：POST*
 
@@ -173,7 +173,7 @@ curl 'http://api.bilibili.com/x/answer/v4/base/check' \
 提交题目id为`2935`的题，选项hash为`ffd55cbe0624f466bee2ea3eb576a4d0`
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/pro/check' \
+curl -G 'https://api.bilibili.com/x/answer/v4/pro/check' \
 --data-urlencode 'question_id=2935' \
 --data-urlencode 'ans_hash=ffd55cbe0624f466bee2ea3eb576a4d0' \
 --data-urlencode 'csrf=xxxx' \
@@ -198,7 +198,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro/check' \
 
 ## 获取验证码
 
-> http://api.bilibili.com/x/answer/v4/captcha
+> https://api.bilibili.com/x/answer/v4/captcha
 
 *请求方式：GET*
 
@@ -228,7 +228,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro/check' \
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/answer/v4/captcha' \
+curl 'https://api.bilibili.com/x/answer/v4/captcha' \
 -b 'SESSDATA=xxxx'
 ```
 
@@ -254,7 +254,7 @@ curl 'http://api.bilibili.com/x/answer/v4/captcha' \
 
 ## 提交验证码
 
-> http://api.bilibili.com/x/answer/v4/captcha/check
+> https://api.bilibili.com/x/answer/v4/captcha/check
 
 *请求方式：POST*
 
@@ -292,7 +292,7 @@ curl 'http://api.bilibili.com/x/answer/v4/captcha' \
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/answer/v4/captcha/check' \
+curl 'https://api.bilibili.com/x/answer/v4/captcha/check' \
 --data-urlencode 'types=' \
 --data-urlencode 'type=geetest' \
 --data-urlencode 'bilibili_token=' \
@@ -319,7 +319,7 @@ curl 'http://api.bilibili.com/x/answer/v4/captcha/check' \
 
 ## 提交自选题分类
 
-> http://api.bilibili.com/x/answer/v4/pro/type/check
+> https://api.bilibili.com/x/answer/v4/pro/type/check
 
 *请求方式：POST*
 
@@ -347,7 +347,7 @@ curl 'http://api.bilibili.com/x/answer/v4/captcha/check' \
 选择`游戏` `影视` `科教/知识` `动画/动漫`分类
 
 ```shell
-curl 'http://api.bilibili.com/x/answer/v4/pro/type/check' \
+curl 'https://api.bilibili.com/x/answer/v4/pro/type/check' \
 --data-urlencode 'types=1,2,3,4' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxxx'
@@ -368,7 +368,7 @@ curl 'http://api.bilibili.com/x/answer/v4/pro/type/check' \
 
 ## 提前交卷
 
-> http://api.bilibili.com/x/answer/v4/submit
+> https://api.bilibili.com/x/answer/v4/submit
 
 *请求方式：POST*
 
@@ -418,7 +418,7 @@ curl 'http://api.bilibili.com/x/answer/v4/pro/type/check' \
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/answer/v4/submit' \
+curl 'https://api.bilibili.com/x/answer/v4/submit' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxxx'
 ```

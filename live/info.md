@@ -11,7 +11,7 @@
 
 ## 获取直播间信息
 
-> http://api.live.bilibili.com/room/v1/Room/get_info
+> https://api.live.bilibili.com/room/v1/Room/get_info
 
 *请求方式: GET*
 
@@ -102,7 +102,7 @@
 查询直播间`room_id=1`信息
 
 ```shell
-curl -G 'http://api.live.bilibili.com/room/v1/Room/get_info' \
+curl -G 'https://api.live.bilibili.com/room/v1/Room/get_info' \
 --data-urlencode 'room_id=1'
 ```
 
@@ -253,7 +253,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/get_info' \
 查询用户`mid=322892`的直播间信息
 
 ```shell
-curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
+curl -G 'https://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 --data-urlencode 'mid=322892'
 ```
 
@@ -284,7 +284,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 
 ## 获取房间页初始化信息
 
-> http://api.live.bilibili.com/room/v1/Room/room_init
+> https://api.live.bilibili.com/room/v1/Room/room_init
 
 *请求方式：GET*
 
@@ -331,7 +331,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld' \
 查询直播间`id=76`的直播间信息
 
 ```shell
-curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
+curl -G 'https://api.live.bilibili.com/room/v1/Room/room_init' \
 --data-urlencode 'id=76'
 ```
 
@@ -368,7 +368,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 
 ## 获取主播信息
 
-> http://api.live.bilibili.com/live_user/v1/Master/info
+> https://api.live.bilibili.com/live_user/v1/Master/info
 
 *请求方式：GET*
 
@@ -461,7 +461,7 @@ curl -G 'http://api.live.bilibili.com/room/v1/Room/room_init' \
 查询直播间`mid=76`的主播信息
 
 ```shell
-curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
+curl -G 'https://api.live.bilibili.com/live_user/v1/Master/info' \
 --data-urlencode 'uid=2'
 ```
 
@@ -517,7 +517,7 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 ## 批量查询直播间状态
 
-> http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
+> https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids
 
 *请求方式：GET/POST*
 
@@ -587,11 +587,11 @@ curl -G 'http://api.live.bilibili.com/live_user/v1/Master/info' \
 
 ```shell
 # GET方式
-curl -G 'http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids'
+curl -G 'https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids'
 --data-urlencode 'uids[]=672328094'
 
 # POST方式
-curl 'http://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
+curl 'https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
 -H "Content-Type: application/json" \
 -d "{\"uids\": [672328094]}" 
 ```

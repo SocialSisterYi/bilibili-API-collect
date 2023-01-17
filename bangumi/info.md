@@ -9,7 +9,7 @@
 ## 剧集基本信息（mdid方式）
 
 
-> http://api.bilibili.com/pgc/review/user
+> https://api.bilibili.com/pgc/review/user
 
 *请求方式：GET*
 
@@ -96,7 +96,7 @@
 查询剧集`md28220978`的基本信息
 
 ```shell
-curl -G 'http://api.bilibili.com/pgc/review/user' \
+curl -G 'https://api.bilibili.com/pgc/review/user' \
 --data-urlencode 'media_id=28220978' \
 -b 'SESSDATA=xxx'
 ```
@@ -142,7 +142,7 @@ curl -G 'http://api.bilibili.com/pgc/review/user' \
 
 ## 获取剧集明细（web端）（ssid/epid方式）
 
-> http://api.bilibili.com/pgc/view/web/season
+> https://api.bilibili.com/pgc/view/web/season
 
 *请求方式：GET*
 

@@ -76,7 +76,7 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 
 ## 获取视频流URL（web端）
 
-> http://api.bilibili.com/x/player/playurl
+> https://api.bilibili.com/x/player/playurl
 
 *请求方式：GET*
 
@@ -235,7 +235,7 @@ B站的视频为http流媒体，需要对应的api以视频id获取取流url，�
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/playurl' \
+curl -G 'https://api.bilibili.com/x/player/playurl' \
 --data-urlencode 'avid=99999999' \
 --data-urlencode 'cid=171776208' \
 --data-urlencode 'qn=112' \
@@ -248,7 +248,7 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
  bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/playurl' \
+curl -G 'https://api.bilibili.com/x/player/playurl' \
 --data-urlencode 'bvid=BV1y7411Q7Eq' \
 --data-urlencode 'cid=171776208' \
 --data-urlencode 'qn=112' \
@@ -562,7 +562,7 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/playurl' \
+curl -G 'https://api.bilibili.com/x/player/playurl' \
 --data-urlencode 'avid=969628065' \
 --data-urlencode 'cid=244954665' \
 --data-urlencode 'qn=0' \
@@ -575,7 +575,7 @@ curl -G 'http://api.bilibili.com/x/player/playurl' \
  bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/playurl' \
+curl -G 'https://api.bilibili.com/x/player/playurl' \
 --data-urlencode 'bvid=BV1rp4y1e745' \
 --data-urlencode 'cid=244954665' \
 --data-urlencode 'qn=0' \

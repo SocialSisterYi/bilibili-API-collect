@@ -8,7 +8,7 @@
 
 ## 查询音频收藏状态
 
-> http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll
+> https://www.bilibili.com/audio/music-service-c/web/collections/songs-coll
 
 *请求方式：GET*
 
@@ -37,7 +37,7 @@
 查询音频`au13598`的收藏状态
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-coll' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/collections/songs-coll' \
 --data-urlencode 'sid=13598' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
@@ -57,7 +57,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-col
 
 ## 查询音频投币数
 
-> http://www.bilibili.com/audio/music-service-c/web/coin/audio
+> https://www.bilibili.com/audio/music-service-c/web/coin/audio
 
 *请求方式：GET*
 
@@ -86,7 +86,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/songs-col
 查询音频`au13598`的投币数
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/coin/audio' \
 --data-urlencode 'sid=15664' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
@@ -104,7 +104,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/coin/audio' \
 
 ## 投币音频
 
-> http://www.bilibili.com/audio/music-service-c/web/coin/add
+> https://www.bilibili.com/audio/music-service-c/web/coin/add
 
 *请求方式：POST*
 

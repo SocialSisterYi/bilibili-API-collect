@@ -11,7 +11,7 @@
 
 ## 发表评论
 
-> http://api.bilibili.com/x/v2/reply/add
+> https://api.bilibili.com/x/v2/reply/add
 
 *请求方式：POST*
 
@@ -65,7 +65,7 @@
 给视频`av243322853`发送内容为`测试test[泠鸢yousa_awsl]`的评论（带有表情转义符），平台标识为1（web端）
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/add' \
+curl 'https://api.bilibili.com/x/v2/reply/add' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=243322853' \
 --data-urlencode 'message=测试test[泠鸢yousa_awsl]' \
@@ -235,7 +235,7 @@ curl 'http://api.bilibili.com/x/v2/reply/add' \
 
 ## 点赞评论
 
-> http://api.bilibili.com/x/v2/reply/action
+> https://api.bilibili.com/x/v2/reply/action
 
 *请求方式：POST*
 
@@ -269,7 +269,7 @@ curl 'http://api.bilibili.com/x/v2/reply/add' \
 点赞视频`av243322853`下评论`rpid=3039053308`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/action' \
+curl 'https://api.bilibili.com/x/v2/reply/action' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=243322853' \
 --data-urlencode 'rpid=3039053308' \
@@ -293,7 +293,7 @@ curl 'http://api.bilibili.com/x/v2/reply/action' \
 
 ## 点踩评论
 
-> http://api.bilibili.com/x/v2/reply/hate
+> https://api.bilibili.com/x/v2/reply/hate
 
 *请求方式：POST*
 
@@ -327,7 +327,7 @@ curl 'http://api.bilibili.com/x/v2/reply/action' \
 点踩视频`av243322853`下评论`rpid=3039053308`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/hate' \
+curl 'https://api.bilibili.com/x/v2/reply/hate' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=243322853' \
 --data-urlencode 'rpid=3039053308' \
@@ -351,7 +351,7 @@ curl 'http://api.bilibili.com/x/v2/reply/hate' \
 
 ## 删除评论
 
-> http://api.bilibili.com/x/v2/reply/del
+> https://api.bilibili.com/x/v2/reply/del
 
 *请求方式：POST*
 
@@ -384,7 +384,7 @@ curl 'http://api.bilibili.com/x/v2/reply/hate' \
 删除`av243322853`下评论`rpid=3039053308`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/del' \
+curl 'https://api.bilibili.com/x/v2/reply/del' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=243322853' \
 --data-urlencode 'rpid=3039053308' \
@@ -407,7 +407,7 @@ curl 'http://api.bilibili.com/x/v2/reply/del' \
 
 ## 置顶评论
 
-> http://api.bilibili.com/x/v2/reply/top
+> https://api.bilibili.com/x/v2/reply/top
 
 *请求方式：POST*
 
@@ -441,7 +441,7 @@ curl 'http://api.bilibili.com/x/v2/reply/del' \
 置顶视频`av243322853`下评论`rpid=2940645593`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/top' \
+curl 'https://api.bilibili.com/x/v2/reply/top' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=243322853' \
 --data-urlencode 'rpid=2940645593' \
@@ -465,7 +465,7 @@ curl 'http://api.bilibili.com/x/v2/reply/top' \
 
 ## 举报评论
 
-> http://api.bilibili.com/x/v2/reply/report
+> https://api.bilibili.com/x/v2/reply/report
 
 *请求方式：POST*
 
@@ -521,7 +521,7 @@ curl 'http://api.bilibili.com/x/v2/reply/top' \
 举报视频` av752881391 `下评论`rpid=3062537442`，理由是`引战`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/reply/report' \
+curl 'https://api.bilibili.com/x/v2/reply/report' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=752881391' \
 --data-urlencode 'rpid=3062537442' \

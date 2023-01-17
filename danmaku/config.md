@@ -6,7 +6,7 @@
 
 ## 修改弹幕个人配置（web端）
 
-> http://api.bilibili.com/x/v2/dm/web/config
+> https://api.bilibili.com/x/v2/dm/web/config
 
 *请求方式：POST*
 
@@ -55,7 +55,7 @@
 关闭弹幕
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/web/config' \
+curl 'https://api.bilibili.com/x/v2/dm/web/config' \
 --data-urlencode 'dm_switch=false' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'

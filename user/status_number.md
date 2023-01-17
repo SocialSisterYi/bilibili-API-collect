@@ -8,7 +8,7 @@
 ---
 
 ## 关系状态数
-> http://api.bilibili.com/x/relation/stat
+> https://api.bilibili.com/x/relation/stat
 
 *请求方式：GET*
 
@@ -47,7 +47,7 @@
 查询用户`mid=332704117`的关系状态数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/relation/stat' \
+curl -G 'https://api.bilibili.com/x/relation/stat' \
 --data-urlencode 'vmid=332704117' \
 -b 'SESSDATA=xxx'
 ```
@@ -74,7 +74,7 @@ curl -G 'http://api.bilibili.com/x/relation/stat' \
 
 ## UP主状态数
 
-> http://api.bilibili.com/x/space/upstat
+> https://api.bilibili.com/x/space/upstat
 
 *请求方式：GET*
 
@@ -125,7 +125,7 @@ curl -G 'http://api.bilibili.com/x/relation/stat' \
 查询用户`mid=456664753`的UP主状态数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/space/upstat' \
+curl -G 'https://api.bilibili.com/x/space/upstat' \
 --data-urlencode 'mid=456664753' \
 -b 'SESSDATA=xxx'
 ```
@@ -156,7 +156,7 @@ curl -G 'http://api.bilibili.com/x/space/upstat' \
 
 <details>
 <summary>查看折叠内容</summary>
-> http://api.bilibili.com/x/space/navnum
+> https://api.bilibili.com/x/space/navnum
 
 *请求方式：GET*
 
@@ -212,7 +212,7 @@ curl -G 'http://api.bilibili.com/x/space/upstat' \
 查询用户`mid=239202390`的订阅&投稿状态数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/space/navnum' \
+curl -G 'https://api.bilibili.com/x/space/navnum' \
 --data-urlencode 'mid=239202390' \
 -b 'SESSDATA=xxx'
 ```
@@ -252,7 +252,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum' \
 
 ## 相簿投稿数
 
-> http://api.vc.bilibili.com/link_draw/v1/doc/upload_count
+> https://api.vc.bilibili.com/link_draw/v1/doc/upload_count
 
 *请求方式：GET*
 
@@ -287,7 +287,7 @@ curl -G 'http://api.bilibili.com/x/space/navnum' \
  查询用户`mid=53456`的投稿相簿数
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/upload_count' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/upload_count' \
 --data-urlencode 'uid=53456'
 ```
 
