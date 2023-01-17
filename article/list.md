@@ -171,7 +171,7 @@
 | 字段名  | 类型  | 内容   | 备注  |
 |------|-----|------|-----|
 | tid  | num | 标签id |     |
-| name | num | 标签名称 |     |
+| name | str | 标签名称 |     |
 
 ### `data`对象 -> `articles`数组中的对象 -> `media`对象
 
@@ -444,7 +444,7 @@ curl -L -X GET 'https://api.bilibili.com/x/space/article?mid=300021061&pn=1&ps=2
 
 ## 获取用户专栏文集列表
 
-> http://api.bilibili.com/x/space/article
+> http://api.bilibili.com/x/article/up/lists
 
 *请求方式：GET*
 
