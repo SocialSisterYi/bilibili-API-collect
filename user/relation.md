@@ -1038,7 +1038,7 @@ curl -G 'https://api.bilibili.com/x/relation/whispers' \
 
 认证方式：Cookie(SESSDATA)或APP
 
-登录可看自己全部
+查询与自己互关的用户明细，可看全部
 
 **url参数：**
 
@@ -1145,7 +1145,7 @@ curl -G 'https://api.bilibili.com/x/relation/friends' \
               "mid": 293793435,
               "attribute": 6,
               "mtime": 1583817598,
-              "tag": [ -10 ],
+              "tag": [-10],
               "special": 1,
               "uname": "社会易姐QwQ",
               "face": "https://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
