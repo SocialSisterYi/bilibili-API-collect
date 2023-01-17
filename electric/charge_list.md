@@ -3,6 +3,7 @@
 - [获取空间充电公示列表](#获取空间充电公示列表)
 - [获取视频充电鸣谢名单](#获取视频充电鸣谢名单)
 - [查询我收到的充电列表](#查询我收到的充电列表)
+- [查询历史充电数据](#查询历史充电数据)
 
 ---
 
@@ -423,6 +424,106 @@ curl -L -X GET 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRec
     ]
   },
   "success": true
+}
+```
+
+</details>
+
+## 查询历史充电数据
+
+> https://member.bilibili.com/x/h5/elec/rank/recent
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名   | 类型 | 内容     | 必要性 | 备注                             |
+| -------- | ---- | -------- | ------ | -------------------------------- |
+| pn | num  | 页数 | 必要   |  |
+| ps | num  | 分页大小 | 必要   | 取值范围[1,20] |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注    |
+| ------- | ---- | -------- | ------- |
+| code    | num  | 返回值   | 0：成功 |
+| message | str  | 错误信息 |         |
+| ttl     | num  | 1        |         |
+| data    | obj  | 信息本体 |         |
+
+`data`对象：
+
+| 字段  | 类型  | 内容         | 备注 |
+| ----- | ----- | ------------ | ---- |
+| list  | array | 充电信息本体 |      |
+| pager | obj   | 分页信息     |      |
+
+`list`数组中的对象：
+
+| 字段     | 类型 | 内容       | 备注                |
+| -------- | ---- | ---------- | ------------------- |
+| aid      | num  | 0          |                     |
+| bvid     | str  | 空         |                     |
+| elec_num | num  | 充电电池数 |                     |               
+| title    | str  | 空         |                     |
+| uname    | str  | 空         |                     |
+| avatar   | str  | 空         |                     |
+| ctime    | str  | 充电时间   | yyyy-MM-dd HH:mm:ss |
+
+`pager`对象：
+
+| 字段    | 类型 | 内容         | 备注 |
+| ------- | ---- | ------------ | ---- |
+| current | num  | 当前页数     |      |
+| size    | num  | 当前分页大小 |      |
+| total   | num  | 记录总数     |      |
+
+**示例：**
+
+```shell
+curl -L -X GET 'https://member.bilibili.com/x/h5/elec/rank/recent' \
+-H 'Cookie: SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "aid": 0,
+                "bvid": "",
+                "elec_num": 50,
+                "title": "",
+                "uname": "",
+                "avatar": "",
+                "ctime": "2020-04-02 03:12:22"
+            },
+            {
+                "aid": 0,
+                "bvid": "",
+                "elec_num": 20,
+                "title": "",
+                "uname": "",
+                "avatar": "",
+                "ctime": "2020-04-02 03:12:00"
+            }
+        ],
+        "pager": {
+            "current": 1,
+            "size": 20,
+            "total": 38
+        }
+    }
 }
 ```
 
