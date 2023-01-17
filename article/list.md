@@ -444,7 +444,7 @@ curl -L -X GET 'https://api.bilibili.com/x/space/article?mid=300021061&pn=1&ps=2
 
 ## 获取用户专栏文集列表
 
-> http://api.bilibili.com/x/article/up/lists
+> https://api.bilibili.com/x/article/up/lists
 
 *请求方式：GET*
 
@@ -500,7 +500,9 @@ curl -L -X GET 'https://api.bilibili.com/x/space/article?mid=300021061&pn=1&ps=2
 **示例：**
 
 ```shell
-curl -L -X GET 'https://api.bilibili.com/x/article/up/lists?mid=2859372&sort=0'
+curl -X GET 'https://api.bilibili.com/x/article/up/lists' \
+    --data-urlencode 'mid=2859372' \
+    --data-urlencode 'sort=0'
 ```
 
 <details>
