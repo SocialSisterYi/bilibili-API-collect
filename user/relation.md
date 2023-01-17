@@ -1179,7 +1179,7 @@ curl -G 'https://api.bilibili.com/x/relation/friends' \
               "nft_icon": "",
               "rec_reason": "",
               "track_id": ""
-            },
+            }
         ],
         "re_version": 0
     }
