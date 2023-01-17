@@ -15,7 +15,7 @@
 
 ## 动态转发列表
 
-> http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail
+> https://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail
 
 请求方式：GET
 
@@ -58,7 +58,7 @@
 获取`哔哩哔哩弹幕网`的动态id为`669016644742283288`动态
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail' \
+curl -G 'https://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_detail' \
 --data-urlencode 'dynamic_id=669016644742283288'
 ```
 
@@ -534,7 +534,7 @@ curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta
 
 ## 动态点赞列表
 
-> http://api.vc.bilibili.com/dynamic_like/v1/dynamic_like/spec_item_likes
+> https://api.vc.bilibili.com/dynamic_like/v1/dynamic_like/spec_item_likes
 
 请求方式：GET
 
@@ -575,7 +575,7 @@ curl -G 'http://api.vc.bilibili.com/dynamic_repost/v1/dynamic_repost/repost_deta
 
 获取`哔哩哔哩弹幕网`的动态id为`669016644742283288`动态
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_like/v1/dynamic_like/spec_item_likes' \
+curl -G 'https://api.vc.bilibili.com/dynamic_like/v1/dynamic_like/spec_item_likes' \
 --data-urlencode 'dynamic_id=669016644742283288'
 ```
 

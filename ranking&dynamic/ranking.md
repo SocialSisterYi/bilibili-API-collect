@@ -9,7 +9,7 @@
 
 ## 获取分区视频排行榜列表
 
-><http://api.bilibili.com/x/web-interface/ranking/v2>
+> https://api.bilibili.com/x/web-interface/ranking/v2
 
 *请求方式：GET*
 
@@ -58,7 +58,7 @@
 获取`tid=1`（动画）分区中所有稿件排行榜排行榜
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/ranking/v2' \
+curl -G 'https://api.bilibili.com/x/web-interface/ranking/v2' \
 --data-urlencode 'tid=1' \
 --data-urlencode 'type=all'
 ```

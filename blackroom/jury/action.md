@@ -53,7 +53,7 @@
 <details>
 <summary>查看旧版API：</summary>
 
-> http://api.bilibili.com/x/credit/jury/apply
+> https://api.bilibili.com/x/credit/jury/apply
 
 *请求方式：POST*
 
@@ -87,7 +87,7 @@
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/apply' \
+curl 'https://api.bilibili.com/x/credit/jury/apply' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
@@ -95,7 +95,7 @@ curl 'http://api.bilibili.com/x/credit/jury/apply' \
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/apply' \
+curl 'https://api.bilibili.com/x/credit/jury/apply' \
 --data-urlencode 'access_key=xxx'
 ```
 <details>
@@ -173,7 +173,7 @@ curl -G 'https://api.bilibili.com/x/credit/v2/jury/case/next' \
 <details>
 <summary>查看旧版API：</summary>
 
-> http://api.bilibili.com/x/credit/jury/caseObtain
+> https://api.bilibili.com/x/credit/jury/caseObtain
 
 *请求方式：POST*
 
@@ -208,7 +208,7 @@ curl -G 'https://api.bilibili.com/x/credit/v2/jury/case/next' \
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
+curl 'https://api.bilibili.com/x/credit/jury/caseObtain' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
@@ -216,7 +216,7 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
+curl 'https://api.bilibili.com/x/credit/jury/caseObtain' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -284,7 +284,7 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
 #### 旧API
 <details>
 <summary>查看旧版API：</summary>
-> http://api.bilibili.com/x/credit/jury/vote
+> https://api.bilibili.com/x/credit/jury/vote
 
 *请求方式：POST*
 
@@ -322,7 +322,7 @@ curl 'http://api.bilibili.com/x/credit/jury/caseObtain' \
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/vote' \
+curl 'https://api.bilibili.com/x/credit/jury/vote' \
 --data-urlencode 'cid=2333' \
 --data-urlencode 'vote=1' \
 --data-urlencode 'content=' \
@@ -339,7 +339,7 @@ curl 'http://api.bilibili.com/x/credit/jury/vote' \
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/vote' \
+curl 'https://api.bilibili.com/x/credit/jury/vote' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'cid=2333' \
 --data-urlencode 'vote=1' \

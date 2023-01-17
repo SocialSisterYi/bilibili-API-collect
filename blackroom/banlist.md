@@ -59,7 +59,7 @@
 
 ## 获取封禁用户公示列表
 
-> http://api.bilibili.com/x/credit/blocked/list
+> https://api.bilibili.com/x/credit/blocked/list
 
 *请求方式：GET*
 
@@ -127,7 +127,7 @@
 查询所有类型，所有来源的第1页的封禁公示列表
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
+curl -G 'https://api.bilibili.com/x/credit/blocked/list' \
 --data-urlencode 'btype=' \
 --data-urlencode 'otype=0' \
 --data-urlencode 'pn=1'
@@ -203,7 +203,7 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
 
 ## 封禁处理公示详情
 
-> http://api.bilibili.com/x/credit/blocked/info
+> https://api.bilibili.com/x/credit/blocked/info
 
 *请求方式：GET*
 
@@ -259,7 +259,7 @@ curl -G 'http://api.bilibili.com/x/credit/blocked/list' \
 查询公示id为`1091621`的公示详情
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/blocked/info' \
+curl -G 'https://api.bilibili.com/x/credit/blocked/info' \
 --data-urlencode 'id=1091621'
 ```
 

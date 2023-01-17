@@ -6,7 +6,7 @@
 
 ## 检查昵称
 
-> http://passport.bilibili.com/web/generic/check/nickname
+> https://passport.bilibili.com/web/generic/check/nickname
 
 *请求方式:GET*
 
@@ -44,7 +44,7 @@
 查询昵称 `xijinping` 是否被使用：
 
 ```shell
-curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
+curl -G 'https://passport.bilibili.com/web/generic/check/nickname' \
 --data-urlencode 'nickName=xijinping'
 ```
 
@@ -63,7 +63,7 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
 查询昵称 `//` 是否被使用：
 
 ```shell
-curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
+curl -G 'https://passport.bilibili.com/web/generic/check/nickname' \
 --data-urlencode 'nickName=//'
 ```
 
@@ -82,7 +82,7 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
 查询昵称 `test0000000000000 ` 是否被使用：
 
 ```shell
-curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
+curl -G 'https://passport.bilibili.com/web/generic/check/nickname' \
 --data-urlencode 'nickName=test0000000000000 '
 ```
 
@@ -101,7 +101,7 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
 查询昵称 `0` 是否被使用：
 
 ```shell
-curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
+curl -G 'https://passport.bilibili.com/web/generic/check/nickname' \
 --data-urlencode 'nickName=0'
 ```
 
@@ -120,7 +120,7 @@ curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
 查询昵称 `test` 是否被使用：
 
 ```shell
-curl -G 'http://passport.bilibili.com/web/generic/check/nickname' \
+curl -G 'https://passport.bilibili.com/web/generic/check/nickname' \
 --data-urlencode 'nickName=test'
 ```
 

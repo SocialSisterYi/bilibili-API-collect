@@ -7,7 +7,7 @@
 
 ## 获取收藏夹内容明细列表
 
-> http://api.bilibili.com/x/v3/fav/resource/list
+> https://api.bilibili.com/x/v3/fav/resource/list
 
 *请求方式：GET*
 
@@ -139,7 +139,7 @@
 查询收藏夹`id=1052622027`，每页5个视频，第`1`页的内容明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v3/fav/resource/list' \
+curl -G 'https://api.bilibili.com/x/v3/fav/resource/list' \
 --data-urlencode 'media_id=1052622027' \
 --data-urlencode 'platform=web' \
 --data-urlencode 'pn=1' \
@@ -333,7 +333,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/resource/list' \
 
 ## 获取收藏夹全部内容id
 
->  http://api.bilibili.com/x/v3/fav/resource/ids
+>  https://api.bilibili.com/x/v3/fav/resource/ids
 
 *请求方式：GET*
 
@@ -380,7 +380,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/resource/list' \
 查询收藏夹`id=1052622027`的全部内容id
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v3/fav/resource/ids' \
+curl -G 'https://api.bilibili.com/x/v3/fav/resource/ids' \
 --data-urlencode 'media_id=1052622027' \
 --data-urlencode 'platform=web' \
 -b 'SESSDATA=xxx'

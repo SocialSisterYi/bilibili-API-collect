@@ -1,6 +1,6 @@
 # 删除动态
 
-> http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/rm_dynamic
+> https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/rm_dynamic
 
 *请求方式：POST*
 

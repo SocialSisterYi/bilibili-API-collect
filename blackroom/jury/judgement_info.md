@@ -273,7 +273,7 @@
 <details>
 <summary>查看旧 api：</summary>
 
-> http://api.bilibili.com/x/credit/jury/juryCase
+> https://api.bilibili.com/x/credit/jury/juryCase
 
 *请求方式：GET*
 
@@ -337,7 +337,7 @@
 Cookie方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
+curl -G 'https://api.bilibili.com/x/credit/jury/juryCase' \
 --data-urlencode 'cid=1239790' \
 -b 'SESSDATA=xxx'
 ```
@@ -345,7 +345,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
+curl -G 'https://api.bilibili.com/x/credit/jury/juryCase' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'cid=1239790' \
 ```
@@ -397,7 +397,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 注：这是一个旧版的API，暂未找到对应的新版API。
 <details>
 <summary>展开：</summary>
-> http://api.bilibili.com/x/credit/jury/caseInfo
+> https://api.bilibili.com/x/credit/jury/caseInfo
 
 *请求方式：GET*
 
@@ -454,7 +454,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 查询案件`1239790`的信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
+curl -G 'https://api.bilibili.com/x/credit/jury/juryCase' \
 --data-urlencode 'cid=1239790'
 ```
 
@@ -581,7 +581,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 <details>
 <summary>查看旧版API：</summary>
 
-> http://api.bilibili.com/x/credit/jury/caseList
+> https://api.bilibili.com/x/credit/jury/caseList
 
 *请求方式：GET*
 
@@ -652,7 +652,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/juryCase' \
 Cookie方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
+curl -G 'https://api.bilibili.com/x/credit/jury/caseList' \
 --data-urlencode 'ps=1' \
 --data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
@@ -660,7 +660,7 @@ curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
 
 APP方式：
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/caseList' \
+curl -G 'https://api.bilibili.com/x/credit/jury/caseList' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'ps=1' \
 --data-urlencode 'pn=1'
@@ -817,7 +817,7 @@ curl -G 'https://api.bilibili.com/x/credit/v2/jury/case/opinion' \
 <details>
 <summary>查看旧版API：</summary>
 
-> http://api.bilibili.com/x/credit/jury/case/opinion
+> https://api.bilibili.com/x/credit/jury/case/opinion
 
 *请求方式：GET*
 
@@ -874,7 +874,7 @@ curl -G 'https://api.bilibili.com/x/credit/v2/jury/case/opinion' \
 查看案件`1239790`的众议观点，每页10项，查看第一页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/case/opinion' \
+curl -G 'https://api.bilibili.com/x/credit/jury/case/opinion' \
 --data-urlencode 'cid=1239790' \
 --data-urlencode 'ps=10' \
 --data-urlencode 'pn=1' \

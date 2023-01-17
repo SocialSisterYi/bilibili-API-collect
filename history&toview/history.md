@@ -13,7 +13,7 @@
 
 ## 获取历史记录列表_web端
 
->http://api.bilibili.com/x/web-interface/history/cursor
+>https://api.bilibili.com/x/web-interface/history/cursor
 
 *请求方式：GET*
 
@@ -136,7 +136,7 @@
 获取当前时间截止的5条历史记录
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
+curl -G 'https://api.bilibili.com/x/web-interface/history/cursor' \
 --data-urlencode 'ps=5' \
 -b 'SESSDATA=xxx'
 ```
@@ -354,7 +354,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 
 ## 获取视频观看历史记录_web端旧版
 
-> http://api.bilibili.com/x/v2/history
+> https://api.bilibili.com/x/v2/history
 
 *请求方式：GET*
 
@@ -464,7 +464,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/history/cursor' \
 查询当前视频历史记录列表
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/history' \
+curl -G 'https://api.bilibili.com/x/v2/history' \
 --data-urlencode 'ps=5' \
 --data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx'
@@ -664,7 +664,7 @@ curl -G 'http://api.bilibili.com/x/v2/history' \
 
 ## 删除历史记录
 
-> http://api.bilibili.com/x/v2/history/delete
+> https://api.bilibili.com/x/v2/history/delete
 
 *请求方式：POST*
 
@@ -692,7 +692,7 @@ curl -G 'http://api.bilibili.com/x/v2/history' \
 删除视频`av540580868`的观看历史记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/delete' \
+curl 'https://api.bilibili.com/x/v2/history/delete' \
 --data-urlencode 'kid=archive_540580868' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -713,7 +713,7 @@ curl 'http://api.bilibili.com/x/v2/history/delete' \
 
 ## 清空历史记录
 
-> http://api.bilibili.com/x/v2/history/clear
+> https://api.bilibili.com/x/v2/history/clear
 
 *请求方式：POST*
 
@@ -740,7 +740,7 @@ curl 'http://api.bilibili.com/x/v2/history/delete' \
 清空历史记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/clear' \
+curl 'https://api.bilibili.com/x/v2/history/clear' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```
@@ -760,7 +760,7 @@ curl 'http://api.bilibili.com/x/v2/history/clear' \
 
 ## 停用历史记录
 
-> http://api.bilibili.com/x/v2/history/shadow/set
+> https://api.bilibili.com/x/v2/history/shadow/set
 
 *请求方式：POST*
 
@@ -790,7 +790,7 @@ curl 'http://api.bilibili.com/x/v2/history/clear' \
 停用历史记录功能
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/shadow/set' \
+curl 'https://api.bilibili.com/x/v2/history/shadow/set' \
 --data-urlencode 'switch=true' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -811,7 +811,7 @@ curl 'http://api.bilibili.com/x/v2/history/shadow/set' \
 
 ## 查询历史记录停用状态
 
-> http://api.bilibili.com/x/v2/history/shadow
+> https://api.bilibili.com/x/v2/history/shadow
 
 *请求方式：GET*
 
@@ -833,7 +833,7 @@ curl 'http://api.bilibili.com/x/v2/history/shadow/set' \
 当前状态为未停用视频历史记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/shadow' \
+curl 'https://api.bilibili.com/x/v2/history/shadow' \
 -b 'SESSDATA=xxx'
 ```
 

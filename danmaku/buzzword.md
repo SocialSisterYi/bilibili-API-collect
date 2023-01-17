@@ -13,7 +13,7 @@
 
 ## 拉取名词解释列表
 
-> http://api.bilibili.com/x/v2/dm/buzzword/list
+> https://api.bilibili.com/x/v2/dm/buzzword/list
 
 *请求方式：GET*
 
@@ -91,7 +91,7 @@
 拉取对应`哔哩哔哩热词图鉴`的名词列表，以20项为一页拉取第1页
 
 ```bash
-curl -G 'http://api.bilibili.com/x/v2/dm/buzzword/list' \
+curl -G 'https://api.bilibili.com/x/v2/dm/buzzword/list' \
 --data-urlencode 'type_id=4' \
 --data-urlencode 'ps=10' \
 --data-urlencode 'pn=1'
@@ -241,7 +241,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/buzzword/list' \
 
 ## 查询名词解释详情
 
-> http://api.bilibili.com/x/v2/dm/buzzword/detail
+> https://api.bilibili.com/x/v2/dm/buzzword/detail
 
 *请求方式：GET*
 
@@ -419,7 +419,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/buzzword/list' \
 查询名词`kksk`的详情
 
 ```bash
-curl -G 'http://api.bilibili.com/x/v2/dm/buzzword/detail' \
+curl -G 'https://api.bilibili.com/x/v2/dm/buzzword/detail' \
 --data-urlencode 'id=1'
 ```
 

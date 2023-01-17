@@ -10,7 +10,7 @@
 
 <img src="/imgs/like.svg" width="100" height="100"/>
 
-> http://api.bilibili.com/x/article/like
+> https://api.bilibili.com/x/article/like
 
 *请求方式：POST*
 
@@ -39,7 +39,7 @@
 为文章`cv5806746`点赞
 
 ```shell
-curl 'http://api.bilibili.com/x/article/like' \
+curl 'https://api.bilibili.com/x/article/like' \
 --data-urlencode 'id=5806746' \
 --data-urlencode 'type=1' \
 --data-urlencode 'csrf=xxx' \
@@ -63,7 +63,7 @@ curl 'http://api.bilibili.com/x/article/like' \
 
 <img src="/imgs/coin.svg" width="100" height="100"/>
 
-> http://api.bilibili.com/x/web-interface/coin/add
+> https://api.bilibili.com/x/web-interface/coin/add
 
 *请求方式：POST*
 
@@ -101,7 +101,7 @@ data 对象：
 为文章`cv5806746`投币1枚
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/coin/add' \
+curl 'https://api.bilibili.com/x/web-interface/coin/add' \
 --data-urlencode 'aid=5806746' \
 --data-urlencode 'upid=486980924' \
 --data-urlencode 'multiply=1' \
@@ -130,7 +130,7 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 
 <img src="/imgs/fav.svg" width="100" height="100"/>
 
->http://api.bilibili.com/x/article/favorites/add
+>https://api.bilibili.com/x/article/favorites/add
 
 *请求方式：POST*
 
@@ -158,7 +158,7 @@ curl 'http://api.bilibili.com/x/web-interface/coin/add' \
 收藏文章`cv5806746`
 
 ```shell
-curl 'http://api.bilibili.com/x/article/favorites/add' \
+curl 'https://api.bilibili.com/x/article/favorites/add' \
 --data-urlencode 'id=5806746' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'

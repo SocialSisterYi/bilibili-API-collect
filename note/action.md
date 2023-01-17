@@ -7,7 +7,7 @@
 
 ## 保存视频笔记
 
-> http://api.bilibili.com/x/note/add
+> https://api.bilibili.com/x/note/add
 
 *请求方式：POST*
 
@@ -54,7 +54,7 @@
 保存内容为加粗的STRONG的笔记`3809605586518023`于`av970322090`
 
 ```shell
-curl 'http://api.bilibili.com/x/note/add' \
+curl 'https://api.bilibili.com/x/note/add' \
 --data-urlencode 'oid=970322090' \
 --data-urlencode 'oid_type=0' \
 --data-urlencode 'note_id=3809605586518023'
@@ -86,7 +86,7 @@ curl 'http://api.bilibili.com/x/note/add' \
 
 ## 删除视频笔记
 
-> http://api.bilibili.com/x/note/del
+> https://api.bilibili.com/x/note/del
 
 *请求方式：POST*
 
@@ -115,7 +115,7 @@ curl 'http://api.bilibili.com/x/note/add' \
 删除稿件`av457253380`下的笔记`4075968478576647`
 
 ```shell
-curl 'http://api.bilibili.com/x/note/del' \
+curl 'https://api.bilibili.com/x/note/del' \
 --data-urlencode 'oid=457253380' \
 --data-urlencode 'note_id=4075968478576647' \
 --data-urlencode 'csrf=xxx'

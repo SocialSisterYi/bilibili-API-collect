@@ -19,7 +19,7 @@
 
 ## 获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）
 
-> http://api.bilibili.com/x/v2/dm/web/view
+> https://api.bilibili.com/x/v2/dm/web/view
 
 *请求方式：GET*
 
@@ -209,7 +209,7 @@ message DmWebViewReply {
 获取视频`av797164471(cid=236871317)`的弹幕元数据
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/web/view' \
+curl -G 'https://api.bilibili.com/x/v2/dm/web/view' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=236871317' \
 --data-urlencode 'pid=797164471' \
@@ -231,7 +231,7 @@ import requests
 
 AVID = 797164471
 CID = 236871317
-url = f'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid={CID}&pid={AVID}'
+url = f'https://api.bilibili.com/x/v2/dm/web/view?type=1&oid={CID}&pid={AVID}'
 
 data = requests.get(url)
 target = web_dmview_pb2.DmWebViewReply()
@@ -261,7 +261,7 @@ for i in target.commandDms:
 ---弹幕指令=#UP#
 ---弹幕文字=这个视频没有恰饭！别紧张！
 ---弹幕出现时间=157818
----弹幕负载数据={"icon":"http://i1.hdslb.com/bfs/face/559abe31f561f71f3106d8ee7b2065cac50c1235.jpg"}
+---弹幕负载数据={"icon":"https://i1.hdslb.com/bfs/face/559abe31f561f71f3106d8ee7b2065cac50c1235.jpg"}
 ---弹幕ID（字串）=38469676112019463
 ```
 
@@ -277,7 +277,7 @@ import requests
 
 AVID = 2
 CID = 62131
-url = f'http://api.bilibili.com/x/v2/dm/web/view?type=1&oid={CID}&pid={AVID}'
+url = f'https://api.bilibili.com/x/v2/dm/web/view?type=1&oid={CID}&pid={AVID}'
 
 data = requests.get(url)
 target = web_dmview_pb2.DmWebViewReply()
@@ -292,7 +292,7 @@ for i in target.specialDms:
 
 ```
 特殊弹幕包数=1
-特殊弹幕包url=http://i0.hdslb.com/bfs/dm/b0d5f08c12be59292aa0d4e09b6dd8e54c2ba886.bin
+特殊弹幕包url=https://i0.hdslb.com/bfs/dm/b0d5f08c12be59292aa0d4e09b6dd8e54c2ba886.bin
 ```
 
 使用[普通分段包弹幕](danmaku_proto.md#获取实时弹幕)的proto结构体反序列化此bin数据

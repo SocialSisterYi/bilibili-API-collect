@@ -6,7 +6,7 @@
 
 ## 查询登录记录
 
-> http://api.bilibili.com/x/safecenter/login_notice
+> https://api.bilibili.com/x/safecenter/login_notice
 
 *请求方式：GET*
 
@@ -46,7 +46,7 @@
 查询用户`293793435`设备id为`fuck_chenrui`的登录记录
 
 ```shell
-curl -G 'http://api.bilibili.com/x/safecenter/login_notice' \
+curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
 --data-urlencode 'mid=293793435' \
 --data-urlencode 'buvid=fuck_chenrui' \
 -b 'SESSDATA=xxx'

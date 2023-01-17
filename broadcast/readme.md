@@ -6,7 +6,7 @@
 
 ## 获取广播服务器地址
 
-> http://api.bilibili.com/x/web-interface/broadcast/servers 
+> https://api.bilibili.com/x/web-interface/broadcast/servers 
 
 *请求方式：GET*
 
@@ -62,7 +62,7 @@
 当`platform`=`web`时，不显示节点ip
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers' \
+curl -G 'https://api.bilibili.com/x/web-interface/broadcast/servers' \
 --data-urlencode 'platform=web'
 ```
 
@@ -97,7 +97,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers' \
 当`platform`=其他时，显示节点ip
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/broadcast/servers' \
+curl -G 'https://api.bilibili.com/x/web-interface/broadcast/servers' \
 --data-urlencode 'platform=1'
 ```
 

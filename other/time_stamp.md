@@ -8,7 +8,7 @@
 
 ## 获取当前时间戳
 
-> http://api.bilibili.com/x/report/click/now 
+> https://api.bilibili.com/x/report/click/now 
 
 *请求方式：GET*
 
@@ -32,7 +32,7 @@
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/report/click/now'
+curl 'https://api.bilibili.com/x/report/click/now'
 ```
 
 <details>
@@ -53,7 +53,7 @@ curl 'http://api.bilibili.com/x/report/click/now'
 
 ## 获取服务器端UTC时间
 
-> http://interface.bilibili.com/serverdate.js
+> https://interface.bilibili.com/serverdate.js
 
 *请求方式：GET*
 

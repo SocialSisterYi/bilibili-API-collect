@@ -6,7 +6,7 @@
 
 ## 通过ip确定位置
 
-> http://api.bilibili.com/x/web-interface/zone
+> https://api.bilibili.com/x/web-interface/zone
 
 *请求方式：GET*
 
@@ -38,7 +38,7 @@
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/zone'
+curl 'https://api.bilibili.com/x/web-interface/zone'
 ```
 
 <details>
