@@ -1,6 +1,13 @@
 # 直播间信息流
 
 - [获取信息流认证秘钥](#获取信息流认证秘钥)
+- [数据包格式](#数据包格式)
+- [数据包](#数据包)
+    - [认证包](#认证包)
+    - [认证包回复](#认证包回复)
+    - [心跳包](#心跳包)
+    - [心跳包回复](#心跳包回复人气值)
+    - [普通包](#普通包)
 
 ---
 
@@ -129,14 +136,6 @@ curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 *普通包可能包含多条命令，每个命令有一个头部，指示该条命令的长度等信息*
 
 ## 数据包
-
-- [认证包](#认证包)
-- [认证包回复](#认证包回复)
-- [心跳包](#心跳包)
-- [心跳包回复](#心跳包回复人气值)
-- [普通包](#普通包)
-
----
 
 ### 认证包
 
@@ -274,6 +273,7 @@ json格式
 - [通知消息](#通知消息)
 - [主播准备中](#主播准备中)
 - [直播开始](#直播开始)
+- [主播信息更新](#主播信息更新)
 - [直播间高能榜](#直播间高能榜)
 - [直播间高能用户数量](#直播间高能用户数量)
 - [用户到达直播间高能榜前三名的消息](#用户到达直播间高能榜前三名的消息)
@@ -551,102 +551,102 @@ data字段
 
 | 字段 |    类型   |  内容  |    备注    |
 | ---- | -------- | ------ | --------- |
-| action | string | 礼物操作，一般为"投喂" | |
-| batch_combo_id | string | 待调查 | 有时为空字符串 |
+| action | str | 礼物操作，一般为"投喂" | |
+| batch_combo_id | str | 待调查 | 有时为空字符串 |
 | batch_combo_send | obj | 待调查 | 有时为null |
-| beatId | string | 待调查 | |
-| biz_source | string | 待调查 | |
+| beatId | str | 待调查 | |
+| biz_source | str | 待调查 | |
 | blind_gift | | 待调查 | |
-| broadcast_id | number | 待调查 | |
-| coin_type | string | 待调查 | |
-| combo_resources_id | number | 待调查 | |
+| broadcast_id | num | 待调查 | |
+| coin_type | str | 待调查 | |
+| combo_resources_id | num | 待调查 | |
 | combo_send | | 待调查 | |
-| comber_stay_time | number | 待调查 | |
-| combo_total_coin | number | 待调查 | |
-| crit_prob | number | 待调查 | |
-| demarcation | number | 待调查 | |
-| discount_price | number | 待调查 | |
-| dmscore | number | 待调查 | |
-| draw | number | 待调查 | |
-| effect | number | 待调查 | |
-| effect_block | number | 待调查 | |
-| face | string | 一段URL | 礼物投喂者的头像URL |
-| face_effect_id | number | | |
-| face_effect_type | number | | |
-| float_sc_resource_id | number | | |
-| giftId | number | 待调查 | |
-| giftName | string | 礼物名称 | |
-| giftType | number | 待调查 | |
+| comber_stay_time | num | 待调查 | |
+| combo_total_coin | num | 待调查 | |
+| crit_prob | num | 待调查 | |
+| demarcation | num | 待调查 | |
+| discount_price | num | 待调查 | |
+| dmscore | num | 待调查 | |
+| draw | num | 待调查 | |
+| effect | num | 待调查 | |
+| effect_block | num | 待调查 | |
+| face | str | 礼物投喂者的头像URL | |
+| face_effect_id | num | 待调查 | |
+| face_effect_type | num | 待调查 | |
+| float_sc_resource_id | num | 待调查 | |
+| giftId | num | 礼物ID | |
+| giftName | str | 礼物名称 | |
+| giftType | num | 待调查 | |
 | gold | number | 待调查 | |
-| guard_level | number | 待调查 | |
+| guard_level | num | 待调查 | |
 | is_first | bool | 待调查 | |
 | is_join_receiver | bool | 待调查 | |
 | is_naming | bool | 待调查 | |
-| is_special_batch | number | 待调查 | |
-| magnification | number | 待调查 | |
+| is_special_batch | num | 待调查 | |
+| magnification | num | 待调查 | |
 | medal_info | obj | 礼物投喂者粉丝奖牌信息 | |
-| name_color | string | 待调查 | |
+| name_color | str | 待调查 | |
 | num | number | 该次投喂的礼物数量 | |
-| original_gift_name | string | 待调查 | |
-| price | number | 待调查 | |
-| rcost | number | 待调查 | |
+| original_gift_name | str | 待调查 | |
+| price | num | 待调查 | |
+| rcost | num | 待调查 | |
 | receive_user_info | obj | 礼物接收者信息，一般是主播 | |
-| remain | number | 待调查 | |
-| rnd | number | 礼物发送时的时间戳，以及后面9位未知数字 | |
+| remain | num | 待调查 | |
+| rnd | num | 礼物发送时的时间戳，以及后面9位未知数字 | |
 | send_master | | 待调查 | |
-| silver | number | 待调查 | |
-| super | number | 待调查 | |
-| super_batch_gift_num | number | 待调查 | |
-| super_gift_num | number | 待调查 | |
-| svga_block | number | 待调查 | |
+| silver | num | 待调查 | |
+| super | num | 待调查 | |
+| super_batch_gift_num | num | 待调查 | |
+| super_gift_num | num | 待调查 | |
+| svga_block | num | 待调查 | |
 | switch | bool | 待调查 | |
-| tag_image | string | 待调查 | |
-| tid | number | 礼物发送时的时间戳，以及后面9位未知数字 | 似乎与rnd字段相同 |
-| timestamp | number | 礼物发送时的时间戳 | |
+| tag_image | str | 待调查 | |
+| tid | num | 礼物发送时的时间戳，以及后面9位未知数字 | 似乎与rnd字段相同 |
+| timestamp | num | 礼物发送时的时间戳 | |
 | top_list | | 待调查 | |
-| total_coin | number | 待调查 | |
-| uid | number | 礼物投喂者的UID | |
-| uname | string | 礼物投喂者的名称 | |
+| total_coin | num | 待调查 | |
+| uid | num | 礼物投喂者的UID | |
+| uname | str | 礼物投喂者的名称 | |
 
 batch_combo_send字段
 
 | 字段 |    类型   |  内容  |    备注    |
 | ---- | -------- | ------ | --------- |
-| action | string | 礼物操作，一般为"投喂" | |
-| batch_combo_id | string | 待调查 | |
-| batch_combo_num | number | 待调查 | |
+| action | str | 礼物操作，一般为"投喂" | |
+| batch_combo_id | str | 待调查 | |
+| batch_combo_num | num | 待调查 | |
 | blind_gift | | 待调查 | |
-| gift_id | number | 待调查 | |
-| gift_name | string | 投喂的礼物名称 | 待调查 |
-| gift_num | number | 投喂礼物数量 | 待调查 |
+| gift_id | num | 待调查 | |
+| gift_name | str | 投喂的礼物名称 | 待调查 |
+| gift_num | num | 投喂礼物数量 | 待调查 |
 | send_master | | 待调查 | |
-| uid | number | 礼物投喂者的UID | |
-| uname | string | 礼物投喂者的名称 | |
+| uid | num | 礼物投喂者的UID | |
+| uname | str | 礼物投喂者的名称 | |
 
 medal_info字段
 
 | 字段 |    类型   |  内容  |    备注    |
 | ---- | -------- | ------ | --------- |
-| anchor_roomid | number | 待调查 | |
-| anchor_uname | string | 待调查 | |
-| guard_level | number | 待调查 | |
-| icon_id | number | 待调查 | |
-| is_lighted | number | 待调查 | |
-| medal_color | number | 礼物投喂者的粉丝奖牌颜色 | 十六进制颜色值转为了十进制表示 |
-| medal_border_color | number | 礼物投喂者的粉丝奖牌边框颜色 | 十六进制颜色值的十进制表示 |
-| medal_color_end | number | 待调查 | |
-| medal_color_start | number | 待调查 | |
-| medal_level | number | 礼物投喂者的粉丝奖牌等级 | |
-| medal_name | string | 礼物投喂者的粉丝奖牌名称 | |
-| special | string | 待调查 | |
-| target_id | number | 待调查 | |
+| anchor_roomid | num | 待调查 | |
+| anchor_uname | str | 待调查 | |
+| guard_level | num | 待调查 | |
+| icon_id | num | 待调查 | |
+| is_lighted | num | 待调查 | |
+| medal_color | num | 礼物投喂者的粉丝奖牌颜色 | 十六进制颜色值转为了十进制表示 |
+| medal_border_color | num | 礼物投喂者的粉丝奖牌边框颜色 | 十六进制颜色值的十进制表示 |
+| medal_color_end | num | 待调查 | |
+| medal_color_start | num | 待调查 | |
+| medal_level | num | 礼物投喂者的粉丝奖牌等级 | |
+| medal_name | str | 礼物投喂者的粉丝奖牌名称 | |
+| special | str | 待调查 | |
+| target_id | num | 待调查 | |
 
 receive_user_info字段
 
 | 字段 |    类型   |  内容  |    备注    |
 | ---- | -------- | ------ | --------- |
-| uid | number | 礼物接收者的UID | 一般为主播的UID |
-| uname | string | 礼物接收者的名称 | 一般为主播的名称 |
+| uid | num | 礼物接收者的UID | 一般为主播的UID |
+| uname | str | 礼物接收者的名称 | 一般为主播的名称 |
 
 <details>
 <summary>查看消息示例：</summary>
@@ -768,7 +768,7 @@ data字段
 | 字段 |    类型   |  内容  |    备注    |
 | ---- | -------- | ------ | --------- |
 | status | num | 待调查 | |
-| tip | str | 点亮星球的消息文本 | |
+| tip | str | 点亮礼物星球的消息文本 | |
 
 <details>
 <summary>查看消息示例：</summary>
@@ -1017,9 +1017,62 @@ data字段
 
 #### 主播准备中
 
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "PREPARING" | |
+| round | num | 轮播状态：<br/>1正在轮播<br/>0未轮播 | |
+| roomid | num | 直播间ID | 未知是真实ID还是短号 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    "cmd": "PREPARING",
+    "round": 1,
+    "roomid": "8618057"
+}
+```
+
+</details>
 
 #### 直播开始
+
+
+#### 主播信息更新
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str | "ROOM_REAL_TIME_MESSAGE_UPDATE" | |
+| data | obj | 房间ID、主播粉丝数等 | |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| roomid | num | 直播间ID | 未知是真实ID还是短号 | |
+| fans | num | 主播当前粉丝数 | |
+| red_notice | num | 待调查 | |
+| fans_club | num | 主播粉丝团人数 | |
+
+<details>
+<summary>查看消息示例：</summary>
   
+```json
+{
+    "cmd": "ROOM_REAL_TIME_MESSAGE_UPDATE",
+    "data": {
+        "roomid": 8618057,
+        "fans": 136,
+        "red_notice": -1,
+        "fans_club": 8
+    }
+}
+</details>
 
 #### 直播间高能榜
 
@@ -1043,7 +1096,7 @@ list数组中的对象
 | ---- | ---- | ------ | --------- |
 | uid | num | 用户UID | |
 | face | str | 用户头像URL | |
-| score | num | 该用户的贡献值 | |
+| score | str | 该用户的贡献值 | |
 | uname | str | 用户名称 | |
 | rank | num | 该用户在高能榜中的排名 | |
 | guard_level | num | 待调查 | |
@@ -2232,7 +2285,6 @@ room_id_list数组中的数字
   
 #### 未知消息
 
-`ROOM_REAL_TIME_MESSAGE_UPDATE`  
 `PLAY_TOGETHER`  
 <details>
 <summary>查看消息示例：</summary>
