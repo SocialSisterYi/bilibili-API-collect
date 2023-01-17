@@ -12,7 +12,7 @@
 
 ## 获取实时弹幕1
 
-> http://api.bilibili.com/x/v1/dm/list.so
+> https://api.bilibili.com/x/v1/dm/list.so
 
 *请求方式：GET*
 
@@ -27,14 +27,14 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v1/dm/list.so' \
+curl -G 'https://api.bilibili.com/x/v1/dm/list.so' \
 --data-urlencode 'oid=144541892' \
 --compressed -o 'danmaku.xml'
 ```
 
 ## 获取实时弹幕2
 
-> http://comment.bilibili.com/{cid}.xml
+> https://comment.bilibili.com/{cid}.xml
 
 *请求方式：GET*
 
@@ -51,7 +51,7 @@ curl -G 'http://api.bilibili.com/x/v1/dm/list.so' \
 **示例：**
 
 ```shell
-curl 'http://comment.bilibili.com/144541892.xml'
+curl 'https://comment.bilibili.com/144541892.xml'
 --compressed -o 'danmaku.xml'
 ```
 

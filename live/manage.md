@@ -40,7 +40,7 @@
 修改直播间`10352053`标题为`测试`
 
 ```shell
-curl 'http://api.live.bilibili.com/room/v1/Room/update' \
+curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 --data-urlencode 'room_id=10352053' \
 --data-urlencode 'title=测试' \
 --data-urlencode 'csrf=xxx' \
@@ -151,7 +151,7 @@ curl 'http://api.live.bilibili.com/room/v1/Room/update' \
 `"data"."rtmp"."code"`为推流参数
 
 ```shell
-curl 'http://api.live.bilibili.com/room/v1/Room/startLive' \
+curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 --data-urlencode 'room_id=10352053' \
 --data-urlencode 'area_v2=27' \
 --data-urlencode 'platform=pc' \
@@ -242,7 +242,7 @@ curl 'http://api.live.bilibili.com/room/v1/Room/startLive' \
 关闭直播间`10352053`的直播
 
 ```shell
-curl 'http://api.live.bilibili.com/room/v1/Room/stopLive' \
+curl 'https://api.live.bilibili.com/room/v1/Room/stopLive' \
 --data-urlencode 'room_id=10352053' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx;bili_jct=xxx'

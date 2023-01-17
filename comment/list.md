@@ -12,7 +12,7 @@
 
 ## 获取评论区明细_翻页加载
 
-> http://api.bilibili.com/x/v2/reply
+> https://api.bilibili.com/x/v2/reply
 
 *请求方式：GET*
 
@@ -143,7 +143,7 @@
 获取视频`av2`的评论区明细，不显示热评，按照热度排序，每页5项，查看第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply' \
+curl -G 'https://api.bilibili.com/x/v2/reply' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=2' \
 --data-urlencode 'sort=1' \
@@ -866,7 +866,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply' \
 
 ## 获取评论区明细_懒加载
 
-> http://api.bilibili.com/x/v2/reply/main
+> https://api.bilibili.com/x/v2/reply/main
 
 *请求方式：GET*
 
@@ -1011,7 +1011,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply' \
 获取视频`av2`的评论区明细，按照热度排序，每页5项，查看第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/main' \
+curl -G 'https://api.bilibili.com/x/v2/reply/main' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=2' \
 --data-urlencode 'mode=3' \
@@ -3696,7 +3696,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 
 ## 获取指定评论的回复
 
-> http://api.bilibili.com/x/v2/reply/reply
+> https://api.bilibili.com/x/v2/reply/reply
 
 *请求方式：GET*
 
@@ -3793,7 +3793,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/main' \
 获取视频`av201022189`下评论`rpid=3030790837`的回复，每页5项，获取第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
+curl -G 'https://api.bilibili.com/x/v2/reply/reply' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=201022189' \
 --data-urlencode 'root=3030790837' \
@@ -4582,7 +4582,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 
 ## 获取指定评论对话树
 
-> http://api.bilibili.com/x/v2/reply/dialog/cursor
+> https://api.bilibili.com/x/v2/reply/dialog/cursor
 
 *请求方式：GET*
 
@@ -4690,7 +4690,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/reply' \
 获取视频`av201022189`下评论`rpid=3030790837`的对话`rpid=3030978856`，每页最大5项
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor' \
+curl -G 'https://api.bilibili.com/x/v2/reply/dialog/cursor' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=201022189' \
 --data-urlencode 'root=3030790837' \
@@ -5346,7 +5346,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor' \
 
 ## 获取评论区热评
 
-> http://api.bilibili.com/x/v2/reply/hot
+> https://api.bilibili.com/x/v2/reply/hot
 
 *请求方式：GET*
 
@@ -5405,7 +5405,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/dialog/cursor' \
 获取视频`av2`的评论区热评，每页5项，查看第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/hot' \
+curl -G 'https://api.bilibili.com/x/v2/reply/hot' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=2' \
 --data-urlencode 'ps=5' \
@@ -5643,7 +5643,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/hot' \
 
 ## ~~获取指定评论信息~~
 
-> http://api.bilibili.com/x/v2/reply/info
+> https://api.bilibili.com/x/v2/reply/info
 
 *请求方式：GET*
 
@@ -5671,7 +5671,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/hot' \
 获取视频`av379743801`评论区下`rpid=95737567200`的信息
 
 ```bash
-curl -G 'http://api.bilibili.com/x/v2/reply/info' \
+curl -G 'https://api.bilibili.com/x/v2/reply/info' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=379743801' \
 --data-urlencode 'rpid=95737567200' \
@@ -5797,7 +5797,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/info' \
 
 ## 获取评论区评论总数
 
-> http://api.bilibili.com/x/v2/reply/count
+> https://api.bilibili.com/x/v2/reply/count
 
 *请求方式：GET*
 
@@ -5830,7 +5830,7 @@ curl -G 'http://api.bilibili.com/x/v2/reply/info' \
 获取视频`av2`的评论区总计评论条数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/reply/count' \
+curl -G 'https://api.bilibili.com/x/v2/reply/count' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=2'
 ```

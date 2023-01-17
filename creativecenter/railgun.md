@@ -10,7 +10,7 @@
 
 ## 获取电磁力等级（web端）
 
-> http://member.bilibili.com/x/web/elec/user
+> https://member.bilibili.com/x/web/elec/user
 
 *请求方式：GET*
 
@@ -38,7 +38,7 @@
 **示例：**
 
 ```shell
-curl 'http://member.bilibili.com/x/web/elec/user' \
+curl 'https://member.bilibili.com/x/web/elec/user' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -62,7 +62,7 @@ curl 'http://member.bilibili.com/x/web/elec/user' \
 
 ## 获取电磁力详细数值（双端）
 
-> http://api.bilibili.com/studio/up-rating/rating/summary
+> https://api.bilibili.com/studio/up-rating/rating/summary
 
 *请求方式：GET*
 
@@ -109,14 +109,14 @@ curl 'http://member.bilibili.com/x/web/elec/user' \
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/studio/up-rating/rating/summary' \
+curl 'https://api.bilibili.com/studio/up-rating/rating/summary' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary' \
+curl -G 'https://api.bilibili.com/studio/up-rating/rating/summary' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -162,7 +162,7 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary' \
 
 ## 获取电磁力数值历史变化（双端）
 
-> http://api.bilibili.com/studio/up-rating/rating/history 
+> https://api.bilibili.com/studio/up-rating/rating/history 
 
 *请求方式：GET*
 
@@ -226,7 +226,7 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/summary' \
 Cookie方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/studio/up-rating/rating/history' \
+curl -G 'https://api.bilibili.com/studio/up-rating/rating/history' \
 --data-urlencode 'type=1' \
 -b 'SESSDATA=xxx'
 ```
@@ -234,7 +234,7 @@ curl -G 'http://api.bilibili.com/studio/up-rating/rating/history' \
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/studio/up-rating/rating/history' \
+curl -G 'https://api.bilibili.com/studio/up-rating/rating/history' \
 --data-urlencode 'type=1' \
 --data-urlencode 'access_key=xxx'
 ```

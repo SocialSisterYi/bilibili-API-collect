@@ -6,7 +6,7 @@
 
 ## 歌曲状态数
 
->http://www.bilibili.com/audio/music-service-c/web/stat/song
+>https://www.bilibili.com/audio/music-service-c/web/stat/song
 
 *请求方式：GET*
 
@@ -43,7 +43,7 @@
 查询歌曲`au15664`的状态数
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/stat/song' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/stat/song' \
 --data-urlencode 'sid=15664'
 ```
 

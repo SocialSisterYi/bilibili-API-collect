@@ -7,7 +7,7 @@
 
 ## 获取用户专栏文章列表
 
-> http://api.bilibili.com/x/space/article
+> https://api.bilibili.com/x/space/article
 
 *请求方式：GET*
 

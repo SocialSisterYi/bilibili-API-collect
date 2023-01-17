@@ -8,7 +8,7 @@
 
 ## 获取视频TAG信息
 
-> http://api.bilibili.com/x/tag/archive/tags
+> https://api.bilibili.com/x/tag/archive/tags
 
 *请求方式：GET*
 
@@ -77,7 +77,7 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
+curl -G 'https://api.bilibili.com/x/tag/archive/tags' \
 --data-urlencode 'aid=89772773' \
 -b 'SESSDATA=xxx'
 ```
@@ -85,7 +85,7 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
+curl -G 'https://api.bilibili.com/x/tag/archive/tags' \
 --data-urlencode 'bvid=BV1M741177Kg' \
 -b 'SESSDATA=xxx'
 ```
@@ -211,7 +211,7 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
 
 ## 点赞&取消点赞视频TAG
 
-> http://api.bilibili.com/x/tag/archive/like2
+> https://api.bilibili.com/x/tag/archive/like2
 
 *请求方式：POST*
 
@@ -242,7 +242,7 @@ curl -G 'http://api.bilibili.com/x/tag/archive/tags' \
 为视频`av89772773`的TAG`12620189`点赞
 
 ```shell
-curl 'http://api.bilibili.com/x/tag/archive/like2' \
+curl 'https://api.bilibili.com/x/tag/archive/like2' \
 --data-urlencode 'aid=89772773' \
 --data-urlencode 'tag_id=12620189' \
 --data-urlencode 'csrf=xxx' \
@@ -264,7 +264,7 @@ curl 'http://api.bilibili.com/x/tag/archive/like2' \
 
 ## 点踩&取消点踩视频TAG
 
-> http://api.bilibili.com/x/tag/archive/hate2
+> https://api.bilibili.com/x/tag/archive/hate2
 
 *请求方式：POST*
 
@@ -295,7 +295,7 @@ curl 'http://api.bilibili.com/x/tag/archive/like2' \
 为视频`av89772773`的TAG`7520816`点踩
 
 ```shell
-curl 'http://pi.bilibili.com/x/tag/archive/hate2' \
+curl 'https://pi.bilibili.com/x/tag/archive/hate2' \
 --data-urlencode 'aid=89772773' \
 --data-urlencode 'tag_id=7520816' \
 --data-urlencode 'csrf=xxx' \

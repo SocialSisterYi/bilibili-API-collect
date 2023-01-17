@@ -5,7 +5,7 @@
 
 ## 获取包含置顶及热门的动态列表
 
-> http://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics
+> https://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics
 
 *请求方式：GET*
 
@@ -59,12 +59,12 @@
 
 topic_name方式：
 ```shell
-curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
+curl -G 'https://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
 --data-urlencode 'topic_name=哔哩哔哩漫画&sortby=2'
 ```
 topic_id方式：
 ```shell
-curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
+curl -G 'https://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
 --data-urlencode 'topic_id=7539944&sortby=2'
 ```
 
@@ -3344,7 +3344,7 @@ curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
 </details>
 
 ## 获取历史动态列表
-> http://api.vc.bilibili.com/topic_svr/v1/topic_svr/topic_history
+> https://api.vc.bilibili.com/topic_svr/v1/topic_svr/topic_history
 
  *请求方式：GET*
 
@@ -3396,12 +3396,12 @@ curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/fetch_dynamics' \
 
 topic_name方式：
 ```shell
-curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/topic_history' \
+curl -G 'https://api.vc.bilibili.com/topic_svr/v1/topic_svr/topic_history' \
 --data-urlencode 'topic_name=哔哩哔哩漫画&offset_dynamic_id=0'
 ```
 topic_id方式：
 ```shell
-curl -G 'http://api.vc.bilibili.com/topic_svr/v1/topic_svr/topic_history' \
+curl -G 'https://api.vc.bilibili.com/topic_svr/v1/topic_svr/topic_history' \
 --data-urlencode 'topic_id=7539944&offset_dynamic_id=0'
 ```
 

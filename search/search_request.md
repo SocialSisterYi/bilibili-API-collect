@@ -9,7 +9,7 @@
 
 ## 综合搜索（web端）
 
-> http://api.bilibili.com/x/web-interface/search/all/v2
+> https://api.bilibili.com/x/web-interface/search/all/v2
 
 *方式：GET*
 
@@ -179,7 +179,7 @@
 使用综合搜索进行搜索关键字`洛天依`
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2' \
+curl -G 'https://api.bilibili.com/x/web-interface/search/all/v2' \
 --data-urlencode 'keyword=洛天依' \
 -b 'SESSDATA=xxx'
 ```
@@ -584,7 +584,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2' \
 
 ## 分类搜索（web端）
 
-> http://api.bilibili.com/x/web-interface/search/type
+> https://api.bilibili.com/x/web-interface/search/type
 
 *请求方式：GET*
 
@@ -705,7 +705,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/search/all/v2' \
 按照关键词` 少年 `搜索视频，默认排序，全部时长，全部分区，第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/search/type' \
+curl -G 'https://api.bilibili.com/x/web-interface/search/type' \
 --data-urlencode 'search_type=video' \
 --data-urlencode 'keyword=少年' \
 --data-urlencode 'order=totalrank' \

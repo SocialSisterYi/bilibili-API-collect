@@ -39,7 +39,7 @@ SSO登录页面跳转()
 
 ### 获取公钥&盐(web端)
 
-> http://passport.bilibili.com/x/passport-login/web/key
+> https://passport.bilibili.com/x/passport-login/web/key
 
 *请求方式：GET*
 
@@ -64,7 +64,7 @@ SSO登录页面跳转()
 **示例：**
 
 ```shell
-curl 'http://passport.bilibili.com/x/passport-login/web/key'
+curl 'https://passport.bilibili.com/x/passport-login/web/key'
 ```
 
 <details>
@@ -87,7 +87,7 @@ curl 'http://passport.bilibili.com/x/passport-login/web/key'
 
 ### 登录操作(web端)
 
-> http://passport.bilibili.com/x/passport-login/web/login
+> https://passport.bilibili.com/x/passport-login/web/login
 
 *请求方式：POST*
 
@@ -134,7 +134,7 @@ data 对象：
 例如用户账号为`12345678900`，加密后的密码为`xxx`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行验证登录操作
 
 ```shell
-curl 'http://passport.bilibili.com/x/passport-login/web/login' \
+curl 'https://passport.bilibili.com/x/passport-login/web/login' \
 --data-urlencode 'username=12345678900' \
 --data-urlencode 'password=xxx' \
 --data-urlencode 'keep=0' \
@@ -199,7 +199,7 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 
 ### 获取公钥&盐(web端-旧版)
 
-> http://passport.bilibili.com/login?act=getkey
+> https://passport.bilibili.com/login?act=getkey
 
 *请求方式：GET*
 
@@ -215,7 +215,7 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 **示例：**
 
 ```shell
-curl 'http://passport.bilibili.com/login?act=getkey'
+curl 'https://passport.bilibili.com/login?act=getkey'
 ```
 
 <details>
@@ -233,7 +233,7 @@ curl 'http://passport.bilibili.com/login?act=getkey'
 ### 登录操作(web端-旧版)
 
 
-> http://passport.bilibili.com/web/login/v2
+> https://passport.bilibili.com/web/login/v2
 
 *请求方式：POST*
 
@@ -380,7 +380,7 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 **示例：**
 
 ```shell
-curl 'http://passport.bilibili.com/api/oauth2/getKey' \
+curl 'https://passport.bilibili.com/api/oauth2/getKey' \
 --data-urlencode 'appkey=1d8b6e7d45233436' \
 --data-urlencode 'sign=17004c193f688f0b5665c1068e733aff'
 ```

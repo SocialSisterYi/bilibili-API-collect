@@ -11,7 +11,7 @@
 
 ## 用户空间详细信息
 
-> http://api.bilibili.com/x/space/acc/info
+> https://api.bilibili.com/x/space/acc/info
 
 *请求方式：GET*
 
@@ -324,7 +324,7 @@
 查询用户`mid=2`的详细信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/space/acc/info' \
+curl -G 'https://api.bilibili.com/x/space/acc/info' \
 --data-urlencode 'mid=2' \
 -b 'SESSDATA=xxx'
 ```
@@ -528,13 +528,13 @@ https://i1.hdslb.com/bfs/face/e93dd9edfa7b9e18bf46fd8d71862327a2350923.png
 
 **空间头图**：
 
-http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
+https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png
 
-![](http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png)
+![](https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png)
 
 ## 用户名片信息
 
-> http://api.bilibili.com/x/web-interface/card
+> https://api.bilibili.com/x/web-interface/card
 
 *请求方式：GET*
 
@@ -767,7 +767,7 @@ curl -G 'api.bilibili.com/x/web-interface/card' \
 
 ## 登录用户空间详细信息
 
-> http://api.bilibili.com/x/space/myinfo
+> https://api.bilibili.com/x/space/myinfo
 
 *请求方式：GET*
 
@@ -969,7 +969,7 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
 
 ## 多用户详细信息
 
-> http://api.vc.bilibili.com/account/v1/user/cards
+> https://api.vc.bilibili.com/account/v1/user/cards
 
 *请求方式：GET*
 
@@ -1009,7 +1009,7 @@ curl -G 'api.bilibili.com/x/space/myinfo' \
 查询用户`uids=1,2,3`的详细信息
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/account/v1/user/cards' \
+curl -G 'https://api.vc.bilibili.com/account/v1/user/cards' \
 --data-urlencode 'uids=1,2,3' \
 -b 'SESSDATA=xxx'
 ```

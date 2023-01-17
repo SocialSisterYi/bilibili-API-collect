@@ -16,7 +16,7 @@
 
 ## 新版本B币充电
 
-> http://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick
+> https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick
 
 *请求方式：POST*
 
@@ -178,7 +178,7 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 <details>
 <summary>查看折叠内容</summary>
 
-> http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
+> https://api.bilibili.com/x/ugcpay/trade/elec/pay/quick
 
 *请求方式：POST*
 
@@ -226,7 +226,7 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 ~~再次自己冲自己QAQ~~
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
+curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 --data-urlencode 'elec_num=20' \
 --data-urlencode 'up_mid=293793435' \
 --data-urlencode 'otype=up' \
@@ -262,7 +262,7 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 此时`data`.`status`=`-2`
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
+curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 --data-urlencode 'elec_num=1' \
 --data-urlencode 'up_mid=293793435' \
 --data-urlencode 'otype=up' \
@@ -298,7 +298,7 @@ curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 此时`data`.`status`=`-4`
 
 ```shell
-curl 'http://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
+curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 --data-urlencode 'elec_num=999' \
 --data-urlencode 'up_mid=293793435' \
 --data-urlencode 'otype=up' \

@@ -14,7 +14,7 @@
 
 ## UP主视频状态数据
 
-> http://member.bilibili.com/x/web/index/stat
+> https://member.bilibili.com/x/web/index/stat
 
 *请求方式：GET*
 
@@ -79,7 +79,7 @@
 **示例：**
 
 ```shell
-curl 'http://member.bilibili.com/x/web/index/stat' \
+curl 'https://member.bilibili.com/x/web/index/stat' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -174,7 +174,7 @@ curl 'http://member.bilibili.com/x/web/index/stat' \
 
 ## UP主专栏状态数据
 
-> http://member.bilibili.com/x/web/data/article
+> https://member.bilibili.com/x/web/data/article
 
 *请求方式：GET*
 
@@ -211,7 +211,7 @@ curl 'http://member.bilibili.com/x/web/index/stat' \
 **示例：**
 
 ```shell
-curl 'http://member.bilibili.com/x/web/data/article' \
+curl 'https://member.bilibili.com/x/web/data/article' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -244,7 +244,7 @@ curl 'http://member.bilibili.com/x/web/data/article' \
 
 ## 视频数据增量趋势
 
-> http://member.bilibili.com/x/web/data/article/thirty 
+> https://member.bilibili.com/x/web/data/article/thirty 
 
 *请求方式：GET*
 
@@ -303,7 +303,7 @@ curl 'http://member.bilibili.com/x/web/data/article' \
 查询30天前的视频播放增量趋势，可知`2020-04-05`的播放增量为`46`，`2020-04-04`的播放增量为`58`
 
 ```shell
-curl -G 'http://member.bilibili.com/x/web/data/pandect' \
+curl -G 'https://member.bilibili.com/x/web/data/pandect' \
 --data-urlencode 'type=1' \
 -b 'SESSDATA=xxx'
 ```
@@ -344,7 +344,7 @@ curl -G 'http://member.bilibili.com/x/web/data/pandect' \
 
 ## 专栏数据增量趋势
 
->  http://member.bilibili.com/x/web/data/article/thirty 
+>  https://member.bilibili.com/x/web/data/article/thirty 
 
 *请求方式：GET*
 
@@ -401,7 +401,7 @@ curl -G 'http://member.bilibili.com/x/web/data/pandect' \
 查询30天前的文章阅读增量趋势，可知`2020-04-05`的阅读增量为`6`，`2020-04-04`的阅读增量为`6`
 
 ```shell
-curl -G 'http://member.bilibili.com/x/web/data/article/thirty' \
+curl -G 'https://member.bilibili.com/x/web/data/article/thirty' \
 --data-urlencode 'type=1' \
 -b 'SESSDATA=xxx'
 ```
@@ -439,7 +439,7 @@ curl -G 'http://member.bilibili.com/x/web/data/article/thirty' \
 
 ## 稿件操作来源占比情况
 
-> http://member.bilibili.com/x/web/data/survey
+> https://member.bilibili.com/x/web/data/survey
 
 *请求方式：GET*
 
@@ -523,7 +523,7 @@ curl -G 'http://member.bilibili.com/x/web/data/article/thirty' \
 查询我的稿件来源占比情况
 
 ```shell
-curl -G 'http://member.bilibili.com/x/web/data/survey' \
+curl -G 'https://member.bilibili.com/x/web/data/survey' \
 --data-urlencode 'type=1' \
 -b 'SESSDATA=xxx'
 ```
@@ -580,7 +580,7 @@ curl -G 'http://member.bilibili.com/x/web/data/survey' \
 
 ## 播放来源占比情况（平台及方式）
 
-> http://member.bilibili.com/x/web/data/playsource
+> https://member.bilibili.com/x/web/data/playsource
 
 *请求方式：GET*
 
@@ -628,7 +628,7 @@ curl -G 'http://member.bilibili.com/x/web/data/survey' \
 **示例：**
 
 ```shell
-curl 'http://member.bilibili.com/x/web/data/playsource' \
+curl 'https://member.bilibili.com/x/web/data/playsource' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -664,7 +664,7 @@ curl 'http://member.bilibili.com/x/web/data/playsource' \
 
 ## 播放分布情况（粉丝与路人）
 
-> http://member.bilibili.com/x/web/data/base
+> https://member.bilibili.com/x/web/data/base
 
 *请求方式：GET*
 
@@ -763,7 +763,7 @@ curl 'http://member.bilibili.com/x/web/data/playsource' \
 **示例：**
 
 ```shell
-curl 'http://member.bilibili.com/x/web/data/base' \
+curl 'https://member.bilibili.com/x/web/data/base' \
 -b 'SESSDATA=xxx'
 ```
 

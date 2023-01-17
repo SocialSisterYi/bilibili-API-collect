@@ -19,7 +19,7 @@
 
 ## 获取音频流URL（无法获取付费音频）（web端）
 
-> http://www.bilibili.com/audio/music-service-c/web/url
+> https://www.bilibili.com/audio/music-service-c/web/url
 
 *请求方式：GET*
 
@@ -68,7 +68,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/url' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/url' \
 --data-urlencode 'sid=sid=15664'
 ```
 
@@ -100,7 +100,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/url' \
 
 ## 获取音频流URL（可获取付费音频）（双端）
 
-> http://api.bilibili.com/audio/music-service-c/url
+> https://api.bilibili.com/audio/music-service-c/url
 
 *请求方式：GET*
 
@@ -180,7 +180,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/url' \
 Cookie方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/audio/music-service-c/url
+curl -G 'https://api.bilibili.com/audio/music-service-c/url
 --data-urlencode 'songid=682118' \
 --data-urlencode 'quality=3' \
 --data-urlencode 'privilege=2' \
@@ -192,7 +192,7 @@ curl -G 'http://api.bilibili.com/audio/music-service-c/url
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/audio/music-service-c/url
+curl -G 'https://api.bilibili.com/audio/music-service-c/url
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'songid=682118' \
 --data-urlencode 'quality=3' \

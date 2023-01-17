@@ -6,7 +6,7 @@
 
 ## 获取专栏文章基本信息
 
-> http://api.bilibili.com/x/article/viewinfo
+> https://api.bilibili.com/x/article/viewinfo
 
 *请求方式：GET*
 
@@ -103,7 +103,7 @@
 查询文章`cv2`的基本信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/article/viewinfo' \
+curl -G 'https://api.bilibili.com/x/article/viewinfo' \
 --data-urlencode 'id=2' \
 -b 'SESSDATA=xxx'
 ```

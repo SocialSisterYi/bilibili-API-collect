@@ -9,7 +9,7 @@
 
 ## 获取我的表情列表
 
-> http://api.bilibili.com/x/emote/user/panel/web
+> https://api.bilibili.com/x/emote/user/panel/web
 
 *请求方式：GET*
 
@@ -51,7 +51,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/emote/user/panel/web' \
+curl -G 'https://api.bilibili.com/x/emote/user/panel/web' \
 --data-urlencode 'business=reply' \
 -b 'SESSDATA=xxx'
 ```
@@ -225,7 +225,7 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web' \
 
 ## 获取指定的表情包明细
 
-> http://api.bilibili.com/x/emote/package 
+> https://api.bilibili.com/x/emote/package 
 
 *请求方式：GET*
 
@@ -266,7 +266,7 @@ curl -G 'http://api.bilibili.com/x/emote/user/panel/web' \
 获取表情包id为`93`的表情包明细
 
 ```shell
-curl -G 'http://api.bilibili.com/x/emote/package' \
+curl -G 'https://api.bilibili.com/x/emote/package' \
 --data-urlencode 'ids=93' \
 --data-urlencode 'business=reply'
 ```
@@ -518,7 +518,7 @@ curl -G 'http://api.bilibili.com/x/emote/package' \
 
 ## 获取所有表情包列表
 
-> http://api.bilibili.com/x/emote/setting/panel 
+> https://api.bilibili.com/x/emote/setting/panel 
 
 *请求方式：GET*
 
@@ -575,7 +575,7 @@ curl -G 'http://api.bilibili.com/x/emote/package' \
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/emote/setting/panel' \
+curl -G 'https://api.bilibili.com/x/emote/setting/panel' \
 --data-urlencode 'business=reply' \
 -b 'SESSDATA=xxx'
 ```

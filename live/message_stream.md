@@ -53,7 +53,7 @@
 获得直播间`22824550`的信息流认证秘钥
 
 ```shell
-curl -G 'http://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
+curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 --data-urlencode 'id=22824550'
 ```
 

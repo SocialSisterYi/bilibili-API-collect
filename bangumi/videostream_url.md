@@ -74,7 +74,7 @@ B站的番剧视频为http流媒体，需要对应的api以视频id获取取流u
 
 ## 获取番剧视频流URL
 
->  http://api.bilibili.com/pgc/player/web/playurl
+>  https://api.bilibili.com/pgc/player/web/playurl
 
 *请求方式：GET*
 

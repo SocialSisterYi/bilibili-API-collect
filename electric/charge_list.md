@@ -7,7 +7,7 @@
 
 ## 获取空间充电公示列表
 
-> http://elec.bilibili.com/api/query.rank.do 
+> https://elec.bilibili.com/api/query.rank.do 
 
 *请求方式:GET*
 
@@ -73,7 +73,7 @@
 查询用户`mid=53456`的充电公示列表
 
 ```shell
-curl -G 'http://elec.bilibili.com/api/query.rank.do' \
+curl -G 'https://elec.bilibili.com/api/query.rank.do' \
 --data-urlencode 'mid=53456'
 ```
 
@@ -144,7 +144,7 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 
 ## 获取视频充电鸣谢名单
 
-> http://api.bilibili.com/x/web-interface/elec/show 
+> https://api.bilibili.com/x/web-interface/elec/show 
 
 *请求方式:GET*
 
@@ -224,7 +224,7 @@ curl -G 'http://elec.bilibili.com/api/query.rank.do' \
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
+curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 --data-urlencode 'mid=53456' \
 --data-urlencode 'aid=967773538'
 ```
@@ -232,7 +232,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/elec/show' \
+curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 --data-urlencode 'mid=53456' \
 --data-urlencode 'bvid=BV1up4y1y77i '
 ```

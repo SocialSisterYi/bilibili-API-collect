@@ -10,7 +10,7 @@
 
 ## 获取互动视频模块详细信息
 
-> http://api.bilibili.com/x/stein/edgeinfo_v2
+> https://api.bilibili.com/x/stein/edgeinfo_v2
 
 *请求方式：GET*
 
@@ -196,7 +196,7 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \
+curl -G 'https://api.bilibili.com/x/stein/edgeinfo_v2' \
 --data-urlencode 'aid=73267982' \
 --data-urlencode 'graph_version=155446' \
 --data-urlencode 'edge_id=5556092' \
@@ -206,7 +206,7 @@ curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/stein/edgeinfo_v2' \
+curl -G 'https://api.bilibili.com/x/stein/edgeinfo_v2' \
 --data-urlencode 'bvid=BV1UE411y7Wy' \
 --data-urlencode 'graph_version=155446' \
 --data-urlencode 'edge_id=5556092' \

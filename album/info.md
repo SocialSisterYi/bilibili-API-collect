@@ -6,7 +6,7 @@
 
 ## 获取相簿详细信息
 
->http://api.vc.bilibili.com/link_draw/v1/doc/detail
+>https://api.vc.bilibili.com/link_draw/v1/doc/detail
 
 *请求方式：GET*
 
@@ -143,7 +143,7 @@
 查询相簿`id=99184721`的详细信息
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v1/doc/detail' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/detail' \
 --data-urlencode 'doc_id=99184721' \
 -b 'SESSDATA=xxx'
 ```

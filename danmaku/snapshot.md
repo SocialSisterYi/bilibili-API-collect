@@ -6,7 +6,7 @@
 
 ## 获取弹幕快照
 
-> http://api.bilibili.com/x/v2/dm/ajax
+> https://api.bilibili.com/x/v2/dm/ajax
 
 *请求方式:GET*
 
@@ -45,14 +45,14 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \
+curl -G 'https://api.bilibili.com/x/v2/dm/ajax' \
 --data-urlencode 'aid=43337021'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/ajax' \
+curl -G 'https://api.bilibili.com/x/v2/dm/ajax' \
 --data-urlencode 'aid=BV1rb411m7gE'
 ```
 

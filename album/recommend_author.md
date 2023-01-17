@@ -7,7 +7,7 @@
 
 ## 获取摄影推荐作者
 
-> http://api.vc.bilibili.com/link_draw/v2/Photo/uper
+> https://api.vc.bilibili.com/link_draw/v2/Photo/uper
 
 *请求方式：GET*
 
@@ -50,7 +50,7 @@
 请求获取摄影推荐作者，数量为5
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/uper' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v2/Photo/uper' \
 --data-urlencode 'num=5'
 ```
 
@@ -101,7 +101,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/uper' \
 
 ## 获取画友推荐作者
 
-> http://api.vc.bilibili.com/link_draw/v2/Doc/drawer
+> https://api.vc.bilibili.com/link_draw/v2/Doc/drawer
 
 *请求方式：GET*
 
@@ -120,7 +120,7 @@ curl -G 'http://api.vc.bilibili.com/link_draw/v2/Photo/uper' \
 请求获取画友推荐作者，数量为5
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/link_draw/v2/Doc/drawer' \
+curl -G 'https://api.vc.bilibili.com/link_draw/v2/Doc/drawer' \
 --data-urlencode 'num=5'
 ```
 
