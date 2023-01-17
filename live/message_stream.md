@@ -306,7 +306,7 @@ json格式
 | cmd | str  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
 | info | array | 这条弹幕的用户、内容与粉丝勋章等各种信息 | 待调查其中每个数据的含义 |
 
-info字段
+<!-- info字段
 
 | 索引 | 类型 | 内容   |    备注   |
 | ---- | ---- | ------ | -------- |
@@ -363,7 +363,7 @@ info字段
 | ---- | ---- | ------ | -------- |
 | activity_identity | str | 待调查 | |
 | activity_source | num | 待调查 | |
-| not_show | num | 待调查 | |
+| not_show | num | 待调查 | | -->
 
 
 
