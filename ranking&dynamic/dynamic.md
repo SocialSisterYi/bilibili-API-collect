@@ -6,7 +6,7 @@
 
 ## 获取分区最新视频列表
 
-> http://api.bilibili.com/x/web-interface/dynamic/region
+> https://api.bilibili.com/x/web-interface/dynamic/region
 
 *请求方式：GET*
 
@@ -61,7 +61,7 @@
 获取`tid=21`（生活->日常）分区中的2条最新动态视频信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/dynamic/region' \
+curl -G 'https://api.bilibili.com/x/web-interface/dynamic/region' \
 --data-urlencode 'rid=21' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1' \

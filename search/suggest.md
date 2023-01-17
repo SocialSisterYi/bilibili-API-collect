@@ -6,7 +6,7 @@
 
 ## 获取搜索建议关键词（web端）
 
-> http://s.search.bilibili.com/main/suggest
+> https://s.search.bilibili.com/main/suggest
 
 *请求方式：GET*
 
@@ -89,7 +89,7 @@
 获取关于`lei`的搜索建议，关键词带有高亮
 
 ```shell
-curl -G 'http://s.search.bilibili.com/main/suggest' \
+curl -G 'https://s.search.bilibili.com/main/suggest' \
 --data-urlencode 'term=lei' \
 --data-urlencode 'main_ver=v1' \
 --data-urlencode 'highlight='

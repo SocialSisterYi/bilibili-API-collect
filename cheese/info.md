@@ -19,7 +19,7 @@
 
 ## 获取课程基本信息
 
-> http://api.bilibili.com/pugv/view/web/season
+> https://api.bilibili.com/pugv/view/web/season
 
 *请求方式：GET*
 
@@ -251,7 +251,7 @@
 ssid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/view/web/season' \
+curl -G 'https://api.bilibili.com/pugv/view/web/season' \
 --data-urlencode 'season_id=61' \
 -b 'SESSDATA=xxx' \
 -e 'https://www.bilibili.com'
@@ -260,7 +260,7 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season' \
 epid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/view/web/season' \
+curl -G 'https://api.bilibili.com/pugv/view/web/season' \
 --data-urlencode 'ep_id=790' \
 -b 'SESSDATA=xxx' \
 -e 'https://www.bilibili.com'
@@ -466,7 +466,7 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season' \
 
 ## 获取课程分集列表
 
-> http://api.bilibili.com/pugv/view/web/ep/list 
+> https://api.bilibili.com/pugv/view/web/ep/list 
 
 *请求方式：GET*
 
@@ -539,7 +539,7 @@ curl -G 'http://api.bilibili.com/pugv/view/web/season' \
 按照每页5项查询课程`ss61`的分集列表第1页
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/view/web/ep/list' \
+curl -G 'https://api.bilibili.com/pugv/view/web/ep/list' \
 --data-urlencode 'season_id=61' \
 --data-urlencode 'ps=5 ' \
 --data-urlencode 'pn=1' \

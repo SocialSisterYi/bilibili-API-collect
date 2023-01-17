@@ -1,25 +1,20 @@
 # 短信登录
 
+- [获取国际冠字码_web端](#获取国际冠字码_web端)
+- [发送短信验证码_web端](#发送短信验证码_web端)
+- [使用短信验证码登录_web端](#使用短信验证码登录_web端)
+
+---
+
 web端短信登录流程：
 
 1. [完成人机验证](readme.md)
 2. 发送短信，使用国际地区代码`cid`+手机号码`tel`+登录密钥`token`+极验`challenge`+验证结果`validate`+验证结果`seccode`
 3. 提交短信验证码以验证登录操作，使用国际地区代码`cid`+手机号码`tel`+短信验证码`code`
 
----
+## 获取国际冠字码_web端
 
-- [短信登录(web端)](#短信登录web端)
-    - [获取国际冠字码(web端)](#获取国际冠字码web端)
-    - [发送短信验证码(web端)](#发送短信验证码web端)
-    - [使用短信验证码登录(web端)](#使用短信验证码登录web端)
-
----
-
-## 短信登录(web端)
-
-### 获取国际冠字码(web端)
-
-> http://passport.bilibili.com/web/generic/country/list
+> https://passport.bilibili.com/web/generic/country/list
 
 *请求方式：GET*
 
@@ -58,7 +53,7 @@ web端短信登录流程：
 **示例：**
 
 ```shell
-curl 'http://passport.bilibili.com/web/generic/country/list'
+curl 'https://passport.bilibili.com/web/generic/country/list'
 ```
 
 <details>
@@ -100,9 +95,9 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 
 </details>
 
-### 发送短信验证码(web端)
+## 发送短信验证码_web端
 
-> http://passport.bilibili.com/x/passport-login/web/sms/send
+> https://passport.bilibili.com/x/passport-login/web/sms/send
 
 *请求方式：POST*
 
@@ -143,7 +138,7 @@ curl 'http://passport.bilibili.com/web/generic/country/list'
 例如手机号为`13888888888`，国际id为`1 (中国大陆)`，登录秘钥为`aabbccdd`，极验challenge为`2333`，极验结果为`666666`，进行发送短信验证码操作
 
 ```shell
-curl 'http://passport.bilibili.com/x/passport-login/web/sms/send' \
+curl 'https://passport.bilibili.com/x/passport-login/web/sms/send' \
 --data-urlencode 'tel=13888888888' \
 --data-urlencode 'cid=1' \
 --data-urlencode 'source=main_web' \
@@ -168,7 +163,7 @@ curl 'http://passport.bilibili.com/x/passport-login/web/sms/send' \
 
 </details>
 
-### 使用短信验证码登录(web端)
+## 使用短信验证码登录_web端
 
 > https://passport.bilibili.com/x/passport-login/web/login/sms
 

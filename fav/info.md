@@ -8,7 +8,7 @@
 
 ## 获取收藏夹元数据
 
->  http://api.bilibili.com/x/v3/fav/folder/info
+>  https://api.bilibili.com/x/v3/fav/folder/info
 
 *请求方式：GET*
 
@@ -80,7 +80,7 @@
 查询收藏夹`id=1052622027`的元数据
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
+curl -G 'https://api.bilibili.com/x/v3/fav/folder/info' \
 --data-urlencode 'media_id=1052622027' \
 -b 'SESSDATA=xxx'
 ```
@@ -131,7 +131,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
 
 ## 获取指定用户创建的所有收藏夹信息
 
->  http://api.bilibili.com/x/v3/fav/folder/created/list-all
+>  https://api.bilibili.com/x/v3/fav/folder/created/list-all
 
 *请求方式：GET*
 
@@ -192,7 +192,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/info' \
 查询用户`mid=509372`的所有创建收藏夹列表
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
+curl -G 'https://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 --data-urlencode 'up_mid=509372' \
 -b 'SESSDATA=xxx'
 ```
@@ -236,7 +236,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 
 ## 批量获取指定收藏id的内容
 
-> http://api.bilibili.com/x/v3/fav/resource/infos
+> https://api.bilibili.com/x/v3/fav/resource/infos
 
 *请求方式：GET*
 
@@ -314,7 +314,7 @@ curl -G 'http://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 3-音频-`au15664`
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v3/fav/resource/infos' \
+curl -G 'https://api.bilibili.com/x/v3/fav/resource/infos' \
 --data-urlencode 'resources=583785685:2,523:21,15664:12'
 ```
 

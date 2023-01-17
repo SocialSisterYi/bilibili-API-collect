@@ -5,7 +5,7 @@
 
 ## 获取视频在线人数_web端
 
-> http://api.bilibili.com/x/player/online/total
+> https://api.bilibili.com/x/player/online/total
 
 *请求方式：GET*
 
@@ -48,7 +48,7 @@
 查询视频`av759949922`/`BV1y64y1q757`中1P(`392402545`)的在线人数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/online/total' \
+curl -G 'https://api.bilibili.com/x/player/online/total' \
 --data-urlencode 'aid=759949922' \
 --data-urlencode 'cid=392402545'
 ```
@@ -76,7 +76,7 @@ curl -G 'http://api.bilibili.com/x/player/online/total' \
 
 ## 获取视频在线人数_APP端
 
-> http://app.bilibili.com/x/v2/view/video/online
+> https://app.bilibili.com/x/v2/view/video/online
 
 *请求方式：GET*
 
@@ -118,7 +118,7 @@ curl -G 'http://api.bilibili.com/x/player/online/total' \
 查询视频`av759949922`/`BV1y64y1q757`中1P(`392402545`)的在线人数
 
 ```shell
-curl -G 'http://app.bilibili.com/x/v2/view/video/online' \
+curl -G 'https://app.bilibili.com/x/v2/view/video/online' \
 --data-urlencode 'aid=759949922' \
 --data-urlencode 'appkey=1d8b6e7d45233436' \
 --data-urlencode 'cid=392402545' \

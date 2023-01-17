@@ -11,7 +11,7 @@
 
 ## 获取视频详细信息(web端)
 
-> http://api.bilibili.com/x/web-interface/view
+> https://api.bilibili.com/x/web-interface/view
 
 *请求方式：GET*
 
@@ -276,14 +276,14 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/view' \
+curl -G 'https://api.bilibili.com/x/web-interface/view' \
 --data-urlencode 'aid=85440373'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/view' \
+curl -G 'https://api.bilibili.com/x/web-interface/view' \
 --data-urlencode 'bvid=BV117411r7R1'
 ```
 
@@ -532,13 +532,13 @@ curl -G 'http://api.bilibili.com/x/web-interface/view' \
 
 视频封面为：
 
-http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
+https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
-![](http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg)
+![](https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg)
 
 ## 获取视频超详细信息(web端)
 
-> http://api.bilibili.com/x/web-interface/view/detail
+> https://api.bilibili.com/x/web-interface/view/detail
 
 *请求方式：GET*
 
@@ -730,14 +730,14 @@ http://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/view/detail' \
+curl -G 'https://api.bilibili.com/x/web-interface/view/detail' \
 --data-urlencode 'aid=170001'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/view/detail' \
+curl -G 'https://api.bilibili.com/x/web-interface/view/detail' \
 --data-urlencode 'bvid=BV17x411w7KC'
 ```
 
@@ -3177,7 +3177,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/view/detail' \
 
 ## 获取视频简介
 
-> http://api.bilibili.com/x/web-interface/archive/desc
+> https://api.bilibili.com/x/web-interface/archive/desc
 
 *请求方式：GET*
 
@@ -3206,14 +3206,14 @@ curl -G 'http://api.bilibili.com/x/web-interface/view/detail' \
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/archive/desc' \
+curl -G 'https://api.bilibili.com/x/archive/desc' \
 --data-urlencode 'aid=39330059'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/archive/desc' \
+curl -G 'https://api.bilibili.com/x/archive/desc' \
 --data-urlencode 'bvid=BV1Bt411z799'
 ```
 
@@ -3233,7 +3233,7 @@ curl -G 'http://api.bilibili.com/x/archive/desc' \
 
 ## 查询视频分P列表 (avid/bvid转cid)
 
-> http://api.bilibili.com/x/player/pagelist
+> https://api.bilibili.com/x/player/pagelist
 
 *请求方式：GET*
 
@@ -3291,14 +3291,14 @@ curl -G 'http://api.bilibili.com/x/archive/desc' \
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/pagelist' \
+curl -G 'https://api.bilibili.com/x/player/pagelist' \
 --data-urlencode 'aid=13502509'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/player/pagelist' \
+curl -G 'https://api.bilibili.com/x/player/pagelist' \
 --data-urlencode 'bvid=BV1ex411J7GE'
 ```
 

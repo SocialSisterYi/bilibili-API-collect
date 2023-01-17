@@ -9,7 +9,7 @@
 
 ## 查询歌曲基本信息
 
-> http://www.bilibili.com/audio/music-service-c/web/song/info
+> https://www.bilibili.com/audio/music-service-c/web/song/info
 
 *请求方式：GET*
 
@@ -93,7 +93,7 @@
 查询音频`au13598`的基本信息
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/info' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/song/info' \
 --data-urlencode 'sid=13598' \
 -b 'SESSDATA=xxx'
 ```
@@ -152,7 +152,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/info' \
 
 ## 查询歌曲TAG
 
-> http://www.bilibili.com/audio/music-service-c/web/tag/song
+> https://www.bilibili.com/audio/music-service-c/web/tag/song
 
 *请求方式：GET*
 
@@ -194,7 +194,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/info' \
 查询音频`au15664`的TAG
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/tag/song' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/tag/song' \
 --data-urlencode 'sid=15664'
 ```
 
@@ -250,7 +250,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/tag/song' \
 
 ## 查询歌曲创作成员列表
 
-> http://www.bilibili.com/audio/music-service-c/web/member/song
+> https://www.bilibili.com/audio/music-service-c/web/member/song
 
 *请求方式：GET*
 
@@ -306,7 +306,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/tag/song' \
 查询音频`au815861`的创作成员信息
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/member/song' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/member/song' \
 --data-urlencode 'sid=815861'
 ```
 
@@ -386,7 +386,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/member/song' \
 
 ## 获取歌曲歌词
 
-> http://www.bilibili.com/audio/music-service-c/web/song/lyric
+> https://www.bilibili.com/audio/music-service-c/web/song/lyric
 
 *请求方式：GET*
 
@@ -413,7 +413,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/member/song' \
 获取音频`au15664`的歌词信息
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/song/lyric' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/song/lyric' \
 --data-urlencode 'sid=15664' \
 -b 'SESSDATA=xxx'
 ```

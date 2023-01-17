@@ -10,11 +10,11 @@
 
 ## 获取实时弹幕
 
-> http://api.bilibili.com/x/v2/dm/web/seg.so （web端）
+> https://api.bilibili.com/x/v2/dm/web/seg.so （web端）
 >
-> http://api.bilibili.com/x/v2/dm/list/seg.so （APP端）
+> https://api.bilibili.com/x/v2/dm/list/seg.so （APP端）
 >
-> http://i0.hdslb.com/bfs/dm/{data}.bin （BAS/代码弹幕专包）
+> https://i0.hdslb.com/bfs/dm/{data}.bin （BAS/代码弹幕专包）
 
 *请求方式：GET*
 
@@ -77,20 +77,20 @@ import requests
 import google.protobuf.text_format as text_format
 import bilibili.community.service.dm.v1.dm_pb2 as Danmaku
 
-url = 'http://api.bilibili.com/x/v2/dm/web/seg.so'
+url = 'https://api.bilibili.com/x/v2/dm/web/seg.so'
 params = {
-    'type':1,         #弹幕类型
-    'oid':1176840,    #cid
-    'pid':810872,     #avid
-    'segment_index':1 #弹幕分段
+    'type': 1,         # 弹幕类型
+    'oid': 1176840,    # cid
+    'pid': 810872,     # avid
+    'segment_index': 1 # 弹幕分段
 }
-resp = requests.get(url,params)
+resp = requests.get(url, params)
 data = resp.content
 
 danmaku_seg = Danmaku.DmSegMobileReply()
 danmaku_seg.ParseFromString(data)
 
-print(text_format.MessageToString(danmaku_seg.elems[0],as_utf8=True))
+print(text_format.MessageToString(danmaku_seg.elems[0], as_utf8=True))
 ```
 
 输出：

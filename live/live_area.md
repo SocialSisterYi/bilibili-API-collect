@@ -68,7 +68,7 @@
 如想在`网游`父分区下的`英雄联盟`分区开播，则查到子分区id为`86`
 
 ```shell
-curl 'http://api.live.bilibili.com/room/v1/Area/getList'
+curl 'https://api.live.bilibili.com/room/v1/Area/getList'
 ```
 
 <details>

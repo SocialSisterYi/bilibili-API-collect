@@ -8,7 +8,7 @@
 
 ## 为图片动态上传图片
 
-> http://api.bilibili.com/x/dynamic/feed/draw/upload_bfs
+> https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs
 
 *请求方式：POST*
 
@@ -48,7 +48,7 @@
 上传了一张图片`test.png`类型为`日常`
 
 ```shell
-curl 'http://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
+curl 'https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
 -F 'file_up=@test.png' \
 -F 'category=daily'
 -b 'SESSDATA=xxx'
@@ -74,7 +74,7 @@ curl 'http://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
 
 ## 发表纯文本动态
 
-> http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create
+> https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create
 
 *请求方式：POST*
 
@@ -134,7 +134,7 @@ ctrl单个对象(注意用的时候是数组出现):
 <summary>查看示例(纯文本)</summary>
 
 ```bash
-curl 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
+curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 	--data-urlencode 'dynamic_id=0' \
 	--data-urlencode 'type=4' \
 	--data-urlencode 'rid=0' \
@@ -191,7 +191,7 @@ ctrl
 
 命令
 ```bash
-curl 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
+curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
     --data-urlencode 'dynamic_id': '0' \
     --data-urlencode 'type': '4' \
     --data-urlencode 'rid': '0' \

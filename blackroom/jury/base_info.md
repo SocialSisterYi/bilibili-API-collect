@@ -159,7 +159,7 @@ _请求方式：GET_
 <details>
 <summary>查看旧 api：</summary>
 
-> http://api.bilibili.com/x/credit/jury/kpi （旧）
+> https://api.bilibili.com/x/credit/jury/kpi （旧）
 
 *方式：GET*
 
@@ -218,14 +218,14 @@ _请求方式：GET_
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/credit/jury/kpi' \
+curl 'https://api.bilibili.com/x/credit/jury/kpi' \
 -b 'SESSDATA=xxx'
 ```
 
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
+curl -G 'https://api.bilibili.com/x/credit/jury/kpi' \
 --data-urlencode 'access_key=xxx'
 ```
 
@@ -265,9 +265,9 @@ curl -G 'http://api.bilibili.com/x/credit/jury/kpi' \
 
 ## 检查申请风纪委员会资格
 
-> ~~http://api.bilibili.com/x/credit/jury/requirement~~ （旧版）
+> ~~https://api.bilibili.com/x/credit/jury/requirement~~ （旧版）
 
-> http://api.bilibili.com/x/credit/v2/jury/requirement （新版）
+> https://api.bilibili.com/x/credit/v2/jury/requirement （新版）
 
 *请求方式：GET*
 

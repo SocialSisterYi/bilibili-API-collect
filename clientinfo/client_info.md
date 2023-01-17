@@ -6,7 +6,7 @@
 
 ## 终端信息查询
 
->  http://api.bilibili.com/client_info
+>  https://api.bilibili.com/client_info
 
 *请求方式：任意*
 
@@ -54,7 +54,7 @@
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/client_info'
+curl 'https://api.bilibili.com/client_info'
 ```
 
 <details>

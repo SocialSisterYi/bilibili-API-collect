@@ -10,7 +10,7 @@
 
 ## 查询历史弹幕日期
 
-> http://api.bilibili.com/x/v2/dm/history/index
+> https://api.bilibili.com/x/v2/dm/history/index
 
 *请求方式：GET*
 
@@ -50,7 +50,7 @@
 查询了cid为144541892的视频位于2020年1月中有历史弹幕记录的日期
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
+curl -G 'https://api.bilibili.com/x/v2/dm/history/index' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=144541892' \
 --data-urlencode 'month=2020-01' \
@@ -86,7 +86,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
 返回结果的 `data` 项说明这些日期有弹幕发送。若查询的月份中视频无弹幕，则 `data` 项为 `null`
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
+curl -G 'https://api.bilibili.com/x/v2/dm/history/index' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=144541892' \
 --data-urlencode 'month=2019-12' \
@@ -109,7 +109,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/history/index' \
 
 ## 获取历史弹幕protobuf接口
 
->  http://api.bilibili.com/x/v2/dm/web/history/seg.so
+>  https://api.bilibili.com/x/v2/dm/web/history/seg.so
 
 *请求方式：GET*
 
@@ -138,7 +138,7 @@ import requests
 import google.protobuf.text_format as text_format
 import bilibili.community.service.dm.v1_pb2 as Danmaku
 
-url = 'http://api.bilibili.com/x/v2/dm/web/history/seg.so'
+url = 'https://api.bilibili.com/x/v2/dm/web/history/seg.so'
 params = {
     'type':1,           #弹幕类型
     'oid':144541892,    #cid
@@ -175,7 +175,7 @@ idStr: "27532611677585408"
 <details>
 <summary>查看折叠内容：</summary>
 
-> http://api.bilibili.com/x/v2/dm/history
+> https://api.bilibili.com/x/v2/dm/history
 
 *请求方式：GET*
 
@@ -200,7 +200,7 @@ idStr: "27532611677585408"
 获取视频`av84271171(cid=144541892)`2020-01-21的历史弹幕
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/history' \
+curl -G 'https://api.bilibili.com/x/v2/dm/history' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=144541892' \
 --data-urlencode 'date=2020-01-21' \
