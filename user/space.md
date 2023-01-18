@@ -2682,27 +2682,30 @@ curl -L -X GET 'https://api.bilibili.com/x/space/like/video?vmid=15858903'
 | order   | str | 排序方式    | 非必要 | 默认为pubdate<br />最新发布：pubdate<br />最多播放：click<br />最多收藏：stow |
 | tid     | num | 筛选目标分区  | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区                       |
 | keyword | str | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                                           |
-| pn      | num | 页码      | 必要  |                                                             |
-| ps      | num | 每页项数    | 必要  | 最小1，最大50                                                    |
+| pn      | num | 页码      | 非必要 |                                                             |
+| ps      | num | 每页项数    | 非必要 | 最小1，最大50，默认30                                               |
 
 **json回复：**
 
 根对象：
 
-| 字段      | 类型  | 内容   | 备注                                  |
-|---------|-----|------|-------------------------------------|
+| 字段      | 类型  | 内容   | 备注                                                                   |
+|---------|-----|------|----------------------------------------------------------------------|
 | code    | num | 返回值  | 0：成功<br />-400：请求错误<br />-412：请求被拦截<br />-1200：被降级过滤的请求(一种意义不明的偶发状况) |
-| message | str | 错误信息 | 默认为0                                |
-| ttl     | num | 1    |                                     |
-| data    | obj | 信息本体 |                                     |
+| message | str | 错误信息 | 默认为0                                                                 |
+| ttl     | num | 1    |                                                                      |
+| data    | obj | 信息本体 |                                                                      |
 
 `data`对象：
 
-| 字段              | 类型  | 内容       | 备注  |
-|-----------------|-----|----------|-----|
-| list            | obj | 列表信息     |     |
-| page            | obj | 页面信息     |     |
-| episodic_button | obj | “播放全部“按钮 |     |
+| 字段              | 类型   | 内容       | 备注  |
+|-----------------|------|----------|-----|
+| list            | obj  | 列表信息     |     |
+| page            | obj  | 页面信息     |     |
+| episodic_button | obj  | “播放全部“按钮 |     |
+| is_risk         | bool |          |     |
+| gaia_res_type   | num  |          |     |
+| gaia_data       |      |          |     |
 
 `data`中的`list`对象：
 
@@ -2736,27 +2739,32 @@ curl -L -X GET 'https://api.bilibili.com/x/space/like/video?vmid=15858903'
 
 `list`中的`vlist`数组中的对象：
 
-| 字段             | 类型   | 内容       | 备注             |
-|----------------|------|----------|----------------|
-| aid            | num  | 稿件avid   |                |
-| author         | str  | 视频UP主    | 不一定为目标用户（合作视频） |
-| bvid           | str  | 稿件bvid   |                |
-| comment        | num  | 视频评论数    |                |
-| copyright      | str  | 空        | 作用尚不明确         |
-| created        | num  | 投稿时间     | 时间戳            |
-| description    | str  | 视频简介     |                |
-| hide_click     | bool | false    | 作用尚不明确         |
-| is_pay         | num  | 0        | 作用尚不明确         |
-| is_union_video | num  | 是否为合作视频  | 0：否<br />1：是   |
-| length         | str  | 视频长度     | MM:SS          |
-| mid            | num  | 视频UP主mid | 不一定为目标用户（合作视频） |
-| pic            | str  | 视频封面     |                |
-| play           | num  | 视频播放次数   |  如果视频基本信息API对应的状态为-403视频访问权限不足，数据类型将变为str，如（"play": "--",），于mid79发表的av5132474可见          |
-| review         | num  | 0        | 作用尚不明确         |
-| subtitle       | str  | 空        | 作用尚不明确         |
-| title          | str  | 视频标题     |                |
-| typeid         | num  | 视频分区tid  |                |
-| video_review   | num  | 视频弹幕数    |                |
+| 字段               | 类型   | 内容       | 备注                                                                             |
+|------------------|------|----------|--------------------------------------------------------------------------------|
+| aid              | num  | 稿件avid   |                                                                                |
+| author           | str  | 视频UP主    | 不一定为目标用户（合作视频）                                                                 |
+| bvid             | str  | 稿件bvid   |                                                                                |
+| comment          | num  | 视频评论数    |                                                                                |
+| copyright        | str  | 空        | 作用尚不明确                                                                         |
+| created          | num  | 投稿时间     | 时间戳                                                                            |
+| description      | str  | 视频简介     |                                                                                |
+| hide_click       | bool | false    | 作用尚不明确                                                                         |
+| is_pay           | num  | 0        | 作用尚不明确                                                                         |
+| is_union_video   | num  | 是否为合作视频  | 0：否<br />1：是                                                                   |
+| length           | str  | 视频长度     | MM:SS                                                                          |
+| mid              | num  | 视频UP主mid | 不一定为目标用户（合作视频）                                                                 |
+| pic              | str  | 视频封面     |                                                                                |
+| play             | num  | 视频播放次数   | 如果视频基本信息API对应的状态为-403视频访问权限不足，数据类型将变为str，如（"play": "--",），于mid79发表的av5132474可见 |
+| review           | num  | 0        | 作用尚不明确                                                                         |
+| subtitle         | str  | 空        | 作用尚不明确                                                                         |
+| title            | str  | 视频标题     |                                                                                |
+| typeid           | num  | 视频分区tid  |                                                                                |
+| video_review     | num  | 视频弹幕数    |                                                                                |
+| is_steins_gate   | num  | 0        |                                                                                |
+| is_live_playback | num  | 0        |                                                                                |
+| meta             |      |          |                                                                                |
+| is_avoided       | num  | 0        |                                                                                |
+| attribute        | num  | 0        |                                                                                |
 
 `data`中的`page`对象：
 
@@ -2799,12 +2807,27 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
       "tlist": {
         "1": {
           "tid": 1,
-          "count": 26,
+          "count": 41,
           "name": "动画"
+        },
+        "3": {
+          "tid": 3,
+          "count": 36,
+          "name": "音乐"
+        },
+        "4": {
+          "tid": 4,
+          "count": 82,
+          "name": "游戏"
+        },
+        "36": {
+          "tid": 36,
+          "count": 1,
+          "name": "知识"
         },
         "160": {
           "tid": 160,
-          "count": 42,
+          "count": 49,
           "name": "生活"
         },
         "211": {
@@ -2812,73 +2835,79 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
           "count": 3,
           "name": "美食"
         },
-        "3": {
-          "tid": 3,
-          "count": 33,
-          "name": "音乐"
-        },
-        "4": {
-          "tid": 4,
-          "count": 72,
-          "name": "游戏"
+        "217": {
+          "tid": 217,
+          "count": 2,
+          "name": "动物圈"
         }
       },
       "vlist": [
         {
-          "comment": 3558,
-          "typeid": 47,
-          "play": 1275661,
-          "pic": "//i2.hdslb.com/bfs/archive/90157806a34646ac2d4c6af3e8b6156cb3460d14.jpg",
+          "comment": 6729,
+          "typeid": 172,
+          "play": 2171260,
+          "pic": "http://i2.hdslb.com/bfs/archive/9fe04c2acb6678c9a8d1547db211e458ea70982c.jpg",
           "subtitle": "",
-          "description": "第一期：BV1ak4y1B7aG\n第二期：BV1eA411Y7FN\n脚本/绘画/配音/动画/片尾曲：warma\n第三期终于做完啦！这是一个以我平时发呆的时候想到的一些灵感组成的冷笑话合集，名字叫《沃玛的生活》，可以当作日常搞笑单元小动画来看。\n如果你喜欢这个系列的话请点赞投币收藏一键三连给我一些继续制作的动力吧，我真的非常非常需要更多的动力！\n祝看得开心~\n我的微博：@_warma_",
-          "copyright": "",
-          "title": "【warma】沃玛的新番更新！从现在开始放飞自我【沃玛的生活/第三期】",
+          "description": "好开心能和几千人一起看音乐会！真的震撼到我了，它给我带来的冲击感远超出了我的想象……光遇这场音乐会会一直持续到元旦哦，大家感兴趣的话也可以来试试吧~\n祝看得开心啦！",
+          "copyright": "1",
+          "title": "【warma】我尝试学习交朋友",
           "review": 0,
           "author": "Warma",
           "mid": 53456,
-          "created": 1605844817,
-          "length": "05:16",
-          "video_review": 7470,
-          "aid": 585275804,
-          "bvid": "BV1sz4y1y7KJ",
+          "created": 1671163200,
+          "length": "23:58",
+          "video_review": 7931,
+          "aid": 433873134,
+          "bvid": "BV1nG411P7hf",
           "hide_click": false,
           "is_pay": 0,
           "is_union_video": 0,
-          "is_steins_gate": 0
+          "is_steins_gate": 0,
+          "is_live_playback": 0,
+          "meta": null,
+          "is_avoided": 0,
+          "attribute": 0
         },
         {
-          "comment": 2979,
-          "typeid": 21,
-          "play": 840676,
-          "pic": "//i2.hdslb.com/bfs/archive/b43f88c6ebae8fdc7dfb663f6f6f2931b924c763.jpg",
+          "comment": 3380,
+          "typeid": 31,
+          "play": 811600,
+          "pic": "http://i2.hdslb.com/bfs/archive/7e6c6ec32a0db8684abd660d599644e9d1c43ee4.jpg",
           "subtitle": "",
-          "description": "前一阵子过生日，大家的礼物经过几番转寄终于收到了~于是录了这期礼物开箱视频。\n现在也在感慨，大家的礼物真的都太强了，居然这些全都是手工做的，真的好厉害！\n这些手工礼物背后得花多少时间和心力啊……这些对我来说都是无价的礼物，制作礼物的大家真的有心了，谢谢！！\n收到这些礼物真的很开心，视频的封面也是在这样激动的情况下画出来的，祝你看得开心~\n我的微博：@_warma_",
-          "copyright": "",
-          "title": "【warma】来开箱！大家寄来的生日礼物",
+          "description": "原曲：BV1iR4y1X7V9\n这首歌是今年生日的时候收到的礼物，真的太好听了！我也想翻唱试试~\n在翻唱中录了一些不一样的小音效，比如卡祖笛和竖笛，还录了些小配音……大家来听听看！\n谢谢原曲staff老师们做出这么有趣的作品，谢谢在这次翻唱中staff老师们的帮助（PV老师甚至根据翻唱版本把曲子的PV做了些修改，加了好多小细节，真的超用心！）\n祝听得开心啦~\n \n【staff表】\n原曲staff：详见BV1iR4y1X7V9\n翻唱：warma\n混音：白萝卜音乐工作室\nPV修改：@颜一bot  \n封面：是根",
+          "copyright": "1",
+          "title": "【warma】来唱大家送我的歌！《夏天幻游日记》",
           "review": 0,
           "author": "Warma",
           "mid": 53456,
-          "created": 1604635221,
-          "length": "24:28",
-          "video_review": 10476,
-          "aid": 287744380,
-          "bvid": "BV1xf4y1q7XN",
+          "created": 1670558400,
+          "length": "02:59",
+          "video_review": 2343,
+          "aid": 733323002,
+          "bvid": "BV18D4y1Y7o6",
           "hide_click": false,
           "is_pay": 0,
           "is_union_video": 0,
-          "is_steins_gate": 0
+          "is_steins_gate": 0,
+          "is_live_playback": 0,
+          "meta": null,
+          "is_avoided": 0,
+          "attribute": 0
         }
       ]
     },
     "page": {
       "pn": 1,
       "ps": 2,
-      "count": 176
+      "count": 214
     },
     "episodic_button": {
       "text": "播放全部",
       "uri": "//www.bilibili.com/medialist/play/53456?from=space"
-    }
+    },
+    "is_risk": false,
+    "gaia_res_type": 0,
+    "gaia_data": null
   }
 }
 ```
