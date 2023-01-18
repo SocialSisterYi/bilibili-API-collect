@@ -3265,16 +3265,17 @@ curl -G 'https://api.bilibili.com/x/archive/desc' \
 
 数组`data`中的对象：
 
-| 字段        | 类型  | 内容        | 备注                                          |
-|-----------|-----|-----------|---------------------------------------------|
-| cid       | num | 当前分P cid  |                                             |
-| page      | num | 当前分P      |                                             |
-| from      | str | 视频来源      | vupload：普通上传（B站）<br />hunan：芒果TV<br />qq：腾讯 |
-| part      | str | 当前分P标题    |                                             |
-| duration  | num | 当前分P持续时间  | 单位为秒                                        |
-| vid       | str | 站外视频vid   |                                             |
-| weblink   | str | 站外视频跳转url |                                             |
-| dimension | obj | 当前分P分辨率   | 有部分视频无法获取分辨率                                |
+| 字段          | 类型  | 内容        | 备注                                          |
+|-------------|-----|-----------|---------------------------------------------|
+| cid         | num | 当前分P cid  |                                             |
+| page        | num | 当前分P      |                                             |
+| from        | str | 视频来源      | vupload：普通上传（B站）<br />hunan：芒果TV<br />qq：腾讯 |
+| part        | str | 当前分P标题    |                                             |
+| duration    | num | 当前分P持续时间  | 单位为秒                                        |
+| vid         | str | 站外视频vid   |                                             |
+| weblink     | str | 站外视频跳转url |                                             |
+| dimension   | obj | 当前分P分辨率   | 有部分视频无法获取分辨率                                |
+| first_frame | str | 分P封面      |                                             |
 
 数组`data`中的对象中的`dimension`对象：
 
