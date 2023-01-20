@@ -29,9 +29,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 联动项目：[Hsury/Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
 
----
-
-**声明**：
+## **⚠️声明**
 
 1. 本项目遵守 CC-BY-NC 4.0 协议，禁止一切商业使用，如需转载请注明作者 ID
 2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
@@ -39,9 +37,21 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 4. 由于本项目的特殊性，可能随时停止开发或删档
 5. 本项目为开源项目，不接受任何形式的催单和索取行为，更不容许存在付费内容
 
----
+## 🌱参与贡献
 
-计划整理分类 & 目录：(文档已完结请选中 checkbox) 二级目录正在建设中.....
+欢迎各位 dalao 对本项目做出贡献，也希望每个使用者都能提出宝贵的意见
+
+目前本项目存在的问题包括但不限于：
+
+1. 文档二级目录尚未完成
+2. 文档需要使用 Vue Press 构建 html 版本发布
+3. 部分文档较旧，修改与更新没有跟进
+
+更多信息请浏览 [贡献指南](contributing_guide.md)
+
+## 🍴目录
+
+计划整理分类 & 目录：(文档已完结请选中 checkbox) 
 
 - [x] [API 签名](other/API_sign.md)
 - [x] [公共错误码](other/errcode.md)
@@ -225,13 +235,13 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [x] [APP 主题](garb/skin.md)
   - [x] [主题色](garb/color.md)
 
-# 鸣谢
+## ✨鸣谢
 
 你们的存在，让社区更美好
 
 [![contributors](https://opencollective.com/bilibili-api-collect/contributors.svg?width=860&button=false)](https://github.com/SocialSisterYi/bilibili-API-collect/graphs/contributors)
 
-# 相关协议基础
+## 📖相关协议基础
 
 http 协议：[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
 
@@ -241,7 +251,7 @@ xml 序列格式：[传送门](https://www.w3school.com.cn/xml/xml_intro.asp)
 
 protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
-# 交流
+## 💦交流
 
 <img src="imgs/up_face.jpg" width="100" height="100">
 
@@ -255,7 +265,7 @@ B 站空间：<https://space.bilibili.com/293793435>
 
 个人博客：<https://shakaianee.top>
 
-# 发电
+## 🧋发电
 
 欢迎来~~交♂易~~，大家的支持就是我继续开发的动力！
 
@@ -267,9 +277,9 @@ WeChat & Alipay：
 
 OR Aifadian：https://afdian.net/@ShakaiAneE
 
-# 相关项目推荐
+## 🔗相关项目推荐
 
-## 库及文档
+### 库及文档
 
 - [jingyuexing/bilibiliAPI](https://github.com/jingyuexing/bilibiliAPI)
 - [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
@@ -285,7 +295,7 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [ddiu8081/blive-message-listener](https://github.com/ddiu8081/blive-message-listener): Bilibili-live danmu listener with type. Bilibili 直播间弹幕监听库，支持类型输出。
 - [Nemo2011/bilibili-api](https://github.com/Nemo2011/bilibili-api): 哔哩哔哩常用API调用。支持视频、番剧、用户、频道、音频等功能。工具齐全。
 
-## 成品
+### 成品
 
 - [NullPointerException/AnimePipe](https://codeberg.org/NullPointerException/AnimePipe): 功能完善的Android流媒体综合客户端，支持Bilibili, Youtube, NicoNico
 - [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
@@ -312,7 +322,7 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [SocialSisterYi/bcut-asr](https://github.com/SocialSisterYi/bcut-asr): 使用必剪API的语音字幕识别
 - [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
 
-## 其他
+### 其他
 
 - [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
 
