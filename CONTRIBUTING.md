@@ -193,4 +193,19 @@ TODO
 
 ## Issue与社群讨论
 
-TODO
+对文档内容存在**不理解**之处、以及发现文档内容有所**缺失**或**错误**，可直接提出，强烈建议以发 **Issue** 的形式参与用户反馈，并希望关于本项目的各种交流都是**公开进行**的，因为这样才可以保证关键信息的一致性。
+
+由于本项目属于文档型项目，故不设置 Issue 模板，同时允许中英文标题，但提交 Issue 请遵守以下原则：
+
+1. 标题言简意骇，说明欲提出的问题要点，如`如何通过xx接口获取yy`、`xx接口地址已失效`、`关于xx字段意义的探讨`、`	建议将xx加入yy分类`等标题；切勿使用表意含糊不清或索取性的标题，如`怎么解决风控`、`补充`、`搜索的接口是什么`、`好兄弟有没有投稿的接口`等标题
+2. Issue 正文应对问题进行尽可能详细的描述，展开并聚焦有关的信息，例如：“在前端页面某地址 / APP 某界面会访问某 API（标明地址），它的某参数与文档中不符（标明文档地址）”
+3.  提出问题时注意 [提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way/blob/main/README-zh_CN.md) 并且 [别像弱智一样提问](https://github.com/tangx/Stop-Ask-Questions-The-Stupid-Ways)
+
+同时，你还可以通过加入社群的方式参与讨论（包括但不限于本项目
+
+- QQ 交流群：[邀请链接](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
+
+- Telegram 交流群：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
+
+注意：群内讨论同样需要遵守**公开交流**的原则，以及群内会定期清理不活跃成员
+

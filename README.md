@@ -29,7 +29,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 联动项目：[Hsury/Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
 
-## **⚠️声明**
+## ⚠️声明
 
 1. 本项目遵守 CC-BY-NC 4.0 协议，禁止一切商业使用，如需转载请注明作者 ID
 2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
@@ -47,7 +47,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 2. 文档需要使用 Vue Press 构建 html 版本发布
 3. 部分文档较旧，修改与更新没有跟进
 
-更多信息请浏览 [贡献指南](contributing_guide.md)
+更多信息请浏览 [贡献指南](CONTRIBUTING.md)
 
 ## 🍴目录
 
@@ -255,15 +255,10 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 <img src="imgs/up_face.jpg" width="100" height="100">
 
-⚠注意：开源社群欢迎交流探讨，**拒绝**咨询，**黑产号**一经发现立即拉黑并举报相关 SRC
+⚠注意：开源社群欢迎交流探讨，**拒绝**咨询、**不支持**合作，**黑产号**一经发现立即拉黑并举报相关 SRC
 
-QQ 粉丝交流群：[1136462265](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
-
-Telegram 讨论组：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
-
-B 站空间：<https://space.bilibili.com/293793435>
-
-个人博客：<https://shakaianee.top>
+- QQ 交流群：[邀请链接](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
+- Telegram 交流群：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
 
 ## 🧋发电
 
