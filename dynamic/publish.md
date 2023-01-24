@@ -1,8 +1,8 @@
 # 发布动态
 
-+ [为图片动态上传图片](#为图片动态上传图片)
-
-+ [发表纯文本动态](#发表纯文本动态)
+- [发布动态](#发布动态)
+  - [为图片动态上传图片](#为图片动态上传图片)
+  - [发表纯文本动态](#发表纯文本动态)
 
 ---
 
@@ -98,7 +98,28 @@ curl 'https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
 
 extension参数值:
 ```json
-{"emoji_type":1,"lbs_cfg":{"title":"**市","poi":"156330200","show_title":"**市","type":1,"address":"**市","location":{"lng":显示的经度数值,"lat":显示的纬度数值},"distance":0},"flag_cfg":{},"from_cfg":{"location":{"lat":用户实际纬度数值,"lng":用户实际经度数值}}}
+{
+    "emoji_type": 1,
+    "lbs_cfg": {
+        "title": "**市",
+        "poi": "156330200",
+        "show_title": "**市",
+        "type": 1,
+        "address": "**市",
+        "location": {
+            "lng":显示的经度数值,
+            "lat":显示的纬度数值
+        },
+        "distance": 0
+    },
+    "flag_cfg": {},
+    "from_cfg": {
+        "location": {
+            "lat":用户实际纬度数值,
+            "lng":用户实际经度数值
+        }
+    }
+}
 ```
 
 ctrl单个对象(注意用的时候是数组出现):
