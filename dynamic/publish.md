@@ -2,6 +2,7 @@
 
 - [发布动态](#发布动态)
   - [为图片动态上传图片](#为图片动态上传图片)
+  - [创建投票](#创建投票)
   - [发表纯文本动态](#发表纯文本动态)
 
 ---
@@ -71,6 +72,80 @@ curl 'https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
 
 </details>
 
+
+## 创建投票
+
+> https://api.vc.bilibili.com/vote_svr/v1/vote_svr/create_vote
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+注意: options最少两个,下标n从0开始
+
+**正文参数 (multipart/form-data)：**
+
+| 参数名                       | 类型 | 内容                     | 必要性 | 备注                                                     |
+| ---------------------------- | ---- | ------------------------ | ------ | -------------------------------------------------------- |
+| info[title]                  | str  | 投票标题                 | 必要   |                                                          |
+| info[desc]                   | str  | 投票描述                 | 非必要 | 可为空                                                   |
+| info[type]                   | num  | 投票类型                 | 必要   | 0:文字投票 1:图片投票                                    |
+| info[choice_cnt]             | num  | 最多选几项               | 必要   |                                                          |
+| info[duration]               | num  | 投票持续秒数             | 必要   | 常用:<br/>三天:259200<br/>七天:604800<br/>三十天:2592000 |
+| info[options]\[ n ][desc]    | str  | 第n项选项文字内容        | 必要   |                                                          |
+| info[options]\[ n ][img_url] |      |                          |        |                                                          |
+| csrf                         | str  | CSRF Token（位于cookie） | 非必要 | 头次见非必要的csrf                                       |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                             |
+| ------- | ---- | -------- | -------------------------------- |
+| code    | num  | 返回值   | 0：成功 <br />5100001: 参数错误  |
+| msg     | str  | 错误信息 | 成功为空                         |
+| message | str  | 错误信息 | 跟上面那个一模一样               |
+| data    | obj  | 信息本体 | 仅在正确时既`code=0`时为有效信息 |
+
+`data`对象：
+
+| 字段         | 类型 | 内容           | 备注 |
+| ------------ | ---- | -------------- | ---- |
+| vote_id | num | 投票id |      |
+| \_gt\_ | num  | 0 |  |
+
+**示例：**
+
+创建一个标题为`是否自愿开学`持续七天的纯文本投票
+
+```shell
+curl -X POST 'https://api.vc.bilibili.com/vote_svr/v1/vote_svr/create_vote' \
+--data-urlencode 'info[title]=是否自愿开学' \
+--data-urlencode 'info[desc]=问卷调查:自愿开学' \
+--data-urlencode 'info[type]=0' \
+--data-urlencode 'info[choice_cnt]=1' \
+--data-urlencode 'info[duration]=604800' \
+--data-urlencode 'info[options][0][desc]=自愿' \
+--data-urlencode 'info[options][1][desc]=不自愿' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "msg": "",
+    "message": "",
+    "data": {
+        "vote_id": 4947171,
+        "_gt_": 0
+    }
+}
+```
+
+</details>
 
 ## 发表纯文本动态
 
