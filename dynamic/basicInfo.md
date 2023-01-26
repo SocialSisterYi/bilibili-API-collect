@@ -8,10 +8,11 @@
 -->
 
 # 动态基本信息
-- 动态基本信息
+- 单条动态基本信息
   - [动态转发列表](#动态转发列表)
   - [动态评论列表](../comment/list.md)
   - [动态点赞列表](#动态点赞列表)
+- [获取草稿箱(定时发送)列表](#获取草稿列表)
 
 ## 动态转发列表
 
@@ -1556,3 +1557,39 @@ curl -G 'https://api.vc.bilibili.com/dynamic_like/v1/dynamic_like/spec_item_like
     }
 }
 ```
+
+## 获取草稿列表
+
+> https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/get_drafts
+
+请求方式：GET
+
+认证方式：Cookie（SESSDATA）
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注      |
+| ------- | ---- | -------- | --------- |
+| code    | num  | 返回值   | 0：成功   |
+| data    | obj  | 信息本体 |           |
+| message | str  | 错误信息 | 正常为"0" |
+| ttl     | num  | 1        |           |
+
+`data`对象:
+
+| 字段   | 类型  | 内容     | 备注 |
+| ------ | ----- | -------- | ---- |
+| drafts | array | 草稿列表 |      |
+
+`drafts`列表的每一项:
+
+| 字段         | 类型 | 内容                 | 备注                                                         |
+| ------------ | ---- | -------------------- | ------------------------------------------------------------ |
+| draft_id     | str  | 草稿id               |                                                              |
+| publish_time | num  | 定时发送的秒级时间戳 |                                                              |
+| type         | num  | 动态类型             | 请参考[获取特定动态卡片信息](get_dynamic_detail.md)          |
+| uid          | num  | 自己的mid            |                                                              |
+| user_profile | obj  | 自己的用户信息       | 请参考[用户基本信息](../user/info.md)                        |
+| request      | str  | 动态内容             | 该项为json转成str,内容请参考[发表纯文本动态](publish.md#发表纯文本动态) |
