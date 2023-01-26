@@ -341,8 +341,9 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 ```json
 {
-    app_meta: {
-        from: "create.dynamic.web", mobi_app: "web"
+    "app_meta": {
+        "from": "create.dynamic.web", 
+        "mobi_app": "web"
     }
 }
 ```
@@ -357,9 +358,9 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 ```json
 {
-    raw_text: "ui上直接显示的字符串",
-    type: 组件类型id,
-    biz_id: "动态组件的内容id转字符串,比如投票id"
+    "raw_text": "ui上直接显示的字符串",
+    "type": 组件类型id,
+    "biz_id": "动态组件的内容id转字符串,比如投票id"
 }
 ```
 
