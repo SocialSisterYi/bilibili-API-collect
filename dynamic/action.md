@@ -59,7 +59,7 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/rm_dynamic' \
 
 </details>
 
-## 删除定时动态
+## 删除草稿
 
 > https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/rm_draft
 

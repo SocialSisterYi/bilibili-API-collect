@@ -447,7 +447,7 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 | 字段      | 类型  | 内容         | 备注                                                         |
 | --------- | ----- | ------------ | ------------------------------------------------------------ |
-| card_type | num   | 卡片类型     | 不带图片: 4<br/>带图片: 2<br/>其他请参考 get_dynamic_detail.md |
+| card_type | num   | 卡片类型     | 不带图片: 4<br/>带图片: 2<br/>其他请参考 [获取特定动态卡片信息](get_dynamic_detail.md) |
 | modules   | array | 卡片组件列表 |                                                              |
 | extend    | obj   | 其他杂项信息 |                                                              |
 
@@ -469,11 +469,11 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
   `ModuleItem`内`module_author`:
 
-| 字段             | 类型 | 内容                             | 备注                                    |
-| ---------------- | ---- | -------------------------------- | --------------------------------------- |
-| mid              | num  | 发送者mid                        |                                         |
-| ptime_label_text | str  | 发送时间(人类可读形式)肯定是刚刚 |                                         |
-| author           | obj  | 作者详细信息                     | 请参考本文档的`user/info.md`,不再赘述.. |
+| 字段             | 类型 | 内容                             | 备注                                             |
+| ---------------- | ---- | -------------------------------- | ------------------------------------------------ |
+| mid              | num  | 发送者mid                        |                                                  |
+| ptime_label_text | str  | 发送时间(人类可读形式)肯定是刚刚 |                                                  |
+| author           | obj  | 作者详细信息                     | 请参考[用户基本信息](../user/info.md),不再赘述.. |
 
   `ModuleItem`内`module_desc`:
 
@@ -510,10 +510,10 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 `module_dynamic`的`ModuleItem`有唯一key`dyn_draw`:
 
-| 字段  | 类型  | 内容                             | 备注                            |
-| ----- | ----- | -------------------------------- | ------------------------------- |
-| items | array | 图片数组                         | 与请求部分`dyn_req.pics`一致    |
-| id    | num   | 这条图片动态所对应的相簿`doc_id` | 可以参考本文档的`album/info.md` |
+| 字段  | 类型  | 内容                             | 备注                                             |
+| ----- | ----- | -------------------------------- | ------------------------------------------------ |
+| items | array | 图片数组                         | 与请求部分`dyn_req.pics`一致                     |
+| id    | num   | 这条图片动态所对应的相簿`doc_id` | 可以参考本文档的[相簿基本信息](../album/info.md) |
 
 `fake_card`的`extend`对象:
 
