@@ -5,6 +5,7 @@
   - [创建投票](#创建投票)
   - [发表纯文本动态](#发表纯文本动态)
   - [发表复杂动态](#发表复杂动态)
+  - [立即发布定时动态](#立即发布定时动态)
 
 ---
 
@@ -828,3 +829,53 @@ curl -X POST 'https://api.bilibili.com/x/dynamic/feed/create/dyn?csrf=xxxxx' \
 
 
 </details>
+
+## 立即发布定时动态
+
+> https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/publish_now
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数 (application/x-www-form-urlencoded)：**
+
+| 参数名   | 类型 | 内容                     | 必要性 | 备注 |
+| -------- | ---- | ------------------------ | ------ | ---- |
+| draft_id | file | 定时动态(草稿)id         | 必要   |      |
+| csrf     | str  | CSRF Token（位于cookie） | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注         |
+| ------- | ---- | -------- | ------------ |
+| code    | num  | 返回值   | 0：成功      |
+| data    | obj  | 信息本体 | 正常为空对象 |
+| message | str  | 错误消息 | 正常为"0"    |
+| ttl     | num  | 1        | 不明         |
+
+<details>
+<summary>查看示例</summary>
+
+
+```bash
+curl -X POST 'https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/publish_now' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'draft_id=755409289278914611' \
+--data-urlencode 'csrf=xxx'
+-b 'SESSDATA=xxxx;'
+```
+
+```json
+{
+    "code":0,
+    "message":"0",
+    "ttl":1,
+    "data":{}
+}
+```
+
+</details>
+
