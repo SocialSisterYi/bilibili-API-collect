@@ -817,7 +817,7 @@ curl -X POST 'https://api.bilibili.com/x/dynamic/feed/create/dyn?csrf=xxxxx' \
   "message": "0",
   "ttl": 1,
   "data": {
-    "dyn_id": 755402172521250800,
+    "dyn_id": 755402172521250838,
     "dyn_id_str": "755402172521250838",
     "dyn_type": 2,
     "dyn_rid": 221621773
