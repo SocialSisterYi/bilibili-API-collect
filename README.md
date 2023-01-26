@@ -84,7 +84,6 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [大会员中心](vip/center.md)
   - [ ] [大会员签到](vip/clockin.md)
   - [ ] [大会员操作](vip/action.md)
-  
 - [ ] [视频](video)
   - [x] [视频分区一览 (分区代码)](video/video_zone.md)
   - [x] [基本信息](video/info.md)
@@ -171,11 +170,10 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [动态基本信息](dynamic/basicInfo.md)
   - [ ] [发送 & 转载动态](dynamic/publish.md)
   - [ ] [根据关键字搜索用户（at 别人时的填充列表）](dynamic/atlist.md)
-  - [ ] [删除动态](dynamic/delete.md)
+  - [ ] [操作](dynamic/action.md)
   - [ ] 动态列表
     - [x] [特定话题动态列表](/dynamic/tag_dynamics.md)
   - [ ] [动态内容](/dynamic/get_dynamic_detail.md)
-  - [ ] 操作
 - [ ] [相簿](album)
   - [x] [基本信息](album/info.md)
   - [x] [相簿列表](album/list.md)

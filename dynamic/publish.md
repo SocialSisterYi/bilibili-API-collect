@@ -432,7 +432,7 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 | message | str | 错误信息 |  |
 | dyn_id | num | 动态 id |  |
 | dyn_id_str | str | 动态 id | 字符串格式 |
-| dyn_type | num | 动态类型 | 不带图片: 4<br/>带图片: 2<br/>其他待探索 |
+| dyn_type | num | 动态类型 | 不带图片: 4<br/>带图片: 2<br/>其他请参考 get_dynamic_detail.md |
 | \_gt_ | num | 0 |  |
 
 **警告:下面的内容又乱又杂,而且绝大多数情况用不到,我建议大家用这个接口的时候随便带一个buvid3的cookie屏蔽掉它们算了.**
@@ -445,11 +445,11 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 `fake_card`对象:
 
-| 字段      | 类型  | 内容         | 备注                                |
-| --------- | ----- | ------------ | ----------------------------------- |
-| card_type | num   | 卡片类型     | 4:普通动态<br/>具体都有哪些有待测试 |
-| modules   | array | 卡片组件列表 |                                     |
-| extend    | obj   | 其他杂项信息 |                                     |
+| 字段      | 类型  | 内容         | 备注                                                         |
+| --------- | ----- | ------------ | ------------------------------------------------------------ |
+| card_type | num   | 卡片类型     | 不带图片: 4<br/>带图片: 2<br/>其他请参考 get_dynamic_detail.md |
+| modules   | array | 卡片组件列表 |                                                              |
+| extend    | obj   | 其他杂项信息 |                                                              |
 
 `fake_card`对象的`modules`数组中每一项对象:
 
