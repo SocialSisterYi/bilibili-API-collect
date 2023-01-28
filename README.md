@@ -89,7 +89,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [x] [基本信息](video/info.md)
   - [x] [状态数](video/status_number.md)
   - [x] [快照](video/snapshot.md)
-  - [x] [点赞 & 投币 & 收藏](video/like_coin_fav.md)
+  - [x] [点赞 & 投币 & 收藏 & 分享](video/like_coin_fav.md)
   - [ ] [TAG](video/tags.md)
   - [x] [视频推荐](video/recommend.md)
   - [x] [播放&下载地址 (视频流)](video/videostream_url.md)
