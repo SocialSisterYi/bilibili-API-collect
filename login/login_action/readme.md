@@ -19,7 +19,7 @@
 
 ### 申请captcha验证码
 
-> http://passport.bilibili.com/x/passport-login/captcha?source=main_web
+> https://passport.bilibili.com/x/passport-login/captcha?source=main_web
 
 *请求方式：GET*
 

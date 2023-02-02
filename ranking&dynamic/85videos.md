@@ -46,12 +46,12 @@
 
 <span id="85videos">## 获取入站必刷85个视频</span>
 
-> http://api.bilibili.com/x/web-interface/popular/precious
+> https://api.bilibili.com/x/web-interface/popular/precious
 
 **url参数**
 
 | 字段    | 类型  | 内容     | 必要性 ｜ 备注                        |
-| - | - | - | - | - |
+| ------- | ----- | -------- | --------------------------- |
 | page | int | 第几页 | 不必要 | 默认为1 |
 | page_size | int | 每一页的视频数 | 不必要 | 可以设为 85 获取所有的视频 |
 
@@ -83,7 +83,7 @@
 | videos | int | 视频数? | |
 | tid | int | 分区 id | |
 | tname | string | 分区名称 | |
-| copyright | int | 版权 | ｜
+| copyright | int | 版权 | |
 | pic | url | 封面 url | |
 | title | string | 标题 | |
 | pubdate | int | 发布时间 | 时间戳 |
@@ -98,7 +98,7 @@
 | dynamic | string | 动态发布时写的文字 | |
 | cid | int | cid | |
 | dimension | dict | 视频的一些属性 | |
-| season_id | int | 暂不清楚 ｜ |
+| season_id | int | 暂不清楚 | |
 | short_link | string | 短链 | |
 | short_link_v2 | string | 短链 | 第二版 |
 | bvid | string | bvid | |
@@ -111,7 +111,7 @@
 **示例：**
 
 ``` shell
-curl 'http://api.bilibili.com/x/web-interface/popular/precious'
+curl 'https://api.bilibili.com/x/web-interface/popular/precious'
 ```
 <details>
 <summary>查看响应事例:</summary>

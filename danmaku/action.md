@@ -15,7 +15,7 @@
 
 ## 发送视频弹幕
 
-> http://api.bilibili.com/x/v2/dm/post 
+> https://api.bilibili.com/x/v2/dm/post 
 
 *请求方式：POST*
 
@@ -68,7 +68,7 @@
 为视频`av2`/`BV1xx411c7mD`（cid为`62131`）的5000ms位置发送一条弹幕`前来考古`（颜色为#FFFFFF，字号25，普通弹幕，游动弹幕）
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/post' \
+curl 'https://api.bilibili.com/x/v2/dm/post' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=62131' \
 --data-urlencode 'msg=前来考古' \
@@ -104,7 +104,7 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 
 ## 发送互动弹幕
 
-> http://api.bilibili.com/x/v2/dm/command/post
+> https://api.bilibili.com/x/v2/dm/command/post
 
 *请求方式：POST*
 
@@ -211,7 +211,7 @@ curl 'http://api.bilibili.com/x/v2/dm/post' \
 为视频`av201947622`（cid为`230709860`）的5000ms位置发送一条UP主头像弹幕`test`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/command/post' \
+curl 'https://api.bilibili.com/x/v2/dm/command/post' \
 --data-urlencode 'type=1' \
 --data-urlencode 'aid=201947622' \
 --data-urlencode 'cid=230709860' \
@@ -248,7 +248,7 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 为视频`av201947622`（cid为`230709860`）的5000ms位置发送一条发送关联视频弹幕`测试1234`关联视频为`BV1kz4y1X7XP`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/command/post' \
+curl 'https://api.bilibili.com/x/v2/dm/command/post' \
 --data-urlencode 'type=2' \
 --data-urlencode 'aid=201947622' \
 --data-urlencode 'cid=230709860' \
@@ -287,7 +287,7 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 为视频`av201947622`（cid为`230709860`）的5000ms位置发送视频内嵌引导关注按钮，X坐标为118，Y坐标为82，持续时间为5000ms
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/command/post' \
+curl 'https://api.bilibili.com/x/v2/dm/command/post' \
 --data-urlencode 'type=5' \
 --data-urlencode 'aid=201947622' \
 --data-urlencode 'cid=230709860' \
@@ -324,7 +324,7 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 
 ## 撤回弹幕
 
-> http://api.bilibili.com/x/dm/recall
+> https://api.bilibili.com/x/dm/recall
 
 *请求方式：POST*
 
@@ -356,7 +356,7 @@ curl 'http://api.bilibili.com/x/v2/dm/command/post' \
 撤回`cid=168901231`下的弹幕`32310301474947077`的弹幕
 
 ```shell
-curl 'http://api.bilibili.com/x/dm/recall' \
+curl 'https://api.bilibili.com/x/dm/recall' \
 --data-urlencode 'cid=168901231' \
 --data-urlencode 'dmid=32310301474947077' \
 --data-urlencode 'csrf=xxx' \
@@ -377,7 +377,7 @@ curl 'http://api.bilibili.com/x/dm/recall' \
 
 ## 购买高级弹幕发送权限
 
-> http://api.bilibili.com/x/dm/adv/buy
+> https://api.bilibili.com/x/dm/adv/buy
 
 *请求方式：POST*
 
@@ -409,7 +409,7 @@ curl 'http://api.bilibili.com/x/dm/recall' \
 购买视频cid为`168901231`的高级弹幕发送权限
 
 ```shell
-curl 'http://api.bilibili.com/x/dm/adv/buy' \
+curl 'https://api.bilibili.com/x/dm/adv/buy' \
 --data-urlencode 'cid=168901231' \
 --data-urlencode 'mode=sp' \
 --data-urlencode 'csrf=xxx' \
@@ -430,7 +430,7 @@ curl 'http://api.bilibili.com/x/dm/adv/buy' \
 
 ## 检测高级弹幕发送权限
 
-> http://api.bilibili.com/x/dm/adv/state
+> https://api.bilibili.com/x/dm/adv/state
 
 *请求方式：GET*
 
@@ -471,7 +471,7 @@ curl 'http://api.bilibili.com/x/dm/adv/buy' \
 当前状态为已购买且同意
 
 ```shell
-curl -G 'http://api.bilibili.com/x/dm/adv/state' \
+curl -G 'https://api.bilibili.com/x/dm/adv/state' \
 --data-urlencode 'cid=168901231' \
 --data-urlencode 'mode=sp' \
 -b 'SESSDATA=xxx'
@@ -498,7 +498,7 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state' \
 
 ## 查询弹幕点赞数
 
-> http://api.bilibili.com/x/v2/dm/thumbup/stats
+> https://api.bilibili.com/x/v2/dm/thumbup/stats
 
 *请求方式：GET*
 
@@ -542,7 +542,7 @@ curl -G 'http://api.bilibili.com/x/dm/adv/state' \
 查询`cid=236871317`下的弹幕`35600074482384899`、`38880975220375559`、`39052528418553863`点赞数
 
 ```shell
-curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats' \
+curl -G 'https://api.bilibili.com/x/v2/dm/thumbup/stats' \
 --data-urlencode 'oid=236871317' \
 --data-urlencode 'ids=39019145405661191,38880975220375559,39052528418553863' \
 -b 'SESSDATA=xxx'
@@ -580,7 +580,7 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats' \
 
 ## 点赞弹幕
 
-> http://api.bilibili.com/x/v2/dm/thumbup/add
+> https://api.bilibili.com/x/v2/dm/thumbup/add
 
 *请求方式：POST*
 
@@ -601,18 +601,18 @@ curl -G 'http://api.bilibili.com/x/v2/dm/thumbup/stats' \
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />65004：取消赞失败 未点赞过<br />65006：已赞过 |
-| message | str  | 错误信息 | 默认为0                                                      |
-| tll     | num  | 1        |                                                              |
+| 字段      | 类型  | 内容   | 备注                                                                                                                                 |
+|---------|-----|------|------------------------------------------------------------------------------------------------------------------------------------|
+| code    | num | 返回值  | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />36106：该弹幕已被删除<br/>36805：该视频禁止点赞弹幕<br/>65004：取消赞失败 未点赞过<br />65006：已赞过 |
+| message | str | 错误信息 | 默认为0                                                                                                                               |
+| tll     | num | 1    |                                                                                                                                    |
 
 **示例**
 
 为`cid=145928946`下的弹幕`35600074482384899`点赞
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/thumbup/add' \
+curl 'https://api.bilibili.com/x/v2/dm/thumbup/add' \
 --data-urlencode 'dmid=35600074482384899' \
 --data-urlencode 'oid=145928946' \
 --data-urlencode 'op=1' \
@@ -636,7 +636,7 @@ curl 'http://api.bilibili.com/x/v2/dm/thumbup/add' \
 
 ## 举报弹幕
 
-> http://api.bilibili.com/x/dm/report/add
+> https://api.bilibili.com/x/dm/report/add
 
 *请求方式：POST*
 
@@ -685,7 +685,7 @@ curl 'http://api.bilibili.com/x/v2/dm/thumbup/add' \
 举报`cid=145928946`下的弹幕`35600074482384899`，理由是`引战`
 
 ```shell
-curl 'http://api.bilibili.com/x/dm/report/add' \
+curl 'https://api.bilibili.com/x/dm/report/add' \
 --data-urlencode 'cid=145928946' \
 --data-urlencode 'dmid=35600074482384899' \
 --data-urlencode 'reason=7' \
@@ -707,7 +707,7 @@ curl 'http://api.bilibili.com/x/dm/report/add' \
 
 ## 保护&删除弹幕
 
-> http://api.bilibili.com/x/v2/dm/edit/state
+> https://api.bilibili.com/x/v2/dm/edit/state
 
 *请求方式：POST*
 
@@ -741,7 +741,7 @@ curl 'http://api.bilibili.com/x/dm/report/add' \
 删除`cid=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
+curl 'https://api.bilibili.com/x/v2/dm/edit/state' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=145928946' \
 --data-urlencode 'dmids=35600074482384899,39067304918515717,39082777041174531' \
@@ -765,7 +765,7 @@ curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
 
 ## 修改字幕池
 
-> http://api.bilibili.com/x/v2/dm/edit/pool
+> https://api.bilibili.com/x/v2/dm/edit/pool
 
 *请求方式：POST*
 
@@ -799,7 +799,7 @@ curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
 将`cid=145928946`下的弹幕`35600074482384899`、`39067304918515717`、`39082777041174531`移入字幕池
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/dm/edit/state' \
+curl 'https://api.bilibili.com/x/v2/dm/edit/state' \
 --data-urlencode 'type=1' \
 --data-urlencode 'oid=145928946' \
 --data-urlencode 'pool=1' \

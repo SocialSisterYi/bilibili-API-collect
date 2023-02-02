@@ -7,7 +7,7 @@
 
 ## 上报观看进度（双端）
 
-> http://api.bilibili.com/x/v2/history/report
+> https://api.bilibili.com/x/v2/history/report
 
 *请求方式：POST*
 
@@ -41,7 +41,7 @@
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/report' \
+curl 'https://api.bilibili.com/x/v2/history/report' \
 --data-urlencode 'aid=13662970' \
 --data-urlencode 'cid=126654047' \
 --data-urlencode 'progress=1248' \
@@ -53,7 +53,7 @@ curl 'http://api.bilibili.com/x/v2/history/report' \
 APP方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/report' \
+curl 'https://api.bilibili.com/x/v2/history/report' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'aid=13662970' \
 --data-urlencode 'cid=126654047' \
@@ -77,7 +77,7 @@ curl 'http://api.bilibili.com/x/v2/history/report' \
 
 ## 上报视频播放心跳（web端）
 
-> http://api.bilibili.com/x/click-interface/web/heartbeat 
+> https://api.bilibili.com/x/click-interface/web/heartbeat 
 
 *请求方式：POST*
 

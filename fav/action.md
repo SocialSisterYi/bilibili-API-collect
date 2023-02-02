@@ -14,7 +14,7 @@
 
 ### 新建收藏夹
 
-> http://api.bilibili.com/x/v3/fav/folder/add
+> https://api.bilibili.com/x/v3/fav/folder/add
 
 *请求方式：POST*
 
@@ -49,14 +49,14 @@
 
 **示例：**
 
-创建一个叫`test`,简介是`2333`,封面`http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png`,的公开收藏夹:
+创建一个叫`test`,简介是`2333`,封面`https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png`,的公开收藏夹:
 
 ```shell
-curl 'http://api.bilibili.com/x/v3/fav/folder/add' \
+curl 'https://api.bilibili.com/x/v3/fav/folder/add' \
 --data-urlencode 'title=test' \
 --data-urlencode 'intro=2333' \
 --data-urlencode 'privacy=0' \
---data-urlencode 'cover=http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png' \
+--data-urlencode 'cover=https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png' \
 --data-urlencode 'csrf=xxxx' \
 -b 'SESSDATA=xxxx'
 ```
@@ -75,7 +75,7 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/add' \
         "mid": 470310172,
         "attr": 6,
         "title": "test",
-        "cover": "http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
+        "cover": "https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
         "upper": {
             "mid": 0,
             "name": "",
@@ -107,7 +107,7 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/add' \
 
 ### 修改收藏夹
 
-> http://api.bilibili.com/x/v3/fav/folder/edit
+> https://api.bilibili.com/x/v3/fav/folder/edit
 
 *请求方式：POST*
 
@@ -143,15 +143,15 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/add' \
 
 **示例：**
 
-修改id为`1182306172`的名字为`test`,简介为`2333`,封面为`http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png`,公开收藏夹:
+修改id为`1182306172`的名字为`test`,简介为`2333`,封面为`https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png`,公开收藏夹:
 
 ```shell
-curl 'http://api.bilibili.com/x/v3/fav/folder/edit' \
+curl 'https://api.bilibili.com/x/v3/fav/folder/edit' \
 --data-urlencode 'media_id=1182306172' \
 --data-urlencode 'title=test' \
 --data-urlencode 'intro=2333' \
 --data-urlencode 'privacy=0' \
---data-urlencode 'cover=http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png' \
+--data-urlencode 'cover=https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png' \
 --data-urlencode 'csrf=xxxx' \
 -b 'SESSDATA=xxxx'
 ```
@@ -170,7 +170,7 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/edit' \
         "mid": 470310172,
         "attr": 6,
         "title": "test",
-        "cover": "http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
+        "cover": "https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
         "upper": {
             "mid": 0,
             "name": "",
@@ -202,7 +202,7 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/edit' \
 
 ### 删除收藏夹
 
-> http://api.bilibili.com/x/v3/fav/folder/del
+> https://api.bilibili.com/x/v3/fav/folder/del
 
 *请求方式：POST*
 
@@ -231,7 +231,7 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/edit' \
 删除id为`1182306172`的收藏夹:
 
 ```shell
-curl 'http://api.bilibili.com/x/v3/fav/folder/del' \
+curl 'https://api.bilibili.com/x/v3/fav/folder/del' \
 --data-urlencode 'media_ids=1182306172' \
 --data-urlencode 'csrf=xxxx' \
 -b 'SESSDATA=xxxx'
@@ -255,7 +255,7 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/del' \
 
 ### 批量复制内容
 
-> http://api.bilibili.com/x/v3/fav/resource/copy
+> https://api.bilibili.com/x/v3/fav/resource/copy
 
 *请求方式：POST*
 
@@ -288,7 +288,7 @@ curl 'http://api.bilibili.com/x/v3/fav/folder/del' \
 将id为`1288061499`的收藏夹中视频稿件`av21822819` `av21918689` `av22288065`复制到id为`1178751999`的收藏夹中
 
 ```shell
-curl 'http://api.bilibili.com/x/v3/fav/resource/copy' \
+curl 'https://api.bilibili.com/x/v3/fav/resource/copy' \
 --data-urlencode 'src_media_id=1288061499' \
 --data-urlencode 'tar_media_id=1178751999' \
 --data-urlencode 'mid=233333' \
@@ -315,7 +315,7 @@ curl 'http://api.bilibili.com/x/v3/fav/resource/copy' \
 
 ### 批量移动内容
 
-> http://api.bilibili.com/x/v3/fav/resource/move
+> https://api.bilibili.com/x/v3/fav/resource/move
 
 *请求方式：POST*
 
@@ -348,7 +348,7 @@ curl 'http://api.bilibili.com/x/v3/fav/resource/copy' \
 将id为`1288061499`的收藏夹中视频稿件`av21822819` `av21918689` `av22288065`移动到id为`1178751999`的收藏夹中
 
 ```shell
-curl 'http://api.bilibili.com/x/v3/fav/resource/move' \
+curl 'https://api.bilibili.com/x/v3/fav/resource/move' \
 --data-urlencode 'src_media_id=1288061499' \
 --data-urlencode 'tar_media_id=1178751999' \
 --data-urlencode 'mid=233333' \
@@ -375,7 +375,7 @@ curl 'http://api.bilibili.com/x/v3/fav/resource/move' \
 
 ### 批量删除内容
 
-> http://api.bilibili.com/x/v3/fav/resource/batch-del
+> https://api.bilibili.com/x/v3/fav/resource/batch-del
 
 *请求方式：POST*
 
@@ -406,7 +406,7 @@ curl 'http://api.bilibili.com/x/v3/fav/resource/move' \
 将id为`1178751999`的收藏夹中视频稿件`av21822819` `av21918689` `av22288065`取消收藏
 
 ```shell
-curl 'http://api.bilibili.com/x/v3/fav/resource/batch-del' \
+curl 'https://api.bilibili.com/x/v3/fav/resource/batch-del' \
 --data-urlencode 'resources=21822819:2,21918689:2,22288065:2' \
 --data-urlencode 'media_id=1178751999' \
 --data-urlencode 'platform=web' \
@@ -431,7 +431,7 @@ curl 'http://api.bilibili.com/x/v3/fav/resource/batch-del' \
 
 ### 清空所有失效内容
 
-> http://api.bilibili.com/x/v3/fav/resource/clean
+> https://api.bilibili.com/x/v3/fav/resource/clean
 
 *请求方式：POST*
 
@@ -460,7 +460,7 @@ curl 'http://api.bilibili.com/x/v3/fav/resource/batch-del' \
 清理id为`1161340172`的收藏夹
 
 ```shell
-curl 'http://api.bilibili.com/x/v3/fav/resource/clean' \
+curl 'https://api.bilibili.com/x/v3/fav/resource/clean' \
 --data-urlencode 'media_id=1161340172' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'

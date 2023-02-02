@@ -529,21 +529,21 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 根对象：
 
-| 字段      | 类型                    | 内容   | 备注                                                                         |
-|---------|-----------------------|------|----------------------------------------------------------------------------|
-| code    | num                   | 返回值  | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误<br />86038：二维码已失效<br />86039：二维码尚未确认 |
-| message | str                   | 错误信息 | 默认为0                                                                       |
-| ttl     | num                   | 1    |                                                                            |
-| data    | 有效时：obj<br />无效时：null | 信息本体 |                                                                            |
+| 字段      | 类型                    | 内容   | 备注                                                                                                           |
+|---------|-----------------------|------|--------------------------------------------------------------------------------------------------------------|
+| code    | num                   | 返回值  | 0：成功<br />-3：API校验密匙错误<br />-400：请求错误<br/>-404：啥都木有<br />86038：二维码已失效<br />86039：二维码尚未确认<br/>86090：二维码已扫码未确认 |
+| message | str                   | 错误信息 | 默认为0                                                                                                         |
+| ttl     | num                   | 1    |                                                                                                              |
+| data    | 有效时：obj<br />无效时：null | 信息本体 |                                                                                                              |
 
 `data`对象：
 
-| 字段            | 类型  | 内容         | 备注           |
-|---------------|-----|------------|--------------|
-| mid           | num | 登录用户mid    |              |
-| access_token  | str | APP登录Token |              |
-| refresh_token | str | APP刷新Token |              |
-| expires_in    | num | 有效时间       | 单位为秒  一般为30天 |
+| 字段            | 类型  | 内容         | 备注                  |
+|---------------|-----|------------|---------------------|
+| mid           | num | 登录用户mid    |                     |
+| access_token  | str | APP登录Token |                     |
+| refresh_token | str | APP刷新Token |                     |
+| expires_in    | num | 有效时间       | 默认：15552000秒，等于180天 |
 
 **示例：**
 
@@ -555,7 +555,7 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
 --data-urlencode 'auth_code=6214464b3025541abf6f654cf7569a01' \
 --data-urlencode 'local_id=0' \
 --data-urlencode 'ts=0' \
---data-urlencode 'sign=87de3d0fee7c3f4facd244537238914e' \
+--data-urlencode 'sign=87de3d0fee7c3f4facd244537238914e' 
 ```
 
 <details>
@@ -567,10 +567,68 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
   "message": "0",
   "ttl": 1,
   "data": {
-    "mid": 293793435,
-    "access_token": "***",
-    "refresh_token": "***",
-    "expires_in": 2592000
+    "is_new": false,
+    "mid": 10086,
+    "access_token": "********************************",
+    "refresh_token": "********************************",
+    "expires_in": 15552000,
+    "token_info": {
+      "mid": 10086,
+      "access_token": "********************************",
+      "refresh_token": "********************************",
+      "expires_in": 15552000
+    },
+    "cookie_info": {
+      "cookies": [
+        {
+          "name": "SESSDATA",
+          "value": "********************************",
+          "http_only": 1,
+          "expires": 1679988973,
+          "secure": 0
+        },
+        {
+          "name": "bili_jct",
+          "value": "********************************",
+          "http_only": 0,
+          "expires": 1679988973,
+          "secure": 0
+        },
+        {
+          "name": "DedeUserID",
+          "value": "*******",
+          "http_only": 0,
+          "expires": 1679988973,
+          "secure": 0
+        },
+        {
+          "name": "DedeUserID__ckMd5",
+          "value": "****************",
+          "http_only": 0,
+          "expires": 1679988973,
+          "secure": 0
+        },
+        {
+          "name": "sid",
+          "value": "********",
+          "http_only": 0,
+          "expires": 1679988973,
+          "secure": 0
+        }
+      ],
+      "domains": [
+        ".bilibili.com",
+        ".biligame.com",
+        ".bigfun.cn",
+        ".bigfunapp.cn",
+        ".dreamcast.hk"
+      ]
+    },
+    "sso": [
+      "https://passport.bilibili.com/api/v2/sso",
+      "https://passport.biligame.com/api/v2/sso",
+      "https://passport.bigfunapp.cn/api/v2/sso"
+    ]
   }
 }
 ```

@@ -8,7 +8,7 @@
 
 ## 拉取基础题
 
-> http://api.bilibili.com/x/answer/v4/base
+> https://api.bilibili.com/x/answer/v4/base
 
 *请求方式：GET*
 
@@ -67,7 +67,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/base' \
+curl -G 'https://api.bilibili.com/x/answer/v4/base' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -112,7 +112,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/base' \
 
 ## 拉取附加题
 
-> http://api.bilibili.com/x/answer/v4/extra
+> https://api.bilibili.com/x/answer/v4/extra
 
 *请求方式：GET*
 
@@ -136,7 +136,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/base' \
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/extra' \
+curl -G 'https://api.bilibili.com/x/answer/v4/extra' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -181,7 +181,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/extra' \
 
 ## 拉取自选题
 
-> http://api.bilibili.com/x/answer/v4/pro 
+> https://api.bilibili.com/x/answer/v4/pro 
 
 *请求方式：GET*
 
@@ -205,7 +205,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/extra' \
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/pro' \
+curl -G 'https://api.bilibili.com/x/answer/v4/pro' \
 -b 'SESSDATA=xxx'
 ```
 

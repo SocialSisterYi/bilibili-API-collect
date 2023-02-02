@@ -6,7 +6,7 @@
 
 ## 获取专栏文章基本信息
 
-> http://api.bilibili.com/x/article/viewinfo
+> https://api.bilibili.com/x/article/viewinfo
 
 *请求方式：GET*
 
@@ -51,7 +51,9 @@
 | in_list           | bool   | 是否收于文集     | false：否<br />true：是                                      |
 | pre               | num    | 上一篇文章cvid   | 无为0                                                        |
 | next              | num    | 下一篇文章cvid   | 无为0                                                        |
-| share_channels    | array | 分享方式列表     |                                                              |
+| share_channels    | array | 分享方式列表     |                                                               |
+| type              | num    | 文章类别   | 0：文章<br />2：笔记                                                |
+
 
 `stats`对象：
 
@@ -101,7 +103,7 @@
 查询文章`cv2`的基本信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/article/viewinfo' \
+curl -G 'https://api.bilibili.com/x/article/viewinfo' \
 --data-urlencode 'id=2' \
 -b 'SESSDATA=xxx'
 ```
@@ -111,59 +113,73 @@ curl -G 'http://api.bilibili.com/x/article/viewinfo' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"like": 1,
-		"attention": true,
-		"favorite": false,
-		"coin": 0,
-		"stats": {
-			"view": 317712,
-			"favorite": 3249,
-			"like": 10176,
-			"dislike": 0,
-			"reply": 1333,
-			"share": 302,
-			"coin": 2002,
-			"dynamic": 28
-		},
-		"title": "专栏行为准则  ",
-		"banner_url": "https://i0.hdslb.com/bfs/article/131b1d41b857d5308f5bff36591d117bddc48d96.jpg@90p.webp",
-		"mid": 144900660,
-		"author_name": "专栏小天使",
-		"is_author": true,
-		"image_urls": ["https://i0.hdslb.com/bfs/article/0a72422ce8e77d8512f010d93b1b7f9bc4e64e52.jpg"],
-		"origin_image_urls": ["https://i0.hdslb.com/bfs/article/131b1d41b857d5308f5bff36591d117bddc48d96.jpg"],
-		"shareable": true,
-		"show_later_watch": true,
-		"show_small_window": true,
-		"in_list": false,
-		"pre": 115914,
-		"next": 38575,
-		"share_channels": [{
-			"name": "QQ",
-			"picture": "https://i0.hdslb.com/bfs/album/114ccfb3a999df9c4d11f274c8c61a804c8f8803.png",
-			"share_channel": "QQ"
-		}, {
-			"name": "QQ空间",
-			"picture": "https://i0.hdslb.com/bfs/album/30e9608bbce725bca45b5910866f60ab4d5e18b3.png",
-			"share_channel": "QZONE"
-		}, {
-			"name": "微信",
-			"picture": "https://i0.hdslb.com/bfs/album/658af3c22431cd78bb7c50be3394f7c032eba12c.png",
-			"share_channel": "WEIXIN"
-		}, {
-			"name": "朋友圈",
-			"picture": "https://i0.hdslb.com/bfs/album/c1ebcec8c5302f29f792d15f04e0d6dcef53ec27.png",
-			"share_channel": "WEIXIN_MONMENT"
-		}, {
-			"name": "微博",
-			"picture": "https://i0.hdslb.com/bfs/album/3707fc23f7d3e24022712320284b0de9aa78c87d.png",
-			"share_channel": "SINA"
-		}]
-	}
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "like": 0,
+        "attention": false,
+        "favorite": false,
+        "coin": 0,
+        "stats": {
+            "view": 1072619,
+            "favorite": 5481,
+            "like": 16465,
+            "dislike": 0,
+            "reply": 1865,
+            "share": 351,
+            "coin": 3436,
+            "dynamic": 37
+        },
+        "title": "专栏行为准则  ",
+        "banner_url": "https://i0.hdslb.com/bfs/article/131b1d41b857d5308f5bff36591d117bddc48d96.jpg@90p.webp",
+        "mid": 144900660,
+        "author_name": "专栏小天使",
+        "is_author": true,
+        "image_urls": [
+            "https://i0.hdslb.com/bfs/article/0a72422ce8e77d8512f010d93b1b7f9bc4e64e52.jpg"
+        ],
+        "origin_image_urls": [
+            "https://i0.hdslb.com/bfs/article/131b1d41b857d5308f5bff36591d117bddc48d96.jpg"
+        ],
+        "shareable": true,
+        "show_later_watch": true,
+        "show_small_window": true,
+        "in_list": false,
+        "pre": 115914,
+        "next": 38575,
+        "share_channels": [
+            {
+                "name": "QQ",
+                "picture": "https://i0.hdslb.com/bfs/album/114ccfb3a999df9c4d11f274c8c61a804c8f8803.png",
+                "share_channel": "QQ"
+            },
+            {
+                "name": "QQ空间",
+                "picture": "https://i0.hdslb.com/bfs/album/30e9608bbce725bca45b5910866f60ab4d5e18b3.png",
+                "share_channel": "QZONE"
+            },
+            {
+                "name": "微信",
+                "picture": "https://i0.hdslb.com/bfs/album/658af3c22431cd78bb7c50be3394f7c032eba12c.png",
+                "share_channel": "WEIXIN"
+            },
+            {
+                "name": "朋友圈",
+                "picture": "https://i0.hdslb.com/bfs/album/c1ebcec8c5302f29f792d15f04e0d6dcef53ec27.png",
+                "share_channel": "WEIXIN_MONMENT"
+            },
+            {
+                "name": "微博",
+                "picture": "https://i0.hdslb.com/bfs/album/3707fc23f7d3e24022712320284b0de9aa78c87d.png",
+                "share_channel": "SINA"
+            }
+        ],
+        "type": 0,
+        "video_url": "",
+        "location": "",
+        "disable_share": false
+    }
 }
 ```
 

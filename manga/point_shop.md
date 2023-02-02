@@ -12,7 +12,7 @@
 
 ## 获取当前持有点数
 
-> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint
+> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint
 
 *请求方式：POST*
 
@@ -37,7 +37,7 @@
 **示例：**
 
 ```bash
-curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint' \
+curl 'https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -59,7 +59,7 @@ curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint' \
 
 ## 获取兑换奖品列表
 
-> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct
+> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct
 
 *请求方式：POST*
 
@@ -110,7 +110,7 @@ curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetUserPoint' \
 **示例：**
 
 ```bash
-curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct'
+curl 'https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct'
 ```
 
 <details>
@@ -252,7 +252,7 @@ curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct'
 
 ## 兑换物品
 
-> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange
+> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange
 
 *请求方式：POST*
 
@@ -278,7 +278,7 @@ curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/ListProduct'
 **示例：**
 
 ```bash
-curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange' \
+curl 'https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange' \
 --data-urlencode 'product_id=195' \
 --data-urlencode 'product_num=1' \
 --data-urlencode 'point=real_cost' \
@@ -299,7 +299,7 @@ curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange' \
 
 ## 获取兑换历史记录
 
-> http://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList
+> https://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList
 
 *请求方式：POST*
 
@@ -343,7 +343,7 @@ curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/Exchange' \
 **示例：**
 
 ```bash
-curl 'http://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList' \
+curl 'https://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList' \
 --data-urlencode 'act_id=90018' \
 -b 'SESSDATA=xxx'
 ```
@@ -408,7 +408,7 @@ curl 'http://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList' \
 
 ## 获取玩法说明
 
-> http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetExchangeRule
+> https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetExchangeRule
 
 *请求方式：POST*
 
@@ -431,7 +431,7 @@ curl 'http://manga.bilibili.com/twirp/activity.v1.Activity/GetPrizeList' \
 **示例：**
 
 ```bash
-curl 'http://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetExchangeRule'
+curl 'https://manga.bilibili.com/twirp/pointshop.v1.Pointshop/GetExchangeRule'
 ```
 
 <details>

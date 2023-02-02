@@ -19,19 +19,17 @@
 <h3 align="center">野生API文档</h3>  
 <h3 align="center">不断更新中....</h3>  
 
-本项目旨在对 B 站 web、APP、TV 等客户端中，散落在世界各地的野生 API 进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、js 逆向分析法、apk 拆包及反编译法、网络抓包法等研究办法
+本项目旨在对 B站 WEB、APP、TV 等客户端中，散落在世界各地的野生 API 进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、代码逆向分析、拆包及反编译法、网络抓包法等研究办法
 
-所有 rest api 均为标准 http 协议，请求数据大多为 url query 表单，返回数据大多为 json 或 protobuf
+本文档探讨的对象是主站业务接口，[官方开放平台](https://openhome.bilibili.com/doc) 和 [直播开放平台](https://open-live.bilibili.com/document/) 均不属于本项目范畴，请移步
 
-PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除过仅可https协议调用接口)，为了数据安全建议调用接口时使用 https
+B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接口为 WebSocket；REST API 接口请求数据大多为 url query 表单或 JSON，返回数据大多为 JSON 或 Protobuf，强制使用 https 协议
 
 小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/) ([Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk))
 
 联动项目：[Hsury/Bilibili-Toolkit](https://github.com/Hsury/Bilibili-Toolkit)
 
----
-
-**声明**：
+## ⚠️声明
 
 1. 本项目遵守 CC-BY-NC 4.0 协议，禁止一切商业使用，如需转载请注明作者 ID
 2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
@@ -39,9 +37,21 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除
 4. 由于本项目的特殊性，可能随时停止开发或删档
 5. 本项目为开源项目，不接受任何形式的催单和索取行为，更不容许存在付费内容
 
----
+## 🌱参与贡献
 
-计划整理分类 & 目录：(文档已完结请选中 checkbox) 二级目录正在建设中.....
+欢迎各位 dalao 对本项目做出贡献，也希望每个使用者都能提出宝贵的意见
+
+目前本项目存在的问题包括但不限于：
+
+1. 文档二级目录尚未完成
+2. 文档需要使用 Vue Press 构建 html 版本发布
+3. 部分文档较旧，修改与更新没有跟进
+
+更多信息请浏览 [贡献指南](CONTRIBUTING.md)
+
+## 🍴目录
+
+计划整理分类 & 目录：(文档已完结请选中 checkbox) 
 
 - [x] [API 签名](other/API_sign.md)
 - [x] [公共错误码](other/errcode.md)
@@ -74,13 +84,12 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除
   - [ ] [大会员中心](vip/center.md)
   - [ ] [大会员签到](vip/clockin.md)
   - [ ] [大会员操作](vip/action.md)
-  
 - [ ] [视频](video)
   - [x] [视频分区一览 (分区代码)](video/video_zone.md)
   - [x] [基本信息](video/info.md)
   - [x] [状态数](video/status_number.md)
   - [x] [快照](video/snapshot.md)
-  - [x] [点赞 & 投币 & 收藏](video/like_coin_fav.md)
+  - [x] [点赞 & 投币 & 收藏 & 分享](video/like_coin_fav.md)
   - [ ] [TAG](video/tags.md)
   - [x] [视频推荐](video/recommend.md)
   - [x] [播放&下载地址 (视频流)](video/videostream_url.md)
@@ -161,11 +170,10 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除
   - [ ] [动态基本信息](dynamic/basicInfo.md)
   - [ ] [发送 & 转载动态](dynamic/publish.md)
   - [ ] [根据关键字搜索用户（at 别人时的填充列表）](dynamic/atlist.md)
-  - [ ] [删除动态](dynamic/delete.md)
+  - [ ] [操作](dynamic/action.md)
   - [ ] 动态列表
     - [x] [特定话题动态列表](/dynamic/tag_dynamics.md)
   - [ ] [动态内容](/dynamic/get_dynamic_detail.md)
-  - [ ] 操作
 - [ ] [相簿](album)
   - [x] [基本信息](album/info.md)
   - [x] [相簿列表](album/list.md)
@@ -193,6 +201,7 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除
   - [ ] 直播间操作
   - [ ] [直播视频流](live/live_stream.md)
   - [ ] [直播信息流](live/message_stream.md)
+  - [ ] [直播红包](live/redpocket.md)
 - [ ] [转正答题](newbie_exam)
   - [x] [查询信息](newbie_exam/info.md)
   - [x] [拉取题目](newbie_exam/fetch.md)
@@ -224,13 +233,13 @@ PS：所有 rest api 均可使用 https，文档中为了统一写作`http` (除
   - [x] [APP 主题](garb/skin.md)
   - [x] [主题色](garb/color.md)
 
-# 鸣谢
+## ✨鸣谢
 
 你们的存在，让社区更美好
 
 [![contributors](https://opencollective.com/bilibili-api-collect/contributors.svg?width=860&button=false)](https://github.com/SocialSisterYi/bilibili-API-collect/graphs/contributors)
 
-# 相关协议基础
+## 📖相关协议基础
 
 http 协议：[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
 
@@ -240,21 +249,16 @@ xml 序列格式：[传送门](https://www.w3school.com.cn/xml/xml_intro.asp)
 
 protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
-# 交流
+## 💦交流
 
 <img src="imgs/up_face.jpg" width="100" height="100">
 
-⚠注意：开源社群欢迎交流探讨，**拒绝**咨询，**黑产号**一经发现立即拉黑并举报相关 SRC
+⚠注意：开源社群欢迎交流探讨，**拒绝**咨询、**不支持**合作，**黑产号**一经发现立即拉黑并举报相关 SRC
 
-QQ 粉丝交流群：[1136462265](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
+- QQ 交流群：[邀请链接](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
+- Telegram 交流群：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
 
-Telegram 讨论组：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
-
-B 站空间：<https://space.bilibili.com/293793435>
-
-个人博客：<https://shakaianee.top>
-
-# 发电
+## 🧋发电
 
 欢迎来~~交♂易~~，大家的支持就是我继续开发的动力！
 
@@ -266,9 +270,9 @@ WeChat & Alipay：
 
 OR Aifadian：https://afdian.net/@ShakaiAneE
 
-# 相关项目推荐
+## 🔗相关项目推荐
 
-## 库及文档
+### 库及文档
 
 - [jingyuexing/bilibiliAPI](https://github.com/jingyuexing/bilibiliAPI)
 - [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
@@ -284,9 +288,9 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [ddiu8081/blive-message-listener](https://github.com/ddiu8081/blive-message-listener): Bilibili-live danmu listener with type. Bilibili 直播间弹幕监听库，支持类型输出。
 - [Nemo2011/bilibili-api](https://github.com/Nemo2011/bilibili-api): 哔哩哔哩常用API调用。支持视频、番剧、用户、频道、音频等功能。工具齐全。
 
-## 成品
+### 成品
 
-- [Infinity1309/NewpipeEnhanced](https://github.com/InfinityLoop1309/NewPipeEnhanced): 功能完善的Android流媒体综合客户端，支持Bilibili, Youtube, NicoNico
+- [NullPointerException/AnimePipe](https://codeberg.org/NullPointerException/AnimePipe): 功能完善的Android流媒体综合客户端，支持Bilibili, Youtube, NicoNico
 - [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
 - [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):本地弹幕播放器
 - [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制
@@ -311,7 +315,7 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [SocialSisterYi/bcut-asr](https://github.com/SocialSisterYi/bcut-asr): 使用必剪API的语音字幕识别
 - [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
 
-## 其他
+### 其他
 
 - [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
 

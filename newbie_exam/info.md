@@ -8,7 +8,7 @@
 
 ## 查询答题状态
 
-> http://api.bilibili.com/x/answer/v4/status
+> https://api.bilibili.com/x/answer/v4/status
 
 *请求方式：GET*
 
@@ -48,7 +48,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/status' \
+curl -G 'https://api.bilibili.com/x/answer/v4/status' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -85,7 +85,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/status' \
 
 ## 查询自选题分类
 
-> http://api.bilibili.com/x/answer/v4/pro/type
+> https://api.bilibili.com/x/answer/v4/pro/type
 
 *请求方式：GET*
 
@@ -136,7 +136,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/status' \
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/pro/type' \
+curl -G 'https://api.bilibili.com/x/answer/v4/pro/type' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -403,7 +403,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro/type' \
 
 ## 查询答题结果
 
-> http://api.bilibili.com/x/answer/v4/result 
+> https://api.bilibili.com/x/answer/v4/result 
 
 *请求方式：GET*
 
@@ -455,7 +455,7 @@ curl -G 'http://api.bilibili.com/x/answer/v4/pro/type' \
 **示例：**
 
 ```shell
-curl -G 'http://api.bilibili.com/x/answer/v4/result' \
+curl -G 'https://api.bilibili.com/x/answer/v4/result' \
 --data-urlencode 'hid=1615088061307609' \
 -b 'SESSDATA=xxx'
 ```

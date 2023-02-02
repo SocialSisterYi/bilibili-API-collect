@@ -10,7 +10,7 @@
 
 ## 查询自己创建的歌单
 
-> http://www.bilibili.com/audio/music-service-c/web/collections/list
+> https://www.bilibili.com/audio/music-service-c/web/collections/list
 
 *请求方式：GET*
 
@@ -92,7 +92,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/collections/list' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
@@ -178,7 +178,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
 
 ## 查询音频收藏夹（默认歌单）信息
 
-> http://www.bilibili.com/audio/music-service-c/web/collections/info
+> https://www.bilibili.com/audio/music-service-c/web/collections/info
 
 *请求方式：GET*
 
@@ -243,7 +243,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/list' \
 查询我的默认歌单，id为` 15967839 `
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/info' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/collections/info' \
 --data-urlencode 'sid=15967839 ' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
@@ -298,7 +298,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/info' \
 
 ## 查询热门歌单
 
-> http://www.bilibili.com/audio/music-service-c/web/menu/hit
+> https://www.bilibili.com/audio/music-service-c/web/menu/hit
 
 *请求方式：GET*
 
@@ -367,7 +367,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/collections/info' \
 **示例：**
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/menu/hit' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/menu/hit' \
 
 --data-urlencode 'ps=1' \
 
@@ -463,7 +463,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/menu/hit' \
 
 ## 查询热门榜单
 
-> http://www.bilibili.com/audio/music-service-c/web/menu/rank
+> https://www.bilibili.com/audio/music-service-c/web/menu/rank
 
 *请求方式：GET*
 
@@ -551,7 +551,7 @@ curl -G 'http://www.bilibili.com/audio/music-service-c/web/menu/hit' \
 **示例：**
 
 ```shell
-curl -G 'http://www.bilibili.com/audio/music-service-c/web/menu/rank' \
+curl -G 'https://www.bilibili.com/audio/music-service-c/web/menu/rank' \
 
 --data-urlencode 'ps=1' \
 

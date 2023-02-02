@@ -8,7 +8,7 @@
 
 ## 获取课程视频流URL（web端）
 
-> http://api.bilibili.com/pugv/player/web/playurl
+> https://api.bilibili.com/pugv/player/web/playurl
 
 *请求方式：GET*
 
@@ -123,7 +123,7 @@
 获取课程`ep790`（cid=`132105993`，avid=`76973173`）的视频流url，清晰度为1080P60
 
 ```shell
-curl -G 'http://api.bilibili.com/pugv/player/web/playurl' \
+curl -G 'https://api.bilibili.com/pugv/player/web/playurl' \
 --data-urlencode 'ep_id=790' \
 --data-urlencode 'avid=76973173' \
 --data-urlencode 'cid=132105993' \

@@ -6,7 +6,7 @@
 
 ## 未读消息数
 
-> http://api.bilibili.com/x/msgfeed/unread
+> https://api.bilibili.com/x/msgfeed/unread
 
 *请求方式：GET*
 
@@ -39,7 +39,7 @@ data 对象：
 以下信息代表了未读点赞数为10，未读回复数为4，未读at消息数为3，未读系统通知数为2，UP主助手信息数为1
 
 ```shell
-curl 'http://api.bilibili.com/x/msgfeed/unread' \
+curl 'https://api.bilibili.com/x/msgfeed/unread' \
 -b 'SESSDATA=xxx'
 ```
 
