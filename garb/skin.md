@@ -7,7 +7,7 @@
 
 ## 获取主题及加载动画
 
-> http://app.bilibili.com/x/resource/show/skin
+> https://app.bilibili.com/x/resource/show/skin
 
 *请求方式：GET*
 
@@ -110,7 +110,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://app.bilibili.com/x/resource/show/skin' \
+curl -G 'https://app.bilibili.com/x/resource/show/skin' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'appkey=1d8b6e7d45233436' \
 --data-urlencode 'build=6082000' \
@@ -239,7 +239,7 @@ curl -G 'http://app.bilibili.com/x/resource/show/skin' \
 以`id=2529（初音未来-日版）`的资源为例
 
 ```shell
-wget http://i0.hdslb.com/bfs/garb/zip/9c393edea0c7b7b59685a20cd655363ef573a325.zip
+wget https://i0.hdslb.com/bfs/garb/zip/9c393edea0c7b7b59685a20cd655363ef573a325.zip
 unzip -l 9c393edea0c7b7b59685a20cd655363ef573a325.zip
 ```
 

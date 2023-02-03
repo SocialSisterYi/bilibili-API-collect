@@ -6,7 +6,7 @@
 
 ## 获取单视频推荐列表（web端）
 
-> http://api.bilibili.com/x/web-interface/archive/related
+> https://api.bilibili.com/x/web-interface/archive/related
 
 *请求方式：GET* 
 
@@ -50,14 +50,14 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'aid=7'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'bvid=BV1xx411c7m9'
 ```
 

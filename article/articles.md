@@ -6,7 +6,7 @@
 
 ## 获取文集基本信息
 
-> http://api.bilibili.com/x/article/list/web/articles
+> https://api.bilibili.com/x/article/list/web/articles
 
 *请求方式：GET*
 
@@ -111,7 +111,7 @@
 查询文集`rl207146`的基本信息
 
 ```shell
-curl -G 'http://api.bilibili.com/x/article/list/web/articles' \
+curl -G 'https://api.bilibili.com/x/article/list/web/articles' \
 --data-urlencode 'id=207146' \
 -b 'SESSDATA=xxx'
 ```

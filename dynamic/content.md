@@ -7,7 +7,7 @@
 
 ## 获取正在直播的已关注者
 
-> http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users
+> https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users
 
 *请求方式：GET*
 
@@ -60,7 +60,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users' \
+curl -G 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users' \
 --data-urlencode 'size=10' \
 -b 'SESSDATA=xxx'
 ```
@@ -115,7 +115,7 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users' \
 
 ## 获取发布新动态的已关注者
 
-> http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist
+> https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist
 
 *请求方式：GET*
 
@@ -157,7 +157,7 @@ curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users' \
 **示例：**
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist' \
+curl -G 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_dyn_uplist' \
 -b 'SESSDATA=xxx'
 ```
 

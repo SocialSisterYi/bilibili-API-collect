@@ -9,7 +9,7 @@
 
 ## 查询稿件私有笔记
 
-> http://api.bilibili.com/x/note/list/archive
+> https://api.bilibili.com/x/note/list/archive
 
 *请求方式：GET*
 
@@ -53,7 +53,7 @@
 查询视频`av970322090`的笔记id
 
 ```shell
-curl 'http://api.bilibili.com/x/note/list/archive' \
+curl 'https://api.bilibili.com/x/note/list/archive' \
 --data-urlencode 'oid=970322090' \
 --data-urlencode 'oid_type=0' \
 -b 'SESSDATA=xxx'
@@ -79,7 +79,7 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 
 ## 查询用户私有笔记
 
-> http://api.bilibili.com/x/note/list
+> https://api.bilibili.com/x/note/list
 
 *请求方式：GET*
 
@@ -159,7 +159,7 @@ curl 'http://api.bilibili.com/x/note/list/archive' \
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/note/list' \
+curl 'https://api.bilibili.com/x/note/list' \
 --data-urlencode 'ps=10' \
 --data-urlencode 'pn=1'
 -b 'SESSDATA=xxx'
@@ -211,7 +211,7 @@ curl 'http://api.bilibili.com/x/note/list' \
 
 ## 查询稿件公开笔记
 
-> http://api.bilibili.com/x/note/publish/list/archive
+> https://api.bilibili.com/x/note/publish/list/archive
 
 *请求方式：GET*
 
@@ -282,7 +282,7 @@ curl 'http://api.bilibili.com/x/note/list' \
 查询视频`av338677252`的公开笔记列表
 
 ```shell
-curl 'http://api.bilibili.com/x/note/publish/list/archive' \
+curl 'https://api.bilibili.com/x/note/publish/list/archive' \
 --data-urlencode 'oid=338677252' \
 --data-urlencode 'oid_type=0' \
 --data-urlencode 'ps=10' \
@@ -581,7 +581,7 @@ curl 'http://api.bilibili.com/x/note/publish/list/archive' \
 
 ## 查询用户公开笔记
 
-> http://api.bilibili.com/x/note/publish/list/user
+> https://api.bilibili.com/x/note/publish/list/user
 
 *请求方式：GET*
 
@@ -632,7 +632,7 @@ curl 'http://api.bilibili.com/x/note/publish/list/archive' \
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/note/publish/list/user' \
+curl 'https://api.bilibili.com/x/note/publish/list/user' \
 --data-urlencode 'ps=10' \
 --data-urlencode 'pn=1'
 -b 'SESSDATA=xxx'

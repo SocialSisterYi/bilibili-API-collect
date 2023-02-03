@@ -12,7 +12,7 @@
 
 ## 视频添加稍后再看
 
->http://api.bilibili.com/x/v2/history/toview/add
+>https://api.bilibili.com/x/v2/history/toview/add
 
 *请求方式：POST*
 
@@ -45,7 +45,7 @@
 avid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/add' \
+curl 'https://api.bilibili.com/x/v2/history/toview/add' \
 --data-urlencode 'aid=41687433' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -54,7 +54,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add' \
 bvid方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/add' \
+curl 'https://api.bilibili.com/x/v2/history/toview/add' \
 --data-urlencode 'bvid=BV1ht41147kj' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -75,7 +75,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add' \
 
 ## 添加频道中所有视频到稍后再看
 
-> http://space.bilibili.com/ajax/channel/addAllToView
+> https://space.bilibili.com/ajax/channel/addAllToView
 
 *请求方式：POST*
 
@@ -109,7 +109,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/add' \
 添加用户`mid=282994`下的频道`4693`中所有视频到稍后再看
 
 ```shell
-curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
+curl 'https://space.bilibili.com/ajax/channel/addAllToView' \
 --data-urlencode 'cid=4693' \
 --data-urlencode 'mid=282994' \
 --data-urlencode 'csrf=xxx' \
@@ -131,7 +131,7 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
 
 ## 获取稍后再看视频列表
 
-> http://api.bilibili.com/x/v2/history/toview
+> https://api.bilibili.com/x/v2/history/toview
 
 *请求方式：GET*
 
@@ -197,7 +197,7 @@ curl 'http://space.bilibili.com/ajax/channel/addAllToView' \
 获取稍后再看视频列表
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview' \
+curl 'https://api.bilibili.com/x/v2/history/toview' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -352,7 +352,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview' \
 
 ## 删除稍后再看视频
 
-> http://api.bilibili.com/x/v2/history/toview/del
+> https://api.bilibili.com/x/v2/history/toview/del
 
 *请求方式：POST*
 
@@ -381,7 +381,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview' \
 删除视频`av540580868`的稍后再看记录
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/del' \
+curl 'https://api.bilibili.com/x/v2/history/toview/del' \
 --data-urlencode 'aid=540580868' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -403,7 +403,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del' \
 删除所有已观看的视频
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/del' \
+curl 'https://api.bilibili.com/x/v2/history/toview/del' \
 --data-urlencode 'viewed=true' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
@@ -424,7 +424,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del' \
 
 ## 清空稍后再看视频列表
 
-> http://api.bilibili.com/x/v2/history/toview/clear
+> https://api.bilibili.com/x/v2/history/toview/clear
 
 *请求方式：POST*
 
@@ -451,7 +451,7 @@ curl 'http://api.bilibili.com/x/v2/history/toview/del' \
 清空稍后再看视频列表
 
 ```shell
-curl 'http://api.bilibili.com/x/v2/history/toview/clear' \
+curl 'https://api.bilibili.com/x/v2/history/toview/clear' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx'
 ```

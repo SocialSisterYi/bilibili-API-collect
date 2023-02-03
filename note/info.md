@@ -8,7 +8,7 @@
 
 ## 查询该稿件是否禁止笔记
 
-> http://api.bilibili.com/x/note/is_forbid
+> https://api.bilibili.com/x/note/is_forbid
 
 *请求方式：GET*
 
@@ -40,7 +40,7 @@
 查询视频稿件`av338677252`是否禁止笔记
 
 ```shell
-curl 'http://api.bilibili.com/x/note/info' \
+curl 'https://api.bilibili.com/x/note/info' \
 --data-urlencode 'aid=338677252'
 ```
 
@@ -62,7 +62,7 @@ curl 'http://api.bilibili.com/x/note/info' \
 
 ## 查询私有笔记内容
 
-> http://api.bilibili.com/x/note/info
+> https://api.bilibili.com/x/note/info
 
 *请求方式：GET*
 
@@ -137,7 +137,7 @@ curl 'http://api.bilibili.com/x/note/info' \
 查询视频`av338677252`中笔记`24508729145690112`的内容
 
 ```shell
-curl 'http://api.bilibili.com/x/note/info' \
+curl 'https://api.bilibili.com/x/note/info' \
 --data-urlencode 'oid=338677252' \
 --data-urlencode 'oid_type=0' \
 --data-urlencode 'note_id=24508729145690112' \
@@ -179,7 +179,7 @@ curl 'http://api.bilibili.com/x/note/info' \
 
 ## 查询公开笔记内容
 
-> http://api.bilibili.com/x/note/publish/info
+> https://api.bilibili.com/x/note/publish/info
 
 *请求方式：GET*
 
@@ -243,7 +243,7 @@ curl 'http://api.bilibili.com/x/note/info' \
 查看公开笔记`cv15160286`的信息
 
 ```shell
-curl 'http://api.bilibili.com/x/note/publish/info' \
+curl 'https://api.bilibili.com/x/note/publish/info' \
 --data-urlencode 'cvid=15160286'
 ```
 

@@ -10,9 +10,9 @@
 
 ## 导航栏用户信息
 
-> http://api.bilibili.com/nav（带有转义）
+> https://api.bilibili.com/nav（带有转义）
 >
-> http://api.bilibili.com/x/web-interface/nav（原始数据）
+> https://api.bilibili.com/x/web-interface/nav（原始数据）
 
 *请求方式：GET*
 
@@ -114,7 +114,7 @@
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/nav' \
+curl 'https://api.bilibili.com/nav' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -192,7 +192,7 @@ curl 'http://api.bilibili.com/nav' \
 <details>
 <summary>查看折叠内容</summary>
 
-> http://account.bilibili.com/home/userInfo
+> https://account.bilibili.com/home/userInfo
 
 *请求方式：GET*
 
@@ -242,7 +242,7 @@ curl 'http://api.bilibili.com/nav' \
 **示例：**
 
 ```shell
-curl 'http://account.bilibili.com/home/userInfo' \
+curl 'https://account.bilibili.com/home/userInfo' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 
@@ -281,7 +281,7 @@ curl 'http://account.bilibili.com/home/userInfo' \
 
 ## 登录用户信息（APP端）
 
-> http://app.bilibili.com/x/v2/account/myinfo 
+> https://app.bilibili.com/x/v2/account/myinfo 
 
 *请求方式：GET*
 
@@ -372,7 +372,7 @@ curl 'http://account.bilibili.com/home/userInfo' \
 **示例：**
 
 ```shell
-curl -G 'http://app.bilibili.com/x/v2/account/myinfo' \
+curl -G 'https://app.bilibili.com/x/v2/account/myinfo' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'appkey=4409e2ce8ffd12b8' \
 --data-urlencode 'ts=0' \
@@ -436,7 +436,7 @@ curl -G 'http://app.bilibili.com/x/v2/account/myinfo' \
 
 ## 登录用户状态数（双端）
 
-> http://api.bilibili.com/x/web-interface/nav/stat
+> https://api.bilibili.com/x/web-interface/nav/stat
 
 *请求方式：GET*
 
@@ -472,7 +472,7 @@ curl -G 'http://app.bilibili.com/x/v2/account/myinfo' \
 Cookie方式：
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/nav/stat' \
+curl 'https://api.bilibili.com/x/web-interface/nav/stat' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -497,7 +497,7 @@ curl 'http://api.bilibili.com/x/web-interface/nav/stat' \
 APP方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/nav/stat' \
+curl -G 'https://api.bilibili.com/x/web-interface/nav/stat' \
 --data-urlencode 'access_key=d907f51122c59599d580ade2315af971'
 ```
 
@@ -521,7 +521,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat' \
 
 ## 获取硬币数
 
->  http://account.bilibili.com/site/getCoin
+>  https://account.bilibili.com/site/getCoin
 
 *请求方式：GET*
 
@@ -548,7 +548,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/nav/stat' \
 **示例：**
 
 ```shell
-curl 'http://account.bilibili.com/site/getCoin' \
+curl 'https://account.bilibili.com/site/getCoin' \
 -b 'SESSDATA=xxx;DedeUserID=1;'
 ```
 

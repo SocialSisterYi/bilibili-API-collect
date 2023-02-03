@@ -6,7 +6,7 @@
 
 ## 获取相簿热门活动列表
 
-> http://api.vc.bilibili.com/photo_activity/v2/Activity/list
+> https://api.vc.bilibili.com/photo_activity/v2/Activity/list
 
 *请求方式：GET*
 
@@ -65,7 +65,7 @@
 获取`画友`分区，全部类型的5条活动
 
 ```shell
-curl -G 'http://api.vc.bilibili.com/photo_activity/v2/Activity/list' \
+curl -G 'https://api.vc.bilibili.com/photo_activity/v2/Activity/list' \
 --data-urlencode 'type=0' \
 --data-urlencode 'biz=1' \
 --data-urlencode 'page_num=0' \

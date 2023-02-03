@@ -7,7 +7,7 @@
 
 ## 获取APP端开屏图片列表
 
-> http://app.bilibili.com/x/v2/splash/brand/list
+> https://app.bilibili.com/x/v2/splash/brand/list
 
 *请求方式：GET*
 
@@ -77,7 +77,7 @@
 **示例：**
 
 ```shell
-curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
+curl -G 'https://app.bilibili.com/x/v2/splash/brand/list' \
 --data-urlencode 'appkey=1d8b6e7d45233436' \
 --data-urlencode 'ts=0' \
 --data-urlencode 'sign=78a89e153cd6231a4a4d55013aa063ce'
@@ -139,12 +139,12 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 
 如id=11的图片为：
 
-![]( http://i0.hdslb.com/bfs/archive/fe737da5cdedf9dad038e5fd30e957be8a063bc2.png )
+![]( https://i0.hdslb.com/bfs/archive/fe737da5cdedf9dad038e5fd30e957be8a063bc2.png )
 
 
 ## 获取APP端开屏幕广告信息
 
-> http://app.bilibili.com/x/v2/splash/list
+> https://app.bilibili.com/x/v2/splash/list
 
 *请求方式: GET*
 
@@ -305,7 +305,13 @@ curl -G 'http://app.bilibili.com/x/v2/splash/brand/list' \
 **示例：**
 
 ```shell
-curl -L -X GET 'http://app.bilibili.com/x/v2/splash/list?build=999999999&mobi_app=android&platform=android&height=1920&width=1080&birth=0101'
+curl -X GET 'https://app.bilibili.com/x/v2/splash/list' \
+    --data-urlencode 'build=999999999' \
+    --data-urlencode 'mobi_app=android' \
+    --data-urlencode 'platform=android' \
+    --data-urlencode 'height=1920' \
+    --data-urlencode 'width=1080' \
+    --data-urlencode 'birth=0101'
 ```
 
 <details>

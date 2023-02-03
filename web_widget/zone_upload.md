@@ -6,7 +6,7 @@
 
 ## 获取分区当日投稿稿件数
 
-> http://api.bilibili.com/x/web-interface/online
+> https://api.bilibili.com/x/web-interface/online
 
 *请求方式：GET*
 
@@ -57,7 +57,7 @@
 **示例：**
 
 ```shell
-curl 'http://api.bilibili.com/x/web-interface/online'
+curl 'https://api.bilibili.com/x/web-interface/online'
 ```
 
 <details>

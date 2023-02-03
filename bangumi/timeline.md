@@ -7,7 +7,7 @@
 ## 获取番剧或影视时间线
 
 
-> http://api.bilibili.com/pgc/web/timeline
+> https://api.bilibili.com/pgc/web/timeline
 *请求方式：GET*
 
 鉴权方式：Cookie（SESSDATA）或APP
@@ -82,7 +82,7 @@
 查询从`3`天前到`7`天后的`番剧`时间轴
 
 ```shell
-curl -G 'http://api.bilibili.com/pgc/web/timeline' \
+curl -G 'https://api.bilibili.com/pgc/web/timeline' \
 --data-urlencode 'types=1' \
 --data-urlencode 'before=3' \
 --data-urlencode 'after=7' \
