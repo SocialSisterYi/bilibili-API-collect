@@ -2670,9 +2670,16 @@ curl -L -X GET 'https://api.bilibili.com/x/space/like/video?vmid=15858903'
 
 ### 查询用户投稿视频明细
 
-> https://api.bilibili.com/x/space/arc/search
+> https://api.bilibili.com/x/space/wbi/arc/search
+
+PS：旧 api 存在 bug，比如 mid=2 时出现非法访问（-401）。
+> ~~https://api.bilibili.com/x/space/arc/search~~ （旧）
 
 *请求方式：GET*
+
+**header字段：**
+
+必须要有 `user-agent`，且不能为 `空字符串`，以及含有 `python`、`node`、`curl` 等的字符串。
 
 **url参数：**
 
@@ -2788,10 +2795,11 @@ curl -L -X GET 'https://api.bilibili.com/x/space/like/video?vmid=15858903'
 以每页2项查询用户`mid=53456`的第1页投稿视频明细
 
 ```shell
-curl -G 'https://api.bilibili.com/x/space/arc/search' \
+curl -G 'https://api.bilibili.com/x/space/wbi/arc/search' \
 --data-urlencode 'mid=53456' \
 --data-urlencode 'ps=2' \
---data-urlencode 'pn=1'
+--data-urlencode 'pn=1' \
+--user-agent 'go'
 ```
 
 <details>
