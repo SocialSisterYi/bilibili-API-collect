@@ -2672,8 +2672,10 @@ curl -L -X GET 'https://api.bilibili.com/x/space/like/video?vmid=15858903'
 
 > https://api.bilibili.com/x/space/wbi/arc/search
 
-PS：旧 api 存在 bug，比如某些情况下（暂不清楚缺少什么） mid=2 时出现非法访问（-401），但新 api 不会。
-> ~~https://api.bilibili.com/x/space/arc/search~~ （旧）
+> https://api.bilibili.com/x/space/arc/search （旧）
+
+PS：旧 api 存在一些不同，比如某些情况下，例如 mid=2 时如果没有设置 Cookie 则出现非法访问（-401），但新 api 不会。
+
 
 *请求方式：GET*
 
