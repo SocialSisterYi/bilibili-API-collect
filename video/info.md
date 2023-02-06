@@ -230,6 +230,7 @@
 | vip      | obj | 成员大会员状态 |     |
 | official | obj | 成员认证信息  |     |
 | follower | num | 成员粉丝数   |     |
+| label_style | num |     |     |
 
 `staff`数组中的对象中的`vip`对象：
 
