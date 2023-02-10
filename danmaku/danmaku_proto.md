@@ -37,7 +37,7 @@
 
 **proto回复：**
 
-porto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api/bilibili/community/service/dm/v1/dm.proto)
+proto定义见：[bilibili.community.service.dm.v1.DmSegMobileReply](../grpc_api/bilibili/community/service/dm/v1/dm.proto)
 
 - [protogen.marcgravell](https://protogen.marcgravell.com/): 在线编译protogen工具, 无需再安装本地编译器(生成文件需加后缀‘_pb2.py‘才可使用) 
 
