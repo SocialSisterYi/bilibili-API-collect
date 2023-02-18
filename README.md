@@ -278,7 +278,6 @@ OR Aifadian：https://afdian.net/@ShakaiAneE
 - [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
 - [czp3009/bilibili-api](https://github.com/czp3009/bilibili-api)
 - [Vespa314/bilibili-api](https://github.com/Vespa314/bilibili-api)
-- [whjstc/openbilibili-go-common-1](https://github.com/whjstc/openbilibili-go-common-1)
 - [wnstar/bili-utils](https://github.com/wnstar/bili-utils)
 - [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API)
 - [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
