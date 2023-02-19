@@ -11,6 +11,6 @@ jobs:
       uses: /Sugarscat/bilibili-API-collect@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: username/repo
-        TARGET_BRANCH: master
+        TARGET_REPO: Sugarscat/bilibili-API-collecty
+        TARGET_BRANCH: gh_pages
         BUILD_SCRIPT: yarn && yarn build
