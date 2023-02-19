@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.9.8",
+    "vuepress": "^1.9.8"
+  },
+  "scripts": {
+    "dev": "vuepress dev",
+    "build": "vuepress build"
+  }
+}

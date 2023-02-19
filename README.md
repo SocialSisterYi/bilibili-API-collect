@@ -49,7 +49,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 更多信息请浏览 [贡献指南](CONTRIBUTING.md)
 
-## 🍴目录
+## 🍴[目录](contents.md)
 
 计划整理分类 & 目录：(文档已完结请选中 checkbox) 
 
@@ -268,7 +268,7 @@ WeChat & Alipay：
 
 <img src="./imgs/sponsorQR.jpg" width="300" height="300">
 
-OR Aifadian：https://afdian.net/@ShakaiAneE
+OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 
 ## 🔗相关项目推荐
 

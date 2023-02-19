@@ -8,7 +8,7 @@
 - [x] [图片格式化](other/picture.md)
 - [x] [bvid 说明](other/bvid_desc.md)
 - [ ] [gRPC API 接口定义](grpc_api)
-- [ ] [登录](login)
+- [ ] 登录
     - [x] [登录操作 (人机认证)](login/login_action)
         - [x] [短信登录](login/login_action/SMS.md)
         - [x] [密码登录](login/login_action/password.md)
@@ -18,23 +18,23 @@
     - [ ] [个人中心](login/member_center.md)
     - [ ] [注销登录](login/exit.md)
     - [x] [登录记录](login/login_notice.md)
-- [ ] [消息中心](message)
+- [ ] 消息中心
     - [ ] [通知类消息](message/msg.md)
     - [ ] [私信](message/private_msg.md)
     - [ ] [设置](message/config.md)
-- [ ] [用户](user)
+- [ ] 用户
     - [x] [基本信息](user/info.md)
     - [x] [状态数](user/status_number.md)
     - [x] [关系](user/relation.md)
     - [ ] [个人空间](user/space.md)
     - [x] [检查昵称是否可注册](user/check_nickname.md)
     - [x] [用户注册](user/register.md)
-- [ ] [大会员](vip)
+- [ ] 大会员
     - [ ] [大会员基本信息](vip/info.md)
     - [ ] [大会员中心](vip/center.md)
     - [ ] [大会员签到](vip/clockin.md)
     - [ ] [大会员操作](vip/action.md)
-- [ ] [视频](video)
+- [ ] 视频
     - [x] [视频分区一览 (分区代码)](video/video_zone.md)
     - [x] [基本信息](video/info.md)
     - [x] [状态数](video/status_number.md)
@@ -48,13 +48,13 @@
     - [ ] [信息上报 (心跳及记录历史)](video/report.md)
     - [x] [视频属性数据](video/attribute_data.md)
     - [x] [视频在线人数](video/online.md)
-- [ ] [剧集 (番剧、影视)](bangumi)
+- [ ] 剧集 (番剧、影视)
     - [ ] [基本信息](bangumi/info.md)
     - [ ] [播放&下载地址（视频流）](bangumi/videostream_url.md)
     - [ ] [时间轴](bangumi/timeline.md)
     - [ ] 状态数
     - [ ] 操作
-- [ ] [视频弹幕](danmaku)
+- [ ] 视频弹幕
     - [x] [protobuf 实时弹幕](danmaku/danmaku_proto.md)
     - [x] [protobuf 弹幕元数据（BAS 弹幕 / 互动弹幕）](danmaku/danmaku_view_proto.md)
     - [x] [xml 实时弹幕](danmaku/danmaku_xml.md)
@@ -66,57 +66,57 @@
     - [ ] 智能防挡弹幕
     - [x] [弹幕个人配置修改](danmaku/config.md)
     - [x] [名词解释](danmaku/buzzword.md)
-- [x] [视频笔记](note)
+- [x] 视频笔记
     - [x] [笔记列表](note/list.md)
     - [x] [笔记详细信息](note/info.md)
     - [x] [笔记操作](note/action.md)
-- [ ] [专栏](article)
+- [ ] 专栏
     - [ ] 分区
     - [X] [基本信息](article/info.md)
     - [X] [点赞 & 投币 & 收藏 & 分享](article/like_coin_fav.md)
     - [X] [文集基本信息](article/articles.md)
     - [X] [获取用户专栏文章列表](article/list.md)
-- [ ] [音频](audio)
+- [ ] 音频
     - [x] [歌曲基本信息](audio/info.md)
     - [ ] [歌单 & 音频收藏夹详细信息](audio/music_list.md)
     - [ ] [状态数](audio/status_number.md)
     - [ ] [投币 & 收藏](audio/coin&fav.md)
     - [x] [播放 & 下载地址（音频流）](audio/musicstream_url.md)
     - [ ] 音频榜单
-- [ ] [排行榜 & 最新视频](ranking&dynamic)
+- [ ] 排行榜 & 最新视频
     - [ ] [排行榜](ranking&dynamic/ranking.md)
     - [ ] [热门视频](ranking&dynamic/popular.md)
     - [ ] [最新视频](ranking&dynamic/dynamic.md)
-- [ ] [搜索](search)
+- [ ] 搜索
     - [x] [搜索请求](search/search_request.md)
     - [x] [搜索结果](search/search_response.md)
     - [x] [默认搜索 & 热搜](search/hot.md)
     - [x] [搜索建议](search/suggest.md)
-- [ ] [小黑屋](blackroom)
+- [ ] 小黑屋
     - [ ] 基本信息
     - [x] [封禁公示](blackroom/banlist.md)
     - [x] [风纪委员及众裁案件相关](blackroom/jury)
         - [x] [风纪委员基本信息](blackroom/jury/base_info.md)
         - [x] [众裁案件基本信息](blackroom/jury/judgement_info.md)
         - [x] [裁决操作](blackroom/jury/action.md)
-- [x] [评论区](comment)
+- [x] 评论区
     - [x] [评论区明细](comment/list.md)
     - [x] [操作](comment/action.md)
-- [ ] [表情](emoji)
+- [ ] 表情
     - [x] [表情及表情包信息](emoji/list.md)
     - [x] [操作](emoji/action.md)
-- [ ] [创作中心](creativecenter)
+- [ ] 创作中心
     - [ ] [统计与数据](creativecenter/statistics&data.md)
     - [ ] 列表查询相关
     - [x] [电磁力数据](creativecenter/railgun.md)
-- [x] [实时广播（通讯协议）](broadcast)
+- [x] 实时广播（通讯协议）
     - [x] [视频内广播](broadcast/video_room.md)
-- [ ] [充电](electric)
+- [ ] 充电
     - [x] [B币方式](electric/Bcoin.md)
     - [x] [微信 & 支付宝方式](electric/WeChat&Alipay.md)
     - [x] [充电留言](electric/charge_msg.md)
     - [x] [充电列表](electric/charge_list.md)
-- [ ] [动态](dynamic)
+- [ ] 动态
     - [ ] [动态基本信息](dynamic/basicInfo.md)
     - [ ] [发送 & 转载动态](dynamic/publish.md)
     - [ ] [根据关键字搜索用户（at 别人时的填充列表）](dynamic/atlist.md)
@@ -124,27 +124,27 @@
     - [ ] 动态列表
         - [x] [特定话题动态列表](/dynamic/tag_dynamics.md)
     - [ ] [动态内容](/dynamic/get_dynamic_detail.md)
-- [ ] [相簿](album)
+- [ ] 相簿
     - [x] [基本信息](album/info.md)
     - [x] [相簿列表](album/list.md)
     - [x] [推荐作者](album/recommend_author.md)
     - [x] [活动列表](album/activity_list.md)
     - [x] [操作](album/action.md)
     - [ ] 投稿
-- [ ] [历史记录 & 稍后再看](history&toview)
+- [ ] 历史记录 & 稍后再看
     - [x] [历史记录](history&toview/history.md)
     - [x] [稍后再看](history&toview/toview.md)
-- [ ] [收藏夹](fav)
+- [ ] 收藏夹
     - [x] [基本信息](fav/info.md)
     - [x] [收藏夹内容](fav/list.md)
     - [ ] [收藏夹操作](fav/action.md)
-- [ ] [课程](cheese)
+- [ ] 课程
     - [x] [课程基本信息](cheese/info.md)
     - [ ] 已购课程
     - [ ] 分区推荐列表
     - [ ] 操作
     - [x] [播放 & 下载地址（视频流）](cheese/videostream_url.md)
-- [ ] [直播](live)
+- [ ] 直播
     - [ ] [直播间基本信息](live/info.md)
     - [ ] [直播分区](live/live_area.md)
     - [ ] [直播间管理](live/manage.md)
@@ -152,7 +152,7 @@
     - [ ] [直播视频流](live/live_stream.md)
     - [ ] [直播信息流](live/message_stream.md)
     - [ ] [直播红包](live/redpocket.md)
-- [ ] [转正答题](newbie_exam)
+- [ ] 转正答题
     - [x] [查询信息](newbie_exam/info.md)
     - [x] [拉取题目](newbie_exam/fetch.md)
     - [x] [操作](newbie_exam/action.md)
@@ -160,7 +160,7 @@
     - [ ] 基本信息
     - [ ] B币充值
     - [ ] 贝壳相关
-- [ ] [哔哩哔哩漫画](manga)
+- [ ] 哔哩哔哩漫画
     - [x] [签到](manga/ClockIn.md)
     - [x] [积分商城](manga/point_shop.md)
     - [x] [漫画操作](manga/Comic.md)
@@ -169,16 +169,16 @@
     - [x] [下载](manga/Download.md)
     - [x] [data.index解析](manga/index_file.md)
 - [ ] 哔哩哔哩游戏
-- [ ] [终端网络查询](clientinfo)
+- [ ] 终端网络查询
     - [x] [基于ip的地理位置查询](clientinfo/ip.md)
     - [x] [终端信息查询](clientinfo/client_info.md)
-- [ ] [其他](other)
+- [ ] 其他
     - [x] [获取当前时间戳](other/time_stamp.md)
-- [ ] [web端组件](web_widget)
+- [ ] web端组件
     - [x] [分区当日投稿数](web_widget/zone_upload.md)
     - [x] [404 页漫画收集](web_widget/404_manga.md)
-- [ ] [APP端组件](APP_widget)
+- [ ] APP端组件
     - [x] [开屏图片 + 恰饭珍贵录像](APP_widget/splash.md)
-- [ ] [个性装扮](garb)
+- [ ] 个性装扮
     - [x] [APP 主题](garb/skin.md)
     - [x] [主题色](garb/color.md)
