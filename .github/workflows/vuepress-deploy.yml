@@ -8,9 +8,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: vuepress-deploy
-      uses: /Sugarscat/bilibili-API-collect@master
+      uses: jenkey2011/vuepress-deploy@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: Sugarscat/bilibili-API-collecty
-        TARGET_BRANCH: gh_pages
+        TARGET_BRANCH: gh-pages
         BUILD_SCRIPT: yarn && yarn build
+        BUILD_DIR: .vuepress/dist/
