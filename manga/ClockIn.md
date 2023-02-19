@@ -8,22 +8,32 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
-| ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
-| platform | str  | 平台           | 必要    |   android                                                           |
+| 参数名      | 类型  | 内容 | 必要性 | 备注      |
+|----------|-----|----|-----|---------|
+| platform | str | 平台 | 必要  | android |
+| device   | str | 平台 | 非必要 | h5      |
+
+**正文参数（ application/json ）：**
+
+| 参数名  | 类型  | 内容   | 必要性 | 备注    |
+|------|-----|------|-----|-------|
+| type | num |      | 非必要 | 补签时使用 |
+| date | str | 补签日期 | 必要  | 补签时使用 |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num / str  | 返回值   | 0：成功<br />invalid_argument：今日已签到 |
-| msg | str  | 错误信息 | 成功：空<br />已签到：clockin clockin is duplicate                                                      |
-| meta     | obj  | 错误信息       |    今日已签到时存在                                                          |
-| data | obj  |  |      |
+| 字段   | 类型        | 内容   | 备注                                         |
+|------|-----------|------|--------------------------------------------|
+| code | num / str | 返回值  | 0：成功<br />invalid_argument：今日已签到           |
+| msg  | str       | 错误信息 | 成功：空<br />已签到：clockin clockin is duplicate |
+| meta | obj       | 错误信息 | 今日已签到时存在                                   |
+| data | obj       |      |                                            |
 
 **示例：**
+
+普通签到：
 
 ```bash
 curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' \
@@ -34,7 +44,6 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' 
 
 <details>
 <summary>签到成功：</summary>
-
 
 ```json
 {
@@ -49,7 +58,6 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' 
 <details>
 <summary>今日已签到：</summary>
 
-
 ```json
 {
   "code": "invalid_argument",
@@ -57,6 +65,28 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' 
   "meta": {
     "argument": "clockin"
   }
+}
+```
+
+</details>
+
+补签：
+
+```bash
+curl -L 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn?platform=android' \
+-H 'Cookie: SESSDATA=xxx' \
+-H 'content-type: application/json;charset=UTF-8' \
+-d '{"type":0,"date":"2023-02-15"}'
+```
+
+<details>
+<summary>补签成功：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "",
+  "data": {}
 }
 ```
 
@@ -74,35 +104,35 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' 
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功 |
-| msg | str  | 错误信息 |       空                                                |
-| data     | obj  |    信息本体    |                                                              |
+| 字段   | 类型  | 内容   | 备注   |
+|------|-----|------|------|
+| code | num | 返回值  | 0：成功 |
+| msg  | str | 错误信息 | 空    |
+| data | obj | 信息本体 |      |
 
 `data` 对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| day_count    | num  | 连续签到天数   |  |
-| status | num  | 今日是否已签到 | 0：未签到<br />1：已签到                                                      |
-| credit_icon     | str  |      |                                                              |
-| sign_before_icon     | str  |      |                                                              |
-| sign_today_icon     | str  |      |                                                              |
-| breathe_icon     | str  |      |                                                              |
-| new_credit_x_icon     | str  |      |                                                              |
-| coupon_pic     | str  |      |                                                              |
-| points     | array  |  一次签到周期中每次签到可获得点数    |                                                              |
-| point_infos     | array  |      |                                                              |
+| 字段                | 类型    | 内容               | 备注               |
+|-------------------|-------|------------------|------------------|
+| day_count         | num   | 连续签到天数           |                  |
+| status            | num   | 今日是否已签到          | 0：未签到<br />1：已签到 |
+| credit_icon       | str   |                  |                  |
+| sign_before_icon  | str   |                  |                  |
+| sign_today_icon   | str   |                  |                  |
+| breathe_icon      | str   |                  |                  |
+| new_credit_x_icon | str   |                  |                  |
+| coupon_pic        | str   |                  |                  |
+| points            | array | 一次签到周期中每次签到可获得点数 |                  |
+| point_infos       | array |                  |                  |
 
 `point_infos`数组中的对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| point    | num  |  签到可获取积分  |  |
-| origin_point    | num  |    |  |
-| is_activity    | bool  |    |  |
-| title    | str  |   签到奖励描述 |  |
+| 字段           | 类型   | 内容      | 备注 |
+|--------------|------|---------|----|
+| point        | num  | 签到可获取积分 |    |
+| origin_point | num  |         |    |
+| is_activity  | bool |         |    |
+| title        | str  | 签到奖励描述  |    |
 
 **示例：**
 
@@ -113,7 +143,6 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/GetClockI
 
 <details>
 <summary>成功：</summary>
-
 
 ```json
 {
