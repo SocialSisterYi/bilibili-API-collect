@@ -1,2 +1,7 @@
 mkdocs/html/*
 README.md
+/.gitignore
+/.vuepress/.cache/
+/.vuepress/.temp/
+/.vuepress/dist/
+.idea
