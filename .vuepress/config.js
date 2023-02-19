@@ -1,5 +1,6 @@
 module.exports = {
     base: "/bilibili-API-collect/",
+    dest: 'public',
     locales: {
         '/': {
             lang: 'zh-CN',
