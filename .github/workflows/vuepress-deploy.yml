@@ -12,6 +12,6 @@ jobs:
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: Sugarscat/bilibili-API-collecty
-        TARGET_BRANCH: gh-pages
+        TARGET_BRANCH: master
         BUILD_SCRIPT: yarn && yarn build
         BUILD_DIR: .vuepress/dist/
