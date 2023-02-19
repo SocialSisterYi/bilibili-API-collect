@@ -5,3 +5,4 @@ README.md
 /.vuepress/.temp/
 /.vuepress/dist/
 .idea
+/node_modules/
