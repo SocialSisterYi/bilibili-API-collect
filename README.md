@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="imgs/logo.png" width="250" height="200">
+    <img src="./imgs/logo.png" width="250" height="200">
 </p>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
 <p align="center">
@@ -251,7 +251,7 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 ## 💦交流
 
-<img src="imgs/up_face.jpg" width="100" height="100">
+<img src="./imgs/up_face.jpg" width="100" height="100">
 
 ⚠注意：开源社群欢迎交流探讨，**拒绝**咨询、**不支持**合作，**黑产号**一经发现立即拉黑并举报相关 SRC
 
@@ -266,7 +266,7 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 WeChat & Alipay：
 
-<img src="imgs/sponsorQR.jpg" width="300" height="300">
+<img src="./imgs/sponsorQR.jpg" width="300" height="300">
 
 OR Aifadian：https://afdian.net/@ShakaiAneE
 
