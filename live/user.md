@@ -4,6 +4,8 @@
   - [获取用户持有的粉丝勋章信息](#获取用户持有的粉丝勋章信息)
   - [佩戴勋章](#佩戴勋章)
   - [直播签到](#直播签到)
+  - [本月直播签到信息](#本月直播签到信息)
+  - [上月直播签到信息](#上月直播签到信息)
 
 ---
 
@@ -207,3 +209,155 @@ _请求方式：GET_
 | ttl     | str  | 1        |                        |
 | message | str  | 错误信息 | 默认为当日签到奖励内容 |
 | data    | obj  | 信息本体 | 默认为空               |
+
+## 本月直播签到信息
+
+> https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/WebGetSignInfo
+
+_请求方式：GET_
+
+认证方式：Cookie（SESSDATA）或 APP
+
+**json 回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                   |
+| ------- | ---- | -------- | ---------------------- |
+| code    | num  | 返回值   | 0：成功 |
+| ttl     | str  | 1        |                        |
+| message | str  | 错误信息 | 默认为0 |
+| data    | obj  | 信息本体 |                |
+
+`data`对象：
+
+| 字段              | 类型  | 内容                         | 备注                   |
+| ----------------- | ----- | ---------------------------- | ---------------------- |
+| text              | str   | 今日签到奖励信息             | 默认为空               |
+| specialText       | str   | 连续签到奖励信息             | 默认为空               |
+| status            | num   | 签到状态                     | 0：未签到<br>1：已签到 |
+| allDays           | num   | 当月天数                     |                        |
+| curMonth          | num   | 当前月                       |                        |
+| curYear           | num   | 当前年                       |                        |
+| curDay            | num   | 当前日                       |                        |
+| curData           | str   | 当前日期（格式化）           | eg: 2023-2-19          |
+| hadSignDays       | num   | 当月已签到天数               | 默认为0                |
+| newTask           | num   | 作用未知                     | 默认为0                |
+| signDaysList      | array | 当月已签到日列表             | 默认为空               |
+| signBonusDaysList | array | 当月已签到且有特殊奖励日列表 | 默认为空               |
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "text": "3000点用户经验,2根辣条",
+        "specialText": "再签到7天可以获得50根辣条",
+        "status": 1,
+        "allDays": 28,
+        "curMonth": 2,
+        "curYear": 2023,
+        "curDay": 19,
+        "curDate": "2023-2-19",
+        "hadSignDays": 13,
+        "newTask": 0,
+        "signDaysList": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            11,
+            13,
+            14,
+            15,
+            17,
+            18,
+            19
+        ],
+        "signBonusDaysList": [
+            6
+        ]
+    }
+}
+```
+
+</details>
+
+## 上月直播签到信息
+
+> https://api.live.bilibili.com/sign/getLastMonthSignDays
+
+_请求方式：GET_
+
+认证方式：Cookie（SESSDATA）或 APP
+
+**json 回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                   |
+| ------- | ---- | -------- | ---------------------- |
+| code    | num  | 返回值   | 0：成功 |
+| ttl     | str  | 1        |                        |
+| message | str  | 错误信息 | 默认为0 |
+| data    | obj  | 信息本体 |                |
+
+`data`对象：
+
+| 字段              | 类型  | 内容                         | 备注     |
+| ----------------- | ----- | ---------------------------- | -------- |
+| days              | num   | 上月天数                     |          |
+| month             | num   | 上月月份值                   |          |
+| hadSignDays       | num   | 上月已签到天数               | 默认为0  |
+| signDaysList      | array | 上月已签到日列表             | 默认为空 |
+| signBonusDaysList | array | 上月已签到且有特殊奖励日列表 | 默认为空 |
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "month": 1,
+        "days": 31,
+        "hadSignDays": 20,
+        "signDaysList": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            18,
+            20,
+            23,
+            24,
+            25,
+            26,
+            27,
+            30,
+            31
+        ],
+        "signBonusDaysList": [
+            7,
+            31
+        ]
+    }
+}
+```
+
+</details>
