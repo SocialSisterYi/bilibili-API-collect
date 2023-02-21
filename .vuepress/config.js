@@ -1,26 +1,31 @@
 module.exports = {
     base: "/bilibili-API-collect/",
+    title: "BAC Document",
+    description: "社区开源的第三方哔哩哔哩 API 文档",
+    head: [
+        ['link', { rel: 'icon', href: './logo2.jpg' }]
+    ],
     locales: {
         '/': {
             lang: 'zh-CN',
         },
     },
-    head: [
-        ['link', { rel: 'icon', href: './logo.png' }]
-
-    ],
-    title: "bilibili-API-collect",
-    description: "本项目旨在对 B站 WEB、APP、TV 等客户端中，散落在世界各地的野生 API 进行收集整理，研究使用方法并对其进行说明。",
     themeConfig: {
+        logo: './logo2.jpg',
         nav: [
-            { text: '介绍', link: '/' },
-            { text: '目录', link: '/contents.html' },
-            { text: 'Github', link: 'https://github.com/SocialSisterYi/bilibili-API-collect' },
+            {text: '首页', link: '/'},
+            {text: '目录', link: '/#🍴目录'},
+            {text: '贡献指南', link: '/CONTRIBUTING.html'},
+            {text: 'GitHub', link: 'https://github.com/SocialSisterYi/bilibili-API-collect'},
         ],
         sidebar: 'auto',
+        smoothScroll: true
     },
+    plugins: [
+        '@vuepress/back-to-top',
+    ],
     markdown: {
+        lineNumbers: true,
         plugins: ['task-lists']
-    },
-    plugins: ['@vuepress/back-to-top'],
+    }
 }
