@@ -1,6 +1,12 @@
 {
-  "devDependencies": {
+  "name": "bilibili-api-collect",
+  "version": "0.0.1",
+  "repository": "https://github.com/SocialSisterYi/bilibili-API-collect.git",
+  "author": "SocialSisterYi <1440239038@qq.com>",
+  "license": "CC-BY-NC-4.0",
+  "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.9.8",
+    "markdown-it-task-lists": "^2.1.1",
     "vuepress": "^1.9.8"
   },
   "scripts": {

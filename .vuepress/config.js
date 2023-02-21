@@ -19,5 +19,8 @@ module.exports = {
         ],
         sidebar: 'auto',
     },
+    markdown: {
+        plugins: ['task-lists']
+    },
     plugins: ['@vuepress/back-to-top'],
 }
