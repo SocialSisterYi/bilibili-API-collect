@@ -11,7 +11,7 @@ jobs:
       uses: jenkey2011/vuepress-deploy@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: Sugarscat/bilibili-API-collect
+        TARGET_REPO: SocialSisterYi/bilibili-API-collect
         TARGET_BRANCH: gh_pages
         BUILD_SCRIPT: yarn && yarn build
         BUILD_DIR: .vuepress/dist/
