@@ -1,13 +1,5 @@
 # data.index
 
-- [data.index文件解析](#data.index文件解析)
-  - [获取data.index](#获取data.index)
-  - [文件解密算法](#文件解密算法)
-  - [进行解密操作](#进行解密操作)
-- [data.index内容](#data.index内容)
-
----
-
 ## data.index文件解析
 
 本解密及数据解析例程以《在魔王城说晚安 第 1 话 不眠之城的公主》为例

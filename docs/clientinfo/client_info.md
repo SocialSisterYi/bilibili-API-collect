@@ -1,9 +1,5 @@
 # 终端信息查询
 
-- [终端信息查询](#终端信息查询)
-
----
-
 ## 终端信息查询
 
 >  https://api.bilibili.com/client_info

@@ -1,9 +1,5 @@
 # 相簿活动列表
 
-- [获取相簿热门活动列表](#获取相簿热门活动列表)
-
----
-
 ## 获取相簿热门活动列表
 
 > https://api.vc.bilibili.com/photo_activity/v2/Activity/list

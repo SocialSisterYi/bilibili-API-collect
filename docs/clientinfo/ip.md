@@ -1,9 +1,5 @@
 # 通过ip确定地理位置
 
-- [通过ip确定位置](#通过ip确定位置)
-
----
-
 ## 通过ip确定位置
 
 > https://api.bilibili.com/x/web-interface/zone

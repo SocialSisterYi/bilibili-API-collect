@@ -2,12 +2,6 @@
 
 **注：历史弹幕的xml接口已经失效，现已改为protobuf接口**
 
-- [查询历史弹幕日期](#查询历史弹幕日期)
-- [获取历史弹幕protobuf接口](#获取历史弹幕protobuf接口)
-- [~~获取历史弹幕xml接口~~](#获取历史弹幕xml接口)
-
----
-
 ## 查询历史弹幕日期
 
 > https://api.bilibili.com/x/v2/dm/history/index

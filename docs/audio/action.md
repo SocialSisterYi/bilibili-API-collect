@@ -1,11 +1,5 @@
 # 音频投币&收藏
 
-- [查询音频收藏状态](#查询音频收藏状态)
-- [查询音频投币数](#查询音频投币数)
-- [投币音频](#投币音频)
-
----
-
 ## 查询音频收藏状态
 
 > https://www.bilibili.com/audio/music-service-c/web/collections/songs-coll

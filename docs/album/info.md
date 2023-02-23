@@ -1,9 +1,5 @@
 # 相簿基本信息
 
-- [获取相簿详细信息](#获取相簿详细信息)
-
----
-
 ## 获取相簿详细信息
 
 >https://api.vc.bilibili.com/link_draw/v1/doc/detail

@@ -1,10 +1,5 @@
 # APP主题
 
-- [获取主题及加载动画](#获取主题及加载动画)
-- [主题包结构](#主题包结构)
-
----
-
 ## 获取主题及加载动画
 
 > https://app.bilibili.com/x/resource/show/skin

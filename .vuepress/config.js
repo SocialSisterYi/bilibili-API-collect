@@ -16,6 +16,13 @@ module.exports = {
             {text: '首页', link: '/'},
             {text: '目录', link: '/#🍴目录'},
             {text: '贡献指南', link: '/CONTRIBUTING.html'},
+            {
+                text: '相关社群',
+                items: [
+                    {text: 'QQ交流群', link: 'https://jq.qq.com/?_wv=1027&k=s1M0LCcu'},
+                    {text: 'Telegram交流群', link: 'https://t.me/bilibili_API_collect_community'}
+                ]
+            },
             {text: 'GitHub', link: 'https://github.com/SocialSisterYi/bilibili-API-collect'},
         ],
         sidebar: 'auto',

@@ -6,11 +6,6 @@
 
 可使用页面 https://www.bilibili.com/blackboard/activity-WroMZNunfa.html?id=1 查看名词解释详情
 
-- [拉取名词解释列表](#拉取名词解释列表)
-- [查询名词解释详情](#查询名词解释详情)
-
----
-
 ## 拉取名词解释列表
 
 > https://api.bilibili.com/x/v2/dm/buzzword/list

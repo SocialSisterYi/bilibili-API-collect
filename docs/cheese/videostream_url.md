@@ -1,9 +1,5 @@
 # 课程视频流URL
 
-- [获取课程视频流URL（web端）](#获取课程视频流URLweb端)
-
----
-
 <img src="../../assets/img/download.svg" width="100" height="100"/>
 
 ## 获取课程视频流URL（web端）

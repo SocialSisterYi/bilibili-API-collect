@@ -1,59 +1,15 @@
-<!--{
-    "info": {
-        "hot": {
-            "url": "http://api.bilibili.com/x/web-interface/popular", 
-            "verify": false, 
-            "comment": "小破站的热门视频排行"
-        }, 
-        "weakly_series": {
-            "url": "http://api.bilibili.com/x/web-interface/popular/series/list", 
-            "verify": false, 
-            "comment": "小破站每周必看全部信息（简介）"
-        }, 
-        "weakly_details": {
-            "url": "http://api.bilibili.com/x/web-interface/popular/series/one", 
-            "verify": false, 
-            "params": {
-                "number": "int: 第几周"
-            }, 
-            "comment": "小破站每周必看一期的详细信息"
-        }, 
-        "popular": {
-            "url": "http://api.bilibili.com/x/web-interface/popular/precious", 
-            "verify": false, 
-            "params": {
-                "page_size": "int: 就设置 85 好了（每页的大小）", 
-                "page": "int: 页码"
-            }, 
-            "comment": "获取入站必刷 85 个视频"
-        }, 
-        "ranking": {
-            "url": "http://api.bilibili.com/x/web-interface/ranking/v2", 
-            "verify": false, 
-            "params": {
-                "tid": "int: 频道的 tid", 
-                "type": "string: all"
-            }, 
-            "comment": "获取各个分区的排行榜"
-        }
-    }
-}
--->
+# 入站必刷视频
 
-# 入站必刷
-
-[获取入站必刷85个视频](#85videos)
-
-<span id="85videos">## 获取入站必刷85个视频</span>
+## 获取入站必刷视频
 
 > https://api.bilibili.com/x/web-interface/popular/precious
 
-**url参数**
+**url参数：**
 
-| 字段    | 类型  | 内容     | 必要性 ｜ 备注                        |
-| ------- | ----- | -------- | --------------------------- |
-| page | int | 第几页 | 不必要 | 默认为1 |
-| page_size | int | 每一页的视频数 | 不必要 | 可以设为 85 获取所有的视频 |
+| 字段      | 类型  | 内容     | 必要性 ｜ 备注 |
+| --------- | ---- | -------- | ----- | ----- |
+| page      | num  | 页码     | 非必要 | 默认为`1` |
+| page_size | num  | 每页数量 | 非必要 | 默认为`85` |
 
 **json回复：**
 
@@ -111,7 +67,7 @@
 **示例：**
 
 ``` shell
-curl 'https://api.bilibili.com/x/web-interface/popular/precious'
+curl -G 'https://api.bilibili.com/x/web-interface/popular/precious'
 ```
 <details>
 <summary>查看响应事例:</summary>
@@ -191,7 +147,7 @@ curl 'https://api.bilibili.com/x/web-interface/popular/precious'
                 "rcmd_reason":"",
                 "achievement":"央视新华社点赞，博物馆喊话来上班！"
             }, 
-            ... and more
+            ...
         ]
     }
 }

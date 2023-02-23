@@ -4,13 +4,9 @@
 
 *请求方式：POST*
 
-是否需要登录：`是`
-
 认证方式：Cookie（SESSDATA）/ APP
 
-Content-Type：`application/x-www-form-urlencoded`
-
-**URL参数：**
+**正文参数 (application/x-www-form-urlencoded)：**
 
 | 参数名        | 类型  | 内容             | 必要性 | 备注              |
 |------------|-----|----------------|-----|-----------------|

@@ -1,9 +1,5 @@
 # 检查昵称是否可注册
 
-- [检查昵称](#检查昵称)
-
----
-
 ## 检查昵称
 
 > https://passport.bilibili.com/web/generic/check/nickname

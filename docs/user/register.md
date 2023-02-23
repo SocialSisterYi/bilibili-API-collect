@@ -1,12 +1,10 @@
 # 用户注册
 
-
 ## 人机验证
 
 [完成人机验证(参考验证登录)](../login/login_action/readme.md#验证登录)
 
 完成后得到`key`, `challenge`, `validate`, `seccode`四个参数
-
 
 ## 发送短信验证码
 

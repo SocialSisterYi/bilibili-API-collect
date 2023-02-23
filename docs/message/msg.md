@@ -1,9 +1,5 @@
 # 通知消息
 
-- [未读消息数](#未读消息数)
-
----
-
 ## 未读消息数
 
 > https://api.bilibili.com/x/msgfeed/unread

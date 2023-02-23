@@ -2,17 +2,9 @@
 
 <img src="/imgs/toview.png" width="25" height="20"/>
 
-- [视频添加稍后再看](#视频添加稍后再看)
-- [添加频道中所有视频到稍后再看](#添加频道中所有视频到稍后再看)
-- [获取稍后再看视频列表](#获取稍后再看视频列表)
-- [删除稍后再看视频](#删除稍后再看视频)
-- [清空稍后再看视频列表](#清空稍后再看视频列表)
-
----
-
 ## 视频添加稍后再看
 
->https://api.bilibili.com/x/v2/history/toview/add
+> https://api.bilibili.com/x/v2/history/toview/add
 
 *请求方式：POST*
 

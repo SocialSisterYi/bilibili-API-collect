@@ -1,9 +1,5 @@
 # 大会员操作
 
-- [兑换卡券](#兑换卡券)
-
----
-
 ## 兑换卡券
 
 > https://api.bilibili.com/x/vip/privilege/receive

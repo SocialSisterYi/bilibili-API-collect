@@ -1,9 +1,5 @@
 # 直播间人气红包
 
-- [获取指定直播间的红包信息](#获取指定直播间的红包信息)
-
----
-
 ## 获取指定直播间的红包信息
 
 > https://api.live.bilibili.com/xlive/lottery-interface/v1/lottery/getLotteryInfoWeb

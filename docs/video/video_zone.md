@@ -4,8 +4,6 @@
 
 亦可用于更深♂入了解B站的分区
 
----
-
 ## 动画
 
 <img src="../../assets/zone_icon/douga.svg" width="100" height="100"/>

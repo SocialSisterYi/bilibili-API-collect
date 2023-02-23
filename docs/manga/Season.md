@@ -1,18 +1,14 @@
 # 漫画赛季
 
-- [漫画赛季](#漫画赛季)
-  - [获取赛季信息](#获取赛季信息)
-  - [赛季奖励领取](#赛季奖励领取)
-
-_漫画赛季仅在 app 端可见，但可以使用 Cookie 鉴权_
+**注**：漫画赛季仅在 app 端可见，但可以使用 Cookie 鉴权
 
 ## 获取赛季信息
 
 > https://manga.bilibili.com/twirp/user.v1.Season/GetSeasonInfo
 
-_请求方式：POST_
+*请求方式：POST*
 
-接口不鉴权可查看基本信息，鉴权后可查看赛季个人信息和赛季规则。
+**注**：接口不鉴权可查看基本信息，鉴权后可查看赛季个人信息和赛季规则。
 
 认证方式：Cookie（SESSDATA）/ APP
 
@@ -411,11 +407,11 @@ curl -X POST https://manga.bilibili.com/twirp/user.v1.Season/GetSeasonInfo
 
 > https://manga.bilibili.com/twirp/user.v1.Season/TakeSeasonGifts
 
-_请求方式：POST_
+*请求方式：POST*
 
 认证方式：Cookie（SESSDATA）/ APP
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数 (application/x-www-form-urlencoded)：**
 
 | 参数名    | 类型 | 内容    | 必要性 | 备注            |
 | --------- | ---- | ------- | ------ | --------------- |

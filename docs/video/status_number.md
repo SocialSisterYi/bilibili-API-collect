@@ -1,10 +1,5 @@
 # 视频状态数
 
-- [视频状态数（仅avid）](#视频状态数仅avid)
-- [视频状态数（bvid/avid）](#视频状态数bvid/avid)
-
----
-
 ## 视频状态数（仅avid）
 > https://api.bilibili.com/archive_stat/stat
 

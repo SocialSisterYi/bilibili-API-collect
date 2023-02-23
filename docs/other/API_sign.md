@@ -10,11 +10,6 @@
 
 **appkey与appsec一一对应**
 
-- [API签名的计算方式](#API签名的计算方式)
-- [已知的APPKey](#已知的APPKey)
-
----
-
 ## API签名的计算方式
 
 首先为参数中添加`appkey`字段，然后按照参数的 key 重新排序，再将重排序后的参数使用 url query 格式序列化拼接与该 appkey 相对应的 appsec (盐值) 进行**md5 hash计算**（32位小写），该 hash 便是 API 签名

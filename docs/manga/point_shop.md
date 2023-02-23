@@ -1,14 +1,6 @@
 # 积分商城
 
-- [获取当前持有点数](#获取当前持有点数)
-- [获取兑换奖品列表](#获取兑换奖品列表)
-- [兑换物品](#兑换物品)
-- [获取兑换历史记录](#获取兑换历史记录)
-- [获取玩法说明](#获取玩法说明)
-
-*积分商城由web页面提供功能，地址为：*
-
-> https://manga.bilibili.com/eden/credits-exchange.html
+**注**：积分商城由web页面提供功能，地址为 https://manga.bilibili.com/eden/credits-exchange.html
 
 ## 获取当前持有点数
 

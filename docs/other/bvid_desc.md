@@ -7,38 +7,11 @@
 1. [【升级公告】AV号全面升级至BV号（专栏）](https://www.bilibili.com/read/cv5167957)
 2. [【升级公告】AV号全面升级至BV号](https://www.bilibili.com/blackboard/activity-BV-PC.html)
 
----
-
-- [概述](#概述)
-  - [格式](#格式)
-  - [实质](#实质)
-  - [avid发号方式的变化](#avid发号方式的变化)
-
-- [算法概述](#算法概述)
-  - [av->bv算法](#av->bv算法)
-  - [bv->av算法](#bv->av算法)
-
-- [编程实现](#编程实现)
-
-  - [Python](#Python)
-
-  - [C](#C)
-
-  - [TypeScript](#TypeScript)
-
-  - [Java](#Java)
-
-  - [Kotlin](#Kotlin)
-
-  - [Golang](#Golang)
-
----
-
 ## 概述
 
 ### 格式
 
-“bvid”恒为长度为12的字符串，前两个字母为大写“BV”，后10个为base58计算结果
+“bvid”恒为长度为 12 的字符串，前两个字母为大写“BV”，后 10 个为 base58 计算结果
 
 ### 实质
 
@@ -46,7 +19,7 @@
 
 ### avid发号方式的变化
 
-从2009-09-09 09:09:09 [av2](https://www.bilibili.com/video/av2)的发布到2020-03-28  19:45:02 [av99999999](https://www.bilibili.com/video/av99999999)的发布B站结束了以投稿时间为顺序的avid发放，改为随机发放avid
+从 2009-09-09 09:09:09 [av2](https://www.bilibili.com/video/av2) 的发布到 2020-03-28  19:45:02 [av99999999](https://www.bilibili.com/video/av99999999) 的发布B站结束了以投稿时间为顺序的avid发放，改为随机发放avid
 
 ~~暗示B站东方要完？泪目~~
 
@@ -56,19 +29,19 @@
 
 ### av->bv算法
 
-注：本算法及示例程序仅能编码及解码avid<` 29460791296  `，无法验证avid>=` 29460791296  `的正确性
+注：本算法及示例程序仅能编解码`avid < 29460791296`，且暂无法验证`avid >= 29460791296`的正确性
 
-1. a=(avid⊕177451812)+8728348608
-2. 以i为循环变量循环6次b[i]=(a/58^i)%58
-3. 将b[i]中各个数字转换为以下码表中的字符
+1. a = (avid ⊕ 177451812) + 8728348608
+2. 以 i 为循环变量循环 6 次 b[i] = (a / 58 ^ i) % 58
+3. 将 b[i] 中各个数字转换为以下码表中的字符
 
 码表：
 
 > fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF
 
-4. 初始化字符串b[i]=`BV1 4 1 7 `
+4. 初始化字符串 b[i]=`BV1 4 1 7 `
 
-5. 按照以下字符顺序编码表编码并填充至b[i]
+5. 按照以下字符顺序编码表编码并填充至 b[i]
 
 字符顺序编码表：
 
@@ -91,7 +64,7 @@
 
 ## 编程实现
 
-使用Python、C、TypeScript、Java、Kotlin以及Golang作为示例，欢迎社区提交更多例程
+使用 Python、C、TypeScript、Java、Kotlin 以及 Golang 等语言作为示例，欢迎社区提交更多例程
 
 ### Python
 

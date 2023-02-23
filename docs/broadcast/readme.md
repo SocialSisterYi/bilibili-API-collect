@@ -1,9 +1,5 @@
 # 全站广播
 
-可用的广播服务：
-
-- [视频实时信息](video_room.md)√
-
 ## 获取广播服务器地址
 
 > https://api.bilibili.com/x/web-interface/broadcast/servers 

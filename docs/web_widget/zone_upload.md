@@ -1,9 +1,5 @@
 # 分区当日投稿数
 
-- [获取分区当日投稿稿件数](#获取分区当日投稿稿件数)
-
----
-
 ## 获取分区当日投稿稿件数
 
 > https://api.bilibili.com/x/web-interface/online

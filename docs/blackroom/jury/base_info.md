@@ -1,18 +1,10 @@
 # 风纪委员会用户基本信息
 
-- [基本数据](#基本数据)
-- [统计信息](#统计信息)
-  - [新API（2021年10月任期之后）](#新api2021年10月任期之后)
-  - [旧API](#旧api)
-- [检查申请风纪委员会资格](#检查申请风纪委员会资格)
-
----
-
 ## 基本数据
 
 > https://api.bilibili.com/x/credit/v2/jury/jury
 
-_请求方式：GET_
+*请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或 APP
 
@@ -46,14 +38,14 @@ _请求方式：GET_
 | term_end     | num  | 任期结束时间 | 时间戳（秒级），无任期时为 0                                                                       |
 | uname        | str  | 用户昵称     |                                                                                                    |
 
-**旧API**
+## 基本数据(旧API)
 
 部分字段信息停留在 2021 年 10 月。
 
 <details>
-<summary>查看旧 api：</summary>
+<summary>查看折叠内容：</summary>
 
-> https://api.bilibili.com/x/credit/jury/jury （旧）
+> https://api.bilibili.com/x/credit/jury/jury
 
 根数据与新 API 一致，`data` 对象：
 
@@ -70,7 +62,7 @@ _请求方式：GET_
 
 ## 统计信息
 
-#### 新API（2021年10月任期之后）
+新API(2021年10月任期之后)
 
 >https://api.bilibili.com/x/credit/v2/jury/kpi
 
@@ -78,7 +70,7 @@ _请求方式：GET_
 
 认证方式：Cookie
 
-***备注**：该api只收录2021年10月开始，风纪委员改版之后的数据，且每次只返回一次任期的数据。*
+**备注**：该api只收录2021年10月开始，风纪委员改版之后的数据，且每次只返回一次任期的数据。
 
 **url参数：**
 
@@ -155,17 +147,18 @@ _请求方式：GET_
 ```
 </details>
 
-#### 旧API
-<details>
-<summary>查看旧 api：</summary>
+## 统计信息(旧API)
 
-> https://api.bilibili.com/x/credit/jury/kpi （旧）
+<details>
+<summary>查看折叠内容：</summary>
+
+> https://api.bilibili.com/x/credit/jury/kpi
 
 *方式：GET*
 
 认证方式：Cookie（SESSDATA）或APP
 
-***备注**：该api只统计到2021年9月任期，风纪委员改版之前。风纪委员改版之后的数据未收录*
+**备注**：该api只统计到2021年9月任期，风纪委员改版之前。风纪委员改版之后的数据未收录
 
 **url参数：**
 
@@ -265,9 +258,9 @@ curl -G 'https://api.bilibili.com/x/credit/jury/kpi' \
 
 ## 检查申请风纪委员会资格
 
-> ~~https://api.bilibili.com/x/credit/jury/requirement~~ （旧版）
+> ~~https://api.bilibili.com/x/credit/jury/requirement~~ (旧版）
 
-> https://api.bilibili.com/x/credit/v2/jury/requirement （新版）
+> https://api.bilibili.com/x/credit/v2/jury/requirement (新版)
 
 *请求方式：GET*
 

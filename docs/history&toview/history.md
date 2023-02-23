@@ -1,17 +1,8 @@
 # 历史记录
 
-- [获取历史记录列表_web端](#获取历史记录列表_web端)
-- [获取视频观看历史记录_web端旧版](#获取视频观看历史记录_旧版)
-- [删除历史记录](#删除历史记录)
-- [清空历史记录](#清空历史记录)
-- [停用历史记录](#停用历史记录)
-- [查询历史记录停用状态](#查询历史记录停用状态)
-
----
-
 ## 获取历史记录列表_web端
 
->https://api.bilibili.com/x/web-interface/history/cursor
+> https://api.bilibili.com/x/web-interface/history/cursor
 
 *请求方式：GET*
 

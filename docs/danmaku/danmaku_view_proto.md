@@ -4,18 +4,8 @@
 
 详情见：
 
-[【客户端更新】6.10版本更新！UP主支持发布关联视频弹幕]( https://www.bilibili.com/read/cv7728299 )
-
- [引导关注卡片](https://www.bilibili.com/blackboard/activity-c8a0iDRQy.html )
-
----
-
-- [获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）](#获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包web端)
-- [实例](#实例)
-  - [获取互动弹幕](#获取互动弹幕)
-  - [获取BAS（代码）弹幕专包](#获取BAS（代码）弹幕专包)
-
----
+- [【客户端更新】6.10版本更新！UP主支持发布关联视频弹幕]( https://www.bilibili.com/read/cv7728299 )
+- [引导关注卡片](https://www.bilibili.com/blackboard/activity-c8a0iDRQy.html )
 
 ## 获取弹幕个人配置与互动弹幕及BAS（代码）弹幕专包（web端）
 

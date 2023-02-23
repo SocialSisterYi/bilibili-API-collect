@@ -1,9 +1,5 @@
 # 专栏基本信息
 
-- [获取专栏文章基本信息](#获取专栏文章基本信息)
-
----
-
 ## 获取专栏文章基本信息
 
 > https://api.bilibili.com/x/article/viewinfo

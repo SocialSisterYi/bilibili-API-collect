@@ -1,10 +1,5 @@
 # APP端开屏图片
 
-- [获取APP端开屏图片列表](#获取APP端开屏图片列表)
-- [获取APP端开屏幕广告信息](#获取APP端开屏幕广告信息)
-
----
-
 ## 获取APP端开屏图片列表
 
 > https://app.bilibili.com/x/v2/splash/brand/list

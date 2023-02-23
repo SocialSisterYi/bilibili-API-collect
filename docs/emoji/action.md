@@ -1,10 +1,5 @@
 # 表情操作
 
-- [添加表情包](#添加表情包)
-- [移除表情包](#移除表情包)
-
----
-
 ## 添加表情包
 
 > https://api.bilibili.com/x/emote/package/add

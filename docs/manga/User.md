@@ -1,4 +1,6 @@
-# 获取拥有的漫读券列表
+# 漫画用户信息
+
+## 获取拥有的漫读券列表
 
 > https://manga.bilibili.com/twirp/user.v1.User/GetCoupons
 
@@ -11,20 +13,8 @@
 | 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
 | ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
 | access_key | str  |     APP登录凭证       | 必要    |   使用APP鉴权方式时必填                                                           |
-| appkey | str  |     cc8617fd6961e070       | 非必要    |                                                              |
-| mobi_app | str  |     android_comic       | 非必要    |                                                              |
-| version | str  |     4.13.0       | 非必要    |                                                              |
-| build | str  |     36413002       | 非必要    |                                                              |
-| channel | str  |     bilicomic       | 非必要    |                                                              |
-| platform | str  |     android       | 非必要    |                                                              |
-| device | str  |     android       | 非必要    |                                                              |
-| buvid | str  |            | 非必要    |                                                              |
-| machine | str  |     samsung+SM-G9730       | 非必要    |                                                              |
-| is_teenager | num  |     0       | 非必要    |                                                              |
-| no_recommend | num  |     0       | 非必要    |                                                              |
-| ts | num  |    秒级时间戳       | 非必要    |                                                              |
 
-**正文参数（ application/json ）：**
+**正文参数 (application/json)：**
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                              |
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
@@ -118,7 +108,6 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/user.v1.User/GetCoupons' \
 <details>
 <summary>查看响应示例：</summary>
 
-
 ```json
 {
   "code": 0,
@@ -174,9 +163,7 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/user.v1.User/GetCoupons' \
 
 </details>
 
-
-
-# 获取已购漫画
+## 获取已购漫画
 
 > https://manga.bilibili.com/twirp/user.v1.User/GetAutoBuyComics
 
@@ -191,13 +178,12 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/user.v1.User/GetCoupons' \
 | device   | str  | 设备 | 非必要 |      |
 | platform | str  | 平台 | 非必要 |      |
 
-**正文参数（ application/json ）：**
+**正文参数 (application/json)：**
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                              |
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------- |
 | page_num | num  |     页数             |  必要  |                                 |
 | page_size | num  |     分页大小             | 必要   |  默认15                            |
-
 
 **json回复：**
 
@@ -232,9 +218,7 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/user.v1.User/GetCoupons' \
 | enable_auto_pay  | bool | 是否开启自动付费 |      |
 | type  | num |  |      |
 
-
-
-**示例**
+**示例：**
 
 ```bash
 curl -L -X POST 'https://manga.bilibili.com/twirp/user.v1.User/GetAutoBuyComics' \
@@ -244,10 +228,8 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/user.v1.User/GetAutoBuyComics'
 -d '{"page_num": 1,"page_size": 15}'
 ```
 
-
 <details>
 <summary>查看响应示例：</summary>
-
 
 ```json
 {

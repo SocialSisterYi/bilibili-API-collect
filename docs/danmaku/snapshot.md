@@ -1,9 +1,5 @@
 #  弹幕快照
 
-- [获取弹幕快照](#获取弹幕快照)
-
----
-
 ## 获取弹幕快照
 
 > https://api.bilibili.com/x/v2/dm/ajax

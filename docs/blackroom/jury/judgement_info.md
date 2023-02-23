@@ -1,56 +1,28 @@
 # 众裁信息
 
-- [查询投票过的单个案件](#查询投票过的单个案件)
-- [查询案件众裁信息](#查询案件众裁信息)
-- [查询我的众裁记录](#查询我的众裁记录)
-- [获取众议观点](#获取众议观点)
+## Enum类型代码
 
----
+### 投票类型码总览
 
+| 代码 | 含义 |
+| ---- | --- |
+| 0   | 未投票 |
+| 1   | 封禁 |
+| 2   | 否 |
+| 3   | 弃权 |
+| 4   | 删除 |
 
-<table>
-    <tr>
-        <th colspan="3">投票类型码总览</th>
-    </tr >
-    <tr>
-        <td>代码</td>
-        <td>含义</td>
-    </tr>
-    <tr>
-        <td >0</td>
-        <td>未投票</td>
-    </tr>
-    <tr>
-        <td >1</td>
-        <td>封禁</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>否</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>弃权</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>删除</td>
-    </tr>
-</table>
-
+### 投票选项码总览
 
 <table>
     <tr>
-        <th colspan="3">投票选项码总览</th>
-    </tr >
-    <tr>
-        <td >任务类型</td>
-        <td>代码</td>
-        <td>含义</td>
+        <th>任务类型</th>
+        <th>代码</th>
+        <th>含义</th>
     </tr>
-    <tr >
+    <tr>
         <td rowspan="4">单条评论（弹幕）</td>
-        <td >1</td>
+        <td>1</td>
         <td>合适</td>
     </tr>
     <tr>
@@ -127,25 +99,25 @@
 | status | num | 裁决状态（新版） | 0：进行中<br />1：已结束 |
 | origin_start | num | 案件关联视频，播放进度条起始坐标 | 单位：`秒` |
 | avid | num | 视频av号 |              |
-| cid | num    | 弹幕池id | 弹幕相关参见「[xml弹幕](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/danmaku/danmaku_xml.md)」 |
+| cid | num    | 弹幕 dmid | |
 | vote_cd | num | `-1` | 暂不明确 |
 | result | num  | 众议结论 | 见开头「投票选项码总览」 |
 | result_text | str | 众议结论文本 |  |
 | title | str | 视频标题 |              |
-| case_info | object | 案件信息 | 见「[附表1](#附表1data-对象下的case_info对象)」 |
-| my_point | object | 我的观点 | 见「[附表4](#附表4data-对象下的my_point对象)」 |
-| vote_info | object | 投票信息 | 见「[附表5](#附表5data-对象下的vote_info对象)」 |
+| case_info | object | 案件信息 | |
+| my_point | object | 我的观点 | |
+| vote_info | object | 投票信息 | |
 
-###### 附表1：`data` 对象下的`case_info`对象
+`data` 对象下的`case_info`对象
 
 | 字段 | 类型 | 内容 | 备注 |
 | ------------ | ------ | ------------ | ------------------------------------------------------------ |
-| comment      | object | 单条评论信息 | 仅当`case_type`为`1`有值。见「[附表2](#附表2评论信息)」 |
+| comment      | object | 单条评论信息 | 仅当`case_type`为`1`有值。见「对象：评论信息」 |
 | danmu_img    | str    | 弹幕截图     | 仅当`case_type`为`4`有值，截图URL                            |
-| comments     | object | 若干条评论   | 仅当`case_type`为`2`有值。见「[附表2](#附表2评论信息)」 |
-| single_danmu | str    | 单条弹幕信息 | 仅当`case_type`为`3`有值。见「[附表3](#附表3弹幕信息)」 |
+| comments     | object | 若干条评论   | 仅当`case_type`为`2`有值。见「对象：评论信息」 |
+| single_danmu | str    | 单条弹幕信息 | 仅当`case_type`为`3`有值。见「对象：评论信息)」 |
 
-###### 附表2：评论信息
+对象：评论信息
 
 | 字段  | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
@@ -153,17 +125,17 @@
 | uname | str | 用户名 |      |
 | face | str | 用户头像 | 头像URL |
 | content | str | 评论内容 |      |
-| child_comments | object | 子评论（对该评论的回复） | 见「[附表2](#附表2评论信息)」，单条评论和子评论下无`child_comments`字段 |
+| child_comments | object | 子评论（对该评论的回复） | 见「对象：评论信息」，单条评论和子评论下无`child_comments`字段 |
 
-###### 附表3：弹幕信息
+对象：弹幕信息
 
-| 字段     | 类型 | 内容     | 备注                                                         |
-| -------- | ---- | -------- | ------------------------------------------------------------ |
-| id_str   | str  | 弹幕dmid | 见「[xml弹幕](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/danmaku/danmaku_xml.md#%E5%B1%9E%E6%80%A7-p)」 |
-| content  | str  | 弹幕内容 |                                                              |
-| progress | num  |          | 尚不明确                                                     |
+| 字段     | 类型 | 内容     |  备注    |
+| -------- | ---- | -------- | ------- |
+| id_str   | str  | 弹幕dmid |          |
+| content  | str  | 弹幕内容 |          |
+| progress | num  |          | 尚不明确 |
 
-###### 附表4：`data` 对象下的`my_point`对象
+`data` 对象下的`my_point`对象
 
 记录了某个风纪委员的某个投票（观点）信息
 
@@ -183,7 +155,7 @@
 | vote_time   | num  | 投票时间         | 时间戳，精确到秒                                             |
 | insiders    | num  | 是否观看此类视频 | 1：平时观看此类视频；0：平时不观看此类视频                   |
 
-###### 附表5：`data` 对象下的`vote_info`对象
+`data` 对象下的`vote_info`对象
 
 | 字段            | 类型  | 内容     | 备注                                         |
 | --------------- | ----- | -------- | -------------------------------------------- |
@@ -268,7 +240,7 @@
 ```
 </details>
 
-#### 旧 api
+**旧 api：**
 
 <details>
 <summary>查看旧 api：</summary>
@@ -576,7 +548,7 @@ curl -G 'https://api.bilibili.com/x/credit/jury/juryCase' \
 
 </details>
 
-#### 旧 api
+## 查询案件众裁信息(旧 api)
 
 <details>
 <summary>查看旧版API：</summary>
@@ -812,7 +784,7 @@ curl -G 'https://api.bilibili.com/x/credit/v2/jury/case/opinion' \
 
 </details>
 
-#### 旧 api
+**旧 api**
 
 <details>
 <summary>查看旧版API：</summary>

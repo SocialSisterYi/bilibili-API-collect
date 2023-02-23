@@ -2,13 +2,6 @@
 
 <img src="../../assets/img/ploading.gif" width="100" height="100"/>
 
-- [获取视频详细信息(web端)](#获取视频详细信息web端)
-- [获取视频超详细信息(web端)](#获取视频超详细信息web端)
-- [获取视频简介](#获取视频简介)
-- [查询视频分P列表 (avid/bvid转cid)](#查询视频分p列表-avidbvid转cid)
-
----
-
 ## 获取视频详细信息(web端)
 
 > https://api.bilibili.com/x/web-interface/view

@@ -14,11 +14,18 @@
 
 ### 目录
 
-文档目录以 **列表** 语法写在 [README.md](README.md) 中，使用缩进标识文档的层级，如`视频`下存在`基本信息`、`快照`、`推荐`等子分类
+文档目录以 **Markdown无序列表** 语法写在 [README.md](README.md) 中，使用缩进标识文档的层级，如`视频`下存在`基本信息`、`快照`、`推荐`等子分类，使用 **Markdown 复选框** 语法该标注文档是否编写完成
+
+```markdown
+- [x] 视频
+  - [x] 基本信息
+  - [x] 快照
+  - [x] 推荐
+```
 
 ### 路径
 
-路径层级应当与文档目录一致，以文件夹的形式存放在项目中，命名统一使用英文，如`video`、`danmaku`、`comment`
+路径层级应当与文档目录一致，以文件夹的形式存放在项目中的`/docs`路径下，命名统一使用英文，如`video`、`danmaku`、`comment`
 
 二级、三级路径应当存在二级三级目录，以`README.md`的形式
 
@@ -28,7 +35,9 @@
 
 文档文件中用于存放相关的接口的说明，如`video/`下的`info.md`，存在`查询视频基本信息`、`查询视频简介`、`查询视频分P列表`等内容
 
-## 文档内容格式
+## Markdown文档内容格式
+
+文档使用 [Vuepress](https://vuepress.vuejs.org/) 生成，可以使用 [Vuepress md 扩展语法](https://vuepress.vuejs.org/guide/markdown.html)编写
 
 注：以下文档范式可根据**实际情况**进行调整
 
@@ -36,18 +45,7 @@
 
 文档首行为 **一级标签** 格式标题
 
-标题下方为索引，与正文二级标题对应，使用 **列表** 语法与缩进，每项使用 **超链接** 语法实现 id 锚点跳转
-
-头部结束应使用 **分隔线** 语法划线分割
-
-```markdown
-# 视频
-
-- [获取视频详细信息](#获取视频详细信息)
-- [获取视频简介](#获取视频简介)
-
----
-```
+**文档头部不再需要手写索引**
 
 ### 接口说明
 
@@ -186,6 +184,32 @@ eg：
 | 64   | 720P 高清     | WEB 端默认值<br />B站前端需要登录才能选择，但是直接发送请求可以不登录就拿到 720P 的取流地址<br />**无 720P 时则为 720P60** |
 | 74   | 720P60 高帧率 | 登录认证                                                     |
 | 80   | 1080P 高清    | TV 端与 APP 端默认值<br />登录认证                           |
+
+## Proto定义格式
+
+proto 文件为 [Protocol Buffers](https://protobuf.dev/) 以及 [gRPC](https://grpc.io/docs/) 的数据结构体定义，多用于客户端的接口，本文档也做相关的收集
+
+存放于项目的`/grpc_api`路径下，使用包名进行路径层级的组织，如
+
+```
+/grpc_api/bilibili/main/community/reply/v1/reply.proto
+/grpc_api/bilibili/app/archive/v1/archive.proto
+/grpc_api/bilibili/app/view/v1/view.proto
+```
+
+proto 文件内使用 **单行注释** 标注字段或对象的含义，如
+
+```protobuf
+// UP主信息
+message Author {
+	// UP主mid
+	int64 mid = 1;
+	// UP主昵称
+	string name = 2;
+	// UP主头像url
+	string face = 3;
+}
+```
 
 ## 文档提交
 

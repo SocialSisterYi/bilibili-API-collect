@@ -2,11 +2,7 @@
 
 <img src="../../assets/img/download.svg" width="100" height="100"/>
 
-- [获取音频流URL（无法获取付费音频）（web端）](#获取音频流url无法获取付费音频web端)
-- [获取音频流URL（可获取付费音频）（双端）](#获取音频流url可获取付费音频双端)
-- [音频流的获取](#音频流的获取)
-
----
+## 音质qn参数定义
 
 音质`qn`参数：
 
@@ -17,7 +13,7 @@
 | 2    | 高品质 320K          |
 | 3    | 无损 FLAC （大会员） |
 
-## 获取音频流URL（无法获取付费音频）（web端）
+## 获取音频流URL(web端)
 
 > https://www.bilibili.com/audio/music-service-c/web/url
 
@@ -98,7 +94,7 @@ curl -G 'https://www.bilibili.com/audio/music-service-c/web/url' \
 
 </details>
 
-## 获取音频流URL（可获取付费音频）（双端）
+## 获取音频流URL（可获取付费音频）
 
 > https://api.bilibili.com/audio/music-service-c/url
 

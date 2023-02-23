@@ -1,10 +1,5 @@
 # 动态信息
 
-- [获取正在直播的已关注者](#获取正在直播的已关注者)
-- [获取发布新动态的已关注者](#获取发布新动态的已关注者)
-
----
-
 ## 获取正在直播的已关注者
 
 > https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/w_live_users

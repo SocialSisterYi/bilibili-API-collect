@@ -1,10 +1,5 @@
 # 私信
 
-- [未读私信数](#未读私信数)
-- [发送私信（web端）](#发送私信web端)
-- [私信消息记录](#私信消息记录)
----
-
 ## 未读私信数
 
 > https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread

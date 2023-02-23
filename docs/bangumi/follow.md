@@ -1,10 +1,5 @@
 # 追番相关
 
-- [追番](#追番)
-- [取消追番](#取消追番)
-
----
-
 ## 追番
 > https://api.bilibili.com/pgc/web/follow/add
 

@@ -1,15 +1,5 @@
 # 评论区明细
 
-- [获取评论区明细_翻页加载](#获取评论区明细_翻页加载)
-- [获取评论区明细_懒加载](#获取评论区明细_懒加载)
-- [获取指定评论的回复](#获取指定评论的回复)
-- [获取指定评论对话树](#获取指定评论对话树)
-- [获取评论区热评](#获取评论区热评)
-- [~~获取指定评论信息~~](#~~获取指定评论信息~~)
-- [获取评论区评论总数](#获取评论区评论总数)
-
----
-
 ## 获取评论区明细_翻页加载
 
 > https://api.bilibili.com/x/v2/reply
@@ -5641,7 +5631,12 @@ curl -G 'https://api.bilibili.com/x/v2/reply/hot' \
 
 </details>
 
-## ~~获取指定评论信息~~
+## 获取指定评论信息
+
+该接口已经弃用
+
+<details>
+<summary>点击展开折叠内容：</summary>
 
 > https://api.bilibili.com/x/v2/reply/info
 
@@ -5792,6 +5787,8 @@ curl -G 'https://api.bilibili.com/x/v2/reply/info' \
     }
 }
 ```
+
+</details>
 
 </details>
 

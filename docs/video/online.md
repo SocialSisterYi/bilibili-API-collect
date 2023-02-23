@@ -1,8 +1,5 @@
 # 视频在线人数
 
-- [获取视频在线人数_web端](#获取视频在线人数_web端)
-- [获取视频在线人数_APP端](#获取视频在线人数_APP端)
-
 ## 获取视频在线人数_web端
 
 > https://api.bilibili.com/x/player/online/total

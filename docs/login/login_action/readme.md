@@ -82,7 +82,7 @@ curl 'https://passport.bilibili.com/x/passport-login/captcha?source=main_web'
 
 ### 进行验证
 
-本文档为Bilibili文档，验证码为geetest极验提供，故不提供api
+本文档为 Bilibili 文档，验证码为 [geetest 极验](https://docs.geetest.com/sensebot/start/) 提供，故不提供相关 API
 
 附: [手动验证器](https://kuresaru.github.io/geetest-validator/)
 [及其源码](https://github.com/kuresaru/geetest-validator)

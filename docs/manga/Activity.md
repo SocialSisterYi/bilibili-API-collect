@@ -1,13 +1,10 @@
 # 漫画任务操作
 
-- [漫画任务操作](#漫画任务操作)
-  - [分享漫画](#分享漫画)
-
 ## 分享漫画
 
 > https://manga.bilibili.com/twirp/activity.v1.Activity/ShareComic
 
-_请求方式：POST_
+*请求方式：POST*
 
 认证方式：Cookie（SESSDATA）/ APP
 

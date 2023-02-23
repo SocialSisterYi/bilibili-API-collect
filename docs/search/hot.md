@@ -1,11 +1,5 @@
 # 默认搜索&热搜
 
-- [获取默认搜索内容（web端）](#获取默认搜索内容web端)
-- [获取热搜列表（web端）](#获取热搜列表web端)
-- [获取热搜列表（手机端）](#获取热搜列表手机端)
-
----
-
 ## 获取默认搜索内容（web端）
 
 > https://api.bilibili.com/x/web-interface/search/default

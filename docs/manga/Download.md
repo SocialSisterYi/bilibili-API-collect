@@ -253,4 +253,4 @@ curl -L -X POST 'https://manga.bilibili.com/twirp/comic.v1.Comic/ImageToken' \
 https://manga.hdslb.com/bfs/manga/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg?token=36931815abb35857627a22c347dc1c86&ts=634045c2
 ```
 
-备注：若访问 `https://i0（或i1）.hdslb.com/bfs/manga（或new_dyn或archive）/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg` 均无法获取
+**注**：若不加取图 Token 直接访问 `https://(i0|i1).hdslb.com/bfs/(manga|new_dyn|archive)/11e404e602fa9f709bfb89d692ac56d2e17f974d.jpg`均无法获取

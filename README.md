@@ -128,7 +128,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [专栏](docs/article)
   - [ ] 分区
   - [X] [基本信息](docs/article/info.md)
-  - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/like_coin_fav.md)
+  - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
   - [X] [文集基本信息](docs/article/articles.md)
   - [X] [获取用户专栏文章列表](docs/article/list.md)
 - [ ] [音频](docs/audio)
@@ -138,10 +138,11 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [投币 & 收藏](docs/audio/action.md)
   - [x] [播放 & 下载地址（音频流）](docs/audio/musicstream_url.md)
   - [ ] 音频榜单
-- [ ] [排行榜 & 最新视频](docs/ranking&dynamic)
-  - [ ] [排行榜](docs/ranking&dynamic/ranking.md)
-  - [ ] [热门视频](docs/ranking&dynamic/popular.md)
-  - [ ] [最新视频](docs/ranking&dynamic/dynamic.md)
+- [ ] [排行榜 & 最新视频](docs/video_ranking)
+  - [ ] [排行榜](docs/video_ranking/ranking.md)
+  - [ ] [热门视频](docs/video_ranking/popular.md)
+  - [ ] [最新视频](docs/video_ranking/dynamic.md)
+  - [x] [入站必刷视频](docs/video_ranking/precious_videos.md)
 - [ ] [搜索](docs/search)
   - [x] [搜索请求](docs/search/search_request.md)
   - [x] [搜索结果](docs/search/search_response.md)
@@ -207,6 +208,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [直播视频流](docs/live/live_stream.md)
   - [ ] [直播信息流](docs/live/message_stream.md)
   - [ ] [直播红包](docs/live/redpocket.md)
+  - [ ] [直播间用户实用 API](docs/live/user.md)
 - [ ] [转正答题](docs/newbie_exam)
   - [x] [查询信息](docs/newbie_exam/info.md)
   - [x] [拉取题目](docs/newbie_exam/fetch.md)
@@ -216,6 +218,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] B币充值
   - [ ] 贝壳相关
 - [ ] [哔哩哔哩漫画](docs/manga)
+  - [ ] [用户信息](docs/manga/user.md)
   - [x] [签到](docs/manga/ClockIn.md)
   - [x] [积分商城](docs/manga/point_shop.md)
   - [x] [漫画操作](docs/manga/Comic.md)

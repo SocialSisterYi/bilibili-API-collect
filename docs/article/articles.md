@@ -1,9 +1,5 @@
 # 文集基本信息
 
-- [获取文集基本信息](#获取文集基本信息)
-
----
-
 ## 获取文集基本信息
 
 > https://api.bilibili.com/x/article/list/web/articles

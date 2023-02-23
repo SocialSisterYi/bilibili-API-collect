@@ -1,21 +1,11 @@
 # 直播间用户实用 API
 
-- [直播间用户实用 API](#直播间用户实用-api)
-  - [获取用户持有的粉丝勋章信息](#获取用户持有的粉丝勋章信息)
-  - [佩戴勋章](#佩戴勋章)
-  - [直播签到](#直播签到)
-  - [本月直播签到信息](#本月直播签到信息)
-  - [上月直播签到信息](#上月直播签到信息)
-
----
-
 ## 获取用户持有的粉丝勋章信息
 
-> ~~https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal~~
->
+> ~~https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal~~ (旧)
 > https://api.live.bilibili.com/xlive/app-ucenter/v1/user/GetMyMedals
 
-_请求方式：GET_
+*请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或 APP
 
@@ -45,7 +35,7 @@ _请求方式：GET_
 | items     | array | 粉丝勋章信息本体 |      |
 | page_info | obj   | 页码信息         |      |
 
-`items 数组内`对象：
+`items`数组中的对象：
 
 | 字段               | 类型   | 内容                 | 备注                                   |
 | ------------------ | ------ | -------------------- | -------------------------------------- |
@@ -130,7 +120,7 @@ curl https://api.live.bilibili.com/xlive/app-ucenter/v1/user/GetMyMedals?page=1&
 
 > https://api.live.bilibili.com/xlive/web-room/v1/fansMedal/wear
 
-_请求方式：POST_
+*请求方式：POST*
 
 **表单参数：**
 
@@ -214,7 +204,7 @@ _请求方式：GET_
 
 > https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/WebGetSignInfo
 
-_请求方式：GET_
+*请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或 APP
 
@@ -293,7 +283,7 @@ _请求方式：GET_
 
 > https://api.live.bilibili.com/sign/getLastMonthSignDays
 
-_请求方式：GET_
+*请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或 APP
 

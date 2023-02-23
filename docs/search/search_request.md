@@ -1,10 +1,5 @@
 # 搜索
 
-- [综合搜索（web端）](#综合搜索web端)
-- [分类搜索（web端）](#分类搜索web端)
-
----
-
 > **B站于2022年8月24日更新了搜索api，增加了一大堆Cookies的校验，如果Cookies不足会返回-412搜索被拦截。如果没有cookies的话，请在搜索之前先GET一遍 https://bilibili.com 以获取cookies**
 
 ## 综合搜索（web端）

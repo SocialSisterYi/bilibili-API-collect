@@ -1,13 +1,6 @@
 # 剧集基本信息
 
-- [剧集基本信息（mdid方式）](#剧集基本信息mdid方式)
-- [获取剧集明细（web端）（ssid/epid方式）](#获取剧集明细web端ssidepid方式)
-- [获取剧集分集信息](#获取剧集分集信息)
-
----
-
 ## 剧集基本信息（mdid方式）
-
 
 > https://api.bilibili.com/pgc/review/user
 

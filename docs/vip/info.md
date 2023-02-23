@@ -1,9 +1,5 @@
 # 大会员信息
 
-- [卡券状态查询](#卡券状态查询)
-
----
-
 ## 卡券状态查询
 
 > https://api.bilibili.com/x/vip/privilege/my
