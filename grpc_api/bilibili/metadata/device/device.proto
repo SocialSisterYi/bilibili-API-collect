@@ -6,8 +6,8 @@ package bilibili.metadata.device;
 // gRPC头部:x-bili-device-bin
 message Device {
     // 产品id
-    // 粉 白 蓝 直播姬 HD 海外 OTT 漫画 TV野版 小视频 网易漫画 网易漫画 网易漫画HD 国际版
-    // 1  2  3    4    5   6    7   8     9     10      11       12       13       14
+    // 粉 白 蓝 直播姬 HD 海外 OTT 漫画 TV野版 小视频 网易漫画 网易漫画 网易漫画HD 国际版 东南亚版
+    // 1  2  3    4    5   6    7   8     9     10      11       12       13       14       30
     int32 app_id = 1;
     // 构建id
     int32 build = 2;
@@ -36,6 +36,6 @@ message Device {
     string version_name = 13;
     // 设备指纹, 不区分本地或远程设备指纹，作为推送目标的索引
     string fp = 14;
-    //
+    // 首次启动时的毫秒时间戳
     int64 fts = 15;
 }

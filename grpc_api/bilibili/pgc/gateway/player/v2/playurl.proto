@@ -22,15 +22,15 @@ message BadgeInfo {
     string bg_color_night = 3;
     // 文案色值
     string text_color = 4;
-    //
+    // ? 新版本客户端已弃用此项
     GradientColor bg_gradient_color = 5;
 }
 
-//
+// Dialog组件: 底部显示
 message BottomDisplay {
-    //
+    // 文案
     TextInfo title = 1;
-    //
+    // 图标
     string icon = 2;
 }
 
@@ -68,34 +68,35 @@ message ButtonInfo {
     map<string, string> order_report_params = 15;
 }
 
-//
+// 投屏限制. code = 0 时为无限制, 否则表示不不允许投屏并提示message
 message CastTips {
     //
     int32 code = 1;
-    //
+    // 
     string message = 2;
 }
 
-//
+// 跳过片头/片尾配置
 message ClipInfo {
     //
     int64 material_no = 1;
-    //
+    // DASH分段始
     int32 start = 2;
-    //
+    // DASH分段终
     int32 end = 3;
-    //
+    // Clip类型
     ClipType clip_type = 4;
-    //
+    // 跳过片头/片尾时的提示语
     string toast_text = 5;
-    //
+    // 
     MultiView multi_view = 6;
 }
 
+// 跳过片头/片尾配置: Clip类型
 enum ClipType {
     NT_UNKNOWN = 0;           //
-    CLIP_TYPE_OP = 1;         //
-    CLIP_TYPE_ED = 2;         //
+    CLIP_TYPE_OP = 1;         // 跳过OP
+    CLIP_TYPE_ED = 2;         // 跳过ED
     CLIP_TYPE_HE = 3;         //
     CLIP_TYPE_MULTI_VIEW = 4; //
 }
@@ -176,7 +177,7 @@ message DashItem {
     uint32 codecid = 5;
     // md5
     string md5 = 6;
-    // 大小
+    // 视频大小
     uint64 size = 7;
     // 帧率
     string frame_rate = 8;
@@ -252,13 +253,13 @@ message DialogConfig {
     bool is_force_halfscreen_enable = 4;
 }
 
-//
+// 当前分辨率信息
 message Dimension {
-    //
+    // 宽
     int32 width = 1;
-    //
+    // 长
     int32 height = 2;
-    //
+    // 旋转角度
     int32 rotate = 3;
 }
 
@@ -276,7 +277,7 @@ message DolbyItem {
     DashItem audio = 2;
 }
 
-//
+// DRM技术类型
 enum DrmTechType {
     NON = 0;       //
     FAIR_PLAY = 1; //
@@ -296,7 +297,7 @@ message Event {
     Shake shake = 1;
 }
 
-//
+// ? 放映室提示语
 message FreyaConfig {
     //
     string desc = 1;
@@ -312,7 +313,7 @@ message FreyaConfig {
     int32 full_screen_number = 6;
 }
 
-//
+// 渐变色信息
 message GradientColor {
     //
     string start_color = 1;
@@ -320,7 +321,7 @@ message GradientColor {
     string end_color = 2;
 }
 
-//
+// 高画质试看信息
 message HighDefinitionTrialInfo {
     //
     bool trial_able = 1;
@@ -376,7 +377,7 @@ message MultiView {
     int64 avid = 4;
 }
 
-//
+// 大会员广告: 支付提示信息
 message PayTip {
     //
     string title = 1;
@@ -482,19 +483,19 @@ message PlayViewBusinessInfo {
     string playback_speed_color = 4;
     //
     ContinuePlayInfo continue_play_info = 5;
-    //
+    // 跳过片头/片尾配置
     repeated ClipInfo clip_info = 6;
     //
     InlineType inline_type = 7;
     //
     int32 ep_whole_duration = 8;
-    //
+    // 当前分辨率信息
     Dimension dimension = 9;
     //
     map<int32, QualityExtInfo> quality_ext_map = 10;
     //
     map<string, int32> exp_map = 11;
-    //
+    // DRM技术类型
     DrmTechType drm_tech_type = 12;
 }
 
@@ -578,21 +579,21 @@ message PopWin {
     string pop_type = 9;
 }
 
-//
+// 广告组件: 竖屏时视频下部提示栏
 message PromptBar {
-    //
+    // 主标题, 如: "本片含大会员专享内容"
     TextInfo title = 1;
-    //
+    // 副标题, 如: "成为大会员可免费看全部剧集"
     TextInfo sub_title = 2;
-    //
+    // 副标题前面的icon
     string sub_title_icon = 3;
-    //
+    // 背景图
     string bg_image = 4;
-    //
+    // 背景渐变色
     GradientColor bg_gradient_color = 5;
-    //
+    // 按钮
     repeated ButtonInfo button = 6;
-    //
+    // 埋点上报信息
     Report report = 7;
     //
     string full_screen_ip_icon = 8;
@@ -600,9 +601,9 @@ message PromptBar {
     GradientColor full_screen_bg_gradient_color = 9;
 }
 
-//
+// 云控拓展视频画质信息
 message QualityExtInfo {
-    //
+    // 是否支持试看
     bool trial_support = 1;
 }
 
