@@ -434,8 +434,8 @@ curl -L -X GET 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRec
 
 | 参数名   | 类型 | 内容     | 必要性 | 备注                             |
 | -------- | ---- | -------- | ------ | -------------------------------- |
-| pn | num  | 页数 | 必要   |  |
-| ps | num  | 分页大小 | 必要   | 取值范围[1,20] |
+| pn | num  | 页数 | 非必要 |  |
+| ps | num  | 分页大小 | 非必要 | 取值范围[1,20] |
 
 **json回复：**
 
