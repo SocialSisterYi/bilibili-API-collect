@@ -278,7 +278,7 @@ curl 'https://api.bilibili.com/x/upower/charge/follow/info' \
 | up_info      | obj  | UP主信息     |      |
 | rank_info    | obj  | 充电用户排名 |      |
 | user_info    | obj  | 自己的信息   |      |
-| member_total | str  | 充电用户总数 |      |
+| member_total | num  | 充电用户总数 |      |
 
 `data`中的`up_info`对象：
 
