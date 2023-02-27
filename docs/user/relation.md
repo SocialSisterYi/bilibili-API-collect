@@ -450,7 +450,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings' \
 curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'ps=2' \
---data-urlencode 'pn=1' \
+--data-urlencode 'pn=1'
 ```
 
 <details>
@@ -582,8 +582,7 @@ curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
 curl -G 'https://line3-h5-mobile-api.biligame.com/game/center/h5/user/relationship/following_list' \
 --data-urlencode 'vmid=293793435' \
 --data-urlencode 'ps=2' \
---data-urlencode 'pn=1' \
--b 'SESSDATA=xxx'
+--data-urlencode 'pn=1'
 ```
 
 <details>
