@@ -2,7 +2,7 @@
 
 ## 获取空间充电公示列表
 
-> https://elec.bilibili.com/api/query.rank.do 
+> https://api.bilibili.com/x/ugcpay-rank/elec/month/up
 
 *请求方式:GET*
 
@@ -10,27 +10,28 @@
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
-| mid    | num  | 目标用户mid | 必要   |      |
+| up_mid | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
 
 根对象：
 
-| 字段 | 类型 | 内容     | 备注                          |
-| ---- | ---- | -------- | ----------------------------- |
-| code | num  | 返回值   | 0：成功 <br />500011：mid错误 |
-| msg  | str  | 错误信息 | 正确时无此项                  |
-| data | obj  | 数据本体 |                               |
+| 字段    | 类型 | 内容     | 备注                         |
+| ------- | ---- | -------- | ---------------------------- |
+| code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
+| message | str  | 错误信息 |                              |
+| ttl     | num  | 0        |                              |
+| data    | obj  | 数据本体 |                              |
 
 `data`对象：
 
-| 字段        | 类型   | 内容             | 备注         |
-| ----------- | ------ | ---------------- | ------------ |
-| display_num | num    | 0                | 作用尚不明确 |
-| count       | num    | 本月充电人数     |              |
-| total_count | num    | 总计充电人数     |              |
+| 字段        | 类型  | 内容             | 备注         |
+| ----------- | ----- | ---------------- | ------------ |
+| count       | num   | 本月充电人数     |              |
 | list        | array | 本月充电用户列表 |              |
-| user        | null   |                  | 作用尚不明确 |
+| total_count | num   | 总计充电次数     |              |
+| total       | num   | 总计充电次数     | 同上         |
+| special_day | num   | 0                | 作用尚不明确 |
 
 `data`中的`list`数组：
 
@@ -43,32 +44,32 @@
 
 `data`中的`list`数组中的对象：
 
-| 字段        | 类型 | 内容             | 备注             |
-| ----------- | ---- | ---------------- | ---------------- |
-| mid         | num  | 充电对象mid      |                  |
-| pay_mid     | num  | 充电用户mid      |                  |
-| rank        | num  | 充电用户排名     | 取决于充电的多少 |
-| uname       | str  | 充电用户昵称     |                  |
-| avatar      | str  | 充电用户头像url  |                  |
-| message     | str  | 充电留言         | 无为空           |
-| msg_deleted | num  | 0                | 作用尚不明确     |
-| vip_info    | obj  | 充电用户会员信息 |                  |
-| trend_type  | num  | 0                | 作用尚不明确     |
+| 字段       | 类型 | 内容             | 备注             |
+| ---------- | ---- | ---------------- | ---------------- |
+| uname      | str  | 充电用户昵称     |                  |
+| avatar     | str  | 充电用户头像url  |                  |
+| mid        | num  | 充电对象mid      |                  |
+| pay_mid    | num  | 充电用户mid      |                  |
+| rank       | num  | 充电用户排名     | 取决于充电的多少 |
+| trend_type | num  | 0                | 作用尚不明确     |
+| vip_info   | obj  | 充电用户会员信息 |                  |
+| message    | str  | 充电留言         | 无为空           |
+| msg_hidden | num  | 0                | 作用尚不明确     |
 
-`data`中的`list`数组中的对象中的`vip_info`对象：
+`list`数组中的对象中的`vip_info`对象：
 
-| 字段       | 类型 | 内容       | 备注                                |
-| ---------- | ---- | ---------- | ----------------------------------- |
-| vipType    | num  | 大会员类型 | 0：无<br />1：月会员<br />2：年会员 |
-| vipDueMsec | num  | 0          | 作用尚不明确                        |
-| vipStatus  | num  | 大会员状态 | 0：无<br />1：有                    |
+| 字段       | 类型 | 内容                 | 备注                                      |
+| ---------- | ---- | -------------------- | ----------------------------------------- |
+| vipDueMsec | num  | 大会员过期时间（？） | 恒为0                                     |
+| vipStatus  | num  | 大会员状态           | 0：无<br />1：有                          |
+| vipType    | num  | 大会员类型           | 0：无<br />1：月会员<br />2：年会员及以上 |
 
 **示例：**
 
 查询用户`mid=53456`的充电公示列表
 
 ```shell
-curl -G 'https://elec.bilibili.com/api/query.rank.do' \
+curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up?up_mid=53456' \
 --data-urlencode 'mid=53456'
 ```
 
@@ -78,59 +79,60 @@ curl -G 'https://elec.bilibili.com/api/query.rank.do' \
 ```json
 {
     "code": 0,
+    "message": "",
+    "ttl": 0,
     "data": {
-        "display_num": 0,
-        "count": 226,
-        "total_count": 11528,
+        "count": 397,
         "list": [
             {
+                "uname": "Mars韩笑",
+                "avatar": "https://i1.hdslb.com/bfs/face/a46599fa41cac672eda677e334f0be93cca02f1f.jpg",
                 "mid": 53456,
-                "pay_mid": 346545025,
+                "pay_mid": 5683462,
                 "rank": 1,
-                "uname": "还有什么名字没人用",
-                "avatar": "http://i1.hdslb.com/bfs/face/76d4b1ecd13e992a6c7303d77bf716dd922ab234.jpg",
-                "message": "早日康复，五月快乐",
-                "msg_deleted": 0,
+                "trend_type": 0,
                 "vip_info": {
-                    "vipType": 2,
                     "vipDueMsec": 0,
-                    "vipStatus": 1
+                    "vipStatus": 1,
+                    "vipType": 2
                 },
-                "trend_type": 0
+                "message": "你真棒，你是奇迹！（Warma真的是太棒了！",
+                "message_hidden": 0
             },
             {
+                "uname": "愚星-",
+                "avatar": "https://i1.hdslb.com/bfs/face/7e4a8b150567a20a1b075aa3894dd3674a1e6ebe.jpg",
                 "mid": 53456,
-                "pay_mid": 8826056,
+                "pay_mid": 382630072,
                 "rank": 2,
-                "uname": "煋痕",
-                "avatar": "http://i2.hdslb.com/bfs/face/35b7c752d0eb1bb7a924804f240b9bfd9199625f.jpg",
-                "message": "",
-                "msg_deleted": 0,
+                "trend_type": 0,
                 "vip_info": {
-                    "vipType": 2,
                     "vipDueMsec": 0,
-                    "vipStatus": 1
+                    "vipStatus": 1,
+                    "vipType": 1
                 },
-                "trend_type": 0
+                "message": "感谢您给我带来的快乐！我的人生遇见你是我的荣幸！！",
+                "message_hidden": 0
             },
             {
+                "uname": "なか酱",
+                "avatar": "https://i0.hdslb.com/bfs/face/d4b74091d7f1c336399625dc062ddc93d676bcdc.jpg",
                 "mid": 53456,
-                "pay_mid": 356668487,
+                "pay_mid": 446080731,
                 "rank": 3,
-                "uname": "舞象祥",
-                "avatar": "http://i1.hdslb.com/bfs/face/574f6203ef5bd0d56b95ded6a2736676d9cc5307.jpg",
-                "message": "warma  hayo",
-                "msg_deleted": 0,
+                "trend_type": 0,
                 "vip_info": {
-                    "vipType": 1,
                     "vipDueMsec": 0,
-                    "vipStatus": 1
+                    "vipStatus": 1,
+                    "vipType": 2
                 },
-                "trend_type": 0
-            },
-            …………
+                "message": "",
+                "message_hidden": 0
+            }
         ],
-        "user": null
+        "total_count": 27291,
+        "total": 27291,
+        "special_day": 0
     }
 }
 ```
@@ -434,8 +436,8 @@ curl -L -X GET 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRec
 
 | 参数名   | 类型 | 内容     | 必要性 | 备注                             |
 | -------- | ---- | -------- | ------ | -------------------------------- |
-| pn | num  | 页数 | 必要   |  |
-| ps | num  | 分页大小 | 必要   | 取值范围[1,20] |
+| pn | num  | 页数 | 非必要 |  |
+| ps | num  | 分页大小 | 非必要 | 取值范围[1,20] |
 
 **json回复：**
 

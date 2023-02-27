@@ -164,7 +164,7 @@ curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/list?begin=2016-01
 
 ## 查询充电留言详情
 
-> https://member.bilibili.com/x/web/elec/remark/detail?id=6662619
+> https://member.bilibili.com/x/web/elec/remark/detail
 
 认证方式：Cookie（SESSDATA）
 

@@ -202,7 +202,7 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
 | ttl     | num  | 1        |                                                              |
 | data    | obj  | 信息本体 |                                                              |
 
-data 对象：
+`data`对象：
 
 | 字段       | 类型  | 内容     | 备注         |
 | ---------- | ----- | -------- | ------------ |
@@ -356,32 +356,28 @@ curl -G 'https://api.bilibili.com/x/relation/followings' \
 
 *请求方式：GET*
 
-认证方式：Cookie(SESSDATA)或APP
-
-登录可看自己全部，其他用户仅可查看前5页，可以获取已设置可见性隐私的关注列表
+仅可查看前5页，可以获取已设置可见性隐私的关注列表
 
 **url参数：**
 
-| 参数名     | 类型 | 内容         | 必要性      | 备注                                                    |
-| ---------- | ---- | ------------ | ----------- | ------------------------------------------------------- |
-| access_key | str  | APP登录Token | APP方式必要 |                                                         |
-| vmid       | num  | 目标用户mid  | 必要        |                                                         |
-| order_type | str  | 排序方式     | 非必要      | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
-| ps         | num  | 每页项数     | 非必要      | 默认为50                                                |
-| pn         | num  | 页码         | 非必要      | 默认为1<br />其他用户仅可查看前5页                      |
+| 参数名     | 类型 | 内容         | 必要性 | 备注                       |
+| ---------- | ---- | ------------ | ------ | -------------------------- |
+| vmid       | num  | 目标用户mid  | 必要   |                            |
+| ps         | num  | 每页项数     | 非必要 | 默认为50                   |
+| pn         | num  | 页码         | 非必要 | 默认为1<br />仅可查看前5页 |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
+| 字段    | 类型 | 内容     | 备注                                                |
+| ------- | ---- | -------- | --------------------------------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />22007：访问超过5页 |
-| message | str  | 错误信息 | 默认为0                                                      |
-| ttl     | num  | 1        |                                                              |
-| data    | obj  | 信息本体 |                                                              |
+| message | str  | 错误信息 | 默认为0                                             |
+| ttl     | num  | 1        |                                                     |
+| data    | obj  | 信息本体 |                                                     |
 
-data 对象：
+`data`对象：
 
 | 字段       | 类型  | 内容     | 备注         |
 | ---------- | ----- | -------- | ------------ |
@@ -453,10 +449,8 @@ data 对象：
 ```shell
 curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
 --data-urlencode 'vmid=293793435' \
---data-urlencode 'order_type=' \
 --data-urlencode 'ps=2' \
 --data-urlencode 'pn=1' \
--b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -522,6 +516,97 @@ curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
 		"re_version": 3228575555,
 		"total": 699
 	}
+}
+```
+
+</details>
+
+## 查询用户关注明细3
+
+<img src="../../assets/img/relation.svg" width="100" height="100" />
+
+> https://line3-h5-mobile-api.biligame.com/game/center/h5/user/relationship/following_list
+
+*请求方式：GET*
+
+可获取用户所有关注列表，对于设置了可见性隐私的用户会返回空列表
+
+**url参数：**
+
+| 参数名 | 类型 | 内容         | 必要性      | 备注     |
+| ------ | ---- | ------------ | ----------- | -------- |
+| vmid   | num  | 目标用户mid  | 必要        |          |
+| ps     | num  | 每页项数     | 非必要      | 默认为20 |
+| pn     | num  | 页码         | 非必要      | 默认为1  |
+
+**json回复：**
+
+根对象：
+
+| 字段       | 类型 | 内容       | 备注                        |
+| ---------- | ---- | ---------- | --------------------------- |
+| code       | num  | 返回值     | 0：成功<br />-400：请求错误 |
+| message    | str  | 错误信息   | 成功时无此项                |
+| data       | obj  | 信息本体   | 失败时无此项                |
+| ts         | num  | 当前时间戳 | 单位为毫秒                  |
+| request_id | str  | 请求id     |                             |
+
+`data`对象：
+
+| 字段       | 类型  | 内容     | 备注         |
+| ---------- | ----- | -------- | ------------ |
+| list       | array | 明细列表 |              |
+
+`data`中的`list`数组：
+
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 关注1     |                  |
+| n    | obj  | 关注(n+1) | 按照关注顺序排列 |
+| ……   | obj  | ……        | ……               |
+
+数组`list`中的对象：
+
+| 字段            | 类型 | 内容        | 备注                                    |
+| --------------- | ---- | ----------- | --------------------------------------- |
+| mid             | str  | 用户mid     |                                         |
+| attribute       | num  | 关注属性    | 0：未关注<br />2：已关注<br />6：已互粉 |
+| uname           | str  | 用户昵称    |                                         |
+| face            | str  | 用户头像url |                                         |
+
+**示例：**
+
+获取用户`mid=293793435`的关注明细
+
+```shell
+curl -G 'https://line3-h5-mobile-api.biligame.com/game/center/h5/user/relationship/following_list' \
+--data-urlencode 'vmid=293793435' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"data": {
+		"list": [{
+			"mid": "14082",
+			"attribute": 2,
+			"uname": "山新",
+			"face": "https://i0.hdslb.com/bfs/face/74c82caee6d9eb623e56161ea8ed6d68afabfeae.jpg"
+		}, {
+			"mid": "420831218",
+			"attribute": 2,
+			"uname": "支付宝Alipay",
+			"face": "https://i2.hdslb.com/bfs/face/aaf18aeb2d9822e28a590bd8d878572ca8c59e04.jpg"
+		}]
+	},
+	"ts": 1677410818395,
+	"request_id": "d9d541b9f2d24e21821e2d6d2d16c17d"
 }
 ```
 
