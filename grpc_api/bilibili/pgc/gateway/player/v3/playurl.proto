@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package bilibili.pgc.gateway.player.v3;
+
+import "bilibili/playershared/playershared.proto";
+
+import "google/protobuf/any.proto";
+
+// 播放页信息-请求
+message PlayViewReq {
+    // 视频信息
+    bilibili.playershared.VideoVod vod = 1;
+    // 当前页spm
+    string spmid = 2;
+    // 上一页spm
+    string from_spmid = 3;
+    // 青少年模式
+    int32 teenagers_mode = 4;
+    // 
+    map<string, string> extra_content = 5;
+
+}
+
+// 播放页信息-响应
+message PlayViewReply {
+    bilibili.playershared.VodInfo vod_info = 1;
+    bilibili.playershared.PlayArcConf play_arc_conf = 2;
+    google.protobuf.Any supplement = 3;
+    bilibili.playershared.PlayArc play_arc = 4;
+    bilibili.playershared.QnTrialInfo qn_trial_info = 5;
+    bilibili.playershared.Event event = 6;
+}
