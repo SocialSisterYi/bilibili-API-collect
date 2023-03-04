@@ -41,6 +41,8 @@ service Dynamic {
     rpc LikeList(LikeListReq) returns (LikeListReply);
     // 转发列表
     rpc RepostList(RepostListReq) returns (RepostListRsp);
+    // 新版动态转发点赞列表 需要登录
+    rpc ReactionList(ReactionListReq) returns (ReactionListReply);
     // 空间页动态
     rpc DynSpace(DynSpaceReq) returns (DynSpaceRsp);
     // 未登录页分区UP主推荐
@@ -3494,6 +3496,42 @@ message RepostListRsp {
     RepostType repost_type = 5;
 }
 
+// 新版动态转发点赞列表-请求
+message ReactionListReq {
+    // 动态ID
+    int64 dynamic_id = 1;
+    // 动态类型
+    int64 dyn_type = 2;
+    // 业务方资源id
+    int64 rid = 3;
+    // 偏移,使用上一页回包中的offset字段；第一页不传。
+    string offset = 4;
+}
+
+// 新版动态转发点赞列表-响应
+message ReactionListReply {
+    // 标题
+    string title = 1;
+    // 列表
+    repeated ReactionListItem list = 2;
+    // 偏移
+    string offset = 3;
+    // 是否还有更多
+    bool has_more = 4;
+}
+
+message ReactionListItem {
+    // 用户信息
+    UserInfo user = 1;
+    // 关注关系
+    Relation relation = 2;
+    // 显示文字
+    string act_text = 3;
+    // 
+    string rcmd_reason = 4;
+    // bool has_relation = 5;
+    // bool has_user = 6;
+}
 // 评论类型
 enum RepostType {
     repost_hot = 0;     // 热门评论
