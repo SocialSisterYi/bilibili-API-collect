@@ -70,7 +70,7 @@
 | folder        | obj                             | 折叠信息           |                                                              |
 | up_action     | obj                             | 评论 UP 主操作信息 |                                                              |
 | show_follow   | bool                            | (?)                |                                                              |
-| invisible     | bool                            |                    |                                                              |
+| invisible     | bool                            | 评论是否被隐藏      |                                                              |
 | card_label    | obj                             | 右上角卡片标签信息   |                                                              |
 | reply_control | obj                             | 评论提示文案信息   |                                                              |
 
@@ -334,3 +334,4 @@
 | sub_reply_entry_text | str  | 回复提示 | `共 xx 条回复`       |
 | sub_reply_title_text | str  | 回复提示 | `相关回复共有 xx 条` |
 | time_desc            | str  | 时间提示 | `xx 天/小时 前发布`  |
+| location             | str  | IP属地  | `IP属地：xx`<br />评论者发送评论时的IP地址属地<br />仅对2022-07-25 11:00及以后发布的评论有效<br />需要登录|

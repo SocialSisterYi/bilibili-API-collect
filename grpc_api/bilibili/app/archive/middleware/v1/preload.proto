@@ -13,6 +13,6 @@ message PlayerArgs {
     // 返回url是否强制使用域名
     // 0:不强制使用域名 1:http域名 2:https域名
     int64 force_host = 4;
-    //
+    // 音量均衡
     int64 voice_balance = 5;
 }

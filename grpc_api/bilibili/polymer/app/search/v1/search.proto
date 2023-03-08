@@ -7,9 +7,9 @@ import "bilibili/pagination/pagination.proto";
 
 //
 service Search {
-    //
+    // 搜索所有类型结果
     rpc SearchAll(SearchAllRequest) returns (SearchAllResponse);
-    //
+    // 搜索指定类型结果
     rpc SearchByType(SearchByTypeRequest) returns (SearchByTypeResponse);
     //
     rpc SearchComic(SearchComicRequest) returns (SearchComicResponse);
@@ -1098,9 +1098,9 @@ message SearchBannerCard {
 
 //
 message SearchByTypeRequest {
-    //
+    // 搜索目标类型, 番剧为7
     int32 type = 1;
-    //
+    // 关键词
     string keyword = 2;
     //
     int32 category_sort = 3;
@@ -1118,21 +1118,21 @@ message SearchByTypeRequest {
 
 //
 message SearchByTypeResponse {
-    //
+    // 追踪id
     string trackid = 1;
-    //
+    // 当前页码
     int32 pages = 2;
     //
     string exp_str = 3;
-    //
+    // 搜索关键词
     string keyword = 4;
-    //
+    // 是否为推荐结果
     int32 result_is_recommend = 5;
-    //
+    // 搜索结果条目
     repeated Item items = 6;
-    //
+    // 分页信息
     bilibili.pagination.PaginationReply pagination = 7;
-    //
+    // 
     map<string, string> annotation = 8;
 }
 
