@@ -370,7 +370,7 @@ curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
 --data-urlencode 'currentPage=1' \
 --data-urlencode 'pageSize=2' \
 --data-urlencode 'customerId=10026' \
--H 'Cookie: SESSDATA=xxx'
+-b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -484,7 +484,7 @@ curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
 
 ```shell
 curl -G 'https://member.bilibili.com/x/h5/elec/rank/recent' \
--H 'Cookie: SESSDATA=xxx'
+-b 'SESSDATA=xxx'
 ```
 
 <details>
