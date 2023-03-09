@@ -168,7 +168,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [x] [实时广播（通讯协议）](docs/broadcast)
   - [x] [视频内广播](docs/broadcast/video_room.md)
 - [ ] [充电](docs/electric)
-  - [ ] [包月充电操作](docs/electric/monthly.md)
+  - [ ] [包月充电相关](docs/electric/monthly.md)
   - [x] [自定义充电（B币方式）](docs/electric/Bcoin.md)
   - [x] [自定义充电（微信 & 支付宝方式）](docs/electric/WeChat&Alipay.md)
   - [x] [充电留言](docs/electric/charge_msg.md)
