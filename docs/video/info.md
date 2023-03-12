@@ -32,7 +32,7 @@
 
 `data`对象：
 
-| 字段                   | 类型      | 内容              | 备注                                                 |
+| 字段                 | 类型      | 内容              | 备注                                                 |
 |----------------------|---------|-----------------|----------------------------------------------------|
 | bvid                 | str     | 稿件bvid          |                                                    |
 | aid                  | num     | 稿件avid          |                                                    |
@@ -46,8 +46,8 @@
 | ctime                | num     | 用户投稿时间          | 秒级时间戳                                              |
 | desc                 | str     | 视频简介            |                                                    |
 | desc_v2              | array   | 新版视频简介          |                                                    |
-| state                | num     | 视频状态            | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
-| ~~attribute~~(已经弃用)  | ~~num~~ | ~~稿件属性位配置~~     | 详情见[属性数据文档](attribute_data.md#state字段值(稿件状态))      |
+| state                | num     | 视频状态            | 详情见[属性数据文档](attribute_data.md#state字段值(稿件状态)) |
+| ~~attribute~~(已经弃用)  | ~~num~~ | ~~稿件属性位配置~~     | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位))      |
 | duration             | num     | 稿件总时长(所有分P)     | 单位为秒                                               |
 | forward              | num     | 撞车视频跳转avid      | 仅撞车视频存在此字段                                         |
 | mission_id           | num     | 稿件参与的活动id       |                                                    |
