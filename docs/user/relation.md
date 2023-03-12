@@ -356,7 +356,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings' \
 
 *请求方式：GET*
 
-仅可查看前5页，可以获取已设置可见性隐私的关注列表
+仅可查看前5页，对于已设置可见性隐私的用户，`$.data.list`为null，且`$.data.total`为0
 
 **url参数：**
 
