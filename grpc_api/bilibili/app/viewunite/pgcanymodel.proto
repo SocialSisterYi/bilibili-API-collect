@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package bilibili.app.viewunite.pgcanymodel;
+
+// 
+message ViewPgcAny {
+    // 
+    uint64 season_id = 1;
+    // 
+    int32 season_type = 2;
+}
