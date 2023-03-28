@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package bilibili.app.playerunite.pgcanymodel;
+
+import "bilibili/pgc/gateway/player/v2/playurl.proto";
+
+message PGCAnyModel {
+    bilibili.pgc.gateway.player.v2.PlayViewBusinessInfo business = 3;
+    bilibili.pgc.gateway.player.v2.Event event = 4;
+    bilibili.pgc.gateway.player.v2.ViewInfo view_info = 5;
+    bilibili.pgc.gateway.player.v2.PlayAbilityExtConf play_ext_conf = 6;
+    bilibili.pgc.gateway.player.v2.PlayExtInfo play_ext_info = 7;
+}
+

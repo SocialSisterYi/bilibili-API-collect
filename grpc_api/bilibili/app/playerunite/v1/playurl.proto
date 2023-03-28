@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package bilibili.app.playerunite.v1;
+
+import "bilibili/playershared/playershared.proto";
+
+import "google/protobuf/any.proto";
+
+// 统一视频url
+service Player {
+    // 视频地址
+    rpc PlayViewUnite (PlayViewUniteReq) returns (PlayViewUniteReply);
+}
+
+// 
+message PlayViewUniteReq {
+    // 请求资源VOD信息
+    bilibili.playershared.VideoVod vod = 1;
+    // 
+    string spmid = 2;
+    // 
+    string from_spmid = 3;
+    // 补充信息, 如ep_id等
+    map<string, string> extra_content = 4;
+}
+
+// 
+message PlayViewUniteReply {
+    // 音视频流信息
+    bilibili.playershared.VodInfo vod_info = 1;
+    // 
+    bilibili.playershared.PlayArcConf play_arc_conf = 2;
+    // 
+    bilibili.playershared.PlayDeviceConf play_device_conf = 3;
+    // 
+    bilibili.playershared.Event event = 4;
+    // 使用 pgcanymodel / ugcanymodel 进行proto any转换成对应业务码结构体
+    google.protobuf.Any supplement = 5;
+    // 
+    bilibili.playershared.PlayArc play_arc = 6;
+    // 
+    bilibili.playershared.QnTrialInfo qn_trial_info = 7;
+    // 
+    bilibili.playershared.History history = 8;
+}
