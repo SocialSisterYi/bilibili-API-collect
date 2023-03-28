@@ -604,7 +604,7 @@ data字段
 | medal_info | obj | SC发送用户佩戴的粉丝牌信息 | |
 | message | str | sc内容           | |
 | message_font_color | str | SC文本颜色         | |
-| message_trans | str | 待调查         | |
+| message_trans | str | 机翻sc内容  | |
 | price | num | sc金额           | |
 | rate | num | 待调查            | |
 | start_time | num | 待调查            | |
