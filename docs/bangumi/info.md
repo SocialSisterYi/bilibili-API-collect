@@ -271,7 +271,7 @@ curl -G 'https://api.bilibili.com/pgc/review/user' \
 | allow_ticket        | num  | 启用票券       |                           |
 | allow_time_limit    | num  | 启用时间限制   |                           |
 | allow_vip_discount  | num  | 启用大会员折扣 |                           |
-| forbid_bb           | num  | 禁止使用B币    |                           |
+| forbid_bb           | num  | 禁止使用B币券  |                           |
 
 `result`中的`positive`对象：
 
