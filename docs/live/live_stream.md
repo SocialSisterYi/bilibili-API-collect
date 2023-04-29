@@ -14,6 +14,7 @@
 | platform    | str  | 直播流格式 | 非必要   |  h5：hls方式<br />web：http-flv方式<br />默认为http-flv方式  |
 | quality    | num  | 画质 | 非必要   |  `qn`与`quality`任选其一<br />2：流畅<br />3：高清<br />4：原画  |
 | qn    | str  | 画质 | 非必要   |  `qn`与`quality`任选其一<br />80：流畅<br />150：高清<br />400：蓝光<br />10000：原画<br />20000：4K<br />30000：杜比  |
+| only_audio    | num  | 仅音频 | 非必要   |  1：开启仅音频，获取avc流  |
 
 **json回复：**
 
