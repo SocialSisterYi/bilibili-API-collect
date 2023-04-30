@@ -109,7 +109,8 @@
 | session  | str  |    | 非必要       | 从视频播放页的 HTML 中获取       |
 | otype  | str  |    | 非必要       | 固定为`json`           |
 | type  | str  |    | 非必要       | 目前为空             |
-| platform | str |    | 非必要 | pc：web播放（默认值，视频流存在 referer鉴权）<br />html5：移动端 HTML5 播放（仅支持 MP4 格式，清晰度最高 360P，无 referer 鉴权可以直接使用`video`标签播放） |
+| platform | str |    | 非必要 | pc：web播放（默认值，视频流存在 referer鉴权）<br />html5：移动端 HTML5 播放（仅支持 MP4 格式，无 referer 鉴权可以直接使用`video`标签播放） |
+| high_quality | num | 是否高画质 | 非必要 | platform=html5时，此值为1可使画质为1080p |
 
 **json回复：**
 
