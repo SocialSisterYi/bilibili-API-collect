@@ -84,6 +84,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [个人空间](docs/user/space.md)
   - [x] [检查昵称是否可注册](docs/user/check_nickname.md)
   - [x] [用户注册](docs/user/register.md)
+  - [ ] [用户认证类型一览](docs/user/official_role.md)
 - [ ] [大会员](docs/vip)
   - [ ] [大会员基本信息](docs/vip/info.md)
   - [ ] [大会员中心](docs/vip/center.md)
