@@ -405,7 +405,7 @@ const POW58: [u64; 10] = [
     2207984167552, 128063081718016, 7427658739644928,
 ];
 
-pub fn av2bv(avid: u64) -> [u8; 10] {
+fn av2bv(avid: u64) -> [u8; 10] {
     let a = (avid ^ XORN) + ADDN;
     let mut bvid = [0; 10];
     for i in 0..10 {
@@ -414,11 +414,14 @@ pub fn av2bv(avid: u64) -> [u8; 10] {
     bvid
 }
 
-pub fn bv2av(bvid: [u8; 10]) -> u64 {
+fn bv2av(bvid: [u8; 10]) -> u64 {
     let mut a = 0;
     for i in 0..10 {
         a += REV_TABLE[bvid[MAP[i]] as usize - 49] as u64 * POW58[i];
     }
     (a - ADDN) ^ XORN
 }
+
+// assert_eq!(*b"17x411w7KC", av2bv(170001));
+// assert_eq!(170001, bv2av(*b"17x411w7KC"));
 ```
