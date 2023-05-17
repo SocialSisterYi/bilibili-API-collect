@@ -483,88 +483,6 @@ curl -G 'https://api.bilibili.com/x/dm/adv/state' \
 
 </details>
 
-## 查询弹幕点赞数
-
-> https://api.bilibili.com/x/v2/dm/thumbup/stats
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）或APP
-
-**url参数：**
-| 参数名     | 类型 | 内容         | 必要性      | 备注                |
-| ---------- | ---- | ------------ | ----------- | ------------------- |
-| access_key | str  | APP登录Token | APP方式必要 |                     |
-| oid        | num  | 视频cid      | 必要        |                     |
-| ids        | nums | 弹幕dmid列表 | 必要        | 多个id之间用`,`分隔 |
-
-**json回复**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                        |
-| ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
-| message | str  | 错误信息 | 默认为0                     |
-| ttl     | num  | 1        |                             |
-| data    | obj  | 信息本体 |                             |
-
-`data`对象：
-
-| 字段     | 类型 | 内容             | 备注                              |
-| -------- | ---- | ---------------- | --------------------------------- |
-| {弹幕id} | obj  | 弹幕id对应的信息 | id分别对应请求参数中的`ids`，下同 |
-| ……       | obj  | 弹幕id对应的信息 |                                   |
-
-`{弹幕id}`对象：
-
-| 字段      | 类型 | 内容     | 备注                                                         |
-| --------- | ---- | -------- | ------------------------------------------------------------ |
-| likes     | num  | 点赞数   |                                                              |
-| user_like | num  | 是否点赞 | 0：未点赞<br />1：已点赞<br />需要登录(Cookie或APP) <br />未登录恒为0 |
-| id_str    | str  | 弹幕dmid |                                                              |
-
-**示例**
-
-查询`cid=236871317`下的弹幕`35600074482384899`、`38880975220375559`、`39052528418553863`点赞数
-
-```shell
-curl -G 'https://api.bilibili.com/x/v2/dm/thumbup/stats' \
---data-urlencode 'oid=236871317' \
---data-urlencode 'ids=39019145405661191,38880975220375559,39052528418553863' \
--b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "38880975220375559": {
-            "likes": 1,
-            "user_like": 1,
-            "id_str": "38880975220375559"
-        },
-        "39019145405661191": {
-            "likes": 3,
-            "user_like": 1,
-            "id_str": "39019145405661191"
-        },
-        "39052528418553863": {
-            "likes": 2,
-            "user_like": 0,
-            "id_str": "39052528418553863"
-        }
-    }
-}
-```
-
-</details>
-
 ## 点赞弹幕
 
 > https://api.bilibili.com/x/v2/dm/thumbup/add
@@ -573,16 +491,18 @@ curl -G 'https://api.bilibili.com/x/v2/dm/thumbup/stats' \
 
 认证方式：Cookie（SESSDATA）或APP
 
+查询指定弹幕点赞状态参阅文档 [弹幕点赞查询](thumbup.md)
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                     |
-| ---------- | ---- | ------------------------ | -------------- | ------------------------ |
-| access_key | str  | APP登录Token             | APP方式必要    |                          |
-| dmid       | num  | 弹幕dmid                 | 必要           |                          |
-| oid        | num  | 视频cid                  | 必要           |                          |
-| op         | num  | 操作                     | 必要           | 1：点赞<br />2：取消点赞 |
-| platform   | str  | 平台                     | 非必要         |                          |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                          |
+| 参数名     | 类型 | 内容                      | 必要性          | 备注                                        |
+| ---------- | ---- | ------------------------- | --------------- | ------------------------------------------- |
+| access_key | str  | APP 登录 Token            | APP 方式必要    |                                             |
+| dmid       | num  | 目标弹幕 dmid             | 必要            |                                             |
+| oid        | num  | 目标弹幕所在视频 cid      | 必要            |                                             |
+| op         | num  | 操作                      | 必要            | 1：点赞<br />2：取消点赞                    |
+| platform   | str  | 平台标识                  | 非必要          | web_player：web 播放器<br />android：安卓端 |
+| csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                                             |
 
 **json回复：**
 
@@ -600,12 +520,12 @@ curl -G 'https://api.bilibili.com/x/v2/dm/thumbup/stats' \
 
 ```shell
 curl 'https://api.bilibili.com/x/v2/dm/thumbup/add' \
---data-urlencode 'dmid=35600074482384899' \
---data-urlencode 'oid=145928946' \
---data-urlencode 'op=1' \
---data-urlencode 'platform=web_player' \
---data-urlencode 'csrf=xxx' \
--b 'SESSDATA=xxx'
+    --data-urlencode 'dmid=35600074482384899' \
+    --data-urlencode 'oid=145928946' \
+    --data-urlencode 'op=1' \
+    --data-urlencode 'platform=web_player' \
+    --data-urlencode 'csrf=xxx' \
+    -b 'SESSDATA=xxx'
 ```
 
 <details>
