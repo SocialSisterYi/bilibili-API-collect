@@ -3187,7 +3187,10 @@ curl -G 'https://api.bilibili.com/x/web-interface/view/detail' \
     "recommend": null,
     "view_addit": {
       "63": false,
-      "64": false
+      "64": false,
+      "69": false,
+      "71": false,
+      "72": false
     }
   }
 }
