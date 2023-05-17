@@ -19,7 +19,7 @@ module.exports = {
             {
                 text: '相关社群',
                 items: [
-                    {text: 'QQ交流群', link: 'https://jq.qq.com/?_wv=1027&k=s1M0LCcu'},
+                    {text: 'QQ交流群', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=2rRJXK3zgU5yi3e_4rNLeJYUjMLzw_Jj&authKey=L%2FN3EfZXo3QFjEuHq4ifTgh%2F384UmrYpjl7dbYPhYHtznhfJWxkymxQKObQunmEQ&noverify=0&group_code=560304737'},
                     {text: 'Telegram交流群', link: 'https://t.me/bilibili_API_collect_community'}
                 ]
             },

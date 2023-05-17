@@ -265,7 +265,7 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 ⚠注意：开源社群欢迎交流探讨，**拒绝**咨询、**不支持**合作，**黑产号**一经发现立即拉黑并举报相关 SRC
 
-- QQ 交流群：[邀请链接](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
+- QQ 交流群：[邀请链接](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=2rRJXK3zgU5yi3e_4rNLeJYUjMLzw_Jj&authKey=L%2FN3EfZXo3QFjEuHq4ifTgh%2F384UmrYpjl7dbYPhYHtznhfJWxkymxQKObQunmEQ&noverify=0&group_code=560304737)
 - Telegram 交流群：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
 
 ## 🧋发电
