@@ -739,6 +739,9 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 |-----|------|-------|--------|
 | 63  | bool | false | 作用尚不明确 |
 | 64  | bool | false | 作用尚不明确 |
+| 69  | bool | false | 作用尚不明确 |
+| 71  | bool | false | 作用尚不明确 |
+| 72  | bool | false | 作用尚不明确 |
 
 **示例：**
 
