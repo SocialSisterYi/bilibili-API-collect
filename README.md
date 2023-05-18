@@ -139,7 +139,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [状态数](docs/audio/status_number.md)
   - [ ] [投币 & 收藏](docs/audio/action.md)
   - [x] [播放 & 下载地址（音频流）](docs/audio/musicstream_url.md)
-  - [ ] 音频榜单
+  - [x] [音频榜单](docs/audio/rank.md)
 - [ ] [排行榜 & 最新视频](docs/video_ranking)
   - [ ] [排行榜](docs/video_ranking/ranking.md)
   - [ ] [热门视频](docs/video_ranking/popular.md)
