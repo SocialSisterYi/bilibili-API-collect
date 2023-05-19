@@ -73,6 +73,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [个人中心](docs/login/member_center.md)
   - [ ] [注销登录](docs/login/exit.md)
   - [x] [登录记录](docs/login/login_notice.md)
+  - [x] [Web 端 Coookie 刷新](docs/login/cookie_refresh.md)
 - [ ] [消息中心](docs/message)
   - [ ] [通知类消息](docs/message/msg.md)
   - [ ] [私信](docs/message/private_msg.md)

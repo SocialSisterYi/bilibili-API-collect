@@ -1118,7 +1118,7 @@ curl -G 'https://api.bilibili.com/x/copyright-music-publicity/toplist/music_list
 
 认证方式：Cookie（SESSDATA）
 
-**正文参数：**
+**正文参数(application/x-www-form-urlencoded)：**
 
 | 参数名  | 类型 | 内容                     | 必要性          | 备注                                             |
 | ------- | ---- | ------------------------ | --------------- | ------------------------------------------------ |

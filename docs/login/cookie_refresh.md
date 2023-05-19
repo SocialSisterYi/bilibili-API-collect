@@ -1,0 +1,407 @@
+# Web端Cookie刷新
+
+自从 2023 以来，社区反馈似乎 Web 端的 Cookie 会随着一些敏感接口的访问逐渐失效，而在 Web 页面上会判断 Cookie是否需要刷新，如需刷新则会以动态加载 iframe 方式实现，同时登录（二维码 / 密码 / 短信验证码等）接口会返回`refresh_token`字段，用以持久化保存，是一种官方的风控机制实现
+
+感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供相关研究报告以及逆向工程结果
+
+> 编辑到最前面：cookie 不会主动刷新的，只要他没有调用下面的刷新接口就不会刷新。也就是说，你只要不再打开浏览器，或者直接把 localStorage 的 ac_time_value 字段删除了。那么 cookie 在真的失效前（登录过期、账号风控等强制下线）都是不变化的。
+
+## 刷新步骤（伪代码）
+
+```python
+cookie, refresh_token = 进行登录操作() # can be 二维码 / 密码 / 短信验证码
+
+while True:
+    if 每日第一次访问接口:
+        if 检查是否需要刷新(cookie):
+            CorrespondPath = 生成CorrespondPath(当前毫秒时间戳)
+            refresh_csrf = 获取refresh_csrf(CorrespondPath, cookie)
+            refresh_token_old = refresh_token # 这一步必须保存旧的 refresh_token 备用
+            cookie, refresh_token = 刷新Cookie(refresh_token, refresh_csrf, cookie)
+            确认更新(refresh_token_old, cookie) # 这一步需要新的 Cookie 以及旧的 refresh_token
+            SSO站点跨域登录(cookie)
+    do_somethings(cookie) # 其他业务逻辑处理
+```
+
+## 检查是否需要刷新
+
+> https://passport.bilibili.com/x/passport-login/web/cookie/info
+
+*请求方式：GET*
+
+鉴权方式：Cookie
+
+**url 参数：**
+
+| 参数名 | 类型 | 内容                      | 必要性 | 备注 |
+| ------ | ---- | ------------------------- | ------ | ---- |
+| csrf   | str  | CSRF Token（位于 cookie） | 非必要 |      |
+
+**json 回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为 0                      |
+| ttl     | num  | 1        |                               |
+| data    | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段      | 类型 | 内容                | 备注                                                  |
+| --------- | ---- | ------------------- | ----------------------------------------------------- |
+| refresh   | bool | 是否应该刷新 cookie | `true`：需要刷新 Cookie<br />`false`：无需刷新 Cookie |
+| timestamp | num  | 当前毫秒时间戳      | 用于获取 refresh_csrf                                 |
+
+**示例：**
+
+```bash
+curl -G 'https://passport.bilibili.com/x/passport-login/web/cookie/info' \
+	--data-urlencode 'csrf=xxx' \
+	-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "refresh": false,
+        "timestamp": 1684466082562
+    }
+}
+```
+
+</details>
+
+## 生成CorrespondPath算法
+
+该算法逆向于以下 wasm 以及 JavaScript bind 接口，抓取于官方 web 首页中，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
+
+https://s1.hdslb.com/bfs/static/jinkela/long/wasm/wasm_rsa_encrypt_bg.wasm
+
+https://s1.hdslb.com/bfs/static/jinkela/long/wasm/wasm_ras_umd.js
+
+### 算法细节
+
+将`refresh_${timestamp}`作为消息体（`timestamp`为当前毫秒时间戳），用以下方 PubKey 进行 [RSA-OAEP](https://datatracker.ietf.org/doc/html/rfc3447#section-7.1) 算法加密，之后密文通过 Base16 小写编码为字符串
+
+JWK 格式：
+
+> {
+>     "kty": "RSA",
+>     "n": "y4HdjgJHBlbaBN04VERG4qNBIFHP6a3GozCl75AihQloSWCXC5HDNgyinEnhaQ_4-gaMud_GF50elYXLlCToR9se9Z8z433U3KjM-3Yx7ptKkmQNAMggQwAVKgq3zYAoidNEWuxpkY_mAitTSRLnsJW-NCTa0bqBFF6Wm1MxgfE",
+>     "e": "AQAB"
+> }
+
+PEM 格式：
+
+> -----BEGIN PUBLIC KEY-----
+> MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLgd2OAkcGVtoE3ThUREbio0Eg
+> Uc/prcajMKXvkCKFCWhJYJcLkcM2DKKcSeFpD/j6Boy538YXnR6VhcuUJOhH2x71
+> nzPjfdTcqMz7djHum0qSZA0AyCBDABUqCrfNgCiJ00Ra7GmRj+YCK1NJEuewlb40
+> JNrRuoEUXpabUzGB8QIDAQAB
+> -----END PUBLIC KEY-----
+
+### 相关Demo
+
+该 Demo 提供 JavaScript、Python 以及 vercel 云函数，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
+
+#### JavaScript
+
+```javascript
+const publicKey = await crypto.subtle.importKey(
+  "jwk",
+  {
+    kty: "RSA",
+    n: "y4HdjgJHBlbaBN04VERG4qNBIFHP6a3GozCl75AihQloSWCXC5HDNgyinEnhaQ_4-gaMud_GF50elYXLlCToR9se9Z8z433U3KjM-3Yx7ptKkmQNAMggQwAVKgq3zYAoidNEWuxpkY_mAitTSRLnsJW-NCTa0bqBFF6Wm1MxgfE",
+    e: "AQAB",
+  },
+  { name: "RSA-OAEP", hash: "SHA-256" },
+  true,
+  ["encrypt"],
+)
+
+async function getCorrespondPath(timestamp) {
+  const data = new TextEncoder().encode(`refresh_${timestamp}`);
+  const encrypted = new Uint8Array(await crypto.subtle.encrypt({ name: "RSA-OAEP" }, publicKey, data))
+  return encrypted.reduce((str, c) => str + c.toString(16).padStart(2, "0"), "")
+}
+
+const ts = Date.now()
+console.log(await getCorrespondPath(ts))
+```
+
+```
+b77f21ab5b7ce7879c410b2311dd6e7ea1a2cd1cd941073db067f4c3279fdabca3a06dfa744168ee14ad050b9f4889bd4edb8e76eb597fdd18c16804d82566b55c6dba8e225d838aa93d8e5b31cf7c56720db8244d92373f4944e0561f6ca5bf721a36ac079786060fc853605ccd1ddcb33f54617de6aedd44e3b9850d13b45f
+```
+
+#### Python
+
+依赖`pycryptodome`
+
+```python
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.PublicKey import RSA
+from Crypto.Hash import SHA256
+import binascii
+import time
+
+key = RSA.importKey('''\
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLgd2OAkcGVtoE3ThUREbio0Eg
+Uc/prcajMKXvkCKFCWhJYJcLkcM2DKKcSeFpD/j6Boy538YXnR6VhcuUJOhH2x71
+nzPjfdTcqMz7djHum0qSZA0AyCBDABUqCrfNgCiJ00Ra7GmRj+YCK1NJEuewlb40
+JNrRuoEUXpabUzGB8QIDAQAB
+-----END PUBLIC KEY-----''')
+
+def getCorrespondPath(ts):
+    cipher = PKCS1_OAEP.new(key, SHA256)
+    encrypted = cipher.encrypt(f'refresh_{ts}'.encode())
+    return binascii.b2a_hex(encrypted).decode()
+
+ts = round(time.time() * 1000)
+print(getCorrespondPath(ts))
+```
+
+```
+47bbd615f333d6a2c597bbb46ad47a6e59752a305a2f545d3ba5d49ca055309347796f80d257613696d36170c57443a0e9dea2b47f83b0b4224d431e46124fadd9a24c8fa468147e8bf2d2501eaacae43310e19bf58fc4a728d80c90b9401afcfc1536ba9a2f6438ea53c0b2652f8b8d01c87355dd5a5da51de998b1a35d519a
+```
+
+#### vercel云函数
+
+```bash
+curl -G 'https://wasm-rsa.vercel.app/api/rsa' \
+	--data-urlencode "t=$((`date '+%s'`*1000+`date '+%N'`/1000000))"
+```
+
+```json
+{
+    "timestamp": "1684468084078",
+    "hash": "a768efe5114ef8610f9ed9ebc28c00827375f4a3448ec4ab17958cacc4fde9898e5b7aa27f649426bba1acae4aa222aafaff7d528669b15249de0b2b60d86618557d8dc90684db4ec68e8d98e41d94f1c97d1d431c288e595ceb522d033822442a9e1ee150b32771a83fbf65c13329e9fda080fbe3bc85c49c1de7ab148d228f",
+    "code": 0
+}
+```
+
+## 获取refresh_csrf
+
+> https://www.bilibili.com/correspond/1/{correspondPath}
+
+*请求方式：GET*
+
+鉴权方式：Cookie
+
+**path 参数：**
+
+| 参数名         | 类型 | 内容                         | 必要性 | 备注                                                      |
+| -------------- | ---- | ---------------------------- | ------ | --------------------------------------------------------- |
+| correspondPath | str  | 使用当前毫秒时间戳生成的密文 | 必要   | 由 [生成CorrespondPath算法](#生成CorrespondPath算法) 获得 |
+
+将参数`correspondPath`拼接在 https://www.bilibili.com/correspond/1/ 后进行请求，例如
+
+> https://www.bilibili.com/correspond/1/0248397e5139a8b878894cae46f8d6742ef7c728e46403706452b5dda90fe248e58e73bd6c2da0dba515c53af107dc1ecda757ce843579bcf197fcd7800586126e9b896b646cc94c23183a5a067642e96f7b6e803880e1d3cceabc9f1dc52a121b5e3ba5619e008f6b6dcb65a09d7864084ac114f4ec9ccf6218776fe4f2fa95
+
+请求该 url 会返回一个 html 页面，通常由 iframe 方式加载，它通过 SSR 范式返回刷新一个实时刷新口令`refresh_csrf`，并在 Client 端通过 js 请求 RestAPI 完成一些列的提交刷新、确认、SSO 站点登录等操作
+
+如果参数`correspondPath`错误或过期，则返回一个 404 Page
+
+以下为返回的参数：
+
+| 标签 id | 内容         | xpath                     | 备注                              |
+| ------- | ------------ | ------------------------- | --------------------------------- |
+| 1-name  | refresh_csrf | //div[id='1-name']/text() | 实时刷新口令<br />用于更新 Cookie |
+
+**示例：**
+
+```bash
+correspondPath='0248397e5139a8b878894cae46f8d6742ef7c728e46403706452b5dda90fe248e58e73bd6c2da0dba515c53af107dc1ecda757ce843579bcf197fcd7800586126e9b896b646cc94c23183a5a067642e96f7b6e803880e1d3cceabc9f1dc52a121b5e3ba5619e008f6b6dcb65a09d7864084ac114f4ec9ccf6218776fe4f2fa95'
+
+curl -G "https://www.bilibili.com/correspond/1/$correspondPath" \
+	-b 'SESSDATA=xxx'
+```
+
+```html
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta name="spm_prefix" content="333.1193">
+  <link
+    href="//s1.hdslb.com/bfs/static/jinkela/token-iframe/css/token-iframe.1.a035e81c3bee5fa1a05633ad534ad1f44b05e54d.css"
+    rel="stylesheet">
+</head>
+<title>Correspond</title>
+<script type="text/javascript"
+  src="//www.bilibili.com/gentleman/polyfill.js?features=Promise%2CObject.assign%2CString.prototype.includes%2CNumber.isNaN2%CglobalThis"></script>
+
+<body>
+  <div id="1-name">b0cc8411ded2f9db2cff2edb3123acac</div>
+  <div id="token-iframe-app"></div>
+  <script type="text/javascript"
+    src="//s1.hdslb.com/bfs/static/jinkela/token-iframe/2.token-iframe.a035e81c3bee5fa1a05633ad534ad1f44b05e54d.js"></script>
+  <script type="text/javascript"
+    src="//s1.hdslb.com/bfs/static/jinkela/token-iframe/token-iframe.a035e81c3bee5fa1a05633ad534ad1f44b05e54d.js"></script>
+</body>
+<script type="text/javascript">window.reportMsgObj = {};
+  window.reportConfig = {
+    sample: 1,
+    scrollTracker: true,
+    msgObjects: 'reportMsgObj',
+  };
+
+  let reportScript = document.createElement('script');
+  reportScript.src = '//s1.hdslb.com/bfs/seed/log/report/log-reporter.js';
+  document.getElementsByTagName('body')[0].appendChild(reportScript);</script>
+
+</html>
+```
+
+所以当前账号的实时刷新口令`refresh_csrf`为`b0cc8411ded2f9db2cff2edb3123acac`
+
+## 刷新Cookie
+
+> https://passport.bilibili.com/x/passport-login/web/cookie/refresh
+
+*请求方式：POST*
+
+鉴权方式：Cookie
+
+刷新成功后会设置以下 Cookie 项：
+
+`sid`、`DedeUserID`、`DedeUserID__ckMd5`、`SESSDATA`、`bili_jct`
+
+**正文参数 (application/x-www-form-urlencoded)或 url 参数：**
+
+| 参数名        | 类型 | 内容           | 必要性 | 备注                                                         |
+| ------------- | ---- | -------------- | ------ | ------------------------------------------------------------ |
+| csrf          | str  | CSRF Token     | 必要   | 位于 Cookie 中的`bili_jct`字段                               |
+| refresh_csrf  | str  | 实时刷新口令   | 必要   | 通过 [获取refresh_csrf](#获取refresh_csrf) 获得              |
+| source        | str  | 访问来源？     | 必要   | 一般为`main_web`                                             |
+| refresh_token | str  | 持久化刷新口令 | 必要   | localStorage 中的`ac_time_value`字段，在登录成功后返回并保存 |
+
+**json 回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />86095：refresh_csrf 错误或 refresh_token 与 cookie 不匹配 |
+| message | str  | 错误信息 | 默认为 0                                                     |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
+
+`data`对象：
+
+| 字段          | 类型 | 内容               | 备注                                                        |
+| ------------- | ---- | ------------------ | ----------------------------------------------------------- |
+| status        | num  | 0                  |                                                             |
+| message       | str  | 空                 |                                                             |
+| refresh_token | str  | 新的持久化刷新口令 | 将存储于 localStorage 中的`ac_time_value`字段，以便下次使用 |
+
+**示例：**
+
+```bash
+curl -i 'https://passport.bilibili.com/x/passport-login/web/cookie/refresh' \
+	--data-urlencode 'csrf=f610640a37f51f6266f6b83cfc5eedbb' \
+	--data-urlencode 'refresh_csrf=b0cc8411ded2f9db2cff2edb3123acac' \
+	--data-urlencode 'source=main_web' \
+	--data-urlencode 'refresh_token=45240a041836905fe953e3b98b83d751' \
+	-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+http 响应（关键信息已做脱敏处理）：
+
+```http
+HTTP/2 200
+date: Fri, 19 May 2023 07:34:11 GMT
+content-type: application/json; charset=utf-8
+content-length: 116
+bili-status-code: 0
+bili-trace-id: 17f4251365646726
+set-cookie: SESSDATA=***; Path=/; Domain=bilibili.com; Expires=Wed, 15 Nov 2023 07:34:10 GMT; HttpOnly; Secure
+set-cookie: bili_jct=***; Path=/; Domain=bilibili.com; Expires=Wed, 15 Nov 2023 07:34:10 GMT
+set-cookie: DedeUserID=***; Path=/; Domain=bilibili.com; Expires=Wed, 15 Nov 2023 07:34:10 GMT
+set-cookie: DedeUserID__ckMd5=***; Path=/; Domain=bilibili.com; Expires=Wed, 15 Nov 2023 07:34:10 GMT
+set-cookie: sid=***; Path=/; Domain=bilibili.com; Expires=Wed, 15 Nov 2023 07:34:10 GMT
+x-bili-trace-id: 3f6f6174aaa087b517f4251365646726
+expires: Fri, 19 May 2023 07:34:10 GMT
+cache-control: no-cache
+x-cache-webcdn: BYPASS from blzone03
+
+{"code":0,"message":"0","ttl":1,"data":{"status":0,"message":"","refresh_token":"ae1bd1149b56af9743ffe7bbbeff3e51"}}
+```
+
+JSON Payload：
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "status": 0,
+        "message": "",
+        "refresh_token": "ae1bd1149b56af9743ffe7bbbeff3e51"
+    }
+}
+```
+
+</details>
+
+## 确认更新
+
+> https://passport.bilibili.com/x/passport-login/web/confirm/refresh
+
+*请求方式：POST*
+
+鉴权方式：Cookie
+
+该步操作将让旧的`refresh_token`对应的 Cookie 失效
+
+**正文参数 (application/x-www-form-urlencoded)或 url 参数：**
+
+| 参数名        | 类型 | 内容                      | 必要性 | 备注                                                         |
+| ------------- | ---- | ------------------------- | ------ | ------------------------------------------------------------ |
+| csrf          | str  | CSRF Token（位于 cookie） | 必要   | 从新的 cookie 中获取                                         |
+| refresh_token | str  | 旧的持久化刷新口令        | 必要   | 在刷新前 localStorage 中的`ac_time_value`获取，**并非刷新后返回的值** |
+
+**json 回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为 0                                                     |
+| ttl     | num  | 1        |                                                              |
+
+**示例：**
+
+```bash
+curl 'https://passport.bilibili.com/x/passport-login/web/confirm/refresh' \
+	--data-urlencode 'csrf=1e9658858e6da76be64bd92cdc0fa324' \
+	--data-urlencode 'refresh_token=45240a041836905fe953e3b98b83d751' \
+	-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+</details>
