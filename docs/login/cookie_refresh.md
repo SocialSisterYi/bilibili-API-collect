@@ -1,10 +1,10 @@
 # Web端Cookie刷新
 
-自从 2023 以来，社区反馈似乎 Web 端的 Cookie 会随着一些敏感接口的访问逐渐失效，而在 Web 页面上会判断 Cookie是否需要刷新，如需刷新则会以动态加载 iframe 方式实现，同时登录（二维码 / 密码 / 短信验证码等）接口会返回`refresh_token`字段，用以持久化保存，是一种官方的风控机制实现
+自从 2023 以来，社区反馈似乎 Web 端的 Cookie 会随着一些敏感接口的访问逐渐失效，而在 Web 页面上会判断 Cookie 是否需要刷新，如需刷新则会以动态加载 iframe 方式实现，同时登录（二维码 / 密码 / 短信验证码等）接口也会返回`refresh_token`字段，需要持久化保存，是一种官方的风控机制实现
 
 感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供相关研究报告以及逆向工程结果
 
-> 编辑到最前面：cookie 不会主动刷新的，只要他没有调用下面的刷新接口就不会刷新。也就是说，你只要不再打开浏览器，或者直接把 localStorage 的 ac_time_value 字段删除了。那么 cookie 在真的失效前（登录过期、账号风控等强制下线）都是不变化的。
+> cookie 不会主动刷新的，只要他没有调用下面的刷新接口就不会刷新。也就是说，你只要不再打开浏览器，或者直接把 localStorage 的 ac_time_value 字段删除了。那么 cookie 在真的失效前（登录过期、账号风控等强制下线）都是不变化的。
 
 ## 刷新步骤（伪代码）
 
@@ -35,7 +35,7 @@ while True:
 
 | 参数名 | 类型 | 内容                      | 必要性 | 备注 |
 | ------ | ---- | ------------------------- | ------ | ---- |
-| csrf   | str  | CSRF Token（位于 cookie） | 非必要 |      |
+| csrf   | str  | CSRF Token（位于 Cookie） | 非必要 |      |
 
 **json 回复：**
 
@@ -52,7 +52,7 @@ while True:
 
 | 字段      | 类型 | 内容                | 备注                                                  |
 | --------- | ---- | ------------------- | ----------------------------------------------------- |
-| refresh   | bool | 是否应该刷新 cookie | `true`：需要刷新 Cookie<br />`false`：无需刷新 Cookie |
+| refresh   | bool | 是否应该刷新 Cookie | `true`：需要刷新 Cookie<br />`false`：无需刷新 Cookie |
 | timestamp | num  | 当前毫秒时间戳      | 用于获取 refresh_csrf                                 |
 
 **示例：**
@@ -82,7 +82,7 @@ curl -G 'https://passport.bilibili.com/x/passport-login/web/cookie/info' \
 
 ## 生成CorrespondPath算法
 
-该算法逆向于以下 wasm 以及 JavaScript bind 接口，抓取于官方 web 首页中，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
+该算法逆向于以下 wasm 以及 JavaScript bind 接口，抓取于官方 Web 首页中，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
 
 https://s1.hdslb.com/bfs/static/jinkela/long/wasm/wasm_rsa_encrypt_bg.wasm
 
@@ -90,7 +90,7 @@ https://s1.hdslb.com/bfs/static/jinkela/long/wasm/wasm_ras_umd.js
 
 ### 算法细节
 
-将`refresh_${timestamp}`作为消息体（`timestamp`为当前毫秒时间戳），用以下方 PubKey 进行 [RSA-OAEP](https://datatracker.ietf.org/doc/html/rfc3447#section-7.1) 算法加密，之后密文通过 Base16 小写编码为字符串
+将`refresh_${timestamp}`作为消息体（参数`timestamp`为当前毫秒时间戳），用下方 PubKey 进行 [RSA-OAEP](https://datatracker.ietf.org/doc/html/rfc3447#section-7.1) 算法加密，之后密文通过小写 Base16 编码为字符串
 
 JWK 格式：
 
@@ -111,7 +111,7 @@ PEM 格式：
 
 ### 相关Demo
 
-该 Demo 提供 JavaScript、Python 以及 vercel 云函数，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
+该 Demo 提供 [JavaScript](#JavaScript)、[Python](#Python) 以及 [Vercel 云函数](#vercel云函数)，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
 
 #### JavaScript
 
@@ -144,7 +144,7 @@ b77f21ab5b7ce7879c410b2311dd6e7ea1a2cd1cd941073db067f4c3279fdabca3a06dfa744168ee
 
 #### Python
 
-依赖`pycryptodome`
+需要`pycryptodome`依赖
 
 ```python
 from Crypto.Cipher import PKCS1_OAEP
@@ -199,17 +199,17 @@ curl -G 'https://wasm-rsa.vercel.app/api/rsa' \
 
 **path 参数：**
 
-| 参数名         | 类型 | 内容                         | 必要性 | 备注                                                      |
-| -------------- | ---- | ---------------------------- | ------ | --------------------------------------------------------- |
-| correspondPath | str  | 使用当前毫秒时间戳生成的密文 | 必要   | 由 [生成CorrespondPath算法](#生成CorrespondPath算法) 获得 |
+| 参数名         | 类型 | 内容                         | 必要性 | 备注                                                         |
+| -------------- | ---- | ---------------------------- | ------ | ------------------------------------------------------------ |
+| correspondPath | str  | 使用当前毫秒时间戳生成的签名 | 必要   | 由 [生成CorrespondPath算法](#生成CorrespondPath算法) 加密获得 |
 
 将参数`correspondPath`拼接在 https://www.bilibili.com/correspond/1/ 后进行请求，例如
 
 > https://www.bilibili.com/correspond/1/0248397e5139a8b878894cae46f8d6742ef7c728e46403706452b5dda90fe248e58e73bd6c2da0dba515c53af107dc1ecda757ce843579bcf197fcd7800586126e9b896b646cc94c23183a5a067642e96f7b6e803880e1d3cceabc9f1dc52a121b5e3ba5619e008f6b6dcb65a09d7864084ac114f4ec9ccf6218776fe4f2fa95
 
-请求该 url 会返回一个 html 页面，通常由 iframe 方式加载，它通过 SSR 范式返回刷新一个实时刷新口令`refresh_csrf`，并在 Client 端通过 js 请求 RestAPI 完成一些列的提交刷新、确认、SSO 站点登录等操作
+请求该 url 会返回一个 html 页面，通常由 iframe 方式加载，它通过 SSR 方式返回一个实时刷新口令`refresh_csrf`存放于 html 标签中，并在 Client 端通过 js 请求 RestAPI 完成一些列的提交刷新、确认、SSO 站点登录等操作
 
-如果参数`correspondPath`错误或过期，则返回一个 404 Page
+若参数`correspondPath`错误或过期，则返回一个 404 Page
 
 以下为返回的参数：
 
