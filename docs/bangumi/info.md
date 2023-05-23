@@ -251,16 +251,27 @@ curl -G 'https://api.bilibili.com/pgc/review/user' \
 
 `result`中的`payment`对象：
 
-| 字段                | 类型 | 内容 | 备注 |
-| ------------------- | ---- | ---- | ---- |
-| discount            | num  |      |      |
-| pay_type            | obj  |      |      |
-| price               | str  |      |      |
-| promotion           | str  |      |      |
-| tip                 | str  |      |      |
-| vip_discount        | num  |      |      |
-| vip_first_promotion | str  |      |      |
-| vip_promotion       | str  |      |      |
+| 字段                | 类型 | 内容          | 备注     |
+| ------------------- | ---- | ------------ | -------- |
+| discount            | num  | 折扣         | 100为原价 |
+| pay_type            | obj  | 支付相关      |          |
+| price               | str  | 售价         |          |
+| promotion           | str  | 推广信息      |          |
+| vip_discount        | num  | 大会员折扣    |          |
+| vip_first_promotion | str  |              |          |
+| vip_price           | str  | 大会员售价    |          |
+| vip_promotion       | str  | 大会员推广信息 |          |
+
+`payment`中的`pay_type`对象：
+
+| 字段                | 类型 | 内容           | 备注                      |
+| ------------------- | ---- | ------------- | ------------------------- |
+| allow_discount      | num  | 启用折扣       | 0：否<br />1：是<br />下同 |
+| allow_pack          | num  |               |                           |
+| allow_ticket        | num  | 启用票券       |                           |
+| allow_time_limit    | num  | 启用时间限制   |                           |
+| allow_vip_discount  | num  | 启用大会员折扣 |                           |
+| forbid_bb           | num  | 禁止使用B币券  |                           |
 
 `result`中的`positive`对象：
 

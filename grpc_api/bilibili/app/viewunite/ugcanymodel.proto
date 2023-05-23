@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package bilibili.app.viewunite.ugcanymodel;
+
+// 
+message ViewUgcAny {
+    
+}
+
+// 

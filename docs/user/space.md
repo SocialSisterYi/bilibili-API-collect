@@ -2624,38 +2624,37 @@ curl -L -X GET 'https://api.bilibili.com/x/space/like/video?vmid=15858903'
 
 > https://api.bilibili.com/x/space/wbi/arc/search
 
-> https://api.bilibili.com/x/space/arc/search （旧）
+> ~~https://api.bilibili.com/x/space/arc/search （旧 API，现已不可用）~~
 
-PS：旧 api 存在一些不同，比如某些情况下，例如 mid=2 时如果没有设置 Cookie 则出现非法访问（-401），但新 api 不会。
-
+PS：旧 API 现已不可使用，活返回`code=-799`
 
 *请求方式：GET*
 
 **header字段：**
 
-必须要有 `user-agent`，且不能为 `空字符串`，以及含有 `python`、`node`、`curl` 等的字符串。
+必须要有 `user-agent`，且不能为 `空字符串`，以及含有 `python`、`node`、`curl` 等的字符串
 
 **url参数：**
 
-| 参数名     | 类型  | 内容      | 必要性 | 备注                                                          |
-|---------|-----|---------|-----|-------------------------------------------------------------|
-| mid     | num | 目标用户mid | 必要  |                                                             |
-| order   | str | 排序方式    | 非必要 | 默认为pubdate<br />最新发布：pubdate<br />最多播放：click<br />最多收藏：stow |
-| tid     | num | 筛选目标分区  | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区                       |
-| keyword | str | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                                           |
-| pn      | num | 页码      | 非必要 |                                                             |
-| ps      | num | 每页项数    | 非必要 | 最小1，最大50，默认30                                               |
+| 参数名  | 类型 | 内容         | 必要性 | 备注                                                         |
+| ------- | ---- | ------------ | ------ | ------------------------------------------------------------ |
+| mid     | num  | 目标用户mid  | 必要   |                                                              |
+| order   | str  | 排序方式     | 非必要 | 默认为pubdate<br />最新发布：pubdate<br />最多播放：click<br />最多收藏：stow |
+| tid     | num  | 筛选目标分区 | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区    |
+| keyword | str  | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                             |
+| pn      | num  | 页码         | 非必要 |                                                              |
+| ps      | num  | 每页项数     | 非必要 | 最小 1，最大 50，默认 30                                     |
 
 **json回复：**
 
 根对象：
 
-| 字段      | 类型  | 内容   | 备注                                                                   |
-|---------|-----|------|----------------------------------------------------------------------|
-| code    | num | 返回值  | 0：成功<br />-400：请求错误<br />-412：请求被拦截<br />-1200：被降级过滤的请求(一种意义不明的偶发状况) |
-| message | str | 错误信息 | 默认为0                                                                 |
-| ttl     | num | 1    |                                                                      |
-| data    | obj | 信息本体 |                                                                      |
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />-412：请求被拦截<br />-1200：被降级过滤的请求(一种意义不明的偶发状况) |
+| message | str  | 错误信息 | 默认为 0                                                     |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
 
 `data`对象：
 
@@ -2677,55 +2676,55 @@ PS：旧 api 存在一些不同，比如某些情况下，例如 mid=2 时如果
 
 `list`中的`tlist`对象：
 
-| 字段    | 类型  | 内容     | 备注           |
-|-------|-----|--------|--------------|
-| {tid} | obj | 该分区的详情 | 字段名为存在的分区tid |
-| ……    | obj | ……     | 向下扩展         |
+| 字段  | 类型 | 内容         | 备注                   |
+| ----- | ---- | ------------ | ---------------------- |
+| {tid} | obj  | 该分区的详情 | 字段名为存在的分区 tid |
+| ……    | obj  | ……           | 向下扩展               |
 
 `tlist`中的`{tid}`对象：
 
-| 字段    | 类型  | 内容         | 备注  |
-|-------|-----|------------|-----|
-| count | num | 投稿至该分区的视频数 |     |
-| name  | str | 该分区名称      |     |
-| tid   | num | 该分区tid     |     |
+| 字段  | 类型 | 内容                 | 备注 |
+| ----- | ---- | -------------------- | ---- |
+| count | num  | 投稿至该分区的视频数 |      |
+| name  | str  | 该分区名称           |      |
+| tid   | num  | 该分区 tid           |      |
 
 `list`中的`vlist`数组：
 
-| 项   | 类型  | 内容        | 备注  |
-|-----|-----|-----------|-----|
-| 0   | obj | 投稿视频1     |     |
-| n   | obj | 投稿视频（n+1） |     |
-| ……  | obj | ……        | ……  |
+| 项   | 类型 | 内容            | 备注 |
+| ---- | ---- | --------------- | ---- |
+| 0    | obj  | 投稿视频 1      |      |
+| n    | obj  | 投稿视频（n+1） |      |
+| ……   | obj  | ……              | ……   |
 
 `list`中的`vlist`数组中的对象：
 
-| 字段               | 类型   | 内容       | 备注                                                                             |
-|------------------|------|----------|--------------------------------------------------------------------------------|
-| aid              | num  | 稿件avid   |                                                                                |
-| author           | str  | 视频UP主    | 不一定为目标用户（合作视频）                                                                 |
-| bvid             | str  | 稿件bvid   |                                                                                |
-| comment          | num  | 视频评论数    |                                                                                |
-| copyright        | str  | 空        | 作用尚不明确                                                                         |
-| created          | num  | 投稿时间     | 时间戳                                                                            |
-| description      | str  | 视频简介     |                                                                                |
-| hide_click       | bool | false    | 作用尚不明确                                                                         |
-| is_pay           | num  | 0        | 作用尚不明确                                                                         |
-| is_union_video   | num  | 是否为合作视频  | 0：否<br />1：是                                                                   |
-| length           | str  | 视频长度     | MM:SS                                                                          |
-| mid              | num  | 视频UP主mid | 不一定为目标用户（合作视频）                                                                 |
-| pic              | str  | 视频封面     |                                                                                |
+| 字段             | 类型 | 内容           | 备注                                                         |
+| ---------------- | ---- | -------------- | ------------------------------------------------------------ |
+| aid              | num  | 稿件 avid      |                                                              |
+| author           | str  | 视频 UP 主     | 不一定为目标用户（合作视频）                                 |
+| bvid             | str  | 稿件 bvid      |                                                              |
+| comment          | num  | 视频评论数     |                                                              |
+| copyright        | str  | 稿件类型       | 1：原创<br />2：转载                                         |
+| created          | num  | 投稿时间       | 时间戳                                                       |
+| description      | str  | 视频简介       |                                                              |
+| hide_click       | bool | false          | 作用尚不明确                                                 |
+| is_pay           | num  | 0              | 作用尚不明确                                                 |
+| is_union_video   | num  | 是否为合作视频 | 0：否<br />1：是                                             |
+| length           | str  | 视频长度       | MM:SS                                                        |
+| mid              | num  | 视频 UP 主 mid | 不一定为目标用户（合作视频）                                 |
+| pic              | str  | 视频封面       |                                                              |
 | play             | num  | 视频播放次数   | 如果视频基本信息API对应的状态为-403视频访问权限不足，数据类型将变为str，如（"play": "--",），于mid79发表的av5132474可见 |
-| review           | num  | 0        | 作用尚不明确                                                                         |
-| subtitle         | str  | 空        | 作用尚不明确                                                                         |
-| title            | str  | 视频标题     |                                                                                |
-| typeid           | num  | 视频分区tid  |                                                                                |
-| video_review     | num  | 视频弹幕数    |                                                                                |
-| is_steins_gate   | num  | 0        |                                                                                |
-| is_live_playback | num  | 0        |                                                                                |
-| meta             |      |          |                                                                                |
-| is_avoided       | num  | 0        |                                                                                |
-| attribute        | num  | 0        |                                                                                |
+| review           | num  | 0              | 作用尚不明确                                                 |
+| subtitle         | str  | 空             | 作用尚不明确                                                 |
+| title            | str  | 视频标题       |                                                              |
+| typeid           | num  | 视频分区 tid   |                                                              |
+| video_review     | num  | 视频弹幕数     |                                                              |
+| is_steins_gate   | num  | 0              |                                                              |
+| is_live_playback | num  | 0              |                                                              |
+| meta             |      |                |                                                              |
+| is_avoided       | num  | 0              |                                                              |
+| attribute        | num  | 0              |                                                              |
 
 `data`中的`page`对象：
 
@@ -2737,10 +2736,10 @@ PS：旧 api 存在一些不同，比如某些情况下，例如 mid=2 时如果
 
 `data`中的`episodic_button`对象：
 
-| 字段   | 类型  | 内容       | 备注  |
-|------|-----|----------|-----|
-| text | str | 按钮文字     |     |
-| uri  | str | 全部播放页url |     |
+| 字段 | 类型 | 内容           | 备注 |
+| ---- | ---- | -------------- | ---- |
+| text | str  | 按钮文字       |      |
+| uri  | str  | 全部播放页 url |      |
 
 **示例：**
 
@@ -2750,10 +2749,9 @@ PS：旧 api 存在一些不同，比如某些情况下，例如 mid=2 时如果
 
 ```shell
 curl -G 'https://api.bilibili.com/x/space/wbi/arc/search' \
---data-urlencode 'mid=53456' \
---data-urlencode 'ps=2' \
---data-urlencode 'pn=1' \
---user-agent 'go'
+    --data-urlencode 'mid=53456' \
+    --data-urlencode 'ps=2' \
+    --data-urlencode 'pn=1'
 ```
 
 <details>

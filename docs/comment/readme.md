@@ -228,6 +228,7 @@
 | emote    | obj   | 需要渲染的表情转义 | 评论内容无表情则无此项                                       |
 | jump_url | obj   | 需要高亮的超链转义 |                                                              |
 | max_line | num   | 6                  | 收起最大行数                                                 |
+| pictures | array   | 评论图片数组      |                                                           |
 
 `content`中的`members`数组：
 
@@ -284,6 +285,15 @@
 | appName        | str  | (?)      |      |
 | appPackageName | str  | (?)      |      |
 | clickReport    | str  | 上报 id  |      |
+
+`content`中的`pictures`数组中的对象：
+
+| 字段       | 类型 | 内容      | 备注     |
+| ---------- | ---- | -------- | -------- |
+| img_src    | str  | 图片地址 |          |
+| img_width  | num  | 图片宽度 |          |
+| img_height | num  | 图片高度 |          |
+| img_size   | num  | 图片大小 | 单位KB   |
 
 `评论条目`中的`replies`数组：
 

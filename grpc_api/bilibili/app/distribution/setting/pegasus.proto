@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.pegasus;
+
+import "bilibili/app/distribution/v1/distribution.proto";
+
+// 
+message FeedModeValue {
+    // 
+    bilibili.app.distribution.v1.Int64Value value = 1;
+}
+
+// 
+message PegasusAutoPlay {
+    // 
+    bilibili.app.distribution.v1.Int64Value single = 1;
+    // 
+    bilibili.app.distribution.v1.Int64Value double = 2;
+    // 
+    bilibili.app.distribution.v1.BoolValue single_affected_by_server_side = 3;
+    // 
+    bilibili.app.distribution.v1.BoolValue double_affected_by_server_side = 4;
+}
+
+// 
+message PegasusColumnValue {
+    // 
+    bilibili.app.distribution.v1.Int64Value value = 1;
+    // 
+    bilibili.app.distribution.v1.BoolValue affected_by_server_side = 2;
+}
+
+// 
+message PegasusDeviceConfig {
+    // 
+    PegasusColumnValue column = 1;
+    // 
+    FeedModeValue mode = 2;
+    // 
+    PegasusAutoPlay auto_play = 3;
+}

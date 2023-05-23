@@ -237,7 +237,7 @@
 
 | 字段    | 类型  | 内容     | 备注                                    |
 |-------|-----|--------|---------------------------------------|
-| role  | num | 成员认证级别 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
+| role  | num | 成员认证级别 | 见[用户认证类型一览](../user/official_role.md) |
 | title | str | 成员认证名  | 无为空                                   |
 | desc  | str | 成员认证备注 | 无为空                                   |
 | type  | num | 成员认证类型 | -1：无<br />0：有                         |
@@ -653,7 +653,7 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 | 字段    | 类型  | 内容   | 备注                                    |
 |-------|-----|------|---------------------------------------|
-| role  | num | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
+| role  | num | 认证类型 | 见[用户认证类型一览](../user/official_role.md) |
 | title | str | 认证信息 | 无为空                                   |
 | desc  | str | 认证备注 | 无为空                                   |
 | type  | num | 是否认证 | -1：无<br />0：认证                        |
@@ -667,14 +667,37 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 `card`中的`vip`对象：
 
-| 字段            | 类型  | 内容    | 备注                               |
-|---------------|-----|-------|----------------------------------|
-| vipType       | num | 大会员类型 | 0：无<br />1：月度大会员<br />2：年度及以上大会员 |
-| dueRemark     | str | 空     | 作用尚不明确                           |
-| accessStatus  | num | 0     | 作用尚不明确                           |
-| vipStatus     | num | 大会员状态 | 0：无<br />1：有                     |
-| vipStatusWarn | str | 空     | 作用尚不明确                           |
-| theme_type    | num | 0     | 作用尚不明确                           |
+| 字段                   | 类型  | 内容        | 备注                                           |
+|----------------------|-----|-----------|----------------------------------------------|
+| type                 | num | 会员类型      | 0：无<br />1：月大会员<br />2：年度及以上大会员              |
+| status               | num | 会员状态      | 0：无<br />1：有                                 |
+| due_date             | num | 会员过期时间    | Unix时间戳(毫秒)                                  |
+| vip_pay_type         | num | 支付类型      | 0：未支付（常见于官方账号）<br />1：已支付（以正常渠道获取的大会员均为此值）   |
+| theme_type           | num | 0         | 作用尚不明确                                       |
+| label                | obj | 会员标签      |                                              |
+| avatar_subscript     | num | 是否显示会员图标  | 0：不显示<br />1：显示                              |
+| nickname_color       | str | 会员昵称颜色    | 颜色码，一般为`#FB7299`，曾用于愚人节改变大会员配色               |
+| role                 | num | 大角色类型     | 1：月度大会员<br/>3：年度大会员<br/>7：十年大会员<br/>15：百年大会员 |
+| avatar_subscript_url | str | 大会员角标地址   |                                              |
+| tv_vip_status        | num | 电视大会员状态   | 0：未开通                                        |
+| tv_vip_pay_type      | num | 电视大会员支付类型 |                                              |
+
+`vip`中的`label`对象：
+
+| 字段                        | 类型   | 内容       | 备注                                                                                                                           |
+|---------------------------|------|----------|------------------------------------------------------------------------------------------------------------------------------|
+| path                      | str  | 空        | 作用尚不明确                                                                                                                       |
+| text                      | str  | 会员类型文案   | `大会员` `年度大会员` `十年大会员` `百年大会员` `最强绿鲤鱼`                                                                                        |
+| label_theme               | str  | 会员标签     | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员<br/>fools_day_hundred_annual_vip：最强绿鲤鱼 |
+| text_color                | str  | 会员标签     |                                                                                                                              |
+| bg_style                  | num  | 1        |                                                                                                                              |
+| bg_color                  | str  | 会员标签背景颜色 | 颜色码，一般为`#FB7299`，曾用于愚人节改变大会员配色                                                                                               |
+| border_color              | str  | 会员标签边框颜色 | 未使用                                                                                                                          |
+| use_img_label             | bool | `true`   |                                                                                                                              |
+| img_label_uri_hans        | str  | `空串`     |                                                                                                                              |
+| img_label_uri_hant        | str  | `空串`     |                                                                                                                              |
+| img_label_uri_hans_static | str  | 大会员牌子图片  | 简体版                                                                                                                          |
+| img_label_uri_hant_static | str  | 大会员牌子图片  | 繁体版 
 
 `Card`中的`space`对象：
 
@@ -716,6 +739,9 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 |-----|------|-------|--------|
 | 63  | bool | false | 作用尚不明确 |
 | 64  | bool | false | 作用尚不明确 |
+| 69  | bool | false | 作用尚不明确 |
+| 71  | bool | false | 作用尚不明确 |
+| 72  | bool | false | 作用尚不明确 |
 
 **示例：**
 
@@ -3161,7 +3187,10 @@ curl -G 'https://api.bilibili.com/x/web-interface/view/detail' \
     "recommend": null,
     "view_addit": {
       "63": false,
-      "64": false
+      "64": false,
+      "69": false,
+      "71": false,
+      "72": false
     }
   }
 }
