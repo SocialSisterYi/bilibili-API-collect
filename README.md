@@ -58,10 +58,14 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 计划整理分类 & 目录：(文档已完结请选中 checkbox) 
 
-- [x] [API 签名](docs/other/API_sign.md)
-- [x] [公共错误码](docs/other/errcode.md)
-- [x] [图片格式化](docs/other/picture.md)
-- [x] [bvid 说明](docs/other/bvid_desc.md)
+- [ ] [接口签名与验证](docs/misc/sign)
+  - [x] [APP API 签名](docs/misc/sign/APP.md)（`appkey`与`sign`）
+  - [x] [已知的 APPKey](docs/misc/sign/APPKey.md)
+  - [x] [Wbi 签名](docs/misc/sign/wbi.md)（`wts`与`w_rid`）
+
+- [x] [公共错误码](docs/misc/errcode.md)
+- [x] [图片格式化](docs/misc/picture.md)
+- [x] [bvid 说明](docs/misc/bvid_desc.md)
 - [ ] [gRPC API 接口定义](grpc_api)
 - [ ] [登录](docs/login)
   - [x] [登录操作 (人机认证)](docs/login/login_action)
@@ -234,8 +238,8 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [终端网络查询](docs/clientinfo)
   - [x] [基于ip的地理位置查询](docs/clientinfo/ip.md)
   - [x] [终端信息查询](docs/clientinfo/client_info.md)
-- [ ] [其他](docs/other)
-  - [x] [获取当前时间戳](docs/other/time_stamp.md)
+- [ ] [其他](docs/misc)
+  - [x] [获取当前时间戳](docs/misc/time_stamp.md)
 - [ ] [web端组件](docs/web_widget)
   - [x] [分区当日投稿数](docs/web_widget/zone_upload.md)
   - [x] [404 页漫画收集](docs/web_widget/404_manga.md)
