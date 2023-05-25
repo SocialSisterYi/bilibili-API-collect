@@ -110,6 +110,10 @@ curl 'https://passport.bilibili.com/web/generic/country/list'
 | challenge | str | 极验 challenge | 必要 | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
 | validate | str | 极验 result | 必要 | 极验验证后得到 |
 | seccode | str | 极验 result +`\|jordan` | 必要   | 极验验证后得到 |
+| channel | str | 通道? | 必要 | 一般固定值为"bili" |
+| buvid | str | buvid | 必要 | 参考如下方法生成 |
+| local_id | str | 同上 | 必要 | 同上 |
+| statistics | str | ? | 必要 | 一般固定为{"appId":1,"platform":3,"version":"7.27.0","abtest":""},非key-value入参需要转URL编码 |
 
 **json回复：**
 
@@ -152,6 +156,22 @@ curl 'https://passport.bilibili.com/x/passport-login/web/sms/send' \
     "data":{
         "captcha_key":"7542f109c3318d74847626495c68c321"
     }
+}
+```
+
+<summary>生成buvid方法</summary>
+``` javascript
+static buvid(): string {
+    var mac = [];
+    for (let i = 0; i < 6; i++) {
+        var min = Math.min(0, 0xff)
+        var max = Math.max(0, 0xff)
+        var num = parseInt((Math.random() * (min - max + 1) + max).toString()).toString(16)
+        mac.push(num)
+    }
+    var md5 = this.md5(mac.join(':'));
+    var md5Arr = md5.split('');
+    return "XY${md5Arr[2]}${md5Arr[12]}${md5Arr[22]}${md5}"
 }
 ```
 
