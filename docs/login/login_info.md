@@ -53,7 +53,7 @@
 | answer_status        | num  | （？）           |                                                   |
 | is_senior_member     | num  | 是否硬核会员     | 0：非硬核会员<br />1：硬核会员                    |
 | wbi_img              | obj  | Wbi 签名实时口令 | 该字段即使用户未登录也存在                        |
-| is_jury              | bool | （？）           |                                                   |
+| is_jury              | bool | 是否风纪委员     | true：风纪委员<br />false：非风纪委员             |
 
 `data`中的`level_info`对象：
 
