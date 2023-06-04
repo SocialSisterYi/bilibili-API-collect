@@ -83,17 +83,18 @@ curl 'https://passport.bilibili.com/x/passport-login/web/qrcode/generate'
 
 *请求方式：GET*
 
+**url参数：**
+
+| 参数名        | 类型  | 内容     | 必要性 | 备注  |
+|------------|-----|--------|-----|-----|
+| qrcode_key | str | 扫码登录秘钥 | 必要 |     |
+
+
 密钥超时为180秒
 
 验证登录成功后会进行设置以下cookie项：
 
 `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
-
-**url参数：**
-
-| 参数名        | 类型  | 内容     | 必要性 | 备注  |
-|------------|-----|--------|-----|-----|
-| qrcode_key | str | 扫码登录秘钥 | 非必要 |     |
 
 **json回复：**
 
