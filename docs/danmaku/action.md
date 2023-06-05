@@ -14,21 +14,23 @@
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容                     | 必要性         | 备注                                                         |
-| ---------- | ---- | ------------------------ | -------------- | ------------------------------------------------------------ |
-| access_key | str  | APP登录Token             | APP方式必要    |                                                              |
-| type       | num  | 弹幕类选择               | 必要           | 1：视频弹幕                                                  |
-| oid        | num  | 视频cid                  | 必要           |                                                              |
-| msg        | str  | 弹幕内容                 | 必要           | 长度小于100字符                                              |
-| bvid       | str  | 稿件bvid                 | 必要（可选）   | avid与bvid任选一个                                           |
-| aid        | num  | 稿件avid                 | 必要（可选）   | avid与bvid任选一个                                           |
-| progress   | num  | 弹幕出现在视频内的时间   | 非必要         | 单位为毫秒<br />默认为0                                      |
-| color      | num  | 弹幕颜色设置             | 非必要         | 十进制RGB888值<br />默认为16777215（#FFFFFF）白色            |
-| fontsize   | num  | 弹幕字号设置             | 非必要         | 默认为25<br />极小：12<br />超小：16<br />小：18<br />标准：25<br />大：36<br />超大：45<br />极大：64 |
-| pool       | num  | 弹幕池选择               | 非必要         | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）<br />默认为0 |
-| mode       | num  | 弹幕类型选择             | 必要           | 1：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />7：高级弹幕<br />9：BAS弹幕（`pool`必须为2） |
-| rnd        | num  | 当前时间戳*1000000       | 非必要         | **若无此项，则发送弹幕冷却时间限制为90s**<br />若有此项，则发送弹幕冷却时间限制为5s |
-| csrf       | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                                              |
+| 参数名        | 类型 | 内容                      | 必要性          | 备注                                                         |
+| ------------- | ---- | ------------------------- | --------------- | ------------------------------------------------------------ |
+| access_key    | str  | APP 登录 Token            | APP 方式必要    |                                                              |
+| type          | num  | 弹幕类选择                | 必要            | 1：视频弹幕<br />2：漫画弹幕                                 |
+| oid           | num  | 视频 cid                  | 必要            |                                                              |
+| msg           | str  | 弹幕内容                  | 必要            | 长度小于 100 字符                                            |
+| bvid          | str  | 稿件 bvid                 | 必要（可选）    | avid 与 bvid 任选一个                                        |
+| aid           | num  | 稿件 avid                 | 必要（可选）    | avid 与 bvid 任选一个                                        |
+| progress      | num  | 弹幕出现在视频内的时间    | 非必要          | 单位为毫秒<br />默认为0                                      |
+| color         | num  | 弹幕颜色设置              | 非必要          | 十进制 RGB888 值<br />如`16777215`为 #FFFFFF 即白色          |
+| fontsize      | num  | 弹幕字号设置              | 非必要          | 默认为 25<br />极小：12<br />超小：16<br />小：18<br />标准：25<br />大：36<br />超大：45<br />极大：64 |
+| pool          | num  | 弹幕池选择                | 非必要          | 0：普通池<br />1：字幕池<br />2：特殊池（代码/BAS弹幕）<br />默认为0 |
+| mode          | num  | 弹幕类型选择              | 必要            | 1：普通弹幕<br />4：底部弹幕<br />5：顶部弹幕<br />7：高级弹幕<br />9：BAS弹幕（`pool`必须为2） |
+| rnd           | num  | 当前时间戳*1000000        | 非必要          | **若无此项，则发送弹幕冷却时间限制为90s**<br />若有此项，则发送弹幕冷却时间限制为5s |
+| colorful      | num  | 彩色弹幕                  | 非必要          | 60001：专属渐变彩色（需要会员）                              |
+| checkbox_type | num  | 是否带 UP 身份标识        | 非必要          | 0：普通<br />4：带有标识                                     |
+| csrf          | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                                                              |
 
 **json回复：**
 
@@ -36,38 +38,48 @@
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />36700：系统升级中<br />36701：弹幕包含被禁止的内容<br />36702：弹幕长度大于100<br />36703：发送频率过快<br />36704：禁止向未审核的视频发送弹幕<br />36705：您的等级不足，不能发送弹幕<br />36706：您的等级不足，不能发送顶端弹幕<br />36707：您的等级不足，不能发送底端弹幕<br />36708：您的等级不足，不能发送彩色弹幕<br />36709：您的等级不足，不能发送高级弹幕<br />36710：您的权限不足，不能发送这种样式的弹幕<br />36711：该视频禁止发送弹幕<br />36712：level 1用户发送弹幕的最大长度为20<br />36713：稿件未付费<br />36714：弹幕发送时间不合法<br />36715：当日操作数量超过上限 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-111：csrf校验失败<br />-400：请求错误<br />-404：无此项<br />36700：系统升级中<br />36701：弹幕包含被禁止的内容<br />36702：弹幕长度大于100<br />36703：发送频率过快<br />36704：禁止向未审核的视频发送弹幕<br />36705：您的等级不足，不能发送弹幕<br />36706：您的等级不足，不能发送顶端弹幕<br />36707：您的等级不足，不能发送底端弹幕<br />36708：您的等级不足，不能发送彩色弹幕<br />36709：您的等级不足，不能发送高级弹幕<br />36710：您的权限不足，不能发送这种样式的弹幕<br />36711：该视频禁止发送弹幕<br />36712：level 1用户发送弹幕的最大长度为20<br />36713：稿件未付费<br />36714：弹幕发送时间不合法<br />36715：当日操作数量超过上限<br />36718：目前您不是大会员，无法使用会员权益 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        |                                                              |
 | data    | obj  | 信息本体 |                                                              |
 
 `data`对象：
 
-| 字段     | 类型 | 内容     | 备注         |
-| -------- | ---- | -------- | ------------ |
-| action   | str  | 空       | 作用尚不明确 |
-| dmid     | num  | 弹幕dmid |              |
-| dmid_str | str  | 弹幕dmid | 字串形式     |
-| visible  | bool | true     | 作用尚不明确 |
+| 字段         | 类型       | 内容               | 备注                             |
+| ------------ | ---------- | ------------------ | -------------------------------- |
+| action       | str        | （？）             |                                  |
+| animation    | str        | 弹幕样式 Json？    |                                  |
+| colorful_src | str 或 obj | 渐变彩色样式信息？ | 当请求参数`colorful=60001`时有效 |
+| dm_content   | str        | （？）             |                                  |
+| dmid         | num        | 弹幕 dmid          |                                  |
+| dmid_str     | str        | 弹幕 dmid          | 字串形式                         |
+| visible      | bool       | （？）             |                                  |
+
+`data`中的`colorful_src`对象：
+
+| 字段 | 类型 | 内容              | 备注 |
+| ---- | ---- | ----------------- | ---- |
+| type | num  | 60001             |      |
+| src  | str  | 渐变色样式 Json？ |      |
 
 **示例：**
 
-为视频`av2`/`BV1xx411c7mD`（cid为`62131`）的5000ms位置发送一条弹幕`前来考古`（颜色为#FFFFFF，字号25，普通弹幕，游动弹幕）
+为视频`av2`/`BV1xx411c7mD`（cid为`62131`）的 5000ms 位置发送一条弹幕`前来考古`（颜色为 #FFFFFF，字号 25，普通弹幕，游动弹幕）
 
 ```shell
 curl 'https://api.bilibili.com/x/v2/dm/post' \
---data-urlencode 'type=1' \
---data-urlencode 'oid=62131' \
---data-urlencode 'msg=前来考古' \
---data-urlencode 'aid=2' \
---data-urlencode 'progress=5000' \
---data-urlencode 'color=16777215' \
---data-urlencode 'fontsize=25' \
---data-urlencode 'pool=0' \
---data-urlencode 'mode=1' \
---data-urlencode 'rnd=3456789987654321' \
---data-urlencode 'csrf=xxx' \
--b 'SESSDATA=xxx'
+    --data-urlencode 'type=1' \
+    --data-urlencode 'oid=62131' \
+    --data-urlencode 'msg=前来考古' \
+    --data-urlencode 'aid=2' \
+    --data-urlencode 'progress=5000' \
+    --data-urlencode 'color=16777215' \
+    --data-urlencode 'fontsize=25' \
+    --data-urlencode 'pool=0' \
+    --data-urlencode 'mode=1' \
+    --data-urlencode 'rnd=3456789987654321' \
+    --data-urlencode 'csrf=xxx' \
+    -b 'SESSDATA=xxx'
 ```
 
 <details>
