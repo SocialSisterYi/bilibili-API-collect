@@ -49,9 +49,9 @@
 
    ```javascript
    {
-   	foo: '114',
-   	bar: '514',
-    baz: 1919810
+        foo: '114',
+        bar: '514',
+        baz: 1919810
    }
    ```
 
@@ -66,9 +66,9 @@
    例如
    ```javascript
    {
-    foo: 'one one four',
-   	bar: '五一四',
-    baz: 1919810
+        foo: 'one one four',
+        bar: '五一四',
+        baz: 1919810
    }
    ```
 
