@@ -1,0 +1,23 @@
+name: Sync with Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run every day at midnight
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Fetch upstream changes
+        run: |
+          git remote add upstream https://github.com/SocialSisterYi/bilibili-API-collect.git
+          git fetch upstream
+          git branch -u upstream/master
+
+      - name: Merge upstream changes
+        run: |
+          git pull --no-edit upstream master
+          git push origin master
