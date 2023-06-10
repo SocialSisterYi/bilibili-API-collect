@@ -58,10 +58,14 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 计划整理分类 & 目录：(文档已完结请选中 checkbox) 
 
-- [x] [API 签名](docs/other/API_sign.md)
-- [x] [公共错误码](docs/other/errcode.md)
-- [x] [图片格式化](docs/other/picture.md)
-- [x] [bvid 说明](docs/other/bvid_desc.md)
+- [ ] [接口签名与验证](docs/misc/sign)
+  - [x] [APP API 签名](docs/misc/sign/APP.md)（`appkey`与`sign`）
+  - [x] [已知的 APPKey](docs/misc/sign/APPKey.md)
+  - [x] [Wbi 签名](docs/misc/sign/wbi.md)（`wts`与`w_rid`）
+
+- [x] [公共错误码](docs/misc/errcode.md)
+- [x] [图片格式化](docs/misc/picture.md)
+- [x] [bvid 说明](docs/misc/bvid_desc.md)
 - [ ] [gRPC API 接口定义](grpc_api)
 - [ ] [登录](docs/login)
   - [x] [登录操作 (人机认证)](docs/login/login_action)
@@ -73,6 +77,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [个人中心](docs/login/member_center.md)
   - [ ] [注销登录](docs/login/exit.md)
   - [x] [登录记录](docs/login/login_notice.md)
+  - [x] [Web 端 Coookie 刷新](docs/login/cookie_refresh.md)
 - [ ] [消息中心](docs/message)
   - [ ] [通知类消息](docs/message/msg.md)
   - [ ] [私信](docs/message/private_msg.md)
@@ -84,6 +89,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [个人空间](docs/user/space.md)
   - [x] [检查昵称是否可注册](docs/user/check_nickname.md)
   - [x] [用户注册](docs/user/register.md)
+  - [x] [用户认证类型一览](docs/user/official_role.md)
 - [ ] [大会员](docs/vip)
   - [ ] [大会员基本信息](docs/vip/info.md)
   - [ ] [大会员中心](docs/vip/center.md)
@@ -121,6 +127,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] 智能防挡弹幕
   - [x] [弹幕个人配置修改](docs/danmaku/config.md)
   - [x] [名词解释](docs/danmaku/buzzword.md)
+  - [x] [点赞查询](docs/danmaku/thumbup.md)
 - [x] [视频笔记](docs/note)
   - [x] [笔记列表](docs/note/list.md)
   - [x] [笔记详细信息](docs/note/info.md)
@@ -137,7 +144,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [状态数](docs/audio/status_number.md)
   - [ ] [投币 & 收藏](docs/audio/action.md)
   - [x] [播放 & 下载地址（音频流）](docs/audio/musicstream_url.md)
-  - [ ] 音频榜单
+  - [x] [音频榜单](docs/audio/rank.md)
 - [ ] [排行榜 & 最新视频](docs/video_ranking)
   - [ ] [排行榜](docs/video_ranking/ranking.md)
   - [ ] [热门视频](docs/video_ranking/popular.md)
@@ -231,8 +238,8 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [终端网络查询](docs/clientinfo)
   - [x] [基于ip的地理位置查询](docs/clientinfo/ip.md)
   - [x] [终端信息查询](docs/clientinfo/client_info.md)
-- [ ] [其他](docs/other)
-  - [x] [获取当前时间戳](docs/other/time_stamp.md)
+- [ ] [其他](docs/misc)
+  - [x] [获取当前时间戳](docs/misc/time_stamp.md)
 - [ ] [web端组件](docs/web_widget)
   - [x] [分区当日投稿数](docs/web_widget/zone_upload.md)
   - [x] [404 页漫画收集](docs/web_widget/404_manga.md)
@@ -264,7 +271,7 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 ⚠注意：开源社群欢迎交流探讨，**拒绝**咨询、**不支持**合作，**黑产号**一经发现立即拉黑并举报相关 SRC
 
-- QQ 交流群：[邀请链接](https://jq.qq.com/?_wv=1027&k=s1M0LCcu)
+- QQ 交流群：[邀请链接](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=2rRJXK3zgU5yi3e_4rNLeJYUjMLzw_Jj&authKey=L%2FN3EfZXo3QFjEuHq4ifTgh%2F384UmrYpjl7dbYPhYHtznhfJWxkymxQKObQunmEQ&noverify=0&group_code=560304737)
 - Telegram 交流群：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
 
 ## 🧋发电

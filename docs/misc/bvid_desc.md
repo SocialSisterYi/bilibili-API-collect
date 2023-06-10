@@ -25,13 +25,15 @@
 
 ## 算法概述
 
-算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)
+~~算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)~~
+实际上该算法并不完整,新的算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)
 
 ### av->bv算法
 
 注：本算法及示例程序仅能编解码`avid < 29460791296`，且暂无法验证`avid >= 29460791296`的正确性
+再注：本人不清楚新算法能否编解码`avid >= 29460791296`
 
-1. a = (avid ⊕ 177451812) + 8728348608
+1. a = (avid ⊕ 177451812) + 100618342136696320
 2. 以 i 为循环变量循环 6 次 b[i] = (a / 58 ^ i) % 58
 3. 将 b[i] 中各个数字转换为以下码表中的字符
 
@@ -39,23 +41,31 @@
 
 > fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF
 
-4. 初始化字符串 b[i]=`BV1 4 1 7 `
+4. 初始化字符串 b[i]=` `
 
 5. 按照以下字符顺序编码表编码并填充至 b[i]
 
 字符顺序编码表：
 
-> 0 -> 11
+> 0 -> 9
 >
-> 1 -> 10
+> 1 -> 8
 >
-> 2 -> 3
+> 2 -> 1
 >
-> 3 -> 8
+> 3 -> 6
 >
-> 4 -> 4
+> 4 -> 2
 >
-> 5 -> 6
+> 5 -> 4
+>
+> 6 -> 0
+> 
+> 7 -> 7
+>
+> 8 -> 3
+>
+> 9 -> 5
 
 
 ### bv->av算法
@@ -64,43 +74,58 @@
 
 ## 编程实现
 
-使用 Python、C、TypeScript、Java、Kotlin 以及 Golang 等语言作为示例，欢迎社区提交更多例程
+使用 [Python](#Python) [C](#C) [TypeScript](#TypeScript) [Java](#Java) [Kotlin](#Kotlin) [Golang](#Golang) [Rust](#Rust) 等语言作为示例，欢迎社区提交更多例程
 
+注: 新算法只提供了 [Python](#Python) 和 [Rust](#Rust) 版本
 ### Python
 
 ```python
-table = 'fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF' # 码表
-tr = {} # 反查码表
-# 初始化反查码表
-for i in range(58):
-    tr[table[i]] = i
-s = [11, 10, 3, 8, 4, 6] # 位置编码表
-XOR = 177451812 # 固定异或值
-ADD = 8728348608 # 固定加法值
+XOR = 177451812
+ADD = 100618342136696320
+TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF"
+MAP = {
+    0:9,
+    1:8,
+    2:1,
+    3:6,
+    4:2,
+    5:4,
+    6:0,
+    7:7,
+    8:3,
+    9:5
+}
+def av2bv(av):
+    av = (av ^ XOR) + ADD
+    bv = [""]*10
+    for i in range(10):
+        bv[MAP[i]] = TABLE[(av//58**i)%58]
+    return "".join(bv)
 
-def bv2av(x):
-    r = 0
-    for i in range(6):
-        r += tr[x[s[i]]] * 58 ** i
-    return (r - ADD) ^ XOR
+def bv2av(bv):
+    av = [""]*10
+    s = 0
+    for i in range(10):
+        s += TABLE.find(bv[MAP[i]])*58**i
+    av=(s-ADD)^XOR
 
-def av2bv(x):
-    x = (x ^ XOR) + ADD
-    r = list('BV1  4 1 7  ')
-    for i in range(6):
-        r[s[i]] = table[x // 58 ** i % 58]
-    return ''. join(r)
+    return(av)
 
-print(av2bv(170001))
-print(bv2av('BV17x411w7KC'))
+def main():
+    while True:
+        mod = input("1.AV2BV\n2.BV2AV\n3.Exit\n你的选择:")
+        if mod == "1":
+            print("BV号是: BV"+av2bv(int(input("AV号是:"))))
+        elif mod == "2":
+            print("AV号是 AV"+str(bv2av(input("BV号是"))))
+        elif mod == "3":
+            break
+        else:
+            print("输入错误请重新输入")
+
+main()
 ```
 
-输出为：
-
-```
-BV17x411w7KC
-170001
-```
 
 ### C
 
@@ -359,4 +384,44 @@ func main() {
 ```
 BV17x411w7KC
 170001
+```
+### Rust
+crate: https://github.com/stackinspector/bvid
+```rust
+// Copyright (c) 2023 stackinspector. MIT license.
+
+const XORN: u64 = 177451812;
+const ADDN: u64 = 100618342136696320;
+const TABLE: [u8; 58] = *b"fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF";
+const MAP: [usize; 10] = [9, 8, 1, 6, 2, 4, 0, 7, 3, 5];
+const REV_TABLE: [u8; 74] = [
+    13, 12, 46, 31, 43, 18, 40, 28,  5,  0,  0,  0,  0,  0,  0,  0, 54, 20, 15, 8,
+    39, 57, 45, 36,  0, 38, 51, 42, 49, 52,  0, 53,  7,  4,  9, 50, 10, 44, 34, 6,
+    25,  1,  0,  0,  0,  0,  0,  0, 26, 29, 56,  3, 24,  0, 47, 27, 22, 41, 16, 0,
+    11, 37,  2, 35, 21, 17, 33, 30, 48, 23, 55, 32, 14, 19,
+];
+const POW58: [u64; 10] = [
+    1, 58, 3364, 195112, 11316496, 656356768, 38068692544,
+    2207984167552, 128063081718016, 7427658739644928,
+];
+
+fn av2bv(avid: u64) -> [u8; 10] {
+    let a = (avid ^ XORN) + ADDN;
+    let mut bvid = [0; 10];
+    for i in 0..10 {
+        bvid[MAP[i]] = TABLE[(a / POW58[i]) as usize % 58];
+    }
+    bvid
+}
+
+fn bv2av(bvid: [u8; 10]) -> u64 {
+    let mut a = 0;
+    for i in 0..10 {
+        a += REV_TABLE[bvid[MAP[i]] as usize - 49] as u64 * POW58[i];
+    }
+    (a - ADDN) ^ XORN
+}
+
+// assert_eq!(*b"17x411w7KC", av2bv(170001));
+// assert_eq!(170001, bv2av(*b"17x411w7KC"));
 ```
