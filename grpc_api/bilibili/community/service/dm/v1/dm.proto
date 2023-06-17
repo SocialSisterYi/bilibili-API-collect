@@ -202,7 +202,7 @@ message DanmakuElem {
     int32 fontsize = 4;
     // 弹幕颜色
     uint32 color = 5;
-    // 发送着mid hash
+    // 发送者mid hash
     string midHash = 6;
     // 弹幕正文
     string content = 7;
