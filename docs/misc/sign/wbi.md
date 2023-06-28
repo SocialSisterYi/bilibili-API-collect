@@ -115,7 +115,7 @@
 
 ## Wbi签名算法实现Demo
 
-该 Demo 提供 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)语言
+该 Demo 提供 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp) 语言
 
 ### Python
 
@@ -425,9 +425,9 @@ func main() {
 
 ### CSharp
 
-没有依赖
+无需依赖外部库
 
-```C#
+```cs
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json.Nodes;

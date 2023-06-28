@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.polymer.list;
+package bilibili.polymer.list.v1;
 
 //
 service List {
