@@ -1582,7 +1582,7 @@ curl -G 'https://api.bilibili.com/x/relation/relations' \
 
 | 字段  | 类型 | 内容       | 备注 |
 | ----- | ---- | ---------- | ---- |
-| tagid | num  | 分组 id    |      |
+| tagid | num  | 分组 id    |  -10：特别关注<br />0：默认分组    |
 | name  | str  | 分组名称   |      |
 | count | num  | 分组成员数 |      |
 | tip   | str  | 提示信息   |      |
@@ -1653,7 +1653,7 @@ curl 'https://api.bilibili.com/x/relation/tags' \
 | access_key | str  | APP 登录 Token | APP 方式必要 |                                                         |
 | tagid      | num  | 分组 id        | 必要         |                                                         |
 | order_type | str  | 排序方式       | 非必要       | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
-| ps         | num  | 每页项数       | 非必要       | 默认为 50                                               |
+| ps         | num  | 每页项数       | 非必要       | 默认为 20                                               |
 | pn         | num  | 页数           | 非必要       | 默认为1                                                 |
 
 **json回复：**
@@ -1674,6 +1674,38 @@ curl 'https://api.bilibili.com/x/relation/tags' \
 | 0    | obj  | 成员信息 1      | 见 [关系列表对象](#关系列表对象) |
 | n    | obj  | 成员信息（n+1） | 按照添加顺序排序                 |
 | ……   | obj  | ……              | ……                               |
+
+`data` 中的对象：
+
+| 字段            | 类型 | 内容        | 备注           |
+| --------------- | ---- | ----------- | -------------- |
+| mid             | num  | 用户id      |                |
+| attribute       | num  | 0           |                |
+| tag             | null | null        |                |
+| special         | num  | 0           |                |
+| contract_info   | json | 空的        |                |
+| uname           | str  | 用户名      |                |
+| face            | str  | 头像地址    |                |
+| sign            | str  | 个人简介    |                |
+| face_nft        | int  | ntf头像     |                |
+| official_verify | json | 官方认证    | 具体见下       |
+| vip             | json | 大会员      | 参考大会员文档 |
+| live            | json | 直播状态    | 具体见下       |
+| nft_icon        | str  | 显示nft角标 |                |
+| rec_reason      | str  |             |                |
+| track_id        | str  |             |                |
+
+`data`对象中的`official_verify`：
+| 字段 | 类型 | 内容         | 备注 |
+| ---- | ---- | ------------ | ---- |
+| type | num  | 0            |      |
+| desc | str  | 官方认证内容 |      |
+
+`data`对象中的`live`：
+| 字段        | 类型 | 内容     | 备注                 |
+| ----------- | ---- | -------- | -------------------- |
+| live_status | num  | 0或1     | 0：未开播，1：已直播 |
+| jump_url    | str  | 直播链接 |   
 
 **示例：**
 
