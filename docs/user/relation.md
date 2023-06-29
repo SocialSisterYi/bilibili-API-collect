@@ -77,7 +77,7 @@
 | ps         | num  | 每页项数       | 非必要       | 默认为 50                             |
 | pn         | num  | 页码           | 非必要       | 默认为 1<br />其他用户仅可查看前 5 页 |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -119,7 +119,7 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -204,7 +204,7 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
 | ps         | num  | 每页项数       | 非必要       | 默认为 50                                               |
 | pn         | num  | 页码           | 非必要       | 默认为 1<br />其他用户仅可查看前 5 页                   |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -247,7 +247,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -328,7 +328,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings' \
 | ps     | num  | 每页项数     | 非必要 | 默认为 50                     |
 | pn     | num  | 页码         | 非必要 | 默认为 1<br />仅可查看前 5 页 |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -419,7 +419,7 @@ curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -542,7 +542,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings/search' \
 
 <details>
 <summary>查看响应示例：</summary>
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -602,7 +602,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings/search' \
 | ps         | num  | 每页项数       | 非必要       | 默认为 50 |
 | pn         | num  | 页码           | 非必要       | 默认为 1  |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -644,7 +644,7 @@ curl -G 'https://api.bilibili.com/x/relation/same/followings' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -728,7 +728,7 @@ curl -G 'https://api.bilibili.com/x/relation/same/followings' \
 | ---------- | ---- | -------------- | ------------ | ---- |
 | access_key | str  | APP 登录 Token | APP 方式必要 |      |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -764,7 +764,7 @@ curl -G 'https://api.bilibili.com/x/relation/whispers' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -820,7 +820,7 @@ curl -G 'https://api.bilibili.com/x/relation/whispers' \
 | ---------- | ---- | -------------- | ------------ | ---- |
 | access_key | str  | APP 登录 Token | APP 方式必要 |      |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -855,7 +855,7 @@ curl -G 'https://api.bilibili.com/x/relation/friends' \
 
 <details>
 <summary>查看响应示例：</summary>
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -1047,7 +1047,7 @@ curl -G 'https://api.bilibili.com/x/relation/friends' \
 | ps         | num  | 每页项数       | 非必要       | 默认为 50 |
 | pn         | num  | 页码           | 非必要       | 默认为 1  |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1087,7 +1087,7 @@ curl -G 'https://api.bilibili.com/x/relation/blacks' \
 
 <details>
 <summary>查看响应示例：</summary>
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -1189,7 +1189,7 @@ curl -G 'https://api.bilibili.com/x/relation/blacks' \
 | 6    | 取消拉黑     |
 | 7    | 踢出粉丝     |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1215,7 +1215,7 @@ curl 'https://api.bilibili.com/x/relation/modify' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -1245,7 +1245,7 @@ curl 'https://api.bilibili.com/x/relation/modify' \
 | re_src     | num  | 关注来源代码              | 必要            | 同上                                              |
 | csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                                                   |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1286,7 +1286,7 @@ curl 'https://api.bilibili.com/x/relation/batch/modify' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -1334,7 +1334,7 @@ curl 'https://api.bilibili.com/x/relation/batch/modify' \
 | access_key | str  | APP 登录 Token | APP 方式必要 |      |
 | fid        | num  | 目标用户 mid   | 必要         |      |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1358,7 +1358,7 @@ curl -G 'https://api.bilibili.com/x/relation' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -1396,7 +1396,7 @@ curl -G 'https://api.bilibili.com/x/relation' \
 | w_rid      | str  | Wbi 签名     | 必要        | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 | wts        | num  | 当前时间戳   | 必要        | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1431,7 +1431,7 @@ curl -G 'https://api.bilibili.com/x/space/acc/relation' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -1479,7 +1479,7 @@ curl -G 'https://api.bilibili.com/x/space/acc/relation' \
 | access_key | str  | APP 登录 Token | APP 方式必要 |                     |
 | fids       | nums | 目标用户 mid | 必要        | 每个之间用`,`间隔 |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1510,7 +1510,7 @@ curl -G 'https://api.bilibili.com/x/relation/relations' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -1559,7 +1559,7 @@ curl -G 'https://api.bilibili.com/x/relation/relations' \
 | ---------- | ---- | -------------- | ------------ | ---- |
 | access_key | str  | APP 登录 Token | APP 方式必要 |      |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1599,7 +1599,7 @@ curl 'https://api.bilibili.com/x/relation/tags' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -1656,7 +1656,7 @@ curl 'https://api.bilibili.com/x/relation/tags' \
 | ps         | num  | 每页项数       | 非必要       | 默认为 20                                               |
 | pn         | num  | 页数           | 非必要       | 默认为1                                                 |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1683,14 +1683,14 @@ curl 'https://api.bilibili.com/x/relation/tags' \
 | attribute       | num  | 0           |                |
 | tag             | null | null        |                |
 | special         | num  | 0           |                |
-| contract_info   | objct | 空的        |                |
+| contract_info   | json | 空的        |                |
 | uname           | str  | 用户名      |                |
 | face            | str  | 头像地址    |                |
 | sign            | str  | 个人简介    |                |
 | face_nft        | int  | ntf头像     |                |
-| official_verify | objct | 官方认证    | 具体见下       |
-| vip             | objct | 大会员      | 参考大会员文档 |
-| live            | objct | 直播状态    | 具体见下       |
+| official_verify | json | 官方认证    | 具体见下       |
+| vip             | json | 大会员      | 参考大会员文档 |
+| live            | json | 直播状态    | 具体见下       |
 | nft_icon        | str  | 显示nft角标 |                |
 | rec_reason      | str  |             |                |
 | track_id        | str  |             |                |
@@ -1723,7 +1723,7 @@ curl -G 'https://api.bilibili.com/x/relation/tag' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -1791,7 +1791,7 @@ curl -G 'https://api.bilibili.com/x/relation/tag' \
 | access_key | str  | APP 登录 Token | APP 方式必要 |      |
 | fid        | num  | 目标用户 mid   | 必要         |      |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1822,7 +1822,7 @@ curl -G 'https://api.bilibili.com/x/relation/tag/user' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -1850,7 +1850,7 @@ curl -G 'https://api.bilibili.com/x/relation/tag/user' \
 | ---------- | ---- | -------------- | ------------ | ---- |
 | access_key | str  | APP 登录 Token | APP 方式必要 |      |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1879,7 +1879,7 @@ curl 'https://api.bilibili.com/x/relation/tag/special' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code": 0,
     "message": "0",
@@ -1927,7 +1927,7 @@ curl 'https://api.bilibili.com/x/relation/tag/special' \
 | tag        | str  | 分组名                    | 必要            | 最长  16 字符 |
 | csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |               |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -1958,7 +1958,7 @@ curl 'https://api.bilibili.com/x/relation/tag/create' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -1988,7 +1988,7 @@ curl 'https://api.bilibili.com/x/relation/tag/create' \
 | name       | str  | 新名称                    | 必要            | 最长 16 字符 |
 | csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |              |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -2013,7 +2013,7 @@ curl 'https://api.bilibili.com/x/relation/tag/update' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -2041,7 +2041,7 @@ curl 'https://api.bilibili.com/x/relation/tag/update' \
 | tagid      | num  | 分组 id                   | 必要            |      |
 | csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |      |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -2065,7 +2065,7 @@ curl 'https://api.bilibili.com/x/relation/tag/del' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -2096,7 +2096,7 @@ curl 'https://api.bilibili.com/x/relation/tag/del' \
 | tagids     | nums | 分组 id 列表            | 必要           | 每个之间用`,`间隔 |
 | csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                     |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -2121,7 +2121,7 @@ curl 'https://api.bilibili.com/x/relation/tags/addUsers' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
 	"code": 0,
 	"message": "0",
@@ -2148,7 +2148,7 @@ curl 'https://api.bilibili.com/x/relation/tags/addUsers' \
 | tagids     | nums | 目标分组 id 列表        | 必要           | 每个之间用`,`间隔 |
 | csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                     |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -2173,7 +2173,7 @@ curl 'https://api.bilibili.com/x/relation/tags/copyUsers' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code":0,
     "message":"0",
@@ -2201,7 +2201,7 @@ curl 'https://api.bilibili.com/x/relation/tags/copyUsers' \
 | fids         | nums | 待移动的用户 mid 列表      | 必要           | 每个之间用`,`间隔 |
 | csrf         | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                     |
 
-**objct回复：**
+**json回复：**
 
 根对象：
 
@@ -2227,7 +2227,7 @@ curl 'https://api.bilibili.com/x/relation/tags/moveUsers' \
 <details>
 <summary>查看响应示例：</summary>
 
-```objct
+```json
 {
     "code":0,
     "message":"0",
