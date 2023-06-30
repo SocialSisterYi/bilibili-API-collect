@@ -9,9 +9,9 @@ import "google/protobuf/any.proto";
 // 统一视频信息接口(7.23启用)
 service View {
     // 
-    rpc View(ViewRequest) returns (ViewReply);
+    rpc View(ViewReq) returns (ViewReply);
     // 
-    rpc ViewProgress(ViewProgressRequest) returns (ViewProgressReply);
+    rpc ViewProgress(ViewProgressReq) returns (ViewProgressReply);
 }
 
 //  业务类型
@@ -255,7 +255,7 @@ enum MaterialBizType {
 // 素材来源
 enum MaterialSource {
     // 
-    UNKNOWN = 0;
+    DEFAULT = 0;
     // 必剪素材
     BIJIAN = 1;
 }
