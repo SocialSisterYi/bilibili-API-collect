@@ -2,12 +2,24 @@ syntax = "proto3";
 
 package bilibili.playershared;
 
-// 
+// ArcConf消息
 message ArcConf {
+    // 是否支持
     bool is_support = 1;
-    bool disable = 2;
+    // 是否禁用
+    bool disabled = 2;
+    // 额外内容
     ExtraContent extra_content = 3;
+    // 不支持场景列表
     repeated int32 unsupport_scene = 4;
+}
+
+// 
+enum ArcType {
+    // 
+    ARC_TYPE_NORMAL = 0;
+    // 
+    ARC_TYPE_INTERACT = 1;
 }
 
 // 按钮组件
@@ -72,16 +84,90 @@ enum ConfType {
 // 
 message ConfValue {
     oneof value {
-        // DASH流
+        // 
         int32 switch_val = 1;
-        // 分段流
+        // 
         int32 selected_val = 2;
     }
+}
+
+// Dash条目
+message DashItem {
+    // 清晰度
+    uint32 id = 1;
+    // 主线流
+    string base_url = 2;
+    // 备用流
+    repeated string backup_url = 3;
+    // 带宽
+    uint32 bandwidth = 4;
+    // 编码id
+    uint32 codecid = 5;
+    // md5
+    string md5 = 6;
+    // 大小
+    uint64 size = 7;
+    // 帧率
+    string frame_rate = 8;
+    // DRM密钥
+    string widevine_pssh = 9;
+}
+
+// 视频流信息: dash流
+message DashVideo {
+    // 主线流
+    string base_url = 1;
+    // 备用流
+    repeated string backup_url = 2;
+    // 带宽
+    uint32 bandwidth = 3;
+    // 编码id
+    uint32 codecid = 4;
+    // md5
+    string md5 = 5;
+    // 大小
+    uint64 size = 6;
+    // 伴音质量id
+    uint32 audio_id = 7;
+    // 是否非全二压
+    bool no_rexcode = 8;
+    // 帧率
+    string frame_rate = 9;
+    // 宽
+    int32 width = 10;
+    // 高
+    int32 height = 11;
+    // DRM密钥
+    string widevine_pssh = 12;
 }
 
 // 
 message DeviceConf {
     ConfValue conf_value = 1;
+}
+
+// 当前分辨率信息
+message Dimension {
+    // 宽
+    int32 width = 1;
+    // 长
+    int32 height = 2;
+    // 旋转角度
+    int32 rotate = 3;
+}
+
+// 杜比伴音流信息
+message DolbyItem {
+    // 杜比类型
+    enum Type {
+        NONE = 0;   // NONE
+        COMMON = 1; // 普通杜比音效
+        ATMOS = 2;  // 全景杜比音效
+    }
+    // 杜比类型
+    Type type = 1;
+    // 音频流
+    repeated DashItem audio = 2;
 }
 
 // DRM类型
@@ -96,12 +182,18 @@ enum DrmTechType {
     BILI_DRM = 3;
 }
 
+// 事件
+message Event {
+    // 震动
+    Shake shake = 1;
+}
+
 // ? 错误码补充信息
 message ExtraContent {
     // 
     string disable_reason = 1;
     // 
-    uint64 disable_code = 2;
+    int64 disable_code = 2;
 }
 
 // 播放历史
@@ -112,23 +204,125 @@ message History {
     HistoryInfo related_video = 2;
 }
 
+// 
 message HistoryInfo {
     // 
     int64 progress = 1;
     // 
     int64 last_play_cid = 2;
+    // 
+    Toast toast = 3;
+    // 
+    Toast toast_without_time = 4;
+    // 
+    int64 last_play_aid = 5;
+}
+
+// 
+message Interaction {
+    // 
+    Node history_node = 1;
+    // 
+    int64 graph_version = 2;
+    // 
+    string msg = 3;
+    // 
+    int64 mark = 4;
+}
+
+// HIRES伴音流信息
+message LossLessItem {
+    // 是否为hires
+    bool is_lossless_audio = 1;
+    // 音频流信息
+    DashItem audio = 2;
+    // 是否需要大会员
+    bool need_vip = 3;
+}
+
+// 
+message Node {
+    // 
+    int64 node_id = 1;
+    // 
+    string title = 2;
+    // 
+    int64 cid = 3;
+}
+
+// 
+message PlayArc {
+    // 
+    VideoType video_type = 1;
+    // 
+    uint64 aid = 2;
+    // 
+    uint64 cid = 3;
+    // 
+    DrmTechType drm_tech_type = 4;
+    // 
+    ArcType arc_type = 5;
+    // 
+    Interaction interaction = 6;
+    // 
+    Dimension dimension = 7;
+}
+
+// 播放页信息-响应: PlayArcConf
+message PlayArcConf {
+    map<int32, ArcConf> arc_confs = 1;
 }
 
 // 
 message PlayDeviceConf {
     // 
-    map<int32, DeviceConf> arc_confs = 1;
+    map<int32, DeviceConf> device_confs = 1;
 }
 
 // 错误码
 enum PlayErr {
     NoErr = 0;                   //
     WithMultiDeviceLoginErr = 1; // 管控类型的错误码
+}
+
+// 播放页信息-响应: 高画质试看信息
+message QnTrialInfo {
+    // 能否试看高画质
+    bool trial_able = 1;
+    // 
+    int32 remaining_times = 2;
+    //
+    int32 start = 3;
+    //
+    int32 time_length = 4;
+    //
+    Toast start_toast = 5;
+    //
+    Toast end_toast = 6;
+    //
+    Button quality_open_tip_btn = 8;
+}
+
+// Dash Response, 未使用
+message ResponseDash {
+    repeated DashItem video = 1;
+    repeated DashItem audio = 2;
+}
+
+// 分段流条目
+message ResponseUrl {
+    // 分段序号
+    uint32 order = 1;
+    // 分段时长
+    uint64 length = 2;
+    // 分段大小
+    uint64 size = 3;
+    // 主线流
+    string url = 4;
+    // 备用流
+    repeated string backup_url = 5;
+    // md5
+    string md5 = 6;
 }
 
 // 方案
@@ -143,21 +337,15 @@ message Scheme {
     string toast = 2;
 }
 
-// 
-enum UnsupportScene {
-    // 
-    UNKNOWN_SCENE = 0;
-    // 
-    PREMIERE = 1;
+// 视频流信息: 分段流
+message SegmentVideo {
+    repeated ResponseUrl segment = 1;
 }
 
-// 视频类型
-enum VideoType {
-    UNKNOWN = 0;
-    // 用户生成内容
-    UGC = 1;
-    // 专业生产内容
-    PGC = 2;
+// 震动
+message Shake {
+    // 
+    string file = 1;
 }
 
 // 视频流信息
@@ -211,83 +399,6 @@ message StreamInfo {
     bool support_drm = 17;
 }
 
-// Dash条目
-message DashItem {
-    // 清晰度
-    uint32 id = 1;
-    // 主线流
-    string base_url = 2;
-    // 备用流
-    repeated string backup_url = 3;
-    // 带宽
-    uint32 bandwidth = 4;
-    // 编码id
-    uint32 codecid = 5;
-    // md5
-    string md5 = 6;
-    // 大小
-    uint64 size = 7;
-    // 帧率
-    string frame_rate = 8;
-    // DRM密钥
-    string widevine_pssh = 9;
-}
-
-// 视频流信息: dash流
-message DashVideo {
-    // 主线流
-    string base_url = 1;
-    // 备用流
-    repeated string backup_url = 2;
-    // 带宽
-    uint32 bandwidth = 3;
-    // 编码id
-    uint32 codecid = 4;
-    // md5
-    string md5 = 5;
-    // 大小
-    uint64 size = 6;
-    // 伴音质量id
-    uint32 audio_id = 7;
-    // 是否非全二压
-    bool no_rexcode = 8;
-    // 帧率
-    string frame_rate = 9;
-    // 宽
-    int32 width = 10;
-    // 高
-    int32 height = 11;
-    // DRM密钥
-    string widevine_pssh = 12;
-}
-
-// 视频流信息: 分段流
-message SegmentVideo {
-    repeated ResponseUrl segment = 1;
-}
-
-// 分段流条目
-message ResponseUrl {
-    // 分段序号
-    uint32 order = 1;
-    // 分段时长
-    uint64 length = 2;
-    // 分段大小
-    uint64 size = 3;
-    // 主线流
-    string url = 4;
-    // 备用流
-    repeated string backup_url = 5;
-    // md5
-    string md5 = 6;
-}
-
-// Dash Response, 未使用
-message ResponseDash {
-    repeated DashItem video = 1;
-    repeated DashItem audio = 2;
-}
-
 // 视频流信息: 流媒体元数据: 清晰度不满足条件信息
 message StreamLimit {
     // 标题
@@ -298,6 +409,30 @@ message StreamLimit {
     string msg = 3;
 }
 
+// Toast信息
+message Toast {
+    // toast文案
+    string text = 1;
+    // toast按钮
+    Button button = 2;
+}
+
+// 
+enum UnsupportScene {
+    // 
+    UNKNOWN_SCENE = 0;
+    // 
+    PREMIERE = 1;
+}
+
+// 视频类型
+enum VideoType {
+    UNKNOWN = 0;
+    // 用户生成内容
+    UGC = 1;
+    // 专业生产内容
+    PGC = 2;
+}
 
 // 播放页信息-请求: 音视频VOD
 message VideoVod {
@@ -345,30 +480,8 @@ message VodInfo {
     VolumeInfo volume = 8;
     // HIRES伴音流信息
     LossLessItem loss_less_item = 9;
-}
-
-// 杜比伴音流信息
-message DolbyItem {
-    // 杜比类型
-    enum Type {
-        NONE = 0;   // NONE
-        COMMON = 1; // 普通杜比音效
-        ATMOS = 2;  // 全景杜比音效
-    }
-    // 杜比类型
-    Type type = 1;
-    // 音频流
-    repeated DashItem audio = 2;
-}
-
-// HIRES伴音流信息
-message LossLessItem {
-    // 是否为hires
-    bool is_lossless_audio = 1;
-    // 音频流信息
-    DashItem audio = 2;
-    // 是否需要大会员
-    bool need_vip = 3;
+    // 是否支持投屏
+    bool support_project = 10;
 }
 
 // 响度均衡操作信息
@@ -387,59 +500,4 @@ message VolumeInfo {
     double target_i = 6;
     // Target true peak 目标响度真峰值
     double target_tp = 7;
-}
-
-// 
-message PlayArc {
-    // 
-    VideoType video_type = 1;
-    // 
-    uint64 aid = 2;
-    // 
-    uint64 cid = 3;
-    // 
-    DrmTechType drm_tech_type = 4;
-}
-
-// 播放页信息-响应: PlayArcConf
-message PlayArcConf {
-    map<int32, ArcConf> arc_confs = 1;
-}
-
-// 播放页信息-响应: 高画质试看信息
-message QnTrialInfo {
-    // 能否试看高画质
-    bool trial_able = 1;
-    // 
-    int32 remaining_times = 2;
-    //
-    int32 start = 3;
-    //
-    int32 time_length = 4;
-    //
-    Toast start_toast = 5;
-    //
-    Toast end_toast = 6;
-    //
-    Button quality_open_tip_btn = 8;
-}
-
-// Toast信息
-message Toast {
-    // toast文案
-    string text = 1;
-    // toast按钮
-    Button button = 2;
-}
-
-// 事件
-message Event {
-    // 震动
-    Shake shake = 1;
-}
-
-// 震动
-message Shake {
-    // 
-    string file = 1;
 }
