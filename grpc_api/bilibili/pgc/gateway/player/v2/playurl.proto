@@ -664,7 +664,7 @@ message PlayExtInfo {
 }
 
 // 
-message Playlist {
+message PlayList {
     // 
     int32 season_id = 1;
     // 
