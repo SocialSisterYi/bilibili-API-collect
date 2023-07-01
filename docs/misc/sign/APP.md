@@ -23,7 +23,7 @@
 
 ## Demo
 
-该 Demo 提供 [Python](#Python)  [Java](#Java) 语言例程
+该 Demo 提供 [Python](#Python) 和 [Java](#Java) 语言例程
 
 使用 appkey = `1d8b6e7d45233436`, appsec = `560c52ccd288fed045859ed18bffd973` 对如下 `params` 参数进行签名
 
@@ -102,7 +102,7 @@ public class AppSigner {
                     .append('=')
                     .append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
         }
-        return generateMD5(queryBuilder.toString() + APP_SEC);
+        return generateMD5(queryBuilder .append(APP_SEC).toString());
     }
 
     private static String generateMD5(String input) {
