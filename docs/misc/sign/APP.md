@@ -23,7 +23,7 @@
 
 ## Demo
 
-该 Demo 提供 [Python](#Python) 语言例程
+该 Demo 提供 [Python](#Python) 和 [Java](#Java) 语言例程
 
 使用 appkey = `1d8b6e7d45233436`, appsec = `560c52ccd288fed045859ed18bffd973` 对如下 `params` 参数进行签名
 
@@ -63,3 +63,71 @@ print(query)
 {'appkey': '1d8b6e7d45233436', 'id': 114514, 'str': '1919810', 'test': 'いいよ，こいよ', 'sign': '01479cf20504d865519ac50f33ba3a7d'}
 appkey=1d8b6e7d45233436&id=114514&str=1919810&test=%E3%81%84%E3%81%84%E3%82%88%EF%BC%8C%E3%81%93%E3%81%84%E3%82%88&sign=01479cf20504d865519ac50f33ba3a7d
 ```
+
+### Java
+
+
+```java
+package io.github.cctyl;
+
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.net.URLEncoder;
+import java.util.TreeMap;
+
+/**
+ * @author cctyl
+ */
+public class AppSigner {
+
+    private static final String APP_KEY = "1d8b6e7d45233436";
+    private static final String APP_SEC = "560c52ccd288fed045859ed18bffd973";
+
+    public static String appSign(Map<String, String> params) {
+        // 为请求参数进行 APP 签名
+        params.put("appkey", APP_KEY);
+        // 按照 key 重排参数
+        Map<String, String> sortedParams = new TreeMap<>(params);
+        // 序列化参数
+        StringBuilder queryBuilder = new StringBuilder();
+        for (Map.Entry<String, String> entry : sortedParams.entrySet()) {
+            if (queryBuilder.length() > 0) {
+                queryBuilder.append('&');
+            }
+            queryBuilder
+                    .append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8))
+                    .append('=')
+                    .append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+        }
+        return generateMD5(queryBuilder .append(APP_SEC).toString());
+    }
+
+    private static String generateMD5(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] digest = md.digest(input.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", "114514");
+        params.put("str", "1919810");
+        params.put("test", "いいよ，こいよ");
+        System.out.println(appSign(params));
+    }
+}
+```
+
+输出结果为：01479cf20504d865519ac50f33ba3a7d
