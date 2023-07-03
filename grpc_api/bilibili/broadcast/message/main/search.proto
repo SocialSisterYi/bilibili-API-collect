@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.main;
+
+import "google/protobuf/empty.proto";
+import "bilibili/app/dynamic/v2/dynamic.proto";
+
+service Search {
+    rpc ChatResultPush (google.protobuf.Empty) returns (stream ChatResult);
+}
+
+// 
+message Bubble {
+    repeated bilibili.app.dynamic.v2.Paragraph paragraphs = 1;
+}
+
+// 
+message ChatResult {
+    // 
+    int32 code = 1;
+    // 
+    string session_id = 2;
+    // 
+    repeated Bubble bubble = 3;
+    // 
+    string rewrite_word = 4;
+    // 
+    string title = 5;
+}
