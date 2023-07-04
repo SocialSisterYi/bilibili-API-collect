@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package bilibili.app.dynamic.common;
+
+
+// 
+message ItemWHRatio {
+    // 
+    int32 ratio = 1;
+    // 
+    int32 width = 2;
+    // 
+    int32 height = 3;
+}
+
+// 
+enum WHRatio {
+    W_H_RATIO_1_1 = 0;
+    W_H_RATIO_16_9 = 1;
+    W_H_RATIO_3_4 = 2;
+    W_H_RATIO_CUSTOM = 3;
+}

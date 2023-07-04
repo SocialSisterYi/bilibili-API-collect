@@ -1,0 +1,59 @@
+
+syntax = "proto3";
+
+package bilibili.app.dynamic.v2;
+
+import "bilibili/app/archive/middleware/v1/preload.proto";
+import "bilibili/app/dynamic/v2/dynamic.proto";
+
+service Opus {
+    // 
+    rpc OpusDetail (OpusDetailReq) returns (OpusDetailResp);
+}
+
+// 
+message OpusDetailReq {
+    // 
+    OpusType opus_type = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 dyn_type = 3;
+    // 
+    string share_id = 4;
+    // 
+    int32 share_mode = 9;
+    // 
+    int32 local_time = 10;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 11;
+    // 
+    Config config = 12;
+}
+
+// 
+message OpusDetailResp {
+    // 
+    OpusItem opus_item = 1;
+}
+
+// 
+message OpusItem {
+    // 
+    int64 opus_id = 1;
+    // 
+    OpusType opus_type = 2;
+    // 
+    int64 oid = 3;
+    // 
+    repeated Module modules = 4;
+    // 
+    Extend extend = 5;
+}
+
+enum OpusType {
+    OPUS_TYPE_DYN = 0;
+    OPUS_TYPE_ARTICLE = 1;
+    OPUS_TYPE_NOTE = 2;
+    OPUS_TYPE_WORD = 3;
+}

@@ -115,7 +115,7 @@
 
 ## Wbi签名算法实现Demo
 
-该 Demo 提供 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp) 语言、[Java](#Java)
+该 Demo 提供 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)和[Java](#Java) 语言
 
 ### Python
 
