@@ -12,6 +12,30 @@ service PlayURL {
     rpc PlayViewComic(PlayViewReq) returns (PlayViewReply);
 }
 
+// 
+message Animation {
+    // 
+    map<string, string> qn_svga_animation_map = 1;
+}
+
+// 
+message AudioMaterialProto {
+    // 
+    string audio_id = 1;
+    // 
+    string title = 2;
+    // 
+    string edition = 3;
+    // 
+    uint64 person_id = 4;
+    // 
+    string person_name = 5;
+    // 
+    string person_avatar = 6;
+    //
+    repeated DashItem audio = 7;
+}
+
 // 角标信息
 message BadgeInfo {
     // 角标文案
@@ -22,15 +46,17 @@ message BadgeInfo {
     string bg_color_night = 3;
     // 文案色值
     string text_color = 4;
-    //
+    // ? 新版本客户端已弃用此项
     GradientColor bg_gradient_color = 5;
+    // 
+    string img = 6;
 }
 
-//
+// Dialog组件: 底部显示
 message BottomDisplay {
-    //
+    // 文案
     TextInfo title = 1;
-    //
+    // 图标
     string icon = 2;
 }
 
@@ -66,38 +92,44 @@ message ButtonInfo {
     GradientColor bg_gradient_color = 14;
     //
     map<string, string> order_report_params = 15;
+    // 
+    TaskParam task_param = 16;
+    // 
+    string pc_link = 17;
 }
 
-//
+// 投屏限制. code = 0 时为无限制, 否则表示不不允许投屏并提示message
 message CastTips {
     //
     int32 code = 1;
-    //
+    // 
     string message = 2;
 }
 
-//
+// 跳过片头/片尾配置
 message ClipInfo {
     //
     int64 material_no = 1;
-    //
+    // DASH分段始
     int32 start = 2;
-    //
+    // DASH分段终
     int32 end = 3;
-    //
+    // Clip类型
     ClipType clip_type = 4;
-    //
+    // 跳过片头/片尾时的提示语
     string toast_text = 5;
-    //
+    // 
     MultiView multi_view = 6;
 }
 
+// 跳过片头/片尾配置: Clip类型
 enum ClipType {
     NT_UNKNOWN = 0;           //
-    CLIP_TYPE_OP = 1;         //
-    CLIP_TYPE_ED = 2;         //
+    CLIP_TYPE_OP = 1;         // 跳过OP
+    CLIP_TYPE_ED = 2;         // 跳过ED
     CLIP_TYPE_HE = 3;         //
-    CLIP_TYPE_MULTI_VIEW = 4; //
+    CLIP_TYPE_MULTI_VIEW = 4; // 
+    CLIP_TYPE_AD = 5;         //
 }
 
 // 编码类型
@@ -136,6 +168,10 @@ message Coupon {
     string real_amount = 9;
     // 使用过期时间
     google.protobuf.Timestamp expire_time = 10;
+    // 
+    int64 otype = 11;
+    // 
+    string amount = 12;
 }
 
 // 优惠券信息
@@ -176,10 +212,12 @@ message DashItem {
     uint32 codecid = 5;
     // md5
     string md5 = 6;
-    // 大小
+    // 视频大小
     uint64 size = 7;
     // 帧率
     string frame_rate = 8;
+    // DRM widevine 密钥
+    string widevine_pssh = 9;
 }
 
 // dash视频流
@@ -206,6 +244,14 @@ message DashVideo {
     int32 width = 10;
     // 高
     int32 height = 11;
+    // DRM 密钥
+    string widevine_pssh = 12;
+}
+
+// 
+message DataControl {
+    // 
+    bool need_watch_progress = 1;
 }
 
 // 鉴权浮层
@@ -238,6 +284,8 @@ message Dialog {
     TextInfo right_bottom_desc = 13;
     //
     repeated BottomDisplay bottom_display = 14;
+    // 
+    repeated PlayList play_list = 15;
 }
 
 // 鉴权浮层配置
@@ -250,15 +298,17 @@ message DialogConfig {
     bool is_nested_scroll_enable = 3;
     // 是否强制竖屏
     bool is_force_halfscreen_enable = 4;
+    // 是否启用背景半透明
+    bool is_background_translucent_enable = 5;
 }
 
-//
+// 当前分辨率信息
 message Dimension {
-    //
+    // 宽
     int32 width = 1;
-    //
+    // 长
     int32 height = 2;
-    //
+    // 旋转角度
     int32 rotate = 3;
 }
 
@@ -276,18 +326,109 @@ message DolbyItem {
     DashItem audio = 2;
 }
 
-//
+// DRM技术类型
 enum DrmTechType {
     NON = 0;       //
-    FAIR_PLAY = 1; //
+    FAIR_PLAY = 1; // 
+    WIDE_VINE = 2;  //
+    BILI_DRM = 3; //
 }
 
-// 播放结束页
+// 播放结束后的尾页Dialog
 message EndPage {
-    // 鉴权浮层
+    // 
     Dialog dialog = 1;
-    // 播放完后是否隐藏end_page
+    // 
     bool hide = 2;
+}
+
+// 
+message EpInlineVideo {
+    // 
+    int64 material_no = 1;
+    // 
+    int64 aid = 2;
+    // 
+    int64 cid = 3;
+}
+
+// 剧集广告信息
+message EpisodeAdvertisementInfo {
+    // 
+    int64 aid = 1;
+    // 
+    string title = 2;
+    // 
+    string link = 3;
+    // 
+    int32 follow_video_bnt_flag = 4;
+    // 
+    string next_video_title = 5;
+    // 
+    string next_video_link = 6;
+    // 
+    int64 cid = 7;
+    // 
+    int32 season_id = 8;
+    // 
+    int32 follow = 9;
+}
+
+// EP信息
+message EpisodeInfo {
+    // 
+    int32 ep_id = 1;
+    // 
+    int64 cid = 2;
+    // 
+    int64 aid = 3;
+    // 
+    int64 ep_status = 4;
+    // 
+    SeasonInfo season_info = 5;
+    // 
+    string cover = 6;
+    // 
+    string title = 7;
+    // 
+    Interaction interaction = 8;
+    // 
+    string long_title = 9;
+}
+
+// 
+message EpPreVideo {
+    // 
+    int64 aid = 1;
+    // 
+    int64 cid = 2;
+}
+
+// 
+message EpPublicityVideo {
+    // 
+    enum Type {
+        DATA_NOT_SET = 0;
+        EP_PRE_VIDEO = 2;
+        EP_INLINE = 3;
+    }
+    // 
+    Type type = 1;
+    // 
+    oneof data {
+        // 
+        EpPreVideo ep_pre_video = 2;
+        // 
+        EpInlineVideo ep_inline_video = 3;
+    }
+}
+
+// 
+enum EpPublicityVideoType {
+    // 
+    PRE = 0;
+    // 
+    INLINE = 1;
 }
 
 // 事件
@@ -296,7 +437,7 @@ message Event {
     Shake shake = 1;
 }
 
-//
+// 放映室提示语
 message FreyaConfig {
     //
     string desc = 1;
@@ -312,7 +453,7 @@ message FreyaConfig {
     int32 full_screen_number = 6;
 }
 
-//
+// 渐变色信息
 message GradientColor {
     //
     string start_color = 1;
@@ -320,7 +461,7 @@ message GradientColor {
     string end_color = 2;
 }
 
-//
+// 高画质试看信息
 message HighDefinitionTrialInfo {
     //
     bool trial_able = 1;
@@ -340,6 +481,16 @@ message HighDefinitionTrialInfo {
     ButtonInfo quality_open_tip_btn = 8;
     //
     ButtonInfo no_longer_trial_btn = 9;
+}
+
+// 历史记录节点
+message HistoryNode {
+    // 节点ID
+    int64 node_id = 1;
+    // 节点标题
+    string title = 2;
+    // 对应CID
+    int64 cid = 3;
 }
 
 // 图片信息
@@ -364,6 +515,28 @@ enum InlineType {
     TYPE_PREVIEW = 3; //
 }
 
+// 交互信息
+message Interaction {
+    // 历史节点
+    HistoryNode history_node = 1;
+    // 版本
+    int64 graph_version = 2;
+    // 交互消息
+    string msg = 3;
+    // 是否为交互
+    bool is_interaction = 4;
+}
+
+// 限制操作类型
+enum LimitActionType {
+    // 
+    LAT_UNKNOWN = 0;
+    // 
+    SHOW_LIMIT_DIALOG = 1;
+    // 
+    SKIP_CURRENT_EP = 2;
+}
+
 //
 message MultiView {
     //
@@ -376,46 +549,48 @@ message MultiView {
     int64 avid = 4;
 }
 
-//
+// 大会员广告: 支付提示信息
 message PayTip {
-    //
+    // 标题
     string title = 1;
-    //
+    // 跳转链接
     string url = 2;
-    //
+    // 图标
     string icon = 3;
-    //
+    // 浮层类型
     int32 type = 4;
-    //
+    // 显示类型
     int32 show_type = 5;
-    //
+    // 图片信息
     string img = 6;
-    //
+    // 白天背景颜色
     string bg_day_color = 7;
-    //
+    // 夜间背景颜色
     string bg_night_color = 8;
-    //
+    // 白天线条颜色
     string bg_line_color = 9;
-    //
+    // 夜间线条颜色
     string bg_night_line_color = 10;
-    //
+    // 文字颜色
     string text_color = 11;
-    //
+    // 夜间文字颜色
     string text_night_color = 12;
-    //
+    // 视图展示起始时间
     int64 view_start_time = 13;
-    //
+    // 按钮列表
     repeated ButtonInfo button = 14;
-    //
+    // 跳转链接打开方式
     int32 url_open_type = 15;
-    //
+    // 埋点上报信息
     Report report = 16;
-    //
+    // 角度样式
     int32 angle_style = 17;
-    //
+    // 埋点上报类型
     int32 report_type = 18;
-    //
+    // 订单埋点上报参数
     map<string, string> order_report_params = 19;
+    // 巨屏图片信息
+    string giant_screen_img = 20;
 }
 
 // 禁用功能配置
@@ -449,14 +624,15 @@ message PlayAbilityConf {
     bool freya_enter_disable = 27;      // 一起看入口
     bool dolby_disable = 28;            // 杜比音效
     bool freya_full_disable = 29;       // 全屏一起看入口
-    bool skip_oped_switch_disable = 30; //
-    bool record_screen_disable = 31;    //
-    bool color_optimize_disable = 32;   //
+    bool skip_oped_switch_disable = 30; // 跳过片头片尾
+    bool record_screen_disable = 31;    // 录屏
+    bool color_optimize_disable = 32;   // 色觉优化
+    bool dubbing_disable = 33;          // 配音
 }
 
 // 云控扩展配置信息
 message PlayAbilityExtConf {
-    // 自定义配置扩展信息
+    // 
     bool allow_close_subtitle = 1;
     //
     FreyaConfig freya_config = 2;
@@ -464,10 +640,41 @@ message PlayAbilityExtConf {
     CastTips cast_tips = 3;
 }
 
+// 播放配音信息
+message PlayDubbingInfo {
+    // 背景音频
+    AudioMaterialProto background_audio = 1;
+    // 角色音频列表
+    repeated RoleAudioProto role_audio_list = 2;
+    // 引导文本
+    string guide_text = 3;
+}
+
 // 错误码
 enum PlayErr {
     NoErr = 0;                   //
     WithMultiDeviceLoginErr = 1; // 管控类型的错误码
+}
+
+
+// 播放扩展信息
+message PlayExtInfo {
+    // 播放配音信息
+    PlayDubbingInfo play_dubbing_info = 1;
+}
+
+// 
+message PlayList {
+    // 
+    int32 season_id = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    string link = 4;
+    // 
+    BadgeInfo badge_info = 5;
 }
 
 // 其他业务信息
@@ -482,20 +689,36 @@ message PlayViewBusinessInfo {
     string playback_speed_color = 4;
     //
     ContinuePlayInfo continue_play_info = 5;
-    //
+    // 跳过片头/片尾配置
     repeated ClipInfo clip_info = 6;
     //
     InlineType inline_type = 7;
     //
     int32 ep_whole_duration = 8;
-    //
+    // 当前分辨率信息
     Dimension dimension = 9;
     //
     map<int32, QualityExtInfo> quality_ext_map = 10;
     //
     map<string, int32> exp_map = 11;
-    //
+    // DRM技术类型
     DrmTechType drm_tech_type = 12;
+    // 
+    int32 limit_action_type = 13;
+    // 
+    bool is_drm = 14;
+    // 
+    RecordInfo record_info = 15;
+    // 
+    int32 vip_status = 16;
+    // 
+    bool is_live_pre = 17;
+    // 
+    EpisodeInfo episode_info = 18;
+    // 
+    EpisodeAdvertisementInfo episode_advertisement_info = 19;
+    // 
+    UserStatus user_status = 20;
 }
 
 // 播放页信息-响应
@@ -512,6 +735,8 @@ message PlayViewReply {
     ViewInfo view_info = 5;
     // 自定义配置扩展信息
     PlayAbilityExtConf play_ext_conf = 6;
+    // 播放扩展信息
+    PlayExtInfo play_ext_info = 7;
 }
 
 // 播放页信息-请求
@@ -554,6 +779,12 @@ message PlayViewReq {
     InlineScene inline_scene = 17;
     //
     int64 material_no = 18;
+    // DRM 安全等级
+    int32 security_level = 19;
+    // 
+    int64 season_id = 20;
+    // 
+    DataControl data_control = 21;
 }
 
 // 弹窗信息
@@ -578,21 +809,21 @@ message PopWin {
     string pop_type = 9;
 }
 
-//
+// 广告组件: 竖屏时视频下部提示栏
 message PromptBar {
-    //
+    // 主标题, 如: "本片含大会员专享内容"
     TextInfo title = 1;
-    //
+    // 副标题, 如: "成为大会员可免费看全部剧集"
     TextInfo sub_title = 2;
-    //
+    // 副标题前面的icon
     string sub_title_icon = 3;
-    //
+    // 背景图
     string bg_image = 4;
-    //
+    // 背景渐变色
     GradientColor bg_gradient_color = 5;
-    //
+    // 按钮
     repeated ButtonInfo button = 6;
-    //
+    // 埋点上报信息
     Report report = 7;
     //
     string full_screen_ip_icon = 8;
@@ -600,10 +831,18 @@ message PromptBar {
     GradientColor full_screen_bg_gradient_color = 9;
 }
 
-//
+// 云控拓展视频画质信息
 message QualityExtInfo {
-    //
+    // 是否支持试看
     bool trial_support = 1;
+}
+
+// 备案信息
+message RecordInfo {
+    // 记录
+    string record = 1;
+    // 记录图标
+    string record_icon = 2;
 }
 
 // 埋点上报信息
@@ -632,6 +871,24 @@ message ResponseUrl {
     string md5 = 6;
 }
 
+// 权限信息
+message Rights {
+    // 是否可以观看
+    int32 can_watch = 1;
+}
+
+// 角色配音信息
+message RoleAudioProto {
+    // 角色ID
+    int64 role_id = 1;
+    // 角色名称
+    string role_name = 2;
+    // 角色头像
+    string role_avatar = 3;
+    // 音频素材列表
+    repeated AudioMaterialProto audio_material_list = 4;
+}
+
 // 场景控制
 message SceneControl {
     // 是否收藏播单
@@ -646,7 +903,45 @@ message SceneControl {
     bool is_need_trial = 5;
 }
 
-//分段视频流
+// 方案
+message Scheme {
+    enum ActionType {
+        UNKNOWN = 0;
+        SHOW_TOAST = 1;
+    }
+    // 
+    ActionType action_type = 1;
+    // 
+    string toast = 2;
+}
+
+// PGC SEASON 信息
+message SeasonInfo {
+    // PGC SEASON ID
+    int32 season_id = 1;
+    // PGC SEASON 类型
+    int32 season_type = 2;
+    // PGC SEASON 状态
+    int32 season_status = 3;
+    // 封面
+    string cover = 4;
+    // 标题
+    string title = 5;
+    // 权限信息
+    Rights rights = 6;
+    // 模式
+    int32 mode = 7;
+}
+
+// DRM 安全等级
+enum SecurityLevel {
+    LEVEL_UNKNOWN = 0; // 
+    LEVEL_L1 = 1; //
+    LEVEL_L2 = 2; // 
+    LEVEL_L3 = 3; //
+}
+
+// 分段视频流
 message SegmentVideo {
     //分段视频流列表
     repeated ResponseUrl segment = 1;
@@ -673,32 +968,36 @@ message Stream {
 
 // 流媒体元数据
 message StreamInfo {
-    // 清晰度
-    uint32 quality = 1;
-    // 格式
+    // 视频质量
+    int32 quality = 1;
+    // 视频格式
     string format = 2;
-    // 格式描述
+    // 描述信息
     string description = 3;
     // 错误码
-    uint32 err_code = 4;
-    // 不满足条件信息
+    int32 err_code = 4;
+    // 流限制信息
     StreamLimit limit = 5;
-    // 是否需要vip
+    // 是否需要VIP
     bool need_vip = 6;
     // 是否需要登录
     bool need_login = 7;
     // 是否完整
     bool intact = 8;
-    // 是否非全二压
-    bool no_rexcode = 9;
-    // 清晰度属性位
+    // 权限信息
     int64 attribute = 10;
-    // 新版格式描述
+    // 新版描述信息
     string new_description = 11;
-    // 格式文字
+    // 显示描述信息
     string display_desc = 12;
-    // 新版格式描述备注
+    // 上标
     string superscript = 13;
+    // 方案信息
+    Scheme scheme = 14;
+    // 是否支持DRM
+    bool support_drm = 15;
+    // 字幕信息
+    string subtitle = 16;
 }
 
 // 清晰度不满足条件信息
@@ -711,14 +1010,24 @@ message StreamLimit {
     string msg = 3;
 }
 
+// 任务参数信息
+message TaskParam {
+    // 任务类型
+    string task_type = 1;
+    // 活动ID
+    int64 activity_id = 2;
+    // 提示ID
+    int64 tips_id = 3;
+}
+
 // 文案信息
 message TextInfo {
     // 文案
     string text = 1;
     // 字体色值
-    string textColor = 2;
+    string text_color = 2;
     // 字体色值-夜间模式
-    string textColorNight = 3;
+    string text_color_night = 3;
 }
 
 // toast
@@ -737,6 +1046,18 @@ message Toast {
     Report report = 6;
     //
     map<string, string> order_report_params = 7;
+}
+
+// 用户状态信息
+message UserStatus {
+    // 是否支付
+    bool pay_check = 1;
+    // 是否承包
+    bool sponsor = 2;
+    // 观看进度
+    WatchProgress watch_progress = 3;
+    // 系列观看进度
+    WatchProgress aid_watch_progress = 4;
 }
 
 // 视频url信息
@@ -759,26 +1080,48 @@ message VideoInfo {
 
 // 展示信息
 message ViewInfo {
-    // 鉴权浮层
+    // 弹窗
     Dialog dialog = 1;
-    // toast
+    // Toast
     Toast toast = 2;
     // 优惠券信息
     CouponInfo coupon_info = 3;
-    // 未购买的超前点播ep列表
+    // 未支付剧集ID列表
     repeated int64 demand_no_pay_epids = 4;
-    // 播放结束页
+    // 结束页
     EndPage end_page = 5;
-    //
+    // 扩展配置
     map<string, bool> exp_config = 6;
     // 弹窗
     PopWin pop_win = 7;
-    //
+    // 试看提示栏
     PromptBar try_watch_prompt_bar = 8;
-    //
+    // 支付提示信息
     PayTip pay_tip = 9;
-    //
+    // 高清试看提示信息
     HighDefinitionTrialInfo high_definition_trial_info = 10;
-    //
+    // 弹窗扩展
     map<string, Dialog> ext_dialog = 11;
+    // 动画
+    Animation animation = 12;
+    // Toast扩展
+    map<string, Toast> ext_toast = 13;
+}
+
+// 观看进度信息
+message WatchProgress {
+    // 上次观看的 EP ID
+    int32 last_ep_id = 1;
+    // 上次观看到的EP INDEX
+    string last_ep_index = 2;
+    // 上次观看的进度
+    int64 progress = 3;
+    // 上次观看的 CID
+    int64 last_play_cid = 4;
+    // 带时间的提示信息
+    Toast toast = 5;
+    // 不带时间的提示信息
+    Toast toast_without_time = 6;
+    // 上次观看的 AID
+    int64 last_play_aid = 7;
 }

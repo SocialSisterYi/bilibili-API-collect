@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package bilibili.app.search.v2;
+
+import "bilibili/broadcast/message/main/search.proto";
+
+service Search {
+    // 
+    rpc CancelChatTask (CancelChatTaskReq) returns (CancelChatTaskReply);
+    // 
+    rpc GetChatResult (GetChatResultReq) returns (bilibili.broadcast.message.main.ChatResult);
+    // 
+    rpc SearchEgg (SearchEggReq) returns (SearchEggReply);
+    // 
+    rpc SubmitChatTask (SubmitChatTaskReq) returns (SubmitChatTaskReply);
+}
+
+// 
+message CancelChatTaskReq {
+    // 
+    string session_id = 1;
+    // 
+    string from_source = 2;
+}
+
+// 
+message CancelChatTaskReply {
+    // 
+    int32 code = 1;
+}
+
+// 
+message GetChatResultReq {
+    // 
+    string query = 1;
+    // 
+    string session_id = 2;
+    // 
+    string from_source = 3;
+}
+
+// 
+message SearchEggInfo {
+    // 
+    int32 egg_type = 1;
+    // 
+    int64 id = 2;
+    // 
+    int32 is_commercial = 3;
+    // 
+    string mask_color = 4;
+    // 
+    int64 mask_transparency = 5;
+    // 
+    string md5 = 6;
+    // 
+    int32 re_type = 7;
+    // 
+    string re_url = 8;
+    // 
+    string re_value = 9;
+    // 
+    int32 show_count = 10;
+    // 
+    int64 size = 11;
+    // 
+    int64 source = 12;
+    // 
+    string url = 13;
+}
+
+// 
+message SearchEggInfos {
+    // 
+    repeated SearchEggInfo egg_info = 1;
+}
+
+// 
+message SearchEggReply {
+    // 
+    int32 code = 1;
+    // 
+    string seid = 2;
+    // 
+    SearchEggInfos result = 3;
+}
+
+// 
+message SearchEggReq {
+
+}
+
+// 
+message SubmitChatTaskReply {
+    // 
+    int32 code = 1;
+    // 
+    string session_id = 2;
+}
+
+// 
+message SubmitChatTaskReq {
+    // 
+    string query = 1;
+    // 
+    string track_id = 2;
+    // 
+    string from_source = 3;
+}
+

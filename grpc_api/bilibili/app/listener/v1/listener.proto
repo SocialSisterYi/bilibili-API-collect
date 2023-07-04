@@ -4,6 +4,8 @@ package bilibili.app.listener.v1;
 
 import "google/protobuf/empty.proto";
 import "bilibili/app/archive/middleware/v1/preload.proto";
+import "bilibili/app/interfaces/v1/history.proto";
+import "bilibili/app/playurl/v1/playurl.proto";
 
 // 听视频
 service Listener {
@@ -55,6 +57,28 @@ service Listener {
     rpc PickFeed (PickFeedReq) returns (PickFeedResp);
     // 每日播单详情
     rpc PickCardDetail (PickCardDetailReq) returns (PickCardDetailResp);
+    //
+    rpc Medialist(MedialistReq) returns (MedialistResp);
+    //
+    rpc Event(EventReq) returns (EventResp);
+}
+
+//
+service Music {
+    //
+    rpc FavTabShow(FavTabShowReq) returns (FavTabShowResp);
+    //
+    rpc MainFavMusicSubTabList(MainFavMusicSubTabListReq) returns (MainFavMusicSubTabListResp);
+    //
+    rpc MainFavMusicMenuList(MainFavMusicMenuListReq) returns (MainFavMusicMenuListResp);
+    //
+    rpc MenuEdit(MenuEditReq) returns (MenuEditResp);
+    //
+    rpc MenuDelete(MenuDeleteReq) returns (MenuDeleteResp);
+    //
+    rpc MenuSubscribe(MenuSubscribeReq) returns (MenuSubscribeResp);
+    //
+    rpc Click(ClickReq) returns (ClickResp);
 }
 
 //
@@ -174,6 +198,19 @@ enum CardModuleType {
 }
 
 //
+message ClickReq {
+    //
+    int64 sid = 1;
+    //
+    int32 action = 2;
+}
+
+//
+message ClickResp {
+
+}
+
+//
 message CoinAddReq {
     //
     PlayItem item = 1;
@@ -243,6 +280,29 @@ message DetailItem {
     string message = 9;
     //
     map<int64,PlayInfo> player_info = 10;
+    //
+    PlayItem associated_item = 11;
+    //
+    int64 last_play_time = 12;
+    //
+    string history_tag = 13;
+    //
+    bilibili.app.interfaces.v1.DeviceType device_type = 14;
+    //
+    FavFolder ugc_season_info = 15;
+}
+
+//
+message EventReq {
+    //
+    int32 event_type = 1;
+    //
+    PlayItem item = 2;
+}
+
+//
+message EventResp {
+
 }
 
 //
@@ -257,6 +317,8 @@ message EventTracking {
     string entity_type = 4;
     //
     string entity_id = 5;
+    //
+    string track_json = 6;
 }
 
 //
@@ -534,6 +596,18 @@ message FavoredInAnyFoldersResp {
 }
 
 //
+message FavTabShowReq {
+    //
+    int64 mid = 1;
+}
+
+//
+message FavTabShowResp {
+    //
+    bool show_menu = 1;
+}
+
+//
 message FollowRelation {
     //
     int32 status = 1;
@@ -551,6 +625,219 @@ message FormatDescription {
     string display_desc = 4;
     //
     string superscript = 5;
+}
+
+//
+enum ListOrder {
+    NO_ORDER = 0;      //
+    ORDER_NORMAL = 1;  //
+    ORDER_REVERSE = 2; //
+    ORDER_RANDOM = 3;  //
+}
+
+//
+enum ListSortField {
+    NO_SORT = 0;      //
+    SORT_CTIME = 1;   //
+    SORT_VIEWCNT = 2; //
+    SORT_FAVCNT = 3;  //
+}
+
+//
+message MainFavMusicMenuListReq {
+    //
+    int32 tab_type = 1;
+    //
+    string offset = 2;
+}
+
+//
+message MainFavMusicMenuListResp {
+    //
+    int32 tab_type = 1;
+    //
+    repeated MusicMenu menu_list = 2;
+    //
+    bool has_more = 3;
+    //
+    string offset = 4;
+}
+
+//
+message MainFavMusicSubTabListReq {
+
+}
+
+//
+message MainFavMusicSubTabListResp {
+    //
+    repeated MusicSubTab tabs = 1;
+    //
+    MainFavMusicMenuListResp default_tab_res = 2;
+    //
+    map<int32, MainFavMusicMenuListResp> first_page_res = 3;
+}
+
+//
+message MedialistItem {
+    //
+    PlayItem item = 1;
+    //
+    string title = 2;
+    //
+    string cover = 3;
+    //
+    int64 duration = 4;
+    //
+    int32 parts = 5;
+    //
+    int64 up_mid = 6;
+    //
+    string up_name = 7;
+    //
+    int32 state = 8;
+    //
+    string message = 9;
+    //
+    int64 stat_view = 10;
+    //
+    int64 stat_reply = 11;
+}
+
+//
+message MedialistReq {
+    //
+    int64 list_type = 1;
+    //
+    int64 biz_id = 2;
+    //
+    string offset = 3;
+}
+
+//
+message MedialistResp {
+    //
+    int64 total = 1;
+    //
+    bool has_more = 2;
+    //
+    string offset = 3;
+    //
+    repeated MedialistItem items = 4;
+    //
+    MedialistUpInfo up_info = 5;
+}
+
+//
+message MedialistUpInfo {
+    //
+    int64 mid = 1;
+    //
+    string avatar = 2;
+    //
+    int64 fans = 3;
+    //
+    string name = 4;
+}
+
+//
+message MenuDeleteReq {
+    //
+    int64 id = 1;
+}
+
+//
+message MenuDeleteResp {
+    //
+    string message = 1;
+}
+
+//
+message MenuEditReq {
+    //
+    int64 id = 1;
+    //
+    string title = 2;
+    //
+    string desc = 3;
+    //
+    int32 is_public = 4;
+}
+
+//
+message MenuEditResp {
+    //
+    string message = 1;
+}
+
+//
+message MenuSubscribeReq {
+    //
+    int32 action = 1;
+    //
+    int64 target_id = 2;
+}
+
+//
+message MenuSubscribeResp {
+    //
+    string message = 1;
+}
+
+//
+message MusicMenu {
+    //
+    int64 id = 1;
+    //
+    int32 menu_type = 2;
+    //
+    string title = 3;
+    //
+    string desc = 4;
+    //
+    string cover = 5;
+    //
+    MusicMenuAuthor owner = 6;
+    //
+    int32 state = 7;
+    //
+    int64 attr = 8;
+    //
+    MusicMenuStat stat = 9;
+    //
+    int64 total = 10;
+    //
+    int64 ctime = 11;
+    //
+    string uri = 12;
+}
+
+//
+message MusicMenuAuthor {
+    //
+    int64 mid = 1;
+    //
+    string name = 2;
+    //
+    string avatar = 3;
+}
+
+//
+message MusicMenuStat {
+    //
+    int64 play = 1;
+    //
+    int64 reply = 2;
+}
+
+//
+message MusicSubTab {
+    //
+    string name = 1;
+    //
+    int32 tab_type = 2;
+    //
+    int64 total = 3;
 }
 
 //
@@ -677,6 +964,8 @@ message PkcmHeader {
 message PlayActionReportReq {
     //
     PlayItem item = 1;
+    //
+    string from_spmid = 2;
 }
 
 //
@@ -711,7 +1000,10 @@ message PlayHistoryDelReq {
 
 //
 message PlayHistoryReq {
+    //
     PageOption page_opt = 1;
+    //
+    int64 local_today_zero = 2;
 }
 
 //
@@ -751,6 +1043,10 @@ message PlayInfo {
     int32 code = 11;
     //
     string message = 12;
+    //
+    int64 expire_time = 13;
+    //
+    bilibili.app.playurl.v1.VolumeInfo volume = 14;
 }
 
 //
@@ -801,6 +1097,8 @@ message PlaylistReq {
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
     //
     int64 extra_id = 6;
+    //
+    SortOption sort_opt = 7;
 }
 
 //
@@ -821,14 +1119,15 @@ message PlaylistResp {
 
 //
 enum PlaylistSource {
-    DEFAULT = 0;
-    MEM_SPACE = 1;
-    AUDIO_COLLECTION = 2;
-    AUDIO_CARD = 3;
-    USER_FAVOURITE = 4;
-    UP_ARCHIVE = 5;
-    AUDIO_CACHE = 6;
-    PICK_CARD = 7;
+    DEFAULT = 0;           //
+    MEM_SPACE = 1;         //
+    AUDIO_COLLECTION = 2;  //
+    AUDIO_CARD = 3;        //
+    USER_FAVOURITE = 4;    //
+    UP_ARCHIVE = 5;        //
+    AUDIO_CACHE = 6;       //
+    PICK_CARD = 7;         //
+    MEDIA_LIST = 8;        //
 } 
 
 //
@@ -865,6 +1164,10 @@ message RcmdPlaylistReq {
     int64 id = 2;
     //
     bool need_history = 3;
+    //
+    bool need_top_cards = 4;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
 }
 
 //
@@ -873,6 +1176,8 @@ message RcmdPlaylistResp {
     repeated DetailItem list = 1;
     //
     int64 history_len = 2;
+    //
+    repeated TopCard top_cards = 3;
 }
 
 //
@@ -896,6 +1201,14 @@ message ResponseUrl {
 }
 
 //
+message SortOption {
+    //
+    int32 order = 1;
+    //
+    int32 sort_field = 2;
+}
+
+//
 message ThumbUpReq {
     //
     PlayItem item = 1;
@@ -907,6 +1220,94 @@ message ThumbUpReq {
 message ThumbUpResp {
     //
     string message = 1;
+}
+
+//
+message TopCard {
+    //
+    string title = 1;
+    //
+    int32 play_style = 2;
+    //
+    int32 card_type = 3;
+    //
+    oneof card {
+        //
+        TpcdHistory listen_history = 4;
+        //
+        TpcdFavFolder fav_folder = 5;
+        //
+        TpcdUpRecall up_recall = 6;
+        //
+        TpcdPickToday pick_today = 7;
+    }
+    //
+    int64 pos = 8;
+    //
+    string title_icon = 9;
+}
+
+//
+enum TopCardType {
+    UNSPECIFIED = 0;     //
+    LISTEN_HISTORY = 1;  //
+    FAVORITE_FOLDER = 2; //
+    UP_RECALL = 3;       //
+    PICK_TODAY = 4;      //
+}
+
+//
+message TpcdFavFolder {
+    //
+    DetailItem item = 1;
+    //
+    string text = 2;
+    //
+    string pic = 3;
+    //
+    int64 fid = 4;
+    //
+    int32 folder_type = 5;
+}
+
+//
+message TpcdHistory {
+    //
+    DetailItem item = 1;
+    //
+    string text = 2;
+    //
+    string pic = 3;
+}
+
+//
+message TpcdPickToday {
+    //
+    DetailItem item = 1;
+    //
+    string text = 2;
+    //
+    string pic = 3;
+    //
+    int64 pick_id = 4;
+    //
+    int64 pick_card_id = 5;
+}
+
+//
+message TpcdUpRecall {
+    //
+    int64 up_mid = 1;
+    //
+    string text = 2;
+    //
+    string avatar = 3;
+    //
+    int64 medialist_type = 4;
+    //
+    int64 medialist_biz_id = 5;
+    //
+    DetailItem item = 6;
 }
 
 //

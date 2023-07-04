@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package pgc.gateway.vega.v1;
+
+import "bilibili/rpc/status.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+
+//
+service Vega {
+    //
+    rpc CreateTunnel (VegaFrame) returns (VegaFrame);
+}
+
+//
+service VegaFrameDoc {
+    //
+    rpc Auth (AuthReq) returns (AuthResp);
+    //
+    rpc Heartbeat (HeartbeatReq) returns (HeartbeatResp);
+    //
+    rpc MessageAck (MessageAckReq) returns (google.protobuf.Empty);
+    //
+    rpc Subscribe (SubscribeReq) returns (google.protobuf.Empty);
+}
+
+//
+message AuthReq {}
+
+//
+message AuthResp {}
+
+//
+message FrameOption {
+    //
+    int64 vega_id = 1;
+    //
+    string req_id = 2;
+    //
+    int64 sequence = 3;
+    //
+    bool is_ack = 4;
+    //
+    bilibili.rpc.Status status = 5;
+    //
+    string ack_origin = 6;
+    //
+    int64 mid = 7;
+}
+
+//
+message HeartbeatReq {}
+
+//
+message HeartbeatResp {}
+
+//
+message MessageAckReq {
+    //
+    string vega_id = 1;
+    //
+    string req_id = 2;
+    //
+    string origin = 3;
+    //
+    string target_path = 4;
+}
+
+//
+message SubscribeReq {
+    //
+    repeated TargetPath target_paths = 1;
+}
+
+//
+message TargetPath {
+    //
+    string key = 1;
+    //
+    google.protobuf.Any subs = 2;
+}
+
+//
+message VegaFrame {
+    //
+    FrameOption options = 1;
+    //
+    string route_path = 2;
+    //
+    google.protobuf.Any body = 3;
+    //
+    google.protobuf.Any sub_biz = 4;
+}

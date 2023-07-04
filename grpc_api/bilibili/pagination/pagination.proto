@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package bilibili.pagination;
+
+// 分页信息
+message FeedPagination {
+    //
+    int32 page_size = 1;
+    //
+    string offset = 2;
+    //
+    bool is_refresh = 3;
+}
+
+// 分页信息
+message FeedPaginationReply {
+    //
+    string next_offset = 1;
+    //
+    string prev_offset = 2;
+    //
+    string last_read_offset = 3;
+}
+
+// 分页信息
+message Pagination {
+    //
+    int32 page_size = 1;
+    //
+    string next = 2;
+}
+
+// 分页信息
+message PaginationReply {
+    //
+    string next = 1;
+    //
+    string prev = 2;
+}

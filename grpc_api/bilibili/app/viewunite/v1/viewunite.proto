@@ -1,0 +1,539 @@
+syntax = "proto3";
+
+package bilibili.app.viewunite.v1;
+
+import "bilibili/app/archive/middleware/v1/preload.proto";
+
+import "google/protobuf/any.proto";
+
+// 统一视频信息接口(7.23启用)
+service View {
+    // 
+    rpc View(ViewReq) returns (ViewReply);
+    // 
+    rpc ViewProgress(ViewProgressReq) returns (ViewProgressReply);
+}
+
+//  业务类型
+enum ArcType {
+    // 
+    UNKNOWN = 0;
+    // 
+    PAGES = 1;
+    // 
+    SERIES = 2;
+    // 
+    POSITIVE = 3;
+    // 
+    SECTION = 4;
+    // 
+    RELATE = 5;
+    // 
+    PUGV = 6;
+}
+
+// 
+message AttentionCard {
+    // 
+    repeated ShowTime show_time = 1;
+}
+
+// 
+message BadgeType {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    string border_color = 6;
+    // 
+    string border_color_night = 7;
+    // 
+    int32 bg_style = 8;
+}
+
+// 
+message BizFollowVideoParam {
+    // 
+    int64 season_id = 1;
+}
+
+// 
+message BizJumpLinkParam {
+    // 
+    string url = 1;
+}
+
+// 
+message BizReserveActivityParam {
+    // 
+    int64 activity_id = 1;
+    // 
+    string from = 2;
+    // 
+    string type = 3;
+    // 
+    int64 oid = 4;
+    // 
+    int64 reserve_id = 5;
+}
+
+// 
+message BizReserveGameParam {
+    // 
+    int64 game_id = 1;
+}
+
+// 
+enum BizType {
+    // 
+    BizTypeNone = 0;
+    // 
+    BizTypeFollowVideo = 1;
+    // 
+    BizTypeReserveActivity = 2;
+    // 
+    BizTypeJumpLink = 3;
+    // 
+    BizTypeFavSeason = 4;
+    // 
+    BizTypeReserveGame = 5;
+}
+
+// 
+message Chronos {
+    // 
+    string md5 = 1;
+    // 
+    string file = 2;
+    // 
+    string sign = 3;
+}
+
+// 
+message ChronosParam {
+    // 
+    string engine_version = 1;
+    // 
+    string message_protocol = 2;
+    // 
+    string service_key = 3;
+}
+
+// 
+message CommandDm {
+    // 
+    int64 id = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 mid = 3;
+    // 
+    string command = 4;
+    // 
+    string content = 5;
+    // 
+    int32 progress = 6;
+    // 
+    string ctime = 7;
+    // 
+    string mtime = 8;
+    // 
+    string extra = 9;
+    // 
+    string id_str = 10;
+}
+
+// 视频播放时弹出的卡片
+message ContractCard {
+    // 在第几秒弹出
+    float display_progress = 1;
+    // 
+    int64 display_accuracy = 2;
+    // 弹出后停留的时间
+    int64 display_duration = 3;
+    // 展示方式, 暂未知对应关系
+    int32 show_mode = 4;
+    // 页面类型, 暂未知对应关系
+    int32 page_type = 5;
+    // 
+    UpperInfos upper = 6;
+    // 
+    int32 is_follow_display = 7;
+    // 卡片的文字说明信息
+    ContractText text = 8;
+    // 
+    int64 follow_display_end_duration = 9;
+    //
+    int32 is_play_display = 10;
+    // 
+    int32 is_interact_display = 11;
+}
+
+// 视频播放时弹出的卡片的文字说明信息
+message ContractText {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    string inline_title = 3;
+}
+
+// 
+message Dimension {
+    // 
+    int64 width = 1;
+    // 
+    int64 height = 2;
+    // 
+    int64 rotate = 3;
+}
+
+// 
+message DmResource {
+    // 
+    repeated CommandDm command_dms = 1;
+    // 
+    AttentionCard attention = 2;
+    // 
+    repeated OperationCard cards = 3;
+}
+
+// 素材详情
+message Material {
+    // 
+    string icon = 1;
+    // 
+    string text = 2;
+    // 
+    string url = 3;
+    // 
+    MaterialBizType type = 4;
+    // 
+    string param = 5;
+    // 
+    string static_icon = 6;
+    // 
+    string bg_color = 7;
+    // 
+    string bg_pic = 8;
+    // 
+    int32 jump_type = 9;
+    // 
+    PageType page_type = 10;
+    // 
+    bool need_login = 11;
+}
+
+// 素材类型
+enum MaterialBizType {
+    // 
+    NONE = 0;
+    // 
+    ACTIVITY = 1;
+    // 
+    BGM = 2;
+    // 
+    EFFECT = 3;
+    // 
+    SHOOT_SAME = 4;
+    // 
+    SHOOT_TOGETHER = 5;
+    // 
+    ACTIVITY_ICON = 6;
+    // 
+    NEW_BGM = 7;
+}
+
+// 素材来源
+enum MaterialSource {
+    // 
+    DEFAULT = 0;
+    // 必剪素材
+    BIJIAN = 1;
+}
+
+//
+message OperationCard {
+    // 
+    int64 id = 1;
+    // 
+    int32 from = 2;
+    // 
+    int32 to = 3;
+    // 
+    bool status = 4;
+    // 
+    BizType biz_type = 5;
+    // 
+    OperationCardContent content = 6;
+    // 
+    BizFollowVideoParam follow = 7;
+    // 
+    BizReserveActivityParam reserve = 8;
+    // 
+    BizJumpLinkParam jump = 9;
+    // 
+    BizReserveGameParam game = 10;
+}
+
+// 
+message OperationCardContent {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    string icon = 3;
+    // 
+    string button_title = 4;
+    // 
+    string button_selected_title = 5;
+    // 
+    bool show_selected = 6;
+}
+
+//
+enum PageCategory {
+    // 
+    COMMON_PAGE = 0;
+    // 
+    ACTIVITY_PAGE = 1;
+}
+
+// 页面类型
+enum PageType {
+    // H5页面(Webview)
+    H5 = 0;
+    // 原生页面(native)
+    NA = 1;
+}
+
+// 播放策略
+message PlayStrategy {
+    // 
+    repeated string strategies = 1;
+    // 
+    int32 recommend_show_strategy = 2;
+    // 自动播放时的提示语
+    string auto_play_toast = 3;
+}
+
+// 
+message PointMaterial {
+    // 
+    string url = 1;
+    // 
+    MaterialSource material_source = 2;
+}
+
+// 
+message Selection {
+    // 
+    string title = 1;
+    // 
+    repeated SelectionItem item = 2;
+    // 
+    ArcType arc_type = 3;
+    // 
+    SelectionType selection_type = 4;
+}
+
+// 
+message SelectionItem {
+    // 
+    uint64 aid = 1;
+    // 
+    uint64 cid = 2;
+    // 
+    BadgeType badge_type = 4;
+    // 
+    string title = 5;
+    // 
+    string long_title = 6;
+    // 
+    Dimension dimension = 7;
+}
+
+// 
+message SelectionModule {
+    // 
+    repeated Selection selection = 1;
+    // 
+    repeated SerialSeason serial_season = 2;
+    // 
+    PlayStrategy play_strategy = 3;
+}
+
+// 
+enum SelectionType {
+    // 
+    LONGTITLE = 0;
+    // 
+    SHORTTITLE = 1;
+}
+
+// 
+message SerialSeason {
+    // 
+    uint32 season_id = 1;
+    // 
+    string season_title = 2;
+}
+
+// 
+message ShowTime {
+    // 
+    int32 start_time = 1;
+    // 
+    int32 end_time = 2;
+    // 
+    double pos_x = 3;
+    // 
+    double pos_y = 4;
+}
+
+// 
+enum UnionType {
+    // 
+    UGC = 0;
+    // 
+    OGV = 1;
+}
+
+// UP主信息(可是Upper这个... 程序员英文不过关吧? )
+message UpperInfos {
+    // 粉丝数
+    uint64 fans_count = 1;
+    // 过去半年内的稿件数
+    uint64 arc_count_last_half_year = 2;
+    // 
+    int64 first_up_dates = 3;
+    // UP稿件总播放数
+    uint64 total_play_count = 4;
+}
+
+// 
+message VideoGuide {
+    // 
+    repeated Material material = 1;
+    // 
+    VideoViewPoint video_point = 2;
+    // 
+    ContractCard contract_card = 3;
+}
+
+// 
+message VideoPoint {
+    // 
+    int32 type = 1;
+    // 
+    int64 from = 2;
+    // 
+    int64 to = 3;
+    // 
+    string content = 4;
+    // 
+    string cover = 5;
+    // 
+    string logo_url = 6;
+}
+
+// 
+message VideoShot {
+    // 
+    string pv_data = 1;
+    // 
+    int32 img_x_len = 2;
+    // 
+    int32 imd_x_size = 3;
+    // 
+    int32 img_y_len = 4;
+    // 
+    int32 img_y_size = 5;
+    // 
+    repeated string image = 6;
+}
+
+// 
+message VideoViewPoint {
+    // 
+    repeated VideoPoint points = 1;
+    // 
+    PointMaterial point_material = 2;
+    // 
+    bool point_permanent = 3;
+}
+
+// 
+message ViewBase {
+    // 
+    UnionType union_type = 1;
+    // 
+    PageType page_type = 2;
+}
+
+// 
+message ViewProgressReq {
+    // 
+    uint64 aid = 1;
+    // 
+    uint64 cid = 2;
+    // 
+    uint64 up_mid = 3;
+    // 
+    ChronosParam  chronos_param = 4;
+    // 
+    UnionType type = 5;
+}
+
+// 
+message ViewProgressReply {
+    // 
+    VideoGuide video_guide = 1;
+    // 
+    Chronos chronos = 2;
+    // 
+    VideoShot arc_shot = 3;
+    // 
+    DmResource dm = 4;
+}
+
+// 
+message ViewReq {
+    // 
+    uint64 aid = 1;
+    // 
+    string bvid = 2;
+    // 
+    string from = 3;
+    // 
+    string spmid = 4;
+    // 
+    string from_spmid = 5;
+    // 
+    string session_id = 6;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 7;
+    // 
+    string track_id = 8;
+    // 
+    map<string, string> extra_content = 9;
+}
+
+// 
+message ViewReply {
+    // 
+    ViewBase view_base = 1;
+    // 
+    SelectionModule selection_module = 3;
+    // 使用 pgcanymodel / ugcanymodel 进行proto any转换成对应业务码结构体
+    google.protobuf.Any supplement = 4;
+}

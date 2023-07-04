@@ -1,13 +1,19 @@
 syntax = "proto3";
+
 package bilibili.app.view.v1;
 
 import "google/protobuf/any.proto";
 import "bilibili/app/archive/middleware/v1/preload.proto";
 import "bilibili/app/archive/v1/archive.proto";
+import "bilibili/pagination/pagination.proto";
 
 service View {
     // 视频页详情页
     rpc View (ViewReq) returns (ViewReply);
+    //
+    rpc ViewTag(ViewTagReq) returns (ViewTagReply);
+    //
+    rpc ViewMaterial(ViewMaterialReq) returns (ViewMaterialReply);
     // 视频播放过程中的数据
     rpc ViewProgress (ViewProgressReq) returns (ViewProgressReply);
     // 短视频下载
@@ -22,12 +28,26 @@ service View {
     rpc ExposePlayerCard (ExposePlayerCardReq) returns (NoReply);
     // 点击签订契约
     rpc AddContract (AddContractReq) returns (NoReply);
+    // 资源包
+    rpc ChronosPkg(ChronosPkgReq) returns (Chronos);
     //
-    rpc FeedView (FeedViewReq) returns (FeedViewReply);
+    rpc CacheView(CacheViewReq) returns (CacheViewReply);
     //
-    rpc ChronosPkg (ChronosPkgReq) returns (Chronos);
+    rpc ContinuousPlay(ContinuousPlayReq) returns (ContinuousPlayReply);
+    // 播放页推荐IFS
+    rpc RelatesFeed(RelatesFeedReq) returns (RelatesFeedReply);
     //
-    rpc CacheView (CacheViewReq) returns (CacheViewReply);
+    rpc PremiereArchive(PremiereArchiveReq) returns (PremiereArchiveReply);
+    //
+    rpc Reserve(ReserveReq) returns (ReserveReply);
+    //
+    rpc PlayerRelates(PlayerRelatesReq) returns (PlayerRelatesReply);
+    //
+    rpc SeasonActivityRecord(SeasonActivityRecordReq) returns (SeasonActivityRecordReply);
+    //
+    rpc SeasonWidgetExpose(SeasonWidgetExposeReq) returns (SeasonWidgetExposeReply);
+    //
+    rpc GetArcsPlayer(GetArcsPlayerReq) returns (GetArcsPlayerReply);
 }
 
 // 活动页资源包
@@ -113,6 +133,20 @@ message ActivitySeason {
     Config config = 29;
     //
     Online online = 30;
+    //
+    ArcExtra arc_extra = 31;
+    //
+    ReplyStyle reply_preface = 32;
+}
+
+// 点击签订契约-请求
+message AddContractReq {
+    // 稿件avid
+    int64 aid = 1;
+    // UP主mid
+    int64 up_mid = 2;
+    // 当前页面spm
+    string spmid = 3;
 }
 
 //
@@ -127,16 +161,22 @@ message AdInfo {
     string ad_cb = 4;
     //
     int32 card_type = 5;
+    //
+    bytes extra = 6;
 }
 
-// 点击签订契约-请求
-message AddContractReq {
-    // 稿件avid
+//
+message ArcExtra {
+    //
+    string arc_pub_location = 1;
+}
+
+//
+message ArcsPlayer {
+    //
     int64 aid = 1;
-    // UP主mid
-    int64 up_mid = 2;
-    // 当前页面spm
-    string spmid = 3;
+    //
+    map<int64, string> player_info = 2;
 }
 
 //
@@ -189,6 +229,26 @@ message Audio {
     string entrance = 7;
     //
     int64 song_attr = 8;
+}
+
+//
+message BadgeStyle {
+    //
+    string text = 1;
+    //
+    string text_color = 2;
+    //
+    string text_color_night = 3;
+    //
+    string bg_color = 4;
+    //
+    string bg_color_night = 5;
+    //
+    string border_color = 6;
+    //
+    string border_color_night = 7;
+    //
+    int32 bg_style = 8;
 }
 
 // 视频引用的bgm音频
@@ -247,12 +307,12 @@ message BizReserveGameParam {
 
 // 业务类型
 enum BizType {
-    BizTypeNone = 0;            //
-    BizTypeFollowVideo = 1;     // 追番追剧
+    BizTypeNone            = 0; //
+    BizTypeFollowVideo     = 1; // 追番追剧
     BizTypeReserveActivity = 2; // 预约活动
-    BizTypeJumpLink = 3;        // 跳转链接
-    BizTypeFavSeason = 4;       // 收藏合集
-    BizTypeReserveGame = 5;     // 预约游戏
+    BizTypeJumpLink        = 3; // 跳转链接
+    BizTypeFavSeason       = 4; // 收藏合集
+    BizTypeReserveGame     = 5; // 预约游戏
 }
 
 //
@@ -261,6 +321,24 @@ message Button {
     string title = 1;
     // 跳转uri
     string uri = 2;
+    //
+    string icon = 3;
+}
+
+//
+message ButtonStyle {
+    //
+    string text = 1;
+    //
+    string text_color = 2;
+    //
+    string text_color_night = 3;
+    //
+    string bg_color = 4;
+    //
+    string bg_color_night = 5;
+    //
+    string jump_link = 6;
 }
 
 //
@@ -285,18 +363,6 @@ message BuzzwordConfig {
     int32 schema_type = 9;
     //
     string picture = 10;
-}
-
-// 广告
-message CM {
-    // 广告数据(需解包)
-    google.protobuf.Any source_content = 1;
-}
-
-// 广告配置
-message CMConfig {
-    // 广告配置数据(需要二次解包)
-    google.protobuf.Any ads_control = 1;
 }
 
 //
@@ -349,6 +415,12 @@ message CacheViewReq {
     string from_spmid = 7;
 }
 
+//
+enum Category {
+    CategoryUnknown = 0; //
+    CategorySeason  = 1; //
+}
+
 // Chronos灰度管理
 message Chronos {
     // 资源包md5
@@ -387,6 +459,12 @@ message ClickActivitySeasonReq {
     int64 action = 5;
 }
 
+// 点击播放器卡片-响应
+message ClickPlayerCardReply {
+    //
+    string message = 1;
+}
+
 // 点击播放器卡片-请求
 message ClickPlayerCardReq {
     // 卡片id
@@ -400,6 +478,18 @@ message ClickPlayerCardReq {
     int64 action = 4;
     // 当前页面spm
     string spmid = 5;
+}
+
+// 广告
+message CM {
+    // 广告数据(需解包)
+    google.protobuf.Any source_content = 1;
+}
+
+// 广告配置
+message CMConfig {
+    // 广告配置数据(需要二次解包)
+    google.protobuf.Any ads_control = 1;
 }
 
 //
@@ -416,6 +506,12 @@ message CmIpad {
     int64 aid = 5;
 }
 
+//
+message CoinCustom {
+    //
+    string toast = 1;
+}
+
 // 互动弹幕条目信息
 message CommandDm {
     // 弹幕id
@@ -423,7 +519,7 @@ message CommandDm {
     // 对象视频cid
     int64 oid = 2;
     // 发送者mid
-    string mid = 3;
+    int64 mid = 3;
     // 互动弹幕指令
     string command = 4;
     // 互动弹幕正文
@@ -437,7 +533,7 @@ message CommandDm {
     // 扩展json数据
     string extra = 9;
     // 弹幕id str类型
-    string idStr = 10;
+    string id_str = 10;
 }
 
 //
@@ -462,6 +558,64 @@ message Config {
     int32 rec_three_point_style = 9;
     //
     bool is_absolute_time = 10;
+    //
+    bool new_swindow = 11;
+    //
+    bool relates_biserial = 12;
+    //
+    ListenerConfig listener_conf = 13;
+    //
+    string relates_feed_style = 14;
+    //
+    bool relates_feed_popup = 15;
+    //
+    bool relates_has_next = 16;
+    //
+    int32 local_play = 17;
+    //
+    bool play_story = 18;
+    //
+    bool arc_play_story = 19;
+    //
+    string story_icon = 20;
+    //
+    bool landscape_story = 21;
+    //
+    bool arc_landscape_story = 22;
+    //
+    string landscape_icon = 23;
+    //
+    bool show_listen_button = 24;
+}
+
+//
+message ContinuousPlayReply {
+    //
+    repeated Relate relates = 1;
+}
+
+//
+message ContinuousPlayReq {
+    //
+    int64 aid = 1;
+    //
+    string from = 2;
+    //
+    string trackid = 3;
+    //
+    string spmid = 4;
+    //
+    string from_spmid = 5;
+    //
+    int32 autoplay = 6;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 7;
+    //
+    int64 device_type = 8;
+    //
+    string session_id = 9;
+    //
+    int64 display_id = 10;
 }
 
 // 契约卡
@@ -488,6 +642,10 @@ message ContractCard {
     int64 follow_display_end_duration = 9;
     //
     int32 is_play_display = 10;
+    //
+    int32 is_interact_display = 11;
+    //
+    bool play_display_switch = 12;
 }
 
 //
@@ -534,22 +692,11 @@ message CustomConfig {
     string redirect_url = 1;
 }
 
-// 分P弹幕信息
-message DM {
-    // 分P是否关闭弹幕
-    // 0:正常 1:关闭
-    bool closed = 1;
-    //
-    bool real_name = 2;
-    // 分P弹幕总数
-    int64 count = 3;
-}
-
 // 枚举-文本类型
 enum DescType {
     DescTypeUnknown = 0; // 占位
-    DescTypeText = 1;    // 文本
-    DescTypeAt = 2;      // @
+    DescTypeText    = 1; // 文本
+    DescTypeAt      = 2; // @
 }
 
 // 特殊稿件简介
@@ -589,6 +736,17 @@ message DislikeReasons {
     string name = 5;
 }
 
+// 分P弹幕信息
+message DM {
+    // 分P是否关闭弹幕
+    // 0:正常 1:关闭
+    bool closed = 1;
+    //
+    bool real_name = 2;
+    // 分P弹幕总数
+    int64 count = 3;
+}
+
 // 错误代码
 enum ECode {
     DEFAULT = 0; // 正常
@@ -601,6 +759,8 @@ message ElecRank {
     repeated ElecRankItem list = 1;
     // 充电用户数
     int64 count = 2;
+    //
+    string text = 3;
 }
 
 // 充电用户信息
@@ -615,7 +775,7 @@ message ElecRankItem {
     int64 mid = 4;
 }
 
-//视频合集单话信息
+// 视频合集单话信息
 message Episode {
     // 合集单话id
     int64 id = 1;
@@ -639,6 +799,16 @@ message Episode {
     bilibili.app.archive.v1.Author author = 10;
     //
     string author_desc = 11;
+    //
+    BadgeStyle badge_style = 12;
+    //
+    bool need_pay = 13;
+    //
+    bool episode_pay = 14;
+    //
+    bool free_watch = 15;
+    //
+    string first_frame = 16;
 }
 
 // 播放器卡片曝光-请求
@@ -697,6 +867,36 @@ message FeedViewReq {
     string from_track_id = 10;
 }
 
+//
+message GetArcsPlayerReply {
+    //
+    repeated ArcsPlayer arcs_player = 1;
+}
+
+//
+message GetArcsPlayerReq {
+    //
+    repeated PlayAv play_avs = 1;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 2;
+}
+
+//
+message GoodsInfo {
+    //
+    string goods_id = 1;
+    //
+    int32 category = 2;
+    //
+    int64 goods_price = 3;
+    //
+    PayState pay_state = 4;
+    //
+    string goods_name = 5;
+    //
+    string price_fmt = 6;
+}
+
 // 稿件观看进度
 message History {
     // 播放进度分P cid
@@ -731,6 +931,14 @@ message Honor {
 }
 
 //
+message IconData {
+    //
+    string meta_json = 1;
+    //
+    string sprits_img = 2;
+}
+
+//
 message Interaction {
     //
     Node history_node = 1;
@@ -758,6 +966,20 @@ message Label {
     int64 icon_width = 5;
     //
     int64 icon_height = 6;
+    //
+    string lottie = 7;
+    //
+    string lottie_night = 8;
+}
+
+//
+message LikeAnimation {
+    //
+    string like_icon = 1;
+    //
+    string liked_icon = 2;
+    //
+    string like_animation = 3;
 }
 
 //
@@ -770,6 +992,30 @@ message LikeCustom {
     int64 non_full_progress = 3;
     //
     int64 update_count = 4;
+}
+
+//
+message ListenerConfig {
+    //
+    int64 jump_style = 1;
+    //
+    ListenerGuideBar guide_bar = 2;
+}
+
+//
+message ListenerGuideBar {
+    //
+    int64 show_strategy = 1;
+    //
+    string icon = 2;
+    //
+    string text = 3;
+    //
+    string btn_text = 4;
+    //
+    int64 show_time = 5;
+    //
+    int64 background_time = 6;
 }
 
 // 直播信息
@@ -797,14 +1043,47 @@ message LiveOrderInfo {
 }
 
 //
-enum MaterialSource {
-    Default = 0;
-    BiJian = 1;
+message MaterialLeft {
+    //
+    string icon = 1;
+    //
+    string text = 2;
+    //
+    string url = 3;
+    //
+    string left_type = 4;
+    //
+    string param = 5;
+    //
+    string operational_type = 6;
+    //
+    string static_icon = 7;
 }
 
-// 空回复
-message NoReply {
+//
+message MaterialRes {
+    //
+    int64 id = 1;
+    //
+    string icon = 2;
+    //
+    string url = 3;
+    //
+    MaterialSource type = 4;
+    //
+    string name = 5;
+    //
+    string bg_color = 6;
+    //
+    string bg_pic = 7;
+    //
+    int32 jump_type = 8;
+}
 
+//
+enum MaterialSource {
+    Default = 0; //
+    BiJian  = 1; // 必剪
 }
 
 //
@@ -816,6 +1095,9 @@ message Node {
     //
     int64 cid = 3;
 }
+
+// 空回复
+message NoReply {}
 
 //
 message Notice {
@@ -913,9 +1195,52 @@ message OperationCardNew {
 
 // 卡片样式
 enum OperationCardType {
-    CardTypeNone = 0;     //
+    CardTypeNone     = 0; //
     CardTypeStandard = 1; // 标准卡
-    CardTypeSkip = 2;     // 原跳转卡
+    CardTypeSkip     = 2; // 原跳转卡
+}
+
+//
+message OperationCardV2 {
+    //
+    int64 id = 1;
+    //
+    int32 from = 2;
+    //
+    int32 to = 3;
+    //
+    bool status = 4;
+    //
+    int32 biz_type = 5;
+    //
+    OperationCardV2Content content = 6;
+    //
+    oneof param {
+        //
+        BizFollowVideoParam BizFollowVideoParam = 7;
+        //
+        BizReserveActivityParam BizReserveActivityParam = 8;
+        //
+        BizJumpLinkParam BizJumpLinkParam = 9;
+        //
+        BizReserveGameParam BizReserveGameParam = 10;
+    }
+}
+
+//
+message OperationCardV2Content {
+    //
+    string title = 1;
+    //
+    string subtitle = 2;
+    //
+    string icon = 3;
+    //
+    string button_title = 4;
+    //
+    string button_selected_title = 5;
+    //
+    bool show_selected = 6;
 }
 
 // 相关推荐(运营配置+AI推荐)
@@ -955,7 +1280,7 @@ message Order {
     string intro = 10;
 }
 
-//游戏礼包信息
+// 游戏礼包信息
 message PackInfo {
     // 礼包标题
     string title = 1;
@@ -963,12 +1288,26 @@ message PackInfo {
     string uri = 2;
 }
 
+//
+enum PayState {
+    PayStateUnknown = 0; //
+    PayStateActive  = 1; //
+}
+
+//
+message PlayAv {
+    //
+    int64 aid = 1;
+    //
+    int64 cid = 2;
+}
+
 // 卡片类型
 enum PlayerCardType {
-    PlayerCardTypeNone_VALUE = 0;      //
+    PlayerCardTypeNone_VALUE      = 0; //
     PlayerCardTypeAttention_VALUE = 1; // 关注卡
     PlayerCardTypeOperation_VALUE = 2; // 运营卡
-    PlayerCardTypeContract_VALUE = 3;  // 契约卡
+    PlayerCardTypeContract_VALUE  = 3; // 契约卡
 }
 
 // 进度条动画配置
@@ -981,6 +1320,42 @@ message PlayerIcon {
     string url2 = 3;
     // 松手动画配置档hash
     string hash2 = 4;
+    //
+    string drag_left_png = 5;
+    //
+    string middle_png = 6;
+    //
+    string drag_right_png = 7;
+    //
+    IconData drag_data = 8;
+    //
+    IconData nodrag_data = 9;
+}
+
+//
+message PlayerRelatesReply {
+    //
+    repeated Relate list = 1;
+}
+
+//
+message PlayerRelatesReq {
+    //
+    int64 aid = 1;
+    //
+    string bvid = 2;
+    //
+    string from = 3;
+    //
+    string spmid = 4;
+    //
+    string from_spmid = 5;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 6;
+    //
+    string session_id = 7;
+    //
+    string from_track_id = 8;
 }
 
 //
@@ -991,6 +1366,108 @@ message PointMaterial {
     int32 material_source = 2;
 }
 
+//
+message PowerIconStyle {
+    //
+    string icon_url = 1;
+    //
+    string icon_night_url = 2;
+    //
+    int64 icon_width = 3;
+    //
+    int64 icon_height = 4;
+}
+
+//
+message Premiere {
+    //
+    PremiereState premiere_state = 1;
+    //
+    int64 start_time = 2;
+    //
+    int64 service_time = 3;
+    //
+    int64 room_id = 4;
+}
+
+//
+message PremiereArchiveReply {
+    //
+    Premiere premiere = 1;
+    //
+    bool risk_status = 2;
+    //
+    string risk_reason = 3;
+}
+
+//
+message PremiereArchiveReq {
+    //
+    int64 aid = 1;
+}
+
+//
+message PremiereReserve {
+    //
+    int64 reserve_id = 1;
+    //
+    int64 count = 2;
+    //
+    bool is_follow = 3;
+}
+
+//
+message PremiereResource {
+    //
+    Premiere premiere = 1;
+    //
+    PremiereReserve reserve = 2;
+    //
+    PremiereText text = 3;
+}
+
+//
+enum PremiereState {
+    premiere_none   = 0; //
+    premiere_before = 1; //
+    premiere_in     = 2; //
+    premiere_after  = 3; //
+}
+
+//
+message PremiereText {
+    //
+    string title = 1;
+    //
+    string subtitle = 2;
+    //
+    string online_text = 3;
+    //
+    string online_icon = 4;
+    //
+    string online_icon_dark = 5;
+    //
+    string intro_title = 6;
+    //
+    string intro_icon = 7;
+    //
+    string guidance_pulldown = 8;
+    //
+    string guidance_entry = 9;
+    //
+    string intro_icon_night = 10;
+}
+
+//
+message PullClientAction {
+    //
+    string type = 1;
+    //
+    bool pull_action = 2;
+    //
+    string params = 3;
+}
+
 // 排行榜
 message Rank {
     // 排行榜icon
@@ -999,6 +1476,26 @@ message Rank {
     string icon_night = 2;
     // 排行榜文案
     string text = 3;
+}
+
+//
+message RankInfo {
+    //
+    string icon_url_night = 1;
+    //
+    string icon_url_day = 2;
+    //
+    string bkg_night_color = 3;
+    //
+    string bkg_day_color = 4;
+    //
+    string font_night_color = 5;
+    //
+    string font_day_color = 6;
+    //
+    string rank_content = 7;
+    //
+    string rank_link = 8;
 }
 
 // 推荐理由样式
@@ -1053,7 +1550,19 @@ message RecThreePoint {
     bool watch_later = 3;
 }
 
-//相关推荐项
+//
+message RefreshPage {
+    //
+    int32 refreshable = 1;
+    //
+    int32 refresh_icon = 2;
+    //
+    string refresh_text = 3;
+    //
+    float refresh_show = 4;
+}
+
+// 相关推荐项
 message Relate {
     //
     int64 aid = 1;
@@ -1124,8 +1633,27 @@ message Relate {
     string unique_id = 32;
     //
     int64 material_id = 33;
+    //
+    int64 from_source_type = 34;
+    //
+    string from_source_id = 35;
+    //
+    bilibili.app.archive.v1.Dimension dimension = 36;
+    //
+    string cover = 37;
+    //
+    ReasonStyle badge_style = 38;
+    //
+    PowerIconStyle power_icon_style = 39;
+    //
+    string reserve_status_text = 40;
+    //
+    string dislike_report_data = 41;
+    //
+    RankInfo rank_info_game = 42;
+    //
+    string first_frame = 43;
 }
-
 
 // 相关推荐内容
 message RelateItem {
@@ -1135,12 +1663,66 @@ message RelateItem {
     string cover = 2;
 }
 
+// 播放页推荐IFS-响应
+message RelatesFeedReply {
+    //
+    repeated Relate list = 1;
+    //
+    bool has_next = 2;
+    //
+    bilibili.pagination.PaginationReply pagination = 3;
+}
+
+// 播放页推荐IFS-请求
+message RelatesFeedReq {
+    //
+    int64 aid = 1;
+    //
+    string bvid = 2;
+    //
+    string from = 3;
+    //
+    string spmid = 4;
+    //
+    string from_spmid = 5;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 6;
+    //
+    int64 relates_page = 7;
+    //
+    string session_id = 8;
+    //
+    int32 autoplay = 9;
+    //
+    string from_track_id = 10;
+    //
+    string biz_extra = 11;
+    //
+    int64 device_type = 12;
+    //
+    string ad_extra = 13;
+    //
+    bilibili.pagination.Pagination pagination = 14;
+    //
+    int32 refresh_num = 15;
+}
+
 //
 message RelateTab {
     //
     string id = 1;
     //
     string title = 2;
+}
+
+//
+message ReplyStyle {
+    //
+    string badge_url = 1;
+    //
+    string badge_text = 2;
+    //
+    int64 badge_type = 3;
 }
 
 // 用户操作状态
@@ -1161,6 +1743,24 @@ message ReqUser {
     int32 attention_level = 7;
     // 是否收藏合集
     int32 fav_season = 8;
+    //
+    Button elec_plus_btn = 9;
+}
+
+//
+message ReserveReply {
+    //
+    int64 reserve_id = 1;
+}
+
+//
+message ReserveReq {
+    //
+    int64 reserve_id = 1;
+    //
+    int64 reserve_action = 2;
+    //
+    int64 up_id = 3;
 }
 
 //
@@ -1206,6 +1806,30 @@ message Season {
 }
 
 //
+message SeasonActivityRecordReply {
+    //
+    UgcSeasonActivity activity = 1;
+}
+
+//
+message SeasonActivityRecordReq {
+    //
+    int64 season_id = 1;
+    //
+    int64 activity_id = 2;
+    //
+    int32 action = 3;
+    //
+    int64 aid = 4;
+    //
+    int64 cid = 5;
+    //
+    int64 scene = 6;
+    //
+    string spmid = 7;
+}
+
+//
 message SeasonPlayer {
     //
     int64 aid = 1;
@@ -1230,10 +1854,50 @@ message SeasonReq {
 }
 
 //
+message SeasonShow {
+    //
+    string button_text = 1;
+    //
+    string join_text = 2;
+    //
+    string rule_text = 3;
+    //
+    string checkin_text = 4;
+    //
+    string checkin_prompt = 5;
+}
+
+//
 enum SeasonType {
     Unknown = 0; //
-    Base = 1;    //
-    Good = 2;    //
+    Base    = 1; //
+    Good    = 2; //
+}
+
+//
+message SeasonWidgetExposeReply {
+    //
+    int64 season_id = 1;
+    //
+    int64 activity_id = 2;
+}
+
+//
+message SeasonWidgetExposeReq {
+    //
+    int64 mid = 1;
+    //
+    int32 type = 2;
+    //
+    int64 season_id = 3;
+    //
+    int64 activity_id = 4;
+    //
+    int64 aid = 5;
+    //
+    int64 cid = 6;
+    //
+    int64 scene = 7;
 }
 
 // 视频合集小节信息
@@ -1315,6 +1979,12 @@ message SpecialCell {
     string page_title = 11;
     //
     string jump_type = 12;
+    //
+    string end_icon = 13;
+    //
+    string end_icon_night = 14;
+    //
+    int64 notes_count = 15;
 }
 
 // 合作成员信息
@@ -1349,8 +2019,8 @@ message StandardCard {
     bool show_selected = 4;
 }
 
-// 免流面板定制
-message TFPanelCustomized {
+// 免流子面板定制化配置
+message subTFPanel {
     // 右侧按钮素材
     string right_btn_img = 1;
     // 右侧按钮文案
@@ -1361,16 +2031,8 @@ message TFPanelCustomized {
     string right_btn_link = 4;
     // 中心主文案内容
     string main_label = 5;
-    // 运营商(cm ct cu)
+    // 运营商
     string operator = 6;
-    // 子面板定制化配置
-    map<string, subTFPanel> sub_panel = 7;
-}
-
-// TAG图标信息
-message TIcon {
-    // TAG图标url
-    string icon = 1;
 }
 
 // TAB
@@ -1402,15 +2064,16 @@ message Tab {
 // TAB跳转类型
 enum TabOtype {
     UnknownOtype = 0; // 未知类型
-    URL = 1;          // url链接
-    TopicNA = 2;      // native话题活动
+    URL          = 1; // url链接
+    TopicNA      = 2; // native话题活动
+    CmURI        = 3; // 广告url
 }
 
 // TAB样式
 enum TabStyle {
     UnknownStyle = 0; // 未知样式
-    Text = 1;         // 文字样式
-    Pic = 2;          // 图片样式
+    Text         = 1; // 文字样式
+    Pic          = 2; // 图片样式
 }
 
 // TAG信息
@@ -1432,6 +2095,30 @@ message Tag {
     // TAG类型
     // common:普通 new:话题 act:活动
     string tag_type = 8;
+}
+
+// 免流面板定制
+message TFPanelCustomized {
+    // 右侧按钮素材
+    string right_btn_img = 1;
+    // 右侧按钮文案
+    string right_btn_text = 2;
+    // 右侧按钮字体颜色
+    string right_btn_text_color = 3;
+    // 右侧按钮跳转链接
+    string right_btn_link = 4;
+    // 中心主文案内容
+    string main_label = 5;
+    // 运营商(cm ct cu)
+    string operator = 6;
+    // 子面板定制化配置
+    map<string, subTFPanel> sub_panel = 7;
+}
+
+// TAG图标信息
+message TIcon {
+    // TAG图标url
+    string icon = 1;
 }
 
 // UGC视频合集信息
@@ -1466,6 +2153,50 @@ message UgcSeason {
     SeasonType season_type = 14;
     //
     bool show_continual_button = 15;
+    //
+    int64 ep_num = 16;
+    //
+    bool season_pay = 17;
+    //
+    GoodsInfo goods_info = 18;
+    //
+    ButtonStyle pay_button = 19;
+    //
+    string label_text_new = 20;
+    //
+    UgcSeasonActivity activity = 21;
+    //
+    repeated string season_ability = 22;
+}
+
+//
+message UgcSeasonActivity {
+    //
+    int32 type = 1;
+    //
+    int64 oid = 2;
+    //
+    int64 activity_id = 3;
+    //
+    string title = 4;
+    //
+    string intro = 5;
+    //
+    int32 day_count = 6;
+    //
+    int32 user_count = 7;
+    //
+    int64 join_deadline = 8;
+    //
+    int64 activity_deadline = 9;
+    //
+    int32 checkin_view_time = 10;
+    //
+    bool new_activity = 11;
+    //
+    UserActivity user_activity = 12;
+    //
+    SeasonShow season_show = 13;
 }
 
 // ugc视频合集状态数
@@ -1518,6 +2249,8 @@ message UpLikeImg {
     string suc_img = 2;
     //
     string content = 3;
+    //
+    int64 type = 4;
 }
 
 // UP主信息
@@ -1532,10 +2265,28 @@ message UpperInfos {
     int64 total_play_count = 4;
 }
 
+//
+message UserActivity {
+    //
+    int32 user_state = 1;
+    //
+    int64 last_checkin_date = 2;
+    //
+    int32 checkin_today = 3;
+    //
+    int32 user_day_count = 4;
+    //
+    int32 user_view_time = 5;
+    //
+    string portrait = 6;
+}
+
 // 用户装扮信息
 message UserGarb {
     // 点赞动画url
     string url_image_ani_cut = 1;
+    //
+    string like_toast = 2;
 }
 
 // 用户追番标志
@@ -1546,7 +2297,7 @@ message UserSeason {
 }
 
 // 视频引导信息
-message VideoGuide{
+message VideoGuide {
     // 关注按钮卡片
     repeated Attention attention = 1;
     // 互动弹幕
@@ -1557,6 +2308,8 @@ message VideoGuide{
     repeated OperationCardNew operation_card_new = 4;
     // 契约卡
     ContractCard contract_card = 5;
+    //
+    repeated OperationCardV2 cards_second = 6;
 }
 
 //
@@ -1603,6 +2356,24 @@ message ViewMaterial {
     string author = 4;
     //
     string jump_url = 5;
+}
+
+//
+message ViewMaterialReply {
+    //
+    repeated MaterialRes material_res = 1;
+    //
+    MaterialLeft material_left = 2;
+}
+
+//
+message ViewMaterialReq {
+    //
+    int64 aid = 1;
+    //
+    string bvid = 2;
+    //
+    int64 cid = 3;
 }
 
 // 分P信息
@@ -1753,6 +2524,32 @@ message ViewReply {
     Online online = 47;
     //
     google.protobuf.Any cm_under_player = 48;
+    //
+    repeated ViewMaterial video_source = 49;
+    //
+    repeated SpecialCell special_cell_new = 50;
+    //
+    PremiereResource premiere = 51;
+    //
+    bool refresh_special_cell = 52;
+    //
+    MaterialLeft material_left = 53;
+    //
+    int64 notes_count = 54;
+    //
+    PullClientAction pull_action = 55;
+    //
+    ArcExtra arc_extra = 56;
+    //
+    bilibili.pagination.PaginationReply pagination = 57;
+    //
+    LikeAnimation like_animation = 58;
+    //
+    ReplyStyle reply_preface = 59;
+    //
+    RefreshPage refresh_page = 60;
+    //
+    CoinCustom coin_custom = 61;
 }
 
 // 视频页详情页-请求
@@ -1791,6 +2588,40 @@ message ViewReq {
     string biz_extra = 16;
     //
     int64 device_type = 17;
+    //
+    int64 relates_page = 18;
+    //
+    string session_id = 19;
+    //
+    int32 in_feed_play = 20;
+    //
+    string play_mode = 21;
+    //
+    bilibili.pagination.Pagination pagination = 22;
+    //
+    int32 refresh = 23;
+    //
+    int32 refresh_num = 24;
+}
+
+//
+message ViewTagReply {
+    //
+    repeated SpecialCell special_cell_new = 1;
+    //
+    MaterialLeft material_left = 2;
+}
+
+//
+message ViewTagReq {
+    //
+    int64 aid = 1;
+    //
+    string bvid = 2;
+    //
+    int64 cid = 3;
+    //
+    string spmid = 4;
 }
 
 // 会员信息
@@ -1821,20 +2652,4 @@ message VipLabel {
     string text = 2;
     //
     string label_theme = 3;
-}
-
-// 免流子面板定制化配置
-message subTFPanel {
-    // 右侧按钮素材
-    string right_btn_img = 1;
-    // 右侧按钮文案
-    string right_btn_text = 2;
-    // 右侧按钮字体颜色
-    string right_btn_text_color = 3;
-    // 右侧按钮跳转链接
-    string right_btn_link = 4;
-    // 中心主文案内容
-    string main_label = 5;
-    // 运营商
-    string operator = 6;
 }

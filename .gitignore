@@ -1,2 +1,7 @@
-mkdocs/html/*
-README.md
+mkdocs/html/
+/.vuepress/.cache/
+/.vuepress/.temp/
+/.vuepress/dist/
+/node_modules/
+.idea/
+.vscode/

@@ -1,0 +1,2330 @@
+syntax = "proto3";
+
+package bilibili.polymer.app.search.v1;
+
+import "bilibili/app/archive/middleware/v1/preload.proto";
+import "bilibili/pagination/pagination.proto";
+
+//
+service Search {
+    // 搜索所有类型结果
+    rpc SearchAll(SearchAllRequest) returns (SearchAllResponse);
+    // 搜索指定类型结果
+    rpc SearchByType(SearchByTypeRequest) returns (SearchByTypeResponse);
+    //
+    rpc SearchComic(SearchComicRequest) returns (SearchComicResponse);
+}
+
+//
+message Args {
+    //
+    int32 online = 1;
+    //
+    string rname = 2;
+    //
+    int64 room_id = 3;
+    //
+    string tname = 4;
+    //
+    int64 up_id = 5;
+    //
+    string up_name = 6;
+    //
+    int64 rid = 7;
+    //
+    int64 tid = 8;
+    //
+    int64 aid = 9;
+}
+
+//
+message Avatar {
+    //
+    string cover = 1;
+    //
+    string event = 2;
+    //
+    string event_v2 = 3;
+    //
+    string text = 4;
+    //
+    int64 up_id = 5;
+    //
+    string uri = 6;
+    //
+    int32 face_nft_new = 7;
+    //
+    NftFaceIcon nft_face_icon = 8;
+}
+
+//
+message AvItem {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string uri = 3;
+    //
+    string ctime_label = 4;
+    //
+    string duration = 5;
+    //
+    int32 play = 6;
+    //
+    int64 danmaku = 7;
+    //
+    int32 ctime = 8;
+    //
+    string goto = 9;
+    //
+    string param = 10;
+    //
+    int32 position = 11;
+    //
+    string ctime_label_v2 = 12;
+}
+
+//
+message Background {
+    //
+    int32 show = 1;
+    //
+    string bg_pic_url = 2;
+    //
+    string fg_pic_url = 3;
+}
+
+//
+message Badge {
+    //
+    string text = 1;
+    //
+    string bg_cover = 2;
+}
+
+//
+message Badge2 {
+    //
+    string bg_cover = 1;
+    //
+    string text = 2;
+}
+
+//
+message BottomButton {
+    //
+    string desc = 1;
+    //
+    string link = 2;
+}
+
+//
+message BrandADAccount {
+    //
+    string param = 1;
+    //
+    string goto = 2;
+    //
+    int64 mid = 3;
+    //
+    string name = 4;
+    //
+    string face = 5;
+    //
+    string sign = 6;
+    //
+    Relation relation = 7;
+    //
+    int64 roomid = 8;
+    //
+    int64 live_status = 9;
+    //
+    string live_link = 10;
+    //
+    OfficialVerify official_verify = 11;
+    //
+    VipInfo vip = 12;
+    //
+    string uri = 13;
+    //
+    int32 face_nft_new = 14;
+}
+
+//
+message BrandADArc {
+    //
+    string param = 1;
+    //
+    string goto = 2;
+    //
+    int64 aid = 3;
+    //
+    int64 play = 4;
+    //
+    int64 reply = 5;
+    //
+    string duration = 6;
+    //
+    string author = 7;
+    //
+    string title = 8;
+    //
+    string uri = 9;
+    //
+    string cover = 10;
+}
+
+//
+message Button {
+    //
+    string text = 1;
+    //
+    string param = 2;
+    //
+    string uri = 3;
+    //
+    string event = 4;
+    //
+    int32 selected = 5;
+    //
+    int32 type = 6;
+    //
+    string event_v2 = 7;
+    //
+    Relation relation = 8;
+}
+
+//
+message ButtonMeta {
+    //
+    string icon = 1;
+    //
+    string text = 2;
+    //
+    string button_status = 3;
+    //
+    string toast = 4;
+}
+
+//
+message CardBusinessBadge {
+    //
+    GotoIcon goto_icon = 1;
+    //
+    ReasonStyle badge_style = 2;
+}
+
+//
+enum CategorySort {
+    CATEGORY_SORT_DEFAULT       = 0; //
+    CATEGORY_SORT_PUBLISH_TIME  = 1; //
+    CATEGORY_SORT_CLICK_COUNT   = 2; //
+    CATEGORY_SORT_COMMENT_COUNT = 3; //
+    CATEGORY_SORT_LIKE_COUNT    = 4; //
+}
+
+//
+message ChannelLabel {
+    //
+    string text = 1;
+    //
+    string uri = 2;
+}
+
+//
+message ChannelMixedItem {
+    //
+    int64 id = 1;
+    //
+    int32 cover_left_icon1 = 2;
+    //
+    string cover_left_text1 = 3;
+    //
+    string cover = 4;
+    //
+    string goto = 5;
+    //
+    string param = 6;
+    //
+    string uri = 7;
+    //
+    string title = 8;
+    //
+    Badge2 badge = 9;
+}
+
+//
+message CheckMore {
+    //
+    string content = 1;
+    //
+    string uri = 2;
+}
+
+//
+message CloudGameParams {
+    //
+    int64 source_from = 1;
+    //
+    string scene = 2;
+}
+
+//
+message DetailsRelationItem {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string cover_left_text = 3;
+    //
+    ReasonStyle cover_badge_style = 4;
+    //
+    string module_pos = 5;
+    //
+    string goto = 6;
+    //
+    string param = 7;
+    //
+    string uri = 8;
+    //
+    int32 position = 9;
+    //
+    string cover_left_text_v2 = 10;
+    //
+    ReasonStyle cover_badge_style_v2 = 11;
+}
+
+//
+message DislikeReason {
+    //
+    int32 id = 1;
+    //
+    string name = 2;
+}
+
+//
+message DisplayOption {
+    //
+    int32 video_title_row = 1;
+    //
+    int32 search_page_visual_opti = 2;
+}
+
+//
+message DyTopic {
+    //
+    string title = 1;
+    //
+    string uri = 2;
+}
+
+//
+message EasterEgg {
+    //
+    int32 id = 1;
+    //
+    int32 show_count = 2;
+    //
+    int32 type = 3;
+    //
+    string url = 4;
+    //
+    int32 close_count = 5;
+    //
+    int32 mask_transparency = 6;
+    //
+    string mask_color = 7;
+    //
+    int32 pic_type = 8;
+    //
+    int32 show_time = 9;
+    //
+    string source_url = 10;
+    //
+    string source_md5 = 11;
+    //
+    int32 source_size = 12;
+}
+
+//
+message Episode {
+    //
+    string uri = 1;
+    //
+    string param = 2;
+    //
+    string index = 3;
+    //
+    repeated ReasonStyle badges = 4;
+    //
+    int32 position = 5;
+}
+
+//
+message EpisodeNew {
+    //
+    string title = 1;
+    //
+    string uri = 2;
+    //
+    string param = 3;
+    //
+    int32 is_new = 4;
+    //
+    repeated ReasonStyle badges = 5;
+    //
+    int32 type = 6;
+    //
+    int32 position = 7;
+    //
+    string cover = 8;
+    //
+    string label = 9;
+}
+
+//
+message ExtraLink {
+    //
+    string text = 1;
+    //
+    string uri = 2;
+}
+
+//
+message FollowButton {
+    //
+    string icon = 1;
+    //
+    map<string, string> texts = 2;
+    //
+    string status_report = 3;
+}
+
+//
+message FullTextResult {
+    //
+    int32 type = 1;
+    //
+    string show_text = 2;
+    //
+    int64 jump_start_progress = 3;
+    //
+    string jump_uri = 4;
+}
+
+//
+message GotoIcon {
+    //
+    string icon_url = 1;
+    //
+    string icon_night_url = 2;
+    //
+    int32 icon_width = 3;
+    //
+    int32 icon_height = 4;
+}
+
+//
+message InlineProgressBar {
+    //
+    string icon_drag = 1;
+    //
+    string icon_drag_hash = 2;
+    //
+    string icon_stop = 3;
+    //
+    string icon_stop_hash = 4;
+}
+
+//
+message InlineThreePointPanel {
+    //
+    int32 panel_type = 1;
+    //
+    string share_id = 2;
+    //
+    string share_origin = 3;
+    //
+    repeated ShareButtonItem functional_buttons = 4;
+}
+
+message Item {
+    //
+    string uri = 1;
+    //
+    string param = 2;
+    //
+    string goto = 3;
+    //
+    string linktype = 4;
+    //
+    int32 position = 5;
+    //
+    string trackid = 6;
+    //
+    oneof card_item {
+        //
+        SearchSpecialCard special = 7;
+        //
+        SearchArticleCard article = 8;
+        //
+        SearchBannerCard banner = 9;
+        //
+        SearchLiveCard live = 10;
+        //
+        SearchGameCard game = 11;
+        //
+        SearchPurchaseCard purchase = 12;
+        //
+        SearchRecommendWordCard recommend_word = 13;
+        //
+        SearchDynamicCard dynamic = 14;
+        //
+        SearchNoResultSuggestWordCard suggest_keyword = 15;
+        //
+        SearchSpecialGuideCard special_guide = 16;
+        //
+        SearchComicCard comic = 17;
+        //
+        SearchNewChannelCard channel_new = 18;
+        //
+        SearchOgvCard ogv_card = 19;
+        //
+        SearchOgvRelationCard bangumi_relates = 20;
+        //
+        SearchOgvRecommendCard find_more = 21;
+        //
+        SearchSportCard esport = 22;
+        //
+        SearchAuthorNewCard author_new = 23;
+        //
+        SearchTipsCard tips = 24;
+        //
+        SearchAdCard cm = 25;
+        //
+        SearchPediaCard pedia_card = 26;
+        //
+        SearchUgcInlineCard ugc_inline = 27;
+        //
+        SearchLiveInlineCard live_inline = 28;
+        //
+        SearchTopGameCard top_game = 29;
+        //
+        SearchOlympicGameCard sports = 30;
+        //
+        SearchOlympicWikiCard pedia_card_inline = 31;
+        //
+        SearchRecommendTipCard recommend_tips = 32;
+        //
+        SearchCollectionCard collection_card = 33;
+        //
+        SearchOgvChannelCard ogv_channel = 34;
+        //
+        SearchOgvInlineCard ogv_inline = 35;
+        //
+        SearchUpperCard author = 36;
+        //
+        SearchVideoCard av = 37;
+        //
+        SearchBangumiCard bangumi = 38;
+        //
+        SearchSportInlineCard esports_inline = 39;
+    }
+}
+
+//
+message LikeResource {
+    //
+    string url = 1;
+    //
+    string content_hash = 2;
+}
+
+//
+message LiveBadgeResource {
+    //
+    string text = 1;
+    //
+    string animation_url = 2;
+    //
+    string animation_url_hash = 3;
+    //
+    string background_color_light = 4;
+    //
+    string background_color_night = 5;
+    //
+    int64 alpha_light = 6;
+    //
+    int64 alpha_night = 7;
+    //
+    string font_color = 8;
+}
+
+//
+message Mask {
+    //
+    Avatar avatar = 1;
+    //
+    Button button = 2;
+}
+
+//
+message MatchInfoObj {
+    //
+    int64 id = 1;
+    //
+    int32 status = 2;
+    //
+    string match_stage = 3;
+    //
+    MatchTeam team1 = 4;
+    //
+    MatchTeam team2 = 5;
+    //
+    MatchItem match_label = 6;
+    //
+    MatchItem match_time = 7;
+    //
+    MatchItem match_button = 8;
+}
+
+//
+message MatchItem {
+    //
+    int32 state = 1;
+    //
+    string text = 2;
+    //
+    string text_color = 3;
+    //
+    string text_color_night = 4;
+    //
+    string uri = 5;
+    //
+    string live_link = 6;
+    //
+    Texts texts = 7;
+}
+
+//
+message MatchTeam {
+    //
+    int64 id = 1;
+    //
+    string title = 2;
+    //
+    string cover = 3;
+    //
+    int32 score = 4;
+}
+
+//
+message Nav {
+    //
+    string name = 1;
+    //
+    int32 total = 2;
+    //
+    int32 pages = 3;
+    //
+    int32 type = 4;
+}
+
+//
+message Navigation {
+    //
+    int64 id = 1;
+    //
+    repeated Navigation children = 2;
+    //
+    repeated Navigation inline_children = 3;
+    //
+    string title = 4;
+    //
+    string uri = 5;
+    //
+    NavigationButton button = 6;
+}
+
+//
+message NavigationButton {
+    //
+    int64 type = 1;
+    //
+    string text = 2;
+    //
+    string uri = 3;
+}
+
+//
+message NftFaceIcon {
+    //
+    int32 region_type = 1;
+    //
+    string icon = 2;
+    //
+    int32 show_status = 3;
+}
+
+//
+message Notice {
+    //
+    int64 mid = 1;
+    //
+    int64 notice_id = 2;
+    //
+    string content = 3;
+    //
+    string url = 4;
+    //
+    int64 notice_type = 5;
+    //
+    string icon = 6;
+    //
+    string icon_night = 7;
+    //
+    string text_color = 8;
+    //
+    string text_color_night = 9;
+    //
+    string bg_color = 10;
+    //
+    string bg_color_night = 11;
+}
+
+//
+message OfficialVerify {
+    //
+    int32 type = 1;
+    //
+    string desc = 2;
+}
+
+//
+message OgvCardUI {
+    //
+    string background_image = 1;
+    //
+    string gaussian_blur_value = 2;
+    //
+    string module_color = 3;
+}
+
+//
+message OgvClipInfo {
+    //
+    int64 play_start_time = 1;
+    //
+    int64 play_end_time = 2;
+}
+
+//
+message OgvRecommendWord {
+    //
+    string title = 1;
+    //
+    string goto = 2;
+    //
+    string param = 3;
+    //
+    string uri = 4;
+}
+
+//
+message PediaCover {
+    //
+    int64 cover_type = 1;
+    //
+    string cover_sun_url = 2;
+    //
+    string cover_night_url = 3;
+    //
+    int32 cover_width = 4;
+    //
+    int32 cover_height = 5;
+}
+
+//
+message PlayerArgs {
+    //
+    int32 is_live = 1;
+    //
+    int64 aid = 2;
+    //
+    int64 cid = 3;
+    //
+    int32 sub_type = 4;
+    //
+    int64 room_id = 5;
+    //
+    int64 ep_id = 7;
+    //
+    int32 is_preview = 8;
+    //
+    string type = 9;
+    //
+    int32 duration = 10;
+    //
+    int64 season_id = 11;
+    //
+    int32 report_required_play_duration = 12;
+    //
+    int32 report_required_time = 13;
+    //
+    int32 manual_play = 14;
+    //
+    bool hide_play_button = 15;
+    //
+    int32 content_mode = 16;
+    //
+    int32 report_history = 17;
+}
+
+//
+message PlayerWidget {
+    //
+    string title = 1;
+    //
+    string desc = 2;
+}
+
+//
+message RankInfo {
+    //
+    string search_night_icon_url = 1;
+    //
+    string search_day_icon_url = 2;
+    //
+    string search_bkg_night_color = 3;
+    //
+    string search_bkg_day_color = 4;
+    //
+    string search_font_night_color = 5;
+    //
+    string search_font_day_color = 6;
+    //
+    string rank_content = 7;
+    //
+    string rank_link = 8;
+}
+
+//
+message RcmdReason {
+    //
+    string content = 1;
+}
+
+//
+message ReasonStyle {
+    //
+    string text = 1;
+    //
+    string text_color = 2;
+    //
+    string text_color_night = 3;
+    //
+    string bg_color = 4;
+    //
+    string bg_color_night = 5;
+    //
+    string border_color = 6;
+    //
+    string border_color_night = 7;
+    //
+    int32 bg_style = 8;
+}
+
+//
+message RecommendWord {
+    //
+    string param = 1;
+    //
+    string type = 2;
+    //
+    string title = 3;
+    //
+    string from_source = 4;
+}
+
+//
+message Relation {
+    //
+    int32 status = 1;
+}
+
+//
+message RightTopLiveBadge {
+    //
+    int32 live_status = 1;
+    //
+    LiveBadgeResource in_live = 2;
+    //
+    string live_stats_desc = 3;
+}
+
+//
+message SearchAdCard {
+    //
+    string json_str = 1;
+}
+
+//
+message SearchAllRequest {
+    //
+    string keyword = 1;
+    //
+    int32 order = 2;
+    //
+    string tid_list = 3;
+    //
+    string duration_list = 4;
+    //
+    string extra_word = 5;
+    //
+    string from_source = 6;
+    //
+    int32 is_org_query = 7;
+    //
+    int32 local_time = 8;
+    //
+    string ad_extra = 9;
+    //
+    bilibili.pagination.Pagination pagination = 10;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 11;
+}
+
+//
+message SearchAllResponse {
+    //
+    string keyword = 1;
+    //
+    string trackid = 2;
+    //
+    repeated Nav nav = 3;
+    //
+    repeated Item item = 4;
+    //
+    EasterEgg easter_egg = 5;
+    //
+    string exp_str = 6;
+    //
+    repeated string extra_word_list = 7;
+    //
+    string org_extra_word = 8;
+    //
+    int64 select_bar_type = 9;
+    //
+    int64 new_search_exp_num = 10;
+    //
+    bilibili.pagination.PaginationReply pagination = 11;
+    //
+    DisplayOption app_display_option = 12;
+    //
+    map<string, string> annotation = 13;
+}
+
+//
+message SearchArticleCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int32 play = 3;
+    //
+    int32 like = 4;
+    //
+    int32 reply = 5;
+    //
+    repeated string image_urls = 6;
+    //
+    string author = 7;
+    //
+    int32 template_id = 8;
+    //
+    int64 id = 9;
+    //
+    int64 mid = 10;
+    //
+    string name = 11;
+    //
+    string desc = 12;
+    //
+    int32 view = 13;
+}
+
+//
+message SearchAuthorNewCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int32 live_face = 3;
+    //
+    string live_uri = 4;
+    //
+    string live_link = 5;
+    //
+    int32 fans = 6;
+    //
+    int32 level = 7;
+    //
+    string sign = 8;
+    //
+    bool is_up = 9;
+    //
+    int32 archives = 10;
+    //
+    int64 mid = 11;
+    //
+    int64 roomid = 12;
+    //
+    Relation relation = 13;
+    //
+    OfficialVerify official_verify = 14;
+    //
+    int32 face_nft_new = 15;
+    //
+    NftFaceIcon nft_face_icon = 16;
+    //
+    int32 is_senior_member = 17;
+    //
+    Background background = 18;
+    //
+    int32 av_style = 19;
+    //
+    Space space = 20;
+    //
+    repeated AvItem av_items = 21;
+    //
+    Notice notice = 22;
+    //
+    SharePlane share_plane = 23;
+    //
+    string inline_type = 24;
+    //
+    SearchInlineData inline_live = 25;
+    //
+    int32 is_inline_live = 26;
+    //
+    repeated ThreePoint three_point = 27;
+    //
+    int32 live_status = 28;
+    //
+    VipInfo vip = 29;
+}
+
+//
+message SearchBangumiCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int32 media_type = 3;
+    //
+    int32 play_state = 4;
+    //
+    string area = 5;
+    //
+    string style = 6;
+    //
+    string styles = 7;
+    //
+    string cv = 8;
+    //
+    double rating = 9;
+    //
+    int32 vote = 10;
+    //
+    string target = 11;
+    //
+    string staff = 12;
+    //
+    string prompt = 13;
+    //
+    int64 ptime = 14;
+    //
+    string season_type_name = 15;
+    //
+    repeated Episode episodes = 16;
+    //
+    int32 is_selection = 17;
+    //
+    int32 is_atten = 18;
+    //
+    string label = 19;
+    //
+    int64 season_id = 20;
+    //
+    string out_name = 21;
+    //
+    string out_icon = 22;
+    //
+    string out_url = 23;
+    //
+    repeated ReasonStyle badges = 24;
+    //
+    int32 is_out = 25;
+    //
+    repeated EpisodeNew episodes_new = 26;
+    //
+    WatchButton watch_button = 27;
+    //
+    string selection_style = 28;
+    //
+    CheckMore check_more = 29;
+    //
+    FollowButton follow_button = 30;
+    //
+    ReasonStyle style_label = 31;
+    //
+    repeated ReasonStyle badges_v2 = 32;
+    //
+    string styles_v2 = 33;
+}
+
+//
+message SearchBannerCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+}
+
+//
+message SearchByTypeRequest {
+    enum CategorySort {
+        CATEGORY_SORT_DEFAULT = 0;
+        CATEGORY_SORT_PUBLISH_TIME = 1;
+        CATEGORY_SORT_CLICK_COUNT = 2;
+        CATEGORY_SORT_COMMENT_COUNT = 3;
+        CATEGORY_SORT_LIKE_COUNT = 4;
+    }
+    enum UserType {
+        ALL = 0;
+        UP = 1;
+        NORMAL_USER = 2;
+        AUTHENTICATED_USER = 3;
+    }
+    enum UserSort {
+        USER_SORT_DEFAULT = 0;
+        USER_SORT_FANS_DESCEND = 1;
+        USER_SORT_FANS_ASCEND = 2;
+        USER_SORT_LEVEL_DESCEND = 3;
+        USER_SORT_LEVEL_ASCEND = 4;
+    }
+    // 搜索目标类型, 番剧为7
+    int32 type = 1;
+    // 关键词
+    string keyword = 2;
+    //
+    CategorySort category_sort = 3;
+    //
+    int64 category_id = 4;
+    //
+    UserType user_type = 5;
+    //
+    UserSort user_sort = 6;
+    //
+    bilibili.pagination.Pagination pagination = 7;
+    //
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 8;
+}
+
+//
+message SearchByTypeResponse {
+    // 追踪id
+    string trackid = 1;
+    // 当前页码
+    int32 pages = 2;
+    //
+    string exp_str = 3;
+    // 搜索关键词
+    string keyword = 4;
+    // 是否为推荐结果
+    int32 result_is_recommend = 5;
+    // 搜索结果条目
+    repeated Item items = 6;
+    // 分页信息
+    bilibili.pagination.PaginationReply pagination = 7;
+    // 
+    map<string, string> annotation = 8;
+}
+
+//
+message SearchCollectionCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string author = 3;
+    //
+    repeated AvItem av_items = 4;
+    //
+    BottomButton bottom_button = 5;
+    //
+    string collection_icon = 6;
+    //
+    string show_card_desc1 = 7;
+    //
+    string show_card_desc2 = 8;
+}
+
+//
+message SearchComicCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string name = 3;
+    //
+    string style = 4;
+    //
+    string comic_url = 5;
+    //
+    string badge = 6;
+}
+
+//
+message SearchComicInfo {
+    //
+    string uri = 1;
+    //
+    string param = 2;
+    //
+    SearchComicCard comic = 3;
+}
+
+//
+message SearchComicRequest {
+    //
+    string id_list = 1;
+}
+
+//
+message SearchComicResponse {
+    //
+    repeated SearchComicInfo items = 1;
+}
+
+//
+message SearchDynamicCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int32 cover_count = 3;
+    //
+    repeated string covers = 4;
+    //
+    Upper upper = 5;
+    //
+    Stat stat = 6;
+    //
+    repeated DyTopic dy_topic = 7;
+}
+
+//
+message SearchGameCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string reserve = 3;
+    //
+    float rating = 4;
+    //
+    string tags = 5;
+    //
+    string notice_name = 6;
+    //
+    string notice_content = 7;
+    //
+    string gift_content = 8;
+    //
+    string gift_url = 9;
+    //
+    int32 reserve_status = 10;
+    //
+    RankInfo rank_info = 11;
+    //
+    string special_bg_color = 12;
+    //
+    CloudGameParams cloud_game_params = 13;
+    //
+    bool show_cloud_game_entry = 14;
+}
+
+//
+message SearchInlineData {
+    //
+    string uri = 1;
+    //
+    string title = 2;
+    //
+    PlayerArgs player_args = 3;
+    //
+    int32 can_play = 4;
+    //
+    Args args = 5;
+    //
+    string card_goto = 6;
+    //
+    string card_type = 7;
+    //
+    string cover = 8;
+    //
+    int32 cover_left_icon1 = 9;
+    //
+    int32 cover_left_icon2 = 10;
+    //
+    string cover_left_text1 = 11;
+    //
+    string cover_left_text2 = 12;
+    //
+    UpArgs up_args = 13;
+    //
+    string extra_uri = 14;
+    //
+    bool is_fav = 15;
+    //
+    bool is_coin = 16;
+    //
+    string goto = 17;
+    //
+    Share share = 18;
+    //
+    ThreePoint2 three_point = 19;
+    //
+    repeated ThreePointV2 three_point_v2 = 20;
+    //
+    SharePlane share_plane = 21;
+    //
+    InlineThreePointPanel three_point_meta = 22;
+    //
+    Avatar avatar = 23;
+    //
+    string cover_right_text = 24;
+    //
+    string desc = 25;
+    //
+    InlineProgressBar inline_progress_bar = 26;
+    //
+    SearchLikeButtonItem like_button = 27;
+    //
+    int32 official_icon = 28;
+    //
+    int32 official_icon_v2 = 29;
+    //
+    string param = 30;
+    //
+    TrafficConfig traffic_config = 31;
+    //
+    bool is_atten = 32;
+    //
+    GotoIcon goto_icon = 33;
+    //
+    bool disable_danmaku = 34;
+    //
+    bool hide_danmaku_switch = 35;
+    //
+    ReasonStyle badge_style = 36;
+    //
+    PlayerWidget player_widget = 37;
+    //
+    ReasonStyle cover_badge_style = 38;
+    //
+    RightTopLiveBadge right_top_live_badge = 39;
+}
+
+//
+message SearchLikeButtonItem {
+    //
+    int64 aid = 1;
+    //
+    int64 count = 2;
+    //
+    int32 selected = 3;
+    //
+    bool show_count = 4;
+    //
+    LikeResource like_resource = 5;
+    //
+    LikeResource like_night_resource = 6;
+    //
+    LikeResource dislike_resource = 7;
+    //
+    LikeResource dislike_night_resource = 8;
+}
+
+//
+message SearchLiveCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    RcmdReason rcmd_reason = 3;
+    //
+    string name = 4;
+    //
+    int32 online = 5;
+    //
+    string badge = 6;
+    //
+    string live_link = 7;
+    //
+    string card_left_text = 8;
+    //
+    int32 card_left_icon = 9;
+    //
+    string show_card_desc2 = 10;
+    //
+    RightTopLiveBadge right_top_live_badge = 11;
+}
+
+//
+message SearchLiveInlineCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int64 mid = 3;
+    //
+    ReasonStyle rcmd_reason_style = 4;
+    //
+    int64 roomid = 5;
+    //
+    string live_link = 6;
+    //
+    SearchInlineData live_room_inline = 7;
+    //
+    string inline_type = 8;
+}
+
+//
+message SearchNewChannelCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int64 id = 3;
+    //
+    string type_icon = 4;
+    //
+    ChannelLabel channel_label1 = 5;
+    //
+    ChannelLabel channel_label2 = 6;
+    //
+    ChannelLabel channel_button = 7;
+    //
+    string design_type = 8;
+    //
+    repeated ChannelMixedItem items = 9;
+}
+
+//
+message SearchNoResultSuggestWordCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int32 sug_key_word_type = 3;
+}
+
+//
+message SearchOgvCard {
+    //
+    string title = 1;
+    //
+    string sub_title1 = 2;
+    //
+    string sub_title2 = 3;
+    //
+    string cover = 4;
+    //
+    string bg_cover = 5;
+    //
+    string special_bg_color = 6;
+    //
+    string cover_uri = 7;
+}
+
+//
+message SearchOgvChannelCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int64 media_id = 3;
+    //
+    string styles = 4;
+    //
+    string area = 5;
+    //
+    string staff = 6;
+    //
+    string badge = 7;
+    //
+    WatchButton watch_button = 8;
+    //
+    double rating = 9;
+    //
+    string desc = 10;
+    //
+    repeated ReasonStyle badges_v2 = 11;
+    //
+    string styles_v2 = 12;
+}
+
+//
+message SearchOgvInlineCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string author = 3;
+    //
+    int32 danmaku = 4;
+    //
+    string desc = 5;
+    //
+    string face = 6;
+    //
+    string inline_type = 7;
+    //
+    int64 mid = 8;
+    //
+    int64 play = 9;
+    //
+    SearchInlineData ogv_inline = 10;
+    //
+    OgvClipInfo ogv_clip_info = 11;
+    //
+    WatchButton watch_button = 12;
+    //
+    string score = 13;
+    //
+    int32 ogv_inline_exp = 14;
+    //
+    repeated ReasonStyle badges_v2 = 15;
+}
+
+//
+message SearchOgvRecommendCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    repeated OgvRecommendWord items = 3;
+    //
+    string special_bg_color = 4;
+}
+
+//
+message SearchOgvRelationCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string special_bg_color = 3;
+    //
+    string more_text = 4;
+    //
+    string more_url = 5;
+    //
+    repeated DetailsRelationItem items = 6;
+    //
+    int32 is_new_style = 7;
+    //
+    OgvCardUI ogv_card_ui = 8;
+}
+
+//
+message SearchOlympicGameCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    SportsMatchItem sports_match_item = 3;
+    //
+    MatchItem match_top = 4;
+    //
+    string bg_cover = 5;
+    //
+    repeated ExtraLink extra_link = 6;
+    //
+    string inline_type = 7;
+    //
+    SearchInlineData ugc_inline = 8;
+    //
+    SearchInlineData live_room_inline = 9;
+    //
+    MatchItem match_bottom = 10;
+}
+
+//
+message SearchOlympicWikiCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    CardBusinessBadge card_business_badge = 3;
+    //
+    NavigationButton read_more = 4;
+    //
+    string inline_type = 5;
+    //
+    SearchInlineData ugc_inline = 6;
+    //
+    SearchInlineData live_room_inline = 7;
+    //
+    PediaCover pedia_cover = 8;
+    //
+    repeated Navigation navigation = 9;
+}
+
+//
+message SearchPediaCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    repeated Navigation navigation = 3;
+    //
+    NavigationButton read_more = 4;
+    //
+    int32 navigation_module_count = 5;
+    //
+    PediaCover pedia_cover = 6;
+    //
+    CardBusinessBadge card_business_badge = 7;
+}
+
+//
+message SearchPurchaseCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string badge = 3;
+    //
+    string venue = 4;
+    //
+    int32 price = 5;
+    //
+    string price_complete = 6;
+    //
+    int32 price_type = 7;
+    //
+    int32 required_number = 8;
+    //
+    string city = 9;
+    //
+    string show_time = 10;
+    //
+    int64 id = 11;
+    //
+    string shop_name = 12;
+}
+
+//
+message SearchRecommendTipCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+}
+
+//
+message SearchRecommendWordCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    repeated RecommendWord list = 3;
+}
+
+//
+message SearchSpecialCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    repeated ReasonStyle new_rec_tags = 3;
+    //
+    CardBusinessBadge card_business_badge = 4;
+    //
+    string badge = 5;
+    //
+    string desc = 6;
+    //
+    repeated ReasonStyle new_rec_tags_v2 = 7;
+}
+
+//
+message SearchSpecialGuideCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string phone = 3;
+    //
+    string desc = 4;
+}
+
+//
+message SearchSportCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string bg_cover = 3;
+    //
+    MatchItem match_top = 4;
+    //
+    MatchItem match_bottom = 5;
+    //
+    repeated ExtraLink extra_link = 6;
+    //
+    repeated MatchInfoObj items = 7;
+    //
+    int64 id = 8;
+}
+
+//
+message SearchSportInlineCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string bg_cover = 3;
+    //
+    MatchItem match_top = 4;
+    //
+    MatchItem match_bottom = 5;
+    //
+    repeated ExtraLink extra_link = 6;
+    //
+    repeated MatchInfoObj items = 7;
+    //
+    int64 id = 8;
+    //
+    SearchInlineData esports_inline = 9;
+    //
+    string inline_type = 10;
+}
+
+//
+message SearchTipsCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string sub_title = 4;
+    //
+    string cover_night = 134;
+}
+
+//
+message SearchTopGameCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    int32 array = 3;
+    //
+    string background_image = 4;
+    //
+    int32 button_type = 5;
+    //
+    string game_icon = 6;
+    //
+    int64 game_base_id = 7;
+    //
+    int32 game_status = 8;
+    //
+    string inline_type = 9;
+    //
+    TopGameUI top_game_ui = 10;
+    //
+    string notice_content = 11;
+    //
+    string notice_name = 12;
+    //
+    float rating = 13;
+    //
+    string score = 14;
+    //
+    repeated TabInfo tab_info = 15;
+    //
+    string tags = 16;
+    //
+    SearchInlineData ugc_inline = 17;
+    //
+    string video_cover_image = 18;
+    //
+    SearchInlineData inline_live = 19;
+}
+
+//
+message SearchUgcInlineCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string author = 3;
+    //
+    int32 danmaku = 4;
+    //
+    string desc = 5;
+    //
+    string inline_type = 6;
+    //
+    int64 mid = 7;
+    //
+    int64 play = 8;
+    //
+    SearchInlineData ugc_inline = 9;
+    //
+    FullTextResult full_text = 10;
+}
+
+//
+message SearchUpperCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    string sign = 3;
+    //
+    int32 fans = 4;
+    //
+    int32 archives = 5;
+    //
+    int32 live_status = 6;
+    //
+    int32 roomid = 7;
+    //
+    OfficialVerify official_verify = 8;
+    //
+    int32 face_nft_new = 9;
+    //
+    NftFaceIcon nft_face_icon = 10;
+    //
+    repeated AvItem av_items = 11;
+    //
+    bool is_up = 12;
+    //
+    int32 attentions = 13;
+    //
+    int32 level = 14;
+    //
+    int32 is_senior_member = 15;
+    //
+    VipInfo vip = 16;
+    //
+    Relation relation = 17;
+    //
+    string live_link = 18;
+    //
+    Notice notice = 19;
+}
+
+//
+message SearchVideoCard {
+    //
+    string title = 1;
+    //
+    string cover = 2;
+    //
+    RcmdReason rcmd_reason = 3;
+    //
+    repeated ReasonStyle new_rec_tags = 4;
+    //
+    repeated ThreePoint three_point = 5;
+    //
+    Share share = 6;
+    //
+    CardBusinessBadge card_business_badge = 7;
+    //
+    int32 play = 8;
+    //
+    int32 danmaku = 9;
+    //
+    string author = 10;
+    //
+    string desc = 11;
+    //
+    string duration = 12;
+    //
+    repeated ReasonStyle badges = 13;
+    //
+    int64 mid = 14;
+    //
+    string show_card_desc1 = 15;
+    //
+    string show_card_desc2 = 16;
+    //
+    FullTextResult full_text = 17;
+    //
+    repeated ReasonStyle new_rec_tags_v2 = 18;
+    //
+    repeated ReasonStyle badges_v2 = 19;
+}
+
+//
+message Share {
+    //
+    string type = 1;
+    //
+    Video video = 2;
+}
+
+//
+message ShareButtonItem {
+    //
+    int32 type = 1;
+    //
+    repeated ButtonMeta button_metas = 2;
+}
+
+//
+message SharePlane {
+    //
+    string title = 1;
+    //
+    string share_subtitle = 2;
+    //
+    string desc = 3;
+    //
+    string cover = 4;
+    //
+    int64 aid = 5;
+    //
+    string bvid = 6;
+    //
+    ShareTo share_to = 7;
+    //
+    string author = 8;
+    //
+    int64 author_id = 9;
+    //
+    string short_link = 10;
+    //
+    string play_number = 11;
+    //
+    int64 room_id = 12;
+    //
+    int32 ep_id = 13;
+    //
+    string area_name = 14;
+    //
+    string author_face = 15;
+    //
+    int32 season_id = 16;
+    //
+    string share_from = 17;
+    //
+    string season_title = 18;
+    //
+    string from = 19;
+}
+
+//
+message ShareTo {
+    //
+    bool dynamic = 1;
+    //
+    bool im = 2;
+    //
+    bool copy = 3;
+    //
+    bool more = 4;
+    //
+    bool wechat = 5;
+    //
+    bool weibo = 6;
+    //
+    bool wechat_monment = 7;
+    //
+    bool qq = 8;
+    //
+    bool qzone = 9;
+    //
+    bool facebook = 10;
+    //
+    bool line = 11;
+    //
+    bool messenger = 12;
+    //
+    bool whats_app = 13;
+    //
+    bool twitter = 14;
+}
+
+//
+enum Sort {
+    SORT_DEFAULT       = 0; //
+    SORT_VIEW_COUNT    = 1; //
+    SORT_PUBLISH_TIME  = 2; //
+    SORT_DANMAKU_COUNT = 3; //
+}
+
+//
+message Space {
+    //
+    int32 show = 1;
+    //
+    string text_color = 2;
+    //
+    string text_color_night = 3;
+    //
+    string text = 4;
+    //
+    string space_url = 5;
+}
+
+//
+message SportsMatchItem {
+    //
+    int64 match_id = 1;
+    //
+    int64 season_id = 2;
+    //
+    string match_name = 3;
+    //
+    string img = 4;
+    //
+    string begin_time_desc = 5;
+    //
+    string match_status_desc = 6;
+    //
+    string sub_content = 7;
+    //
+    string sub_extra_icon = 8;
+}
+
+//
+message Stat {
+    //
+    int32 play = 1;
+    //
+    int32 like = 2;
+    //
+    int32 reply = 3;
+}
+
+//
+message TabInfo {
+    //
+    string tab_name = 1;
+    //
+    string tab_url = 2;
+    //
+    int32 sort = 3;
+}
+
+//
+message TextButton {
+    //
+    string text = 1;
+    //
+    string uri = 2;
+}
+
+//
+message TextLabel {
+    //
+    string text = 1;
+    //
+    string uri = 2;
+}
+
+//
+message Texts {
+    //
+    string booking_text = 1;
+    //
+    string unbooking_text = 2;
+}
+
+//
+message ThreePoint {
+    //
+    string type = 1;
+    //
+    string icon = 2;
+    //
+    string title = 3;
+}
+
+//
+message ThreePoint2 {
+    //
+    repeated DislikeReason dislike_reasons = 1;
+    //
+    repeated DislikeReason feedbacks = 2;
+    //
+    int32 watch_later = 3;
+}
+
+//
+message ThreePointV2 {
+    //
+    string title = 1;
+    //
+    string subtitle = 2;
+    //
+    repeated DislikeReason reasons = 3;
+    //
+    string type = 4;
+    //
+    int64 id = 5;
+}
+
+//
+message ThreePointV3 {
+    //
+    string title = 1;
+    //
+    string selected_title = 2;
+    //
+    string subtitle = 3;
+    //
+    repeated DislikeReason reasons = 4;
+    //
+    string type = 5;
+    //
+    int64 id = 6;
+    //
+    int32 selected = 7;
+    //
+    string icon = 8;
+    //
+    string selected_icon = 9;
+    //
+    string url = 10;
+    //
+    int32 default_id = 11;
+}
+
+//
+message ThreePointV4 {
+    //
+    SharePlane share_plane = 1;
+    //
+    WatchLater watch_later = 2;
+}
+
+//
+message TopGameUI {
+    //
+    string background_image = 1;
+    //
+    string cover_default_color = 2;
+    //
+    string gaussian_blur_value = 3;
+    //
+    string mask_color_value = 4;
+    //
+    string mask_opacity = 5;
+    //
+    string module_color = 6;
+}
+
+//
+message TrafficConfig {
+    //
+    string title = 1;
+    //
+    repeated TrafficConfigOption options = 2;
+    //
+    int64 default_option_id = 3;
+}
+
+//
+message TrafficConfigOption {
+    //
+    int32 id = 1;
+    //
+    string text = 2;
+}
+
+//
+message UpArgs {
+    //
+    int64 up_id = 1;
+    //
+    string up_name = 2;
+    //
+    string up_face = 3;
+    //
+    int32 selected = 4;
+}
+
+//
+message Upper {
+    //
+    int64 mid = 1;
+    //
+    string title = 2;
+    //
+    string cover = 3;
+    //
+    string ptime_text = 4;
+}
+
+//
+enum UserSort {
+    USER_SORT_DEFAULT       = 0; //
+    USER_SORT_FANS_DESCEND  = 1; //
+    USER_SORT_FANS_ASCEND   = 2; //
+    USER_SORT_LEVEL_DESCEND = 3; //
+    USER_SORT_LEVEL_ASCEND  = 4; //
+}
+
+//
+enum UserType {
+    ALL                = 0; //
+    UP                 = 1; //
+    NORMAL_USER        = 2; //
+    AUTHENTICATED_USER = 3; //
+}
+
+//
+message Video {
+    //
+    string bvid = 1;
+    //
+    int64 cid = 2;
+    //
+    string share_subtitle = 3;
+    //
+    bool is_hot_label = 4;
+    //
+    int32 page = 5;
+    //
+    int32 page_count = 6;
+    //
+    string short_link = 7;
+}
+
+//
+message VipInfo {
+    //
+    int32 type = 1;
+    //
+    int32 status = 2;
+    //
+    int64 due_date = 3;
+    //
+    int32 vip_pay_type = 4;
+    //
+    int32 theme_type = 5;
+    //
+    VipLabel label = 6;
+    //
+    int32 avatar_subscript = 7;
+    //
+    string nickname_color = 8;
+    //
+    int64 role = 9;
+    //
+    string avatar_subscript_url = 10;
+    //
+    int32 tv_vip_status = 11;
+    //
+    int32 tv_vip_pay_type = 12;
+}
+
+//
+message VipLabel {
+    //
+    string path = 1;
+    //
+    string text = 2;
+    //
+    string label_theme = 3;
+    //
+    string text_color = 4;
+    //
+    int32 bg_style = 5;
+    //
+    string bg_color = 6;
+    //
+    string border_color = 7;
+    //
+    bool use_img_label = 8;
+    //
+    string img_label_uri_hans = 9;
+    //
+    string img_label_uri_hant = 10;
+    //
+    string img_label_uri_hans_static = 11;
+    //
+    string img_label_uri_hant_static = 12;
+}
+
+//
+message WatchButton {
+    //
+    string title = 1;
+    //
+    string link = 2;
+}
+
+//
+message WatchedShow {
+    //
+    bool switch = 1;
+    //
+    int64 num = 2;
+    //
+    string text_small = 3;
+    //
+    string text_large = 4;
+    //
+    string icon = 5;
+    //
+    string icon_location = 6;
+    //
+    string icon_web = 7;
+}
+
+//
+message WatchLater {
+    //
+    int64 aid = 1;
+    //
+    string bvid = 2;
+}

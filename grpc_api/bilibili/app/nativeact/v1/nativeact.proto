@@ -7,6 +7,27 @@ import "bilibili/app/dynamic/v2/dynamic.proto";
 import "bilibili/app/archive/middleware/v1/preload.proto";
 
 //
+enum ActionType {
+    Default = 0; //
+    Do      = 1; //
+    Undo    = 2; //
+}
+
+//
+message Area {
+    //
+    int64 height = 1;
+    //
+    int64 width = 2;
+    //
+    int64 x = 3;
+    //
+    int64 y = 4;
+    //
+    string ukey = 5;
+}
+
+//
 message Badge {
     //
     string text = 1;
@@ -106,6 +127,14 @@ message Color {
     string nt_unselected_bg_color = 23;
     //
     string progress_bar_color = 24;
+    //
+    string panel_bg_color = 25;
+    //
+    string panel_select_color = 26;
+    //
+    string panel_select_font_color = 27;
+    //
+    string panel_nt_select_font_color = 28;
 }
 
 //
@@ -237,6 +266,28 @@ message EditorResp {
 }
 
 //
+message FollowOgvParams {
+    //
+    ActionType action = 1;
+    //
+    int32 season_id = 2;
+}
+
+//
+message FollowOgvReq {
+    //
+    string raw_params = 1;
+    //
+    FollowOgvParams params = 2;
+}
+
+//
+message FollowOgvRly {
+    //
+    string follow_params = 1;
+}
+
+//
 message GameCard {
     //
     string image = 1;
@@ -270,6 +321,24 @@ message HeaderCard {
     string discuss_num = 8;
     //
     bool is_subscribed = 9;
+    //
+    int64 mid = 10;
+}
+
+//
+message IconCard {
+    //
+    repeated IconItem items = 1;
+}
+
+//
+message IconItem {
+    //
+    string title = 1;
+    //
+    string image = 2;
+    //
+    string uri = 3;
 }
 
 //
@@ -375,6 +444,46 @@ message LiveItem {
     string link = 15;
     //
     int64 live_id = 16;
+    //
+    LiveWatchedShow watched_show = 17;
+}
+
+//
+message LiveWatchedShow {
+    //
+    bool switch = 1;
+    //
+    int64 num = 2;
+    //
+    string text_small = 3;
+    //
+    string text_large = 4;
+    //
+    string icon = 5;
+    //
+    string icon_location = 6;
+}
+
+//
+message MessageBox {
+    //
+    string alert_msg = 1;
+    //
+    string confirm_button_text = 2;
+    //
+    string cancel_button_text = 3;
+    //
+    string confirm_msg = 4;
+    //
+    string cancel_msg = 5;
+    //
+    MessageBoxType type = 6;
+}
+
+//
+enum MessageBoxType {
+    Dialog = 0; //
+    Toast  = 1; //
 }
 
 //
@@ -402,7 +511,54 @@ message Module {
 //
 message ModuleItem {
     //
-    string card_type = 1;
+    enum CardDetailCase {
+        CARDDETAIL_NOT_SET            = 0;  //
+        EDITOR_RECOMMEND_CARD         = 10; //
+        PARTICIPATION_CARD            = 11; //
+        HEADER_CARD                   = 12; //
+        DYNAMIC_CARD                  = 13; //
+        TEXT_CARD                     = 14; //
+        TEXT_TITLE_CARD               = 15; //
+        IMAGE_TITLE_CARD              = 16; //
+        DYNAMIC_MORE_CARD             = 17; //
+        DYNAMIC_ACT_MORE_CARD         = 18; //
+        LIVE_CARD                     = 19; //
+        CAROUSEL_IMG_CARD             = 20; //
+        CAROUSEL_WORD_CARD            = 21; //
+        RESOURCE_CARD                 = 22; //
+        RESOURCE_MORE_CARD            = 23; //
+        GAME_CARD                     = 24; //
+        VIDEO_CARD                    = 25; //
+        VIDEO_MORE_CARD               = 26; //
+        RECOMMEND_CARD                = 27; //
+        RECOMMEND_VERTICAL_CARD       = 28; //
+        RELATIVEACT_CARD              = 29; //
+        RELATIVEACT_CAPSULE_CARD      = 30; //
+        STATEMENT_CARD                = 31; //
+        ICON_CARD                     = 32; //
+        VOTE_CARD                     = 33; //
+        RESERVE_CARD                  = 34; //
+        TIMELINE_HEAD_CARD            = 35; //
+        TIMELINE_EVENT_TEXT_CARD      = 36; //
+        TIMELINE_EVENT_IMAGE_CARD     = 37; //
+        TIMELINE_EVENT_IMAGETEXT_CARD = 38; //
+        TIMELINE_EVENT_RESOURCE_CARD  = 39; //
+        TIMELINE_MORE_CARD            = 40; //
+        TIMELINE_UNFOLD_CARD          = 41; //
+        OGV_ONE_CARD                  = 42; //
+        OGV_THREE_CARD                = 43; //
+        OGV_MORE_CARD                 = 44; //
+        NAVIGATION_CARD               = 45; //
+        REPLY_CARD                    = 46; //
+        TAB_CARD                      = 47; //
+        NEWACT_HEADER_CARD            = 48; //
+        NEWACT_AWARD_CARD             = 49; //
+        NEWACT_STATEMENT_CARD         = 50; //
+        PROGRESS_CARD                 = 51; //
+        SELECT_CARD                   = 52; //
+    }
+    //
+    CardDetailCase card_type = 1;
     //
     string card_id = 2;
     oneof card_detail {
@@ -440,7 +596,255 @@ message ModuleItem {
         VideoCard video_card = 25;
         //
         VideoMoreCard video_more_card = 26;
+        //
+        RcmdCard recommend_card = 27;
+        //
+        RcmdVerticalCard recommend_vertical_card = 28;
+        //
+        RelativeactCard relativeact_card = 29;
+        //
+        RelativeactCapsuleCard relativeact_capsule_card = 30;
+        //
+        StatementCard statement_card = 31;
+        //
+        IconCard icon_card = 32;
+        //
+        VoteCard vote_card = 33;
+        //
+        ReserveCard reserve_card = 34;
+        //
+        TimelineHeadCard timeline_head_card = 35;
+        //
+        TimelineEventTextCard timeline_event_text_card = 36;
+        //
+        TimelineEventImageCard timeline_event_image_card = 37;
+        //
+        TimelineEventImagetextCard timeline_event_imagetext_card = 38;
+        //
+        TimelineEventResourceCard timeline_event_resource_card = 39;
+        //
+        TimelineMoreCard timeline_more_card = 40;
+        //
+        TimelineUnfoldCard timeline_unfold_card = 41;
+        //
+        OgvOneCard ogv_one_card = 42;
+        //
+        OgvThreeCard ogv_three_card = 43;
+        //
+        OgvMoreCard ogv_more_card = 44;
+        //
+        NavigationCard navigation_card = 45;
+        //
+        ReplyCard reply_card = 46;
+        //
+        TabCard tab_card = 47;
+        //
+        NewactHeader newact_header = 48;
+        //
+        NewactAward newact_award = 49;
+        //
+        NewactStatement newact_statement = 50;
+        //
+        ProgressCard progress_card = 51;
+        //
+        SelectCard select_card = 52;
     }
+}
+
+//
+message NavigationCard {
+    //
+    repeated NavigationItem items = 1;
+}
+
+//
+message NavigationItem {
+    //
+    int64 module_id = 1;
+    //
+    string title = 2;
+}
+
+//
+message NewactAward {
+    //
+    string title = 1;
+    //
+    repeated NewactAwardItem items = 2;
+}
+
+//
+message NewactAwardItem {
+    //
+    string title = 1;
+    //
+    string content = 2;
+}
+
+//
+message NewactFeature {
+    //
+    string name = 1;
+    //
+    string border_color = 2;
+}
+
+//
+message NewactHeader {
+    //
+    string title = 1;
+    //
+    string time = 2;
+    //
+    string image = 3;
+    //
+    string sponsor_title = 4;
+    //
+    int64 mid = 5;
+    //
+    string user_name = 6;
+    //
+    string user_face = 7;
+    //
+    string user_url = 8;
+    //
+    repeated NewactFeature features = 9;
+}
+
+//
+message NewactStatementItem {
+    //
+    string title = 1;
+    //
+    string content = 2;
+}
+
+//
+message NewactStatement {
+    //
+    string title = 1;
+    //
+    repeated NewactStatementItem items = 2;
+}
+
+//
+message OfficialInfo {
+    //
+    int32 role = 1;
+    //
+    string title = 2;
+    //
+    string desc = 3;
+    //
+    int32 type = 4;
+}
+
+//
+message OgvFollowButton {
+    //
+    bool is_followed = 1;
+    //
+    string follow_text = 2;
+    //
+    string follow_icon = 3;
+    //
+    string unfollow_text = 4;
+    //
+    string unfollow_icon = 5;
+    //
+    string follow_params = 6;
+}
+
+//
+message OgvMoreCard {
+    //
+    string button_text = 1;
+    //
+    string supernatant_title = 2;
+    //
+    string params = 3;
+}
+
+//
+message OgvOneCard {
+    //
+    string position1 = 1;
+    //
+    string position2 = 2;
+    //
+    string position3 = 3;
+    //
+    string cover_right_text1 = 4;
+    //
+    string cover_right_text2 = 5;
+    //
+    string rcmd_content = 6;
+    //
+    string rcmd_icon = 7;
+    //
+    OgvFollowButton follow_button = 8;
+    //
+    string image = 13;
+    //
+    Badge badge = 14;
+    //
+    string title = 15;
+    //
+    ReportDic report_dic = 16;
+    //
+    string url = 17;
+    //
+    string resource_type = 18;
+}
+
+//
+message OgvSupernatantParams {
+    //
+    int64 last_index = 1;
+    //
+    int64 offset = 2;
+    //
+    int64 module_id = 3;
+}
+
+//
+message OgvSupernatantReq {
+    //
+    string raw_params = 1;
+    //
+    OgvSupernatantParams params = 2;
+    //
+    int64 primary_page_id = 3;
+}
+
+//
+message OgvSupernatantResp {
+    //
+    Module module = 1;
+    //
+    int64 last_index = 2;
+}
+
+//
+message OgvThreeCard {
+    //
+    string cover_left_text1 = 1;
+    //
+    string subtitle = 2;
+    //
+    OgvFollowButton follow_button = 3;
+    //
+    string image = 4;
+    //
+    Badge badge = 5;
+    //
+    string title = 6;
+    //
+    ReportDic report_dic = 7;
+    //
+    string url = 8;
+    //
+    string resource_type = 9;
 }
 
 //
@@ -485,6 +889,14 @@ message PageShare {
     string inside_uri = 5;
     //
     string outside_uri = 6;
+    //
+    string origin = 7;
+    //
+    string sid = 8;
+    //
+    string space_page_url = 9;
+    //
+    string space_exclusive_page_url = 10;
 }
 
 //
@@ -520,6 +932,167 @@ message PlayerDimension {
 }
 
 //
+enum ProgressBar {
+    PBarDefault = 0; //
+    PBarColor   = 1; //
+    PBarTexture = 2; //
+}
+
+//
+message ProgressCard {
+    //
+    ProgressStyle style = 1;
+    //
+    ProgressSlot slot_type = 2;
+    //
+    ProgressBar bar_type = 3;
+    //
+    string texture_image = 4;
+    //
+    int64 num = 5;
+    //
+    string display_num = 6;
+    //
+    repeated ProgressNode nodes = 7;
+}
+
+//
+message ProgressEvent {
+    //
+    int64 page_id = 1;
+    //
+    repeated ProgressEventItem items = 2;
+}
+
+//
+message ProgressEventItem {
+    //
+    int64 item_id = 1;
+    //
+    string type = 2;
+    //
+    int64 num = 3;
+    //
+    string display_num = 4;
+    //
+    string web_key = 5;
+    //
+    int64 dimension = 6;
+}
+
+//
+message ProgressNode {
+    //
+    string name = 1;
+    //
+    int64 num = 2;
+    //
+    string display_num = 3;
+}
+
+//
+message ProgressReq {
+    //
+    int64 page_id = 1;
+}
+
+//
+message ProgressRly {
+    //
+    ProgressEvent event = 1;
+}
+
+//
+enum ProgressSlot {
+    PSlotDefault = 0; //
+    PSlotOutline = 1; //
+    PSlotFill    = 2; //
+}
+
+//
+enum ProgressStyle {
+    PStyleDefault   = 0; //
+    PStyleRound     = 1; //
+    PStyleRectangle = 2; //
+    PStyleNode      = 3; //
+}
+
+//
+message RcmdCard {
+    //
+    int64 mid = 1;
+    //
+    string name = 2;
+    //
+    string face = 3;
+    //
+    string uri = 4;
+    //
+    string reason = 5;
+    //
+    bool is_followed = 6;
+    //
+    OfficialInfo official = 7;
+    //
+    VipInfo vip = 8;
+    //
+    string rank_icon = 9;
+    //
+    RedirectType redirect_type = 10;
+}
+
+//
+message RcmdVerticalCard {
+    //
+    repeated RcmdCard items = 1;
+}
+
+//
+enum RedirectType {
+    RtTypeDefault = 0; //
+    RtTypeSpace   = 1; //
+    RtTypeUri     = 2; //
+}
+
+//
+message RelativeactCapsuleCard {
+    //
+    string title = 1;
+    //
+    repeated RelativeactCapsuleItem items = 2;
+}
+
+//
+message RelativeactCapsuleItem {
+    //
+    int64 page_id = 1;
+    //
+    string title = 2;
+    //
+    string uri = 3;
+}
+
+//
+message RelativeactCard {
+    //
+    string image = 1;
+    //
+    string title = 2;
+    //
+    string desc = 3;
+    //
+    string uri = 4;
+}
+
+//
+message ReplyCard {
+    //
+    int64 reply_id = 1;
+    //
+    int64 type = 2;
+}
+
+//
 message ReportDic {
     //
     string biz_type = 1;
@@ -539,6 +1112,83 @@ message ReportDic {
     int64 season_id = 8;
     //
     string author_name = 9;
+}
+
+//
+message ReserveButton {
+    //
+    ReserveGoto goto = 1;
+    //
+    MessageBox message_box = 2;
+    //
+    string reserve_params = 3;
+    //
+    bool has_done = 4;
+    //
+    string done_text = 5;
+    //
+    string undone_text = 6;
+    //
+    string icon = 7;
+    //
+    bool is_highlight = 8;
+    //
+    string url = 9;
+}
+
+//
+message ReserveCard {
+    //
+    int64 sid = 1;
+    //
+    int64 mid = 2;
+    //
+    string name = 3;
+    //
+    string face = 4;
+    //
+    string uri = 5;
+    //
+    string title = 6;
+    //
+    string content = 7;
+    //
+    int64 num = 8;
+    //
+    string subtitle = 9;
+    //
+    ReserveButton button = 10;
+    //
+    bool hide_reserve_num = 11;
+}
+
+//
+enum ReserveGoto {
+    Reserve  = 0; //
+    Redirect = 1; //
+    Unable   = 2; //
+}
+
+//
+message ReserveParams {
+    //
+    int32 action = 1;
+    //
+    int64 sid = 2;
+}
+
+//
+message ReserveReq {
+    //
+    string raw_params = 1;
+    //
+    ReserveParams params = 2;
+}
+
+//
+message ReserveRly {
+    //
+    string reserve_params = 1;
 }
 
 //
@@ -606,6 +1256,24 @@ message ResourceResp {
 }
 
 //
+message SelectCard {
+    //
+    int64 current_tab = 1;
+    //
+    repeated SelectItem items = 2;
+}
+
+//
+message SelectItem {
+    //
+    int64 page_id = 1;
+    //
+    string title = 2;
+    //
+    PageShare page_share = 3;
+}
+
+//
 message Setting {
     //
     bool display_more_button = 1;
@@ -650,6 +1318,22 @@ message Share {
 }
 
 //
+message SizeImage {
+    //
+    string image = 1;
+    //
+    int64 height = 2;
+    //
+    int64 width = 3;
+}
+
+//
+message StatementCard {
+    //
+    string content = 1;
+}
+
+//
 message SubpageData {
     //
     string title = 1;
@@ -665,6 +1349,18 @@ message SubpageTab {
     string name = 1;
     //
     string params = 2;
+}
+
+//
+message TabCard {
+    //
+    int64 current_tab = 1;
+    //
+    TabStyle style = 2;
+    //
+    repeated TabItem items = 3;
+    //
+    SizeImage bg_image = 4;
 }
 
 //
@@ -686,6 +1382,29 @@ message TabIndexReq {
 }
 
 //
+message TabItem {
+    //
+    int64 page_id = 1;
+    //
+    string title = 2;
+    //
+    bool disable_click = 3;
+    //
+    string disable_click_toast = 4;
+    //
+    SizeImage selected_image = 5;
+    //
+    SizeImage unselected_image = 6;
+}
+
+//
+enum TabStyle {
+    TabStyleDefault = 0; //
+    TabStyleColor   = 1; //
+    TabStyleImage   = 2; //
+}
+
+//
 message TextCard {
     //
     string text = 1;
@@ -698,21 +1417,128 @@ message TextTitleCard {
 }
 
 //
-message TopTab {
+message TimelineEventImageCard {
     //
-    string bg_image1 = 1;
+    SizeImage image = 1;
     //
-    string bg_image2 = 2;
+    string title = 2;
     //
-    string tab_top_color = 3;
+    string uri = 3;
+}
+
+//
+message TimelineEventImagetextCard {
     //
-    string tab_middle_color = 4;
+    string title = 1;
     //
-    string tab_bottom_color = 5;
+    string subtitle = 2;
     //
-    string font_color = 6;
+    string content = 3;
     //
-    int64 bar_type = 7;
+    string image = 4;
+    //
+    string uri = 5;
+}
+
+//
+message TimelineEventResourceCard {
+    //
+    string title = 1;
+    //
+    string cover_image_uri = 2;
+    //
+    string uri = 3;
+    //
+    string position1 = 4;
+    //
+    string position2 = 5;
+    //
+    Badge badge = 6;
+    //
+    ReportDic report_dic = 7;
+    //
+    string resource_type = 8;
+}
+
+//
+message TimelineEventTextCard {
+    //
+    string title = 1;
+    //
+    string subtitle = 2;
+    //
+    string content = 3;
+    //
+    string uri = 4;
+}
+
+//
+message TimelineHeadCard {
+    //
+    string stage = 1;
+}
+
+//
+message TimelineMoreCard {
+    //
+    string button_text = 1;
+    //
+    string supernatant_title = 2;
+    //
+    string params = 3;
+}
+
+//
+message TimelineSupernatantParams {
+    //
+    int64 last_index = 1;
+    //
+    int64 offset = 2;
+    //
+    int64 module_id = 3;
+}
+
+//
+message TimelineSupernatantReq {
+    //
+    string raw_params = 1;
+    //
+    TimelineSupernatantParams params = 2;
+    //
+    int64 primary_page_id = 3;
+}
+
+//
+message TimelineSupernatantResp {
+    //
+    Module module = 1;
+    //
+    int64 last_index = 2;
+}
+
+//
+message TimelineUnfoldCard {
+    //
+    message Card {
+        oneof card_detail {
+            //
+            TimelineHeadCard timeline_head_card = 1;
+            //
+            TimelineEventTextCard timeline_event_text_card= 2;
+            //
+            TimelineEventImageCard timeline_event_image_card= 3;
+            //
+            TimelineEventImagetextCard timeline_event_imagetext_card= 4;
+            //
+            TimelineEventResourceCard timeline_event_resource_card= 5;
+        }
+    }
+    //
+    string unfold_text = 1;
+    //
+    string fold_text = 2;
+    //
+    repeated Card cards = 3;
 }
 
 //
@@ -741,6 +1567,24 @@ message TopicIndexReq {
     int32 local_time = 11;
     //
     bool is_cold_start = 12;
+}
+
+//
+message TopTab {
+    //
+    string bg_image1 = 1;
+    //
+    string bg_image2 = 2;
+    //
+    string tab_top_color = 3;
+    //
+    string tab_middle_color = 4;
+    //
+    string tab_bottom_color = 5;
+    //
+    string font_color = 6;
+    //
+    int64 bar_type = 7;
 }
 
 //
@@ -813,4 +1657,144 @@ message VideoRights {
     bool is_cooperation = 2;
     //
     bool is_pgc = 3;
+}
+
+//
+message VipInfo {
+    //
+    int32 type = 1;
+    //
+    int32 status = 2;
+    //
+    int64 due_date = 3;
+    //
+    int32 vip_pay_type = 4;
+    //
+    int32 theme_type = 5;
+    //
+    VipLabel label = 6;
+    //
+    int32 avatar_subscript = 7;
+    //
+    string nickname_color = 8;
+    //
+    int64 role = 9;
+    //
+    string avatar_subscript_url = 10;
+}
+
+//
+message VipLabel {
+    //
+    string path = 1;
+    //
+    string text = 3;
+    //
+    string label_theme = 4;
+    //
+    string text_color = 5;
+    //
+    int32 bg_style = 6;
+    //
+    string bg_color = 7;
+    //
+    string border_color = 8;
+}
+
+//
+message VoteButton {
+    //
+    Area area = 1;
+    //
+    string done_image = 2;
+    //
+    string undone_image = 3;
+    //
+    bool has_voted = 4;
+    //
+    MessageBox message_box = 5;
+    //
+    string vote_params = 6;
+    //
+    int64 source_item_id = 7;
+}
+
+//
+message VoteCard {
+    //
+    SizeImage bg_image = 1;
+    //
+    int64 option_num = 2;
+    //
+    repeated VoteButton buttons = 3;
+    //
+    VoteNum left_num = 4;
+    //
+    VoteProgress progress = 5;
+}
+
+//
+message VoteNum {
+    //
+    Area area = 1;
+    //
+    int64 num = 2;
+}
+
+//
+message VoteParams {
+    //
+    int32 action = 1;
+    //
+    int64 sid = 2;
+    //
+    int64 gid = 3;
+    //
+    int64 source_item_id = 4;
+    //
+    string type = 5;
+}
+
+//
+message VoteProgress {
+    //
+    message VoteProgressItem {
+        //
+        string color = 1;
+        //
+        int64 num = 2;
+        //
+        int64 source_item_id = 3;
+    }
+    //
+    Area area = 1;
+    //
+    VoteProgressStyle style = 2;
+    //
+    repeated VoteProgressItem items = 3;
+}
+
+//
+enum VoteProgressStyle {
+    VPStyleDefault = 0; //
+    VPStyleCircle  = 1; //
+    VPStyleSquare  = 2; //
+}
+
+//
+message VoteReq {
+    //
+    string raw_params = 1;
+    //
+    VoteParams params = 2;
+}
+
+//
+message VoteResp {
+    //
+    string vote_params = 1;
+    //
+    int64 left_num = 2;
+    //
+    int64 can_vote_num = 3;
 }

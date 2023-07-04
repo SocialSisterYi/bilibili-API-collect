@@ -24,7 +24,6 @@ message Arc {
     string uri = 2;
 }
 
-
 //
 message Dynamic {
     //
