@@ -1,5 +1,10 @@
 # 视频推荐
 
+- [获取单视频推荐列表（web端）](#获取单视频推荐列表（web端）)  
+- [获取首页视频推荐列表（web端）](#获取首页视频推荐列表（web端）)
+
+---
+
 ## 获取单视频推荐列表（web端）
 
 > https://api.bilibili.com/x/web-interface/archive/related
@@ -46,14 +51,14 @@
 avid方式：
 
 ```shell
-curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'aid=7'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
+curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'bvid=BV1xx411c7m9'
 ```
 
@@ -284,6 +289,123 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 	},
 	…………
 	]
+}
+```
+
+</details>
+
+
+## 获取首页视频推荐列表（web端）
+
+> https://api.bilibili.com/x/web-interface/index/top/rcmd
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+最多获取14条推荐视频
+
+**url参数：**  
+
+| 参数名          | 类型  | 内容                        | 必要性 | 备注                           |
+|--------------|-----|---------------------------|-----|------------------------------|
+| fresh_type   | num | 相关性                      | 非必要 | 默认为3 <br /> 值越大推荐内容越相关       | 
+| version      | num | web端新旧版本:0为旧版本1为新版本       | 非必要 | 默认为0 <br /> 1,0分别为新旧web端     |
+| ps           | num | pagesize 单页返回的记录条数默认为10或8 | 非必要 | 默认为10 <br /> 当version为1时默认为8 |
+| fresh_idx    | num | 翻页相关                      | 非必要 | 默认为1 <br /> 与翻页相关            |
+| fresh_idx_1h | num | 翻页相关                      | 非必要 | 默认为1 <br /> 与翻页相关            |
+
+**json回复：**
+
+根对象：
+
+| 字段          | 类型    | 内容   | 备注                   |
+|-------------|-------|------|----------------------|
+| code        | num   | 返回值  | 0：成功 <br />-400：请求错误 |
+| message     | str   | 错误信息 | 默认为0                 |
+| ttl         | num   | 1    |                      |
+| data        | array | 推荐列表 |                      |
+| userfeature | str   | 用户功能 |                      |
+| abtest      | obj   | 用户分组 |                      |
+
+`data`数组：
+
+| 项   | 类型 | 内容        | 备注 |
+|-----| ---- |-----------| ---- |
+| 0   | obj  | 推荐视频1     |      |
+| n   | obj  | 推荐视频(n+1) |      |
+| ……  | obj  | ……        | ……   |
+| 13  | obj  | 推荐视频13    |      |
+
+`data`数组中的对象：
+
+基本同「[获取视频详细信息（web端）](info.md#获取视频详细信息（web端）)」中的data对象
+
+`abtest`对象:
+
+| 字段    | 类型  | 内容   | 备注  |
+|-------|-----|------|-----|
+| group | str | 用户分组 |     |
+
+**示例：**
+
+获取新版web端首页推荐视频列表
+
+```shell
+curl -G 'http://api.bilibili.com/x/web-interface/index/top/rcmd' \
+--data-urlencode 'fresh_type=3' \
+--data-urlencode 'version=1' \
+--data-urlencode 'ps=10' \
+--data-urlencode 'fresh_idx=1' \
+--data-urlencode 'fresh_idx_1h=1'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "item": [
+      {
+        "id": 511495739,
+        "bvid": "BV1Cu411z7mG",
+        "cid": 717978243,
+        "goto": "av",
+        "uri": "http://www.bilibili.com/video/BV1Cu411z7mG",
+        "pic": "http://i2.hdslb.com/bfs/archive/e05f487bc9f26baa568f10fe69a0e1ea5e0fbc23.jpg",
+        "title": "请大家助力我的梦想！为凑够10万赞，在街头唱《Be Crazy For Me》！",
+        "duration": 199,
+        "pubdate": 1652605500,
+        "owner": {
+          "mid": 1723817,
+          "name": "樱萍Apple",
+          "face": "http://i2.hdslb.com/bfs/face/6e0fa1bdbbf7e0dd929d968df3b57ca99d187e25.jpg"
+        },
+        "stat": {
+          "view": 263169,
+          "like": 39871,
+          "danmaku": 543
+        },
+        "avfeature": "{\"ctr\":0.192554,\"wdur\":2.323159,\"duration\":213.318313,\"wdlks\":0.685926,\"multi_score_0\":0.452564,\"multi_score_1\":0.112414,\"multi_score_2\":0.03976,\"rankscore\":13.906487,\"av_play\":258890,\"av_like\":39224,\"av_coin\":7165,\"reason_type\":3,\"av_feature\":\"|real_matchtype -1  |s_e online_av2av_v2  |source_len 1  |m_k_w 0  \"}",
+        "isfollowed": 0,
+        "rcmdreason": {
+          "content": "3万点赞",
+          "reasontype": 3
+        },
+        "showinfo": 1,
+        "trackid": "web_pegasus_0.shylf-ai-recsys-1355.165525355529.398"
+      }
+      ......
+    ],
+    "userfeature": "{\"enter_rank\":1500,\"is_fallback\":0,\"s_fresh_idx\":41,\"s_fresh_idx_session\":31,\"s_session_idx\":1,\"fresh_idx\":1,\"fresh_idx_1h\":1}",
+    "abtest": {
+      "group": "b"
+    }
+  }
 }
 ```
 
