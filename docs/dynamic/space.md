@@ -1,6 +1,6 @@
 # 获取用户空间动态
 
-> 接口URL
+> https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space
 
 请求方式：`GET`
 
