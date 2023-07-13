@@ -12,10 +12,10 @@ message FawkesReply {
 
 //
 message FawkesReq {
-    // 客户端在fawkes系统的唯一名
+    // 客户端在fawkes系统的唯一名, 如 `android64`
     string appkey = 1;
-    // 客户端在fawkes系统中的环境参数
+    // 客户端在fawkes系统中的环境参数, 如 `prod`
     string env = 2;
-    // 启动id
+    // 启动id, 32 位 0~9, a~z 组成的字符串
     string session_id = 3;
 }
