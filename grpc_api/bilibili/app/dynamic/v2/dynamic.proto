@@ -780,7 +780,7 @@ message CampusHomePagesReq {
     // 
     double lng = 4;
     // 
-    PlayerArgs player_args = 5;
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
     // 
     int32 page_type = 6;
 }
