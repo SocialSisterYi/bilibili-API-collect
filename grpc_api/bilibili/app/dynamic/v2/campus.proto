@@ -9,7 +9,7 @@ import "bilibili/app/dynamic/common/dynamic.proto";
 import "bilibili/app/dynamic/v2/dynamic.proto";
 
 service Campus {
-    // WaterFlowRcmdReply 暂未定义
+    // 
     rpc WaterFlowRcmd (WaterFlowRcmdReq) returns (WaterFlowRcmdReply);
 }
 
