@@ -10,7 +10,7 @@ import "bilibili/app/dynamic/v2/dynamic.proto";
 
 service Campus {
     // 
-    rpc WaterFlowRcmd (WaterFlowRcmdReq) returns (WaterFlowRcmdReply);
+    rpc WaterFlowRcmd (WaterFlowRcmdReq) returns (WaterFlowRcmdResp);
 }
 
 // 

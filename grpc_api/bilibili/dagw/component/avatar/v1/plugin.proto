@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package bilibili.dagw.component.avatar.v1.plugin;
 
+import "bilibili/dagw/component/avatar/common/common.proto";
+
 //
 message CommentDoubleClickConfig {
     //
@@ -55,7 +57,7 @@ message LiveAnimeConfig {
 //
 message LiveAnimeItem {
     //
-    ColorConfig color = 1;
+    bilibili.dagw.component.avatar.common.ColorConfig color = 1;
     //
     double start_ratio = 2;
     //

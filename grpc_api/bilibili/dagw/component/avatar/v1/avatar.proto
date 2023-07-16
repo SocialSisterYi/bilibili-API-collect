@@ -45,7 +45,7 @@ message Layer {
     //
     bool visible = 2;
     //
-    LayerGeneralSpec general_spec = 3;
+    bilibili.dagw.component.avatar.common.LayerGeneralSpec general_spec = 3;
     //
     LayerConfig layer_config = 4;
     //
@@ -61,7 +61,7 @@ message LayerConfig {
     //
     bool allow_over_paint = 3;
     //
-    MaskProperty layer_mask = 4;
+    bilibili.dagw.component.avatar.common.MaskProperty layer_mask = 4;
 }
 
 //
@@ -71,7 +71,7 @@ message LayerGroup {
     //
     repeated Layer layers = 2;
     //
-    MaskProperty group_mask = 3;
+    bilibili.dagw.component.avatar.common.MaskProperty group_mask = 3;
     //
     bool is_critical_group = 4;
 }
@@ -96,17 +96,17 @@ message LayerTagConfig {
 //
 message ResAnimation {
     //
-    ResourceSource webp_src = 1;
+    bilibili.dagw.component.avatar.common.ResourceSource webp_src = 1;
 }
 
 //
 message ResImage {
     //
-    ResourceSource image_src = 1;
+    bilibili.dagw.component.avatar.common.ResourceSource image_src = 1;
 }
 
 //
 message ResNativeDraw {
     //
-    ResourceSource draw_src = 1;
+    bilibili.dagw.component.avatar.common.ResourceSource draw_src = 1;
 }
