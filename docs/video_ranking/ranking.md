@@ -59,7 +59,7 @@
 
 ```shell
 curl -G 'https://api.bilibili.com/x/web-interface/ranking/v2' \
---data-urlencode 'tid=1' \
+--data-urlencode 'rid=1' \
 --data-urlencode 'type=all'
 ```
 
