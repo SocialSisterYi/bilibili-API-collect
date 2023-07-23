@@ -1,1 +1,108 @@
-// TODO
+syntax = "proto3";
+
+package bilibili.dagw.component.avatar.common;
+
+//
+message BasicRenderSpec {
+    //
+    double opacity = 1;
+}
+
+//
+message ColorConfig {
+    //
+    bool is_dark_mode_aware = 1;
+    //
+    ColorSpec day = 2;
+    //
+    ColorSpec night = 3;
+}
+
+//
+message ColorSpec {
+    //
+    string argb = 1;
+}
+
+//
+message LayerGeneralSpec {
+    //
+    PositionSpec pos_spec = 1;
+    //
+    SizeSpec size_spec = 2;
+    //
+    BasicRenderSpec render_spec = 3;
+}
+
+//
+message MaskProperty {
+    //
+    LayerGeneralSpec general_spec = 1;
+    //
+    ResourceSource mask_src = 2;
+}
+
+//
+message NativeDrawRes {
+    //
+    int32 draw_type = 1;
+    //
+    int32 fill_mode = 2;
+    //
+    ColorConfig color_config = 3;
+    //
+    double edge_weight = 4;
+}
+
+//
+message PositionSpec {
+    //
+    int32 coordinate_pos = 1;
+    //
+    double axis_x = 2;
+    //
+    double axis_y = 3;
+}
+
+//
+message RemoteRes {
+    //
+    string url = 1;
+    //
+    string bfs_style = 2;
+}
+
+//
+message ResourceSource {
+    //
+    enum LocalRes {
+        LOCAL_RES_INVALID = 0;
+        LOCAL_RES_ICON_VIP = 1;
+        LOCAL_RES_ICON_SMALL_VIP = 2;
+        LOCAL_RES_ICON_PERSONAL_VERIFY = 3;
+        LOCAL_RES_ICON_ENTERPRISE_VERIFY = 4;
+        LOCAL_RES_ICON_NFT_MAINLAND = 5;
+        LOCAL_RES_DEFAULT_AVATAR = 6;
+    }
+    //
+    int32 src_type = 1;
+    //
+    int32 placeholder = 2;
+    //
+    oneof res {
+        //
+        RemoteRes remote = 3;
+        //
+        LocalRes local = 4;
+        //
+        NativeDrawRes draw = 5;
+    }
+}
+
+//
+message SizeSpec {
+    //
+    double width = 1;
+    //
+    double height = 2;
+}

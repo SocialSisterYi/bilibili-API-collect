@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.app.interfaces.v1;
+package bilibili.app.interface.v1;
 
 //
 service Media {

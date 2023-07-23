@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.app.interfaces.v1;
+package bilibili.app.interface.v1;
 
 import "bilibili/app/archive/middleware/v1/preload.proto";
 import "bilibili/app/archive/v1/archive.proto";

@@ -294,6 +294,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str  | "DANMU_MSG" | 如果是弹幕消息，内容则是"DANMU_MSG" |
 | info | array | 这条弹幕的用户、内容与粉丝勋章等各种信息 | 待调查其中每个数据的含义 |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 <!-- info字段
 
@@ -456,6 +459,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str  | "INTERACT_WORD" | 如果是进入直播间或关注消息，内容则是"INTERACT_WORD" |
 | data | obj  | 进入直播间的用户的信息 |  |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -535,6 +541,9 @@ json格式
 | ---- | ---- |------------------|----------------------------------|
 | cmd | str | "GUARD_BUY"      | 用户购买舰长 / 提督 / 总督，内容则是"GUARD_BUY" |
 | data | obj | 上舰人uid & 昵称、上舰信息 |                                  |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -582,6 +591,9 @@ json格式
 | cmd | str | "SUPER_CHAT_MESSAGE" | 用户发送醒目留言，内容则是"SUPER_CHAT_MESSAGE" |
 | data | obj | 醒目留言内容、发送者信息等       |                                   |
 | roomid | num | 直播间房间号（非短号          |                                   |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -739,6 +751,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "SEND_GIFT" | 投喂礼物等，内容则是"SEND_GIFT" |
 | data | obj | 礼物投喂人、礼物信息、礼物数量等 |  |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -955,6 +970,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "GIFT_STAR_PROCESS" | 主播的礼物星球其一点亮之后，则内容为"GIFT_STAR_PROCESS" |
 | data | obj | 消息文本 |  |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -985,6 +1003,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "COMBO_SEND" | |
 | data | obj | 礼物投喂者、礼物信息等 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1085,12 +1106,6 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "NOTICE_MSG" | 通知消息，内容则是"NOTICE_MSG" |
 | id | num | 待调查 | |
-| data | obj | 通知数据 | |
-
-data字段
-
-| 字段 | 类型 | 内容   | 备注      |
-| ---- | ---- | ------ | --------- |
 | full | obj | 待调查 | |
 | half | obj | 待调查 | |
 | side | obj | 待调查 | |
@@ -1105,6 +1120,9 @@ data字段
 | scatter | obj | 待调查 | |
 | marquee_id | str | 待调查 | |
 | notice_type | num | 待调查 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 <details>
 <summary>查看消息示例：</summary>
@@ -1217,6 +1235,9 @@ json格式
 | cmd | str | "PREPARING" | |
 | round | num | 轮播状态：<br/>1正在轮播<br/>0未轮播 | |
 | roomid | num | 直播间ID | 未知是真实ID还是短号 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 <details>
 <summary>查看消息示例：</summary>
@@ -1242,6 +1263,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "ROOM_REAL_TIME_MESSAGE_UPDATE" | |
 | data | obj | 房间ID、主播粉丝数等 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1265,6 +1289,7 @@ data字段
         "fans_club": 8
     }
 }
+```
 </details>
 
 #### 直播间高能榜
@@ -1275,6 +1300,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "ONLINE_RANK_V2" | 直播间高能用户数据刷新，内容则是"ONLINE_RANK_V2" |
 | data | obj | 直播间高能用户数据 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1293,6 +1321,9 @@ list数组中的对象
 | uname | str | 用户名称 | |
 | rank | num | 该用户在高能榜中的排名 | |
 | guard_level | num | 待调查 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 <details>
 <summary>查看消息示例：</summary>
@@ -1343,6 +1374,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "ONLINE_RANK_COUNT" | 直播间高能用户数，内容是"ONLINE_RANK_COUNT" |
 | data | obj | 直播间高能用户数量 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1374,6 +1408,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "ONLINE_RANK_TOP3" | |
 | data | obj | 消息内容、高能榜排名等 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1417,6 +1454,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "LIKE_INFO_V3_CLICK" | 若直播间被赞，则内容是"LIKE_INFO_V3_CLICK" |
 | data | obj | 点赞的用户的信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1484,6 +1524,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "LIKE_INFO_V3_UPDATE" | 若直播间点赞数更新，则内容是"LIKE_INFO_V3_UPDATE" |
 | data | obj | 直播间点赞数 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1513,6 +1556,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "POPULARITY_RED_POCKET_START" | |
 | data | obj | 送红包的老板的信息、里面的礼物信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1608,6 +1654,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "POPULARITY_RED_POCKET_NEW" | 与“直播间发红包弹幕”不同<br />那个是发红包的弹幕信息<br />这个则和“送礼”的信息相似，但也有前者的一些字段 |
 | data | obj | 发送者信息和红包（礼物）信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1676,6 +1725,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "POPULARITY_RED_POCKET_WINNER_LIST" | |
 | data | obj | 抢到红包的用户信息、红包内的礼物信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1783,6 +1835,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "WATCHED_CHANGE" | 若直播间看过人数更新，则内容是"WATCHED_CHANGE" |
 | data | obj | 直播间看过人数 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1816,6 +1871,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "ENTRY_EFFECT" | 有进场特效的用户进入直播间，则内容是"ENTRY_EFFECT" |
 | data | obj | 进场用户、进场特效信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1899,6 +1957,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "AREA_RANK_CHANGED" | 若直播间在所属分区的排名改变，则内容是"AREA_RANK_CHANGED" |
 | data | obj | 直播间在所属分区的排名信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -1957,6 +2018,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "COMMON_NOTICE_DANMAKU" | 例如提示“恭喜主播 时雨ioo 成为手游航海当前第5名”，<br/>，则内容是"COMMON_NOTICE_DANMAKU" |
 | data | obj | 直播间在所属分区排名提升的祝福的信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -2086,6 +2150,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd  | str | "ROOM_CHANGE" | 例如直播间标题更改、直播间分区更改 |
 | data | obj | | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -2128,6 +2195,9 @@ json格式
 | cmd  | str | "SUPER_CHAT_ENTRANCE" | 不知道有什么意义 |
 | data | obj | 醒目留言按钮的信息 | |
 | roomid | num | 直播间ID | 未知是短号还是真实ID |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -2168,6 +2238,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "WIDGET_BANNER" | |
 | data | obj | 横幅信息 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 
@@ -2255,6 +2328,9 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "STOP_LIVE_ROOM_LIST" | |
 | data | obj | 下播的直播间ID列表 | |
+| is_report | bool | false | 含义待调查 |
+| msg_id | str | 消息id | |
+| send_time | num | 毫秒时间戳 | | 
 
 data字段
 

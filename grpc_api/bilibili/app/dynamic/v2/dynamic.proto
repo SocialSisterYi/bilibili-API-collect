@@ -780,9 +780,19 @@ message CampusHomePagesReq {
     // 
     double lng = 4;
     // 
-    PlayerArgs player_args = 5;
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
     // 
     int32 page_type = 6;
+}
+
+//
+enum CampusRcmdReqFrom {
+    CAMPUS_RCMD_FROM_UNKNOWN = 0;
+    CAMPUS_RCMD_FROM_HOME_UN_OPEN = 1;
+    CAMPUS_RCMD_FROM_VISIT_OTHER = 2;
+    CAMPUS_RCMD_FROM_HOME_MOMENT = 3;
+    CAMPUS_RCMD_FROM_DYN_MOMENT = 4;
+    CAMPUS_RCMD_FROM_PAGE_SUBORDINATE_MOMENT = 5;
 }
 
 // 
