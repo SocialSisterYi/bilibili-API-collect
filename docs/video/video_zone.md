@@ -4,6 +4,8 @@
 
 亦可用于更深♂入了解B站的分区
 
+文末提供了一个JSON格式的版本，便于解析。
+
 ## 动画
 
 <img src="../../assets/zone_icon/douga.svg" width="100" height="100"/>
