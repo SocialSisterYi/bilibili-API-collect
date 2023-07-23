@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package bilibili.api.ticket.v1;
+
+service Ticket {
+    // 获取鉴权用 Ticket
+    rpc GetTicket (GetTicketRequest) returns (GetTicketResponse);
+}
+
+// 
+message GetTicketRequest {
+    // 包含: 
+    // + x-fingerprint(包含手机各类信息, 使用 datacenter.hakase.protobuf.AndroidDeviceInfo 生成)
+    // + x-exbadbasket(?)
+    map<String, bytes> context = 1;
+    // 暂时固定为 ec01
+    string key_id = 2;
+    // 
+    bytes sign = 3;
+    // 暂时留空
+    string token = 4;
+}
+
+// 
+message GetTicketResponse {
+    // 
+    message Context {
+        // 
+        string v_voucher = 1;
+    }
+    // x-bili-ticket
+    string ticket = 1;
+    // 有效期起
+    int64 created_at = 2;
+    // 有效期
+    int64 ttl = 3;
+    // 
+    Context context = 4;
+}

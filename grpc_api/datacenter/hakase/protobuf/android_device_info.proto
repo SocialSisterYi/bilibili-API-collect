@@ -1,0 +1,268 @@
+syntax = "proto3";
+
+package datacenter.hakase.protobuf;
+
+message AndroidDeviceInfo {
+    // ?
+    string sdkver = 1;
+    // 产品id
+    // 粉 白 蓝 直播姬 HD 海外 OTT 漫画 TV野版 小视频 网易漫画 网易漫画 网易漫画HD 国际版 东南亚版
+    // 1  2  3    4    5   6    7   8     9     10      11       12       13       14       30
+    string app_id = 2;
+    // 版本号, 如 "7.39.0"
+    string app_version = 3;
+    // 版本号, 如 "7390300"
+    string app_version_code = 4;
+    // 用户 mid
+    string mid = 5;
+    // 渠道号, 如 "master"
+    string chid = 6;
+    // APP 首次安装启动时间戳
+    int64 fts = 7;
+    // 此处实际为 fp, 但不知为何命名为 buvid_local
+    string buvid_local = 8;
+    // 留空为 0
+    int32 first = 9;
+    // 进程名, 如 "tv.danmaku.bili"
+    string proc = 10;
+    // 网络信息, 为一数组直接 toString() 的结果
+    // 如 """["dummy0,fe80::18d8:6ff:fe46:c2ba%dummy0,", "wlan0,fe80::a0f4:6dff:fea8:2d37%wlan0,192.168.1.5,", "lo,::1,127.0.0.1,", "rmnet_ims00,fe80::5a02:3ff:fe04:512%rmnet_ims00,2409:815a:7c38:cee1:1773:d0b9:d163:b023,"]"""
+    string net = 11;
+    // 手机无线电固件版本号(`Build.getRadioVersion()`). 如 `21C20B686S000C000,21C20B686S000C000`.
+    string band = 12;
+    // OS 版本号, 如 "12"
+    string osver = 13;
+    // 当前毫秒时间戳
+    int64 t = 14;
+    // CPU 逻辑核心计数
+    int32 cpu_count = 15;
+    // 手机 Model, 如 "NOH-AN01"
+    string model = 16;
+    // 手机品牌, 如 "HUAWEI"
+    string brand = 17;
+    // 屏幕信息, 如 "1288,2646,560", 即 "{width},{height},{pixel}"
+    string screen = 18;
+    // CPU 型号, 留空或根据实际情况确定
+    string cpu_model = 19;
+    // 蓝牙 MAC, 留空或根据实际情况确定
+    string btmac = 20;
+    // Linux 内核 bootid
+    int64 boot = 21;
+    // 模拟器(?), 如 "000"
+    string emu = 22;
+    // 移动网络 MCC MNC, 如中国移动为 46007
+    string oid = 23;
+    // 当前网络类型, 如 "WIFI", 见 bilibili.metadata.network.NetworkType
+    string network = 24;
+    // 运行内存(Byte)
+    int64 mem = 25;
+    // 传感器信息, 为一数组直接 toString() 的结果
+    // 如 """["accelerometer-icm20690,invensense", "akm-akm09918,akm", "orientation,huawei", "als-tcs3718,ams", "proximity-tcs3718,ams", "gyroscope-icm20690,invensense", "gravity,huawei", "linear Acceleration,huawei", "rotation Vector,huawei", "airpress-bmp280,bosch", "HALL sensor,huawei", "uncalibrated Magnetic Field,Asahi Kasei Microdevices", "game Rotation Vector,huawei", "uncalibrated Gyroscope,STMicroelectronics", "significant Motion,huawei", "step Detector,huawei", "step counter,huawei", "geomagnetic Rotation Vector,huawei", "phonecall sensor,huawei", "RPC sensor,huawei", "agt,huawei", "color sensor,huawei", "uncalibrated Accelerometer,huawei", "drop sensor,huawei"]"""
+    string sensor = 26;
+    // CPU 频率, 如 2045000
+    int64 cpu_freq = 27;
+    // CPU 架构, 如 "ARM"
+    string cpu_vendor = 28;
+    // ?
+    string sim = 29;
+    // 光照传感器数值
+    int32 brightness = 30;
+    // Android Build.prop 信息, key 包括 net.hostname, ro.boot.hardware, etc.
+    // 具体 key-value 需要技术手段自行确定
+    map<string, string> props = 31;
+    // 系统信息, key 包括 product, cpu_model_name, display, cpu_abi_list, etc.
+    // 具体 key-value 需要技术手段自行确定
+    map<string, string> sys = 32;
+    // Wifi MAC, 一般无法获取, 留空
+    string wifimac = 33;
+    // Android ID
+    string adid = 34;
+    // OS 名称, 如 "android"
+    string os = 35;
+    // IMEI, 一般无法获取, 留空
+    string imei = 36;
+    // ?, 留空
+    string cell = 37;
+    // IMSI, 一般无法获取, 留空
+    string imsi = 38;
+    // ICCID, 一般无法获取, 留空
+    string iccid = 39;
+    // 摄像头数量, 留空
+    int32 camcnt = 40;
+    // 摄像头像素, 留空
+    string campx = 41;
+    // 手机内置存储空间(Byte)
+    int64 total_space = 42;
+    // ?, 例如 "false"
+    string axposed = 43;
+    // ?, 留空
+    string maps = 44;
+    // 如: "/data/user/0/tv.danmaku.bili/files"
+    string files = 45;
+    // 是否为虚拟化(?), 如 "0"
+    string virtual = 46;
+    // 虚拟进程, 如 "[]"
+    string virtualproc = 47;
+    // ?, 留空
+    string gadid = 48;
+    // ?, 留空
+    string glimit = 49;
+    // 设备安装的 APP 列表, 如 "[]"
+    string apps = 50;
+    // 客户端 GUID
+    string guid = 51;
+    // ?, 区分于用户 UID
+    string uid = 52;
+    // ?, 留空
+    int32 root = 53;
+    // 摄像头放大倍数(?), 留空
+    string camzoom = 54;
+    // 摄像头闪光灯(?), 留空
+    string camlight = 55;
+    // OAID 匿名设备标识符, 参见 T/TAF 095-2021 安卓系统补充设备标识技术规范, 默认 "00000000-0000-0000-0000-000000000000"
+    string oaid = 56;
+    // UDID 设备唯一标识符, 参见 T/TAF 095-2021 安卓系统补充设备标识技术规范, 可留空
+    string udid = 57;
+    // VAID 开发者匿名设备标识符, 参见 T/TAF 095-2021 安卓系统补充设备标识技术规范, 可留空
+    string vaid = 58;
+    // AAID, 应用匿名设备标识符, 参见 T/TAF 095-2021 安卓系统补充设备标识技术规范, 可留空
+    string aaid = 59;
+    // ?, 设置为 "[]"
+    string androidapp20 = 60;
+    // ?, 留空
+    int32 androidappcnt = 61;
+    // ?, 设置为 "[]"
+    string androidsysapp20 = 62;
+    // 当前剩余电量, 如 100
+    int32 battery = 63;
+    // Android 监听电量状态, 如 "BATTERY_STATUS_DISCHARGING"
+    string battery_state = 64;
+    // Wifi BSSID, 一般无法获取, 留空
+    string bssid = 65;
+    // ?, 如 "NOH-AN01 4.0.0.102(DEVC00E100R7P5)"
+    string build_id = 67;
+    // ISO 国家代码, 如 "CN"
+    string country_iso = 68;
+    // 可用运行内存(Byte)
+    int64 free_memory = 70;
+    // 可用内置存储空间(Byte)
+    string fstorage = 71;
+    // Linux kernel version
+    string kernel_version = 74;
+    // 语言, 如 "zh"
+    string languages = 75;
+    //  Wifi 网卡 MAC(?), 留空
+    string mac = 76;
+    // 当前连接 Wifi 的 SSID, 留空
+    string ssid = 79;
+    // ?, 留空
+    int32 systemvolume = 80;
+    //  Wifi 网卡 MAC 列表(?), 留空
+    string wifimaclist = 81;
+    // 运行内存(Byte)
+    int64 memory = 82;
+    // 当前剩余电量, 如 "100"
+    string str_battery = 83;
+    // 设备是否 Root(?), 留空
+    bool is_root = 84;
+    // 光照传感器数值字符串
+    string str_brightness = 85;
+    // 产品id, 见 2
+    string str_app_id = 86;
+    // 当前 IP(?), 留空
+    string ip = 87;
+    // 留空即可
+    string user_agent = 88;
+    // ?, 如: "1.25"
+    string light_intensity = 89;
+    // 设备 xyz 方向角度
+    repeated float device_angle = 90;
+    // GPS 传感器数量(或者是否有 GPS 传感器?), 如 "1"
+    int64 gps_sensor = 91;
+    // 速度传感器数量(或者是否有速度传感器?), 如 "1"
+    int64 speed_sensor = 92;
+    // 线性加速度传感器数量(或者是否有线性加速度传感器?), 如 "1"
+    int64 linear_speed_sensor = 93;
+    //  陀螺仪传感器数量(或者是否有陀螺仪传感器?), 如 "1"
+    int64 gyroscope_sensor = 94;
+    // 生物识别传感器数量(或者是否有生物识别传感器?), 如 "1"
+    int64 biometric = 95;
+    // 生物识别传感器类型(?), 如 "touchid"
+    repeated string biometrics = 96;
+    // 上次 Crash Dump 时的毫秒时间戳
+    int64 last_dump_ts = 97;
+    // 留空即可
+    string location = 98;
+    // 留空即可
+    string country = 99;
+    // 留空即可
+    string city = 100;
+    // ?, 默认为 0
+    int32 data_activity_state = 101;
+    // ?, 默认为 0
+    int32 data_connect_state = 102;
+    // ?, 默认为 0
+    int32 data_network_type = 103;
+    // ?, 默认为 0
+    int32 voice_network_type = 104;
+    // ?, 默认为 0
+    int32 voice_service_state = 105;
+    // USB 是否连接, 启用为 "1", 否则为 "0"
+    int32 usb_connected = 106;
+    // ADB 是否启用, 启用为 "1", 否则为 "0"
+    int32 adb_enabled = 107;
+    // 系统 UI 软件版本(?), 如 "14.0.0"
+    string ui_version = 108;
+    // 辅助服务
+    repeated string accessibility_service = 109;
+    // 传感器信息(需要和前面的 sensor 对应)
+    repeated SensorInfo sensors_info = 110;
+    // DrmId
+    string drmid = 111;
+    // 是否存在电池
+    bool battery_present = 112;
+    // 电池技术, 如 "Li-poly"
+    string battery_technology = 113;
+    // 电池温度(m℃)
+    int32 battery_temperature = 114;
+    // 电池电压(mV)
+    int32 battery_voltage = 115;
+    // 电池是否被拔开(?), 可以为 0
+    int32 battery_plugged = 116;
+    // 电池健康, 如 2
+    int32 battery_health = 117;
+    // 留空即可
+    repeated string cpu_abi_list = 118;
+    // 留空即可
+    string cpu_abi_libc = 119;
+    // 留空即可
+    string cpu_abi_libc64 = 120;
+    // 留空即可
+    string cpu_processor = 121;
+    // 留空即可
+    string cpu_model_name = 122;
+    // 留空即可
+    string cpu_hardware = 123;
+    // 留空即可
+    string cpu_features = 124;
+}
+
+// 传感器信息
+message SensorInfo {
+    // 传感器名称, 如 "rotation Vector"
+    string name = 1;
+    // 制造商
+    string vendor = 2;
+    // 
+    int32 version = 3;
+    // 
+    int32 type = 4;
+    // 
+    float max_range = 5;
+    // 
+    float resolution = 6;
+    // 耗电量(mA)
+    float power = 7;
+    // 
+    int32 min_delay = 8;
+}
