@@ -12,7 +12,7 @@ message GetTicketRequest {
     // 包含: 
     // + x-fingerprint(包含手机各类信息, 使用 datacenter.hakase.protobuf.AndroidDeviceInfo 生成)
     // + x-exbadbasket(?)
-    map<String, bytes> context = 1;
+    map<string, bytes> context = 1;
     // 暂时固定为 ec01
     string key_id = 2;
     // 
