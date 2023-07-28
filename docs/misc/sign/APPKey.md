@@ -1,4 +1,4 @@
-# APIKey
+# APPKey
 
 以下为已知的 APPkey / APPSec，及部分使用场景参数信息，均来自抓包与逆向工程
 
