@@ -84,13 +84,13 @@ message PremiereResource {
 
 enum PremiereState {
     // 
-    premiere_none = 0;,
+    premiere_none = 0;
     // 
-    premiere_before = 1;,
+    premiere_before = 1;
     // 
-    premiere_in = 2;,
+    premiere_in = 2;
     // 
-    premiere_after = 3;,
+    premiere_after = 3;
 }
 
 // 

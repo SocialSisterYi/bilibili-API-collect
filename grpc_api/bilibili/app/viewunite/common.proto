@@ -368,7 +368,7 @@ message CombinationEp {
     // 
     string more = 5;
     // 
-    repeated int episode_ids = 6;
+    repeated int32 episode_ids = 6;
     // 
     repeated ViewEpisode episodes = 7;
     // 
@@ -724,13 +724,13 @@ message Module {
         // 
         KingPosition king_position = 4;
         // 
-        HeadLine head_line = 5;
+        Headline head_line = 5;
         // 
         OgvTitle ogv_title = 6;
         // 
         Honor honor = 7;
         // 
-        List list = 8;
+        UserList list = 8;
         // 
         Staffs staffs = 9;
         // 
@@ -746,7 +746,7 @@ message Module {
         // 
         OgvSeasons ogv_seasons = 15;
         // 
-        UgcSeason ugc_season = 16;
+        UgcSeasons ugc_season = 16;
         // 
         OgvLiveReserve ogv_live_reserve = 17;
         // 
@@ -774,79 +774,79 @@ message Module {
 
 enum ModuleType {
     // 
-    UNKNOWN = 0;,
+    UNKNOWN = 0;
     // 
-    OGV_INTRODUCTION = 1;,
+    OGV_INTRODUCTION = 1;
     // 
-    OGV_TITLE = 2;,
+    OGV_TITLE = 2;
     // 
-    UGC_HEADLINE = 3;,
+    UGC_HEADLINE = 3;
     // 
-    UGC_INTRODUCTION = 4;,
+    UGC_INTRODUCTION = 4;
     // 
-    KING_POSITION = 5;,
+    KING_POSITION = 5;
     // 
-    MASTER_USER_LIST = 6;,
+    MASTER_USER_LIST = 6;
     // 
-    STAFFS = 7;,
+    STAFFS = 7;
     // 
-    HONOR = 8;,
+    HONOR = 8;
     // 
-    OWNER = 9;,
+    OWNER = 9;
     // 
-    PAGE = 10;,
+    PAGE = 10;
     // 
-    ACTIVITY_RESERVE = 11;,
+    ACTIVITY_RESERVE = 11;
     // 
-    LIVE_ORDER = 12;,
+    LIVE_ORDER = 12;
     // 
-    POSITIVE = 13;,
+    POSITIVE = 13;
     // 
-    SECTION = 14;,
+    SECTION = 14;
     // 
-    RELATE = 15;,
+    RELATE = 15;
     // 
-    PUGV = 16;,
+    PUGV = 16;
     // 
-    COLLECTION_CARD = 17;,
+    COLLECTION_CARD = 17;
     // 
-    ACTIVITY = 18;,
+    ACTIVITY = 18;
     // 
-    CHARACTER = 19;,
+    CHARACTER = 19;
     // 
-    FOLLOW_LAYER = 20;,
+    FOLLOW_LAYER = 20;
     // 
-    OGV_SEASONS = 21;,
+    OGV_SEASONS = 21;
     // 
-    UGC_SEASON = 22;,
+    UGC_SEASON = 22;
     // 
-    OGV_LIVE_RESERVE = 23;,
+    OGV_LIVE_RESERVE = 23;
     // 
-    COMBINATION_EPISODE = 24;,
+    COMBINATION_EPISODE = 24;
     // 
-    SPONSOR = 25;,
+    SPONSOR = 25;
     // 
-    ACTIVITY_ENTRANCE = 26;,
+    ACTIVITY_ENTRANCE = 26;
     // 
-    THEATRE_HOT_TOPIC = 27;,
+    THEATRE_HOT_TOPIC = 27;
     // 
-    RELATED_RECOMMEND = 28;,
+    RELATED_RECOMMEND = 28;
     // 
-    PAY_BAR = 29;,
+    PAY_BAR = 29;
     // 
-    BANNER = 30;,
+    BANNER = 30;
     // 
-    AUDIO = 31;,
+    AUDIO = 31;
     // 
-    AGG_CARD = 32;,
+    AGG_CARD = 32;
     // 
-    SINGLE_EP = 33;,
+    SINGLE_EP = 33;
     // 
-    LIKE_COMMENT = 34;,
+    LIKE_COMMENT = 34;
     // 
-    ATTENTION_RECOMMEND = 35;,
+    ATTENTION_RECOMMEND = 35;
     // 
-    COVENANTER = 36;,
+    COVENANTER = 36;
 }
 
 // 
@@ -876,9 +876,9 @@ message NewEp {
 // 
 enum OccupationType {
     // 
-    STAFF = 0;,
+    STAFF = 0;
     // 
-    CAST = 1;,
+    CAST = 1;
 }
 
 // 
@@ -1226,27 +1226,27 @@ message RelateCard {
 // 视频详情下方推荐卡子类型
 enum RelateCardType {
     // 
-    CARD_TYPE_UNKNOWN = 0;,
+    CARD_TYPE_UNKNOWN = 0;
     // 
-    AV = 1;,
+    AV = 1;
     // 
-    BANGUMI = 2;,
+    BANGUMI = 2;
     // 
-    RESOURCE = 3;,
+    RESOURCE = 3;
     // 
-    GAME = 4;,
+    GAME = 4;
     // 
-    CM = 5;,
+    CM = 5;
     // 
-    LIVE = 6;,
+    LIVE = 6;
     // 
-    AI_RECOMMEND = 7;,
+    AI_RECOMMEND = 7;
     // 
-    BANGUMI_AV = 8;,
+    BANGUMI_AV = 8;
     // 
-    BANGUMI_UGC = 9;,
+    BANGUMI_UGC = 9;
     // 
-    SPECIAL = 10;,
+    SPECIAL = 10;
 }
 
 // 视频详情下方推荐卡子类型: 广告推广
@@ -1390,9 +1390,9 @@ message RelateThreePoint {
 // 
 enum ReserveBizType {
     // 
-    BizTypeNone = 0;,
+    BizTypeNone = 0;
     // 
-    BizTypeReserveActivity = 1;,
+    BizTypeReserveActivity = 1;
     // 
     BizTypeFavSeason = 2;
 }
@@ -1462,11 +1462,11 @@ message SeasonShow {
 
 enum SeasonType {
     // 
-    Unknown = 0;,
+    Unknown = 0;
     // 
-    Base = 1;,
+    Base = 1;
     // 
-    Good = 2;,
+    Good = 2;
 }
 
 // 
@@ -1482,7 +1482,7 @@ message SectionData {
     // 
     string more = 5;
     // 
-    repeated int episode_ids = 6;
+    repeated int32 episode_ids = 6;
     // 
     repeated ViewEpisode episodes = 7;
     // 
@@ -1529,9 +1529,9 @@ message SerialSeason {
 
 enum SerialSeasonCoverStyle {
     // 
-    TITLE = 0;,
+    TITLE = 0;
     // 
-    PICTURE = 1;,
+    PICTURE = 1;
 }
 
 // 
@@ -1749,7 +1749,7 @@ message UgcIntroduction {
 }
 
 // 
-message Result {
+message UgcSeasonActivity {
     // 
     int32 type = 1;
     // 

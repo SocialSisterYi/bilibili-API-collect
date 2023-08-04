@@ -121,17 +121,17 @@ message BizReserveGameParam {
 
 enum BizType {
     // 
-    BizTypeNone = 0;,
+    BizTypeNone = 0;
     // 
-    BizTypeFollowVideo = 1;,
+    BizTypeFollowVideo = 1;
     // 
-    BizTypeReserveActivity = 2;,
+    BizTypeReserveActivity = 2;
     // 
-    BizTypeJumpLink = 3;,
+    BizTypeJumpLink = 3;
     // 
-    BizTypeFavSeason = 4;,
+    BizTypeFavSeason = 4;
     // 
-    BizTypeReserveGame = 5;,
+    BizTypeReserveGame = 5;
 }
 
 // 
@@ -272,11 +272,11 @@ message DmResource {
 
 enum ECode {
     // 
-    CODE_DEFAULT = 0;,
+    CODE_DEFAULT = 0;
     // 
-    CODE_404 = 1;,
+    CODE_404 = 1;
     // 青少年限制
-    CODE_TEENAGER = 78301;,
+    CODE_TEENAGER = 78301;
 }
 
 // 
@@ -303,11 +303,11 @@ message IntroductionTab {
 
 enum JumpShowType {
     // 
-    JST_DEFAULT = 0;,
+    JST_DEFAULT = 0;
     // 
-    JST_FULLSCREEN = 1;,
+    JST_FULLSCREEN = 1;
     // 
-    JST_HALFSCREEN = 2;,
+    JST_HALFSCREEN = 2;
 }
 
 // 
@@ -477,9 +477,9 @@ message PlayToast {
 
 enum PlayToastEnum {
     // 
-    PLAYTOAST_UNKNOWN = 0;,
+    PLAYTOAST_UNKNOWN = 0;
     // 
-    PLAYTOAST_CHARGINGPLUS = 1;,
+    PLAYTOAST_CHARGINGPLUS = 1;
 }
 
 // 
@@ -659,13 +659,13 @@ message TabModule {
 
 enum TabType {
     // 
-    TAB_NONE = 0;,
+    TAB_NONE = 0;
     // 详情 Tab
-    TAB_INTRODUCTION = 1;,
+    TAB_INTRODUCTION = 1;
     // 评论区 Tab
-    TAB_REPLY = 2;,
+    TAB_REPLY = 2;
     // OGV 活动信息 Tab
-    TAB_OGV_ACTIVITY = 3;,
+    TAB_OGV_ACTIVITY = 3;
 }
 
 // 

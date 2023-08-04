@@ -47,7 +47,7 @@ message OgvData {
     // 
     int64 aid = 7;
     // 
-    Stat stat = 8;
+    bilibili.app.viewunite.common.Stat stat = 8;
     // 
     int32 mode = 9;
     // 
@@ -117,7 +117,7 @@ message PlayFloatLayerActivity {
     // 
     string pic_anima_url = 7;
     // 
-    BadgeInfo badge = 8;
+    bilibili.app.viewunite.common.BadgeInfo badge = 8;
     // 
     int64 show_rate_time = 9;
 }
@@ -231,7 +231,7 @@ message ViewPgcAny {
     // 
     OgvData ogv_data = 1;
     // 
-    map<int64, Staff> all_up_info = 2;
+    map<int64, bilibili.app.viewunite.common.Staff> all_up_info = 2;
 }
 
 // 
