@@ -1362,9 +1362,9 @@ message RelateLiveCard {
 // 视频下方推荐区
 message Relates {
     // 
-    RelateConfig config = 1;
+    repeated RelateCard cards = 1;
     // 
-    repeated RelateCard cards = 2;
+    RelateConfig config = 2;
 }
 
 // 视频详情下方推荐卡子类型: 其他特殊
