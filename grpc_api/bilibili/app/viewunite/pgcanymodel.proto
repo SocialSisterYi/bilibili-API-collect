@@ -47,7 +47,7 @@ message OgvData {
     // 
     int64 aid = 7;
     // 
-    bilibili.app.viewunite.common.Stat stat = 8;
+    Stat stat = 8;
     // 
     int32 mode = 9;
     // 
@@ -199,7 +199,7 @@ message Rights {
 }
 
 // 
-message Result {
+message Stat {
     // 
     string followers = 1;
     // 
