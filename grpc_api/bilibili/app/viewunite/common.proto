@@ -948,9 +948,9 @@ message OgvSeasons {
     // 
     string title = 1;
     // 
-    SerialSeasonCoverStyle style = 2;
+    repeated SerialSeason serial_season = 2;
     // 
-    repeated SerialSeason serial_season = 3;
+    SerialSeasonCoverStyle style = 3;
 }
 
 // 
