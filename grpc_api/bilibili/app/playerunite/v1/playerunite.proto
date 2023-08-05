@@ -22,6 +22,8 @@ message PlayViewUniteReq {
     string from_spmid = 3;
     // 补充信息, 如ep_id等
     map<string, string> extra_content = 4;
+    // 
+    string bvid = 5;
 }
 
 // 
@@ -42,4 +44,6 @@ message PlayViewUniteReply {
     bilibili.playershared.QnTrialInfo qn_trial_info = 7;
     // 
     bilibili.playershared.History history = 8;
+    // 
+    bilibili.playershared.ViewInfo view_info = 9;
 }
