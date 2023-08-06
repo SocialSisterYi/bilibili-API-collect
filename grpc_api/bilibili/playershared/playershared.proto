@@ -22,16 +22,6 @@ enum ArcType {
     ARC_TYPE_INTERACT = 1;
 }
 
-// 按钮组件
-message Button {
-    // 按钮文本
-    string text = 1;
-    // 按钮跳转链接
-    string link = 2;
-    // 埋点上报相关
-    map<string, string> report_params = 3;
-}
-
 // 
 message BackgroundInfo {
     // 
@@ -78,13 +68,13 @@ message BottomDisplay {
     string icon = 2;
 }
 
-// 
+// 按钮组件
 message Button {
-    // 
+    // 按钮文本
     string text = 1;
-    // 
+    // 按钮跳转链接
     string link = 2;
-    // 
+    // 埋点上报相关
     map<string, string> report_params = 3;
 }
 
