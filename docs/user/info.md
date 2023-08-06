@@ -549,6 +549,7 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
 | fans            | num   | 粉丝数         |                                                              |
 | friend          | num   | 关注数         |                                                              |
 | attention       | num   | 关注数         |                                                              |
+| sign            | str   | 签名           |                                                              |
 | level_info      | obj   | 等级           |                                                              |
 | pendant         | obj   | 挂件           |                                                              |
 | nameplate       | obj   | 勋章           |                                                              |
