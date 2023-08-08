@@ -192,7 +192,7 @@ bar=514&baz=1919810&foo=114&wts=1684746387&w_rid=d3cbd2a2316089117134038bf4caf44
 
 ### JavaScript
 
-需要`axios`、`md5`依赖
+需要 `axios`、`md5` 依赖
 
 ```javascript
 import md5 from 'md5'
@@ -220,14 +220,14 @@ function encWbi(params, img_key, sub_key) {
         curr_time = Math.round(Date.now() / 1000),
         chr_filter = /[!'()*]/g
     let query = []
-    Object.assign(params, {wts: curr_time})    // 添加 wts 字段
+    Object.assign(params, { wts: curr_time }) // 添加 wts 字段
     // 按照 key 重排参数
     Object.keys(params).sort().forEach((key) => {
         query.push(
-            encodeURIComponent(key) +
-            '=' + 
-            // 过滤 value 中的 "!'()*" 字符
-            encodeURIComponent(('' + params[key]).replace(chr_filter, ''))
+            encodeURIComponent(
+                // 过滤 value 中的 "!'()*" 字符
+                `${key}=${params[key].toString().replace(chr_filter, '')}`
+            )
         )
     })
     query = query.join('&')
@@ -245,24 +245,31 @@ async function getWbiKeys() {
         json_content = resp.data,
         img_url = json_content.data.wbi_img.img_url,
         sub_url = json_content.data.wbi_img.sub_url
+
     return {
-        img_key: img_url.substring(img_url.lastIndexOf('/') + 1, img_url.length).split('.')[0],
-        sub_key: sub_url.substring(sub_url.lastIndexOf('/') + 1, sub_url.length).split('.')[0]
+        img_key: img_url.slice(
+            img_url.lastIndexOf('/') + 1,
+            img_url.lastIndexOf('.')
+        ),
+        sub_key: sub_url.slice(
+            sub_url.lastIndexOf('/') + 1,
+            sub_url.lastIndexOf('.')
+        )
     }
 }
 
-const wbi_keys = await getWbiKeys()
-
-const query = encWbi(
-    {
-        foo: '114',
-        bar: '514',
-        baz: 1919810
-    },
-    wbi_keys.img_key, 
-    wbi_keys.sub_key
-)
-console.log(query)
+getWbiKeys().then((wbi_keys) => {
+    const query = encWbi(
+        {
+            foo: '114',
+            bar: '514',
+            baz: 1919810
+        },
+        wbi_keys.img_key, 
+        wbi_keys.sub_key
+    )
+    console.log(query)
+})
 ```
 
 输出内容为进行 Wbi 签名的后参数的 url query 形式
