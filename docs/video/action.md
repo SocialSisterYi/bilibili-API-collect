@@ -170,7 +170,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/has/like' \
 bvid方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/has/like' \
 --data-urlencode 'bvid=BV1Bt411z799' \
 -b 'SESSDATA=xxx'
 ```
@@ -419,7 +419,7 @@ curl 'https://app.bilibili.com/x/v2/view/coin/add' \
 avid方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 --data-urlencode 'aid=37896701' \
 -b 'SESSDATA=xxx'
 ```
@@ -427,7 +427,7 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
 bvid方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 --data-urlencode 'bvid=BV18t411q7zz' \
 -b 'SESSDATA=xxx'
 ```

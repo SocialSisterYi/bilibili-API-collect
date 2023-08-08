@@ -51,14 +51,14 @@
 avid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'aid=7'
 ```
 
 bvid方式：
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 --data-urlencode 'bvid=BV1xx411c7m9'
 ```
 
@@ -352,7 +352,7 @@ curl -G 'http://api.bilibili.com/x/web-interface/archive/related' \
 获取新版web端首页推荐视频列表
 
 ```shell
-curl -G 'http://api.bilibili.com/x/web-interface/index/top/rcmd' \
+curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
 --data-urlencode 'fresh_type=3' \
 --data-urlencode 'version=1' \
 --data-urlencode 'ps=10' \
