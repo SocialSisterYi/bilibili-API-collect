@@ -621,10 +621,10 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
 | s_img | str  | 主页头图url 小图 |      |
 | l_img | str  | 主页头图url 正常 |      |
 
-**示列：**
+**示例：**
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/card' \
+curl -G 'https://api.bilibili.com/x/web-interface/card' \
 --data-urlencode 'mid=2' \
 --data-urlencode 'photo=true' \
 -b 'SESSDATA=xxx'
@@ -835,7 +835,7 @@ curl -G 'api.bilibili.com/x/web-interface/card' \
 **示例：**
 
 ```shell
-curl -G 'api.bilibili.com/x/space/myinfo' \
+curl -G 'https://api.bilibili.com/x/space/myinfo' \
 -b 'SESSDATA=xxx'
 ```
 

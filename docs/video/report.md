@@ -116,7 +116,7 @@ curl 'https://api.bilibili.com/x/v2/history/report' \
 上报一次视频`av2`/`BV1xx411c7mD`的心跳数据
 
 ```shell
-curl 'api.bilibili.com/x/click-interface/web/heartbeat' \
+curl 'https://api.bilibili.com/x/click-interface/web/heartbeat' \
 --data-urlencode 'aid=2' \
 --data-urlencode 'bvid=BV1xx411c7mD' \
 --data-urlencode 'cid=62131' \

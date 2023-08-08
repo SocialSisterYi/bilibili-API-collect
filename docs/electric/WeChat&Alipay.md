@@ -73,7 +73,7 @@ curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/create' \
 	"message": "0",
 	"ttl": 1,
 	"data": {
-		"qr_code_url": "http://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/gateway?mid=293793435&token=c1cb1d95d2194ba58df6bb0f24ae1aaa",
+		"qr_code_url": "https://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/gateway?mid=293793435&token=c1cb1d95d2194ba58df6bb0f24ae1aaa",
 		"qr_token": "c1cb1d95d2194ba58df6bb0f24ae1aaa",
 		"exp": 1
 	}
