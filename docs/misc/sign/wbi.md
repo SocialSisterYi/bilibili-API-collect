@@ -218,7 +218,7 @@ function getMixinKey(orig) {
 function encWbi(params, img_key, sub_key) {
     const mixin_key = getMixinKey(img_key + sub_key),
         curr_time = Math.round(Date.now() / 1000),
-        chr_filter = /[!'\(\)*]/g
+        chr_filter = /[!'()*]/g
     let query = []
     params = Object.assign(params, {wts: curr_time})    // 添加 wts 字段
     // 按照 key 重排参数
