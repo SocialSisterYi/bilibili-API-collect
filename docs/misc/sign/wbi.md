@@ -224,10 +224,10 @@ function encWbi(params, img_key, sub_key) {
     // 按照 key 重排参数
     Object.keys(params).sort().forEach((key) => {
         query.push(
-            encodeURIComponent(
+            `${encodeURIComponent(key)}=${encodeURIComponent(
                 // 过滤 value 中的 "!'()*" 字符
-                `${key}=${params[key].toString().replace(chr_filter, '')}`
-            )
+                params[key].toString().replace(chr_filter, '')
+            )}`
         )
     })
     query = query.join('&')
