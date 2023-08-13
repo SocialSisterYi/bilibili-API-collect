@@ -156,7 +156,7 @@ curl 'https://member.bilibili.com/x/web/data/article' \
 
 ## 视频数据增量趋势
 
-> https://member.bilibili.com/x/web/data/article/thirty 
+> https://member.bilibili.com/x/web/data/pandect 
 
 *请求方式：GET*
 
