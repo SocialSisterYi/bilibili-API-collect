@@ -13,6 +13,7 @@
 | offset          | str |     | 分页偏移量  |     |
 | host_mid        | str | √   | 用户UID  |     |
 | timezone_offset | num |     | `-480` |     |
+| features        | str |     | itemOpusStyle |  |
 
 ## Json回复
 
