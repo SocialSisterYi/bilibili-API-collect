@@ -174,6 +174,55 @@ print(getCorrespondPath(ts))
 47bbd615f333d6a2c597bbb46ad47a6e59752a305a2f545d3ba5d49ca055309347796f80d257613696d36170c57443a0e9dea2b47f83b0b4224d431e46124fadd9a24c8fa468147e8bf2d2501eaacae43310e19bf58fc4a728d80c90b9401afcfc1536ba9a2f6438ea53c0b2652f8b8d01c87355dd5a5da51de998b1a35d519a
 ```
 
+### Kotlin
+
+```kotlin
+import java.security.KeyFactory
+import java.security.spec.MGF1ParameterSpec
+import java.security.spec.X509EncodedKeySpec
+import java.util.*
+import javax.crypto.Cipher
+import javax.crypto.spec.OAEPParameterSpec
+import javax.crypto.spec.PSource
+
+
+fun main() {
+    println(getCorrespondPath(System.currentTimeMillis()))
+}
+
+fun getCorrespondPath(timestamp: Long): String {
+    val publicKeyPEM = """
+        -----BEGIN PUBLIC KEY-----
+        MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLgd2OAkcGVtoE3ThUREbio0Eg
+        Uc/prcajMKXvkCKFCWhJYJcLkcM2DKKcSeFpD/j6Boy538YXnR6VhcuUJOhH2x71
+        nzPjfdTcqMz7djHum0qSZA0AyCBDABUqCrfNgCiJ00Ra7GmRj+YCK1NJEuewlb40
+        JNrRuoEUXpabUzGB8QIDAQAB
+        -----END PUBLIC KEY-----
+    """.trimIndent()
+
+    val publicKey = KeyFactory.getInstance("RSA").generatePublic(
+        X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyPEM
+            .replace("-----BEGIN PUBLIC KEY-----", "")
+            .replace("-----END PUBLIC KEY-----", "")
+            .replace("\n", "")
+            .trim()))
+    )
+
+    val cipher = Cipher.getInstance("RSA/ECB/OAEPPadding").apply {
+        init(Cipher.ENCRYPT_MODE,
+            publicKey,
+            OAEPParameterSpec("SHA-256", "MGF1", MGF1ParameterSpec.SHA256, PSource.PSpecified.DEFAULT)
+        )
+    }
+
+    return cipher.doFinal("refresh_$timestamp".toByteArray()).joinToString("") { "%02x".format(it) }
+}
+```
+
+```
+1428cbd14605ae42a0b42e22662cfe51d8e5034eeaffb36a46db46bd2f93216cbfd4d150cca2de44395add7c664b40acf44424ee8d634fc821b909423665a34d18bd7f4e77ea5388a2b612daf875e2fe8df62990e14b64a465898b0707bc1288586b68f9f4f2f20bea5cb1cada296beb8009e91bc8fb57a4b81b8923299b6eb7
+```
+
 #### vercel云函数
 
 ```bash
