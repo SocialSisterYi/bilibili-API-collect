@@ -13,6 +13,7 @@
 > https://i0.hdslb.com/bfs/dm/{data}.bin （BAS/代码弹幕专包）
 
 *请求方式：GET*
+*认证方式：半匿名（部分视频在无 Cookie: SESSDATA 时只返回部分弹幕）*
 
 此接口与漫画弹幕相同
 
