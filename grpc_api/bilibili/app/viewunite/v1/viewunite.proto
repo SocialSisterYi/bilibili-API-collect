@@ -743,7 +743,7 @@ message VideoViewPoint {
 // 
 message ViewBase {
     // 
-    UnionType union_type = 1;
+    BizType biz_type = 1;
     // 
     PageType page_type = 2;
     // 
