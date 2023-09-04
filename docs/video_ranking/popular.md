@@ -45,7 +45,7 @@ _请求方式：GET_
 
 `data`中的`list`数组中的对象：
 
-基本同[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的data对象
+基本同[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的data对象
 
 
 **示例：**

@@ -44,7 +44,7 @@
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| path | str | .index 文件路径 | 解密详见[此处](./unlock_index_data.md) |
+| path | str | .index 文件路径 |  |
 | images | array  | 本话图片信息 |  |
 | last_modified | str | 本话信息最后修改时间 |  |
 | host | str | `https://manga.hdslb.com` | |

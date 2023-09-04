@@ -495,7 +495,7 @@ curl -G 'https://api.bilibili.com/x/player/playurl' \
 | start_with_sap | num   | **同上**              |  |
 | SegmentBase    | obj   | 见下表                | url 对应 m4s 文件中，头部的位置<br />音频流该值恒为空     |
 | segment_base   | obj   | **同上**              |  |
-| codecid        | num   | 码流编码标识代码 | 含义见 [上表](视频编码代码)<br />音频流该值恒为`0` |
+| codecid        | num   | 码流编码标识代码 | 含义见 [上表](#视频编码代码)<br />音频流该值恒为`0` |
 
 `video`数组中的对象中的`backup_url`数组：
 
