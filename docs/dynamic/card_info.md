@@ -17,7 +17,7 @@
 | ------- | ---- | -------- | ------- |
 | user    | obj  | 转发者用户信息   | 包含用户名，用户id和头像 |
 | item    | obj  | 转发相关信息 |  `content`字段为转发附言 |  |
-| origin | str  | 被转发动态信息 | 即本文档所描述的动态详细信息字段。</br>动态类型为`item`对象的`orig_type`字段 |
+| origin | str  | 被转发动态信息 | 即本文档所描述的动态详细信息字段。<br/>动态类型为`item`对象的`orig_type`字段 |
 | origin_extend_json | str  | 被转发动态补充信息  |  |
 | origin_user | obj | 被转发用户信息 | |
 | activity_infos | obj | 被转发动态参与的活动 | |
@@ -108,7 +108,7 @@
 在type=2的图片动态中，解析出的对象包含以下内容：
 | 字段    | 类型 | 内容     | 备注    |
 | ------- | ---- | -------- | ------- |
-| item    | obj  | 图片动态内容 |  `description`字段为文字内容</br>`pictures`字段图片 |  |
+| item    | obj  | 图片动态内容 |  `description`字段为文字内容<br/>`pictures`字段图片 |  |
 | user    | obj  | 发布者用户信息   | 包含用户名，用户id和头像 |
 
 

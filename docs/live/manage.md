@@ -396,6 +396,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
     }
 }
 ```
+</details>
 
 给直播间`11996900`删除内容为`测试标签`的标签
 
