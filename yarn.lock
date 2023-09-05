@@ -734,9 +734,9 @@ cac@^6.7.14:
   integrity sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==
 
 caniuse-lite@^1.0.30001517, caniuse-lite@^1.0.30001520:
-  version "1.0.30001525"
-  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001525.tgz#d2e8fdec6116ffa36284ca2c33ef6d53612fe1c8"
-  integrity sha512-/3z+wB4icFt3r0USMwxujAqRvaD/B7rvGTsKhbhSQErVrJvkZCLhgNLJxU8MevahQVH6hCU9FsHdNUFbiwmE7Q==
+  version "1.0.30001527"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001527.tgz#813826554828245ccee776c850566dce12bdeaba"
+  integrity sha512-YkJi7RwPgWtXVSgK4lG9AHH57nSzvvOp9MesgXmw4Q7n0C3H04L0foHqfxcmSAm5AcWb8dW9AYj2tR7/5GnddQ==
 
 chalk@^5.0.0, chalk@^5.3.0:
   version "5.3.0"
@@ -1655,10 +1655,10 @@ vue@^3.3.4:
     "@vue/server-renderer" "3.3.4"
     "@vue/shared" "3.3.4"
 
-vuepress-plugin-copy-code2@^2.0.0-beta.236:
-  version "2.0.0-beta.236"
-  resolved "https://registry.npmjs.org/vuepress-plugin-copy-code2/-/vuepress-plugin-copy-code2-2.0.0-beta.236.tgz#ac945778060e0d7b529f586a1d045de8b387e356"
-  integrity sha512-mrtqtDDSDtAGSiqYlgwrovX1beIQfCFR3LVH6VT8JX032Sc1OA7az3+rjYLWfqgq8sbhF2r3pQdXdUGDhDcOJg==
+vuepress-plugin-copy-code2@2.0.0-beta.237:
+  version "2.0.0-beta.237"
+  resolved "https://registry.npmjs.org/vuepress-plugin-copy-code2/-/vuepress-plugin-copy-code2-2.0.0-beta.237.tgz#686097f7f9ae8c2966a88b9219cebae82426c6a0"
+  integrity sha512-k8HhFrLLxFc81AURJQh4pXbAlRE4OdF5MflcCSCi4R104A+vNs2DvvkmQHtNTiLyXmrciS8oyS3LwUdRvilhxQ==
   dependencies:
     "@vuepress/client" "2.0.0-beta.67"
     "@vuepress/shared" "2.0.0-beta.67"
@@ -1667,24 +1667,24 @@ vuepress-plugin-copy-code2@^2.0.0-beta.236:
     balloon-css "^1.2.0"
     vue "^3.3.4"
     vue-router "^4.2.4"
-    vuepress-plugin-sass-palette "2.0.0-beta.236"
-    vuepress-shared "2.0.0-beta.236"
+    vuepress-plugin-sass-palette "2.0.0-beta.237"
+    vuepress-shared "2.0.0-beta.237"
 
-vuepress-plugin-sass-palette@2.0.0-beta.236:
-  version "2.0.0-beta.236"
-  resolved "https://registry.npmjs.org/vuepress-plugin-sass-palette/-/vuepress-plugin-sass-palette-2.0.0-beta.236.tgz#a2fba3ce868d9b031c90af35aabc934a02d697f3"
-  integrity sha512-WF7JshvQEURp1DP2NabB2rLGiseJGjyj/7bdb2TpD+fMuAhlYyLIiGtfiQevcIIWuVWWMklv1CVdvRDEOfrclg==
+vuepress-plugin-sass-palette@2.0.0-beta.237:
+  version "2.0.0-beta.237"
+  resolved "https://registry.npmjs.org/vuepress-plugin-sass-palette/-/vuepress-plugin-sass-palette-2.0.0-beta.237.tgz#6098f2bbf5260c83a79c54f26f469c75085f4492"
+  integrity sha512-Z0XpgRpYBp1ulL1zYk+H7XKnFU37HxTRGXFJLOkgEiTmVluQqYxH1pCrWDMvTkwoaEn+xOQytQgCW8S+5jrH0w==
   dependencies:
     "@vuepress/shared" "2.0.0-beta.67"
     "@vuepress/utils" "2.0.0-beta.67"
     chokidar "^3.5.3"
     sass "^1.66.1"
-    vuepress-shared "2.0.0-beta.236"
+    vuepress-shared "2.0.0-beta.237"
 
-vuepress-shared@2.0.0-beta.236:
-  version "2.0.0-beta.236"
-  resolved "https://registry.npmjs.org/vuepress-shared/-/vuepress-shared-2.0.0-beta.236.tgz#4163fc91df558ff0a1f7c0f804e76eef9b9f446e"
-  integrity sha512-izHGnHqOXebc0ouP04IgTVuz+xblRb3vdZhjn1AmIWVaEdyPRJ1w3vbWY/5aARNoQubEdBitCXqL3UwvC35FJQ==
+vuepress-shared@2.0.0-beta.237:
+  version "2.0.0-beta.237"
+  resolved "https://registry.npmjs.org/vuepress-shared/-/vuepress-shared-2.0.0-beta.237.tgz#526e9cbd5d9fb1e2c5ec8183875aa2ebbaf27811"
+  integrity sha512-R4lGkX0GD1yUyK0iDrWIZvJbuoGyi9Z41gPz3jFexJM4ojjirkuvLy6DuMwFCi80GKJlrfWq19Tpeo5z5foPBA==
   dependencies:
     "@vuepress/client" "2.0.0-beta.67"
     "@vuepress/shared" "2.0.0-beta.67"
@@ -1700,7 +1700,7 @@ vuepress-shared@2.0.0-beta.236:
     vue "^3.3.4"
     vue-router "^4.2.4"
 
-vuepress-vite@2.0.0-beta.50-pre.1:
+vuepress-vite@2.0.0-beta.67:
   version "2.0.0-beta.67"
   resolved "https://registry.npmjs.org/vuepress-vite/-/vuepress-vite-2.0.0-beta.67.tgz#24db0ce1ba96e1a50c14883970329f933b9d6418"
   integrity sha512-oaak2RPKBP0LeaDpDntlsQWLklCBf2vdeceXtPSLV2IzL/wtMHs5DQ/f7zXxCzvku3h/FIstmgoKq/vC0TvHkA==
@@ -1711,12 +1711,12 @@ vuepress-vite@2.0.0-beta.50-pre.1:
     "@vuepress/theme-default" "2.0.0-beta.67"
     vue "^3.3.4"
 
-vuepress@^2.0.0-beta.67:
-  version "2.0.0-beta.50-pre.1"
-  resolved "https://registry.npmjs.org/vuepress/-/vuepress-2.0.0-beta.50-pre.1.tgz#26eec90444bb37590f29d10dd5923e75c476189f"
-  integrity sha512-4Finc3GDscIqgRFAZFwa4SUm8tIFSVQIxnPIpQPW3kaM37rKylvUDkLrs2lMvoDPTAAE+Kf+v34tAFX+ZMGKUg==
+vuepress@2.0.0-beta.67:
+  version "2.0.0-beta.67"
+  resolved "https://registry.npmjs.org/vuepress/-/vuepress-2.0.0-beta.67.tgz#eacf63d6d14f2364bd8043f13eba67234319cd53"
+  integrity sha512-931pKDOph20RKMLZAH5YYlMz+nfx9jcOQio1Gxk0pB7DwuSxAVFxPv2dbIUP4E/4uWOkLppRhLYcrOoxEbVYzA==
   dependencies:
-    vuepress-vite "2.0.0-beta.50-pre.1"
+    vuepress-vite "2.0.0-beta.67"
 
 which@^2.0.1:
   version "2.0.2"
