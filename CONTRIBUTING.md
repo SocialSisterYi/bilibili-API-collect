@@ -4,7 +4,7 @@
 
 ## 总则
 
-[bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect) 项目（简称 BAC 或 b-a-c）是一个仅用于学习研究、社区开源、公益性质的 [B站（哔哩哔哩）](https://www.bilibili.com/) API（应用程序接口） 文档，使用 [CC-BY-NC 4.0 协议](LICENSE) 开源，它将无差别收集整理相关的**主站业务接口**。
+[bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect) 项目（简称 BAC 或 b-a-c）是一个仅用于学习研究、社区开源、公益性质的 [B站（哔哩哔哩）](https://www.bilibili.com/) API（应用程序接口） 文档，使用 [CC-BY-NC 4.0 协议](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE) 开源，它将无差别收集整理相关的**主站业务接口**。
 
 该项目使用 [MarkDown](https://zh.wikipedia.org/zh-cn/Markdown) 语法进行文档书写，按照业务类型及功能以 **路径** + **文件** 形式索引，任何用户都可通过 Pull Request 提供自己分析出的接口地址与使用说明。
 

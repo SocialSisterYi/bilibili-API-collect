@@ -2,7 +2,7 @@
     <img src="./assets/img/logo.png" width="250" height="200">
 </p>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
-<p align="center">
+<p align="center" class="shields">
     <a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues" style="text-decoration:none">
         <img src="https://img.shields.io/github/issues/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub issues"/>
     </a>
@@ -340,3 +340,9 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 - [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#) 
 
  - [quicktype](https://github.com/quicktype/quicktype) quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages.一键生成多种语言的json反序列化所需类,以便于快速反序列化, 有网页版
+
+<style scoped>
+  .shields a {
+    margin: auto .5em;
+  }
+</style>
