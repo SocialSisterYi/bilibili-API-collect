@@ -77,7 +77,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [ ] [个人中心](docs/login/member_center.md)
   - [ ] [注销登录](docs/login/exit.md)
   - [x] [登录记录](docs/login/login_notice.md)
-  - [x] [Web 端 Coookie 刷新](docs/login/cookie_refresh.md)
+  - [x] [Web 端 Cookie 刷新](docs/login/cookie_refresh.md)
 - [ ] [消息中心](docs/message)
   - [ ] [通知类消息](docs/message/msg.md)
   - [ ] [私信](docs/message/private_msg.md)
@@ -236,7 +236,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
   - [x] [data.index解析](docs/manga/index_file.md)
 - [ ] 哔哩哔哩游戏
 - [ ] [终端网络查询](docs/clientinfo)
-  - [x] [基于ip的地理位置查询](docs/clientinfo/ip.md)
+  - [x] [基于 ip 的地理位置查询](docs/clientinfo/ip.md)
   - [x] [终端信息查询](docs/clientinfo/client_info.md)
 - [ ] [其他](docs/misc)
   - [x] [获取当前时间戳](docs/misc/time_stamp.md)
