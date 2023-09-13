@@ -270,8 +270,8 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 | ---- | ---- | ------------- | ---- |
 | messages    | array  | 聊天记录列表    |      |
 | has_more    | num  | 0 |      |
-| min_seqno   | num  | 未知          |   |
-| max_seqno   | num  | 未知    |      |
+| min_seqno   | num  | 所有消息最小的序列号（最早）          |   |
+| max_seqno   | num  | 所有消息最大的序列号（最晚）    |      |
 | e_infos   | array  | 聊天表情列表    |      |
 
 `messages`数组：
@@ -283,7 +283,7 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 | receiver_id  | num                                  | 接收者uid                       |    注意名称是receiver_id                               |
 | msg_type     | num                                  | 消息类型                 | 1:文字消息<br>2:图片消息<br>5:撤回的消息<br>12、13:通知      |
 | content     | str                                 | 消息内容                 | 此处存在设计缺陷     |
-| msg_seqno  | num  | 未知          |   |
+| msg_seqno  | num  | 消息序列号，保证按照时间顺序从小到大     |   |
 | timestamp   | num  | 消息发送时间戳    |      |
 | at_uids   | array  | 未知   |      |
 | msg_key   | num | 未知   |      |
