@@ -14,6 +14,7 @@
   "devDependencies": {
     "vuepress": "2.0.0-beta.67",
     "vuepress-plugin-copy-code2": "2.0.0-beta.237",
-    "vuepress-vite": "2.0.0-beta.67"
+    "vuepress-vite": "2.0.0-beta.67",
+    "@vuepress/plugin-search": "^2.0.0-beta.67"
   }
 }
