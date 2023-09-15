@@ -2,7 +2,7 @@
 
 ## 导航栏用户信息
 
-> https://api.bilibili.com/nav（带有转义）
+> ~~https://api.bilibili.com/nav（带有转义）~~ (已失效)
 >
 > https://api.bilibili.com/x/web-interface/nav（原始数据）
 
@@ -115,8 +115,10 @@
 
 **示例：**
 
+**登录状态：**
+
 ```shell
-curl 'https://api.bilibili.com/nav' \
+curl 'https://api.bilibili.com/x/web-interface/nav' \
 	-b 'SESSDATA=xxx'
 ```
 
@@ -229,6 +231,32 @@ curl 'https://api.bilibili.com/nav' \
             "sub_url": "https://i0.hdslb.com/bfs/wbi/6e4909c702f846728e64f6007736a338.png"
         },
         "is_jury": false
+    }
+}
+```
+
+</details>
+
+**未登录状态：**
+
+```shell
+curl 'https://api.bilibili.com/x/web-interface/nav'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": -101,
+    "message": "账号未登录",
+    "ttl": 1,
+    "data": {
+        "isLogin": false,
+        "wbi_img": {
+            "img_url": "https://i0.hdslb.com/bfs/wbi/653657f524a547ac981ded72ea172057.png",
+            "sub_url": "https://i0.hdslb.com/bfs/wbi/6e4909c702f846728e64f6007736a338.png"
+        },
     }
 }
 ```
