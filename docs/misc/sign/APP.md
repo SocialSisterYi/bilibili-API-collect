@@ -131,3 +131,38 @@ public class AppSigner {
 ```
 
 输出结果为：01479cf20504d865519ac50f33ba3a7d
+
+### TypeScript/JavaScript
+
+```typescript
+import { createHash } from 'node:crypto'
+
+type Params = Record<string, any>
+
+const md5 = (str: string) => createHash('md5').update(str).digest('hex')
+
+/**
+ * 为请求参数进行 APP 签名
+ */
+export function appSign(params: Params, appkey: string, appsec: string) {
+  params.appkey = appkey
+  const searchParams = new URLSearchParams(params)
+  searchParams.sort()
+  return md5(searchParams.toString() + appsec)
+}
+
+console.log(
+  appSign(
+    {
+      id: 114514,
+      str: '1919810',
+      test: 'いいよ，こいよ',
+    },
+    '1d8b6e7d45233436',
+    '560c52ccd288fed045859ed18bffd973',
+  ),
+  '01479cf20504d865519ac50f33ba3a7d',
+)
+```
+
+输出结果为：01479cf20504d865519ac50f33ba3a7d
