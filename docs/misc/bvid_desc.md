@@ -83,47 +83,42 @@
 XOR = 177451812
 ADD = 100618342136696320
 TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF"
-MAP = {
-    0:9,
-    1:8,
-    2:1,
-    3:6,
-    4:2,
-    5:4,
-    6:0,
-    7:7,
-    8:3,
-    9:5
-}
-def av2bv(av):
-    av = (av ^ XOR) + ADD
-    bv = [""]*10
-    for i in range(10):
-        bv[MAP[i]] = TABLE[(av//58**i)%58]
-    return "".join(bv)
+MAP = 9, 8, 1, 6, 2, 4, 0, 7, 3, 5
 
-def bv2av(bv):
-    av = [""]*10
+
+def av2bv(av: int) -> int:
+    av = (av ^ XOR) + ADD
+    bv = [""] * 10
+    for i in range(10):
+        bv[MAP[i]] = TABLE[(av // 58**i) % 58]
+    return int("".join(bv))
+
+
+def bv2av(bv: int) -> int:
+    av = [""] * 10
     s = 0
     for i in range(10):
-        s += TABLE.find(bv[MAP[i]])*58**i
-    av=(s-ADD)^XOR
+        s += TABLE.find(bv[MAP[i]]) * 58**i
+    av = (s - ADD) ^ XOR
 
-    return(av)
+    return av
+
 
 def main():
-    while True:
-        mod = input("1.AV2BV\n2.BV2AV\n3.Exit\n你的选择:")
-        if mod == "1":
-            print("BV号是: BV"+av2bv(int(input("AV号是:"))))
-        elif mod == "2":
-            print("AV号是 AV"+str(bv2av(input("BV号是"))))
-        elif mod == "3":
+    while 1:
+        mode = input("1. AV to BV\n2. BV to AV\n3. Exit\n你的选择：")
+        if mode == "1":
+            print(f"BV号是：BV {av2bv(int(input('AV号是：')))}")
+        elif mode == "2":
+            print(f"AV号是：AV {bv2av(input('BV号是：'))}")
+        elif mode == "3":
             break
         else:
             print("输入错误请重新输入")
 
-main()
+
+if __name__ == "__main__":
+    main()
 ```
 
 
