@@ -73,6 +73,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 | msg[msg_status]    | num                                  | 0                        | 非必要 |                                        |
 | msg[dev_id]        | string                               | 372778FD-E359-461D-86A3-EA2BCC6FF52A | 必要 |  **获取方式在下面**            |
 | msg[timestamp]     | num                                  | 时间戳（秒）               | 必要 |                                         |
+| msg[new_face_version]       | num     | 表情包版本    | 非必要   | **详见下表**                             |
 | msg[content]       | 发送文字时：str<br />撤回消息时：num     | 消息内容                 | 必要   | **详见下表**                             |
 | csrf        | str                                  | CSRF Token（位于cookie） | 必要   |                                        |
 
@@ -289,7 +290,7 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 | msg_key   | num | 未知   |      |
 | msg_status   | num | 消息状态   |   0   |
 | notify_code   |str | 未知   |      |
-| new_face_version   |num | 未知   |  疑似只在粉丝团消息中出现    |
+| new_face_version   |num | 表情包版本 | 0或者没有是旧版，此时b站会自动转换成新版表情包，例如`[doge]` -> `[tv_doge]`；1是新版 |
 
 `e_infos`数组：
 
