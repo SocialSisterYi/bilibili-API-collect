@@ -1525,7 +1525,7 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 > https://api.bilibili.com/x/space/wbi/arc/search
 
-> ~~https://api.bilibili.com/x/space/arc/search~~ （已废弃）
+> ~~https://api.bilibili.com/x/space/arc/search~~ （已废弃，保留是方便遇到问题的人搜索到此处）
 
 *请求方式：GET*
 
