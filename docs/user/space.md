@@ -1523,20 +1523,20 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 ### 查询用户投稿视频明细
 
-> https://api.bilibili.com/x/space/arc/search
+> https://api.bilibili.com/x/space/wbi/arc/search
 
 *请求方式：GET*
 
 **url参数：**
 
-| 参数名  | 类型 | 内容         | 必要性 | 备注                                                         |
-| ------- | ---- | ------------ | ------ | ------------------------------------------------------------ |
-| mid     | num  | 目标用户mid  | 必要   |                                                              |
+| 参数名  | 类型 | 内容         | 必要性 | 备注                                                                          |
+| ------- | ---- | ------------ | ------ | ----------------------------------------------------------------------------- |
+| mid     | num  | 目标用户mid  | 必要   |                                                                               |
 | order   | str  | 排序方式     | 非必要 | 默认为pubdate<br />最新发布：pubdate<br />最多播放：click<br />最多收藏：stow |
-| tid     | num  | 筛选目标分区 | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区    |
-| keyword | str  | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                             |
-| pn      | num  | 页码         | 必要   |                                                              |
-| ps      | num  | 每页项数     | 必要   |                                                              |
+| tid     | num  | 筛选目标分区 | 非必要 | 默认为0<br />0：不进行分区筛选<br />分区tid为所筛选的分区                     |
+| keyword | str  | 关键词筛选   | 非必要 | 用于使用关键词搜索该UP主视频稿件                                              |
+| pn      | num  | 页码         | 非必要 | 默认为 `1`                                                                    |
+| ps      | num  | 每页项数     | 非必要 | 默认为 `30`                                                                   |
 
 **json回复：**
 
@@ -1556,6 +1556,9 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 | list            | obj  | 列表信息       |      |
 | page            | obj  | 页面信息       |      |
 | episodic_button | obj  | “播放全部“按钮 |      |
+| is_risk         | bool |                |      |
+| gaia_res_type   | num  |                |      |
+| gaia_data       | obj  |                |      |
 
 `data`中的`list`对象：
 
@@ -1592,17 +1595,20 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 | 字段           | 类型 | 内容           | 备注                         |
 | -------------- | ---- | -------------- | ---------------------------- |
 | aid            | num  | 稿件avid       |                              |
+| attribute      | num  |                |                              |
 | author         | str  | 视频UP主       | 不一定为目标用户（合作视频） |
 | bvid           | str  | 稿件bvid       |                              |
 | comment        | num  | 视频评论数     |                              |
-| copyright      | str  | 空             | 作用尚不明确                 |
+| copyright      | str  | 视频版权类型   |                              |
 | created        | num  | 投稿时间       | 时间戳                       |
 | description    | str  | 视频简介       |                              |
+| enable_vt      | num  |                |                              |
 | hide_click     | bool | false          | 作用尚不明确                 |
 | is_pay         | num  | 0              | 作用尚不明确                 |
 | is_union_video | num  | 是否为合作视频 | 0：否<br />1：是             |
 | length         | str  | 视频长度       | MM:SS                        |
 | mid            | num  | 视频UP主mid    | 不一定为目标用户（合作视频） |
+| meta           | obj  |                | 无数据时为 null              |
 | pic            | str  | 视频封面       |                              |
 | play           | num  | 视频播放次数   |                              |
 | review         | num  | 0              | 作用尚不明确                 |
