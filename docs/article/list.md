@@ -4,7 +4,7 @@
 
 > https://api.bilibili.com/x/space/wbi/article
 
-> ~~https://api.bilibili.com/x/space/article~~（就链接）
+> ~~https://api.bilibili.com/x/space/article~~（旧链接）
 
 *请求方式：GET*
 
