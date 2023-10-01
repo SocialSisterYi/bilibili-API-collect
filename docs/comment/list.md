@@ -856,11 +856,15 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 
 ## 获取评论区明细_懒加载
 
-> https://api.bilibili.com/x/v2/reply/main
+> https://api.bilibili.com/x/v2/reply/wbi/main
+
+> ~~https://api.bilibili.com/x/v2/reply/main~~
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或APP
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 **url参数：**
 

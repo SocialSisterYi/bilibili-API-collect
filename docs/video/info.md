@@ -534,9 +534,13 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 > https://api.bilibili.com/x/web-interface/view/detail
 
+> https://api.bilibili.com/x/web-interface/wbi/view/detail
+
 *请求方式：GET*
 
 认证方式：Cookie(SESSDATA)
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 限制游客访问的视频需要登录
 
