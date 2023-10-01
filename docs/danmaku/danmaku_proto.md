@@ -8,6 +8,8 @@
 
 > https://api.bilibili.com/x/v2/dm/web/seg.so （web端）
 >
+> https://api.bilibili.com/x/v2/dm/wbi/web/seg.so （web 端新接口，需要 wbi 认证）
+>
 > https://api.bilibili.com/x/v2/dm/list/seg.so （APP端）
 >
 > https://i0.hdslb.com/bfs/dm/{data}.bin （BAS/代码弹幕专包）
