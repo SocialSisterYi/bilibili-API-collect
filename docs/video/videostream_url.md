@@ -69,11 +69,15 @@
 
 ## 获取视频流地址_web端
 
-> https://api.bilibili.com/x/player/playurl
+> https://api.bilibili.com/x/player/wbi/playurl
+
+> ~~https://api.bilibili.com/x/player/playurl~~ （旧链接）
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 ---
 

@@ -2,9 +2,13 @@
 
 ## 获取默认搜索内容（web端）
 
-> https://api.bilibili.com/x/web-interface/search/default
+> https://api.bilibili.com/x/web-interface/wbi/search/default
+
+> ~~https://api.bilibili.com/x/web-interface/search/default~~ （旧链接）
 
 *请求方式：GET*
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 默认搜索为搜索框中默认填充内容，用于官方推荐内容，若不输入点击搜索按钮跳转为`url`中的链接
 

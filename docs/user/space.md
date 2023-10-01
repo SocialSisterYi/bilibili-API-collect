@@ -1525,7 +1525,11 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
 
 > https://api.bilibili.com/x/space/wbi/arc/search
 
+> ~~https://api.bilibili.com/x/space/arc/search~~ （已废弃）
+
 *请求方式：GET*
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 **url参数：**
 

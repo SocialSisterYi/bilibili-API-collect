@@ -4,11 +4,15 @@
 
 ## 综合搜索（web端）
 
-> https://api.bilibili.com/x/web-interface/search/all/v2
+> https://api.bilibili.com/x/web-interface/wbi/search/all/v2
+
+> ~~https://api.bilibili.com/x/web-interface/search/all/v2~~ （旧链接）
 
 *方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 返回和关键字相关的20条信息
 
@@ -579,11 +583,15 @@ curl -G 'https://api.bilibili.com/x/web-interface/search/all/v2' \
 
 ## 分类搜索（web端）
 
-> https://api.bilibili.com/x/web-interface/search/type
+> https://api.bilibili.com/x/web-interface/wbi/search/type
+
+> ~~https://api.bilibili.com/x/web-interface/search/type~~ （旧链接）
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 根据关键词进行搜索，返回结果每页20项
 
