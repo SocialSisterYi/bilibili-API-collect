@@ -41,7 +41,7 @@
 | ---------------- | ----- | ---------------- | ---------------- |
 | seid             | str   | 搜索id           |                  |
 | page             | num   | 页数             | 固定为1          |
-| pagesize         | num   | 每页条数         | 固定为20         |
+| page_size         | num   | 每页条数         | 固定为20         |
 | numResults       | num   | 总条数           | 最大值为1000     |
 | numPages         | num   | 分页数           | 最大值为50       |
 | suggest_keyword  | str   | 空               | **作用尚不明确** |
