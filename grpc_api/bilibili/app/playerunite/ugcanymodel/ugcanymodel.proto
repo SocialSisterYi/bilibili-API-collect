@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package bilibili.app.playerunite.ugcanymodel;
 
+// 
 message ButtonStyle {
     string text = 1;
     string text_color = 2;
@@ -9,11 +10,21 @@ message ButtonStyle {
     string jump_link = 4;
 }
 
+// 播放限制
 enum PlayLimitCode {
+    // 
     PLC_UNKNOWN = 0;
+    // 未付费
     PLC_NOTPAYED = 1;
+    // 
+    PLC_ChargingPlusNotPass = 2;
+    // 
+    PLC_ChargingPlusUpgrade = 3;
+    // 
+    PLC_ChargingPlusReject = 4;
 }
 
+// 
 message PlayLimit {
     PlayLimitCode code = 1;
     string message = 2;
@@ -21,6 +32,7 @@ message PlayLimit {
     ButtonStyle button = 4;
 }
 
+// 
 message UGCAnyModel {
     PlayLimit play_limit = 1;
 }
