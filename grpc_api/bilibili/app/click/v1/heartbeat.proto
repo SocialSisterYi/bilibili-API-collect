@@ -3,7 +3,8 @@ syntax = "proto3";
 package bilibili.app.click.v1;
 
 service Click {
-
+    // 客户端心跳上传
+    rpc HeartBeat (HeartBeatReq) returns (HeartBeatReply);
 }
 
 // 账户信息

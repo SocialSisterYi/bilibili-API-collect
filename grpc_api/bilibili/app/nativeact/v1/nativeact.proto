@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+// Deprecated
 package bilibili.app.nativeact.v1;
 
 import "google/protobuf/any.proto";

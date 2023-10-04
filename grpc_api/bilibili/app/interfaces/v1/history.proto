@@ -6,8 +6,10 @@ import "bilibili/app/archive/middleware/v1/preload.proto";
 
 // 历史记录
 service History {
-    // 获取历史记录tab
+    // 获取历史记录tab(旧版)
     rpc HistoryTab (HistoryTabReq) returns (HistoryTabReply);
+    // 获取历史记录tab
+    rpc HistoryTabV2 (HistoryTabReq) returns (HistoryTabReply);
     // 获取历史记录列表(旧版)
     rpc Cursor (CursorReq) returns (CursorReply);
     // 获取历史记录列表

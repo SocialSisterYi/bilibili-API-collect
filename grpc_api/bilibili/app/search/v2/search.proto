@@ -8,6 +8,8 @@ service Search {
     // 
     rpc CancelChatTask (CancelChatTaskReq) returns (CancelChatTaskReply);
     // 
+    rpc GetChatAuth (GetChatAuthReq) returns (GetChatAutReply);
+    // 
     rpc GetChatResult (GetChatResultReq) returns (bilibili.broadcast.message.main.ChatResult);
     // 
     rpc SearchEgg (SearchEggReq) returns (SearchEggReply);
@@ -30,6 +32,25 @@ message CancelChatTaskReply {
 }
 
 // 
+message GetChatAuthReq {}
+
+// 
+message GetChatAuthReply {
+    // 
+    bool display = 1;
+    // 
+    string icon = 2;
+    // 
+    string icon_night = 3;
+    // 
+    string jump_link = 4;
+    // 
+    string text_guide = 5;
+    // 
+    int32 jump_link_type = 6;
+}
+
+// 
 message GetChatResultReq {
     // 
     string query = 1;
@@ -37,6 +58,8 @@ message GetChatResultReq {
     string session_id = 2;
     // 
     string from_source = 3;
+    // 
+    string track_id = 4;
 }
 
 // 
