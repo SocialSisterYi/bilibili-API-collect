@@ -86,12 +86,12 @@ TABLE = "fZodR9XQDSUm21yCkr6zBqiveYah8bt4xsWpHnJE7jL5VG3guMTKNPAwcF"
 MAP = 9, 8, 1, 6, 2, 4, 0, 7, 3, 5
 
 
-def av2bv(av: int) -> int:
+def av2bv(av: int) -> str:
     av = (av ^ XOR) + ADD
     bv = [""] * 10
     for i in range(10):
         bv[MAP[i]] = TABLE[(av // 58**i) % 58]
-    return int("".join(bv))
+    return "".join(bv)
 
 
 def bv2av(bv: int) -> int:
