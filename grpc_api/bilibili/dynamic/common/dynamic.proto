@@ -879,28 +879,29 @@ message Opus {
     Article article = 9;
 }
 
+// 
 enum OpusBizType {
     DEFAULT = 0;
     VIDEO = 1;
     RESERVE = 2;
-    VOTE = 3;
+    BIZ_VOTE = 3; // rename from "VOTE" due to name collision
     LIVE = 4;
-    LOTTERY = 5;
+    BIZ_LOTTERY = 5; // rename from "LOTTERY" due to name collision
     MATCH = 6;
-    GOODS = 7;
+    BIZ_GOODS = 7; // rename from "GOODS" due to name collision
     OGV_SS = 8;
-    OGV_EP = 9;
+    BIZ_OGV_EP = 9; // rename from "OGV_EP" due to name collision
     MANGA = 10;
     CHEESE = 11;
     VIDEO_TS = 12;
-    AT = 13;
+    BIZ_AT = 13; // rename from "AT" due to name collision
     HASH_TAG = 14;
-    CV = 15;
+    BIZ_CV = 15; // rename from "CV" due to name collision
     URL = 16;
-    MAIL = 17;
+    BIZ_MAIL = 17; // rename from "MAIL" due to name collision
     LBS = 18;
     ACTIVITY = 19;
-    ATTACH_CARD_OFFICIAL_ACTIVITY = 20;
+    BIZ_ATTACH_CARD_OFFICIAL_ACTIVITY = 20; // rename from "ATTACH_CARD_OFFICIAL_ACTIVITY" due to name collision
     GAME = 21;
     DECORATION = 22;
     UP_TOPIC = 23;
