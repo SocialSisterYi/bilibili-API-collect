@@ -15,8 +15,9 @@
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
 | room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
-| title   | str  | 直播间标题               | 必要   | 最大20字符           |
+| title   | str  | 直播间标题               |        | 最大20字符           |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
+| csrf_token | str  | CSRF Token（位于 cookie） |     |                       |
 
 **json回复：**
 
@@ -278,7 +279,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/stopLive' \
 | uid     | num  | 用户id                   | 必要   |                       |
 | content | str  | 公告内容                 | 必要   | 最大60个字符,可以为空 |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                       |
-｜csrf_token｜str｜CSRF Token（位于cookie）｜必要｜｜
+| csrf_token | str  | CSRF Token（位于 cookie） |      |                         |
 
 **json回复：**
 
@@ -289,7 +290,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/stopLive' \
 | code    | num   | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误 |
 | data    | array | 空       |                                                        |
 | message | str   | 错误信息 | 默认为ok                                               |
-｜ttl｜num｜1｜作用尚不明确｜
+| ttl     | num   | 1        | 作用尚不明确                                           |
 
 **示例：**
 
@@ -337,7 +338,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
 | add_tag | str  | 要添加的标签             | 必要   | 最大10个字符         |
 | del_tag | str  | 要删除的标签             | 必要   |                      |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
-｜csrf_token｜str｜CSRF Token（位于cookie）｜必要｜｜
+| csrf_token | str  | CSRF Token（位于 cookie） |     |                       |
 
 **json回复：**
 
