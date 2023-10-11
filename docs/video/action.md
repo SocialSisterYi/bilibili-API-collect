@@ -12,7 +12,7 @@
 
 认证方式：仅可Cookie（SESSDATA）
 
-Cookie里需要再额外添加`bilijct=BILI_JCT,buvid3=BUVID3`,否则部分请求视频会报403错误
+Cookie里需要再额外添加`bilijct=BILI_JCT,buvid3=BUVID3`, 否则部分请求视频会报403错误
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
