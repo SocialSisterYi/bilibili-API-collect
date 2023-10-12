@@ -19,6 +19,9 @@
         <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="GitHub license"/>
     </a>
 </p>
+
+<a href="https://trendshift.io/repositories/3218" target="_blank"><img src="https://trendshift.io/api/badge/repositories/3218" alt="SocialSisterYi%2Fbilibili-API-collect | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+
 <h3 align="center">野生API文档</h3>
 <h3 align="center">不断更新中....</h3>
 
