@@ -1880,6 +1880,7 @@ curl -G 'https://api.bilibili.com/x/space/album/index' \
 ### 查询用户投稿相簿明细
 
 > https://api.vc.bilibili.com/link_draw/v1/doc/doc_list
+> https://api.bilibili.com/x/dynamic/feed/draw/doc_list
 
 *请求方式：GET*
 
@@ -1888,8 +1889,8 @@ curl -G 'https://api.bilibili.com/x/space/album/index' \
 | 参数名    | 类型 | 内容        | 必要性 | 备注                                                         |
 | --------- | ---- | ----------- | ------ | ------------------------------------------------------------ |
 | uid       | num  | 目标用户mid | 必要   |                                                              |
-| page_num  | num  | 页码        | 非必要 | 默认为1                                                      |
-| page_size | num  | 每页项数    | 非必要 | 默认为20                                                     |
+| page_num  | num  | 页码        | 必要 | 默认为0                                                        |
+| page_size | num  | 每页项数    | 必要 | 默认为30                                                       |
 | biz       | str  | 查询类型    | 非必要 | 全部：all<br />绘画：draw<br />摄影：photo<br />日常：daily<br />默认为all |
 
 **json回复：**
