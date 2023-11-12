@@ -175,6 +175,7 @@
 | 手工               | handmake       | 161     | 手工制品的制作过程或成品展示、教程、测评类视频               | [/v/life/handmake](https://www.bilibili.com/v/life/handmake) |
 | 绘画               | painting       | 162     | 绘画过程或绘画教程，以及绘画相关的所有视频                   | [/v/life/painting](https://www.bilibili.com/v/life/painting) |
 | 日常               | daily          | 21      | 记录日常生活，分享生活故事                                   | [/v/life/daily](https://www.bilibili.com/v/life/daily)       |
+| 亲子               |parenting       | 254     | 分享亲子、萌娃、母婴、育儿相关的视频                          | [/v/life/parenting](https://www.bilibili.com/v/life/parenting)|
 | ~~美食圈~~(重定向) | ~~food~~       | ~~76~~  | ~~美食鉴赏&料理制作教程~~                                    | ~~/v/life/food~~                                             |
 | ~~动物圈~~(重定向) | ~~animal~~     | ~~75~~  | ~~萌萌的动物都在这里哦~~                                     | ~~/v/life/animal~~                                           |
 | ~~运动~~(重定向)   | ~~sports~~     | ~~163~~ | ~~运动相关的记录、教程、装备评测和精彩瞬间剪辑视频~~         | ~~/v/life/sports~~                                           |
