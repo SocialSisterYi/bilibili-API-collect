@@ -242,7 +242,6 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] 哔哩哔哩游戏
 - [ ] [终端网络查询](docs/clientinfo)
   - [x] [基于 ip 的地理位置查询](docs/clientinfo/ip.md)
-  - [x] [终端信息查询](docs/clientinfo/client_info.md)
 - [ ] [其他](docs/misc)
   - [x] [获取当前时间戳](docs/misc/time_stamp.md)
 - [ ] [web端组件](docs/web_widget)
