@@ -105,6 +105,8 @@ console.log(bv2av('BV1L9Uoa9EUx'));
 
 ### Python
 
+来自：<https://github.com/SocialSisterYi/bilibili-API-collect/issues/847#issuecomment-1807020675>
+
 ```python
 XOR_CODE = 23442827791579
 MASK_CODE = 2251799813685247
@@ -142,6 +144,10 @@ def bv2av(bvid: str):
 print(av2bv(111298867365120))
 print(bv2av("BV1L9Uoa9EUx"))
 ```
+
+### Rust
+
+参考 <https://github.com/Colerar/abv/blob/main/src/lib.rs>
 
 ## 老版算法存档
 
