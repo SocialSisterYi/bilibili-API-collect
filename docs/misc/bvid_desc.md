@@ -62,8 +62,11 @@
 
 ## 编程实现
 
-### JavaScript
+### JavaScript/TypeScript
 
+<CodeGroup>
+  <CodeGroupItem title="JavaScript">
+  
 ```javascript
 const XOR_CODE = 23442827791579n;
 const MASK_CODE = 2251799813685247n;
@@ -103,6 +106,47 @@ console.log(av2bv(111298867365120));
 console.log(bv2av('BV1L9Uoa9EUx'));
 ```
 
+  </CodeGroupItem>
+
+  <CodeGroupItem title="TypeScript">
+
+```typescript
+const XOR_CODE = 23442827791579n;
+const MASK_CODE = 2251799813685247n;
+const MAX_AID = 1n << 51n;
+const BASE = 58n;
+
+const data = 'FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf';
+
+function av2bv(aid: number) {
+  const bytes = ['B', 'V', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
+  let bv_idx = bytes.length - 1;
+  let tmp = (MAX_AID | BigInt(aid)) ^ XOR_CODE;
+  while (tmp > 0) {
+    bytes[bv_idx] = data[Number(tmp % BigInt(BASE))];
+    tmp = tmp / BASE;
+    bv_idx -= 1;
+  }
+  [bytes[3], bytes[9]] = [bytes[9], bytes[3]];
+  [bytes[4], bytes[7]] = [bytes[7], bytes[4]];
+  return bytes.join('') as `BV1${string}`;
+}
+
+function bv2av(bvid: `BV1${string}`) {
+  const bvidArr = Array.from<string>(bvid);
+  [bvidArr[3], bvidArr[9]] = [bvidArr[9], bvidArr[3]];
+  [bvidArr[4], bvidArr[7]] = [bvidArr[7], bvidArr[4]];
+  bvidArr.splice(0, 3);
+  const tmp = bvidArr.reduce((pre, bvidChar) => pre * BASE + BigInt(data.indexOf(bvidChar)), 0n);
+  return Number((tmp & MASK_CODE) ^ XOR_CODE);
+}
+
+console.log(av2bv(111298867365120));
+console.log(bv2av('BV1L9Uoa9EUx'));
+```
+  </CodeGroupItem>
+</CodeGroup>
+
 ### Python
 
 来自：<https://github.com/SocialSisterYi/bilibili-API-collect/issues/847#issuecomment-1807020675>
@@ -110,7 +154,7 @@ console.log(bv2av('BV1L9Uoa9EUx'));
 ```python
 XOR_CODE = 23442827791579
 MASK_CODE = 2251799813685247
-MAX_AID = 1 << 51;
+MAX_AID = 1 << 51
 
 data = [b'F', b'c', b'w', b'A', b'P', b'N', b'K', b'T', b'M', b'u', b'g', b'3', b'G', b'V', b'5', b'L', b'j', b'7', b'E', b'J', b'n', b'H', b'p', b'W', b's', b'x', b'4', b't', b'b', b'8', b'h', b'a', b'Y', b'e', b'v', b'i', b'q', b'B', b'z', b'6', b'r', b'k', b'C', b'y', b'1', b'2', b'm', b'U', b'S', b'D', b'Q', b'X', b'9', b'R', b'd', b'o', b'Z', b'f']
 
