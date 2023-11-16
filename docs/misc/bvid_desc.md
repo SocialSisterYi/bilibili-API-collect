@@ -1,4 +1,9 @@
+
 # bvid说明
+
+::: tip
+在线转换工具 [av2bv](./bv2av_tools.md)
+:::
 
 2020-03-23 B站推出了全新的稿件视频id`bvid`来接替之前的`avid`，其意义与之相同
 
@@ -11,7 +16,7 @@
 
 ### 格式
 
-“bvid”恒为长度为 12 的字符串，前两个字母为大写“BV”，后 10 个为 base58 计算结果
+“bvid”恒为长度为 12 的字符串，前两个固定为“BV1”，后 9 个为 base58 计算结果（不包含数字 `0` 和大写字母 `I`、 `0` 以及小写字母 `l`）
 
 ### 实质
 
@@ -25,9 +30,9 @@
 
 ## 算法概述
 
-~~算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)~~
-~~实际上该算法并不完整,新的算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)~~
-实际上上面的算法依然不完整，新的算法参考自 <https://github.com/SocialSisterYi/bilibili-API-collect/issues/740>~~来自 B 站某个 JS 文件？~~
+~~算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)~~  
+~~实际上该算法并不完整,新的算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)~~  
+实际上上面的算法依然不完整，新的算法参考自 [SocialSisterYi#740](https://github.com/SocialSisterYi/bilibili-API-collect/issues/740)~~来自 B 站某个 JS 文件？~~  
 
 ### av->bv算法
 
@@ -40,9 +45,9 @@
 
 - 定义一个包含初始值为 `['B', 'V', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0']` 的长度为 12 的数组`bytes`，用于存储转换后的字符。
   - 定义变量 `bv_idx` 并初始化为数组 `bytes` 的最后一个索引。
-  - 将输入的"aid"与 avid 最大值（2⁵¹）进行按位或运算，并与常量 `XOR_CODE`（23442827791579）进行异或运算，得到变量 `tmp`。
-  - 当 `tmp` 大于0时，执行以下操作：
-    - 将 `tmp` 除以 58 的余数作为索引，从 `FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf` 码表中取出对应的字符，并将其赋值给 `bytes[bv_idx]`。
+  - 将输入的 `aid` 与 avid 最大值（2⁵¹）进行按位或运算，其结果与常量 `XOR_CODE`（23442827791579）进行异或运算，得到变量 `tmp`。
+  - 当 `tmp` 大于0时，循环执行以下操作直到小于0：
+    - 将 `tmp` 除以 58（码表的长度） 的余数作为索引，从 `FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf` 码表中取出对应的字符，并将其赋值给 `bytes[bv_idx]`。
     - 将 `tmp` 与 58 求模赋值给 `tmp`。
     - 将 `bv_idx` 减1。
   - 将 `bytes` 数组中索引为 3 和 9 的元素进行交换。
@@ -51,14 +56,16 @@
 
 ### bv->av算法
 
+是 #av->bv算法 的逆向
+
 - 将 `bvid` 中索引为 3 和 9 的字符进行交换。
 - 将 `bvid` 中索引为 4 和 7 的字符进行交换。
 - 删除 `bvid` 前3个字符（固定为 BV1）。
 - 定义变量 `tmp` 并初始化为 0。
 - 遍历 `bvid` 的每个字符，执行以下操作：
   - 获取当前字符在 `FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf` 码表中的索引，并将其赋值给变量 `idx`。
-  - 将 `tmp` 乘以常量 58，并加上 `idx`。
-- 将 `tmp` 与常量 2⁵¹ - 1 进行按位与运算，并与常量 `XOR_CODE`（23442827791579） 进行异或运算，得到最终结果。
+  - 将 `tmp` 乘以常量 58，并加上 `idx`，最后赋值给 `tmp`。
+- 将 `tmp` 与常量 2⁵¹ - 1 进行按位与运算，其结果与常量 `XOR_CODE`（23442827791579） 进行异或运算，得到最终结果。
 
 ## 编程实现
 
@@ -77,12 +84,12 @@ const data = 'FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf';
 
 function av2bv(aid) {
   const bytes = ['B', 'V', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
-  let bv_idx = bytes.length - 1;
+  let bvIndex = bytes.length - 1;
   let tmp = (MAX_AID | BigInt(aid)) ^ XOR_CODE;
   while (tmp > 0) {
-    bytes[bv_idx] = data[Number(tmp % BigInt(BASE))];
+    bytes[bvIndex] = data[Number(tmp % BigInt(BASE))];
     tmp = tmp / BASE;
-    bv_idx -= 1;
+    bvIndex -= 1;
   }
   [bytes[3], bytes[9]] = [bytes[9], bytes[3]];
   [bytes[4], bytes[7]] = [bytes[7], bytes[4]];
@@ -94,11 +101,7 @@ function bv2av(bvid) {
   [bvidArr[3], bvidArr[9]] = [bvidArr[9], bvidArr[3]];
   [bvidArr[4], bvidArr[7]] = [bvidArr[7], bvidArr[4]];
   bvidArr.splice(0, 3);
-  let tmp = 0n;
-  for (let i = 0; i < bvidArr.length; i++) {
-    const idx = data.indexOf(bvidArr[i]);
-    tmp = tmp * BASE + BigInt(idx);
-  }
+  const tmp = bvidArr.reduce((pre, bvidChar) => pre * BASE + BigInt(data.indexOf(bvidChar)), 0n);
   return Number((tmp & MASK_CODE) ^ XOR_CODE);
 }
 
@@ -120,12 +123,12 @@ const data = 'FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf';
 
 function av2bv(aid: number) {
   const bytes = ['B', 'V', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
-  let bv_idx = bytes.length - 1;
+  let bvIndex = bytes.length - 1;
   let tmp = (MAX_AID | BigInt(aid)) ^ XOR_CODE;
   while (tmp > 0) {
-    bytes[bv_idx] = data[Number(tmp % BigInt(BASE))];
+    bytes[bvIndex] = data[Number(tmp % BigInt(BASE))];
     tmp = tmp / BASE;
-    bv_idx -= 1;
+    bvIndex -= 1;
   }
   [bytes[3], bytes[9]] = [bytes[9], bytes[3]];
   [bytes[4], bytes[7]] = [bytes[7], bytes[4]];
@@ -149,7 +152,7 @@ console.log(bv2av('BV1L9Uoa9EUx'));
 
 ### Python
 
-来自：<https://github.com/SocialSisterYi/bilibili-API-collect/issues/847#issuecomment-1807020675>
+来自：[SocialSisterYi#847 (comment)](https://github.com/SocialSisterYi/bilibili-API-collect/issues/847#issuecomment-1807020675)
 
 ```python
 XOR_CODE = 23442827791579
