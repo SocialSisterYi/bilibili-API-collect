@@ -19,14 +19,183 @@
 
 ### avid发号方式的变化
 
-从 2009-09-09 09:09:09 [av2](https://www.bilibili.com/video/av2) 的发布到 2020-03-28  19:45:02 [av99999999](https://www.bilibili.com/video/av99999999) 的发布B站结束了以投稿时间为顺序的avid发放，改为随机发放avid
+从 2009-09-09 09:09:09 [av2](https://www.bilibili.com/video/av2) 的发布到 2020-03-28 19:45:02 [av99999999](https://www.bilibili.com/video/av99999999) 的发布B站结束了以投稿时间为顺序的avid发放，改为随机发放avid
 
 ~~暗示B站东方要完？泪目~~
 
 ## 算法概述
 
 ~~算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)~~
-实际上该算法并不完整,新的算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)
+~~实际上该算法并不完整,新的算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)~~
+实际上上面的算法依然不完整，新的算法参考自 <https://github.com/SocialSisterYi/bilibili-API-collect/issues/740>~~来自 B 站某个 JS 文件？~~
+
+### av->bv算法
+
+**说明**
+
+1. 目前的 BV 格式为 BV1XXXXXXXXX，以 BV1 开头，后面包含 9 位有效数据。
+2. AV 最大值为 2⁵¹。
+
+**算法**
+
+- 定义一个包含初始值为 `['B', 'V', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0']` 的长度为 12 的数组`bytes`，用于存储转换后的字符。
+  - 定义变量 `bv_idx` 并初始化为数组 `bytes` 的最后一个索引。
+  - 将输入的"aid"与 avid 最大值（2⁵¹）进行按位或运算，并与常量 `XOR_CODE`（23442827791579）进行异或运算，得到变量 `tmp`。
+  - 当 `tmp` 大于0时，执行以下操作：
+    - 将 `tmp` 除以 58 的余数作为索引，从 `FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf` 码表中取出对应的字符，并将其赋值给 `bytes[bv_idx]`。
+    - 将 `tmp` 与 58 求模赋值给 `tmp`。
+    - 将 `bv_idx` 减1。
+  - 将 `bytes` 数组中索引为 3 和 9 的元素进行交换。
+  - 将 `bytes` 数组中索引为 4 和 7 的元素进行交换。
+  - 将 `bytes` 数组转换为字符串，并返回结果。
+
+### bv->av算法
+
+- 将 `bvid` 中索引为 3 和 9 的字符进行交换。
+- 将 `bvid` 中索引为 4 和 7 的字符进行交换。
+- 删除 `bvid` 前3个字符（固定为 BV1）。
+- 定义变量 `tmp` 并初始化为 0。
+- 遍历 `bvid` 的每个字符，执行以下操作：
+  - 获取当前字符在 `FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf` 码表中的索引，并将其赋值给变量 `idx`。
+  - 将 `tmp` 乘以常量 58，并加上 `idx`。
+- 将 `tmp` 与常量 2⁵¹ - 1 进行按位与运算，并与常量 `XOR_CODE`（23442827791579） 进行异或运算，得到最终结果。
+
+## 编程实现
+
+### JavaScript/TypeScript
+
+<CodeGroup>
+  <CodeGroupItem title="JavaScript">
+  
+```javascript
+const XOR_CODE = 23442827791579n;
+const MASK_CODE = 2251799813685247n;
+const MAX_AID = 1n << 51n;
+const BASE = 58n;
+
+const data = 'FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf';
+
+function av2bv(aid) {
+  const bytes = ['B', 'V', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
+  let bv_idx = bytes.length - 1;
+  let tmp = (MAX_AID | BigInt(aid)) ^ XOR_CODE;
+  while (tmp > 0) {
+    bytes[bv_idx] = data[Number(tmp % BigInt(BASE))];
+    tmp = tmp / BASE;
+    bv_idx -= 1;
+  }
+  [bytes[3], bytes[9]] = [bytes[9], bytes[3]];
+  [bytes[4], bytes[7]] = [bytes[7], bytes[4]];
+  return bytes.join('');
+}
+
+function bv2av(bvid) {
+  const bvidArr = Array.from(bvid);
+  [bvidArr[3], bvidArr[9]] = [bvidArr[9], bvidArr[3]];
+  [bvidArr[4], bvidArr[7]] = [bvidArr[7], bvidArr[4]];
+  bvidArr.splice(0, 3);
+  let tmp = 0n;
+  for (let i = 0; i < bvidArr.length; i++) {
+    const idx = data.indexOf(bvidArr[i]);
+    tmp = tmp * BASE + BigInt(idx);
+  }
+  return Number((tmp & MASK_CODE) ^ XOR_CODE);
+}
+
+console.log(av2bv(111298867365120));
+console.log(bv2av('BV1L9Uoa9EUx'));
+```
+
+  </CodeGroupItem>
+
+  <CodeGroupItem title="TypeScript">
+
+```typescript
+const XOR_CODE = 23442827791579n;
+const MASK_CODE = 2251799813685247n;
+const MAX_AID = 1n << 51n;
+const BASE = 58n;
+
+const data = 'FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf';
+
+function av2bv(aid: number) {
+  const bytes = ['B', 'V', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
+  let bv_idx = bytes.length - 1;
+  let tmp = (MAX_AID | BigInt(aid)) ^ XOR_CODE;
+  while (tmp > 0) {
+    bytes[bv_idx] = data[Number(tmp % BigInt(BASE))];
+    tmp = tmp / BASE;
+    bv_idx -= 1;
+  }
+  [bytes[3], bytes[9]] = [bytes[9], bytes[3]];
+  [bytes[4], bytes[7]] = [bytes[7], bytes[4]];
+  return bytes.join('') as `BV1${string}`;
+}
+
+function bv2av(bvid: `BV1${string}`) {
+  const bvidArr = Array.from<string>(bvid);
+  [bvidArr[3], bvidArr[9]] = [bvidArr[9], bvidArr[3]];
+  [bvidArr[4], bvidArr[7]] = [bvidArr[7], bvidArr[4]];
+  bvidArr.splice(0, 3);
+  const tmp = bvidArr.reduce((pre, bvidChar) => pre * BASE + BigInt(data.indexOf(bvidChar)), 0n);
+  return Number((tmp & MASK_CODE) ^ XOR_CODE);
+}
+
+console.log(av2bv(111298867365120));
+console.log(bv2av('BV1L9Uoa9EUx'));
+```
+  </CodeGroupItem>
+</CodeGroup>
+
+### Python
+
+来自：<https://github.com/SocialSisterYi/bilibili-API-collect/issues/847#issuecomment-1807020675>
+
+```python
+XOR_CODE = 23442827791579
+MASK_CODE = 2251799813685247
+MAX_AID = 1 << 51
+
+data = [b'F', b'c', b'w', b'A', b'P', b'N', b'K', b'T', b'M', b'u', b'g', b'3', b'G', b'V', b'5', b'L', b'j', b'7', b'E', b'J', b'n', b'H', b'p', b'W', b's', b'x', b'4', b't', b'b', b'8', b'h', b'a', b'Y', b'e', b'v', b'i', b'q', b'B', b'z', b'6', b'r', b'k', b'C', b'y', b'1', b'2', b'm', b'U', b'S', b'D', b'Q', b'X', b'9', b'R', b'd', b'o', b'Z', b'f']
+
+BASE = 58
+BV_LEN = 12
+PREFIX = "BV1"
+
+def av2bv(aid):
+    bytes = [b'B', b'V', b'1', b'0', b'0', b'0', b'0', b'0', b'0', b'0', b'0', b'0']
+    bv_idx = BV_LEN - 1
+    tmp = (MAX_AID | aid) ^ XOR_CODE
+    while int(tmp) != 0:
+        bytes[bv_idx] = data[int(tmp % BASE)]
+        tmp /= BASE
+        bv_idx -= 1
+    bytes[3], bytes[9] = bytes[9], bytes[3]
+    bytes[4], bytes[7] = bytes[7], bytes[4]
+    return "".join([i.decode() for i in bytes])
+
+def bv2av(bvid: str):
+    bvid = list(bvid)
+    bvid[3], bvid[9] = bvid[9], bvid[3]
+    bvid[4], bvid[7] = bvid[7], bvid[4]
+    bvid = bvid[3:]
+    tmp = 0
+    for i in bvid:
+        idx = data.index(i.encode())
+        tmp = tmp * BASE + idx
+    return (tmp & MASK_CODE) ^ XOR_CODE
+
+print(av2bv(111298867365120))
+print(bv2av("BV1L9Uoa9EUx"))
+```
+
+### Rust
+
+参考 <https://github.com/Colerar/abv/blob/main/src/lib.rs>
+
+## 老版算法存档
+
+算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)
 
 ### av->bv算法
 
@@ -60,24 +229,24 @@
 > 5 -> 4
 >
 > 6 -> 0
-> 
+>
 > 7 -> 7
 >
 > 8 -> 3
 >
 > 9 -> 5
 
-
 ### bv->av算法
 
 为以上算法的逆运算
 
-## 编程实现
+### 编程实现
 
 使用 [Python](#Python) [C](#C) [TypeScript](#TypeScript) [Java](#Java) [Kotlin](#Kotlin) [Golang](#Golang) [Rust](#Rust) 等语言作为示例，欢迎社区提交更多例程
 
 注: 新算法只提供了 [Python](#Python) 和 [Rust](#Rust) 版本
-### Python
+
+#### Python
 
 ```python
 XOR = 177451812
@@ -121,8 +290,7 @@ if __name__ == "__main__":
     main()
 ```
 
-
-### C
+#### C
 
 ```c
 #include <stdio.h>
@@ -175,7 +343,7 @@ BV17x411w7KC
 170001
 ```
 
-### TypeScript
+#### TypeScript
 
 感谢[#417](https://github.com/SocialSisterYi/bilibili-API-collect/issues/417#issuecomment-1186475063)提供
 
@@ -187,7 +355,7 @@ export default class BvCode {
   private XOR = 177451812; // 固定异或值
   private ADD = 8728348608; // 固定加法值
   constructor() {
-	// 初始化反查码表
+    // 初始化反查码表
     const len = this.TABEL.length;
     for (let i = 0; i < len; i++) {
       this.TR[this.TABEL[i]] = i;
@@ -223,7 +391,7 @@ BV17x411w7KC
 170001
 ```
 
-### Java
+#### Java
 
 ```java
 /**
@@ -264,7 +432,8 @@ public class Util {
 }
 ```
 
-### Kotlin
+#### Kotlin
+
 ```kotlin
 /**
  * 此程序非完全原创，改编自GH站内某大佬的Java程序，修改了部分代码，且转换为Kotlin
@@ -331,7 +500,8 @@ object VideoUtils {
 }
 ```
 
-### Golang
+#### Golang
+
 ```go
 package main
 
@@ -380,8 +550,11 @@ func main() {
 BV17x411w7KC
 170001
 ```
-### Rust
+
+#### Rust
+
 crate: https://github.com/stackinspector/bvid
+
 ```rust
 // Copyright (c) 2023 stackinspector. MIT license.
 
