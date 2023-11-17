@@ -223,6 +223,61 @@ fun getCorrespondPath(timestamp: Long): String {
 1428cbd14605ae42a0b42e22662cfe51d8e5034eeaffb36a46db46bd2f93216cbfd4d150cca2de44395add7c664b40acf44424ee8d634fc821b909423665a34d18bd7f4e77ea5388a2b612daf875e2fe8df62990e14b64a465898b0707bc1288586b68f9f4f2f20bea5cb1cada296beb8009e91bc8fb57a4b81b8923299b6eb7
 ```
 
+### Go
+
+```go
+package main
+
+import (
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/sha256"
+	"crypto/x509"
+	"encoding/hex"
+	"encoding/pem"
+	"fmt"
+	"time"
+)
+
+func main() {
+	result, err := getCorrespondPath(time.Now().UnixMilli())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(result)
+}
+
+func getCorrespondPath(ts int64) (string, error) {
+	const publicKeyPEM = `
+-----BEGIN PUBLIC KEY-----
+MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDLgd2OAkcGVtoE3ThUREbio0Eg
+Uc/prcajMKXvkCKFCWhJYJcLkcM2DKKcSeFpD/j6Boy538YXnR6VhcuUJOhH2x71
+nzPjfdTcqMz7djHum0qSZA0AyCBDABUqCrfNgCiJ00Ra7GmRj+YCK1NJEuewlb40
+JNrRuoEUXpabUzGB8QIDAQAB
+-----END PUBLIC KEY-----
+`
+	pubKeyBlock, _ := pem.Decode([]byte(publicKeyPEM))
+	hash := sha256.New()
+	random := rand.Reader
+	msg := []byte(fmt.Sprintf("refresh_%d", ts))
+	var pub *rsa.PublicKey
+	pubInterface, parseErr := x509.ParsePKIXPublicKey(pubKeyBlock.Bytes)
+	if parseErr != nil {
+		return "", parseErr
+	}
+	pub = pubInterface.(*rsa.PublicKey)
+	encryptedData, encryptErr := rsa.EncryptOAEP(hash, random, pub, msg, nil)
+	if encryptErr != nil {
+		return "", encryptErr
+	}
+	return hex.EncodeToString(encryptedData), nil
+}
+```
+
+```
+97759947aa357ed5d88cf9bf1172737570b7bba2d6788d39006f082b2b25ddf53b581f1f0c61ed8573317485ef525d2789faa25a277b4602a4b9cbf837681093a03e96cb9773a11df4bb1e20f1587180b3e958194de922d7dd94d0a2f0b9b0ef74e426e8041f99b99e7c02407ef4ab38040e61be81e4fdfbdb73461e3a2ad810
+```
+
 #### vercel云函数
 
 ```bash
