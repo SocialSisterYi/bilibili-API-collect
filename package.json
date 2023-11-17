@@ -12,10 +12,9 @@
     "build": "vuepress build"
   },
   "devDependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.67",
-    "naive-ui": "^2.35.0",
     "vuepress": "2.0.0-beta.67",
     "vuepress-plugin-copy-code2": "2.0.0-beta.237",
-    "vuepress-vite": "2.0.0-beta.67"
+    "vuepress-vite": "2.0.0-beta.67",
+    "@vuepress/plugin-search": "^2.0.0-beta.67"
   }
 }
