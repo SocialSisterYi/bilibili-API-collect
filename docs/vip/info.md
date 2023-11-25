@@ -21,11 +21,18 @@
 
 `data`对象：
 
-| 字段            | 类型  | 内容         | 备注 |
-| --------------- | ----- | ------------ | ---- |
-| list            | array | 卡券信息列表 |      |
-| is_short_vip    | bool  | (?)          |      |
-| is_freight_open | bool  | (?)          |      |
+| 字段             | 类型  | 内容           | 备注        |
+| ---------------- | ----- | -------------- | ----------- |
+| list             | array | 卡券信息列表   |             |
+| is_short_vip     | bool  | (?)            |             |
+| is_freight_open  | bool  | (?)            |             |
+| level            | num   | 当前等级       |             |
+| cur_exp          | num   | 当前拥有经验值 |             |
+| next_exp         | num   | 升级所需经验值 | 满级时为 -1 |
+| is_vip           | bool  | 是否为大会员   |             |
+| is_senior_member | num   | (?)            |             |
+| format060102     | num   | (?)            |             |
+
 
 `list`数组：
 
@@ -48,8 +55,8 @@
 | type              | num  | 卡券类型             | 详见 `list` 数组表格中的 `type` 项                    |
 | state             | num  | 兑换状态             | 0：未兑换<br />1：已兑换<br />2：未完成（若需要完成） |
 | expire_time       | num  | 本轮卡券过期时间戳   | 当月月底/当日24点                                     |
-| vip_type          | num  |                      | 2：年度大会员可兑换                                   |
-| next_receive_days | num  | 距下一轮兑换剩余天数 |                                                       |
+| vip_type          | num  | 当前用户的大会员状态 | 2：年度大会员                                         |
+| next_receive_days | num  | 距下一轮兑换剩余天数 | 无权限时，每月为 0，每日为 1    	                |
 | period_end_unix   | num  | 下一轮兑换开始时间戳 | 秒级时间戳                                            |
 
 **注意：**
