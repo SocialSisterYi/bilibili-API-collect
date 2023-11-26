@@ -56,7 +56,7 @@
 | state             | num  | 兑换状态             | 0：未兑换<br />1：已兑换<br />2：未完成（若需要完成） |
 | expire_time       | num  | 本轮卡券过期时间戳   | 当月月底/当日24点                                     |
 | vip_type          | num  | 当前用户的大会员状态 | 2：年度大会员                                         |
-| next_receive_days | num  | 距下一轮兑换剩余天数 | 无权限时，每月为 0，每日为 1    	                |
+| next_receive_days | num  | 距下一轮兑换剩余天数 | 无权限时，每月任务固定为 0，每日固定为 1    	    	|
 | period_end_unix   | num  | 下一轮兑换开始时间戳 | 秒级时间戳                                            |
 
 **注意：**
