@@ -8,7 +8,7 @@ service Search {
     // 
     rpc CancelChatTask (CancelChatTaskReq) returns (CancelChatTaskReply);
     // 
-    rpc GetChatAuth (GetChatAuthReq) returns (GetChatAutReply);
+    rpc GetChatAuth (GetChatAuthReq) returns (GetChatAuthReply);
     // 
     rpc GetChatResult (GetChatResultReq) returns (bilibili.broadcast.message.main.ChatResult);
     // 
