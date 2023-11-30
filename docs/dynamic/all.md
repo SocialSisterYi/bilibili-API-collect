@@ -77,6 +77,7 @@
 | module_interaction | obj | 热度评论      |     |
 | module_fold        | obj | 动态折叠信息    |     |
 | module_dispute     | obj | 争议小黄条     |     |
+| module_tag     | obj | 置顶信息     |     |
 
 ### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象
 
@@ -658,8 +659,8 @@
 
 | 字段名        | 类型   | 内容           | 备注  |
 |------------|------|--------------|-----|
-| dynamic_id | str  | 当前动态ID       |     |
-| status     | bool | 当前动态是否处于置顶状态 |     |
+| dynamic_id | str  | 当前动态ID       |  deprecated?   |
+| status     | bool | 当前动态是否处于置顶状态 | deprecated?    |
 
 ### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象
 
@@ -747,6 +748,12 @@
 | desc     | str |      |                  |
 | jump_url | str |      |                  |
 | title    | str | 提醒文案 | 例：视频内含有危险行为，请勿模仿 |
+
+### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_tag`对象
+
+| 字段名      | 类型  | 内容   | 备注               |
+|----------|-----|------|------------------|
+| text     | str | '置顶'     |  置顶动态出现这个对象，否则没有                |
 
 ## 请求示例
 
