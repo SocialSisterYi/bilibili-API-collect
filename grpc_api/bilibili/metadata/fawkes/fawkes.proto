@@ -8,6 +8,8 @@ message FawkesReply {
     string config = 1;
     // 客户端在fawkes系统中对应的已发布最新的ff版本号
     string ff = 2;
+    // 
+    string dd = 3;
 }
 
 //

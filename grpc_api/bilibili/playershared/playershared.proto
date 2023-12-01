@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package bilibili.playershared;
 
+import "google/protobuf/any.proto";
+
 // ArcConf消息
 message ArcConf {
     // 是否支持
@@ -46,6 +48,26 @@ message BadgeInfo {
     GradientColor bg_gradient_color = 5;
     // 
     string img = 6;
+}
+
+// 
+message Banner {
+    // 
+    string jump_link = 1;
+    // 
+    string image_link = 2;
+    // 
+    string half_image_link = 3;
+    // 
+    Report report = 4;
+}
+
+// 
+message BenefitInfo {
+    // 
+    string title = 1;
+    // 
+    string icon = 2;
 }
 
 // 
@@ -109,6 +131,8 @@ enum ButtonAction {
     BP = 13;
     // 
     PRE_SELL = 14;
+    // 
+    LOGIN = 15;
 }
 
 // 
@@ -286,7 +310,7 @@ message DeviceConf {
 // 
 message Dialog {
     // 
-    int32 style_type = 1;
+    GuideStyle style_type = 1;
     // 
     BackgroundInfo background_info = 2;
     // 
@@ -310,7 +334,9 @@ message Dialog {
     // 
     ExtData ext_data = 12;
     // 
-    int32 limit_action_type = 13;
+    LimitActionType limit_action_type = 13;
+    // 
+    int32 is_hide_more_btn = 14;
 }
 
 
@@ -350,6 +376,7 @@ enum DrmTechType {
     BILI_DRM = 3;
 }
 
+// 
 enum Effects {
     // 
     EFFECTS_UNKNOWN = 0;
@@ -357,6 +384,22 @@ enum Effects {
     GAUSSIAN_BLUR = 1;
     // 
     HALF_ALPHA = 2;
+}
+
+// 
+message EpInlineVideo {
+    // 
+    int64 material_no = 1;
+    // 
+    int64 aid = 2;
+    // 
+    int64 cid = 3;
+}
+
+// 
+message EpInlineVideoInfo {
+    // 
+    repeated EpInlineVideo ep_inline_video = 1;
 }
 
 // 事件
@@ -388,6 +431,69 @@ message ExtraContent {
     string disable_reason = 1;
     // 
     int64 disable_code = 2;
+}
+
+// 
+message Fragment {
+    // 
+    repeated FragmentInfo infos = 1;
+}
+
+// 
+message FragmentInfo {
+    // 
+    int32 index = 1;
+    // 
+    FragmentPosition fragment_position = 2;
+    // 
+    FragmentType fragment_type = 3;
+    // 
+    int64 aid = 4;
+    // 
+    int64 cid = 5;
+    // 
+    int64 start_time = 6;
+    // 
+    google.protobuf.Any report = 7;
+}
+
+// 
+enum FragmentPosition {
+    INVALID = 0;
+    PRE = 1;
+    MIDDLE = 2;
+    POST = 3;
+}
+
+// 
+enum FragmentType {
+    UNKNOWN = 0;
+    AD_FRAGMENT = 1;
+    OGV_FRAGMENT = 2;
+}
+
+// 
+message FragmentVideo {
+    // 
+    repeated FragmentVideoInfo videos = 1;
+}
+
+// 
+message FragmentVideoInfo {
+    // 
+    FragmentInfo fragment_info = 1;
+    // 
+    VodInfo vod_info = 2;
+    // 
+    PlayArcConf play_arc_conf = 3;
+    // 
+    Dimension dimension = 4;
+    // 
+    int64 timelength = 5;
+    // 
+    BizType video_type = 6;
+    // 
+    bool playable_status = 7;
 }
 
 // 
@@ -503,6 +609,10 @@ message PlayArc {
     int64 duration = 8;
     // 
     bool is_preview = 9;
+    // 
+    int64 watch_time_length = 10;
+    // 
+    int64 duration_ms = 11;
 }
 
 // 播放页信息-响应: PlayArcConf
@@ -562,8 +672,30 @@ message PromptBar {
     string full_screen_ip_icon = 8;
     // 
     GradientColor full_screen_bg_gradient_color = 9;
+    // 
+    PromptBarType prompt_bar_type = 10;
+    // 
+    PromptBarStyle prompt_bar_style = 11;
+    // 
+    repeated BenefitInfo benefit_infos = 12;
+    // 
+    int64 end_time = 13;
 }
 
+// 
+enum PromptBarStyle {
+    PROMPT_BAR_STYLE_UNKNOWN = 0;
+    TEXT = 1;
+    CURING_BENEFITS = 2;
+    CARD_OPENING_GIFT = 3;
+    COUNTDOWN = 4;
+}
+
+// 
+enum PromptBarType {
+    PROMPT_BAR_TYPE_UNKNOWN = 0;
+    OPEN_PROMPT_BAR = 1;
+}
 
 // 播放页信息-响应: 高画质试看信息
 message QnTrialInfo {
@@ -751,6 +883,8 @@ enum ToastType {
     OGV_VIDEO_START_TOAST = 4;
     // 
     CHARGING_TOAST = 5;
+    // 
+    VIP_SKIP_FRAGMENT_TOAST = 6;
 }
 
 // 
