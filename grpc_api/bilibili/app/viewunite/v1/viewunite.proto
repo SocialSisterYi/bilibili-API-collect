@@ -71,6 +71,8 @@ message ArcRefreshReply {
     Online online = 4;
     // 
     LikeConfig like_config = 5;
+    // 
+    SimpleOwner owner = 6;
 }
 
 // 
@@ -79,12 +81,26 @@ message ArcRefreshReq {
     int64 aid = 1;
     // 
     string bvid = 2;
+    // 
+    UnionType type = 3;
 }
 
 // 
 message AttentionCard {
     // 
     repeated ShowTime show_time = 1;
+}
+
+// 
+message BgPlayNotice {
+    // 
+    bool allow_show = 1;
+    // 
+    string text = 2;
+    // 
+    string btn_text_1 = 3;
+    // 
+    string btn_text_2 = 4;
 }
 
 // 
@@ -216,6 +232,8 @@ message Config {
     PlayerIcon player_icon = 2;
     // 
     StoryEntrance story_entrance = 3;
+    // 
+    BgPlayNotice bg_play_notice = 4;
 }
 
 // 视频播放时弹出的卡片
@@ -242,6 +260,8 @@ message ContractCard {
     int32 is_play_display = 10;
     // 
     int32 is_interact_display = 11;
+    // 
+    bool play_display_switch = 12;
 }
 
 // 视频播放时弹出的卡片的文字说明信息
@@ -283,6 +303,26 @@ enum ECode {
 message ECodeConfig {
     // 
     string redirect_url = 1;
+}
+
+// 
+message FragmentArc {
+    // 
+    int64 aid = 1;
+    // 
+    int64 cid = 2;
+}
+
+// 
+message FragmentParam {
+    // 
+    repeated FragmentArc fragment_arcs = 1;
+}
+
+// 
+message FragmentRes {
+    // 
+    map<int64, VideoShot> video_shot = 1;
 }
 
 // 
@@ -361,6 +401,8 @@ enum MaterialBizType {
     ACTIVITY_ICON = 6;
     // 
     NEW_BGM = 7;
+    // 
+    GENERAL_TYPE = 8;
 }
 
 // 素材来源
@@ -568,6 +610,16 @@ message ReqUser {
     Button elec_plus_btn = 7;
     //    
     ChargingPlus charging_plus = 8;
+    // 
+    ReqUserExtra extra = 9;
+    // 
+    int32 paid = 10;
+}
+
+// 
+message ReqUserExtra {
+    // 
+    bool user_flag_new = 1;
 }
 
 // 
@@ -596,6 +648,12 @@ message ShowTime {
 message SimpleArc {
     // 
     int32 copyright = 1;
+}
+
+// 
+message SimpleOwner {
+    // 
+    int32 attention_relation = 1;
 }
 
 // 
@@ -674,6 +732,8 @@ enum UnionType {
     UGC = 0;
     // 
     OGV = 1;
+    // 
+    PUGV = 2;
 }
 
 // UP主信息(可是Upper这个... 程序员英文不过关吧? )
@@ -832,4 +892,6 @@ message ViewReq {
     string biz_extra = 12;
     // 
     string ad_extra = 13;
+    // 
+    string from_scene = 14;
 }
