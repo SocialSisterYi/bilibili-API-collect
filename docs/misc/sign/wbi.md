@@ -714,7 +714,7 @@ echo $c->reQuery(['foo' => '114', 'bar' => '514', 'baz' => 1919810]);
 
 ```rust
 use reqwest::header::USER_AGENT;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 const MIXIN_KEY_ENC_TAB: [usize; 64] = [
@@ -723,18 +723,18 @@ const MIXIN_KEY_ENC_TAB: [usize; 64] = [
     54, 21, 56, 59, 6, 63, 57, 62, 11, 36, 20, 34, 44, 52,
 ];
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize)]
 struct WbiImg {
     img_url: String,
     sub_url: String,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize)]
 struct Data {
     wbi_img: WbiImg,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize)]
 struct ResWbi {
     data: Data,
 }
