@@ -196,80 +196,72 @@ bar=514&baz=1919810&foo=114&wts=1684746387&w_rid=d3cbd2a2316089117134038bf4caf44
 
 ```javascript
 import md5 from 'md5'
-import axios from 'axios'
 
 const mixinKeyEncTab = [
-    46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
-    33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
-    61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
-    36, 20, 34, 44, 52
+  46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+  33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+  61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+  36, 20, 34, 44, 52
 ]
 
 // 对 imgKey 和 subKey 进行字符顺序打乱编码
-function getMixinKey(orig) {
-    let temp = ''
-    mixinKeyEncTab.forEach((n) => {
-        temp += orig[n]
-    })
-    return temp.slice(0, 32)
-}
+const getMixinKey = (orig) => mixinKeyEncTab.map(n => orig[n]).join('').slice(0, 32)
 
 // 为请求参数进行 wbi 签名
 function encWbi(params, img_key, sub_key) {
-    const mixin_key = getMixinKey(img_key + sub_key),
-        curr_time = Math.round(Date.now() / 1000),
-        chr_filter = /[!'()*]/g
-    let query = []
-    Object.assign(params, { wts: curr_time }) // 添加 wts 字段
-    // 按照 key 重排参数
-    Object.keys(params).sort().forEach((key) => {
-        query.push(
-            `${encodeURIComponent(key)}=${encodeURIComponent(
-                // 过滤 value 中的 "!'()*" 字符
-                params[key].toString().replace(chr_filter, '')
-            )}`
-        )
+  const mixin_key = getMixinKey(img_key + sub_key),
+    curr_time = Math.round(Date.now() / 1000),
+    chr_filter = /[!'()*]/g
+
+  Object.assign(params, { wts: curr_time }) // 添加 wts 字段
+  // 按照 key 重排参数
+  const query = Object
+    .keys(params)
+    .sort()
+    .map(key => {
+      // 过滤 value 中的 "!'()*" 字符
+      const value = params[key].toString().replace(chr_filter, '')
+      return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
     })
-    query = query.join('&')
-    const wbi_sign = md5(query + mixin_key) // 计算 w_rid
-    return query + '&w_rid=' + wbi_sign
+    .join('&')
+
+  const wbi_sign = md5(query + mixin_key) // 计算 w_rid
+
+  return query + '&w_rid=' + wbi_sign
 }
 
 // 获取最新的 img_key 和 sub_key
 async function getWbiKeys() {
-    const resp = await axios({
-        url: 'https://api.bilibili.com/x/web-interface/nav',
-        method: 'get',
-        responseType: 'json'
-    }),
-        json_content = resp.data,
-        img_url = json_content.data.wbi_img.img_url,
-        sub_url = json_content.data.wbi_img.sub_url
-
-    return {
-        img_key: img_url.slice(
-            img_url.lastIndexOf('/') + 1,
-            img_url.lastIndexOf('.')
-        ),
-        sub_key: sub_url.slice(
-            sub_url.lastIndexOf('/') + 1,
-            sub_url.lastIndexOf('.')
-        )
+  const res = await fetch('https://api.bilibili.com/x/web-interface/nav', {
+    headers: {
+      // SESSDATA 字段
+      Cookie: "SESSDATA=xxxxxx"
     }
+  })
+  const { data: { wbi_img: { img_url, sub_url } } } = await res.json()
+
+  return {
+    img_key: img_url.slice(
+      img_url.lastIndexOf('/') + 1,
+      img_url.lastIndexOf('.')
+    ),
+    sub_key: sub_url.slice(
+      sub_url.lastIndexOf('/') + 1,
+      sub_url.lastIndexOf('.')
+    )
+  }
 }
 
-getWbiKeys().then((wbi_keys) => {
-    const query = encWbi(
-        {
-            foo: '114',
-            bar: '514',
-            baz: 1919810
-        },
-        wbi_keys.img_key, 
-        wbi_keys.sub_key
-    )
-    console.log(query)
-})
+async function main() {
+  const web_keys = await getWbiKeys()
+  const params = { foo: '114', bar: '514', baz: 1919810 },
+    img_key = web_keys.img_key,
+    sub_key = web_keys.sub_key
+  const query = encWbi(params, img_key, sub_key)
+  console.log(query)
+}
+
+main()
 ```
 
 输出内容为进行 Wbi 签名的后参数的 url query 形式
@@ -714,5 +706,113 @@ class Bilibili {
 $c = new Bilibili();
 echo $c->reQuery(['foo' => '114', 'bar' => '514', 'baz' => 1919810]);
 // bar=514&baz=1919810&foo=114&wts=1700384803&w_rid=4614cb98d60a43e50c3a3033fe3d116b
-
 ```
+
+### Rust
+
+需要 serde、serde_json、reqwest、tokio 以及 md5
+
+```rust
+use reqwest::header::USER_AGENT;
+use serde::Deserialize;
+use std::time::{SystemTime, UNIX_EPOCH};
+
+const MIXIN_KEY_ENC_TAB: [usize; 64] = [
+    46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49, 33, 9, 42, 19, 29,
+    28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40, 61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25,
+    54, 21, 56, 59, 6, 63, 57, 62, 11, 36, 20, 34, 44, 52,
+];
+
+#[derive(Deserialize)]
+struct WbiImg {
+    img_url: String,
+    sub_url: String,
+}
+
+#[derive(Deserialize)]
+struct Data {
+    wbi_img: WbiImg,
+}
+
+#[derive(Deserialize)]
+struct ResWbi {
+    data: Data,
+}
+
+// 对 imgKey 和 subKey 进行字符顺序打乱编码
+fn get_mixin_key(orig: &[u8]) -> String {
+    MIXIN_KEY_ENC_TAB
+        .iter()
+        .map(|&i| orig[i] as char)
+        .collect::<String>()
+}
+
+fn get_url_encoded(s: &str) -> String {
+    s.chars()
+        .filter_map(|c| match c.is_ascii_alphanumeric() || "-_.~".contains(c) {
+            true => Some(c.to_string()),
+            false => {
+                // 过滤 value 中的 "!'()*" 字符
+                if "!'()*".contains(c) {
+                    return None;
+                }
+                let encoded = c
+                    .encode_utf8(&mut [0; 4])
+                    .bytes()
+                    .fold("".to_string(), |acc, b| acc + &format!("%{:02X}", b));
+                Some(encoded)
+            }
+        })
+        .collect::<String>()
+}
+
+// 为请求参数进行 wbi 签名
+fn encode_wbi(params: &mut Vec<(&str, String)>, (img_key, sub_key): (String, String)) -> String {
+    let mixin_key = get_mixin_key((img_key + &sub_key).as_bytes());
+    let cur_time = match SystemTime::now().duration_since(UNIX_EPOCH) {
+        Ok(t) => t.as_secs(),
+        Err(_) => panic!("SystemTime before UNIX EPOCH!"),
+    };
+    // 添加当前时间戳
+    params.push(("wts", cur_time.to_string()));
+    // 重新排序
+    params.sort_by(|a, b| a.0.cmp(b.0));
+    let query = params.iter().fold(String::from(""), |acc, (k, v)| {
+        acc + format!("{}={}&", get_url_encoded(k), get_url_encoded(v)).as_str()
+    });
+
+    let web_sign = format!("{:?}", md5::compute(query.clone() + &mixin_key));
+
+    query + &format!("w_rid={}", web_sign)
+}
+
+async fn get_wbi_keys() -> Result<(String, String), reqwest::Error> {
+    let client = reqwest::Client::new();
+    let ResWbi { data:Data{wbi_img} } = client
+    .get("https://api.bilibili.com/x/web-interface/nav")
+    .header(USER_AGENT,"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
+     // SESSDATA=xxxxx
+    .header("Cookie", "SESSDATA=xxxxx")
+    .send()
+    .await?
+    .json::<ResWbi>()
+    .await?;
+
+    Ok((wbi_img.img_url, wbi_img.sub_url))
+}
+
+#[tokio::main]
+async fn main() {
+    let urls = get_wbi_keys().await.unwrap();
+    let mut params = vec![
+        ("foo", String::from("114")),
+        ("bar", String::from("514")),
+        ("baz", String::from("1919810")),
+    ];
+
+    let query = encode_wbi(&mut params, urls);
+
+    println!("{}", query);
+}
+```
+
