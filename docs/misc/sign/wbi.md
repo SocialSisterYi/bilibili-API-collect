@@ -818,12 +818,13 @@ async fn main() {
 
 ### Swift
 
-需要 [Alamofire](https://github.com/Alamofire/Alamofire) 库
+需要 [Alamofire](https://github.com/Alamofire/Alamofire) 和 [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) 库
 
 ```swift
 import Foundation
 import CommonCrypto
 import Alamofire
+import SwiftyJSON
 
 func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
     func getMixinKey(orig: String) -> String {
