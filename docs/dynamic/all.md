@@ -182,8 +182,8 @@
 | 字段名        | 类型  | 内容       | 备注  |
 |------------|-----|----------|-----|
 | additional | obj | 相关内容卡片信息 |     |
-| desc       | obj | 动态文字内容   |     |
-| major      | obj | 动态主体对象   |     |
+| desc       | obj | 动态文字内容   |其他动态时为null     |
+| major      | obj | 动态主体对象   |转发动态时为null     |
 | topic      | obj | 话题信息     |     |
 
 ### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象
@@ -415,6 +415,7 @@
 | pgc        | obj | 剧集信息   | `MAJOR_TYPE_PGC`        |
 | courses    | obj | 课程信息   | `MAJOR_TYPE_COURSES`    |
 | music      | obj | 音频信息   | `MAJOR_TYPE_MUSIC`      |
+| opus       | obj | 图文动态   | `MAJOR_TYPE_OPUS`       |
 | live       | obj |        |                         |
 | none       | obj | 动态失效   | `MAJOR_TYPE_NONE`       |
 
@@ -595,6 +596,23 @@
 | label    | str | 音频分类   |     |
 | title    | str | 音频标题   |     |
 
+### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `opus`对象
+
+| 字段名      | 类型  | 内容     | 备注  |
+|---------------|------|--------|-----|
+| fold_action   | array | 展开收起   |     |
+| jump_url      | str  | 跳转URL  |     |
+| pics          | array | 图片信息   |     |
+| summary       | obj  | 动态内容   |     |
+| title         | str  | 动态标题   | 没有标题时为null    |
+
+### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `opus`对象 -> `summary`对象
+
+| 字段名             | 类型    | 内容      | 备注                                   |
+|-----------------|-------|---------|--------------------------------------|
+| rich_text_nodes | array | 富文本节点列表 | 和`desc`对象中的`rich_text_nodes`数组结构一样 |
+| text            | str   | 评论内容    |                                      |
+
 ### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `live`对象
 
 | 字段名          | 类型  | 内容       | 备注                |
@@ -621,7 +639,7 @@
 
 | 字段名  | 类型  | 内容       | 备注  |
 |------|-----|----------|-----|
-| tips | str | 动态失效显示文案 |     |
+| tips | str | 动态失效显示文案 | deprecated?    |
 
 ### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `topic`对象
 
