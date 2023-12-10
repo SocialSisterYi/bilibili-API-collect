@@ -115,7 +115,7 @@
 
 ## Wbi签名算法实现Demo
 
-该 Demo 提供 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)和[Java](#Java) 语言
+该 Demo 提供 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)、[Java](#Java)和[Swift](#Swift) 语言
 
 ### Python
 
@@ -814,5 +814,89 @@ async fn main() {
 
     println!("{}", query);
 }
+```
+
+### Swift
+
+需要 [Alamofire](https://github.com/Alamofire/Alamofire) 和 [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) 库
+
+```swift
+import Foundation
+import CommonCrypto
+import Alamofire
+import SwiftyJSON
+
+func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
+    func getMixinKey(orig: String) -> String {
+        return String(mixinKeyEncTab.map { orig[orig.index(orig.startIndex, offsetBy: $0)] }.prefix(32))
+    }
+    
+    func encWbi(params: [String: Any], imgKey: String, subKey: String) -> [String: Any] {
+        var params = params
+        let mixinKey = getMixinKey(orig: imgKey + subKey)
+        let currTime = round(Date().timeIntervalSince1970)
+        params["wts"] = currTime
+        params = params.sorted { $0.key < $1.key }.reduce(into: [:]) { $0[$1.key] = $1.value }
+        params = params.mapValues { String(describing: $0).filter { !"!'()*".contains($0) } }
+        let query = params.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
+        let wbiSign = calculateMD5(string: query + mixinKey)
+        params["w_rid"] = wbiSign
+        return params
+    }
+    
+    func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
+        AF.request("https://api.bilibili.com/x/web-interface/nav").responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
+                let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
+                let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                completion(.success((imgKey, subKey)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func calculateMD5(string: String) -> String {
+        let data = Data(string.utf8)
+        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+        _ = data.withUnsafeBytes {
+            CC_MD5($0.baseAddress, CC_LONG(data.count), &digest)
+        }
+        return digest.map { String(format: "%02hhx", $0) }.joined()
+    }
+    
+    let mixinKeyEncTab = [
+        46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+        33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+        61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+        36, 20, 34, 44, 52
+    ]
+    
+    getWbiKeys { result in
+        switch result {
+        case .success(let keys):
+            let spdParam = param.components(separatedBy: "&")
+            var spdDicParam = [String: String]()
+            spdParam.forEach { pair in
+                let components = pair.components(separatedBy: "=")
+                if components.count == 2 {
+                    spdDicParam[components[0]] = components[1]
+                }
+            }
+            
+            let signedParams = encWbi(params: spdDicParam, imgKey: keys.imgKey, subKey: keys.subKey)
+            let query = signedParams.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
+            completion(query)
+        case .failure(let error):
+            print("Error getting keys: \(error)")
+            completion(nil)
+        }
+    }
+}
+
 ```
 
