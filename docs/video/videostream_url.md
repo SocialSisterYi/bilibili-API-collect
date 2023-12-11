@@ -457,9 +457,9 @@ curl -G 'https://api.bilibili.com/x/player/playurl' \
 | minBufferTime   | num   | 1.5？       |  |
 | min_buffer_time | num   | 1.5？       |  |
 | video           | array | 视频流信息 |              |
-| audio           | array | 伴音流信息 |              |
+| audio           | array | 伴音流信息 | 当视频没有音轨时，此项为 null |
 | dolby           | obj | 杜比全景声伴音信息 |              |
-| flac           | obj | 无损音轨伴音信息 |              |
+| flac           | obj | 无损音轨伴音信息 | 当视频没有无损音轨时，此项为 null |
 
 `dash`中的`video`数组：
 
