@@ -32,44 +32,45 @@
 
 `data`对象：
 
-| 字段                   | 类型      | 内容              | 备注                                                 |
-|----------------------|---------|-----------------|----------------------------------------------------|
-| bvid                 | str     | 稿件bvid          |                                                    |
-| aid                  | num     | 稿件avid          |                                                    |
-| videos               | num     | 稿件分P总数          | 默认为1                                               |
-| tid                  | num     | 分区tid           |                                                    |
-| tname                | str     | 子分区名称           |                                                    |
-| copyright            | num     | 视频类型            | 1：原创<br />2：转载                                     |
-| pic                  | str     | 稿件封面图片url       |                                                    |
-| title                | str     | 稿件标题            |                                                    |
-| pubdate              | num     | 稿件发布时间          | 秒级时间戳                                              |
-| ctime                | num     | 用户投稿时间          | 秒级时间戳                                              |
-| desc                 | str     | 视频简介            |                                                    |
-| desc_v2              | array   | 新版视频简介          |                                                    |
-| state                | num     | 视频状态            | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
-| ~~attribute~~(已经弃用)  | ~~num~~ | ~~稿件属性位配置~~     | 详情见[属性数据文档](attribute_data.md#state字段值(稿件状态))      |
-| duration             | num     | 稿件总时长(所有分P)     | 单位为秒                                               |
-| forward              | num     | 撞车视频跳转avid      | 仅撞车视频存在此字段                                         |
-| mission_id           | num     | 稿件参与的活动id       |                                                    |
-| redirect_url         | str     | 重定向url          | 仅番剧或影视视频存在此字段<br />用于番剧&影视的av/bv->ep               |
-| rights               | obj     | 视频属性标志          |                                                    |
-| owner                | obj     | 视频UP主信息         |                                                    |
-| stat                 | obj     | 视频状态数           |                                                    |
-| dynamic              | str     | 视频同步发布的的动态的文字内容 |                                                    |
-| cid                  | num     | 视频1P cid        |                                                    |
-| dimension            | obj     | 视频1P分辨率         |                                                    |
-| premiere             |         | null            |                                                    |
-| teenage_mode         | num     |                 |                                                    |
-| is_chargeable_season | bool    |                 |                                                    |
-| is_story             | bool    |                 |                                                    |
-| no_cache             | bool    |                 | 作用尚不明确                                             |
-| pages                | array   | 视频分P列表          |                                                    |
-| subtitle             | obj     | 视频CC字幕信息        |                                                    |
-| staff                | array   | 合作成员列表          | 非合作视频无此项                                           |
-| is_season_display    | bool    |                 |                                                    |
-| user_garb            | obj     | 用户装扮信息          |                                                    |
-| honor_reply          | obj     |                 |                                                    |
-| like_icon            | str     |                 |                                                    |
+| 字段                    | 类型    | 内容                           | 备注                                                         |
+| ----------------------- | ------- | ------------------------------ | ------------------------------------------------------------ |
+| bvid                    | str     | 稿件bvid                       |                                                              |
+| aid                     | num     | 稿件avid                       |                                                              |
+| videos                  | num     | 稿件分P总数                    | 默认为1                                                      |
+| tid                     | num     | 分区tid                        |                                                              |
+| tname                   | str     | 子分区名称                     |                                                              |
+| copyright               | num     | 视频类型                       | 1：原创<br />2：转载                                         |
+| pic                     | str     | 稿件封面图片url                |                                                              |
+| title                   | str     | 稿件标题                       |                                                              |
+| pubdate                 | num     | 稿件发布时间                   | 秒级时间戳                                                   |
+| ctime                   | num     | 用户投稿时间                   | 秒级时间戳                                                   |
+| desc                    | str     | 视频简介                       |                                                              |
+| desc_v2                 | array   | 新版视频简介                   |                                                              |
+| state                   | num     | 视频状态                       | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
+| ~~attribute~~(已经弃用) | ~~num~~ | ~~稿件属性位配置~~             | 详情见[属性数据文档](attribute_data.md#state字段值(稿件状态)) |
+| duration                | num     | 稿件总时长(所有分P)            | 单位为秒                                                     |
+| forward                 | num     | 撞车视频跳转avid               | 仅撞车视频存在此字段                                         |
+| mission_id              | num     | 稿件参与的活动id               |                                                              |
+| redirect_url            | str     | 重定向url                      | 仅番剧或影视视频存在此字段<br />用于番剧&影视的av/bv->ep     |
+| rights                  | obj     | 视频属性标志                   |                                                              |
+| owner                   | obj     | 视频UP主信息                   |                                                              |
+| stat                    | obj     | 视频状态数                     |                                                              |
+| dynamic                 | str     | 视频同步发布的的动态的文字内容 |                                                              |
+| cid                     | num     | 视频1P cid                     |                                                              |
+| dimension               | obj     | 视频1P分辨率                   |                                                              |
+| premiere                |         | null                           |                                                              |
+| teenage_mode            | num     |                                |                                                              |
+| is_chargeable_season    | bool    |                                |                                                              |
+| is_story                | bool    |                                |                                                              |
+| no_cache                | bool    |                                | 作用尚不明确                                                 |
+| pages                   | array   | 视频分P列表                    |                                                              |
+| subtitle                | obj     | 视频CC字幕信息                 |                                                              |
+| staff                   | array   | 合作成员列表                   | 非合作视频无此项                                             |
+| is_season_display       | bool    |                                |                                                              |
+| user_garb               | obj     | 用户装扮信息                   |                                                              |
+| honor_reply             | obj     |                                |                                                              |
+| like_icon               | str     |                                |                                                              |
+| argue_info              | obj     | 争议/警告信息                  |                                                              |
 
 `data`中的`desc_v2`数组：
 
@@ -118,21 +119,21 @@
 
 `data`中的`stat`对象：
 
-| 字段         | 类型  | 内容        | 备注    |
-|------------|-----|-----------|-------|
-| aid        | num | 稿件avid    |       |
-| view       | num | 播放数       |       |
-| danmaku    | num | 弹幕数       |       |
-| reply      | num | 评论数       |       |
-| favorite   | num | 收藏数       |       |
-| coin       | num | 投币数       |       |
-| share      | num | 分享数       |       |
-| now_rank   | num | 当前排名      |       |
-| his_rank   | num | 历史最高排行    |       |
-| like       | num | 获赞数       |       |
-| dislike    | num | 点踩数       | 恒为`0` |
-| evaluation | str | 视频评分      |       |
-| argue_msg  | str | 警告/争议提示信息 |       |
+| 字段       | 类型 | 内容         | 备注    |
+| ---------- | ---- | ------------ | ------- |
+| aid        | num  | 稿件avid     |         |
+| view       | num  | 播放数       |         |
+| danmaku    | num  | 弹幕数       |         |
+| reply      | num  | 评论数       |         |
+| favorite   | num  | 收藏数       |         |
+| coin       | num  | 投币数       |         |
+| share      | num  | 分享数       |         |
+| now_rank   | num  | 当前排名     |         |
+| his_rank   | num  | 历史最高排行 |         |
+| like       | num  | 获赞数       |         |
+| dislike    | num  | 点踩数       | 恒为`0` |
+| evaluation | str  | 视频评分     |         |
+| vt         | int  | 作用尚不明确 | 恒为`0` |
 
 `data`中的`pages`数组：
 
@@ -262,6 +263,14 @@
 | type                 | num | 1：入站必刷收录<br/>2：第?期每周必看<br/>3：全站排行榜最高第?名<br/>4：热门 |     |
 | desc                 | num | 描述                                  |     |
 | weekly_recommend_num | num |                                     |     |
+
+`data`中的`argue_info`对象：
+
+| 字段       | 类型 | 内容              | 备注         |
+| ---------- | ---- | ----------------- | ------------ |
+| argue_link | str  |                   | 作用尚不明确 |
+| argue_msg  | str  | 警告/争议提示信息 |              |
+| argue_type | int  |                   | 作用尚不明确 |
 
 **示例：**
 
