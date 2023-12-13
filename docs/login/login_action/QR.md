@@ -445,7 +445,7 @@ X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 
 | 参数名   | 类型 | 内容       | 必要性       | 备注                       |
 | -------- | ---- | ---------- | ------------ | -------------------------- |
-| appkey   | str  | APP 密钥   | APP 方式必要 | 仅可用`4409e2ce8ffd12b8`   |
+| appkey   | str  | APP 密钥   | APP 方式必要 |                            |
 | local_id | str  | TV 端 id   | TV 端必要    | 可为`0`                    |
 | ts       | num  | 当前时间戳 | APP 方式必要 |                            |
 | sign     | str  | APP 签名   | APP 方式必要 |                            |
@@ -514,7 +514,7 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 | 参数名       | 类型  | 内容    | 必要性     | 备注                    |
 |-----------|-----|-------|---------|-----------------------|
-| appkey    | str | APP密钥 | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
+| appkey    | str | APP密钥 | APP方式必要 |                       |
 | auth_code | str | 扫码秘钥  | 必要      |                       |
 | local_id  | str | TV端id | TV端必要   | 可为0                   |
 | ts        | num | 当前时间戳 | APP方式必要 |                       |
