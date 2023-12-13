@@ -299,11 +299,14 @@ curl 'https://passport.bilibili.com/qrcode/getLoginUrl'
 
 ### 扫码登录(web端-旧版)
 
-**接口已失效，返回 code `20000`、message `该版本已不支持当前功能，请升级新版本！`**
+**接口已失效，请求结果始终为 `{ code: 20000, message: '该版本已不支持当前功能，请升级新版本！' }`**
 
 > ~~https://passport.bilibili.com/qrcode/getLoginInfo~~
 
 *请求方式：POST*
+
+<details>
+<summary>内容已过时：</summary>
 
 密钥超时为180秒
 
@@ -335,9 +338,6 @@ data 对象：
 | 字段  | 类型  | 内容           | 备注  |
 |-----|-----|--------------|-----|
 | url | str | 游戏分站跨域登录 url |     |
-
-<details>
-<summary>响应内容已过时：</summary>
 
 **示例：**
 
