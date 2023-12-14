@@ -445,8 +445,8 @@ X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 
 | 参数名   | 类型 | 内容       | 必要性       | 备注                       |
 | -------- | ---- | ---------- | ------------ | -------------------------- |
-| appkey   | str  | APP 密钥   | APP 方式必要 | 仅可用`4409e2ce8ffd12b8`   |
-| local_id | str  | TV 端 id   | TV 端必要    | 可为`0`                    |
+| appkey   | str  | APP 密钥   | APP 方式必要 | [可用](#appkey-可用列表)     |
+| local_id | num  | TV 端 id   | TV 端必要    | 可为`0`                    |
 | ts       | num  | 当前时间戳 | APP 方式必要 |                            |
 | sign     | str  | APP 签名   | APP 方式必要 |                            |
 | mobi_app | str  | 平台标识   | 非必要       | 会被拼接到返回的 url query |
@@ -514,9 +514,9 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 | 参数名       | 类型  | 内容    | 必要性     | 备注                    |
 |-----------|-----|-------|---------|-----------------------|
-| appkey    | str | APP密钥 | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
+| appkey    | str | APP密钥 | APP方式必要 |[可用](#appkey-可用列表)  |
 | auth_code | str | 扫码秘钥  | 必要      |                       |
-| local_id  | str | TV端id | TV端必要   | 可为0                   |
+| local_id  | num | TV端id | TV端必要   | 可为0                   |
 | ts        | num | 当前时间戳 | APP方式必要 |                       |
 | sign      | str | APP签名 | APP方式必要 |                       |
 
@@ -629,3 +629,24 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
 ```
 
 </details>
+
+### appkey 可用列表
+
+**仅覆盖 [docs/misc/sign/APPKey](docs/misc/sign/APPKey.html) 中包含的 appkey**
+
+|      APPKEY      |              APPSEC              | platform |      APP类型       | neuronAppId | mobi_app<sup>2</sup> |                    备注                    |
+| :--------------: | :------------------------------: | :------------------: | :----------------: | :---------------------: | :------------------: | :----------------------------------------: |
+| 783bbb7264451d82 | 2653583c8873dea268ab9386918b1d65 |      `android`       |        粉版        |           `1`           |      `android`       |    仅获取用户信息时使用(7.X及更新版本)     |
+| 8d23902c1688a798 | 710f0212e62bd499b8d3ac6e1db9302a |      `android`       | AndroidBiliThings  |            ?            |          ?           |                                            |
+| bca7e84c2d947ac6 | 60698ba2f68e01ce44738920a0ffe768 |          ?           |       login        |            -            |          ?           |                                            |
+| 27eb53fc9058f8c3 | c2ed53a74eeefe3cf99fbd01d8c9c375 |     `web`/`ios`?     |         -          |            -            |          -           |               第三方授权使用               |
+| 4409e2ce8ffd12b8 | 59b43e04ad6965f34319062b478f83dd |      `android`       | 云视听小电视(TV版) |          `9`?           |  `android_tv_yst`?   |                                            |
+| dfca71928277209b | b5475a8825547a4fc26c7d518eaaa02e |      `android`       |       HD 版        |           `5`           |     `android_hd`     |                                            |
+
+**注意：**
+
+通过某一组 APPKEY/APPSEC 获取到的 access_token，当接口需要 `sign` 签名时也只能使用该组 APPKEY/APPSEC，否则出现 `{ code: -663, message: '鉴权失败，请联系账号组', ttl: 1 }` 错误。
+
+**例外：**
+
+`783bbb7264451d82`/`2653583c8873dea268ab9386918b1d65` 获取到的 access_token 可配合 `1d8b6e7d45233436`/`560c52ccd288fed045859ed18bffd973` 使用。
