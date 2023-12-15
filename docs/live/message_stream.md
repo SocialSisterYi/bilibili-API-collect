@@ -446,6 +446,73 @@ json格式
 ```
 </details>
 
+
+#### 连续弹幕消息
+
+连续多条相同弹幕时触发
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str  | "DM_INTERACTION" | 如果是进入直播间或关注消息，内容则是"INTERACT_WORD" |
+| data | obj  | 进入直播间的用户的信息 |  |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| id | num  | 事件ID |  |
+| status | num | 状态 |  |
+| type | num | 事件类型 |  |
+| data | str | 事件数据 |  |
+
+连续发送弹幕事件的data.data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| combo | array  | 连续发送弹幕事件信息 |  |
+| merge_interval | num | 合并弹幕时间间隔 |  |
+| card_appear_interval | num | 弹窗出现时间间隔 |  |
+| send_interval | num | 发送时间间隔 |  |
+
+连续发送弹幕事件的data.data.combo字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| id | num  | 时间ID |  |
+| status | num | 状态 |  |
+| content | str | 重复的弹幕内容 |  |
+| cnt | num | 重复数量 |  |
+| guide | str | 标题词 | "他们都在说:" |
+| left_duration | num | 左移时长 |  |
+| fade_duration | num | 淡化时长 |  |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    '': 6785480089600,
+    'status': 4,
+    'type': 102,
+    'data': '{
+        "combo":[{
+            "id":6785480089600,
+            "status":4,
+            "content":"晚安",
+            "cnt":3,
+            "guide":"他们都在说:",
+            "left_duration":20000,
+            "fade_duration":60000}],
+        "merge_interval":1000,
+        "card_appear_interval":1000,
+        "send_interval":1000}'
+}
+```
+
+</details>
+
 #### 进场或关注消息
 
 有用户进入直播间或关注主播时触发
