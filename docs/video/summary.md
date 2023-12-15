@@ -1,24 +1,12 @@
-**# 视频AI总结**
-
-
+# 视频AI总结
 
 <img src="../../assets/img/aiSummary.svg" width="100" height="100"/>
 
-
-
-**## 获取总结**
-
-
+## 获取AI总结内容
 
 > https://api.bilibili.com/x/web-interface/view/conclusion/get
 
-
-
-**请求方式: Get**
-
-认证方式: Cookie(SESSDATA)
-
-限制游客访问，需要登录
+*请求方式: GET*
 
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
@@ -26,9 +14,10 @@
 
 | 参数名    | 类型  | 内容     | 必要性 | 备注                               |
 |--------|-----|--------|-----|----------------------------------|
-| bvid   | str | 稿件bvid | 必要  |                                  |
-| cid    | num | 稿件cid  | 必要  |                                  |
-| up_mid | num | UP主mid | 必要  |                                  |
+| aid    | num | 稿件 avid | 必要(可选) | avid与bvid任选一个             |
+| bvid   | str | 稿件 bvid | 必要(可选) | avid与bvid任选一个             |
+| cid    | num | 视频 cid  | 必要  |                                  |
+| up_mid | num | UP主 mid | 非必要  |                                  |
 | w_rid  | str | Wbi 签名 | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 | wts    | num | 当前时间戳  | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 
@@ -38,7 +27,7 @@
 
 | 字段      | 类型  | 内容   | 备注                       |
 |---------|-----|------|--------------------------|
-| code    | num | 返回值  | 0: 成功<br /> -403: 访问权限不足 |
+| code    | num | 返回值  | 0: 成功<br />-400：请求错误<br /> -403: 访问权限不足 |
 | message | str | 错误信息 | 默认为0                     |
 | ttl     | num | 1    |                          |
 | data    | obj | 数据本体 |                          |
@@ -47,73 +36,64 @@
 
 | 字段           | 类型  | 内容   | 备注                   |
 |--------------|-----|------|----------------------|
-| code         | num | 返回值  | 0: 有摘要<br />-1: 没有摘要 |
+| code         | num | 返回值  | -1: 不支持AI摘要（敏感内容）<br />0: 有摘要<br />1：无摘要（未识别到语音） |
 | model_result | obj | 摘要内容 |                      |
+| stid         | str | 摘要 id | 如`code=1`且该字段为`0`时，则未进行 AI 总结，即添加总结队列<br />如`code=1`且该字段为空时未识别到语音                     |
+| status       | num | (?) |                      |
+| like_num     | num | 点赞数 | 默认为`0`                     |
+| dislike_num  | num | 点踩数 | 默认为`0`                     |
 
-`model_result`对象:
+`data`中的`model_result`对象:
 
 | 字段          | 类型  | 内容       | 备注                                       |
 |-------------|-----|----------|------------------------------------------|
-| result_type | num | 数据类型     | 0: 没有摘要或者没有时间线<br />2: 有时间线<br />(1暂不知晓) |
-| summary     | str | 整个视频总结   |                                          |
-| outline     | obj | 时间线      | 没有时间线为None                               |
-| like_num    | num | 喜欢人数     |                                          |
-| dislike_num | num | 不喜欢人数    |                                          |
-| stid        | num | 摘要id     | 没有摘要为0                                   |
-| status      | num | 状态(暂不知晓) | 正常为0                                     |
+| result_type | num | 数据类型 | 0: 没有摘要<br />1：仅存着摘要总结<br />2：存着摘要以及提纲 |
+| summary     | str | 视频摘要 | 通常为一段概括整个视频内容的文本 |
+| outline     | 有数据时：array<br />无数据时：null | 分段提纲 | 通常为视频中叙述的各部分及其要点 |
 
-`outline`对象:
+`model_result`对象中的`outline`数组:
 
-| 字段           | 类型  | 内容   | 备注 |
+| 项   | 类型  | 内容      | 备注  |
+|-----|-----|---------|-----|
+| 0   | obj | 总结分段1     |     |
+| n   | obj | 总结分段(n+1) |     |
+| ……  | obj | ……      | ……  |
+
+`outline`数组中的对象:
+
+| 字段          | 类型  | 内容   | 备注 |
 |--------------|-----|------|----|
-| title        | str | 分段标题 |    |
-| part_outline | obj | 分段小结 |    |
+| title        | str   | 分段标题 | 段落内容的概括   |
+| part_outline | array | 分段要点 | 当前分段中多个提到的细节   |
+| timestamp    | num   | 分段起始时间 | 单位为秒   |
 
-`part_outline`对象:
+`outline`数组中的对象中的`part_outline`数组:
+
+| 项   | 类型  | 内容      | 备注  |
+|-----|-----|---------|-----|
+| 0   | obj | 分段要点1     |     |
+| n   | obj | 分段要点(n+1) |     |
+| ……  | obj | ……      | ……  |
+
+`part_outline`数组中的对象:
 
 | 字段        | 类型  | 内容    | 备注 |
 |-----------|-----|-------|----|
-| timestamp | num | 小结时间戳 |    |
-| content   | str | 小结内容  |    |
+| timestamp | num | 要点起始时间 | 单位为秒   |
+| content   | str | 小结内容  | 其中一个分段的要点   |
 
-**示例**
+**示例：**
 
-得到视频`BV1L94y1H7CV`的摘要
+得到视频`BV1L94y1H7CV`（`cid=1335073288`）的摘要
 
-```shell
-curl 'https://api.bilibili.com/x/web-interface/view/conclusion/get?bvid=BV1L94y1H7CV&cid=1335073288&up_mid=297242063&web_location=333.788&w_rid=d76ea8eaa47b3c9f0c4a910a8b9b66f5&wts=1700358732' \
-  --compressed
+```bash
+curl -G 'https://api.bilibili.com/x/web-interface/view/conclusion/get' \
+  --data-urlencode 'bvid=BV1L94y1H7CV' \
+  --data-urlencode 'cid=1335073288' \
+  --data-urlencode 'up_mid=297242063' \
+  --data-urlencode 'wts=1701546363' \
+  --data-urlencode 'w_rid=1073871926b3ccd99bd790f0162af634'
 ```
-
-<details>
-<summary>查看Python Demo</summary>
-
-```python
-import requests
-
-headers = {
-    # 需要附带上Cookie等信息
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
-}
-
-params = {
-    'bvid': 'BV1d94y1375U',
-    'cid': '1334003541',
-    'up_mid': '407275913',
-    'w_rid': '5cafe844afcb813ecd129f08e6ea73b5',  # 参见Wbi签名章节
-    'wts': '1700579155',
-}
-
-response = requests.get(
-    'https://api.bilibili.com/x/web-interface/view/conclusion/get',
-    params=params,
-    headers=headers,
-)
-```
-
-</details>
-
-有摘要示例:
 
 <details>
 <summary>查看响应示例：</summary>
@@ -169,50 +149,25 @@ response = requests.get(
     },
     "stid": "5117037934391059183",
     "status": 0,
-    "like_num": 3,
-    "dislike_num": 0
+    "like_num": 6,
+    "dislike_num": 2
   }
 }
 ```
 
 </details>
 
-无摘要示例:
+## 点赞&点踩摘要
 
-<details>
-<summary>查看响应示例：</summary>
+> https://api.bilibili.com/x/web-interface/view/conclusion/set
 
-```json
-{
-  "code": 0,
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "code": 1,
-    "model_result": {
-      "result_type": 0,
-      "summary": "",
-      "outline": None
-    },
-    "stid": "0",
-    "status": 0,
-    "like_num": 0,
-    "dislike_num": 0
-  }
-}
-```
-
-</details>
-
-## 点赞&点踩摘要(对应上面link_num&dislike_num)
+*请求方式：POST*
 
 认证方式：Cookie(SESSDATA)
 
-限制游客访问，需要登录
-
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
-***\*url参数:\****
+**url参数:**
 
 | 参数名   | 类型  | 内容     | 必要性 | 备注                               |
 |-------|-----|--------|-----|----------------------------------|
@@ -221,13 +176,14 @@ response = requests.get(
 
 **正文参数( application/x-www-form-urlencoded ):**
 
-| 参数名        | 类型  | 内容                   | 必要性 | 备注                          |
+| 参数名      | 类型  | 内容                   | 必要性 | 备注                          |
 |------------|-----|----------------------|-----|-----------------------------|
-| bvid       | str | 稿件bvid               | 必要  |                             |
-| cid        | num | 稿件cid                | 必要  |                             |
-| up_mid     | num | UP主mid               | 必要  |                             |
-| stid       | num | 摘要id                 | 必要  |                             |
-| like_state | num | 喜欢状态                 | 必要  | 1: 点赞<br />2: 取消<br />3: 点踩 |
+| aid        | num | 稿件 avid | 必要(可选) | avid与bvid任选一个             |
+| bvid       | str | 稿件 bvid | 必要(可选) | avid与bvid任选一个             |
+| cid        | num | 稿件 cid                | 必要  |                             |
+| up_mid     | num | UP主 mid               | 非必要  |                             |
+| stid       | num | 摘要 id                 | 必要  |                             |
+| like_state | num | 执行操作                 | 必要  | 1: 点赞<br />2: 取消点赞<br />3: 点踩<br />4: 取消点踩 |
 | csrf       | str | CSRF Token（位于cookie） | 必要  |                             |
 
 **json回复：**
@@ -236,56 +192,24 @@ response = requests.get(
 
 | 字段      | 类型  | 内容   | 备注                                       |
 |---------|-----|------|------------------------------------------|
-| code    | num | 返回值  | 0: 成功 <br />-400: 请求错误<br />65006: 已赞/踩过 |
+| code    | num | 返回值  | 0: 成功 <br />-400: 请求错误<br />65002：origin id 错误<br />65004：取消赞失败 未点赞过<br />65005：取消踩失败 未点踩过<br />65006: 已赞过<br /> 65007：已踩过 |
 | message | str | 错误信息 | 默认为0                                     |
 | ttl     | num | 1    |                                          |
 
 **示例：**
 
-为视频`BV1L94y1H7CV`的摘要`5117037934391059183`点赞
+为视频`BV1L94y1H7CV`（`cid=1335073288`）的摘要点赞
 
 ```shell
 curl 'https://api.bilibili.com/x/web-interface/view/conclusion/set?w_rid=edb471fc926646ef3889a80488166b66&wts=1700358953' \
-  --data-raw 'bvid=BV1L94y1H7CV&cid=1335073288&up_mid=297242063&stid=5117037934391059183&like_state=1&csrf=522xxxxxxxxxxxxxxx6f4' \
-  --compressed
+  --data-urlencode 'bvid=BV1L94y1H7CV' \
+  --data-urlencode 'cid=1335073288' \
+  --data-urlencode 'up_mid=297242063' \
+  --data-urlencode 'stid=5117037934391059183' \
+  --data-urlencode '&like_state=1' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx'
 ```
-
-<details>
-<summary>查看Python Demo</summary>
-
-```python
-import requests
-
-headers = {
-    # 需要附带上Cookie等信息
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
-}
-
-params = {
-    'w_rid': 'edb471fc926646ef3889a80488166b66',
-    'wts': '1700358953',
-}
-
-data = {
-    'bvid': 'BV1L94y1H7CV',
-    'cid': '1335073288',
-    'up_mid': '297242063',
-    'stid': '5117037934391059183',
-    'like_state': '1',
-    'csrf': '522xxxxxxxxxxxxxxx6f4',
-}
-
-response = requests.post(
-    'https://api.bilibili.com/x/web-interface/view/conclusion/set',
-    params=params,
-    data=data
-)
-
-```
-
-</details>
-
-
 
 <details>
 <summary>查看响应示例：</summary>

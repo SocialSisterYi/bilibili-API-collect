@@ -193,7 +193,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [充电列表](docs/electric/charge_list.md)
 - [ ] [动态](docs/dynamic)
     - [ ] [获取动态列表](docs/dynamic/all.md)
-    - [ ] [获取用户孔径动态](docs/dynamic/space.md)
+    - [ ] [获取用户空间动态](docs/dynamic/space.md)
     - [ ] [动态基本信息](docs/dynamic/basicInfo.md)
     - [ ] [动态详细信息字段](docs/dynamic/card_info.md)
     - [ ] [获取动态详情](docs/dynamic/detail.md)

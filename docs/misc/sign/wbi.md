@@ -1,35 +1,43 @@
-# Wbi签名
+# WBI 签名
 
-自 2023 年三月起，B站 Web 端部分接口开始使用 Wbi 鉴权方式，即一种独立于 [APP 鉴权](APP.md) 与其他 Cookie 鉴权的方式，表现在 REST API 请求时在 query 中添加了`w_rid`和`wts`字段，为一种 Web 端的风控手段
+自 2023 年 3 月起，Bilibili Web 端部分接口开始采用 WBI 签名鉴权，表现在 REST API 请求时在 Query param 中添加了 `w_rid` 和 `wts` 字段。WBI 签名鉴权独立于 [APP 鉴权](APP.md) 与其他 Cookie 鉴权，目前被认为是一种 Web 端风控手段。
 
-这些接口涵盖”用户投稿视频“、”用户投稿专栏“、”首页推送“、”推广信息“、”热搜“、”视频信息“、”视频取流“、”搜索“等待主要查询性业务接口，如果请求这些 REST API 缺失`w_rid`和`wts`字段，则会在数次请求后返回`-403:非法访问`这样的风控错误
+经持续观察，大部分查询性接口都已经或准备采用 WBI 签名鉴权，请求 WBI 签名鉴权接口时，若签名参数 `w_rid` 与时间戳 `wts` 缺失、错误，会返回 `v_voucher`（推测为内部记录错误请求的 ID 方便 Debug），如：
 
-感谢 [#631](https://github.com/SocialSisterYi/bilibili-API-collect/issues/631) 的研究与逆向工程
+```json
+{"code":0,"message":"0","ttl":1,"data":{"v_voucher":"voucher_******"}}
+```
 
-## Wbi签名算法
+感谢 [#631](https://github.com/SocialSisterYi/bilibili-API-collect/issues/631) 的研究与逆向工程。
 
-1. 获取实时口令
+细节更新：[#885](https://github.com/SocialSisterYi/bilibili-API-collect/issues/885)。
 
-   从 [nav 接口](../../login/login_info.md#导航栏用户信息) 中获取`img_url`、`sub_url`两个字段的参数，并保存备用（如存入 localStorage），相关内容节选如下：
+## WBI 签名算法
 
-   **注：`img_url`、`sub_url`两个字段的值看似为存于 BFS 中的 png 图片 url，实则只是经过伪装的实时 Token，故无需且不能试图访问这两个 url**
+1. 获取实时口令 `img_key`、`sub_key`
+
+   从 [nav 接口](../../login/login_info.md#导航栏用户信息) 中获取 `img_url`、`sub_url` 两个字段的参数。
+
+   **注：`img_url`、`sub_url` 两个字段的值看似为存于 BFS 中的 png 图片 url，实则只是经过伪装的实时 Token，故无需且不能试图访问这两个 url**
 
    ```json
-   "wbi_img": {
-       "img_url": "https://i0.hdslb.com/bfs/wbi/653657f524a547ac981ded72ea172057.png",
-       "sub_url": "https://i0.hdslb.com/bfs/wbi/6e4909c702f846728e64f6007736a338.png"
-   },
+   {"code":-101,"message":"账号未登录","ttl":1,"data":{"isLogin":false,"wbi_img":{"img_url":"https://i0.hdslb.com/bfs/wbi/7cd084941338484aae1ad9425b84077c.png","sub_url":"https://i0.hdslb.com/bfs/wbi/4932caff0ff746eab6f01bf08b70ac45.png"}}}
    ```
-   这两个 Key 均为 url 中末尾路径的无扩展名的文件名，即`img_key=653657f524a547ac981ded72ea172057`，`sub_key=6e4909c702f846728e64f6007736a338`
 
-   这两个 Key 的值无关登录 Session 与 IP，属于全站统一使用的，但**每日都会变化**，使用时应做好**缓存和刷新**处理
+   截取其文件名，分别记为 `img_key`、`sub_key`，如上述例子中的 `7cd084941338484aae1ad9425b84077c` 和 `4932caff0ff746eab6f01bf08b70ac45`。
 
-2. 打乱重排实时口令
+   `img_key`、`sub_key` 全站统一使用，观测知应为**每日更替**，使用时建议做好**缓存和刷新**处理。
 
-   把上一步获取到的`sub_key`拼接在`img_key`后面 **（这里不是`img_url`和`sub_url`）** 作为一个整体，将这个整体进行特定的顺序的字符打乱重排，再将重排后的字符串截取前 32 字符的切片，作为一个新的变量`mixin_key`，重排映射表长为 64，内容如下：
+   特别地，发现部分接口将 `img_key`、`sub_key` 硬编码进 JavaScript 文件内，如搜索接口 `https://s1.hdslb.com/bfs/static/laputa-search/client/assets/index.1ea39bea.js`，暂不清楚原因及影响。
 
-   ```javascript
-   const mixinKeyEncTab = [
+2. 打乱重排实时口令获得 `mixin_key`
+
+   把上一步获取到的 `sub_key` 拼接在 `img_key` 后面（下例记为 `raw_wbi_key`），遍历重排映射表 `MIXIN_KEY_ENC_TAB`，取出 `raw_wbi_key` 中对应位置的字符拼接得到新的字符串，截取前 32 位，即为 `mixin_key`。
+
+   重排映射表 `MIXIN_KEY_ENC_TAB` 长为 64，内容如下：
+
+   ```rust
+   const MIXIN_KEY_ENC_TAB: [u8; 64] = [
        46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
        33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
        61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
@@ -37,15 +45,35 @@
    ]
    ```
 
-   打乱重排内容如下（以上述第 1 步的参数作为输入）
+   重排操作如下例：
 
+   ```rust
+    fn gen_mixin_key(raw_wbi_key: impl AsRef<[u8]>) -> String {
+        const MIXIN_KEY_ENC_TAB: [u8; 64] = [
+            46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49, 33, 9, 42,
+            19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40, 61, 26, 17, 0, 1, 60,
+            51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11, 36, 20, 34, 44, 52,
+        ];
+        let raw_wbi_key = raw_wbi_key.as_ref();
+        let mut mixin_key = {
+            let binding = MIXIN_KEY_ENC_TAB
+                .iter()
+                // 此步操作即遍历 MIXIN_KEY_ENC_TAB，取出 raw_wbi_key 中对应位置的字符
+                .map(|n| raw_wbi_key[*n as usize])
+                // 并收集进数组内
+                .collect::<Vec<u8>>();
+            unsafe { String::from_utf8_unchecked(binding) }
+        };
+        let _ = mixin_key.split_off(32); // 截取前 32 位字符
+        mixin_key
+    }
    ```
-   72136226c6a73669787ee4fd02a74c27
-   ```
 
-3. 为参数中添加`wts`时间戳
+   如 `img_key` -> `7cd084941338484aae1ad9425b84077c`、`sub_key` -> `4932caff0ff746eab6f01bf08b70ac45` 经过上述操作后得到 `mixin_key` -> `ea1db124af3c7062474693fa704f4ff8`。
 
-   若下方内容为欲签名的请求参数（以 js obj 为例）
+3. 计算签名（即 `w_rid`）
+
+   若下方内容为欲签名的**原始**请求参数（以 JavaScript Object 为例）
 
    ```javascript
    {
@@ -55,30 +83,25 @@
    }
    ```
 
-   `wts`字段的值应为以秒为单位的 Unix TimeStamp，如`1684746387`
+   `wts` 字段的值应为当前以秒为单位的 Unix 时间戳，如 `1702204169`
 
-   将`wts`参数添加在参数列表中，即：
+   复制一份参数列表，添加 `wts` 参数，即：
 
    ```javascript
    {
         foo: '114',
         bar: '514',
         zab: 1919810,
-        wts: 1684746387
+        wts: 1702204169
    }
    ```
 
-4. 将欲签名的请求参数排序后编码
+   随后按键名升序排序后编码 URL Query，拼接前面得到的 `mixin_key`，如 `bar=514&foo=114&wts=1702204169&zab=1919810ea1db124af3c7062474693fa704f4ff8`，计算其 MD5 即为 `w_rid`。
 
-   按照 Key 升序排序并进行 url query 编码后的结果应为：
+   需要注意的是：如果参数值含中文或特殊字符等，编码字符字母应当**大写** （部分库会编码为小写字母），空格应当编码为 `%20`（部分库按 `application/x-www-form-urlencoded` 约定编码为 `+`）。
 
-   ```
-   bar=514&foo=114&wts=1684746387&zab=1919810
-   ```
+   例如：
 
-   请注意，如果参数值为中文或特殊字符，则进行 url query 编码后的字符串中参数值对应的字母必须是**大写字母** （部分库会编码为小写字母）
-
-   例如
    ```javascript
    {
         foo: 'one one four',
@@ -87,35 +110,17 @@
    }
    ```
 
-    应该被编码为
+    应该被编码为 `bar=%E4%BA%94%E4%B8%80%E5%9B%9B&baz=1919810&foo=one%20one%20four`。
 
-   ```
-   bar=%E4%BA%94%E4%B8%80%E5%9B%9B&baz=1919810&foo=one%20one%20four
-   ```
+4. 向原始请求参数中添加 `w_rid`、`wts` 字段
 
-5. 计算`w_rid`并添加在其后
+   将上一步得到的 `w_rid` 以及前面的 `wts` 追加到**原始**请求参数编码得到的 URL Query 后即可，目前看来无需对原始请求参数排序。
 
-   在上一步得出的 url query 字符串后拼接第 2 步计算得出的`mixin_key`（作为盐）
+   如前例最终得到 `bar=514&foo=114&zab=1919810&w_rid=8f6f2b5b3d485fe1886cec6a0be8c5d4&wts=1702204169`。
 
-   ```
-   bar=514&foo=114&wts=1684746387&zab=191981072136226c6a73669787ee4fd02a74c27
-   ```
+## Demo
 
-   对这个整体进行 **md5 Hash 运算**（32-bit 字符小写），得到的值便是 Wbi Sign，也就是参数`w_rid`
-
-   ```
-   90efcab09403023875b8516f07e9f9de
-   ```
-
-   最后一步，把这个计算出的值作为参数`w_rid`添加在原始参数列表后，也就完成了一次 Wbi Sign，可以调用 REST API 进行请求了
-
-   ```
-   bar=514&foo=114&wts=1684746387&zab=1919810&w_rid=90efcab09403023875b8516f07e9f9de
-   ```
-
-## Wbi签名算法实现Demo
-
-该 Demo 提供 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)和[Java](#Java) 语言
+含 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)、[Java](#Java) 和 [Swift](#Swift) 语言编写的 Demo 。
 
 ### Python
 
@@ -186,8 +191,8 @@ print(query)
 输出内容分别是进行 Wbi 签名的后参数的 key-Value 以及 url query 形式
 
 ```
-{'bar': '514', 'baz': '1919810', 'foo': '114', 'wts': '1684746387', 'w_rid': 'd3cbd2a2316089117134038bf4caf442'}
-bar=514&baz=1919810&foo=114&wts=1684746387&w_rid=d3cbd2a2316089117134038bf4caf442
+{'bar': '514', 'baz': '1919810', 'foo': '114', 'wts': '1702204169', 'w_rid': 'd3cbd2a2316089117134038bf4caf442'}
+bar=514&baz=1919810&foo=114&wts=1702204169&w_rid=d3cbd2a2316089117134038bf4caf442
 ```
 
 ### JavaScript
@@ -196,80 +201,72 @@ bar=514&baz=1919810&foo=114&wts=1684746387&w_rid=d3cbd2a2316089117134038bf4caf44
 
 ```javascript
 import md5 from 'md5'
-import axios from 'axios'
 
 const mixinKeyEncTab = [
-    46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
-    33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
-    61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
-    36, 20, 34, 44, 52
+  46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+  33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+  61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+  36, 20, 34, 44, 52
 ]
 
 // 对 imgKey 和 subKey 进行字符顺序打乱编码
-function getMixinKey(orig) {
-    let temp = ''
-    mixinKeyEncTab.forEach((n) => {
-        temp += orig[n]
-    })
-    return temp.slice(0, 32)
-}
+const getMixinKey = (orig) => mixinKeyEncTab.map(n => orig[n]).join('').slice(0, 32)
 
 // 为请求参数进行 wbi 签名
 function encWbi(params, img_key, sub_key) {
-    const mixin_key = getMixinKey(img_key + sub_key),
-        curr_time = Math.round(Date.now() / 1000),
-        chr_filter = /[!'()*]/g
-    let query = []
-    Object.assign(params, { wts: curr_time }) // 添加 wts 字段
-    // 按照 key 重排参数
-    Object.keys(params).sort().forEach((key) => {
-        query.push(
-            `${encodeURIComponent(key)}=${encodeURIComponent(
-                // 过滤 value 中的 "!'()*" 字符
-                params[key].toString().replace(chr_filter, '')
-            )}`
-        )
+  const mixin_key = getMixinKey(img_key + sub_key),
+    curr_time = Math.round(Date.now() / 1000),
+    chr_filter = /[!'()*]/g
+
+  Object.assign(params, { wts: curr_time }) // 添加 wts 字段
+  // 按照 key 重排参数
+  const query = Object
+    .keys(params)
+    .sort()
+    .map(key => {
+      // 过滤 value 中的 "!'()*" 字符
+      const value = params[key].toString().replace(chr_filter, '')
+      return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
     })
-    query = query.join('&')
-    const wbi_sign = md5(query + mixin_key) // 计算 w_rid
-    return query + '&w_rid=' + wbi_sign
+    .join('&')
+
+  const wbi_sign = md5(query + mixin_key) // 计算 w_rid
+
+  return query + '&w_rid=' + wbi_sign
 }
 
 // 获取最新的 img_key 和 sub_key
 async function getWbiKeys() {
-    const resp = await axios({
-        url: 'https://api.bilibili.com/x/web-interface/nav',
-        method: 'get',
-        responseType: 'json'
-    }),
-        json_content = resp.data,
-        img_url = json_content.data.wbi_img.img_url,
-        sub_url = json_content.data.wbi_img.sub_url
-
-    return {
-        img_key: img_url.slice(
-            img_url.lastIndexOf('/') + 1,
-            img_url.lastIndexOf('.')
-        ),
-        sub_key: sub_url.slice(
-            sub_url.lastIndexOf('/') + 1,
-            sub_url.lastIndexOf('.')
-        )
+  const res = await fetch('https://api.bilibili.com/x/web-interface/nav', {
+    headers: {
+      // SESSDATA 字段
+      Cookie: "SESSDATA=xxxxxx"
     }
+  })
+  const { data: { wbi_img: { img_url, sub_url } } } = await res.json()
+
+  return {
+    img_key: img_url.slice(
+      img_url.lastIndexOf('/') + 1,
+      img_url.lastIndexOf('.')
+    ),
+    sub_key: sub_url.slice(
+      sub_url.lastIndexOf('/') + 1,
+      sub_url.lastIndexOf('.')
+    )
+  }
 }
 
-getWbiKeys().then((wbi_keys) => {
-    const query = encWbi(
-        {
-            foo: '114',
-            bar: '514',
-            baz: 1919810
-        },
-        wbi_keys.img_key, 
-        wbi_keys.sub_key
-    )
-    console.log(query)
-})
+async function main() {
+  const web_keys = await getWbiKeys()
+  const params = { foo: '114', bar: '514', baz: 1919810 },
+    img_key = web_keys.img_key,
+    sub_key = web_keys.sub_key
+  const query = encWbi(params, img_key, sub_key)
+  console.log(query)
+}
+
+main()
 ```
 
 输出内容为进行 Wbi 签名的后参数的 url query 形式
@@ -714,5 +711,196 @@ class Bilibili {
 $c = new Bilibili();
 echo $c->reQuery(['foo' => '114', 'bar' => '514', 'baz' => 1919810]);
 // bar=514&baz=1919810&foo=114&wts=1700384803&w_rid=4614cb98d60a43e50c3a3033fe3d116b
+```
+
+### Rust
+
+需要 serde、serde_json、reqwest、tokio 以及 md5
+
+```rust
+use reqwest::header::USER_AGENT;
+use serde::Deserialize;
+use std::time::{SystemTime, UNIX_EPOCH};
+
+const MIXIN_KEY_ENC_TAB: [usize; 64] = [
+    46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49, 33, 9, 42, 19, 29,
+    28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40, 61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25,
+    54, 21, 56, 59, 6, 63, 57, 62, 11, 36, 20, 34, 44, 52,
+];
+
+#[derive(Deserialize)]
+struct WbiImg {
+    img_url: String,
+    sub_url: String,
+}
+
+#[derive(Deserialize)]
+struct Data {
+    wbi_img: WbiImg,
+}
+
+#[derive(Deserialize)]
+struct ResWbi {
+    data: Data,
+}
+
+// 对 imgKey 和 subKey 进行字符顺序打乱编码
+fn get_mixin_key(orig: &[u8]) -> String {
+    MIXIN_KEY_ENC_TAB
+        .iter()
+        .map(|&i| orig[i] as char)
+        .collect::<String>()
+}
+
+fn get_url_encoded(s: &str) -> String {
+    s.chars()
+        .filter_map(|c| match c.is_ascii_alphanumeric() || "-_.~".contains(c) {
+            true => Some(c.to_string()),
+            false => {
+                // 过滤 value 中的 "!'()*" 字符
+                if "!'()*".contains(c) {
+                    return None;
+                }
+                let encoded = c
+                    .encode_utf8(&mut [0; 4])
+                    .bytes()
+                    .fold("".to_string(), |acc, b| acc + &format!("%{:02X}", b));
+                Some(encoded)
+            }
+        })
+        .collect::<String>()
+}
+
+// 为请求参数进行 wbi 签名
+fn encode_wbi(params: &mut Vec<(&str, String)>, (img_key, sub_key): (String, String)) -> String {
+    let mixin_key = get_mixin_key((img_key + &sub_key).as_bytes());
+    let cur_time = match SystemTime::now().duration_since(UNIX_EPOCH) {
+        Ok(t) => t.as_secs(),
+        Err(_) => panic!("SystemTime before UNIX EPOCH!"),
+    };
+    // 添加当前时间戳
+    params.push(("wts", cur_time.to_string()));
+    // 重新排序
+    params.sort_by(|a, b| a.0.cmp(b.0));
+    let query = params.iter().fold(String::from(""), |acc, (k, v)| {
+        acc + format!("{}={}&", get_url_encoded(k), get_url_encoded(v)).as_str()
+    });
+
+    let web_sign = format!("{:?}", md5::compute(query.clone() + &mixin_key));
+
+    query + &format!("w_rid={}", web_sign)
+}
+
+async fn get_wbi_keys() -> Result<(String, String), reqwest::Error> {
+    let client = reqwest::Client::new();
+    let ResWbi { data:Data{wbi_img} } = client
+    .get("https://api.bilibili.com/x/web-interface/nav")
+    .header(USER_AGENT,"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
+     // SESSDATA=xxxxx
+    .header("Cookie", "SESSDATA=xxxxx")
+    .send()
+    .await?
+    .json::<ResWbi>()
+    .await?;
+
+    Ok((wbi_img.img_url, wbi_img.sub_url))
+}
+
+#[tokio::main]
+async fn main() {
+    let urls = get_wbi_keys().await.unwrap();
+    let mut params = vec![
+        ("foo", String::from("114")),
+        ("bar", String::from("514")),
+        ("baz", String::from("1919810")),
+    ];
+
+    let query = encode_wbi(&mut params, urls);
+
+    println!("{}", query);
+}
+```
+
+### Swift
+
+需要 [Alamofire](https://github.com/Alamofire/Alamofire) 和 [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) 库
+
+```swift
+import Foundation
+import CommonCrypto
+import Alamofire
+import SwiftyJSON
+
+func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
+    func getMixinKey(orig: String) -> String {
+        return String(mixinKeyEncTab.map { orig[orig.index(orig.startIndex, offsetBy: $0)] }.prefix(32))
+    }
+    
+    func encWbi(params: [String: Any], imgKey: String, subKey: String) -> [String: Any] {
+        var params = params
+        let mixinKey = getMixinKey(orig: imgKey + subKey)
+        let currTime = round(Date().timeIntervalSince1970)
+        params["wts"] = currTime
+        params = params.sorted { $0.key < $1.key }.reduce(into: [:]) { $0[$1.key] = $1.value }
+        params = params.mapValues { String(describing: $0).filter { !"!'()*".contains($0) } }
+        let query = params.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
+        let wbiSign = calculateMD5(string: query + mixinKey)
+        params["w_rid"] = wbiSign
+        return params
+    }
+    
+    func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
+        AF.request("https://api.bilibili.com/x/web-interface/nav").responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
+                let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
+                let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                completion(.success((imgKey, subKey)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func calculateMD5(string: String) -> String {
+        let data = Data(string.utf8)
+        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+        _ = data.withUnsafeBytes {
+            CC_MD5($0.baseAddress, CC_LONG(data.count), &digest)
+        }
+        return digest.map { String(format: "%02hhx", $0) }.joined()
+    }
+    
+    let mixinKeyEncTab = [
+        46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+        33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+        61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+        36, 20, 34, 44, 52
+    ]
+    
+    getWbiKeys { result in
+        switch result {
+        case .success(let keys):
+            let spdParam = param.components(separatedBy: "&")
+            var spdDicParam = [String: String]()
+            spdParam.forEach { pair in
+                let components = pair.components(separatedBy: "=")
+                if components.count == 2 {
+                    spdDicParam[components[0]] = components[1]
+                }
+            }
+            
+            let signedParams = encWbi(params: spdDicParam, imgKey: keys.imgKey, subKey: keys.subKey)
+            let query = signedParams.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
+            completion(query)
+        case .failure(let error):
+            print("Error getting keys: \(error)")
+            completion(nil)
+        }
+    }
+}
 
 ```
