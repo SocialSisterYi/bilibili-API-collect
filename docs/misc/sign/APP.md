@@ -23,7 +23,7 @@
 
 ## Demo
 
-该 Demo 提供 [Python](#Python) 和 [Java](#Java) 语言例程
+该 Demo 提供 [Python](#Python) 和 [Java](#Java) 和 [TS/JS](#TypeScript/JavaScript) 和 [Swift](#Swift) 语言例程
 
 使用 appkey = `1d8b6e7d45233436`, appsec = `560c52ccd288fed045859ed18bffd973` 对如下 `params` 参数进行签名
 
@@ -166,3 +166,51 @@ console.log(
 ```
 
 输出结果为：01479cf20504d865519ac50f33ba3a7d
+
+### Swift
+
+```swift
+import Foundation
+import CommonCrypto
+
+//Swift标准库没有MD5函数，所以我们要自己实现一个
+func MD5(string: String) -> String {
+    let length = Int(CC_MD5_DIGEST_LENGTH)
+    var digest = [UInt8](repeating: 0, count: length)
+
+    if let d = string.data(using: .utf8) {
+        _ = d.withUnsafeBytes { body -> String in
+            CC_MD5(body.baseAddress, CC_LONG(d.count), &digest)
+            return ""
+        }
+    }
+
+    return (0..<length).reduce("") {
+        $0 + String(format: "%02x", digest[$1])
+    }
+}
+
+func appSign(params: [String:String],appKey:String,appSec:String) -> String {
+    var signedParams = params
+    signedParams["appkey"] = appKey
+    let sortedParams = signedParams.sorted { $0.key < $1.key }
+    //在制作成query时，需要显式addingPercentEncoding转换
+    let query = sortedParams.map { "\($0.key)=\($0.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)" }.joined(separator: "&")
+    let sign = MD5(string: query+appSec)
+    return sign
+}
+
+
+//testSign
+let appKey = "1d8b6e7d45233436"
+let appSec = "560c52ccd288fed045859ed18bffd973"
+let signResult = appSign(params: [
+    "id": "114514",
+    "str": "1919810",
+    "test": "いいよ，こいよ",
+],appKey:appKey,appSec:appSec)
+print(signResult)
+```
+
+输出结果为：01479cf20504d865519ac50f33ba3a7d
+
