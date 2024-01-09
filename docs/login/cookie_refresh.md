@@ -475,7 +475,7 @@ JSON Payload：
 
 | 参数名        | 类型 | 内容                      | 必要性 | 备注                                                         |
 | ------------- | ---- | ------------------------- | ------ | ------------------------------------------------------------ |
-| csrf          | str  | CSRF Token（位于 cookie） | 必要   | 从新的 cookie 中获取                                         |
+| csrf          | str  | CSRF Token（位于 cookie） | 必要   | 从新的 cookie 中获取，位于 Cookie 中的`bili_jct`字段               |
 | refresh_token | str  | 旧的持久化刷新口令        | 必要   | 在刷新前 localStorage 中的`ac_time_value`获取，**并非刷新后返回的值** |
 
 **json 回复：**

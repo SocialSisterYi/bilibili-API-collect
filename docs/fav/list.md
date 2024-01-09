@@ -39,6 +39,8 @@
 | ------ | ----- | ------------ | ---- |
 | info   | obj   | 收藏夹元数据 |      |
 | medias | array | 收藏夹内容   |      |
+| has_more | bool | 收藏夹是否有下一页   |      |
+| ttl | num | 接口返回时间  |    时间戳  |
 
 `data`中的`info`对象：
 
@@ -319,7 +321,8 @@ curl -G 'https://api.bilibili.com/x/v3/fav/resource/list' \
                 "season": null
             }
         ],
-        "has_more": true
+        "has_more": true,
+        "ttl": 1703349018
     }
 }
 ```
