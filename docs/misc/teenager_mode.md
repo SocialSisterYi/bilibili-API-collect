@@ -1,8 +1,10 @@
 # 青少年模式
 ## 开启/关闭
 > https://app.bilibili.com/x/v2/account/teenagers/update
+
 *请求方式：POST*
-此接口有设计缺陷，已提交过SRC，评价为：风险较低，不收
+
+此接口有设计缺陷，已提交过SRC，评价为：风险较低，不收</br>
 认证方式：APP
 
 **POST参数：**
@@ -36,7 +38,7 @@
 
 **示例：**
 关闭本账号的青少年模式（pwd=&teenagers_mode=1&teenagers_status=0）
-
+```shell
 curl --location 'https://app.bilibili.com/x/v2/account/teenagers/update' \
 --header 'Device-Id: 你的设备id' \
 --header 'Fp_local: ' \
@@ -59,13 +61,24 @@ curl --location 'https://app.bilibili.com/x/v2/account/teenagers/update' \
 --data-urlencode 'teenagers_status=0' \
 --data-urlencode 'ts=1699301298' \
 --data-urlencode 'sign=0666c38cb79691c4a0d9570a0669ec96' \
+```
 
 <details>
 <summary>查看响应示例：</summary>
+  
 ```json
-{"code":0,
-"message":"0",
-"ttl":1
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+pwd有数值时
+```json
+{
+    "code": -400,
+    "message": "关闭时密码必须为空",
+    "ttl": 1
 }
 ```
 
