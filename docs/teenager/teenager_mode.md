@@ -4,8 +4,7 @@
 
 *请求方式：POST*
 
-此接口有设计缺陷，已提交过SRC，评价为：风险较低，不收</br>
-认证方式：APP
+认证方式：APP（详见[设备各类标识算法](docs/misc/device_identity.md)）
 
 **POST参数：**
 
@@ -41,8 +40,8 @@
 ```shell
 curl --location 'https://app.bilibili.com/x/v2/account/teenagers/update' \
 --header 'Device-Id: 你的设备id' \
---header 'Fp_local: ' \
---header 'Fp_remote: ' \
+--header 'Fp_local: 你的本地设备指纹' \
+--header 'Fp_remote: 你的远程设备指纹' \
 --header 'Session_id: 会话id' \
 --header 'App-Key: android' \
 --header 'Content-Type: application/x-www-form-urlencoded; charset=utf-8' \
