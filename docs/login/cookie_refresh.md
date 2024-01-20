@@ -35,7 +35,7 @@ while True:
 
 | 参数名 | 类型 | 内容                      | 必要性 | 备注 |
 | ------ | ---- | ------------------------- | ------ | ---- |
-| csrf   | str  | CSRF Token（位于 Cookie） | 非必要 |      |
+| csrf   | str  | CSRF Token（位于 Cookie） | 非必要 |   位于 Cookie 中的bili_jct字段   |
 
 **json 回复：**
 
