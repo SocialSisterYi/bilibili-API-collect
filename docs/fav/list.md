@@ -105,7 +105,7 @@
 | page     | num  | 视频分P数     |                                                              |
 | duration | num  | 音频/视频时长 |                                                              |
 | upper    | obj  | UP主信息      |                                                              |
-| attr     | num  | 属性位（？）  |                                                              |
+| attr     | num  | 失效  | 0: 正常；1或9: 失效                                                             |
 | cnt_info | obj  | 状态数        |                                                              |
 | link     | str  | 跳转uri       |                                                              |
 | ctime    | num  | 投稿时间      | 时间戳                                                       |
