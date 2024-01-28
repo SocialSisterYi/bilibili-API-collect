@@ -632,7 +632,7 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
 
 ### appkey 可用列表
 
-**仅覆盖 [docs/misc/sign/APPKey](docs/misc/sign/APPKey.html) 中包含的 appkey**
+**仅覆盖 [docs/misc/sign/APPKey](../../misc/sign/APPKey.md) 中包含的 appkey**
 
 |      APPKEY      |              APPSEC              | platform |      APP类型       | neuronAppId | mobi_app<sup>2</sup> |                    备注                    |
 | :--------------: | :------------------------------: | :------------------: | :----------------: | :---------------------: | :------------------: | :----------------------------------------: |

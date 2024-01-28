@@ -17,7 +17,7 @@
 | code    | num           |      | 成功为0 |
 | message | str           |      | 成功为0 |
 | ttl     | num           | 1    |         |
-| data    | List\<object> |      |         |
+| data    | array         |      |         |
 
 `data`数组：
 
@@ -62,6 +62,7 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 
 <details>
   <summary>查看响应示例</summary>
+
 ```json
 {
     "code": 0,
@@ -247,6 +248,7 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
     ]
 }
 ```
+
 </details>
 
 ## 投诉稿件
@@ -288,6 +290,7 @@ curl --location --request POST 'https://api.bilibili.com/x/web-interface/archive
 
 <details>
   <summary>查看响应示例</summary>
+
 ```json
 {
 	"code":0,
@@ -295,4 +298,5 @@ curl --location --request POST 'https://api.bilibili.com/x/web-interface/archive
 	"ttl":1
 }
 ```
+
 </details>
