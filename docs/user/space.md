@@ -44,6 +44,9 @@
 	- [查询用户追番预览列表](#查询用户追番预览列表)
 	- [查询用户追番（追剧）明细](#查询用户追番追剧明细)
 	- [查询用户关注的TAG（话题）](#查询用户关注的tag话题)
+- [动作](#动作)
+	- [最近投币视频列表](#最近投币视频列表)
+	- [最近点赞视频列表](#最近点赞视频列表)
 
 ---
 
@@ -3661,3 +3664,285 @@ curl -G 'http://space.bilibili.com/ajax/tags/getSubList' \
 ```
 
 </details>
+
+
+</details>
+
+## 动作
+
+### 最近点赞视频列表
+
+> https://app.biliapi.net/x/v2/space/likearc
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注         |
+| ------ | ---- | ----------- | ------ | ------------- |
+| vmid   | num  | 目标用户mid | 必要   |                |
+| pn     | num  | 页码        | 非必要 | 默认为1 最大30  |
+| ps     | num  | 每页项数    | 非必要 | 默认为20 最大20 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注       |
+| ------- | ---- | -------- | ---------- |
+| code    | num  | 返回值   | 0：成功     |
+| message | str  | 错误信息 | 默认为0     |
+| ttl     | num  | 1        |            |
+| data    | obj  | 信息本体 |            |
+
+`data`对象：
+
+| 字段   | 类型  | 内容         | 备注         |
+| ------ | ----- | ------------ | ------------ |
+| count  | num   | 点赞数   |最大600            |
+| item | array | 追番预览列表 |                 |
+
+
+`data`中的`item`数组中的对象：
+
+| 字段            | 类型 | 内容            | 备注                             |
+| --------------- | ---- | --------------- | -------------------------------- |
+| author          | str  | up主名字        |                                   |
+| cover           | str  | 封面图片url     |                                   |
+| ctime           | num  | 点赞时间        |                                   |
+| danmaku         | num  | 弹幕数          | 时间戳                            |
+| play            | num  | 播放量          |                                   |
+| title           | str  | 视频标题        |                                   |
+| param           | str  | av号            |                                   |
+
+
+**示例：**
+
+用户`mid=2`的点赞列表
+
+```shell
+curl -G 'https://app.biliapi.net/x/v2/space/likearc' \
+--data-urlencode 'vmid=2' \
+--data-urlencode 'ps=20' \
+--data-urlencode 'pn=1' \
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "count": 2,
+        "item": [
+            {
+                "title": "兄弟难舍也难分",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i1.hdslb.com/bfs/archive/58f031a52eab6d5faec5a39dfaab5728f65672d5.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/624351941?player_width=1080\u0026player_height=1920\u0026player_rotate=0",
+                "param": "624351941",
+                "goto": "av",
+                "length": "",
+                "duration": 216,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 423652,
+                "danmaku": 362,
+                "ctime": 1706320200,
+                "ugc_pay": 0,
+                "author": "甜蜜老张",
+                "state": true,
+                "videos": 0,
+                "view_content": "42.4万",
+                "icon_type": 0,
+                "publish_time_text": ""
+            },
+            {
+                "title": "技能搭配不累，共赴热血团战！",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i2.hdslb.com/bfs/archive/2094b8e0be819222d320e2841ee1c39f5f2e4357.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/793597196?player_width=1280\u0026player_height=720\u0026player_rotate=0",
+                "param": "793597196",
+                "goto": "av",
+                "length": "",
+                "duration": 41,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 1237,
+                "danmaku": 2,
+                "ctime": 1704855559,
+                "ugc_pay": 0,
+                "author": "38047aa1-cb8a-4",
+                "state": true,
+                "videos": 0,
+                "view_content": "1237",
+                "icon_type": 0,
+                "publish_time_text": ""
+            }
+        ]
+    }
+}
+```
+
+</details>
+
+### 最近投币视频列表
+
+> https://app.biliapi.net/x/v2/space/coinarc
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注     |
+| ------ | ---- | ----------- | ------ | -------- |
+| vmid   | num  | 目标用户mid | 必要   |           |
+| pn     | num  | 页码        | 非必要 | 默认为1   |
+| ps     | num  | 每页项数    | 非必要 | 默认为20  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注        |
+| ------- | ---- | -------- | ------------ |
+| code    | num  | 返回值   | 0：成功       |
+| message | str  | 错误信息 | 默认为0       |
+| ttl     | num  | 1        |              |
+| data    | obj  | 信息本体 |               |
+
+`data`对象：
+
+| 字段   | 类型  | 内容         | 备注         |
+| ------ | ----- | ------------ | ------------ |
+| count  | num   | 点赞数   |最大600            |
+| item | array | 追番预览列表 |                 |
+
+
+`data`中的`item`数组中的对象：
+
+| 字段            | 类型 | 内容            | 备注                             |
+| --------------- | ---- | --------------- | -------------------------------- |
+| author          | str  | up主名字        |                                   |
+| cover           | str  | 封面图片url     |                                   |
+| ctime           | num  | 点赞时间        |                                   |
+| danmaku         | num  | 弹幕数          | 时间戳                            |
+| play            | num  | 播放量          |                                   |
+| title           | str  | 视频标题        |                                   |
+| param           | str  | av号            |                                   |
+
+
+
+**示例：**
+
+用户`mid=2`的投币列表
+
+```shell
+curl -G 'https://app.biliapi.net/x/v2/space/coinarc' \
+--data-urlencode 'vmid=2' \
+--data-urlencode 'ps=2' \
+--data-urlencode 'pn=1' \
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "count": 2,
+        "item": [
+            {
+                "title": "请打开麦克风交流",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i1.hdslb.com/bfs/archive/cf9aea43b72354ee8c9486e4bf8e07cb38920a65.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/496832459?player_width=1080\u0026player_height=1920\u0026player_rotate=0",
+                "param": "496832459",
+                "goto": "av",
+                "length": "",
+                "duration": 134,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 706480,
+                "danmaku": 167,
+                "ctime": 1706431476,
+                "ugc_pay": 0,
+                "author": "三个猪鼓励",
+                "state": true,
+                "videos": 0,
+                "view_content": "70.6万",
+                "icon_type": 0,
+                "publish_time_text": ""
+            },
+            {
+                "title": "【裏命】地球的内部【いよわ】【中文CC字幕】",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i0.hdslb.com/bfs/archive/e087224ae4a5ff9ef3f2f6b7644d635276b8f5c6.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/860645391?player_width=1920\u0026player_height=1080\u0026player_rotate=0",
+                "param": "860645391",
+                "goto": "av",
+                "length": "",
+                "duration": 264,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 194375,
+                "danmaku": 173,
+                "ctime": 1669713070,
+                "ugc_pay": 0,
+                "author": "精神安定剤",
+                "state": true,
+                "videos": 0,
+                "view_content": "19.4万",
+                "icon_type": 0,
+                "publish_time_text": ""
+            }
+        ]
+    }
+}
+```
+
+</details>
+
