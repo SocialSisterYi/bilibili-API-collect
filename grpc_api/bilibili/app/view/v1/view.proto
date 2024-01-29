@@ -2139,15 +2139,23 @@ message TIcon {
 
 //
 message User {
-  // Field numbers and types based on the Java class
-  int64 mid = 1;
-  string name = 2;
-  string face = 3;
-  bool isFollow = 4;
-  int64 isAttention = 5;
-  int64 isInterrelation = 6;
-  int64 follower = 7;
-  string interactDesc = 8;
+    //
+    int64 mid = 1;
+    //
+    string name = 2;
+    //
+    string face = 3;
+    //
+    bool isFollow = 4;
+    //
+    int64 isAttention = 5;
+    //
+    int64 isInterrelation = 6;
+    //
+    int64 follower = 7;
+    //
+    string interactDesc = 8;
+    //
 }
 
 // UGC视频合集信息
