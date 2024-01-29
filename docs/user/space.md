@@ -3703,7 +3703,7 @@ curl -G 'http://space.bilibili.com/ajax/tags/getSubList' \
 | 字段   | 类型  | 内容         | 备注         |
 | ------ | ----- | ------------ | ------------ |
 | count  | num   | 点赞数   |最大600            |
-| item | array | 追番预览列表 |                 |
+| item | array | 点赞视频列表 |                 |
 
 
 `data`中的`item`数组中的对象：
@@ -3839,8 +3839,8 @@ curl -G 'https://app.biliapi.net/x/v2/space/likearc' \
 
 | 字段   | 类型  | 内容         | 备注         |
 | ------ | ----- | ------------ | ------------ |
-| count  | num   | 点赞数   |最大600            |
-| item | array | 追番预览列表 |                 |
+| count  | num   | 投币数   |            |
+| item | array | 投币视频列表 |                 |
 
 
 `data`中的`item`数组中的对象：
@@ -3849,7 +3849,7 @@ curl -G 'https://app.biliapi.net/x/v2/space/likearc' \
 | --------------- | ---- | --------------- | -------------------------------- |
 | author          | str  | up主名字        |                                   |
 | cover           | str  | 封面图片url     |                                   |
-| ctime           | num  | 点赞时间        |                                   |
+| ctime           | num  | 投币时间        |                                   |
 | danmaku         | num  | 弹幕数          | 时间戳                            |
 | play            | num  | 播放量          |                                   |
 | title           | str  | 视频标题        |                                   |
