@@ -543,6 +543,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings/search' \
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -856,6 +857,7 @@ curl -G 'https://api.bilibili.com/x/relation/friends' \
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,
@@ -1088,6 +1090,7 @@ curl -G 'https://api.bilibili.com/x/relation/blacks' \
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
     "code": 0,

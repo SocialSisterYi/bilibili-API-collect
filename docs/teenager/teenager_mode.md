@@ -4,7 +4,7 @@
 
 *请求方式：POST*
 
-认证方式：APP（详见[设备各类标识算法](docs/misc/device_identity.md)）
+认证方式：APP（详见[设备各类标识算法](../misc/device_identity.md)）
 
 **POST参数：**
 
