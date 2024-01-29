@@ -72,7 +72,7 @@ message Episode {
     // 
     EpisodeType type = 1;
     // 
-    oneof {
+    oneof data {
         // 
         VideoEpisode video_episode = 2;
         // 

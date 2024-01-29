@@ -239,6 +239,10 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [查询信息](docs/newbie_exam/info.md)
     - [x] [拉取题目](docs/newbie_exam/fetch.md)
     - [x] [操作](docs/newbie_exam/action.md)
+- [ ] [青少年守护](docs/teenager/)
+    - [x] [青少年模式](docs/teenager/teenager_mode.md)
+    - [ ] 亲子平台
+    - [ ] 课堂模式
 - [ ] B币钱包
     - [ ] 基本信息
     - [ ] B币充值

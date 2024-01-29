@@ -17,7 +17,7 @@
 | aid    | num | 稿件 avid | 必要(可选) | avid与bvid任选一个             |
 | bvid   | str | 稿件 bvid | 必要(可选) | avid与bvid任选一个             |
 | cid    | num | 视频 cid  | 必要  |                                  |
-| up_mid | num | UP主 mid | 非必要  |                                  |
+| up_mid | num | UP主 mid | 必要  |                                  |
 | w_rid  | str | Wbi 签名 | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 | wts    | num | 当前时间戳  | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 
@@ -36,7 +36,7 @@
 
 | 字段           | 类型  | 内容   | 备注                   |
 |--------------|-----|------|----------------------|
-| code         | num | 返回值  | -1: 不支持AI摘要（敏感内容）<br />0: 有摘要<br />1：无摘要（未识别到语音） |
+| code         | num | 返回值  | -1: 不支持AI摘要（敏感内容等）或其他因素导致请求异常<br />0: 有摘要<br />1：无摘要（未识别到语音） |
 | model_result | obj | 摘要内容 |                      |
 | stid         | str | 摘要 id | 如`code=1`且该字段为`0`时，则未进行 AI 总结，即添加总结队列<br />如`code=1`且该字段为空时未识别到语音                     |
 | status       | num | (?) |                      |

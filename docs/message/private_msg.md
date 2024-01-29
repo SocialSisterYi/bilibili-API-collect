@@ -249,9 +249,11 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 | sender_device_id  | num  | 发送者设备 | 可选 | 1 |
 | talker_id   | num  | 聊天对象的UID | 必要 | -------------- |
 | session_type   | num  | 聊天对象的类型 | 必要 | 1为用户，2为粉丝团 |
-| size   | num  | 列出消息条数 | 可选 | 默认是20 |
+| size   | num  | 列出消息条数 | 可选 | 默认是20，最大为200 |
 | build   | num  | 未知 | 可选 | 默认是0 |
 | mobi_app   | str  | 设备 | 可选 | web |
+| begin_seqno   | num   | 开始的序列号 | 可选 | 默认0为全部 |
+| end_seqno   | num   | 结束的序列号 | 可选 | 默认0为全部 |
 
 **json回复：**
 
