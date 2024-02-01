@@ -24,20 +24,21 @@ export default defineUserConfig({
         text: "相关社群",
         children: [
           {
-            text: "QQ交流群",
+            text: "QQ交流群（综合技术交流）",
             link: "http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=2rRJXK3zgU5yi3e_4rNLeJYUjMLzw_Jj&authKey=L%2FN3EfZXo3QFjEuHq4ifTgh%2F384UmrYpjl7dbYPhYHtznhfJWxkymxQKObQunmEQ&noverify=0&group_code=560304737",
           },
           {
-            text: "Telegram交流群",
+            text: "Telegram交流群（Github Bot推送）",
             link: "https://t.me/bilibili_API_collect_community",
           },
         ],
       },
     ],
     sidebar: "auto",
-    repo: "SocialSisterYi/bilibili-API-collect",
+    repo: "https://github.com/SocialSisterYi/bilibili-API-collect",
     docsBranch: "master",
     editLinkText: "在 GitHub 上编辑此页",
+    colorMode: "auto"
   }),
   plugins: [copyCodePlugin({}), searchPlugin({})],
   markdown: {
