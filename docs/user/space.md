@@ -19,8 +19,13 @@
 		- [查询空间设置](#查询空间设置)
 		- [调整空间板块布局](#调整空间板块布局)
 		- [修改空间隐私权限](#修改空间隐私权限)
-	- [查询用户最近玩过的游戏](#查询用户最近玩过的游戏)
-	- [获取用户最近投币的视频明细](#获取用户最近投币的视频明细)
+	- [查询用户最近访问内容](#查询用户最近访问内容)
+		- [查询用户最近玩过的游戏](#查询用户最近玩过的游戏)
+		- [查询用户最近玩过的游戏V2](#查询用户最近玩过的游戏V2)
+		- [查询用户最近投币视频（Web）](#查询用户最近投币视频（Web）)
+		- [查询用户最近投币视频（APP）](#查询用户最近投币视频（APP）)
+		- [查询用户最近点赞视频（Web）](#查询用户最近点赞视频（Web）)
+		- [查询用户最近点赞视频（APP）](#查询用户最近点赞视频（APP）)
 - [投稿](#投稿)
 	- [查询用户投稿视频明细](#查询用户投稿视频明细)
 	- [查询用户投稿相簿预览](#查询用户投稿相簿预览)
@@ -44,9 +49,6 @@
 	- [查询用户追番预览列表](#查询用户追番预览列表)
 	- [查询用户追番（追剧）明细](#查询用户追番追剧明细)
 	- [查询用户关注的TAG（话题）](#查询用户关注的tag话题)
-- [动作](#动作)
-	- [最近投币视频列表](#最近投币视频列表)
-	- [最近点赞视频列表](#最近点赞视频列表)
 
 ---
 
@@ -1189,11 +1191,17 @@ curl 'http://space.bilibili.com/ajax/settings/setPrivacy' \
 
 </details>
 
-### 查询用户最近玩过的游戏
+### 查询用户最近访问内容
+
+#### 查询用户最近玩过的游戏
 
 > https://api.bilibili.com/x/space/lastplaygame 
 
 *请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+如设置隐私查看自己的需要认证
 
 **url参数：**
 
@@ -1222,11 +1230,11 @@ curl 'http://space.bilibili.com/ajax/settings/setPrivacy' \
 
 `data`数组中的对象：
 
-| 字段    | 类型 | 内容            | 备注 |
-| ------- | ---- | --------------- | ---- |
-| website | str  | 游戏主页链接url |      |
-| image   | str  | 游戏图片url     |      |
-| name    | str  | 游戏名          |      |
+| 字段    | 类型 | 内容         | 备注 |
+| ------- | ---- | ---------- | ---- |
+| website | str  | 游戏主页 url |      |
+| image   | str  | 游戏图标 url |      |
+| name    | str  | 游戏名       |      |
 
 **示例：**
 
@@ -1234,7 +1242,7 @@ curl 'http://space.bilibili.com/ajax/settings/setPrivacy' \
 
 ```shell
 curl -G 'https://api.bilibili.com/x/space/lastplaygame' \
---data-urlencode 'mid=2'
+	--data-urlencode 'mid=2'
 ```
 
 <details>
@@ -1277,7 +1285,216 @@ curl -G 'https://api.bilibili.com/x/space/lastplaygame' \
 
 </details>
 
-### 获取用户最近投币的视频明细
+#### 查询用户最近玩过的游戏V2
+
+> https://api.bilibili.com/x/space/lastplaygame/v2
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+如设置隐私查看自己的需要认证
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| mid   | num  | 目标用户mid | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型                            | 内容     | 备注                                                       |
+| ------- | ------------------------------- | -------- | ---------------------------------------------------------- |
+| code    | num                             | 返回值   | 0：成功<br />-400：请求错误<br />53013：用户隐私设置未公开 |
+| message | str                             | 错误信息 | 默认为0                                                    |
+| ttl     | num                             | 1        |                                                            |
+| data    | 隐藏时：null<br />公开时：obj | 信息本体 |                                                            |
+
+`data`对象：
+
+| 字段         | 类型  | 内容    | 备注 |
+| ----------- | ----- | ------ | --- |
+| page_num    | num   | 当前页码 |    |
+| page_size   | num   | 每页项数 |    |
+| total_count | num   | 游戏总数 |    |
+| list        | array | 游戏列表 |    |
+
+`list`数组：
+
+| 项   | 类型 | 内容      | 备注             |
+| ---- | ---- | --------- | ---------------- |
+| 0    | obj  | 游戏1     |                  |
+| n    | obj  | 游戏(n+1) | 项数为总计游戏数 |
+| ……   | obj  | ……        | ……               |
+
+`list`数组中的对象：
+
+| 字段            | 类型  | 内容         | 备注               |
+| -------------- | ----- | ----------- | ----------------- |
+| game_base_id   | num   | 游戏 id      | biligame 的游戏 id |
+| game_name      | str   | 游戏名       |                    |
+| game_icon      | str   | 游戏图标 url |                    |
+| grade          | num   | 游戏评分     | 如`8.2`、`6.8`     |
+| detail_url     | str   | 游戏主页 url |                    |
+| game_tags      | array | 游戏标签     |                    |
+| notice         | str   | 游戏简介文案  |                    |
+| gift_title     | str   | 游戏礼物文案  |                    |
+| game_status_v2 | num   | （？）       |                    |
+
+`game_tags`数组：
+
+| 项   | 类型  | 内容          | 备注                        |
+| ---- | ---- | ------------ | --------------------------- |
+| 0    | obj  | 游戏标签1     | 如`角色扮演`、`音乐节奏`、`休闲` |
+| n    | obj  | 游戏标签(n+1) |                              |
+| ……   | obj  | ……           | ……                           |
+
+**示例：**
+
+查询`mid=2`的最近玩过的游戏
+
+```shell
+curl -G 'https://api.bilibili.com/x/space/lastplaygame/v2' \
+	--data-urlencode 'mid=2'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "page_num": 0,
+    "page_size": 15,
+    "total_count": 8,
+    "list": [
+      {
+        "game_base_id": 102567,
+        "game_name": "坎特伯雷公主与骑士唤醒冠军之剑的奇幻冒险",
+        "game_icon": "https://i0.hdslb.com/bfs/game/fc2f4fd3a347eeb9b8b6ab59d961269bdd05d4e0.png",
+        "grade": 8.2,
+        "detail_url": "https://www.biligame.com/detail/?id=102567",
+        "game_tags": [
+          "角色扮演",
+          "像素风"
+        ],
+        "notice": "像素风欢脱冒险RPG",
+        "gift_title": "",
+        "game_status_v2": 0
+      },
+      {
+        "game_base_id": 101661,
+        "game_name": "光·遇",
+        "game_icon": "https://i0.hdslb.com/bfs/game/9a1be39915f057597f9328afe503a2bbd0de7754.png",
+        "grade": 6.8,
+        "detail_url": "https://www.biligame.com/detail/?id=101661",
+        "game_tags": [
+          "休闲",
+          "治愈",
+          "唯美"
+        ],
+        "notice": "九色鹿季开启，探索本真之旅",
+        "gift_title": "光·遇九色鹿季回归礼包",
+        "game_status_v2": 0
+      },
+      {
+        "game_base_id": 103496,
+        "game_name": "原神",
+        "game_icon": "https://i0.hdslb.com/bfs/game/2b29383536b3d1a2517bfcb73767f78c242f0458.png",
+        "grade": 6.5,
+        "detail_url": "https://www.biligame.com/detail/?id=103496",
+        "game_tags": [
+          "角色扮演",
+          "二次元",
+          "冒险"
+        ],
+        "notice": "跨越尘世的探索之旅",
+        "gift_title": "bilibili-原神4.4版本独家礼包",
+        "game_status_v2": 0
+      },
+      {
+        "game_base_id": 49,
+        "game_name": "命运-冠位指定（Fate/GO）",
+        "game_icon": "https://i0.hdslb.com/bfs/game/ca5d8d4b3a042beddf7cabca20ae0c946527d1bf.png",
+        "grade": 6,
+        "detail_url": "https://www.biligame.com/detail/?id=49",
+        "game_tags": [
+          "卡牌",
+          "fate",
+          "厨向"
+        ],
+        "notice": "第2部现已开启！",
+        "gift_title": "",
+        "game_status_v2": 0
+      },
+      {
+        "game_base_id": 102216,
+        "game_name": "公主连结Re:Dive",
+        "game_icon": "https://i0.hdslb.com/bfs/game/3bb819e010fe6d594d8f4d417ee380f40e8b5b06.png",
+        "grade": 8.4,
+        "detail_url": "https://www.biligame.com/detail/?id=102216",
+        "game_tags": [
+          "角色扮演"
+        ],
+        "notice": "新角色「璃乃（圣诞节）」登场！",
+        "gift_title": "",
+        "game_status_v2": 0
+      },
+      {
+        "game_base_id": 168,
+        "game_name": "BanG Dream！",
+        "game_icon": "https://i0.hdslb.com/bfs/game/d196365d9f112a5adede7eedea1e4154e98c5e53.png",
+        "grade": 9.2,
+        "detail_url": "https://www.biligame.com/detail/?id=168",
+        "game_tags": [
+          "音乐节奏",
+          "BanG Dream"
+        ],
+        "notice": "「迎风展翅的我们」活动开启！",
+        "gift_title": "",
+        "game_status_v2": 0
+      },
+      {
+        "game_base_id": 101772,
+        "game_name": "明日方舟",
+        "game_icon": "https://i0.hdslb.com/bfs/game/faa556b00d29fffc88281c1ee038b1b7f23aa5c2.jpg",
+        "grade": 7.4,
+        "detail_url": "https://www.biligame.com/detail/?id=101772",
+        "game_tags": [
+          "策略",
+          "架空文明",
+          "末世"
+        ],
+        "notice": "2023感谢庆典正式开启",
+        "gift_title": "",
+        "game_status_v2": 0
+      },
+      {
+        "game_base_id": 97,
+        "game_name": "碧蓝航线",
+        "game_icon": "https://i0.hdslb.com/bfs/game/b141a7690c226a0eae66518c713d3af62613b21d.png",
+        "grade": 8.7,
+        "detail_url": "https://www.biligame.com/detail/?id=97",
+        "game_tags": [
+          "养成"
+        ],
+        "notice": "指挥官，欢迎回港",
+        "gift_title": "",
+        "game_status_v2": 0
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+#### 查询用户最近投币视频（Web）
 
 > https://api.bilibili.com/x/space/coin/video
 
@@ -1290,7 +1507,7 @@ curl -G 'https://api.bilibili.com/x/space/lastplaygame' \
 **url参数：**
 
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
+| ------ | ---- | --------- | ------ | ---- |
 | vmid   | num  | 目标用户mid | 必要   |      |
 
 **json回复：**
@@ -1314,7 +1531,7 @@ curl -G 'https://api.bilibili.com/x/space/lastplaygame' \
 
 `data`数组中的对象：
 
-基本同[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的data对象
+基本与[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中`data`对象字段一致
 
 **示例：**
 
@@ -1322,8 +1539,8 @@ curl -G 'https://api.bilibili.com/x/space/lastplaygame' \
 
 ```shell
 curl -G 'http://space.bilibili.com/x/space/coin/video' \
---data-urlencode 'vmid=15858903' \
--b 'SESSDATA=xxx'
+	--data-urlencode 'vmid=15858903' \
+	-b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1515,6 +1732,545 @@ curl -G 'http://space.bilibili.com/x/space/coin/video' \
             "inter_video": false
         }
     ]
+}
+```
+
+</details>
+
+#### 查询用户最近投币视频（APP）
+
+> https://app.bilibili.com/x/v2/space/coinarc
+
+*请求方式：GET*
+
+认证方式：APP
+
+如设置隐私查看自己的需要认证
+
+**url参数：**
+
+| 参数名      | 类型 | 内容        | 必要性 | 备注     |
+| ---------- | ---- | ----------- | ------ | -------- |
+| access_key | str  | APP登录Token | APP方式必要    |      |
+| appkey     | str  | APP密钥    | APP方式必要 |      |
+| vmid       | num  | 目标用户mid | 必要   |           |
+| pn         | num  | 页码        | 非必要 | 默认为1   |
+| ps         | num  | 每页项数    | 非必要 | 默认为20  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注        |
+| ------- | ---- | -------- | ------------ |
+| code    | num  | 返回值   | 0：成功       |
+| message | str  | 错误信息 | 默认为0       |
+| ttl     | num  | 1        |              |
+| data    | obj  | 信息本体 |               |
+
+`data`对象：
+
+| 字段   | 类型  | 内容         | 备注 |
+| ------ | ----- | ---------- | ---- |
+| count  | num   | 投币的视频数 |      |
+| item   | array | 投币视频列表 |      |
+
+`item`数组：
+
+| 项   | 类型  | 内容               | 备注 |
+| ---- | ---- | ------------------ | ---- |
+| 0    | obj  | 投币的视频信息1      |      |
+| n    | obj  | 投币的视频信息（n+1） |      |
+| ……   | obj  | ……                 |      |
+
+`item`数组中的对象：
+
+| 字段               | 类型 | 内容          | 备注                    |
+| ----------------- | ---- | ------------ | ---------------------- |
+| title             | str  | 稿件标题       |                        |
+| subtitle          | str  | 空            |                        |
+| tname             | str  | 空            |                        |
+| cover             | str  | 封面图片 url   |                        |
+| cover_icon        | str  | 空            |                        |
+| uri               | str  | APP 跳转 uri  | 如`bilibili://video/2` |
+| param             | str  | 稿件 avid     |                        |
+| goto              | str  | av           |                        |
+| length            | num  | 空           |                        |
+| duration          | num  | 稿件视频长度   | 单位为秒                |
+| is_popular        | bool | （？）        |                        |
+| is_steins         | bool | （？）        |                        |
+| is_ugcpay         | bool | （？）        |                        |
+| is_cooperation    | str  | （？）        |                        |
+| is_pgc            | str  | （？）        |                        |
+| is_live_playback  | str  | （？）        |                        |
+| is_pugv           | str  | （？）        |                        |
+| is_fold           | num  | （？）        |                        |
+| play              | num  | 播放量        |                        |
+| danmaku           | num  | 弹幕量        |                        |
+| ctime             | num  | 发布时间      | 时间戳                  |
+| ugc_pay           | num  | 0            |                        |
+| author            | str  | UP主昵称      |                        |
+| state             | bool | true         |                        |
+| videos            | num  | 0            |                        |
+| view_content      | str  | 稿件播放量文案 |                        |
+| icon_type         | num  | 0            |                        |
+| publish_time_text | str  | 空           |                        |
+
+**示例：**
+
+用户`mid=2`的投币列表
+
+```shell
+curl -G 'https://app.bilibili.com/x/v2/space/coinarc' \
+	--data-urlencode 'appkey=1d8b6e7d45233436' \
+	--data-urlencode 'access_key=xxx' \
+	--data-urlencode 'vmid=2' \
+	--data-urlencode 'ps=2' \
+	--data-urlencode 'pn=1' \
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "count": 2,
+        "item": [
+            {
+                "title": "请打开麦克风交流",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i1.hdslb.com/bfs/archive/cf9aea43b72354ee8c9486e4bf8e07cb38920a65.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/496832459?player_width=1080\u0026player_height=1920\u0026player_rotate=0",
+                "param": "496832459",
+                "goto": "av",
+                "length": "",
+                "duration": 134,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 706480,
+                "danmaku": 167,
+                "ctime": 1706431476,
+                "ugc_pay": 0,
+                "author": "三个猪鼓励",
+                "state": true,
+                "videos": 0,
+                "view_content": "70.6万",
+                "icon_type": 0,
+                "publish_time_text": ""
+            },
+            {
+                "title": "【裏命】地球的内部【いよわ】【中文CC字幕】",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i0.hdslb.com/bfs/archive/e087224ae4a5ff9ef3f2f6b7644d635276b8f5c6.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/860645391?player_width=1920\u0026player_height=1080\u0026player_rotate=0",
+                "param": "860645391",
+                "goto": "av",
+                "length": "",
+                "duration": 264,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 194375,
+                "danmaku": 173,
+                "ctime": 1669713070,
+                "ugc_pay": 0,
+                "author": "精神安定剤",
+                "state": true,
+                "videos": 0,
+                "view_content": "19.4万",
+                "icon_type": 0,
+                "publish_time_text": ""
+            }
+        ]
+    }
+}
+```
+
+</details>
+
+#### 查询用户最近点赞视频（Web）
+
+> https://api.bilibili.com/x/space/like/video
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+如设置隐私查看自己的需要认证
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | --------- | ------ | ---- |
+| vmid   | num  | 目标用户mid | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型                            | 内容     | 备注                                                       |
+| ------- | ------------------------------- | -------- | ---------------------------------------------------------- |
+| code    | num                             | 返回值   | 0：成功<br />-400：请求错误<br />53013：用户隐私设置未公开 |
+| message | str                             | 错误信息 | 默认为0                                                    |
+| ttl     | num                             | 1        |                                                            |
+| data    | 隐藏时：null<br />公开时：array | 信息本体 |                                                            |
+
+`data`数组：
+
+| 项   | 类型 | 内容            | 备注 |
+| ---- | ---- | --------------- | ---- |
+| 0    | obj  | 点赞视频1       |      |
+| n    | obj  | 点赞视频（n+1） |      |
+| ……   | obj  | ……              |      |
+
+`data`数组中的对象：
+
+基本与[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中`data`对象字段一致
+
+**示例：**
+
+查看用户`mid=15858903`的最近点赞视频
+
+```shell
+curl -G 'http://space.bilibili.com/x/space/like/video' \
+	--data-urlencode 'vmid=15858903' \
+	-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "list": [
+            {
+                "aid": 1700085880,
+                "videos": 1,
+                "tid": 21,
+                "tname": "日常",
+                "copyright": 1,
+                "pic": "http://i0.hdslb.com/bfs/archive/7fad4ca408c66eb7ea72188f56bcf952306d5807.jpg",
+                "title": "你是从什么时候，意识到自己缺爱的呢？",
+                "pubdate": 1706706000,
+                "ctime": 1706602115,
+                "desc": "关于个人情感问题，私信发“2024”我来帮你~",
+                "state": 0,
+                "duration": 91,
+                "mission_id": 4009559,
+                "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 1,
+                    "autoplay": 1,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "no_background": 0,
+                    "arc_pay": 0,
+                    "pay_free_watch": 0
+                },
+                "owner": {
+                    "mid": 2104592226,
+                    "name": "鲸落艳红尘",
+                    "face": "https://i0.hdslb.com/bfs/face/80160fbcf71958e6f5ad3a4fdfa39a55cc0699a5.jpg"
+                },
+                "stat": {
+                    "aid": 1700085880,
+                    "view": 930,
+                    "danmaku": 1,
+                    "reply": 5,
+                    "favorite": 18,
+                    "coin": 0,
+                    "share": 4,
+                    "now_rank": 0,
+                    "his_rank": 0,
+                    "like": 27,
+                    "dislike": 0,
+                    "vt": 0,
+                    "vv": 930
+                },
+                "dynamic": "",
+                "cid": 1424231007,
+                "dimension": {
+                    "width": 1920,
+                    "height": 1080,
+                    "rotate": 0
+                },
+                "short_link_v2": "https://b23.tv/BV1XK421y7ZL",
+                "first_frame": "http://i2.hdslb.com/bfs/storyff/n240130sa1k9birz4lwlsm21ya1w3p2c_firsti.jpg",
+                "pub_location": "湖北",
+                "bvid": "BV1XK421y7ZL",
+                "inter_video": false,
+                "resource_type": "ugc",
+                "subtitle": "",
+                "enable_vt": 0
+            },
+            {
+                "aid": 836926413,
+                "videos": 1,
+                "tid": 21,
+                "tname": "日常",
+                "copyright": 1,
+                "pic": "http://i2.hdslb.com/bfs/archive/dceaf79d1cc4f74ab8cd862f454a8ec4b4a44343.jpg",
+                "title": "内心的创伤，是建立深度亲密关系的桥梁！",
+                "pubdate": 1706594400,
+                "ctime": 1706515438,
+                "desc": "关于个人情感问题，私信发“2024”我来帮你~",
+                "state": 0,
+                "duration": 297,
+                "mission_id": 4009559,
+                "rights": {
+                    "bp": 0,
+                    "elec": 0,
+                    "download": 0,
+                    "movie": 0,
+                    "pay": 0,
+                    "hd5": 0,
+                    "no_reprint": 1,
+                    "autoplay": 1,
+                    "ugc_pay": 0,
+                    "is_cooperation": 0,
+                    "ugc_pay_preview": 0,
+                    "no_background": 0,
+                    "arc_pay": 0,
+                    "pay_free_watch": 0
+                },
+                "owner": {
+                    "mid": 2104592226,
+                    "name": "鲸落艳红尘",
+                    "face": "https://i0.hdslb.com/bfs/face/80160fbcf71958e6f5ad3a4fdfa39a55cc0699a5.jpg"
+                },
+                "stat": {
+                    "aid": 836926413,
+                    "view": 1903,
+                    "danmaku": 0,
+                    "reply": 7,
+                    "favorite": 142,
+                    "coin": 34,
+                    "share": 30,
+                    "now_rank": 0,
+                    "his_rank": 0,
+                    "like": 118,
+                    "dislike": 0,
+                    "vt": 0,
+                    "vv": 1903
+                },
+                "dynamic": "",
+                "cid": 1423127570,
+                "dimension": {
+                    "width": 1920,
+                    "height": 1080,
+                    "rotate": 0
+                },
+                "short_link_v2": "https://b23.tv/BV1xg4y1e7kY",
+                "first_frame": "http://i0.hdslb.com/bfs/storyff/n240129qn55at7dr1775k12hp34tw284_firsti.jpg",
+                "pub_location": "湖北",
+                "bvid": "BV1xg4y1e7kY",
+                "inter_video": false,
+                "resource_type": "ugc",
+                "subtitle": "",
+                "enable_vt": 0
+            },
+            ……
+        ]
+    }
+}
+```
+
+</details>
+
+#### 查询用户最近点赞视频（APP）
+
+> https://app.bilibili.com/x/v2/space/likearc
+
+*请求方式：GET*
+
+认证方式：APP
+
+如设置隐私查看自己的需要认证
+
+**url参数：**
+
+| 参数名      | 类型 | 内容        | 必要性 | 备注     |
+| ---------- | ---- | ----------- | ------ | -------- |
+| access_key | str  | APP登录Token | APP方式必要    |      |
+| appkey     | str  | APP密钥    | APP方式必要 |      |
+| vmid       | num  | 目标用户mid | 必要   |           |
+| pn         | num  | 页码        | 非必要 | 默认为1   |
+| ps         | num  | 每页项数    | 非必要 | 默认为20  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注       |
+| ------- | ---- | -------- | ---------- |
+| code    | num  | 返回值   | 0：成功     |
+| message | str  | 错误信息 | 默认为0     |
+| ttl     | num  | 1        |            |
+| data    | obj  | 信息本体 |            |
+
+`data`对象：
+
+| 字段   | 类型  | 内容         | 备注 |
+| ------ | ----- | ---------- | ---- |
+| count  | num   | 点赞的视频数 |      |
+| item   | array | 点赞视频列表 |      |
+
+`item`数组：
+
+| 项   | 类型  | 内容               | 备注 |
+| ---- | ---- | ------------------ | ---- |
+| 0    | obj  | 点赞的视频信息1      |      |
+| n    | obj  | 点赞的视频信息（n+1） |      |
+| ……   | obj  | ……                 |      |
+
+`item`数组中的对象：
+
+| 字段               | 类型 | 内容          | 备注                    |
+| ----------------- | ---- | ------------ | ---------------------- |
+| title             | str  | 稿件标题       |                        |
+| subtitle          | str  | 空            |                        |
+| tname             | str  | 空            |                        |
+| cover             | str  | 封面图片 url   |                        |
+| cover_icon        | str  | 空            |                        |
+| uri               | str  | APP 跳转 uri  | 如`bilibili://video/2` |
+| param             | str  | 稿件 avid     |                        |
+| goto              | str  | av           |                        |
+| length            | num  | 空           |                        |
+| duration          | num  | 稿件视频长度   | 单位为秒                |
+| is_popular        | bool | （？）        |                        |
+| is_steins         | bool | （？）        |                        |
+| is_ugcpay         | bool | （？）        |                        |
+| is_cooperation    | str  | （？）        |                        |
+| is_pgc            | str  | （？）        |                        |
+| is_live_playback  | str  | （？）        |                        |
+| is_pugv           | str  | （？）        |                        |
+| is_fold           | num  | （？）        |                        |
+| play              | num  | 播放量        |                        |
+| danmaku           | num  | 弹幕量        |                        |
+| ctime             | num  | 发布时间      | 时间戳                  |
+| ugc_pay           | num  | 0            |                        |
+| author            | str  | UP主昵称      |                        |
+| state             | bool | true         |                        |
+| videos            | num  | 0            |                        |
+| view_content      | str  | 稿件播放量文案 |                        |
+| icon_type         | num  | 0            |                        |
+| publish_time_text | str  | 空           |                        |
+
+**示例：**
+
+用户`mid=2`的点赞列表
+
+```shell
+curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
+	--data-urlencode 'appkey=1d8b6e7d45233436' \
+	--data-urlencode 'access_key=xxx' \
+	--data-urlencode 'vmid=2' \
+	--data-urlencode 'ps=2' \
+	--data-urlencode 'pn=1' \
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "count": 2,
+        "item": [
+            {
+                "title": "兄弟难舍也难分",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i1.hdslb.com/bfs/archive/58f031a52eab6d5faec5a39dfaab5728f65672d5.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/624351941?player_width=1080\u0026player_height=1920\u0026player_rotate=0",
+                "param": "624351941",
+                "goto": "av",
+                "length": "",
+                "duration": 216,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 423652,
+                "danmaku": 362,
+                "ctime": 1706320200,
+                "ugc_pay": 0,
+                "author": "甜蜜老张",
+                "state": true,
+                "videos": 0,
+                "view_content": "42.4万",
+                "icon_type": 0,
+                "publish_time_text": ""
+            },
+            {
+                "title": "技能搭配不累，共赴热血团战！",
+                "subtitle": "",
+                "tname": "",
+                "cover": "http://i2.hdslb.com/bfs/archive/2094b8e0be819222d320e2841ee1c39f5f2e4357.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/793597196?player_width=1280\u0026player_height=720\u0026player_rotate=0",
+                "param": "793597196",
+                "goto": "av",
+                "length": "",
+                "duration": 41,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "play": 1237,
+                "danmaku": 2,
+                "ctime": 1704855559,
+                "ugc_pay": 0,
+                "author": "38047aa1-cb8a-4",
+                "state": true,
+                "videos": 0,
+                "view_content": "1237",
+                "icon_type": 0,
+                "publish_time_text": ""
+            }
+        ]
+    }
 }
 ```
 
@@ -3664,285 +4420,3 @@ curl -G 'http://space.bilibili.com/ajax/tags/getSubList' \
 ```
 
 </details>
-
-
-</details>
-
-## 动作
-
-### 最近点赞视频列表
-
-> https://app.biliapi.net/x/v2/space/likearc
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-
-**url参数：**
-
-| 参数名 | 类型 | 内容        | 必要性 | 备注         |
-| ------ | ---- | ----------- | ------ | ------------- |
-| vmid   | num  | 目标用户mid | 必要   |                |
-| pn     | num  | 页码        | 非必要 | 默认为1 最大30  |
-| ps     | num  | 每页项数    | 非必要 | 默认为20 最大20 |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注       |
-| ------- | ---- | -------- | ---------- |
-| code    | num  | 返回值   | 0：成功     |
-| message | str  | 错误信息 | 默认为0     |
-| ttl     | num  | 1        |            |
-| data    | obj  | 信息本体 |            |
-
-`data`对象：
-
-| 字段   | 类型  | 内容         | 备注         |
-| ------ | ----- | ------------ | ------------ |
-| count  | num   | 点赞数   |最大600            |
-| item | array | 点赞视频列表 |                 |
-
-
-`data`中的`item`数组中的对象：
-
-| 字段            | 类型 | 内容            | 备注                             |
-| --------------- | ---- | --------------- | -------------------------------- |
-| author          | str  | up主名字        |                                   |
-| cover           | str  | 封面图片url     |                                   |
-| ctime           | num  | 点赞时间        |                                   |
-| danmaku         | num  | 弹幕数          | 时间戳                            |
-| play            | num  | 播放量          |                                   |
-| title           | str  | 视频标题        |                                   |
-| param           | str  | av号            |                                   |
-
-
-**示例：**
-
-用户`mid=2`的点赞列表
-
-```shell
-curl -G 'https://app.biliapi.net/x/v2/space/likearc' \
---data-urlencode 'vmid=2' \
---data-urlencode 'ps=20' \
---data-urlencode 'pn=1' \
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "count": 2,
-        "item": [
-            {
-                "title": "兄弟难舍也难分",
-                "subtitle": "",
-                "tname": "",
-                "cover": "http://i1.hdslb.com/bfs/archive/58f031a52eab6d5faec5a39dfaab5728f65672d5.jpg",
-                "cover_icon": "",
-                "uri": "bilibili://video/624351941?player_width=1080\u0026player_height=1920\u0026player_rotate=0",
-                "param": "624351941",
-                "goto": "av",
-                "length": "",
-                "duration": 216,
-                "is_popular": false,
-                "is_steins": false,
-                "is_ugcpay": false,
-                "is_cooperation": false,
-                "is_pgc": false,
-                "is_live_playback": false,
-                "is_pugv": false,
-                "is_fold": false,
-                "play": 423652,
-                "danmaku": 362,
-                "ctime": 1706320200,
-                "ugc_pay": 0,
-                "author": "甜蜜老张",
-                "state": true,
-                "videos": 0,
-                "view_content": "42.4万",
-                "icon_type": 0,
-                "publish_time_text": ""
-            },
-            {
-                "title": "技能搭配不累，共赴热血团战！",
-                "subtitle": "",
-                "tname": "",
-                "cover": "http://i2.hdslb.com/bfs/archive/2094b8e0be819222d320e2841ee1c39f5f2e4357.jpg",
-                "cover_icon": "",
-                "uri": "bilibili://video/793597196?player_width=1280\u0026player_height=720\u0026player_rotate=0",
-                "param": "793597196",
-                "goto": "av",
-                "length": "",
-                "duration": 41,
-                "is_popular": false,
-                "is_steins": false,
-                "is_ugcpay": false,
-                "is_cooperation": false,
-                "is_pgc": false,
-                "is_live_playback": false,
-                "is_pugv": false,
-                "is_fold": false,
-                "play": 1237,
-                "danmaku": 2,
-                "ctime": 1704855559,
-                "ugc_pay": 0,
-                "author": "38047aa1-cb8a-4",
-                "state": true,
-                "videos": 0,
-                "view_content": "1237",
-                "icon_type": 0,
-                "publish_time_text": ""
-            }
-        ]
-    }
-}
-```
-
-</details>
-
-### 最近投币视频列表
-
-> https://app.biliapi.net/x/v2/space/coinarc
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-**url参数：**
-
-| 参数名 | 类型 | 内容        | 必要性 | 备注     |
-| ------ | ---- | ----------- | ------ | -------- |
-| vmid   | num  | 目标用户mid | 必要   |           |
-| pn     | num  | 页码        | 非必要 | 默认为1   |
-| ps     | num  | 每页项数    | 非必要 | 默认为20  |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注        |
-| ------- | ---- | -------- | ------------ |
-| code    | num  | 返回值   | 0：成功       |
-| message | str  | 错误信息 | 默认为0       |
-| ttl     | num  | 1        |              |
-| data    | obj  | 信息本体 |               |
-
-`data`对象：
-
-| 字段   | 类型  | 内容         | 备注         |
-| ------ | ----- | ------------ | ------------ |
-| count  | num   | 投币数   |            |
-| item | array | 投币视频列表 |                 |
-
-
-`data`中的`item`数组中的对象：
-
-| 字段            | 类型 | 内容            | 备注                             |
-| --------------- | ---- | --------------- | -------------------------------- |
-| author          | str  | up主名字        |                                   |
-| cover           | str  | 封面图片url     |                                   |
-| ctime           | num  | 投币时间        |                                   |
-| danmaku         | num  | 弹幕数          | 时间戳                            |
-| play            | num  | 播放量          |                                   |
-| title           | str  | 视频标题        |                                   |
-| param           | str  | av号            |                                   |
-
-
-
-**示例：**
-
-用户`mid=2`的投币列表
-
-```shell
-curl -G 'https://app.biliapi.net/x/v2/space/coinarc' \
---data-urlencode 'vmid=2' \
---data-urlencode 'ps=2' \
---data-urlencode 'pn=1' \
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "count": 2,
-        "item": [
-            {
-                "title": "请打开麦克风交流",
-                "subtitle": "",
-                "tname": "",
-                "cover": "http://i1.hdslb.com/bfs/archive/cf9aea43b72354ee8c9486e4bf8e07cb38920a65.jpg",
-                "cover_icon": "",
-                "uri": "bilibili://video/496832459?player_width=1080\u0026player_height=1920\u0026player_rotate=0",
-                "param": "496832459",
-                "goto": "av",
-                "length": "",
-                "duration": 134,
-                "is_popular": false,
-                "is_steins": false,
-                "is_ugcpay": false,
-                "is_cooperation": false,
-                "is_pgc": false,
-                "is_live_playback": false,
-                "is_pugv": false,
-                "is_fold": false,
-                "play": 706480,
-                "danmaku": 167,
-                "ctime": 1706431476,
-                "ugc_pay": 0,
-                "author": "三个猪鼓励",
-                "state": true,
-                "videos": 0,
-                "view_content": "70.6万",
-                "icon_type": 0,
-                "publish_time_text": ""
-            },
-            {
-                "title": "【裏命】地球的内部【いよわ】【中文CC字幕】",
-                "subtitle": "",
-                "tname": "",
-                "cover": "http://i0.hdslb.com/bfs/archive/e087224ae4a5ff9ef3f2f6b7644d635276b8f5c6.jpg",
-                "cover_icon": "",
-                "uri": "bilibili://video/860645391?player_width=1920\u0026player_height=1080\u0026player_rotate=0",
-                "param": "860645391",
-                "goto": "av",
-                "length": "",
-                "duration": 264,
-                "is_popular": false,
-                "is_steins": false,
-                "is_ugcpay": false,
-                "is_cooperation": false,
-                "is_pgc": false,
-                "is_live_playback": false,
-                "is_pugv": false,
-                "is_fold": false,
-                "play": 194375,
-                "danmaku": 173,
-                "ctime": 1669713070,
-                "ugc_pay": 0,
-                "author": "精神安定剤",
-                "state": true,
-                "videos": 0,
-                "view_content": "19.4万",
-                "icon_type": 0,
-                "publish_time_text": ""
-            }
-        ]
-    }
-}
-```
-
-</details>
-
