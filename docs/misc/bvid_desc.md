@@ -161,7 +161,7 @@ BASE = 58
 BV_LEN = 12
 PREFIX = "BV1"
 
-def av2bv(aid):
+def av2bv(aid: int) -> str:
     bytes = [b'B', b'V', b'1', b'0', b'0', b'0', b'0', b'0', b'0', b'0', b'0', b'0']
     bv_idx = BV_LEN - 1
     tmp = (MAX_AID | aid) ^ XOR_CODE
@@ -173,7 +173,7 @@ def av2bv(aid):
     bytes[4], bytes[7] = bytes[7], bytes[4]
     return "".join([i.decode() for i in bytes])
 
-def bv2av(bvid: str):
+def bv2av(bvid: str) -> int:
     bvid = list(bvid)
     bvid[3], bvid[9] = bvid[9], bvid[3]
     bvid[4], bvid[7] = bvid[7], bvid[4]
