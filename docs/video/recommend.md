@@ -426,26 +426,26 @@ curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
 
 | 参数名          | 类型  | 内容                        | 必要性 | 备注                           |
 |--------------|-----|---------------------------|-----|------------------------------|
-| fnval   | num | 272        | 非必要 | 似乎是视频格式  | 
-| fnver      | num | 0       | 非必要 |        |
-| force_host | num | 0       | 非必要 |        |
-| fourk    | num | 0         | 非必要 |        |
+| fnval   | num | 视频流格式标识        | 非必要 |  默认为272  | 
+| fnver      | num | 视频流版本标识       | 非必要 | 恒为1  |
+| force_host | num | 源url类型       | 非必要 |  0:无限制 1:使用http 2:使用https    |
+| fourk    | num | 是否允许 4K 视频         | 非必要 | 画质最高 1080P：0（默认）<br />画质最高 4K：1    |
 | guidance | num | 0         | 非必要 |        |
 | https_url_req | num | 0    | 非必要 |        |
 | inline_danmu | num | 2     | 非必要 |        |
 | inline_sound | num | 1     | 非必要 |        |
 | interest_id | num | 0      | 非必要 |        |
-| login_event | num | 0      | 非必要 |        |
+| login_event | num | 登录状态      | 非必要 |  0为登录 1为未登录     |
 | mobi_app | num | android   | 非必要 | 设备类型   |
 | network | num | wifi       | 非必要 |  网络类型   |
 | open_event | num |         | 非必要 |        |
 | platform | num | android   | 非必要 |  设备类型    |
-| pull | poll | false        | 非必要 |        |
+| pull | boll | false        | 非必要 |        |
 | qn | num | 32              | 非必要 | 似乎是画质 |
 | recsys_mode | num | 0      | 非必要 |        |
 | s_locale | str | zh_CN     | 非必要 | 语言   |
 | video_mode | num | 1       | 非必要 |        |
-| voice_balance | num | 0    | 非必要 |        |
+| voice_balance | num | 音量均衡？    | 非必要 |  默认为1    |
 
 
 **json回复：**
@@ -475,20 +475,20 @@ curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
 |-------------|-------|------|----------------------|
 | can_play      | num   | 1  | 字面意思  |
 | card_goto         | str   |  av    |           |
-| card_type         | str   |  small_cover_v2   |           |
+| card_type         | str   |  卡片类型  | 视频为small_cover_v2    |
 | cover             | str   |  封面url   |           |
-| cover_left_1_content_description     | str   | 8.9万观看  |           |
-| cover_left_2_content_description         | str   | 250弹幕   |           |
-| cover_left_text_1           | str   |  8.9万   |           |
-| cover_left_text_2          | str   |   250   |           |
-| cover_right_content_description         | str   | 1分钟20秒   |           |
-| cover_right_text         | str   | 1:20 |           |
+| cover_left_1_content_description     | str   | 播放量  |   8.9万观看     |
+| cover_left_2_content_description         | str   | 弹幕数  |     250弹幕       |
+| cover_left_text_1           | str   |   播放量  |    8.9万     |
+| cover_left_text_2          | str   |   弹幕数   |     250      |
+| cover_right_content_description         | str   | 视频长度  |     1分钟20秒      |
+| cover_right_text         | str   | 视频长度 |   1:20     |
 | desc_button         | obj   | up主信息 |           |
-| param         | str   | aid   |           |
+| param         | str   | 视频aid   |           |
 | player_args        | obj   | 视频信息 |           |
 | talk_back         | str   |      |           |
 | title         | str   | 标题 |           |
-| uri         | str   |      |           |
+| uri         | str   | 跳转链接  |           |
 
 `desc_button`对象：
 
@@ -497,15 +497,15 @@ curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
 | event         | str   |      |           |
 | text        | str   | up名称 |           |
 | type         | num  |   1   |           |
-| uri      | str   |    |    |
+| uri      | str   | 跳转链接 |    |
 
 
 `player_args`对象：
 
 | 字段          | 类型    | 内容   | 备注                   |
 |-------------|-------|------|----------------------|
-| aid         | num   |      |           |
-| cid        | num   |  |           |
+| aid         | num   | 视频aid   |           |
+| cid        | num   | 视频cid   |           |
 | duration      | num  |   视频长度   |   秒数     |
 | type      | str   |    |    |
 
