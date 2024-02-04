@@ -148,44 +148,42 @@ console.log(bv2av('BV1L9Uoa9EUx'));
 
 ### Python
 
-来自：[SocialSisterYi#847 (comment)](https://github.com/SocialSisterYi/bilibili-API-collect/issues/847#issuecomment-1807020675)
+来自：[#847](https://github.com/SocialSisterYi/bilibili-API-collect/issues/847#issuecomment-1807020675)
 
 ```python
 XOR_CODE = 23442827791579
 MASK_CODE = 2251799813685247
 MAX_AID = 1 << 51
+ALPHABET = "FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf"
+ENCODE_MAP = 8, 7, 0, 5, 1, 3, 2, 4, 6
+DECODE_MAP = tuple(reversed(ENCODE_MAP))
 
-data = [b'F', b'c', b'w', b'A', b'P', b'N', b'K', b'T', b'M', b'u', b'g', b'3', b'G', b'V', b'5', b'L', b'j', b'7', b'E', b'J', b'n', b'H', b'p', b'W', b's', b'x', b'4', b't', b'b', b'8', b'h', b'a', b'Y', b'e', b'v', b'i', b'q', b'B', b'z', b'6', b'r', b'k', b'C', b'y', b'1', b'2', b'm', b'U', b'S', b'D', b'Q', b'X', b'9', b'R', b'd', b'o', b'Z', b'f']
-
-BASE = 58
-BV_LEN = 12
+BASE = len(ALPHABET)
 PREFIX = "BV1"
+PREFIX_LEN = len(PREFIX)
+CODE_LEN = len(ENCODE_MAP)
+BV_LEN = PREFIX_LEN + CODE_LEN
 
 def av2bv(aid: int) -> str:
-    bytes = [b'B', b'V', b'1', b'0', b'0', b'0', b'0', b'0', b'0', b'0', b'0', b'0']
-    bv_idx = BV_LEN - 1
+    bvid = [""] * 9
     tmp = (MAX_AID | aid) ^ XOR_CODE
-    while int(tmp) != 0:
-        bytes[bv_idx] = data[int(tmp % BASE)]
+    for i in range(CODE_LEN):
+        bvid[ENCODE_MAP[i]] = ALPHABET[int(tmp % BASE)]
         tmp /= BASE
-        bv_idx -= 1
-    bytes[3], bytes[9] = bytes[9], bytes[3]
-    bytes[4], bytes[7] = bytes[7], bytes[4]
-    return "".join([i.decode() for i in bytes])
+    return PREFIX + "".join(bvid)
 
 def bv2av(bvid: str) -> int:
-    bvid = list(bvid)
-    bvid[3], bvid[9] = bvid[9], bvid[3]
-    bvid[4], bvid[7] = bvid[7], bvid[4]
-    bvid = bvid[3:]
+    assert bvid[:3] == PREFIX
+    
+    bvid = list(bvid[3:])
     tmp = 0
-    for i in bvid:
-        idx = data.index(i.encode())
+    for i in range(CODE_LEN):
+        idx = ALPHABET.index(bvid[DECODE_MAP[i]])
         tmp = tmp * BASE + idx
     return (tmp & MASK_CODE) ^ XOR_CODE
 
-print(av2bv(111298867365120))
-print(bv2av("BV1L9Uoa9EUx"))
+assert av2bv(111298867365120) == "BV1L9Uoa9EUx"
+assert bv2av("BV1L9Uoa9EUx") == 111298867365120
 ```
 
 ### Rust
@@ -252,6 +250,11 @@ print(bv2av(bvid: "BV1L9Uoa9EUx"))
 ```
 
 ## 老版算法存档
+
+**以下算法已失效**，编解码函数值域有限，不推荐使用，在此仅作为存档
+
+<details>
+<summary>查看折叠内容：</summary>
 
 算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)
 
@@ -651,3 +654,5 @@ fn bv2av(bvid: [u8; 10]) -> u64 {
 // assert_eq!(*b"17x411w7KC", av2bv(170001));
 // assert_eq!(170001, bv2av(*b"17x411w7KC"));
 ```
+
+</details>
