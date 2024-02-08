@@ -26,9 +26,9 @@
 
 ## 算法概述
 
-~~算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)~~  
-~~实际上该算法并不完整,新的算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)~~  
-实际上上面的算法依然不完整，新的算法参考自 [SocialSisterYi#740](https://github.com/SocialSisterYi/bilibili-API-collect/issues/740)~~来自 B 站某个 JS 文件？~~  
+~~算法以及程序主要参考[知乎@mcfx的回答](https://www.zhihu.com/question/381784377/answer/1099438784)~~
+~~实际上该算法并不完整,新的算法参考自[【揭秘】av号转bv号的过程](https://www.bilibili.com/video/BV1N741127Tj)~~
+实际上上面的算法依然不完整，新的算法参考自 [SocialSisterYi#740](https://github.com/SocialSisterYi/bilibili-API-collect/issues/740)~~来自 B 站某个 JS 文件？~~
 
 ### av->bv算法
 
@@ -69,7 +69,7 @@
 
 <CodeGroup>
   <CodeGroupItem title="JavaScript">
-  
+
 ```javascript
 const XOR_CODE = 23442827791579n;
 const MASK_CODE = 2251799813685247n;
@@ -162,20 +162,19 @@ BASE = len(ALPHABET)
 PREFIX = "BV1"
 PREFIX_LEN = len(PREFIX)
 CODE_LEN = len(ENCODE_MAP)
-BV_LEN = PREFIX_LEN + CODE_LEN
 
 def av2bv(aid: int) -> str:
     bvid = [""] * 9
     tmp = (MAX_AID | aid) ^ XOR_CODE
     for i in range(CODE_LEN):
-        bvid[ENCODE_MAP[i]] = ALPHABET[int(tmp % BASE)]
-        tmp /= BASE
+        bvid[ENCODE_MAP[i]] = ALPHABET[tmp % BASE]
+        tmp //= BASE
     return PREFIX + "".join(bvid)
 
 def bv2av(bvid: str) -> int:
     assert bvid[:3] == PREFIX
-    
-    bvid = list(bvid[3:])
+
+    bvid = bvid[3:]
     tmp = 0
     for i in range(CODE_LEN):
         idx = ALPHABET.index(bvid[DECODE_MAP[i]])
@@ -207,16 +206,16 @@ func av2bv(avid: UInt64) -> String {
     var bytes: [UInt8] = [66, 86, 49, 48, 48, 48, 48, 48, 48, 48, 48, 48]
     var bvIdx = BV_LEN - 1
     var tmp = (MAX_AID | avid) ^ XOR_CODE
-    
+
     while tmp != 0 {
         bytes[bvIdx] = data[Int(tmp % BASE)]
         tmp /= BASE
         bvIdx -= 1
     }
-    
+
     bytes.swapAt(3, 9)
     bytes.swapAt(4, 7)
-    
+
     return String(decoding: bytes, as: UTF8.self)
 }
 
@@ -228,20 +227,20 @@ func bv2av(bvid: String) -> UInt64 {
         fixedBvid = "BV" + bvid
     }
     var bvidArray = Array(fixedBvid.utf8)
-    
+
     bvidArray.swapAt(3, 9)
     bvidArray.swapAt(4, 7)
-    
+
     let trimmedBvid = String(decoding: bvidArray[3...], as: UTF8.self)
-    
+
     var tmp: UInt64 = 0
-    
+
     for char in trimmedBvid {
         if let idx = data.firstIndex(of: char.utf8.first!) {
             tmp = tmp * BASE + UInt64(idx)
         }
     }
-    
+
     return (tmp & MASK_CODE) ^ XOR_CODE
 }
 
