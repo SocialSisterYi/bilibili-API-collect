@@ -167,8 +167,8 @@ def av2bv(aid: int) -> str:
     bvid = [""] * 9
     tmp = (MAX_AID | aid) ^ XOR_CODE
     for i in range(CODE_LEN):
-        bvid[ENCODE_MAP[i]] = ALPHABET[int(tmp % BASE)]
-        tmp /= BASE
+        bvid[ENCODE_MAP[i]] = ALPHABET[tmp % BASE]
+        tmp //= BASE
     return PREFIX + "".join(bvid)
 
 def bv2av(bvid: str) -> int:
