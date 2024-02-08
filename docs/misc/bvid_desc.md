@@ -174,7 +174,7 @@ def av2bv(aid: int) -> str:
 def bv2av(bvid: str) -> int:
     assert bvid[:3] == PREFIX
 
-    bvid = list(bvid[3:])
+    bvid = bvid[3:]
     tmp = 0
     for i in range(CODE_LEN):
         idx = ALPHABET.index(bvid[DECODE_MAP[i]])
