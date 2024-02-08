@@ -162,7 +162,6 @@ BASE = len(ALPHABET)
 PREFIX = "BV1"
 PREFIX_LEN = len(PREFIX)
 CODE_LEN = len(ENCODE_MAP)
-BV_LEN = PREFIX_LEN + CODE_LEN
 
 def av2bv(aid: int) -> str:
     bvid = [""] * 9
