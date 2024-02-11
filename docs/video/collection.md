@@ -51,16 +51,16 @@
 | aid | num | 稿件avid ||
 | bvid | str | 稿件bvid ||
 | ctime | num | 创建时间 | Unix 时间戳 |
-| duration | num | 视频时长 ||
-| enable_vt | bool |||
-| interactive_video | bool |||
+| duration | num | 视频时长 | 单位为秒 |
+| enable_vt | bool | false ||
+| interactive_video | bool | false ||
 | pic | str | 封面 URL ||
-| playback_position | num |||
+| playback_position | num || 会随着播放时间增长，播放完成后为 -1 。单位未知 |
 | pubdate | num | 发布日期 | Unix 时间戳 |
 | stat | obj | 稿件信息 ||
 | state | num | 0 ||
 | title | str | 稿件标题||
-| ugc_pay | num |||
+| ugc_pay | num | 0 ||
 | vt_display | str |||
 
 `archives`中的`stat`对象：
@@ -76,7 +76,7 @@
 |-----------------|-----|--------------|--------|
 | category | num | 0 |  |
 | covr | str | 合集封面 URL |  |
-| description | str |  |  |
+| description | str | 合集描述 |  |
 | mid | num | UP 主 ID |  |
 | name | num | 合集标题 |  |
 | ptime | num | 发布时间 | Unix 时间戳 |
