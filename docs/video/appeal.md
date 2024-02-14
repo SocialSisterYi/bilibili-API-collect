@@ -373,8 +373,7 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 
 ## 投诉稿件
 
-> https://api.bilibili.com/x/web-interface/archive/appeal
-
+> https://api.bilibili.com/x/web-interface/appeal/v2/submit
 *请求方式：POST*
 
 认证方式：Cookie（SESSDATA)
@@ -383,12 +382,15 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注                     |
 | ------ | ---- | ------------------------ | ------ | ------------------------ |
-| csrf   | str  | csrf token(位于cookie)   | 必要   | 在url params中           |
-| jsonp  | str  | jsonp                    | 必要?  | 意义不明，位于url params |
+| csrf   | str  | csrf token(位于cookie bili_jct)   | 必要   | 位于request body           |
 | aid    | num  | 稿件aid                  | 必要   | 位于request body         |
 | tid    | num  | 投诉理由tid              | 必要   | 位于request body         |
 | desc   | str  | 投诉理由详细描述         | 必要   | 位于request body         |
 | attach | str  | 附件（多个附件用逗号隔开 | 非必要 | 位于request body         |
+| buid   | str  | 风控代码 | 必要   | 位于request header |
+| Buid   | str  | 风控代码 | 必要   | 位于request cookies |
+
+上下两个buid值必须相同，可随机
 
 **json回复：**
 
@@ -401,7 +403,8 @@ curl --location --request GET 'https://api.bilibili.com/x/web-interface/archive/
 **示例：举报av号为61080066的视频，理由为人身攻击，描述为“xxxxx”，并附带了一个图片附件
 
 ```bash
-curl --location --request POST 'https://api.bilibili.com/x/web-interface/archive/appeal?jsonp=jsonp&csrf=xxxx' \
+curl --location --request POST 'https://api.bilibili.com/x/web-interface/appeal/v2/submit' \
+--form 'csrf="xxxx"'\
 --form 'aid="61080066"' \
 --form 'tid="7"' \
 --form 'desc="xxxxx"' \
