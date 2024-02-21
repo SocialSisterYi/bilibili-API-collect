@@ -44,6 +44,7 @@
 | wss_port | num  | wss端口    |      |
 | ws_port  | num  | ws端口     |      |
 
+
 **示例：**
 
 获得直播间`22824550`的信息流认证秘钥
@@ -93,6 +94,9 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 ```
 
 </details>
+
+**注:最终URI格式为： host+对应port+"/sub"**，例如以上示例中一个可行的ws连接URI应当为`tx-sh-live-comet-02.chat.bilibili.com:2244/sub`
+
 
 ## 数据包格式
 
