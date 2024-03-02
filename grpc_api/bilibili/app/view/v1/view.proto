@@ -886,15 +886,21 @@ message GetArcsPlayerReq {
 //
 message GetUserReq {
     //
-    int64 aid = 1;
+    repeated int64 mids = 1;
     //
-    int64 up_mid = 1;
+    int64 aid = 2;
+    // 
+    int64 up_mid = 3;
+    //
+    bool only_fans = 4;
 }
 
 //
 message GetUserReply {
-    //
-    User like_list = 1;
+    // 
+    repeated User like_list = 1;
+    // 
+    string title = 2;
 }
 
 //
