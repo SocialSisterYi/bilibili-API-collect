@@ -534,7 +534,7 @@ curl 'https://api.bilibili.com/x/upower/up/member/rank/v2' \
                 "avatar": "https://i2.hdslb.com/bfs/face/390f4b18b8b15c1f2ecdb6ee44e572aa18b9b2d0.png",
                 "rank": 1,
                 "day": 31,
-                "expire_at": 0，
+                "expire_at": 0,
                 "remain_days": 0
             }
         ],
