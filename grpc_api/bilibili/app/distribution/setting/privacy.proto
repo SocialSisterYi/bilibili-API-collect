@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.privacy;
+
+import "bilibili/app/distribution/v1/distribution.proto";
+
+// 
+message MidPrivacySettingsConfig {
+    // 
+    bilibili.app.distribution.v1.BoolValue recommend_to_known = 1;
+}
+
+// 
+message PrivacySettingsConfig {
+    // 
+    bilibili.app.distribution.v1.BoolValue ad_recommand_store = 1;
+    // 传感器权限
+    bilibili.app.distribution.v1.BoolValue sensor_access = 2;
+
+}

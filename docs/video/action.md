@@ -1,4 +1,4 @@
-# 视频点赞&投币&收藏&分享
+# 稿件观众操作
 
 ## 点赞
 
@@ -12,24 +12,26 @@
 
 认证方式：仅可Cookie（SESSDATA）
 
+需验证 Cookie 中`buvid3`字段存在且正常, 否则将导致触发风控
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性       | 备注                   |
-| ------ | ---- | ------------------------ | ------------ | ---------------------- |
-| aid    | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个     |
-| bvid   | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个     |
-| like   | num  | 操作方式                 | 必要         | 1：点赞<br />2：取消赞 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要         |                        |
+| 参数名 | 类型 | 内容                      | 必要性       | 备注                   |
+| ------ | ---- | ------------------------- | ------------ | ---------------------- |
+| aid    | num  | 稿件 avid                 | 必要（可选） | avid 与 bvid 任选一个  |
+| bvid   | str  | 稿件 bvid                 | 必要（可选） | avid 与 bvid 任选一个  |
+| like   | num  | 操作方式                  | 必要         | 1：点赞<br />2：取消赞 |
+| csrf   | str  | CSRF Token（位于 Cookie） | 必要         |                        |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                                                                                                              |
-| ------- | ---- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />10003：不存在该稿件<br />65004：取消点赞失败<br />65006：重复点赞 |
-| message | str  | 错误信息 | 默认为0                                                                                                                                           |
-| ttl     | num  | 1        |                                                                                                                                                   |
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功 <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-403: 账号异常<br/> 10003：不存在该稿件<br />65004：取消点赞失败<br />65006：重复点赞 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
 
 **示例：**
 
@@ -78,22 +80,22 @@ curl 'https://api.bilibili.com/x/web-interface/archive/like' \
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容         | 必要性      | 备注                   |
-| ---------- | ---- | ------------ | ----------- | ---------------------- |
-| access_key | str  | APP登录Token | APP方式必要 |                        |
-| aid        | num  | 稿件avid     | 必要        |                        |
-| like       | num  | 操作方式     | 必要        | 0：点赞<br />1：取消赞 |
+| 参数名     | 类型 | 内容           | 必要性       | 备注                   |
+| ---------- | ---- | -------------- | ------------ | ---------------------- |
+| access_key | str  | APP 登录 Token | APP 方式必要 |                        |
+| aid        | num  | 稿件 avid      | 必要         |                        |
+| like       | num  | 操作方式       | 必要         | 0：点赞<br />1：取消赞 |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                                        |
-| ------- | ---- | -------- | --------------------------------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />-101：账号未登录<br />-400：请求错误<br />10003：不存在该稿件 |
-| message | str  | 错误信息 | 默认为0                                                                     |
-| ttl     | num  | 1        |                                                                             |
-| data    | obj  | 数据本体 |                                                                             |
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功 <br />-101：账号未登录<br />-400：请求错误<br />-403: 账号异常<br />10003：不存在该稿件 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 数据本体 |                                                              |
 
 `data`对象：
 
@@ -138,11 +140,11 @@ curl 'https://app.bilibili.com/x/v2/view/like' \
 
 **url参数：**
 
-| 参数名     | 类型 | 内容         | 必要性       | 备注               |
-| ---------- | ---- | ------------ | ------------ | ------------------ |
-| access_key | str  | APP登录Token | APP方式必要  |                    |
-| aid        | num  | 稿件avid     | 必要（可选） | avid与bvid任选一个 |
-| bvid       | str  | 稿件bvid     | 必要（可选） | avid与bvid任选一个 |
+| 参数名     | 类型 | 内容           | 必要性       | 备注                  |
+| ---------- | ---- | -------------- | ------------ | --------------------- |
+| access_key | str  | APP 登录 Token | APP 方式必要 |                       |
+| aid        | num  | 稿件 avid      | 必要（可选） | avid 与 bvid 任选一个 |
+| bvid       | str  | 稿件 bvid      | 必要（可选） | avid 与 bvid 任选一个 |
 
 **json回复：**
 
@@ -170,7 +172,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/has/like' \
 bvid方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/has/like' \
 --data-urlencode 'bvid=BV1Bt411z799' \
 -b 'SESSDATA=xxx'
 ```
@@ -201,11 +203,11 @@ curl -G 'api.bilibili.com/x/web-interface/archive/has/like' \
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名        | 类型  | 内容        | 必要性 | 备注              |
-|------------|-----|-----------|-----|-----------------|
-| access_key | str | APP Token | 必要  |                 |
-| aid        | num | 视频aid     | 必要  |                 |
-| dislike    | num | 操作类型      | 必要  | 0：点踩<br/>1：取消点踩 |
+| 参数名     | 类型 | 内容           | 必要性 | 备注                    |
+| ---------- | ---- | -------------- | ------ | ----------------------- |
+| access_key | str  | APP 登录 Token | 必要   |                         |
+| aid        | num  | 视频 aid       | 必要   |                         |
+| dislike    | num  | 操作类型       | 必要   | 0：点踩<br/>1：取消点踩 |
 
 **json回复：**
 
@@ -250,26 +252,28 @@ curl -L -X POST 'https://app.biliapi.net/x/v2/view/dislike' \
 
 认证方式：仅可Cookie（SESSDATA）
 
+需验证 Cookie 中`buvid3`字段存在且正常, 否则将导致触发风控
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名      | 类型 | 内容                     | 必要性       | 备注                                    |
-| ----------- | ---- | ------------------------ | ------------ | --------------------------------------- |
-| aid         | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个                      |
-| bvid        | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个                      |
-| multiply    | num  | 投币数量                 | 必要         | 上限为2                                 |
-| select_like | num  | 是否附加点赞             | 非必要       | 0：不点赞<br />1：同时点赞<br />默认为0 |
-| csrf        | str  | CSRF Token（位于cookie） | 必要         |                                         |
+| 参数名      | 类型 | 内容                      | 必要性       | 备注                                    |
+| ----------- | ---- | ------------------------- | ------------ | --------------------------------------- |
+| aid         | num  | 稿件 avid                 | 必要（可选） | avid 与 bvid 任选一个                   |
+| bvid        | str  | 稿件 bvid                 | 必要（可选） | avid 与 bvid 任选一个                   |
+| multiply    | num  | 投币数量                  | 必要         | 上限为2                                 |
+| select_like | num  | 是否附加点赞              | 非必要       | 0：不点赞<br />1：同时点赞<br />默认为0 |
+| csrf        | str  | CSRF Token（位于 Cookie） | 必要         |                                         |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                                                                                                                                                                                                                 |
-| ------- | ---- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-104：硬币不足<br />-111：csrf校验失败<br />-400：请求错误<br />10003：不存在该稿件<br />34002：不能给自己投币<br />34003：非法的投币数量<br />34004：投币间隔太短<br />34005：超过投币上限 |
-| message | str  | 错误信息 | 默认为0                                                                                                                                                                                                                                              |
-| ttl     | num  | 1        |                                                                                                                                                                                                                                                      |
-| data    | obj  | 信息本体 |                                                                                                                                                                                                                                                      |
+| 字段    | 类型 | 内容     | 备注                                                         |
+| ------- | ---- | -------- | ------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-102：账号被封停<br />-104：硬币不足<br />-111：csrf校验失败<br />-400：请求错误<br />-403:   账号异常<br />10003：不存在该稿件<br />34002：不能给自己投币<br />34003：非法的投币数量<br />34004：投币间隔太短<br />34005：超过投币上限 |
+| message | str  | 错误信息 | 默认为0                                                      |
+| ttl     | num  | 1        |                                                              |
+| data    | obj  | 信息本体 |                                                              |
 
 data 对象：
 
@@ -329,12 +333,12 @@ curl 'https://api.bilibili.com/x/web-interface/coin/add' \
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名      | 类型 | 内容         | 必要性      | 备注                                    |
-| ----------- | ---- | ------------ | ----------- | --------------------------------------- |
-| access_key  | str  | APP登录Token | APP方式必要 |                                         |
-| aid         | num  | 稿件avid     | 必要        |                                         |
-| multiply    | num  | 投币数量     | 必要        | 上限为2                                 |
-| select_like | num  | 附加点赞     | 非必要      | 0：不点赞<br />1：同时点赞<br />默认为0 |
+| 参数名      | 类型 | 内容           | 必要性       | 备注                                    |
+| ----------- | ---- | -------------- | ------------ | --------------------------------------- |
+| access_key  | str  | APP 登录 Token | APP 方式必要 |                                         |
+| aid         | num  | 稿件 avid      | 必要         |                                         |
+| multiply    | num  | 投币数量       | 必要         | 上限为2                                 |
+| select_like | num  | 附加点赞       | 非必要       | 0：不点赞<br />1：同时点赞<br />默认为0 |
 
 **json回复：**
 
@@ -389,11 +393,11 @@ curl 'https://app.bilibili.com/x/v2/view/coin/add' \
 
 **url参数：**
 
-| 参数名     | 类型 | 内容         | 必要性       | 备注               |
-| ---------- | ---- | ------------ | ------------ | ------------------ |
-| access_key | str  | APP登录Token | APP方式必要  |                    |
-| aid        | num  | 稿件avid     | 必要（可选） | avid与bvid任选一个 |
-| bvid       | str  | 稿件bvid     | 必要（可选） | avid与bvid任选一个 |
+| 参数名     | 类型 | 内容           | 必要性       | 备注                  |
+| ---------- | ---- | -------------- | ------------ | --------------------- |
+| access_key | str  | APP 登录 Token | APP方式必要  |                       |
+| aid        | num  | 稿件 avid      | 必要（可选） | avid 与 bvid 任选一个 |
+| bvid       | str  | 稿件 bvid      | 必要（可选） | avid 与 bvid 任选一个 |
 
 **json回复：**
 
@@ -419,7 +423,7 @@ curl 'https://app.bilibili.com/x/v2/view/coin/add' \
 avid方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 --data-urlencode 'aid=37896701' \
 -b 'SESSDATA=xxx'
 ```
@@ -427,7 +431,7 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
 bvid方式：
 
 ```shell
-curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
+curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 --data-urlencode 'bvid=BV18t411q7zz' \
 -b 'SESSDATA=xxx'
 ```
@@ -468,12 +472,12 @@ curl -G 'api.bilibili.com/x/web-interface/archive/coins' \
 
 | 参数名        | 类型 | 内容                     | 必要性         | 备注                           |
 | ------------- | ---- | ------------------------ | -------------- | ------------------------------ |
-| access_key    | str  | APP登录Token             | APP方式必要    |                                |
-| rid           | num  | 稿件avid                 | 必要           |                                |
+| access_key    | str  | APP 登录 Token           | APP 方式必要   |                                |
+| rid           | num  | 稿件 avid                | 必要           |                                |
 | type          | num  | 必须为2                  | 必要           |                                |
-| add_media_ids | nums | 需要加入的收藏夹mlid       | 非必要         | 同时添加多个，用`,`（%2C）分隔 |
-| del_media_ids | nums | 需要取消的收藏夹mlid       | 非必要         | 同时取消多个，用`,`（%2C）分隔 |
-| csrf          | str  | CSRF Token（位于cookie） | Cookie方式必要 |                                |
+| add_media_ids | nums | 需要加入的收藏夹 mlid      | 非必要         | 同时添加多个，用`,`（%2C）分隔 |
+| del_media_ids | nums | 需要取消的收藏夹 mlid      | 非必要         | 同时取消多个，用`,`（%2C）分隔 |
+| csrf          | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                                |
 
 **json回复：**
 
@@ -544,10 +548,10 @@ curl 'https://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 
 **url参数：**
 
-| 参数名     | 类型     | 内容               | 必要性      | 备注 |
-| ---------- | -------- | ------------------ | ----------- | ---- |
-| access_key | str      | APP登录Token       | APP方式必要 |      |
-| aid        | num或str | 稿件avid或稿件bvid | 必要        |      |
+| 参数名     | 类型       | 内容                  | 必要性       | 备注 |
+| ---------- | ---------- | --------------------- | ------------ | ---- |
+| access_key | str        | APP 登录 Token        | APP 方式必要 |      |
+| aid        | num 或 str | 稿件 avid 或稿件 bvid | 必要         |      |
 
 **json回复：**
 
@@ -618,24 +622,26 @@ curl -G 'https://api.bilibili.com/x/v2/fav/video/favoured' \
 
 同时点赞投币收藏视频，收藏于默认收藏夹中
 
+需验证 Cookie 中`buvid3`字段存在且正常, 否则将导致触发风控
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性       | 备注               |
-| ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个 |
-| bvid   | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
+| 参数名 | 类型 | 内容                      | 必要性       | 备注                  |
+| ------ | ---- | ------------------------- | ------------ | --------------------- |
+| aid    | num  | 稿件 avid                 | 必要（可选） | avid 与 bvid 任选一个 |
+| bvid   | str  | 稿件 bvid                 | 必要（可选） | avid 与 bvid 任选一个 |
+| csrf   | str  | CSRF Token（位于 Cookie） | 必要         |                       |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                                                               |
-| ------- | ---- | -------- | -------------------------------------------------------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />10003：不存在该稿件 |
-| message | str  | 错误信息 | 默认为0                                                                                            |
-| ttl     | num  | 1        |                                                                                                    |
-| data    | obj  | 信息本体 |                                                                                                    |
+| 字段    | 类型 | 内容     | 备注                                                                                       |
+| ------- | ---- | -------- |------------------------------------------------------------------------------------------|
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />10003：不存在该稿件<br />-403: 账号异常 |
+| message | str  | 错误信息 | 默认为0                                                                                     |
+| ttl     | num  | 1        |                                                                                          |
+| data    | obj  | 信息本体 |                                                                                          |
 
 `data`对象：
 
@@ -699,10 +705,10 @@ curl 'https://api.bilibili.com/x/web-interface/archive/like/triple' \
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名     | 类型 | 内容         | 必要性      | 备注 |
-| ---------- | ---- | ------------ | ----------- | ---- |
-| access_key | str  | APP登录Token | APP方式必要 |      |
-| aid        | num  | 稿件avid     | 必要        |      |
+| 参数名     | 类型 | 内容           | 必要性       | 备注 |
+| ---------- | ---- | -------------- | ------------ | ---- |
+| access_key | str  | APP 登录 Token | APP 方式必要 |      |
+| aid        | num  | 稿件 avid      | 必要         |      |
 
 **json回复：**
 
@@ -761,15 +767,13 @@ curl 'https://app.bilibili.com/x/v2/view/like/triple' \
 
 *请求方式：POST*
 
-认证方式 csrf token 
-
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名 | 类型 | 内容                     | 必要性       | 备注               |
-| ------ | ---- | ------------------------ | ------------ | ------------------ |
-| aid    | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个 |
-| bvid   | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个 |
-| csrf   | str  | CSRF Token（位于cookie） | 必要         |                    |
+| 参数名 | 类型 | 内容                      | 必要性       | 备注                  |
+| ------ | ---- | ------------------------- | ------------ | --------------------- |
+| aid    | num  | 稿件 avid                 | 必要（可选） | avid 与 bvid 任选一个 |
+| bvid   | str  | 稿件 bvid                 | 必要（可选） | avid 与 bvid任 选一个 |
+| csrf   | str  | CSRF Token（位于 Cookie） | 必要         |                       |
 
 **json回复：**
 

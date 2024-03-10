@@ -119,6 +119,7 @@ curl 'https://api.bilibili.com/x/note/del' \
 
 <details>
 <summary>查看响应示例：</summary>
+
 ```json
 {
   "code": 0,

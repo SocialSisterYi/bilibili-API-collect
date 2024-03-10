@@ -8,8 +8,8 @@ service Fission {
     rpc Entrance (EntranceReq) returns (EntranceReply);
     // 首页弹窗
     rpc Window (WindowReq) returns (WindowReply);
-    //
-    rpc Privacy(PrivacyReq) returns (PrivacyReply);
+    // 
+    rpc Privacy (PrivacyReq) returns (PrivacyReply);
 }
 
 // 动画效果
@@ -59,4 +59,6 @@ message WindowReply {
 }
 
 // 首页弹窗-请求
-message WindowReq {}
+message WindowReq {
+
+}

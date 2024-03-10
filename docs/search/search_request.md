@@ -4,11 +4,15 @@
 
 ## 综合搜索（web端）
 
-> https://api.bilibili.com/x/web-interface/search/all/v2
+> https://api.bilibili.com/x/web-interface/wbi/search/all/v2
+
+> ~~https://api.bilibili.com/x/web-interface/search/all/v2~~ （旧链接）
 
 *方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 返回和关键字相关的20条信息
 
@@ -37,7 +41,7 @@
 | ---------------- | ----- | ---------------- | ---------------- |
 | seid             | str   | 搜索id           |                  |
 | page             | num   | 页数             | 固定为1          |
-| pagesize         | num   | 每页条数         | 固定为20         |
+| page_size         | num   | 每页条数         | 固定为20         |
 | numResults       | num   | 总条数           | 最大值为1000     |
 | numPages         | num   | 分页数           | 最大值为50       |
 | suggest_keyword  | str   | 空               | **作用尚不明确** |
@@ -579,11 +583,15 @@ curl -G 'https://api.bilibili.com/x/web-interface/search/all/v2' \
 
 ## 分类搜索（web端）
 
-> https://api.bilibili.com/x/web-interface/search/type
+> https://api.bilibili.com/x/web-interface/wbi/search/type
+
+> ~~https://api.bilibili.com/x/web-interface/search/type~~ （旧链接）
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 根据关键词进行搜索，返回结果每页20项
 

@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package bilibili.api.ticket.v1;
+
+service Ticket {
+    // 获取鉴权用 Ticket
+    rpc GetTicket (GetTicketRequest) returns (GetTicketResponse);
+    // 获取 Webview 页面使用的 Ticket
+    rpc GenWebTicket (GenWebTicketRequest) returns (GenWebTicketResponse);
+}
+
+// 
+message GenWebTicketRequest {
+    // 
+    map<string, string> context = 1;
+    // 
+    string key_id = 2;
+    // 
+    string hexsign = 3;
+    // 
+    string token = 4;
+}
+
+// 
+message GenWebTicketResponse {
+    // 
+    message Context {
+        // 
+        string v_voucher = 1;
+    }
+    // 
+    message Nav {
+        // 
+        string img = 1;
+        // 
+        string sub = 2;
+    }
+    // 
+    string ticket = 1;
+    // 
+    int64 created_at = 2;
+    // 
+    int64 ttl = 3;
+    // 
+    Context context = 4;
+    // 
+    Nav nav = 5;
+}
+
+// 
+message GetTicketRequest {
+    // 包含: 
+    // + x-fingerprint(包含手机各类信息, 使用 datacenter.hakase.protobuf.AndroidDeviceInfo 生成)
+    // + x-exbadbasket(?)
+    map<string, bytes> context = 1;
+    // 暂时固定为 ec01
+    string key_id = 2;
+    // 
+    bytes sign = 3;
+    // 暂时留空
+    string token = 4;
+}
+
+// 
+message GetTicketResponse {
+    // 
+    message Context {
+        // 
+        string v_voucher = 1;
+    }
+    // x-bili-ticket
+    string ticket = 1;
+    // 有效期起
+    int64 created_at = 2;
+    // 有效期
+    int64 ttl = 3;
+    // 
+    Context context = 4;
+}

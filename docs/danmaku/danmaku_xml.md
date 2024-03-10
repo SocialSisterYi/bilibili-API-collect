@@ -127,19 +127,19 @@ curl 'https://comment.bilibili.com/144541892.xml'
 
 弹幕的颜色属性使用**十进制RGB888**值
 
-| 颜色                              | HEX（RGB888）                       | DEC（RGB888）                         |
-| --------------------------------- | ----------------------------------- | ------------------------------------- |
-| <font color="#FE0302">红色</font> | <font color="#FE0302">FE0302</font> | <font color="#FE0302">16646914‬</font> |
-| <font color="#FF7204">橘红</font> | <font color="#FF7204">FF7204</font> | <font color="#FF7204">16740868</font> |
-| <font color="#FFAA02">橘黄</font> | <font color="#FFAA02">FFAA02</font> | <font color="#FFAA02">16755202</font> |
-| <font color="#FFD302">淡黄</font> | <font color="#FFD302">FFD302</font> | <font color="#FFD302">16765698</font> |
-| <font color="#FFFF00">黄色</font> | <font color="#FFFF00">FFFF00</font> | <font color="#FFFF00">16776960</font> |
-| <font color="#A0EE00">草绿</font> | <font color="#A0EE00">A0EE00</font> | <font color="#A0EE00">10546688</font> |
-| <font color="#00CD00">绿色</font> | <font color="#00CD00">00CD00</font> | <font color="#00CD00">52480</font>    |
-| <font color="#019899">墨绿</font> | <font color="#019899">019899</font> | <font color="#019899">104601</font>   |
-| <font color="#4266BE">紫色</font> | <font color="#4266BE">4266BE</font> | <font color="#4266BE">4351678</font>  |
-| <font color="#89D5FF">青色</font> | <font color="#89D5FF">89D5FF</font> | <font color="#89D5FF">9022215</font>  |
-| <font color="#CC0273">品红</font> | <font color="#CC0273">CC0273</font> | <font color="#CC0273">13369971</font> |
-| <font color="#222222">黑色</font> | <font color="#222222">222222</font> | <font color="#222222">2236962</font>  |
-| <font color="#9B9B9B">灰色</font> | <font color="#9B9B9B">9B9B9B</font> | <font color="#9B9B9B">10197915</font> |
-| <font color="#FFFFFF">白色</font> | <font color="#FFFFFF">FFFFFF</font> | <font color="#FFFFFF">16777215</font> |
+| 颜色                                    | HEX（RGB888）                             | DEC（RGB888）                                |
+| -------------------------------------- | ----------------------------------------- | ------------------------------------------- |
+| <font v-pre color="#FE0302">红色</font> | <font v-pre color="#FE0302">FE0302</font> | <font v-pre color="#FE0302">16646914‬</font> |
+| <font v-pre color="#FF7204">橘红</font> | <font v-pre color="#FF7204">FF7204</font> | <font v-pre color="#FF7204">16740868</font> |
+| <font v-pre color="#FFAA02">橘黄</font> | <font v-pre color="#FFAA02">FFAA02</font> | <font v-pre color="#FFAA02">16755202</font> |
+| <font v-pre color="#FFD302">淡黄</font> | <font v-pre color="#FFD302">FFD302</font> | <font v-pre color="#FFD302">16765698</font> |
+| <font v-pre color="#FFFF00">黄色</font> | <font v-pre color="#FFFF00">FFFF00</font> | <font v-pre color="#FFFF00">16776960</font> |
+| <font v-pre color="#A0EE00">草绿</font> | <font v-pre color="#A0EE00">A0EE00</font> | <font v-pre color="#A0EE00">10546688</font> |
+| <font v-pre color="#00CD00">绿色</font> | <font v-pre color="#00CD00">00CD00</font> | <font v-pre color="#00CD00">52480</font>    |
+| <font v-pre color="#019899">墨绿</font> | <font v-pre color="#019899">019899</font> | <font v-pre color="#019899">104601</font>   |
+| <font v-pre color="#4266BE">紫色</font> | <font v-pre color="#4266BE">4266BE</font> | <font v-pre color="#4266BE">4351678</font>  |
+| <font v-pre color="#89D5FF">青色</font> | <font v-pre color="#89D5FF">89D5FF</font> | <font v-pre color="#89D5FF">9022215</font>  |
+| <font v-pre color="#CC0273">品红</font> | <font v-pre color="#CC0273">CC0273</font> | <font v-pre color="#CC0273">13369971</font> |
+| <font v-pre color="#222222">黑色</font> | <font v-pre color="#222222">222222</font> | <font v-pre color="#222222">2236962</font>  |
+| <font v-pre color="#9B9B9B">灰色</font> | <font v-pre color="#9B9B9B">9B9B9B</font> | <font v-pre color="#9B9B9B">10197915</font> |
+| <font v-pre color="#FFFFFF">白色</font> | <font v-pre color="#FFFFFF">FFFFFF</font> | <font v-pre color="#FFFFFF">16777215</font> |

@@ -202,7 +202,7 @@ message DanmakuElem {
     int32 fontsize = 4;
     // 弹幕颜色
     uint32 color = 5;
-    // 发送着mid hash
+    // 发送者mid hash
     string midHash = 6;
     // 弹幕正文
     string content = 7;
@@ -221,6 +221,8 @@ message DanmakuElem {
     int32 attr = 13;
     //
     string animation = 22;
+    // 大会员专属颜色
+    DmColorfulType colorful = 24;
 }
 
 // 弹幕ai云屏蔽条目
@@ -348,6 +350,16 @@ enum DMAttrBit {
     DMAttrHighLike    = 2; // 高赞弹幕
 }
 
+message DmColorful {
+    DmColorfulType type = 1; // 颜色类型
+    string src          = 2; //
+}
+
+enum DmColorfulType {
+    NoneType        = 0;     // 无
+    VipGradualColor = 60001; // 渐变色
+}
+
 //
 message DmExpoReportReq {
     //
@@ -402,6 +414,7 @@ message DmSegMobileReply {
     int32 state = 2;
     // 弹幕云屏蔽ai评分值
     DanmakuAIFlag ai_flag = 3;
+    repeated DmColorful colorfulSrc = 5;
 }
 
 // 获取弹幕-请求

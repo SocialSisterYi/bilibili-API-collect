@@ -17,7 +17,7 @@
 | oid        | num  | 目标评论区 id  | 必要         |                                                          |
 | sort       | num  | 排序方式       | 非必要       | 默认为0<br />0：按时间<br />1：按点赞数<br />2：按回复数 |
 | nohot      | num  | 是否不显示热评 | 非必要       | 默认为0<br />1：不显示<br />0：显示                      |
-| ps         | num  | 每页项数       | 非必要       | 默认为20<br />定义域：1-49                                 |
+| ps         | num  | 每页项数       | 非必要       | 默认为20<br />定义域：1-20                                 |
 | pn         | num  | 页码           | 非必要       | 默认为1                                                  |
 
 **json回复：**
@@ -856,11 +856,15 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 
 ## 获取评论区明细_懒加载
 
-> https://api.bilibili.com/x/v2/reply/main
+> https://api.bilibili.com/x/v2/reply/wbi/main
+
+> ~~https://api.bilibili.com/x/v2/reply/main~~
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或APP
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 **url参数：**
 

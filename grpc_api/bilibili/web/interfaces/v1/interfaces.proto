@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package bilibili.web.interfaces.v1;
 
-//
+// 用户信息
 message AccInfo {
-    //
+    // 用户UID
     int64 mid = 1;
-    //
+    // 用户昵称
     string name = 2;
     //
     string sex = 3;
