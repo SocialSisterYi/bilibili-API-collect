@@ -22,14 +22,23 @@
 | at_uids          | 有效时：array<br />无效时：null | at的成员mid        | 在粉丝团时有效；此项为 `null` 或 `[0]` 均表示没有 at 成员      |
 | msg_key          | num  | 消息唯一id         | 部分库在解析JSON对象中的大数时存在数值的精度丢失问题，因此在处理私信时可能会出现问题，建议使用修复了这一问题的库（如将大数转换成文本） |
 | msg_status       | num  | 消息状态           | 0：正常<br />1：被撤回（接口仍能返回被撤回的私信内容）<br />2：被系统撤回（私信将不会显示在前端，B站接口也不会返回被系统撤回的私信）<br />51：（？） |
-| notify_code      | str  | 通知代码           | 发送通知时使用；若这条私信非通知则为空文本                     |
+| notify_code      | str  | 通知代码           | 发送通知时使用，以下划线 `_` 分割，第 1 项表示主业务 id，第 2 项表示子业务 id；若这条私信非通知则为空文本；详细信息有待补充 |
 | new_face_version | num  | 表情包版本         | 为 `0` 或无此项表示旧版表情包，此时 B 站会自动转换成新版表情包，例如 `[doge]` -> `[tv_doge]`；`1` 为新版 |
 | msg_source       | num  | 消息来源           | 见[消息来源列表](#消息来源列表)                                |
+
+`at_uids`数组：
+
+| 项   | 类型 | 内容      | 备注    |
+| ---- | ---- | --------- | ------- |
+| 0    | num  | 用户1     | 成员mid |
+| n    | num  | 用户(n+1) |         |
+| ……   | num  | ……        | ……      |
 
 ### 消息来源列表
 
 | 代码 | 含义                      | 备注 |
 | ---- | ------------------------- | ---- |
+| 0    | 未知来源                  |      |
 | 1    | iOS                       |      |
 | 2    | Android                   |      |
 | 3    | H5                        |      |
@@ -69,16 +78,16 @@
 
 `data` 对象：
 
-| 字段                    | 类型 | 内容                   | 备注         |
-| ----------------------- | ---- | ---------------------- | ------------ |
-| unfollow_unread         | num  | 未关注用户未读私信数   |              |
-| follow_unread           | num  | 已关注用户未读私信数   |              |
-| unfollow_push_msg       | num  | 未读推送消息数         |              |
-| dustbin_push_msg        | num  | 被拦截的未读推送消息数 |              |
-| dustbin_unread          | num  | 被拦截的未读私信数     |              |
-| biz_msg_unfollow_unread | num  | （？）                 | 作用尚不明确 |
-| biz_msg_follow_unread   | num  | （？）                 | 作用尚不明确 |
-| custom_unread           | num  | 未读客服消息数         |              |
+| 字段                    | 类型 | 内容                   | 备注             |
+| ----------------------- | ---- | ---------------------- | ---------------- |
+| unfollow_unread         | num  | 未关注用户未读私信数   |                  |
+| follow_unread           | num  | 已关注用户未读私信数   |                  |
+| unfollow_push_msg       | num  | 未读推送消息数         |                  |
+| dustbin_push_msg        | num  | 未读被拦截的推送消息数 |                  |
+| dustbin_unread          | num  | 未读被拦截的私信数     |                  |
+| biz_msg_unfollow_unread | num  | （？）                 | **作用尚不明确** |
+| biz_msg_follow_unread   | num  | （？）                 | **作用尚不明确** |
+| custom_unread           | num  | 未读客服消息数         |                  |
 
 **示例：**
 
@@ -272,7 +281,7 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 
 | 参数名                | 类型 | 内容                     | 必要性 | 备注                                                 |
 | --------------------- | ---- | ------------------------ | ------ | ---------------------------------------------------- |
-| msg[sender_uid]       | num  | 发送者mid                | 必要   |                                                      |
+| msg[sender_uid]       | num  | 发送者mid                | 必要   | 必须为自己的 mid                                     |
 | msg[receiver_id]      | num  | 接收者id                 | 必要   | `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示应援团 id |
 | msg[receiver_type]    | num  | 接收者类型               | 必要   | 1：用户<br />2：粉丝团                               |
 | msg[msg_type]         | num  | 消息类型                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md) |
@@ -350,19 +359,19 @@ public class Main {
 
 `data`对象：
 
-| 字段          | 类型 | 内容       | 备注                                                                |
-| ------------- | ---- | ---------- | ------------------------------------------------------------------- |
-| msg_key       | num  | 消息唯一id |                                                                     |
-| msg_content   | str  | 发送的消息 | 仅当请求参数中`msg[msg_type]`为`1`且`msg[receiver_type]`为`1`时显示 |
-| key_hit_infos | obj  | 触发的提示 | 仅当请求参数中`msg[msg_type]`为`1`且`msg[receiver_type]`为`1`时显示 |
+| 字段          | 类型 | 内容       | 备注                                                                  |
+| ------------- | ---- | ---------- | --------------------------------------------------------------------- |
+| msg_key       | num  | 消息唯一id |                                                                       |
+| msg_content   | str  | 发送的消息 | 仅当请求参数中`msg[msg_type]`为`1`且`msg[receiver_type]`为`1`时有此项 |
+| key_hit_infos | obj  | 触发的提示 | 仅当请求参数中`msg[msg_type]`为`1`且`msg[receiver_type]`为`1`时有此项 |
 
 `data`对象中的`key_hit_infos`：
 
 | 字段      | 类型  | 内容         | 备注                                   |
 | --------- | ----- | ------------ | -------------------------------------- |
-| toast     | str   | 提示信息文字 | 未触发提示不显示此项                   |
-| rule_id   | num   | 触发的规则id | 未触发提示不显示此项，详细信息有待补充 |
-| high_text | array | 高亮的文本   | 未触发提示不显示此项                   |
+| toast     | str   | 提示信息文字 | 当触发了提示时有此项                   |
+| rule_id   | num   | 触发的规则id | 当触发了提示时有此项，详细信息有待补充 |
+| high_text | array | 高亮的文本   | 当触发了提示时有此项                   |
 
 
 `data`对象中的`key_hit_infos`中的`high_text`数组：
