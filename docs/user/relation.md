@@ -501,9 +501,7 @@ curl -G 'https://app.biliapi.net/x/v2/relation/followings' \
 
 </details>
 
-## 查询用户关注明细3
-
-<img src="../../assets/img/relation.svg" width="100" height="100" />
+### 查询用户关注明细3
 
 > https://line3-h5-mobile-api.biligame.com/game/center/h5/user/relationship/following_list
 
