@@ -12,7 +12,7 @@
 
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie (对于某些 IP 地址，需要在 Cookie 中提供任意非空的 `buvid3` 字段)
 
-~~该接口的旧版 API ：https://api.bilibili.com/x/space/acc/info~~（已废弃，不建议使用）
+~~该接口的旧版 API ：<https://api.bilibili.com/x/space/acc/info>~~（已废弃，不建议使用）
 
 **url参数：**
 
