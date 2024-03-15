@@ -72,6 +72,34 @@
 
 ## 分享消息（`msg_type=7`）
 
+根对象：
+
+| 字段        | 类型 | 内容             | 备注                                                           |
+| ----------- | ---- | ---------------- | -------------------------------------------------------------- |
+| author      | str  | 分享内容作者     | 此项不实时更新，在发送私信时设置（非必要）                     |
+| headline    | str  | 分享内容主标题   | 比 `title` 更突出；此项不实时更新，在发送私信时设置（非必要）  |
+| id          | num  | 分享内容id       |                                                                |
+| source      | num  | 分享内容类型     | ~~1：小视频~~（已弃用）<br />2：相簿<br />3：纯文字<br />4：直播<br />5：视频<br />6：专栏<br />7：番剧（`id` 为 season_id）<br />8：音乐<br />9：国产动画（`id` 为 AV 号）<br />10：图片<br />11：动态<br />16：番剧（`id` 为 epid）<br />17：番剧 |
+| source_desc | str  | 分享内容类型说明 | 仅当 `source` 值为 `16` 时有此项                               |
+| thumb       | str  | 分享内容封面     | 此项不实时更新，在发送私信时设置                               |
+| title       | str  | 分享内容标题     | 此项不实时更新，在发送私信时设置                               |
+| url         | str  | 分享内容url      | （非必要）                                                     |
+| bvid        | str  | 视频BV号         | （非必要）                                                     |
+
+**示例：**
+
+```json
+{
+    "author": "社会易姐QwQ",
+    "headline": "",
+    "id": 246551172,
+    "source": 5,
+    "thumb": "http://i2.hdslb.com/bfs/archive/14ba78056f946ece8c954a10677ef6b073edb178.jpg",
+    "title": "合 成 大 東 瓜",
+    "bvid": "BV16v411e7CW"
+}
+```
+
 ## 小程序消息（`msg_type=9`）
 
 待补充
@@ -107,20 +135,16 @@
     "text": "你预约的直播已开始，快来围观吧~",
     "jump_text": "进入直播间",
     "jump_uri": "https://live.bilibili.com/22747055?broadcast_type=0&is_room_feed=1&live_from=27040",
-    "modules": [
-        {
-            "title": "预约主题",
-            "detail": "2024哔哩哔哩拜年纪"
-        },
-        {
-            "title": "开播时间",
-            "detail": "2024-02-09 19:32"
-        },
-        {
-            "title": "UP主",
-            "detail": "哔哩哔哩拜年纪"
-        }
-    ],
+    "modules": [{
+        "title": "预约主题",
+        "detail": "2024哔哩哔哩拜年纪"
+    }, {
+        "title": "开播时间",
+        "detail": "2024-02-09 19:32"
+    }, {
+        "title": "UP主",
+        "detail": "哔哩哔哩拜年纪"
+    }],
     "jump_text_2": "",
     "jump_uri_2": "",
     "jump_text_3": "",
@@ -231,8 +255,68 @@
 
 此类型消息仅可接收，不可直接发送
 
+根对象：
+
+| 字段     | 类型 | 内容                | 备注                 |
+| -------- | ---- | ------------------- | -------------------- |
+| pic_url  | str  | 图片url             |                      |
+| jump_url | str  | 点击图片跳转到的url |                      |
+| title    | str  | 文字说明            | 显示在聊天列表的文字 |
+
+**示例：**
+
+```json
+{
+    "pic_url": "http://i0.hdslb.com/bfs/location/9e57aff7245c226c05ba46ddd1e82667f74d5a06.png",
+    "jump_url": "https://www.bilibili.com/h5/mall/suit/detail?navhide=1&id=66359&from=Banner",
+    "title": "原神，启动！"
+}
+```
 
 ## 被关注时的自动推送消息（`msg_type=16`）
+
+**示例：**
+
+```json
+{
+    "main_title": "更多宝藏内容",
+    "reply_content": "感谢大佬关注哦～[doge][脱单doge][doge]\n这里是科技区底边小UP，日常瞎折腾，软硬件电路程序网络服务器都折腾，视频月更风格硬核略小众，咕咕咕.....\n老大二了，就不中二了\n有什么好的建议欢迎私信",
+    "sub_cards": [{
+        "card_id": 379743801,
+        "card_type": 1,
+        "jump_url": "https://b23.tv/BV1hZ4y197Cz",
+        "cover_url": "http://i2.hdslb.com/bfs/archive/bfb87f033272926efe6ff4caee8e6c49c07ff6fe.jpg",
+        "field1": "【宿舍评测】性能与便携两全 华为matebook E 2022深度体验及伪开箱",
+        "field2": "2021-12-10",
+        "field3": "195299",
+        "icon3": 1,
+        "field4": "479",
+        "icon4": 3
+    }, {
+        "card_id": 768716232,
+        "card_type": 1,
+        "jump_url": "https://b23.tv/BV13r4y187R8",
+        "cover_url": "http://i1.hdslb.com/bfs/archive/bb1d41ef0c17c2df25c8b6ef98f01466bdee0c1f.jpg",
+        "field1": "【BadApple】使用古董示波器Aron BS-601播放BadApple!!!",
+        "field2": "2022-05-03",
+        "field3": "151613",
+        "icon3": 1,
+        "field4": "297",
+        "icon4": 3
+    }, {
+        "card_id": 524989935,
+        "card_type": 1,
+        "jump_url": "https://b23.tv/BV17M411E7Kq",
+        "cover_url": "http://i1.hdslb.com/bfs/archive/17335854dfad9d7990943d8cc6dc07c85912b103.jpg",
+        "field1": "【拆解】华为 Matebook E 更换固态硬盘：从未见过如此好拆的二合一",
+        "field2": "2023-02-24",
+        "field3": "56077",
+        "icon3": 1,
+        "field4": "102",
+        "icon4": 3
+    }]
+}
+```
 
 ## 系统提示消息（`msg_type=18`）
 
@@ -240,19 +324,19 @@
 
 根对象：
 
-| 字段    | 类型  | 内容     | 备注 |
-| ------- | ----- | -------- | ---- |
-| content | array | 提示列表 |      |
+| 字段    | 类型 | 内容     | 备注                   |
+| ------- | ---- | -------- | ---------------------- |
+| content | str  | 提示列表 | 经过序列化后的JSON数组 |
 
-`content`数组：
+`content`文本经JSON解析后的数组：
 
-| 项   | 类型 | 内容      | 备注                   |
-| ---- | ---- | --------- | ---------------------- |
-| 0    | str  | 提示1     | 经过序列化后的JSON对象 |
-| n    | str  | 提示(n+1) |                        |
-| ……   | str  | ……        | ……                     |
+| 项   | 类型 | 内容      | 备注 |
+| ---- | ---- | --------- | ---- |
+| 0    | obj  | 提示1     |      |
+| n    | obj  | 提示(n+1) |      |
+| ……   | obj  | ……        | ……   |
 
-`content`数组中的JSON文本解析后的对象：
+`content`文本经JSON解析后的数组中的对象：
 
 | 字段      | 类型 | 内容                     | 备注        |
 | --------- | ---- | ------------------------ | ----------- |
