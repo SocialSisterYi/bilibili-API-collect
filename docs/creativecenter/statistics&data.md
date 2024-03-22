@@ -108,7 +108,13 @@ curl 'https://member.bilibili.com/x/web/index/stat' \
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为0                       |
 | ttl     | num  | 1        | 作用尚不明确                  |
-| data    | list  | 信息本体 |                               |
+| data    | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段       | 类型 | 内容       | 备注 |
+| ---------- | ---- | ---------- | ---- |
+| list | list | 最近的视频 | |
 
 `data`中的`list`项：
 > [!TIP]
