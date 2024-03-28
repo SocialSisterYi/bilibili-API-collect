@@ -943,8 +943,8 @@ curl -G 'https://api.bilibili.com/x/space/myinfo' \
 
 **url参数：**
 
-| 参数名 | 类型 | 内容              | 必要性 | 备注                              |
-| ------ | ---- | ----------------- | ------ | --------------------------------- |
+| 参数名 | 类型 | 内容              | 必要性 | 备注                |
+| ------ | ---- | ----------------- | ------ | ------------------- |
 | uids   | nums | 目标用户的UID列表 | 必要   | 每个成员间用`,`分隔 |
 
 **json回复：**
@@ -954,8 +954,8 @@ curl -G 'https://api.bilibili.com/x/space/myinfo' \
 | 字段    | 类型  | 内容     | 备注                        |
 | ------- | ----- | -------- | --------------------------- |
 | code    | num   | 返回值   | 0：成功<br />-400：请求错误 |
-| msg     | str   | 错误信息 | 默认为空                    |
-| message | str   | 错误信息 | 默认为空                    |
+| message | str   | 错误信息 | 默认为0                     |
+| ttl     | num   | 1        |                             |
 | data    | array | 信息本体 | 用户信息随机排序            |
 
 `data`数组：
@@ -972,7 +972,6 @@ curl -G 'https://api.bilibili.com/x/space/myinfo' \
 | ------- | ---- | ------------ | -------------------- |
 | mid     | num  | mid          |                      |
 | name    | str  | 昵称         |                      |
-| sex     | str  | 性别         | 男/女/保密           |
 | face    | str  | 头像链接     |                      |
 | sign    | str  | 签名         |                      |
 | rank    | num  | 用户权限等级 |                      |
@@ -995,34 +994,31 @@ curl -G 'https://api.vc.bilibili.com/account/v1/user/cards' \
 ```json
 {
     "code": 0,
-    "msg": "",
     "message": "",
+    "ttl": 1,
     "data": [{
         "mid": 1,
         "name": "bishi",
-        "sex": "男",
-        "face": "https://i1.hdslb.com/bfs/face/34c5b30a990c7ce4a809626d8153fa7895ec7b63.gif",
+        "face": "http://i1.hdslb.com/bfs/face/34c5b30a990c7ce4a809626d8153fa7895ec7b63.gif",
         "sign": "",
         "rank": 10000,
-        "level": 4,
+        "level": 6,
         "silence": 0
     }, {
         "mid": 2,
         "name": "碧诗",
-        "sex": "男",
-        "face": "https://i2.hdslb.com/bfs/face/ef0457addb24141e15dfac6fbf45293ccf1e32ab.jpg",
-        "sign": "https://kami.im 直男过气网红 # av362830 “We Are Star Dust”",
+        "face": "http://i2.hdslb.com/bfs/face/ef0457addb24141e15dfac6fbf45293ccf1e32ab.jpg",
+        "sign": "https://kami.im 直男过气网红 #  We Are Star Dust",
         "rank": 20000,
         "level": 6,
         "silence": 0
     }, {
         "mid": 3,
         "name": "囧囧倉",
-        "sex": "男",
-        "face": "https://i0.hdslb.com/bfs/face/d4de6a84557eea8f18510a3f61115d96832aa071.jpg",
+        "face": "http://i0.hdslb.com/bfs/face/d4de6a84557eea8f18510a3f61115d96832aa071.jpg",
         "sign": "富强、民主、文明、和谐、自由、平等、公正、法治、爱国、敬业、诚信、友善。",
         "rank": 10000,
-        "level": 5,
+        "level": 6,
         "silence": 0
     }]
 }
