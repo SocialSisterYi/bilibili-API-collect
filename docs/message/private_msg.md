@@ -4,7 +4,42 @@
 
 ### 会话对象
 
-待补充……
+| 字段                 | 类型 | 内容           | 备注                                                           |
+| -------------------- | ---- | -------------- | -------------------------------------------------------------- |
+| talker_id            | num  | 聊天对象的id     | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| session_type         | num  | 聊天对象的类型   | 1：用户<br />2：粉丝团                                 |
+| at_seqno             | num  | 最近一次未读at自己的消息的序列号 | 在粉丝团时有效，若没有未读的at自己的消息则为`0` |
+| top_ts               | num  | | |
+| group_name           | str  | 粉丝团名称 | 在粉丝团时有效 |
+| group_cover          | str  | 粉丝团头像 | 在粉丝团时有效 |
+| is_follow            | num  | 是否已关注对方 | 在用户会话中有效 |
+| is_dnd               | num  | 是否设置了免打扰 | |
+| ack_seqno            | num  | 最近一次已读的消息序列号 | |
+| ack_ts               | num  | 最近一次已读时间 | 微秒级时间戳|
+| session_ts           | num  | 会话时间 | 微秒级时间戳|
+| unread_count         | num  | 未读消息数 | |
+| last_msg             | obj  | 最近的一条消息 | 详见[私信主体对象](#私信主体对象) |
+| group_type           | num  | 粉丝团类型 | 在粉丝团时有效<br />0：应援团<br />2：官方群 |
+| can_fold             | num  |  | |
+| status               | num  | 会话状态 | |
+| max_seqno            | num  | 最近一条消息的序列号 | |
+| new_push_msg         | num  | 是否有新推送的消息  | |
+| setting              | num  |  | |
+| is_guardian          | num  |  | |
+| is_intercept         | num  | 是否被拦截 | |
+| is_trust             | num  | 是否不拦截此会话 | |
+| system_msg_type      | num  | 系统消息类型 | 0：不是系统消息<br />7：UP主小助手 |
+| account_info         | obj  | 会话信息 | 仅在系统消息中出现 |
+| live_status          | num  | 是否正在直播 | |
+| biz_msg_unread_count | num  | 未读推送消息数 | |
+| user_label           | null | | |
+
+`account_info`对象：
+
+| 字段    | 类型 | 内容     | 备注 |
+| ------- | ---- | -------- | ---- |
+| name    | str  | 会话名称 |      |
+| pic_url | str  | 会话头像 |      |
 
 ### 私信主体对象
 
@@ -14,7 +49,7 @@
 | ---------------- | ---- | -------------- | -------------------------------------------------------------- |
 | sender_uid       | num  | 发送者mid      |                                                                |
 | receiver_type    | num  | 接收者类型     | 1：用户<br />2：粉丝团                                         |
-| receiver_id      | num  | 接收者id       | `receiver_type` 为 `1` 时表示用户 mid，为 `2` 时表示应援团 id  |
+| receiver_id      | num  | 接收者id       | `receiver_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id  |
 | msg_type         | num  | 消息类型       | 详见[私信消息类型、内容说明](private_msg_content.md)           |
 | content          | str  | 消息内容       | [私信内容对象](private_msg_content.md)经过 JSON 序列化后的文本 |
 | msg_seqno        | num  | 消息序列号     | 按照时间顺序从小到大                                           |
@@ -52,7 +87,7 @@
 | 10   | 自动回复 - 关键词回复     |      |
 | 11   | 自动回复 - 大航海上船回复 |      |
 | 12   | 自动推送 - UP 主赠言      | 在以前稿件的自动推送与其附带的 UP 主赠言是 2 条不同的私信（其中 UP 主赠言的消息来源代码为 12），现在 UP 主赠言已被合并成为稿件自动推送的一部分 |
-| 13   | 应援团系统提示            | 如：应援团中的提示信息“欢迎xxx入群” |
+| 13   | 粉丝团系统提示            | 如：粉丝团中的提示信息“欢迎xxx入群” |
 | 16   | （？）                    | **作用尚不明确** |
 | 17   | 互相关注                  | 互相关注时自动发送的私信“我们已互相关注，开始聊天吧~” |
 | 18   | 系统提示                  | 如：“对方主动回复或关注你前，最多发送1条消息” |
@@ -138,7 +173,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 | 参数名            | 类型 | 内容             | 必要性 | 备注                                                   |
 | ----------------- | ---- | ---------------- | ------ | ------------------------------------------------------ |
-| talker_id         | num  | 聊天对象的id     | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示应援团 id |
+| talker_id         | num  | 聊天对象的id     | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
 | session_type      | num  | 聊天对象的类型   | 必要   | 1：用户<br />2：粉丝团                                 |
 | size              | num  | 返回消息数量     | 非必要 | 默认为 20，最大为 200                                  |
 | begin_seqno       | num  | 开始的序列号     | 非必要 | 提供本参数时返回以本序列号开始（不包括本序列号）的消息 |
@@ -284,7 +319,7 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 | 参数名                | 类型 | 内容                     | 必要性 | 备注                                                 |
 | --------------------- | ---- | ------------------------ | ------ | ---------------------------------------------------- |
 | msg[sender_uid]       | num  | 发送者mid                | 必要   | 必须为自己的 mid                                     |
-| msg[receiver_id]      | num  | 接收者id                 | 必要   | `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示应援团 id |
+| msg[receiver_id]      | num  | 接收者id                 | 必要   | `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
 | msg[receiver_type]    | num  | 接收者类型               | 必要   | 1：用户<br />2：粉丝团                               |
 | msg[msg_type]         | num  | 消息类型                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md) |
 | msg[msg_status]       | num  | 消息状态                 | 非必要 | 恒为 `0`                                             |
