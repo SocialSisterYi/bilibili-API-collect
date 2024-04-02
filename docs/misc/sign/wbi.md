@@ -163,7 +163,11 @@ def encWbi(params: dict, img_key: str, sub_key: str):
 
 def getWbiKeys() -> tuple[str, str]:
     '获取最新的 img_key 和 sub_key'
-    resp = requests.get('https://api.bilibili.com/x/web-interface/nav')
+     headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+        'Referer': 'https://www.bilibili.com/'
+    }
+    resp = requests.get('https://api.bilibili.com/x/web-interface/nav', headers=headers)
     resp.raise_for_status()
     json_content = resp.json()
     img_url: str = json_content['data']['wbi_img']['img_url']
@@ -240,7 +244,9 @@ async function getWbiKeys() {
   const res = await fetch('https://api.bilibili.com/x/web-interface/nav', {
     headers: {
       // SESSDATA 字段
-      Cookie: "SESSDATA=xxxxxx"
+      Cookie: "SESSDATA=xxxxxx",
+      User-Agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+      Referer: 'https://www.bilibili.com/'//对于直接浏览器调用可能不适用
     }
   })
   const { data: { wbi_img: { img_url, sub_url } } } = await res.json()
@@ -283,163 +289,172 @@ bar=514&baz=1919810&foo=114&wts=1684805578&w_rid=bb97e15f28edf445a0e4420d36f0157
 package main
 
 import (
-        "crypto/md5"
-        "encoding/hex"
-        "fmt"
-        "io"
-        "net/http"
-        "net/url"
-        "sort"
-        "strconv"
-        "strings"
-        "sync"
-        "time"
+	"crypto/md5"
+	"encoding/hex"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"sort"
+	"strconv"
+	"strings"
+	"sync"
+	"time"
 
-        "github.com/tidwall/gjson"
+	"github.com/tidwall/gjson"
 )
 
 var (
-        mixinKeyEncTab = []int{
-                46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
-                33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
-                61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
-                36, 20, 34, 44, 52,
-        }
-        cache          sync.Map
-        lastUpdateTime time.Time
+	mixinKeyEncTab = []int{
+		46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+		33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+		61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+		36, 20, 34, 44, 52,
+	}
+	cache          sync.Map
+	lastUpdateTime time.Time
 )
 
 func main() {
-        urlStr := "https://api.bilibili.com/x/space/wbi/acc/info?mid=1850091"
-        newUrlStr, err := signAndGenerateURL(urlStr)
-        if err != nil {
-                fmt.Printf("Error: %s", err)
-                return
-        }
-        req, err := http.NewRequest("GET", newUrlStr, nil)
-        if err != nil {
-                fmt.Printf("Error: %s", err)
-                return
-        }
-        req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-        response, err := http.DefaultClient.Do(req)
-        if err != nil {
-                fmt.Printf("Request failed: %s", err)
-                return
-        }
-        defer response.Body.Close()
-        body, err := io.ReadAll(response.Body)
-        if err != nil {
-                fmt.Printf("Failed to read response: %s", err)
-                return
-        }
-        fmt.Println(string(body))
+	urlStr := "https://api.bilibili.com/x/space/wbi/acc/info?mid=1850091"
+	newUrlStr, err := signAndGenerateURL(urlStr)
+	if err != nil {
+		fmt.Printf("Error: %s", err)
+		return
+	}
+	req, err := http.NewRequest("GET", newUrlStr, nil)
+	if err != nil {
+		fmt.Printf("Error: %s", err)
+		return
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+	req.Header.Set("Referer", "https://www.bilibili.com/")
+	response, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Printf("Request failed: %s", err)
+		return
+	}
+	defer response.Body.Close()
+	body, err := io.ReadAll(response.Body)
+	if err != nil {
+		fmt.Printf("Failed to read response: %s", err)
+		return
+	}
+	fmt.Println(string(body))
 }
 
 func signAndGenerateURL(urlStr string) (string, error) {
-        urlObj, err := url.Parse(urlStr)
-        if err != nil {
-                return "", err
-        }
-        imgKey, subKey := getWbiKeysCached()
-        query := urlObj.Query()
-        params := map[string]string{}
-        for k, v := range query {
-                params[k] = v[0]
-        }
-        newParams := encWbi(params, imgKey, subKey)
-        for k, v := range newParams {
-                query.Set(k, v)
-        }
-        urlObj.RawQuery = query.Encode()
-        newUrlStr := urlObj.String()
-        return newUrlStr, nil
+	urlObj, err := url.Parse(urlStr)
+	if err != nil {
+		return "", err
+	}
+	imgKey, subKey := getWbiKeysCached()
+	query := urlObj.Query()
+	params := map[string]string{}
+	for k, v := range query {
+		params[k] = v[0]
+	}
+	newParams := encWbi(params, imgKey, subKey)
+	for k, v := range newParams {
+		query.Set(k, v)
+	}
+	urlObj.RawQuery = query.Encode()
+	newUrlStr := urlObj.String()
+	return newUrlStr, nil
 }
 
 func encWbi(params map[string]string, imgKey, subKey string) map[string]string {
-        mixinKey := getMixinKey(imgKey + subKey)
-        currTime := strconv.FormatInt(time.Now().Unix(), 10)
-        params["wts"] = currTime
+	mixinKey := getMixinKey(imgKey + subKey)
+	currTime := strconv.FormatInt(time.Now().Unix(), 10)
+	params["wts"] = currTime
 
-        // Sort keys
-        keys := make([]string, 0, len(params))
-        for k := range params {
-                keys = append(keys, k)
-        }
-        sort.Strings(keys)
+	// Sort keys
+	keys := make([]string, 0, len(params))
+	for k := range params {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
 
-        // Remove unwanted characters
-        for k, v := range params {
-                v = sanitizeString(v)
-                params[k] = v
-        }
+	// Remove unwanted characters
+	for k, v := range params {
+		v = sanitizeString(v)
+		params[k] = v
+	}
 
-        // Build URL parameters
-        query := url.Values{}
-        for _, k := range keys {
-                query.Set(k, params[k])
-        }
-        queryStr := query.Encode()
+	// Build URL parameters
+	query := url.Values{}
+	for _, k := range keys {
+		query.Set(k, params[k])
+	}
+	queryStr := query.Encode()
 
-        // Calculate w_rid
-        hash := md5.Sum([]byte(queryStr + mixinKey))
-        params["w_rid"] = hex.EncodeToString(hash[:])
-        return params
+	// Calculate w_rid
+	hash := md5.Sum([]byte(queryStr + mixinKey))
+	params["w_rid"] = hex.EncodeToString(hash[:])
+	return params
 }
 
 func getMixinKey(orig string) string {
-        var str strings.Builder
-        for _, v := range mixinKeyEncTab {
-                if v < len(orig) {
-                        str.WriteByte(orig[v])
-                }
-        }
-        return str.String()[:32]
+	var str strings.Builder
+	for _, v := range mixinKeyEncTab {
+		if v < len(orig) {
+			str.WriteByte(orig[v])
+		}
+	}
+	return str.String()[:32]
 }
 
 func sanitizeString(s string) string {
-        unwantedChars := []string{"!", "'", "(", ")", "*"}
-        for _, char := range unwantedChars {
-                s = strings.ReplaceAll(s, char, "")
-        }
-        return s
+	unwantedChars := []string{"!", "'", "(", ")", "*"}
+	for _, char := range unwantedChars {
+		s = strings.ReplaceAll(s, char, "")
+	}
+	return s
 }
 
 func updateCache() {
-        if time.Since(lastUpdateTime).Minutes() < 10 {
-                return
-        }
-        imgKey, subKey := getWbiKeys()
-        cache.Store("imgKey", imgKey)
-        cache.Store("subKey", subKey)
-        lastUpdateTime = time.Now()
+	if time.Since(lastUpdateTime).Minutes() < 10 {
+		return
+	}
+	imgKey, subKey := getWbiKeys()
+	cache.Store("imgKey", imgKey)
+	cache.Store("subKey", subKey)
+	lastUpdateTime = time.Now()
 }
 
 func getWbiKeysCached() (string, string) {
-        updateCache()
-        imgKeyI, _ := cache.Load("imgKey")
-        subKeyI, _ := cache.Load("subKey")
-        return imgKeyI.(string), subKeyI.(string)
+	updateCache()
+	imgKeyI, _ := cache.Load("imgKey")
+	subKeyI, _ := cache.Load("subKey")
+	return imgKeyI.(string), subKeyI.(string)
 }
 
 func getWbiKeys() (string, string) {
-        resp, err := http.Get("https://api.bilibili.com/x/web-interface/nav")
-        if err != nil {
-                fmt.Printf("Error: %s", err)
-                return "", ""
-        }
-        defer resp.Body.Close()
-        body, err := io.ReadAll(resp.Body)
-        if err != nil {
-                fmt.Printf("Error: %s", err)
-                return "", ""
-        }
-        json := string(body)
-        imgURL := gjson.Get(json, "data.wbi_img.img_url").String()
-        subURL := gjson.Get(json, "data.wbi_img.sub_url").String()
-        imgKey := strings.Split(strings.Split(imgURL, "/")[len(strings.Split(imgURL, "/"))-1], ".")[0]
-        subKey := strings.Split(strings.Split(subURL, "/")[len(strings.Split(subURL, "/"))-1], ".")[0]
-        return imgKey, subKey
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", "https://api.bilibili.com/x/web-interface/nav", nil)
+	if err != nil {
+		fmt.Printf("Error creating request: %s", err)
+		return "", ""
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
+	req.Header.Set("Referer", "https://www.bilibili.com/")
+	resp, err := client.Do(req)
+	if err != nil {
+		fmt.Printf("Error sending request: %s", err)
+		return "", ""
+	}
+	defer resp.Body.Close()
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Printf("Error reading response: %s", err)
+		return "", ""
+	}
+	json := string(body)
+	imgURL := gjson.Get(json, "data.wbi_img.img_url").String()
+	subURL := gjson.Get(json, "data.wbi_img.sub_url").String()
+	imgKey := strings.Split(strings.Split(imgURL, "/")[len(strings.Split(imgURL, "/"))-1], ".")[0]
+	subKey := strings.Split(strings.Split(subURL, "/")[len(strings.Split(subURL, "/"))-1], ".")[0]
+	return imgKey, subKey
 }
 ```
 
@@ -495,23 +510,28 @@ class Program
     }
 
     // 获取最新的 img_key 和 sub_key
-    private static async Task<(string, string)> GetWbiKeys()
-    {
-        HttpResponseMessage responseMessage = await _httpClient.SendAsync(new HttpRequestMessage
-        {
-            Method = HttpMethod.Get,
-            RequestUri = new Uri("https://api.bilibili.com/x/web-interface/nav"),
-        });
+      private static async Task<(string, string)> GetWbiKeys()
+      {
+          var httpClient = new HttpClient();
+          httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+          httpClient.DefaultRequestHeaders.Referrer = new Uri("https://www.bilibili.com/");
+      
+          HttpResponseMessage responseMessage = await httpClient.SendAsync(new HttpRequestMessage
+          {
+              Method = HttpMethod.Get,
+              RequestUri = new Uri("https://api.bilibili.com/x/web-interface/nav"),
+          });
+      
+          JsonNode response = JsonNode.Parse(await responseMessage.Content.ReadAsStringAsync())!;
+      
+          string imgUrl = (string)response["data"]!["wbi_img"]!["img_url"]!;
+          imgUrl = imgUrl.Split("/")[^1].Split(".")[0];
+      
+          string subUrl = (string)response["data"]!["wbi_img"]!["sub_url"]!;
+          subUrl = subUrl.Split("/")[^1].Split(".")[0];
+          return (imgUrl, subUrl);
+      }
 
-        JsonNode response = JsonNode.Parse(await responseMessage.Content.ReadAsStringAsync())!;
-
-        string imgUrl = (string)response["data"]!["wbi_img"]!["img_url"]!;
-        imgUrl = imgUrl.Split("/")[^1].Split(".")[0];
-
-        string subUrl = (string)response["data"]!["wbi_img"]!["sub_url"]!;
-        subUrl = subUrl.Split("/")[^1].Split(".")[0];
-        return (imgUrl, subUrl);
-    }
 
     public static async Task Main()
     {
@@ -584,6 +604,8 @@ public class WbiTest {
       map.put("bar", "五一四");
       map.put("baz", 1919810);
       map.put("wts", System.currentTimeMillis() / 1000);
+     map.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
+     map.put("Referer", "https://www.bilibili.com/");
       StringJoiner param = new StringJoiner("&");
       //排序 + 拼接字符串
       map.entrySet().stream()
@@ -679,6 +701,7 @@ class Bilibili {
         $header[] = "Accept: */*";
         $header[] = "Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7";
         $header[] = "Connection: close";
+        $header[]="Referer:https://www.bilibili.com/";
         $header[] = "Cache-Control: max-age=0";
         curl_setopt_array($ch, [
             CURLOPT_HTTPGET         =>  1,
@@ -796,6 +819,7 @@ async fn get_wbi_keys() -> Result<(String, String), reqwest::Error> {
     let ResWbi { data:Data{wbi_img} } = client
     .get("https://api.bilibili.com/x/web-interface/nav")
     .header(USER_AGENT,"Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36")
+    .header("Referer","https://www.bilibili.com/")
      // SESSDATA=xxxxx
     .header("Cookie", "SESSDATA=xxxxx")
     .send()
@@ -849,21 +873,27 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
         return params
     }
     
-    func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
-        AF.request("https://api.bilibili.com/x/web-interface/nav").responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
-                let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
-                let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
-                let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
-                completion(.success((imgKey, subKey)))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
+   func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
+       let headers: HTTPHeaders = [
+           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+           "Referer": "https://www.bilibili.com/"
+       ]
+       
+       AF.request("https://api.bilibili.com/x/web-interface/nav", headers: headers).responseJSON { response in
+           switch response.result {
+           case .success(let value):
+               let json = JSON(value)
+               let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
+               let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
+               let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+               let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+               completion(.success((imgKey, subKey)))
+           case .failure(let error):
+               completion(.failure(error))
+           }
+       }
+   }
+
     
     func calculateMD5(string: String) -> String {
         let data = Data(string.utf8)
