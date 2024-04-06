@@ -420,7 +420,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
                 "biz_msg_unread_count": 0,
                 "user_label": null
             },
-        {
+            {
                 "talker_id": 221082140,
                 "session_type": 2,
                 "at_seqno": 0,
