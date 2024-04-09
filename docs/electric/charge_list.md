@@ -4,7 +4,9 @@
 
 > https://api.bilibili.com/x/ugcpay-rank/elec/month/up
 
-*请求方式:GET*
+*请求方式：GET*
+
+本接口需要在请求标头中提供有效的浏览器 UA，如 `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36`
 
 **url参数：**
 
@@ -70,6 +72,7 @@
 
 ```shell
 curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
+-A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36' \
 --data-urlencode 'up_mid=53456'
 ```
 
@@ -437,10 +440,10 @@ curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
 
 **url参数：**
 
-| 参数名   | 类型 | 内容     | 必要性 | 备注                             |
-| -------- | ---- | -------- | ------ | -------------------------------- |
-| pn | num  | 页数 | 非必要 |  |
-| ps | num  | 分页大小 | 非必要 | 取值范围[1,20] |
+| 参数名   | 类型 | 内容     | 必要性 | 备注             |
+| -------- | ---- | -------- | ------ | ---------------- |
+| pn       | num  | 页数     | 非必要 |                  |
+| ps       | num  | 分页大小 | 非必要 | 取值范围\[1,20\] |
 
 **json回复：**
 
