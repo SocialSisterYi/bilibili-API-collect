@@ -470,7 +470,7 @@ curl 'https://api.bilibili.com/x/member/realname/apply/status' \
 
 ## 查询硬币变化情况
 
-> httpsss://api.bilibili.com/x/member/web/coin/log
+> https://api.bilibili.com/x/member/web/coin/log
 
 *请求方式：GET*
 
