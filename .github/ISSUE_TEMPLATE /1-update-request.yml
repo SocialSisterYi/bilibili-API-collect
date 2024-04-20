@@ -5,10 +5,10 @@ body:
   - type: checkboxes
     id: reminders
     attributes:
-      description: "提交前请确认"
+      label: "提交前请确认"
       options:
-        label: "我已检索仓库中文档，不包含所提及内容，或所提及内容在本仓库中存在错误，且 Issues、Pull Requests 中无相关提交"
-        required: true
+        - label: "我已检索仓库中文档，不包含所提及内容，或所提及内容在本仓库中存在错误，且 Issues、Pull Requests 中无相关提交"
+          required: true
   - type: dropdown
     id: source
     attributes:
