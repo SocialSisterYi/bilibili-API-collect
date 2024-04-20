@@ -15,14 +15,14 @@ body:
       label: "API 来源"
       description: "该 API 在何平台中使用"
       options:
-        - label: "Web 端（含 h5）"
-        - label: "PC 客户端（Electron）"
-        - label: "Android 客户端（含粉版、平板版、蓝版、概念版、国际版等）"
-        - label: "TV 客户端（含云试听小电视、车机、物联网版等）"
-        - label: "IOS 客户端（含粉版、平板版、概念版等）"
-        - label: "必剪客户端"
-        - label: "漫画客户端"
-        - label: "其他（请在详情中备注）"
+        - "Web 端（含 h5）"
+        - "PC 客户端（Electron）"
+        - "Android 客户端（含粉版、平板版、蓝版、概念版、国际版等）"
+        - "TV 客户端（含云试听小电视、车机、物联网版等）"
+        - "IOS 客户端（含粉版、平板版、概念版等）"
+        - "必剪客户端"
+        - "漫画客户端"
+        - "其他（请在详情中备注）"
     validations:
       required: true
   - type: dropdown
@@ -31,10 +31,10 @@ body:
       label: "API 类型"
       description: "API 所使用的协议标准及调用方式"
       options:
-        - label: "REST"
-        - label: "gRPC"
-        - label: "长连接数据帧（含 ws、TCP）"
-        - label: "其他类型（请在详情中备注）"
+        - "REST"
+        - "gRPC"
+        - "长连接数据帧（含 ws、TCP）"
+        - "其他类型（请在详情中备注）"
     validations:
       required: true
   - type: input

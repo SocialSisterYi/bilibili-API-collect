@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 参与讨论
+    url: https://github.com/SocialSisterYi/bilibili-API-collect/discussions
+    about: 代码用例、情报分享等内容请使用 Discussions
