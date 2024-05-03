@@ -664,7 +664,7 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 将`talker_id=293793435`、`session_type=1`的`ack_seqno=1236306587877408`消息及之前的消息设置为已读
 
 ```shell
-curl 'ttps://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
+curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 --data-urlencode 'talker_id=293793435' \
 --data-urlencode 'session_type=1' \
 --data-urlencode 'ack_seqno=1236306587877408' \
