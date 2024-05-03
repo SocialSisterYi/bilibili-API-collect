@@ -501,7 +501,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 
 | 字段    | 类型 | 内容     | 备注                                              |
 | ------- | ---- | -------- | ------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
 | msg     | str  | 错误信息 | 默认为0                                           |
 | message | str  | 错误信息 | 默认为0                                           |
 | ttl     | num  | 1        |                                                   |

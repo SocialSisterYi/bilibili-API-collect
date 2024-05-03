@@ -1682,7 +1682,7 @@ curl -G 'https://api.bilibili.com/x/relation/relations' \
 
 | 项   | 类型 | 内容        | 备注 |
 | ---- | ---- | ----------- | ---- |
-| 1    | obj  | 分组 1      |      |
+| 0    | obj  | 分组 1      |      |
 | n    | obj  | 分组（n+1） |      |
 | ……   | num  | ……          | ……   |
 
