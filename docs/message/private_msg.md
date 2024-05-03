@@ -159,106 +159,6 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 </details>
 
-## 会话详细信息
-
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-若从未与该会话聊过天，则返回 1000004 `入口节点已存在` 错误
-
-**url参数：**
-
-| 参数名       | 类型 | 内容             | 必要性 | 备注                                                   |
-| ------------ | ---- | ---------------- | ------ | ------------------------------------------------------ |
-| talker_id    | num  | 聊天对象的id     | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
-| session_type | num  | 聊天对象的类型   | 必要   | 1：用户<br />2：粉丝团                                 |
-| build        | num  | 客户端内部版本号 | 非必要 | 默认为 `0`                                             |
-| mobi_app     | str  | 平台标识         | 非必要 | 可为 `web` 等                                          |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                                                                           |
-| ------- | ---- | -------- | ------------------------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />1000004：入口节点已存在 |
-| msg     | str  | 错误信息 | 默认为0                                                                        |
-| message | str  | 错误信息 | 默认为0                                                                        |
-| ttl     | num  | 1        |                                                                                |
-| data    | obj  | 数据本体 | 详见[会话对象](#会话对象)                                                      |
-
-**示例：**
-
-获取会话`talker_id=293793435&session_type=1`的详细信息：
-
-```shell
-curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' \
-    --data-urlencode 'talker_id=293793435' \
-    --data-urlencode 'session_type=1' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-    "code": 0,
-    "msg": "0",
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "talker_id": 293793435,
-        "session_type": 1,
-        "at_seqno": 0,
-        "top_ts": 0,
-        "group_name": "",
-        "group_cover": "",
-        "is_follow": 1,
-        "is_dnd": 0,
-        "ack_seqno": 1236306587877408,
-        "ack_ts": 1709536984481314,
-        "session_ts": 1709385615744065,
-        "unread_count": 0,
-        "last_msg": {
-            "sender_uid": 293793435,
-            "receiver_type": 1,
-            "receiver_id": 425503913,
-            "msg_type": 11,
-            "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
-            "msg_seqno": 1236306587877408,
-            "timestamp": 1709385615,
-            "at_uids": null,
-            "msg_key": 7341755312943193481,
-            "msg_status": 0,
-            "notify_code": "",
-            "new_face_version": 1,
-            "msg_source": 6
-        },
-        "group_type": 0,
-        "can_fold": 0,
-        "status": 0,
-        "max_seqno": 1236306587877408,
-        "new_push_msg": 0,
-        "setting": 0,
-        "is_guardian": 0,
-        "is_intercept": 0,
-        "is_trust": 0,
-        "system_msg_type": 0,
-        "live_status": 0,
-        "biz_msg_unread_count": 0,
-        "user_label": null
-    }
-}
-```
-
-</details>
-
 ## 新会话列表
 
 > https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions
@@ -472,6 +372,106 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 
 </details>
 
+## 会话详细信息
+
+> https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+若从未与该会话聊过天，则返回 1000004 `入口节点已存在` 错误
+
+**url参数：**
+
+| 参数名       | 类型 | 内容             | 必要性 | 备注                                                   |
+| ------------ | ---- | ---------------- | ------ | ------------------------------------------------------ |
+| talker_id    | num  | 聊天对象的id     | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| session_type | num  | 聊天对象的类型   | 必要   | 1：用户<br />2：粉丝团                                 |
+| build        | num  | 客户端内部版本号 | 非必要 | 默认为 `0`                                             |
+| mobi_app     | str  | 平台标识         | 非必要 | 可为 `web` 等                                          |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                                           |
+| ------- | ---- | -------- | ------------------------------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />1000004：入口节点已存在 |
+| msg     | str  | 错误信息 | 默认为0                                                                        |
+| message | str  | 错误信息 | 默认为0                                                                        |
+| ttl     | num  | 1        |                                                                                |
+| data    | obj  | 数据本体 | 详见[会话对象](#会话对象)                                                      |
+
+**示例：**
+
+获取会话`talker_id=293793435&session_type=1`的详细信息：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' \
+    --data-urlencode 'talker_id=293793435' \
+    --data-urlencode 'session_type=1' \
+    --data-urlencode 'build=0' \
+    --data-urlencode 'mobi_app=web' \
+    -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "msg": "0",
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "talker_id": 293793435,
+        "session_type": 1,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "",
+        "group_cover": "",
+        "is_follow": 1,
+        "is_dnd": 0,
+        "ack_seqno": 1236306587877408,
+        "ack_ts": 1709536984481314,
+        "session_ts": 1709385615744065,
+        "unread_count": 0,
+        "last_msg": {
+            "sender_uid": 293793435,
+            "receiver_type": 1,
+            "receiver_id": 425503913,
+            "msg_type": 11,
+            "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
+            "msg_seqno": 1236306587877408,
+            "timestamp": 1709385615,
+            "at_uids": null,
+            "msg_key": 7341755312943193481,
+            "msg_status": 0,
+            "notify_code": "",
+            "new_face_version": 1,
+            "msg_source": 6
+        },
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 1236306587877408,
+        "new_push_msg": 0,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 0,
+        "live_status": 0,
+        "biz_msg_unread_count": 0,
+        "user_label": null
+    }
+}
+```
+
+</details>
+
 ## 私信消息记录
 
 > https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs
@@ -479,6 +479,8 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+仅调用该接口不会设置私信为已读，详见[设置私信为已读](#设置私信为已读)
 
 此接口有设计缺陷，可以获取已经撤回的私信内容
 
@@ -619,6 +621,71 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 
 </details>
 
+## 设置私信为已读
+
+> https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+将指定消息及以前的消息设置为已读
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名       | 类型 | 内容                     | 必要性 | 备注                                                 |
+| ------------ | ---- | ------------------------ | ------ | ---------------------------------------------------- |
+| talker_id    | num  | 聊天对象的id             | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| session_type | num  | 聊天对象的类型           | 必要   | 1：用户<br />2：粉丝团                               |
+| ack_seqno    | num  | 设置为已读的消息序列号   | 必要   |                                                      |
+| csrf_token   | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| csrf         | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| build        | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
+| mobi_app     | str  | 平台标识                 | 非必要 | 可为 `web` 等                                        |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 |                                                   |
+
+`data`对象：
+
+一个不含任何项目的对象，即 `{}`
+
+**示例：**
+
+将`talker_id=293793435`、`session_type=1`的`ack_seqno=1236306587877408`消息及之前的消息设置为已读
+
+```shell
+curl 'ttps://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
+--data-urlencode 'talker_id=293793435' \
+--data-urlencode 'session_type=1' \
+--data-urlencode 'ack_seqno=1236306587877408' \
+--data-urlencode 'csrf=xxx' \
+--data-urlencode 'csrf_token=xxx' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
 ## 发送私信（web端）
 
 > https://api.vc.bilibili.com/web_im/v1/web_im/send_msg
@@ -626,6 +693,8 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 *请求方式：POST*
 
 认证方式：Cookie（SESSDATA）
+
+调用该接口同时会将该会话的最近一条私信设置为已读
 
 **正文参数（application/x-www-form-urlencoded）：**
 
