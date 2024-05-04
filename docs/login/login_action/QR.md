@@ -83,17 +83,18 @@ curl 'https://passport.bilibili.com/x/passport-login/web/qrcode/generate'
 
 *请求方式：GET*
 
+**url参数：**
+
+| 参数名        | 类型  | 内容     | 必要性 | 备注  |
+|------------|-----|--------|-----|-----|
+| qrcode_key | str | 扫码登录秘钥 | 必要 |     |
+
+
 密钥超时为180秒
 
 验证登录成功后会进行设置以下cookie项：
 
 `DedeUserID` `DedeUserID__ckMd5` `SESSDATA` `bili_jct`
-
-**url参数：**
-
-| 参数名        | 类型  | 内容     | 必要性 | 备注  |
-|------------|-----|--------|-----|-----|
-| qrcode_key | str | 扫码登录秘钥 | 非必要 |     |
 
 **json回复：**
 
@@ -243,7 +244,7 @@ x-cache-webcdn: BYPASS from blzone02
 
 ## web端扫码登录-旧版
 
-以下为旧版扫码登录 API，尚可正常访问
+以下为旧版扫码登录 API，部分可正常访问
 
 ### 申请二维码(web端-旧版)
 
@@ -298,9 +299,14 @@ curl 'https://passport.bilibili.com/qrcode/getLoginUrl'
 
 ### 扫码登录(web端-旧版)
 
-> https://passport.bilibili.com/qrcode/getLoginInfo
+**接口已失效，请求结果始终为 `{ code: 20000, message: '该版本已不支持当前功能，请升级新版本！' }`**
+
+> ~~https://passport.bilibili.com/qrcode/getLoginInfo~~
 
 *请求方式：POST*
+
+<details>
+<summary>内容已过时：</summary>
 
 密钥超时为180秒
 
@@ -321,7 +327,7 @@ curl 'https://passport.bilibili.com/qrcode/getLoginUrl'
 
 | 字段      | 类型                   | 内容                        | 备注                                                      |
 |---------|----------------------|---------------------------|---------------------------------------------------------|
-| code    | num                  | 返回值                       | 0：成功                                                    |
+| code    | num                  | 返回值                       | 0：成功，<br />20000：该版本已不支持当前功能，请升级新版本！ |
 | message | str                  |                           | 正确无                                                     |
 | ts      | num                  | 扫码时间                      | 错误无                                                     |
 | status  | bool                 | 扫码是否成功                    | true：成功<br />false：未成功                                  |
@@ -417,6 +423,8 @@ X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 
 </details>
 
+</details>
+
 ## TV端扫码登录
 
 ### 申请二维码(TV端)
@@ -437,8 +445,8 @@ X-Cache-Webcdn: BYPASS from ks-sxhz-dx-w-01
 
 | 参数名   | 类型 | 内容       | 必要性       | 备注                       |
 | -------- | ---- | ---------- | ------------ | -------------------------- |
-| appkey   | str  | APP 密钥   | APP 方式必要 | 仅可用`4409e2ce8ffd12b8`   |
-| local_id | str  | TV 端 id   | TV 端必要    | 可为`0`                    |
+| appkey   | str  | APP 密钥   | APP 方式必要 | [可用](#appkey-可用列表)     |
+| local_id | num  | TV 端 id   | TV 端必要    | 可为`0`                    |
 | ts       | num  | 当前时间戳 | APP 方式必要 |                            |
 | sign     | str  | APP 签名   | APP 方式必要 |                            |
 | mobi_app | str  | 平台标识   | 非必要       | 会被拼接到返回的 url query |
@@ -506,9 +514,9 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/auth_code' \
 
 | 参数名       | 类型  | 内容    | 必要性     | 备注                    |
 |-----------|-----|-------|---------|-----------------------|
-| appkey    | str | APP密钥 | APP方式必要 | 仅可用`4409e2ce8ffd12b8` |
+| appkey    | str | APP密钥 | APP方式必要 |[可用](#appkey-可用列表)  |
 | auth_code | str | 扫码秘钥  | 必要      |                       |
-| local_id  | str | TV端id | TV端必要   | 可为0                   |
+| local_id  | num | TV端id | TV端必要   | 可为0                   |
 | ts        | num | 当前时间戳 | APP方式必要 |                       |
 | sign      | str | APP签名 | APP方式必要 |                       |
 
@@ -621,3 +629,24 @@ curl 'https://passport.snm0516.aisee.tv/x/passport-tv-login/qrcode/poll' \
 ```
 
 </details>
+
+### appkey 可用列表
+
+**仅覆盖 [docs/misc/sign/APPKey](../../misc/sign/APPKey.md) 中包含的 appkey**
+
+|      APPKEY      |              APPSEC              | platform |      APP类型       | neuronAppId | mobi_app<sup>2</sup> |                    备注                    |
+| :--------------: | :------------------------------: | :------------------: | :----------------: | :---------------------: | :------------------: | :----------------------------------------: |
+| 783bbb7264451d82 | 2653583c8873dea268ab9386918b1d65 |      `android`       |        粉版        |           `1`           |      `android`       |    仅获取用户信息时使用(7.X及更新版本)     |
+| 8d23902c1688a798 | 710f0212e62bd499b8d3ac6e1db9302a |      `android`       | AndroidBiliThings  |            ?            |          ?           |                                            |
+| bca7e84c2d947ac6 | 60698ba2f68e01ce44738920a0ffe768 |          ?           |       login        |            -            |          ?           |                                            |
+| 27eb53fc9058f8c3 | c2ed53a74eeefe3cf99fbd01d8c9c375 |     `web`/`ios`?     |         -          |            -            |          -           |               第三方授权使用               |
+| 4409e2ce8ffd12b8 | 59b43e04ad6965f34319062b478f83dd |      `android`       | 云视听小电视(TV版) |          `9`?           |  `android_tv_yst`?   |                                            |
+| dfca71928277209b | b5475a8825547a4fc26c7d518eaaa02e |      `android`       |       HD 版        |           `5`           |     `android_hd`     |                                            |
+
+**注意：**
+
+通过某一组 APPKEY/APPSEC 获取到的 access_token，当接口需要 `sign` 签名时也只能使用该组 APPKEY/APPSEC，否则出现 `{ code: -663, message: '鉴权失败，请联系账号组', ttl: 1 }` 错误。
+
+**例外：**
+
+`783bbb7264451d82`/`2653583c8873dea268ab9386918b1d65` 获取到的 access_token 可配合 `1d8b6e7d45233436`/`560c52ccd288fed045859ed18bffd973` 使用。

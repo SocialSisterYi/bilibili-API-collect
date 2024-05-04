@@ -4,7 +4,7 @@
 
 ## 获取电磁力等级（web端）
 
-> https://member.bilibili.com/x/web/elec/user
+> https://api.bilibili.com/studio/up-rating/v3/rating/info
 
 *请求方式：GET*
 
@@ -26,8 +26,10 @@
 | 字段   | 类型 | 内容        | 备注             |
 | ------ | ---- | ----------- | ---------------- |
 | mid    | num  | 当前用户mid |                  |
-| state  | num  | 电磁力等级  |                  |
-| reason | str  | 空          | **作用尚不明确** |
+| level  | num  | 电磁力等级  |                  |
+| score  | num  | 电磁力分数  |                  |
+| credit | num  | 信用分      |  |
+| state  | num  | ? | 一直是2 |
 
 **示例：**
 
@@ -45,16 +47,19 @@ curl 'https://member.bilibili.com/x/web/elec/user' \
     "message": "0",
     "ttl": 1,
     "data": {
-        "mid": 293793435,
+        "mid": ***,
+        "level": 4,
+        "score": 326,
+        "credit": 100,
         "state": 2,
-        "reason": ""
+        "update_date": 1694966400
     }
 }
 ```
 
 </details>
 
-## 获取电磁力详细数值（双端）
+## （失效）获取电磁力详细数值（双端）
 
 > https://api.bilibili.com/studio/up-rating/rating/summary
 

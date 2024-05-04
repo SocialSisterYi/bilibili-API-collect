@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package bilibili.app.distribution.v1;
 
+import "google/protobuf/any.proto";
+
 // APP配置
 service Distribution {
     // 获取云端储存的用户偏好

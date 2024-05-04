@@ -44,6 +44,7 @@
 | wss_port | num  | wss端口    |      |
 | ws_port  | num  | ws端口     |      |
 
+
 **示例：**
 
 获得直播间`22824550`的信息流认证秘钥
@@ -93,6 +94,9 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 ```
 
 </details>
+
+**注:最终URI格式为： host+对应port+"/sub"**，例如以上示例中一个可行的ws连接URI应当为`tx-sh-live-comet-02.chat.bilibili.com:2244/sub`
+
 
 ## 数据包格式
 
@@ -446,6 +450,73 @@ json格式
 ```
 </details>
 
+
+#### 连续弹幕消息
+
+连续多条相同弹幕时触发
+
+json格式
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd | str  | "DM_INTERACTION" | 如果是进入直播间或关注消息，内容则是"INTERACT_WORD" |
+| data | obj  | 进入直播间的用户的信息 |  |
+
+data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| id | num  | 事件ID |  |
+| status | num | 状态 |  |
+| type | num | 事件类型 |  |
+| data | str | 事件数据 |  |
+
+连续发送弹幕事件的data.data字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| combo | array  | 连续发送弹幕事件信息 |  |
+| merge_interval | num | 合并弹幕时间间隔 |  |
+| card_appear_interval | num | 弹窗出现时间间隔 |  |
+| send_interval | num | 发送时间间隔 |  |
+
+连续发送弹幕事件的data.data.combo字段
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| id | num  | 时间ID |  |
+| status | num | 状态 |  |
+| content | str | 重复的弹幕内容 |  |
+| cnt | num | 重复数量 |  |
+| guide | str | 标题词 | "他们都在说:" |
+| left_duration | num | 左移时长 |  |
+| fade_duration | num | 淡化时长 |  |
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+    '': 6785480089600,
+    'status': 4,
+    'type': 102,
+    'data': '{
+        "combo":[{
+            "id":6785480089600,
+            "status":4,
+            "content":"晚安",
+            "cnt":3,
+            "guide":"他们都在说:",
+            "left_duration":20000,
+            "fade_duration":60000}],
+        "merge_interval":1000,
+        "card_appear_interval":1000,
+        "send_interval":1000}'
+}
+```
+
+</details>
+
 #### 进场或关注消息
 
 有用户进入直播间或关注主播时触发
@@ -569,6 +640,85 @@ data字段
     "end_time": 1677069316
   }
 }
+```
+
+</details>
+
+#### 用户庆祝消息
+
+json格式
+
+| 字段 | 类型 | 内容               | 备注                               |
+| ---- | ---- |------------------|----------------------------------|
+| cmd | str | "USER_TOAST_MSG"      | 用户购买舰长 / 提督 / 总督后的庆祝消息，内容包含用户陪伴天数 |
+| data | obj | 上舰人uid & 昵称、上舰信息 |                                  |
+
+data字段
+
+| 字段 | 类型  | 内容                       | 备注  |
+| ---- |-----|--------------------------|-----|
+| anchor_show | bool | 是否显示 |     |
+| color | str | 颜色 |     |
+| dmscore | num | 待调查  |     |
+| effect_id | num | 待调查 |     |
+| face_effect_id | num | 待调查  |     |
+| gift_id | num | 礼物id |     |
+| group_name | str | 待调查  |     |
+| group_op_type | num | 待调查   |     |
+| group_role_name | str | 待调查  |     |
+| guard_level | num | 大航海等级       | 1: 总督 2: 提督 3:舰长 |
+| is_group | num | 待调查 |     |
+| is_show | num | 待调查 |     |
+| num | num | 上舰个数  |     |
+| op_type | num | 待调查 |     |
+| payflow_id | str | 待调查 |     |
+| price | num | 价格 |
+| role_name | str | 身份名称 |     |
+| room_effect_id | num | 待调查 |     |
+| room_group_effect_id | num | 待调查 |     |
+| start_time | num | 待调查 |     |
+| svga_block | num | 待调查 |     |
+| target_guard_count | str | 庆祝消息正文 |     |
+| toast_msg | num | 待调查 |     |
+| uid | num | 上舰人UID |     |
+| unit | str | 购买身份时间单位 |     |
+| user_show | bool | 待调查 |     |
+| username | str | 上舰人用户名 |     |
+
+<details>
+
+<summary>查看消息示例：</summary>
+
+```json
+{
+    'anchor_show': True,
+    'color': '#00D1F1',
+    'dmscore': 90,
+    'effect_id': 397,
+    'end_time': 1702580687,
+    'face_effect_id': 44,
+    'gift_id': 10003,
+    'group_name': '',
+    'group_op_type': 0,
+    'group_role_name': '',
+    'guard_level': 3,
+    'is_group': 0,
+    'is_show': 0,
+    'num': 1,
+    'op_type': 1,
+    'payflow_id':'2312150304155852173446521',
+    'price': 138000,
+    'role_name': '舰长',
+    'room_effect_id': 590,
+    'room_group_effect_id': 1337,
+    'start_time': 1702580687,
+    'svga_block': 0,
+    'target_guard_count': 146,
+    'toast_msg': '<%无光之日%> 在主播Mia米娅-的直播间开通了舰长，今天是TA陪伴主播的第1天',
+    'uid': 79667344,
+    'unit': '月',
+    'user_show': True,
+    'username': '无光之日'}
 ```
 
 </details>
@@ -1085,12 +1235,6 @@ json格式
 | ---- | ---- | ------ | --------- |
 | cmd | str | "NOTICE_MSG" | 通知消息，内容则是"NOTICE_MSG" |
 | id | num | 待调查 | |
-| data | obj | 通知数据 | |
-
-data字段
-
-| 字段 | 类型 | 内容   | 备注      |
-| ---- | ---- | ------ | --------- |
 | full | obj | 待调查 | |
 | half | obj | 待调查 | |
 | side | obj | 待调查 | |
@@ -1265,6 +1409,7 @@ data字段
         "fans_club": 8
     }
 }
+```
 </details>
 
 #### 直播间高能榜
@@ -1404,6 +1549,44 @@ list数组中的对象
             }
         ]
     }
+}
+```
+
+</details>
+
+#### 直播间在人气榜的排名改变
+
+
+json格式
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| cmd  | str | "POPULAR_RANK_CHANGED" | |
+| data | obj | 直播间的人气榜排名信息 | |
+
+data字段
+
+| 字段 | 类型 |   内容  |    备注   |
+| ---- | ---- | ------ | --------- |
+| uid | num | 主播UID | |
+| rank | num | 人气榜排名 | |
+| countdown | num | 人气榜下轮结算剩余时长 | |
+| timestamp | num | 触发时的Unix时间戳 | |
+| timestamp | str | 待调查 | |
+
+<details>
+<summary>查看消息示例：</summary>
+  
+```json
+{
+    'cmd': 'POPULAR_RANK_CHANGED',
+    'data': {
+        'uid': 780791,
+        'rank': 36,
+        'countdown': 1927,
+        'timestamp': 1702578474,
+        'cache_key': 'rank_change:91a4e81ba3034ae894d61e432aa13081'
+            }
 }
 ```
 

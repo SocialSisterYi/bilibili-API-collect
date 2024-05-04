@@ -15,8 +15,9 @@
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
 | room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
-| title   | str  | 直播间标题               | 必要   | 最大20字符           |
+| title   | str  | 直播间标题               |        | 最大20字符           |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
+| csrf_token | str  | CSRF Token（位于 cookie） |     |                       |
 
 **json回复：**
 
@@ -253,6 +254,177 @@ curl 'https://api.live.bilibili.com/room/v1/Room/stopLive' \
     "data": {
         "change": 1,
         "status": "PREPARING"
+    }
+}
+```
+
+</details>
+
+
+## 更新直播间公告
+
+> https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名  | 类型 | 内容                     | 必要性 | 备注                  |
+| ------- | ---- | ------------------------ | ------ | --------------------- |
+| room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id  |
+| uid     | num  | 用户id                   | 必要   |                       |
+| content | str  | 公告内容                 | 必要   | 最大60个字符,可以为空 |
+| csrf    | str  | CSRF Token（位于cookie） | 必要   |                       |
+| csrf_token | str  | CSRF Token（位于 cookie） |      |                         |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型  | 内容     | 备注                                                   |
+| ------- | ----- | -------- | ------------------------------------------------------ |
+| code    | num   | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误 |
+| data    | array | 空       |                                                        |
+| message | str   | 错误信息 | 默认为ok                                               |
+| ttl     | num   | 1        | 作用尚不明确                                           |
+
+**示例：**
+
+修改直播间`11996900`公告为`测试修改公告`
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
+--data-urlencode 'room_id=11996900' \
+--data-urlencode 'uid=306903238' \
+--data-urlencode 'content=测试修改公告' \
+--data-urlencode 'csrf_token=xxx' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {}
+}
+```
+
+</details>
+
+## 编辑直播间标签
+
+> https://api.live.bilibili.com/room/v1/Room/update
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
+| ------- | ---- | ------------------------ | ------ | -------------------- |
+| room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
+| add_tag | str  | 要添加的标签             | 必要   | 最大10个字符         |
+| del_tag | str  | 要删除的标签             | 必要   |                      |
+| csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
+| csrf_token | str  | CSRF Token（位于 cookie） |     |                       |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                   |
+| ------- | ---- | -------- | ------------------------------------------------------ |
+| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误 |
+| data    | obj  |          |                                                        |
+| message | str  | 错误信息 | 默认为ok                                               |
+| msg     | str  | 错误信息 | 默认为ok                                               |
+
+`data`对象：
+
+| 字段            | 类型 | 内容 | 备注 |
+| --------------- | ---- | ---- | ---- |
+| audit_info      | obj  |      |      |
+| sub_session_key | str  |      |      |
+
+`data`中的`audit_info`对象：
+
+| 字段               | 类型 | 内容 | 备注 |
+| ------------------ | ---- | ---- | ---- |
+| audit_title_reason | str  |      |      |
+| audit_title_status | num  | 0    |      |
+| update_title       | str  |      |      |
+
+**示例：**
+
+给直播间`11996900`添加一个标签为`测试标签`
+
+```shell
+curl 'https://api.live.bilibili.com/room/v1/Room/update' \
+--data-urlencode 'room_id=11996900' \
+--data-urlencode 'add_tag=测试标签' \
+--data-urlencode 'csrf_token=xxx' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "msg": "ok",
+    "message": "ok",
+    "data": {
+        "sub_session_key": "",
+        "audit_info": {
+            "audit_title_reason": "",
+            "update_title": "",
+            "audit_title_status": 0
+        }
+    }
+}
+```
+</details>
+
+给直播间`11996900`删除内容为`测试标签`的标签
+
+```shell
+curl 'https://api.live.bilibili.com/room/v1/Room/update' \
+--data-urlencode 'room_id=11996900' \
+--data-urlencode 'del_tag=测试标签' \
+--data-urlencode 'csrf_token=xxx' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "msg": "ok",
+    "message": "ok",
+    "data": {
+        "sub_session_key": "",
+        "audit_info": {
+            "audit_title_reason": "",
+            "update_title": "",
+            "audit_title_status": 0
+        }
     }
 }
 ```

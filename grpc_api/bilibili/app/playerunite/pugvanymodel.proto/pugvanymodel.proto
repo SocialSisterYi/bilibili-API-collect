@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package bilibili.app.playerunite.pugvanymodel;
+
+// 
+enum EpisodeStatus {
+    EPISODE_STATUS_UNSPECIFIED = 0;
+    EPISODE_STATUS_TRY_WATCH_WHOLE = 1;
+    EPISODE_STATUS_NOT_TRY_WATCH = 2;
+    EPISODE_STATUS_TRY_WATCH_5_MINUTES = 3;
+}
+
+// 
+message PlayerMask {
+    // 
+    string title = 1;
+    // 
+    string prefix = 2;
+    // 
+    string suffix = 3;
+}
+
+// 
+message PUGVAnyModel {
+    // 
+    int64 season_id = 1;
+    // 
+    int64 episode_id = 2;
+    // 
+    EpisodeStatus status = 3;
+    // 
+    RiskControl risk_control = 4;
+    // 
+    PlayerMask player_mask = 5;
+}
+
+// 
+message RiskControl {
+    // 
+    bool need_send_sms = 1;
+    // 
+    string title = 2;
+    // 
+    string risk_message = 3;
+    // 
+    string action_desc = 4;
+    // 
+    string send_sms_url = 5;
+    // 
+    string buvid = 6;
+}

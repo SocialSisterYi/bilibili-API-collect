@@ -69,11 +69,15 @@
 
 ## 获取视频流地址_web端
 
-> https://api.bilibili.com/x/player/playurl
+> https://api.bilibili.com/x/player/wbi/playurl
+
+> ~~https://api.bilibili.com/x/player/playurl~~ （旧链接）
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 ---
 
@@ -109,7 +113,8 @@
 | session  | str  |    | 非必要       | 从视频播放页的 HTML 中获取       |
 | otype  | str  |    | 非必要       | 固定为`json`           |
 | type  | str  |    | 非必要       | 目前为空             |
-| platform | str |    | 非必要 | pc：web播放（默认值，视频流存在 referer鉴权）<br />html5：移动端 HTML5 播放（仅支持 MP4 格式，清晰度最高 360P，无 referer 鉴权可以直接使用`video`标签播放） |
+| platform | str |    | 非必要 | pc：web播放（默认值，视频流存在 referer鉴权）<br />html5：移动端 HTML5 播放（仅支持 MP4 格式，无 referer 鉴权可以直接使用`video`标签播放） |
+| high_quality | num | 是否高画质 | 非必要 | platform=html5时，此值为1可使画质为1080p |
 
 **json回复：**
 
@@ -452,9 +457,9 @@ curl -G 'https://api.bilibili.com/x/player/playurl' \
 | minBufferTime   | num   | 1.5？       |  |
 | min_buffer_time | num   | 1.5？       |  |
 | video           | array | 视频流信息 |              |
-| audio           | array | 伴音流信息 |              |
+| audio           | array | 伴音流信息 | 当视频没有音轨时，此项为 null |
 | dolby           | obj | 杜比全景声伴音信息 |              |
-| flac           | obj | 无损音轨伴音信息 |              |
+| flac           | obj | 无损音轨伴音信息 | 当视频没有无损音轨时，此项为 null |
 
 `dash`中的`video`数组：
 
@@ -494,7 +499,7 @@ curl -G 'https://api.bilibili.com/x/player/playurl' \
 | start_with_sap | num   | **同上**              |  |
 | SegmentBase    | obj   | 见下表                | url 对应 m4s 文件中，头部的位置<br />音频流该值恒为空     |
 | segment_base   | obj   | **同上**              |  |
-| codecid        | num   | 码流编码标识代码 | 含义见 [上表](视频编码代码)<br />音频流该值恒为`0` |
+| codecid        | num   | 码流编码标识代码 | 含义见 [上表](#视频编码代码)<br />音频流该值恒为`0` |
 
 `video`数组中的对象中的`backup_url`数组：
 
@@ -1258,6 +1263,7 @@ curl -G 'https://api.bilibili.com/x/player/playurl' \
 
 ```shell
 wget 'http://upos-sz-mirrorhw.bilivideo.com/upgcxcode/08/62/171776208/171776208-1-112.flv?e=ig8euxZM2rNcNbhMnwhVhwdlhzK3hzdVhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1589565412&gen=playurl&os=hwbv&oi=606631998&trid=e0fa5f9a7610440a871279a28fae85aau&platform=pc&upsig=5f469cb4c190ed54b89bd40cc37eddff&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,platform&mid=293793435&logo=80000000' \
+    -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
     --referer 'https://www.bilibili.com' \
     -O 'Download_video.flv'
 ```
@@ -1267,10 +1273,12 @@ wget 'http://upos-sz-mirrorhw.bilivideo.com/upgcxcode/08/62/171776208/171776208-
 ```bash
 # 下载视频流
 wget 'https://cn-jxjj-ct-01-01.bilivideo.com/upgcxcode/65/46/244954665/244954665_f9-1-30125.m4s?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1674137769&gen=playurlv2&os=bcache&oi=606633952&trid=0000524e9cc80dea41dca72b59782270b5d3u&mid=293793435&platform=pc&upsig=c4206c80b1d0dc18c0545a7758d56eee&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&cdnid=4261&bvc=vod&nettype=0&orderid=0,3&buvid=EC1BD8EA-88F6-4951-BF27-2CFE3450C78F167646infoc&build=0&agrr=0&bw=1726751&logo=80000000' \
+    -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
     --referer 'https://www.bilibili.com' \
     -O 'video.m4s'
 # 下载伴音流
 wget 'https://xy125x75x230x185xy.mcdn.bilivideo.cn:4483/upgcxcode/65/46/244954665/244954665_f9-1-30280.m4s?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1674137769&gen=playurlv2&os=mcdn&oi=606633952&trid=0000524e9cc80dea41dca72b59782270b5d3u&mid=293793435&platform=pc&upsig=e5feff4626de4c6fd2ed9c6061c324a0&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform&mcdnid=1002708&bvc=vod&nettype=0&orderid=0,3&buvid=EC1BD8EA-88F6-4951-BF27-2CFE3450C78F167646infoc&build=0&agrr=0&bw=41220&logo=A0000001' \
+    -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
     --referer 'https://www.bilibili.com' \
     -O 'audio.m4s'
 # 进行混流

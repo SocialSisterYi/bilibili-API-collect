@@ -101,9 +101,9 @@ curl 'https://api.bilibili.com/x/member/web/account' \
 | watch         | bool | 每日观看             | false：未完成<br />true：已完成<br />完成奖励5经验           |
 | coins         | num  | 每日投币所奖励的经验 | 上限为50<br />注：该值更新存在延迟<br />[另外一个专门API](#查询每日投币获得经验数) |
 | share         | bool | 每日分享             | false：未完成<br />true：已完成<br />完成奖励5经验           |
-| email         | bool | 绑定邮箱             | false：未完成<br />true：已完成                              |
-| tel           | bool | 绑定手机号           | false：未完成<br />true：已完成<br />首次完成完成奖励100经验 |
-| safe_question | bool | 设置密保问题         | false：未完成<br />true：已完成                              |
+| email         | bool | 绑定邮箱             | false：未完成<br />true：已完成<br />首次完成奖励20经验            |
+| tel           | bool | 绑定手机号           | false：未完成<br />true：已完成<br />首次完成奖励100经验 |
+| safe_question | bool | 设置密保问题         | false：未完成<br />true：已完成<br />首次完成奖励30经验              |
 | identify_card | bool | 实名认证             | false：未完成<br />true：已完成<br />首次完成奖励50经验      |
 
 **示例：**
@@ -283,7 +283,7 @@ curl 'https://api.bilibili.com/x/vip/web/user/info' \
 | tel_verify         | bool | 是否验证手机号 | false：未验证<br />true：已验证 |
 | mail_verify        | bool | 是否验证邮箱   | false：未验证<br />true：已验证 |
 | unneeded_check     | bool | 是否未设置密码 | false：已设置<br />true：未设置 |
-| realname_certified | bool | 是否实名认证   | false：已认证<br />true：未认证 |
+| realname_certified | bool | 是否实名认证   | false：未认证<br />true：已认证 |
 
 `data`中的`account_safe`对象：
 
@@ -470,7 +470,7 @@ curl 'https://api.bilibili.com/x/member/realname/apply/status' \
 
 ## 查询硬币变化情况
 
-> httpsss://api.bilibili.com/x/member/web/coin/log
+> https://api.bilibili.com/x/member/web/coin/log
 
 *请求方式：GET*
 

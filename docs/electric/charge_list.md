@@ -4,7 +4,9 @@
 
 > https://api.bilibili.com/x/ugcpay-rank/elec/month/up
 
-*请求方式:GET*
+*请求方式：GET*
+
+本接口需要在请求标头中提供有效的浏览器 UA，如 `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36`
 
 **url参数：**
 
@@ -18,20 +20,20 @@
 
 | 字段    | 类型 | 内容     | 备注                         |
 | ------- | ---- | -------- | ---------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />-400：请求错误 |
+| code    | num  | 返回值   | 0：成功 <br />-400：请求错误<br />88214：up主未开通充电 |
 | message | str  | 错误信息 |                              |
 | ttl     | num  | 0        |                              |
 | data    | obj  | 数据本体 |                              |
 
 `data`对象：
 
-| 字段        | 类型  | 内容             | 备注         |
-| ----------- | ----- | ---------------- | ------------ |
-| count       | num   | 本月充电人数     |              |
-| list        | array | 本月充电用户列表 |              |
-| total_count | num   | 总计充电次数     |              |
-| total       | num   | 总计充电次数     | 同上         |
-| special_day | num   | 0                | 作用尚不明确 |
+| 字段        | 类型  | 内容             | 备注            |
+| ----------- | ----- | ---------------- | --------------- |
+| count       | num   | 本月充电人数     |                 |
+| list        | array | 本月充电用户列表 |                 |
+| total_count | num   | 总计充电次数     |                 |
+| total       | num   | 总计充电次数     | 同`total_count` |
+| special_day | num   | 0                | 作用尚不明确    |
 
 `data`中的`list`数组：
 
@@ -69,8 +71,9 @@
 查询用户`mid=53456`的充电公示列表
 
 ```shell
-curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up?up_mid=53456' \
---data-urlencode 'mid=53456'
+curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
+-A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36' \
+--data-urlencode 'up_mid=53456'
 ```
 
 <details>
@@ -166,14 +169,14 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up?up_mid=53456' \
 
 `data`对象：
 
-| 字段        | 类型   | 内容             | 备注         |
-| ----------- | ------ | ---------------- | ------------ |
-| show_info   | obj    | 展示选项         |              |
-| av_count    | num    | 目标视频充电人数 |              |
-| count       | num    | 本月充电人数     |              |
-| total_count | num    | 总计充电人数     |              |
-| special_day | num    | 0                | 作用尚不明确 |
-| display_num | num    | 0                | 作用尚不明确 |
+| 字段        | 类型  | 内容             | 备注         |
+| ----------- | ----- | ---------------- | ------------ |
+| show_info   | obj   | 展示选项         |              |
+| av_count    | num   | 目标视频充电人数 |              |
+| count       | num   | 本月充电人数     |              |
+| total_count | num   | 总计充电人数     |              |
+| special_day | num   | 0                | 作用尚不明确 |
+| display_num | num   | 0                | 作用尚不明确 |
 | list        | array | 本月充电用户列表 |              |
 
 `data`中的`show_info`对象：
@@ -231,7 +234,7 @@ bvid方式：
 ```shell
 curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 --data-urlencode 'mid=53456' \
---data-urlencode 'bvid=BV1up4y1y77i '
+--data-urlencode 'bvid=BV1up4y1y77i'
 ```
 
 <details>
@@ -301,13 +304,13 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 
 **url参数：**
 
-| 参数名   | 类型 | 内容     | 必要性 | 备注                             |
-| -------- | ---- | -------- | ------ | -------------------------------- |
-| currentPage | num  | 页数 | 必要   |  |
-| pageSize | num  | 分页大小 | 必要   | 取值范围[1,50] |
-| customerId | num  | (?) | 必要   | 目前为固定值：10026 |
-| beginTime | str  | 开始日期 |    | yyyy-MM-dd |
-| endTime | str  | 结束日期 |    | yyyy-MM-dd |
+| 参数名      | 类型 | 内容     | 必要性 | 备注                |
+| ----------- | ---- | -------- | ------ | ------------------- |
+| currentPage | num  | 页数     | 必要   |                     |
+| pageSize    | num  | 分页大小 | 必要   | 取值范围[1,50]      |
+| customerId  | num  | (?)      | 必要   | 目前为固定值：10026 |
+| beginTime   | str  | 开始日期 | 非必要 | yyyy-MM-dd          |
+| endTime     | str  | 结束日期 | 非必要 | yyyy-MM-dd          |
 
 **json回复：**
 
@@ -315,59 +318,62 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />800501007：user not login<br />800501008：内部错误<br /> 800501011：请求参数有误|
-| errno | num  |  |                      |
-| msg     | str  |         |                             |
-| showMsg     | str  |        |                             |
-| success     | bool  |         |                             |
+| code    | num  | 返回值   | 0：成功<br />800501007：user not login<br />800501008：内部错误<br /> 800501011：请求参数有误 |
+| errno   | num  |          |                             |
+| msg     | str  |          |                             |
+| showMsg | str  |          |                             |
+| success | bool |          |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data`对象：
 
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| page | obj | 分页信息 |      |
+| 字段   | 类型  | 内容         | 备注 |
+| ------ | ----- | ------------ | ---- |
+| page   | obj   | 分页信息     |      |
 | result | array | 充电信息本体 |      |
-| config | array | (?) |      |
+| config | array | (?)          |      |
 
 `page`对象：
 
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| currentPage | num | 当前页数 |      |
-| pageSize | num | 当前分页大小 |      |
-| totalCount | num | 记录总数 |      |
-| totalPage | num | 总页数 |      |
+| 字段        | 类型 | 内容         | 备注 |
+| ----------- | ---- | ------------ | ---- |
+| currentPage | num  | 当前页数     |      |
+| pageSize    | num  | 当前分页大小 |      |
+| totalCount  | num  | 记录总数     |      |
+| totalPage   | num  | 总页数       |      |
 
 `config`数组中的对象：
 
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| mid | num |  |   总是为null   |
-| name | str |  |    总是为null   |
-| avatar | str |  |    总是为null   |
-| originalThirdCoin | num |  |    总是为null   |
-| brokerage | num |  |   总是为null    |
-| remark | str |  |    总是为null   |
-| ctime | str |  |    总是为null   |
+| 字段              | 类型 | 内容 | 备注       |
+| ----------------- | ---- | ---- | ---------- |
+| mid               | null |      | 总是为null |
+| name              | null |      | 总是为null |
+| avatar            | null |      | 总是为null |
+| originalThirdCoin | null |      | 总是为null |
+| brokerage         | null |      | 总是为null |
+| remark            | null |      | 总是为null |
+| ctime             | null |      | 总是为null |
 
 `result`数组中的对象：
 
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| mid | num | 充电人mid |      |
-| name | str | 充电人昵称 |      |
-| avatar | str | 充电人头像 |      |
-| originalThirdCoin | num | 原始B币数 |      |
-| brokerage | num | 实际收到的贝壳数 |      |
-| remark | str | 充电渠道 |  Web/安卓/iOS    |
-| ctime | str | 充电时间 |   yyyy-MM-dd HH:mm:ss   |
+| 字段              | 类型 | 内容             | 备注                |
+| ----------------- | ---- | ---------------- | ------------------- |
+| mid               | num  | 充电人mid        |                     |
+| name              | str  | 充电人昵称       |                     |
+| avatar            | str  | 充电人头像       |                     |
+| originalThirdCoin | num  | 原始B币数        |                     |
+| brokerage         | num  | 实际收到的贝壳数 |                     |
+| remark            | str  | 充电渠道         | Web/安卓/iOS        |
+| ctime             | str  | 充电时间         | yyyy-MM-dd HH:mm:ss |
 
 **示例：**
 
 ```shell
-curl -L -X GET 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord?currentPage=1&pageSize=2&customerId=10026' \
--H 'Cookie: SESSDATA=xxx'
+curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
+--data-urlencode 'currentPage=1' \
+--data-urlencode 'pageSize=2' \
+--data-urlencode 'customerId=10026' \
+-b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -434,10 +440,10 @@ curl -L -X GET 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRec
 
 **url参数：**
 
-| 参数名   | 类型 | 内容     | 必要性 | 备注                             |
-| -------- | ---- | -------- | ------ | -------------------------------- |
-| pn | num  | 页数 | 非必要 |  |
-| ps | num  | 分页大小 | 非必要 | 取值范围[1,20] |
+| 参数名   | 类型 | 内容     | 必要性 | 备注             |
+| -------- | ---- | -------- | ------ | ---------------- |
+| pn       | num  | 页数     | 非必要 |                  |
+| ps       | num  | 分页大小 | 非必要 | 取值范围\[1,20\] |
 
 **json回复：**
 
@@ -480,8 +486,8 @@ curl -L -X GET 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRec
 **示例：**
 
 ```shell
-curl -L -X GET 'https://member.bilibili.com/x/h5/elec/rank/recent' \
--H 'Cookie: SESSDATA=xxx'
+curl -G 'https://member.bilibili.com/x/h5/elec/rank/recent' \
+-b 'SESSDATA=xxx'
 ```
 
 <details>

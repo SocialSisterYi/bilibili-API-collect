@@ -13,12 +13,13 @@
 需注意账号转发视频投稿，其他用户的动态以及分享收藏夹等均为转发类内容，并不属于type=4300的收藏类动态等。
 
 在type=1的转发类动态中，解析出的对象包含以下内容：
-| 字段    | 类型 | 内容     | 备注    |
+
+| 字段 | 类型 | 内容 | 备注 |
 | ------- | ---- | -------- | ------- |
-| user    | obj  | 转发者用户信息   | 包含用户名，用户id和头像 |
-| item    | obj  | 转发相关信息 |  `content`字段为转发附言 |  |
-| origin | str  | 被转发动态信息 | 即本文档所描述的动态详细信息字段。</br>动态类型为`item`对象的`orig_type`字段 |
-| origin_extend_json | str  | 被转发动态补充信息  |  |
+| user | obj | 转发者用户信息 | 包含用户名，用户id和头像 |
+| item | obj | 转发相关信息 |  `content`字段为转发附言 | |
+| origin | str | 被转发动态信息 | 即本文档所描述的动态详细信息字段。<br/>动态类型为`item`对象的`orig_type`字段 |
+| origin_extend_json | str | 被转发动态补充信息 | |
 | origin_user | obj | 被转发用户信息 | |
 | activity_infos | obj | 被转发动态参与的活动 | |
 
@@ -106,10 +107,11 @@
 ## 在图片动态中（type=2）
 
 在type=2的图片动态中，解析出的对象包含以下内容：
-| 字段    | 类型 | 内容     | 备注    |
+
+| 字段 | 类型 | 内容 | 备注 |
 | ------- | ---- | -------- | ------- |
-| item    | obj  | 图片动态内容 |  `description`字段为文字内容</br>`pictures`字段图片 |  |
-| user    | obj  | 发布者用户信息   | 包含用户名，用户id和头像 |
+| item | obj | 图片动态内容 |  `description`字段为文字内容<br/>`pictures`字段图片 | |
+| user | obj | 发布者用户信息 | 包含用户名，用户id和头像 |
 
 
 <details>
@@ -166,14 +168,14 @@
 
 </details>
 
-
 ## 在文字动态中（type=4）
 
 在type=4的文字动态中，解析出的对象包含以下内容：
-| 字段    | 类型 | 内容     | 备注    |
+
+| 字段 | 类型 | 内容 | 备注 |
 | ------- | ---- | -------- | ------- |
-| item    | obj  | 文字动态内容 |  `description`字段为文字内容 |  |
-| user    | obj  | 发布者用户信息   | 包含用户名，用户id和头像 |
+| item | obj | 文字动态内容 |  `description`字段为文字内容 | |
+| user | obj | 发布者用户信息 | 包含用户名，用户id和头像 |
 
 
 <details>
@@ -204,9 +206,10 @@
 ## 在视频投稿动态中（type=8）
 
 在type=8的视频投稿动态中，解析出的对象包含以下内容：
-| 字段    | 类型 | 内容     | 备注    |
+
+| 字段 | 类型 | 内容 | 备注 |
 | ------- | ---- | -------- | ------- |
-| aid    | num  | 视频avid |   | 
+| aid | num | 视频avid | |
 | attribute | num | `0` | [可能已弃用](https://shakaianee.top/archives/9/) |
 | cid | num | 视频cid | |
 | copyright | num | 原创信息 | 1为原创，2为转载 |
@@ -215,7 +218,7 @@
 | duration | num | 视频时长 | 单位秒 |
 | dynamic | str | 动态文字内容 | |
 | first_frame | str | 视频第一帧图片 | 图片链接 |
-| jump_url    | str  | 视频跳转链接   |  |
+| jump_url | str | 视频跳转链接 | |
 | mission_id | num | 稿件参与的活动id | |
 | owner | obj | 动态作者信息 | 即up主 |
 | pic | str | 视频封面 | |
@@ -223,7 +226,7 @@
 | pubdate | num | 发布时间 | 时间戳 |
 | rights | obj | 联合投稿，是否付费等信息 | 可能用来代替原`attribute`字段 |
 | stat | obj | 视频数据 | 点赞投币等 |
-| state | num | 视频状态   | 详情见**属性数据文档** |
+| state | num | 视频状态 | 详情见**属性数据文档** |
 | tid | num | 视频分区编号 | |
 | title | str | 视频标题 | |
 | tname | str | 视频分区名称 | |
@@ -302,7 +305,8 @@
 ## 在专栏投稿动态中（type=64）
 
 在type=64的专栏投稿动态中，解析出的对象包含以下内容：
-| 字段    | 类型 | 内容     | 备注    |
+
+| 字段 | 类型 | 内容 | 备注 |
 | ------- | ---- | -------- | ------- |
 | id | num | 专栏的id，即cv号 | |
 | category | obj | 分类号和分类名称 | |
@@ -313,10 +317,10 @@
 | template_id | num | 模板信息 | |
 | state | num | 专栏状态 | |
 | author | obj | 作者信息 | 包含了头像挂件和勋章等 |
-| reprint | num  | 可能是转载 | |
+| reprint | num | 可能是转载 | |
 | image_urls | obj | 图片链接 | |
-| publish_time | num | 发布时间 | 时间戳，应该指专栏 | 
-| ctime | num | 发布时间 | 时间戳，应该指动态 | 
+| publish_time | num | 发布时间 | 时间戳，应该指专栏 |
+| ctime | num | 发布时间 | 时间戳，应该指动态 |
 | stats | obj | 专栏数据,点赞之类 | 有点踩字段，但并未实装此功能 |
 | words | num | 字数 | |
 | origin_image_urls | obj | 源图片地址 | |
@@ -448,7 +452,8 @@
 ## 在音频投稿动态中（type=256）
 
 在type=256的音频投稿动态中，解析出的对象包含以下内容：
-| 字段    | 类型 | 内容     | 备注    |
+
+| 字段 | 类型 | 内容 | 备注 |
 | ------- | ---- | -------- | ------- |
 | id | num | 投稿编号 | 即au号 |
 | upId | num | 音乐人id | 与用户uid不同 |
@@ -456,7 +461,7 @@
 | upper | str | 上传者名称 | |
 | cover | str | 封面图链接 | |
 | author | str | 作者名称 | |
-| ctime | num | 上传时间 | 时间戳的后面加了三个0 | 
+| ctime | num | 上传时间 | 时间戳的后面加了三个0 |
 | playCnt | num | 播放量 | |
 | intro | str | 音频介绍 | |
 | schema | str | 跳转链接 | 似乎并不只是url |

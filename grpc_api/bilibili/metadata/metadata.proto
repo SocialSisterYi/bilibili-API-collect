@@ -5,18 +5,18 @@ package bilibili.metadata;
 // 请求元数据
 // gRPC头部:x-bili-metadata-bin
 message Metadata {
-    // 登录Token
+    // 登录 access_key
     string access_key = 1;
-    // 包类型
+    // 包类型, 如 `android`
     string mobi_app = 2;
-    // 运行设备
+    // 运行设备, 留空即可
     string device = 3;
-    // 构建id
+    // 构建id, 如 `7380300`
     int32 build = 4;
-    // APP分发渠道
+    // APP分发渠道, 如 `master`
     string channel = 5;
-    // 设备buvid
+    // 设备唯一标识
     string buvid = 6;
-    // 平台类型
+    // 平台类型, 如 `android`
     string platform = 7;
 }

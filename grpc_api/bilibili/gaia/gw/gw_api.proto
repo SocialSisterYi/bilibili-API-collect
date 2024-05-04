@@ -6,10 +6,14 @@ import "google/protobuf/empty.proto";
 
 // 应用列表上报
 service Gaia {
-    // 应用列表上报
-    rpc ExUploadAppList(GaiaEncryptMsgReq) returns (UploadAppListReply);
+    // 
+    rpc ExClimbAppleTrees(GaiaEncryptMsgReq) returns (UploadAppListReply);
     // 拉取rsa公钥
     rpc ExFetchPublicKey(google.protobuf.Empty) returns (FetchPublicKeyReply);
+    // 
+    rpc ExGetAxe(google.protobuf.Empty) returns (FetchPublicKeyReply);
+    // 应用列表上报
+    rpc ExUploadAppList(GaiaEncryptMsgReq) returns (UploadAppListReply);
 }
 
 // 待加密的pb对象

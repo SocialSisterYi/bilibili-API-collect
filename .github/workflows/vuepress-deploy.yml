@@ -3,6 +3,7 @@ on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    if: github.repository == 'SocialSisterYi/bilibili-API-collect'
     steps:
     - name: Checkout
       uses: actions/checkout@master

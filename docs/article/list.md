@@ -2,11 +2,15 @@
 
 ## 获取用户专栏文章列表
 
-> https://api.bilibili.com/x/space/article
+> https://api.bilibili.com/x/space/wbi/article
+
+> ~~https://api.bilibili.com/x/space/article~~（旧链接）
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 **url参数：**
 

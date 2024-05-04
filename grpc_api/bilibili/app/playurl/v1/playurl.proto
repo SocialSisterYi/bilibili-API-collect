@@ -32,6 +32,8 @@ message ArcConf {
     bool disabled = 2;
     //
     ExtraContent extra_content = 3;
+    // 
+    repeated int64 unsupport_scene = 4;
 }
 
 // 业务类型
@@ -112,6 +114,7 @@ enum ConfType {
     PANORAMA       = 27; // 全景
     DOLBY          = 28; // 杜比
     COLORFILTER    = 29; // 颜色滤镜
+    LOSSLESS       = 30; // HIRES
 }
 
 //
@@ -243,6 +246,16 @@ enum Group {
     C            = 3; //
 }
 
+// 
+message LossLessItem {
+    // 
+    bool is_lossless_audio = 1;
+    // 
+    DashItem audio = 2;
+    // 
+    bool need_vip = 3;
+}
+
 // 禁用功能配置
 message PlayAbilityConf {
     CloudConf background_play_conf = 1;  // 后台播放
@@ -274,6 +287,7 @@ message PlayAbilityConf {
     CloudConf inner_dm_conf        = 27; // 一起看入口
     CloudConf dolby_conf           = 28; // 杜比音效
     CloudConf color_filter_conf    = 29; // 颜色滤镜
+    CloudConf loss_less_conf       = 30; // HIRES
 }
 
 // 播放控件稿件配置
@@ -308,6 +322,7 @@ message PlayArcConf {
     ArcConf dolby_conf            = 28; // 杜比音效
     ArcConf screen_recording_conf = 29; // 屏幕录制
     ArcConf color_filter_conf     = 30; // 颜色滤镜
+    ArcConf loss_less_conf        = 31; // HIRES
 }
 
 // 编辑播放界面配置-响应
@@ -366,6 +381,8 @@ message PlayLimit {
 enum PlayLimitCode {
     PLCUnkown      = 0; //
     PLCUgcNotPayed = 1; //
+    PLCChargingPlusNotPass = 2; //
+    PLCChargingPlusUpgrade = 3; //
 }
 
 // 视频地址-回复
@@ -642,14 +659,16 @@ message VideoInfo {
     DolbyItem dolby = 7;
     //
     VolumeInfo volume = 8;
+    // 
+    LossLessItem loss_less_item = 9;
 }
 
 // 视频类型
 enum VideoType {
-    Unknown_VALUE = 0; //
-    FLV_VALUE     = 1; // flv格式
-    DASH_VALUE    = 2; // dash格式
-    MP4_VALUE     = 3; // mp4格式
+    Unknown = 0; //
+    FLV     = 1; // flv格式
+    DASH    = 2; // dash格式
+    MP4     = 3; // mp4格式
 }
 
 //

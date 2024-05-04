@@ -1,67 +1,178 @@
 syntax = "proto3";
 
-package bilibili.main.dynamic.feed.v1;
+package bilibili.dynamic.interfaces.feed.v1;
 
 import "bilibili/dynamic/common/dynamic.proto";
 
 //
 service Feed {
-    // 发布页预校验
-    rpc CreateInitCheck(CreateInitCheckReq) returns (bilibili.dynamic.CreateCheckResp);
-    //
-    rpc SubmitCheck(SubmitCheckReq) returns (SubmitCheckRsp);
-    // 创建动态
-    rpc CreateDyn(CreateDynReq) returns (bilibili.dynamic.CreateResp);
-    // 根据name取uid
-    rpc GetUidByName(bilibili.dynamic.GetUidByNameReq) returns (bilibili.dynamic.GetUidByNameRsp);
+    // 
+    rpc AddDynamicReport(AddDynamicReportReq) returns (AddDynamicReportRsp);
     // at用户推荐列表
-    rpc AtList(bilibili.dynamic.AtListReq) returns (bilibili.dynamic.AtListRsp);
+    rpc AtList(bilibili.dynamic.common.AtListReq) returns (bilibili.dynamic.common.AtListRsp);
     // at用户搜索列表
-    rpc AtSearch(bilibili.dynamic.AtSearchReq) returns (bilibili.dynamic.AtListRsp);
+    rpc AtSearch(bilibili.dynamic.common.AtSearchReq) returns (bilibili.dynamic.common.AtListRsp);
+    // 
+    rpc AttachCardButton(AttachCardButtonReq) returns (AttachCardButtonRsp);
+    // 
+    rpc Config(ConfigReq) returns (ConfigRsp);
+    // 创建动态
+    rpc CreateDyn(CreateDynReq) returns (bilibili.dynamic.common.CreateResp);
+    // 发布页预校验
+    rpc CreateInitCheck(CreateInitCheckReq) returns (bilibili.dynamic.common.CreateCheckResp);
     //
-    rpc ReserveButtonClick(ReserveButtonClickReq) returns (ReserveButtonClickResp);
-    //
-    rpc CreatePlusButtonClick(CreatePlusButtonClickReq) returns (CreatePlusButtonClickRsp);
-    //
-    rpc HotSearch(HotSearchReq) returns (HotSearchRsp);
-    //
-    rpc Suggest(SuggestReq) returns (SuggestRsp);
-    //
-    rpc DynamicButtonClick(DynamicButtonClickReq) returns (DynamicButtonClickRsp);
+    rpc CreatePageInfos(CreatePageInfosReq) returns (CreatePageInfosRsp);
     //
     rpc CreatePermissionButtonClick(CreatePermissionButtonClickReq) returns (CreatePermissionButtonClickRsp);
     //
-    rpc CreatePageInfos(CreatePageInfosReq) returns (CreatePageInfosRsp);
+    rpc CreatePlusButtonClick(CreatePlusButtonClickReq) returns (CreatePlusButtonClickRsp);
+    //
+    rpc DynamicButtonClick(DynamicButtonClickReq) returns (DynamicButtonClickRsp);
+    // 
+    rpc DynamicRepost(DynamicRepostReq) returns (bilibili.dynamic.common.CreateResp);
+    // 
+    rpc DynamicThumb(DynamicThumbReq) returns (DynamicThumbRsp);
+    // 
+    rpc EditDyn(EditDynReq) returns (EditDynRsp);
+    // 
+    rpc GetEditDynInfo(GetEditDynInfoReq) returns (GetEditDynInfoRsp);
+    // 根据name取uid
+    rpc GetUidByName(bilibili.dynamic.common.GetUidByNameReq) returns (bilibili.dynamic.common.GetUidByNameRsp);
+    // 
+    rpc GoodsAttachCardPreview(GoodsAttachCardPreviewReq) returns (GoodsAttachCardPreviewRsp);
+    // 
+    rpc HomeBubbleReport(HomeBubbleReportReq) returns (HomeBubbleReportRsp);
+    //
+    rpc HotSearch(HotSearchReq) returns (HotSearchRsp);
+    // 
+    rpc ICreateGoodsReplySync(ICreateGoodsReplySyncReq) returns (ICreateResp);
+    // 
+    rpc NearbyPoiList(NearbyPoiListReq) returns (NearbyPoiListRsp);
+    //
+    rpc ReserveButtonClick(ReserveButtonClickReq) returns (ReserveButtonClickResp);
+    // 
+    rpc RmDyn(RmDynReq) returns (RmDynRsp);
+    // 
+    rpc RmSpaceTop(RmSpaceTopReq) returns (RmSpaceTopRsp);
+    // 
+    rpc SearchPoiList(SearchPoiListReq) returns (SearchPoiListRsp);
+    // 
+    rpc SetSpaceTop(SetSpaceTopReq) returns (SetSpaceTopRsp);
+    //
+    rpc SubmitCheck(SubmitCheckReq) returns (SubmitCheckRsp);
+    //
+    rpc Suggest(SuggestReq) returns (SuggestRsp);
+}
+
+// 
+message AddDynamicReportReq {
+    // 
+    int64 accused_uid = 1;
+    // 
+    string dynamic_id = 2;
+    // 
+    int64 reason_type = 3;
+    // 
+    string reason_desc = 4;
+}
+
+// 
+message AddDynamicReportRsp {}
+
+// 
+message AdInfoDetail {
+    // 
+    string nation = 1;
+    // 
+    string province = 2;
+    // 
+    string city = 3;
+    // 
+    string district = 4;
+}
+
+// 
+message AttachCardButtonReq {
+    // 
+    int32 cur_btn_status = 1;
+    // 
+    int64 dynamic_id = 2;
+    // 
+    bilibili.dynamic.common.AttachCardType attach_card_type = 3;
+    // 
+    string spm_id = 4;
+    // 
+    int64 reserve_total = 5;
+    // 
+    string dynamic_id_str = 6;
+    // 
+    string card_type = 7;
+}
+
+// 
+message AttachCardButtonRsp {
+    // 
+    int32 final_btn_status = 1;
+    // 
+    string toast = 2;
+    // 
+    string desc_update = 3;
+    // 
+    int64 reserve_update = 4;
+}
+
+// 
+message ConfigAB {
+    // 
+    ConfigABEntry entry = 1;
+    // 
+    int64 value = 2;
+}
+
+// 
+enum ConfigABEntry {
+    CONFIG_AB_ENTRY_NONE = 0;
+    CONFIG_AB_ENTRY_PUB_PAGE_TITLE = 1;
+    CONFIG_AB_ENTRY_SELECT_PIC_PANEL = 2;
+}
+
+// 
+message ConfigReq {}
+
+// 
+message ConfigRsp {
+    // 
+    repeated ConfigAB ab_entries = 1;
 }
 
 // 创建动态-请求
 message CreateDynReq {
     // 用户创建接口meta信息
-    bilibili.dynamic.UserCreateMeta meta = 1;
+    bilibili.dynamic.common.UserCreateMeta meta = 1;
     // 发布的内容
-    bilibili.dynamic.CreateContent content = 2;
+    bilibili.dynamic.common.CreateContent content = 2;
     // 发布类型
-    bilibili.dynamic.CreateScene scene = 3;
+    bilibili.dynamic.common.CreateScene scene = 3;
     // 图片内容
-    repeated bilibili.dynamic.CreatePic pics = 4;
+    repeated bilibili.dynamic.common.CreatePic pics = 4;
     // 转发源
-    bilibili.dynamic.DynIdentity repost_src = 5;
+    bilibili.dynamic.common.DynIdentity repost_src = 5;
     // 动态视频
-    bilibili.dynamic.CreateDynVideo video = 6;
+    bilibili.dynamic.common.CreateDynVideo video = 6;
     // 通用模板类型：2048方图 2049竖图 其他值无效
     int64 sketch_type = 7;
     // 通用模板的元内容（网页内容）
-    bilibili.dynamic.Sketch sketch = 8;
+    bilibili.dynamic.common.Sketch sketch = 8;
     // 小程序的内容
-    bilibili.dynamic.Program program = 9;
+    bilibili.dynamic.common.Program program = 9;
     // 动态附加小卡
-    bilibili.dynamic.CreateTag dyn_tag = 10;
+    bilibili.dynamic.common.CreateTag dyn_tag = 10;
     // 动态附加大卡
-    bilibili.dynamic.CreateAttachCard attach_card = 11;
+    bilibili.dynamic.common.CreateAttachCard attach_card = 11;
     // 特殊的创建选项
-    bilibili.dynamic.CreateOption option = 12;
+    bilibili.dynamic.common.CreateOption option = 12;
     //
-    bilibili.dynamic.CreateTopic topic = 13;
+    bilibili.dynamic.common.CreateTopic topic = 13;
     //
     string upload_id = 14;
 }
@@ -69,23 +180,37 @@ message CreateDynReq {
 //
 message CreateInitCheckReq {
     //
-    int32 scene = 1;
+    bilibili.dynamic.common.CreateInitCheckScene scene = 1;
     //
-    bilibili.dynamic.MetaDataCtrl meta = 2;
+    bilibili.dynamic.common.MetaDataCtrl meta = 2;
     //
-    bilibili.dynamic.RepostInitCheck repost = 3;
+    bilibili.dynamic.common.RepostInitCheck repost = 3;
 }
 
-//
+// 
+message CreatePageCommercialInfo {
+    // 
+    string label_text = 1;
+    // 
+    string desc = 2;
+}
+
+// 
 message CreatePageInfosReq {
-    //
+    // 
     int64 topic_id = 1;
+    // 
+    int64 commercial_entity_type = 2;
+    // 
+    int64 commercial_entity_id = 3;
 }
 
-//
+// 
 message CreatePageInfosRsp {
-    //
+    // 
     CreatePageTopicInfo topic = 1;
+    // 
+    CreatePageCommercialInfo commercial = 2;
 }
 
 //
@@ -126,13 +251,176 @@ enum DynamicButtonClickBizType {
 
 //
 message DynamicButtonClickReq {
-
+    // 
+    repeated DynamicButtonClickBizType biz_type = 1;
 }
 
 //
 message DynamicButtonClickRsp {
 
 }
+
+// 
+message DynamicRepostReq {
+    // 
+    int64 uid = 1;
+    // 
+    bilibili.dynamic.common.CreateContent content = 2;
+    // 
+    bilibili.dynamic.common.DynIdentity repost_src = 3;
+    // 
+    bilibili.dynamic.common.CreateOption option = 4;
+    // 
+    bilibili.dynamic.common.CreateTopic topic = 5;
+    // 
+    string upload_id = 6;
+}
+
+// 
+message DynamicThumbReq {
+    // 
+    int64 uid = 1;
+    // 
+    int64 dyn_id = 2;
+    // 
+    int64 type = 3;
+    // 
+    int64 rid = 4;
+    // 
+    int64 spec_type = 5;
+    // 
+    int64 up = 6;
+    // 
+    string from = 7;
+}
+
+// 
+message DynamicThumbRsp {}
+
+// 
+message EditDynReq {
+    // 
+    int64 dyn_id = 1;
+    // 
+    bilibili.dynamic.common.CreateScene scene = 2;
+    // 
+    bilibili.dynamic.common.UserCreateMeta meta = 3;
+    // 
+    bilibili.dynamic.common.CreateContent content = 4;
+    // 
+    repeated bilibili.dynamic.common.CreatePic pics = 5;
+    // 
+    bilibili.dynamic.common.DynIdentity repost_src = 6;
+    // 
+    bilibili.dynamic.common.CreateTag dyn_tag = 7;
+    // 
+    bilibili.dynamic.common.CreateAttachCard attach_card = 8;
+    // 
+    bilibili.dynamic.common.CreateOption option = 9;
+    // 
+    bilibili.dynamic.common.CreateTopic topic = 10;
+    // 
+    string upload_id = 11;
+}
+
+// 
+message EditDynRsp {
+    // 
+    int64 state = 1;
+    // 
+    string totast = 2;
+}
+
+// 
+message GetEditDynInfoReq {
+    // 
+    int64 dyn_id = 1;
+    // 
+    bilibili.dynamic.common.CreateScene scene = 2;
+    // 
+    bilibili.dynamic.common.MetaDataCtrl meta = 3;
+    // 
+    bilibili.dynamic.common.RepostInitCheck repost = 4;
+}
+
+// 
+message GetEditDynInfoRsp {
+    // 
+    repeated bilibili.dynamic.common.CreatePic pics = 1;
+    // 
+    int64 orig_dyn_id = 2;
+    // 
+    int64 pre_dyn_id = 3;
+    // 
+    repeated CreatePageTopicInfo topic_infos = 4;
+    // 
+    bilibili.dynamic.common.CreateAttachCard attach_card = 5;
+    // 
+    bilibili.dynamic.common.PublishSetting setting = 6;
+    // 
+    bilibili.dynamic.common.UpPermission permission = 7;
+    // 
+    bilibili.dynamic.common.ShareChannel share_info = 8;
+    // 
+    bilibili.dynamic.common.PublishYellowBar yellow_bar = 9;
+    // 
+    bilibili.dynamic.common.PlusRedDot plus_red_dot = 10;
+    // 
+    int64 only_fans = 11;
+    // 
+    string edit_alert_msg = 12;
+}
+
+// 
+message GoodsAttachCardPreviewReq {
+    // 
+    repeated int64 item_ids = 1;
+    // 
+    int64 dyn_id = 2;
+    // 
+    int64 mid = 3;
+    // 
+    bilibili.dynamic.common.MetaDataCtrl meta = 4;
+}
+
+// 
+message GoodsAttachCardPreviewRsp {
+    // 
+    map<int64, GoodsItem> goods = 1;
+}
+
+// 
+message GoodsItem {
+    // 
+    int64 items_id = 1;
+    // 
+    string name = 2;
+    // 
+    string brief = 3;
+    // 
+    string img = 4;
+    // 
+    float price = 5;
+    // 
+    string price_str = 6;
+    // 
+    string icon_name = 7;
+    // 
+    string icon_url = 8;
+    // 
+    string jump_link = 9;
+    // 
+    string jump_link_desc = 10;
+}
+
+// 
+message HomeBubbleReportReq {
+    // 
+    string track_id = 1;
+}
+
+// 
+message HomeBubbleReportRsp {}
 
 //
 message HotSearchReq {
@@ -150,6 +438,137 @@ message HotSearchRsp {
     repeated Item items = 1;
     //
     string version = 2;
+}
+
+// 
+message ICreateGoodsReplySyncReq {
+    // 
+    int64 uid = 1;
+    // 
+    int64 goods_id = 2;
+    // 
+    bilibili.dynamic.common.CreateContent content = 3;
+    // 
+    bilibili.dynamic.common.CreateScene scene = 4;
+    // 
+    repeated bilibili.dynamic.common.CreatePic pics = 5;
+}
+
+// 
+message ICreateResp {
+    // 
+    int64 dyn_id = 1;
+    // 
+    int64 dyn_type = 2;
+    // 
+    int64 dyn_rid = 3;
+}
+
+// 
+message LbsLocation {
+    // 
+    double lat = 1;
+    // 
+    double lng = 2;
+}
+
+// 
+message NearbyPoiDetail {
+    // 
+    LbsLocation location = 1;
+    // 
+    POI_TYPE type = 2;
+    // 
+    string poi = 3;
+    // 
+    string address = 4;
+    // 
+    string title = 5;
+    // 
+    string show_title = 6;
+    // 
+    double distance = 7;
+    // 
+    string show_distance = 8;
+    // 
+    AdInfoDetail ad_info = 9;
+    // 
+    repeated PoiId ancestors = 10;
+}
+
+// 
+message NearbyPoiListItem {
+    // 
+    NearbyPoiDetail poi_info = 1;
+    // 
+    int32 user_count = 2;
+}
+
+// 
+message NearbyPoiListReq {
+    // 
+    double lat = 1;
+    // 
+    double lng = 2;
+    // 
+    int32 page = 3;
+    // 
+    int32 page_size = 4;
+}
+
+// 
+message NearbyPoiListRsp {
+    // 
+    bool has_more = 1;
+    // 
+    repeated NearbyPoiListItem pois = 2;
+}
+
+enum POI_TYPE {
+    TENCENT = 0;
+    CITY = 1;
+    NATION = 2;
+    BILI = 3;
+}
+
+// 
+message PoiDetail {
+    // 
+    LbsLocation location = 1;
+    // 
+    POI_TYPE type = 2;
+    // 
+    string poi = 3;
+    // 
+    string address = 4;
+    // 
+    string title = 5;
+    // 
+    string show_title = 6;
+    // 
+    double distance = 7;
+    // 
+    string show_distance = 8;
+    // 
+    AdInfoDetail ad_info = 9;
+    // 
+    PoiId ancestors = 10;
+}
+
+// 
+message PoiId {
+    // 
+    string poi = 1;
+    // 
+    int32 type = 2;
+}
+
+// 
+message PoiListItem {
+    // 
+    PoiDetail poi_info = 1;
+    // 
+    int32 user_count = 2;
 }
 
 //
@@ -202,12 +621,89 @@ enum ReserveButtonStatus {
     RESERVE_BUTTON_STATUS_CHECK = 2;   //
 }
 
+// 
+message ReserveCalendarInfo {
+    // 
+    string title = 1;
+    // 
+    int64 startts = 2;
+    // 
+    int64 endts = 3;
+    // 
+    string description = 4;
+    // 
+    string bussinessid = 5;
+}
+
+// 
+message RmDynReq {
+    // 
+    int64 dyn_id = 1;
+    // 
+    string dyn_id_str = 2;
+}
+
+// 
+message RmDynRsp {}
+
+// 
+message RmSpaceTopReq {
+    // 
+    int64 dyn_id = 1;
+    // 
+    int32 teenagers_mode = 2;
+}
+
+// 
+message RmSpaceTopRsp {}
+
+// 
+message SearchPoiListReq {
+    // 
+    double lat = 1;
+    // 
+    double lng = 2;
+    // 
+    int32 page = 3;
+    // 
+    int32 page_size = 4;
+    // 
+    string keyword = 5;
+}
+
+// 
+message SearchPoiListRsp {
+    // 
+    bool has_more = 1;
+    // 
+    repeated PoiListItem pois = 2;
+}
+
+// 
+message SetSpaceTopReq {
+    // 
+    int64 dyn_id = 1;
+    // 
+    int32 teenagers_mode = 2;
+}
+
+// 
+message SetSpaceTopRsp {}
+
 //
 message SubmitCheckReq {
     //
-    bilibili.dynamic.CreateContent content = 1;
+    bilibili.dynamic.common.CreateContent content = 1;
     //
-    repeated bilibili.dynamic.CreatePic pics = 2;
+    repeated bilibili.dynamic.common.CreatePic pics = 2;
+    // 
+    bilibili.dynamic.common.CreateAttachCard attach_card = 3;
+    // 
+    bilibili.dynamic.common.CreateScene scene = 4;
+    // 
+    bilibili.dynamic.common.CreateOption create_option = 5;
+    // 
+    bilibili.dynamic.common.Opus opus = 6;
 }
 
 //

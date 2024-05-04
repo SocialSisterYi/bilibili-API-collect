@@ -2,9 +2,13 @@
 
 ## 获取默认搜索内容（web端）
 
-> https://api.bilibili.com/x/web-interface/search/default
+> https://api.bilibili.com/x/web-interface/wbi/search/default
+
+> ~~https://api.bilibili.com/x/web-interface/search/default~~ （旧链接）
 
 *请求方式：GET*
+
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 默认搜索为搜索框中默认填充内容，用于官方推荐内容，若不输入点击搜索按钮跳转为`url`中的链接
 
@@ -353,6 +357,12 @@ curl 'https://s.search.bilibili.com/main/hotword'
 
 带有转义
 
+**url参数：**
+
+| 参数名  | 类型 | 内容             | 必要性 | 备注 |
+| ------- | ---- | ---------------- | ------ | ---- |
+| limit | num  | 热搜数量 | 非必要   |   1~100   |
+
 **json回复：**
 
 根对象：
@@ -376,16 +386,16 @@ curl 'https://s.search.bilibili.com/main/hotword'
 | ---- | ---- | --------------- | ------------ |
 | 0    | obj  | 榜单第1名       |              |
 | n    | obj  | 榜单第（n+1）名 | 按照名次顺序 |
-| 20   | obj  | 榜单第20名      | 最后一项     |
+| 20/limit   | obj  | 榜单第20名      | 最后一项     |
 
 `list`数组中的对象：
 
 | 字段       | 类型 | 内容     | 备注    |
 | ---------- | ---- | -------- | ------- |
-| position   | num  | 名次      |  1-20   |
+| position   | num  | 名次      |  1-20/limit   |
 | keyword    | str  | 关键词   |         |
 | show_name  | str  | 完整关键词|         |
-| word_type  | num  | 条目属性 | 均返回8 |
+| word_type  | num  | 条目属性 | 4：新<br />5：热<br />6：雾？<br />8：默认 |
 | icon       | str  | 图标url  |         |
 | hot_id     | num  | 热词id  | 大概是吧？    |
 
@@ -400,163 +410,165 @@ curl 'https://app.bilibili.com/x/v2/search/trending/ranking'
 
 ```json
 {
-  "code": 0,
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "trackid": "12666380188451258075",
-    "list": [
-      {
-        "position": 1,
-        "keyword": "流浪地球2刘德华",
-        "show_name": "流浪地球2刘德华造型",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
-        "hot_id": 11003
-      },
-      {
-        "position": 2,
-        "keyword": "QQ飞车手游飞跃黄河",
-        "show_name": "QQ飞车手游飞跃黄河",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
-        "hot_id": 11012
-      },
-      {
-        "position": 3,
-        "keyword": "西工大遭网络攻击最新调查",
-        "show_name": "西工大遭网络攻击最新调查",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png",
-        "hot_id": 10996
-      },
-      {
-        "position": 4,
-        "keyword": "EDG 起诉",
-        "show_name": "EDGJieJie已起诉多家企业",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
-        "hot_id": 11004
-      },
-      {
-        "position": 5,
-        "keyword": "隐入尘烟",
-        "show_name": "隐入尘烟全平台下架",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/e9e7a2d8497d4063421b685e72680bf1cfb99a0d.png",
-        "hot_id": 10992
-      },
-      {
-        "position": 6,
-        "keyword": "原神半年内最良心封神池",
-        "show_name": "原神半年内最良心封神池",
-        "word_type": 8,
-        "hot_id": 10987
-      },
-      {
-        "position": 7,
-        "keyword": "高校回应设国内首个元宇宙院系",
-        "show_name": "高校回应设国内首个元宇宙院系",
-        "word_type": 8,
-        "hot_id": 10988
-      },
-      {
-        "position": 8,
-        "keyword": "美宇宙飞船成功撞击小行星",
-        "show_name": "美宇宙飞船成功撞击小行星",
-        "word_type": 8,
-        "hot_id": 10994
-      },
-      {
-        "position": 9,
-        "keyword": "你薅的羊毛可能已违法",
-        "show_name": "你薅的羊毛可能已违法",
-        "word_type": 8,
-        "hot_id": 10991
-      },
-      {
-        "position": 10,
-        "keyword": "火锅店剩锅底重新给顾客",
-        "show_name": "火锅店剩锅底重新给顾客",
-        "word_type": 1,
-        "hot_id": 11014
-      },
-      {
-        "position": 11,
-        "keyword": "海月",
-        "show_name": "王者海月逆天",
-        "word_type": 8,
-        "hot_id": 10999
-      },
-      {
-        "position": 12,
-        "keyword": "周琦重返NBL",
-        "show_name": "徐静雨评周琦重返NBL",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
-        "hot_id": 11007
-      },
-      {
-        "position": 13,
-        "keyword": "小超梦剑魔连招",
-        "show_name": "小超梦剑魔QA连招",
-        "word_type": 8,
-        "hot_id": 11006
-      },
-      {
-        "position": 14,
-        "keyword": "东八区的先生们已下架",
-        "show_name": "东八区的先生们已下架",
-        "word_type": 8,
-        "hot_id": 10955
-      },
-      {
-        "position": 15,
-        "keyword": "三国杀新武将全惠解",
-        "show_name": "三国杀新武将全惠解",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
-        "hot_id": 11009
-      },
-      {
-        "position": 16,
-        "keyword": "ALGS训练赛",
-        "show_name": "ALGS训练赛",
-        "word_type": 8,
-        "icon": "http://i0.hdslb.com/bfs/feed-admin/4d579fb61f9655316582db193118bba3a721eec0.png",
-        "hot_id": 11011
-      },
-      {
-        "position": 17,
-        "keyword": "王者青白蛇皮肤优化",
-        "show_name": "王者青白蛇皮肤优化",
-        "word_type": 8,
-        "hot_id": 11000
-      },
-      {
-        "position": 18,
-        "keyword": "普京授予斯诺登俄公民身份",
-        "show_name": "普京授予斯诺登俄公民身份",
-        "word_type": 1,
-        "hot_id": 10977
-      },
-      {
-        "position": 19,
-        "keyword": "赛诺角色演示",
-        "show_name": "原神赛诺角色演示",
-        "word_type": 8,
-        "hot_id": 10998
-      },
-      {
-        "position": 20,
-        "keyword": "COD19被玩坏了",
-        "show_name": "COD19被玩坏了",
-        "word_type": 8,
-        "hot_id": 10971
-      }
-    ],
-    "exp_str": "8000#5509#6605#7708"
-  }
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"trackid": "2578006123492681222",
+		"list": [{
+			"position": 1,
+			"keyword": "列车延误乘务员哽咽安抚乘客",
+			"show_name": "列车延误乘务员哽咽安抚乘客",
+			"word_type": 5,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png",
+			"hot_id": 107814,
+			"is_commercial": "0"
+		}, {
+			"position": 2,
+			"keyword": "黑神话悟空首次线下试玩",
+			"show_name": "黑神话悟空首次线下试玩",
+			"word_type": 5,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png",
+			"hot_id": 107781,
+			"is_commercial": "0"
+		}, {
+			"position": 3,
+			"keyword": "22万人打出9.9分的动画",
+			"show_name": "22万人打出9.9分的动画",
+			"word_type": 6,
+			"icon": "https://i0.hdslb.com/bfs/legacy/463fa23613670218608e68247a137dd071c0e9c8.png",
+			"hot_id": 107818,
+			"is_commercial": "0"
+		}, {
+			"position": 4,
+			"keyword": "冰冻近五万年线虫被复活",
+			"show_name": "冰冻近五万年线虫被复活",
+			"word_type": 5,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png",
+			"hot_id": 107774,
+			"is_commercial": "0"
+		}, {
+			"position": 5,
+			"keyword": "LNG前任和现任的较量",
+			"show_name": "LNG前任和现任的较量",
+			"word_type": 4,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png",
+			"hot_id": 107853,
+			"is_commercial": "0"
+		}, {
+			"position": 6,
+			"keyword": "LOL手游剑姬女警新皮",
+			"show_name": "LOL手游剑姬女警新皮",
+			"word_type": 8,
+			"hot_id": 107841,
+			"is_commercial": "0"
+		}, {
+			"position": 7,
+			"keyword": "抽奖中金条却因过号被取消",
+			"show_name": "抽奖中金条却因过号被取消",
+			"word_type": 8,
+			"hot_id": 107817,
+			"is_commercial": "0"
+		}, {
+			"position": 8,
+			"keyword": "雪王到长城开蜜雪冰城",
+			"show_name": "雪王到长城开蜜雪冰城",
+			"word_type": 4,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png",
+			"hot_id": 107849,
+			"is_commercial": "0"
+		}, {
+			"position": 9,
+			"keyword": "堡垒之夜联动终结者",
+			"show_name": "堡垒之夜联动终结者",
+			"word_type": 8,
+			"hot_id": 107846,
+			"is_commercial": "0"
+		}, {
+			"position": 10,
+			"keyword": "王者新英雄海诺动画",
+			"show_name": "王者新英雄海诺动画",
+			"word_type": 4,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png",
+			"hot_id": 107870,
+			"is_commercial": "0"
+		}, {
+			"position": 11,
+			"keyword": "周星驰功夫10万字拆解",
+			"show_name": "周星驰功夫10万字拆解",
+			"word_type": 4,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png",
+			"hot_id": 107848,
+			"is_commercial": "0"
+		}, {
+			"position": 12,
+			"keyword": "张杰铁粉彭奶奶去世",
+			"show_name": "张杰铁粉彭奶奶去世",
+			"word_type": 4,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png",
+			"hot_id": 107840,
+			"is_commercial": "0"
+		}, {
+			"position": 13,
+			"keyword": "李玟二姐回应礼服争议",
+			"show_name": "李玟二姐回应礼服争议",
+			"word_type": 8,
+			"hot_id": 107833,
+			"is_commercial": "0"
+		}, {
+			"position": 14,
+			"keyword": "洪水中飘来冰箱市民取走饮料",
+			"show_name": "洪水中飘来冰箱市民取走饮料",
+			"word_type": 8,
+			"hot_id": 107802,
+			"is_commercial": "0"
+		}, {
+			"position": 15,
+			"keyword": "LOL斗魂觉醒佛耶戈语音",
+			"show_name": "LOL斗魂觉醒佛耶戈语音",
+			"word_type": 8,
+			"hot_id": 107790,
+			"is_commercial": "0"
+		}, {
+			"position": 16,
+			"keyword": "全面落实带薪休假制度",
+			"show_name": "全面落实带薪休假制度",
+			"word_type": 4,
+			"icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png",
+			"hot_id": 107839,
+			"is_commercial": "0"
+		}, {
+			"position": 17,
+			"keyword": "花少北 把病娇治好了",
+			"show_name": "花少北 把病娇治好了",
+			"word_type": 8,
+			"hot_id": 107782,
+			"is_commercial": "0"
+		}, {
+			"position": 18,
+			"keyword": "2.28米高的村超娃",
+			"show_name": "2.28米高的村超娃",
+			"word_type": 8,
+			"hot_id": 107805,
+			"is_commercial": "0"
+		}, {
+			"position": 19,
+			"keyword": "当在动漫中不小心撞到",
+			"show_name": "当在动漫中不小心撞到",
+			"word_type": 8,
+			"hot_id": 107832,
+			"is_commercial": "0"
+		}, {
+			"position": 20,
+			"keyword": "台风卡努路径趋向日本",
+			"show_name": "台风卡努路径趋向日本",
+			"word_type": 8,
+			"hot_id": 107800,
+			"is_commercial": "0"
+		}],
+		"exp_str": "8000#5508#6604#7703",
+		"hotword_egg_info": "0"
+	}
 }
 ```
 

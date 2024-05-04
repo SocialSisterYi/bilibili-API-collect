@@ -1,6 +1,6 @@
 # 稍后再看
 
-<img src="/imgs/toview.png" width="25" height="20"/>
+<img src="../../assets/img/toview.png" width="25" height="20"/>
 
 ## 视频添加稍后再看
 
@@ -170,14 +170,14 @@ curl 'https://space.bilibili.com/ajax/channel/addAllToView' \
 | pubdate                         | num     | 稿件发布时间                   | 时间戳                                                       |
 | ctime                           | num     | 用户提交稿件的时间             | 时间戳                                                       |
 | desc                            | str     | 视频简介                       |                                                              |
-| state                           | num     | 视频状态                       | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`state`备注 |
-| ~~attribute~~（仅做历史性保留） | ~~num~~ | ~~稿件属性位配置~~             | 本字段已被删除~~略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`attribute`备注~~ |
+| state                           | num     | 视频状态                       | 略，见[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的`state`备注 |
+| ~~attribute~~（仅做历史性保留） | ~~num~~ | ~~稿件属性位配置~~             | 本字段已被删除~~略，见[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的`attribute`备注~~ |
 | duration                        | num     | 稿件总时长（所有分P）          | 单位为秒                                                     |
-| rights                          | obj     | 稿件属性标志                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`rights`对象 |
-| owner                           | obj     | 稿件UP主信息                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
-| stat                            | obj     | 稿件状态数                     | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
+| rights                          | obj     | 稿件属性标志                   | 略，见[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的`rights`对象 |
+| owner                           | obj     | 稿件UP主信息                   | 略，见[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的`owner`对象 |
+| stat                            | obj     | 稿件状态数                     | 略，见[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的`stat`对象 |
 | dynamic                         | str     | 视频同步发布的的动态的文字内容 | 无为空                                                       |
-| dimension                       | obj     | 稿件1P分辨率                   | 略，见[获取视频详细信息（web端）](/video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
+| dimension                       | obj     | 稿件1P分辨率                   | 略，见[获取视频详细信息（web端）](../video/info.md#获取视频详细信息（web端）)中的`dimension`对象 |
 | count                           | num     | 稿件分P数                      | 非投稿视频无此项                                             |
 | cid                             | num     | 视频cid                        |                                                              |
 | progress                        | num     | 观看进度时间                   | 单位为秒                                                     |

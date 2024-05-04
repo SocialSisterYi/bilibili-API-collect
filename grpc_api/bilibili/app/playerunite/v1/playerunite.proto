@@ -13,18 +13,6 @@ service Player {
 }
 
 // 
-message PlayViewUniteReq {
-    // 请求资源VOD信息
-    bilibili.playershared.VideoVod vod = 1;
-    // 
-    string spmid = 2;
-    // 
-    string from_spmid = 3;
-    // 补充信息, 如ep_id等
-    map<string, string> extra_content = 4;
-}
-
-// 
 message PlayViewUniteReply {
     // 音视频流信息
     bilibili.playershared.VodInfo vod_info = 1;
@@ -42,4 +30,28 @@ message PlayViewUniteReply {
     bilibili.playershared.QnTrialInfo qn_trial_info = 7;
     // 
     bilibili.playershared.History history = 8;
+    // 
+    bilibili.playershared.ViewInfo view_info = 9;
+    // 
+    bilibili.playershared.FragmentVideo fragment_video = 10;
+}
+
+// 
+message PlayViewUniteReq {
+    // 请求资源VOD信息
+    bilibili.playershared.VideoVod vod = 1;
+    // 
+    string spmid = 2;
+    // 
+    string from_spmid = 3;
+    // 补充信息, 如ep_id等
+    map<string, string> extra_content = 4;
+    // 
+    string bvid = 5;
+    // 
+    string ad_extra = 6;
+    // 
+    bilibili.playershared.Fragment fragment = 7;
+    // 
+    string from_scene = 8;
 }

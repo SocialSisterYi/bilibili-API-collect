@@ -48,6 +48,8 @@ service View {
     rpc SeasonWidgetExpose(SeasonWidgetExposeReq) returns (SeasonWidgetExposeReply);
     //
     rpc GetArcsPlayer(GetArcsPlayerReq) returns (GetArcsPlayerReply);
+    //
+    rpc GetUser(GetUserReq) returns (GetUserReply);
 }
 
 // 活动页资源包
@@ -879,6 +881,26 @@ message GetArcsPlayerReq {
     repeated PlayAv play_avs = 1;
     //
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 2;
+}
+
+//
+message GetUserReq {
+    //
+    repeated int64 mids = 1;
+    //
+    int64 aid = 2;
+    // 
+    int64 up_mid = 3;
+    //
+    bool only_fans = 4;
+}
+
+//
+message GetUserReply {
+    // 
+    repeated User like_list = 1;
+    // 
+    string title = 2;
 }
 
 //
@@ -2119,6 +2141,27 @@ message TFPanelCustomized {
 message TIcon {
     // TAG图标url
     string icon = 1;
+}
+
+//
+message User {
+    //
+    int64 mid = 1;
+    //
+    string name = 2;
+    //
+    string face = 3;
+    //
+    bool isFollow = 4;
+    //
+    int64 isAttention = 5;
+    //
+    int64 isInterrelation = 6;
+    //
+    int64 follower = 7;
+    //
+    string interactDesc = 8;
+    //
 }
 
 // UGC视频合集信息

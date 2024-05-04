@@ -10,11 +10,45 @@ import "bilibili/app/playurl/v1/playurl.proto";
 // 听视频
 service Listener {
     //
+    rpc BkarcDetails (BKArcDetailsReq) returns (BKArcDetailsResp);
+    // 投币
+    rpc CoinAdd (CoinAddReq) returns (CoinAddResp);
+    //
+    rpc Event(EventReq) returns (EventResp);
+    // 创建收藏夹
+    rpc FavFolderCreate (FavFolderCreateReq) returns (FavFolderCreateResp);
+    //
+    rpc FavFolderDelete (FavFolderDeleteReq) returns (FavFolderDeleteResp);
+    // 收藏夹详细信息
+    rpc FavFolderDetail (FavFolderDetailReq) returns (FavFolderDetailResp);
+    // 用户收藏夹列表
+    rpc FavFolderList (FavFolderListReq) returns (FavFolderListResp);
+    //
+    rpc FavItemAdd (FavItemAddReq) returns (FavItemAddResp);
+    // 批量处理收藏
+    rpc FavItemBatch (FavItemBatchReq) returns (FavItemBatchResp);
+    //
+    rpc FavItemDel (FavItemDelReq) returns (FavItemDelResp);
+    //
+    rpc FavoredInAnyFolders (FavoredInAnyFoldersReq) returns (FavoredInAnyFoldersResp);
+    //
+    rpc Medialist(MedialistReq) returns (MedialistResp);
+    // 每日播单详情
+    rpc PickCardDetail (PickCardDetailReq) returns (PickCardDetailResp);
+    // 每日播单列表
+    rpc PickFeed (PickFeedReq) returns (PickFeedResp);
+    //
     rpc Ping (google.protobuf.Empty) returns (google.protobuf.Empty);
+    // 播放上报
+    rpc PlayActionReport (PlayActionReportReq) returns (google.protobuf.Empty);
+    //
+    rpc PlayHistory (PlayHistoryReq) returns (PlayHistoryResp);
+    // 添加历史记录
+    rpc PlayHistoryAdd (PlayHistoryAddReq) returns (google.protobuf.Empty);
+    //
+    rpc PlayHistoryDel (PlayHistoryDelReq) returns (google.protobuf.Empty);
     // 获取音频URL
     rpc PlayUrl (PlayURLReq) returns (PlayURLResp);
-    //
-    rpc BkarcDetails (BKArcDetailsReq) returns (BKArcDetailsResp);
     //
     rpc Playlist (PlaylistReq) returns (PlaylistResp);
     //
@@ -23,62 +57,28 @@ service Listener {
     rpc PlaylistDel (PlaylistDelReq) returns (google.protobuf.Empty);
     // 推荐列表
     rpc RcmdPlaylist (RcmdPlaylistReq) returns (RcmdPlaylistResp);
-    //
-    rpc PlayHistory (PlayHistoryReq) returns (PlayHistoryResp);
-    // 添加历史记录
-    rpc PlayHistoryAdd (PlayHistoryAddReq) returns (google.protobuf.Empty);
-    //
-    rpc PlayHistoryDel (PlayHistoryDelReq) returns (google.protobuf.Empty);
-    // 播放上报
-    rpc PlayActionReport (PlayActionReportReq) returns (google.protobuf.Empty);
-    // 三联
-    rpc TripleLike (TripleLikeReq) returns (TripleLikeResp);
     // 点赞
     rpc ThumbUp (ThumbUpReq) returns (ThumbUpResp);
-    // 投币
-    rpc CoinAdd (CoinAddReq) returns (CoinAddResp);
-    //
-    rpc FavItemAdd (FavItemAddReq) returns (FavItemAddResp);
-    //
-    rpc FavItemDel (FavItemDelReq) returns (FavItemDelResp);
-    // 批量处理收藏
-    rpc FavItemBatch (FavItemBatchReq) returns (FavItemBatchResp);
-    //
-    rpc FavoredInAnyFolders (FavoredInAnyFoldersReq) returns (FavoredInAnyFoldersResp);
-    // 用户收藏夹列表
-    rpc FavFolderList (FavFolderListReq) returns (FavFolderListResp);
-    // 收藏夹详细信息
-    rpc FavFolderDetail (FavFolderDetailReq) returns (FavFolderDetailResp);
-    // 创建收藏夹
-    rpc FavFolderCreate (FavFolderCreateReq) returns (FavFolderCreateResp);
-    //
-    rpc FavFolderDelete (FavFolderDeleteReq) returns (FavFolderDeleteResp);
-    // 每日播单列表
-    rpc PickFeed (PickFeedReq) returns (PickFeedResp);
-    // 每日播单详情
-    rpc PickCardDetail (PickCardDetailReq) returns (PickCardDetailResp);
-    //
-    rpc Medialist(MedialistReq) returns (MedialistResp);
-    //
-    rpc Event(EventReq) returns (EventResp);
+    // 三联
+    rpc TripleLike (TripleLikeReq) returns (TripleLikeResp);
 }
 
 //
 service Music {
     //
-    rpc FavTabShow(FavTabShowReq) returns (FavTabShowResp);
+    rpc Click(ClickReq) returns (ClickResp);
     //
-    rpc MainFavMusicSubTabList(MainFavMusicSubTabListReq) returns (MainFavMusicSubTabListResp);
+    rpc FavTabShow(FavTabShowReq) returns (FavTabShowResp);
     //
     rpc MainFavMusicMenuList(MainFavMusicMenuListReq) returns (MainFavMusicMenuListResp);
     //
-    rpc MenuEdit(MenuEditReq) returns (MenuEditResp);
+    rpc MainFavMusicSubTabList(MainFavMusicSubTabListReq) returns (MainFavMusicSubTabListResp);
     //
     rpc MenuDelete(MenuDeleteReq) returns (MenuDeleteResp);
     //
-    rpc MenuSubscribe(MenuSubscribeReq) returns (MenuSubscribeResp);
+    rpc MenuEdit(MenuEditReq) returns (MenuEditResp);
     //
-    rpc Click(ClickReq) returns (ClickResp);
+    rpc MenuSubscribe(MenuSubscribeReq) returns (MenuSubscribeResp);
 }
 
 //
@@ -287,7 +287,7 @@ message DetailItem {
     //
     string history_tag = 13;
     //
-    bilibili.app.interfaces.v1.DeviceType device_type = 14;
+    bilibili.app.interface.v1.DeviceType device_type = 14;
     //
     FavFolder ugc_season_info = 15;
 }

@@ -84,6 +84,95 @@ curl 'https://member.bilibili.com/x/web/index/stat' \
 
 </details>
 
+## 新版UP主视频数据比较
+
+> https://member.bilibili.com/x/web/data/archive_diagnose/compare
+
+*请求方式：GET*
+
+认证方式：仅可Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名 | 类型 | 内容         | 必要性 | 备注           |
+| ------ | ---- | ------------ | ------ | -------------- |
+| t   | num  | 时间戳 | 可选   |  |
+| size   | num  | 比较最近的N条视频 | 可选，默认5   | 似乎没有最大值，或者最大值很大 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        | 作用尚不明确                  |
+| data    | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段       | 类型 | 内容       | 备注 |
+| ---------- | ---- | ---------- | ---- |
+| list | list | 最近的视频 | |
+
+`data`中的`list`项：
+> [!TIP]
+> 这里的数字一般都是百分比，小数点后保留两位，100代表1%，10000代表100%
+
+| 字段       | 类型 | 内容       | 备注 |
+| ---------- | ---- | ---------- | ---- |
+| aid       | num  | av号 |      |
+| bvid | str | bv号 | |
+| cover | str | 封面url | |
+|title| str|标题|
+|pubtime|num|发布时间|
+|duration|num|视频长度（秒）|
+|play|num|播放数||
+|vt|num|未知
+|like|num|点赞数
+|comment|num|评论数
+|dm|num|弹幕数
+|fav|num|收藏数|
+|coin|num|投币数
+|share|num|分享数
+|full_play_ratio|num|完播比，用户平均在百分之多少退出
+|play_viewer_rate|num|游客播放数，这个视频有多少是游客播放
+|active_fans_rate|num|粉丝观看率，多少粉丝看了这个视频
+|active_fans_med|num|?
+|tm_rate|num|封标点击率
+|tm_rate_med|num|你自己平均封标点击率
+|tm_fan_simi_rate_med|num|同类up粉丝封标点击率
+|tm_viewer_simi_rate_med|num|同类up游客封标点击率
+|tm_fan_rate|num|粉丝封标点击率
+|tm_viewer_rate|num|游客封标点击率
+|tm_pass_rate|num|封标点击率超过n%同类稿件
+|tm_fan_pass_rate|num|粉丝封标点击率超过n%同类稿件
+|tm_viewer_pass_rate|num|游客封标点击率超过n%同类稿件
+|crash_rate|num|3秒退出率
+|crash_rate_med|num|?
+|crash_fan_simi_rate_med|num|同类up粉丝3秒退出率
+|crash_viewer_simi_rate_med|num|同类up游客3秒退出率
+|crash_fan_rate|num|粉丝3秒退出率
+|crash_viewer_rate|num|游客3秒退出率
+|interact_rate|num|互动率
+|interact_rate_med|num|
+|interact_fan_simi_rate_med|num|同类up粉丝互动率
+|interact_viewer_simi_rate_med|num|同类up游客互动率
+|interact_fan_rate|num|粉丝互动率
+|interact_viewer_rate|num|游客互动率
+|avg_play_time|num|平均播放时间|注意：此字段总是0，可能b站正在写代码，或者和播放量改播放时长有关？
+|total_new_attention_cnt|num|涨粉
+|play_trans_fan_rate|num|播转粉率
+|play_trans_fan_rate_med|num|其他up平均播转粉率
+
+**示例：**
+
+```shell
+curl 'https://member.bilibili.com/x/web/data/archive_diagnose/compare?size=10' \
+-b 'SESSDATA=xxx'
+```
+
 ## UP主专栏状态数据
 
 > https://member.bilibili.com/x/web/data/article
@@ -156,7 +245,7 @@ curl 'https://member.bilibili.com/x/web/data/article' \
 
 ## 视频数据增量趋势
 
-> https://member.bilibili.com/x/web/data/article/thirty 
+> https://member.bilibili.com/x/web/data/pandect 
 
 *请求方式：GET*
 

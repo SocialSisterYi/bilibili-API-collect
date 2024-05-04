@@ -64,7 +64,7 @@ message CreateTopic {
 // 
 message CreatTask {
     // 
-    string task = 1;
+    string name = 1;
 }
 
 //

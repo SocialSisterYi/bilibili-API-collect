@@ -2,7 +2,7 @@
 
 ## 导航栏用户信息
 
-> https://api.bilibili.com/nav（带有转义）
+> ~~https://api.bilibili.com/nav（带有转义）~~ (已失效)
 >
 > https://api.bilibili.com/x/web-interface/nav（原始数据）
 
@@ -27,30 +27,33 @@
 | -------------------- | ---- | ---------------- | ------------------------------------------------- |
 | isLogin              | bool | 是否已登录       | false：未登录<br />true：已登录                   |
 | email_verified       | num  | 是否验证邮箱地址 | 0：未验证<br />1：已验证                          |
-| face                 | str  | 用户头像url      |                                                   |
+| face                 | str  | 用户头像 url     |                                                   |
 | level_info           | obj  | 等级信息         |                                                   |
-| mid                  | num  | 用户mid          |                                                   |
+| mid                  | num  | 用户 mid         |                                                   |
 | mobile_verified      | num  | 是否验证手机号   | 0：未验证<br />1：已验证                          |
 | money                | num  | 拥有硬币数       |                                                   |
 | moral                | num  | 当前节操值       | 上限为70                                          |
 | official             | obj  | 认证信息         |                                                   |
-| officialVerify       | obj  | 认证信息2        |                                                   |
+| officialVerify       | obj  | 认证信息 2       |                                                   |
 | pendant              | obj  | 头像框信息       |                                                   |
-| scores               | num  | 0                | 作用尚不明确                                      |
+| scores               | num  | （？）           |                                                   |
 | uname                | str  | 用户昵称         |                                                   |
 | vipDueDate           | num  | 会员到期时间     | 毫秒 时间戳                                       |
 | vipStatus            | num  | 会员开通状态     | 0：无<br />1：有                                  |
 | vipType              | num  | 会员类型         | 0：无<br />1：月度大会员<br />2：年度及以上大会员 |
 | vip_pay_type         | num  | 会员开通状态     | 0：无<br />1：有                                  |
-| vip_theme_type       | num  | 0                | 作用尚不明确                                      |
+| vip_theme_type       | num  | （？）           |                                                   |
 | vip_label            | obj  | 会员标签         |                                                   |
 | vip_avatar_subscript | num  | 是否显示会员图标 | 0：不显示<br />1：显示                            |
 | vip_nickname_color   | str  | 会员昵称颜色     | 颜色码                                            |
 | wallet               | obj  | B币钱包信息      |                                                   |
 | has_shop             | bool | 是否拥有推广商品 | false：无<br />true：有                           |
-| shop_url             | str  | 商品推广页面url  |                                                   |
-| allowance_count      | num  | 0                | 作用尚不明确                                      |
-| answer_status        | num  | 0                | 作用尚不明确                                      |
+| shop_url             | str  | 商品推广页面 url |                                                   |
+| allowance_count      | num  | （？）           |                                                   |
+| answer_status        | num  | （？）           |                                                   |
+| is_senior_member     | num  | 是否硬核会员     | 0：非硬核会员<br />1：硬核会员                    |
+| wbi_img              | obj  | Wbi 签名实时口令 | 该字段即使用户未登录也存在                        |
+| is_jury              | bool | 是否风纪委员     | true：风纪委员<br />false：非风纪委员             |
 
 `data`中的`level_info`对象：
 
@@ -65,7 +68,7 @@
 
 | 字段  | 类型 | 内容     | 备注                                              |
 | ----- | ---- | -------- | ------------------------------------------------- |
-| role  | num  | 认证类型 | 0：无<br />1 2 7：个人认证<br />3 4 5 6：机构认证 |
+| role  | num  | 认证类型 | 见[用户认证类型一览](../user/official_role.md) |
 | title | str  | 认证信息 | 无为空                                            |
 | desc  | str  | 认证备注 | 无为空                                            |
 | type  | num  | 是否认证 | -1：无<br />0：认证                               |
@@ -79,35 +82,44 @@
 
 `data`中的`pendant`对象：
 
-| 字段   | 类型 | 内容        | 备注         |
-| ------ | ---- | ----------- | ------------ |
-| pid    | num  | 挂件id      |              |
-| name   | str  | 挂件名称    |              |
-| image  | str  | 挂件图片url |              |
-| expire | num  | 0           | 作用尚不明确 |
+| 字段   | 类型 | 内容        | 备注 |
+| ------ | ---- | ----------- | ---- |
+| pid    | num  | 挂件id      |      |
+| name   | str  | 挂件名称    |      |
+| image  | str  | 挂件图片url |      |
+| expire | num  | （？）      |      |
 
 `data`中的`vip_label`对象：
 
 | 字段        | 类型 | 内容     | 备注                                                         |
 | ----------- | ---- | -------- | ------------------------------------------------------------ |
-| path        | str  | 空       | 作用尚不明确                                                 |
+| path        | str  | （？）   |                                                              |
 | text        | str  | 会员名称 |                                                              |
 | label_theme | str  | 会员标签 | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员 |
 
 `data`中的`wallet`对象：
 
-| 字段            | 类型 | 内容          | 备注         |
-| --------------- | ---- | ------------- | ------------ |
-| mid             | num  | 登录用户mid   |              |
-| bcoin_balance   | num  | 拥有B币数     |              |
-| coupon_balance  | num  | 每月奖励B币数 |              |
-| coupon_due_time | num  | 0             | 作用尚不明确 |
+| 字段            | 类型 | 内容          | 备注 |
+| --------------- | ---- | ------------- | ---- |
+| mid             | num  | 登录用户mid   |      |
+| bcoin_balance   | num  | 拥有B币数     |      |
+| coupon_balance  | num  | 每月奖励B币数 |      |
+| coupon_due_time | num  | （？）        |      |
+
+`data`中的`wbi_img`对象：
+
+| 字段    | 类型 | 内容                            | 备注                                     |
+| ------- | ---- | ------------------------------- | ---------------------------------------- |
+| img_url | str  | Wbi 签名参数 `imgKey`的伪装 url | 详见文档 [Wbi 签名](../misc/sign/wbi.md) |
+| sub_url | str  | Wbi 签名参数 `subKey`的伪装 url | 详见文档 [Wbi 签名](../misc/sign/wbi.md) |
 
 **示例：**
 
+**登录状态：**
+
 ```shell
-curl 'https://api.bilibili.com/nav' \
--b 'SESSDATA=xxx'
+curl 'https://api.bilibili.com/x/web-interface/nav' \
+	-b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -115,64 +127,136 @@ curl 'https://api.bilibili.com/nav' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "isLogin":true,
-        "email_verified":1,
-        "face":"http://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
-        "level_info":{
-            "current_level":5,
-            "current_min":10800,
-            "current_exp":17065,
-            "next_exp":28800
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "isLogin": true,
+        "email_verified": 1,
+        "face": "https://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
+        "face_nft": 0,
+        "face_nft_type": 0,
+        "level_info": {
+            "current_level": 6,
+            "current_min": 28800,
+            "current_exp": 52689,
+            "next_exp": "--"
         },
-        "mid":293793435,
-        "mobile_verified":1,
-        "money":33.4,
-        "moral":70,
-        "official":{
-            "role":0,
-            "title":"",
-            "desc":"",
-            "type":-1
+        "mid": 293793435,
+        "mobile_verified": 1,
+        "money": 172.4,
+        "moral": 70,
+        "official": {
+            "role": 0,
+            "title": "",
+            "desc": "",
+            "type": -1
         },
-        "officialVerify":{
-            "type":-1,
-            "desc":""
+        "officialVerify": {
+            "type": -1,
+            "desc": ""
         },
-        "pendant":{
-            "pid":0,
-            "name":"",
-            "image":"",
-            "expire":0,
-            "image_enhance":""
+        "pendant": {
+            "pid": 2511,
+            "name": "初音未来13周年",
+            "image": "https://i0.hdslb.com/bfs/garb/item/4f8f3f1f2d47f0dad84f66aa57acd4409ea46361.png",
+            "expire": 0,
+            "image_enhance": "https://i0.hdslb.com/bfs/garb/item/fe0b83b53e2342b16646f6e7a9370d8a867decdb.webp",
+            "image_enhance_frame": "https://i0.hdslb.com/bfs/garb/item/127c507ec8448be30cf5f79500ecc6ef2fd32f2c.png"
         },
-        "scores":0,
-        "uname":"社会易姐QwQ",
-        "vipDueDate":1612454400000,
-        "vipStatus":1,
-        "vipType":2,
-        "vip_pay_type":1,
-        "vip_theme_type":0,
-        "vip_label":{
-            "path":"",
-            "text":"年度大会员",
-            "label_theme":"annual_vip"
+        "scores": 0,
+        "uname": "社会易姐QwQ",
+        "vipDueDate": 1707494400000,
+        "vipStatus": 1,
+        "vipType": 2,
+        "vip_pay_type": 0,
+        "vip_theme_type": 0,
+        "vip_label": {
+            "path": "",
+            "text": "年度大会员",
+            "label_theme": "annual_vip",
+            "text_color": "#FFFFFF",
+            "bg_style": 1,
+            "bg_color": "#FB7299",
+            "border_color": "",
+            "use_img_label": true,
+            "img_label_uri_hans": "",
+            "img_label_uri_hant": "",
+            "img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/8d4f8bfc713826a5412a0a27eaaac4d6b9ede1d9.png",
+            "img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/VEW8fCC0hg.png"
         },
-        "vip_avatar_subscript":1,
-        "vip_nickname_color":"#FB7299",
-        "wallet":{
-            "mid":293793435,
-            "bcoin_balance":8,
-            "coupon_balance":5,
-            "coupon_due_time":0
+        "vip_avatar_subscript": 1,
+        "vip_nickname_color": "#FB7299",
+        "vip": {
+            "type": 2,
+            "status": 1,
+            "due_date": 1707494400000,
+            "vip_pay_type": 0,
+            "theme_type": 0,
+            "label": {
+                "path": "",
+                "text": "年度大会员",
+                "label_theme": "annual_vip",
+                "text_color": "#FFFFFF",
+                "bg_style": 1,
+                "bg_color": "#FB7299",
+                "border_color": "",
+                "use_img_label": true,
+                "img_label_uri_hans": "",
+                "img_label_uri_hant": "",
+                "img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/8d4f8bfc713826a5412a0a27eaaac4d6b9ede1d9.png",
+                "img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/VEW8fCC0hg.png"
+            },
+            "avatar_subscript": 1,
+            "nickname_color": "#FB7299",
+            "role": 3,
+            "avatar_subscript_url": "",
+            "tv_vip_status": 0,
+            "tv_vip_pay_type": 0,
+            "tv_due_date": 1640793600
         },
-        "has_shop":false,
-        "shop_url":"",
-        "allowance_count":0,
-        "answer_status":0
+        "wallet": {
+            "mid": 293793435,
+            "bcoin_balance": 5,
+            "coupon_balance": 5,
+            "coupon_due_time": 0
+        },
+        "has_shop": true,
+        "shop_url": "https://gf.bilibili.com?msource=main_station",
+        "allowance_count": 0,
+        "answer_status": 0,
+        "is_senior_member": 1,
+        "wbi_img": {
+            "img_url": "https://i0.hdslb.com/bfs/wbi/653657f524a547ac981ded72ea172057.png",
+            "sub_url": "https://i0.hdslb.com/bfs/wbi/6e4909c702f846728e64f6007736a338.png"
+        },
+        "is_jury": false
+    }
+}
+```
+
+</details>
+
+**未登录状态：**
+
+```shell
+curl 'https://api.bilibili.com/x/web-interface/nav'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": -101,
+    "message": "账号未登录",
+    "ttl": 1,
+    "data": {
+        "isLogin": false,
+        "wbi_img": {
+            "img_url": "https://i0.hdslb.com/bfs/wbi/653657f524a547ac981ded72ea172057.png",
+            "sub_url": "https://i0.hdslb.com/bfs/wbi/6e4909c702f846728e64f6007736a338.png"
+        },
     }
 }
 ```
