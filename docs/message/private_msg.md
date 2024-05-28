@@ -694,6 +694,8 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 
 认证方式：Cookie（SESSDATA）
 
+**仅支持发送 `msg[msg_type]` 为 `1`、`2` 或 `5` 的私信**
+
 调用该接口同时会将该会话的最近一条私信设置为已读
 
 **正文参数（application/x-www-form-urlencoded）：**
@@ -703,7 +705,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 | msg[sender_uid]       | num  | 发送者mid                | 必要   | 必须为自己的 mid                                     |
 | msg[receiver_id]      | num  | 接收者id                 | 必要   | `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
 | msg[receiver_type]    | num  | 接收者类型               | 必要   | 1：用户<br />2：粉丝团                               |
-| msg[msg_type]         | num  | 消息类型                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md) |
+| msg[msg_type]         | num  | 消息类型                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md)<br />**此接口仅支持传入 `1`、`2` 或 `5`** |
 | msg[msg_status]       | num  | 消息状态                 | 非必要 | 恒为 `0`                                             |
 | msg[dev_id]           | str  | dev_id                   | 必要   | 实质上即 UUID（版本 4），**生成方式在下面**          |
 | msg[timestamp]        | num  | 当前时间戳（秒）         | 必要   |                                                      |
