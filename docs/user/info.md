@@ -717,13 +717,13 @@ curl -G 'https://api.bilibili.com/x/web-interface/card' \
         "space": {
             "s_img": "http://i1.hdslb.com/bfs/space/768cc4fd97618cf589d23c2711a1d1a729f42235.png",
             "l_img": "http://i1.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png"
-        }
-    },
-    "following": true,
-    "archive_count": 37,
-    "article_count": 0,
-    "follower": 969999,
-    "like_num": 3547978
+        },
+        "following": true,
+        "archive_count": 37,
+        "article_count": 0,
+        "follower": 969999,
+        "like_num": 3547978
+    }
 }
 ```
 

@@ -10,7 +10,7 @@
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 |--------|-----|------|--------|-----|
-| mid  | num | UP 主 ID | 必要 |  |
+| mid  | num | 用户 mid | 必要 | 似乎不一定需要创建者的 mid，随意的用户 mid 就能成功请求。 |
 | season_id  | num | 视频合集 ID | 必要 |  |
 | sort_reverse  | bool | 未知 | 可选 |  |
 | page_num  | num | 页码索引 | 可选 |  |
@@ -31,7 +31,7 @@
 
 | 字段                    | 类型    | 内容                           | 备注                                                         |
 | ----------------------- | ------- | ------------------------------ | ----------------------------------------------------------- |
-| aids                    | array     | 稿件avid                       | 对应下方数组中内容 aid                                       |
+| aids                    | array     | 稿件 avid 列表                       | 对应下方数组中内容 aid                                       |
 | archives                | array     | 合集中的视频                    |                                                            |
 | meta                    | obj       | 合集元数据                      |                                                            |
 | page                    | obj       | 分页信息                        |                                                            |
@@ -48,8 +48,8 @@
 
 | 字段       | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
-| aid | num | 稿件avid ||
-| bvid | str | 稿件bvid ||
+| aid | num | 稿件 avid ||
+| bvid | str | 稿件 bvid ||
 | ctime | num | 创建时间 | Unix 时间戳 |
 | duration | num | 视频时长 | 单位为秒 |
 | enable_vt | bool | false ||
@@ -75,10 +75,10 @@
 | 字段              | 类型  | 内容           | 备注     |
 |-----------------|-----|--------------|--------|
 | category | num | 0 |  |
-| covr | str | 合集封面 URL |  |
+| cover | str | 合集封面 URL |  |
 | description | str | 合集描述 |  |
 | mid | num | UP 主 ID |  |
-| name | num | 合集标题 |  |
+| name | str | 合集标题 |  |
 | ptime | num | 发布时间 | Unix 时间戳 |
 | season_id | num | 合集 ID |  |
 | total | num | 合集内视频数量 |  |
