@@ -23,7 +23,7 @@
 
 ## Demo
 
-该 Demo 提供 [Python](#Python) 和 [Java](#Java) 和 [TS/JS](#TypeScript/JavaScript) 和 [Swift](#Swift) 语言例程
+该 Demo 提供 [Python](#Python)、[Java](#Java)、[TS/JS](#TypeScript/JavaScript)、[Swift](#Swift)、[C++](#CplusPlus) 语言例程
 
 使用 appkey = `1d8b6e7d45233436`, appsec = `560c52ccd288fed045859ed18bffd973` 对如下 `params` 参数进行签名
 
@@ -213,4 +213,77 @@ print(signResult)
 ```
 
 输出结果为：01479cf20504d865519ac50f33ba3a7d
+
+
+
+### CplusPlus
+
+需要 c++ 23 标准库，[cpr](https://github.com/libcpr/cpr)、[cryptopp](https://github.com/weidai11/cryptopp)、[nlohmann/json](https://github.com/nlohmann/json) 等依赖
+
+```c++
+#include <print>    // std::println
+
+/// thrid party libraries
+#include <cpr/cpr.h>            // cpr::util::urlEncode()
+#include <cryptopp/md5.h>
+#include <cryptopp/hex.h>
+#include <nlohmann/json.hpp>
+
+/*
+ * 注意，假定不会发生错误！
+ */
+
+/* 获取 md5 hex(lower) */
+std::string Get_md5_hex(const std::string &Input_str) {
+    CryptoPP::Weak1::MD5 hash;
+    std::string          md5_hex;
+
+    CryptoPP::StringSource ss(Input_str, true,
+        new CryptoPP::HashFilter(hash,
+            new CryptoPP::HexEncoder(
+                new CryptoPP::StringSink(md5_hex)
+            )
+        )
+    );
+
+    std::ranges::for_each(md5_hex, [](char &x) { x = std::tolower(x); });
+    return md5_hex;
+}
+
+/* 将 json 转换为 url 编码字符串 */
+std::string Json_to_url_encode_str(const nlohmann::json &Json) {
+    std::string encode_str;
+    for (const auto &[key, value]: Json.items()) {
+        encode_str.append(key).append("=").append(cpr::util::urlEncode(value.is_string() ? value.get<std::string>() : to_string(value))).append("&");
+    }
+
+    // remove the last '&'
+    encode_str.resize(encode_str.size() - 1, '\0');
+    return encode_str;
+}
+
+std::string App_sign(nlohmann::json &Params, const std::string &App_key, const std::string &App_sec) {
+    Params["appkey"] = App_key;
+    Params["sign"]   = Get_md5_hex(Json_to_url_encode_str(Params) + App_sec);
+    return Json_to_url_encode_str(Params);
+}
+
+int main() {
+    nlohmann::json Params;
+    Params["id"]   = 114514;
+    Params["str"]  = "1919810";
+    Params["test"] = "いいよ，こいよ";
+
+    constexpr auto App_key = "1d8b6e7d45233436";
+    constexpr auto App_sec = "560c52ccd288fed045859ed18bffd973";
+    std::string    sign    = App_sign(Params, App_key, App_sec);
+    std::println("{}", to_string(Params));
+    std::println("{}", sign);
+}
+```
+
+```text
+{"appkey":"1d8b6e7d45233436","id":114514,"sign":"01479cf20504d865519ac50f33ba3a7d","str":"1919810","test":"いいよ，こいよ"}
+appkey=1d8b6e7d45233436&id=114514&sign=01479cf20504d865519ac50f33ba3a7d&str=1919810&test=%E3%81%84%E3%81%84%E3%82%88%EF%BC%8C%E3%81%93%E3%81%84%E3%82%88
+```
 
