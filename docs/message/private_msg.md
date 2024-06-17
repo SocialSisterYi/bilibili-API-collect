@@ -686,6 +686,8 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 }
 ```
 
+</details>
+
 ## 发送私信（web端）
 
 > https://api.vc.bilibili.com/web_im/v1/web_im/send_msg
