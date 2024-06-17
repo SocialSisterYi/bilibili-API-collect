@@ -51,13 +51,13 @@
 | receiver_type    | num  | 接收者类型     | 1：用户<br />2：粉丝团                                         |
 | receiver_id      | num  | 接收者id       | `receiver_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id  |
 | msg_type         | num  | 消息类型       | 详见[私信消息类型、内容说明](private_msg_content.md)           |
-| content          | str  | 消息内容       | [私信内容对象](private_msg_content.md)经过 JSON 序列化后的文本 |
+| content          | str  | 消息内容       | [私信内容对象](private_msg_content.md)**经过 JSON 序列化后的文本** |
 | msg_seqno        | num  | 消息序列号     | 按照时间顺序从小到大                                           |
 | timestamp        | num  | 消息发送时间   | 秒级时间戳                                                     |
 | at_uids          | 有效时：array<br />无效时：null | at的成员mid    | 在粉丝团时有效；此项为 `null` 或 `[0]` 均表示没有 at 成员      |
 | msg_key          | num  | 消息唯一id     | 部分库在解析JSON对象中的大数时存在数值的精度丢失问题，因此在处理私信时可能会出现问题，建议使用修复了这一问题的库（如将大数转换成文本） |
-| msg_status       | num  | 消息状态       | 0：正常<br />1：被撤回（接口仍能返回被撤回的私信内容）<br />2：被系统撤回（私信将不会显示在前端，B站接口也不会返回被系统撤回的私信）<br />50：图片已失效（私信内容为一张提示“图片出现问题”的图片） |
-| sys_cancel       | bool | 是否为系统撤回 | 仅当消息类型为 `5` 且此项值为 `true` 时有此项；若此项值为 `true`，表示目标消息是被系统撤回的，此时前端将不显示该私信且没有提示 |
+| msg_status       | num  | 消息状态       | 0：正常<br />1：被撤回（接口仍能返回被撤回的私信内容）<br />2：被系统撤回（如：消息被举报；私信将不会显示在前端，B站接口也不会返回被系统撤回的私信的信息）<br />50：图片已失效（私信内容为一张提示“图片出现问题”的图片） |
+| sys_cancel       | bool | 是否为系统撤回 | 仅当 `msg_type` 为 `5` 且此项值为 `true` 时有此项；若此项值为 `true`，表示目标消息是被系统撤回的，此时前端将不显示该私信且没有提示 |
 | notify_code      | str  | 通知代码       | 发送通知时使用，以下划线 `_` 分割，第 1 项表示主业务 id，第 2 项表示子业务 id；若这条私信非通知则为空文本；详细信息有待补充 |
 | new_face_version | num  | 表情包版本     | 为 `0` 或无此项表示旧版表情包，此时 B 站会自动转换成新版表情包，例如 `[doge]` -> `[tv_doge]`；`1` 为新版 |
 | msg_source       | num  | 消息来源       | 见[消息来源列表](#消息来源列表)                                |
@@ -79,8 +79,8 @@
 | 2    | Android                   |                                     |
 | 3    | H5                        |                                     |
 | 4    | PC客户端                  |                                     |
-| 5    | 官方自动推送              | 包括：官方向大多数用户发送的私信等  |
-| 6    | 自动推送/发送             | 包括：特别关注时稿件的自动推送、因成为契约者而自动发送的私信、包月充电回馈私信、官方发送的特定于自己的消息等 |
+| 5    | 官方自动推送              | 包括：官方向大多数用户自动发送的私信（如：UP主小助手的推广）等 |
+| 6    | 自动推送/发送             | 包括：特别关注时稿件的自动推送、因成为契约者而自动发送的私信、包月充电回馈私信、官方发送的特定于自己的消息（如：UP主小助手的稿件审核状态通知）等 |
 | 7    | Web                       |                                     |
 | 8    | 自动回复 - 被关注回复     | B站前端会显示“此条消息为自动回复” |
 | 9    | 自动回复 - 收到消息回复   | B站前端会显示“此条消息为自动回复” |
@@ -88,7 +88,7 @@
 | 11   | 自动回复 - 大航海上船回复 | B站前端会显示“此条消息为自动回复” |
 | 12   | 自动推送 - UP 主赠言      | 在以前稿件的自动推送与其附带的 UP 主赠言是 2 条不同的私信（其中 UP 主赠言的消息来源代码为 12），现在 UP 主赠言已被合并成为稿件自动推送消息的一部分（`attach_msg`） |
 | 13   | 粉丝团系统提示            | 如：粉丝团中的提示信息“欢迎xxx入群” |
-| 16   | （？）                    | **作用尚不明确** |
+| 16   | 系统                      | 目前仅在 `msg_type` 为 `51` 时使用该代码 |
 | 17   | 互相关注                  | 互相关注时自动发送的私信“我们已互相关注，开始聊天吧~” |
 | 18   | 系统提示                  | 如：“对方主动回复或关注你前，最多发送1条消息” |
 | 19   | AI                        | 如：给[搜索AI助手测试版](https://space.bilibili.com/1400565964/)发送私信时对方的自动回复 |
@@ -401,7 +401,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 | msg     | str  | 错误信息 | 默认为0                                                                        |
 | message | str  | 错误信息 | 默认为0                                                                        |
 | ttl     | num  | 1        |                                                                                |
-| data    | obj  | 数据本体 | 详见[会话对象](#会话对象)                                                      |
+| data    | 有效时：obj<br />无效时：null | 数据本体 | 详见[会话对象](#会话对象)                                                      |
 
 **示例：**
 
@@ -482,7 +482,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 仅调用该接口不会设置私信为已读，详见[设置私信为已读](#设置私信为已读)
 
-此接口有设计缺陷，可以获取已经撤回的私信内容
+此接口有设计缺陷，可以获取已经撤回（`msg_status` 为 `1`）的私信内容
 
 **url参数：**
 
@@ -503,7 +503,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 | 字段    | 类型 | 内容     | 备注                                              |
 | ------- | ---- | -------- | ------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误<br />700013：已解散QAQ，无法执行此操作<br />700014：你已不在此同萌中QAQ，无法执行此操作 |
 | msg     | str  | 错误信息 | 默认为0                                           |
 | message | str  | 错误信息 | 默认为0                                           |
 | ttl     | num  | 1        |                                                   |
@@ -707,7 +707,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 | msg[receiver_type]    | num  | 接收者类型               | 必要   | 1：用户<br />2：粉丝团                               |
 | msg[msg_type]         | num  | 消息类型                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md)<br />**此接口仅支持传入 `1`、`2` 或 `5`** |
 | msg[msg_status]       | num  | 消息状态                 | 非必要 | 恒为 `0`                                             |
-| msg[dev_id]           | str  | dev_id                   | 必要   | 实质上即 UUID（版本 4），**生成方式在下面**          |
+| msg[dev_id]           | str  | 设备id                   | 必要   | 实质上即 UUID（版本 4），**生成方式见下**            |
 | msg[timestamp]        | num  | 当前时间戳（秒）         | 必要   |                                                      |
 | msg[new_face_version] | num  | 表情包版本               | 非必要 | 提供 `0` 或者未提供本参数表示旧版表情包，此时 B 站会自动转换成新版表情包，例如 `[doge]` -> `[tv_doge]`；`1` 为新版 |
 | msg[content]          | str  | 消息内容                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md) |
@@ -725,7 +725,7 @@ dev_id 实质上就是 UUID（版本 4）
 <details>
 <summary>查看生成 UUID 的代码</summary>
 
-**以 Python 为例：**
+### Python
 
 ```python
 import uuid
@@ -733,7 +733,7 @@ import uuid
 dev_id = str(uuid.uuid4())
 ```
 
-**以 JS 为例：**
+### JavaScript
 
 以下代码适用于较新版的 JS 引擎（Chrome≥92，Firefox≥95，Safari≥15.4，Node.js≥19.0.0）：
 
@@ -745,12 +745,12 @@ const dev_id = crypto.randomUUID();
 
 ```js
 const dev_id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function (name) {
-  let randomInt = 16 * Math.random() | 0;
-  return ("x" === name ? randomInt : 3 & randomInt | 8).toString(16).toUpperCase()
+  const randomInt = 16 * Math.random() | 0;
+  return ("x" === name ? randomInt : 3 & randomInt | 8).toString(16).toUpperCase();
 }));
 ```
 
-**以 Java 为例：**
+### Java
 
 ```java
 import java.util.UUID;
@@ -773,7 +773,7 @@ public class Main {
 
 | 字段    | 类型 | 内容     | 备注                                              |
 | ------- | ---- | -------- | ------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />10005：msgkey不存在<br />21007：消息过长，无法发送<br />21020：你发送消息频率过快，请稍后再发~<br />21026：不能给自己发送消息哦~<br />21028：由于系统升级，暂无法发送，敬请谅解<br />21035：该类消息暂时无法发送<br />21037：图片格式不合法，不要调戏接口啦<br />21041：消息已超期，不能撤回了哦<br />21042：消息已经撤回了哦<br />21046：你发消息的频率太高了，请在24小时后再发吧~<br />21047：对方主动回复或关注你前，最多发送1条消息~<br />25003：因对方隐私设置，暂无法给他发送聊天消息<br />25005：你已拉黑了对方，请先将对方移出黑名单后才能聊天 |
+| code    | num  | 返回值   | 0：成功<br />-3：系统错误<br />-101：账号未登录<br />-400：请求错误<br />10005：msgkey不存在<br />21007：消息过长，无法发送<br />21020：你发送消息频率过快，请稍后再发~<br />21026：不能给自己发送消息哦~<br />21028：由于系统升级，暂无法发送，敬请谅解<br />21035：该类消息暂时无法发送<br />21037：图片格式不合法，不要调戏接口啦<br />21041：消息已超期，不能撤回了哦<br />21042：消息已经撤回了哦<br />21046：你发消息的频率太高了，请在24小时后再发吧~<br />21047：对方主动回复或关注你前，最多发送1条消息~<br />25003：因对方隐私设置，暂无法给他发送聊天消息<br />25005：你已拉黑了对方，请先将对方移出黑名单后才能聊天<br />700013：已解散QAQ，无法执行此操作<br />700014：你已不在此同萌中QAQ，无法执行此操作 |
 | message | str  | 错误信息 | 成功时为0                                         |
 | ttl     | num  |          | 默认为1                                           |
 | data    | 有效时：obj<br />无效时：null  | 信息本体 |                                                   |
@@ -783,9 +783,9 @@ public class Main {
 | 字段          | 类型  | 内容       | 备注                                                                  |
 | ------------- | ----- | ---------- | --------------------------------------------------------------------- |
 | msg_key       | num   | 消息唯一id |                                                                       |
-| e_infos       | array | 表情列表   | 仅当请求参数`msg[msg_type]`为`1`，且私信内容中有表情时有此项          |
-| msg_content   | str   | 发送的私信内容 | 一般同请求参数`msg[content]`的值，仅当请求参数`msg[msg_type]`为`1`时有此项 |
-| key_hit_infos | obj   | 触发的提示 | 仅当请求参数`msg[msg_type]`为`1`且`msg[receiver_type]`为`1`时有此项   |
+| e_infos       | array | 表情列表   | 仅当请求参数 `msg[msg_type]` 为 `1`，且私信内容中有表情时有此项       |
+| msg_content   | str   | 发送的私信内容 | 一般同请求参数 `msg[content]` 的值，仅当请求参数 `msg[msg_type]` 为 `1` 时有此项 |
+| key_hit_infos | obj   | 触发的提示 | 仅当请求参数 `msg[msg_type]` 为 `1` 且 `msg[receiver_type]` 为 `1` 时有此项   |
 
 `data`对象中的`e_infos`数组：
 
@@ -799,10 +799,10 @@ public class Main {
 
 | 字段    | 类型 | 内容        | 备注                                |
 | ------- | ---- | ----------- | ----------------------------------- |
-| text    | str  | 表情名称    | 包括左右两侧的中括号，如`[tv_doge]` |
+| text    | str  | 表情名称    | 包括左右两侧的中括号，如 `[tv_doge]` |
 | uri     | str  | 表情链接    |                                     |
 | size    | num  | 表情尺寸    | 1：小<br />2：大                    |
-| gif_url | str  | 表情GIF链接 | 仅部分表情存在此项                  |
+| gif_url | str  | 表情GIF链接 | 仅部分表情存在此项，如小电视表情    |
 
 `data`对象中的`key_hit_infos`对象：
 
@@ -831,7 +831,7 @@ public class Main {
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 --data-urlencode 'msg[sender_uid]=293793435' \
 --data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type] =1' \
+--data-urlencode 'msg[receiver_type]=1' \
 --data-urlencode 'msg[msg_type]=1' \
 --data-urlencode 'msg[msg_status]=0' \
 --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
@@ -853,7 +853,14 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
   "ttl": 1,
   "data": {
     "msg_key": 6984393491767669026,
-    "msg_content": "{\"content\":\"up主你好，\n催更[doge]\"}",
+    "e_infos": [
+      {
+        "text": "[doge]",
+        "url": "https://i0.hdslb.com/bfs/emote/3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png",
+        "size": 1
+      }
+    ],
+    "msg_content": "{\"content\":\"up主你好，\\n催更[doge]\"}",
     "key_hit_infos": {}
   }
 }
@@ -863,18 +870,18 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 给目标用户`mid=1`发一条图片私信：
 
-> <img src="https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg" style="zoom:50%;">
+> <img src="https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg" style="zoom: 50%;">
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 --data-urlencode 'msg[sender_uid]=293793435' \
 --data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type] =1' \
+--data-urlencode 'msg[receiver_type]=1' \
 --data-urlencode 'msg[msg_type]=2' \
 --data-urlencode 'msg[msg_status]=0' \
 --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
 --data-urlencode 'msg[timestamp]=1626181379' \
---data-urlencode 'msg[content]={"url":"https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg"}' \
+--data-urlencode 'msg[content]={"url":"https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg","height":300,"width":300,"imageType":"jpeg","original":1,"size":54.144}' \
 --data-urlencode 'csrf=xxx' \
 --data-urlencode 'csrf_token=xxx' \
 -b 'SESSDATA=xxx'
@@ -903,7 +910,7 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 --data-urlencode 'msg[sender_uid]=293793435' \
 --data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type] =1' \
+--data-urlencode 'msg[receiver_type]=1' \
 --data-urlencode 'msg[msg_type]=1' \
 --data-urlencode 'msg[msg_status]=0' \
 --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
@@ -928,7 +935,7 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
     "key_hit_infos": {
       "toast": "【温馨提示】为保障消费者权益，根据平台规则，如创作者在与消费者沟通中进行发布要求非法转账、欺诈转账等违规行为，平台有权对此进行处罚，感谢您的理解。",
       "rule_id": 2,
-      "high_text": [ {} ]
+      "high_text": [{}]
     }
   }
 }
