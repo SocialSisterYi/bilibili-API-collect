@@ -328,6 +328,71 @@ public class AVBVConverter {
 
 ```
 
+
+### Golang
+
+```go
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+var (
+	XOR_CODE = int64(23442827791579)
+	MAX_CODE = int64(2251799813685247)
+	CHARTS   = "FcwAPNKTMug3GV5Lj7EJnHpWsx4tb8haYeviqBz6rkCy12mUSDQX9RdoZf"
+	PAUL_NUM = int64(58)
+)
+
+func swapString(s string, x, y int) string {
+	chars := []rune(s)
+	chars[x], chars[y] = chars[y], chars[x]
+	return string(chars)
+}
+
+func Bvid2Avid(bvid string) (avid int64) {
+	s := swapString(swapString(bvid, 3, 9), 4, 7)
+	bv1 := string([]rune(s)[3:])
+	temp := int64(0)
+	for _, c := range bv1 {
+		idx := strings.IndexRune(CHARTS, c)
+		temp = temp*PAUL_NUM + int64(idx)
+	}
+	avid = (temp & MAX_CODE) ^ XOR_CODE
+	return
+}
+
+func Avid2Bvid(avid int64) (bvid string) {
+	arr := [12]string{"B", "V", "1"}
+	bvIdx := len(arr) - 1
+	temp := (avid | (MAX_CODE + 1)) ^ XOR_CODE
+	for temp > 0 {
+		idx := temp % PAUL_NUM
+		arr[bvIdx] = string(CHARTS[idx])
+		temp /= PAUL_NUM
+		bvIdx--
+	}
+	raw := strings.Join(arr[:], "")
+	bvid = swapString(swapString(raw, 3, 9), 4, 7)
+	return
+}
+
+func main() {
+	avid := int64(1054803170)
+	bvid := "BV1mH4y1u7UA"
+	resAvid := Bvid2Avid(bvid)
+	resBvid := Avid2Bvid(avid)
+
+	fmt.Printf("convert bvid to avid: %v\tvalue:%v\n", avid == resAvid, resAvid)
+	fmt.Printf("convert avid to bvid: %v\tvalue:%v\n", bvid == resBvid, resBvid)
+
+}
+
+```
+
+
 ### C++
 ```c++
 #include <algorithm>
@@ -385,6 +450,7 @@ int main() {
     assert(Bv2av("BV16x4y1H7M1") == 1004871019);
 }
 ```
+
 
 
 ## 老版算法存档
