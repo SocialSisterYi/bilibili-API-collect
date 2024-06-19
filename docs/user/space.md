@@ -3652,7 +3652,7 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 | intro       | str  | 空                 | 作用尚不明确                              |
 | ctime       | num  | 创建时间           | 时间戳                                    |
 | mtime       | num  | 审核时间           | 时间戳                                    |
-| state       | num  | 0                  | 作用尚不明确                              |
+| state       | num  | 0, 1                  | 0: 正常；1:收藏夹已失效                              |
 | fav_state   | num  | 0                  | 作用尚不明确                              |
 | media_count | num  | 收藏夹总计视频数   |                                           |
 
