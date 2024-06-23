@@ -31,7 +31,7 @@
 | system_msg_type      | num  | 系统消息类型                     | 0：非系统消息<br />1：主播小助手<br />7：UP主小助手<br />8：客服消息 |
 | account_info         | obj  | 会话信息                         | 仅在系统消息中出现                                  |
 | live_status          | num  | 用户是否正在直播                 | 在用户会话中有效                                    |
-| biz_msg_unread_count | num  | 未读推送消息数                   |                                                     |
+| biz_msg_unread_count | num  | 未读通知消息数                   |                                                     |
 | user_label           | null | （？）                           | **作用尚不明确**                                    |
 
 `account_info`对象：
@@ -122,8 +122,8 @@
 | unfollow_push_msg       | num  | 未读推送消息数         |                  |
 | dustbin_push_msg        | num  | 未读被拦截的推送消息数 |                  |
 | dustbin_unread          | num  | 未读被拦截的私信数     |                  |
-| biz_msg_unfollow_unread | num  | （？）                 | **作用尚不明确** |
-| biz_msg_follow_unread   | num  | （？）                 | **作用尚不明确** |
+| biz_msg_unfollow_unread | num  | 未关注用户未读通知数   |                  |
+| biz_msg_follow_unread   | num  | 已关注用户未读通知数   |                  |
 | custom_unread           | num  | 未读客服消息数         |                  |
 
 **示例：**
@@ -743,7 +743,7 @@ dev_id = str(uuid.uuid4())
 const dev_id = crypto.randomUUID();
 ```
 
-以下为通用代码（来自 [andywang425/BLTH](https://github.com/andywang425/BLTH/blob/45fe93e31754ca8bf07059d46266398e787dbf45/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.js#L6618)）
+以下为通用代码（来自 [andywang425/BLTH](https://github.com/andywang425/BLTH/blob/45fe93e31754ca8bf07059d46266398e787dbf45/B%E7%AB%99%E7%9B%B4%E6%92%AD%E9%97%B4%E6%8C%82%E6%9C%BA%E5%8A%A9%E6%89%8B.js#L6618)）：
 
 ```js
 const dev_id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function (name) {
