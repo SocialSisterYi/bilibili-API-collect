@@ -1013,7 +1013,7 @@ curl -G 'https://api.bilibili.com/x/space/myinfo' \
 
 ```shell
 curl -G 'https://api.bilibili.com/x/polymer/pc-electron/v1/user/cards' \
---data-urlencode 'uids=1,2,3' \
+--data-urlencode 'uids=1,2,3'
 ```
 
 <details>
@@ -1245,7 +1245,7 @@ curl -G 'https://api.bilibili.com/x/polymer/pc-electron/v1/user/cards' \
 
 ```shell
 curl -G 'https://api.vc.bilibili.com/account/v1/user/cards' \
---data-urlencode 'uids=1,2,3' \
+--data-urlencode 'uids=1,2,3'
 ```
 
 <details>
