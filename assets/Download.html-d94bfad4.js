@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-db4c378a","path":"/docs/manga/Download.html","title":"获取当前话全部图片地址","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/manga/Download.md"}');export{a as data};

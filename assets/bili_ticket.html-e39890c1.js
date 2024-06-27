@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-618ff0fc","path":"/docs/misc/sign/bili_ticket.html","title":"Python 示例","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/misc/sign/bili_ticket.md"}');export{t as data};

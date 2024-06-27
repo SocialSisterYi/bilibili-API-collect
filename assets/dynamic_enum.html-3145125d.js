@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-fbe42de6","path":"/docs/dynamic/dynamic_enum.html","title":"动态类型","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/dynamic/dynamic_enum.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-738a744c","path":"/docs/video/collection.html","title":"视频合集信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取视频合集信息","slug":"获取视频合集信息","link":"#获取视频合集信息","children":[]}],"git":{},"filePathRelative":"docs/video/collection.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-7dfe7a81","path":"/docs/live/live_area.html","title":"直播间分区","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取全部直播间分区列表","slug":"获取全部直播间分区列表","link":"#获取全部直播间分区列表","children":[]}],"git":{},"filePathRelative":"docs/live/live_area.md"}');export{e as data};

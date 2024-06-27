@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-0e792a2e","path":"/docs/live/live_stream.html","title":"直播间视频流","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"根据真实直播间号获取直播视频流","slug":"根据真实直播间号获取直播视频流","link":"#根据真实直播间号获取直播视频流","children":[]}],"git":{},"filePathRelative":"docs/live/live_stream.md"}');export{e as data};
