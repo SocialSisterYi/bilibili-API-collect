@@ -353,6 +353,7 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 - [MotooriKashin/Bilibili-Old](https://github.com/MotooriKashin/Bilibili-Old): 恢复旧版Bilibili页面，为了那些念旧的人。
 - [SocialSisterYi/bcut-asr](https://github.com/SocialSisterYi/bcut-asr): 使用必剪API的语音字幕识别
 - [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
+- [kingwingfly/fav](https://github.com/kingwingfly/fav): 自动同步bili收藏夹、合集视频到本地的CLI工具（Rust实现，并提供一个文档测试完善的Rust风格的用于构建有状态爬虫的核心库）
 
 ### 其他
 
