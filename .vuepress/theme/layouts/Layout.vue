@@ -2,7 +2,7 @@
   <ParentLayout>
     <template #page-bottom>
       <footer style="text-align: center">
-        Copyright © 2020-2023
+        Copyright © 2020-2024
         <a href="https://github.com/SocialSisterYi/">SocialSisterYi</a> |
         <a
           href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE"
