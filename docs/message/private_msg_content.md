@@ -453,18 +453,18 @@
 
 `sub_cards`数组中的对象：
 
-| 字段      | 类型 | 内容         | 备注                             |
-| --------- | ---- | ------------ | -------------------------------- |
-| card_id   | num  | 稿件AV号     |                                  |
-| card_type | num  | 稿件类型     | 一般为 `1`                       |
-| jump_url  | str  | 稿件链接     |                                  |
-| cover_url | str  | 稿件封面url  | 此项不实时更新，在发送私信时设置 |
-| field1    | str  | 稿件标题     | 此项不实时更新，在发送私信时设置 |
-| field2    | str  | 稿件发布时间 | 格式：`YYYY-MM-DD`               |
-| field3    | str  | 稿件播放量   | 此项不实时更新，在发送私信时设置 |
-| icon3     | num  | 图标3类型    | 1：播放量                        |
-| field4    | str  | 稿件弹幕数   | 此项不实时更新，在发送私信时设置 |
-| icon4     | num  | 图标4类型    | 3：弹幕数                        |
+| 字段      | 类型 | 内容               | 备注                             |
+| --------- | ---- | ------------------ | -------------------------------- |
+| card_id   | num  | 稿件AV号           |                                  |
+| card_type | num  | 稿件类型           | 一般为 `1`                       |
+| jump_url  | str  | 稿件链接           |                                  |
+| cover_url | str  | 稿件封面url        | 此项不实时更新，在发送私信时设置 |
+| field1    | str  | 稿件标题           | 此项不实时更新，在发送私信时设置 |
+| field2    | str  | 稿件发布时间       | 格式：`YYYY-MM-DD`               |
+| field3    | str  | 稿件播放量显示文字 | 此项不实时更新，在发送私信时设置 |
+| icon3     | num  | 图标3类型          | 1：播放量                        |
+| field4    | str  | 稿件弹幕数显示文字 | 此项不实时更新，在发送私信时设置 |
+| icon4     | num  | 图标4类型          | 3：弹幕数                        |
 
 **示例：**
 
@@ -479,7 +479,7 @@
         "cover_url": "http://i2.hdslb.com/bfs/archive/bfb87f033272926efe6ff4caee8e6c49c07ff6fe.jpg",
         "field1": "【宿舍评测】性能与便携两全 华为matebook E 2022深度体验及伪开箱",
         "field2": "2021-12-10",
-        "field3": "195299",
+        "field3": "20万",
         "icon3": 1,
         "field4": "479",
         "icon4": 3
@@ -490,7 +490,7 @@
         "cover_url": "http://i1.hdslb.com/bfs/archive/bb1d41ef0c17c2df25c8b6ef98f01466bdee0c1f.jpg",
         "field1": "【BadApple】使用古董示波器Aron BS-601播放BadApple!!!",
         "field2": "2022-05-03",
-        "field3": "151613",
+        "field3": "15万",
         "icon3": 1,
         "field4": "297",
         "icon4": 3
@@ -501,7 +501,7 @@
         "cover_url": "http://i1.hdslb.com/bfs/archive/17335854dfad9d7990943d8cc6dc07c85912b103.jpg",
         "field1": "【拆解】华为 Matebook E 更换固态硬盘：从未见过如此好拆的二合一",
         "field2": "2023-02-24",
-        "field3": "56077",
+        "field3": "5万",
         "icon3": 1,
         "field4": "102",
         "icon4": 3
