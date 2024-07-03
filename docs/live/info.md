@@ -590,7 +590,7 @@ curl -G 'https://api.live.bilibili.com/live_user/v1/Master/info' \
 
 **示例：**
 
-查询用户`mid=672328094的直播间信息
+查询用户`mid=672328094`的直播间信息
 
 ```shell
 # GET方式
@@ -779,7 +779,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
 
 **示例：**
 
-查询room_id=3的直播间信息
+查询`room_id=3`的直播间信息
 
 ```shell
 curl -L -X GET 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo?room_id=3&protocol=0,1&format=0,1,2&codec=0,1&qn=10000'
