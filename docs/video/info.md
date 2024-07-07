@@ -775,7 +775,7 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 `Related`数组中的对象：
 
-基本同「[获取视频详细信息(web端)](#获取视频详细信息(web端))」中的data对象
+基本同「[获取视频详细信息(web端)](#获取视频详细信息(web端))」中的data对象，已知没有分P信息
 
 `data`中的`hot_share`对象：
 
