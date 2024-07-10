@@ -1,8 +1,9 @@
 # 视频推荐
 
-- [获取单视频推荐列表（web端）](#获取单视频推荐列表（web端）)  
-- [获取首页视频推荐列表（web端）](#获取首页视频推荐列表（web端）)
-- [获取短视频模式视频列表](#获取短视频模式视频列表)
+- [视频推荐](#视频推荐)
+  - [获取单视频推荐列表（web端）](#获取单视频推荐列表web端)
+  - [获取首页视频推荐列表（web端）](#获取首页视频推荐列表web端)
+  - [获取短视频模式视频列表](#获取短视频模式视频列表)
 ---
 
 ## 获取单视频推荐列表（web端）
@@ -297,7 +298,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 
 ## 获取首页视频推荐列表（web端）
 
-> https://api.bilibili.com/x/web-interface/index/top/rcmd
+> https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd
 
 *请求方式：GET*
 
