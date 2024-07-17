@@ -531,6 +531,8 @@ message Item {
         SearchBangumiCard bangumi = 38;
         //
         SearchSportInlineCard esports_inline = 39;
+        //
+        SearchLiveRoom live_room = 50;
     }
 }
 
