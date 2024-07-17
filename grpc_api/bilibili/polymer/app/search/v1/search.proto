@@ -1393,6 +1393,38 @@ message SearchLiveCard {
 }
 
 //
+message SearchLiveRoom {
+    //
+    string title = 1;
+    //
+    string name = 2;
+    //
+    string cover = 3;
+    //
+    string uri = 4;
+    //
+    string param = 5;
+    //
+    WatchedShow watched_show = 6;
+    //
+    int64 room_id = 7;
+    //
+    string short_id = 8;
+    //
+    string goto = 9;
+    //
+    string area_v2_name = 10;
+    //
+    int32 online = 11;
+    //
+    int64 mid = 12;
+    //
+    int32 live_status = 13;
+    //
+    string live_link = 14;
+}
+
+//
 message SearchLiveInlineCard {
     //
     string title = 1;
