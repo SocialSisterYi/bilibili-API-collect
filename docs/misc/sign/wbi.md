@@ -120,7 +120,7 @@
 
 ## Demo
 
-含 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)、[Java](#Java)、[Swift](#Swift)、[C++](#CPlusPlus) 语言编写的 Demo 。
+含 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)、[Java](#Java)、[Swift](#Swift)、[C++](#CPlusPlus)、[Rust](#Rust) 语言编写的 Demo 。
 
 ### Python
 
