@@ -8,24 +8,37 @@
 
 认证方式：Cookie（SESSDATA）
 
+**URL参数:**
+
+| 参数名      | 类型 | 内容 | 必要性 | 备注 |
+| ----------- | ---- | ---- | ------ | ---- |
+| build       | num  | 0    | 不必要 | ?    |
+| mobi_app    | str  | web  | 不必要 | ?    |
+| unread_type | num  | 0    | 不必要 | ?    |
+
 **json回复：**
 
 根对象：
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-6：账号未登录 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
 | message | str  | 错误信息 | 默认为ok                    |
 | ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
 
 `data` 对象：
 
-| 字段            | 类型 | 内容                 | 备注 |
-| --------------- | ---- | -------------------- | ---- |
-| unfollow_unread | num  | 未关注用户未读私信数 |      |
-| follow_unread   | num  | 已关注用户未读私信数 |      |
-| _gt_            | num  | 0                    |      |
+| 字段                    | 类型 | 内容                    | 备注 |
+| ----------------------- | ---- | ----------------------- | ---- |
+| unfollow_unread         | num  | 未关注用户未读私信数    |      |
+| follow_unread           | num  | 已关注用户未读私信数    |      |
+| unfollow_push_msg       | num  | 未关注用户推送消息数?   |      |
+| dustbin_push_msg        | num  | 已拦截的推送消息数?     |      |
+| dustbin_unread          | num  | 已拦截的未读消息数?     |      |
+| biz_msg_unfollow_unread | num  | 未订阅的未读系统通知数? |      |
+| biz_msg_follow_unread   | num  | 已订阅的未读系统通知数? |      |
+| custom_unread           | num  | 自定义未读消息数?       |      |
 
 **示例：**
 
@@ -41,14 +54,19 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ```json
 {
-	"code": 0,
-	"msg": "ok",
-	"message": "ok",
-	"data": {
-		"unfollow_unread": 1,
-		"follow_unread": 6,
-		"_gt_": 0
-	}
+    "code": 0,
+    "msg": "ok",
+    "message": "ok",
+    "data": {
+        "unfollow_unread": 1,
+        "follow_unread": 6,
+        "unfollow_push_msg": 0,
+        "dustbin_push_msg": 0,
+        "dustbin_unread": 0,
+        "biz_msg_unfollow_unread": 0,
+        "biz_msg_follow_unread": 1,
+        "custom_unread": 0
+    }
 }
 ```
 
