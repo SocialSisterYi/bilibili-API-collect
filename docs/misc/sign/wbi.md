@@ -700,8 +700,6 @@ public class WbiTest {
       map.put("bar", "五一四");
       map.put("baz", 1919810);
       map.put("wts", System.currentTimeMillis() / 1000);
-     map.put("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-     map.put("Referer", "https://www.bilibili.com/");
       StringJoiner param = new StringJoiner("&");
       //排序 + 拼接字符串
       map.entrySet().stream()
