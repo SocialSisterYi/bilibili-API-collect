@@ -1008,6 +1008,325 @@ curl -G 'http://space.bilibili.com/ajax/settings/getSettings' \
 
 </details>
 
+#### 查询可用头图列表 (Web端)
+
+> https://space.bilibili.com/ajax/topphoto/getlist
+
+*请求方式: GET*
+
+注: 带有转义
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注                       |
+| ------ | ---- | ----------- | ------ | -------------------------- |
+| mid    | num  | 目标用户mid | 必要   | 非负数, 即使该用户并不存在 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段   | 类型                      | 内容                                   | 备注 |
+| ------ | ------------------------- | -------------------------------------- | ---- |
+| status | bool                      | 成功: true<br />失败: false            |      |
+| data   | 成功: array<br/>失败: str | 成功: 信息本体<br />失败: "用户id错误" |      |
+
+`data`数组中的对象:
+
+| 字段          | 类型 | 内容        | 备注                                 |
+| ------------- | ---- | ----------- | ------------------------------------ |
+| id            | num  | 空间头图 ID |                                      |
+| product_name  | str  | 显示名称    |                                      |
+| price         | num  | 价格        |                                      |
+| coin_type     | num  | 支付类型?   |                                      |
+| vip_free      | num  | 大会员免费  |                                      |
+| s_img         | str  | 小图 URI    | 需要自行与 `i0.hdslb.com` 拼接成 URL |
+| l_img         | str  | 大图 URI    | 同 s_img                             |
+| thumbnail_img | str  | 空          | 并不存在的缩略图?                    |
+| sort_num      | num  | 排序编号    |                                      |
+| is_disable    | num  | 已禁用      | 0: 未禁用                            |
+| expire        | num  | 过期时间?   | UNIX 时间戳, 或 0 为永不过期         |
+| had           | num  | 是否拥有?   | 当 expire 不为 0 时 为 1, 否则为 0   |
+
+**示例:**
+
+查询`mid=1145141919810000000`的可用空间头图
+
+```shell
+curl -G "https://space.bilibili.com/ajax/topphoto/getlist" \
+--data-urlencode "mid=1145141919810000000"
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "status": true,
+  "data": [
+    {
+      "id": 1,
+      "product_name": "bilibili春",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/768cc4fd97618cf589d23c2711a1d1a729f42235.png",
+      "l_img": "bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
+      "thumbnail_img": "",
+      "sort_num": 19,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 2,
+      "product_name": "两人单车",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/d60a4be11f1bca6168a60a53c64bca18eddd6443.jpg",
+      "l_img": "bfs/space/44873d3568bdcb3d850d234e02a19602972450f1.png",
+      "thumbnail_img": "",
+      "sort_num": 16,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 5,
+      "product_name": "成为偶像",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/5fe2632486a5a91a234f0e7cb368ab6397477da4.jpg",
+      "l_img": "bfs/space/87277d30cd19edcec9db466a9a3e556aeb0bc0ed.png",
+      "thumbnail_img": "",
+      "sort_num": 15,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 11,
+      "product_name": "星际勘探",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/6849abc6e67000ad807b35a970aba31dd1e400dd.jpg",
+      "l_img": "bfs/space/c919a9818172a8297f8b0597722f96504a1e1d88.png",
+      "thumbnail_img": "",
+      "sort_num": 14,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 10,
+      "product_name": "星O大战",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/ff3b0882e55c1099738e59616e5956ad357d9948.jpg",
+      "l_img": "bfs/space/e22f5b8e06ea3ee4de9e4da702ce8ef9a2958f5a.png",
+      "thumbnail_img": "",
+      "sort_num": 13,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 12,
+      "product_name": "王牌特工",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/f5d38e2af44fd12fa65423aff55933fcf9071419.jpg",
+      "l_img": "bfs/space/8cd85a382756ab938df23a856017abccd187188e.png",
+      "thumbnail_img": "",
+      "sort_num": 12,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 3,
+      "product_name": "仰望星空",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/c9dae917e24b4fc17c4d544caf6b6c0b17f8692b.jpg",
+      "l_img": "bfs/space/9ccc0447aebf0656809b339b41aa5b3705f27c47.png",
+      "thumbnail_img": "",
+      "sort_num": 11,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 14,
+      "product_name": "雨过天晴",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/1115b2fdabd128337f892feada4ce32e51f3a5ad.jpg",
+      "l_img": "bfs/space/6a1198e25f8764bd30d53411dac9fdf840bc3265.png",
+      "thumbnail_img": "",
+      "sort_num": 10,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 6,
+      "product_name": "绿荫秘境",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/dc02d22a718c1c436f1a355b3cd726b04098ef7d.jpg",
+      "l_img": "bfs/space/265ecddc52d74e624dc38cf0cff13317085aedf7.png",
+      "thumbnail_img": "",
+      "sort_num": 9,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 13,
+      "product_name": "漫游仙境",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/184abe52a5ea9390b506c064cfba4f8f20ae9cca.jpg",
+      "l_img": "bfs/space/24d0815514951bb108fbb360b04a969441079315.png",
+      "thumbnail_img": "",
+      "sort_num": 7,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 15,
+      "product_name": "放课后time",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/aea2dd7b8894ce31d578d4fad6a7188c7b49cb2f.jpg",
+      "l_img": "bfs/space/6e799ff2de2de55d27796707a283068d66cdf3f4.png",
+      "thumbnail_img": "",
+      "sort_num": 6,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 4,
+      "product_name": "昴宿星团",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/1f4eaf70d1bb981f6057b3e440249d7a1f65774f.jpg",
+      "l_img": "bfs/space/3ab888c1d149e864ab44802dea8c1443e940fa0d.png",
+      "thumbnail_img": "",
+      "sort_num": 5,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 7,
+      "product_name": "蔷薇洛丽塔",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/718eac8c71e29b8a80431c46110805c3a40e30a6.jpg",
+      "l_img": "bfs/space/70ce28bcbcb4b7d0b4f644b6f082d63a702653c1.png",
+      "thumbnail_img": "",
+      "sort_num": 4,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 9,
+      "product_name": "黑暗之门",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/ef1b08e62fdc35b06e39795bc6de8e510935bf97.jpg",
+      "l_img": "bfs/space/cd52d4ac1d336c940cc4958120170f7928d9e606.png",
+      "thumbnail_img": "",
+      "sort_num": 3,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    },
+    {
+      "id": 19,
+      "product_name": "你的名字",
+      "price": 0,
+      "coin_type": 0,
+      "vip_free": 0,
+      "s_img": "bfs/space/373e127e8784d3e4c1b5e6db0c27702ba077643f.jpg",
+      "l_img": "bfs/space/f49642b3683a08e3190f29d5a095386451f8952c.jpg",
+      "thumbnail_img": "",
+      "sort_num": 2,
+      "is_disable": 0,
+      "expire": 0,
+      "had": 0
+    }
+  ]
+}
+```
+
+</details>
+
+### 设置空间头图 (Web端)
+
+> https://space.bilibili.com/ajax/settings/setToutu
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+鉴权方式: referer为 `.bilibili.com` 域名下
+
+**正文参数(application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容                               | 必要性 | 备注 |
+| ------ | ---- | ---------------------------------- | ------ | ---- |
+| id     | num  | 头图 ID                            | 必要   |      |
+| csrf   | str  | CSRF Token (即 Cookie bili_jct 值) | 不必要 |      |
+
+**JSON回复:**
+
+| 字段   | 类型 | 内容     | 备注                        |
+| ------ | ---- | -------- | --------------------------- |
+| status | bool | 状态     | true: 成功<br />false: 失败 |
+| data   | str  | 错误信息 | 正确时无此项 (带有转义)     |
+
+**示例:**
+
+设置空间头图为为`王牌特工(id=12)`
+
+```shell
+curl -X POST "https://space.bilibili.com/ajax/settings/setToutu" \
+--referer "https://space.bilibili.com/" \
+--data-urlencode "id=12" \
+--data-urlencode "csrf=xxx" \
+-b "SESSDATA=xxx; bili_jct=xxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "status": true
+}
+```
+
+</details>
+
 #### 调整空间板块布局
 
 > http://space.bilibili.com/ajax/settings/setIndexOrder
@@ -1034,7 +1353,7 @@ curl -G 'http://space.bilibili.com/ajax/settings/getSettings' \
 | 3    | （左侧）订阅番剧                     |
 | 4    | （左侧）订阅标签                     |
 | 5    | （左侧）最近投币的视频               |
-| 6    | （左侧）我的圈子**（此板块被隐藏）** |
+| 6    | （左侧）我的圈子 **（此板块被隐藏）** |
 | 7    | （左侧）我的频道                     |
 | 8    | （左侧）我的专栏                     |
 | 9    | （左侧）我的相簿                     |
@@ -1050,24 +1369,26 @@ curl -G 'http://space.bilibili.com/ajax/settings/getSettings' \
 
 | 字段   | 类型 | 内容     | 备注                                |
 | ------ | ---- | -------- | ----------------------------------- |
-| ststus | bool | 操作结果 | true：操作成功<br />false：操作失败 |
+| status | bool | 操作结果 | true：操作成功<br />false：操作失败 |
 | data   | str  | 错误信息 | 正确时无此项                        |
 
 **示例：**
 
 调整空间布局为：
 
->我的稿件            直播间
->我的专栏            个人资料
->订阅番剧            公告
->我的收藏夹        官方活动
->我的相簿            最近玩的游戏
->最近投币的视频
->订阅标签
->我的频道
+```text
+我的稿件            直播间
+我的专栏            个人资料
+订阅番剧            公告
+我的收藏夹          官方活动
+我的相簿            最近玩的游戏
+最近投币的视频  
+订阅标签  
+我的频道
+```
 
 ```shell
-curl 'http://space.bilibili.com/ajax/settings/setIndexOrder' \
+curl 'https://space.bilibili.com/ajax/settings/setIndexOrder' \
 --data-urlencode 'index_order=1,8,3,2,9,5,4,7,22,23,21,24,25,6' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;' \
@@ -1113,7 +1434,7 @@ curl 'http://space.bilibili.com/ajax/settings/setIndexOrder' \
 
 | 字段   | 类型 | 内容     | 备注                                |
 | ------ | ---- | -------- | ----------------------------------- |
-| ststus | bool | 操作结果 | true：操作成功<br />false：操作失败 |
+| status | bool | 操作结果 | true：操作成功<br />false：操作失败 |
 | data   | str  | 错误信息 | 正确时无此项                        |
 
 **示例：**
@@ -1121,7 +1442,7 @@ curl 'http://space.bilibili.com/ajax/settings/setIndexOrder' \
 设置`关注的TAG`为隐藏
 
 ```shell
-curl 'http://space.bilibili.com/ajax/settings/setPrivacy' \
+curl 'https://space.bilibili.com/ajax/settings/setPrivacy' \
 --data-urlencode 'tags=0' \
 --data-urlencode 'csrf=xxx' \
 -b 'SESSDATA=xxx;DedeUserID=1;DedeUserID__ckMd5=1;' \
@@ -4298,7 +4619,7 @@ curl -G 'https://api.bilibili.com/x/space/bangumi/follow/list' \
 
 | 字段   | 类型                         | 内容                                   | 备注                        |
 | ------ | ---------------------------- | -------------------------------------- | --------------------------- |
-| ststus | bool                         | 返回值                                 | false：错误<br />true：正确 |
+| status | bool                         | 返回值                                 | false：错误<br />true：正确 |
 | data   | 错误时：str<br />正确时：obj | 错误时：错误信息<br />正确时：数据本体 | 正确时不返回错误信息        |
 
 `data`对象：
