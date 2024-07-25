@@ -460,7 +460,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 
 > https://api.bilibili.com/medialist/gateway/coll/resource/deal
 >
->  https://api.bilibili.com/x/v3/fav/resource/deal
+> https://api.bilibili.com/x/v3/fav/resource/deal
 
 *请求方式：POST*
 
@@ -485,7 +485,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 
 | 字段    | 类型 | 内容     | 备注                                                                                                                                                                                                                            |
 | ------- | ---- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-403：访问权限不足<br />10003：不存在该稿件<br />11201：已经收藏过了<br />11202：已经取消收藏了<br />11203：达到收藏上限<br />72010017：参数错误 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-403：访问权限不足<br />10003：不存在该稿件<br />11010: 您访问的内容不存在<br />11201：已经收藏过了<br />11202：已经取消收藏了<br />11203：达到收藏上限<br />72010017：参数错误 |
 | message | str  | 错误信息 | 正确为success                                                                                                                                                                                                                   |
 | data    | obj  | 信息本体 |                                                                                                                                                                                                                                 |
 

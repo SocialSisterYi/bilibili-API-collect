@@ -118,6 +118,7 @@ curl -G 'https://api.live.bilibili.com/client/v1/Ip/getInfoNew'
     "latitude": "1.352083",
     "longitude": "103.819836"
   }
+}
 ```
 
 </details>
