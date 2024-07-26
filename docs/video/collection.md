@@ -96,3 +96,83 @@
 | page_num | num | 分页页码 |  |
 | page_size | num | 单页个数 |  |
 | total | num | 合集内视频数量 |  |
+
+**示例:**
+
+获取 `mid=37737161` 的 `season_id=1227671` 视频合集信息，默认排序，第 1 页，每页 30 个视频
+
+```shell
+curl -G "https://api.bilibili.com/x/polymer/space/seasons_archives_list" \
+--data-urlencode "mid=37737161" \
+--data-urlencode "sort_reverse=false" \
+--data-urlencode "season_id=1227671" \
+--data-urlencode "page_num=1" \
+--data-urlencode "page_size=30"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "aids": [
+      311606079,
+      400546145
+    ],
+    "archives": [
+      {
+        "aid": 311606079,
+        "bvid": "BV1XN411K7g9",
+        "ctime": 1679651747,
+        "duration": 261,
+        "interactive_video": false,
+        "pic": "http://i2.hdslb.com/bfs/archive/234e6bd061176dba9e148f4373c52fa7cd2d801f.jpg",
+        "pubdate": 1679651747,
+        "stat": {
+          "view": 12145
+        },
+        "state": 0,
+        "title": "某些IT社区平台乱象，文章千篇一律，毫不注重版权，文章互相抄袭成潮流，希望能够好好管管！",
+        "ugc_pay": 0
+      },
+      {
+        "aid": 400546145,
+        "bvid": "BV1qo4y1L73P",
+        "ctime": 1682777426,
+        "duration": 335,
+        "interactive_video": false,
+        "pic": "http://i2.hdslb.com/bfs/archive/a6b6fb0330bbf6c500720a024e5a9ade24d888c3.jpg",
+        "pubdate": 1682777425,
+        "stat": {
+          "view": 52743
+        },
+        "state": 0,
+        "title": "某些搜索引擎得到的结果，官方网站反而排在一些诈骗广告后面，诱导用户下载大量捆绑垃圾软件",
+        "ugc_pay": 0
+      }
+    ],
+    "meta": {
+      "category": 0,
+      "cover": "https://archive.biliimg.com/bfs/archive/5e1c1f77c3065ec31eec43d7e35f7a061602e4d6.jpg",
+      "description": "白马首席讲师吐槽系列视频",
+      "mid": 37737161,
+      "name": "水浅王八多，真假白马说",
+      "ptime": 1682777425,
+      "season_id": 1227671,
+      "total": 2
+    },
+    "page": {
+      "page_num": 1,
+      "page_size": 30,
+      "total": 2
+    }
+  }
+}
+```
+
+</details>
