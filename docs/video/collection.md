@@ -1,8 +1,10 @@
-# 视频合集信息
+# 合集和视频列表信息
 
 ## 获取视频合集信息
 
-> https://api.bilibili.com/x/polymer/web-space/seasons_archives_list
+> https://api.bilibili.com/x/polymer/web-space/seasons_archives_list (需验证referer)
+>
+> https://api.bilibili.com/x/polymer/space/seasons_archives_list (旧接口, 无鉴权验证)
 
 *请求方式：GET*
 
@@ -10,11 +12,15 @@
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 |--------|-----|------|--------|-----|
-| mid  | num | 用户 mid | 必要 | 似乎不一定需要创建者的 mid，随意的用户 mid 就能成功请求。 |
+| mid  | num | 用户 mid | 必要 | 创建者的 mid，但也可以是任意的非负整数 |
 | season_id  | num | 视频合集 ID | 必要 |  |
-| sort_reverse  | bool | 未知 | 可选 |  |
-| page_num  | num | 页码索引 | 可选 |  |
-| page_size  | num | 单页内容数量 | 可选 |  |
+| sort_reverse  | bool | 排序方式 | 可选 | true: 升序排序<br />false: 默认排序 |
+| page_num  | num | 页码索引 | 可选 | 默认为 1 |
+| page_size  | num | 单页内容数量 | 可选 | 默认为 30 |
+| gaia_vtoken | str | 风控验证? | 可选 | 若被风控则必要(如User-Agent不正常) |
+| web_location | str | 页面位置? | 可选 | 333.999 |
+| w_rid | str | WBI 签名 | 可选 | 参见 [WBI 签名](../misc/sign/wbi.md) |
+| wts | num | UNIX 秒级时间戳 | 可选 | 参见 [WBI 签名](../misc/sign/wbi.md) |
 
 **json回复：**
 
@@ -52,16 +58,16 @@
 | bvid | str | 稿件 bvid ||
 | ctime | num | 创建时间 | Unix 时间戳 |
 | duration | num | 视频时长 | 单位为秒 |
-| enable_vt | bool | false ||
-| interactive_video | bool | false ||
+| enable_vt | bool | false | 旧接口无 |
+| interactive_video | bool | 是否是互动视频 | |
 | pic | str | 封面 URL ||
 | playback_position | num || 会随着播放时间增长，播放完成后为 -1 。单位未知 |
 | pubdate | num | 发布日期 | Unix 时间戳 |
 | stat | obj | 稿件信息 ||
 | state | num | 0 ||
 | title | str | 稿件标题||
-| ugc_pay | num | 0 ||
-| vt_display | str |||
+| ugc_pay | num | UGC 付费? | 0: 否 |
+| vt_display | str | 空 | 旧接口无 |
 
 `archives`中的`stat`对象：
 
