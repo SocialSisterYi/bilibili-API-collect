@@ -1,4 +1,4 @@
-# 获取 buvid3 / buvid4
+# 获取 buvid3 / buvid4 / b_nut
 
 ## 游客获取 buvid3 / buvid4
 
@@ -43,6 +43,43 @@ curl -G 'https://api.bilibili.com/x/frontend/finger/spi'
   },
   "message": "ok"
 }
+```
+
+</details>
+
+## 从响应头获取 buvid3 / b_nut
+
+使用 `GET` 或 `HEAD` 方法请求 `https://www.bilibili.com/`, 且请求头中 `User-Agent` 字段不包含 `curl` `python` `awa` 等敏感子字符串, 且相同 `User-Agent` 字段不得短时多次请求. 在响应头中的 `Set-Cookie` 字段中, 即可找到 `buvid3` 和 `b_nut`.
+
+若不带任何 Cookie 请求, 则 `b_nut` 为响应生成时刻的 UNIX 秒级时间戳.
+若请求 Cookie 仅带有 `buvid3`, 则 `b_nut` 为 `100`.
+若请求 Cookie 仅带有 `b_nut`, 则与不带任何 Cookie 的响应相同.
+若请求 Cookie 仅带有 `buvid3` 和 `b_nut`, 则响应无 `Set-Cookie` 字段.
+若请求 Cookie 带有其他字段, 无影响.
+
+**示例:**
+
+```shell
+curl -I "https://www.bilibili.com/" -A "awa"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```http
+HTTP/2 200 
+date: Fri, 26 Jul 2024 06:38:43 GMT
+content-type: text/html; charset=utf-8
+support: nantianmen
+set-cookie: buvid3=805E4894-96A2-0684-6F00-C6EA1FFB911023315infoc; path=/; expires=Sat, 26 Jul 2025 06:38:43 GMT; domain=.bilibili.com
+set-cookie: b_nut=1721975923; path=/; expires=Sat, 26 Jul 2025 06:38:43 GMT; domain=.bilibili.com
+vary: Origin,Accept-Encoding
+idc: shjd
+expires: Fri, 26 Jul 2024 06:38:42 GMT
+cache-control: no-cache
+x-cache-webcdn: MISS from blzone01
+x-cache-time: 0
+x-save-date: Fri, 26 Jul 2024 06:38:43 GMT
 ```
 
 </details>
