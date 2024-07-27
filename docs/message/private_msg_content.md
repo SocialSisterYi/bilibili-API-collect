@@ -32,14 +32,14 @@
 
 根对象：
 
-| 字段     | 类型 | 内容       | 备注                      |
-| -------- | ---- | ---------- | ------------------------- |
-| url      | str  | 图片url    | 一般为 B 站图床 url       |
-| height   | num  | 图片高度   | 单位：像素（非必要）      |
-| width    | num  | 图片宽度   | 单位：像素（非必要）      |
-| type     | str  | 图片格式   | （非必要）                |
-| original | num  | 是否为原图 | 当本参数值为 `1` 时，APP上会出现“下载原图”按钮（非必要） |
-| size     | num  | 文件大小   | 单位：千字节（非必要）    |
+| 字段      | 类型 | 内容       | 备注                      |
+| --------- | ---- | ---------- | ------------------------- |
+| url       | str  | 图片url    | 一般为 B 站图床 url       |
+| height    | num  | 图片高度   | 单位：像素（非必要）      |
+| width     | num  | 图片宽度   | 单位：像素（非必要）      |
+| imageType | str  | 图片格式   | （非必要）                |
+| original  | num  | 是否为原图 | 当本参数值为 `1` 时，APP上会出现“下载原图”按钮（非必要） |
+| size      | num  | 文件大小   | 单位：千字节（非必要）    |
 
 **示例：**
 
@@ -92,7 +92,7 @@
 | thumb       | str  | 分享内容封面     | 此项不实时更新，在发送私信时设置                               |
 | title       | str  | 分享内容标题     | 此项不实时更新，在发送私信时设置                               |
 | url         | str  | 分享内容url      | （非必要）                                                     |
-| bvid        | str  | 视频BV号         | （非必要）                                                     |
+| bvid        | str  | 视频BV号         | 当 `source` 值为 `5` 时有效（非必要）                          |
 
 **示例：**
 
@@ -167,8 +167,8 @@
 
 **按钮显示逻辑说明：**
 
-- **按钮的url：**首先尝试读取 `jump_uri_*_config` 对象中表示当前设备类型的 url（如 `web_uri`、`android_uri` 等）；若为空值，则尝试读取 `jump_uri_*_config` 对象中 `all_uri` 的值；若仍为空值，则读取根对象中 `jump_uri_*` 的值；若仍为空值，则不显示该按钮（无论 `jump_text_*` 或 `jump_uri_*_config` 中的 `text` 是否为非空值）
-- **按钮提示文字：**若按钮是可见的，则先尝试读取 `jump_uri_*_config` 对象中 `text` 的值；若为空值，则读取根对象中 `jump_text_*` 的值；若仍为空值，则提示文字为 `查看详情`
+- **按钮的url：**首先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中表示当前设备类型的 url（如 `web_uri`、`android_uri` 等）；若为空值，则尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `all_uri` 的值；若仍为空值，则读取根对象中 `jump_uri`、`jump_uri_2`、`jump_uri_3` 的值；若仍为空值，则不显示该按钮（无论提示文字是否为空）
+- **按钮提示文字：**若按钮是可见的，则先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `text` 的值；若为空值，则读取根对象中 `jump_text`、`jump_text_2`、`jump_text_3` 的值；若仍为空值，则提示文字为 `查看详情`
 
 根对象：
 
