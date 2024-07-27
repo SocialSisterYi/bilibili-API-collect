@@ -69,7 +69,7 @@
 | enable_vt | bool | false | 旧接口无 |
 | interactive_video | bool | 是否是互动视频 | |
 | pic | str | 封面 URL ||
-| playback_position | num || 会随着播放时间增长，播放完成后为 -1 。单位未知 |
+| playback_position | num || 会随着播放时间增长，播放完成后为 -1 。单位为 % |
 | pubdate | num | 发布日期 | Unix 时间戳 |
 | stat | obj | 稿件信息 ||
 | state | num | 0 ||
@@ -1169,3 +1169,393 @@ curl -G 'https://api.bilibili.com/x/series/series' \
 ```
 
 </details>
+
+## 获取指定系列视频
+
+> https://api.bilibili.com/x/series/archives
+
+*请求方式: GET*
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| mid    | num  | 用户 mid | 必要   |      |
+| series_id | num | 系列ID | 必要   |      |
+| only_normal | bool | 作用尚不明确 | 可选 | 默认为 true |
+| sort | str | 排序方式 | 可选 | desc: 默认排序<br />asc: 升序排序 |
+| pn | num | 页码 | 可选 | 默认为 1 |
+| ps | num | 每页数量 | 可选 | 默认为 20 |
+| current_mid | num | 当前用户 mid | 可选 | 用于 `playback_position` 播放进度 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注    |
+| ------- | ---- | -------- | ------- |
+| code    | num  | 返回值   | 0：成功 |
+| message | str  | 错误信息 | 默认为0 |
+| ttl     | num  | 1        |         |
+| data    | obj  | 信息本体 |         |
+
+`data`对象:
+
+| 字段         | 类型 | 内容         | 备注 |
+| ------------ | ---- | ------------ | ---- |
+| aids         | array  | 视频 aid 列表 | 内容类型为 num |
+| page         | obj  | 页码信息     |      |
+| archives     | array  | 视频信息列表 |      |
+
+`data`中的`page`对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| num  | num  | 当前页码 |      |
+| size | num  | 每页数量 |      |
+| total | num  | 视频总数 |      |
+
+`data`中的`archives`数组:
+
+基本同[获取视频合集信息](#获取视频合集信息)中的`archives`数组
+
+**示例:**
+
+获取 `mid=39665558` 的 `series_id=534501` 系列视频列表，每页 16 条，页码为 1，默认排序, 当前用户 mid 为 `1070915568`
+
+```shell
+curl -G "https://api.bilibili.com/x/series/archives" \
+--data-urlencode "mid=39665558" \
+--data-urlencode "series_id=534501" \
+--data-urlencode "only_normal=true" \
+--data-urlencode "sort=desc" \
+--data-urlencode "pn=1" \
+--data-urlencode "ps=16" \
+--data-urlencode "current_mid=1070915568"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```jsonc
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "aids": [
+      695029098,
+      724599872,
+      594794875,
+      41565264,
+      541053051,
+      499696652,
+      673071936,
+      462891077,
+      973903762,
+      61692380,
+      336713491,
+      372661682,
+      550840795,
+      51839931,
+      718592873,
+      87838863
+    ],
+    "page": {
+      "num": 1,
+      "size": 16,
+      "total": 25
+    },
+    "archives": [
+      {
+        "aid": 695029098,
+        "title": "Python控制Minecraft教程（下）：自动建造",
+        "pubdate": 1677321251,
+        "ctime": 1677321251,
+        "state": 0,
+        "pic": "http://i1.hdslb.com/bfs/archive/187c0ba21b9ceba908a8760e83d49f466316824b.jpg",
+        "duration": 275,
+        "stat": {
+          "view": 26555
+        },
+        "bvid": "BV1k24y1J78X",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 724599872,
+        "title": "『教程』一看就懂！Github基础教程",
+        "pubdate": 1646740815,
+        "ctime": 1646740824,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/1401ebe64e88deddf2b44ad6a740ff8872c2fda6.jpg",
+        "duration": 296,
+        "stat": {
+          "view": 2412054
+        },
+        "bvid": "BV1hS4y1S7wL",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 594794875,
+        "title": "『教程』手把手教你流畅访问Github",
+        "pubdate": 1647345613,
+        "ctime": 1647336725,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/71cc640a84087cc99399449c00b93212fe78ee6f.jpg",
+        "duration": 236,
+        "stat": {
+          "view": 910491
+        },
+        "bvid": "BV1Aq4y1q7hr",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 41565264,
+        "title": "《Python负基础到入门教程》专为\"非计算机专业和编程困难户\"制作（全13集 配音字幕重制版）",
+        "pubdate": 1548316071,
+        "ctime": 1548316072,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/5f4f6acfc00723c84f726d35add94b1d4b4ee482.jpg",
+        "duration": 6395,
+        "stat": {
+          "view": 261286
+        },
+        "bvid": "BV1et411b76c",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 541053051,
+        "title": "『教程』文字频频乱码 这背后是显卡的扭曲还是规则的沦丧？",
+        "pubdate": 1592996906,
+        "ctime": 1592996907,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/8a3c3e3d01a91776763d34bba79add698869c82d.jpg",
+        "duration": 381,
+        "stat": {
+          "view": 1184937
+        },
+        "bvid": "BV1ai4y1x7Uz",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 499696652,
+        "title": "『教程』VsCode五分钟上手教程 无一句废话",
+        "pubdate": 1601207369,
+        "ctime": 1601207369,
+        "state": 0,
+        "pic": "http://i1.hdslb.com/bfs/archive/cb78c07a090ed456bdcc217b0417670867772a29.jpg",
+        "duration": 329,
+        "stat": {
+          "view": 417610
+        },
+        "bvid": "BV1bK411P767",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 673071936,
+        "title": "『教程』补码怎么来的？",
+        "pubdate": 1620994814,
+        "ctime": 1620986531,
+        "state": 0,
+        "pic": "http://i1.hdslb.com/bfs/archive/12c02599321a0b1386b29ddc4653ff7df9bd54b4.jpg",
+        "duration": 445,
+        "stat": {
+          "view": 247578
+        },
+        "bvid": "BV16U4y1t7LD",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 462891077,
+        "title": "『教程』回调函数是个啥？",
+        "pubdate": 1631274885,
+        "ctime": 1631274885,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/df294350462558601f65b743ca25e2fdc01de628.jpg",
+        "duration": 452,
+        "stat": {
+          "view": 213895
+        },
+        "bvid": "BV1vL411t78b",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 98
+      },
+      {
+        "aid": 973903762,
+        "title": "『教程』堆栈是个啥？",
+        "pubdate": 1625227205,
+        "ctime": 1625227209,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/bf7956b6311ec0787fd52d1293bb4287d16b7e65.jpg",
+        "duration": 370,
+        "stat": {
+          "view": 535174
+        },
+        "bvid": "BV1P44y1q7uL",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 99
+      },
+      {
+        "aid": 61692380,
+        "title": "『教程』什么是递归？",
+        "pubdate": 1564660818,
+        "ctime": 1564637347,
+        "state": 0,
+        "pic": "http://i1.hdslb.com/bfs/archive/4af853671204b9bc631fada1934a3e86145a7d19.jpg",
+        "duration": 658,
+        "stat": {
+          "view": 487397
+        },
+        "bvid": "BV194411f71o",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 79
+      },
+      {
+        "aid": 336713491,
+        "title": "『教程』几分钟听懂迭代器",
+        "pubdate": 1636713476,
+        "ctime": 1636713476,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/6e255cce7c0303ab0211acd0f9d1ec5980ff03f7.jpg",
+        "duration": 453,
+        "stat": {
+          "view": 110688
+        },
+        "bvid": "BV18R4y1t7Hg",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 97
+      },
+      {
+        "aid": 372661682,
+        "title": "『教程』桌面精灵是怎样实现的？",
+        "pubdate": 1604916264,
+        "ctime": 1604916264,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/aaa8bb7b6fced63dd4792e28c1f78ba903fcc4cc.jpg",
+        "duration": 326,
+        "stat": {
+          "view": 168775
+        },
+        "bvid": "BV1aZ4y1V7aa",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 550840795,
+        "title": "『教程』什么是钩子技术？",
+        "pubdate": 1642744335,
+        "ctime": 1642744335,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/380b1ff9726c673411cf916b03268c7fb16aff68.jpg",
+        "duration": 240,
+        "stat": {
+          "view": 237568
+        },
+        "bvid": "BV1Cq4y1c7kK",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 51839931,
+        "title": "『教程』学编程前必知的8个电脑操作",
+        "pubdate": 1557313623,
+        "ctime": 1557313623,
+        "state": 0,
+        "pic": "http://i2.hdslb.com/bfs/archive/b54535ee3ff27006912d8013f2ea1667b2a50f80.jpg",
+        "duration": 641,
+        "stat": {
+          "view": 139385
+        },
+        "bvid": "BV1t4411v78E",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 718592873,
+        "title": "『教程』这些常见编程单词到底该怎么读？看你能否读对？对✔❌✅☑",
+        "pubdate": 1634300675,
+        "ctime": 1634265090,
+        "state": 0,
+        "pic": "http://i1.hdslb.com/bfs/archive/de43275f44aea9f6d79c13ee68c6dcdfc9e5fc5e.jpg",
+        "duration": 783,
+        "stat": {
+          "view": 81193
+        },
+        "bvid": "BV1JQ4y1D79p",
+        "ugc_pay": 0,
+        "interactive_video": true,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 100
+      },
+      {
+        "aid": 87838863,
+        "title": "『教程』什么是环境变量",
+        "pubdate": 1581258353,
+        "ctime": 1581258353,
+        "state": 0,
+        "pic": "http://i0.hdslb.com/bfs/archive/331b2304d8262c4252f338599846761d6a5a8e0c.jpg",
+        "duration": 353,
+        "stat": {
+          "view": 99797
+        },
+        "bvid": "BV1w741147G9",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      }
+    ]
+  }
+}
+```
