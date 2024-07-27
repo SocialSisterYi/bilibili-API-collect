@@ -189,8 +189,6 @@ curl -G "https://api.bilibili.com/x/polymer/space/seasons_archives_list" \
 
 > https://api.bilibili.com/x/polymer/web-space/home/seasons_series
 
-注: 该接口记录在本文档时, B站已不再使用本接口, 请求参数可能不完整, 不推荐使用
-
 *请求方式: GET*
 
 **URL参数:**
@@ -200,6 +198,9 @@ curl -G "https://api.bilibili.com/x/polymer/space/seasons_archives_list" \
 | mid       | num  | 用户 mid     | 必要   |      |
 | page_num  | num  | 页码索引     | 必要   |      |
 | page_size | num  | 单页内容数量 | 必要   |      |
+| gaia_vtoken | str | 风控验证? | 可选 | 若被风控则必要(如User-Agent不正常) |
+| w_rid     | str  | WBI 签名     | 不必要 | 参见 [WBI 签名](../misc/sign/wbi.md) |
+| wts       | num  | UNIX 秒级时间戳 | 不必要 | 参见 [WBI 签名](../misc/sign/wbi.md) |
 
 **JSON回复:**
 
@@ -207,7 +208,7 @@ curl -G "https://api.bilibili.com/x/polymer/space/seasons_archives_list" \
 
 | 字段    | 类型 | 内容     | 备注    |
 | ------- | ---- | -------- | ------- |
-| code    | num  | 返回值   | 0：成功<br />-400: 请求错误 |
+| code    | num  | 返回值   | 0：成功<br />-352: 请求被风控<br />-400: 请求错误 |
 | message | str  | 错误信息 | 默认为0 |
 | ttl     | num  | 1        |         |
 | data    | obj  | 信息本体 |         |
@@ -285,7 +286,6 @@ curl -G "https://api.bilibili.com/x/polymer/web-space/home/seasons_series" \
 
 <details>
 <summary>查看响应示例:</summary>
-
 
 ```json
 {
@@ -907,7 +907,189 @@ curl -G "https://api.bilibili.com/x/polymer/web-space/home/seasons_series" \
 }
 ```
 
-## 查询系列视频
+## 获取系列和合集视频
+
+> https://api.bilibili.com/x/polymer/web-space/seasons_series_list
+
+*请求方式: GET*
+
+鉴权方式: 请求头 User-Agent 为正常浏览器, 若仍被风控则请求头再带上 Referer 为 `.bilibili.com` 下任意页
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| mid    | num  | 用户 mid | 必要   |      |
+| page_num | num | 页码 | 必要 | 默认为 1 |
+| page_size | num | 每页数量 | 必要 | 默认为 20 |
+| w_rid | str | WBI 签名 | 可选 | 参见 [WBI 签名](../misc/sign/wbi.md) |
+| wts | num | UNIX 秒级时间戳 | 可选 | 参见 [WBI 签名](../misc/sign/wbi.md) |
+| web_location | str | 页面位置? | 可选 | 333.999 |
+
+**JSON回复:**
+
+与 [只获取系列视频](#只获取系列视频) 基本一致, 但 `.data.items_lists.seasons_list` 数组不为空,
+且该数组中的元素结构与 `.data.items_lists.series_list` 相同, 略
+
+**示例:**
+
+获取 `mid=37737161` 的系列视频列表，每页 5 条，页码为 1
+
+```shell
+curl -G "https://api.bilibili.com/x/polymer/web-space/seasons_series_list" \
+--data-urlencode "mid=37737161" \
+--data-urlencode "page_num=1" \
+--data-urlencode "page_size=5" \
+--data-urlencode "w_rid=xxx" \
+--data-urlencode "wts=xxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```jsonc
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "items_lists": {
+      "page": {
+        "page_num": 1,
+        "page_size": 5,
+        "total": 9
+      },
+      "seasons_list": [
+        {
+          "archives": [
+            {
+              "aid": 343807541,
+              "bvid": "BV1t94y1D79E",
+              "ctime": 1658907465,
+              "duration": 2164,
+              "enable_vt": false,
+              "interactive_video": false,
+              "pic": "http://i1.hdslb.com/bfs/archive/0af0faa77a1921db4cf86c115db70aa2594983f0.jpg",
+              "playback_position": 0,
+              "pubdate": 1658907465,
+              "stat": {
+                "view": 43096,
+                "vt": 0
+              },
+              "state": 0,
+              "title": "Java学习路线两条龙版，让你不再迷茫！包含各个知识点梳理，常用技术栈介绍等。",
+              "ugc_pay": 0,
+              "vt_display": ""
+            },
+            {
+              "aid": 429032764,
+              "bvid": "BV11G411h7NB",
+              "ctime": 1659499261,
+              "duration": 197,
+              "enable_vt": false,
+              "interactive_video": false,
+              "pic": "http://i2.hdslb.com/bfs/archive/5235a0ab2738e288b08654aa8e0cd3a509a7ef96.jpg",
+              "playback_position": 0,
+              "pubdate": 1659499200,
+              "stat": {
+                "view": 22700,
+                "vt": 0
+              },
+              "state": 0,
+              "title": "好书推荐《On Java》都什么年代了，还在看传统Java书籍？",
+              "ugc_pay": 0,
+              "vt_display": ""
+            },
+            // ...
+          ],
+          "meta": {
+            "category": 0,
+            "cover": "https://archive.biliimg.com/bfs/archive/27733cf13514d990c880154b937cd8633f583aa4.jpg",
+            "description": "除教程视频外其他的视频，均在此。",
+            "mid": 37737161,
+            "name": "合集·拾枝杂谈",
+            "ptime": 1694682652,
+            "season_id": 587216,
+            "total": 10
+          },
+          "recent_aids": [
+            343807541,
+            429032764,
+            857089796,
+            560181990,
+            774119786,
+            859397126
+          ]
+        },
+        {
+          "archives": [
+            {
+              "aid": 311606079,
+              "bvid": "BV1XN411K7g9",
+              "ctime": 1679651747,
+              "duration": 261,
+              "enable_vt": false,
+              "interactive_video": false,
+              "pic": "http://i2.hdslb.com/bfs/archive/234e6bd061176dba9e148f4373c52fa7cd2d801f.jpg",
+              "playback_position": 0,
+              "pubdate": 1679651747,
+              "stat": {
+                "view": 12150,
+                "vt": 0
+              },
+              "state": 0,
+              "title": "某些IT社区平台乱象，文章千篇一律，毫不注重版权，文章互相抄袭成潮流，希望能够好好管管！",
+              "ugc_pay": 0,
+              "vt_display": ""
+            },
+            {
+              "aid": 400546145,
+              "bvid": "BV1qo4y1L73P",
+              "ctime": 1682777426,
+              "duration": 335,
+              "enable_vt": false,
+              "interactive_video": false,
+              "pic": "http://i2.hdslb.com/bfs/archive/a6b6fb0330bbf6c500720a024e5a9ade24d888c3.jpg",
+              "playback_position": 0,
+              "pubdate": 1682777425,
+              "stat": {
+                "view": 52744,
+                "vt": 0
+              },
+              "state": 0,
+              "title": "某些搜索引擎得到的结果，官方网站反而排在一些诈骗广告后面，诱导用户下载大量捆绑垃圾软件",
+              "ugc_pay": 0,
+              "vt_display": ""
+            }
+          ],
+          "meta": {
+            "category": 0,
+            "cover": "https://archive.biliimg.com/bfs/archive/5e1c1f77c3065ec31eec43d7e35f7a061602e4d6.jpg",
+            "description": "白马首席讲师吐槽系列视频",
+            "mid": 37737161,
+            "name": "合集·水浅王八多，真假白马说",
+            "ptime": 1682777425,
+            "season_id": 1227671,
+            "total": 2
+          },
+          "recent_aids": [
+            311606079,
+            400546145
+          ]
+        },
+        // ...
+      ],
+      "series_list": [
+        // 与前接口基本相同
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+## 查询指定系列
 
 > https://api.bilibili.com/x/series/series
 
