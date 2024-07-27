@@ -68,12 +68,12 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [已知的 APPKey](docs/misc/sign/APPKey.md)
     - [x] [Wbi 签名](docs/misc/sign/wbi.md)（`wts`与`w_rid`）
     - [ ] [bili_ticket](docs/misc/sign/bili_ticket.md)
-
 - [x] [公共错误码](docs/misc/errcode.md)
 - [x] [图片格式化](docs/misc/picture.md)
 - [x] [bvid 说明](docs/misc/bvid_desc.md)
 - [ ] [设备唯一标识BUVID](docs/misc/device_identity.md)
 - [ ] [获取 buvid3 / buvid4 / b_nut](docs/misc/buvid3_4.md)
+- [ ] [b23.tv 短链](docs/misc/b23tv.md)
 - [ ] [gRPC API 接口定义](grpc_api)
 - [ ] [登录](docs/login)
     - [x] [登录操作 (人机认证)](docs/login/login_action)
