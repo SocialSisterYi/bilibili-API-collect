@@ -64,13 +64,15 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 计划整理分类 & 目录：(文档已完结请选中 checkbox)
 
 - [ ] [接口签名与验证](docs/misc/sign)
-    - [x] [APP API 签名](docs/misc/sign/APP.md)（`appkey`与`sign`）
+    - [x] [APP API 签名](docs/misc/sign/APP.md)（`appkey` 与 `sign`）
     - [x] [已知的 APPKey](docs/misc/sign/APPKey.md)
     - [x] [Wbi 签名](docs/misc/sign/wbi.md)（`wts`与`w_rid`）
+    - [ ] [bili_ticket](docs/misc/sign/bili_ticket.md)
 - [x] [公共错误码](docs/misc/errcode.md)
 - [x] [图片格式化](docs/misc/picture.md)
 - [x] [bvid 说明](docs/misc/bvid_desc.md)
 - [ ] [设备唯一标识 BUVID](docs/misc/device_identity.md)
+- [ ] [获取 buvid3 / buvid4 / b_nut](docs/misc/buvid3_4.md)
 - [ ] [gRPC API 接口定义](grpc_api)
 - [ ] [登录](docs/login)
     - [x] [登录操作 (人机认证)](docs/login/login_action)
@@ -207,6 +209,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] 动态列表
         - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
+    - [ ] [导航栏动态](docs/dynamic/nav.md)
 - [ ] [相簿](docs/album)
     - [x] [基本信息](docs/album/info.md)
     - [x] [相簿列表](docs/album/list.md)
@@ -355,6 +358,7 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 - [SocialSisterYi/bcut-asr](https://github.com/SocialSisterYi/bcut-asr): 使用必剪API的语音字幕识别
 - [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
 - [kingwingfly/fav](https://github.com/kingwingfly/fav): 自动同步bili收藏夹、合集视频到本地的CLI工具（Rust实现，并提供一个文档测试完善的Rust风格的用于构建有状态爬虫的核心库）
+- [linyuye/Bilibili_crawler](https://github.com/linyuye/Bilibili_crawler): 基于bilibili懒加载api爬取b站动态，视频等评论区
 
 ### 其他
 

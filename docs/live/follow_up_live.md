@@ -2,7 +2,7 @@
 
 ## 用户关注的所有UP的直播情况
 
-> https://api.bilibili.com/x/space/wbi/acc/info
+> https://api.live.bilibili.com/xlive/web-ucenter/user/following
 
 *请求方式：GET*
 

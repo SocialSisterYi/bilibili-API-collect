@@ -2,7 +2,7 @@
 
 ## 设备唯一标识 BUVID
 
-注意区分于 Web 端的 buvid3, buvid4.
+注意区分于 Web 端的 [buvid3, buvid4](buvid3_4.md).
 
 BUVID 在 APP 首次安装于某设备, 且首次启动时生成.
 
