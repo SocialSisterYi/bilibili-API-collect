@@ -1,10 +1,18 @@
 # 合集和视频列表信息
 
+请注意区分 **合集(seasons_archives)** 和 **视频列表(seasons_series)**
+
+合集是后加入的功能, 图标为立体叠放的正方形(.icon-heji), 可以在创作中心管理
+
+列表即系列(series)或频道(channel), 图标为平面叠放的矩形且中央有播放按钮标识(.icon-ic_channel1), 在个人空间直接操作
+
+此处保留原 Issue 的表述, 参见 [#945](https://github.com/SocialSisterYi/bilibili-API-collect/issues/945)
+
 ## 获取视频合集信息
 
 > https://api.bilibili.com/x/polymer/web-space/seasons_archives_list (需验证referer)
 >
-> https://api.bilibili.com/x/polymer/space/seasons_archives_list (旧接口, 无鉴权验证)
+> https://api.bilibili.com/x/polymer/space/seasons_archives_list (旧接口, 不推荐使用, 无鉴权验证)
 
 *请求方式：GET*
 
@@ -898,3 +906,84 @@ curl -G "https://api.bilibili.com/x/polymer/web-space/home/seasons_series" \
   }
 }
 ```
+
+## 查询系列视频
+
+> https://api.bilibili.com/x/series/series
+
+*请求方式: GET*
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| series_id | num | 系列ID | 必要   |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注    |
+| ------- | ---- | -------- | ------- |
+| code    | num  | 返回值   | 0：成功 |
+| message | str  | 错误信息 | 默认为0 |
+| ttl     | num  | 1        |         |
+| data    | obj  | 信息本体 |         |
+
+`data`对象:
+
+| 字段         | 类型 | 内容         | 备注 |
+| ------------ | ---- | ------------ | ---- |
+| meta         | obj  | 系列信息     |      |
+| recent_aids  | array  | 系列 aid 列表 | 内容类型为 num |
+
+`data`中的`meta`对象:
+
+同[只获取系列视频](#只获取系列视频)中的`meta`对象
+
+**示例:**
+
+```shell
+curl -G 'https://api.bilibili.com/x/series/series' \
+--data-urlencode 'series_id=2158988'
+```
+
+<details>
+<summary>查看响应示例</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "meta": {
+      "series_id": 2158988,
+      "mid": 37737161,
+      "name": "JavaSE基础路线",
+      "description": "已排序完成，共3个系列，完成JavaSE篇之后，就可以开启JavaEE路线了",
+      "keywords": [
+        ""
+      ],
+      "creator": "auto",
+      "state": 2,
+      "last_update_ts": 1667816253,
+      "total": 6,
+      "ctime": 1648810702,
+      "mtime": 1667816253,
+      "raw_keywords": "",
+      "category": 1
+    },
+    "recent_aids": [
+      900707014,
+      604837097,
+      766688029,
+      936955310,
+      768437265,
+      684547077
+    ]
+  }
+}
+```
+
+</details>
