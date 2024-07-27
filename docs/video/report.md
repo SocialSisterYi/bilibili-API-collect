@@ -126,7 +126,7 @@ curl 'https://api.bilibili.com/x/v2/history/report' \
 | outer                   | num  | 0                                  | 非必要       |                                                             |
 | spmid                   | str  | 333.788.0.0                        | 非必要       | 作用尚不明确                                                |
 | from_spmid              | str  | 播放来源?                          | 非必要       | 也可为空, 如: 444.41.list.card_archive.click                |
-| session                 | str  | 会话信息?                          | 非必要       | 每次刷新均不同, 生成原理尚不明确                            |
+| session                 | str  | 会话信息?                          | 非必要       | 一串无分隔小写 UUID                            |
 | extra                   | obj  | 额外信息, 如播放器版本             | 非必要       | 如: `{"player_version":"4.8.36"}`                           |
 | play_type               | num  | 播放动作                           | 非必要       | 0：播放中<br />1：开始播放<br />2：暂停<br />3：继续播放<br />4: 结束播放 |
 | csrf                    | str  | CSRF Token（即 Cookie 中 bili_jct) | 非必要       |                                                             |
