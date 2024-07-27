@@ -78,28 +78,58 @@ curl 'https://api.bilibili.com/x/v2/history/report' \
 
 认证方式：仅可Cookie（SESSDATA）
 
-默认间隔15秒一次
+默认间隔15秒一次, 亦可记录播放历史
 
-亦可记录播放历史
+尽管以下除正文 `aid` 以外的参数均为非必要, 但缺少可能会导致播放不被记录, 同一 IP/登陆用户 每五分钟最多记录一次播放
+
+该接口较为复杂, 且参数计算方法均为推测, 实际过程不明, 可能含有错误, 若要正式使用可以把已播放的持续时间全都设为相同值
+
+**URL参数:**
+
+| 参数名                    | 类型 | 内容                           | 必要性 | 备注    |
+| ------------------------- | ---- | ------------------------------ | ------ | ------- |
+| w_start_ts                | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | UNIX 秒级时间戳 |
+| w_mid                     | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 |         |
+| w_aid                     | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 |         |
+| w_dt                      | num  | 2                              | 非必要 |         |
+| w_realtime                | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | 单位 秒 |
+| w_playedtime              | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | 单位 秒 |
+| w_real_played_time        | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | 单位 秒 |
+| w_video_duration          | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | 单位 秒 |
+| w_last_play_progress_time | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | 单位 秒 |
+| web_location              | num  | 网页位置                       | 非必要 | 视频详情页播放器: 1315873 |
+| w_rid                     | num  | WBI 签名                       | 非必要 | 参见[WBI 签名](docs/misc/sign/wbi.md) |
+| wts                       | num  | UNIX 秒级时间戳                | 非必要 | 参见[WBI 签名](docs/misc/sign/wbi.md) |
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名      | 类型 | 内容                     | 必要性       | 备注                                                         |
-| ----------- | ---- | ------------------------ | ------------ | ------------------------------------------------------------ |
-| aid         | num  | 稿件avid                 | 必要（可选） | avid与bvid任选一个                                           |
-| bvid        | str  | 稿件bvid                 | 必要（可选） | avid与bvid任选一个                                           |
-| cid         | num  | 视频cid                  | 非必要       | 用于识别分P                                                  |
-| epid        | num  | 番剧epid                 | 非必要       |                                                              |
-| sid         | num  | 番剧ssid                 | 非必要       |                                                              |
-| mid         | num  | 当前用户mid              | 非必要       |                                                              |
-| played_time | num  | 视频播放进度             | 非必要       | 单位为秒<br />默认为0                                        |
-| realtime    | num  | 总计播放时间             | 非必要       | 单位为秒                                                     |
-| start_ts    | num  | 开始播放时刻             | 非必要       | 时间戳                                                       |
-| type        | num  | 视频类型                 | 非必要       | 3：投稿视频<br />4：剧集<br />10：课程                       |
-| sub_type    | num  | 剧集副类型               | 非必要       | 当`type=4`时本参数有效<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
-| dt          | num  | 2                        | 非必要       |                                                              |
-| play_type   | num  | 播放动作                 | 非必要       | 0：播放中<br />1：开始播放<br />2：暂停<br />3：继续播放     |
-| csrf        | str  | CSRF Token（位于cookie） | 非必要       |                                                              |
+| 参数名                  | 类型 | 内容                               | 必要性       | 备注                                                        |
+| ----------------------- | ---- | ---------------------------------- | ------------ | ----------------------------------------------------------- |
+| aid                     | num  | 稿件avid                           | 必要（可选） | avid与bvid任选一个(网页端请求默认仅使用aid)                 |
+| bvid                    | str  | 稿件bvid                           | 必要（可选） | avid与bvid任选一个                                          |
+| cid                     | num  | 视频cid                            | 非必要       | 用于识别分P                                                 |
+| epid                    | num  | 番剧epid                           | 非必要       |                                                             |
+| sid                     | num  | 番剧ssid                           | 非必要       |                                                             |
+| mid                     | num  | 当前用户mid                        | 非必要       |                                                             |
+| played_time             | num  | 视频播放进度                       | 非必要       | 单位 秒<br />播放完成为 -1                                  |
+| realtime                | num  | 本轮页面会话真实播放时间           | 非必要       | 单位 秒                                                     |
+| real_played_time        | num  | 本轮页面会话真实视频播放持续时间   | 非必要       | 单位 秒                                                     |
+| refer_url               | str  | 与请求头 Referer 字段相同          | 非必要       |                                                             |
+| quality                 | num  | 视频清晰度                         | 非必要       | 参见[qn视频清晰度标识](videostream_url.md#qn视频清晰度标识) |
+| video_duration          | num  | 视频时长                           | 非必要       | 单位 秒                                                     |
+| last_play_progress_time | num  | play_time 与 本轮页面会话开始时 played_time  之和 | 非必要 | 单位 秒                                            |
+| max_play_progress_time  | num  | 本轮页面会话所有最大 last_play_progress_time 与 本轮页面会话开始时 played_time  之和 | 非必要 | 单位 秒         |
+| start_ts                | num  | 开始播放时刻                       | 非必要       | 时间戳                                                      |
+| type                    | num  | 视频类型                           | 非必要       | 3：投稿视频<br />4：剧集<br />10：课程                      |
+| sub_type                | num  | 剧集副类型                         | 非必要       | 0: 普通投稿视频<br />1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
+| dt                      | num  | 2                                  | 非必要       |                                                             |
+| outer                   | num  | 0                                  | 非必要       |                                                             |
+| spmid                   | str  | 333.788.0.0                        | 非必要       | 作用尚不明确                                                |
+| from_spmid              | str  | 播放来源?                          | 非必要       | 也可为空, 如: 444.41.list.card_archive.click                |
+| session                 | str  | 会话信息?                          | 非必要       | 每次刷新均不同, 生成原理尚不明确                            |
+| extra                   | obj  | 额外信息, 如播放器版本             | 非必要       | 如: `{"player_version":"4.8.36"}`                           |
+| play_type               | num  | 播放动作                           | 非必要       | 0：播放中<br />1：开始播放<br />2：暂停<br />3：继续播放<br />4: 结束播放 |
+| csrf                    | str  | CSRF Token（即 Cookie 中 bili_jct) | 非必要       |                                                             |
 
 **json回复：**
 

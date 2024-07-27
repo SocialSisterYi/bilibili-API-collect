@@ -250,7 +250,7 @@
 | title          | str | 直播间标题      |                  |
 | cover          | str | 直播间封面 url  |                  |
 | watched_show   | obj |            |                  |
-| roomid         | num | 直播间 id(短号) |                  |
+| roomid         | num | 直播间 id      |                  |
 | roundStatus    | num | 轮播状态       | 0：未轮播<br />1：轮播  |
 | broadcast_type | num | 0          |                  |
 

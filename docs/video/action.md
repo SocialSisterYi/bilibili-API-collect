@@ -130,13 +130,16 @@ curl 'https://app.bilibili.com/x/v2/view/like' \
 
 </details>
 
-### 判断视频是否被点赞（双端）
+### 判断视频近期是否被点赞（双端）
 
 > https://api.bilibili.com/x/web-interface/archive/has/like
 
 *请求方式：GET*
 
 认证方式：APP或Cookie（SESSDATA）
+
+注: 这一 API 实际上只能判断出视频**在近期内**是否被点赞, 并不能判断出视频是否被点赞.
+「近期」的定义不明, 但至少半年前点赞过的视频, 用这一接口获取到的结果就已经是 `0` 了. 参见 [#380](https://github.com/SocialSisterYi/bilibili-API-collect/issues/380).
 
 **url参数：**
 
@@ -459,8 +462,6 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 ### 收藏视频（双端）
 
 > https://api.bilibili.com/medialist/gateway/coll/resource/deal
->
-> https://api.bilibili.com/x/v3/fav/resource/deal
 
 *请求方式：POST*
 
@@ -475,8 +476,8 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 | access_key    | str  | APP 登录 Token           | APP 方式必要   |                                |
 | rid           | num  | 稿件 avid                | 必要           |                                |
 | type          | num  | 必须为2                  | 必要           |                                |
-| add_media_ids | nums | 需要加入的收藏夹 mlid      | 非必要         | 同时添加多个，用`,`（%2C）分隔 |
-| del_media_ids | nums | 需要取消的收藏夹 mlid      | 非必要         | 同时取消多个，用`,`（%2C）分隔 |
+| add_media_ids | nums | 需要加入的收藏夹 mlid      | 非必要(可选)   | 同时添加多个，用`,`（%2C）分隔 |
+| del_media_ids | nums | 需要取消的收藏夹 mlid      | 非必要(可选)   | 同时取消多个，用`,`（%2C）分隔 |
 | csrf          | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                                |
 
 **json回复：**
@@ -533,6 +534,81 @@ curl 'https://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 		"prompt": false
 	},
 	"message": "success"
+}
+```
+
+</details>
+
+### 收藏视频（Web端）
+
+> https://api.bilibili.com/x/v3/fav/resource/deal
+
+*请求方式: POST*
+
+认证方式: Cookie（SESSDATA）
+
+**正文参数(application/x-www-form-urlencoded):**
+
+| 参数名        | 类型 | 内容                               | 必要性       | 备注                           |
+| ------------- | ---- | ---------------------------------- | ------------ | ------------------------------ |
+| rid           | num  | 稿件 avid                          | 必要         |                                |
+| type          | num  | 必须为2                            | 必要         |                                |
+| add_media_ids | nums | 需要加入的收藏夹 mlid              | 非必要(可选) | 同时添加多个，用`,`（%2C）分隔 |
+| del_media_ids | nums | 需要取消的收藏夹 mlid              | 非必要(可选) | 同时取消多个，用`,`（%2C）分隔 |
+| csrf          | str  | CSRF Token (即 Cookie 中 bili_jct) | 必要         |                                |
+| platform      | str  | 平台标识?                          | 非必要       | web端: web                     |
+| eab_x         | num  | 1                                  | 非必要       | 作用尚不明确                   |
+| ramval        | num  | 正整数                             | 非必要       | 可能与在该页面的停留时间相关?  |
+| ga            | num  | 1                                  | 非必要       | 作用尚不明确                   |
+| gaia_source   | str  | ???                                | 非必要       | web端: web_normal              |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注    |
+| ------- | ---- | -------- | ------- |
+| code    | num  | 返回值   | 0: 成功<br />-101: 账号未登录<br />-111: csrf 校验失败<br />2001000: 参数错误 |
+| message | str  | 错误信息 | 默认为0 |
+| ttl     | num  | 1        |         |
+| data    | obj  | 信息本体 | 错误时为 null 或不存在 |
+
+`data`对象:
+
+| 字段        | 类型 | 内容                  | 备注                    |
+| ----------- | ---- | --------------------- | ----------------------- |
+| prompt      | bool | 是否为未关注用户收藏? | false：否<br />true：是 |
+| ga_data     | null |                       | 作用尚不明确            |
+| toast_msg   | str  | 空                    | 作用尚不明确            |
+| success_num | num  | 0                     | 作用尚不明确            |
+
+**示例:**
+
+将视频 `av1906473802` 添加到收藏夹 `1164192068` 中
+
+```shell
+curl -sX POST "https://api.bilibili.com/x/v3/fav/resource/deal" \
+--data-urlencode "rid=1906473802" \
+--data-urlencode  "type=2" \
+--data-urlencode "csrf=xxx" \
+--data-urlencode "add_media_ids=1164192068" \
+-b "SESSDATA=xxx; bili_jct=xxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "prompt": false,
+    "ga_data": null,
+    "toast_msg": "",
+    "success_num": 0
+  }
 }
 ```
 
