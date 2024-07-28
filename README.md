@@ -184,6 +184,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [表情及表情包信息](docs/emoji/list.md)
     - [x] [操作](docs/emoji/action.md)
 - [ ] [创作中心](docs/creativecenter)
+    - [ ] [投稿](docs/creativecenter/upload.md)
     - [ ] [统计与数据](docs/creativecenter/statistics&data.md)
     - [ ] 列表查询相关
     - [x] [电磁力数据](docs/creativecenter/railgun.md)
