@@ -68,6 +68,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [已知的 APPKey](docs/misc/sign/APPKey.md)
     - [x] [Wbi 签名](docs/misc/sign/wbi.md)（`wts`与`w_rid`）
     - [ ] [bili_ticket](docs/misc/sign/bili_ticket.md)
+    - [ ] [v_voucher 验证](docs/misc/sign/v_voucher.md)
 - [x] [公共错误码](docs/misc/errcode.md)
 - [x] [图片格式化](docs/misc/picture.md)
 - [x] [bvid 说明](docs/misc/bvid_desc.md)
