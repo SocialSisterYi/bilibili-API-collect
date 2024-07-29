@@ -1,6 +1,6 @@
 # 通知消息
 
-## 未读消息数
+## 获取未读消息数
 
 > https://api.bilibili.com/x/msgfeed/unread
 > https://api.vc.bilibili.com/x/im/web/msgfeed/unread (新接口)
@@ -31,24 +31,24 @@
 
 `data` 对象：
 
-| 字段          | 类型 | 内容           | 备注                       |
-| ------------- | ---- | -------------- | -------------------------- |
-| at            | num  | 未读at数       |                            |
-| chat          | num  | 0              | 仅旧接口，**作用尚不明确** |
-| coin          | num  | 未读投币数     |                            |
-| danmu         | num  | 未读弹幕数     |                            |
-| favorite      | num  | 未读收藏数?    |                            |
-| like          | num  | 未读点赞数     |                            |
-| recv_like     | num  | 未读点赞数     | 同 `like`                  |
-| recv_reply    | num  | 未读回复数     | 同 `reply`                 |
-| reply         | num  | 未读回复数     |                            |
-| sys_msg       | num  | 未读系统通知数 |                            |
-| sys_msg_style | num  | 1              | 仅新接口, **作用尚不明确** |
-| up            | num  | UP主助手信息数 |                            |
+| 字段          | 类型 | 内容               | 备注                       |
+| ------------- | ---- | ------------------ | -------------------------- |
+| at            | num  | 未读at数           |                            |
+| chat          | num  | 0                  | 仅旧接口，**作用尚不明确** |
+| coin          | num  | 未读投币数         | 目前恒为 `0`               |
+| danmu         | num  | 未读弹幕数         | 目前恒为 `0`               |
+| favorite      | num  | 未读收藏数         | 目前恒为 `0`               |
+| like          | num  | 未读点赞数         |                            |
+| recv_like     | num  | 未读点赞数         | 同 `like`                  |
+| recv_reply    | num  | 未读回复数         | 同 `reply`                 |
+| reply         | num  | 未读回复数         |                            |
+| sys_msg       | num  | 未读系统通知数     |                            |
+| sys_msg_style | num  | 1                  | 仅新接口, **作用尚不明确** |
+| up            | num  | 未读UP主助手信息数 |                            |
 
 **示例：**
 
-以下信息代表了未读点赞数为10，未读回复数为4，未读at消息数为3，未读系统通知数为2，UP主助手信息数为1
+以下信息代表了未读点赞数为10，未读回复数为4，未读at消息数为3，未读系统通知数为2，未读UP主助手信息数为1
 
 ```shell
 curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \

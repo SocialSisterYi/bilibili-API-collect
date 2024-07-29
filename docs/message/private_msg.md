@@ -24,12 +24,12 @@
 | status               | num  | 会话状态                         | 详细信息有待补充                                    |
 | max_seqno            | num  | 最近一条消息的序列号             |                                                     |
 | new_push_msg         | num  | 是否有新推送的消息               |                                                     |
-| setting              | num  | 推送设置                         | 0：接收推送<br />1：不接收推送<br />2：（？）       |
+| setting              | num  | 推送设置                         | 0：接收推送<br />1：不接收推送                      |
 | is_guardian          | num  | （？）                           | 在用户会话中有效<br />**作用尚不明确**              |
 | is_intercept         | num  | 会话是否被拦截                   |                                                     |
 | is_trust             | num  | 是否信任此会话                   | 若为 `1`，则表示此会话之前被拦截过，但用户选择信任本会话 |
-| system_msg_type      | num  | 系统消息类型                     | 0：非系统消息<br />1：主播小助手<br />7：UP主小助手<br />8：客服消息 |
-| account_info         | obj  | 会话信息                         | 仅在系统消息中出现                                  |
+| system_msg_type      | num  | 系统会话类型                     | 0：非系统会话<br />1：主播小助手<br />7：UP主小助手<br />8：客服消息 |
+| account_info         | obj  | 会话信息                         | 仅在系统会话中出现                                  |
 | live_status          | num  | 用户是否正在直播                 | 在用户会话中有效，其他会话中为 `0`                  |
 | biz_msg_unread_count | num  | 未读通知消息数                   |                                                     |
 | user_label           | null | （？）                           | **作用尚不明确**                                    |
@@ -93,7 +93,7 @@
 | 18   | 系统提示                  | 如：“对方主动回复或关注你前，最多发送1条消息” |
 | 19   | AI                        | 如：给[搜索AI助手测试版](https://space.bilibili.com/1400565964/)发送私信时对方的自动回复 |
 
-## 未读私信数
+## 获取未读私信数
 
 > https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread
 
@@ -103,11 +103,12 @@
 
 **URL参数:**
 
-| 参数名      | 类型 | 内容             | 必要性 | 备注                                                                       |
-| ----------- | ---- | ---------------- | ------ | -------------------------------------------------------------------------- |
-| unread_type | num  | 未读类型         | 非必要 | 0：所有<br />1：仅已关注<br />2：仅未关注<br />3：仅被拦截<br />默认为 `0` |
-| build       | num  | 客户端内部版本号 | 非必要 | 默认为 `0`                                                                 |
-| mobi_app    | str  | 平台标识         | 非必要 | 可为 `web` 等                                                              |
+| 参数名       | 类型 | 内容                 | 必要性 | 备注                                                                       |
+| ------------ | ---- | -------------------- | ------ | -------------------------------------------------------------------------- |
+| unread_type  | num  | 未读类型             | 非必要 | 0：所有<br />1：仅已关注<br />2：仅未关注<br />3：仅被拦截 (须同时设置参数 `show_dustbin=1`)<br />默认为 `0` |
+| show_dustbin | num  | 是否返回被拦截私信数 | 非必要 | 0：否<br />1：是                                                           |
+| build        | num  | 客户端内部版本号     | 非必要 | 默认为 `0`                                                                 |
+| mobi_app     | str  | 平台标识             | 非必要 | 可为 `web` 等                                                              |
 
 **json回复：**
 
@@ -140,7 +141,11 @@
 
 ```shell
 curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
--b 'SESSDATA=xxx'
+    --data-urlencode 'unread_type=0' \
+    --data-urlencode 'show_dustbin=1' \
+    --data-urlencode 'build=0' \
+    --data-urlencode 'mobi_app=web' \
+    -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -167,7 +172,237 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 </details>
 
-## 新会话列表
+## 获取指定类型会话列表
+
+> https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名        | 类型 | 内容                 | 必要性 | 备注                      |
+| ------------- | ---- | -------------------- | ------ | ------------------------- |
+| session_type  | num  | 会话类型             | 必要   | 1：所有<br />2：未关注人<br />3：粉丝团<br />7：系统消息（？） |
+| group_fold    | num  | 是否折叠粉丝团消息   | 非必要 | 0：否<br />1：是          |
+| unfollow_fold | num  | 是否折叠未关注人消息 | 非必要 | 0：否<br />1：是          |
+| sort_rule     | num  | 排序方式             | 非必要 | 1、2：按会话时间逆向排序<br />3：按已读时间逆向排序<br />其他：用户按会话时间逆向排序，粉丝团按加群时间正向排序（？） |
+| begin_ts      | num  | 起始时间             | 非必要 | 微秒级时间戳              |
+| end_ts        | num  | 终止时间             | 非必要 | 微秒级时间戳              |
+| size          | num  | 返回的会话数         | 非必要 | 默认为 `20`，最大为 `100` |
+| build         | num  | 客户端内部版本号     | 非必要 | 默认为 `0`                |
+| mobi_app      | str  | 平台标识             | 非必要 | 可为 `web` 等             |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段                  | 类型 | 内容                         | 备注                     |
+| --------------------- | ---- | ---------------------------- | ------------------------ |
+| session_list          | 有会话时：array<br />无会话时：null | 会话列表                     |                          |
+| has_more              | num  | 是否有更多会话               |                          |
+| anti_distrub_cleaning | bool | 是否开启了“一键防骚扰”功能 |                          |
+| is_address_list_empty | num  | 0                            | **作用尚不明确**         |
+| system_msg            | obj  | 系统会话列表                 | 仅当存在系统会话时有此项 |
+| show_level            | bool | 是否在会话列表中显示用户等级 | 目前恒为 `true`          |
+
+`data`对象中的`session_list`数组：
+
+| 项   | 类型 | 内容      | 备注                      |
+| ---- | ---- | --------- | ------------------------- |
+| 0    | obj  | 会话1     | 详见[会话对象](#会话对象) |
+| n    | obj  | 会话(n+1) |                           |
+| ……   | obj  | ……        | ……                        |
+
+`data`对象中的`system_msg`对象：
+
+| 字段               | 类型 | 内容       | 备注                                                       |
+| ------------------ | ---- | ---------- | ---------------------------------------------------------- |
+| {系统会话类型代码} | num  | 系统会话id | 详见[会话对象](#会话对象)中对 `system_msg_type` 字段的说明 |
+
+**示例：**
+
+获取会话列表：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
+    --data-urlencode 'session_type=1' \
+    --data-urlencode 'group_fold=0' \
+    --data-urlencode 'unfollow_fold=0' \
+    --data-urlencode 'sort_rule=2' \
+    --data-urlencode 'size=3' \
+    --data-urlencode 'build=0' \
+    --data-urlencode 'mobi_app=web' \
+    -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "msg": "0",
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "session_list": [
+            {
+                "talker_id": 844424930131966,
+                "session_type": 1,
+                "at_seqno": 0,
+                "top_ts": 0,
+                "group_name": "",
+                "group_cover": "",
+                "is_follow": 1,
+                "is_dnd": 0,
+                "ack_seqno": 1238729956474887,
+                "ack_ts": 1709536924979884,
+                "session_ts": 1712305278098351,
+                "unread_count": 4,
+                "last_msg": {
+                    "sender_uid": 844424930131966,
+                    "receiver_type": 1,
+                    "receiver_id": 425503913,
+                    "msg_type": 10,
+                    "content": "{\"title\":\"流量奖励到账通知\",\"text\":\"恭喜您已获得2000流量曝光奖励，快来投稿使用吧。\",\"jump_text\":\"\",\"jump_uri\":\"\",\"modules\":null,\"jump_text_2\":\"\",\"jump_uri_2\":\"\",\"jump_text_3\":\"\",\"jump_uri_3\":\"\",\"notifier\":null,\"jump_uri_config\":{\"all_uri\":\"https://member.bilibili.com/york/flow-reward?navhide=1\\u0026from=msgrecall\",\"text\":\"\"},\"jump_uri_2_config\":{\"text\":\"\"},\"jump_uri_3_config\":{\"text\":\"\"},\"biz_content\":null}",
+                    "msg_seqno": 1285290404823041,
+                    "timestamp": 1712305278,
+                    "at_uids": null,
+                    "msg_key": 7354295169819585966,
+                    "msg_status": 0,
+                    "notify_code": "2091_253",
+                    "new_face_version": 1,
+                    "msg_source": 6
+                },
+                "group_type": 0,
+                "can_fold": 0,
+                "status": 0,
+                "max_seqno": 1285290404823041,
+                "new_push_msg": 1,
+                "setting": 0,
+                "is_guardian": 0,
+                "is_intercept": 0,
+                "is_trust": 0,
+                "system_msg_type": 7,
+                "account_info": {
+                    "name": "UP主小助手",
+                    "pic_url": "https://message.biliimg.com/bfs/im/489a63efadfb202366c2f88853d2217b5ddc7a13.png"
+                },
+                "live_status": 0,
+                "biz_msg_unread_count": 0,
+                "user_label": null
+            },
+            {
+                "talker_id": 293793435,
+                "session_type": 1,
+                "at_seqno": 0,
+                "top_ts": 0,
+                "group_name": "",
+                "group_cover": "",
+                "is_follow": 1,
+                "is_dnd": 0,
+                "ack_seqno": 1236306587877408,
+                "ack_ts": 1709536984481314,
+                "session_ts": 1709385615744065,
+                "unread_count": 0,
+                "last_msg": {
+                    "sender_uid": 293793435,
+                    "receiver_type": 1,
+                    "receiver_id": 425503913,
+                    "msg_type": 11,
+                    "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
+                    "msg_seqno": 1236306587877408,
+                    "timestamp": 1709385615,
+                    "at_uids": null,
+                    "msg_key": 7341755312943193481,
+                    "msg_status": 0,
+                    "notify_code": "",
+                    "new_face_version": 1,
+                    "msg_source": 6
+                },
+                "group_type": 0,
+                "can_fold": 0,
+                "status": 0,
+                "max_seqno": 1236306587877408,
+                "new_push_msg": 0,
+                "setting": 0,
+                "is_guardian": 0,
+                "is_intercept": 0,
+                "is_trust": 0,
+                "system_msg_type": 0,
+                "live_status": 0,
+                "biz_msg_unread_count": 0,
+                "user_label": null
+            },
+            {
+                "talker_id": 221082140,
+                "session_type": 2,
+                "at_seqno": 0,
+                "top_ts": 0,
+                "group_name": "社会易姐QwQ的应援团",
+                "group_cover": "http://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
+                "is_follow": 0,
+                "is_dnd": 0,
+                "ack_seqno": 20,
+                "ack_ts": 1695011620552332,
+                "session_ts": 1693626568439784,
+                "unread_count": 0,
+                "last_msg": {
+                    "sender_uid": 0,
+                    "receiver_type": 2,
+                    "receiver_id": 221082140,
+                    "msg_type": 306,
+                    "content": "{\"group_id\":221082140,\"content\":\"欢迎罗板栗入群\"}",
+                    "msg_seqno": 20,
+                    "timestamp": 1693626568,
+                    "at_uids": null,
+                    "msg_key": 7274070721607234847,
+                    "msg_status": 0,
+                    "notify_code": "",
+                    "msg_source": 13
+                },
+                "group_type": 0,
+                "can_fold": 0,
+                "status": 0,
+                "max_seqno": 20,
+                "new_push_msg": 0,
+                "setting": 0,
+                "is_guardian": 0,
+                "is_intercept": 0,
+                "is_trust": 0,
+                "system_msg_type": 0,
+                "live_status": 0,
+                "biz_msg_unread_count": 0,
+                "user_label": null
+            }
+        ],
+        "has_more": 1,
+        "anti_disturb_cleaning": false,
+        "is_address_list_empty": 0,
+        "system_msg": {
+            "1": 844424930131967,
+            "7": 844424930131966
+        },
+        "show_level": true
+    }
+}
+```
+
+</details>
+
+## 获取新会话列表
 
 > https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions
 
@@ -205,7 +440,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 | session_list          | 有会话时：array<br />无会话时：null | 会话列表                     | 按发送时间顺序逆向排序 |
 | has_more              | num  | 是否有更多会话               |                        |
 | anti_distrub_cleaning | bool | 是否开启了“一键防骚扰”功能 |                        |
-| is_address_list_empty | num  | （？）                       | **作用尚不明确**       |
+| is_address_list_empty | num  | 0                            | **作用尚不明确**       |
 | show_level            | bool | 是否在会话列表中显示用户等级 | 目前恒为 `false`       |
 
 `data`对象中的`session_list`数组：
@@ -380,7 +615,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 
 </details>
 
-## 会话详细信息
+## 获取会话详细信息
 
 > https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail
 
@@ -480,7 +715,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 </details>
 
-## 私信消息记录
+## 查询私信消息记录
 
 > https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs
 
@@ -629,6 +864,315 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 
 </details>
 
+## 获取会话限制状态
+
+> https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+仅对用户会话调用本接口
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| uid    | num  | 聊天对象mid | 必要   |      |
+| type   | num  | 1           | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段         | 类型 | 内容                     | 备注                         |
+| ------------ | ---- | ------------------------ | ---------------------------- |
+| is_limit     | num  | 用户是否被封禁           |                              |
+| report_limit | num  | 自己是否被限制举报该会话 | 常见于自己被封禁时出现该情况 |
+
+**示例：**
+
+获取`uid=123`的限制状态：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
+    --data-urlencode 'uid=123' \
+    --data-urlencode 'type=1' \
+    -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "is_limit": 0,
+    "report_limit": 0
+  }
+}
+```
+
+</details>
+
+## 获取会话推送设置
+
+> https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+仅对用户会话调用本接口
+
+**url参数：**
+
+| 参数名     | 类型 | 内容             | 必要性 | 备注          |
+| ---------- | ---- | ---------------- | ------ | ------------- |
+| talker_uid | num  | 聊天对象mid      | 必要   |               |
+| build      | num  | 客户端内部版本号 | 非必要 | 默认为 `0`    |
+| mobi_app   | str  | 平台标识         | 非必要 | 可为 `web` 等 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段              | 类型 | 内容                   | 备注                                |
+| ----------------- | ---- | ---------------------- | ----------------------------------- |
+| follow_status     | num  | 对方对于自己的关注属性 | 0：未关注<br />~~1：悄悄关注（现已下线）~~<br />2：已关注<br />6：已互粉<br />128：已拉黑 |
+| special           | num  | 自己是否特别关注了对方 |                                     |
+| push_setting      | num  | 推送设置               | 0：接收推送<br />1：不接收推送      |
+| show_push_setting | num  | 是否显示推送设置       |                                     |
+
+**示例：**
+
+获取`talker_uid=123`的推送设置：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss' \
+    --data-urlencode 'talker_uid=123' \
+    --data-urlencode 'build=0' \
+    --data-urlencode 'mobi_app=web' \
+    -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "follow_status": 6,
+    "special": 1,
+    "push_setting": 0,
+    "show_push_setting": 1
+  }
+}
+```
+
+</details>
+
+## 获取多个视频、番剧、专栏的信息
+
+> https://api.vc.bilibili.com/x/im/feed/infoweb
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+可用于获取私信中分享或推送的多个视频、番剧、专栏的信息
+
+**url参数：**
+
+| 参数名      | 类型 | 内容             | 必要性      | 备注                                                                                          |
+| ----------- | ---- | ---------------- | ----------- | --------------------------------------------------------------------------------------------- |
+| aids        | nums | 视频AV号列表     | 必要 (可选) | `aids`、`ep_ids` 与 `article_ids` 中须至少存在一个参数，每个成员间用 `,` 分隔，最多 50 个成员 |
+| ep_ids      | nums | 番剧epid列表     | 必要 (可选) | `aids`、`ep_ids` 与 `article_ids` 中须至少存在一个参数，每个成员间用 `,` 分隔，最多 50 个成员 |
+| article_ids | nums | 专栏CV号列表     | 必要 (可选) | `aids`、`ep_ids` 与 `article_ids` 中须至少存在一个参数，每个成员间用 `,` 分隔，无成员限制     |
+| build       | num  | 客户端内部版本号 | 非必要      | 默认为 `0`                                                                                    |
+| mobi_app    | str  | 平台标识         | 必要        | 可为 `web` 等                                                                                 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段     | 类型  | 内容         | 备注                                    |
+| -------- | ----- | ------------ | --------------------------------------- |
+| archive  | array | 视频信息列表 | 仅在指定了 `aids` 参数时存在此项        |
+| article  | array | 专栏信息列表 | 仅在指定了 `article_ids` 参数时存在此项 |
+| pgc      | array | 番剧信息列表 | 仅在指定了 `ep_ids` 参数时存在此项      |
+
+`archive`、`article`、`pgc`数组：
+
+| 项   | 类型 | 内容      | 备注 |
+| ---- | ---- | --------- | ---- |
+| 0    | obj  | 信息1     |      |
+| n    | obj  | 信息(n+1) |      |
+| ……   | obj  | ……        | ……   |
+
+`archive`数组中的对象：
+
+| 字段       | 类型 | 内容         | 备注                           |
+| ---------- | ---- | ------------ | ------------------------------ |
+| bvid       | str  | 视频BV号     |                                |
+| aid        | num  | 视频AV号     |                                |
+| title      | str  | 视频标题     | 若视频失效则为 `内容已失效`    |
+| pic        | str  | 视频封面     | 若视频失效则为空文本           |
+| param      | str  | 提供的参数   | 即 AV 号的文本形式             |
+| uri        | str  | 跳转url      | `bilibili://video/{视频AV号}`  |
+| goto       | str  | `av`         |                                |
+| duration   | num  | 视频时长     | 以秒为单位，若视频失效则为 `0` |
+| up_name    | str  | 视频UP主昵称 |                                |
+| view       | num  | 视频播放量   |                                |
+| danmaku    | num  | 视频弹幕数   |                                |
+| status     | num  | 视频状态     | 0：正常<br />-1：已失效        |
+| is_started | num  | 1            | **作用尚不明确**               |
+
+`article`数组中的对象：
+
+| 字段        | 类型  | 内容         | 备注                        |
+| ----------- | ----- | ------------ | --------------------------- |
+| id          | num   | 专栏CV号     |                             |
+| title       | str   | 专栏标题     | 若专栏失效则为 `内容已失效` |
+| summary     | str   | 专栏内容概要 | 若专栏失效则为空文本        |
+| template_id | num   | （？）       | **作用尚不明确**            |
+| up_name     | str   | 专栏UP主昵称 | 若专栏失效则为空文本        |
+| image_urls  | array | 专栏封面列表 | 若专栏失效则为空数组        |
+| view_num    | num   | 专栏观看数   | 若专栏失效则为 `0`          |
+| like_num    | num   | 专栏点赞数   | 若专栏失效则为 `0`          |
+| reply_num   | num   | 专栏评论数   | 若专栏失效则为 `0`          |
+| status      | num   | 专栏状态     | 0：正常<br />-1：已失效     |
+
+`image_urls`数组：
+
+| 项   | 类型 | 内容      | 备注 |
+| ---- | ---- | --------- | ---- |
+| 0    | str  | 封面1     |      |
+| n    | str  | 封面(n+1) |      |
+| ……   | str  | ……        | ……   |
+
+`pgc`数组中的对象：
+
+| 字段     | 类型 | 内容         | 备注                        |
+| -------- | ---- | ------------ | --------------------------- |
+| ep_id    | num  | 番剧epid     |                             |
+| cover    | str  | 番剧封面url  |                             |
+| title    | str  | 番剧分享标题 | 如 `《{番剧名}》 第{n}话 {单集标题}`、`《{番剧名}》 {备注}` 等 |
+| duration | num  | 番剧时长     | 以秒为单位                  |
+| view     | num  | 番剧播放量   |                             |
+| danmaku  | num  | 番剧弹幕数   |                             |
+| url      | str  | 跳转url      | `https://www.bilibili.com/bangumi/play/ep{番剧epid}` |
+
+**示例：**
+
+获取`aids=170001&ep_ids=780019&article_ids=1`的信息
+
+```shell
+curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
+    --data-urlencode 'aids=170001' \
+    --data-urlencode 'ep_ids=780019' \
+    --data-urlencode 'article_ids=1' \
+    --data-urlencode 'build=0' \
+    --data-urlencode 'mobi_app=web' \
+    -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "archive": [
+      {
+        "bvid": "BV17x411w7KC",
+        "aid": 170001,
+        "title": "【MV】保加利亚妖王AZIS视频合辑",
+        "pic": "http://i2.hdslb.com/bfs/archive/1ada8c32a9d168e4b2ee3e010f24789ba3353785.jpg",
+        "param": "170001",
+        "uri": "bilibili://video/170001?player_height=288&player_rotate=0&player_width=512",
+        "goto": "av",
+        "duration": 2412,
+        "up_name": "冰封.虾子",
+        "view": 44809333,
+        "danmaku": 913266,
+        "status": 0,
+        "is_started": 1
+      }
+    ],
+    "article": [
+      {
+        "id": 1,
+        "title": "未知的光",
+        "summary": "天空像是倾倒出的墨水，黑得静谧而深邃。黎明还远，光亮全无。夜不能寐。披衣，起床。茶香的弥漫，一盏灯的相伴。夜，你是我久别重逢的朋友，那一刹那的相见，带给了我久违的安思。如果不是梦魇的皮闹，我本不该投入",
+        "template_id": 4,
+        "up_name": "健行见远渐忘",
+        "image_urls": [
+          "https://i0.hdslb.com/bfs/article/d2eedf1fd338bceca10099e2f7b33fa9017c859b.jpg"
+        ],
+        "view_num": 1608818,
+        "like_num": 32247,
+        "reply_num": 14143,
+        "status": 0
+      }
+    ],
+    "pgc": [
+      {
+        "ep_id": 780019,
+        "cover": "http://i0.hdslb.com/bfs/archive/ee28c04d15fb133a9c70c502fabfbdc7e5051ffe.png",
+        "title": "《铃芽之旅》 新海诚集大成之作",
+        "duration": 7283,
+        "view": 22088209,
+        "danmaku": 93069,
+        "url": "https://www.bilibili.com/bangumi/play/ep780019"
+      }
+    ]
+  }
+}
+```
+
+</details>
+
 ## 设置私信为已读
 
 > https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack
@@ -637,7 +1181,7 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 
 认证方式：Cookie（SESSDATA）
 
-将指定消息及以前的消息设置为已读
+将指定会话中的指定消息及以前的消息设置为已读
 
 **正文参数（application/x-www-form-urlencoded）：**
 
@@ -706,7 +1250,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 
 **仅支持发送 `msg[msg_type]` 为 `1`、`2` 或 `5` 的私信**
 
-调用该接口同时会将该会话的最近一条私信设置为已读
+调用该接口同时会将该会话设置为已读
 
 **正文参数（application/x-www-form-urlencoded）：**
 
