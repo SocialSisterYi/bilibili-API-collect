@@ -81,8 +81,6 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/cover/up" \
 
 认证方式：Cookie(SESSDATA)
 
-注: <!--由于时间限制, -->请求参数大部分均为推测, 仅供参考, 暂无能力验证是否正确
-
 **URL参数:**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
@@ -96,44 +94,44 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/cover/up" \
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| videos | array | 视频信息 | 必要   |      |
+| videos | array | 视频信息 | 必要   | 若为分 P 视频, 请注意数组元素顺序 |
 | cover  | str  | 视频封面 URL | 必要   | 参见[上传视频封面](#上传视频封面) |
 | cover43 | str  | 视频封面 URL (比例为 4:3) | 必要   | 可为空 |
-| title  | str  | 视频标题 | 必要   |      |
+| title  | str  | 视频标题 | 必要   | 最多 80 字 |
 | copyright | num  | 1: 自制<br />2: 转载 | 必要   |      |
 | tid    | num  | 分类 ID | 必要   |      |
-| tag    | str  | 视频标签 | 必要   | 多个标签用 `,` 分隔 |
+| tag    | str  | 视频标签 | 必要   | 多个标签用 `,` 分隔, 最多 10 个 |
 | desc_format_id | num  | 简介格式 ID? | 必要   | 9999: 纯文本 |
-| desc   | str  | 视频简介 | 必要   |      |
-| recreate | num  | 重新投递? | 必要   | -1 |
+| desc   | str  | 视频简介 | 必要   | 最多 2000 字 |
+| recreate | num  | 是否允许二创 | 必要   | -1: 允许(默认)<br />1: 不允许 |
 | dynamic | str  | 粉丝动态 | 必要   |      |
 | interactive | num  | 互动视频? | 必要   | 0: 否 |
 | act_reserve_create | num  | 活动预约? | 必要   | 0: 否 |
 | no_disturbance | num  | 勿扰模式? | 必要   | 0: 否 |
-| no_reprint | num  | 禁止转载? | 必要   | 1: 是 |
+| no_reprint | num  | 是否允许转载 | 必要   | 1: 允许<br />0: 不允许 |
 | subtitle | obj  | 字幕信息 | 必要   |      |
-| dolby | num  | 杜比音效? | 必要   | 0: 否 |
-| lossless_music | num  | 无损音乐? | 必要   | 0: 否 |
+| dolby | num  | 杜比音效 | 必要   | 0: 否(默认)<br />1: 是 |
+| lossless_music | num  | 无损音乐 | 必要   | 0: 否(默认)<br />1: 是 |
 | up_selection_reply | bool | 精选评论 | 必要   |      |
 | up_close_reply | bool | 关闭评论 | 必要   |      |
 | up_close_danmu | bool | 关闭弹幕 | 必要   |      |
-| web_os | num  | 平台类型? | 必要   | 3: PC 端 |
+| web_os | num  | 平台类型? | 必要   | 3 |
 
 `videos` 数组中的对象:
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
 | filename | str  | 视频文件名 | 必要   | 从视频上传接口获取, 无后缀名 |
-| title | str  | 分 P 标题? | 必要   |      |
-| desc | str  | 分 P 简介? | 必要   |      |
-| cid | num  | 分 P cid | 必要   |      |
+| title | str  | 分 P 标题 | 必要   |      |
+| desc | str  | 分 P 简介 | 必要   |      |
+| cid | num  | 分 P cid | 必要   | 从视频上传接口获取, 即 `biz_id` |
 
 `subtitle` 对象:
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
-| open | num  | 字幕开关? | 必要   | 0  |
-| lan | str  | 字幕语言? | 必要   | 可为空 |
+| open | num  | 是否启用字幕投稿 | 必要   | 0: 启用(默认)<br />1: 不启用  |
+| lan | str  | 字幕投稿语言 | 必要   | 可为空 |
 
 **示例:**
 
