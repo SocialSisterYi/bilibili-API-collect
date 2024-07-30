@@ -139,7 +139,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [弹幕操作](docs/danmaku/action.md)
     - [ ] 高级弹幕
     - [ ] 屏蔽管理
-    - [ ] 智能防挡弹幕
+    - [ ] [智能防挡弹幕](docs/danmaku/webmask.md)
     - [x] [弹幕个人配置修改](docs/danmaku/config.md)
     - [x] [名词解释](docs/danmaku/buzzword.md)
     - [x] [点赞查询](docs/danmaku/thumbup.md)
