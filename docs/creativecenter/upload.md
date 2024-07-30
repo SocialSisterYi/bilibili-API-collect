@@ -418,7 +418,7 @@ MULTIPART_PUT_SUCCESS
 假设上上一接口返回的
 `auth` 为 `ak=1494471752&cdn=%2F%2Fupos-cs-upcdntxa.bilivideo.com&os=upos&sign=911dd5b995895805d785aa607b4153b6&timestamp=1722212776.333&uid=616368979&uip=108.181.24.77&uport=36044&use_dqp=0`,
 `endpoint` 为 `//upos-cs-upcdntxa.bilivideo.com`,
-`upos_uri` 为 `upos://ugcfx2lf/n240728adhejliqv0kqyg2s5n6huv501.mkv`,
+`upos_uri` 为 `upos://ugcfx2lf/n240729ad7gxi43yaoml312h2nbt2pnf.xz`,
 `chunk_size` 为 `10485760`.
 
 上一接口返回的
@@ -434,7 +434,7 @@ MULTIPART_PUT_SUCCESS
 您已将文件分块存放至 `part01.tar.xz`, `part02.tar.xz`, ..., `part27.tar.xz`.
 
 ```shell
-curl -X PUT --url "https://upos-cs-upcdntxa.bilivideo.com/ugcfx2lf/n240728adhejliqv0kqyg2s5n6huv501.mkv" \
+curl -X PUT --url "https://upos-cs-upcdntxa.bilivideo.com/ugcfx2lf/n240729ad7gxi43yaoml312h2nbt2pnf.xz" \
 --url-query "partNumber=1" \
 --url-query "uploadId=8130090a-16f7-4fe6-8a29-198f5abce913" \
 --url-query "chunk=0" \
@@ -509,7 +509,7 @@ MULTIPART_PUT_SUCCESS
 假设上上上一接口返回的
 `auth` 为 `ak=1494471752&cdn=%2F%2Fupos-cs-upcdntxa.bilivideo.com&os=upos&sign=911dd5b995895805d785aa607b4153b6&timestamp=1722212776.333&uid=616368979&uip=108.181.24.77&uport=36044&use_dqp=0`,
 `endpoint` 为 `//upos-cs-upcdntxa.bilivideo.com`,
-`upos_uri` 为 `upos://ugcfx2lf/n240728adhejliqv0kqyg2s5n6huv501.mkv`,
+`upos_uri` 为 `upos://ugcfx2lf/n240729ad7gxi43yaoml312h2nbt2pnf.xz`,
 `biz_id` 为 `500001630826789`.
 
 上上一接口返回的
@@ -520,7 +520,7 @@ MULTIPART_PUT_SUCCESS
 假设您已经全部上传完毕, 共上传 `27` 个分块, 本次请求上传的的内容存放在 `body.json` 文件中.
 
 ```shell
-curl -X PUT --url "https://upos-cs-upcdntxa.bilivideo.com/ugcfx2lf/n240728adhejliqv0kqyg2s5n6huv501.mkv" \
+curl -X PUT --url "https://upos-cs-upcdntxa.bilivideo.com/ugcfx2lf/n240729ad7gxi43yaoml312h2nbt2pnf.xz" \
 --url-query "output=json" \
 --url-query "name=20240724-remove-linux-then-install.tar.xz" \
 --url-query "profile=ugcfx%2Fbup" \
