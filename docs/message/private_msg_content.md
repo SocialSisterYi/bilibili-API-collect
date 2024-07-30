@@ -560,14 +560,23 @@
 
 根对象：
 
-| 字段               | 类型 | 内容                 | 备注             |
-| ------------------ | ---- | -------------------- | ---------------- |
-| content_           | str  | 消息内容             |                  |
-| showLike_          | num  | 是否显示点赞按钮     |                  |
-| showChange_        | num  | 是否显示修改内容按钮 |                  |
-| gptSessionId_      | num  | GPT 会话 id          |                  |
-| gptBindQuery_      | num  | （？）               | **作用尚不明确** |
-| sessionClosedLine_ | num  | （？）               | **作用尚不明确** |
+| 字段                | 类型 | 内容                 | 备注             |
+| ------------------- | ---- | -------------------- | ---------------- |
+| content             | obj  | 富文本内容           |                  |
+| show_like           | bool | 是否显示点赞按钮     |                  |
+| show_change         | bool | 是否显示修改内容按钮 |                  |
+| gpt_session_id      | num  | GPT 会话 id          |                  |
+| gpt_bind_query      | str  | （？）               | **作用尚不明确** |
+| session_closed_line | str  | （？）               | **作用尚不明确** |
+| voice_url           | str  | 语音 url（？）       |                  |
+| sub_type            | num  | 子类型（？）         |                  |
+| voice_time          | num  | 语音时长（？）       |                  |
+
+`content`对象：
+
+| 字段       | 类型  | 内容     | 备注             |
+| ---------- | ----- | -------- | ---------------- |
+| paragraphs | array | 段落列表 | 详细信息有待补充 |
 
 **示例：**
 

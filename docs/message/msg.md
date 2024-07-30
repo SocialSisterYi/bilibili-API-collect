@@ -35,9 +35,9 @@
 | ------------- | ---- | ------------------ | -------------------------- |
 | at            | num  | 未读at数           |                            |
 | chat          | num  | 0                  | 仅旧接口，**作用尚不明确** |
-| coin          | num  | 未读投币数         | 目前恒为 `0`               |
-| danmu         | num  | 未读弹幕数         | 目前恒为 `0`               |
-| favorite      | num  | 未读收藏数         | 目前恒为 `0`               |
+| coin          | num  | 未读投币数         |                            |
+| danmu         | num  | 未读弹幕数         |                            |
+| favorite      | num  | 未读收藏数         |                            |
 | like          | num  | 未读点赞数         |                            |
 | recv_like     | num  | 未读点赞数         | 同 `like`                  |
 | recv_reply    | num  | 未读回复数         | 同 `reply`                 |
