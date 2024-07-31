@@ -1,10 +1,36 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
 syntax = "proto3";
 
 package bilibili.app.viewunite.common;
 
-import "bilibili/dagw/component/avatar/v1/avatar.proto";
-import "bilibili/pagination/pagination.proto";
+import "bilibili/account/service/v1.proto";
+import "bilibili/dagw/component/avatar/v1.proto";
+import "bilibili/pagination.proto";
 import "google/protobuf/any.proto";
+
+// 
+message ActBannerItem {
+    // 
+    string url = 1;
+    // 
+    string cover = 2;
+    // 
+    JumpType jump_type = 3;
+    // 
+    map<string, string> report = 4;
+}
+
+// 
+message ActPageItems {
+    // 
+    repeated ActBannerItem item = 1;
+    // 
+    ShowStyle show_style = 2;
+    // 
+    string title = 3;
+}
 
 // 
 message Activity {
@@ -65,6 +91,14 @@ message ActivityEntranceModule {
 }
 
 // 
+message ActivityIFrame {
+    // 
+    string url = 1;
+    // 
+    double aspect_ratio = 2;
+}
+
+// 
 message ActivityReserve {
     // 
     string title = 1;
@@ -82,6 +116,14 @@ message ActivityResource {
     string mod_pool_name = 1;
     // 
     string mod_resource_name = 2;
+}
+
+// 
+message ActivityStarRail {
+    // 
+    string pic = 1;
+    // 
+    repeated StarRail pic_gallery = 2;
 }
 
 // 
@@ -137,7 +179,14 @@ message AggEps {
 }
 
 // 
-message AttentionRecommend {}
+message ArcRights {
+    // 
+    bool is_charging_pay = 1;
+}
+
+// 
+message AttentionRecommend {
+}
 
 // 
 enum AttentionRelationStatus {
@@ -213,6 +262,18 @@ message Banner {
     string title = 1;
     // 
     repeated RelateItem relate_item = 2;
+}
+
+// 
+message BgInfo {
+    // 
+    string light_short_bg = 1;
+    // 
+    string dark_short_bg = 2;
+    // 
+    string light_long_bg = 3;
+    // 
+    string dark_long_bg = 4;
 }
 
 // 
@@ -294,6 +355,12 @@ message CardStyle {
 }
 
 // 
+message CatalogTab {
+    // 
+    string title = 1;
+}
+
+// 
 message Celebrity {
     // 
     int32 id = 1;
@@ -318,13 +385,25 @@ message Celebrity {
     // 
     string occupation_name = 11;
     // 
-    int32 occupation_type = 12;
+    OccupationType occupation_type = 12;
     // 
     int32 relate_attr = 13;
     // 
     string small_avatar = 14;
     // 
     map<string, string> report = 15;
+    // 
+    OfficialVerify official = 16;
+}
+
+// 
+message CellFluid {
+    // 
+    string top_base_color = 1;
+    // 
+    string top_split_color = 2;
+    // 
+    string top_text_color = 3;
 }
 
 // 
@@ -346,13 +425,13 @@ message CoinExtend {
     // 
     string coin_app_zip_icon = 1;
     // 
-    string coin_app_icon_1 = 2;
+    string coin_app_icon1 = 2;
     // 
-    string coin_app_icon_2 = 3;
+    string coin_app_icon2 = 3;
     // 
-    string coin_app_icon_3 = 4;
+    string coin_app_icon3 = 4;
     // 
-    string coin_app_icon_4 = 5;
+    string coin_app_icon4 = 5;
 }
 
 // 
@@ -382,16 +461,25 @@ message CombinationEp {
 }
 
 // 
-message Covenanter {}
-
-// 
-message DeliveryData {
+message ContractText {
     // 
     string title = 1;
     // 
-    Style module_style = 2;
+    string subtitle = 2;
+}
+
+// 
+message Covenanter {
     // 
-    string more = 3;
+    int32 is_follow_display = 1;
+    // 
+    ContractText text = 2;
+    // 
+    int32 is_interact_display = 3;
+}
+
+// 
+message DeliveryData {
     // 
     oneof data {
         // 
@@ -402,7 +490,15 @@ message DeliveryData {
         TheatreHotTopic theatre_hot_topic = 6;
         // 
         AggEps agg_eps = 7;
+        // 
+        ActPageItems act_page_items = 10;
     }
+    // 
+    string title = 1;
+    // 
+    Style module_style = 2;
+    // 
+    string more = 3;
     // 
     int32 id = 8;
     // 
@@ -417,6 +513,7 @@ message Desc {
     string title = 2;
 }
 
+// 
 enum DescType {
     // 
     DescTypeUnknown = 0;
@@ -431,7 +528,7 @@ message DescV2 {
     // 
     string text = 1;
     // 
-    int32 type = 2;
+    DescType type = 2;
     // 
     string uri = 3;
     // 
@@ -463,6 +560,32 @@ message DislikeReasons {
 }
 
 // 
+message EpBgInfo {
+    // 
+    BgInfo float_layer = 1;
+    // 
+    BgInfo no_float_layer = 2;
+}
+
+// 
+message ExtTab {
+    // 
+    ExtType ext_type = 1;
+    // 
+    string data = 2;
+}
+
+// 
+enum ExtType {
+    // 
+    ExtNone = 0;
+    // 
+    ExtDataCenter = 1;
+    // 
+    ExtDataEarnings = 2;
+}
+
+// 
 message FollowLayer {
     // 
     Staff staff = 1;
@@ -490,8 +613,13 @@ message HistoryNode {
     int64 cid = 3;
 }
 
-// 荣誉 Banner
+// 
 message Honor {
+    // 
+    oneof extend {
+        // 
+        ProfessionHonorExtend profession_ext = 15;
+    }
     // 
     string icon = 1;
     // 
@@ -518,9 +646,11 @@ message Honor {
     HonorJumpType honor_jump_type = 12;
     // 
     map<string, string> report = 13;
+    // 
+    string end_icon = 14;
 }
 
-// 荣誉 Banner 跳转类型
+// 
 enum HonorJumpType {
     // 
     HONOR_JUMP_TYPE_UNKNOWN = 0;
@@ -528,32 +658,38 @@ enum HonorJumpType {
     HONOR_OPEN_URL = 1;
     // 
     HONOR_HALF_SCREEN = 2;
+    // 
+    HONOR_POPUP = 3;
 }
 
-// 荣誉类型
+// 
 enum HonorType {
     // 
     HONOR_NONE = 0;
     // 
     PLAYLET = 1;
-    // 视频存在争议
+    // 
     ARGUE = 2;
     // 
     NOTICE = 3;
     // 
     GUIDANCE = 4;
-    // 哔哩哔哩榜
+    // 
     HONOR_BILI_RANK = 5;
-    // 周榜
+    // 
     HONOR_WEEKLY_RANK = 6;
-    // 日榜
+    // 
     HONOR_DAILY_RANK = 7;
     // 
     HONOR_CHANNEL = 8;
-    // 音乐榜?
+    // 
     HONOR_MUSIC = 9;
     // 
     HONOR_REPLY = 10;
+    // 
+    HONOR_PROFESSION = 11;
+    // 
+    HONOR_HOT_WORD = 12;
 }
 
 // 
@@ -564,17 +700,17 @@ message IconFont {
     string text = 2;
 }
 
-//
+// 
 message Interaction {
     // 
     int64 ep_id = 1;
-    //
+    // 
     HistoryNode history_node = 2;
-    //
+    // 
     int64 graph_version = 3;
-    //
+    // 
     string msg = 4;
-    //
+    // 
     bool is_interaction = 5;
 }
 
@@ -587,7 +723,28 @@ message Item {
 }
 
 // 
+enum JumpType {
+    // 
+    JUMP_TYPE_UNKNOWN = 0;
+    // 
+    OPEN_URL = 1;
+    // 
+    REFRESH = 2;
+    // 
+    HALF_SCREEN = 3;
+    // 
+    OPEN_URL_BY_OUTER_BROWSER = 4;
+}
+
+// 
 message KingPos {
+    // 
+    oneof extend {
+        // 
+        LikeExtend like = 6;
+        // 
+        CoinExtend coin = 7;
+    }
     // 
     bool disable = 1;
     // 
@@ -597,14 +754,7 @@ message KingPos {
     // 
     string disable_toast = 4;
     // 
-    string checked_post = 5;
-    // 
-    oneof extend {
-        // 
-        LikeExtend like = 6;
-        // 
-        CoinExtend coin = 7;
-    }
+    string checked_toast = 5;
 }
 
 // 
@@ -612,7 +762,7 @@ message KingPosition {
     // 
     repeated KingPos king_pos = 1;
     // 
-    repeated KingPos extenf = 2;
+    repeated KingPos extend = 2;
 }
 
 // 
@@ -653,6 +803,8 @@ message Label {
     string lottie = 7;
     // 
     string lottie_night = 8;
+    // 
+    map<string, string> report = 9;
 }
 
 // 
@@ -687,7 +839,7 @@ message Live {
     string endpage_uri = 4;
 }
 
-// 直播预约信息
+// 
 message LiveOrder {
     // 
     int64 sid = 1;
@@ -699,6 +851,8 @@ message LiveOrder {
     bool is_follow = 4;
     // 
     int64 follow_count = 5;
+    // 
+    ReserveCalendarInfo reserve_calendar_info = 6;
 }
 
 // 
@@ -713,8 +867,6 @@ message Mine {
 
 // 
 message Module {
-    // 
-    ModuleType type = 1;
     // 
     oneof data {
         // 
@@ -769,9 +921,48 @@ message Module {
         AttentionRecommend attention_recommend = 26;
         // 
         Covenanter covenanter = 27;
+        // 
+        SpecialTag special_tag = 28;
+        // 
+        UpDataModule up_data_module = 29;
+        // 
+        ProfessionApproval profession_approval = 30;
+        // 
+        PugvShoppingNotice pugv_shopping_notice = 31;
+        // 
+        PugvFaq pugv_faq = 32;
+        // 
+        PugvSeasonDescription pugv_season_description = 33;
+        // 
+        PugvSeasonRecommend pugv_season_recommend = 34;
+        // 
+        PugvSeasonPublisher pugv_season_publisher = 35;
+        // 
+        PugvSeasonSelection pugv_season_selection = 36;
+        // 
+        PugvSeasonPrimaryInfo pugv_season_primary_info = 37;
+        // 
+        PugvCooperationApplication pugv_cooperation_application = 38;
+        // 
+        UpVideoTool up_video_tool = 39;
+        // 
+        PugvZone pugv_zone = 40;
+        // 
+        PugvSeries pugv_series = 41;
+        // 
+        PugvPackage pugv_package = 42;
+        // 
+        ActivityStarRail activity_star_rail = 43;
+        // 
+        ActivityIFrame activity_iframe = 44;
+        // 
+        PlayList play_list = 45;
     }
+    // 
+    ModuleType type = 1;
 }
 
+// 
 enum ModuleType {
     // 
     UNKNOWN = 0;
@@ -847,12 +1038,56 @@ enum ModuleType {
     ATTENTION_RECOMMEND = 35;
     // 
     COVENANTER = 36;
+    // 
+    SPECIALTAG = 37;
+    // 
+    UPDATA = 38;
+    // 
+    PROFESSION_APPROVAL = 39;
+    // 
+    PUGV_SHOPPING_NOTICE = 40;
+    // 
+    PUGV_FAQ = 41;
+    // 
+    PUGV_SEASON_DESCRIPTION = 42;
+    // 
+    PUGV_SEASON_RECOMMEND = 43;
+    // 
+    PUGV_SEASON_PUBLISHER = 44;
+    // 
+    PUGV_SEASON_SELECTION = 45;
+    // 
+    PUGV_SEASON_PRIMARY_INFO = 46;
+    // 
+    PUGV_COOPERATION_APPLICATION = 47;
+    // 
+    UP_VIDEO_TOOL = 48;
+    // 
+    PUGV_ZONE = 49;
+    // 
+    PUGV_SERIES = 50;
+    // 
+    PUGV_PACKAGE = 51;
+    // 
+    ACTIVITY_STAR_RAIL = 52;
+    // 
+    ACTIVITY_IFRAME = 53;
+    // 
+    PLAY_LIST = 54;
 }
 
 // 
 message MultiViewEp {
     // 
-    int64 ep_id =1;
+    int64 ep_id = 1;
+}
+
+// 
+message Neutral {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
 }
 
 // 
@@ -879,6 +1114,8 @@ enum OccupationType {
     STAFF = 0;
     // 
     CAST = 1;
+    // 
+    UNKNOWN_TYPE = -1;
 }
 
 // 
@@ -967,10 +1204,13 @@ message OgvTitle {
     int64 reserve_id = 5;
     // 
     TitleDeliveryButton title_delivery_button = 6;
+    // 
+    TitleDeliveryButton channel_redirect_entry_button = 7;
 }
 
 // 
 message Owner {
+    // 
     bilibili.dagw.component.avatar.v1.AvatarItem avatar = 1;
     // 
     string url = 2;
@@ -981,9 +1221,9 @@ message Owner {
     // 
     string arc_count = 5;
     // 
-    int32 attention = 6;
+    AttentionRelationStatus attention = 6;
     // 
-    int32 attention_relation = 7;
+    AttentionRelationStatus attention_relation = 7;
     // 
     string pub_location = 8;
     // 
@@ -1002,6 +1242,10 @@ message Owner {
     int64 fans_num = 15;
     // 
     repeated int64 assists = 16;
+    // 
+    string season_count = 17;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 18;
 }
 
 // 
@@ -1033,6 +1277,46 @@ message Pendant {
 }
 
 // 
+message PlayList {
+    // 
+    int32 id = 1;
+    // 
+    string title = 2;
+    // 
+    Owner upper = 3;
+    // 
+    string desc = 4;
+    // 
+    string more_title = 5;
+    // 
+    repeated PlayListSeason seasons = 6;
+    // 
+    bool more_playlist = 7;
+    // 
+    map<string, string> report = 8;
+    // 
+    string more_playlist_url = 9;
+}
+
+// 
+message PlayListSeason {
+    // 
+    int32 season_id = 1;
+    // 
+    string title = 2;
+    // 
+    string subtitle = 3;
+    // 
+    string cover = 4;
+    // 
+    string link = 5;
+    // 
+    string score = 6;
+    // 
+    map<string, string> report = 7;
+}
+
+// 
 message PlayerAnimation {
     // 
     string player_icon = 1;
@@ -1060,6 +1344,419 @@ message PowerIconStyle {
     int64 icon_width = 3;
     // 
     int64 icon_height = 4;
+}
+
+// 
+message ProfessionApproval {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    int32 type = 3;
+}
+
+// 
+message ProfessionHonorExtend {
+    // 
+    int64 count = 1;
+    // 
+    bool self_grant = 2;
+    // 
+    ProfessionPopup popup = 3;
+}
+
+// 
+message ProfessionPopup {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+}
+
+// 
+message PugvCooperationApplication {
+    // 
+    string link = 1;
+    // 
+    string title = 2;
+    // 
+    string subtitle = 3;
+    // 
+    string button_text = 4;
+    // 
+    string icon = 5;
+}
+
+// 
+message PugvFaq {
+    // 
+    PugvSeasonNav nav = 1;
+    // 
+    repeated PugvFaqContent contents = 2;
+}
+
+// 
+message PugvFaqContent {
+    // 
+    string question = 1;
+    // 
+    string answer = 2;
+    // 
+    string link = 3;
+}
+
+// 
+message PugvPackage {
+    // 
+    PugvSeasonNav nav = 1;
+    // 
+    repeated PugvPackageItem contents = 2;
+}
+
+// 
+message PugvPackageItem {
+    // 
+    int64 product_id = 1;
+    // 
+    string cover = 2;
+    // 
+    string title = 3;
+    // 
+    string discount_price_desc = 4;
+    // 
+    string original_price_desc = 5;
+    // 
+    string desc = 6;
+    // 
+    string link = 7;
+}
+
+// 
+message PugvSeasonCooperator {
+    // 
+    int64 mid = 1;
+    // 
+    string avatar = 2;
+    // 
+    string nickname = 3;
+    // 
+    bool is_owner = 4;
+    // 
+    string role = 5;
+    // 
+    string user_link = 6;
+    // 
+    bool followed = 7;
+}
+
+// 
+message PugvSeasonDescription {
+    // 
+    oneof content {
+        // 
+        PugvSeasonDescriptionText text = 3;
+        // 
+        PugvSeasonDescriptionImage image = 4;
+    }
+    // 
+    PugvSeasonNav nav = 1;
+    // 
+    PugvSeasonDescriptionType type = 2;
+}
+
+// 
+message PugvSeasonDescriptionImage {
+    // 
+    repeated PugvSeasonDescriptionImageItem images = 1;
+    // 
+    bool folded = 2;
+    // 
+    double fold_ratio = 3;
+}
+
+// 
+message PugvSeasonDescriptionImageItem {
+    // 
+    string image_url = 1;
+    // 
+    double aspect_ratio = 2;
+}
+
+// 
+message PugvSeasonDescriptionText {
+    // 
+    string text = 1;
+}
+
+// 
+enum PugvSeasonDescriptionType {
+    // 
+    PUGV_SEASON_DESCRIPTION_TYPE_UNSPECIFIED = 0;
+    // 
+    PUGV_SEASON_DESCRIPTION_TYPE_TEXT = 1;
+    // 
+    PUGV_SEASON_DESCRIPTION_TYPE_IMAGE = 2;
+}
+
+// 
+message PugvSeasonNav {
+    // 
+    string title = 1;
+    // 
+    string more_text = 2;
+    // 
+    string desc = 3;
+}
+
+// 
+message PugvSeasonPrimaryBadge {
+    // 
+    string icon = 1;
+    // 
+    string link = 2;
+}
+
+// 
+message PugvSeasonPrimaryCustomInfo {
+    // 
+    string expiry_info = 1;
+}
+
+// 
+message PugvSeasonPrimaryHotRank {
+    // 
+    string text = 1;
+    // 
+    string link = 2;
+}
+
+// 
+message PugvSeasonPrimaryInfo {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    StatInfo stat_info = 3;
+    // 
+    PugvSeasonPrimaryRankInfo rank_info = 4;
+    // 
+    PugvSeasonPrimarySellPointInfo sell_point_info = 5;
+    // 
+    PugvSeasonPrimaryCustomInfo custom_info = 6;
+    // 
+    bool show_payment = 7;
+    // 
+    PugvSeasonPrimaryBadge badge = 8;
+}
+
+// 
+message PugvSeasonPrimaryRankInfo {
+    // 
+    PugvSeasonPrimaryHotRank hot_rank = 1;
+}
+
+// 
+message PugvSeasonPrimarySellPoint {
+    // 
+    string title = 1;
+    // 
+    string detail = 2;
+}
+
+// 
+message PugvSeasonPrimarySellPointInfo {
+    // 
+    PugvSeasonPrimarySellPointType type = 1;
+    // 
+    repeated PugvSeasonPrimarySellPoint sell_points = 2;
+}
+
+// 
+enum PugvSeasonPrimarySellPointType {
+    // 
+    PUGV_SEASON_PRIMARY_SELL_POINT_TYPE_UNSPECIFIED = 0;
+    // 
+    PUGV_SEASON_PRIMARY_SELL_POINT_TYPE_MANUAL = 1;
+    // 
+    PUGV_SEASON_PRIMARY_SELL_POINT_TYPE_AUTO = 2;
+}
+
+// 
+message PugvSeasonPublisher {
+    // 
+    PugvSeasonNav nav = 1;
+    // 
+    string publisher_desc = 2;
+    // 
+    repeated PugvSeasonCooperator cooperators = 3;
+    // 
+    PugvSeasonPublisherSkuContent sku_content = 4;
+}
+
+// 
+message PugvSeasonPublisherSkuContent {
+    // 
+    string title = 1;
+    // 
+    repeated PugvSeasonPublisherSkuContentItem items = 2;
+}
+
+// 
+message PugvSeasonPublisherSkuContentItem {
+    // 
+    string title = 1;
+    // 
+    int64 season_id = 2;
+    // 
+    bool selected = 3;
+}
+
+// 
+message PugvSeasonRecommend {
+    // 
+    PugvSeasonNav nav = 1;
+    // 
+    repeated PugvSeasonRecommendContent contents = 2;
+    // 
+    PugvSeasonRecommendMore more_info = 3;
+    // 
+    PugvSeasonRecommendShowStyle show_style = 4;
+}
+
+// 
+message PugvSeasonRecommendContent {
+    // 
+    string cover_url = 1;
+    // 
+    string title = 2;
+    // 
+    string subtitle = 3;
+    // 
+    string link = 4;
+    // 
+    string desc = 5;
+    // 
+    int64 season_id = 6;
+    // 
+    string author = 7;
+    // 
+    StatInfo view = 8;
+    // 
+    BadgeInfo rcmd_reason = 9;
+}
+
+// 
+message PugvSeasonRecommendMore {
+    // 
+    string title = 1;
+    // 
+    string link = 2;
+    // 
+    string link_text = 3;
+}
+
+// 
+enum PugvSeasonRecommendShowStyle {
+    // 
+    PUGV_SEASON_RECOMMEND_SHOW_STYLE_UNSPECIFIED = 0;
+    // 
+    PUGV_SEASON_RECOMMEND_SHOW_STYLE_MORE = 1;
+    // 
+    PUGV_SEASON_RECOMMEND_SHOW_STYLE_FEED = 2;
+}
+
+// 
+message PugvSeasonSelection {
+    // 
+    PugvSeasonNav nav = 1;
+}
+
+// 
+message PugvSeries {
+    // 
+    PugvSeasonNav nav = 1;
+    // 
+    repeated PugvSeriesItem contents = 2;
+}
+
+// 
+message PugvSeriesItem {
+    // 
+    int64 season_id = 1;
+    // 
+    bool selected = 2;
+    // 
+    bool gray = 3;
+    // 
+    string content = 4;
+    // 
+    string label = 5;
+    // 
+    PugvSeriesItemState state = 6;
+}
+
+// 
+enum PugvSeriesItemState {
+    // 
+    PUGV_SERIRES_ITEM_STATE_UNSPECIAL = 0;
+    // 
+    PUGV_SERIRES_ITEM_STATE_NOT_START = 1;
+    // 
+    PUGV_SERIRES_ITEM_STATE_START = 2;
+    // 
+    PUGV_SERIRES_ITEM_STATE_END = 3;
+}
+
+// 
+message PugvShoppingNotice {
+    // 
+    PugvSeasonNav nav = 1;
+    // 
+    repeated PugvShoppingNoticeContent contents = 2;
+    // 
+    string link = 3;
+}
+
+// 
+message PugvShoppingNoticeContent {
+    // 
+    string number = 1;
+    // 
+    string content = 2;
+    // 
+    bool is_bold = 3;
+}
+
+// 
+message PugvZone {
+    // 
+    repeated PugvZoneItem contents = 1;
+}
+
+// 
+message PugvZoneItem {
+    // 
+    string icon = 1;
+    // 
+    string link = 2;
+    // 
+    string title = 3;
+    // 
+    string subtitle = 4;
+    // 
+    PugvZoneItemType type = 5;
+}
+
+// 
+enum PugvZoneItemType {
+    // 
+    PUGV_ZONE_ITEM_TYPE_UNSPECIFIED = 0;
+    // 
+    PUGV_ZONE_ITEM_TYPE_SEASON = 1;
+    // 
+    PUGV_ZONE_ITEM_TYPE_POSTGRADUATE = 2;
 }
 
 // 
@@ -1100,7 +1797,7 @@ message Rating {
     int32 count = 2;
 }
 
-// 视频详情下方推荐卡子类型: 普通视频
+// 
 message RelateAVCard {
     // 
     int64 duration = 1;
@@ -1118,7 +1815,7 @@ message RelateAVCard {
     BadgeInfo rcmd_reason = 7;
 }
 
-// 视频详情下方推荐卡子类型: 番剧(小卡?)
+// 
 message RelateBangumiAvCard {
     // 
     BadgeInfo badge = 1;
@@ -1126,9 +1823,11 @@ message RelateBangumiAvCard {
     Stat stat = 2;
     // 
     Rating rating = 3;
+    // 
+    string cover_right_text = 4;
 }
 
-// 视频详情下方推荐卡子类型: 番剧(大卡?)
+// 
 message RelateBangumiCard {
     // 
     int32 season_id = 1;
@@ -1150,7 +1849,7 @@ message RelateBangumiCard {
     map<string, string> report = 9;
 }
 
-// 视频详情下方推荐卡子类型: 番剧集?
+// 
 message RelateBangumiResourceCard {
     // 
     int32 type = 1;
@@ -1178,8 +1877,8 @@ message RelateBangumiResourceCard {
     string goto_type = 12;
 }
 
-// 视频详情下方推荐卡子类型: UGC 番剧?
-message RelateBangumiUgcCard {
+// 
+message RelateBangumiUGCCard {
     // 
     BadgeInfo badge = 1;
     // 
@@ -1188,10 +1887,22 @@ message RelateBangumiUgcCard {
     Rating rating = 3;
 }
 
-// 视频详情下方推荐卡
-message RelateCard {
+// 
+message RelateCMCard {
     // 
-    RelateCardType relate_card_type = 1;
+    int64 aid = 1;
+    // 
+    google.protobuf.Any source_content = 2;
+    // 
+    int64 duration = 3;
+    // 
+    Stat stat = 4;
+    // 
+    int32 nature_ad = 5;
+}
+
+// 
+message RelateCard {
     // 
     oneof card {
         // 
@@ -1211,10 +1922,14 @@ message RelateCard {
         // 
         RelatedAICard ai_card = 9;
         // 
-        RelateBangumiUgcCard bangumi_ugc = 13;
+        RelateBangumiUGCCard bangumi_ugc = 13;
         // 
         RelateSpecial special = 14;
+        // 
+        RelateCourseCard course = 15;
     }
+    // 
+    RelateCardType relate_card_type = 1;
     // 
     RelateThreePoint three_point = 10;
     // 
@@ -1223,7 +1938,7 @@ message RelateCard {
     CardBasicInfo basic_info = 12;
 }
 
-// 视频详情下方推荐卡子类型
+// 
 enum RelateCardType {
     // 
     CARD_TYPE_UNKNOWN = 0;
@@ -1247,21 +1962,11 @@ enum RelateCardType {
     BANGUMI_UGC = 9;
     // 
     SPECIAL = 10;
+    // 
+    COURSE = 11;
 }
 
-// 视频详情下方推荐卡子类型: 广告推广
-message RelateCMCard {
-    // 
-    int64 aid = 1;
-    // 
-    google.protobuf.Any source_content = 2;
-    // 
-    int64 duration = 3;
-    // 
-    Stat stat = 4;
-}
-
-// 视频详情下方推荐配置
+// 
 message RelateConfig {
     // 
     int64 valid_show_m = 1;
@@ -1273,23 +1978,19 @@ message RelateConfig {
     bool can_load_more = 4;
 }
 
-// 视频详情下方推荐卡子类型: AI 推荐?
-message RelatedAICard {
+// 
+message RelateCourseCard {
     // 
-    int64 aid = 1;
+    int64 duration = 1;
     // 
-    int64 duration = 2;
+    Stat stat = 2;
     // 
-    Staff up_info = 3;
+    BadgeInfo rcmd_reason = 3;
     // 
-    Stat stat = 4;
-    // 
-    map<string, string> report = 5;
-    // 
-    string goto_type = 6;
+    BadgeInfo badge_info = 4;
 }
 
-// 视频详情下方推荐卡子类型: 点击不喜欢后占位卡片
+// 
 message RelateDislike {
     // 
     string title = 1;
@@ -1309,7 +2010,7 @@ message RelateDislike {
     string closed_toast = 8;
 }
 
-// 视频详情下方推荐卡子类型: 游戏推广
+// 
 message RelateGameCard {
     // 
     int64 reserve_status = 1;
@@ -1325,7 +2026,7 @@ message RelateGameCard {
     RankInfo rank_info = 6;
     // 
     Button pack_info = 7;
-    //    
+    // 
     Button notice = 8;
     // 
     PowerIconStyle power_icon_style = 9;
@@ -1347,7 +2048,7 @@ message RelateItem {
     bool use_default_browser = 3;
 }
 
-// 视频详情下方推荐卡子类型: 直播
+// 
 message RelateLiveCard {
     // 
     int64 icon_type = 1;
@@ -1357,17 +2058,15 @@ message RelateLiveCard {
     int64 watched_show = 3;
     // 
     int64 live_status = 4;
+    // 
+    BadgeInfo rcmd_reason = 5;
+    // 
+    string live_new_style = 6;
+    // 
+    StatInfo stat_info = 7;
 }
 
-// 视频下方推荐区
-message Relates {
-    // 
-    repeated RelateCard cards = 1;
-    // 
-    RelateConfig config = 2;
-}
-
-// 视频详情下方推荐卡子类型: 其他特殊
+// 
 message RelateSpecial {
     // 
     BadgeInfo badge = 1;
@@ -1375,7 +2074,7 @@ message RelateSpecial {
     BadgeInfo rcmd_reason = 2;
 }
 
-// 视频详情下方推荐卡右上角三点的内容
+// 
 message RelateThreePoint {
     // 
     RelateDislike dislike = 1;
@@ -1385,6 +2084,30 @@ message RelateThreePoint {
     bool watch_later = 3;
     // 
     string dislike_report_data = 4;
+}
+
+// 
+message RelatedAICard {
+    // 
+    int64 aid = 1;
+    // 
+    int64 duration = 2;
+    // 
+    Staff up_info = 3;
+    // 
+    Stat stat = 4;
+    // 
+    map<string, string> report = 5;
+    // 
+    string goto_type = 6;
+}
+
+// 
+message Relates {
+    // 
+    repeated RelateCard cards = 1;
+    // 
+    RelateConfig config = 2;
 }
 
 // 
@@ -1400,6 +2123,13 @@ enum ReserveBizType {
 // 
 message ReserveButton {
     // 
+    oneof order_param {
+        // 
+        BizReserveActivityParam reserve = 8;
+        // 
+        BizFavParam fav = 9;
+    }
+    // 
     bool status = 1;
     // 
     string text = 3;
@@ -1407,13 +2137,20 @@ message ReserveButton {
     string selected_text = 4;
     // 
     ReserveBizType order_type = 7;
+}
+
+// 
+message ReserveCalendarInfo {
     // 
-    oneof order_param {
-        // 
-        BizReserveActivityParam reserve = 8;
-        // 
-        BizFavParam fav = 9;
-    }
+    string title = 1;
+    // 
+    int64 start_ts = 2;
+    // 
+    int64 end_ts = 3;
+    // 
+    string description = 4;
+    // 
+    string business_id = 5;
 }
 
 // 
@@ -1430,7 +2167,7 @@ message Rights {
     int32 allow_dm = 5;
     // 
     int32 allow_demand = 6;
-    // 区域限制
+    // 
     int32 area_limit = 7;
 }
 
@@ -1460,6 +2197,7 @@ message SeasonShow {
     string checkin_prompt = 5;
 }
 
+// 
 enum SeasonType {
     // 
     Unknown = 0;
@@ -1499,6 +2237,8 @@ message SectionData {
     int32 type = 13;
     // 
     map<string, string> report = 14;
+    // 
+    EpBgInfo bg_info = 15;
 }
 
 // 
@@ -1525,13 +2265,30 @@ message SerialSeason {
     string resource = 10;
     // 
     NewEp new_ep = 11;
+    // 
+    map<string, string> report = 12;
 }
 
+// 
 enum SerialSeasonCoverStyle {
     // 
     TITLE = 0;
     // 
     PICTURE = 1;
+    // 
+    SERIAL_SEASON_COVER_STYLE_UNKNOWN = -1;
+}
+
+// 
+enum ShowStyle {
+    // 
+    SHOW_STYLE_UNKNOWN = 0;
+    // 
+    ONE_ROW_ONE_COLUMN = 1;
+    // 
+    ONE_ROW_MULTI_COLUMN = 2;
+    // 
+    ONE_COLUMN_MULTI_ROW = 3;
 }
 
 // 
@@ -1540,6 +2297,50 @@ message SkipRange {
     int32 start = 1;
     // 
     int32 end = 2;
+}
+
+// 
+message SpecialCell {
+    // 
+    string icon = 1;
+    // 
+    string icon_night = 2;
+    // 
+    string text = 3;
+    // 
+    string text_color = 4;
+    // 
+    string text_color_night = 5;
+    // 
+    string jump_url = 6;
+    // 
+    string cell_type = 7;
+    // 
+    string cell_bgcolor = 8;
+    // 
+    string cell_bgcolor_night = 9;
+    // 
+    string param = 10;
+    // 
+    string page_title = 11;
+    // 
+    string jump_type = 12;
+    // 
+    string end_icon = 13;
+    // 
+    string end_icon_night = 14;
+    // 
+    CellFluid cell_fluid = 15;
+    // 
+    map<string, string> report = 16;
+}
+
+// 
+message SpecialTag {
+    // 
+    repeated SpecialCell special_cell = 1;
+    // 
+    bool refresh = 2;
 }
 
 // 
@@ -1594,6 +2395,8 @@ message Staff {
     int32 label_style = 8;
     // 
     string fans = 9;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 10;
 }
 
 // 
@@ -1605,22 +2408,46 @@ message Staffs {
 }
 
 // 
+message StarRail {
+    // 
+    int64 season_id = 1;
+    // 
+    int64 aid = 2;
+    // 
+    int64 cid = 3;
+    // 
+    int64 open_time = 4;
+    // 
+    int32 status = 5;
+    // 
+    string pic1 = 6;
+    // 
+    string pic2 = 7;
+    // 
+    string pic3 = 8;
+    // 
+    string pic4 = 9;
+    // 
+    string pic5 = 10;
+}
+
+// 
 message Stat {
-    // 视频观看时长
+    // 
     StatInfo vt = 1;
-    // 弹幕
+    // 
     StatInfo danmaku = 2;
-    // 回复数
+    // 
     int64 reply = 3;
-    // 收藏数
+    // 
     int64 fav = 4;
-    // 硬币数
+    // 
     int64 coin = 5;
-    // 分享数
+    // 
     int64 share = 6;
-    // 点赞数
+    // 
     int64 like = 7;
-    // 关注数
+    // 
     int64 follow = 8;
 }
 
@@ -1672,9 +2499,9 @@ message TheatreHotTopic {
     string theatre_url = 5;
     // 
     int64 hot_topic_id = 6;
-    // Original one is hottopicsetid, here renamed
+    // 
     int64 hot_topic_set_id = 7;
-    // Original one is hottopictitle, here renamed
+    // 
     string hot_topic_title = 8;
     // 
     string hot_topic_url = 9;
@@ -1704,6 +2531,20 @@ message TitleDeliveryButton {
     string link = 3;
     // 
     map<string, string> report = 4;
+    // 
+    string bubble = 5;
+}
+
+// 
+enum ToolType {
+    // 
+    INTERACTIVE_DANMAKU = 0;
+    // 
+    INTERACTIVE_SETTINGS = 1;
+    // 
+    TAKE_OFF = 2;
+    // 
+    UNIVERSAL = 3;
 }
 
 // 
@@ -1726,6 +2567,8 @@ message UgcEpisode {
     StatInfo vt = 8;
     // 
     StatInfo danmaku = 9;
+    // 
+    BadgeInfo badge = 10;
 }
 
 // 
@@ -1746,6 +2589,8 @@ message UgcIntroduction {
     int64 pubdate = 7;
     // 
     repeated DescV2 desc = 8;
+    // 
+    Neutral neutral = 9;
 }
 
 // 
@@ -1797,7 +2642,7 @@ message UgcSeasons {
     // 
     int64 ep_count = 8;
     // 
-    int32 season_type = 9;
+    SeasonType season_type = 9;
     // 
     UgcSeasonActivity activity = 10;
     // 
@@ -1819,6 +2664,18 @@ message UgcSection {
 }
 
 // 
+message UpDataModule {
+    // 
+    repeated ExtTab ext_tabs = 1;
+    // 
+    int32 idx = 2;
+    // 
+    string protocol_url = 3;
+    // 
+    int32 height = 4;
+}
+
+// 
 message UpLikeImg {
     // 
     string pre_img = 1;
@@ -1828,6 +2685,28 @@ message UpLikeImg {
     string content = 3;
     // 
     int64 type = 4;
+}
+
+// 
+message UpTool {
+    // 
+    ToolType type = 1;
+    // 
+    string text = 2;
+    // 
+    string icon = 3;
+    // 
+    string url = 4;
+    // 
+    BadgeInfo badge = 5;
+}
+
+// 
+message UpVideoTool {
+    // 
+    string title = 1;
+    // 
+    repeated UpTool tools = 2;
 }
 
 // 
@@ -2007,3 +2886,4 @@ message WikiInfo {
     // 
     string wiki_url = 2;
 }
+

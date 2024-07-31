@@ -1,11 +1,15 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
 syntax = "proto3";
 
 package bilibili.app.distribution.setting.night;
 
-import "bilibili/app/distribution/v1/distribution.proto";
+import "bilibili/app/distribution.proto";
 
 // 
 message NightSettingsConfig {
     // 
-    bilibili.app.distribution.v1.BoolValue is_night_follow_system = 1;
+    bilibili.app.distribution.BoolValue is_night_follow_system = 1;
 }
+

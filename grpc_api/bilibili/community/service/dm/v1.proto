@@ -1,0 +1,1303 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.community.service.dm.v1;
+
+// 
+service DM {
+    // 
+    rpc DmExpoReport (DmExpoReportReq) returns (DmExpoReportRes);
+    // 
+    rpc DmPlayerConfig (DmPlayerConfigReq) returns (Response);
+    // 
+    rpc DmSegMobile (DmSegMobileReq) returns (DmSegMobileReply);
+    // 
+    rpc DmSegOtt (DmSegOttReq) returns (DmSegOttReply);
+    // 
+    rpc DmSegSDK (DmSegSDKReq) returns (DmSegSDKReply);
+    // 
+    rpc DmView (DmViewReq) returns (DmViewReply);
+}
+
+// 
+message Avatar {
+    // 
+    string id = 1;
+    // 
+    string url = 2;
+    // 
+    AvatarType avatar_type = 3;
+}
+
+// 
+enum AvatarType {
+    // 
+    AvatarTypeNone = 0;
+    // 
+    AvatarTypeNFT = 1;
+}
+
+// 
+message Bubble {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+}
+
+// 
+enum BubbleType {
+    // 
+    BubbleTypeNone = 0;
+    // 
+    BubbleTypeClickButton = 1;
+    // 
+    BubbleTypeDmSettingPanel = 2;
+}
+
+// 
+message BubbleV2 {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+    // 
+    BubbleType bubble_type = 3;
+    // 
+    bool exposure_once = 4;
+    // 
+    ExposureType exposure_type = 5;
+}
+
+// 
+message Button {
+    // 
+    string text = 1;
+    // 
+    ToastFunctionType action = 2;
+}
+
+// 
+message BuzzwordConfig {
+    // 
+    repeated BuzzwordShowConfig keywords = 1;
+}
+
+// 
+message BuzzwordShowConfig {
+    // 
+    string name = 1;
+    // 
+    string schema = 2;
+    // 
+    int32 source = 3;
+    // 
+    int64 id = 4;
+    // 
+    int64 buzzword_id = 5;
+    // 
+    int32 schema_type = 6;
+}
+
+// 
+message CheckBox {
+    // 
+    string text = 1;
+    // 
+    CheckboxType type = 2;
+    // 
+    bool default_value = 3;
+    // 
+    bool show = 4;
+}
+
+// 
+message CheckBoxV2 {
+    // 
+    string text = 1;
+    // 
+    CheckboxType type = 2;
+    // 
+    bool default_value = 3;
+}
+
+// 
+enum CheckboxType {
+    // 
+    CheckboxTypeNone = 0;
+    // 
+    CheckboxTypeEncourage = 1;
+    // 
+    CheckboxTypeColorDM = 2;
+}
+
+// 
+message ClickButton {
+    // 
+    repeated string portrait_text = 1;
+    // 
+    repeated string landscape_text = 2;
+    // 
+    repeated string portrait_text_focus = 3;
+    // 
+    repeated string landscape_text_focus = 4;
+    // 
+    RenderType render_type = 5;
+    // 
+    bool show = 6;
+    // 
+    Bubble bubble = 7;
+}
+
+// 
+message ClickButtonV2 {
+    // 
+    repeated string portrait_text = 1;
+    // 
+    repeated string landscape_text = 2;
+    // 
+    repeated string portrait_text_focus = 3;
+    // 
+    repeated string landscape_text_focus = 4;
+    // 
+    RenderType render_type = 5;
+    // 
+    bool text_input_post = 6;
+    // 
+    bool exposure_once = 7;
+    // 
+    ExposureType exposure_type = 8;
+}
+
+// 
+message Command {
+    // 
+    repeated CommandDm command_dms = 1;
+}
+
+// 
+message CommandDm {
+    // 
+    int64 id = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 mid = 3;
+    // 
+    string command = 4;
+    // 
+    string content = 5;
+    // 
+    int32 progress = 6;
+    // 
+    string ctime = 7;
+    // 
+    string mtime = 8;
+    // 
+    string extra = 9;
+    // 
+    string idstr = 10;
+    // 
+    int32 type = 11;
+    // 
+    bool auto_create = 12;
+    // 
+    int32 count_down = 13;
+    // 
+    int32 attr = 14;
+}
+
+// 
+message DanmakuAIFlag {
+    // 
+    repeated DanmakuFlag dm_flags = 1;
+}
+
+// 
+message DanmakuElem {
+    // 
+    int64 id = 1;
+    // 
+    int32 progress = 2;
+    // 
+    int32 mode = 3;
+    // 
+    int32 fontsize = 4;
+    // 
+    DmColorfulType color = 5;
+    // 
+    string mid_hash = 6;
+    // 
+    string content = 7;
+    // 
+    int64 ctime = 8;
+    // 
+    int32 weight = 9;
+    // 
+    string action = 10;
+    // 
+    int32 pool = 11;
+    // 
+    string id_str = 12;
+    // 
+    int32 attr = 13;
+    // 
+    string animation = 22;
+    // 
+    string extra = 23;
+    // 
+    DmColorfulType colorful = 24;
+    // 
+    int32 type = 25;
+    // 
+    int64 oid = 26;
+}
+
+// 
+message DanmakuFlag {
+    // 
+    int64 dmid = 1;
+    // 
+    int32 flag = 2;
+}
+
+// 
+message DanmakuFlagConfig {
+    // 
+    int32 rec_flag = 1;
+    // 
+    string rec_text = 2;
+    // 
+    int32 rec_switch = 3;
+}
+
+// 
+message DanmuDefaultPlayerConfig {
+    // 
+    bool player_danmaku_use_default_config = 1;
+    // 
+    bool player_danmaku_ai_recommended_switch = 4;
+    // 
+    int32 player_danmaku_ai_recommended_level = 5;
+    // 
+    bool player_danmaku_blocktop = 6;
+    // 
+    bool player_danmaku_blockscroll = 7;
+    // 
+    bool player_danmaku_blockbottom = 8;
+    // 
+    bool player_danmaku_blockcolorful = 9;
+    // 
+    bool player_danmaku_blockrepeat = 10;
+    // 
+    bool player_danmaku_blockspecial = 11;
+    // 
+    float player_danmaku_opacity = 12;
+    // 
+    float player_danmaku_scalingfactor = 13;
+    // 
+    float player_danmaku_domain = 14;
+    // 
+    int32 player_danmaku_speed = 15;
+    // 
+    bool inline_player_danmaku_switch = 16;
+    // 
+    int32 player_danmaku_senior_mode_switch = 17;
+    // 
+    int32 player_danmaku_ai_recommended_level_v2 = 18;
+    // 
+    map<int32, int32> player_danmaku_ai_recommended_level_v2_map = 19;
+    // 
+    bool player_danmaku_enable_herd_dm = 20;
+}
+
+// 
+message DanmuPlayerConfig {
+    // 
+    bool player_danmaku_switch = 1;
+    // 
+    bool player_danmaku_switch_save = 2;
+    // 
+    bool player_danmaku_use_default_config = 3;
+    // 
+    bool player_danmaku_ai_recommended_switch = 4;
+    // 
+    int32 player_danmaku_ai_recommended_level = 5;
+    // 
+    bool player_danmaku_blocktop = 6;
+    // 
+    bool player_danmaku_blockscroll = 7;
+    // 
+    bool player_danmaku_blockbottom = 8;
+    // 
+    bool player_danmaku_blockcolorful = 9;
+    // 
+    bool player_danmaku_blockrepeat = 10;
+    // 
+    bool player_danmaku_blockspecial = 11;
+    // 
+    float player_danmaku_opacity = 12;
+    // 
+    float player_danmaku_scalingfactor = 13;
+    // 
+    float player_danmaku_domain = 14;
+    // 
+    int32 player_danmaku_speed = 15;
+    // 
+    bool player_danmaku_enableblocklist = 16;
+    // 
+    bool inline_player_danmaku_switch = 17;
+    // 
+    int32 inline_player_danmaku_config = 18;
+    // 
+    int32 player_danmaku_ios_switch_save = 19;
+    // 
+    int32 player_danmaku_senior_mode_switch = 20;
+    // 
+    int32 player_danmaku_ai_recommended_level_v2 = 21;
+    // 
+    map<int32, int32> player_danmaku_ai_recommended_level_v2_map = 22;
+    // 
+    bool player_danmaku_enable_herd_dm = 23;
+    // 
+    bool player_danmaku_blocktop_bottom = 24;
+    // 
+    int32 player_danmaku_domain_v2 = 25;
+    // 
+    int32 player_danmaku_density = 26;
+    // 
+    bool player_danmaku_subtitle_proof = 27;
+    // 
+    bool player_danmaku_people_proof = 28;
+}
+
+// 
+message DanmuPlayerConfigPanel {
+    // 
+    string selection_text = 1;
+}
+
+// 
+message DanmuPlayerDynamicConfig {
+    // 
+    int32 progress = 1;
+    // 
+    float player_danmaku_domain = 14;
+}
+
+// 
+message DanmuPlayerViewConfig {
+    // 
+    DanmuDefaultPlayerConfig danmuku_default_player_config = 1;
+    // 
+    DanmuPlayerConfig danmuku_player_config = 2;
+    // 
+    repeated DanmuPlayerDynamicConfig danmuku_player_dynamic_config = 3;
+    // 
+    DanmuPlayerConfigPanel danmuku_player_config_panel = 4;
+}
+
+// 
+message DanmuWebPlayerConfig {
+    // 
+    bool dm_switch = 1;
+    // 
+    bool ai_switch = 2;
+    // 
+    int32 ai_level = 3;
+    // 
+    bool blocktop = 4;
+    // 
+    bool blockscroll = 5;
+    // 
+    bool blockbottom = 6;
+    // 
+    bool blockcolor = 7;
+    // 
+    bool blockspecial = 8;
+    // 
+    bool preventshade = 9;
+    // 
+    bool dmask = 10;
+    // 
+    float opacity = 11;
+    // 
+    int32 dmarea = 12;
+    // 
+    float speedplus = 13;
+    // 
+    float fontsize = 14;
+    // 
+    bool screensync = 15;
+    // 
+    bool speedsync = 16;
+    // 
+    string fontfamily = 17;
+    // 
+    bool bold = 18;
+    // 
+    int32 fontborder = 19;
+    // 
+    string draw_type = 20;
+    // 
+    int32 senior_mode_switch = 21;
+    // 
+    int32 ai_level_v2 = 22;
+    // 
+    map<int32, int32> ai_level_v2_map = 23;
+    // 
+    bool blocktop_bottom = 24;
+    // 
+    int32 dm_area_v2 = 25;
+    // 
+    int32 dm_density = 26;
+}
+
+// 
+message DmColorful {
+    // 
+    DmColorfulType type = 1;
+    // 
+    string src = 2;
+}
+
+// 
+enum DmColorfulType {
+    // 
+    NoneType = 0;
+    // 
+    VipGradualColor = 60001;
+}
+
+// 
+message DmExpoReportReq {
+    // 
+    string session_id = 1;
+    // 
+    int64 oid = 2;
+    // 
+    bytes dmids = 3;
+    // 
+    string spmid = 4;
+}
+
+// 
+message DmExpoReportRes {
+}
+
+// 
+message DmHerdView {
+    // 
+    int32 display_herd_dm_num = 1;
+    // 
+    repeated ViewHerdDmElem herd_dms = 2;
+}
+
+// 
+message DmMaskWall {
+    // 
+    int64 start = 1;
+    // 
+    int64 end = 2;
+    // 
+    string content = 3;
+    // 
+    DmMaskWallContentType content_type = 4;
+    // 
+    DmMaskWallBizType biz_type = 5;
+    // 
+    repeated DmMaskWallContent contents = 6;
+}
+
+// 
+enum DmMaskWallBizType {
+    // 
+    Unknown = 0;
+    // 
+    OGV = 1;
+    // 
+    BizPic = 2;
+    // 
+    Mute = 3;
+    // 
+    Record = 4;
+    // 
+    Cloud = 5;
+    // 
+    AIGC = 6;
+}
+
+// 
+message DmMaskWallContent {
+    // 
+    DmMaskWallContentType type = 1;
+    // 
+    string content = 2;
+}
+
+// 
+enum DmMaskWallContentType {
+    // 
+    DmMaskWallContentTypeUnknown = 0;
+    // 
+    DmMaskWallContentTypeText = 1;
+    // 
+    DmMaskWallContentTypePic = 2;
+}
+
+// 
+message DmPlayerConfigReq {
+    // 
+    int64 ts = 1;
+    // 
+    PlayerDanmakuSwitch switch = 2;
+    // 
+    PlayerDanmakuSwitchSave switch_save = 3;
+    // 
+    PlayerDanmakuUseDefaultConfig use_default_config = 4;
+    // 
+    PlayerDanmakuAiRecommendedSwitch ai_recommended_switch = 5;
+    // 
+    PlayerDanmakuAiRecommendedLevel ai_recommended_level = 6;
+    // 
+    PlayerDanmakuBlocktop blocktop = 7;
+    // 
+    PlayerDanmakuBlockscroll blockscroll = 8;
+    // 
+    PlayerDanmakuBlockbottom blockbottom = 9;
+    // 
+    PlayerDanmakuBlockcolorful blockcolorful = 10;
+    // 
+    PlayerDanmakuBlockrepeat blockrepeat = 11;
+    // 
+    PlayerDanmakuBlockspecial blockspecial = 12;
+    // 
+    PlayerDanmakuOpacity opacity = 13;
+    // 
+    PlayerDanmakuScalingfactor scalingfactor = 14;
+    // 
+    PlayerDanmakuDomain domain = 15;
+    // 
+    PlayerDanmakuSpeed speed = 16;
+    // 
+    PlayerDanmakuEnableblocklist enableblocklist = 17;
+    // 
+    InlinePlayerDanmakuSwitch inline_player_danmaku_switch = 18;
+    // 
+    PlayerDanmakuSeniorModeSwitch senior_mode_switch = 19;
+    // 
+    PlayerDanmakuAiRecommendedLevelV2 ai_recommended_level_v2 = 20;
+    // 
+    PlayerDanmakuEnableHerdDm enable_herd_dm = 21;
+    // 
+    PlayerDanmakuBlocktopBottom blocktop_bottom = 22;
+    // 
+    PlayerDanmakuDomainV2 domain_v2 = 23;
+    // 
+    PlayerDanmakuDensity density = 24;
+    // 
+    PlayerDanmakuSubtitleProof subtitle_proof = 25;
+    // 
+    PlayerDanmakuPeopleProof people_proof = 26;
+}
+
+// 
+message DmSegConfig {
+    // 
+    int64 page_size = 1;
+    // 
+    int64 total = 2;
+}
+
+// 
+message DmSegMobileReply {
+    // 
+    repeated DanmakuElem elems = 1;
+    // 
+    int32 state = 2;
+    // 
+    DanmakuAIFlag ai_flag = 3;
+    // 
+    repeated int64 segment_rules = 4;
+    // 
+    repeated DmColorful colorful_src = 5;
+    // 
+    string context_src = 6;
+}
+
+// 
+message DmSegMobileReq {
+    // 
+    int64 pid = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int32 type = 3;
+    // 
+    int64 segment_index = 4;
+    // 
+    int32 teenagers_mode = 5;
+    // 
+    int64 ps = 6;
+    // 
+    int64 pe = 7;
+    // 
+    int32 pull_mode = 8;
+    // 
+    int32 from_scene = 9;
+    // 
+    string spmid = 10;
+    // 
+    string context_ext = 11;
+}
+
+// 
+message DmSegOttReply {
+    // 
+    repeated DanmakuElem elems = 1;
+    // 
+    int32 state = 2;
+}
+
+// 
+message DmSegOttReq {
+    // 
+    int64 pid = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int32 type = 3;
+    // 
+    int64 segment_index = 4;
+}
+
+// 
+message DmSegSDKReply {
+    // 
+    bool closed = 1;
+    // 
+    repeated DanmakuElem elems = 2;
+}
+
+// 
+message DmSegSDKReq {
+    // 
+    int64 pid = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int32 type = 3;
+    // 
+    int64 segment_index = 4;
+}
+
+// 
+message DmSubView {
+    // 
+    int32 type = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 pid = 3;
+    // 
+    repeated PostPanelV2 post_panel2 = 4;
+}
+
+// 
+message DmViewReply {
+    // 
+    bool closed = 1;
+    // 
+    VideoMask mask = 2;
+    // 
+    VideoSubtitle subtitle = 3;
+    // 
+    repeated string special_dms = 4;
+    // 
+    DanmakuFlagConfig ai_flag = 5;
+    // 
+    DanmuPlayerViewConfig player_config = 6;
+    // 
+    int32 send_box_style = 7;
+    // 
+    bool allow = 8;
+    // 
+    bool check_box = 9;
+    // 
+    string check_box_show_msg = 10;
+    // 
+    string text_placeholder = 11;
+    // 
+    string input_placeholder = 12;
+    // 
+    repeated string report_filter_content = 13;
+    // 
+    ExpoReport expo_report = 14;
+    // 
+    BuzzwordConfig buzzword_config = 15;
+    // 
+    repeated Expressions expressions = 16;
+    // 
+    repeated PostPanel post_panel = 17;
+    // 
+    repeated string activity_meta = 18;
+    // 
+    repeated PostPanelV2 post_panel2 = 19;
+    // 
+    repeated DmMaskWall dm_mask_wall = 20;
+    // 
+    DmHerdView dm_herd = 21;
+    // 
+    Command command = 22;
+    // 
+    string kv = 23;
+    // 
+    repeated DmSubView sub_views = 24;
+    // 
+    QoeInfo qoe = 25;
+}
+
+// 
+message DmViewReq {
+    // 
+    int64 pid = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int32 type = 3;
+    // 
+    string spmid = 4;
+    // 
+    int32 is_hard_boot = 5;
+    // 
+    string context_ext = 6;
+}
+
+// 
+message DmWebViewReply {
+    // 
+    int32 state = 1;
+    // 
+    string text = 2;
+    // 
+    string text_side = 3;
+    // 
+    DmSegConfig dm_sge = 4;
+    // 
+    DanmakuFlagConfig flag = 5;
+    // 
+    repeated string special_dms = 6;
+    // 
+    bool check_box = 7;
+    // 
+    int64 count = 8;
+    // 
+    repeated CommandDm command_dms = 9;
+    // 
+    DanmuWebPlayerConfig player_config = 10;
+    // 
+    repeated string report_filter_content = 11;
+    // 
+    repeated Expressions expressions = 12;
+    // 
+    repeated PostPanel post_panel = 13;
+    // 
+    repeated string activity_meta = 14;
+    // 
+    repeated PostPanelV2 post_panel2 = 15;
+    // 
+    repeated DmSubView sub_views = 16;
+    // 
+    QoeInfo qoe = 17;
+}
+
+// 
+message ExpoReport {
+    // 
+    bool should_report_at_end = 1;
+}
+
+// 
+enum ExposureType {
+    // 
+    ExposureTypeNone = 0;
+    // 
+    ExposureTypeDMSend = 1;
+}
+
+// 
+message Expression {
+    // 
+    repeated string keyword = 1;
+    // 
+    string url = 2;
+    // 
+    repeated Period period = 3;
+}
+
+// 
+message Expressions {
+    // 
+    repeated Expression data = 1;
+}
+
+// 
+message InlinePlayerDanmakuSwitch {
+    // 
+    bool value = 1;
+}
+
+// 
+message Label {
+    // 
+    string title = 1;
+    // 
+    repeated string content = 2;
+}
+
+// 
+message LabelV2 {
+    // 
+    string title = 1;
+    // 
+    repeated string content = 2;
+    // 
+    bool exposure_once = 3;
+    // 
+    ExposureType exposure_type = 4;
+}
+
+// 
+message Period {
+    // 
+    int64 start = 1;
+    // 
+    int64 end = 2;
+}
+
+// 
+message PlayerDanmakuAiRecommendedLevel {
+    // 
+    int32 value = 1;
+}
+
+// 
+message PlayerDanmakuAiRecommendedLevelV2 {
+    // 
+    int32 value = 1;
+}
+
+// 
+message PlayerDanmakuAiRecommendedSwitch {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuBlockbottom {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuBlockcolorful {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuBlockrepeat {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuBlockscroll {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuBlockspecial {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuBlocktop {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuBlocktopBottom {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuDensity {
+    // 
+    int32 value = 1;
+}
+
+// 
+message PlayerDanmakuDomain {
+    // 
+    float value = 1;
+}
+
+// 
+message PlayerDanmakuDomainV2 {
+    // 
+    int32 value = 1;
+}
+
+// 
+message PlayerDanmakuEnableHerdDm {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuEnableblocklist {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuOpacity {
+    // 
+    float value = 1;
+}
+
+// 
+message PlayerDanmakuPeopleProof {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuScalingfactor {
+    // 
+    float value = 1;
+}
+
+// 
+message PlayerDanmakuSeniorModeSwitch {
+    // 
+    int32 value = 1;
+}
+
+// 
+message PlayerDanmakuSpeed {
+    // 
+    int32 value = 1;
+}
+
+// 
+message PlayerDanmakuSubtitleProof {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuSwitch {
+    // 
+    bool value = 1;
+    // 
+    bool can_ignore = 2;
+}
+
+// 
+message PlayerDanmakuSwitchSave {
+    // 
+    bool value = 1;
+}
+
+// 
+message PlayerDanmakuUseDefaultConfig {
+    // 
+    bool value = 1;
+}
+
+// 
+message PostPanel {
+    // 
+    int64 start = 1;
+    // 
+    int64 end = 2;
+    // 
+    int64 priority = 3;
+    // 
+    int64 biz_id = 4;
+    // 
+    PostPanelBizType biz_type = 5;
+    // 
+    ClickButton click_button = 6;
+    // 
+    TextInput text_input = 7;
+    // 
+    CheckBox check_box = 8;
+    // 
+    Toast toast = 9;
+}
+
+// 
+enum PostPanelBizType {
+    // 
+    PostPanelBizTypeNone = 0;
+    // 
+    PostPanelBizTypeEncourage = 1;
+    // 
+    PostPanelBizTypeColorDM = 2;
+    // 
+    PostPanelBizTypeNFTDM = 3;
+    // 
+    PostPanelBizTypeFragClose = 4;
+    // 
+    PostPanelBizTypeRecommend = 5;
+    // 
+    PostPanelBizTypePlotLeak = 6;
+    // 
+    PostPanelBizTypeAntiHarassment = 7;
+}
+
+// 
+message PostPanelV2 {
+    // 
+    int64 start = 1;
+    // 
+    int64 end = 2;
+    // 
+    PostPanelBizType biz_type = 3;
+    // 
+    ClickButtonV2 click_button = 4;
+    // 
+    TextInputV2 text_input = 5;
+    // 
+    CheckBoxV2 check_box = 6;
+    // 
+    ToastV2 toast = 7;
+    // 
+    BubbleV2 bubble = 8;
+    // 
+    LabelV2 label = 9;
+    // 
+    PostStatus post_status = 10;
+}
+
+// 
+enum PostStatus {
+    // 
+    PostStatusNormal = 0;
+    // 
+    PostStatusClosed = 1;
+}
+
+// 
+message QoeInfo {
+    // 
+    string info = 1;
+}
+
+// 
+enum RenderType {
+    // 
+    RenderTypeNone = 0;
+    // 
+    RenderTypeSingle = 1;
+    // 
+    RenderTypeRotation = 2;
+}
+
+// 
+message Response {
+    // 
+    int32 code = 1;
+    // 
+    string message = 2;
+}
+
+// 
+enum SubtitleAiStatus {
+    // 
+    None = 0;
+    // 
+    Exposure = 1;
+    // 
+    Assist = 2;
+}
+
+// 
+enum SubtitleAiType {
+    // 
+    Normal = 0;
+    // 
+    Translate = 1;
+}
+
+// 
+message SubtitleItem {
+    // 
+    int64 id = 1;
+    // 
+    string id_str = 2;
+    // 
+    string lan = 3;
+    // 
+    string lan_doc = 4;
+    // 
+    string subtitle_url = 5;
+    // 
+    UserInfo author = 6;
+    // 
+    SubtitleType type = 7;
+    // 
+    string lan_doc_brief = 8;
+    // 
+    SubtitleAiType ai_type = 9;
+    // 
+    SubtitleAiStatus ai_status = 10;
+}
+
+// 
+enum SubtitleType {
+    // 
+    CC = 0;
+    // 
+    AI = 1;
+}
+
+// 
+message TextInput {
+    // 
+    repeated string portrait_placeholder = 1;
+    // 
+    repeated string landscape_placeholder = 2;
+    // 
+    RenderType render_type = 3;
+    // 
+    bool placeholder_post = 4;
+    // 
+    bool show = 5;
+    // 
+    repeated Avatar avatar = 6;
+    // 
+    PostStatus post_status = 7;
+    // 
+    Label label = 8;
+}
+
+// 
+message TextInputV2 {
+    // 
+    repeated string portrait_placeholder = 1;
+    // 
+    repeated string landscape_placeholder = 2;
+    // 
+    RenderType render_type = 3;
+    // 
+    bool placeholder_post = 4;
+    // 
+    repeated Avatar avatar = 5;
+    // 
+    int32 text_input_limit = 6;
+}
+
+// 
+message Toast {
+    // 
+    string text = 1;
+    // 
+    int32 duration = 2;
+    // 
+    bool show = 3;
+    // 
+    Button button = 4;
+}
+
+// 
+message ToastButtonV2 {
+    // 
+    string text = 1;
+    // 
+    ToastFunctionType action = 2;
+}
+
+// 
+enum ToastFunctionType {
+    // 
+    ToastFunctionTypeNone = 0;
+    // 
+    ToastFunctionTypePostPanel = 1;
+}
+
+// 
+message ToastV2 {
+    // 
+    string text = 1;
+    // 
+    int32 duration = 2;
+    // 
+    ToastButtonV2 toast_button_v2 = 3;
+}
+
+// 
+message UserInfo {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string sex = 3;
+    // 
+    string face = 4;
+    // 
+    string sign = 5;
+    // 
+    int32 rank = 6;
+}
+
+// 
+message VideoMask {
+    // 
+    int64 cid = 1;
+    // 
+    int32 plat = 2;
+    // 
+    int32 fps = 3;
+    // 
+    int64 time = 4;
+    // 
+    string mask_url = 5;
+}
+
+// 
+message VideoSubtitle {
+    // 
+    string lan = 1;
+    // 
+    string lan_doc = 2;
+    // 
+    repeated SubtitleItem subtitles = 3;
+}
+
+// 
+message ViewHerdDmElem {
+    // 
+    string herd_msg = 1;
+    // 
+    int32 herd_start_cnt = 2;
+    // 
+    int32 herd_end_cnt = 3;
+    // 
+    string regex_rule = 4;
+    // 
+    int32 start_progress = 5;
+    // 
+    int32 end_progress = 6;
+}
+

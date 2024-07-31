@@ -1,0 +1,713 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.im.type;
+
+import "bilibili/account/service/v1.proto";
+import "bilibili/app/dynamic/v2.proto";
+import "bilibili/dagw/component/avatar/v1.proto";
+
+// 
+message AILogo {
+    // 
+    string ai_mark = 1;
+    // 
+    string limit_text = 2;
+}
+
+// 
+message AccountInfo {
+    // 
+    string name = 1;
+    // 
+    string pic_url = 2;
+}
+
+// 
+message AiCardInfo {
+    // 
+    int64 ai_uid = 1;
+    // 
+    int64 ai_status = 2;
+    // 
+    UInfo u_info = 3;
+    // 
+    string title = 4;
+    // 
+    string subtitle = 5;
+    // 
+    AILogo ai_logo = 6;
+    // 
+    int64 uid = 7;
+}
+
+// 
+message AiEntry {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string subtitle = 3;
+}
+
+// 
+message AiInfo {
+    // 
+    AiCardInfo card_info = 1;
+    // 
+    ImInfo im_info = 2;
+    // 
+    AiEntry ai_entry = 3;
+}
+
+// 
+message AttestationDisplay {
+    // 
+    int32 type = 1;
+    // 
+    CommonInfo common_info = 2;
+    // 
+    SpliceInfo splice_info = 3;
+    // 
+    string icon = 4;
+    // 
+    string desc = 5;
+}
+
+// 
+message Card {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string sex = 3;
+    // 
+    string face = 4;
+    // 
+    string sign = 5;
+    // 
+    int32 rank = 6;
+    // 
+    int32 level = 7;
+    // 
+    int32 silence = 8;
+    // 
+    VipInfo vip = 9;
+    // 
+    PendantInfo pendant = 10;
+    // 
+    NameplateInfo nameplate = 11;
+    // 
+    OfficialInfo official = 12;
+    // 
+    int64 birthday = 13;
+    // 
+    int32 is_fake_account = 20;
+    // 
+    int32 is_deleted = 21;
+    // 
+    int32 in_reg_audit = 22;
+    // 
+    int32 face_nft = 23;
+    // 
+    int32 face_nft_new = 24;
+    // 
+    int32 is_senior_member = 25;
+    // 
+    string digital_id = 26;
+    // 
+    int64 digital_type = 27;
+    // 
+    AttestationDisplay attestation = 28;
+    // 
+    ExpertInfo expert_info = 29;
+    // 
+    UserHonourInfo honours = 30;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 31;
+}
+
+// 
+message CommonInfo {
+    // 
+    string title = 1;
+    // 
+    string prefix = 2;
+    // 
+    string prefix_title = 3;
+}
+
+// 
+enum Exp {
+    // 
+    Invalid = 0;
+    // 
+    New_Ava = 1;
+}
+
+// 
+message ExpertInfo {
+    // 
+    string title = 1;
+    // 
+    int32 state = 2;
+    // 
+    int32 type = 3;
+    // 
+    string desc = 4;
+}
+
+// 
+message FriendRelation {
+    // 
+    int64 uid = 1;
+    // 
+    string user_name = 2;
+    // 
+    string face = 3;
+    // 
+    int32 vip_level = 4;
+}
+
+// 
+message GptMsgContent {
+    // 
+    RichTextMsgContent content = 1;
+    // 
+    bool show_like = 2;
+    // 
+    bool show_change = 3;
+    // 
+    int64 gpt_session_id = 4;
+    // 
+    string gpt_bind_query = 5;
+    // 
+    string session_closed_line = 6;
+    // 
+    string voice_url = 7;
+    // 
+    int64 sub_type = 8;
+    // 
+    int64 voice_time = 9;
+}
+
+// 
+message GptRcmdQuestionBizInfo {
+    // 
+    string question = 1;
+}
+
+// 
+message GroupRelation {
+    // 
+    int64 group_id = 1;
+    // 
+    int64 owner_uid = 2;
+    // 
+    int32 group_type = 3;
+    // 
+    int32 group_level = 4;
+    // 
+    string group_cover = 5;
+    // 
+    string group_name = 6;
+    // 
+    string group_notice = 7;
+    // 
+    int32 status = 8;
+    // 
+    int32 member_role = 9;
+    // 
+    string fans_medal_name = 10;
+    // 
+    int64 room_id = 11;
+}
+
+// 
+message HighText {
+    // 
+    string title = 1;
+    // 
+    string url = 2;
+    // 
+    int32 index = 3;
+}
+
+// 
+message HonourTag {
+    // 
+    string name = 1;
+    // 
+    string link = 2;
+    // 
+    string web_link = 3;
+    // 
+    int32 type = 4;
+    // 
+    repeated string scene = 5;
+    // 
+    int32 priority_level = 6;
+    // 
+    string icon = 7;
+    // 
+    int32 year = 8;
+}
+
+// 
+message ImInfo {
+    // 
+    string background_url = 1;
+    // 
+    repeated string ai_prompt = 2;
+}
+
+// 
+message ImgInfo {
+    // 
+    string url = 1;
+    // 
+    int32 width = 2;
+    // 
+    int32 height = 3;
+    // 
+    string image_type = 4;
+}
+
+// 
+message KeyHitInfos {
+    // 
+    string toast = 1;
+    // 
+    int32 rule_id = 2;
+    // 
+    repeated HighText high_text = 3;
+}
+
+// 
+message Medal {
+    // 
+    int64 uid = 1;
+    // 
+    int32 medal_id = 2;
+    // 
+    int32 level = 3;
+    // 
+    string medal_name = 4;
+    // 
+    int32 score = 5;
+    // 
+    int32 intimacy = 6;
+    // 
+    int32 master_status = 7;
+    // 
+    int32 is_receive = 8;
+    // 
+    int64 medal_color_start = 9;
+    // 
+    int64 medal_color_end = 10;
+    // 
+    int64 medal_color_border = 11;
+    // 
+    int64 medal_color_name = 12;
+    // 
+    int64 medal_color_level = 13;
+    // 
+    int64 guard_level = 14;
+}
+
+// 
+message Msg {
+    // 
+    int64 sender_uid = 1;
+    // 
+    int32 receiver_type = 2;
+    // 
+    int64 receiver_id = 3;
+    // 
+    int64 cli_msg_id = 4;
+    // 
+    int32 msg_type = 5;
+    // 
+    string content = 6;
+    // 
+    int64 msg_seqno = 7;
+    // 
+    int64 timestamp = 8;
+    // 
+    repeated int64 at_uids = 9;
+    // 
+    repeated int64 recver_ids = 10;
+    // 
+    int64 msg_key = 11;
+    // 
+    int32 msg_status = 12;
+    // 
+    bool sys_cancel = 13;
+    // 
+    string notify_code = 14;
+    // 
+    int32 msg_source = 15;
+    // 
+    int32 new_face_version = 16;
+    // 
+    KeyHitInfos key_hit_infos = 17;
+    // 
+    AccountInfo account_info = 18;
+    // 
+    GptMsgContent gpt_msg_content = 19;
+    // 
+    string canal_token = 20;
+}
+
+// 
+enum MsgType {
+    // 
+    EN_INVALID_MSG_TYPE = 0;
+    // 
+    EN_MSG_TYPE_TEXT = 1;
+    // 
+    EN_MSG_TYPE_PIC = 2;
+    // 
+    EN_MSG_TYPE_AUDIO = 3;
+    // 
+    EN_MSG_TYPE_SHARE = 4;
+    // 
+    EN_MSG_TYPE_DRAW_BACK = 5;
+    // 
+    EN_MSG_TYPE_CUSTOM_FACE = 6;
+    // 
+    EN_MSG_TYPE_SHARE_V2 = 7;
+    // 
+    EN_MSG_TYPE_SYS_CANCEL = 8;
+    // 
+    EN_MSG_TYPE_MINI_PROGRAM = 9;
+    // 
+    EN_MSG_TYPE_NOTIFY_MSG = 10;
+    // 
+    EN_MSG_TYPE_VIDEO_CARD = 11;
+    // 
+    EN_MSG_TYPE_ARTICLE_CARD = 12;
+    // 
+    EN_MSG_TYPE_PICTURE_CARD = 13;
+    // 
+    EN_MSG_TYPE_COMMON_SHARE_CARD = 14;
+    // 
+    EN_MSG_TYPE_TEXT_SHARE = 15;
+    // 
+    EN_MSG_TYPE_TIP_MESSAGE = 18;
+    // 
+    EN_MSG_TYPE_GPT_MESSAGE = 19;
+    // 
+    EN_MSG_TYPE_BIZ_MSG_TYPE = 50;
+    // 
+    EN_MSG_TYPE_MODIFY_MSG_TYPE = 51;
+    // 
+    EN_MSG_TYPE_GROUP_MEMBER_CHANGED = 101;
+    // 
+    EN_MSG_TYPE_GROUP_STATUS_CHANGED = 102;
+    // 
+    EN_MSG_TYPE_GROUP_DYNAMIC_CHANGED = 103;
+    // 
+    EN_MSG_TYPE_GROUP_LIST_CHANGED = 104;
+    // 
+    EM_MSG_TYPE_FRIEND_LIST_CHANGED = 105;
+    // 
+    EN_MSG_TYPE_GROUP_DETAIL_CHANGED = 106;
+    // 
+    EN_MSG_TYPE_GROUP_MEMBER_ROLE_CHANGED = 107;
+    // 
+    EN_MSG_TYPE_NOTICE_WATCH_LIST = 108;
+    // 
+    EN_MSG_TYPE_NOTIFY_NEW_REPLY_RECIEVED = 109;
+    // 
+    EN_MSG_TYPE_NOTIFY_NEW_AT_RECIEVED = 110;
+    // 
+    EN_MSG_TYPE_NOTIFY_NEW_PRAISE_RECIEVED = 111;
+    // 
+    EN_MSG_TYPE_NOTIFY_NEW_UP_RECIEVED = 112;
+    // 
+    EN_MSG_TYPE_NOTIFY_NEW_REPLY_RECIEVED_V2 = 113;
+    // 
+    EN_MSG_TYPE_NOTIFY_NEW_AT_RECIEVED_V2 = 114;
+    // 
+    EN_MSG_TYPE_NOTIFY_NEW_PRAISE_RECIEVED_V2 = 115;
+    // 
+    EN_MSG_TYPE_GROUP_DETAIL_CHANGED_MULTI = 116;
+    // 
+    EN_MSG_TYPE_GROUP_MEMBER_ROLE_CHANGED_MULTI = 117;
+    // 
+    EN_MSG_TYPE_NOTIFY_ANTI_DISTURB = 118;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_DISSOLVED = 201;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_JOINED = 202;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_MEMBER_EXITED = 203;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_FIRED = 204;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_MEMBER_KICKED = 205;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_KICK_OFF = 206;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_DUTY = 207;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_AUTO_CREATED = 208;
+    // 
+    EN_MSG_TYPE_SYS_FRIEND_APPLY = 210;
+    // 
+    EN_MSG_TYPE_SYS_FRIEND_APPLY_ACK = 211;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_APPLY_FOR_JOINING = 212;
+    // 
+    EN_MSG_TYPE_SYS_GROUP_ADMIN_ACCEPTED_USER_APPLY = 213;
+    // 
+    EN_MSG_TYPE_CHAT_MEMBER_JOINED = 301;
+    // 
+    EN_MSG_TYPE_CHAT_MEMBER_EXITED = 302;
+    // 
+    EN_MSG_TYPE_CHAT_GROUP_FREEZED = 303;
+    // 
+    EN_MSG_TYPE_CHAT_GROUP_DISSOLVED = 304;
+    // 
+    EN_MSG_TYPE_CHAT_GROUP_CREATED = 305;
+    // 
+    EN_MSG_TYPE_CHAT_POPUP_SESSION = 306;
+    // 
+    EN_MSG_TYPE_CUSTOM_RANK_UPDATE = 400;
+    // 
+    EN_MSG_TYPE_CUSTOM_MSG_NOTICE = 401;
+}
+
+// 
+message NameplateInfo {
+    // 
+    int32 nid = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    string image_small = 4;
+    // 
+    string level = 5;
+    // 
+    string condition = 6;
+}
+
+// 
+message OfficialInfo {
+    // 
+    int32 role = 1;
+    // 
+    string title = 2;
+    // 
+    string desc = 3;
+    // 
+    int32 type = 4;
+}
+
+// 
+message PendantInfo {
+    // 
+    int32 pid = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    int64 expire = 4;
+    // 
+    string image_enhance = 5;
+    // 
+    string image_enhance_frame = 6;
+}
+
+// 
+message RelationLog {
+    // 
+    int32 log_type = 1;
+    // 
+    int64 oplog_seqno = 2;
+    // 
+    FriendRelation friend_relation = 3;
+    // 
+    GroupRelation group_relation = 4;
+}
+
+// 
+message RichTextMsgContent {
+    // 
+    repeated bilibili.app.dynamic.v2.Paragraph paragraphs = 1;
+}
+
+// 
+message SessionInfo {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int64 at_seqno = 3;
+    // 
+    int64 top_ts = 4;
+    // 
+    string group_name = 5;
+    // 
+    string group_cover = 6;
+    // 
+    int32 is_follow = 7;
+    // 
+    int32 is_dnd = 8;
+    // 
+    int64 ack_seqno = 9;
+    // 
+    int64 ack_ts = 10;
+    // 
+    int64 session_ts = 11;
+    // 
+    int32 unread_count = 12;
+    // 
+    Msg last_msg = 13;
+    // 
+    int32 group_type = 14;
+    // 
+    int32 can_fold = 15;
+    // 
+    int32 status = 16;
+    // 
+    int64 max_seqno = 17;
+    // 
+    int32 new_push_msg = 18;
+    // 
+    int32 setting = 19;
+    // 
+    int32 is_guardian = 20;
+    // 
+    int32 is_intercept = 21;
+    // 
+    int32 is_trust = 22;
+    // 
+    int32 system_msg_type = 23;
+    // 
+    AccountInfo account_info = 24;
+    // 
+    int32 live_status = 25;
+    // 
+    int32 biz_msg_unread_count = 26;
+    // 
+    UserLabel user_label = 27;
+    // 
+    int32 is_huahuo = 28;
+    // 
+    UInfo u_info = 29;
+    // 
+    int32 stranger = 30;
+    // 
+    AiInfo ai_info = 31;
+}
+
+// 
+message SpliceInfo {
+    // 
+    string title = 1;
+}
+
+// 
+message UInfo {
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem ava = 1;
+    // 
+    Card card = 2;
+}
+
+// 
+message UserHonourInfo {
+    // 
+    int64 mid = 1;
+    // 
+    UserHonourStyle colour = 2;
+    // 
+    repeated HonourTag tags = 3;
+}
+
+// 
+message UserHonourStyle {
+    // 
+    string dark = 1;
+    // 
+    string normal = 2;
+}
+
+// 
+message UserLabel {
+    // 
+    int32 label_type = 1;
+    // 
+    Medal medal = 2;
+    // 
+    int32 guardian_relation = 3;
+}
+
+// 
+message VipInfo {
+    // 
+    int32 type = 1;
+    // 
+    int32 status = 2;
+    // 
+    int64 due_date = 3;
+    // 
+    int32 vip_pay_type = 4;
+    // 
+    int32 theme_type = 5;
+    // 
+    VipLabel label = 6;
+    // 
+    int32 avatar_subscript = 7;
+    // 
+    string nickname_color = 8;
+    // 
+    int64 role = 9;
+    // 
+    string avatar_subscript_url = 10;
+    // 
+    int32 tv_vip_status = 11;
+    // 
+    int32 tv_vip_pay_type = 12;
+    // 
+    int64 tv_due_date = 13;
+}
+
+// 
+message VipLabel {
+    // 
+    string path = 1;
+    // 
+    string text = 3;
+    // 
+    string label_theme = 4;
+    // 
+    string text_color = 5;
+    // 
+    int32 bg_style = 6;
+    // 
+    string bg_color = 7;
+    // 
+    string border_color = 8;
+    // 
+    bool use_img_label = 9;
+    // 
+    string img_label_uri_hans = 10;
+    // 
+    string img_label_uri_hant = 11;
+    // 
+    string img_label_uri_hans_static = 12;
+    // 
+    string img_label_uri_hant_static = 13;
+}
+

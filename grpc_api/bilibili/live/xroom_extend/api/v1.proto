@@ -1,0 +1,37 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.live.xroom_extend.api.v1;
+
+// 
+enum ReportStatus {
+    // 
+    REPORT_EXCEPTION = 0;
+    // 
+    REPORT_SUCCESS = 1;
+}
+
+// 
+message SendReportInfoReq {
+    // 
+    int64 room_id = 1;
+    // 
+    string report_tag = 2;
+    // 
+    string report_reason = 3;
+    // 
+    string pic_url = 4;
+    // 
+    string play_stream = 5;
+}
+
+// 
+message SendReportInfoResp {
+    // 
+    ReportStatus report_status = 1;
+    // 
+    string toast = 2;
+}
+

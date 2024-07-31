@@ -1,0 +1,51 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.metadata.network;
+
+// 
+message Network {
+    // 
+    NetworkType type = 1;
+    // 
+    TFType tf = 2;
+    // 
+    string oid = 3;
+}
+
+// 
+enum NetworkType {
+    // 
+    NT_UNKNOWN = 0;
+    // 
+    WIFI = 1;
+    // 
+    CELLULAR = 2;
+    // 
+    OFFLINE = 3;
+    // 
+    OTHERNET = 4;
+    // 
+    ETHERNET = 5;
+}
+
+// 
+enum TFType {
+    // 
+    TF_UNKNOWN = 0;
+    // 
+    U_CARD = 1;
+    // 
+    U_PKG = 2;
+    // 
+    C_CARD = 3;
+    // 
+    C_PKG = 4;
+    // 
+    T_CARD = 5;
+    // 
+    T_PKG = 6;
+}
+

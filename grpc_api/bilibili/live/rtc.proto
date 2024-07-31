@@ -1,0 +1,186 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.live.rtc;
+
+// 
+message BAPILiveRTCLegacyProto {
+    // 
+    enum MediaType {
+        // 
+        AUDIO = 0;
+        // 
+        VIDEO = 1;
+        // 
+        DATA = 2;
+        // 
+        SMALL_VIDEO = 3;
+        // 
+        OTHER = 15;
+    }
+    
+    // 
+    message MediaTypeField {
+        // 
+        repeated int32 media_type = 1;
+    }
+    
+    // 
+    message RtcSubscribe {
+        // 
+        map<int32, BAPILiveRTCLegacyProto.MediaTypeField> subscribe = 1;
+    }
+    
+}
+
+// 
+message BAPILiveRTCStreamProto {
+    // 
+    message AudioMetaData {
+        // 
+        int64 channels = 1;
+        // 
+        int64 sample_rate = 2;
+        // 
+        int64 payload = 3;
+        // 
+        int32 ssrc = 4;
+    }
+    
+    // 
+    enum Codec {
+        // 
+        Opus = 0;
+        // 
+        H264 = 1;
+    }
+    
+    // 
+    message StreamMeta {
+        // 
+        oneof metadata {
+            // 
+            BAPILiveRTCStreamProto.AudioMetaData audio = 2;
+            // 
+            BAPILiveRTCStreamProto.VideoMetaData video = 3;
+        }
+        // 
+        BAPILiveRTCStreamProto.Codec codec = 1;
+    }
+    
+    // 
+    message VideoMetaData {
+        // 
+        int64 payload = 1;
+        // 
+        int32 ssrc = 2;
+    }
+    
+}
+
+// 
+message BAPILiveRTCTokenProto {
+    // 
+    message AccessToken {
+        // 
+        int64 channel_id = 1;
+        // 
+        int64 uid = 2;
+        // 
+        string token = 3;
+        // 
+        repeated string addr = 4;
+        // 
+        string fingerprint = 5;
+        // 
+        string password = 6;
+        // 
+        repeated string http_dns = 7;
+        // 
+        int32 version = 8;
+        // 
+        string business_name = 9;
+    }
+    
+    // 
+    message Token {
+        // 
+        int64 channel_id = 1;
+        // 
+        int64 uid = 2;
+        // 
+        int64 timestamp = 3;
+        // 
+        BAPILiveRTCUserProto.UserRole role = 4;
+    }
+    
+}
+
+// 
+message BAPILiveRTCUserProto {
+    // 
+    message Stream {
+        // 
+        bool has_video = 1;
+        // 
+        bool has_audio = 2;
+        // 
+        bool audio_muted = 3;
+        // 
+        bool video_muted = 4;
+        // 
+        int32 video_count = 5;
+        // 
+        int32 temporal_count = 6;
+    }
+    
+    // 
+    message User {
+        // 
+        int64 uid = 1;
+        // 
+        BAPILiveRTCUserProto.UserRole role = 2;
+        // 
+        BAPILiveRTCUserProto.Stream pub_stream = 3;
+        // 
+        string platform = 4;
+        // 
+        string sdk_version = 5;
+    }
+    
+    // 
+    enum UserLeaveReason {
+        // 
+        NORMAL = 0;
+        // 
+        KICKED = 1;
+        // 
+        TIMEOUT = 2;
+        // 
+        KILLED = 3;
+        // 
+        RECONNECT = 4;
+    }
+    
+    // 
+    enum UserRole {
+        // 
+        Normal = 0;
+        // 
+        Audience = 1;
+        // 
+        Monitor = 2;
+        // 
+        Relay = 3;
+        // 
+        App = 4;
+        // 
+        Mix = 5;
+        // 
+        Unknown = 99;
+    }
+    
+}
+
