@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.play;
+
+import "bilibili/app/distribution/v1/distribution.proto";
+
+// 云端保存的播放器配置
+message CloudPlayConfig {
+    // 启用杜比全景声
+    bilibili.app.distribution.v1.BoolValue enable_panorama = 1;
+    // 启用杜比音效
+    bilibili.app.distribution.v1.BoolValue enable_dolby = 2;
+    // 启用震动
+    bilibili.app.distribution.v1.BoolValue enable_shake = 3;
+    // 启用后台播放
+    bilibili.app.distribution.v1.BoolValue enable_background = 4;
+    // 启用HIRES
+    bilibili.app.distribution.v1.BoolValue enable_loss_less = 5;
+}
+
+// 播放器策略配置
+message PlayConfig {
+    // 
+    bilibili.app.distribution.v1.BoolValue should_auto_play = 1;
+    // 
+    bilibili.app.distribution.v1.BoolValue should_auto_fullscreen = 2;
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_playurl_https = 3;
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_danmaku_interaction = 4;
+    // 
+    bilibili.app.distribution.v1.Int64Value small_screen_status = 5;
+    // 
+    bilibili.app.distribution.v1.Int64Value player_codec_mode_key = 6;
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_gravity_rotate_screen = 7;
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_danmaku_monospaced = 8;
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_edit_subtitle = 9;
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_subtitle = 10;
+    // 
+    bilibili.app.distribution.v1.Int64Value color_filter = 11;
+    // 
+    bilibili.app.distribution.v1.BoolValue should_auto_story = 12;
+    // 
+    bilibili.app.distribution.v1.BoolValue landscape_auto_story = 13;
+    // 
+    bilibili.app.distribution.v1.BoolValue volume_balance = 14;
+}
+
+// 灰度测试特殊功能？ 
+message SpecificPlayConfig {
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_segmented_section = 1;
+}
+

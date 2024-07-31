@@ -1,0 +1,29 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.show.gateway.v1;
+
+import "bilibili/broadcast/message/main.proto";
+
+// 
+service AppShow {
+    // 
+    rpc GetActProgress (GetActProgressReq) returns (GetActProgressReply);
+}
+
+// 
+message GetActProgressReply {
+    // 
+    bilibili.broadcast.message.main.NativePageEvent event = 1;
+}
+
+// 
+message GetActProgressReq {
+    // 
+    int64 page_i_d = 1;
+    // 
+    int64 mid = 2;
+}
+

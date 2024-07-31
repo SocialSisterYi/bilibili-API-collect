@@ -1,0 +1,135 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.splash.v1;
+
+import "google/protobuf/any.proto";
+
+// 
+service Splash {
+    // 
+    rpc List (SplashReq) returns (SplashReply);
+}
+
+// 
+message ShowStrategy {
+    // 
+    int32 id = 1;
+    // 
+    int64 stime = 2;
+    // 
+    int64 etime = 3;
+}
+
+// 
+message SplashItem {
+    // 
+    int32 id = 1;
+    // 
+    int32 type = 2;
+    // 
+    int32 card_type = 3;
+    // 
+    int32 duration = 4;
+    // 
+    int64 begin_time = 5;
+    // 
+    int64 end_time = 6;
+    // 
+    string thumb = 7;
+    // 
+    string hash = 8;
+    // 
+    string logo_url = 9;
+    // 
+    string logo_hash = 10;
+    // 
+    string video_url = 11;
+    // 
+    string video_hash = 12;
+    // 
+    int32 video_width = 13;
+    // 
+    int32 video_height = 14;
+    // 
+    string schema = 15;
+    // 
+    string schema_title = 16;
+    // 
+    string schema_package_name = 17;
+    // 
+    repeated string schema_callup_white_list = 18;
+    // 
+    int32 skip = 19;
+    // 
+    string uri = 20;
+    // 
+    string uri_title = 21;
+    // 
+    int32 source = 22;
+    // 
+    int32 cm_mark = 23;
+    // 
+    string ad_cb = 24;
+    // 
+    int64 resource_id = 25;
+    // 
+    string request_id = 26;
+    // 
+    string client_ip = 27;
+    // 
+    bool is_ad = 28;
+    // 
+    bool is_ad_loc = 29;
+    // 
+    google.protobuf.Any extra = 30;
+    // 
+    int64 card_index = 31;
+    // 
+    int64 server_type = 32;
+    // 
+    int64 index = 33;
+    // 
+    string click_url = 34;
+    // 
+    string show_url = 35;
+    // 
+    int32 time_target = 36;
+    // 
+    int32 encryption = 37;
+    // 
+    bool enable_pre_download = 38;
+    // 
+    bool enable_background_download = 39;
+}
+
+// 
+message SplashReply {
+    // 
+    int32 max_time = 1;
+    // 
+    int32 min_interval = 2;
+    // 
+    int32 pull_interval = 3;
+    // 
+    repeated SplashItem list = 4;
+    // 
+    repeated ShowStrategy show = 5;
+}
+
+// 
+message SplashReq {
+    // 
+    int32 width = 1;
+    // 
+    int32 height = 2;
+    // 
+    string birth = 3;
+    // 
+    string ad_extra = 4;
+    // 
+    string network = 5;
+}
+

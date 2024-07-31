@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.download;
+
+import "bilibili/app/distribution/v1/distribution.proto";
+
+// 
+message DownloadSettingsConfig {
+    // 
+    bilibili.app.distribution.v1.BoolValue enable_download_auto_start = 1;
+}

@@ -1,0 +1,119 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.show.rank.v1;
+
+// 
+service Rank {
+    // 
+    rpc RankAll (RankAllResultReq) returns (RankListReply);
+    // 
+    rpc RankRegion (RankRegionResultReq) returns (RankListReply);
+}
+
+// 
+message Item {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string param = 3;
+    // 
+    string uri = 4;
+    // 
+    string redirect_url = 5;
+    // 
+    string goto = 6;
+    // 
+    int32 play = 7;
+    // 
+    int32 danmaku = 8;
+    // 
+    int64 mid = 9;
+    // 
+    string name = 10;
+    // 
+    string face = 11;
+    // 
+    int32 reply = 12;
+    // 
+    int32 favourite = 13;
+    // 
+    int64 pub_date = 14;
+    // 
+    int32 rid = 15;
+    // 
+    string rname = 16;
+    // 
+    int64 duration = 17;
+    // 
+    int32 like = 18;
+    // 
+    int64 cid = 19;
+    // 
+    int64 pts = 20;
+    // 
+    string cooperation = 21;
+    // 
+    int32 attribute = 22;
+    // 
+    int64 follower = 23;
+    // 
+    OfficialVerify official_verify = 24;
+    // 
+    repeated Item children = 25;
+    // 
+    Relation relation = 26;
+    // 
+    string play_text = 27;
+    // 
+    int32 play_icon = 28;
+}
+
+// 
+message OfficialVerify {
+    // 
+    int32 type = 1;
+    // 
+    string desc = 2;
+}
+
+// 
+message RankAllResultReq {
+    // 
+    string order = 1;
+    // 
+    int32 pn = 2;
+    // 
+    int32 ps = 3;
+}
+
+// 
+message RankListReply {
+    // 
+    repeated Item items = 1;
+}
+
+// 
+message RankRegionResultReq {
+    // 
+    int32 rid = 1;
+    // 
+    int32 pn = 2;
+    // 
+    int32 ps = 3;
+}
+
+// 
+message Relation {
+    // 
+    int32 status = 1;
+    // 
+    int32 is_follow = 2;
+    // 
+    int32 is_followed = 3;
+}
+

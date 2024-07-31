@@ -1,0 +1,533 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.im.customer.model;
+
+// 
+message BindNote {
+    // 
+    string content = 1;
+    // 
+    string high_color = 2;
+    // 
+    string color = 3;
+}
+
+// 
+message Business {
+    // 
+    int64 business_id = 1;
+    // 
+    string business_name = 2;
+    // 
+    Select select = 3;
+}
+
+// 
+enum ComplianceAlertType {
+    // 
+    None = 0;
+    // 
+    AIModel = 1;
+}
+
+// 
+message ComplianceDescribe {
+    // 
+    string text = 1;
+    // 
+    bool is_link = 2;
+    // 
+    string link = 3;
+}
+
+// 
+message ComplianceModel {
+    // 
+    ComplianceAlertType pop_field = 1;
+    // 
+    string title = 2;
+    // 
+    repeated ComplianceDescribe describes = 3;
+    // 
+    string confirm_text = 4;
+    // 
+    string cancel_text = 5;
+}
+
+// 
+message CustomerInfo {
+    // 
+    int64 customer_id = 1;
+    // 
+    string customer_name = 2;
+    // 
+    CustomerRankStatus customer_state = 3;
+    // 
+    int64 queue_rank = 4;
+    // 
+    int32 is_cancel = 5;
+    // 
+    MsgSpLitAnsCustomer pre_customer = 6;
+    // 
+    string customer_state_desc = 7;
+}
+
+// 
+enum CustomerRankStatus {
+    // 
+    OFFLINE = 0;
+    // 
+    CROWD = 1;
+    // 
+    ONLINE = 2;
+    // 
+    SWITCH_ONLINE = 3;
+    // 
+    RANKING = 4;
+    // 
+    SWITCH_RANKING = 5;
+    // 
+    OUT_CUSTOMER_QUEUE = 6;
+    // 
+    OUT_CUSTOMER_QUEUE_WITH_MESSAGE = 7;
+    // 
+    OUT_WORK = 8;
+    // 
+    CUSTOMER_INVITE = 9;
+    // 
+    WORK_BATCH_STOP_RANK = 10;
+    // 
+    FORCE_SWITCH_CUSTOMER = 11;
+    // 
+    RANKING_ONLY = 12;
+    // 
+    NO_CUSTOMER_ONLY = 13;
+    // 
+    OFFLINE_PROCESS = 14;
+}
+
+// 
+message EmotionInfo {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+    // 
+    int32 size = 3;
+    // 
+    string gif_url = 4;
+}
+
+// 
+enum EvaluateType {
+    // 
+    EvaluateMachineMsg = 0;
+    // 
+    EvaluateCustomer = 1;
+    // 
+    EvaluateCustomerInvited = 2;
+    // 
+    EvaluatePanelMsg = 3;
+    // 
+    EvaluateMachineSess = 4;
+    // 
+    EvaluateMachineSessInvited = 5;
+}
+
+// 
+message EvaluationShowInfo {
+    // 
+    bool show = 1;
+    // 
+    EvaluateType type = 2;
+    // 
+    repeated EvaluationStepSelect step_select = 3;
+    // 
+    int64 msg_key = 4;
+    // 
+    bool up = 5;
+    // 
+    string feedback = 6;
+    // 
+    int64 customer_sess_id = 7;
+    // 
+    bool done = 8;
+    // 
+    string editor_input = 9;
+    // 
+    int64 step_msg_key = 10;
+    // 
+    int64 machine_sess_id = 11;
+}
+
+// 
+message EvaluationStepSelect {
+    // 
+    string text = 1;
+    // 
+    Select select = 2;
+}
+
+// 
+message Group {
+    // 
+    int64 group_id = 1;
+    // 
+    string group_name = 2;
+    // 
+    Select select = 3;
+}
+
+// 
+message Msg {
+    // 
+    TalkerInfo sender_info = 1;
+    // 
+    TalkerInfo receiver_info = 2;
+    // 
+    MsgType msg_type = 3;
+    // 
+    string content = 4;
+    // 
+    int64 timestamp = 5;
+    // 
+    int64 msg_key = 6;
+    // 
+    int32 msg_status = 7;
+    // 
+    MsgSource msg_source = 8;
+    // 
+    string dev_id = 9;
+    // 
+    int64 seq_no = 10;
+    // 
+    int32 situation = 11;
+    // 
+    BindNote bind_note = 12;
+    // 
+    bool is_ai = 13;
+    // 
+    repeated int64 ai_link_msg = 14;
+}
+
+// 
+enum MsgSource {
+    // 
+    INVALID = 0;
+    // 
+    IOS = 1;
+    // 
+    ANDROID = 2;
+    // 
+    IPAD = 3;
+    // 
+    ANDROID_HD = 4;
+    // 
+    PC_APP = 5;
+    // 
+    WEB = 6;
+    // 
+    Biz = 7;
+    // 
+    ThirdShopStage = 8;
+    // 
+    AI = 9;
+}
+
+// 
+message MsgSpLitA {
+    // 
+    SplitAnsMsgContentType type = 1;
+    // 
+    repeated Business business_list = 2;
+    // 
+    repeated Group group_list = 3;
+    // 
+    CustomerInfo customer_info = 4;
+}
+
+// 
+message MsgSpLitAnsCustomer {
+    // 
+    int64 customer_id = 1;
+    // 
+    string customer_name = 2;
+}
+
+// 
+enum MsgType {
+    // 
+    MSG_TYPE_INVALID = 0;
+    // 
+    MSG_TYPE_TEXT = 1;
+    // 
+    MSG_TYPE_IMG = 2;
+    // 
+    MSG_TYPE_WITHDRAW = 5;
+    // 
+    MSG_TYPE_FAV_EMOJI = 6;
+    // 
+    MSG_TYPE_SHARE = 7;
+    // 
+    MSG_TYPE_VIDEO = 17;
+    // 
+    MSG_TYPE_ORDER = 10001;
+    // 
+    MSG_TYPE_GOODS = 10002;
+    // 
+    MSG_TYPE_EVALUATION = 10003;
+    // 
+    MSG_TYPE_MESSAGE = 10004;
+    // 
+    MSG_TYPE_MACHINE_A = 10005;
+    // 
+    MSG_TYPE_MACHINE_Q = 10006;
+    // 
+    MSG_TYPE_CUSTOMER_COME = 10007;
+    // 
+    MSG_TYPE_MACHINE_WELCOME_TEXT = 10008;
+    // 
+    MSG_TYPE_MACHINE_WELCOME_QLIST = 10009;
+    // 
+    MSG_TYPE_SPLIT_Q = 10010;
+    // 
+    MSG_TYPE_SPLIT_A = 10011;
+    // 
+    MSG_TYPE_SWITCH_CUSTOMER = 10012;
+    // 
+    MSG_TYPE_CUSTOMER_INVITE_EVALUATION = 10013;
+    // 
+    MSG_TYPE_OUT_CUSTOMER_QUEUE = 10014;
+    // 
+    MSG_TYPE_OUT_CUSTOMER_SESS = 10015;
+    // 
+    MSG_TYPE_MESSAGE_GUIDE = 10016;
+    // 
+    MSG_TYPE_FORCE_SWITCH_CUSTOMER = 10017;
+    // 
+    MSG_TYPE_CUSTOMER_INITIATIVE_MSG = 10018;
+    // 
+    MSG_TYPE_SYS_NOTE = 10019;
+    // 
+    MSG_TYPE_MACHINE_SESS_EVALUATION = 10020;
+    // 
+    MSG_TYPE_PARAGRAPH_TEXT = 10021;
+    // 
+    MSG_TYPE_BUSINESS_LINK = 10022;
+    // 
+    MSG_TYPE_SYS_BAR = 10023;
+}
+
+// 
+enum NotifyMsgType {
+    // 
+    UN_USABLE = 0;
+    // 
+    RANK_UPDATE = 400;
+    // 
+    MSG_TALK = 401;
+    // 
+    SUBMIT_WORK_ORDER_DRAFT = 402;
+}
+
+// 
+enum Select {
+    // 
+    ABLE = 0;
+    // 
+    SELECTED = 1;
+    // 
+    UNABLE = 2;
+}
+
+// 
+message SessionInfo {
+    // 
+    TalkerInfo talker_info = 1;
+    // 
+    Msg last_msg = 2;
+    // 
+    UnreadInfo unread_info = 3;
+    // 
+    int64 ack_seqno = 4;
+    // 
+    int64 ack_ts = 5;
+    // 
+    int64 session_ts = 6;
+    // 
+    int64 max_seqno = 7;
+    // 
+    int32 status = 8;
+    // 
+    string tag_icon = 9;
+    // 
+    int32 top_set = 10;
+    // 
+    string jump_url = 11;
+    // 
+    bool do_not_disturb = 12;
+    // 
+    string setting_page_schema = 13;
+    // 
+    string setting_page_url = 14;
+    // 
+    string tag_name = 15;
+    // 
+    ComplianceModel compliance = 16;
+}
+
+// 
+enum Situation {
+    // 
+    Invalid = 0;
+    // 
+    IM = 1;
+    // 
+    ServiceCenter = 2;
+    // 
+    Order = 3;
+    // 
+    Push = 4;
+    // 
+    Goods = 5;
+    // 
+    VipMall = 6;
+    // 
+    Else = 7;
+    // 
+    Live = 8;
+    // 
+    Space = 9;
+}
+
+// 
+enum SplitAnsMsgContentType {
+    // 
+    BUSINESS = 0;
+    // 
+    GROUP = 1;
+    // 
+    CUSTOM = 2;
+}
+
+// 
+message TalkerInfo {
+    // 
+    TalkerType type = 1;
+    // 
+    int64 shop_father_id = 2;
+    // 
+    int64 shop_id = 3;
+    // 
+    int64 customer_id = 4;
+    // 
+    int64 machine_session_id = 5;
+    // 
+    string customer_session_id = 6;
+    // 
+    int64 uid = 7;
+    // 
+    string name = 8;
+    // 
+    string pic_url = 9;
+    // 
+    repeated string tags = 10;
+}
+
+// 
+enum TalkerType {
+    // 
+    MACHINE = 0;
+    // 
+    CUSTOMER = 1;
+    // 
+    SYS_NOTICE = 2;
+    // 
+    USER = 3;
+}
+
+// 
+message UnreadInfo {
+    // 
+    int64 unread_count = 1;
+    // 
+    int64 customer_unread_count = 2;
+    // 
+    int64 machine_unread_count = 3;
+    // 
+    int64 message_unread_count = 4;
+    // 
+    int64 notice_unread_count = 5;
+}
+
+// 
+message WindowOptionEvaluation {
+    // 
+    string icon = 1;
+    // 
+    string name = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string title = 4;
+    // 
+    int64 im_stat = 5;
+}
+
+// 
+message WindowOptionGoods {
+    // 
+    string icon = 1;
+    // 
+    string name = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string title = 4;
+}
+
+// 
+message WindowOptionHistory {
+    // 
+    string icon = 1;
+    // 
+    string name = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string title = 4;
+}
+
+// 
+message WindowOptionMessage {
+    // 
+    string icon = 1;
+    // 
+    string name = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string title = 4;
+    // 
+    string sub_title = 5;
+    // 
+    bool is_new_ticket = 6;
+    // 
+    string new_ticket_jump_url = 7;
+}
+
+// 
+message WindowOptionOrder {
+    // 
+    string icon = 1;
+    // 
+    string name = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string title = 4;
+}
+

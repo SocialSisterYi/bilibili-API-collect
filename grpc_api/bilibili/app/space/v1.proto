@@ -1,0 +1,111 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.space.v1;
+
+// 
+service Space {
+    // 
+    rpc Archive (ArchiveReq) returns (ArchiveReply);
+}
+
+// 
+message ArchiveReply {
+    // 
+    repeated BiliSpaceVideo item = 1;
+    // 
+    int32 count = 2;
+    // 
+    EpisodicButton episodic_button = 3;
+    // 
+    repeated OrderConfig order = 4;
+}
+
+// 
+message ArchiveReq {
+    // 
+    int64 vmid = 1;
+    // 
+    int32 pn = 2;
+    // 
+    int32 ps = 3;
+    // 
+    string order = 4;
+}
+
+// 
+message Badge {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    string border_color = 6;
+    // 
+    string border_color_night = 7;
+    // 
+    int32 bg_style = 8;
+}
+
+// 
+message BiliSpaceVideo {
+    // 
+    string title = 1;
+    // 
+    string tname = 2;
+    // 
+    int64 duration = 3;
+    // 
+    string cover = 4;
+    // 
+    string uri = 5;
+    // 
+    string param = 6;
+    // 
+    string danmaku = 7;
+    // 
+    int32 play = 8;
+    // 
+    int64 ctime = 9;
+    // 
+    bool state = 10;
+    // 
+    bool is_popular = 11;
+    // 
+    repeated Badge badges = 12;
+    // 
+    string cover_right = 13;
+    // 
+    string bvid = 14;
+    // 
+    bool is_steins = 15;
+    // 
+    bool is_ugcpay = 16;
+    // 
+    bool is_cooperation = 17;
+}
+
+// 
+message EpisodicButton {
+    // 
+    string text = 1;
+    // 
+    string uri = 2;
+}
+
+// 
+message OrderConfig {
+    // 
+    string title = 1;
+    // 
+    string value = 2;
+}
+

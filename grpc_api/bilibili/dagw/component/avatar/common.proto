@@ -1,0 +1,166 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.dagw.component.avatar.common;
+
+// 
+message BasicRenderSpec {
+    // 
+    double opacity = 1;
+}
+
+// 
+message ColorConfig {
+    // 
+    bool is_dark_mode_aware = 1;
+    // 
+    ColorSpec day = 2;
+    // 
+    ColorSpec night = 3;
+}
+
+// 
+message ColorSpec {
+    // 
+    string argb = 1;
+}
+
+// 
+message LayerGeneralSpec {
+    // 
+    PositionSpec pos_spec = 1;
+    // 
+    SizeSpec size_spec = 2;
+    // 
+    BasicRenderSpec render_spec = 3;
+}
+
+// 
+message MaskProperty {
+    // 
+    LayerGeneralSpec general_spec = 1;
+    // 
+    ResourceSource mask_src = 2;
+}
+
+// 
+message NativeDrawRes {
+    // 
+    enum FillMode {
+        // 
+        FILL_MODE_INVALID = 0;
+        // 
+        FILL_MODE_INTERNAL = 1;
+        // 
+        FILL_MODE_EDGE = 2;
+    }
+    
+    // 
+    enum NativeDraw {
+        // 
+        DRAW_INVALID = 0;
+        // 
+        DRAW_CIRCLE = 1;
+        // 
+        DRAW_RECTANGLE = 2;
+    }
+    
+    // 
+    NativeDrawRes.NativeDraw draw_type = 1;
+    // 
+    NativeDrawRes.FillMode fill_mode = 2;
+    // 
+    ColorConfig color_config = 3;
+    // 
+    double edge_weight = 4;
+}
+
+// 
+message PositionSpec {
+    // 
+    enum CoordinatePos {
+        // 
+        INVALID_COORDINATE = 0;
+        // 
+        DEFAULT_COORDINATE = 1;
+        // 
+        CENTRAL_COORDINATE = 2;
+    }
+    
+    // 
+    PositionSpec.CoordinatePos coordinate_pos = 1;
+    // 
+    double axis_x = 2;
+    // 
+    double axis_y = 3;
+}
+
+// 
+message RemoteRes {
+    // 
+    string url = 1;
+    // 
+    string bfs_style = 2;
+}
+
+// 
+message ResourceSource {
+    // 
+    enum LocalRes {
+        // 
+        LOCAL_RES_INVALID = 0;
+        // 
+        LOCAL_RES_ICON_VIP = 1;
+        // 
+        LOCAL_RES_ICON_SMALL_VIP = 2;
+        // 
+        LOCAL_RES_ICON_PERSONAL_VERIFY = 3;
+        // 
+        LOCAL_RES_ICON_ENTERPRISE_VERIFY = 4;
+        // 
+        LOCAL_RES_ICON_NFT_MAINLAND = 5;
+        // 
+        LOCAL_RES_DEFAULT_AVATAR = 6;
+        // 
+        LOCAL_RES_FOLLOW_ICON = 7;
+        // 
+        LOCAL_RES_FOLLOW_ACTION = 8;
+    }
+    
+    // 
+    enum SourceType {
+        // 
+        SRC_TYPE_INVALID = 0;
+        // 
+        SRC_TYPE_URL = 1;
+        // 
+        SRC_TYPE_LOCAL = 2;
+        // 
+        SRC_TYPE_DRAW = 3;
+    }
+    
+    // 
+    oneof res {
+        // 
+        RemoteRes remote = 3;
+        // 
+        LocalRes local = 4;
+        // 
+        NativeDrawRes draw = 5;
+    }
+    // 
+    ResourceSource.SourceType src_type = 1;
+    // 
+    ResourceSource.LocalRes placeholder = 2;
+}
+
+// 
+message SizeSpec {
+    // 
+    double width = 1;
+    // 
+    double height = 2;
+}
+

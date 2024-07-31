@@ -1,0 +1,245 @@
+syntax = "proto3";
+
+package bilibili.app.viewunite.pgcanymodel;
+
+import "bilibili/app/viewunite/common.proto";
+
+// 
+message Earphone {
+    // 
+    string product_model = 1;
+    // 
+    string like_toast_text = 2;
+    // 
+    string switch_toast_text = 3;
+    // 
+    string like_toast_voice = 4;
+}
+
+// 
+message EarphoneConf {
+    // 
+    repeated Earphone sp_phones = 1;
+}
+
+// 
+message MultiViewInfo {
+    // 
+    bool is_multi_view_season = 1;
+    // 
+    string changing_dance = 2;
+}
+
+// 
+message OgvData {
+    // 
+    int32 media_id = 1;
+    // 
+    int64 season_id = 2;
+    // 
+    int32 season_type = 3;
+    // 
+    int32 show_season_type = 4;
+    // 
+    Rights rights = 5;
+    // 
+    UserStatus user_status = 6;
+    // 
+    int64 aid = 7;
+    // 
+    Stat stat = 8;
+    // 
+    int32 mode = 9;
+    // 
+    Publish publish = 10;
+    // 
+    PlayStrategy play_strategy = 11;
+    // 
+    MultiViewInfo multi_view_info = 12;
+    // 
+    OgvSwitch ogv_switch = 13;
+    // 
+    int32 total_ep = 14;
+    // 
+    bilibili.app.viewunite.common.NewEp new_ep = 15;
+    // 
+    Reserve reserve = 16;
+    // 
+    int32 status = 17;
+    // 
+    repeated PlayFloatLayerActivity activity_float_layer = 18;
+    // 
+    EarphoneConf earphone_conf = 19;
+    // 
+    string cover = 20;
+    // 
+    string square_cover = 21;
+    // 
+    string share_url = 22;
+    // 
+    string short_link = 23;
+    // 
+    string title = 24;
+    // 
+    string horizontal_cover169 = 25;
+    // 
+    string horizontal_cover1610 = 26;
+    // 
+    int32 has_can_play_ep = 27;
+}
+
+// 
+message OgvSwitch {
+    // 
+    int32 reduce_short_title_spacing = 1;
+    // 
+    int32 merge_position_section_for_cinema = 2;
+    // 
+    int32 merge_preview_section = 3;
+    // 
+    int32 enable_show_vt_info = 4;
+}
+
+// 播放器浮层广告(?)
+message PlayFloatLayerActivity {
+    // 
+    int32 id = 1;
+    // 
+    string title = 2;
+    // 
+    int32 type = 3;
+    // 
+    int32 ad_badge_type = 4;
+    // 
+    string link = 5;
+    // 
+    string pic_url = 6;
+    // 
+    string pic_anima_url = 7;
+    // 
+    bilibili.app.viewunite.common.BadgeInfo badge = 8;
+    // 
+    int64 show_rate_time = 9;
+}
+
+// 
+message PlayStrategy {
+    // 
+    repeated string strategies = 1;
+    // 
+    int32 recommend_show_strategy = 2;
+    // 
+    string auto_play_toast = 3;
+}
+
+// 
+message Publish {
+    // 
+    string pub_time = 1;
+    // 
+    string pub_time_show = 2;
+    // 
+    int32 is_started = 3;
+    // 
+    int32 is_finish = 4;
+    // 
+    int32 weekday = 5;
+    // 
+    string release_date_show = 6;
+    // 
+    string time_length_show = 7;
+    // 
+    int32 unknow_pub_date = 8;
+    // 
+    string update_info_desc = 9;
+}
+
+// 
+message Reserve {
+    // 
+    repeated bilibili.app.viewunite.common.ViewEpisode episodes = 1;
+    // 
+    string tip = 2;
+}
+
+// 权限相关信息
+message Rights {
+    // 
+    int32 allow_download = 1;
+    // 
+    int32 allow_review = 2;
+    // 
+    int32 can_watch = 3;
+    // 
+    int32 is_cover_show = 4;
+    // 
+    string copyright = 5;
+    // 
+    string copyright_name = 6;
+    // 
+    int32 allow_bp = 7;
+    // 
+    int32 area_limit = 8;
+    // 
+    int32 is_preview = 9;
+    // 
+    int32 ban_area_show = 10;
+    // 
+    int32 watch_platform = 11;
+    // 
+    int32 allow_bp_rank = 12;
+    // 
+    string resource = 13;
+    // 
+    int32 forbid_pre = 14;
+    // 
+    int32 only_vip_download = 15;
+    // 
+    int32 new_allow_download = 16;
+}
+
+// 
+message Stat {
+    // 
+    string followers = 1;
+    // 
+    bilibili.app.viewunite.common.StatInfo play_data = 2;
+}
+
+// 
+message UserStatus {
+    // 
+    int32 show = 1;
+    // 
+    int32 follow = 2;
+    // 
+    int32 follow_status = 3;
+    // 
+    int32 pay = 4;
+    // 
+    int32 sponsor = 5;
+    // 
+    int32 vip = 6;
+    // vip 是否被冻结
+    int32 vip_frozen = 7;
+    // 
+    WatchProgress watch_progress = 8;
+}
+
+// 
+message ViewPgcAny {
+    // 
+    OgvData ogv_data = 1;
+    // 
+    map<int64, bilibili.app.viewunite.common.Staff> all_up_info = 2;
+}
+
+// 
+message WatchProgress {
+    // 
+    int64 last_ep_id = 1;
+    // 
+    string last_ep_index = 2;
+    // 
+    int64 last_time = 3;
+}

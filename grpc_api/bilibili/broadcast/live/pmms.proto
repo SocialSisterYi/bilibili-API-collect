@@ -1,0 +1,35 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.broadcast.live.pmms;
+
+import "bilibili/pmms/v1.proto";
+
+// 
+message ControlMessage {
+    // 
+    bilibili.pmms.v1.ControlParams control = 1;
+    // 
+    int64 room_id = 2;
+}
+
+// 
+message Dial {
+    // 
+    int64 ts = 1;
+}
+
+// 
+message DialShared {
+    // 
+    int64 ts = 1;
+}
+
+// 
+message JSON {
+    // 
+    string data = 1;
+}
+
