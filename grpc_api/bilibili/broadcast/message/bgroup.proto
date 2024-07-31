@@ -1,0 +1,37 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.broadcast.message.bgroup;
+
+import "google/protobuf/empty.proto";
+
+// 
+service BGroup {
+    // 
+    rpc AppEventStream (AppEventMessage) returns (google.protobuf.Empty);
+}
+
+// 
+enum AppEvent {
+    // 
+    AppEventUnknown = 0;
+    // 
+    AppEventVisible = 1;
+    // 
+    AppEventInvisible = 2;
+    // 
+    AppEventHomePage = 3;
+    // 
+    AppEventColdStart = 4;
+}
+
+// 
+message AppEventMessage {
+    // 
+    AppEvent event_type = 1;
+    // 
+    int64 timestamp = 2;
+}
+

@@ -1,15 +1,18 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
 syntax = "proto3";
 
 package bilibili.app.distribution.setting.search;
 
-import "bilibili/app/distribution/v1/distribution.proto";
+import "bilibili/app/distribution.proto";
 
 // 
 message SearchAutoPlay {
     // 
-    bilibili.app.distribution.v1.Int64Value value = 1;
+    bilibili.app.distribution.Int64Value value = 1;
     // 
-    bilibili.app.distribution.v1.BoolValue affected_by_server_side = 2;
+    bilibili.app.distribution.BoolValue affected_by_server_side = 2;
 }
 
 // 
@@ -17,3 +20,4 @@ message SearchDeviceConfig {
     // 
     SearchAutoPlay auto_play = 1;
 }
+

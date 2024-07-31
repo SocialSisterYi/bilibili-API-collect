@@ -1,0 +1,1542 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.dynamic.v1;
+
+import "bilibili/app/archive/middleware/v1.proto";
+
+// 
+service Dynamic {
+    // 
+    rpc DynDetails (DynDetailsReq) returns (DynDetailsReply);
+    // 
+    rpc DynMixUpListSearch (DynMixUpListSearchReq) returns (DynMixUpListSearchReply);
+    // 
+    rpc DynMixUpListViewMore (NoReq) returns (DynMixUpListViewMoreReply);
+    // 
+    rpc DynOurCity (DynOurCityReq) returns (DynOurCityReply);
+    // 
+    rpc DynOurCitySwitch (DynOurCitySwitchReq) returns (NoReply);
+    // 
+    rpc DynRed (DynRedReq) returns (DynRedReply);
+    // 
+    rpc DynTab (DynTabReq) returns (DynTabReply);
+    // 
+    rpc DynUpdOffset (DynUpdOffsetReq) returns (NoReply);
+    // 
+    rpc DynVideo (DynVideoReq) returns (DynVideoReqReply);
+    // 
+    rpc DynVideoPersonal (DynVideoPersonalReq) returns (DynVideoPersonalReply);
+    // 
+    rpc GeoCoder (GeoCoderReq) returns (GeoCoderReply);
+    // 
+    rpc OurCityClickReport (OurCityClickReportReq) returns (OurCityClickReportReply);
+    // 
+    rpc SVideo (SVideoReq) returns (SVideoReply);
+}
+
+// 
+message AdInfo {
+    // 
+    string nation_code = 1;
+    // 
+    string adcode = 2;
+    // 
+    string city_code = 3;
+    // 
+    string name = 4;
+    // 
+    Gps gps = 5;
+}
+
+// 
+message AddressComponent {
+    // 
+    string nation = 1;
+    // 
+    string province = 2;
+    // 
+    string city = 3;
+    // 
+    string district = 4;
+    // 
+    string street = 5;
+    // 
+    string street_number = 6;
+}
+
+// 
+enum BgType {
+    // 
+    bg_type_default = 0;
+    // 
+    bg_type_face = 1;
+}
+
+// 
+message BubbleInfo {
+    // 
+    repeated BubbleModule modules = 1;
+    // 
+    string track_id = 2;
+    // 
+    string bubble_recall_extra_when_show = 3;
+}
+
+// 
+message BubbleModule {
+    // 
+    oneof module {
+        // 
+        BubbleModuleUser user = 2;
+        // 
+        BubbleModuleText text = 3;
+        // 
+        BubbleModuleColoredTip colored_tip = 4;
+        // 
+        BubbleModulePic pic = 5;
+    }
+    // 
+    BubbleModuleType module_type = 1;
+}
+
+// 
+message BubbleModuleColoredTip {
+    // 
+    string prefix_icon = 1;
+    // 
+    bool is_svga_prefix_icon = 2;
+    // 
+    string text = 3;
+    // 
+    Color text_color = 4;
+}
+
+// 
+message BubbleModulePic {
+    // 
+    string pic_day = 1;
+    // 
+    string pic_night = 2;
+    // 
+    int64 pic_width = 3;
+    // 
+    int64 pic_height = 4;
+    // 
+    bool rounded_corner = 5;
+    // 
+    int64 rounded_corner_radius = 6;
+}
+
+// 
+message BubbleModuleText {
+    // 
+    string content = 1;
+}
+
+// 
+enum BubbleModuleType {
+    // 
+    BUBBLE_MODULE_NONE = 0;
+    // 
+    BUBBLE_MODULE_USER = 1;
+    // 
+    BUBBLE_MODULE_TEXT = 2;
+    // 
+    BUBBLE_MODULE_COLORED_TIP = 3;
+    // 
+    BUBBLE_MODULE_PIC = 4;
+}
+
+// 
+message BubbleModuleUser {
+    // 
+    repeated UserInfo users = 1;
+}
+
+// 
+message CardCurrBatch {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string text1 = 4;
+    // 
+    string text2 = 5;
+    // 
+    VideoBadge badge = 6;
+}
+
+// 
+message CardCurrSeason {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string text1 = 4;
+    // 
+    string desc = 5;
+    // 
+    VideoBadge badge = 6;
+}
+
+// 
+message CardPGC {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string cover_left_text2 = 5;
+    // 
+    string cover_left_text3 = 6;
+    // 
+    int64 cid = 7;
+    // 
+    int64 season_id = 8;
+    // 
+    int64 epid = 9;
+    // 
+    int64 aid = 10;
+    // 
+    MediaType media_type = 11;
+    // 
+    VideoSubType sub_type = 12;
+    // 
+    int32 is_preview = 13;
+    // 
+    Dimension dimension = 14;
+    // 
+    repeated VideoBadge badge = 15;
+    // 
+    int32 can_play = 16;
+    // 
+    PGCSeason season = 17;
+}
+
+// 
+message CardUGC {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string cover_left_text2 = 5;
+    // 
+    string cover_left_text3 = 6;
+    // 
+    int64 avid = 7;
+    // 
+    int64 cid = 8;
+    // 
+    MediaType media_type = 9;
+    // 
+    Dimension dimension = 10;
+    // 
+    repeated VideoBadge badge = 11;
+    // 
+    int32 can_play = 12;
+}
+
+// 
+message Color {
+    // 
+    string color_day = 1;
+    // 
+    string color_night = 2;
+}
+
+// 
+message CornerInfo {
+    // 
+    CornerType corner_type = 1;
+    // 
+    string corner_text = 2;
+    // 
+    Color corner_text_color = 3;
+    // 
+    Color corner_text_bg_color = 4;
+    // 
+    string corner_icon = 5;
+    // 
+    int64 corner_number = 6;
+}
+
+// 
+enum CornerType {
+    // 
+    corner_type_none = 0;
+    // 
+    corner_type_text = 1;
+    // 
+    corner_type_animation = 2;
+    // 
+    corner_type_static = 3;
+    // 
+    corner_type_red_dot = 4;
+    // 
+    corner_type_number = 5;
+}
+
+// 
+message DecoCardFan {
+    // 
+    int32 is_fan = 1;
+    // 
+    int32 number = 2;
+    // 
+    string color = 3;
+}
+
+// 
+message DecorateCard {
+    // 
+    int64 id = 1;
+    // 
+    string card_url = 2;
+    // 
+    string jump_url = 3;
+    // 
+    DecoCardFan fan = 4;
+}
+
+// 
+message Description {
+    // 
+    string text = 1;
+    // 
+    string type = 2;
+    // 
+    string uri = 3;
+    // 
+    string emoji_type = 4;
+    // 
+    string goods_type = 5;
+}
+
+// 
+message Dimension {
+    // 
+    int64 height = 1;
+    // 
+    int64 width = 2;
+    // 
+    int64 rotate = 3;
+}
+
+// 
+message DynDetailsReply {
+    // 
+    repeated DynamicItem list = 1;
+}
+
+// 
+message DynDetailsReq {
+    // 
+    int32 teenagers_mode = 1;
+    // 
+    string dynamic_ids = 2;
+    // 
+    int32 qn = 3;
+    // 
+    int32 fnver = 4;
+    // 
+    int32 fnval = 5;
+    // 
+    int32 force_host = 6;
+    // 
+    int32 fourk = 7;
+}
+
+// 
+message DynMixUpListSearchReply {
+    // 
+    repeated MixUpListItem items = 1;
+}
+
+// 
+message DynMixUpListSearchReq {
+    // 
+    string name = 1;
+}
+
+// 
+message DynMixUpListViewMoreReply {
+    // 
+    repeated MixUpListItem items = 1;
+    // 
+    string search_default_text = 2;
+}
+
+// 
+message DynOurCityItem {
+    // 
+    string card_type = 1;
+    // 
+    int64 dyn_id = 2;
+    // 
+    string uri = 3;
+    // 
+    repeated DynOurCityModule modules = 4;
+    // 
+    int64 rid = 5;
+    // 
+    string debug_info = 6;
+}
+
+// 
+message DynOurCityModule {
+    // 
+    oneof module_item {
+        // 
+        DynOurCityModuleCover module_cover = 2;
+        // 
+        DynOurCityModuleDesc module_desc = 3;
+        // 
+        DynOurCityModuleAuthor module_author = 4;
+        // 
+        DynOurCityModuleExtend module_extend = 5;
+    }
+    // 
+    string module_type = 1;
+}
+
+// 
+message DynOurCityModuleAuthor {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    string uri = 4;
+}
+
+// 
+message DynOurCityModuleCover {
+    // 
+    repeated string covers = 1;
+    // 
+    int32 style = 2;
+    // 
+    int32 cover_left_icon1 = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    int32 cover_left_icon2 = 5;
+    // 
+    string cover_left_text2 = 6;
+    // 
+    string cover_left_text3 = 7;
+    // 
+    repeated VideoBadge badge = 8;
+}
+
+// 
+message DynOurCityModuleDesc {
+    // 
+    string desc = 1;
+}
+
+// 
+message DynOurCityModuleExtend {
+    // 
+    oneof extend {
+        // 
+        DynOurCityModuleExtendLBS extend_lbs = 2;
+    }
+    // 
+    string type = 1;
+}
+
+// 
+message DynOurCityModuleExtendLBS {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+    // 
+    int32 poi_type = 4;
+}
+
+// 
+message DynOurCityReply {
+    // 
+    string offset = 1;
+    // 
+    int32 has_more = 2;
+    // 
+    int32 style = 3;
+    // 
+    string top_label = 4;
+    // 
+    repeated DynOurCityItem list = 5;
+    // 
+    string top_button_label = 6;
+    // 
+    int32 city_id = 7;
+    // 
+    string city_name = 8;
+}
+
+// 
+message DynOurCityReq {
+    // 
+    int64 city_id = 1;
+    // 
+    double lat = 2;
+    // 
+    double lng = 3;
+    // 
+    string offset = 4;
+    // 
+    int32 page_size = 5;
+    // 
+    int32 teenagers_mode = 6;
+    // 
+    int32 qn = 7;
+    // 
+    int32 fnver = 8;
+    // 
+    int32 fnval = 9;
+    // 
+    int32 force_host = 10;
+    // 
+    int32 fourk = 11;
+    // 
+    int32 lbs_state = 12;
+    // 
+    int32 refresh_city = 13;
+    // 
+    ExpConf exp_conf = 14;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 15;
+    // 
+    int64 city_code = 16;
+    // 
+    int64 build_time = 17;
+}
+
+// 
+message DynOurCitySwitchReq {
+    // 
+    int32 switch = 1;
+}
+
+// 
+message DynRedItem {
+    // 
+    int64 count = 1;
+}
+
+// 
+message DynRedReply {
+    // 
+    string red_type = 1;
+    // 
+    DynRedItem dyn_red_item = 2;
+    // 
+    string default_tab = 3;
+    // 
+    DynRedStyle red_style = 4;
+    // 
+    string tab_recall_extra = 5;
+    // 
+    BubbleInfo bubble_info = 6;
+}
+
+// 
+message DynRedReq {
+    // 
+    enum DynRedReqScene {
+        // 
+        RED_REQ_NONE = 0;
+        // 
+        RED_REQ_RETURN_TO_TAB_1 = 1;
+        // 
+        RED_REQ_PERIODICALLY_AWAKE = 2;
+        // 
+        RED_REQ_SWITCH_ACCOUNT = 3;
+    }
+    
+    // 
+    repeated TabOffset tab_offset = 1;
+    // 
+    bool is_new_install = 2;
+    // 
+    bool is_code_start = 3;
+    // 
+    repeated int64 new_follow_up_mids = 4;
+    // 
+    DynRedReq.DynRedReqScene req_scene = 5;
+}
+
+// 
+message DynRedStyle {
+    // 
+    BgType bg_type = 1;
+    // 
+    CornerType corner_type = 2;
+    // 
+    int32 display_time = 3;
+    // 
+    string corner_mark = 4;
+    // 
+    DynRedStyleUp up = 5;
+    // 
+    StyleType type = 6;
+    // 
+    CornerInfo corner_info = 7;
+}
+
+// 
+message DynRedStyleUp {
+    // 
+    int64 uid = 1;
+    // 
+    string face = 2;
+    // 
+    StyleType face_type = 3;
+    // 
+    Color border_color = 4;
+}
+
+// 
+message DynTab {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string bubble = 3;
+    // 
+    int32 red_point = 4;
+    // 
+    int64 city_id = 5;
+    // 
+    int32 is_popup = 6;
+    // 
+    Popup popup = 7;
+    // 
+    bool default_tab = 8;
+    // 
+    string sub_title = 9;
+    // 
+    string anchor = 10;
+    // 
+    string internal_test = 11;
+}
+
+// 
+message DynTabReply {
+    // 
+    repeated DynTab dyn_tab = 1;
+}
+
+// 
+message DynTabReq {
+    // 
+    int32 teenagers_mode = 1;
+}
+
+// 
+message DynUpdOffsetReq {
+    // 
+    int64 host_uid = 1;
+    // 
+    string read_offset = 2;
+}
+
+// 
+message DynVideoPersonalReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string offset = 2;
+    // 
+    int32 has_more = 3;
+    // 
+    string read_offset = 4;
+}
+
+// 
+message DynVideoPersonalReq {
+    // 
+    int32 teenagers_mode = 1;
+    // 
+    int64 host_uid = 2;
+    // 
+    string offset = 3;
+    // 
+    int32 page = 4;
+    // 
+    int32 is_preload = 5;
+    // 
+    int32 qn = 6;
+    // 
+    int32 fnver = 7;
+    // 
+    int32 fnval = 8;
+    // 
+    int32 force_host = 9;
+    // 
+    int32 fourk = 10;
+}
+
+// 
+message DynVideoReq {
+    // 
+    int32 teenagers_mode = 1;
+    // 
+    string update_baseline = 2;
+    // 
+    string offset = 3;
+    // 
+    int32 page = 4;
+    // 
+    int32 refresh_type = 5;
+    // 
+    int32 qn = 6;
+    // 
+    int32 fnver = 7;
+    // 
+    int32 fnval = 8;
+    // 
+    int32 force_host = 9;
+    // 
+    int32 fourk = 10;
+}
+
+// 
+message DynVideoReqReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    int32 update_num = 2;
+    // 
+    string history_offset = 3;
+    // 
+    string update_baseline = 4;
+    // 
+    int32 has_more = 5;
+}
+
+// 
+message DynamicItem {
+    // 
+    string card_type = 1;
+    // 
+    string item_type = 2;
+    // 
+    repeated Module modules = 3;
+    // 
+    string dyn_id_str = 4;
+    // 
+    string orig_dyn_id_str = 5;
+    // 
+    int32 r_type = 6;
+    // 
+    int32 has_fold = 7;
+}
+
+// 
+message Exp {
+    // 
+    string exp_name = 1;
+    // 
+    string exp_group = 2;
+}
+
+// 
+message ExpConf {
+    // 
+    int32 exp_enable = 1;
+    // 
+    repeated Exp exps = 2;
+}
+
+// 
+message ExtInfoGame {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message ExtInfoHot {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message ExtInfoLBS {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+    // 
+    int32 poi_type = 4;
+}
+
+// 
+message ExtInfoTopic {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message Extend {
+    // 
+    oneof extend {
+        // 
+        ExtInfoTopic ext_info_topic = 2;
+        // 
+        ExtInfoLBS ext_info_lbs = 3;
+        // 
+        ExtInfoHot ext_info_hot = 4;
+        // 
+        ExtInfoGame ext_info_game = 5;
+    }
+    // 
+    string type = 1;
+}
+
+// 
+enum FoldType {
+    // 
+    FoldTypeZero = 0;
+    // 
+    FoldTypePublish = 1;
+    // 
+    FoldTypeFrequent = 2;
+    // 
+    FoldTypeUnite = 3;
+    // 
+    FoldTypeLimit = 4;
+}
+
+// 
+message FollowListItem {
+    // 
+    int32 season_id = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    string url = 4;
+    // 
+    NewEP new_ep = 5;
+}
+
+// 
+message GeoCoderReply {
+    // 
+    string address = 1;
+    // 
+    AddressComponent address_component = 2;
+    // 
+    AdInfo ad_info = 3;
+}
+
+// 
+message GeoCoderReq {
+    // 
+    double lat = 1;
+    // 
+    double lng = 2;
+    // 
+    string from = 3;
+}
+
+// 
+message Gps {
+    // 
+    double lat = 1;
+    // 
+    double lng = 2;
+}
+
+// 
+message LikeAnimation {
+    // 
+    string begin = 1;
+    // 
+    string proc = 2;
+    // 
+    string end = 3;
+    // 
+    int64 like_icon_id = 4;
+}
+
+// 
+message LikeInfo {
+    // 
+    LikeAnimation animation = 1;
+    // 
+    int32 is_like = 2;
+}
+
+// 
+message LikeUser {
+    // 
+    int64 uid = 1;
+    // 
+    string uname = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message LiveInfo {
+    // 
+    int32 is_living = 1;
+    // 
+    string uri = 2;
+}
+
+// 
+enum MediaType {
+    // 
+    MediaTypeNone = 0;
+    // 
+    MediaTypeUGC = 1;
+    // 
+    MediaTypePGC = 2;
+    // 
+    MediaTypeLive = 3;
+    // 
+    MediaTypeVCS = 4;
+}
+
+// 
+message MixUpListItem {
+    // 
+    int64 uid = 1;
+    // 
+    int32 special_attention = 2;
+    // 
+    int32 reddot_state = 3;
+    // 
+    MixUpListLiveItem live_info = 4;
+    // 
+    string name = 5;
+    // 
+    string face = 6;
+    // 
+    OfficialVerify official = 7;
+    // 
+    VipInfo vip = 8;
+    // 
+    Relation relation = 9;
+    // 
+    int32 premiere_state = 10;
+    // 
+    string uri = 11;
+}
+
+// 
+message MixUpListLiveItem {
+    // 
+    bool status = 1;
+    // 
+    int64 room_id = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message Module {
+    // 
+    oneof module_item {
+        // 
+        ModuleFold module_fold = 2;
+        // 
+        ModuleAuthor module_author = 3;
+        // 
+        ModuleDynamic module_dynamic = 4;
+        // 
+        ModuleState module_state = 5;
+        // 
+        ModuleForward module_forward = 6;
+        // 
+        ModuleExtend module_extend = 7;
+        // 
+        ModuleDispute module_dispute = 8;
+        // 
+        ModuleDesc module_desc = 9;
+        // 
+        ModuleLikeUser module_like_user = 10;
+        // 
+        ModuleDynUpList module_up_list = 11;
+        // 
+        ModuleFollowList module_follow_list = 12;
+    }
+    // 
+    string module_type = 1;
+}
+
+// 
+message ModuleAuthor {
+    // 
+    int64 id = 1;
+    // 
+    string ptime_label_text = 2;
+    // 
+    UserInfo author = 3;
+    // 
+    DecorateCard decorate_card = 4;
+}
+
+// 
+message ModuleDesc {
+    // 
+    repeated Description desc = 1;
+}
+
+// 
+message ModuleDispute {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message ModuleDynUpList {
+    // 
+    string module_title = 1;
+    // 
+    string show_all = 2;
+    // 
+    repeated UpListItem list = 3;
+}
+
+// 
+message ModuleDynamic {
+    // 
+    oneof card {
+        // 
+        CardUGC card_ugc = 2;
+        // 
+        CardPGC card_pgc = 3;
+        // 
+        CardCurrSeason card_curr_season = 4;
+        // 
+        CardCurrBatch card_curr_batch = 5;
+    }
+    // 
+    string card_type = 1;
+}
+
+// 
+message ModuleExtend {
+    // 
+    repeated Extend extend = 1;
+}
+
+// 
+message ModuleFold {
+    // 
+    FoldType fold_type = 1;
+    // 
+    string text = 2;
+    // 
+    string fold_ids = 3;
+    // 
+    repeated UserInfo fold_users = 4;
+    // 
+    FoldType fold_type_v2 = 5;
+}
+
+// 
+message ModuleFollowList {
+    // 
+    string view_all_link = 1;
+    // 
+    repeated FollowListItem list = 2;
+}
+
+// 
+message ModuleForward {
+    // 
+    string card_type = 1;
+    // 
+    repeated Module modules = 2;
+}
+
+// 
+message ModuleLikeUser {
+    // 
+    repeated LikeUser like_users = 1;
+    // 
+    string display_text = 2;
+}
+
+// 
+message ModuleState {
+    // 
+    int32 repost = 1;
+    // 
+    int32 like = 2;
+    // 
+    int32 reply = 3;
+    // 
+    LikeInfo like_info = 4;
+    // 
+    bool no_comment = 5;
+    // 
+    bool no_forward = 6;
+}
+
+// 
+message Nameplate {
+    // 
+    int64 nid = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    string image_small = 4;
+    // 
+    string level = 5;
+    // 
+    string condition = 6;
+}
+
+// 
+message NewEP {
+    // 
+    int32 id = 1;
+    // 
+    string index_show = 2;
+    // 
+    string cover = 3;
+}
+
+// 
+message NoReply {
+}
+
+// 
+message NoReq {
+}
+
+// 
+message OfficialVerify {
+    // 
+    int32 type = 1;
+    // 
+    string desc = 2;
+    // 
+    int32 is_atten = 3;
+}
+
+// 
+message OurCityClickReportReply {
+}
+
+// 
+message OurCityClickReportReq {
+    // 
+    string dynamic_id = 1;
+    // 
+    int64 city_id = 2;
+    // 
+    double lat = 3;
+    // 
+    double lng = 4;
+}
+
+// 
+message PGCSeason {
+    // 
+    int32 is_finish = 1;
+    // 
+    string title = 2;
+    // 
+    int32 type = 3;
+}
+
+// 
+message PlayerPreloadParams {
+    // 
+    int32 qn = 1;
+    // 
+    int32 fnver = 2;
+    // 
+    int32 fnval = 3;
+    // 
+    int32 force_host = 4;
+    // 
+    int32 fourk = 5;
+}
+
+// 
+message Popup {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message Relation {
+    // 
+    RelationStatus status = 1;
+    // 
+    int32 is_follow = 2;
+    // 
+    int32 is_followed = 3;
+    // 
+    string title = 4;
+}
+
+// 
+enum RelationStatus {
+    // 
+    relation_status_none = 0;
+    // 
+    relation_status_nofollow = 1;
+    // 
+    relation_status_follow = 2;
+    // 
+    relation_status_followed = 3;
+    // 
+    relation_status_mutual_concern = 4;
+    // 
+    relation_status_special = 5;
+}
+
+// 
+message SVideoItem {
+    // 
+    string card_type = 1;
+    // 
+    repeated SVideoModule modules = 2;
+    // 
+    string dyn_id_str = 3;
+    // 
+    int64 index = 4;
+}
+
+// 
+message SVideoModule {
+    // 
+    oneof module_item {
+        // 
+        SVideoModuleAuthor module_author = 2;
+        // 
+        SVideoModulePlayer module_player = 3;
+        // 
+        SVideoModuleDesc module_desc = 4;
+        // 
+        SVideoModuleStat module_stat = 5;
+    }
+    // 
+    string module_type = 1;
+}
+
+// 
+message SVideoModuleAuthor {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    string pub_desc = 4;
+    // 
+    int32 is_attention = 5;
+    // 
+    string uri = 6;
+}
+
+// 
+message SVideoModuleDesc {
+    // 
+    string text = 1;
+    // 
+    string uri = 2;
+}
+
+// 
+message SVideoModulePlayer {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    int64 aid = 4;
+    // 
+    int64 cid = 5;
+    // 
+    int64 duration = 6;
+    // 
+    Dimension dimension = 7;
+}
+
+// 
+message SVideoModuleStat {
+    // 
+    repeated SVideoStatInfo stat_info = 1;
+    // 
+    ShareInfo share_info = 2;
+}
+
+// 
+message SVideoReply {
+    // 
+    repeated SVideoItem list = 1;
+    // 
+    string offset = 2;
+    // 
+    int32 has_more = 3;
+    // 
+    SVideoTop top = 4;
+}
+
+// 
+message SVideoReq {
+    // 
+    int64 oid = 1;
+    // 
+    SVideoType type = 2;
+    // 
+    string offset = 3;
+    // 
+    int32 qn = 4;
+    // 
+    int32 fnver = 5;
+    // 
+    int32 fnval = 6;
+    // 
+    int32 force_host = 7;
+    // 
+    int32 fourk = 8;
+    // 
+    string spmid = 9;
+    // 
+    string from_spmid = 10;
+    // 
+    PlayerPreloadParams player_preload = 11;
+    // 
+    int64 focus_aid = 12;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 13;
+}
+
+// 
+message SVideoStatInfo {
+    // 
+    int32 icon = 1;
+    // 
+    int64 num = 2;
+    // 
+    int32 selected = 3;
+    // 
+    string uri = 4;
+}
+
+// 
+message SVideoTop {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+}
+
+// 
+enum SVideoType {
+    // 
+    TypeNone = 0;
+    // 
+    TypeDynamic = 1;
+    // 
+    TypePopularIndex = 2;
+    // 
+    TypePopularHotword = 3;
+}
+
+// 
+message ShareInfo {
+    // 
+    int64 aid = 1;
+    // 
+    string bvid = 2;
+    // 
+    string title = 3;
+    // 
+    string subtitle = 4;
+    // 
+    string cover = 5;
+    // 
+    int64 mid = 6;
+    // 
+    string name = 7;
+}
+
+// 
+enum StyleType {
+    // 
+    STYLE_TYPE_NONE = 0;
+    // 
+    STYLE_TYPE_LIVE = 1;
+    // 
+    STYLE_TYPE_DYN_UP = 2;
+    // 
+    STYLE_TYPE_OGV_UP = 3;
+    // 
+    STYLE_TYPE_COLLECTION_UP = 4;
+}
+
+// 
+message TabOffset {
+    // 
+    int32 tab = 1;
+    // 
+    string offset = 2;
+}
+
+// 
+message UpListItem {
+    // 
+    int32 has_update = 1;
+    // 
+    string face = 2;
+    // 
+    string name = 3;
+    // 
+    int64 uid = 4;
+}
+
+// 
+message UserInfo {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    OfficialVerify official = 4;
+    // 
+    VipInfo vip = 5;
+    // 
+    LiveInfo live = 6;
+    // 
+    string uri = 7;
+    // 
+    UserPendant pendant = 8;
+    // 
+    Nameplate nameplate = 9;
+}
+
+// 
+message UserPendant {
+    // 
+    int64 pid = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    int64 expire = 4;
+}
+
+// 
+message VideoBadge {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    string border_color = 6;
+    // 
+    string border_color_night = 7;
+    // 
+    int32 bg_style = 8;
+}
+
+// 
+enum VideoSubType {
+    // 
+    VideoSubTypeNone = 0;
+    // 
+    VideoSubTypeBangumi = 1;
+    // 
+    VideoSubTypeMovie = 2;
+    // 
+    VideoSubTypeDocumentary = 3;
+    // 
+    VideoSubTypeDomestic = 4;
+    // 
+    VideoSubTypeTeleplay = 5;
+}
+
+// 
+message VipInfo {
+    // 
+    int32 type = 1;
+    // 
+    int32 status = 2;
+    // 
+    int64 due_date = 3;
+    // 
+    VipLabel label = 4;
+    // 
+    int32 theme_type = 5;
+}
+
+// 
+message VipLabel {
+    // 
+    string path = 1;
+}
+

@@ -1,0 +1,129 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.gaia.gw;
+
+import "google/protobuf/empty.proto";
+
+// 
+service Gaia {
+    // 
+    rpc ExClimbAppleTrees (GaiaEncryptMsgReq) returns (UploadAppListReply);
+    // 
+    rpc ExFetchPublicKey (google.protobuf.Empty) returns (FetchPublicKeyReply);
+    // 
+    rpc ExGetAxe (google.protobuf.Empty) returns (FetchPublicKeyReply);
+    // 
+    rpc ExUploadAppList (GaiaEncryptMsgReq) returns (UploadAppListReply);
+}
+
+// 
+message DeviceAppList {
+    // 
+    string source = 1;
+    // 
+    repeated string system_app_list = 2;
+    // 
+    repeated string user_app_list = 3;
+}
+
+// 
+enum EncryptType {
+    // 
+    INVALID_ENCRYPT_TYPE = 0;
+    // 
+    CLIENT_AES = 1;
+    // 
+    SERVER_RSA_AES = 2;
+}
+
+// 
+message FetchPublicKeyReply {
+    // 
+    string version = 1;
+    // 
+    string public_key = 2;
+    // 
+    int64 deadline = 3;
+}
+
+// 
+message GaiaDeviceBasicInfo {
+    // 
+    string platform = 1;
+    // 
+    string device = 2;
+    // 
+    string mobi_app = 3;
+    // 
+    string origin = 4;
+    // 
+    string app_id = 5;
+    // 
+    string sdkver = 6;
+    // 
+    string app_version = 7;
+    // 
+    string app_version_code = 8;
+    // 
+    string build = 9;
+    // 
+    string channel = 10;
+    // 
+    string brand = 11;
+    // 
+    string model = 12;
+    // 
+    string osver = 13;
+    // 
+    string user_agent = 14;
+    // 
+    string buvid_local = 15;
+    // 
+    string buvid = 16;
+    // 
+    string mid = 17;
+    // 
+    int64 fts = 18;
+    // 
+    int32 first = 19;
+    // 
+    string network = 20;
+}
+
+// 
+message GaiaEncryptMsgReq {
+    // 
+    GaiaMsgHeader header = 1;
+    // 
+    bytes encrypt_payload = 2;
+}
+
+// 
+message GaiaMsgHeader {
+    // 
+    EncryptType encode_type = 1;
+    // 
+    PayloadType payload_type = 2;
+    // 
+    bytes encoded_aes_key = 3;
+    // 
+    int64 ts = 4;
+}
+
+// 
+enum PayloadType {
+    // 
+    INVALID_PAYLOAD = 0;
+    // 
+    DEVICE_APP_LIST = 1;
+}
+
+// 
+message UploadAppListReply {
+    // 
+    string trace_id = 1;
+}
+

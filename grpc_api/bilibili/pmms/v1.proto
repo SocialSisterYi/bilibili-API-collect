@@ -1,0 +1,55 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.pmms.v1;
+
+import "google/protobuf/any.proto";
+
+// 
+message ControlParams {
+    // 
+    int64 interval = 1;
+    // 
+    int64 attr = 2;
+}
+
+// 
+message GetPullMessagesReq {
+    // 
+    string room_id = 1;
+    // 
+    Position pos = 2;
+    // 
+    ControlParams control = 3;
+}
+
+// 
+message GetPullMessagesResponse {
+    // 
+    repeated Message messages = 1;
+    // 
+    Position next = 2;
+    // 
+    ControlParams control = 3;
+}
+
+// 
+message Message {
+    // 
+    string target_path = 1;
+    // 
+    google.protobuf.Any message = 2;
+}
+
+// 
+message Position {
+    // 
+    int64 timestamp = 1;
+    // 
+    int64 room_idx = 2;
+    // 
+    int64 user_idx = 3;
+}
+

@@ -1,0 +1,425 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.broadcast.v1;
+
+import "bilibili/rpc.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+
+// 
+service BroadcastRoom {
+    // 
+    rpc Enter (RoomReq) returns (RoomResp);
+}
+
+// 
+service Laser {
+    // 
+    rpc WatchLogUploadEvent (google.protobuf.Empty) returns (LaserLogUploadResp);
+}
+
+// 
+service ModManager {
+    // 
+    rpc WatchResource (google.protobuf.Empty) returns (ModResourceResp);
+}
+
+// 
+service Push {
+    // 
+    rpc WatchMessage (google.protobuf.Empty) returns (PushMessageResp);
+}
+
+// 
+service Test2 {
+    // 
+    rpc Test (AddParams) returns (google.protobuf.Empty);
+}
+
+// 
+enum Action {
+    // 
+    UNKNOWN = 0;
+    // 
+    UPDATE = 1;
+    // 
+    DELETE = 2;
+}
+
+// 
+message AddParams {
+    // 
+    int32 a = 1;
+    // 
+    int32 b = 2;
+}
+
+// 
+message AddResult {
+    // 
+    int32 r = 1;
+}
+
+// 
+message AuthReq {
+    // 
+    string guid = 1;
+    // 
+    string conn_id = 2;
+    // 
+    int64 last_msg_id = 3;
+}
+
+// 
+message AuthResp {
+}
+
+// 
+message BroadcastFrame {
+    // 
+    FrameOption options = 1;
+    // 
+    string target_path = 2;
+    // 
+    google.protobuf.Any body = 3;
+}
+
+// 
+message FrameOption {
+    // 
+    int64 message_id = 1;
+    // 
+    int64 sequence = 2;
+    // 
+    bool is_ack = 3;
+    // 
+    bilibili.rpc.Status status = 4;
+    // 
+    string ack_origin = 5;
+    // 
+    int64 timestamp = 6;
+    // 
+    int64 msg_type = 7;
+}
+
+// 
+message HeartbeatReq {
+}
+
+// 
+message HeartbeatResp {
+    // 
+    enum OpType {
+        // 
+        DEFAULT = 0;
+        // 
+        UNHEALTHY = 1;
+        // 
+        MIGRATION = 2;
+    }
+    
+    // 
+    HeartbeatResp.OpType op_type = 1;
+    // 
+    string target_hostname = 2;
+    // 
+    string target_ip = 3;
+    // 
+    int64 target_port = 4;
+    // 
+    int64 target_ttl = 5;
+}
+
+// 
+message LaserLogUploadResp {
+    // 
+    int64 taskid = 1;
+    // 
+    string date = 2;
+}
+
+// 
+enum LinkType {
+    // 
+    LINK_TYPE_UNKNOWN = 0;
+    // 
+    LINK_TYPE_BANGUMI = 1;
+    // 
+    LINK_TYPE_VIDEO = 2;
+    // 
+    LINK_TYPE_LIVE = 3;
+}
+
+// 
+message MessageAckReq {
+    // 
+    int64 ack_id = 1;
+    // 
+    string ack_origin = 2;
+    // 
+    string target_path = 3;
+    // 
+    int64 msg_type = 4;
+}
+
+// 
+message ModResourceResp {
+    // 
+    Action atcion = 1;
+    // 
+    string app_key = 2;
+    // 
+    string pool_name = 3;
+    // 
+    string module_name = 4;
+    // 
+    int64 module_version = 5;
+    // 
+    int64 list_version = 6;
+}
+
+// 
+message PageBlackList {
+    // 
+    string id = 1;
+}
+
+// 
+message PageView {
+    // 
+    string id = 1;
+}
+
+// 
+message PushMessageResp {
+    // 
+    enum Biz {
+        // 
+        BIZ_UNKNOWN = 0;
+        // 
+        BIZ_VIDEO = 1;
+        // 
+        BIZ_LIVE = 2;
+        // 
+        BIZ_ACTIVITY = 3;
+    }
+    
+    // 
+    enum DisplayType {
+        // 
+        DisPlayText = 0;
+        // 
+        DisplaySatic = 1;
+        // 
+        DisplayGif = 2;
+    }
+    
+    // 
+    enum ImageFrame {
+        // 
+        FRAME_UNKNOWN = 0;
+        // 
+        FRAME_LIVE = 1;
+    }
+    
+    // 
+    enum ImageMarker {
+        // 
+        MARKER_UNKNOWN = 0;
+        // 
+        MARKER_LIVE = 1;
+    }
+    
+    // 
+    enum ImagePosition {
+        // 
+        IMAGE_POS_UNKNOWN = 0;
+        // 
+        IMAGE_POS_LEFT = 1;
+        // 
+        IMAGE_POS_RIGHT = 2;
+    }
+    
+    // 
+    enum PopType {
+        // 
+        TopToBottom = 0;
+        // 
+        RightToLeft = 1;
+    }
+    
+    // 
+    enum Position {
+        // 
+        POS_UNKNOWN = 0;
+        // 
+        POS_TOP = 1;
+    }
+    
+    // 
+    enum Type {
+        // 
+        TYPE_UNKNOWN = 0;
+        // 
+        TYPE_DEFAULT = 1;
+        // 
+        TYPE_HOT = 2;
+        // 
+        TYPE_REALTIME = 3;
+        // 
+        TYPE_RECOMMEND = 4;
+    }
+    
+    // 
+    int64 old_taskid = 1;
+    // 
+    PushMessageResp.Biz biz = 2;
+    // 
+    PushMessageResp.Type type = 3;
+    // 
+    string title = 4;
+    // 
+    string summary = 5;
+    // 
+    string img = 6;
+    // 
+    string link = 7;
+    // 
+    PushMessageResp.Position position = 8;
+    // 
+    int32 duration = 9;
+    // 
+    int64 expire = 10;
+    // 
+    string taskid = 11;
+    // 
+    repeated PageBlackList page_black_list = 12;
+    // 
+    repeated PageView page_view = 13;
+    // 
+    TargetResource target_resource = 14;
+    // 
+    PushMessageResp.ImageFrame image_frame = 15;
+    // 
+    PushMessageResp.ImageMarker image_marker = 16;
+    // 
+    PushMessageResp.ImagePosition image_position = 17;
+    // 
+    int64 job = 18;
+    // 
+    string msg_source = 19;
+    // 
+    bool hide_arrow = 20;
+    // 
+    map<string, string> metadata = 21;
+    // 
+    string pure_img = 22;
+    // 
+    PushMessageResp.DisplayType display_type = 23;
+    // 
+    PushMessageResp.PopType pop_type = 24;
+    // 
+    int32 reserve = 25;
+    // 
+    int32 level = 26;
+    // 
+    bool query = 27;
+    // 
+    int32 bid = 28;
+}
+
+// 
+message RoomErrorEvent {
+    // 
+    bilibili.rpc.Status status = 1;
+}
+
+// 
+message RoomJoinEvent {
+}
+
+// 
+message RoomLeaveEvent {
+}
+
+// 
+message RoomMessageEvent {
+    // 
+    string target_path = 1;
+    // 
+    google.protobuf.Any body = 2;
+}
+
+// 
+message RoomOnlineEvent {
+    // 
+    int32 online = 1;
+    // 
+    int32 all_online = 2;
+}
+
+// 
+message RoomReq {
+    // 
+    oneof event {
+        // 
+        RoomJoinEvent join = 2;
+        // 
+        RoomLeaveEvent leave = 3;
+        // 
+        RoomOnlineEvent online = 4;
+        // 
+        RoomMessageEvent msg = 5;
+    }
+    // 
+    string id = 1;
+}
+
+// 
+message RoomResp {
+    // 
+    oneof event {
+        // 
+        RoomJoinEvent join = 2;
+        // 
+        RoomLeaveEvent leave = 3;
+        // 
+        RoomOnlineEvent online = 4;
+        // 
+        RoomMessageEvent msg = 5;
+        // 
+        RoomErrorEvent err = 6;
+    }
+    // 
+    string id = 1;
+}
+
+// 
+message TargetPath {
+    // 
+    repeated string target_paths = 1;
+}
+
+// 
+message TargetResource {
+    // 
+    LinkType type = 1;
+    // 
+    map<string, string> resource = 2;
+}
+
+// 
+message TestResp {
+    // 
+    int64 taskid = 1;
+    // 
+    int64 timestamp = 2;
+    // 
+    string message = 3;
+    // 
+    google.protobuf.Any extra = 4;
+}
+

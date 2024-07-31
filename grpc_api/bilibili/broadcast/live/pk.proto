@@ -1,0 +1,229 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.broadcast.live.pk;
+
+// 
+message AssistantInfo {
+    // 
+    int64 rank = 1;
+    // 
+    int64 uid = 2;
+    // 
+    string uname = 3;
+    // 
+    string face = 4;
+    // 
+    string award_content = 5;
+    // 
+    bool is_mystery = 6;
+}
+
+// 
+message DmConf {
+    // 
+    string font_color = 1;
+    // 
+    string bg_color = 2;
+}
+
+// 
+message EscapeInfo {
+    // 
+    int64 count = 1;
+    // 
+    int64 puni_time = 2;
+    // 
+    string tips = 3;
+}
+
+// 
+message FinalConf {
+    // 
+    int64 start_time = 1;
+    // 
+    int64 end_time = 2;
+    // 
+    int64 switch = 3;
+}
+
+// 
+message InvitePkResp {
+    // 
+    int64 invited_id = 1;
+    // 
+    int64 wait_time = 2;
+}
+
+// 
+message PKScoreMultiplePlay {
+    // 
+    int64 pk_id = 1;
+    // 
+    int64 status = 2;
+    // 
+    int64 target_votes = 3;
+    // 
+    int64 multiple_collect_start_time = 4;
+    // 
+    int64 multiple_collect_end_time = 5;
+    // 
+    string award_name = 6;
+    // 
+    int64 award_num = 7;
+    // 
+    int64 award_no = 8;
+    // 
+    string rule_url = 9;
+    // 
+    int64 draw_start_time = 10;
+    // 
+    int64 draw_end_time = 11;
+    // 
+    string draw_award_name = 12;
+    // 
+    string draw_award_value = 13;
+    // 
+    int64 award_multiple_time = 14;
+    // 
+    int64 award_start_time = 15;
+    // 
+    int64 award_end_time = 16;
+    // 
+    int64 power = 17;
+    // 
+    string guide_str = 18;
+}
+
+// 
+message PkInfo {
+    // 
+    pkBasic pk_basic = 1;
+    // 
+    repeated pkUser members = 2;
+    // 
+    int64 timestamp = 3;
+    // 
+    int64 mill_timestamp = 4;
+    // 
+    repeated pkGroup pk_group = 5;
+    // 
+    PkMatchInfo pk_match_info = 6;
+    // 
+    InvitePkResp invite_pk_resp = 7;
+    // 
+    PkPlay pk_play = 8;
+}
+
+// 
+message PkMatchInfo {
+    // 
+    int64 match_status = 1;
+    // 
+    int64 match_max_time = 2;
+    // 
+    int64 match_end_time = 3;
+}
+
+// 
+message PkPlay {
+    // 
+    PKScoreMultiplePlay pk_score_multiple_play = 1;
+    // 
+    FinalConf final_conf = 2;
+    // 
+    bool show_streak = 3;
+    // 
+    DmConf dm_conf = 4;
+    // 
+    EscapeInfo escape = 5;
+}
+
+// 
+message pkBasic {
+    // 
+    int64 pk_id = 1;
+    // 
+    string biz_session_id = 2;
+    // 
+    int64 init_id = 3;
+    // 
+    int64 init_uid = 4;
+    // 
+    int64 status = 5;
+    // 
+    int64 type = 6;
+    // 
+    int64 sub_type = 7;
+    // 
+    int64 start_time = 8;
+    // 
+    int64 end_time = 9;
+    // 
+    int64 punish_end_time = 10;
+    // 
+    int64 sprint_duration = 11;
+    // 
+    string punish_text = 12;
+    // 
+    string template_id = 13;
+    // 
+    string main_page = 14;
+    // 
+    int64 muti_pk_type = 15;
+    // 
+    int64 season_id = 16;
+    // 
+    string status_msg = 17;
+}
+
+// 
+message pkGroup {
+    // 
+    int64 group_id = 1;
+    // 
+    int64 votes = 2;
+    // 
+    string votes_text = 3;
+}
+
+// 
+message pkUser {
+    // 
+    int64 uid = 1;
+    // 
+    int64 room_id = 2;
+    // 
+    string uname = 3;
+    // 
+    string face = 4;
+    // 
+    int64 votes = 5;
+    // 
+    string votes_text = 6;
+    // 
+    int64 rank = 7;
+    // 
+    int64 status = 8;
+    // 
+    repeated AssistantInfo assist_info = 9;
+    // 
+    int64 is_follow = 10;
+    // 
+    int64 is_winner = 11;
+    // 
+    int64 group_id = 12;
+    // 
+    int64 golds = 13;
+    // 
+    int64 date_streak = 14;
+    // 
+    int64 pk_multiple_status = 15;
+    // 
+    string power = 16;
+    // 
+    bool is_latest_streak = 17;
+}
+

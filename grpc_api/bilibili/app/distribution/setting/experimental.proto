@@ -1,27 +1,30 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
 syntax = "proto3";
 
 package bilibili.app.distribution.setting.experimental;
 
-import "bilibili/app/distribution/v1/distribution.proto";
+import "bilibili/app/distribution.proto";
 
 // 
 message DynamicSelect {
     // 
-    bilibili.app.distribution.v1.BoolValue fold = 1;
+    bilibili.app.distribution.BoolValue fold = 1;
 }
 
 // 
 message Exp {
     // 
-    bilibili.app.distribution.v1.Int64Value id = 1;
+    bilibili.app.distribution.Int64Value id = 1;
     // 
-    bilibili.app.distribution.v1.Int32Value bucket = 2;
+    bilibili.app.distribution.Int32Value bucket = 2;
 }
 
 // 
 message ExperimentalConfig {
     // 
-    bilibili.app.distribution.v1.StringValue flag = 1;
+    bilibili.app.distribution.StringValue flag = 1;
     // 
     repeated Exp exps = 2;
 }
@@ -34,32 +37,33 @@ message MultipleTusConfig {
     DynamicSelect dynamic_select = 2;
 }
 
-// APP首页头像跳转信息
+// 
 message TopLeft {
     // 
-    bilibili.app.distribution.v1.StringValue url = 1;
+    bilibili.app.distribution.StringValue url = 1;
     // 
-    bilibili.app.distribution.v1.StringValue story_foreground_image = 2;
+    bilibili.app.distribution.StringValue story_foreground_image = 2;
     // 
-    bilibili.app.distribution.v1.StringValue story_background_image = 3;
+    bilibili.app.distribution.StringValue story_background_image = 3;
     // 
-    bilibili.app.distribution.v1.StringValue listen_foreground_image = 4;
+    bilibili.app.distribution.StringValue listen_foreground_image = 4;
     // 
-    bilibili.app.distribution.v1.StringValue listen_background_image = 5;
+    bilibili.app.distribution.StringValue listen_background_image = 5;
     // 
-    bilibili.app.distribution.v1.StringValue ios_story_foreground_image = 6;
+    bilibili.app.distribution.StringValue ios_story_foreground_image = 6;
     // 
-    bilibili.app.distribution.v1.StringValue ios_story_background_image = 7;
+    bilibili.app.distribution.StringValue ios_story_background_image = 7;
     // 
-    bilibili.app.distribution.v1.StringValue ios_listen_foreground_image = 8;
+    bilibili.app.distribution.StringValue ios_listen_foreground_image = 8;
     // 
-    bilibili.app.distribution.v1.StringValue ios_listen_background_image = 9;
+    bilibili.app.distribution.StringValue ios_listen_background_image = 9;
     // 
-    bilibili.app.distribution.v1.StringValue goto = 10;
+    bilibili.app.distribution.StringValue goto = 10;
     // 
-    bilibili.app.distribution.v1.StringValue url_v2 = 11;
+    bilibili.app.distribution.StringValue url_v2 = 11;
     // 
-    bilibili.app.distribution.v1.Int64Value goto_v2 = 12;
+    bilibili.app.distribution.Int64Value goto_v2 = 12;
     // 
-    bilibili.app.distribution.v1.StringValue badge = 13;
+    bilibili.app.distribution.StringValue badge = 13;
 }
+

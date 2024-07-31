@@ -1,0 +1,47 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.polymer.chronos.v1;
+
+// 
+service ChronosService {
+    // 
+    rpc ObtainChronosPackage (ObtainChronosPackageReq) returns (ObtainChronosPackageRsp);
+    // 
+    rpc ObtainChronosPackageV2 (ObtainChronosPackageV2Req) returns (ObtainChronosPackageRsp);
+}
+
+// 
+message ObtainChronosPackageReq {
+    // 
+    string service_key = 1;
+    // 
+    string engine_version = 2;
+    // 
+    string biz_id = 3;
+}
+
+// 
+message ObtainChronosPackageRsp {
+    // 
+    string md5 = 1;
+    // 
+    string url = 2;
+    // 
+    string sign = 3;
+}
+
+// 
+message ObtainChronosPackageV2Req {
+    // 
+    string service_key = 1;
+    // 
+    string engine_version = 2;
+    // 
+    string biz_id = 3;
+    // 
+    string business_app_key = 4;
+}
+

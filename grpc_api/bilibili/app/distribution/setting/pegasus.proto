@@ -1,33 +1,36 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
 syntax = "proto3";
 
 package bilibili.app.distribution.setting.pegasus;
 
-import "bilibili/app/distribution/v1/distribution.proto";
+import "bilibili/app/distribution.proto";
 
 // 
 message FeedModeValue {
     // 
-    bilibili.app.distribution.v1.Int64Value value = 1;
+    bilibili.app.distribution.Int64Value value = 1;
 }
 
 // 
 message PegasusAutoPlay {
     // 
-    bilibili.app.distribution.v1.Int64Value single = 1;
+    bilibili.app.distribution.Int64Value single = 1;
     // 
-    bilibili.app.distribution.v1.Int64Value double = 2;
+    bilibili.app.distribution.Int64Value double = 2;
     // 
-    bilibili.app.distribution.v1.BoolValue single_affected_by_server_side = 3;
+    bilibili.app.distribution.BoolValue single_affected_by_server_side = 3;
     // 
-    bilibili.app.distribution.v1.BoolValue double_affected_by_server_side = 4;
+    bilibili.app.distribution.BoolValue double_affected_by_server_side = 4;
 }
 
 // 
 message PegasusColumnValue {
     // 
-    bilibili.app.distribution.v1.Int64Value value = 1;
+    bilibili.app.distribution.Int64Value value = 1;
     // 
-    bilibili.app.distribution.v1.BoolValue affected_by_server_side = 2;
+    bilibili.app.distribution.BoolValue affected_by_server_side = 2;
 }
 
 // 
@@ -39,3 +42,18 @@ message PegasusDeviceConfig {
     // 
     PegasusAutoPlay auto_play = 3;
 }
+
+// 
+message PegasusDeviceWithoutFplocalConfig {
+    // 
+    bilibili.app.distribution.Int64Value auto_refresh_state = 1;
+}
+
+// 
+message PegasusMidConfig {
+    // 
+    bilibili.app.distribution.Int64Value column = 1;
+    // 
+    bilibili.app.distribution.Int64Value play_mode = 2;
+}
+

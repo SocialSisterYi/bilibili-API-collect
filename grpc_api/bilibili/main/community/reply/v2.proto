@@ -1,0 +1,273 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.main.community.reply.v2;
+
+// 
+service Reply {
+    // 
+    rpc SubjectDescription (SubjectDescriptionReq) returns (SubjectDescriptionReply);
+}
+
+// 
+enum EditorIconState {
+    // 
+    EditorIconState_DEFAULT = 0;
+    // 
+    EditorIconState_ENABLE = 1;
+    // 
+    EditorIconState_DISABLE = 2;
+    // 
+    EditorIconState_HIDE = 3;
+}
+
+// 
+message Emote {
+    // 
+    int64 size = 1;
+    // 
+    string url = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string jump_title = 4;
+    // 
+    int64 id = 5;
+    // 
+    int64 package_id = 6;
+    // 
+    string gif_url = 7;
+    // 
+    string text = 8;
+    // 
+    string webp_url = 9;
+}
+
+// 
+message EmptyPage {
+    // 
+    enum Action {
+        // 
+        UNAVAILABLE = 0;
+        // 
+        SHOW_KEYBOARD = 1;
+        // 
+        SEND_REPLY_WITH_BOLD_TEXT = 2;
+    }
+    
+    // 
+    message Button {
+        // 
+        string title = 1;
+        // 
+        EmptyPage.Action action = 2;
+    }
+    
+    // 
+    message Text {
+        // 
+        string raw = 1;
+        // 
+        TextStyle style = 2;
+        // 
+        EmptyPage.Action action = 3;
+    }
+    
+    // 
+    string image_url = 1;
+    // 
+    repeated EmptyPage.Text texts = 2;
+    // 
+    Button left_button = 3;
+    // 
+    Button right_button = 4;
+}
+
+// 
+message PlayerParams {
+    // 
+    bool is_story = 1;
+    // 
+    bool disable_filter_tag = 2;
+}
+
+// 
+message Resource {
+    // 
+    enum BizKind {
+        // 
+        UNKNOWN = 0;
+        // 
+        LIKE_SUCCESS = 1;
+        // 
+        REPLY_SUCCESS = 2;
+        // 
+        REPLY_EASTER_EGG = 3;
+    }
+    
+    // 
+    Resource.BizKind biz_kind = 1;
+    // 
+    string url = 2;
+}
+
+// 
+message SubjectDescriptionReply {
+    // 
+    message EmoteConfig {
+        // 
+        bool jump_emote_disabled = 1;
+        // 
+        repeated Emote suggest_emotes = 2;
+    }
+    
+    // 
+    message FilterTag {
+        // 
+        int64 id = 1;
+        // 
+        string title = 2;
+        // 
+        string event_id = 3;
+    }
+    
+    // 
+    message InputConfig {
+        // 
+        message EditorIconConfig {
+            // 
+            EditorIconState screenshot_icon_state = 1;
+            // 
+            EditorIconState upload_picture_icon_state = 2;
+            // 
+            EditorIconState vote_icon_state = 3;
+            // 
+            EditorIconState note_icon_state = 4;
+            // 
+            EditorIconState goods_icon_state = 5;
+            // 
+            EditorIconState insert_content_icon_state = 6;
+            // 
+            EditorIconState elec_icon_state = 7;
+            // 
+            EditorIconState cm_biz_helper_icon_state = 8;
+        }
+        
+        // 
+        message GradePanel {
+            // 
+            message Grade {
+                // 
+                int64 id = 1;
+                // 
+                string image = 2;
+                // 
+                string title = 3;
+            }
+            
+            // 
+            string prompt_text = 1;
+            // 
+            repeated SubjectDescriptionReply.InputConfig.GradePanel.Grade grades = 2;
+        }
+        
+        // 
+        bool disabled = 1;
+        // 
+        string root_text = 2;
+        // 
+        string child_text = 3;
+        // 
+        string give_up_text = 4;
+        // 
+        EditorIconConfig editor_icon_config = 5;
+        // 
+        GradePanel grade_panel = 6;
+    }
+    
+    // 
+    int64 count = 1;
+    // 
+    InputConfig input = 2;
+    // 
+    EmoteConfig emote = 3;
+    // 
+    EmptyPage empty_page = 4;
+    // 
+    repeated SubjectDescriptionReply.FilterTag support_filter_tags = 5;
+    // 
+    repeated string preload_res_urls = 6;
+    // 
+    repeated UserCallback user_callbacks = 7;
+    // 
+    int64 up_mid = 8;
+    // 
+    repeated Resource preload_resources = 9;
+    // 
+    bool guest_limit = 10;
+}
+
+// 
+message SubjectDescriptionReq {
+    // 
+    SubjectID subject_id = 1;
+    // 
+    PlayerParams player_params = 2;
+}
+
+// 
+message SubjectID {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+}
+
+// 
+message TextStyle {
+    // 
+    enum FontStyle {
+        // 
+        NORMAL = 0;
+        // 
+        BOLD = 1;
+    }
+    
+    // 
+    int32 font_size = 1;
+    // 
+    TextStyle.FontStyle font_style = 2;
+    // 
+    string text_day_color = 3;
+    // 
+    string text_night_color = 4;
+}
+
+// 
+message UserCallback {
+    // 
+    UserCallbackScene scene = 1;
+    // 
+    UserCallbackAction action = 2;
+}
+
+// 
+enum UserCallbackAction {
+    // 
+    USER_CALLBACK_ACTION_DEFAULT = 0;
+    // 
+    USER_CALLBACK_ACTION_DISMISS = 1;
+}
+
+// 
+enum UserCallbackScene {
+    // 
+    USER_CALLBACK_SCENE_DEFAULT = 0;
+    // 
+    USER_CALLBACK_SCENE_INSERT = 1;
+    // 
+    USER_CALLBACK_SCENE_RECOMMEND_SUPERB_REPLY = 2;
+}
+

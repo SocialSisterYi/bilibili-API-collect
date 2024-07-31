@@ -1,0 +1,35 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.dynamic.interfaces.campus.v1;
+
+// 
+service Campus {
+    // 
+    rpc ActionReport (ActionReportReq) returns (ActionReportReply);
+}
+
+// 
+message ActionReportReply {
+}
+
+// 
+message ActionReportReq {
+    // 
+    string identity = 1;
+    // 
+    ActionType action = 2;
+    // 
+    int64 campus_id = 3;
+}
+
+// 
+enum ActionType {
+    // 
+    ACTION_NOTHING = 0;
+    // 
+    ACTION_CLOSE_YELLOW_BAR = 1;
+}
+

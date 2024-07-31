@@ -1,0 +1,1945 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.main.community.reply.v1;
+
+import "bilibili/account/service/v1.proto";
+import "bilibili/app/dynamic/v2.proto";
+import "bilibili/dagw/component/avatar/v1.proto";
+import "bilibili/pagination.proto";
+import "bilibili/vas/garb/model.proto";
+import "google/protobuf/any.proto";
+
+// 
+service Reply {
+    // 
+    rpc AnswerQuestion (AnswerQuestionReq) returns (AnswerQuestionResp);
+    // 
+    rpc AtSearch (AtSearchReq) returns (AtSearchReply);
+    // 
+    rpc DetailList (DetailListReq) returns (DetailListReply);
+    // 
+    rpc DialogList (DialogListReq) returns (DialogListReply);
+    // 
+    rpc DoVote (DoVoteReq) returns (DoVoteResp);
+    // 
+    rpc MainList (MainListReq) returns (MainListReply);
+    // 
+    rpc PreviewList (PreviewListReq) returns (PreviewListReply);
+    // 
+    rpc ReplyInfo (ReplyInfoReq) returns (ReplyInfoReply);
+    // 
+    rpc SearchItem (SearchItemReq) returns (SearchItemReply);
+    // 
+    rpc SearchItemPreHook (SearchItemPreHookReq) returns (SearchItemPreHookReply);
+    // 
+    rpc ShareRepliesInfo (ShareRepliesInfoReq) returns (ShareRepliesInfoResp);
+    // 
+    rpc ShareReplyMaterial (ShareReplyMaterialReq) returns (ShareReplyMaterialResp);
+    // 
+    rpc SuggestEmotes (SuggestEmotesReq) returns (SuggestEmotesResp);
+    // 
+    rpc UserCallback (UserCallbackReq) returns (UserCallbackReply);
+}
+
+// 
+message Activity {
+    // 
+    int64 activity_id = 1;
+    // 
+    int64 activity_state = 2;
+    // 
+    string activity_placeholder = 3;
+}
+
+// 
+message AnswerQuestionReq {
+    // 
+    int64 qid = 1;
+    // 
+    string option_key = 2;
+}
+
+// 
+message AnswerQuestionResp {
+    // 
+    message MemberPassedPopup {
+        // 
+        string title = 1;
+        // 
+        string subtitle = 2;
+        // 
+        string h5_link = 3;
+    }
+    
+    // 
+    bool passed = 1;
+    // 
+    bool member_passed = 2;
+    // 
+    MemberPassedPopup member_passed_popup = 3;
+    // 
+    string bottom_text = 4;
+    // 
+    QuestionCardStat stat = 5;
+}
+
+// 
+message ArticleSearchItem {
+    // 
+    string title = 1;
+    // 
+    string up_nickname = 2;
+    // 
+    repeated string covers = 3;
+}
+
+// 
+message AtGroup {
+    // 
+    enum Type {
+        // 
+        AT_GROUP_TYPE_DEFAULT = 0;
+        // 
+        AT_GROUP_TYPE_RECENT = 1;
+        // 
+        AT_GROUP_TYPE_FOLLOW = 2;
+        // 
+        AT_GROUP_TYPE_FANS = 3;
+        // 
+        AT_GROUP_TYPE_OTHERS = 4;
+    }
+    
+    // 
+    AtGroup.Type group_type = 1;
+    // 
+    string group_name = 2;
+    // 
+    repeated AtItem items = 3;
+}
+
+// 
+message AtItem {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    int32 fans = 4;
+    // 
+    int32 official_verify_type = 5;
+}
+
+// 
+message AtSearchReply {
+    // 
+    repeated AtGroup groups = 1;
+}
+
+// 
+message AtSearchReq {
+    // 
+    int64 mid = 1;
+    // 
+    string keyword = 2;
+}
+
+// 
+message CM {
+    // 
+    google.protobuf.Any source_content = 1;
+}
+
+// 
+message Content {
+    // 
+    string message = 1;
+    // 
+    map<string, Member> members = 2;
+    // 
+    map<string, Emote> emotes = 3;
+    // 
+    map<string, Topic> topics = 4;
+    // 
+    map<string, Url> urls = 5;
+    // 
+    Vote vote = 6;
+    // 
+    map<string, int64> at_name_to_mid = 7;
+    // 
+    RichText rich_text = 8;
+    // 
+    repeated Picture pictures = 9;
+    // 
+    double picture_scale = 10;
+}
+
+// 
+message CursorReply {
+    // 
+    int64 next = 1;
+    // 
+    int64 prev = 2;
+    // 
+    bool is_begin = 3;
+    // 
+    bool is_end = 4;
+    // 
+    Mode mode = 5;
+    // 
+    string mode_text = 6;
+}
+
+// 
+message CursorReq {
+    // 
+    int64 next = 1;
+    // 
+    int64 prev = 2;
+    // 
+    Mode mode = 4;
+}
+
+// 
+message DetailListReply {
+    // 
+    CursorReply cursor = 1;
+    // 
+    SubjectControl subject_control = 2;
+    // 
+    ReplyInfo root = 3;
+    // 
+    Activity activity = 4;
+    // 
+    LikeInfo likes = 5;
+    // 
+    Mode mode = 6;
+    // 
+    string mode_text = 7;
+    // 
+    bilibili.pagination.FeedPaginationReply pagination_reply = 8;
+    // 
+    string session_id = 9;
+}
+
+// 
+message DetailListReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+    // 
+    int64 root = 3;
+    // 
+    int64 rpid = 4;
+    // 
+    CursorReq cursor = 5;
+    // 
+    DetailListScene scene = 6;
+    // 
+    Mode mode = 7;
+    // 
+    bilibili.pagination.FeedPagination pagination = 8;
+    // 
+    string extra = 9;
+}
+
+// 
+enum DetailListScene {
+    // 
+    REPLY = 0;
+    // 
+    MSG_FEED = 1;
+    // 
+    NOTIFY = 2;
+}
+
+// 
+message DialogListReply {
+    // 
+    CursorReply cursor = 1;
+    // 
+    SubjectControl subject_control = 2;
+    // 
+    repeated ReplyInfo replies = 3;
+    // 
+    Activity activity = 4;
+    // 
+    bilibili.pagination.FeedPaginationReply pagination_reply = 5;
+    // 
+    string session_id = 6;
+}
+
+// 
+message DialogListReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+    // 
+    int64 root = 3;
+    // 
+    int64 dialog = 4;
+    // 
+    CursorReq cursor = 5;
+    // 
+    bilibili.pagination.FeedPagination pagination = 6;
+    // 
+    string extra = 7;
+}
+
+// 
+message DoVoteReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+    // 
+    int64 vote_id = 3;
+    // 
+    int64 option = 4;
+}
+
+// 
+message DoVoteResp {
+}
+
+// 
+message ESportsGradeCard {
+    // 
+    string title = 1;
+    // 
+    string description = 2;
+    // 
+    string image = 3;
+    // 
+    string link = 4;
+}
+
+// 
+enum EditorIconState {
+    // 
+    EditorIconState_DEFAULT = 0;
+    // 
+    EditorIconState_ENABLE = 1;
+    // 
+    EditorIconState_DISABLE = 2;
+    // 
+    EditorIconState_HIDE = 3;
+}
+
+// 
+message Effects {
+    // 
+    string preloading = 1;
+}
+
+// 
+message Emote {
+    // 
+    int64 size = 1;
+    // 
+    string url = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string jump_title = 4;
+    // 
+    int64 id = 5;
+    // 
+    int64 package_id = 6;
+    // 
+    string gif_url = 7;
+    // 
+    string text = 8;
+    // 
+    string webp_url = 9;
+}
+
+// 
+message EmptyPage {
+    // 
+    enum Action {
+        // 
+        UNAVAILABLE = 0;
+        // 
+        SHOW_KEYBOARD = 1;
+        // 
+        SEND_REPLY_WITH_BOLD_TEXT = 2;
+    }
+    
+    // 
+    message Button {
+        // 
+        string title = 1;
+        // 
+        EmptyPage.Action action = 2;
+    }
+    
+    // 
+    message Text {
+        // 
+        string raw = 1;
+        // 
+        TextStyle style = 2;
+        // 
+        EmptyPage.Action action = 3;
+    }
+    
+    // 
+    string image_url = 1;
+    // 
+    repeated EmptyPage.Text texts = 2;
+    // 
+    Button left_button = 3;
+    // 
+    Button right_button = 4;
+}
+
+// 
+message Form {
+    // 
+    int32 type = 1;
+    // 
+    repeated QoeOption options = 2;
+}
+
+// 
+message GoodsSearchItem {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    string price = 3;
+    // 
+    string income = 4;
+    // 
+    string img = 5;
+    // 
+    string label = 6;
+}
+
+// 
+message LikeInfo {
+    // 
+    message Item {
+        // 
+        Member member = 1;
+    }
+    
+    // 
+    repeated LikeInfo.Item items = 1;
+    // 
+    string title = 2;
+}
+
+// 
+message Lottery {
+    // 
+    int64 lottery_id = 1;
+    // 
+    int64 lottery_status = 2;
+    // 
+    int64 lottery_mid = 3;
+    // 
+    int64 lottery_time = 4;
+    // 
+    int64 oid = 5;
+    // 
+    int64 type = 6;
+    // 
+    int64 ctime = 7;
+    // 
+    Content content = 8;
+    // 
+    Member member = 9;
+    // 
+    ReplyControl reply_control = 10;
+}
+
+// 
+message MainListReply {
+    // 
+    CursorReply cursor = 1;
+    // 
+    repeated ReplyInfo replies = 2;
+    // 
+    SubjectControl subject_control = 3;
+    // 
+    ReplyInfo up_top = 4;
+    // 
+    ReplyInfo admin_top = 5;
+    // 
+    ReplyInfo vote_top = 6;
+    // 
+    Notice notice = 7;
+    // 
+    Lottery lottery = 8;
+    // 
+    Activity activity = 9;
+    // 
+    UpSelection up_selection = 10;
+    // 
+    CM cm = 11;
+    // 
+    Effects effects = 12;
+    // 
+    Operation operation = 13;
+    // 
+    repeated ReplyInfo top_replies = 14;
+    // 
+    QoeInfo qoe = 15;
+    // 
+    map<string, int32> callbacks = 16;
+    // 
+    OperationV2 operation_v2 = 17;
+    // 
+    Mode mode = 18;
+    // 
+    string mode_text = 19;
+    // 
+    bilibili.pagination.FeedPaginationReply pagination_reply = 20;
+    // 
+    string session_id = 21;
+    // 
+    string report_params = 22;
+    // 
+    VoteCard vote_card = 23;
+    // 
+    ESportsGradeCard esports_grade_card = 24;
+    // 
+    string context_feature = 25;
+    // 
+    string pagination_end_text = 26;
+    // 
+    repeated MixedCard mixed_cards = 27;
+}
+
+// 
+message MainListReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+    // 
+    CursorReq cursor = 3;
+    // 
+    string extra = 4;
+    // 
+    string ad_extra = 5;
+    // 
+    int64 rpid = 6;
+    // 
+    int64 seek_rpid = 7;
+    // 
+    string filter_tag_name = 8;
+    // 
+    Mode mode = 9;
+    // 
+    bilibili.pagination.FeedPagination pagination = 10;
+    // 
+    repeated int64 client_recall_rpids = 11;
+    // 
+    WordSearchParam word_search_param = 12;
+}
+
+// 
+message Member {
+    // 
+    message NftInteraction {
+        // 
+        message Region {
+            // 
+            Member.NftInteraction.RegionType type = 1;
+            // 
+            string icon = 2;
+            // 
+            Member.NftInteraction.ShowStatus show_status = 3;
+        }
+        
+        // 
+        enum RegionType {
+            // 
+            DEFAULT = 0;
+            // 
+            MAINLAND = 1;
+            // 
+            GAT = 2;
+        }
+        
+        // 
+        enum ShowStatus {
+            // 
+            SHOWDEFAULT = 0;
+            // 
+            ZOOMINMAINLAND = 1;
+            // 
+            RAW = 2;
+        }
+        
+        // 
+        string itype = 1;
+        // 
+        string metadata_url = 2;
+        // 
+        string nft_id = 3;
+        // 
+        Region region = 4;
+    }
+    
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string sex = 3;
+    // 
+    string face = 4;
+    // 
+    int64 level = 5;
+    // 
+    int64 official_verify_type = 6;
+    // 
+    int64 vip_type = 7;
+    // 
+    int64 vip_status = 8;
+    // 
+    int64 vip_theme_type = 9;
+    // 
+    string vip_label_path = 10;
+    // 
+    string garb_pendant_image = 11;
+    // 
+    string garb_card_image = 12;
+    // 
+    string garb_card_image_with_focus = 13;
+    // 
+    string garb_card_jump_url = 14;
+    // 
+    string garb_card_number = 15;
+    // 
+    string garb_card_fan_color = 16;
+    // 
+    bool garb_card_is_fan = 17;
+    // 
+    string fans_medal_name = 18;
+    // 
+    int64 fans_medal_level = 19;
+    // 
+    int64 fans_medal_color = 20;
+    // 
+    string vip_nickname_color = 21;
+    // 
+    int32 vip_avatar_subscript = 22;
+    // 
+    string vip_label_text = 23;
+    // 
+    string vip_label_theme = 24;
+    // 
+    int64 fans_medal_color_end = 25;
+    // 
+    int64 fans_medal_color_border = 26;
+    // 
+    int64 fans_medal_color_name = 27;
+    // 
+    int64 fans_medal_color_level = 28;
+    // 
+    int64 fans_guard_level = 29;
+    // 
+    int32 face_nft = 30;
+    // 
+    int32 face_nft_new = 31;
+    // 
+    int32 is_senior_member = 32;
+    // 
+    NftInteraction nft_interaction = 33;
+    // 
+    string fans_guard_icon = 34;
+    // 
+    string fans_honor_icon = 35;
+}
+
+// 
+message MemberV2 {
+    // 
+    message Basic {
+        // 
+        int64 mid = 1;
+        // 
+        string name = 2;
+        // 
+        string sex = 3;
+        // 
+        string face = 4;
+        // 
+        int64 level = 5;
+        // 
+        bilibili.dagw.component.avatar.v1.AvatarItem avatar_item = 6;
+        // 
+        bilibili.account.service.v1.NameRender name_render = 7;
+    }
+    
+    // 
+    message Contractor {
+        // 
+        bool is_contractor = 1;
+        // 
+        string contract_desc = 2;
+    }
+    
+    // 
+    message Garb {
+        // 
+        message FanNumColorFormat {
+            // 
+            string start_point = 1;
+            // 
+            string end_point = 2;
+            // 
+            repeated string colors = 3;
+            // 
+            repeated int64 gradients = 4;
+        }
+        
+        // 
+        string pendant_image = 1;
+        // 
+        string card_image = 2;
+        // 
+        string card_image_with_focus = 3;
+        // 
+        string card_jump_url = 4;
+        // 
+        string card_number = 5;
+        // 
+        string card_fan_color = 6;
+        // 
+        bool card_is_fan = 7;
+        // 
+        string fan_num_prefix = 8;
+        // 
+        FanNumColorFormat fan_num_color_format = 9;
+    }
+    
+    // 
+    message Medal {
+        // 
+        string name = 1;
+        // 
+        int64 level = 2;
+        // 
+        int64 color_start = 3;
+        // 
+        int64 color_end = 4;
+        // 
+        int64 color_border = 5;
+        // 
+        int64 color_name = 6;
+        // 
+        int64 color_level = 7;
+        // 
+        int64 guard_level = 8;
+        // 
+        string first_icon = 9;
+        // 
+        string second_icon = 10;
+        // 
+        int64 level_bg_color = 11;
+    }
+    
+    // 
+    message Nft {
+        // 
+        message Interaction {
+            // 
+            message Region {
+                // 
+                MemberV2.Nft.Interaction.RegionType type = 1;
+                // 
+                string icon = 2;
+                // 
+                MemberV2.Nft.Interaction.ShowStatus show_status = 3;
+            }
+            
+            // 
+            enum RegionType {
+                // 
+                DEFAULT_RegionType = 0;
+                // 
+                MAINLAND_RegionType = 1;
+                // 
+                GAT_RegionType = 2;
+            }
+            
+            // 
+            enum ShowStatus {
+                // 
+                SHOWDEFAULT_ShowStatus = 0;
+                // 
+                ZOOMINMAINLAND_ShowStatus = 1;
+                // 
+                RAW_ShowStatus = 2;
+            }
+            
+            // 
+            string itype = 1;
+            // 
+            string metadata_url = 2;
+            // 
+            string nft_id = 3;
+            // 
+            Region region = 4;
+        }
+        
+        // 
+        int32 face = 1;
+        // 
+        Interaction interaction = 2;
+    }
+    
+    // 
+    message Official {
+        // 
+        int64 verify_type = 1;
+    }
+    
+    // 
+    message Senior {
+        // 
+        enum Status {
+            // 
+            Normal = 0;
+            // 
+            Pending = 1;
+            // 
+            Senior = 2;
+            // 
+            WillExpire = 3;
+            // 
+            Expired = 4;
+        }
+        
+        // 
+        int32 is_senior_member = 1;
+        // 
+        MemberV2.Senior.Status status = 2;
+    }
+    
+    // 
+    message Vip {
+        // 
+        int64 type = 1;
+        // 
+        int64 status = 2;
+        // 
+        int64 theme_type = 3;
+        // 
+        string label_path = 4;
+        // 
+        string nickname_color = 5;
+        // 
+        int32 avatar_subscript = 6;
+        // 
+        string label_text = 7;
+        // 
+        string vip_label_theme = 8;
+    }
+    
+    // 
+    Basic basic = 1;
+    // 
+    Official official = 2;
+    // 
+    Vip vip = 3;
+    // 
+    Garb garb = 4;
+    // 
+    Medal medal = 5;
+    // 
+    Nft nft = 6;
+    // 
+    Senior senior = 7;
+    // 
+    Contractor contractor = 8;
+    // 
+    bilibili.vas.garb.model.UserSailing user_sailing = 9;
+}
+
+// 
+message MixedCard {
+    // 
+    enum Type {
+        // 
+        UNKNOWN = 0;
+        // 
+        QUESTION = 1;
+    }
+    
+    // 
+    oneof item {
+        // 
+        QuestionCard question = 4;
+    }
+    // 
+    MixedCard.Type type = 1;
+    // 
+    string oid = 2;
+    // 
+    int64 display_rank = 3;
+}
+
+// 
+enum Mode {
+    // 
+    DEFAULT_Mode = 0;
+    // @Deprecated
+    UNSPECIFIED = 1;
+    // 
+    MAIN_LIST_TIME = 2;
+    // 
+    MAIN_LIST_HOT = 3;
+}
+
+// 
+message Notice {
+    // 
+    int64 id = 1;
+    // 
+    string content = 2;
+    // 
+    string link = 3;
+}
+
+// 
+message Operation {
+    // 
+    enum Type {
+        // 
+        UNKNOWN_Type = 0;
+        // 
+        NOTE = 1;
+        // 
+        TOPIC = 2;
+        // @Deprecated
+        NOTICE = 3;
+    }
+    
+    // 
+    Operation.Type type = 1;
+    // 
+    int64 id = 2;
+    // 
+    OperationTitle title = 3;
+    // 
+    OperationTitle subtitle = 4;
+    // 
+    string link = 5;
+    // 
+    string report_extra = 6;
+    // 
+    string icon = 7;
+}
+
+// 
+message OperationTitle {
+    // 
+    string content = 1;
+    // 
+    bool is_highlight = 2;
+}
+
+// 
+message OperationV2 {
+    // 
+    message Icon {
+        // 
+        enum Position {
+            // 
+            PREFIX = 0;
+            // 
+            SUFFIX = 1;
+        }
+        
+        // 
+        OperationV2.Icon.Position position = 1;
+        // 
+        string url = 2;
+    }
+    
+    // 
+    enum Type {
+        // 
+        UNKNOWN_Type = 0;
+        // 
+        NOTE_Type = 1;
+        // 
+        TOPIC_Type = 2;
+        // 
+        SEARCH = 4;
+    }
+    
+    // 
+    OperationV2.Type type = 1;
+    // 
+    string prefix_text = 2;
+    // 
+    Icon icon = 3;
+    // 
+    string title = 4;
+    // 
+    string link = 5;
+    // 
+    string report_extra = 6;
+}
+
+// 
+message PGCVideoSearchItem {
+    // 
+    string title = 1;
+    // 
+    string category = 2;
+    // 
+    string cover = 3;
+}
+
+// 
+message Picture {
+    // 
+    string img_src = 1;
+    // 
+    double img_width = 2;
+    // 
+    double img_height = 3;
+    // 
+    double img_size = 4;
+    // 
+    string top_right_icon = 5;
+    // 
+    bool play_gif_thumbnail = 6;
+}
+
+// 
+message PreviewListReply {
+    // 
+    CursorReply cursor = 1;
+    // 
+    repeated ReplyInfo replies = 2;
+    // 
+    SubjectControl subject_control = 3;
+    // 
+    ReplyInfo up_top = 4;
+    // 
+    ReplyInfo admin_top = 5;
+    // 
+    ReplyInfo vote_top = 6;
+}
+
+// 
+message PreviewListReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+    // 
+    CursorReq cursor = 3;
+}
+
+// 
+message QoeInfo {
+    // 
+    int64 id = 1;
+    // 
+    int32 type = 2;
+    // 
+    int32 style = 3;
+    // 
+    string title = 4;
+    // 
+    string feedback_title = 5;
+    // 
+    repeated QoeScoreItem score_items = 6;
+    // 
+    int64 display_rank = 7;
+    // 
+    Form form = 8;
+}
+
+// 
+message QoeOption {
+    // 
+    string title = 1;
+    // 
+    float score = 2;
+    // 
+    string img_url = 3;
+    // 
+    repeated string desc = 4;
+}
+
+// 
+message QoeOptionDesc {
+    // 
+    repeated string desc = 1;
+}
+
+// 
+message QoeScoreItem {
+    // 
+    string title = 1;
+    // 
+    string url = 2;
+    // 
+    float score = 3;
+}
+
+// 
+message QuestionCard {
+    // 
+    message Option {
+        // 
+        string key = 1;
+        // 
+        string title = 2;
+    }
+    
+    // 
+    message Question {
+        // 
+        int64 qid = 1;
+        // 
+        string title = 2;
+        // 
+        bool must_right = 3;
+        // 
+        repeated QuestionCard.Option options = 4;
+    }
+    
+    // 
+    Question question = 1;
+    // 
+    QuestionCardStat stat = 2;
+    // 
+    string bottom_text = 3;
+}
+
+// 
+message QuestionCardStat {
+    // 
+    int64 right_cnt = 1;
+    // 
+    int64 right_mid_cnt = 2;
+    // 
+    int64 submit_mid_cnt = 3;
+}
+
+// 
+message ReplyCardLabel {
+    // 
+    enum Type {
+        // 
+        UNDERLINE = 0;
+        // 
+        BACKGROUND = 1;
+    }
+    
+    // 
+    string text_content = 1;
+    // 
+    string text_color_day = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string label_color_day = 4;
+    // 
+    string label_color_night = 5;
+    // 
+    string image = 6;
+    // 
+    ReplyCardLabel.Type type = 7;
+    // 
+    string background = 8;
+    // 
+    double background_width = 9;
+    // 
+    double background_height = 10;
+    // 
+    string jump_url = 11;
+    // 
+    int64 effect = 12;
+    // 
+    int64 effect_start_time = 13;
+}
+
+// 
+message ReplyControl {
+    // 
+    message EasterEggLabel {
+        // 
+        string image = 1;
+        // 
+        string jump_url = 2;
+    }
+    
+    // 
+    message GradeRecord {
+        // 
+        message Text {
+            // 
+            string raw = 1;
+            // 
+            TextStyle style = 2;
+        }
+        
+        // 
+        int32 score = 1;
+        // 
+        repeated ReplyControl.GradeRecord.Text texts = 2;
+    }
+    
+    // 
+    message VoteOption {
+        // 
+        enum LabelKind {
+            // 
+            DEFAULT_LabelKind = 0;
+            // 
+            RED = 1;
+            // 
+            BLUE = 2;
+            // 
+            PLAIN = 3;
+        }
+        
+        // 
+        ReplyControl.VoteOption.LabelKind label_kind = 1;
+        // 
+        string desc = 2;
+        // 
+        int64 idx = 3;
+        // 
+        int64 vote_id = 4;
+    }
+    
+    // 
+    int64 action = 1;
+    // 
+    bool up_like = 2;
+    // 
+    bool up_reply = 3;
+    // 
+    bool show_follow_btn = 4;
+    // 
+    bool is_assist = 5;
+    // 
+    string label_text = 6;
+    // 
+    bool following = 7;
+    // 
+    bool followed = 8;
+    // 
+    bool blocked = 9;
+    // 
+    bool has_folded_reply = 10;
+    // 
+    bool is_folded_reply = 11;
+    // 
+    bool is_up_top = 12;
+    // 
+    bool is_admin_top = 13;
+    // 
+    bool is_vote_top = 14;
+    // 
+    int64 max_line = 15;
+    // 
+    bool invisible = 16;
+    // 
+    bool is_contractor = 17;
+    // 
+    bool is_note = 18;
+    // 
+    repeated ReplyCardLabel card_labels = 19;
+    // 
+    string sub_reply_entry_text = 20;
+    // 
+    string sub_reply_title_text = 21;
+    // 
+    string contract_desc = 22;
+    // 
+    string time_desc = 23;
+    // 
+    string biz_scene = 24;
+    // 
+    string location = 25;
+    // 
+    bool fold_pictures = 26;
+    // 
+    bool is_note_v2 = 27;
+    // 
+    bool hide_note_icon = 28;
+    // 
+    string cm_recommend_component = 29;
+    // 
+    VoteOption vote_option = 30;
+    // 
+    string charged_desc = 31;
+    // 
+    GradeRecord grade_record = 32;
+    // 
+    string preset_reply_text = 33;
+    // 
+    EasterEggLabel easter_egg_label = 34;
+    // 
+    string context_feature = 35;
+}
+
+// 
+message ReplyExtra {
+    // 
+    int64 season_id = 1;
+    // 
+    int64 season_type = 2;
+    // 
+    int64 ep_id = 3;
+    // 
+    bool is_story = 4;
+    // 
+    string spmid = 5;
+    // 
+    string from_spmid = 6;
+    // 
+    bool disable_underline = 7;
+    // 
+    bool disable_we_search = 8;
+    // 
+    bool disable_filter_tag = 9;
+    // 
+    bool is_activity_mode = 10;
+}
+
+// 
+message ReplyInfo {
+    // 
+    repeated ReplyInfo replies = 1;
+    // 
+    int64 id = 2;
+    // 
+    int64 oid = 3;
+    // 
+    int64 type = 4;
+    // 
+    int64 mid = 5;
+    // 
+    int64 root = 6;
+    // 
+    int64 parent = 7;
+    // 
+    int64 dialog = 8;
+    // 
+    int64 like = 9;
+    // 
+    int64 ctime = 10;
+    // 
+    int64 count = 11;
+    // 
+    Content content = 12;
+    // 
+    Member member = 13;
+    // 
+    ReplyControl reply_control = 14;
+    // 
+    MemberV2 member_v2 = 15;
+    // 
+    string track_info = 16;
+}
+
+// 
+message ReplyInfoReply {
+    // 
+    ReplyInfo reply = 1;
+}
+
+// 
+message ReplyInfoReq {
+    // 
+    enum ReplyInfoScene {
+        // 
+        Insert = 0;
+    }
+    
+    // 
+    int64 rpid = 1;
+    // 
+    ReplyInfoReq.ReplyInfoScene scene = 2;
+}
+
+// 
+message ReplyTrackInfo {
+    // 
+    string track_id = 1;
+}
+
+// 
+message RichText {
+    // 
+    oneof item {
+        // 
+        RichTextNote note = 1;
+        // 
+        bilibili.app.dynamic.v2.OpusItem opus = 2;
+    }
+}
+
+// 
+message RichTextNote {
+    // 
+    string summary = 1;
+    // 
+    repeated string images = 2;
+    // 
+    string click_url = 3;
+    // 
+    string last_mtime_text = 4;
+}
+
+// 
+message SearchItem {
+    // 
+    oneof item {
+        // 
+        GoodsSearchItem goods = 2;
+        // 
+        VideoSearchItem video = 3;
+        // 
+        ArticleSearchItem article = 4;
+    }
+    // 
+    string url = 1;
+}
+
+// 
+message SearchItemCursorReply {
+    // 
+    bool has_next = 1;
+    // 
+    int64 next = 2;
+}
+
+// 
+message SearchItemCursorReq {
+    // 
+    int64 next = 1;
+    // 
+    SearchItemType item_type = 2;
+}
+
+// 
+message SearchItemPreHookReply {
+    // 
+    string placeholder_text = 1;
+    // 
+    string background_text = 2;
+    // 
+    repeated int32 ordered_type = 3;
+}
+
+// 
+message SearchItemPreHookReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+}
+
+// 
+message SearchItemReply {
+    // 
+    SearchItemCursorReply cursor = 1;
+    // 
+    repeated SearchItem items = 2;
+    // 
+    SearchItemReplyExtraInfo extra = 3;
+}
+
+// 
+message SearchItemReplyExtraInfo {
+    // 
+    string event_id = 1;
+}
+
+// 
+message SearchItemReq {
+    // 
+    SearchItemCursorReq cursor = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 type = 3;
+    // 
+    string keyword = 4;
+}
+
+// 
+enum SearchItemType {
+    // 
+    DEFAULT_ITEM_TYPE = 0;
+    // 
+    GOODS = 1;
+    // 
+    VIDEO = 2;
+    // 
+    ARTICLE = 3;
+}
+
+// 
+enum SearchItemVideoSubType {
+    // 
+    UGC = 0;
+    // 
+    PGC = 1;
+}
+
+// 
+message ShareRepliesInfoReq {
+    // 
+    repeated int64 rpids = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 type = 3;
+}
+
+// 
+message ShareRepliesInfoResp {
+    // 
+    message ShareExtra {
+        // 
+        bool is_pgc = 1;
+    }
+    
+    // 
+    repeated ShareReplyInfo infos = 1;
+    // 
+    string from_title = 2;
+    // 
+    string from_up = 3;
+    // 
+    string from_pic = 4;
+    // 
+    string url = 5;
+    // 
+    string slogan_pic = 6;
+    // 
+    string slogan_text = 7;
+    // 
+    ShareReplyTopic topic = 8;
+    // 
+    ShareExtra extra = 9;
+}
+
+// 
+message ShareReplyInfo {
+    // 
+    Member member = 1;
+    // 
+    Content content = 2;
+    // 
+    string title = 3;
+    // 
+    string sub_title = 4;
+    // 
+    string achievement_text = 5;
+    // 
+    string label_url = 6;
+}
+
+// 
+message ShareReplyMaterialReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+    // 
+    int64 rpid = 3;
+}
+
+// 
+message ShareReplyMaterialResp {
+    // 
+    message ArchiveMaterial {
+        // 
+        string title = 1;
+        // 
+        string cover = 2;
+        // 
+        string up_name = 3;
+        // 
+        string up_icon = 4;
+    }
+    
+    // 
+    message ArticleMaterial {
+        // 
+        string title = 1;
+        // 
+        string message = 2;
+    }
+    
+    // 
+    message DynamicMaterial {
+        // 
+        string title = 1;
+        // 
+        string message = 2;
+    }
+    
+    // 
+    message ExtraData {
+        // 
+        bool is_pgc = 1;
+        // 
+        string origin_text = 2;
+        // 
+        int64 topic_id = 3;
+    }
+    
+    // 
+    message SubjectMaterial {
+        // 
+        oneof item {
+            // 
+            ShareReplyMaterialResp.ArchiveMaterial archive_material = 1;
+            // 
+            ShareReplyMaterialResp.DynamicMaterial dynamic_material = 2;
+            // 
+            ShareReplyMaterialResp.ArticleMaterial article_material = 3;
+        }
+    }
+    
+    // 
+    SubjectMaterial subject_material = 1;
+    // 
+    string qrcode_url = 2;
+    // 
+    string save_pic_text = 3;
+    // 
+    string open_app_text = 4;
+    // 
+    string share_time_text = 5;
+    // 
+    string bili_logo_icon = 6;
+    // 
+    ExtraData extra = 7;
+}
+
+// 
+message ShareReplyTopic {
+    // 
+    Topic topic = 1;
+    // 
+    string origin_text = 2;
+}
+
+// 
+message SubjectControl {
+    // 
+    message CmTopReplyProtection {
+        // 
+        int64 protected_top_rpid = 1;
+        // 
+        string popup_message = 2;
+        // 
+        string appeal_url = 3;
+    }
+    
+    // 
+    message FilterTag {
+        // 
+        string name = 1;
+        // 
+        string event_id = 2;
+    }
+    
+    // 
+    int64 up_mid = 1;
+    // 
+    bool is_assist = 2;
+    // 
+    bool read_only = 3;
+    // 
+    bool has_vote_access = 4;
+    // 
+    bool has_lottery_access = 5;
+    // 
+    bool has_folded_reply = 6;
+    // 
+    string bg_text = 7;
+    // 
+    bool up_blocked = 8;
+    // 
+    bool has_activity_access = 9;
+    // 
+    bool show_title = 10;
+    // 
+    bool show_up_action = 11;
+    // 
+    int64 switcher_type = 12;
+    // 
+    bool input_disable = 13;
+    // 
+    string root_text = 14;
+    // 
+    string child_text = 15;
+    // 
+    int64 count = 16;
+    // 
+    string title = 17;
+    // 
+    string giveup_text = 18;
+    // 
+    bool has_note_access = 19;
+    // 
+    bool disable_jump_emote = 20;
+    // 
+    string empty_background_text_plain = 21;
+    // 
+    string empty_background_text_highlight = 22;
+    // 
+    string empty_background_uri = 23;
+    // 
+    repeated SubjectControl.FilterTag support_filter_tags = 24;
+    // 
+    EditorIconState screenshot_icon_state = 25;
+    // 
+    EditorIconState upload_picture_icon_state = 26;
+    // 
+    EmptyPage empty_page = 27;
+    // 
+    CmTopReplyProtection cm_top_reply_protection = 28;
+    // 
+    bool enable_charged = 29;
+}
+
+// 
+message SuggestEmotesReq {
+    // 
+    int64 oid = 1;
+    // 
+    int64 type = 2;
+}
+
+// 
+message SuggestEmotesResp {
+    // 
+    repeated Emote emotes = 1;
+}
+
+// 
+message TextStyle {
+    // 
+    enum FontStyle {
+        // 
+        NORMAL = 0;
+        // 
+        BOLD = 1;
+    }
+    
+    // 
+    int32 font_size = 1;
+    // 
+    TextStyle.FontStyle font_style = 2;
+    // 
+    string text_day_color = 3;
+    // 
+    string text_night_color = 4;
+}
+
+// 
+message Topic {
+    // 
+    string link = 1;
+    // 
+    int64 id = 2;
+}
+
+// 
+message UGCVideoSearchItem {
+    // 
+    string title = 1;
+    // 
+    string up_nickname = 2;
+    // 
+    int64 duration = 3;
+    // 
+    string cover = 4;
+}
+
+// 
+message UpSelection {
+    // 
+    int64 pending_count = 1;
+    // 
+    int64 ignore_count = 2;
+}
+
+// 
+message Url {
+    // 
+    message Extra {
+        // 
+        enum GoodsShowType {
+            // 
+            Popup = 0;
+            // 
+            FullScreen = 1;
+            // 
+            HalfScreen = 2;
+        }
+        
+        // 
+        int64 goods_item_id = 1;
+        // 
+        string goods_prefetched_cache = 2;
+        // 
+        Url.Extra.GoodsShowType goods_show_type = 3;
+        // 
+        bool is_word_search = 4;
+        // 
+        int64 goods_cm_control = 5;
+        // 
+        string goods_click_report = 6;
+        // 
+        string goods_exposure_report = 7;
+        // 
+        int64 goods_show_pop_window = 8;
+    }
+    
+    // 
+    enum IconPosition {
+        // 
+        Prefix = 0;
+        // 
+        Suffix = 1;
+    }
+    
+    // 
+    string title = 1;
+    // 
+    int64 state = 2;
+    // 
+    string prefix_icon = 3;
+    // 
+    string app_url_schema = 4;
+    // 
+    string app_name = 5;
+    // 
+    string app_package_name = 6;
+    // 
+    string click_report = 7;
+    // 
+    bool is_half_screen = 8;
+    // 
+    string exposure_report = 9;
+    // 
+    Extra extra = 10;
+    // 
+    bool underline = 11;
+    // 
+    bool match_once = 12;
+    // 
+    string pc_url = 13;
+    // 
+    Url.IconPosition icon_position = 14;
+}
+
+// 
+enum UserCallbackAction {
+    // 
+    Dismiss = 0;
+}
+
+// 
+message UserCallbackReply {
+}
+
+// 
+message UserCallbackReq {
+    // 
+    int64 mid = 1;
+    // 
+    UserCallbackScene scene = 2;
+    // 
+    UserCallbackAction action = 3;
+    // 
+    int64 oid = 4;
+    // 
+    int64 type = 5;
+    // 
+    repeated int64 rpids = 6;
+}
+
+// 
+enum UserCallbackScene {
+    // 
+    Insert_UserCallbackScene = 0;
+    // 
+    RecommendSuperbReply = 1;
+}
+
+// 
+message VideoSearchItem {
+    // 
+    oneof video_item {
+        // 
+        UGCVideoSearchItem ugc = 2;
+        // 
+        PGCVideoSearchItem pgc = 3;
+    }
+    // 
+    SearchItemVideoSubType type = 1;
+}
+
+// 
+message Vote {
+    // 
+    int64 id = 1;
+    // 
+    string title = 2;
+    // 
+    int64 count = 3;
+}
+
+// 
+message VoteCard {
+    // 
+    message Option {
+        // 
+        int64 idx = 1;
+        // 
+        string desc = 2;
+        // 
+        int64 count = 3;
+    }
+    
+    // 
+    int64 vote_id = 1;
+    // 
+    string title = 2;
+    // 
+    int64 count = 3;
+    // 
+    repeated VoteCard.Option options = 4;
+    // 
+    int64 my_vote_option = 5;
+}
+
+// 
+message WordSearchParam {
+    // 
+    int64 shown_count = 1;
+}
+

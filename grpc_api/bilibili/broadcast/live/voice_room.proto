@@ -1,0 +1,223 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.broadcast.live.voice_room;
+
+// 
+message BattleInfo {
+    // 
+    message roomInfo {
+        // 
+        int64 room_i_d = 1;
+        // 
+        int64 votes = 2;
+    }
+    
+    // 
+    int64 pk_i_d = 1;
+    // 
+    int64 status = 2;
+    // 
+    int64 battle_type = 3;
+    // 
+    int64 timestamp = 4;
+    // 
+    roomInfo init_info = 5;
+    // 
+    roomInfo match_info = 6;
+}
+
+// 
+message LiveBaseOperateEvent {
+    // 
+    int64 uid = 1;
+    // 
+    int64 total_price = 2;
+    // 
+    int64 ts = 3;
+    // 
+    int64 position = 4;
+    // 
+    int64 version = 5;
+    // 
+    string total_price_text = 6;
+    // 
+    int64 pk_total_price = 7;
+    // 
+    string pk_total_price_text = 8;
+    // 
+    string pk_group_id = 9;
+    // 
+    int64 pk_group_total_price = 10;
+    // 
+    string pk_group_total_price_text = 11;
+    // 
+    LiveMultiChatHatLevel hat = 12;
+    // 
+    int64 room_id = 13;
+    // 
+    string pk_i_d = 14;
+    // 
+    BattleInfo battle_info = 15;
+    // 
+    bool is_pei_pei = 16;
+    // 
+    int64 pos_room_id = 17;
+}
+
+// 
+enum LiveInteractBusinessType {
+    // 
+    LiveInteractBusinessTypeNode = 0;
+    // 
+    LiveInteractBusinessTypeMultiVoice = 10;
+}
+
+// 
+enum LiveInteractOperationType {
+    // 
+    LiveInteractOperationTypeInvalid = 0;
+    // 
+    LiveInteractOperationTypeAccept = 1;
+    // 
+    LiveInteractOperationTypeReject = 2;
+    // 
+    LiveInteractOperationTypeCancel = 3;
+    // 
+    LiveInteractOperationTypeNoReply = 4;
+    // 
+    LiveInteractOperationTypeInvited = 5;
+}
+
+// 
+message LiveMultiChatHatLevel {
+    // 
+    string name = 1;
+    // 
+    string image = 2;
+    // 
+    string icon = 3;
+    // 
+    string desc = 4;
+    // 
+    int64 level = 5;
+    // 
+    string background_color_start = 6;
+    // 
+    string background_color_end = 7;
+    // 
+    string animation_webp = 8;
+    // 
+    string animation_svga = 9;
+    // 
+    int64 price = 10;
+}
+
+// 
+message LiveMultiVoiceApplicationUserModel {
+    // 
+    int64 count = 1;
+    // 
+    int64 u_i_d = 2;
+    // 
+    int64 room_id = 3;
+    // 
+    LiveMultiVoiceRole role = 4;
+    // 
+    int64 anchor_u_i_d = 6;
+    // 
+    int64 operate_u_i_d = 7;
+    // 
+    int64 want_position = 8;
+    // 
+    int64 event = 9;
+    // 
+    string toast = 10;
+    // 
+    string channel = 11;
+    // 
+    string trace_id = 12;
+}
+
+// 
+message LiveMultiVoiceInvitaionEvent {
+    // 
+    int64 initiator = 1;
+    // 
+    int64 invited_uid = 2;
+    // 
+    LiveInteractBusinessType business_type = 3;
+    // 
+    string ch_id = 4;
+    // 
+    string channel_info = 5;
+    // 
+    int32 cdn = 6;
+    // 
+    int64 interact_id = 7;
+    // 
+    int64 link_id = 8;
+    // 
+    int64 ts = 9;
+    // 
+    string toast = 10;
+    // 
+    LiveInteractOperationType operate_type = 11;
+    // 
+    string inner_extra = 12;
+    // 
+    string operation_uname = 13;
+    // 
+    repeated int64 exist_uids = 14;
+    // 
+    string trace_id = 15;
+}
+
+// 
+message LiveMultiVoiceJoinEvent {
+    // 
+    string ch_id = 1;
+    // 
+    LiveInteractBusinessType business_type = 2;
+    // 
+    string inner_extra = 3;
+    // 
+    string buvid = 4;
+    // 
+    int64 initiator = 5;
+    // 
+    int64 invited_uid = 6;
+    // 
+    int32 cdn = 7;
+    // 
+    string channel_info = 8;
+    // 
+    int64 interact_id = 9;
+    // 
+    int64 link_id = 10;
+    // 
+    int64 ts = 11;
+    // 
+    repeated int64 exist_uids = 12;
+    // 
+    string trace_id = 13;
+    // 
+    string biz_session_id = 14;
+    // 
+    string join_token = 15;
+    // 
+    bool reconnect = 16;
+}
+
+// 
+enum LiveMultiVoiceRole {
+    // 
+    LiveMultiVoiceRoleCommon = 0;
+    // 
+    LiveMultiVoiceRoleManager = 1;
+    // 
+    LiveMultiVoiceRoleAnchor = 2;
+}
+

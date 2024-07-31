@@ -1,0 +1,77 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.community.service.govern.v1;
+
+import "google/protobuf/empty.proto";
+
+// 
+service Qoe {
+    // 
+    rpc QoeReport (QoeReportReq) returns (google.protobuf.Empty);
+}
+
+// 
+message DeviceInfo {
+    // 
+    string buvid = 1;
+    // 
+    int64 build = 2;
+    // 
+    string raw_platform = 3;
+    // 
+    string raw_mobi_app = 4;
+    // 
+    string device = 5;
+    // 
+    string channel = 6;
+    // 
+    string buvid3 = 7;
+    // 
+    string user_agent = 8;
+}
+
+// 
+message QoeReportReq {
+    // 
+    int64 id = 1;
+    // 
+    int64 scene = 2;
+    // 
+    int32 type = 3;
+    // 
+    bool cancel = 4;
+    // 
+    string business_type = 5;
+    // 
+    int64 oid = 6;
+    // 
+    QoeScoreResult score_result = 7;
+    // 
+    string business_data = 8;
+    // 
+    QoeResult result = 9;
+    // 
+    DeviceInfo device_info = 10;
+}
+
+// 
+message QoeResult {
+    // 
+    float option_score = 1;
+    // 
+    string option_title = 2;
+    // 
+    repeated string option_descs = 3;
+    // 
+    string option_custom_feedback = 4;
+}
+
+// 
+message QoeScoreResult {
+    // 
+    float score = 1;
+}
+

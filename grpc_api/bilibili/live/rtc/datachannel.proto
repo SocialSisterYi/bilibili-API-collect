@@ -1,0 +1,382 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.live.rtc.datachannel;
+
+import "bilibili/live/rtc.proto";
+import "bilibili/live/rtc/datachannel/report.proto";
+
+// 
+message ClientStatsReq {
+    // 
+    message App {
+        // 
+        string app_name = 1;
+        // 
+        string app_version = 2;
+        // 
+        string sdk_version = 3;
+        // 
+        string platform = 4;
+        // 
+        string network = 5;
+    }
+    
+    // 
+    oneof payload {
+        // 
+        bytes raw_payload = 6;
+        // 
+        bilibili.live.rtc.datachannel.report.ClientStatsPayload pb_stats_payload = 7;
+    }
+    // 
+    string event_type = 1;
+    // 
+    string encoding = 2;
+    // 
+    App app = 3;
+}
+
+// 
+message ClientStatsResp {
+    // 
+    message Score {
+        // 
+        int32 up_score = 1;
+        // 
+        int32 down_score = 2;
+        // 
+        int32 server_up_score = 3;
+        // 
+        int32 server_down_score = 4;
+    }
+    
+    // 
+    int32 report_interval = 1;
+    // 
+    Score score = 2;
+}
+
+// 
+message JoinNotify {
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.User user = 1;
+}
+
+// 
+message JoinReq {
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.User user = 1;
+    // 
+    bool auto_subscribe = 2;
+    // 
+    string token = 3;
+}
+
+// 
+message JoinResp {
+    // 
+    repeated bilibili.live.rtc.BAPILiveRTCUserProto.User users = 1;
+    // 
+    int32 call_id = 2;
+}
+
+// 
+message LeaveNotify {
+    // 
+    int64 uid = 1;
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.UserLeaveReason reason = 2;
+}
+
+// 
+message LeaveReq {
+}
+
+// 
+message LeaveResp {
+}
+
+// 
+message MembersReq {
+    // 
+    int64 channel_id = 1;
+    // 
+    int64 uid = 2;
+    // 
+    int32 call_id = 3;
+}
+
+// 
+message MembersResp {
+    // 
+    repeated bilibili.live.rtc.BAPILiveRTCUserProto.User users = 1;
+}
+
+// 
+message MessageNotify {
+    // 
+    int64 uid = 1;
+    // 
+    int32 biz_id = 2;
+    // 
+    bytes payload = 3;
+    // 
+    bool last = 4;
+}
+
+// 
+message MuteNotify {
+    // 
+    oneof mute_status {
+        // 
+        bool mute_audio = 2;
+        // 
+        bool mute_video = 3;
+    }
+    // 
+    int64 uid = 1;
+    // 
+    MuteReason reason = 4;
+}
+
+// 
+enum MuteReason {
+    // 
+    UserMute = 0;
+    // 
+    AdminMute = 1;
+}
+
+// 
+message MuteReq {
+    // 
+    oneof mute_req {
+        // 
+        bool mute_audio = 1;
+        // 
+        bool mute_video = 2;
+    }
+}
+
+// 
+message PubNotify {
+    // 
+    int64 uid = 1;
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.Stream stream = 2;
+}
+
+// 
+message PubReq {
+    // 
+    string sdp = 1;
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.Stream stream = 2;
+}
+
+// 
+message PubResp {
+    // 
+    string sdp = 1;
+}
+
+// 
+message RequestMessage {
+    // 
+    oneof req {
+        // 
+        JoinReq join = 4;
+        // 
+        LeaveReq leave = 5;
+        // 
+        PubReq pub = 6;
+        // 
+        SubReq sub = 7;
+        // 
+        UnSubReq un_sub = 8;
+        // 
+        MuteReq mute = 9;
+        // 
+        UserMsgReq message = 10;
+        // 
+        MembersReq members = 11;
+        // 
+        UnPubReq un_pub = 12;
+        // 
+        UpdateSubReq update_sub = 13;
+        // 
+        ClientStatsReq client_stats = 14;
+    }
+    // 
+    int64 request_id = 1;
+    // 
+    int64 channel_id = 2;
+    // 
+    int64 uid = 3;
+}
+
+// 
+message ResponseMessage {
+    // 
+    oneof data {
+        // 
+        JoinResp join_resp = 4;
+        // 
+        LeaveResp leave_resp = 5;
+        // 
+        PubResp pub_resp = 6;
+        // 
+        SubResp sub_resp = 7;
+        // 
+        UnSubResp un_sub_resp = 8;
+        // 
+        UserMuteResp mute_resp = 9;
+        // 
+        UserMsgResp msg_resp = 10;
+        // 
+        JoinNotify join_notify = 11;
+        // 
+        LeaveNotify leave_notify = 12;
+        // 
+        MuteNotify mute_notify = 13;
+        // 
+        PubNotify pub_notify = 14;
+        // 
+        MessageNotify msg_notify = 15;
+        // 
+        MembersResp members_resp = 16;
+        // 
+        TokenNotify token_notify = 17;
+        // 
+        UnPubResp un_pub_resp = 18;
+        // 
+        UnPubNotify un_pub_notify = 19;
+        // 
+        UpdateSubResp update_sub_resp = 20;
+        // 
+        ClientStatsResp client_stats_resp = 21;
+    }
+    // 
+    int64 request_id = 1;
+    // 
+    int32 code = 2;
+    // 
+    string message = 3;
+}
+
+// 
+message SubReq {
+    // 
+    message SubUser {
+        // 
+        int64 uid = 1;
+        // 
+        bool sub_video = 2;
+        // 
+        bool sub_audio = 3;
+        // 
+        int32 video_index = 4;
+    }
+    
+    // 
+    oneof sub_offer {
+        // 
+        string sdp = 1;
+    }
+    // 
+    repeated SubReq.SubUser sub_users = 2;
+    // 
+    bool pause_send = 3;
+}
+
+// 
+message SubResp {
+    // 
+    int64 uid = 1;
+    // 
+    string sdp = 2;
+}
+
+// 
+message TokenNotify {
+    // 
+    string token = 1;
+}
+
+// 
+message UnPubNotify {
+    // 
+    int64 uid = 1;
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.Stream stream = 2;
+}
+
+// 
+message UnPubReq {
+}
+
+// 
+message UnPubResp {
+}
+
+// 
+message UnSubReq {
+    // 
+    int64 uid = 1;
+}
+
+// 
+message UnSubResp {
+}
+
+// 
+message UpdateSubReq {
+    // 
+    message video_prefer_layer {
+        // 
+        oneof video_temporal_layer_option {
+            // 
+            int32 temporal_index = 2;
+        }
+        // 
+        int32 video_index = 1;
+    }
+    
+    // 
+    oneof audio_option {
+        // 
+        bool sub_audio = 2;
+    }
+    // 
+    int64 uid = 1;
+}
+
+// 
+message UpdateSubResp {
+}
+
+// 
+message UserMsgReq {
+    // 
+    int32 biz_id = 1;
+    // 
+    bytes payload = 2;
+    // 
+    bool last = 3;
+    // 
+    repeated int64 receivers = 4;
+}
+
+// 
+message UserMsgResp {
+    // 
+    repeated int64 sent_uids = 1;
+}
+
+// 
+message UserMuteResp {
+}
+

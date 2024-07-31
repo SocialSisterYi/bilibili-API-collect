@@ -1,3 +1,6 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
 syntax = "proto3";
 
 package bilibili.app.viewunite.pgcanymodel;
@@ -98,9 +101,13 @@ message OgvSwitch {
     int32 merge_preview_section = 3;
     // 
     int32 enable_show_vt_info = 4;
+    // 
+    int32 hide_ep_vv_vt_dm = 5;
+    // 
+    int32 follow_guide = 6;
 }
 
-// 播放器浮层广告(?)
+// 
 message PlayFloatLayerActivity {
     // 
     int32 id = 1;
@@ -162,7 +169,7 @@ message Reserve {
     string tip = 2;
 }
 
-// 权限相关信息
+// 
 message Rights {
     // 
     int32 allow_download = 1;
@@ -220,7 +227,7 @@ message UserStatus {
     int32 sponsor = 5;
     // 
     int32 vip = 6;
-    // vip 是否被冻结
+    // 
     int32 vip_frozen = 7;
     // 
     WatchProgress watch_progress = 8;
@@ -243,3 +250,4 @@ message WatchProgress {
     // 
     int64 last_time = 3;
 }
+

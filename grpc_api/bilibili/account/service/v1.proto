@@ -1,0 +1,39 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.account.service.v1;
+
+// 
+message Color {
+    // 
+    string color_day = 1;
+    // 
+    string color_night = 2;
+}
+
+// 
+message ColorsInfo {
+    // 
+    repeated int64 color_ids = 1;
+    // 
+    repeated Color color = 2;
+}
+
+// 
+message NameRender {
+    // 
+    RenderSchemeEnum render_scheme = 1;
+    // 
+    ColorsInfo colors_info = 2;
+}
+
+// 
+enum RenderSchemeEnum {
+    // 
+    Default = 0;
+    // 
+    Colorful = 1;
+}
+

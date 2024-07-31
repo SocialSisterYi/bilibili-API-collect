@@ -1,0 +1,31 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.archive.middleware.v1;
+
+// 
+message PlayerArgs {
+    // 
+    int64 qn = 1;
+    // 
+    int64 fnver = 2;
+    // 
+    int64 fnval = 3;
+    // 
+    int64 force_host = 4;
+    // 
+    int64 voice_balance = 5;
+    // 
+    QnPolicy qn_policy = 6;
+}
+
+// 
+enum QnPolicy {
+    // 
+    QN_POLICY_DEFAULT = 0;
+    // 
+    QN_POLICY_AUTO_QN_ENABLE = 1;
+}
+

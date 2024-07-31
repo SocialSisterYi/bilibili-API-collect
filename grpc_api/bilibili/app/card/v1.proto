@@ -1,0 +1,1279 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.card.v1;
+
+// 
+message AdInfo {
+    // 
+    int64 creative_id = 1;
+    // 
+    int32 creative_type = 2;
+    // 
+    int32 card_type = 3;
+    // 
+    CreativeContent creative_content = 4;
+    // 
+    string ad_cb = 5;
+    // 
+    int64 resource = 6;
+    // 
+    int32 source = 7;
+    // 
+    string request_id = 8;
+    // 
+    bool is_ad = 9;
+    // 
+    int64 cm_mark = 10;
+    // 
+    int32 index = 11;
+    // 
+    bool is_ad_loc = 12;
+    // 
+    int32 card_index = 13;
+    // 
+    string client_ip = 14;
+    // 
+    bytes extra = 15;
+    // 
+    int32 creative_style = 16;
+    // 
+    int64 nature_ad = 17;
+}
+
+// 
+message Args {
+    // 
+    int32 type = 1;
+    // 
+    int64 up_id = 2;
+    // 
+    string up_name = 3;
+    // 
+    int32 rid = 4;
+    // 
+    string rname = 5;
+    // 
+    int64 tid = 6;
+    // 
+    string tname = 7;
+    // 
+    string track_id = 8;
+    // 
+    string state = 9;
+    // 
+    int32 converge_type = 10;
+    // 
+    int64 aid = 11;
+}
+
+// 
+message Avatar {
+    // 
+    string cover = 1;
+    // 
+    string text = 2;
+    // 
+    string uri = 3;
+    // 
+    int32 type = 4;
+    // 
+    string event = 5;
+    // 
+    string event_v2 = 6;
+    // 
+    int32 defalut_cover = 7;
+}
+
+// 
+message Base {
+    // 
+    string card_type = 1;
+    // 
+    string card_goto = 2;
+    // 
+    string goto = 3;
+    // 
+    string param = 4;
+    // 
+    string cover = 5;
+    // 
+    string title = 6;
+    // 
+    string uri = 7;
+    // 
+    ThreePoint three_point = 8;
+    // 
+    Args args = 9;
+    // 
+    PlayerArgs player_args = 10;
+    // 
+    int64 idx = 11;
+    // 
+    AdInfo ad_info = 12;
+    // 
+    Mask mask = 13;
+    // 
+    string from_type = 14;
+    // 
+    repeated ThreePointV2 three_point_v2 = 15;
+    // 
+    repeated ThreePointV3 three_point_v3 = 16;
+    // 
+    Button desc_button = 17;
+    // 
+    ThreePointV4 three_point_v4 = 18;
+    // 
+    UpArgs up_args = 19;
+}
+
+// 
+message Bubble {
+    // 
+    string bubble_content = 1;
+    // 
+    int32 version = 2;
+    // 
+    int64 stime = 3;
+}
+
+// 
+message Button {
+    // 
+    string text = 1;
+    // 
+    string param = 2;
+    // 
+    string uri = 3;
+    // 
+    string event = 4;
+    // 
+    int32 selected = 5;
+    // 
+    int32 type = 6;
+    // 
+    string event_v2 = 7;
+    // 
+    Relation relation = 8;
+}
+
+// 
+message Card {
+    // 
+    oneof item {
+        // 
+        SmallCoverV5 small_cover_v5 = 1;
+        // 
+        LargeCoverV1 large_cover_v1 = 2;
+        // 
+        ThreeItemAllV2 three_item_all_v2 = 3;
+        // 
+        ThreeItemV1 three_item_v1 = 4;
+        // 
+        HotTopic hot_topic = 5;
+        // 
+        DynamicHot three_item_h_v5 = 6;
+        // 
+        MiddleCoverV3 middle_cover_v3 = 7;
+        // 
+        LargeCoverV4 large_cover_v4 = 8;
+        // 
+        PopularTopEntrance popular_top_entrance = 9;
+        // 
+        RcmdOneItem rcmd_one_item = 10;
+        // 
+        SmallCoverV5Ad small_cover_v5_ad = 11;
+        // 
+        TopicList topic_list = 12;
+    }
+}
+
+// 
+message CreativeContent {
+    // 
+    string title = 1;
+    // 
+    string description = 2;
+    // 
+    int64 video_id = 3;
+    // 
+    string username = 4;
+    // 
+    string image_url = 5;
+    // 
+    string image_md5 = 6;
+    // 
+    string log_url = 7;
+    // 
+    string log_md5 = 8;
+    // 
+    string url = 9;
+    // 
+    string click_url = 10;
+    // 
+    string show_url = 11;
+}
+
+// 
+message DislikeReason {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+}
+
+// 
+message DoubleCards {
+    // 
+    oneof card {
+        // 
+        SmallCoverV2 small_cover_v2 = 1;
+        // 
+        OnePicV2 one_pic_v2 = 2;
+        // 
+        ThreePicV2 three_pic_v2 = 3;
+    }
+}
+
+// 
+message DynamicHot {
+    // 
+    Base base = 1;
+    // 
+    string top_left_title = 2;
+    // 
+    string desc1 = 3;
+    // 
+    string desc2 = 4;
+    // 
+    string more_uri = 5;
+    // 
+    string more_text = 6;
+    // 
+    repeated string covers = 7;
+    // 
+    string cover_right_text = 8;
+    // 
+    ReasonStyle top_rcmd_reason_style = 9;
+}
+
+// 
+message EntranceItem {
+    // 
+    string goto = 1;
+    // 
+    string icon = 2;
+    // 
+    string title = 3;
+    // 
+    string module_id = 4;
+    // 
+    string uri = 5;
+    // 
+    int64 entrance_id = 6;
+    // 
+    Bubble bubble = 7;
+    // 
+    int32 entrance_type = 8;
+}
+
+// 
+message FunctionalButton {
+    // 
+    int32 type = 1;
+    // 
+    repeated FunctionalButtonMeta button_metas = 2;
+}
+
+// 
+message FunctionalButtonMeta {
+    // 
+    string icon = 1;
+    // 
+    string text = 2;
+    // 
+    string button_status = 3;
+    // 
+    string toast = 4;
+}
+
+// 
+message HotTopic {
+    // 
+    Base base = 1;
+    // 
+    string desc = 2;
+    // 
+    repeated HotTopicItem items = 3;
+}
+
+// 
+message HotTopicItem {
+    // 
+    string cover = 1;
+    // 
+    string uri = 2;
+    // 
+    string param = 3;
+    // 
+    string name = 4;
+}
+
+// 
+message HotwordEntrance {
+    // 
+    int64 hotword_id = 1;
+    // 
+    string hot_text = 2;
+    // 
+    string h5_url = 3;
+    // 
+    string icon = 4;
+}
+
+// 
+message InlineProgressBar {
+    // 
+    string icon_drag = 1;
+    // 
+    string icon_drag_hash = 2;
+    // 
+    string icon_stop = 3;
+    // 
+    string icon_stop_hash = 4;
+}
+
+// 
+message LargeCoverV1 {
+    // 
+    Base base = 1;
+    // 
+    string cover_gif = 2;
+    // 
+    Avatar avatar = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string cover_left_text2 = 5;
+    // 
+    string cover_left_text3 = 6;
+    // 
+    string cover_badge = 7;
+    // 
+    string top_rcmd_reason = 8;
+    // 
+    string bottom_rcmd_reason = 9;
+    // 
+    string desc = 10;
+    // 
+    int32 official_icon = 11;
+    // 
+    int32 can_play = 12;
+    // 
+    ReasonStyle top_rcmd_reason_style = 13;
+    // 
+    ReasonStyle bottom_rcmd_reason_style = 14;
+    // 
+    ReasonStyle rcmd_reason_style_v2 = 15;
+    // 
+    ReasonStyle left_cover_badge_style = 16;
+    // 
+    ReasonStyle right_cover_badge_style = 17;
+    // 
+    string cover_badge2 = 18;
+    // 
+    LikeButton like_button = 19;
+    // 
+    int32 title_single_line = 20;
+    // 
+    string cover_right_text = 21;
+}
+
+// 
+message LargeCoverV2 {
+    // 
+    Base base = 1;
+    // 
+    Avatar avatar = 2;
+    // 
+    string badge = 3;
+    // 
+    Button cover_right_button = 4;
+    // 
+    string cover_left_text1 = 5;
+    // 
+    int32 cover_left_icon1 = 6;
+    // 
+    string cover_left_text2 = 7;
+    // 
+    int32 cover_left_icon2 = 8;
+    // 
+    string rcmd_reason = 9;
+    // 
+    int32 official_icon = 10;
+    // 
+    int32 can_play = 11;
+    // 
+    ReasonStyle rcmd_reason_style = 12;
+    // 
+    int32 show_top = 13;
+    // 
+    int32 show_bottom = 14;
+}
+
+// 
+message LargeCoverV3 {
+    // 
+    Base base = 1;
+    // 
+    string cover_gif = 2;
+    // 
+    Avatar avatar = 3;
+    // 
+    ReasonStyle top_rcmd_reason_style = 4;
+    // 
+    ReasonStyle bottom_rcmd_reason_style = 5;
+    // 
+    string cover_left_text1 = 6;
+    // 
+    int32 cover_left_icon1 = 7;
+    // 
+    string cover_left_text2 = 8;
+    // 
+    int32 cover_left_icon2 = 9;
+    // 
+    string cover_right_text = 10;
+    // 
+    string desc = 11;
+    // 
+    int32 official_icon = 12;
+}
+
+// 
+message LargeCoverV4 {
+    // 
+    Base base = 1;
+    // 
+    string cover_left_text1 = 2;
+    // 
+    string cover_left_text2 = 3;
+    // 
+    string cover_left_text3 = 4;
+    // 
+    string cover_badge = 5;
+    // 
+    int32 can_play = 6;
+    // 
+    Up up = 7;
+    // 
+    string short_link = 8;
+    // 
+    string share_subtitle = 9;
+    // 
+    string play_number = 10;
+    // 
+    string bvid = 11;
+    // 
+    string sub_param = 12;
+}
+
+// 
+message LikeButton {
+    // 
+    int64 aid = 1;
+    // 
+    int32 count = 2;
+    // 
+    bool show_count = 3;
+    // 
+    string event = 4;
+    // 
+    int32 selected = 5;
+    // 
+    string event_v2 = 6;
+}
+
+// 
+message Mask {
+    // 
+    Avatar avatar = 1;
+    // 
+    Button button = 2;
+}
+
+// 
+message MiddleCoverV2 {
+    // 
+    Base base = 1;
+    // 
+    int32 ratio = 2;
+    // 
+    string desc = 3;
+    // 
+    string badge = 4;
+}
+
+// 
+message MiddleCoverV3 {
+    // 
+    Base base = 1;
+    // 
+    string desc1 = 2;
+    // 
+    string desc2 = 3;
+    // 
+    ReasonStyle cover_badge_style = 4;
+}
+
+// 
+message MultiItem {
+    // 
+    Base base = 1;
+    // 
+    string more_uri = 2;
+    // 
+    string more_text = 3;
+    // 
+    repeated DoubleCards items = 4;
+}
+
+// 
+message OnePicV2 {
+    // 
+    Base base = 1;
+    // 
+    int32 cover_left_icon1 = 2;
+    // 
+    string cover_left_text2 = 3;
+    // 
+    string cover_right_text = 4;
+    // 
+    int32 cover_right_icon = 5;
+    // 
+    string cover_right_background_color = 6;
+    // 
+    string badge = 7;
+    // 
+    string rcmd_reason = 8;
+    // 
+    Avatar avatar = 9;
+    // 
+    ReasonStyle rcmd_reason_style = 10;
+}
+
+// 
+message OnePicV3 {
+    // 
+    Base base = 1;
+    // 
+    string cover_left_text1 = 2;
+    // 
+    int32 cover_left_icon1 = 3;
+    // 
+    string cover_right_text = 4;
+    // 
+    int32 cover_right_icon = 5;
+    // 
+    string cover_right_background_color = 6;
+    // 
+    string badge = 7;
+    // 
+    ReasonStyle rcmd_reason_style = 8;
+}
+
+// 
+message PanelMeta {
+    // 
+    int32 panel_type = 1;
+    // 
+    string share_origin = 2;
+    // 
+    string share_id = 3;
+    // 
+    repeated FunctionalButton functional_buttons = 4;
+}
+
+// 
+message PlayerArgs {
+    // 
+    int32 is_live = 1;
+    // 
+    int64 aid = 2;
+    // 
+    int64 cid = 3;
+    // 
+    int32 sub_type = 4;
+    // 
+    int64 room_id = 5;
+    // 
+    int64 ep_id = 7;
+    // 
+    int32 is_preview = 8;
+    // 
+    string type = 9;
+    // 
+    int64 duration = 10;
+    // 
+    int64 season_id = 11;
+}
+
+// 
+message PopularTopEntrance {
+    // 
+    Base base = 1;
+    // 
+    repeated EntranceItem items = 2;
+}
+
+// 
+message RcmdOneItem {
+    // 
+    Base base = 1;
+    // 
+    ReasonStyle top_rcmd_reason_style = 2;
+    // 
+    SmallCoverRcmdItem item = 3;
+}
+
+// 
+message ReasonStyle {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string bg_color = 3;
+    // 
+    string border_color = 4;
+    // 
+    string icon_url = 5;
+    // 
+    string text_color_night = 6;
+    // 
+    string bg_color_night = 7;
+    // 
+    string border_color_night = 8;
+    // 
+    string icon_night_url = 9;
+    // 
+    int32 bg_style = 10;
+    // 
+    string uri = 11;
+    // 
+    string icon_bg_url = 12;
+    // 
+    string event = 13;
+    // 
+    string event_v2 = 14;
+    // 
+    int32 right_icon_type = 15;
+    // 
+    string left_icon_type = 16;
+}
+
+// 
+message Relation {
+    // 
+    int32 status = 1;
+    // 
+    int32 is_follow = 2;
+    // 
+    int32 is_followed = 3;
+}
+
+// 
+message SharePlane {
+    // 
+    string title = 1;
+    // 
+    string share_subtitle = 2;
+    // 
+    string desc = 3;
+    // 
+    string cover = 4;
+    // 
+    int64 aid = 5;
+    // 
+    string bvid = 6;
+    // 
+    map<string, bool> share_to = 7;
+    // 
+    string author = 8;
+    // 
+    int64 author_id = 9;
+    // 
+    string short_link = 10;
+    // 
+    string play_number = 11;
+    // 
+    int64 first_cid = 12;
+}
+
+// 
+message SmallChannelSpecial {
+    // 
+    Base base = 1;
+    // 
+    string bg_cover = 2;
+    // 
+    string desc1 = 3;
+    // 
+    string desc2 = 4;
+    // 
+    string badge = 5;
+    // 
+    ReasonStyle rcmd_reason_style2 = 6;
+}
+
+// 
+message SmallCoverConvergeV2 {
+    // 
+    Base base = 1;
+    // 
+    string cover_left_text1 = 2;
+    // 
+    int32 cover_left_icon1 = 3;
+    // 
+    string cover_left_text2 = 4;
+    // 
+    int32 cover_left_icon2 = 5;
+    // 
+    string cover_right_text = 6;
+    // 
+    string cover_right_top_text = 7;
+    // 
+    ReasonStyle rcmd_reason_style = 8;
+    // 
+    ReasonStyle rcmd_reason_style_v2 = 9;
+}
+
+// 
+message SmallCoverRcmdItem {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string param = 4;
+    // 
+    string goto = 5;
+    // 
+    string cover_right_text1 = 6;
+    // 
+    string right_desc1 = 7;
+    // 
+    string right_desc2 = 8;
+    // 
+    string cover_gif = 9;
+    // 
+    int32 right_icon1 = 10;
+    // 
+    int32 right_icon2 = 11;
+    // 
+    string cover_right_text_content_description = 12;
+    // 
+    string right_desc1_content_description = 13;
+}
+
+// 
+message SmallCoverV2 {
+    // 
+    Base base = 1;
+    // 
+    string cover_gif = 2;
+    // 
+    int32 cover_blur = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    int32 cover_left_icon1 = 5;
+    // 
+    string cover_left_text2 = 6;
+    // 
+    int32 cover_left_icon2 = 7;
+    // 
+    string cover_right_text = 8;
+    // 
+    int32 cover_right_icon = 9;
+    // 
+    string cover_right_background_color = 10;
+    // 
+    string subtitle = 11;
+    // 
+    string badge = 12;
+    // 
+    string rcmd_reason = 13;
+    // 
+    string desc = 14;
+    // 
+    Avatar avatar = 15;
+    // 
+    int32 official_icon = 16;
+    // 
+    int32 can_play = 17;
+    // 
+    ReasonStyle rcmd_reason_style = 18;
+    // 
+    ReasonStyle rcmd_reason_style_v2 = 19;
+    // 
+    LikeButton like_button = 20;
+}
+
+// 
+message SmallCoverV3 {
+    // 
+    Base base = 1;
+    // 
+    Avatar avatar = 2;
+    // 
+    string cover_left_text = 3;
+    // 
+    Button cover_right_button = 4;
+    // 
+    string rcmd_reason = 5;
+    // 
+    string desc = 6;
+    // 
+    int32 official_icon = 7;
+    // 
+    int32 can_play = 8;
+    // 
+    ReasonStyle rcmd_reason_style = 9;
+}
+
+// 
+message SmallCoverV4 {
+    // 
+    Base base = 1;
+    // 
+    string cover_badge = 2;
+    // 
+    string desc = 3;
+    // 
+    string title_right_text = 4;
+    // 
+    int32 title_right_pic = 5;
+}
+
+// 
+message SmallCoverV5 {
+    // 
+    Base base = 1;
+    // 
+    string cover_gif = 2;
+    // 
+    Up up = 3;
+    // 
+    string cover_right_text1 = 4;
+    // 
+    string right_desc1 = 5;
+    // 
+    string right_desc2 = 6;
+    // 
+    ReasonStyle rcmd_reason_style = 7;
+    // 
+    HotwordEntrance hotword_entrance = 8;
+    // 
+    ReasonStyle corner_mark_style = 9;
+    // 
+    int32 right_icon1 = 10;
+    // 
+    int32 right_icon2 = 11;
+    // 
+    ReasonStyle left_corner_mark_style = 12;
+    // 
+    string cover_right_text_content_description = 13;
+    // 
+    string right_desc1_content_description = 14;
+}
+
+// 
+message SmallCoverV5Ad {
+    // 
+    Base base = 1;
+    // 
+    string cover_gif = 2;
+    // 
+    Up up = 3;
+    // 
+    string cover_right_text1 = 4;
+    // 
+    string right_desc1 = 5;
+    // 
+    string right_desc2 = 6;
+    // 
+    ReasonStyle rcmd_reason_style = 7;
+    // 
+    HotwordEntrance hotword_entrance = 8;
+    // 
+    ReasonStyle corner_mark_style = 9;
+    // 
+    int32 right_icon1 = 10;
+    // 
+    int32 right_icon2 = 11;
+    // 
+    ReasonStyle left_corner_mark_style = 12;
+    // 
+    string cover_right_text_content_description = 13;
+    // 
+    string right_desc1_content_description = 14;
+}
+
+// 
+message SmallCoverV7 {
+    // 
+    Base base = 1;
+    // 
+    string desc = 2;
+}
+
+// 
+message SmallCoverV9 {
+    // 
+    Base base = 1;
+    // 
+    string cover_left_text1 = 2;
+    // 
+    int32 cover_left_icon1 = 3;
+    // 
+    string cover_left_text2 = 4;
+    // 
+    int32 cover_left_icon2 = 5;
+    // 
+    string cover_right_text = 6;
+    // 
+    int32 cover_right_icon = 7;
+    // 
+    int32 can_play = 8;
+    // 
+    ReasonStyle rcmd_reason_style = 9;
+    // 
+    Up up = 10;
+    // 
+    ReasonStyle left_cover_badge_style = 11;
+    // 
+    ReasonStyle left_bottom_rcmd_reason_style = 12;
+}
+
+// 
+message ThreeItemAllV2 {
+    // 
+    Base base = 1;
+    // 
+    ReasonStyle top_rcmd_reason_style = 2;
+    // 
+    repeated TwoItemHV1Item item = 3;
+}
+
+// 
+message ThreeItemV1 {
+    // 
+    Base base = 1;
+    // 
+    int32 title_icon = 2;
+    // 
+    string more_uri = 3;
+    // 
+    string more_text = 4;
+    // 
+    repeated ThreeItemV1Item items = 5;
+}
+
+// 
+message ThreeItemV1Item {
+    // 
+    Base base = 1;
+    // 
+    string cover_left_text = 2;
+    // 
+    int32 cover_left_icon = 3;
+    // 
+    string desc1 = 4;
+    // 
+    string desc2 = 5;
+    // 
+    string badge = 6;
+}
+
+// 
+message ThreeItemV2 {
+    // 
+    Base base = 1;
+    // 
+    int32 title_icon = 2;
+    // 
+    string more_uri = 3;
+    // 
+    string more_text = 4;
+    // 
+    repeated ThreeItemV2Item items = 5;
+}
+
+// 
+message ThreeItemV2Item {
+    // 
+    Base base = 1;
+    // 
+    int32 cover_left_icon = 2;
+    // 
+    string desc_text1 = 3;
+    // 
+    int32 desc_icon1 = 4;
+    // 
+    string desc_text2 = 5;
+    // 
+    int32 desc_icon2 = 6;
+    // 
+    string badge = 7;
+}
+
+// 
+message ThreePicV2 {
+    // 
+    Base base = 1;
+    // 
+    string left_cover = 2;
+    // 
+    string right_cover1 = 3;
+    // 
+    string right_cover2 = 4;
+    // 
+    string cover_left_text1 = 5;
+    // 
+    int32 cover_left_icon1 = 6;
+    // 
+    string cover_left_text2 = 7;
+    // 
+    int32 cover_left_icon2 = 8;
+    // 
+    string cover_right_text = 9;
+    // 
+    int32 cover_right_icon = 10;
+    // 
+    string cover_right_background_color = 11;
+    // 
+    string badge = 12;
+    // 
+    string rcmd_reason = 13;
+    // 
+    string desc = 14;
+    // 
+    Avatar avatar = 15;
+    // 
+    ReasonStyle rcmd_reason_style = 16;
+}
+
+// 
+message ThreePicV3 {
+    // 
+    Base base = 1;
+    // 
+    string left_cover = 2;
+    // 
+    string right_cover1 = 3;
+    // 
+    string right_cover2 = 4;
+    // 
+    string cover_left_text1 = 5;
+    // 
+    int32 cover_left_icon1 = 6;
+    // 
+    string cover_left_text2 = 7;
+    // 
+    int32 cover_left_icon2 = 8;
+    // 
+    string cover_right_text = 9;
+    // 
+    int32 cover_right_icon = 10;
+    // 
+    string cover_right_background_color = 11;
+    // 
+    string badge = 12;
+    // 
+    ReasonStyle rcmd_reason_style = 13;
+}
+
+// 
+message ThreePoint {
+    // 
+    repeated DislikeReason dislike_reasons = 1;
+    // 
+    repeated DislikeReason feedbacks = 2;
+    // 
+    int32 watch_later = 3;
+}
+
+// 
+message ThreePointV2 {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    repeated DislikeReason reasons = 3;
+    // 
+    string type = 4;
+    // 
+    int64 id = 5;
+}
+
+// 
+message ThreePointV3 {
+    // 
+    string title = 1;
+    // 
+    string selected_title = 2;
+    // 
+    string subtitle = 3;
+    // 
+    repeated DislikeReason reasons = 4;
+    // 
+    string type = 5;
+    // 
+    int64 id = 6;
+    // 
+    int32 selected = 7;
+    // 
+    string icon = 8;
+    // 
+    string selected_icon = 9;
+    // 
+    string url = 10;
+    // 
+    int32 default_id = 11;
+}
+
+// 
+message ThreePointV4 {
+    // 
+    SharePlane share_plane = 1;
+    // 
+    WatchLater watch_later = 2;
+}
+
+// 
+message TopicButton {
+    // 
+    string title = 1;
+    // 
+    string jump_uri = 2;
+    // 
+    bool red_dot = 3;
+}
+
+// 
+message TopicList {
+    // 
+    Base base = 1;
+    // 
+    string title = 2;
+    // 
+    string title_icon = 3;
+    // 
+    TopicButton more_button = 4;
+    // 
+    repeated TopicListItem topic_list_item = 5;
+}
+
+// 
+message TopicListItem {
+    // 
+    string icon = 1;
+    // 
+    string icon_title = 2;
+    // 
+    int64 topic_id = 3;
+    // 
+    string topic_name = 4;
+    // 
+    string url = 5;
+    // 
+    int64 up_mid = 6;
+    // 
+    int64 position = 7;
+}
+
+// 
+message TwoItemHV1Item {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string param = 4;
+    // 
+    Args args = 5;
+    // 
+    string goto = 6;
+    // 
+    string cover_left_text1 = 7;
+    // 
+    int32 cover_left_icon1 = 8;
+    // 
+    string cover_right_text = 9;
+}
+
+// 
+message TwoItemV2 {
+    // 
+    Base base = 1;
+    // 
+    repeated TwoItemV2Item items = 2;
+}
+
+// 
+message TwoItemV2Item {
+    // 
+    Base base = 1;
+    // 
+    string badge = 2;
+    // 
+    string cover_left_text1 = 3;
+    // 
+    int32 cover_left_icon1 = 4;
+}
+
+// 
+message Up {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    string desc = 3;
+    // 
+    Avatar avatar = 4;
+    // 
+    int32 official_icon = 5;
+    // 
+    Button desc_button = 6;
+    // 
+    string cooperation = 7;
+}
+
+// 
+message UpArgs {
+    // 
+    int64 up_id = 1;
+    // 
+    string up_name = 2;
+    // 
+    string up_face = 3;
+    // 
+    int64 selected = 4;
+}
+
+// 
+message WatchLater {
+    // 
+    int64 aid = 1;
+    // 
+    string bvid = 2;
+}
+

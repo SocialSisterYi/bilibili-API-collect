@@ -1,0 +1,59 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.show.region.v1;
+
+// 
+service Region {
+    // 
+    rpc Region (RegionReq) returns (RegionReply);
+}
+
+// 
+message RegionConfig {
+    // 
+    string scenes_name = 1;
+    // 
+    string scenes_type = 2;
+}
+
+// 
+message RegionInfo {
+    // 
+    int32 tid = 1;
+    // 
+    int32 reid = 2;
+    // 
+    string name = 3;
+    // 
+    string logo = 4;
+    // 
+    string goto = 5;
+    // 
+    string param = 6;
+    // 
+    string uri = 7;
+    // 
+    int32 type = 8;
+    // 
+    int32 is_bangumi = 9;
+    // 
+    repeated RegionInfo children = 10;
+    // 
+    repeated RegionConfig config = 11;
+}
+
+// 
+message RegionReply {
+    // 
+    repeated RegionInfo regions = 1;
+}
+
+// 
+message RegionReq {
+    // 
+    string lang = 1;
+}
+

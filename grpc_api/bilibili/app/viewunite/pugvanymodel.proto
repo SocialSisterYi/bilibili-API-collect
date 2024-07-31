@@ -1,9 +1,14 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
 syntax = "proto3";
 
 package bilibili.app.viewunite.pugvanymodel;
 
 // 
 message AbTest {
+    // 
+    map<string, int32> exp = 1;
 }
 
 // 
@@ -52,12 +57,22 @@ message Courseware {
     string desc = 5;
     // 
     string file_url = 6;
+    // 
+    string icon = 7;
 }
 
 // 
 message CoursewareInfo {
     // 
     repeated Courseware coursewares = 1;
+}
+
+// 
+message CredentialInfo {
+    // 
+    bool tab_show = 1;
+    // 
+    bool tab_badge_show = 2;
 }
 
 // 
@@ -68,9 +83,8 @@ message DanmakuControl {
     ExtraContent extra_content = 2;
 }
 
+// 
 message Episode {
-    // 
-    EpisodeType type = 1;
     // 
     oneof data {
         // 
@@ -78,6 +92,18 @@ message Episode {
         // 
         LiveEpisode live_episode = 3;
     }
+    // 
+    EpisodeType type = 1;
+}
+
+// 
+message EpisodeDimension {
+    // 
+    int64 width = 1;
+    // 
+    int64 height = 2;
+    // 
+    int64 rotate = 3;
 }
 
 // 
@@ -106,16 +132,23 @@ message EpisodeSelectionLabel {
 
 // 
 enum EpisodeStatus {
+    // 
     EPISODE_STATUS_UNSPECIFIED = 0;
+    // 
     EPISODE_STATUS_TRY_WATCH_WHOLE = 1;
+    // 
     EPISODE_STATUS_NOT_TRY_WATCH = 2;
+    // 
     EPISODE_STATUS_TRY_WATCH_5_MINUTES = 3;
 }
 
 // 
 enum EpisodeType {
+    // 
     EPISODE_TYPE_UNSPECIFIED = 0;
+    // 
     EPISODE_TYPE_VIDEO = 1;
+    // 
     EPISODE_TYPE_LIVE = 2;
 }
 
@@ -123,6 +156,12 @@ enum EpisodeType {
 message ExtraContent {
     // 
     string disabled_reason = 1;
+}
+
+// 
+message GiftInfo {
+    // 
+    string url = 1;
 }
 
 // 
@@ -173,10 +212,36 @@ message LiveInfo {
 
 // 
 enum LiveStatus {
+    // 
     LIVE_STATUS_UNSPECIFIED = 0;
+    // 
     LIVE_STATUS_PREPARE = 1;
+    // 
     LIVE_STATUS_LIVE = 2;
+    // 
     LIVE_STATUS_PLAYBACK_GENERATING = 3;
+}
+
+// 
+message NetdiskCourseware {
+    // 
+    int64 courseware_id = 1;
+    // 
+    string name = 2;
+    // 
+    string remark = 3;
+    // 
+    string desc = 4;
+    // 
+    string url = 5;
+    // 
+    string icon = 6;
+}
+
+// 
+message NetdiskCoursewareInfo {
+    // 
+    repeated NetdiskCourseware coursewares = 1;
 }
 
 // 
@@ -199,11 +264,24 @@ message OperationAreaButton {
 
 // 
 enum OperationAreaButtonType {
+    // 
     OPERATION_AREA_BUTTON_TYPE_UNSPECIFIED = 0;
+    // 
     OPERATION_AREA_BUTTON_TYPE_FAVORITE = 1;
+    // 
     OPERATION_AREA_BUTTON_TYPE_CONSULT = 2;
+    // 
     OPERATION_AREA_BUTTON_TYPE_SHARE = 3;
+    // 
     OPERATION_AREA_BUTTON_TYPE_PURCHASE = 4;
+}
+
+// 
+message PostPurchaseInfo {
+    // 
+    string pop_up_pic = 1;
+    // 
+    int64 pop_up_interval = 2;
 }
 
 // 
@@ -260,16 +338,23 @@ message SeasonCoupon {
 
 // 
 enum SeasonCouponStatus {
+    // 
     SEASON_COUPON_STATUS_UNSPECIFIED = 0;
+    // 
     SEASON_COUPON_STATUS_RECEIVED = 1;
+    // 
     SEASON_COUPON_STATUS_NOT_RECEIVED = 2;
+    // 
     SEASON_COUPON_STATUS_INVALID = 3;
 }
 
 // 
 enum SeasonCouponType {
+    // 
     SEASON_COUPON_TYPE_UNSPECIFIED = 0;
+    // 
     SEASON_COUPON_TYPE_DISCOUNT = 1;
+    // 
     SEASON_COUPON_TYPE_DECREASE = 2;
 }
 
@@ -327,22 +412,39 @@ message SeasonSection {
 
 // 
 enum SeasonSectionType {
+    // 
     SEASON_SECTION_TYPE_UNSPECIFIED = 0;
+    // 
     SEASON_SECTION_TYPE_DEFAULT = 1;
+    // 
     SEASON_SECTION_TYPE_CUSTOM = 2;
 }
 
 // 
+message SeasonStat {
+    // 
+    int64 fav = 1;
+    // 
+    int64 share = 2;
+}
+
+// 
 enum SeasonStatus {
+    // 
     SEASON_STATUS_UNSPECIFIED = 0;
+    // 
     SEASON_STATUS_OFFLINE = 1;
 }
 
 // 
 enum SeasonType {
+    // 
     SEASON_TYPE_UNSPECIFIED = 0;
+    // 
     SEASON_TYPE_INSTALLMENT = 1;
+    // 
     SEASON_TYPE_FREE = 2;
+    // 
     SEASON_TYPE_SUBSCRIPTION = 3;
 }
 
@@ -388,12 +490,19 @@ message VideoEpisode {
     VideoPlayWay play_way = 16;
     // 
     int64 episode_id = 17;
+    // 
+    string share_link = 18;
+    // 
+    EpisodeDimension dimension = 19;
 }
 
 // 
 enum VideoPlayWay {
+    // 
     VIDEO_PLAY_WAY_UNSPECIFIED = 0;
+    // 
     VIDEO_PLAY_WAY_VOD = 1;
+    // 
     VIDEO_PLAY_WAY_LIVE_PLAYBACK = 2;
 }
 
@@ -419,6 +528,16 @@ message ViewPugvAny {
     AbTest ab_test = 9;
     // 
     OperationArea operation_area = 10;
+    // 
+    SeasonStat season_stat = 11;
+    // 
+    PostPurchaseInfo post_purchase_info = 12;
+    // 
+    GiftInfo gift_info = 13;
+    // 
+    NetdiskCoursewareInfo netdisk_courseware_info = 14;
+    // 
+    CredentialInfo credential_info = 15;
 }
 
 // 
@@ -428,3 +547,4 @@ message WaterMark {
     // 
     int64 watermark_interval = 2;
 }
+

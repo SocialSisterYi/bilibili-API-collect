@@ -1,0 +1,29 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.dynamic.common;
+
+// 
+message ItemWHRatio {
+    // 
+    WHRatio ratio = 1;
+    // 
+    int32 width = 2;
+    // 
+    int32 height = 3;
+}
+
+// 
+enum WHRatio {
+    // 
+    W_H_RATIO_1_1 = 0;
+    // 
+    W_H_RATIO_16_9 = 1;
+    // 
+    W_H_RATIO_3_4 = 2;
+    // 
+    W_H_RATIO_CUSTOM = 3;
+}
+

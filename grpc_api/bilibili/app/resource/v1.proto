@@ -1,0 +1,267 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.app.resource.v1;
+
+// 
+service LegacyResource {
+    // 
+    rpc Download (DownloadReq) returns (DownloadReply);
+}
+
+// 
+service Module {
+    // 
+    rpc List (ListReq) returns (ListReply);
+}
+
+// 
+enum CompressType {
+    // 
+    Unzip = 0;
+    // 
+    Original = 1;
+}
+
+// 
+message Download {
+    // 
+    string type = 1;
+    // 
+    string extra_value = 2;
+    // 
+    repeated ResourceItem list = 3;
+}
+
+// 
+message DownloadReply {
+    // 
+    string ver = 1;
+    // 
+    repeated Download resource = 2;
+    // 
+    map<string, DwTime> dwtime = 3;
+}
+
+// 
+message DownloadReq {
+    // 
+    string ver = 1;
+    // 
+    string type = 2;
+    // 
+    int64 screen_width = 3;
+    // 
+    int64 screen_height = 4;
+}
+
+// 
+message DwTime {
+    // 
+    int32 type = 1;
+    // 
+    repeated DwTimePiece peak = 2;
+    // 
+    repeated DwTimePiece low = 3;
+}
+
+// 
+message DwTimePiece {
+    // 
+    int64 start = 1;
+    // 
+    int64 end = 2;
+}
+
+// 
+enum EnvType {
+    // 
+    Unknown = 0;
+    // 
+    Release = 1;
+    // 
+    Test = 2;
+}
+
+// 
+message Host {
+    // 
+    string boss = 1;
+    // 
+    string bfs = 2;
+}
+
+// 
+enum IncrementType {
+    // 
+    Total = 0;
+    // 
+    Incremental = 1;
+}
+
+// 
+enum LevelType {
+    // 
+    Undefined = 0;
+    // 
+    High = 1;
+    // 
+    Middle = 2;
+    // 
+    Low = 3;
+}
+
+// 
+message ListReply {
+    // 
+    string env = 1;
+    // 
+    repeated PoolReply pools = 2;
+    // 
+    int64 list_version = 3;
+    // 
+    Host host = 4;
+}
+
+// 
+message ListReq {
+    // 
+    string pool_name = 1;
+    // 
+    string module_name = 2;
+    // 
+    repeated VersionListReq version_list = 3;
+    // 
+    EnvType env = 4;
+    // 
+    int32 sys_ver = 5;
+    // 
+    int32 scale = 6;
+    // 
+    int32 arch = 7;
+    // 
+    int64 list_version = 8;
+    // 
+    int32 lite = 9;
+    // 
+    int64 support_type = 10;
+    // 
+    bool support_unzip_password = 11;
+}
+
+// 
+message ModuleReply {
+    // 
+    string name = 1;
+    // 
+    int64 version = 2;
+    // 
+    string url = 3;
+    // 
+    string md5 = 4;
+    // 
+    string total_md5 = 5;
+    // 
+    IncrementType increment = 6;
+    // 
+    bool is_wifi = 7;
+    // 
+    LevelType level = 8;
+    // 
+    string filename = 9;
+    // 
+    string file_type = 10;
+    // 
+    int64 file_size = 11;
+    // 
+    CompressType compress = 12;
+    // 
+    int64 publish_time = 13;
+    // 
+    int64 pool_id = 14;
+    // 
+    int64 module_id = 15;
+    // 
+    int64 version_id = 16;
+    // 
+    int64 file_id = 17;
+    // 
+    bool zip_check = 18;
+    // 
+    int64 download_strategy = 19;
+    // 
+    int64 experiment_strategy = 20;
+    // 
+    map<string, PatchInfo> patch_map = 21;
+    // 
+    int64 support_type = 22;
+    // 
+    bool password_required = 23;
+    // 
+    string password = 24;
+}
+
+// 
+message PatchInfo {
+    // 
+    string md5 = 1;
+    // 
+    string url = 2;
+    // 
+    int64 size = 3;
+}
+
+// 
+message PoolReply {
+    // 
+    string name = 1;
+    // 
+    repeated ModuleReply modules = 2;
+}
+
+// 
+message ResourceItem {
+    // 
+    string task_id = 1;
+    // 
+    string file_name = 2;
+    // 
+    string type = 3;
+    // 
+    string url = 4;
+    // 
+    string hash = 5;
+    // 
+    int32 size = 6;
+    // 
+    int32 expect_dw = 7;
+    // 
+    int64 effect_time = 8;
+    // 
+    int64 expire_time = 9;
+    // 
+    int32 priority = 10;
+    // 
+    string extra = 11;
+}
+
+// 
+message VersionListReq {
+    // 
+    string pool_name = 1;
+    // 
+    repeated VersionReq versions = 2;
+}
+
+// 
+message VersionReq {
+    // 
+    string module_name = 1;
+    // 
+    int64 version = 2;
+    // 
+    int64 type = 3;
+}
+

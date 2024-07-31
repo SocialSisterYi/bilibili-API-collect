@@ -1,0 +1,81 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.live.app.interfaces.api.grpc.v1;
+
+import "bilibili/pagination.proto";
+
+// 
+message GetMoreLiveRoomsReq {
+    // 
+    int64 room_id = 1;
+    // 
+    bilibili.pagination.Pagination idol_pagination = 2;
+    // 
+    bilibili.pagination.Pagination rooms_pagination = 3;
+}
+
+// 
+message GetMoreLiveRoomsResp {
+    // 
+    bilibili.pagination.PaginationReply idol_pagination_reply = 1;
+    // 
+    bilibili.pagination.PaginationReply rooms_pagination_reply = 2;
+    // 
+    bool idol_has_more = 3;
+    // 
+    repeated MyIdolInfo my_idol_info = 4;
+    // 
+    repeated MoreLiveRoomInfo more_live_info = 5;
+}
+
+// 
+message MoreLiveRoomInfo {
+    // 
+    int64 room_id = 1;
+    // 
+    string uname = 2;
+    // 
+    string room_cover = 3;
+    // 
+    string room_title = 4;
+    // 
+    RoomType room_type = 5;
+    // 
+    string text_small = 6;
+    // 
+    string icon = 7;
+    // 
+    string area_name = 8;
+    // 
+    string link = 9;
+    // 
+    string face = 10;
+}
+
+// 
+message MyIdolInfo {
+    // 
+    int64 room_id = 1;
+    // 
+    int64 uid = 2;
+    // 
+    string uname = 3;
+    // 
+    string face = 4;
+    // 
+    string title = 5;
+    // 
+    string link = 6;
+}
+
+// 
+enum RoomType {
+    // 
+    Watched = 0;
+    // 
+    Popularity = 1;
+}
+

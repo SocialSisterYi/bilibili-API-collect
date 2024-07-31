@@ -1,0 +1,363 @@
+// MVer: tv.danmaku.bili@8.7.0(8070300)
+// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+
+syntax = "proto3";
+
+package bilibili.im.customer.interfaces;
+
+import "bilibili/im/customer/model.proto";
+
+// 
+service CustomerInterface {
+    // 
+    rpc CustomerPreEvaluate (PreEvaluateReq) returns (PreEvaluateRsp);
+    // 
+    rpc CustomerUpdateAck (UpdateAckReq) returns (Empty);
+    // 
+    rpc CustomerWindowOptions (WindowOptionsReq) returns (WindowOptionsRsp);
+    // 
+    rpc GetCustomerSessDetail (GetSessDetailReq) returns (GetSessDetailRsp);
+    // 
+    rpc GetCustomerSessions (GetSessionsReq) returns (SessionsRsp);
+    // 
+    rpc GetNewCustomerSessions (GetNewSessionsReq) returns (SessionsRsp);
+    // 
+    rpc GetShopCfg (ShopCfgReq) returns (ShopCfgRsp);
+    // 
+    rpc GetShopInfo (ShopInfoReq) returns (ShopInfoRsp);
+    // 
+    rpc GetUserSettings (GetUserSettingsReq) returns (GetUserSettingsRsp);
+    // 
+    rpc HeartBeat (SendHeartBeatReq) returns (Empty);
+    // 
+    rpc OutCustomerQueue (OutCustomerQueueReq) returns (Empty);
+    // 
+    rpc PopResultUpdate (PopResultUpdateReq) returns (PopResultUpdateRsp);
+    // 
+    rpc RemoveSession (RemoveSessionReq) returns (Empty);
+    // 
+    rpc SendCustomerMsg (SendMsgReq) returns (SendMsgRsp);
+    // 
+    rpc SetTop (SetTopReq) returns (Empty);
+    // 
+    rpc SetUserSettings (SetUserSettingsReq) returns (SetUserSettingsRsp);
+    // 
+    rpc SyncFetchCustomerSessionMsgs (SessionMsgReq) returns (SessionMsgRsp);
+}
+
+// 
+message Announcement {
+    // 
+    bool enable = 1;
+    // 
+    string content = 2;
+    // 
+    bool jump_enable = 3;
+    // 
+    string jump_url = 4;
+}
+
+// 
+message Empty {
+}
+
+// 
+message GetNewSessionsReq {
+    // 
+    int64 begin_ts = 1;
+    // 
+    int32 size = 2;
+    // 
+    int64 recv_uid = 3;
+}
+
+// 
+message GetSessDetailReq {
+    // 
+    repeated Shop shop = 1;
+    // 
+    int64 group_id = 2;
+}
+
+// 
+message GetSessDetailRsp {
+    // 
+    repeated bilibili.im.customer.model.SessionInfo session_list = 1;
+}
+
+// 
+message GetSessionsReq {
+    // 
+    int64 begin_ts = 1;
+    // 
+    int64 end_ts = 2;
+    // 
+    int32 size = 3;
+}
+
+// 
+message GetUserSettingsReq {
+    // 
+    int64 shop_father_id = 1;
+    // 
+    int64 shop_id = 2;
+}
+
+// 
+message GetUserSettingsRsp {
+    // 
+    bool enable_initiative_msg = 1;
+    // 
+    bool do_not_disturb = 2;
+    // 
+    string report_url = 3;
+}
+
+// 
+message OutCustomerQueueReq {
+    // 
+    int64 shop_father_id = 1;
+    // 
+    int64 shop_id = 2;
+    // 
+    int64 msg_key = 3;
+}
+
+// 
+message PopResultUpdateReq {
+    // 
+    bilibili.im.customer.model.ComplianceAlertType pop_field = 1;
+    // 
+    bool is_allow = 2;
+}
+
+// 
+message PopResultUpdateRsp {
+    // 
+    string msg = 1;
+}
+
+// 
+message PreEvaluateReq {
+    // 
+    bilibili.im.customer.model.EvaluateType type = 1;
+    // 
+    int64 shop_father_id = 2;
+    // 
+    int64 shop_id = 3;
+    // 
+    int64 msg_key = 4;
+}
+
+// 
+message PreEvaluateRsp {
+    // 
+    bilibili.im.customer.model.EvaluationShowInfo rsp = 1;
+}
+
+// 
+message RemoveSessionReq {
+    // 
+    int64 talker_id = 1;
+    // 
+    int64 shop_id = 2;
+    // 
+    int64 shop_father_id = 3;
+    // 
+    int32 session_type = 4;
+}
+
+// 
+message SendHeartBeatReq {
+    // 
+    int64 shop_id = 1;
+    // 
+    int64 shop_father_id = 2;
+}
+
+// 
+message SendMsgExt {
+    // 
+    int64 source_up = 1;
+    // 
+    string source_bvid = 2;
+    // 
+    string cm_from_track_id = 3;
+    // 
+    string from_spmid = 4;
+}
+
+// 
+message SendMsgReq {
+    // 
+    bilibili.im.customer.model.Msg msg = 1;
+    // 
+    int64 skill_group_id = 2;
+    // 
+    SendMsgExt ext = 3;
+}
+
+// 
+message SendMsgRsp {
+    // 
+    int64 msg_key = 1;
+    // 
+    string msg_content = 2;
+    // 
+    repeated bilibili.im.customer.model.EmotionInfo e_infos = 3;
+}
+
+// 
+message SessionMsgReq {
+    // 
+    int64 shop_father_id = 1;
+    // 
+    int64 shop_id = 2;
+    // 
+    int64 begin_seqno = 3;
+    // 
+    int64 end_seqno = 4;
+    // 
+    int32 size = 5;
+    // 
+    int32 order = 6;
+    // 
+    string dev_id = 7;
+    // 
+    int32 situation = 8;
+    // 
+    int32 gid = 9;
+    // 
+    SessionMsgReqExt ext = 10;
+}
+
+// 
+message SessionMsgReqExt {
+    // 
+    int64 source_up = 1;
+    // 
+    string source_bvid = 2;
+}
+
+// 
+message SessionMsgRsp {
+    // 
+    repeated bilibili.im.customer.model.Msg messages = 1;
+    // 
+    int32 has_more = 2;
+    // 
+    int64 min_seqno = 3;
+    // 
+    int64 max_seqno = 4;
+    // 
+    repeated bilibili.im.customer.model.EmotionInfo e_infos = 5;
+    // 
+    int32 fetch_interval = 6;
+}
+
+// 
+message SessionsRsp {
+    // 
+    repeated bilibili.im.customer.model.SessionInfo session_list = 1;
+    // 
+    int32 has_more = 2;
+}
+
+// 
+message SetTopReq {
+    // 
+    int64 talker_id = 1;
+    // 
+    int64 shop_id = 2;
+    // 
+    int64 shop_father_id = 3;
+    // 
+    int32 session_type = 4;
+}
+
+// 
+message SetUserSettingsReq {
+    // 
+    int64 shop_father_id = 1;
+    // 
+    int64 shop_id = 2;
+    // 
+    bool enable_initiative_msg = 3;
+    // 
+    bool do_not_disturb = 4;
+}
+
+// 
+message SetUserSettingsRsp {
+    // 
+    string msg = 1;
+}
+
+// 
+message Shop {
+    // 
+    int64 shop_father_id = 1;
+    // 
+    int64 shop_id = 2;
+}
+
+// 
+message ShopCfgReq {
+    // 
+    int64 shop_id = 1;
+    // 
+    int64 shop_father_id = 2;
+}
+
+// 
+message ShopCfgRsp {
+    // 
+    Announcement announcement = 1;
+}
+
+// 
+message ShopInfoReq {
+    // 
+    int64 shop_id = 1;
+    // 
+    int64 shop_father_id = 2;
+}
+
+// 
+message ShopInfoRsp {
+    // 
+    string name = 1;
+    // 
+    string face = 2;
+}
+
+// 
+message UpdateAckReq {
+    // 
+    int64 shop_father_id = 1;
+    // 
+    int64 shop_id = 2;
+}
+
+// 
+message WindowOptionsReq {
+    // 
+    int64 shop_father_id = 2;
+    // 
+    int64 shop_id = 3;
+}
+
+// 
+message WindowOptionsRsp {
+    // 
+    bilibili.im.customer.model.WindowOptionGoods goods = 1;
+    // 
+    bilibili.im.customer.model.WindowOptionOrder order = 2;
+    // 
+    bilibili.im.customer.model.WindowOptionEvaluation evaluation = 3;
+    // 
+    bilibili.im.customer.model.WindowOptionMessage message = 4;
+    // 
+    bilibili.im.customer.model.WindowOptionHistory history = 5;
+}
+
