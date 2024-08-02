@@ -188,6 +188,8 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [统计与数据](docs/creativecenter/statistics&data.md)
     - [ ] 列表查询相关
     - [x] [电磁力数据](docs/creativecenter/railgun.md)
+    - [ ] [合集管理](docs/creativecenter/season.md)
+    - [ ] [视频相关杂项](docs/creativecenter/videos.md)
 - [x] [实时广播（通讯协议）](docs/broadcast)
     - [x] [视频内广播](docs/broadcast/video_room.md)
 - [ ] [充电](docs/electric)
@@ -212,7 +214,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
         - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
     - [ ] [导航栏动态](docs/dynamic/nav.md)
-- [ ] [相簿](docs/album)
+- [ ] [相簿](docs/album) (已下线)
     - [x] [基本信息](docs/album/info.md)
     - [x] [相簿列表](docs/album/list.md)
     - [x] [推荐作者](docs/album/recommend_author.md)

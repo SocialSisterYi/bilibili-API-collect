@@ -69,7 +69,7 @@
 | ----- | ---- | ------ | ---- |
 | type  | str  | 验证码类型 | 目前只有 `geetest` |
 | token | str  | 验证码 token | 用于验证 |
-| geetest | obj | 极验信息 |  |
+| geetest | obj | 极验信息 | 若为 null 则说明该风控无法通过 captcha 解除 |
 | biliword | null |  |  |
 | phone | null |  |  |
 | sms | null |  |  |
@@ -87,7 +87,7 @@
 
 ```shell
 curl -X POST "https://api.bilibili.com/x/gaia-vgate/v1/register" \
--data-urlencode "v_voucher=voucher_ecca35e6-36da-4f38-bd84-b3f420ea08c1"
+--data-urlencode "v_voucher=voucher_ecca35e6-36da-4f38-bd84-b3f420ea08c1"
 ```
 
 <details>

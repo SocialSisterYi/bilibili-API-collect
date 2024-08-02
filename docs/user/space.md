@@ -2559,6 +2559,8 @@ curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
 
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
+另见 [根据关键词查找视频](../video/collection.md#根据关键词查找视频), 功能基本相同, 暂未发现风控校验
+
 **url参数：**
 
 | 参数名  | 类型 | 内容         | 必要性 | 备注                                                                          |
@@ -2778,6 +2780,11 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
 
 ### 查询用户投稿相簿预览
 
+<details>
+<summary>相簿功能已下线, 以下接口失效, 参见
+<a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues/801">#801</a>
+</summary>
+
 > https://api.bilibili.com/x/space/album/index
 
 *请求方式：GET*
@@ -2905,7 +2912,14 @@ curl -G 'https://api.bilibili.com/x/space/album/index' \
 
 </details>
 
+</details>
+
 ### 查询用户投稿相簿明细
+
+<details>
+<summary>
+相簿功能已下线, 以下接口失效
+</summary>
 
 > https://api.vc.bilibili.com/link_draw/v1/doc/doc_list
 > https://api.bilibili.com/x/dynamic/feed/draw/doc_list
@@ -3047,6 +3061,8 @@ curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 	}
 }
 ```
+
+</details>
 
 </details>
 
