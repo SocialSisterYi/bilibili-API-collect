@@ -1,6 +1,6 @@
 # 投稿
 
-## 上传视频封面
+## 上传封面
 
 > https://member.bilibili.com/x/vu/web/cover/up
 

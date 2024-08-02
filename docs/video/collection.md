@@ -2,7 +2,7 @@
 
 请注意区分 **合集(seasons_archives)** 和 **视频列表(seasons_series)**
 
-合集是后加入的功能, 图标为立体叠放的正方形(.icon-heji), 可以在创作中心管理
+合集是后加入的功能, 图标为立体叠放的正方形(.icon-heji), 可以在创作中心管理, 参见 [合集管理](../creativecenter/season.md)
 
 列表即系列(series)或频道(channel), 图标为平面叠放的矩形且中央有播放按钮标识(.icon-ic_channel1), 在个人空间直接操作
 
