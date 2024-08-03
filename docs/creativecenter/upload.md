@@ -57,6 +57,8 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/cover/up" \
 -b "SESSDATA=xxxxxx; bili_jct=xxxxxx"
 ```
 
+JavaScript (Node.js) 请求[示例](https://gist.github.com/SessionHu/5e47a3a1a351ac5486c87e3d63930e7a)
+
 <details>
 <summary>查看响应示例:</summary>
 
@@ -205,7 +207,7 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/add/v3" \
 
 ## 上传视频文件
 
-注: 目前看来上传的视频文件似乎不会自动删除, 而且似乎不是视频也可以上传的样子, 请注意备份
+注: 目前看来上传的视频文件似乎不会自动删除, 而且似乎不是视频也可以上传的样子, 但是下载认证字段有效期只有 5 天
 
 ### 上传流程
 
@@ -254,7 +256,7 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/add/v3" \
 | 字段    | 类型 | 内容     | 备注  |
 | ------- | ---- | -------- | ----- |
 | OK      | num  | 1        |       |
-| auth    | str  | 上传凭证 | 作为后面请求中请求头 |
+| auth    | str  | 上传凭证 | 作为后面请求中请求头, 有效期 5 天 |
 | biz_id  | num  | 业务 ID?  |       |
 | chunk_retry | num | 重试次数? |       |
 | chunk_retry_delay | num | 重试延迟? |       |
@@ -553,6 +555,21 @@ curl -X PUT --url "https://upos-cs-upcdntxa.bilivideo.com/ugcfx2lf/n240729ad7gxi
 *请求方式: GET*
 
 认证方式：请求头 `X-Upos-Auth` 为上上上上一接口得到的 `auth`
+
+注: 由于 `X-Upos-Auth` 有效期只有 5 天, 过期请求将返回 HTTP 403 如下
+
+```http
+HTTP/1.1 403 Forbidden
+Bili-Trace-Id: 3e3f2db61366adbf
+Server: upos@hcsgw@jscs-bvc-hcsgw-public-02
+X-Bili-Trace-Id: 0d8ca1af6d3510253e3f2db61366adbf
+X-Upos-Auth: AUTH_TS_GT_5DAY AUTH=ak=1494471752&cdn=%2F%2Fupos-cs-upcdntxa.bilivideo.com&os=upos&sign=911dd5b995895805d785aa607b4153b6&timestamp=1722212776.333&uid=616368979&uip=108.181.24.77&uport=36044&use_dqp=0 Now=1722662669 DURATION=449893
+Content-Length: 0
+Connection: keep-alive
+Date: Sat, 03 Aug 2024 05:24:29 GMT
+EO-LOG-UUID: 4296647794590631154
+EO-Cache-Status: MISS
+```
 
 **字节流回复:**
 
