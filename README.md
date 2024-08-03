@@ -277,6 +277,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [web端组件](docs/web_widget)
     - [x] [分区当日投稿数](docs/web_widget/zone_upload.md)
     - [x] [404 页漫画收集](docs/web_widget/404_manga.md)
+    - [ ] [首页横幅头图](docs/web_widget/header.md)
 - [ ] [APP端组件](docs/APP_widget)
     - [x] [开屏图片 + 恰饭珍贵录像](docs/APP_widget/splash.md)
 - [ ] [个性装扮](docs/garb)
