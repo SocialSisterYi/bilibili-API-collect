@@ -129,4 +129,5 @@ curl -G "https://api.bilibili.com/x/web-show/page/header" \
 
 - 接口提供的静态图片 http://i0.hdslb.com/bfs/archive/e5b7fca0c001cbe0b77a2956e4c861d9f19c4575.png
 
-- 手动导入合成的图片 http://i0.hdslb.com/bfs/new_dyn/510715042e8847b7fd98d8253ca1f61a616368979.png
+- 手动导入合成的图片 https://archive.biliimg.com/bfs/archive/dc96f5d4e87a1985fc6085305d737f21f006f6a8.png 
+([备链](http://i0.hdslb.com/bfs/new_dyn/510715042e8847b7fd98d8253ca1f61a616368979.png))
