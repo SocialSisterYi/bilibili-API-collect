@@ -72,7 +72,7 @@ curl -G "https://customerservice.bilibili.com/x/custom/session_svr/v1/heart_beat
 
 |字段|类型|内容|备注|
 |-|-|-|-|
-|code|num|返回值|0: 成功<br />1000011: 仅支持上传300M内的文件<br />|
+|code|num|返回值|0: 成功<br />1000011: 仅支持上传300M内的文件<br />1200201: 获取用户信息失败|
 |message|str|错误信息|成功时为 `ok`|
 |ttl|num|1||
 |data|obj|上传结果||
