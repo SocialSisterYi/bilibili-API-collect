@@ -125,11 +125,11 @@ curl 'https://api.bilibili.com/x/v2/history/report' \
 | dt                      | num  | 2                                  | 非必要       |                                                             |
 | outer                   | num  | 0                                  | 非必要       |                                                             |
 | spmid                   | str  | 333.788.0.0                        | 非必要       | 作用尚不明确                                                |
-| from_spmid              | str  | 播放来源?                          | 非必要       | 也可为空, 如: 444.41.list.card_archive.click                |
+| from_spmid              | str  | 播放来源?                          | 非必要       | 也可为空, 如: `444.41.list.card_archive.click` `333.999.0.0` |
 | session                 | str  | 会话信息?                          | 非必要       | 一串无分隔小写 UUID                            |
 | extra                   | obj  | 额外信息, 如播放器版本             | 非必要       | 如: `{"player_version":"4.8.36"}`                           |
 | play_type               | num  | 播放动作                           | 非必要       | 0：播放中<br />1：开始播放<br />2：暂停<br />3：继续播放<br />4: 结束播放 |
-| csrf                    | str  | CSRF Token（即 Cookie 中 bili_jct) | 非必要       |                                                             |
+| csrf                    | str  | CSRF Token (即 Cookie 中 bili_jct) | 非必要       |                                                             |
 
 **json回复：**
 
@@ -162,6 +162,77 @@ curl 'https://api.bilibili.com/x/click-interface/web/heartbeat' \
 
 <details>
 <summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1
+}
+```
+
+</details>
+
+## 开始观看视频 (web端)
+
+> https://api.bilibili.com/x/click-interface/click/web/h5
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| w_aid | num  | 稿件 aid | 不必要   |      |
+| w_part | num  | 视频分 P 编号 | 不必要   |      |
+| w_ftime | num  | 点击时间戳? | 不必要   | UNIX 秒级时间戳 |
+| w_stime | num  | 开始播放时间戳? | 不必要   | UNIX 秒级时间戳 |
+| w_type | num  | 视频类型 | 不必要   | 见[上报视频播放心跳（web端）](#上报视频播放心跳web端) |
+| web_location | num  | 网页位置? | 不必要   | 1315873 |
+| w_rid | num  | WBI 签名 | 不必要   | 参见[WBI 签名](docs/misc/sign/wbi.md) |
+| wts | num  | UNIX 秒级时间戳 | 不必要   | 参见[WBI 签名](docs/misc/sign/wbi.md) |
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| mid | num  | 当前用户 mid | 不必要   |      |
+| aid | num  | 稿件 aid | 必要   |      |
+| cid | num  | 视频 cid | 不必要   |      |
+| part | num  | 视频分 P 编号 | 不必要   |      |
+| lv | num | 当前用户等级 | 不必要 |   |
+| ftime | num | 同 URL 参数中带有 `w_` 前缀的同名参数 | 不必要 | |
+| stime | num | 同 URL 参数中带有 `w_` 前缀的同名参数 | 不必要 | |
+| type | num | 视频类型 | 不必要   | 见[上报视频播放心跳（web端）](#上报视频播放心跳web端) |
+| sub_type | num | 视频子类型 | 不必要   | 见[上报视频播放心跳（web端）](#上报视频播放心跳web端) |
+| referer_url | str | 与请求头 Referer 字段相同 | 不必要   |      |
+| outer | num | 0 | 不必要   |      |
+| spmid | str | 333.788.0.0 | 不必要   | 作用尚不明确 |
+| from_spmid | str | 播放来源? | 不必要   | 见[上报视频播放心跳（web端）](#上报视频播放心跳web端) |
+| session | str | 会话信息? | 不必要   | 一串无分隔小写 UUID |
+| csrf | str | CSRF Token (即 Cookie 中 bili_jct) | 不必要   |      |
+
+**JSON回复:**
+
+根对象:
+
+|字段|类型|内容|备注|
+|-|-|-|-|
+|code|num|返回值|0：成功<br />-400：请求错误|
+|message|str|错误信息|默认为 `0`|
+|ttl|num|1||
+
+**示例:**
+
+```shell
+curl 'https://api.bilibili.com/x/click-interface/click/web/h5' \
+--data-urlencode 'aid=2' \
+```
+
+<details>
+<summary>查看响应示例:</summary>
 
 ```json
 {
