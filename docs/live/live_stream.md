@@ -3,16 +3,6 @@
 ## 根据真实直播间号获取直播视频流链接
 
 > https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo
-> ?room_id=23016450
-> &no_playurl=0
-> &mask=1
-> &qn=0
-> &platform=web
-> &protocol=0,1
-> &format=0,1,2
-> &codec=0,1,2
-> &dolby=5
-> &panorama=1
 
 _请求方式：GET_
 
@@ -30,6 +20,8 @@ _请求方式：GET_
 | dolby      | num   | 杜比     | -      | 参考：`5`  |
 | panorama   | num   | 环绕音   | -      | 参考：`1`  |
 
+> 注意：请将Referer设置为相关链接，如`https://live.bilibili.com/`
+
 **json回复：**
 
 > 由于返回字段数过多，故在响应示例中标记
@@ -39,6 +31,22 @@ _请求方式：GET_
 <details>
 <summary>查看响应示例</summary>
 
+请求：
+```bash
+curl -G 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo' \
+  --data-urlencode 'room_id=123456789' \  # 请自行替换对应房间号
+  --data-urlencode 'qn=0' \
+  --data-urlencode 'platform=web'\
+  --data-urlencode 'protocol=0,1' \
+  --data-urlencode 'format=0,1,2' \
+  --data-urlencode 'codec=0,1,2' \
+  --data-urlencode 'dolby=5' \
+  --data-urlencode 'panorama=1' \
+  --header 'Referer: https://live.bilibili.com' \
+  --header 'accept: application/json'
+```
+
+响应：
 ```json
 {
   "code": 0,        // 标记是否成功
