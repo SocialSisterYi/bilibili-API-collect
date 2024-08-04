@@ -170,7 +170,17 @@ function get_stream_url(data) {
   return result
 }
 ```
-最终从响应的链接随意选择一个即可，按照一般m3u8处理即可，至于编码格式之类问题，相关的下载器应该都能处理，或者自己根据需要在json回应中挑选
+
+示例代码（python）:
+```python
+def get_stream_url(data):
+    for stream in data['data']['playurl_info']['playurl']['stream']:
+        for format in stream['format']:
+            for codec in format['codec']:
+                for url_info in codec['url_info']:
+                    yield ''.join([url_info['host'], codec['base_url'], url_info['extra']])
+```
+最终从响应的链接随意选择一个即可，按照一般视频流处理即可（目前发现有m3u8和flv两种格式），至于编码格式之类问题，相关的下载器应该都能处理，或者自己根据需要在json回应中挑选
 
 另外，有注意到部分链接可能包含客户端ip地址，在这方面（现在或者将来）可能有检测
 
