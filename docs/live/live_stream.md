@@ -47,7 +47,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo' 
 ```
 
 响应：
-```json
+```jsonc
 {
   "code": 0,        // 标记是否成功
   "message": "0",   // 错误信息（如果有），人类可读
