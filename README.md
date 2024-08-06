@@ -1,41 +1,41 @@
 <p align="center">
     <img src="./assets/img/logo.png" width="250" height="200">
 </p>
-<h1 align="center">哔哩哔哩-API收集整理</h1>
+<h1 align="center">哔哩哔哩 - API 收集整理</h1>
 <p align="center" class="shields">
-    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues" style="text-decoration:none">
-        <img src="https://img.shields.io/github/issues/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub issues"/>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues" style="text-decoration: none;">
+        <img src="https://img.shields.io/github/issues/SocialSisterYi/bilibili-API-collect.svg?style=flat&color=red" alt="GitHub issues"/>
     </a>
-    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/stargazers" style="text-decoration:none" >
-        <img src="https://img.shields.io/github/stars/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub stars"/>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/stargazers" style="text-decoration: none;">
+        <img src="https://img.shields.io/github/stars/SocialSisterYi/bilibili-API-collect.svg?style=flat&color=yellow" alt="GitHub stars"/>
     </a>
-    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/network" style="text-decoration:none" >
-        <img src="https://img.shields.io/github/forks/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub forks"/>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/network" style="text-decoration: none;">
+        <img src="https://img.shields.io/github/forks/SocialSisterYi/bilibili-API-collect.svg?style=flat&color=blue" alt="GitHub forks"/>
     </a>
-    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/actions">
-        <img src="https://img.shields.io/github/actions/workflow/status/SocialSisterYi/bilibili-API-collect/vuepress-deploy.yml">
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/actions" style="text-decoration: none;">
+        <img src="https://img.shields.io/github/actions/workflow/status/SocialSisterYi/bilibili-API-collect/vuepress-deploy.yml?style=flat" alt="Build status"/>
     </a>
-    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration:none" >
-        <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="GitHub license"/>
+    <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=flat" alt="GitHub license"/>
     </a>
 </p>
 <p align="center" class="trendshift">
   <a href="https://trendshift.io/repositories/3218" target="_blank">
-    <img src="https://trendshift.io/api/badge/repositories/3218" alt="SocialSisterYi%2Fbilibili-API-collect | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
+    <img src="https://trendshift.io/api/badge/repositories/3218" alt="Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/>
   </a>
 </p>
-<h3 align="center">野生API文档</h3>
+<h3 align="center">野生 API 文档</h3>
 <h3 align="center">不断更新中....</h3>
 
-本项目旨在对 B站 WEB、APP、TV 等客户端中，散落在世界各地的野生 API 进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、代码逆向分析、拆包及反编译法、网络抓包法等研究办法
+本项目旨在对 B 站 WEB、APP、TV 等客户端中，散落在世界各地的野生 API 进行收集整理，研究使用方法并对其进行说明，运用了黑箱法、控制变量法、代码逆向分析、拆包及反编译法、网络抓包法等研究办法
 
 本文档探讨的对象是主站业务接口，[官方开放平台](https://openhome.bilibili.com/doc) 和 [直播开放平台](https://open-live.bilibili.com/document/) 均不属于本项目范畴，请移步
 
 B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接口为 WebSocket；REST API 接口请求数据大多为 url query 表单或 JSON，返回数据大多为 JSON 或 Protobuf，强制使用 https 协议
 
-📖阅读地址：[GithubPages](https://socialsisteryi.github.io/bilibili-API-collect/)
+📖阅读地址：[Github Pages](https://socialsisteryi.github.io/bilibili-API-collect/)
 
-小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/) ([Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk))
+小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/) ([Youtube 备链](https://www.youtube.com/watch?v=nfF91Z6fqGk))
 
 ::: warning ⚠️声明
 
@@ -64,15 +64,14 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 计划整理分类 & 目录：(文档已完结请选中 checkbox)
 
 - [ ] [接口签名与验证](docs/misc/sign)
-    - [x] [APP API 签名](docs/misc/sign/APP.md)（`appkey`与`sign`）
+    - [x] [APP API 签名](docs/misc/sign/APP.md)（`appkey` 与 `sign`）
     - [x] [已知的 APPKey](docs/misc/sign/APPKey.md)
     - [x] [Wbi 签名](docs/misc/sign/wbi.md)（`wts`与`w_rid`）
     - [ ] [bili_ticket](docs/misc/sign/bili_ticket.md)
-
 - [x] [公共错误码](docs/misc/errcode.md)
 - [x] [图片格式化](docs/misc/picture.md)
 - [x] [bvid 说明](docs/misc/bvid_desc.md)
-- [ ] [设备唯一标识BUVID](docs/misc/device_identity.md)
+- [ ] [设备唯一标识 BUVID](docs/misc/device_identity.md)
 - [ ] [获取 buvid3 / buvid4 / b_nut](docs/misc/buvid3_4.md)
 - [ ] [gRPC API 接口定义](grpc_api)
 - [ ] [登录](docs/login)
@@ -89,6 +88,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [消息中心](docs/message)
     - [ ] [通知类消息](docs/message/msg.md)
     - [ ] [私信](docs/message/private_msg.md)
+        - [ ] [私信消息类型、内容说明](docs/message/private_msg_content.md)
     - [ ] 设置
 - [ ] [用户](docs/user)
     - [x] [基本信息](docs/user/info.md)
@@ -112,19 +112,19 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [点赞 & 投币 & 收藏 & 分享](docs/video/action.md)
     - [ ] [TAG](docs/video/tags.md)
     - [x] [视频推荐](docs/video/recommend.md)
-    - [x] [播放&下载地址 (视频流)](docs/video/videostream_url.md)
+    - [x] [播放 & 下载地址 (视频流)](docs/video/videostream_url.md)
     - [ ] [互动视频](docs/video/interact_video.md)
     - [x] [高能进度条](docs/video/pbp.md)
     - [ ] [信息上报 (心跳及记录历史)](docs/video/report.md)
     - [x] [视频属性数据](docs/video/attribute_data.md)
     - [x] [视频在线人数](docs/video/online.md)
-    - [x] [视频AI摘要](docs/video/summary.md)
+    - [x] [视频 AI 摘要](docs/video/summary.md)
     - [ ] [稿件投诉](docs/video/appeal.md)
     - [ ] [视频状态数](docs/video/status_number.md)
     - [ ] [视频合集](docs/video/collection.md)
 - [ ] [剧集 (番剧、影视)](docs/bangumi)
     - [ ] [基本信息](docs/bangumi/info.md)
-    - [ ] [播放&下载地址（视频流）](docs/bangumi/videostream_url.md)
+    - [ ] [播放 & 下载地址（视频流）](docs/bangumi/videostream_url.md)
     - [ ] [时间轴](docs/bangumi/timeline.md)
     - [ ] [追番相关](docs/bangumi/follow.md)
     - [ ] 状态数
@@ -191,7 +191,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [充电](docs/electric)
   - [ ] [包月充电](docs/electric/monthly.md)
   - [ ] 自定义充电
-    - [x] [B币方式充电](docs/electric/Bcoin.md)
+    - [x] [B 币方式充电](docs/electric/Bcoin.md)
     - [x] [微信 & 支付宝方式充电](docs/electric/WeChat&Alipay.md)
     - [x] [充电留言](docs/electric/charge_msg.md)
     - [x] [充电列表](docs/electric/charge_list.md)
@@ -249,9 +249,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [青少年模式](docs/teenager/teenager_mode.md)
     - [ ] 亲子平台
     - [ ] 课堂模式
-- [ ] B币钱包
+- [ ] B 币钱包
     - [ ] 基本信息
-    - [ ] B币充值
+    - [ ] B 币充值
     - [ ] 贝壳相关
 - [ ] [哔哩哔哩漫画](docs/manga)
     - [ ] 用户信息
@@ -262,17 +262,17 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [漫画赛季](docs/manga/Season.md)
     - [x] [漫读券/已购相关](docs/manga/User.md)
     - [x] [下载](docs/manga/Download.md)
-    - [x] [data.index解析](docs/manga/index_file.md)
+    - [x] [data.index 解析](docs/manga/index_file.md)
     - [ ] [获取轻享卡信息](docs/manga/light_card.md)
 - [ ] 哔哩哔哩游戏
 - [ ] [终端网络查询](docs/clientinfo)
-    - [x] [基于 ip 的地理位置查询](docs/clientinfo/ip.md)
+    - [x] [基于 IP 的地理位置查询](docs/clientinfo/ip.md)
 - [ ] [其他](docs/misc)
     - [x] [获取当前时间戳](docs/misc/time_stamp.md)
-- [ ] [web端组件](docs/web_widget)
+- [ ] [web 端组件](docs/web_widget)
     - [x] [分区当日投稿数](docs/web_widget/zone_upload.md)
     - [x] [404 页漫画收集](docs/web_widget/404_manga.md)
-- [ ] [APP端组件](docs/APP_widget)
+- [ ] [APP 端组件](docs/APP_widget)
     - [x] [开屏图片 + 恰饭珍贵录像](docs/APP_widget/splash.md)
 - [ ] [个性装扮](docs/garb)
     - [x] [APP 主题](docs/garb/skin.md)
@@ -286,13 +286,13 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 ## 📖相关协议基础
 
-http 协议：[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
+HTTP 协议：[传送门](https://www.cnblogs.com/an-wen/p/11180076.html)
 
-json 序列格式：[传送门](https://www.sojson.com/json/json_index.html)
+JSON 序列格式：[传送门](https://www.sojson.com/json/json_index.html)
 
-xml 序列格式：[传送门](https://www.w3school.com.cn/xml/xml_intro.asp)
+XML 序列格式：[传送门](https://www.w3school.com.cn/xml/xml_intro.asp)
 
-protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
+ProtoBuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a)
 
 ## 💦交流
 
@@ -323,11 +323,11 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 - [fython/BilibiliAPIDocs](https://github.com/fython/BilibiliAPIDocs)
 - [czp3009/bilibili-api](https://github.com/czp3009/bilibili-api)
 - [Vespa314/bilibili-api](https://github.com/Vespa314/bilibili-api)
-- [wnstar/bili-utils](https://github.com/wnstar/bili-utils)
-- [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API)
-- [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider)
-- [simon300000/bili-api](https://github.com/simon300000/bili-api)
-- [iyear/biligo](https://github.com/iyear/biligo) Bilibili API SDK in Golang
+- [Pengfei00/bili-utils](https://github.com/Pengfei00/bili-utils): bilibili 工具箱
+- [lovelyyoshino/Bilibili-Live-API](https://github.com/lovelyyoshino/Bilibili-Live-API): Bilibili 直播/番剧 API 文档
+- [flaribbit/bilibili-manga-spider](https://github.com/flaribbit/bilibili-manga-spider): Bilibili 漫画爬虫
+- [simon300000/bili-api](https://github.com/simon300000/bili-api): Bilibili Node.js API
+- [iyear/biligo](https://github.com/iyear/biligo): Bilibili API SDK in Golang
 - [bilibili-openplatform/demo](https://github.com/bilibili-openplatform/demo): 哔哩哔哩开放平台示例代码库
 - [ddiu8081/blive-message-listener](https://github.com/ddiu8081/blive-message-listener): Bilibili-live danmu listener with type. Bilibili 直播间弹幕监听库，支持类型输出。
 - [Nemo2011/bilibili-api](https://github.com/Nemo2011/bilibili-api): 哔哩哔哩常用API调用。支持视频、番剧、用户、频道、音频等功能。工具齐全。
@@ -336,25 +336,23 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 ### 成品
 
 - [NullPointerException/AnimePipe](https://codeberg.org/NullPointerException/AnimePipe): 功能完善的Android流媒体综合客户端，支持Bilibili, Youtube, NicoNico
-- [3Shain/BiliChat](https://github.com/3Shain/BiliChat) : 基于h5的B站直播弹幕姬
-- [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal):本地弹幕播放器
-- [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku):bilibili 生放送（直播）录制
-- [otakustay/danmaku-to-ass](https://github.com/otakustay/danmaku-to-ass):A站B站弹幕转字幕文件
-- [bilibili-helper/bilibili-helper-o](https://github.com/bilibili-helper/bilibili-helper-o):哔哩哔哩 (bilibili.com) 辅助工具，可以下载视频，查询弹幕发送人以及一些十分实用的直播区功能。
-- [apachecn/BiliDriveEx](https://github.com/apachecn/BiliDriveEx):基于B站相簿上传的文件分块索引存储器
-- [apachecn/CDNDrive](https://github.com/apachecn/CDNDrive):基于B站相簿上传的文件分块索引存储器
-- [Hsury/BiliDrive](https://github.com/Hsury/BiliDrive):基于B站相簿上传的文件分块索引存储器
-- [Tsuk1ko/bilibili-live-chat](https://github.com/Tsuk1ko/bilibili-live-chat):无后端的仿 YouTube Live Chat 风格的简易 Bilibili 弹幕姬
-- [ironmanic/crawler_target_users_good](https://github.com/ironmanic/crawler_target_users_good):搜索bilibili特定视频，为评论 点赞，关注，私信，一体化服务
-- [dd-center/DDatElectron](https://github.com/dd-center/DDatElectron):DD@Home 分布式项目, 桌面客户端
-- [dd-center/vtbs.moe](https://github.com/dd-center/vtbs.moe):B站VTB数据中心
-- [catlair/BiliOutils](https://github.com/catlair/BiliOutils):利用Docker，青龙面板，以及各种云函数等实现 B 站每日自动投币，会员大积分，漫画阅读和抢兑，领取大会员福利，大会员月底给自己充电等。每天轻松获取65经验值。
-- [the1812/Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved):强大的哔哩哔哩增强脚本: 下载视频, 音乐, 封面, 弹幕 / 简化直播间, 评论区, 首页 / 自定义顶栏, 删除广告, 夜间模式 / 触屏设备支持
+- [3Shain/Comen](https://github.com/3Shain/Comen): 基于h5的B站直播弹幕姬
+- [AncientLysine/BiliLocal](https://github.com/AncientLysine/BiliLocal): 本地弹幕播放器
+- [zyzsdy/biliroku](https://github.com/zyzsdy/biliroku): bilibili 生放送（直播）录制
+- [otakustay/danmaku-to-ass](https://github.com/otakustay/danmaku-to-ass): A站B站弹幕转字幕文件
+- [bilibili-helper/bilibili-helper-o](https://github.com/bilibili-helper/bilibili-helper-o): 哔哩哔哩 (bilibili.com) 辅助工具，可以下载视频，查询弹幕发送人以及一些十分实用的直播区功能。
+- [apachecn/CDNDrive](https://github.com/apachecn/CDNDrive): 基于B站相簿上传的文件分块索引存储器
+- [Hsury/BiliDrive](https://github.com/Hsury/BiliDrive): 基于B站相簿上传的文件分块索引存储器
+- [Tsuk1ko/bilibili-live-chat](https://github.com/Tsuk1ko/bilibili-live-chat): 无后端的仿 YouTube Live Chat 风格的简易 Bilibili 弹幕姬
+- [ironmanic/crawler_target_users_good](https://github.com/ironmanic/crawler_target_users_good): 搜索bilibili特定视频，为评论 点赞，关注，私信，一体化服务
+- [dd-center/DDatElectron](https://github.com/dd-center/DDatElectron): DD@Home 分布式项目, 桌面客户端
+- [dd-center/vtbs.moe](https://github.com/dd-center/vtbs.moe): B站VTB数据中心
+- [the1812/Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved): 强大的哔哩哔哩增强脚本: 下载视频、音乐、封面、弹幕 / 简化直播间、评论区、首页 / 自定义顶栏、删除广告、夜间模式 / 触屏设备支持
 - [xlzy520/bili-short-url](https://github.com/xlzy520/bili-short-url): 哔哩哔哩短链生成器
 - [zjkwdy/bili_app_splash](https://github.com/zjkwdy/bili_app_splash): B站壁纸娘和开屏图自动下载，每天使用Actions自动同步
 - [Jannchie/BiliOB](https://github.com/Jannchie/BiliOB): BiliOB观测者是一个观测B站UP主及视频数据变化，并予以分析的Web应用程序
 - [biliob233/biliob233.github.io](https://github.com/biliob233/biliob233.github.io): ~~无可奉告~~
-- [biliup/biliup](https://github.com/biliup/biliup): 全自动录播、投稿工具，也支持twitch、ytb频道搬运。提供分p上传b站接口，腾讯云内网免流+大幅提速
+- [biliup/biliup](https://github.com/biliup/biliup): 全自动录播、投稿工具，支持录制直播弹幕，也支持Youtube、twitch直播回放列表自动搬运到B站
 - [ddiu8081/bilicli](https://github.com/ddiu8081/bilicli): Bilibili-live danmu dashboard in your terminal.
 - [MotooriKashin/Bilibili-Old](https://github.com/MotooriKashin/Bilibili-Old): 恢复旧版Bilibili页面，为了那些念旧的人。
 - [SocialSisterYi/bcut-asr](https://github.com/SocialSisterYi/bcut-asr): 使用必剪API的语音字幕识别
@@ -364,14 +362,10 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 
 ### 其他
 
-- [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator):geetest调试器
-
-- [uw-labs/bloomrpc](https://github.com/uw-labs/bloomrpc): GUI Client for GRPC Services
-
+- [kuresaru/geetest-validator](https://github.com/kuresaru/geetest-validator): GeeTest 调试器
+- [bloomrpc/bloomrpc](https://github.com/bloomrpc/bloomrpc): GUI Client for GRPC Services
 - [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#)
-
-- [quicktype](https://github.com/quicktype/quicktype) quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages.一键生成多种语言的json反序列化所需类,以便于快速反序列化,
-  有网页版
+- [glideapps/quicktype](https://github.com/glideapps/quicktype): quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages. 一键生成多种语言的JSON反序列化所需类，以便于快速反序列化，有网页版
 
 <style scoped>
   .shields a {
