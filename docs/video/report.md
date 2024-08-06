@@ -72,15 +72,13 @@ curl 'https://api.bilibili.com/x/v2/history/report' \
 
 ## 上报视频播放心跳（web端）
 
-> https://api.bilibili.com/x/click-interface/web/heartbeat 
+> https://api.bilibili.com/x/click-interface/web/heartbeat
 
 *请求方式：POST*
 
 认证方式：仅可Cookie（SESSDATA）
 
 默认间隔15秒一次, 亦可记录播放历史
-
-尽管以下除正文 `aid` 以外的参数均为非必要, 但缺少可能会导致播放不被记录, 同一 IP/登陆用户 每五分钟最多记录一次播放
 
 该接口较为复杂, 且参数计算方法均为推测, 实际过程不明, 可能含有错误, 若要正式使用可以把已播放的持续时间全都设为相同值
 
@@ -180,6 +178,8 @@ curl 'https://api.bilibili.com/x/click-interface/web/heartbeat' \
 *请求方式: POST*
 
 认证方式: Cookie (SESSDATA)
+
+该接口亦被用于计算播放量, 播放量更新不是实时的
 
 **URL参数:**
 
