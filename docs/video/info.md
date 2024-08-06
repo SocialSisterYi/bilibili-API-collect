@@ -4,6 +4,7 @@
 
 ## 获取视频详细信息(web端)
 
+> https://api.bilibili.com/x/web-interface/wbi/view  
 > https://api.bilibili.com/x/web-interface/view
 
 *请求方式：GET*

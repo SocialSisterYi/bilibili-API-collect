@@ -1,10 +1,5 @@
 # 视频推荐
 
-- [获取单视频推荐列表（web端）](#获取单视频推荐列表（web端）)  
-- [获取首页视频推荐列表（web端）](#获取首页视频推荐列表（web端）)
-- [获取短视频模式视频列表](#获取短视频模式视频列表)
----
-
 ## 获取单视频推荐列表（web端）
 
 > https://api.bilibili.com/x/web-interface/archive/related
@@ -297,67 +292,116 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 
 ## 获取首页视频推荐列表（web端）
 
-> https://api.bilibili.com/x/web-interface/index/top/rcmd
+> https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
 
-最多获取14条推荐视频
+最多获取30条推荐视频,直播及推荐边栏
 
 **url参数：**  
 
-| 参数名          | 类型  | 内容                        | 必要性 | 备注                           |
-|--------------|-----|---------------------------|-----|------------------------------|
-| fresh_type   | num | 相关性                      | 非必要 | 默认为3 <br /> 值越大推荐内容越相关       | 
-| version      | num | web端新旧版本:0为旧版本1为新版本       | 非必要 | 默认为0 <br /> 1,0分别为新旧web端     |
-| ps           | num | pagesize 单页返回的记录条数默认为10或8 | 非必要 | 默认为10 <br /> 当version为1时默认为8 |
-| fresh_idx    | num | 翻页相关                      | 非必要 | 默认为1 <br /> 与翻页相关            |
-| fresh_idx_1h | num | 翻页相关                      | 非必要 | 默认为1 <br /> 与翻页相关            |
+| 参数名        | 类型 | 内容                   | 必要性 | 备注                                                  |
+|---------------|------|------------------------|--------|-------------------------------------------------------|
+| fresh_type    | num  | 相关性                 | 非必要 | 默认为 4 <br /> 值越大推荐内容越相关                  |
+| ps            | num  | 单页返回的记录条数     | 非必要 | 默认为 12, 留空即最大值为 30                          |
+| fresh_idx     | num  | 当前翻页号             | 非必要 | 以 1 开始                                             |
+| fresh_idx_1h  | num  | 当前翻页号(一小时前?)  | 非必要 | 以 1 开始, 默认与 fresh_idx 内容相同                  |
+| brush         | num  | 刷子?                  | 非必要 | 以 1 开始, 默认与 fresh_idx 内容相同                  |
+| fetch_row     | num  | 本次抓取的最后一行行号 | 非必要 | 1 递归加上本次抓取总行数                              |
+| web_location  | num  | 网页位置               | 非必要 | 主页为 1430650                                        |
+| y_num         | num  | 普通列数               | 非必要 | 一行中视频,直播及广告数                               |
+| last_y_num    | num  | 总列数                 | 非必要 | 普通列数 + 边栏列数                                   |
+| feed_version  | str  | V8                     | 非必要 | 作用尚不明确                                          |
+| homepage_ver  | num  | 1                      | 非必要 | 首页版本                                              |
+| screen        | str  | 浏览器视口大小         | 非必要 | 水平在前垂直在后以减号分割                            |
+| seo_info      | str  | 空                     | 非必要 | 作用尚不明确                                          |
+| last_showlist | str  | 上次抓取的视频av号列表 | 非必要 | av与数字间用下划线分隔, 若视频UP主已关注则中间再插入n |
+| uniq_id       | str  | ???                    | 非必要 | 作用尚不明确                                          |
+| w_rid         | str  | WBI 签名               | 非必要 | 见[WBI 签名](../misc/sign/wbi.md)                     |
+| wts           | num  | UNIX 时间戳            | 非必要 | 见[WBI 签名](../misc/sign/wbi.md)                     |
 
 **json回复：**
 
 根对象：
 
-| 字段          | 类型    | 内容   | 备注                   |
-|-------------|-------|------|----------------------|
-| code        | num   | 返回值  | 0：成功 <br />-400：请求错误 |
-| message     | str   | 错误信息 | 默认为0                 |
-| ttl         | num   | 1    |                      |
-| data        | array | 推荐列表 |                      |
-| userfeature | str   | 用户功能 |                      |
-| abtest      | obj   | 用户分组 |                      |
+| 字段        | 类型 | 内容     | 备注                         |
+|-------------|------|----------|------------------------------|
+| code        | num  | 返回值   | 0：成功 <br />-400：请求错误 |
+| message     | str  | 错误信息 | 默认为0                      |
+| ttl         | num  | 1        |                              |
+| data        | obj  |          |                              |
 
-`data`数组：
+`data`对象：
 
-| 项   | 类型 | 内容        | 备注 |
-|-----| ---- |-----------| ---- |
-| 0   | obj  | 推荐视频1     |      |
-| n   | obj  | 推荐视频(n+1) |      |
-| ……  | obj  | ……        | ……   |
-| 13  | obj  | 推荐视频13    |      |
+| 字段                     | 类型  | 内容      | 备注                           |
+|--------------------------|-------|-----------|--------------------------------|
+| business_card            | null  |           |                                |
+| floor_info               | null  |           |                                |
+| item                     | array | 推荐列表  |                                |
+| mid                      | num   | 用户mid   | 未登录为0                      |
+| preload_expose_pct       | num   | 0.5       | 用于预加载?                    |
+| preload_floor_expose_pct | num   | 0.5       | 用于预加载?                    |
+| side_bar_column          | array | 边栏列表? | 可参考字段 item 及对应功能文档 |
+| user_feature             | null  |           |                                |
 
-`data`数组中的对象：
+`data`对象中`item`数组中的对象:
 
-基本同「[获取视频详细信息（web端）](info.md#获取视频详细信息（web端）)」中的data对象
+| 字段                     | 类型 | 内容               | 备注                                      |
+|--------------------------|------|--------------------|-------------------------------------------|
+| av_feature               | null |                    |                                           |
+| business_info            | obj  | 商业推广信息       | 无为null, 此处无参考意义                  |
+| bvid                     | str  | 视频bvid           |                                           |
+| cid                      | num  | 稿件cid            |                                           |
+| dislike_switch           | num  | 1                  | 显示不感兴趣开关?                         |
+| dislike_switch_pc        | num  | 0                  | 显示不感兴趣开关(PC)?                     |
+| duraion                  | num  | 视频时长           |                                           |
+| enable_vt                | num  | 0                  | 作用尚不明确                              |
+| goto                     | num  | 目标类型           | av: 视频<br />ogv: 边栏<br />live: 直播   |
+| duraion                  | num  | 视频时长           |                                           |
+| id                       | num  | 视频aid / 直播间id |                                           |
+| is_followed              | num  | 已关注             | 0: 未关注<br />1: 已关注                  |
+| is_stock                 | num  | 0                  | 作用尚不明确                              |
+| ogv_info                 | null |                    |                                           |
+| owner                    | obj  | UP主               |                                           |
+| pic                      | str  | 封面               |                                           |
+| pic_4_3                  | str  | 封面(4:3)          |                                           |
+| pos                      | num  | 0                  | 位置?                                     |
+| pubdate                  | num  | 发布时间           |                                           |
+| rcmd_reason              | obj  | 推荐理由           | 直播等为null                              |
+| room_info                | obj  | 直播间信息         | 普通视频等为null, 参见[直播](../live)     |
+| show_info                | num  | 展示信息           | 1: 普通视频<br />0: 直播                  |
+| stat                     | obj  | 视频状态信息       | 直播等为null, 参见[视频基本信息](info.md) |
+| title                    | str  | 标题               |                                           |
+| track_id                 | str  | 跟踪标识?          |                                           |
+| uri                      | str  | 目标页 URI         |                                           |
+| vt_display               | str  | 空                 | 作用尚不明确                              |
 
-`abtest`对象:
+`item`数组中的对象中的`owner`对象:
 
-| 字段    | 类型  | 内容   | 备注  |
-|-------|-----|------|-----|
-| group | str | 用户分组 |     |
+| 字段 | 类型 | 内容    | 备注 |
+| face | str  | 头像URL |      |
+| mid  | num  | UP主mid |      |
+| name | str  | UP昵称  |      |
+
+`item`数组中的对象中的`rcmd_reason`对象:
+
+| 字段        | 类型 | 内容     | 备注                                  |
+| reason_type | num  | 原因类型 | 0: 无<br />1: 已关注<br />3: 高点赞量 |
+| content     | str  | 原因描述 | 当 reason_type 为 3 时存在            |
 
 **示例：**
 
 获取新版web端首页推荐视频列表
 
 ```shell
-curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
---data-urlencode 'fresh_type=3' \
---data-urlencode 'version=1' \
---data-urlencode 'ps=10' \
---data-urlencode 'fresh_idx=1' \
---data-urlencode 'fresh_idx_1h=1'
+curl -G 'https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd' \
+--data-urlencode 'fresh_type=4' \
+--data-urlencode 'ps=12' \
+--data-urlencode 'fresh_idx=5' \
+--data-urlencode 'fresh_idx_1h=5' \
+--data-urlencode 'fetch_row=16'
 ```
 
 <details>
@@ -365,47 +409,733 @@ curl -G 'https://api.bilibili.com/x/web-interface/index/top/rcmd' \
 
 ```json
 {
-  "code": 0,
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "item": [
-      {
-        "id": 511495739,
-        "bvid": "BV1Cu411z7mG",
-        "cid": 717978243,
-        "goto": "av",
-        "uri": "http://www.bilibili.com/video/BV1Cu411z7mG",
-        "pic": "http://i2.hdslb.com/bfs/archive/e05f487bc9f26baa568f10fe69a0e1ea5e0fbc23.jpg",
-        "title": "请大家助力我的梦想！为凑够10万赞，在街头唱《Be Crazy For Me》！",
-        "duration": 199,
-        "pubdate": 1652605500,
-        "owner": {
-          "mid": 1723817,
-          "name": "樱萍Apple",
-          "face": "http://i2.hdslb.com/bfs/face/6e0fa1bdbbf7e0dd929d968df3b57ca99d187e25.jpg"
-        },
-        "stat": {
-          "view": 263169,
-          "like": 39871,
-          "danmaku": 543
-        },
-        "avfeature": "{\"ctr\":0.192554,\"wdur\":2.323159,\"duration\":213.318313,\"wdlks\":0.685926,\"multi_score_0\":0.452564,\"multi_score_1\":0.112414,\"multi_score_2\":0.03976,\"rankscore\":13.906487,\"av_play\":258890,\"av_like\":39224,\"av_coin\":7165,\"reason_type\":3,\"av_feature\":\"|real_matchtype -1  |s_e online_av2av_v2  |source_len 1  |m_k_w 0  \"}",
-        "isfollowed": 0,
-        "rcmdreason": {
-          "content": "3万点赞",
-          "reasontype": 3
-        },
-        "showinfo": 1,
-        "trackid": "web_pegasus_0.shylf-ai-recsys-1355.165525355529.398"
-      }
-      ......
-    ],
-    "userfeature": "{\"enter_rank\":1500,\"is_fallback\":0,\"s_fresh_idx\":41,\"s_fresh_idx_session\":31,\"s_session_idx\":1,\"fresh_idx\":1,\"fresh_idx_1h\":1}",
-    "abtest": {
-      "group": "b"
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "item": [
+            {
+                "id": 1354614895,
+                "bvid": "BV1Dz42117GZ",
+                "cid": 1548835687,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1Dz42117GZ",
+                "pic": "http://i1.hdslb.com/bfs/archive/b47154987b4c0f40a39779c09a9d485176d1238f.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/archive/b47154987b4c0f40a39779c09a9d485176d1238f.jpg",
+                "title": "做数学题总是抄错 | 看错 | 算错 怎么破？决定高考分数的这个非智力因素不容忽视",
+                "duration": 882,
+                "pubdate": 1715946937,
+                "owner": {
+                    "mid": 374484802,
+                    "name": "数学阮禾老师",
+                    "face": "https://i1.hdslb.com/bfs/face/4df57e4b48b04206bce7572831688741580ca0e1.jpg"
+                },
+                "stat": {
+                    "view": 48250,
+                    "like": 2959,
+                    "danmaku": 433,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1255924089,
+                "bvid": "BV1DJ4m1u7Mp",
+                "cid": 1600833978,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1DJ4m1u7Mp",
+                "pic": "http://i0.hdslb.com/bfs/archive/5068d860e8bbc37679ece933aa8e6d8428cfb5c1.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-07-01-1145021255924089_1612_gener.jpg",
+                "title": "人类这种生物，看到按钮就会按下去。",
+                "duration": 326,
+                "pubdate": 1719805500,
+                "owner": {
+                    "mid": 5616993,
+                    "name": "马夫鱼33",
+                    "face": "https://i0.hdslb.com/bfs/face/4c2af23046147e91ce5a4af3375464fdcf1956e6.jpg"
+                },
+                "stat": {
+                    "view": 667067,
+                    "like": 28529,
+                    "danmaku": 483,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "content": "2万点赞",
+                    "reason_type": 3
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1306020278,
+                "bvid": "BV1rM4m117Ry",
+                "cid": 1608959606,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1rM4m117Ry",
+                "pic": "http://i0.hdslb.com/bfs/archive/49f62c70f17d0afe00e5e620dd366c68149c780e.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/archive/49f62c70f17d0afe00e5e620dd366c68149c780e.jpg",
+                "title": "Axios 前后端对接教程｜HTTP",
+                "duration": 352,
+                "pubdate": 1720440325,
+                "owner": {
+                    "mid": 260736087,
+                    "name": "三分钟实验室",
+                    "face": "https://i0.hdslb.com/bfs/face/6172aa089ed0b26ffffb72018422eb4280d4da41.jpg"
+                },
+                "stat": {
+                    "view": 7527,
+                    "like": 365,
+                    "danmaku": 1,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1755972439,
+                "bvid": "BV1g4421D7qn",
+                "cid": 1597039275,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1g4421D7qn",
+                "pic": "http://i2.hdslb.com/bfs/archive/35ee2ffaab4206d17893a3f48cdf512b4f028fdc.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-06-26-21354756381755972439_16_12_5326_crop.jpg",
+                "title": "《我爱发明》里那些抽象发明 歹徒兴奋床！",
+                "duration": 659,
+                "pubdate": 1719408945,
+                "owner": {
+                    "mid": 348989367,
+                    "name": "沫子瞪片",
+                    "face": "https://i0.hdslb.com/bfs/face/a2131d38a2ea73f16ff25e61dbeb40377233f552.jpg"
+                },
+                "stat": {
+                    "view": 1540767,
+                    "like": 65409,
+                    "danmaku": 5383,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1055953358,
+                "bvid": "BV1jH4y1w7A6",
+                "cid": 1598484848,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1jH4y1w7A6",
+                "pic": "http://i1.hdslb.com/bfs/archive/accdb655b4f2bef665e6fdedb4de28de2feda078.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-06-28-12560692491055953358_16_12_2438_crop.jpg",
+                "title": "为什么一个数的5次方个位数是自己！",
+                "duration": 327,
+                "pubdate": 1719550565,
+                "owner": {
+                    "mid": 483522694,
+                    "name": "火星课堂",
+                    "face": "https://i1.hdslb.com/bfs/face/fe751f0d7062c8e8adcef501390d48330fac0514.jpg"
+                },
+                "stat": {
+                    "view": 244673,
+                    "like": 5406,
+                    "danmaku": 210,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": {
+                    "id": 0,
+                    "contract_id": "",
+                    "res_id": 1055953358,
+                    "asg_id": 0,
+                    "pos_num": 0,
+                    "name": "",
+                    "pic": "",
+                    "litpic": "",
+                    "url": "",
+                    "style": 0,
+                    "agency": "",
+                    "label": "",
+                    "intro": "",
+                    "creative_type": 0,
+                    "request_id": "1721098961752q172a25a216a162q1363",
+                    "src_id": 5637,
+                    "area": 0,
+                    "is_ad_loc": true,
+                    "ad_cb": "",
+                    "title": "",
+                    "server_type": 0,
+                    "cm_mark": 0,
+                    "stime": 0,
+                    "mid": "",
+                    "activity_type": 0,
+                    "epid": 0,
+                    "sub_title": "",
+                    "ad_desc": "",
+                    "adver_name": "",
+                    "null_frame": false,
+                    "pic_main_color": "",
+                    "card_type": 0,
+                    "business_mark": null,
+                    "inline": {
+                        "inline_use_same": 0,
+                        "inline_type": 0,
+                        "inline_url": "",
+                        "inline_barrage_switch": 0
+                    },
+                    "operater": "",
+                    "jump_target": 0,
+                    "show_urls": null,
+                    "click_urls": null
+                },
+                "is_stock": 1,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1763571437,
+                "bvid": "",
+                "cid": 0,
+                "goto": "live",
+                "uri": "https://live.bilibili.com/1763571437",
+                "pic": "http://i0.hdslb.com/bfs/live/new_room_cover/f1787ef2ce4a2a031fb4a6a63b62d15493268d71.jpg",
+                "pic_4_3": "",
+                "title": "【新V】今天不要再把自己笨哭了",
+                "duration": 0,
+                "pubdate": 0,
+                "owner": {
+                    "mid": 3546712666802274,
+                    "name": "伊柒璇儿_鹤熙冠",
+                    "face": "https://i0.hdslb.com/bfs/face/3e0ff3d7d53b9ac1a2d90ea563e22d3f70ad28cc.jpg"
+                },
+                "stat": null,
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": null,
+                "show_info": 0,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": {
+                    "room_id": 1763571437,
+                    "uid": 3546712666802274,
+                    "live_status": 1,
+                    "show": {
+                        "short_id": 0,
+                        "title": "【新V】今天不要再把自己笨哭了",
+                        "cover": "http://i0.hdslb.com/bfs/live/new_room_cover/f1787ef2ce4a2a031fb4a6a63b62d15493268d71.jpg",
+                        "keyframe": "http://i0.hdslb.com/bfs/live-key-frame/keyframe07161101001763571437k9l40v.jpg",
+                        "popularity_count": 8539,
+                        "tag_list": null,
+                        "live_start_time": 0,
+                        "live_id": 0,
+                        "hidden_online": false
+                    },
+                    "area": {
+                        "area_id": 0,
+                        "area_name": "虚拟日常",
+                        "parent_area_id": 9,
+                        "parent_area_name": "虚拟主播",
+                        "old_area_id": 0,
+                        "old_area_name": "",
+                        "old_area_tag": "",
+                        "area_pk_status": 0,
+                        "is_video_room": false
+                    },
+                    "watched_show": {
+                        "switch": true,
+                        "num": 168,
+                        "text_small": "168",
+                        "text_large": "168人看过",
+                        "icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+                        "icon_location": "",
+                        "icon_web": "https://i0.hdslb.com/bfs/live/8d9d0f33ef8bf6f308742752d13dd0df731df19c.png"
+                    }
+                },
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1855792572,
+                "bvid": "BV16s421T7CU",
+                "cid": 1587596195,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV16s421T7CU",
+                "pic": "http://i2.hdslb.com/bfs/archive/1b9d9799260a075b094212bf79e3d7ccb9e04087.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-06-19-14044883851855792572_16_12_7260_crop.jpg",
+                "title": "压缩蚊件.zip",
+                "duration": 66,
+                "pubdate": 1718777086,
+                "owner": {
+                    "mid": 173947574,
+                    "name": "好奇五先生",
+                    "face": "https://i2.hdslb.com/bfs/face/1c69fff12a2d0d50e71931cef0486ab919a818a2.jpg"
+                },
+                "stat": {
+                    "view": 951633,
+                    "like": 22930,
+                    "danmaku": 932,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1405866842,
+                "bvid": "BV11r421F7E8",
+                "cid": 1589772517,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV11r421F7E8",
+                "pic": "http://i2.hdslb.com/bfs/archive/50b1bb8d227d17a3b6195e80128ab295d152d3be.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-06-20-2148551405866842_1612_gener.jpg",
+                "title": "【音游推荐】暑期音游推荐，不同基础都可入坑",
+                "duration": 311,
+                "pubdate": 1718891332,
+                "owner": {
+                    "mid": 592146708,
+                    "name": "Qc天水",
+                    "face": "https://i0.hdslb.com/bfs/face/2998a9e762aa07559b2acf54234f07979c959ffe.jpg"
+                },
+                "stat": {
+                    "view": 278997,
+                    "like": 6698,
+                    "danmaku": 303,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1055540151,
+                "bvid": "BV1in4y197U4",
+                "cid": 1582190043,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1in4y197U4",
+                "pic": "http://i2.hdslb.com/bfs/archive/9a366971fadd6e4dfd1813c42b180c8779038627.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-06-15-18004087071055540151_16_12_7856_crop.jpg",
+                "title": "我把裁判罚下场了",
+                "duration": 217,
+                "pubdate": 1718445600,
+                "owner": {
+                    "mid": 475304452,
+                    "name": "生姜蛋包饭",
+                    "face": "https://i1.hdslb.com/bfs/face/40feee36c71f7f53931854fc54c88d530360b1a7.jpg"
+                },
+                "stat": {
+                    "view": 678085,
+                    "like": 62171,
+                    "danmaku": 832,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "content": "6万点赞",
+                    "reason_type": 3
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1505823466,
+                "bvid": "BV1vS421d7No",
+                "cid": 1596567774,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1vS421d7No",
+                "pic": "http://i2.hdslb.com/bfs/archive/b2b19b067cdbf7dd93be5fc01009e72c20572184.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-06-26-1241021505823466_1612_gener.jpg",
+                "title": "AI 视频：两小儿辩日",
+                "duration": 138,
+                "pubdate": 1719376858,
+                "owner": {
+                    "mid": 589397373,
+                    "name": "宝玉xp",
+                    "face": "https://i0.hdslb.com/bfs/face/c2c29f6e1bb9b0860241f0df4d2cdea8242ab5d2.jpg"
+                },
+                "stat": {
+                    "view": 1216188,
+                    "like": 54839,
+                    "danmaku": 194,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1055744039,
+                "bvid": "BV1Zn4y1Q7zj",
+                "cid": 1575814128,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1Zn4y1Q7zj",
+                "pic": "http://i0.hdslb.com/bfs/archive/5288cf0830e49de414084c4168b11033b08f8507.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-06-09-17404720501055744039_16_12_294_crop.jpg",
+                "title": "【诺子】重新“看见”世界是一种什么样的感觉？",
+                "duration": 579,
+                "pubdate": 1717926045,
+                "owner": {
+                    "mid": 10276136,
+                    "name": "诺子喵呜",
+                    "face": "https://i2.hdslb.com/bfs/face/7e6846ed5619b945c888b8f8db5000469f6353ff.jpg"
+                },
+                "stat": {
+                    "view": 1016467,
+                    "like": 97886,
+                    "danmaku": 979,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            },
+            {
+                "id": 1706215690,
+                "bvid": "BV1tT421k7By",
+                "cid": 1611364587,
+                "goto": "av",
+                "uri": "https://www.bilibili.com/video/BV1tT421k7By",
+                "pic": "http://i1.hdslb.com/bfs/archive/cd3308109e8726fe4147dd25ed7ca0dbeeda1dc1.jpg",
+                "pic_4_3": "http://i0.hdslb.com/bfs/aistory/2024-07-11-00194836761706215690_16_12_3934_crop.jpg",
+                "title": "谷歌翻译20遍《河中石兽》泌尿系统",
+                "duration": 145,
+                "pubdate": 1720628387,
+                "owner": {
+                    "mid": 1030835113,
+                    "name": "象哥嘎",
+                    "face": "https://i1.hdslb.com/bfs/face/aa0ae89fa72dab7b8bc082433769b1768f51c3dc.jpg"
+                },
+                "stat": {
+                    "view": 78600,
+                    "like": 3437,
+                    "danmaku": 328,
+                    "vt": 0
+                },
+                "av_feature": null,
+                "is_followed": 0,
+                "rcmd_reason": {
+                    "reason_type": 0
+                },
+                "show_info": 1,
+                "track_id": "web_pegasus_4.router-web-pegasus-1554782-5c89895477-smhn8.1721098961744.133",
+                "pos": 0,
+                "room_info": null,
+                "ogv_info": null,
+                "business_info": null,
+                "is_stock": 0,
+                "enable_vt": 0,
+                "vt_display": "",
+                "dislike_switch": 1,
+                "dislike_switch_pc": 0
+            }
+        ],
+        "side_bar_column": [
+            {
+                "id": 25502,
+                "goto": "comic",
+                "track_id": "",
+                "pos": 1,
+                "card_type": "漫画",
+                "card_type_en": "comic",
+                "cover": "http://i0.hdslb.com/bfs/manga-static/5e410bf6f73ff87f87b543e4b918de5f024652e8.jpg",
+                "url": "https://manga.bilibili.com/detail/mc25502",
+                "title": "头文字D",
+                "sub_title": "",
+                "duration": 0,
+                "stats": null,
+                "room_info": null,
+                "styles": [
+                    "游戏竞技"
+                ],
+                "comic": {
+                    "comic_id": 25502,
+                    "title": "头文字D",
+                    "horizontal_cover": "http://i0.hdslb.com/bfs/manga-static/5e410bf6f73ff87f87b543e4b918de5f024652e8.jpg",
+                    "square_cover": "http://i0.hdslb.com/bfs/manga-static/da660f6274730af82d557f21a6247d4f6b1e300b.jpg",
+                    "vertical_cover": "http://i0.hdslb.com/bfs/manga-static/64df8b860d2bf6bf2edd0426b4aefbff25b51386.jpg",
+                    "is_finish": 1,
+                    "status": 0,
+                    "last_ord": 724,
+                    "total": 724,
+                    "release_time": "",
+                    "last_short_title": "番外05",
+                    "discount_type": 0,
+                    "recommendation": "秋名山下坡最快的AE86神话！",
+                    "last_read_ep_id": 0,
+                    "latest_ep_short_title": "",
+                    "style": [
+                        "游戏竞技"
+                    ],
+                    "author_name": [
+                        "重野秀一 ",
+                        "讲谈社"
+                    ],
+                    "allow_wait_free": false,
+                    "type": 0,
+                    "rank": null,
+                    "operate_cover": "",
+                    "rookie_type": 0
+                },
+                "producer": null,
+                "source": "",
+                "av_feature": null,
+                "is_rec": 0,
+                "is_finish": 0,
+                "is_started": 0,
+                "is_play": 0,
+                "enable_vt": 0,
+                "vt_display": ""
+            },
+            {
+                "id": 47800,
+                "goto": "ogv",
+                "track_id": "",
+                "pos": 2,
+                "card_type": "番剧",
+                "card_type_en": "bangumi",
+                "cover": "https://i0.hdslb.com/bfs/bangumi/image/1c61f75b571fffb8c5a2bd0396b49ce3529776f4.png",
+                "url": "https://www.bilibili.com/bangumi/play/ss47800",
+                "title": "铁甲小宝 重制版 中文配音",
+                "sub_title": "童年经典回归！",
+                "duration": 1382000,
+                "stats": {
+                    "follow": 116644,
+                    "view": 10864687,
+                    "danmaku": 42428,
+                    "reply": 11448,
+                    "coin": 18904,
+                    "series_follow": 209046,
+                    "series_view": 17474247,
+                    "likes": 61376,
+                    "favorite": 116644
+                },
+                "room_info": null,
+                "new_ep": {
+                    "id": 824212,
+                    "index_show": "更新至第30话",
+                    "cover": "http://i0.hdslb.com/bfs/archive/e185c054588945a1de6648ff7fb5001852df39f4.png",
+                    "title": "30",
+                    "long_title": "巨大机器来袭！！",
+                    "pub_time": "2024-07-15 18:00:01",
+                    "duration": 1382000,
+                    "day_of_week": 1
+                },
+                "styles": [
+                    "日常",
+                    "热血",
+                    "搞笑",
+                    "原创",
+                    "特摄"
+                ],
+                "comic": null,
+                "producer": [
+                    {
+                        "mid": 928123,
+                        "name": "哔哩哔哩番剧",
+                        "type": 3,
+                        "is_contribute": 1
+                    }
+                ],
+                "source": "",
+                "av_feature": null,
+                "is_rec": 0,
+                "is_finish": 0,
+                "is_started": 1,
+                "is_play": 1,
+                "horizontal_cover_16_9": "https://i0.hdslb.com/bfs/bangumi/image/ec5065dc0e88417abd4792d5caa96dacc99d1d51.png",
+                "horizontal_cover_16_10": "https://i0.hdslb.com/bfs/bangumi/image/5cc132e336cc72e6521bba928d8a0e50bd5a6d34.png",
+                "enable_vt": 0,
+                "vt_display": ""
+            },
+            {
+                "id": 48020,
+                "goto": "ogv",
+                "track_id": "",
+                "pos": 3,
+                "card_type": "国创",
+                "card_type_en": "guochuang",
+                "cover": "https://i0.hdslb.com/bfs/bangumi/image/fcb176fcbf5a66fd122fa99f9fdf2cabf22468bb.png",
+                "url": "https://www.bilibili.com/bangumi/play/ss48020",
+                "title": "不白吃古诗词漫游记 第二季",
+                "sub_title": "古诗词这动人的浪漫",
+                "duration": 179000,
+                "stats": {
+                    "follow": 2173495,
+                    "view": 325366,
+                    "danmaku": 110,
+                    "reply": 208,
+                    "coin": 443,
+                    "series_follow": 2208624,
+                    "series_view": 3322752487,
+                    "likes": 8794,
+                    "favorite": 2173495
+                },
+                "room_info": null,
+                "new_ep": {
+                    "id": 830238,
+                    "index_show": "更新至第7话",
+                    "cover": "http://i0.hdslb.com/bfs/archive/6db74bc8ab2670181562314a24abe525cebb7c76.jpg",
+                    "title": "7",
+                    "long_title": "王维当个官怎么还郁闷了？",
+                    "pub_time": "2024-07-15 19:00:00",
+                    "duration": 179000,
+                    "day_of_week": 1
+                },
+                "styles": [
+                    "少儿",
+                    "历史",
+                    "原创",
+                    "古风"
+                ],
+                "comic": null,
+                "producer": [],
+                "source": "",
+                "av_feature": null,
+                "is_rec": 0,
+                "is_finish": 0,
+                "is_started": 1,
+                "is_play": 1,
+                "horizontal_cover_16_9": "https://i0.hdslb.com/bfs/bangumi/image/f19013ddd7f87b0e03df10feccc4a61a3a43774a.png",
+                "horizontal_cover_16_10": "https://i0.hdslb.com/bfs/bangumi/image/966553b199829aae7e47882edbe053463ee85276.png",
+                "enable_vt": 0,
+                "vt_display": ""
+            }
+        ],
+        "business_card": null,
+        "floor_info": null,
+        "user_feature": null,
+        "preload_expose_pct": 0.5,
+        "preload_floor_expose_pct": 0.5,
+        "mid": 645769214
     }
-  }
 }
 ```
 
