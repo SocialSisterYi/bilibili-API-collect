@@ -984,10 +984,10 @@ curl -L -X GET 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPla
 
 | 字段      | 类型  | 内容   | 备注              |
 |---------|-----|------|-----------------|
-| code    | num | 返回值  | 0：成功 |
+| code    | num | 返回值  | 0：成功 （直播间不存在也为0） |
 | message | str | 错误信息 |                 |
 | msg     | str | 错误信息 |                 |
-| data    | obj | 信息本体 |                 |
+| data    | obj | 信息本体 |     null:   直播间不存在         |
 
 
 
