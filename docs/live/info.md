@@ -987,7 +987,7 @@ curl -L -X GET 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPla
 | code    | num | 返回值  | 0：成功 （直播间不存在也为0） |
 | message | str | 错误信息 |                 |
 | msg     | str | 错误信息 |                 |
-| data    | obj | 信息本体 |     null:   直播间不存在         |
+| data    | obj | 信息本体 |                  |
 
 
 
@@ -995,8 +995,8 @@ curl -L -X GET 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPla
 
 | 字段                      | 类型        | 内容     | 备注                          |
 |-------------------------|-----------|--------|-----------------------------|
-| info                     | obj       | 主播信息  |                             |
-| level                 | obj       | 直播等级  |                             |
+| info                     | obj       | 主播信息  |                     |
+| level                 | obj       | 直播等级  |                         |
 | san                | num       | 主播san值  |       12满分              |
 
 
