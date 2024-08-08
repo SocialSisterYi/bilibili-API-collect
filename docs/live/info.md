@@ -959,3 +959,161 @@ curl -L -X GET 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPla
 ```
 
 </details>
+
+
+
+## 获取直播间主播信息
+
+> https://api.live.bilibili.com/live_user/v1/UserInfo/get_anchor_in_room
+
+*请求方式: GET*
+
+**URL参数：**
+
+| 参数名     | 类型  | 内容   | 必要性 | 备注    |
+|---------|-----|------|-----|-------|
+| roomid | num | 直播间号 | 必要  | 可以为短号 |
+
+
+**json回复：**
+
+
+根对象：
+
+| 字段      | 类型  | 内容   | 备注              |
+|---------|-----|------|-----------------|
+| code    | num | 返回值  | 0：成功 |
+| message | str | 错误信息 |                 |
+| msg     | str | 错误信息 |                 |
+| data    | obj | 信息本体 |                 |
+
+
+
+`data`对象：
+
+| 字段                      | 类型        | 内容     | 备注                          |
+|-------------------------|-----------|--------|-----------------------------|
+| info                     | obj       | 主播信息  |                             |
+| level                 | obj       | 直播等级  |                             |
+| san                | num       | 主播san值  |       12满分              |
+
+
+`info`对象:
+
+| 字段              | 类型 | 说明             |
+|-------------------|------|------------------|
+| uid               | num  | 用户ID           |
+| uname             | str  | 用户名           |
+| face              | str  | 用户头像URL      |
+| rank              | str  | 用户排名         |
+| platform_user_level | num  | 平台用户等级     |
+| mobile_verify     | num  | 手机验证状态     |
+| identification    | num  | 身份认证状态     |
+| official_verify   | obj  | 官方认证信息     |
+| vip_type          | num  | VIP类型          |
+| gender            | num  | 性别             |
+
+`official_verify`对象:
+
+| 字段 | 类型 | 说明     |
+|------|------|----------|
+| type | num  | 类型     |
+| desc | str  | 描述     |
+| role | num  | 角色     |
+
+`level`对象:
+
+| 字段         | 类型 | 说明             |
+|--------------|------|------------------|
+| uid          | num  | 用户ID           |
+| cost         | num  | 消费金额         |
+| rcost        | num  | 充值金额         |
+| user_score   | str  | 用户分数         |
+| vip          | num  | VIP状态          |
+| vip_time     | str  | VIP到期时间      |
+| svip         | num  | SVIP状态         |
+| svip_time    | str  | SVIP到期时间     |
+| update_time  | str  | 更新时间         |
+| master_level | obj  | 主播等级信息     |
+| user_level   | num  | 用户等级         |
+| color        | num  | 颜色值           |
+| anchor_score | num  | 主播分数         |
+
+`master_level`对象:
+
+| 字段              | 类型 | 说明             |
+|-------------------|------|------------------|
+| level             | num  | 等级             |
+| color             | num  | 颜色值           |
+| current           | list | 当前分数区间     |
+| next              | list | 下一等级分数区间 |
+| anchor_score      | num  | 主播分数         |
+| upgrade_score     | num  | 升级分数         |
+| master_level_color | num  | 主播等级颜色值   |
+| sort              | str  | 排名             |
+
+
+**示例：**
+
+查询`roomid=1`的直播间主播信息
+
+```shell
+curl -G 'https://api.live.bilibili.com/live_user/v1/UserInfo/get_anchor_in_room' \
+--data-urlencode 'roomid=1'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "success",
+  "message": "success",
+  "data": {
+    "info": {
+      "uid": 9617619,
+      "uname": "哔哩哔哩直播",
+      "face": "https://i0.hdslb.com/bfs/face/8f6a614a48a3813d90da7a11894ae56a59396fcd.jpg",
+      "rank": "10000",
+      "platform_user_level": 6,
+      "mobile_verify": 1,
+      "identification": 1,
+      "official_verify": {
+        "type": 1,
+        "desc": "哔哩哔哩直播官方账号",
+        "role": 3
+      },
+      "vip_type": 2,
+      "gender": -1
+    },
+    "level": {
+      "uid": 9617619,
+      "cost": 7782673656,
+      "rcost": 20199200291,
+      "user_score": "0",
+      "vip": 0,
+      "vip_time": "0000-00-00 00:00:00",
+      "svip": 0,
+      "svip_time": "0000-00-00 00:00:00",
+      "update_time": "2024-08-08 17:13:12",
+      "master_level": {
+        "level": 40,
+        "color": 16746162,
+        "current": [0, 147013810],
+        "next": [0, 147013810],
+        "anchor_score": 201992002,
+        "upgrade_score": 0,
+        "master_level_color": 16746162,
+        "sort": "\u003E10000"
+      },
+      "user_level": 60,
+      "color": 16752445,
+      "anchor_score": 201992002
+    },
+    "san": 12
+  }
+}
+```
+
+</details>
