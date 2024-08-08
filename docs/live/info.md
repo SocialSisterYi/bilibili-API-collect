@@ -962,6 +962,8 @@ curl -L -X GET 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPla
 
 
 
+
+
 ## 获取直播间主播信息
 
 > https://api.live.bilibili.com/live_user/v1/UserInfo/get_anchor_in_room
@@ -1000,57 +1002,63 @@ curl -L -X GET 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPla
 
 `info`对象:
 
-| 字段              | 类型 | 说明             |
-|-------------------|------|------------------|
-| uid               | num  | 用户ID           |
-| uname             | str  | 用户名           |
-| face              | str  | 用户头像URL      |
-| rank              | str  | 用户排名         |
-| platform_user_level | num  | 平台用户等级     |
-| mobile_verify     | num  | 手机验证状态     |
-| identification    | num  | 身份认证状态     |
-| official_verify   | obj  | 官方认证信息     |
-| vip_type          | num  | VIP类型          |
-| gender            | num  | 性别             |
 
-`official_verify`对象:
+| 字段              | 类型 | 内容             | 备注     |
+|-------------------|------|------------------|----------|
+| uid               | num  | 主播mid          |          |
+| uname             | str  | 主播用户名          |          |
+| face              | str  | 主播头像URL      |          |
+| rank              | str  | 主播排名         |          |
+| platform_user_level | num  | 平台用户等级     |          |
+| mobile_verify     | num  | 手机验证状态     |          |
+| identification    | num  | 身份认证状态     |          |
+| official_verify   | obj  | 认证信息         |          |
+| vip_type          | num  | VIP类型          |          |
+| gender            | num  | 主播性别         |     -1：保密<br />0：女<br />1：男     |
 
-| 字段 | 类型 | 说明     |
-|------|------|----------|
-| type | num  | 类型     |
-| desc | str  | 描述     |
-| role | num  | 角色     |
+
+`info`中的`official_verify`对象:
+
+| 字段 | 类型 | 内容             | 备注     |
+|------|------|----------|-----|
+| type | num | 主播认证类型 | -1：无<br />0：个人认证<br />1：机构认证 |
+| desc | str | 主播认证信息 |                              |
+| role | num  | 未知       |       |
 
 `level`对象:
 
-| 字段         | 类型 | 说明             |
-|--------------|------|------------------|
-| uid          | num  | 用户ID           |
-| cost         | num  | 消费金额         |
-| rcost        | num  | 充值金额         |
-| user_score   | str  | 用户分数         |
-| vip          | num  | VIP状态          |
-| vip_time     | str  | VIP到期时间      |
-| svip         | num  | SVIP状态         |
-| svip_time    | str  | SVIP到期时间     |
-| update_time  | str  | 更新时间         |
-| master_level | obj  | 主播等级信息     |
-| user_level   | num  | 用户等级         |
-| color        | num  | 颜色值           |
-| anchor_score | num  | 主播分数         |
 
-`master_level`对象:
 
-| 字段              | 类型 | 说明             |
-|-------------------|------|------------------|
-| level             | num  | 等级             |
-| color             | num  | 颜色值           |
-| current           | list | 当前分数区间     |
-| next              | list | 下一等级分数区间 |
-| anchor_score      | num  | 主播分数         |
-| upgrade_score     | num  | 升级分数         |
-| master_level_color | num  | 主播等级颜色值   |
-| sort              | str  | 排名             |
+| 字段         | 类型 |  内容           | 备注     |
+|--------------|------|------------------|----------|
+| uid          | num  | 用户ID           |          |
+| cost         | num  | 消费金额         |          |
+| rcost        | num  | 充值金额         |          |
+| user_score   | str  | 用户积分         |          |
+| vip          | num  | VIP状态          |          |
+| vip_time     | str  | VIP到期时间      |          |
+| svip         | num  | SVIP状态         |          |
+| svip_time    | str  | SVIP到期时间     |          |
+| update_time  | str  | 更新时间         |          |
+| master_level | obj  | 主播等级     |          |
+| user_level   | num  | 用户等级         |          |
+| color        | num  | 颜色值           |          |
+| anchor_score | num  | 主播积分        |          |
+
+
+
+`level` 中的 `master_level`对象:
+
+| 字段              | 类型 | 内容        | 备注     |
+|-------------------|------|------------------|----------|
+| level             | num  | 主播等级             |          |
+| color             | num  | 颜色值           |          |
+| current           | list | 当前积分     |          |
+| next              | list | 下一等级积分  |          |
+| anchor_score      | num  | 主播积分          |          |
+| upgrade_score     | num  | 升级积分          |          |
+| master_level_color | num  | 主播等级颜色值   |          |
+| sort              | str  | 排名             |          |
 
 
 **示例：**
