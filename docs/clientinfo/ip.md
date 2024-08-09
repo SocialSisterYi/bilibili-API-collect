@@ -3,6 +3,8 @@
 ## 根据请求IP确定属地
 
 > https://api.bilibili.com/x/web-interface/zone
+>
+> https://api.live.bilibili.com/xlive/web-room/v1/index/getIpInfo
 
 *请求方式：GET*
 
@@ -28,8 +30,8 @@
 | isp          | str  | 运营商名      |              |
 | latitude     | num  | 纬度          |              |
 | longitude    | num  | 经度          |              |
-| zone_id      | num  | ip数据库id    |              |
-| country_code | num  | 国家/地区代码 |              |
+| zone_id      | num  | ip数据库id    | 第二个接口无 |
+| country_code | num  | 国家/地区代码 | 第二个接口无 |
 
 **示例：**
 
@@ -66,7 +68,7 @@ curl 'https://api.bilibili.com/x/web-interface/zone'
 > https://api.live.bilibili.com/ip_service/v1/ip_service/get_ip_addr  
 > https://api.live.bilibili.com/client/v1/Ip/getInfoNew
 
-注: 两接口等效
+注: 以上接口等效
 
 *请求方式：GET*
 
@@ -90,7 +92,7 @@ curl 'https://api.bilibili.com/x/web-interface/zone'
 
 `data`对象：
 
-与[根据请求IP确定地理位置](#根据请求ip确定地理位置)回复的`data`对象基本相同, 但无 `country_code` 字段
+与[根据请求IP确定地理位置](#根据请求ip确定地理位置)回复的`data`对象基本相同, 但无 `zone_id` `country_code` 字段
 
 **示例:**
 

@@ -2559,6 +2559,8 @@ curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
 
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
+另见 [根据关键词查找视频](../video/collection.md#根据关键词查找视频), 功能基本相同, 暂未发现风控校验
+
 **url参数：**
 
 | 参数名  | 类型 | 内容         | 必要性 | 备注                                                                          |
@@ -2778,6 +2780,11 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
 
 ### 查询用户投稿相簿预览
 
+<details>
+<summary>相簿功能已下线, 以下接口失效, 参见
+<a href="https://github.com/SocialSisterYi/bilibili-API-collect/issues/801">#801</a>
+</summary>
+
 > https://api.bilibili.com/x/space/album/index
 
 *请求方式：GET*
@@ -2905,7 +2912,14 @@ curl -G 'https://api.bilibili.com/x/space/album/index' \
 
 </details>
 
+</details>
+
 ### 查询用户投稿相簿明细
+
+<details>
+<summary>
+相簿功能已下线, 以下接口失效
+</summary>
 
 > https://api.vc.bilibili.com/link_draw/v1/doc/doc_list
 > https://api.bilibili.com/x/dynamic/feed/draw/doc_list
@@ -3047,6 +3061,8 @@ curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 	}
 }
 ```
+
+</details>
 
 </details>
 
@@ -3779,280 +3795,6 @@ curl -G 'https://api.bilibili.com/x/space/channel/video/check
     "code": 0,
     "message": "0",
     "ttl": 1
-}
-```
-
-</details>
-
-## 收藏
-
-<img src="../../assets/img/collect.svg" width="100" height="100" />
-
-### 查询用户创建的视频收藏夹
-
-> https://api.bilibili.com/x/v3/fav/folder/created/list-all
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-查看私有收藏夹时需要认证
-
-**url参数：**
-
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| up_mid | num  | 目标用户mid | 必要   |      |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型                          | 内容     | 备注                        |
-| ------- | ----------------------------- | -------- | --------------------------- |
-| code    | num                           | 返回值   | 0：成功<br />-400：请求错误 |
-| message | str                           | 错误信息 | 默认为0                     |
-| ttl     | num                           | 1        |                             |
-| data    | 隐藏时：null<br />公开时：obj | 信息本体 |                             |
-
-`data`对象：
-
-| 字段  | 类型                                    | 内容           | 备注 |
-| ----- | --------------------------------------- | -------------- | ---- |
-| count | num                                     | 创建的收藏夹数 |      |
-| list  | 无收藏夹时：null<br />有收藏夹时：array | 收藏夹列表     |      |
-
-`data`中的`list`数组：
-
-| 项   | 类型 | 内容        | 备注                  |
-| ---- | ---- | ----------- | --------------------- |
-| 0    | obj  | 收藏夹1     |                       |
-| n    | obj  | 收藏夹(n+1) | 项数取决于`count`的值 |
-| ……   | obj  | ……          |                       |
-
-`data`中的`list`数组中的对象：
-
-| 字段        | 类型 | 内容             | 备注            |
-| ----------- | ---- | ---------------- | --------------- |
-| id          | num  | 收藏夹mlid       |                 |
-| fid         | num  | 原始收藏夹mlid     | 去除两位mid尾号 |
-| mid         | num  | 创建用户mid      |                 |
-| attr        | num  | 收藏夹属性位配置 |                 |
-| title       | str  | 收藏夹标题       |                 |
-| fav_state   | num  | 0                | 作用尚不明确    |
-| media_count | num  | 收藏夹总计视频数 |                 |
-
-`attr`属性位二进制值表：
-
-| 位              | 内容             | 备注                             |
-| --------------- | ---------------- | -------------------------------- |
-| 0               | 是否为默认收藏夹 | 0：默认收藏夹<br />1：其他收藏夹 |
-| 1               | 私有收藏夹       | 0：公开<br />1：私有             |
-| 其他有待补充... |                  |                                  |
-
-**示例：**
-
-查询用户`mid=7792521`的收藏夹列表
-
-```shell
-curl -G 'https://api.bilibili.com/x/v3/fav/folder/created/list-all' \
---data-urlencode 'up_mid=7792521' \
--b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"count": 5,
-		"list": [{
-			"id": 44233921,
-			"fid": 442339,
-			"mid": 7792521,
-			"attr": 0,
-			"title": "默认收藏夹",
-			"fav_state": 0,
-			"media_count": 85
-		}, {
-			"id": 936347621,
-			"fid": 9363476,
-			"mid": 7792521,
-			"attr": 22,
-			"title": "放假君的鬼畜私房歌",
-			"fav_state": 0,
-			"media_count": 2
-		}, {
-			"id": 845218621,
-			"fid": 8452186,
-			"mid": 7792521,
-			"attr": 22,
-			"title": "♪一言不合就开唱♪",
-			"fav_state": 0,
-			"media_count": 4
-		}, {
-			"id": 844998121,
-			"fid": 8449981,
-			"mid": 7792521,
-			"attr": 22,
-			"title": "个人作品精选",
-			"fav_state": 0,
-			"media_count": 25
-		}, {
-			"id": 381779121,
-			"fid": 3817791,
-			"mid": 7792521,
-			"attr": 22,
-			"title": "鬼畜小课堂",
-			"fav_state": 0,
-			"media_count": 25
-		}]
-	}
-}
-```
-
-</details>
-
-### 查询用户收藏的视频收藏夹
-
-> https://api.bilibili.com/x/v3/fav/folder/collected/list
-
-*请求方式：GET*
-
-**url参数：**
-
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| ps     | num  | 每页项数    | 必要   |   定义域 1 - 大于70   |
-| pn     | num  | 页码        | 必要   |      |
-| up_mid | num  | 目标用户mid | 必要   |      |
-| platform | str  | 平台类型 | 非必要   |    填写web 返回值才会包含用户收藏的视频合集  |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型                          | 内容     | 备注                                                         |
-| ------- | ----------------------------- | -------- | ------------------------------------------------------------ |
-| code    | num                           | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />40022：签名过长 |
-| message | str                           | 错误信息 | 默认为0                                                      |
-| ttl     | num                           | 1        |                                                              |
-| data    | 隐藏时：null<br />公开时：obj | 信息本体 |                                                              |
-
-`data`对象：
-
-| 字段  | 类型                                    | 内容           | 备注 |
-| ----- | --------------------------------------- | -------------- | ---- |
-| count | num                                     | 创建的收藏夹数 |      |
-| list  | 无收藏夹时：null<br />有收藏夹时：array | 收藏夹列表     |      |
-
-`data`中的`list`数组：
-
-| 项   | 类型 | 内容        | 备注                  |
-| ---- | ---- | ----------- | --------------------- |
-| 0    | obj  | 收藏夹1     |                       |
-| n    | obj  | 收藏夹(n+1) | 项数取决于`count`的值 |
-| ……   | obj  | ……          |                       |
-
-`data`中的`list`数组中的对象：
-
-| 字段        | 类型 | 内容               | 备注                                      |
-| ----------- | ---- | ------------------ | ----------------------------------------- |
-| id          | num  | 收藏夹ml         |                                           |
-| fid         | num  | 原始收藏夹mlid       | 去除两位mid尾号                           |
-| mid         | num  | 创建用户mid        |                                           |
-| attr        | num  | 收藏夹属性         | 转换成8-bit二进制处理<br />详细说明见下表 |
-| title       | str  | 收藏夹标题         |                                           |
-| cover       | str  | 收藏夹封面图片url  |                                           |
-| upper       | obj  | 收藏夹创建用户信息 |                                           |
-| cover_type  | num  | 2                  | 作用尚不明确                              |
-| intro       | str  | 空                 | 作用尚不明确                              |
-| ctime       | num  | 创建时间           | 时间戳                                    |
-| mtime       | num  | 审核时间           | 时间戳                                    |
-| state       | num  | 0, 1                  | 0: 正常；1:收藏夹已失效                              |
-| fav_state   | num  | 0                  | 作用尚不明确                              |
-| media_count | num  | 收藏夹总计视频数   |                                           |
-
-`attr`属性二进制值表：
-
-| 其他有待补充... | 1：默认收藏夹                    | 0：公开性            |
-| --------------- | -------------------------------- | -------------------- |
-|                 | 0：默认收藏夹<br />1：其他收藏夹 | 0：公开<br />1：私有 |
-
-`data`中的`list`数组中的对象中的`upper`对象：
-
-| 字段 | 类型 | 内容       | 备注         |
-| ---- | ---- | ---------- | ------------ |
-| mid  | num  | 创建人mid  |              |
-| name | str  | 创建人昵称 |              |
-| face | str  | 空         | 作用尚不明确 |
-
-**示例：**
-
-查询用户`mid=293793435`的收藏夹收藏列表
-
-```shell
-curl -G 'https://api.bilibili.com/x/v3/fav/folder/collected/list' \
---data-urlencode 'up_mid=293793435' \
---data-urlencode 'ps=20' \
---data-urlencode 'pn=1' \
--b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"count": 2,
-		"list": [{
-			"id": 496307088,
-			"fid": 4963070,
-			"mid": 412466388,
-			"attr": 22,
-			"title": "入站必刷",
-			"cover": "http://i0.hdslb.com/bfs/archive/baae2b4050363c0ab45465b7cf696b8304fdaca8.jpg",
-			"upper": {
-				"mid": 412466388,
-				"name": "热门菌",
-				"face": ""
-			},
-			"cover_type": 2,
-			"intro": "",
-			"ctime": 1563394571,
-			"mtime": 1563394571,
-			"state": 0,
-			"fav_state": 0,
-			"media_count": 55
-		}, {
-			"id": 381779121,
-			"fid": 3817791,
-			"mid": 7792521,
-			"attr": 22,
-			"title": "鬼畜小课堂",
-			"cover": "http://i2.hdslb.com/bfs/archive/09a668cfdb38fb3a85f905c10f48a2947e36a695.jpg",
-			"upper": {
-				"mid": 7792521,
-				"name": "还有一天就放假了",
-				"face": ""
-			},
-			"cover_type": 2,
-			"intro": "",
-			"ctime": 1553700224,
-			"mtime": 1557291666,
-			"state": 0,
-			"fav_state": 0,
-			"media_count": 25
-		}]
-	}
 }
 ```
 

@@ -1,6 +1,6 @@
 # 登录操作
 
-人机验证方式登录包含**账号密码登录**与手**机短信验证码登录**
+人机验证方式登录包含**账号密码登录**与**手机短信验证码登录**
 
 **注：扫码登录**不需要进行**人机验证**，故**不使用**以下接口
 
@@ -15,7 +15,6 @@
 1. 请求验证码参数，得到登录密钥`key`与极验id`gt`和极验KEY`challenge`
 2. 进行滑动or点击验证
 3. 返回验证结果`validate`与`seccode`，进行短信或密码登录
-
 
 ### 申请captcha验证码
 
@@ -75,6 +74,71 @@ curl 'https://passport.bilibili.com/x/passport-login/captcha?source=main_web'
             "appid": ""
         }
     }
+}
+```
+
+</details>
+
+### 申请captcha验证码 (旧版)
+
+> http://passport.bilibili.com/web/captcha/combine
+
+*请求方式：GET*
+
+该接口曾从文档移除过, 经过测试仍可正常使用
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容         | 必要性 | 备注 |
+| ------ | ---- | ------------ | ------ | ---- |
+| plat   | num  | 平台类型     | 必要   | 默认为 6 |
+
+**JSON回复:**
+
+根对象：
+
+| 字段   | 类型 | 内容     | 备注         |
+| ------ | ---- | -------- | --------- |
+| code   | num  | 返回值   | 0：成功     |
+| data   | obj  | 信息本体 | |
+
+`data`对象：
+
+| 字段      | 类型  | 内容     | 备注     |
+| -------- | ----- | ------ | -------- |
+| result   | obj   | 套了个娃 |  |
+| type     | num   | 1      | **作用尚不明确** |
+
+`result`对象：
+
+| 字段      | 类型  | 内容     | 备注     |
+| -------- | ----- | ------ | -------- |
+| success | num | 1 | **作用尚不明确** |
+| gt | str | 极验id | 一般为固定值 |
+| challenge | str | 极验KEY | 由B站后端产生用于人机验证 |
+| key | str | 登录秘钥 | 与 captcha 无关, 与登录接口有关, 亦作 token |
+
+**示例:**
+
+```shell
+curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "data": {
+    "result": {
+      "success": 1,
+      "gt": "bd111e81eda1cbb9f54425aafc0908ac",
+      "challenge": "2903a8eb967a1d990444cb23ea42f417",
+      "key": "76fb59fbd83a4d9d816162c5156fc964"
+    },
+    "type": 1
+  }
 }
 ```
 

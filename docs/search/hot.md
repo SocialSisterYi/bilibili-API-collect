@@ -109,7 +109,7 @@ curl 'https://api.bilibili.com/x/web-interface/search/default'
 | res        | array| null    |         |
 | show_name  | str  | 完整关键词|         |
 | pos        | num  | 名次     | 1-10    |
-| word_type  | num  | 条目属性 | 均返回8 |
+| word_type  | num  | 条目属性 | 4: 新<br />5: 热<br />6: [雾,咒,小丑(愚人节)] 具体看icon<b r/>7: 直播中<br />8: 默认(无标签)<br />9: 梗<br />11: 话题<br />12: 独家 |
 | id         | num  | 名次     | 1-10    |
 | goto_value | str  | 空       |         |
 | live_id    | array| null    |         |
@@ -353,7 +353,7 @@ curl 'https://s.search.bilibili.com/main/hotword'
 
 *请求方式：GET*
 
-榜单每隔固定时间统计一次，请求后返回搜索前20的关键词
+榜单每隔固定时间统计一次
 
 带有转义
 
@@ -361,7 +361,7 @@ curl 'https://s.search.bilibili.com/main/hotword'
 
 | 参数名  | 类型 | 内容             | 必要性 | 备注 |
 | ------- | ---- | ---------------- | ------ | ---- |
-| limit | num  | 热搜数量 | 非必要   |   1~100   |
+| limit | num  | 热搜数量 | 非必要   | 留空为20, 最大为100 |
 
 **json回复：**
 
@@ -395,7 +395,7 @@ curl 'https://s.search.bilibili.com/main/hotword'
 | position   | num  | 名次      |  1-20/limit   |
 | keyword    | str  | 关键词   |         |
 | show_name  | str  | 完整关键词|         |
-| word_type  | num  | 条目属性 | 4：新<br />5：热<br />6：雾？<br />8：默认 |
+| word_type  | num  | 条目属性 | 同 web 端 |
 | icon       | str  | 图标url  |         |
 | hot_id     | num  | 热词id  | 大概是吧？    |
 
