@@ -239,7 +239,7 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/add/v3" \
 | ------ | ---- | -------- | ------ | ---- |
 | name   | str  | 文件名   | 必要   | 会影响返回的上传地址 |
 | r      | str  | 上传区域? | 必要   | upos |
-| profile | str  | 上传配置? | 必要   | 普通视频: ugcfx/bup |
+| profile | str  | 上传配置? | 必要   | 普通视频: ugcfx/bup<br />提交反馈: feedback/bup |
 | probe_version | num | 上传版本? | 不必要   | 20221109 |
 | upcdn | str  | 上传 CDN? | 不必要   | txa |
 | zone | str  | 上传区域? | 不必要   | cs |
@@ -332,10 +332,10 @@ curl -G "https://member.bilibili.com/preupload" \
 | ------ | ---- | -------- | ------ | ---- |
 | uploads | str  | 留空     | 必要   | 留空 |
 | output | str  | 输出格式  | 不必要 | 默认为 json(推荐), 留空为 xml |
-| profile | str  | 上传配置? | 必要   | 与上一个接口相同, 普通视频: ugcfx/bup |
-| filesize | num | 文件大小 | 必要   | 视频文件大小, 单位 字节 |
-| partsize | num | 分块大小 | 必要   | 上一个接口返回, 且后面要用 |
-| biz_id | num | 业务 ID? | 必要   | 上一个接口返回, 且后面要用 |
+| profile | str  | 上传配置? | 必要   | 与上一个接口保持相同 |
+| filesize | num | 文件大小 | 必要   | 视频文件大小, 单位 字节<br />feedback/bup 不必要 |
+| partsize | num | 分块大小 | 必要   | 上一个接口返回, 且后面要用<br />feedback/bup 不必要 |
+| biz_id | num | 业务 ID? | 必要   | 上一个接口返回, 且后面要用<br />feedback/bup 不必要 |
 
 **JSON回复:**
 
