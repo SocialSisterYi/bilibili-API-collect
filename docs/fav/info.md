@@ -407,7 +407,7 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/collected/list' \
 
 | 参数名    | 类型 | 内容           | 必要性 | 备注                                                         |
 | --------- | ---- | -------------- | ------ | ------------------------------------------------------------ |
-| resources | strs | 目标内容id列表 | 必要   | 格式：{内容id}:{内容类型}<br />每个成员间用`,`分隔<br />类型：<br />2：视频稿件<br />12：音频<br />21：视频合集<br />内容id：<br />视频稿件：视频稿件avid<br />音频：音频auid<br />视频合集：视频合集id |
+| resources | strs | 目标内容id列表 | 必要   | 格式：{内容id}:{内容类型}<br />每个成员间用`,`分隔<br />类型：<br />2：视频稿件<br />12：音频<br />内容id：<br />视频稿件：视频稿件avid<br />音频：音频auid |
 | platform  | str  | 平台标识       | 非必要 | 可为web（影响内容列表类型）                                  |
 
 **json回复：**
@@ -432,8 +432,8 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/collected/list' \
 
 | 字段     | 类型 | 内容          | 备注                                                         |
 | -------- | ---- | ------------- | ------------------------------------------------------------ |
-| id       | num  | 内容id        | 视频稿件：视频稿件avid<br />音频：音频auid<br />视频合集：视频合集id |
-| type     | num  | 内容类型      | 2：视频稿件<br />12：音频<br />21：视频合集                  |
+| id       | num  | 内容id        | 视频稿件：视频稿件avid<br />音频：音频auid |
+| type     | num  | 内容类型      | 2：视频稿件<br />12：音频                  |
 | title    | str  | 标题          |                                                              |
 | cover    | str  | 封面url       |                                                              |
 | intro    | str  | 简介          |                                                              |
@@ -472,13 +472,11 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/collected/list' \
 
 1-视频稿件-`av583785685`
 
-2-视频合集-`523`
-
-3-音频-`au15664`
+2-音频-`au15664`
 
 ```shell
 curl -G 'https://api.bilibili.com/x/v3/fav/resource/infos' \
---data-urlencode 'resources=583785685:2,523:21,15664:12'
+--data-urlencode 'resources=583785685:2,15664:12'
 ```
 
 <details>
