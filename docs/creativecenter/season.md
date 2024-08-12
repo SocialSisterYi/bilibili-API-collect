@@ -345,6 +345,8 @@ curl -G 'https://member.bilibili.com/x2/creative/web/seasons' \
 }
 ```
 
+</details>
+
 ## 创建合集
 
 > ttps://member.bilibili.com/x2/creative/web/season/add

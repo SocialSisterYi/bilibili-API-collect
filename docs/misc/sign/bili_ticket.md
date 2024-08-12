@@ -90,6 +90,8 @@
 }
 ```
 
+</details>
+
 ## Demo
 
 此处提供 [Python](#python), [Java](#java), [JavaScript (Node.js)](#javascript-nodejs) 的示例代码

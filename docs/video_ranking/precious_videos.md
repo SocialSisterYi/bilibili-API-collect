@@ -37,7 +37,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/popular/precious'
 ```
 
 <details>
-<summary>查看响应事例:</summary>
+<summary>查看响应示例:</summary>
 
 ```jsonc
 {

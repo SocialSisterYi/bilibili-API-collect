@@ -1982,3 +1982,5 @@ curl -X POST --url "https://api.bilibili.com/x/series/series/update" \
   "data": {}
 }
 ```
+
+</details>
