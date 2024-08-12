@@ -909,6 +909,8 @@ curl -G "https://api.bilibili.com/x/polymer/web-space/home/seasons_series" \
 
 </details>
 
+</details>
+
 ## 获取系列和合集视频
 
 > https://api.bilibili.com/x/polymer/web-space/seasons_series_list
