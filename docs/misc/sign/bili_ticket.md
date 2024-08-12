@@ -24,6 +24,72 @@
 3. 构造请求参数，`key_id` 为 `ec02`，`hexsign` 为变量 `hexsign` 值，`context[ts]` 为变量 `timestamp` 值，`csrf` 为 cookie 中的 `bili_jct` 值也可为空
 4. 发送 `POST` 请求，获取 `data` 字段中的 `ticket` 字段的值即为所求
 
+## 接口
+
+> https://api.bilibili.com/bapis/bilibili.api.ticket.v1.Ticket/GenWebTicket
+
+*请求方式: POST*
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | ---- | ---- | ------ | ---- |
+| key_id | str | ec02 | 必要 |      |
+| hexsign | str | 由 `hmac_sha256` 算法计算的 `hexsign` 值 | 必要 |      |
+| context[ts] | num | UNIX 秒级时间戳 | 必要 |      |
+| csrf | str | cookie 中的 `bili_jct` 值 | 非必要 |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| code | num | 返回值 | 0: 成功<br />400: 参数错误 |
+| message | str | 返回消息 | OK: 成功 |
+| data | obj | 数据本体 | |
+| ttl | num | 1 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| ticket | str | bili_ticket | |
+| created_at | num | 创建时间 | UNIX 秒级时间戳 |
+| ttl | num | 有效时长 | 259200 秒 (3 天) |
+| context | obj | 空 |  |
+| nav | obj | wbi_img 相关 | 参见 [WBI 签名](./wbi.md) |
+
+`nav` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| img | str | img_key 值 | 参见 [WBI 签名](./wbi.md) |
+| sub | str | sub_key 值 | 参见 [WBI 签名](./wbi.md) |
+
+**示例:**
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "OK",
+  "data": {
+    "ticket": "eyJhbGciOiJIUzI1NiIsImtpZCI6InMwMyIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjM2OTMwODAsImlhdCI6MTcyMzQzMzgyMCwicGx0IjotMX0.efOwv7i4m0ykABrXEDHGAechU2AByMcP_-3EYpQrNKs",
+    "created_at": 1723433820,
+    "ttl": 259200,
+    "context": {},
+    "nav": {
+      "img": "https://i0.hdslb.com/bfs/wbi/7cd084941338484aae1ad9425b84077c.png",
+      "sub": "https://i0.hdslb.com/bfs/wbi/4932caff0ff746eab6f01bf08b70ac45.png"
+    }
+  },
+  "ttl": 1
+}
+```
+
 ## Demo
 
 此处提供 [Python](#python), [Java](#java), [JavaScript (Node.js)](#javascript-nodejs) 的示例代码

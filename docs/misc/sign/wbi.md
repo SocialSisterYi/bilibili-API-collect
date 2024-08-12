@@ -2,7 +2,7 @@
 
 自 2023 年 3 月起，Bilibili Web 端部分接口开始采用 WBI 签名鉴权，表现在 REST API 请求时在 Query param 中添加了 `w_rid` 和 `wts` 字段。WBI 签名鉴权独立于 [APP 鉴权](APP.md) 与其他 Cookie 鉴权，目前被认为是一种 Web 端风控手段。
 
-经持续观察，大部分查询性接口都已经或准备采用 WBI 签名鉴权，请求 WBI 签名鉴权接口时，若签名参数 `w_rid` 与时间戳 `wts` 缺失、错误，会返回 `v_voucher`（推测为内部记录错误请求的 ID 方便 Debug），如：
+经持续观察，大部分查询性接口都已经或准备采用 WBI 签名鉴权，请求 WBI 签名鉴权接口时，若签名参数 `w_rid` 与时间戳 `wts` 缺失、错误，会返回 `v_voucher`，如：
 
 ```json
 {"code":0,"message":"0","ttl":1,"data":{"v_voucher":"voucher_******"}}
@@ -17,6 +17,7 @@
 1. 获取实时口令 `img_key`、`sub_key`
 
    从 [nav 接口](../../login/login_info.md#导航栏用户信息) 中获取 `img_url`、`sub_url` 两个字段的参数。
+   或从 [bili_ticket 接口](bili_ticket.md#接口) 中获取 `img` `sub` 两个字段的参数。
 
    **注：`img_url`、`sub_url` 两个字段的值看似为存于 BFS 中的 png 图片 url，实则只是经过伪装的实时 Token，故无需且不能试图访问这两个 url**
 
