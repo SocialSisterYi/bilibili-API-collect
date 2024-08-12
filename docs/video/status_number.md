@@ -1,6 +1,10 @@
 # 视频状态数
 
 ## 视频状态数（仅avid）
+
+<details>
+<summary>该接口已失效</summary>
+
 > https://api.bilibili.com/archive_stat/stat
 
 *请求方式：GET*
@@ -76,6 +80,8 @@ curl -G 'https://api.bilibili.com/archive_stat/stat' \
 	}
 }
 ```
+
+</details>
 
 </details>
 
