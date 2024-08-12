@@ -288,6 +288,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [个性装扮](docs/garb)
     - [x] [APP 主题](docs/garb/skin.md)
     - [x] [主题色](docs/garb/color.md)
+    - [ ] [装扮/收藏集](docs/garb/lottery.md)
 
 ## ✨鸣谢
 
