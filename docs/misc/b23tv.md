@@ -29,7 +29,7 @@ b23.tv 是由 Bilibili 提供的短链服务, 主要用于站内长链接缩短�
 
 *请求方式: POST*
 
-<!--认证方式: 仅APP, 但实际上形同虚设-->
+认证方式: 仅APP, 但实际上形同虚设
 
 注: 该接口参数对照表基本失效, 基本无实用价值, 已被注释, 参见 [#979](https://github.com/SocialSisterYi/bilibili-API-collect/issues/979) [Nemo2011/bilibili-api#720](https://github.com/Nemo2011/bilibili-api/pull/720)
 
@@ -51,28 +51,14 @@ b23.tv 是由 Bilibili 提供的短链服务, 主要用于站内长链接缩短�
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------ | ---- | ---- |
-| access_key | str | 访问密钥 | 非必要 |     |
-| appkey | str | APP 密钥 | 非必要 |     |
-| disable_rcmd | num | 禁用推荐? | 非必要 | 0 |
-| from | str | 来源? | 非必要 | 如 6, 7, 0  |
-| from_spmid | str | 点击来源? | 非必要 | 如 `tm.recommend.0.0` `dt.dt-video-quick-cosume.origin-share.0` `main.space-bangumi.0.0` |
-| mobi_app | str | 客户端类型? | 非必要 | 如 `android` |
 | object_extra_fields| obj | 额外字段? | 非必要 | 如 `{"jumpfrom_id":30104}` `{"epid":"409808","cid":"1398781253"}` `{"season_type":"1","season_id":"39481","epid":"425006","dubbing_support":false,"background_audio":false,"role_audio_list":false}` |
 | panel_type | num | 面板类型? | 非必要 | 1 |
-| s_locale | str | 语言 | 非必要 | 如 `zh_CN` |
-| c_locale | str | 语言 | 非必要 | 如 `zh_CN` |
-| channel | str | 渠道? | 非必要 | 如 `bili` `alifenfa` |
 | share_title | str | 分享标题? | 非必要 | 分享标题 |
 | share_content | str | 分享内容? | 非必要 | 分享内容, 当 oid 存在时无意义<s>(可是 oid 不可能不存在啊)</s> |
 | share_origin | str | 分享来源? | 非必要 | 如 `vinfo_share` `dynamic` `vertical-three-point-panel` `vinfo_player` |
 | share_pattern | num | 分享模式? | 非必要 | 0 |
 | share_session_id | str | 分享会话 ID? | 非必要 | 各部分用 `-` 分隔的小写的一串 UUID |
-| sid | num | 作用尚不明确 | 非必要 | 如 `1457128524` `417036046` |
-| spm_id | str | 作用尚不明确 | 非必要 | 如 `main.ugc-video-detail.0.0` `dt.opus-detail.0.0` 
-| statistics | obj | 统计数据? | 非必要 | 如 `{"appId":1,"platform":3,"version":"7.71.0","abtest":""}` |
-| tag | obj | 标签? | 非必要 | 如 `{"share_from":"ogv_video_detail_action_normal_share"}` |
 | ts | num | UNIX 秒级时间戳 | 非必要 |    |
-| sign | str | 签名 | 非必要 | 见[APP API 签名与鉴权](sign/APP.md) |
 
 对照表:
 
