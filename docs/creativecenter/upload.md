@@ -75,6 +75,172 @@ JavaScript (Node.js) 请求[示例](https://gist.github.com/SessionHu/5e47a3a1a3
 
 </details>
 
+## 预测稿件类型
+
+> https://member.bilibili.com/x/vupre/web/archive/types/predict
+
+*请求方式: POST*
+
+认证方式: Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| ts     | num  | 当前时间 | 不必要 | UNIX 毫秒时间戳 |
+| csrf   | str  | CSRF Token (位于 Cookie 中 bili_jct) | 必要   |      |
+
+**正文参数(multipart/form-data):**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| filename | str  | 视频文件名 | 必要   | 从视频上传接口获取, 无后缀名, 可为空 |
+| title | str | 视频标题 | 不必要 ||
+| upload_id | str | 上传 ID | 不必要 | 如 `616368979_1723455540876_8794` |
+
+**JSON回复:**
+
+根对象:
+
+|字段|类型|内容|备注|
+|---|-|-|---|
+|code|num|返回值|0: 成功<br />-400: 请求错误<br />-111: csrf 校验失败<br />-101: 账号未登录|
+|message|str|错误信息|默认为 0|
+|ttl|num|1||
+|data|array|信息本体||
+
+`data` 数组:
+
+| 项   | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| 0    | obj  | 视频类型 1 |       |
+| 1  | obj  | 视频类型 2 |       |
+| …… | obj  | ……       |       |
+| n  | obj  | 视频类型 (n+1) |       |
+
+`data` 数组中的对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| id   | num  | 子分区 ID |       |
+| parent | num | 总分区 ID |       |
+| parent_name | str | 总分区名称 |       |
+| name | str | 子分区名称 |       |
+| description | str | 子分区描述 |       |
+| desc | str | 子分区描述 | 同 `description` |
+| intro_original | str | 原创简介说明 |       |
+| intro_copy | str | 转载简介说明 |       |
+| notice | str | 注意事项 |       |
+| copy_right | num | 版权信息? | 0 |
+| show | bool | 是否显示? | true |
+| rank | num | 排序权重? |       |
+| max_video_count | num | 最大视频数量? |       |
+| request_id | str | 空 |       |
+
+**示例:**
+
+```shell
+curl -X POST --url 'https://member.bilibili.com/x/vupre/web/archive/types/predict' \
+--url-query 'csrf=d51eadf05ba3bc6c5f76def7fbcc0185' \
+--data-urlencode 'filename=' \
+-b '
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": [
+    {
+      "id": 122,
+      "parent": 36,
+      "parent_name": "知识",
+      "name": "野生技能协会",
+      "description": "技能展示或技能教学分享类视频",
+      "desc": "技能展示或技能教学分享类视频",
+      "intro_original": "可对视频内容进行补充说明，并对所使用的视频素材进行标明。\n如是系列，也可附带上期视频地址。\n请勿加入涉政或具较大争议性的文字简介，否则将做打回处理。",
+      "intro_copy": "转载稿件需标明出处，请注明原作者、原作者频道名或原作者投稿地址。\n可对相关内容进行补充说明。\n请勿加入涉政或具较大争议性的文字简介，否则将做打回处理。\n如是系列，也可附带上期视频地址。",
+      "notice": "清晰明了表明内容亮点的标题会更受观众欢迎哟！",
+      "copy_right": 0,
+      "show": true,
+      "rank": 75,
+      "max_video_count": 100,
+      "request_id": ""
+    },
+    {
+      "id": 21,
+      "parent": 160,
+      "parent_name": "生活",
+      "name": "日常",
+      "description": "一般日常向的生活类视频",
+      "desc": "一般日常向的生活类视频",
+      "intro_original": "能够选择自制的必须是up主个人或工作室自己制作剪辑的视频，除此之外的搬运视频字幕制作，对于视频进行加速、慢放等简易二次创作，在视频中添加前后贴片或者打水印等行为均不被认作自制",
+      "intro_copy": "转载需写明请注明转载作品详细信息原作者、原标题及出处（需为该视频最原始出处，如所标注明显为非原始出处的话会被打回）",
+      "notice": "",
+      "copy_right": 0,
+      "show": true,
+      "rank": 4,
+      "max_video_count": 50,
+      "request_id": ""
+    },
+    {
+      "id": 242,
+      "parent": 5,
+      "parent_name": "娱乐",
+      "name": "娱乐粉丝创作",
+      "description": "粉丝向创作视频",
+      "desc": "粉丝向创作视频",
+      "intro_original": "",
+      "intro_copy": "",
+      "notice": "清晰明了表明内容亮点的标题会更受观众欢迎哟！",
+      "copy_right": 0,
+      "show": true,
+      "rank": 40,
+      "max_video_count": 50,
+      "request_id": ""
+    },
+    {
+      "id": 65,
+      "parent": 4,
+      "parent_name": "游戏",
+      "name": "网络游戏",
+      "description": "多人在线游戏为主要内容的相关视频",
+      "desc": "多人在线游戏为主要内容的相关视频",
+      "intro_original": "建议在简介和TAG中添加正确的游戏名，以便在分区和搜索中得到更好的展示。\n录制他人直播（包括授权转载、授权录制）不属于自制内容，请选转载。",
+      "intro_copy": "建议在简介和TAG中添加正确的游戏名。\n搬运转载内容请添加原作者、原链接地址信息。录制他人直播内容请添加原主播信息、直播时间。\n未添加正确转载、录播信息的稿件可能被打回。",
+      "notice": "【UP主/节目名】+《游戏名》+主要标题+期号",
+      "copy_right": 0,
+      "show": true,
+      "rank": 30,
+      "max_video_count": 50,
+      "request_id": ""
+    },
+    {
+      "id": 138,
+      "parent": 160,
+      "parent_name": "生活",
+      "name": "搞笑",
+      "description": "搞笑挑战、剪辑、表演、配音以及各类日常沙雕视频",
+      "desc": "搞笑挑战、剪辑、表演、配音以及各类日常沙雕视频",
+      "intro_original": "能够选择自制的必须是up主个人或工作室自己制作剪辑的视频，除此之外的搬运视频字幕制作，对于视频进行加速、慢放等简易二次创作，在视频中添加前后贴片或者打水印等行为均不被认作自制",
+      "intro_copy": "转载需写明请注明转载作品详细信息原作者、原标题及出处（需为该视频最原始出处，如所标注明显为非原始出处的话会被打回）",
+      "notice": "",
+      "copy_right": 0,
+      "show": true,
+      "rank": 30,
+      "max_video_count": 50,
+      "request_id": ""
+    }
+  ]
+}
+```
+
+</details>
+
 ## 投递视频稿件
 
 > https://member.bilibili.com/x/vu/web/add/v3
