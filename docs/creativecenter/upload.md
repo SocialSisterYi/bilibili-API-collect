@@ -241,6 +241,104 @@ curl -X POST --url 'https://member.bilibili.com/x/vupre/web/archive/types/predic
 
 </details>
 
+## 预测稿件标签
+
+> https://member.bilibili.com/x/vupre/web/tag/recommend
+
+*请求方式: GET*
+
+认证方式: Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| upload_id | str | 同 [预测稿件类型](#预测稿件类型) 的 `upload_id` | 不必要 |      |
+| subtype_id | int | 子分区 ID | 不必要   |      |
+| title | str | 视频标题 | 不必要   |      |
+| filename | str | 同 [预测稿件类型](#预测稿件类型) 的 `filename` | 不必要   |      |
+| description | str | 视频简介 | 不必要   |      |
+| cover_url | str | 视频封面 URL | 不必要   | 不含 `https:` 或 `http:` 字串 |
+| t | int | 当前 UNIX 毫秒时间戳 | 不必要 | |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| code | int | 返回值 | 0: 成功<br />-101: 账号未登录 |
+| data | array | 标签信息 |  |
+| message | str | 错误信息 | 默认为 0 |
+| request_id | str | 请求 ID |  |
+
+`data` 数组:
+
+| 项   | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| 0    | obj  | 标签 1 |       |
+| 1  | obj  | 标签 2 |       |
+| …… | obj  | ……       |       |
+| n  | obj  | 标签 (n+1) |       |
+
+`data` 数组中的对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| tag | str  | 标签名称 |       |
+| checked | int | 0 |  |
+| request_id | str | 请求 ID | 同根对象 |
+
+**示例:**
+
+```shell
+curl -G 'https://member.bilibili.com/x/vupre/web/tag/recommend' \
+--url-query 'subtype_id=122' \
+--url-query 'title=Telnet手打HTTP' \
+--url-query 'description=测试用 Telnet 手打 HTTP/1.x 协议访问本地服务器, 无 SSL/TLS 支持'
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "data": [
+    {
+      "tag": "学习",
+      "checked": 0,
+      "request_id": "TAG_1723543336295_3371"
+    },
+    {
+      "tag": "编程",
+      "checked": 0,
+      "request_id": ""
+    },
+    {
+      "tag": "课程",
+      "checked": 0,
+      "request_id": ""
+    },
+    {
+      "tag": "学习心得",
+      "checked": 0,
+      "request_id": ""
+    },
+    {
+      "tag": "经验分享",
+      "checked": 0,
+      "request_id": ""
+    }
+  ],
+  "message": "0",
+  "request_id": "TAG_1723543336295_3371"
+}
+```
+
+</details>
+
 ## 投递视频稿件
 
 > https://member.bilibili.com/x/vu/web/add/v3
