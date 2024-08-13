@@ -285,6 +285,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [首页横幅头图](docs/web_widget/header.md)
 - [ ] [APP端组件](docs/APP_widget)
     - [x] [开屏图片 + 恰饭珍贵录像](docs/APP_widget/splash.md)
+    - [ ] [获取最新 APP 版本](docs/APP_widget/ver.md)
 - [ ] [个性装扮](docs/garb)
     - [x] [APP 主题](docs/garb/skin.md)
     - [x] [主题色](docs/garb/color.md)
