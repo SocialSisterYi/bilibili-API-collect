@@ -145,10 +145,8 @@ curl -G 'https://api.bilibili.com/x/space/upstat' \
 
 </details>
 
-## ~~订阅&投稿状态数（已弃用）~~
+## 用户导航栏状态数
 
-<details>
-<summary>查看折叠内容</summary>
 > https://api.bilibili.com/x/space/navnum
 
 *请求方式：GET*
@@ -158,6 +156,7 @@ curl -G 'https://api.bilibili.com/x/space/upstat' \
 | 参数名 | 类型 | 内容        | 必要性 | 备注 |
 | ------ | ---- | ----------- | ------ | ---- |
 | mid    | num  | 目标用户mid | 必要   |      |
+| web_location | str | 333.999 | 不必要 ||
 
 **json回复：**
 
@@ -177,37 +176,38 @@ curl -G 'https://api.bilibili.com/x/space/upstat' \
 | video     | num   | 投稿视频数 |              |
 | bangumi   | num   | 追番数     | 无视隐私设置 |
 | cinema    | num   | 追剧数     | 无视隐私设置 |
-| channel   | obj   | 频道数     |              |
-| favourite | obj   | 收藏夹数   | 无视隐私设置 |
+| channel   | obj   | 视频列表数     |              |
+| favourite | obj   | 收藏夹数   |  |
 | tag       | num   | 关注TAG数  | 无视隐私设置 |
 | article   | num   | 投稿专栏数 |              |
 | playlist  | num   | 0          | 作用尚不明确 |
-| album     | num   | 投稿相簿数 |              |
+| album     | num   | 投稿图文数 |              |
 | audio     | num   | 投稿音频数 |              |
 | pugv      | num   | 投稿课程数 |              |
+| upos      | num   | 动态数     |              |
+| season_num | num | 视频合集数 |              |
 
 `data`中的`channel`对象：
 
 | 字段    | 类型  | 内容       | 备注         |
 | ------- | ----- | ---------- | ------------ |
-| master  | num   | 频道数     |              |
-| guest   | num   | 频道数     |              |
+| master  | num   | 视频列表数     |              |
+| guest   | num   | 视频列表数     |              |
 
 `data`中的`favourite`对象：
 
 | 字段   | 类型 | 内容         | 备注                                    |
 | ------ | ---- | ------------ | --------------------------------------- |
 | master | num  | 全部收藏夹数 | 需要登录(SESSDATA) <br />只能查看自己的 |
-| guest  | num  | 公开收藏夹数 | 无视隐私设置                            |
+| guest  | num  | 公开收藏夹数 |                             |
 
 **示例：**
 
-查询用户`mid=239202390`的订阅&投稿状态数
+查询用户`mid=645769214`的订阅&投稿状态数
 
 ```shell
 curl -G 'https://api.bilibili.com/x/space/navnum' \
---data-urlencode 'mid=239202390' \
--b 'SESSDATA=xxx'
+--data-urlencode 'mid=645769214'
 ```
 
 <details>
@@ -215,32 +215,33 @@ curl -G 'https://api.bilibili.com/x/space/navnum' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"video": 290,
-		"bangumi": 25,
-		"cinema": 13,
-		"channel": {
-			"master": 2,
-			"guest": 2
-		},
-		"favourite": {
-			"master": 6,
-			"guest": 6
-		},
-		"tag": 0,
-		"article": 1,
-		"playlist": 0,
-		"album": 150,
-		"audio": 4,
-		"pugv": 0
-	}
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "video": 34,
+    "bangumi": 1,
+    "cinema": 0,
+    "channel": {
+      "master": 5,
+      "guest": 5
+    },
+    "favourite": {
+      "master": 0,
+      "guest": 0
+    },
+    "tag": 0,
+    "article": 1,
+    "playlist": 0,
+    "album": 59,
+    "audio": 0,
+    "pugv": 0,
+    "season_num": 1,
+    "opus": 59
+  }
 }
 ```
 
-</details>
 </details>
 
 ## 相簿投稿数
