@@ -874,8 +874,38 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 | type       | num  | 评论区类型代码 | 必要         | [类型代码见表](readme.md#评论区类型代码)                     |
 | oid        | num  | 目标评论区 id  | 必要         |                                                              |
 | mode       | num  | 排序方式       | 非必要       | 默认为 3<br />0 3：仅按热度<br />1：按热度+按时间<br />2：仅按时间 |
-| next       | num  | 评论页选择     | 非必要       | 按热度时：热度顺序页码（0 为第一页）<br />按时间时：时间倒序楼层号<br />默认为 0 |
-| ps         | num  | 每页项数       | 非必要       | 默认为 20<br />定义域：1-30                                  |
+| pagination_str | obj  | 分页信息       | 非必要       | 见下 |
+| plat       | num  | 平台类型       | 非必要       | 如 `1` |
+| seek_rpid  | str  | 空            | 非必要       | 当获取第一页评论时存在 |
+| web_location | str | 1315875      | 非必要       |  |
+
+`pagination_str`:
+
+| 参数名 | 类型 | 内容 | 备注 |
+| ----- | - | ------|------|
+| offset | str | 一个套着字符串皮的 JSON Object | 上次响应 `data.cursor.pagination_reply.next_offset` 的值, 获取第一页时为空, 其余见下参考 |
+
+`pagination_str` 中的 `offset`:
+
+| 参数名 | 类型 | 内容 | 备注 |
+| ----- | ---- | -- | - |
+| type | num | 类型 | 当 URL 参数 mode 为 2 时, 此项为 3<br />当 URL 参数 mode 为 3 时, 此项为 1 |
+| direction | num | 1 |  |
+| data | obj | 分页数据 | 当 type 为 1 时存在 |
+| Data | obj | 分页数据 | 当 type 为 3 时存在 |
+<!--not typo here-->
+
+`offset` 中的 `data` (type=1):
+
+| 参数名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| pn | num | 页码 (上次响应 `data.cursor.next` 的值) | |
+
+`offset` 中的 `Data` (type=3):
+
+| 参数名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| cursor | num | 上次响应 `data.cursor.next` 的值 | |
 
 **json回复：**
 
@@ -912,6 +942,10 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 | upper        | obj                              | UP主信息 |                  |
 | show_bvid    | bool                             | 显示 bvid?     |                                        |
 | control      | obj                              | 评论区输入属性 |                  |
+| note | num | 1 |  |
+| esports_grade_card | null | | |
+| callbacks | null | | |
+| context_feature | str | | |
 
 `data`中的`cursor`对象：
 
@@ -923,9 +957,17 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 | next         | num   | 下页页码       |                         |
 | is_end       | bool  | 是否为最后页   | false：否<br />true：是 |
 | mode         | num   | 排序方式       |                         |
-| show_type    | num   | (?)            |                         |
 | support_mode | array | 支持的排序方式 |                         |
 | name         | str   | 评论区类型名   |                         |
+| pagination_reply | str | 用于下一次请求的偏移信息 | |
+| session_id   | str   | 空 |  |
+
+`cursor`中的`pagination_reply`对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | -- | - |
+| next_offset | str | 用于下一次请求的偏移信息 | |
+| prev_offset | str | 用于本次请求的偏移信息 | |
 
 `data`中的`config`对象：
 
