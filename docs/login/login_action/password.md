@@ -109,7 +109,7 @@ data 对象：
 
 | 字段            | 类型  | 内容                | 备注                     |
 |---------------|-----|-------------------|------------------------|
-| message       | str | 扫码状态信息            |                        |
+| message       | str | 扫码状态信息            | 若提示 `本次登录环境存在风险, 需使用手机号进行验证或绑定`, 参见 [手机号验证](#手机号验证) |
 | refresh_token | str | 刷新`refresh_token` |                        |
 | status        | num | 0                 |                        |
 | timestamp     | num | 登录时间              | 未登录为`0`<br />时间戳 单位为毫秒 |
@@ -481,3 +481,308 @@ public class Test3 {
 }
 
 ```
+
+## 手机号验证
+
+### 简述
+
+有时 [登录操作(web端)](#登录操作web端) (APP 端可能也有类似操作) 会返回如下内容, 此时需要进行手机号验证或绑定
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "is_new": false,
+    "status": 2,
+    "message": "本次登录环境存在风险, 需使用手机号进行验证或绑定",
+    "url": "https://passport.bilibili.com/h5-app/passport/risk/verify?tmp_token=imtmptk&request_id=imreqid&source=risk",
+    "refresh_token": "",
+    "timestamp": 0,
+    "hint": "",
+    "in_reg_audit": 0
+  }
+}
+```
+
+### 获取 captcha
+
+> https://passport.bilibili.com/x/safecenter/captcha/pre
+
+*请求方法: POST*
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | ---- | ---- | ---- | ---- |
+| source | str | risk | 不必要 |     |
+
+**JSON 回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 |  |
+| data | obj | 数据本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| recaptcha_type | str | 验证码类型 | 目前仅 `geetest` |
+| recaptcha_token | str | 验证码 token |  |
+| gee_challenge | str | 极验 challenge |  |
+| gee_gt | str | 极验 gt |  |
+
+**示例:**
+
+```shell
+curl -X POST 'https://passport.bilibili.com/x/safecenter/captcha/pre'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "recaptcha_type": "geetest",
+    "recaptcha_token": "8a418aa9eebe411599d759fc318d55e1",
+    "gee_challenge": "4e5353e7ab9f9aef0c97fa5a5b1ad101",
+    "gee_gt": "ac597a4506fee079629df5d8b66dd4fe"
+  }
+}
+```
+
+</details>
+
+### 发送验证码
+
+> https://passport.bilibili.com/x/safecenter/common/sms/send
+
+*请求方法: POST*
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | - | ---- | ---- | ---- |
+| tmp_code| str | url query 中的 tmp_code | 必要 | 参见 [简述](#简述) 中 JSON 示例中的 `url` |
+| sms_type | str | `loginTelCheck` | 必要 |  |
+| recaptcha_token | str | 验证码 token | 必要 | 参见 [获取 captcha](#获取-captcha) |
+| gee_challenge | str | 极验 challenge | 必要 | 参见 [获取 captcha](#获取-captcha) |
+| gee_validate | str | 极验 validate | 必要 | 验证后获得 |
+| gee_seccode | str | 极验 seccode | 必要 | 验证后获得 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 |  |
+| data | obj | 数据本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- |
+| captcha_key | str | 验证码 key |  |
+
+**示例:**
+
+假设 `tmp_code` 为 `imtmptk`,
+`recaptcha_token` 为 `kfc`,
+`gee_challenge` 为 `crazythursday`,
+`gee_validate` 为 `vivo50`,
+`gee_seccode` 为 `vivo50|jordan`
+
+```shell
+curl -X POST 'https://passport.bilibili.com/x/safecenter/common/sms/send' \
+--data-urlencode 'tmp_code=imtmptk' \
+--data-urlencode 'sms_type=loginTelCheck' \
+--data-urlencode 'recaptcha_token=kfc' \
+--data-urlencode 'gee_challenge=crazythursday' \
+--data-urlencode 'gee_validate=vivo50' \
+--data-urlencode 'gee_seccode=vivo50|jordan'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "captcha_key": "42403fb08ed2cd97afff14edefbae482"
+  }
+}
+```
+
+</details>
+
+### 验证手机验证码
+
+> https://passport.bilibili.com/x/safecenter/login/tel/verify
+
+*请求方法: POST*
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | - | ---- | ---- | ---- |
+| tmp_code | str | url query 中的 tmp_code | 必要 | 参见 [简述](#简述) 中 JSON 示例中的 `url` |
+| captcha_key | str | 验证码 key | 必要 | 参见 [发送验证码](#发送验证码) |
+| type | str | `loginTelCheck` | 必要 |  |
+| code | num | 接收到的验证码 | 必要 |  |
+| request_id | str | url query 中的 request_id | 必要 | 参见 [简述](#简述) 中 JSON 示例中的 `url` |
+| source | str | risk | 必要 |  |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 |  |
+| data | obj | 数据本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | str | 交换代码 | 用于后面 [交换 Cookie](#交换-cookie) |
+
+**示例:**
+
+假设 `tmp_code` 为 `imtmptk`,
+`captcha_key` 为 `42403fb08ed2cd97afff14edefbae482`,
+`code` 为 `114514`,
+`request_id` 为 `imreqid`
+
+```shell
+curl -X POST 'https://passport.bilibili.com/x/safecenter/login/tel/verify' \
+--data-urlencode 'tmp_code=imtmptk' \
+--data-urlencode 'captcha_key=42403fb08ed2cd97afff14edefbae482' \
+--data-urlencode 'type=loginTelCheck' \
+--data-urlencode 'code=114514' \
+--data-urlencode'request_id=imreqid' \
+--data-urlencode'source=risk'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "code": "6eadf783c55a387b143773282b217682"
+  }
+}
+```
+
+</details>
+
+### 交换 Cookie
+
+> https://passport.bilibili.com/x/passport-login/web/exchange_cookie
+
+*请求方法: POST*
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | - | ---- | ---- | ---- |
+| source | str | risk | 必要 |  |
+| code | str | 交换代码 | 必要 | 参见 [验证手机验证码](#验证手机验证码) |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 |  |
+| data | obj | 数据本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- |
+| url | str | 游戏分站跨域登录 url |  |
+| refresh_token | str | 刷新 token |  |
+
+**示例:**
+
+假设 `code` 为 `6eadf783c55a387b143773282b217682`
+
+```shell
+curl -X POST 'https://passport.bilibili.com/x/passport-login/web/exchange_cookie' \
+--data-urlencode 'code=6eadf783c55a387b143773282b217682' \
+--data-urlencode'source=risk'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "url": "https://passport.biligame.com/x/passport-login/web/crossDomain?DedeUserID=645769214&DedeUserID__ckMd5=653409864bf9e200&Expires=1739265009&SESSDATA=11d97d2a,1739265009,928d7*82CjCKOhDRm5gROpSfgQ7B2axGVMWm5LuwNTkNDK2vjeGl7xvAsfsCINKmczXvO_Z45FsSVlJ1NHdlYlpSei1lYjdqUXRMaUpuRk9GbjVPS0psc3ZTcDFGRjhnNGhIbHRlZ0ZQRWQ1MUlUY2pnQ0lkTVRYNjlabmlUWGxHcVdkV3hrcElpa0ZEZEZRIIEC&bili_jct=3cdee5b84eb48d4f08bcfd57b58cf40b&gourl=https%3A%2F%2Fwww.bilibili.com%2F&first_domain=.bilibili.com",
+    "refresh_token": "43de156ad241864640f9d9721656a682"
+  }
+}
+```
+
+</details>
+
+<details>
+<summary>查看响应头部示例:</summary>
+
+```http
+HTTP/2 200 OK
+date: Thu, 15 Aug 2024 09:10:09 GMT
+content-type: application/json; charset=utf-8
+access-control-allow-credentials: true
+access-control-allow-methods: GET,POST,PUT,DELETE
+access-control-allow-origin: https://passport.bilibili.com
+bili-status-code: 0
+bili-trace-id: 175262647666bdc5
+set-cookie: SESSDATA=xxxxxxx; Path=/; Domain=bilibili.com; Expires=Tue, 11 Feb 2025 09:10:09 GMT; HttpOnly; Secure
+set-cookie: bili_jct=xxxxxxxxxxxxxxxxxxxxxxxxx; Path=/; Domain=bilibili.com; Expires=Tue, 11 Feb 2025 09:10:09 GMT
+set-cookie: DedeUserID=114514191; Path=/; Domain=bilibili.com; Expires=Tue, 11 Feb 2025 09:10:09 GMT
+set-cookie: DedeUserID__ckMd5=0123456789abcdef; Path=/; Domain=bilibili.com; Expires=Tue, 11 Feb 2025 09:10:09 GMT
+set-cookie: sid=xxxxxxxx; Path=/; Domain=bilibili.com; Expires=Tue, 11 Feb 2025 09:10:09 GMT
+vary: Origin
+x-bili-trace-id: 60f0305e2abc511d175262647666bdc5
+access-control-allow-headers: Origin,No-Cache,X-Requested-With,If-Modified-Since,Pragma,Last-Modified,Cache-Control,Expires,Content-Type,Access-Control-Allow-Credentials,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Cache-Webcdn,x-bilibili-key-real-ip,x-backend-bili-real-ip,x-risk-header
+cross-origin-resource-policy: cross-origin
+access-control-expose-headers: X-Bili-Gaia-Vvoucher,X-Bili-Trace-Id
+expires: Thu, 15 Aug 2024 09:10:08 GMT
+cache-control: no-cache
+x-cache-webcdn: BYPASS from blzone01
+content-encoding: br
+X-Firefox-Spdy: h2
+```
+
+</details>

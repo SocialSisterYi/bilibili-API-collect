@@ -22,6 +22,8 @@
 
 *请求方式：GET*
 
+注: 另外参见 [密码登录-手机号验证-获取 captcha](password.md#获取-captcha)
+
 **json回复：**
 
 根对象：
@@ -155,7 +157,6 @@ curl 'https://passport.bilibili.com/web/captcha/combine?plat=6'
 2. 点击按钮3，稍等加载验证码，点击按钮4进行验证
 3. 验证完成后，点击按钮5生成验证结果
 4. 使用最开始获得到的`key`、`challenge`和刚获得到的`validate`、`seccode`继续之后的登录操作
-
 
 ### 继续登录
 
