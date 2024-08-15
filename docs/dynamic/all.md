@@ -1,12 +1,14 @@
 # 获取动态列表
 
+## 获取全部动态列表
+
 > https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all
 
-请求方式：`GET`
+*请求方式: GET*
 
-是否需要登录：`是`
+认证方式: Cookie (SESSDATA)
 
-## URL参数
+**URL参数:**
 
 | 参数名             | 类型  | 必填  | 内容     | 备注                                                        |
 |-----------------|-----|-----|--------|-----------------------------------------------------------|
@@ -16,9 +18,9 @@
 | update_baseline | str |     | 更新基线   | 获取新动态时使用                                                  |
 | page            | num |     | 页数     | 无效参数                                                      |
 
-## Json回复
+**JSON回复:**
 
-### 根对象
+根对象:
 
 | 字段名     | 类型  | 内容   | 备注                  |
 |---------|-----|------|---------------------|
@@ -27,7 +29,7 @@
 | ttl     | num | 1    |                     |
 | data    | obj | 信息本体 |                     |
 
-### `data`对象
+`data`对象:
 
 | 字段名             | 类型    | 内容             | 备注                               |
 |-----------------|-------|----------------|----------------------------------|
@@ -37,7 +39,7 @@
 | update_baseline | str   | 更新基线           | 等于`items`中第一条记录的id               |
 | update_num      | num   | 本次获取获取到了多少条新动态 | 在更新基线以上的动态条数                     |
 
-### `data`对象 -> `items`数组中的对象
+`data`对象 -> `items`数组中的对象:
 
 | 字段名     | 类型   | 内容    | 备注                                 |
 |---------|------|-------|------------------------------------|
@@ -48,7 +50,7 @@
 | visible | bool | 是否显示  | `true`：正常显示<br/>`false`：折叠动态       |
 | orig    | obj  | 原动态信息 | 仅动态类型为`DYNAMIC_TYPE_FORWARD`的情况下存在 |
 
-### `data`对象 -> `items`数组中的对象 -> `basic`对象
+`data`对象 -> `items`数组中的对象 -> `basic`对象:
 
 | 字段名            | 类型  | 内容  | 备注                                                                                                                                                                                                                                                                                                                                                       |
 |----------------|-----|-----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -57,7 +59,7 @@
 | like_icon      | obj |     | `空串`                                                                                                                                                                                                                                                                                                                                                     |
 | rid_str        | str |     | `DYNAMIC_TYPE_AV`：视频AV号<br/>`DYNAMIC_TYPE_UGC_SEASON`：视频AV号 `DYNAMIC_TYPE_PGC`：剧集分集EP号<br/>`DYNAMIC_TYPE_DRAW`：相簿id<br/>`DYNAMIC_TYPE_ARTICLE`：专栏cv号<br/>`DYNAMIC_TYPE_LIVE_RCMD`：live_id<br/>`DYNAMIC_TYPE_FORWARD`：未知<br/>`DYNAMIC_TYPE_WORD`：未知<br/>`DYNAMIC_TYPE_COMMON_SQUARE`：未知<br/>`DYNAMIC_TYPE_LIVE`：直播间id<br/>`DYNAMIC_TYPE_MEDIALIST`：收藏夹ml号 |
 
-### `data`对象 -> `items`数组中的对象 -> `basic`对象 -> `like_icon`对象
+`data`对象 -> `items`数组中的对象 -> `basic`对象 -> `like_icon`对象:
 
 | 字段名        | 类型  | 内容   | 备注  |
 |------------|-----|------|-----|
@@ -66,7 +68,7 @@
 | id         | num | `0`  |     |
 | start_url  | str | `空串` |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象:
 
 | 字段名                | 类型  | 内容        | 备注  |
 |--------------------|-----|-----------|-----|
@@ -79,7 +81,7 @@
 | module_dispute     | obj | 争议小黄条     |     |
 | module_tag     | obj | 置顶信息     |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象:
 
 | 字段名               | 类型   | 内容                      | 备注                                                                                  |
 |-------------------|------|-------------------------|-------------------------------------------------------------------------------------|
@@ -101,14 +103,14 @@
 | decorate          | obj  | 装扮信息                    |                                                                                     |
 | nft_info          | obj  | NFT头像信息                 |                                                                                     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `official_verify`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `official_verify`对象:
 
 | 字段名  | 类型  | 内容   | 备注  |
 |------|-----|------|-----|
 | desc | str | 认证说明 |     |
 | type | num | 认证类型 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `pendant`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `pendant`对象:
 
 | 字段名                 | 类型  | 内容           | 备注         |
 |---------------------|-----|--------------|------------|
@@ -119,7 +121,7 @@
 | name                | str | 头像框名称        |            |
 | pid                 | num | 头像框id        |            |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `vip`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `vip`对象:
 
 | 字段名                  | 类型  | 内容       | 备注                              |
 |----------------------|-----|----------|---------------------------------|
@@ -132,7 +134,7 @@
 | theme_type           | num | `0`      |                                 |
 | type                 | num | 大会员类型    | 0：无<br />1：月大会员<br />2：年度及以上大会员 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `vip`对象 -> `label`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `vip`对象 -> `label`对象:
 
 | 字段名                       | 类型   | 内容       | 备注                                                                                                                           |
 |---------------------------|------|----------|------------------------------------------------------------------------------------------------------------------------------|
@@ -149,7 +151,7 @@
 | text_color                | str  | 用户名文字颜色  |                                                                                                                              |
 | use_img_label             | bool | `true`   |                                                                                                                              |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `decorate`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `decorate`对象:
 
 | 字段名      | 类型  | 内容           | 备注  |
 |----------|-----|--------------|-----|
@@ -160,7 +162,7 @@
 | name     | str | 装扮名称         |     |
 | type     | num | `1` `2` `3`  |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `decorate`对象 -> `fan`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `decorate`对象 -> `fan`对象:
 
 | 字段名     | 类型   | 内容      | 备注  |
 |---------|------|---------|-----|
@@ -169,7 +171,7 @@
 | num_str | str  | 装扮编号    |     |
 | number  | num  | 装扮编号    |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `nft_info`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_author`对象 -> `nft_info`对象:
 
 | 字段名         | 类型  | 内容         | 备注                                                                                                                                                                                                                         |
 |-------------|-----|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -177,7 +179,7 @@
 | region_type | num | NFT头像角标类型  | 1,2                                                                                                                                                                                                                        |
 | show_status | num | `1`        |                                                                                                                                                                                                                            |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象:
 
 | 字段名        | 类型  | 内容       | 备注  |
 |------------|-----|----------|-----|
@@ -186,7 +188,7 @@
 | major      | obj | 动态主体对象   |转发动态时为null     |
 | topic      | obj | 话题信息     |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象:
 
 | 字段名     | 类型  | 内容   | 备注                                     |
 |---------|-----|------|----------------------------------------|
@@ -197,7 +199,7 @@
 | vote    | obj | 投票信息 | `ADDITIONAL_TYPE_VOTE`类型独有             |
 | ugc     | obj | 视频信息 | `ADDITIONAL_TYPE_UGC`类型独有              |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象:
 
 | 字段名       | 类型  | 内容    | 备注                                |
 |-----------|-----|-------|-----------------------------------|
@@ -212,7 +214,7 @@
 | sub_type  | str | 子类型   | `game`<br/>`decoration`<br/>`ogv` |
 | title     | str | 卡片标题  |                                   |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象:
 
 | 字段名        | 类型  | 内容    | 备注                                    |
 |------------|-----|-------|---------------------------------------|
@@ -223,28 +225,28 @@
 | status     | num | `1`   |                                       |
 | uncheck    | obj |       | `ogv`类型特有                             |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象 -> `jump_style`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象 -> `jump_style`对象:
 
 | 字段名      | 类型  | 内容     | 备注                             |
 |----------|-----|--------|--------------------------------|
 | icon_url | str | `空串`   |                                |
 | text     | str | 按钮显示文案 | game：`进入`<br/>decoration：`去看看` |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象 -> `check`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象 -> `check`对象:
 
 | 字段名      | 类型  | 内容      | 备注        |
 |----------|-----|---------|-----------|
 | icon_url | str | 按钮图片URL |           |
 | text     | str | 按钮显示文案  | `ogv`：已追剧 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象 -> `uncheck`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `common`对象 -> `button`对象 -> `uncheck`对象:
 
 | 字段名      | 类型  | 内容      | 备注       |
 |----------|-----|---------|----------|
 | icon_url | str | 按钮图片URL |          |
 | text     | str | 按钮显示文案  | `ogv`：追剧 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象:
 
 | 字段名           | 类型  | 内容       | 备注  |
 |---------------|-----|----------|-----|
@@ -260,7 +262,7 @@
 | up_mid        | num | 预约发起人UID |     |
 | desc3         | obj | 预约有奖信息   |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象:
 
 | 字段名        | 类型  | 内容        | 备注                                                   |
 |------------|-----|-----------|------------------------------------------------------|
@@ -271,14 +273,14 @@
 | jump_style | obj | 跳转按钮      |                                                      |
 | jump_url   | str | 跳转URL     |                                                      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象 -> `check`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象 -> `check`对象"
 
 | 字段名      | 类型  | 内容     | 备注    |
 |----------|-----|--------|-------|
 | icon_url | str | `空串`   |       |
 | text     | str | 按钮显示文案 | `已预约` |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象 -> `uncheck`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象 -> `uncheck`对象:
 
 | 字段名      | 类型  | 内容         | 备注  |
 |----------|-----|------------|-----|
@@ -287,21 +289,21 @@
 | toast    | str | 预约成功显示提示文案 |     |
 | disable  | num | 是否不可预约     | 1：是 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象 -> `jump_style`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `button`对象 -> `jump_style`对象:
 
 | 字段名      | 类型  | 内容     | 备注    |
 |----------|-----|--------|-------|
 | icon_url | str | `空串`   |       |
 | text     | str | 按钮显示文案 | `去观看` |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `desc1`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `desc1`对象:
 
 | 字段名   | 类型  | 内容   | 备注                                                   |
 |-------|-----|------|------------------------------------------------------|
 | style | num | 类型   | 0：`视频预约` `11-05 20:00 直播` `预计今天 17:05发布`<br/>1：`直播中` |
 | text  | str | 显示文案 |                                                      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `desc2`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `desc2`对象:
 
 | 字段名     | 类型   | 内容   | 备注                                            |
 |---------|------|------|-----------------------------------------------|
@@ -309,7 +311,7 @@
 | text    | str  | 显示文案 | `2人预约`<br/>`743观看`<br/>`1.0万人看过`<br/>`2151人气` |
 | visible | bool | 是否显示 | true：显示文案<br/>false：显示已结束                     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `desc3`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `reserve`对象 -> `desc3`对象:
 
 | 字段名      | 类型  | 内容        | 备注  |
 |----------|-----|-----------|-----|
@@ -317,7 +319,7 @@
 | style    | num | `1`       |     |
 | text     | str | 奖品信息显示文案  |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `goods`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `goods`对象:
 
 | 字段名       | 类型    | 内容      | 备注  |
 |-----------|-------|---------|-----|
@@ -326,7 +328,7 @@
 | items     | array | 商品信息列表  |     |
 | jump_url  | str   | `空串`    |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `goods`对象 -> `items`数组中的对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `goods`对象 -> `items`数组中的对象:
 
 | 字段名       | 类型  | 内容       | 备注  |
 |-----------|-----|----------|-----|
@@ -338,7 +340,7 @@
 | name      | str | 商品名称     |     |
 | price     | str | 商品价格     |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `vote`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `vote`对象:
 
 | 字段名           | 类型   | 内容              | 备注   |
 |---------------|------|-----------------|------|
@@ -352,7 +354,7 @@
 | uid           | num  | 发起人UID          |      |
 | vote_id       | num  | 投票ID            |      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `ugc`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `additional`对象 -> `ugc`对象:
 
 | 字段名         | 类型   | 内容      | 备注  |
 |-------------|------|---------|-----|
@@ -365,14 +367,14 @@
 | multi_line  | bool | `true`  |     |
 | title       | str  | 视频标题    |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象:
 
 | 字段名             | 类型    | 内容      | 备注                                   |
 |-----------------|-------|---------|--------------------------------------|
 | rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
 | text            | str   | 动态的文字内容 |                                      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象:
 
 | 字段名       | 类型  | 内容     | 备注                                   |
 |-----------|-----|--------|--------------------------------------|
@@ -385,7 +387,7 @@
 | goods     | obj | 商品信息   |                                      |
 | icon_name | str | 图标名称   | `taobao`                             |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象 -> `emoji`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象 -> `emoji`对象:
 
 | 字段名      | 类型  | 内容      | 备注          |
 |----------|-----|---------|-------------|
@@ -394,14 +396,14 @@
 | text     | str | 表情的文字代码 |             |
 | type     | num | 表情类型    | `1` `2` `3` |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象 -> `goods`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象 -> `goods`对象:
 
 | 字段名      | 类型  | 内容    | 备注  |
 |----------|-----|-------|-----|
 | jump_url | str | 跳转URL |     |
 | type     | num | `1`   |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象:
 
 | 字段名        | 类型  | 内容     | 备注                      |
 |------------|-----|--------|-------------------------|
@@ -419,7 +421,7 @@
 | live       | obj |        |                         |
 | none       | obj | 动态失效   | `MAJOR_TYPE_NONE`       |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `ugc_season`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `ugc_season`对象:
 
 | 字段名             | 类型  | 内容    | 备注  |
 |-----------------|-----|-------|-----|
@@ -433,7 +435,7 @@
 | stat            | obj | 统计信息  |     |
 | title           | str | 视频标题  |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `ugc_season`对象 -> `badge`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `ugc_season`对象 -> `badge`对象:
 
 | 字段名      | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
@@ -441,14 +443,14 @@
 | color    | str | 字体颜色 |     |
 | text     | str | 角标文案 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `ugc_season`对象 -> `stat`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `ugc_season`对象 -> `stat`对象:
 
 | 字段名     | 类型  | 内容  | 备注  |
 |---------|-----|-----|-----|
 | danmaku | str | 弹幕数 |     |
 | play    | str | 播放数 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `article`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `article`对象:
 
 | 字段名      | 类型    | 内容     | 备注   |
 |----------|-------|--------|------|
@@ -459,14 +461,14 @@
 | label    | str   | 文章阅读量  |      |
 | title    | str   | 文章标题   |      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `draw`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `draw`对象:
 
 | 字段名   | 类型    | 内容     | 备注  |
 |-------|-------|--------|-----|
 | id    | num   | 对应相簿id |     |
 | items | array | 图片信息列表 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `draw`对象 -> `items`数组中的对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `draw`对象 -> `items`数组中的对象:
 
 | 字段名    | 类型    | 内容    | 备注   |
 |--------|-------|-------|------|
@@ -476,7 +478,7 @@
 | tags   | array |       |      |
 | width  | num   | 图片宽度  |      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `archive`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `archive`对象:
 
 | 字段名             | 类型  | 内容     | 备注  |
 |-----------------|-----|--------|-----|
@@ -492,7 +494,7 @@
 | title           | str | 视频标题   |     |
 | type            | num | `1`    |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `archive`对象 -> `badge`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `archive`对象 -> `badge`对象:
 
 | 字段名      | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
@@ -500,21 +502,21 @@
 | color    | str | 字体颜色 |     |
 | text     | str | 角标文案 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `archive`对象 -> `stat`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `archive`对象 -> `stat`对象:
 
 | 字段名     | 类型  | 内容  | 备注  |
 |---------|-----|-----|-----|
 | danmaku | str | 弹幕数 |     |
 | play    | str | 播放数 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `live_rcmd`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `live_rcmd`对象:
 
 | 字段名          | 类型  | 内容        | 备注  |
 |--------------|-----|-----------|-----|
 | content      | str | 直播间内容JSON |     |
 | reserve_type | num | `0`       |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `common`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `common`对象:
 
 | 字段名       | 类型  | 内容     | 备注  |
 |-----------|-----|--------|-----|
@@ -529,7 +531,7 @@
 | style     | num | `1`    |     |
 | title     | str | 右侧标题   |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `common`对象 -> `badge`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `common`对象 -> `badge`对象:
 
 | 字段名      | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
@@ -537,7 +539,7 @@
 | color    | str | `空串` |     |
 | text     | str | `空串` |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `pgc`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `pgc`对象:
 
 | 字段名       | 类型  | 内容         | 备注                                                           |
 |-----------|-----|------------|--------------------------------------------------------------|
@@ -551,7 +553,7 @@
 | title     | str | 视频标题       |                                                              |
 | type      | num | `2`        |                                                              |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `pgc`对象 -> `badge`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `pgc`对象 -> `badge`对象:
 
 | 字段名      | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
@@ -559,14 +561,14 @@
 | color    | str | 字体颜色 |     |
 | text     | str | 角标文案 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `pgc`对象 -> `stat`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `pgc`对象 -> `stat`对象:
 
 | 字段名     | 类型  | 内容  | 备注  |
 |---------|-----|-----|-----|
 | danmaku | str | 弹幕数 |     |
 | play    | str | 播放数 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `courses`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `courses`对象:
 
 | 字段名       | 类型  | 内容     | 备注  |
 |-----------|-----|--------|-----|
@@ -578,7 +580,7 @@
 | sub_title | str | 课程副标题  |     |
 | title     | str | 课程标题   |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `courses`对象 -> `badge`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `courses`对象 -> `badge`对象:
 
 | 字段名      | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
@@ -586,7 +588,7 @@
 | color    | str | 字体颜色 |     |
 | text     | str | 角标文案 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `music`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `music`对象:
 
 | 字段名      | 类型  | 内容     | 备注  |
 |----------|-----|--------|-----|
@@ -596,7 +598,7 @@
 | label    | str | 音频分类   |     |
 | title    | str | 音频标题   |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `opus`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `opus`对象:
 
 | 字段名      | 类型  | 内容     | 备注  |
 |---------------|------|--------|-----|
@@ -606,14 +608,14 @@
 | summary       | obj  | 动态内容   |     |
 | title         | str  | 动态标题   | 没有标题时为null    |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `opus`对象 -> `summary`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `opus`对象 -> `summary`对象:
 
 | 字段名             | 类型    | 内容      | 备注                                   |
 |-----------------|-------|---------|--------------------------------------|
 | rich_text_nodes | array | 富文本节点列表 | 和`desc`对象中的`rich_text_nodes`数组结构一样 |
 | text            | str   | 评论内容    |                                      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `live`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `live`对象:
 
 | 字段名          | 类型  | 内容       | 备注                |
 |--------------|-----|----------|-------------------|
@@ -627,7 +629,7 @@
 | reserve_type | num | `0`      |                   |
 | title        | str | 直播间标题    |                   |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `live`对象 -> `badge`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `live`对象 -> `badge`对象:
 
 | 字段名      | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
@@ -635,13 +637,13 @@
 | color    | str | 字体颜色 |     |
 | text     | str | 角标文案 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `none`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `major`对象 -> `none`对象:
 
 | 字段名  | 类型  | 内容       | 备注  |
 |------|-----|----------|-----|
 | tips | str | 动态失效显示文案 | deprecated?    |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `topic`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dynamic`对象 -> `topic`对象:
 
 | 字段名      | 类型  | 内容    | 备注  |
 |----------|-----|-------|-----|
@@ -649,13 +651,13 @@
 | jump_url | str | 跳转URL |     |
 | name     | str | 话题名称  |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象:
 
 | 字段名               | 类型    | 内容      | 备注  |
 |-------------------|-------|---------|-----|
 | three_point_items | array | 右上角三点菜单 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象 -> `three_point_items`数组中的对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象 -> `three_point_items`数组中的对象:
 
 | 字段名    | 类型  | 内容    | 备注         |
 |--------|-----|-------|------------|
@@ -664,7 +666,7 @@
 | modal  | obj | 弹出框信息 | 删除动态时弹出    |
 | params | obj | 参数    | 置顶/取消置顶时使用 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象 -> `three_point_items`数组中的对象 -> `modal`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象 -> `three_point_items`数组中的对象 -> `modal`对象:
 
 | 字段名     | 类型  | 内容   | 备注            |
 |---------|-----|------|---------------|
@@ -673,14 +675,14 @@
 | content | str | 提示内容 | `确定要删除此条动态吗？` |
 | title   | str | 标题   | `删除动态`        |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象 -> `three_point_items`数组中的对象 -> `params`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_more`对象 -> `three_point_items`数组中的对象 -> `params`对象:
 
 | 字段名        | 类型   | 内容           | 备注  |
 |------------|------|--------------|-----|
 | dynamic_id | str  | 当前动态ID       |  deprecated?   |
 | status     | bool | 当前动态是否处于置顶状态 | deprecated?    |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象:
 
 | 字段名     | 类型  | 内容   | 备注  |
 |---------|-----|------|-----|
@@ -688,7 +690,7 @@
 | forward | obj | 转发数据 |     |
 | like    | obj | 点赞数据 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象 -> `comment`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象 -> `comment`对象:
 
 | 字段名       | 类型   | 内容      | 备注            |
 |-----------|------|---------|---------------|
@@ -696,14 +698,14 @@
 | forbidden | bool | `false` |               |
 | hidden    | bool | 是否隐藏    | 直播类型动态会隐藏回复功能 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象 -> `forward`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象 -> `forward`对象:
 
 | 字段名       | 类型   | 内容      | 备注  |
 |-----------|------|---------|-----|
 | count     | num  | 转发数     |     |
 | forbidden | bool | `false` |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象 -> `like`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_stat`对象 -> `like`对象:
 
 | 字段名       | 类型   | 内容       | 备注  |
 |-----------|------|----------|-----|
@@ -711,27 +713,27 @@
 | forbidden | bool | `false`  |     |
 | status    | bool | 当前用户是否点赞 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象:
 
 | 字段名   | 类型    | 内容   | 备注  |
 |-------|-------|------|-----|
 | items | array | 信息列表 |     |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象:
 
 | 字段名  | 类型  | 内容      | 备注                |
 |------|-----|---------|-------------------|
 | desc | obj | 点赞/评论信息 |                   |
 | type | num | 类型      | 0：点赞信息<br/>1：评论信息 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象 -> `desc`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象 -> `desc`对象:
 
 | 字段名             | 类型    | 内容      | 备注                                   |
 |-----------------|-------|---------|--------------------------------------|
 | rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
 | text            | str   | 评论内容    |                                      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象:
 
 | 字段名       | 类型  | 内容      | 备注                                   |
 |-----------|-----|---------|--------------------------------------|
@@ -741,7 +743,7 @@
 | type      | str | 富文本节点类型 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
 | emoji     | obj | 表情信息    |                                      |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象 -> `emoji`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_interaction`对象 -> `items`数组中的对象 -> `desc`对象 -> `rich_text_nodes`数组中的对象 -> `emoji`对象:
 
 | 字段名      | 类型  | 内容      | 备注          |
 |----------|-----|---------|-------------|
@@ -750,7 +752,7 @@
 | text     | str | 表情的文字代码 |             |
 | type     | num | 表情类型    | `1` `2` `3` |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_fold`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_fold`对象:
 
 | 字段名       | 类型    | 内容         | 备注         |
 |-----------|-------|------------|------------|
@@ -759,7 +761,7 @@
 | type      | num   | `1`        |            |
 | users     | array | `空数组`      |            |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dispute`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_dispute`对象:
 
 | 字段名      | 类型  | 内容   | 备注               |
 |----------|-----|------|------------------|
@@ -767,23 +769,21 @@
 | jump_url | str |      |                  |
 | title    | str | 提醒文案 | 例：视频内含有危险行为，请勿模仿 |
 
-### `data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_tag`对象
+`data`对象 -> `items`数组中的对象 -> `modules`对象 -> `module_tag`对象:
 
 | 字段名      | 类型  | 内容   | 备注               |
 |----------|-----|------|------------------|
 | text     | str | '置顶'     |  置顶动态出现这个对象，否则没有                |
 
-## 请求示例
+**示例:**
 
 ```shell
 curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all?type=all' \
 -H 'Cookie: SESSDATA=xxx'
 ```
 
-## 响应示例
-
 <details>
-<summary>点击查看</summary>
+<summary>查看响应示例:</summary>
 
 ```json
 {
@@ -3805,6 +3805,63 @@ curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all?type=
         "update_baseline": "722806776626413588",
         "update_num": 1
     }
+}
+```
+
+</details>
+
+## 检测是否有新动态
+
+> https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all/update
+
+*请求方式：GET*
+
+认证方式: Cookie (SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| - | - | - | - | - |
+| type | str | 动态类型 | 不必要 | 默认为 `all` |
+| update_baseline | id | 更新基线 | 必要 | 用于检测是否有新动态, 默认为上次请求 [获取全部动态列表](#获取全部动态列表) 返回的 `update_baseline`, 实测填 `0` 也可正常获取 |
+| web_location | str | 333.1365 | 不必要 |  |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| code | num | 返回值 | 0: 成功<br />-101: 账号未登录<br />-400: 请求错误 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| update_num | num | 有新动态的数量 |  |
+
+**示例:**
+
+```shell
+curl -G 'https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/all/update' \
+--data-urlencode 'update_baseline=114514' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "update_num": 9
+  }
 }
 ```
 
