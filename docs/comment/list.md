@@ -866,7 +866,7 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
-注: Wbi 签名错误时返回 -403 而非 -412
+注: Wbi 签名错误时返回 -403 而非 -352
 
 **url参数：**
 
