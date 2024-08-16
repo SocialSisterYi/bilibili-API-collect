@@ -260,8 +260,8 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [青少年模式](docs/teenager/teenager_mode.md)
     - [ ] 亲子平台
     - [ ] 课堂模式
-- [ ] B币钱包
-    - [ ] 基本信息
+- [ ] [B币钱包](docs/wallet/)
+    - [ ] [基本信息](docs/wallet/info.md)
     - [ ] B币充值
     - [ ] 贝壳相关
 - [ ] [哔哩哔哩漫画](docs/manga)
