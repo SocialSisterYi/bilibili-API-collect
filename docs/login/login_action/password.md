@@ -594,7 +594,7 @@ curl -X POST 'https://passport.bilibili.com/x/safecenter/captcha/pre'
 `data` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
-| --- | --- |
+| --- | --- | -- | - |
 | captcha_key | str | 验证码 key |  |
 
 **示例:**
@@ -725,7 +725,7 @@ curl -X POST 'https://passport.bilibili.com/x/safecenter/login/tel/verify' \
 `data` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
-| --- | --- |
+| --- | --- | - | - |
 | url | str | 游戏分站跨域登录 url |  |
 | refresh_token | str | 刷新 token |  |
 

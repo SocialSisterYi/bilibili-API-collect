@@ -10,13 +10,13 @@
 
 **正文参数 (application/json):**
 
-| 参数名       | 类型 | 内容     | 必要性 | 备注                |
-| ------------ | ---- | -------- | ------ | ------------------- |
-| panelType    | num  | 面板类型 | 不必要 | Web: 3              |
-| platformType | num  | 平台类型 | 必要   | Web: 3              |
-| timestamp    | num  | 当前时间 | 不必要 | UNIX 毫秒时间戳     |
-| traceId      | num  | 追踪 ID  | 不必要 | 与 timestamp 值相同 |
-| version      | str  | 版本     | 不必要 | 默认 `1.0`          |
+| 参数名       | 类型 | 内容     | 必要性 | 备注                   |
+| ------------ | ---- | -------- | ------ | ---------------------- |
+| panelType    | num  | 面板类型 | 不必要 | 默认为 3               |
+| platformType | num  | 平台类型 | 必要   | 任意有效数字, 默认为 3 |
+| timestamp    | num  | 当前时间 | 不必要 | UNIX 毫秒时间戳        |
+| traceId      | num  | 追踪 ID  | 不必要 | 与 timestamp 值相同    |
+| version      | str  | 版本     | 不必要 | 默认 `1.0`             |
 
 **JSON回复:**
 
