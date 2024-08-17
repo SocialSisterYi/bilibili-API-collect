@@ -102,6 +102,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [用户注册](docs/user/register.md)
     - [x] [用户认证类型一览](docs/user/official_role.md)
     - [ ] [加入老粉计划](docs/user/contract.md)
+    - [x] [所有粉丝勋章](docs/user/medals.md)
 - [ ] [大会员](docs/vip)
     - [ ] [大会员基本信息](docs/vip/info.md)
     - [ ] [大会员中心](docs/vip/center.md)
