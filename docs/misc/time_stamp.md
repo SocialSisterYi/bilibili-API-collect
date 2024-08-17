@@ -97,6 +97,8 @@ curl 'https://api.live.bilibili.com/xlive/open-interface/v1/rtc/getTimestamp'
 }
 ```
 
+</details>
+
 ## 获取服务器端UTC时间
 
 > https://interface.bilibili.com/serverdate.js
