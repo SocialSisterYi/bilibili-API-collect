@@ -466,7 +466,7 @@ curl -G 'https://api.live.bilibili.com/room/v1/Room/room_init' \
 
 **示例：**
 
-查询直播间`mid=76`的主播信息
+查询直播间`mid=2`的主播信息
 
 ```shell
 curl -G 'https://api.live.bilibili.com/live_user/v1/Master/info' \
@@ -516,6 +516,144 @@ curl -G 'https://api.live.bilibili.com/live_user/v1/Master/info' \
       "content": "",
       "ctime": "",
       "ctime_text": ""
+    }
+  }
+}
+```
+
+</details>
+
+## 获取直播间基本信息
+
+> https://api.live.bilibili.com/xlive/web-room/v1/index/getRoomBaseInfo
+
+*请求方式: GET*
+
+<!--{
+  "gh": [745]
+}-->
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | ---- | --- | - | - |
+| req_biz | str | `web_room_componet` | 必要 | |
+| room_ids | num | 直播间短ID | 不必要 | 多个重复该参数即可 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功<br />-400: 请求错误 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 | |
+| data | obj | 信息本体 | |
+
+`data`对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| by_uids | obj | 空 |  |
+| by_room_ids | obj | 直播间信息 |  |
+
+`data`中的`by_room_ids`对象:
+
+以直播间长ID为键, 直播间信息为值的, 按键名降序排序
+
+`by_room_ids`中的值对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| room_id | num | 直播间长ID |  |
+| uid | num | 主播用户mid |  |
+| area_id | num | 直播间分区ID |  |
+| live_status | num | 直播状态 | 0: 未开播<br />1: 直播中<br />2: 轮播中 |
+| live_url | str | 直播间网页url |  |
+| parent_area_id | num | 直播间父分区ID |  |
+| title | str | 直播间标题 |  |
+| parent_area_name | str | 直播间父分区名称 |  |
+| area_name | str | 直播间分区名称 |  |
+| live_time | str | 开播时间 | `yyyy-MM-dd HH:mm:ss` |
+| description | str | 直播间简介 |  |
+| tags | str | 直播间标签 | 以 `,` 分隔 |
+| attention | num | 关注数 |  |
+| online | num | 在线人数 |  |
+| short_id | num | 直播间短ID | 为0是无短号 |
+| uname | str | 主播用户名 |  |
+| cover | str | 直播间封面url |  |
+| background | str | 直播间背景url |  |
+| join_slide | num | 1 |  |
+| live_id | num | 0 |  |
+| live_id_str | str | "0" |  |
+
+**示例:**
+
+```shell
+curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getRoomBaseInfo' \
+--url-query 'req_biz=web_room_componet' \
+--url-query 'room_ids=1' \
+--url-query 'room_ids=3
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "by_uids": {},
+    "by_room_ids": {
+      "23058": {
+        "room_id": 23058,
+        "uid": 11153765,
+        "area_id": 190,
+        "live_status": 0,
+        "live_url": "https://live.bilibili.com/23058",
+        "parent_area_id": 5,
+        "title": "哔哩哔哩音悦台",
+        "parent_area_name": "电台",
+        "area_name": "唱见电台",
+        "live_time": "0000-00-00 00:00:00",
+        "description": "<p>这里是哔哩哔哩官方音乐台喔！</p><p>一起来听音乐吧ε=ε=(ノ≧∇≦)ノ</p><p>没想到蒸汽配圣诞下装，意外的很暴露呢=3=</p>\n",
+        "tags": "",
+        "attention": 225431,
+        "online": 0,
+        "short_id": 3,
+        "uname": "3号直播间",
+        "cover": "",
+        "background": "https://i0.hdslb.com/bfs/live/2836bb7b84c792e2c6aadfd4d1cce13484775fa3.jpg",
+        "join_slide": 1,
+        "live_id": 0,
+        "live_id_str": "0"
+      },
+      "5440": {
+        "room_id": 5440,
+        "uid": 9617619,
+        "area_id": 701,
+        "live_status": 2,
+        "live_url": "https://live.bilibili.com/5440",
+        "parent_area_id": 11,
+        "title": "华为nova Flip新生之夜",
+        "parent_area_name": "知识",
+        "area_name": "科技·科学",
+        "live_time": "0000-00-00 00:00:00",
+        "description": "<p>华为novaFlip新生之夜正在直播中！备案号：Z0910417240818001<br></p>",
+        "tags": "",
+        "attention": 17848313,
+        "online": 0,
+        "short_id": 1,
+        "uname": "哔哩哔哩直播",
+        "cover": "http://i0.hdslb.com/bfs/live/1a862058e4211a5e73a8a1bf0635953ea08a4091.jpg",
+        "background": "http://i0.hdslb.com/bfs/live/ec518ede15d4c2547c83cb59f14752450c0889b0.jpg",
+        "join_slide": 1,
+        "live_id": 0,
+        "live_id_str": "0"
+      }
     }
   }
 }
