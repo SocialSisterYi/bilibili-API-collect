@@ -1,31 +1,33 @@
-# 动态类型
+# 动态类型对照
 
-| 类型                            | 说明                   | 示例                                                                                                                                                                                                      | 
-|-------------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DYNAMIC_TYPE_NONE             | 无效动态                 | [716510857084796964](https://t.bilibili.com/716510857084796964)                                                                                                                                         |
-| DYNAMIC_TYPE_FORWARD          | 动态转发                 |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_AV               | 投稿视频                 |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_PGC              | 剧集（番剧、电影、纪录片）        |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_COURSES          |                      |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_WORD             | 纯文字动态                | [718377531474968613](https://t.bilibili.com/718377531474968613)                                                                                                                                         |
-| DYNAMIC_TYPE_DRAW             | 带图动态                 | [718384798557536290](https://t.bilibili.com/718384798557536290)                                                                                                                                         |
-| DYNAMIC_TYPE_ARTICLE          | 投稿专栏                 | [718372214316990512](https://t.bilibili.com/718372214316990512)                                                                                                                                         |
-| DYNAMIC_TYPE_MUSIC            | 音乐                   |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_COMMON_SQUARE    | 装扮<br/>剧集点评<br/>普通分享 | [551309621391003098](https://t.bilibili.com/551309621391003098)<br/>[716503778995470375](https://t.bilibili.com/716503778995470375)<br/>[716481612656672789](https://t.bilibili.com/716481612656672789) |
-| DYNAMIC_TYPE_COMMON_VERTICAL  |                      |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_LIVE             | 直播间分享                | [216042859353895488](https://t.bilibili.com/216042859353895488)                                                                                                                                         |
-| DYNAMIC_TYPE_MEDIALIST        | 收藏夹                  | [534428265320147158](https://t.bilibili.com/534428265320147158)                                                                                                                                         |
-| DYNAMIC_TYPE_COURSES_SEASON   | 课程                   | [717906712866062340](https://t.bilibili.com/717906712866062340)                                                                                                                                         |
-| DYNAMIC_TYPE_COURSES_BATCH    |                      |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_AD               |                      |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_APPLET           |                      |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_SUBSCRIPTION     |                      |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_LIVE_RCMD        | 直播开播                 | [718371505648435205](https://t.bilibili.com/718371505648435205)                                                                                                                                         |
-| DYNAMIC_TYPE_BANNER           |                      |                                                                                                                                                                                                         |
-| DYNAMIC_TYPE_UGC_SEASON       | 合集更新                 | [718390979031203873](https://t.bilibili.com/718390979031203873)                                                                                                                                         |
-| DYNAMIC_TYPE_SUBSCRIPTION_NEW |                      |                                                                                                                                                                                                         |
+## 动态类型
 
-# 富文本节点类型
+| 类型 | 说明 | comment_id_str | comment_type |rid_str| 示例 |
+| --- | --- | --- | --- | --- | --- |
+| DYNAMIC_TYPE_NONE | 无效动态 |||| [716510857084796964](https://t.bilibili.com/716510857084796964) |
+| DYNAMIC_TYPE_FORWARD | 动态转发 |动态本身id|17|||
+| DYNAMIC_TYPE_AV | 投稿视频 |视频AV号| 1 |视频AV号||
+| DYNAMIC_TYPE_PGC | 剧集（番剧、电影、纪录片） |剧集分集AV号| 1 |剧集分集EP号||
+| DYNAMIC_TYPE_COURSES | ||| ||
+| DYNAMIC_TYPE_WORD | 纯文字动态 |动态本身id|17|| [718377531474968613](https://t.bilibili.com/718377531474968613) |
+| DYNAMIC_TYPE_DRAW | 带图动态 |相簿id|11|相簿id| [718384798557536290](https://t.bilibili.com/718384798557536290) |
+| DYNAMIC_TYPE_ARTICLE | 投稿专栏 |专栏cv号|12|专栏cv号| [718372214316990512](https://t.bilibili.com/718372214316990512) |
+| DYNAMIC_TYPE_MUSIC | 音乐 ||| ||
+| DYNAMIC_TYPE_COMMON_SQUARE | 装扮<br/>剧集点评<br/>普通分享 ||17|| [551309621391003098](https://t.bilibili.com/551309621391003098)<br/>[716503778995470375](https://t.bilibili.com/716503778995470375)<br/>[716481612656672789](https://t.bilibili.com/716481612656672789) |
+| DYNAMIC_TYPE_COMMON_VERTICAL | ||| ||
+| DYNAMIC_TYPE_LIVE | 直播间分享 |动态本身id||直播间id| [216042859353895488](https://t.bilibili.com/216042859353895488) |
+| DYNAMIC_TYPE_MEDIALIST | 收藏夹 |收藏夹ml号|19|收藏夹ml号| [534428265320147158](https://t.bilibili.com/534428265320147158) |
+| DYNAMIC_TYPE_COURSES_SEASON | 课程 |||| [717906712866062340](https://t.bilibili.com/717906712866062340) |
+| DYNAMIC_TYPE_COURSES_BATCH | |||| |
+| DYNAMIC_TYPE_AD | ||| ||
+| DYNAMIC_TYPE_APPLET | ||| ||
+| DYNAMIC_TYPE_SUBSCRIPTION | ||| ||
+| DYNAMIC_TYPE_LIVE_RCMD | 直播开播 |动态本身id|17|live_id| [718371505648435205](https://t.bilibili.com/718371505648435205) |
+| DYNAMIC_TYPE_BANNER | ||| ||
+| DYNAMIC_TYPE_UGC_SEASON | 合集更新 |视频AV号|1|视频AV号| [718390979031203873](https://t.bilibili.com/718390979031203873) |
+| DYNAMIC_TYPE_SUBSCRIPTION_NEW | ||| ||
+
+## 富文本节点类型
 
 | 类型                              | 说明   | 示例                                                              | 
 |---------------------------------|------|-----------------------------------------------------------------|
@@ -49,7 +51,7 @@
 | RICH_TEXT_NODE_TYPE_OGV_EP      |      |                                                                 |
 | RICH_TEXT_NODE_TYPE_SEARCH_WORD |      |                                                                 |
 
-# 作者类型
+## 作者类型
 
 | 类型                     | 说明   | 示例  | 
 |------------------------|------|-----|
@@ -65,7 +67,7 @@
 | EMOJI_TYPE_NEW  |     |     |
 | EMOJI_TYPE_VIP  |     |     |
 
-# 相关内容卡片类型
+## 相关内容卡片类型
 
 | 类型                      | 说明   | 示例                                                                       | 
 |-------------------------|------|--------------------------------------------------------------------------|
@@ -112,7 +114,7 @@
 | HIGHLIGHT_TEXT_STYLE_TYPE_NONE   |     |     |
 | HIGHLIGHT_TEXT_STYLE_TYPE_ACTIVE |     |     |
 
-# 动态主体类型
+## 动态主体类型
 
 | 类型                          | 说明    | 示例                                                              | 
 |-----------------------------|-------|-----------------------------------------------------------------|
