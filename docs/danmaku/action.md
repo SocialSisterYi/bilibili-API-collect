@@ -2,7 +2,7 @@
 
 ## 发送视频弹幕
 
-> https://api.bilibili.com/x/v2/dm/post 
+> https://api.bilibili.com/x/v2/dm/post
 
 *请求方式：POST*
 
@@ -11,6 +11,15 @@
 此接口与漫画弹幕相同
 
 `mode=6`的逆向弹幕与`mode=8`的代码弹幕不可发送
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| --- | --- | --- | --- | --- |
+| web_location | str | 普通视频: 1315873 | 不必要 | |
+| csrf | str | CSRF Token (即 Cookie 中 bili_jct) | Cookie 方式必要 | |
+| w_rid | str | Wbi 签名 | 必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
+| wts | str | UNIX 秒级时间戳 | 必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -320,6 +329,82 @@ curl 'https://api.bilibili.com/x/v2/dm/command/post' \
 
 </details>
 
+## 发送打分弹幕
+
+> https://api.bilibili.com/x/v2/dm/command/grade/post
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+<!--{
+  "gh": [220]
+}-->
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | ---- | ---- | ------ | ---- |
+| aid | num | 稿件 aid | 必要 | |
+| cid | num | 分 P cid | 必要 | |
+| progress | num | 播放进度 | 必要 | 单位为毫秒 |
+| grade_id | num | 打分 id | 必要 | |
+| grade_score | num | 分数 | 偶数, 最大 10 |
+| polaris_app_id | num | 100 | 不必要 |
+| polaris_platfrom | num | 5 | 不必要 | |
+| spmid | str | 333.788.0.0 | 不必要 | |
+| from_spmid | str | 来源 spmid | 不必要 | |
+| csrf | str | CSRF Token (即 Cookie 中的 bili_jct) | 必要 | |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| code | num | 返回值 | 0: 成功 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 | |
+| data | obj | 信息本体 | |
+
+`data`对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- |
+| dmid | num | 弹幕dmid | |
+| dmid_str | str | 弹幕dmid | 字串形式 |
+| visible | bool | 是否可见 | |
+| action | str | 动作 | `"grade:"` + (请求的分数 / 2) |
+
+**示例:**
+
+```shell
+curl -X POST 'https://api.bilibili.com/x/v2/dm/command/grade/post' \
+--data-urlencode 'aid=112861976201494' \
+--data-urlencode 'cid=500001629877726' \
+--data-urlencode 'progress=32000' \
+--data-urlencode 'grade_id=3651137' \
+--data-urlencode 'grade_score=10' \
+--data-urlencode 'csrf=xxx' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "dmid": 1651556419721443584,
+    "dmidStr": "1651556419721443584",
+    "visible": true,
+    "action": "grade:5"
+  }
+}
+```
 
 ## 撤回弹幕
 
