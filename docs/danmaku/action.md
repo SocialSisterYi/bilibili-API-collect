@@ -406,6 +406,8 @@ curl -X POST 'https://api.bilibili.com/x/v2/dm/command/grade/post' \
 }
 ```
 
+</details>
+
 ## 撤回弹幕
 
 > https://api.bilibili.com/x/dm/recall
