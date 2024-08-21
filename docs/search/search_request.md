@@ -579,8 +579,6 @@ curl -G 'https://api.bilibili.com/x/web-interface/search/all/v2' \
 
 </details>
 
-
-
 ## 分类搜索（web端）
 
 > https://api.bilibili.com/x/web-interface/wbi/search/type
@@ -589,9 +587,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/search/all/v2' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
-
-鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie 中含有 [`buvid3`](../misc/buvid3_4.md) 字段, Referer 在 `.bilibili.com` 下, User-Agent 不含敏感子串
 
 根据关键词进行搜索，返回结果每页20项
 

@@ -2,7 +2,7 @@
 
 请注意区分 **合集(seasons_archives)** 和 **视频列表(seasons_series)**
 
-合集是后加入的功能, 图标为立体叠放的正方形(.icon-heji), 可以在创作中心管理
+合集是后加入的功能, 图标为立体叠放的正方形(.icon-heji), 可以在创作中心管理, 参见 [合集管理](../creativecenter/season.md)
 
 列表即系列(series)或频道(channel), 图标为平面叠放的矩形且中央有播放按钮标识(.icon-ic_channel1), 在个人空间直接操作
 
@@ -1559,6 +1559,427 @@ curl -G "https://api.bilibili.com/x/series/archives" \
       }
     ]
   }
+}
+```
+
+</details>
+
+## 根据关键词查找视频
+
+> https://api.bilibili.com/x/series/recArchivesByKeywords
+
+*请求方式：GET*
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| mid    | num  | 用户 mid | 必要   |      |
+| keywords | str | 关键词 | 必要   | 可为空, 即获取所有视频 |
+| ps     | num  | 每页视频数 | 非必要 | 默认为 0, 留空为 20 |
+| pn     | num  | 页码     | 非必要 | 留空为 1 |
+| orderby | str | 排序方式 | 非必要 | 最新发布: pubdate(默认)<br />最多播放: views<br />senddate: 最新发布 |
+| series_id | num | 系列 ID | 非必要 | 用于过滤结果, 即若某一视频包含在系列内则不返回该视频 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注       |
+| ------- | ---- | -------- | ---------- |
+| code    | num  | 返回值   | 0: 成功     |
+| message | str  | 错误信息 | 默认为 0   |
+| ttl     | num  | 1        |            |
+| data    | obj  | 信息本体 |            |
+
+`data` 对象:
+
+| 字段      | 类型 | 内容         | 备注 |
+| --------- | ---- | ------------ | ---- |
+| archives  | arr  | 视频列表     |      |
+| page      | obj  | 页码信息     |      |
+
+`archives` 数组:
+
+同[获取视频合集信息](#获取视频合集信息)中的`archives`数组
+
+`page` 对象:
+
+同[获取视频合集信息](#获取视频合集信息)中的`page`对象
+
+**示例:**
+
+查询用户 `mid=2` 关键词为 `幕` 的视频, 不限制每页视频数
+
+```shell
+curl -G "https://api.bilibili.com/x/series/recArchivesByKeywords" \
+--data-urlencode "mid=2" \
+--data-urlencode "keywords=幕" \
+--data-urlencode "ps=0"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "archives": [
+      {
+        "aid": 120040,
+        "title": "高级语言弹幕测试",
+        "pubdate": 1311616515,
+        "ctime": 1497344798,
+        "state": 0,
+        "pic": "http://i1.hdslb.com/bfs/archive/55a553659799d8a6fcb645d8f1f9df418ad6fe4e.jpg",
+        "duration": 911,
+        "stat": {
+          "view": 3584767
+        },
+        "bvid": "BV1Xx411c7cH",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 2,
+        "title": "字幕君交流场所",
+        "pubdate": 1252458549,
+        "ctime": 1497344798,
+        "state": 0,
+        "pic": "http://static.hdslb.com/images/transparent.gif",
+        "duration": 2055,
+        "stat": {
+          "view": 4609291
+        },
+        "bvid": "BV1xx411c7mD",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      },
+      {
+        "aid": 271,
+        "title": "弹幕测试专用",
+        "pubdate": 1249886475,
+        "ctime": 1497344798,
+        "state": 0,
+        "pic": "http://i1.hdslb.com/bfs/archive/a5980672f3d03e8292148748a63de99cd45679d3.jpg",
+        "duration": 1213,
+        "stat": {
+          "view": 4857422
+        },
+        "bvid": "BV1xx411c7Xg",
+        "ugc_pay": 0,
+        "interactive_video": false,
+        "enable_vt": 0,
+        "vt_display": "",
+        "playback_position": 0
+      }
+    ],
+    "page": {
+      "num": 1,
+      "size": 0,
+      "total": 3
+    }
+  }
+}
+```
+
+</details>
+
+## 创建视频列表
+
+> https://api.bilibili.com/x/series/series/createAndAddArchives
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | ----| ---- | ------ | ---- |
+| csrf | str | CSRF Token (即 Cookies 中 bili_jct ) | 必要 |     |
+
+**正文参数 (multipart/form-data):**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| mid    | num  | 用户 mid | 必要   |      |
+| name  | str  | 标题     | 必要   |      |
+| keywords | str | 关键词 | 不必要   |      |
+| description | str | 简介 | 不必要   |      |
+| aids | str | 视频 aid 列表 | 不必要 | 以 `,` 分隔, 如 `2,112861,112861976201494,976201494` |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注       |
+| ------- | ---- | -------- | ---------- |
+| code    | num  | 返回值   | 0: 成功     |
+| message | str  | 错误信息 | 默认为 0   |
+| ttl     | num  | 1        |            |
+| data    | obj  | 信息本体 |            |
+
+`data` 对象:
+
+| 字段      | 类型 | 内容         | 备注 |
+| --------- | ---- | ------------ | ---- |
+| series_id | num  | 视频列表 ID  |      |
+
+**示例:**
+
+为 `mid=616368979` 创建视频列表, 标题为 `NAME`, 视频为 `112861976201494`
+
+```shell
+curl -X POST --url "https://api.bilibili.com/x/series/series/createAndAddArchives" \
+--url-query "csrf=xxxxxxxxxx" \
+--data-urlencode "mid=616368979" \
+--data-urlencode "name=NAME" \
+--data-urlencode "aids=112861976201494" \
+-b "SESSDATA=xxx" 
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "series_id": 4269765
+  }
+}
+```
+
+</details>
+
+## 删除视频列表
+
+> https://api.bilibili.com/x/series/series/delete
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | ----| ---- | ------ | ---- |
+| csrf | str | CSRF Token (即 Cookies 中 bili_jct ) | 必要 |     |
+| mid | num | 用户 mid | 必要 |      |
+| series_id | num | 视频列表 ID | 必要 |      |
+| aids | str | 空 | 不必要 |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注       |
+| ------- | ---- | -------- | ---------- |
+| code    | num  | 返回值   | 0: 成功     |
+| message | str  | 错误信息 | 默认为 0   |
+| ttl     | num  | 1        |            |
+| data    | obj  | 空       |            |
+
+**示例:**
+
+为 `mid=616368979` 删除视频列表 `series_id=4269765`
+
+```shell
+curl -X POST --url "https://api.bilibili.com/x/series/series/delete" \
+--url-query "csrf=xxxxxxxxxx" \
+--url-query "series_id=4269765" \
+--url-query "mid=616368979" \
+-b "SESSDATA=xxx" 
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+## 删除视频列表中的稿件
+
+> https://api.bilibili.com/x/series/series/delArchives
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | ----| ---- | ------ | ---- |
+| csrf | str | CSRF Token (即 Cookies 中 bili_jct ) | 必要 |     |
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| mid    | num  | 用户 mid | 必要   |      |
+| series_id | num | 视频列表 ID | 必要 |      |
+| aids | str | 视频 aid 列表 | 必要 | 以 `,` 分隔, 如 `2,112861,112861976201494,976201494` |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注       |
+| ------- | ---- | -------- | ---------- |
+| code    | num  | 返回值   | 0: 成功     |
+| message | str  | 错误信息 | 默认为 0   |
+| ttl     | num  | 1        |            |
+| data    | obj  | 空       |            |
+
+**示例:**
+
+为 `mid=616368979` 删除视频列表 `series_id=4269782` 中的 `112861976201494`
+
+```shell
+curl -X POST --url "https://api.bilibili.com/x/series/series/delArchives" \
+--url-query "csrf=xxxxxxxxxx" \
+--data-urlencode "mid=616368979" \
+--data-urlencode "series_id=4269782" \
+--data-urlencode "aids=112861976201494" \
+-b "SESSDATA=xxx" 
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+## 添加稿件至视频列表
+
+> https://api.bilibili.com/x/series/series/addArchives
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+**URL参数:**
+
+同[删除视频列表中的稿件](#删除视频列表中的稿件)
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+同[删除视频列表中的稿件](#删除视频列表中的稿件)
+
+**JSON回复:**
+
+同[删除视频列表中的稿件](#删除视频列表中的稿件)
+
+**示例:**
+
+为 `mid=616368979` 添加视频 `112861976201494` 至视频列表 `series_id=4269782`
+
+```shell
+curl -X POST --url "https://api.bilibili.com/x/series/series/addArchives" \
+--url-query "csrf=xxxxxxxxxx" \
+--data-urlencode "mid=616368979" \
+--data-urlencode "series_id=4269782" \
+--data-urlencode "aids=112861976201494" \
+-b "SESSDATA=xxx" 
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+## 编辑视频列表信息
+
+> https://api.bilibili.com/x/series/series/update
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ------ | ----| ---- | ------ | ---- |
+| csrf | str | CSRF Token (即 Cookies 中 bili_jct ) | 必要 |     |
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| mid    | num  | 用户 mid | 必要   |      |
+| series_id | num | 视频列表 ID | 必要 |      |
+| name  | str  | 标题     | 必要   |      |
+| keywords | str | 关键词 | 不必要   |      |
+| description | str | 简介 | 不必要   |      |
+| add_aids | str | 视频 aid 列表 | 不必要 | 以 `,` 分隔 |
+| del_aids | str | 视频 aid 列表 | 不必要 |     |
+| aids | str | 空 | 不必要 |      |
+
+**JSON回复:**
+
+同[删除视频列表中的稿件](#删除视频列表中的稿件)
+
+**示例:**
+
+为 `mid=616368979` 编辑视频列表 `series_id=4269782`, 设置标题为 `NAME`, 设置简介为空, 设置关键词 `Telnet`, 添加视频 `112861976201494`
+
+```shell
+curl -X POST --url "https://api.bilibili.com/x/series/series/update" \
+--url-query "csrf=xxxxxxxxxx" \
+--data-urlencode "name=NAME" \
+--data-urlencode "mid=616368979" \
+--data-urlencode "series_id=4269782" \
+--data-urlencode "keywords=Telnet" \
+--data-urlencode "add_aids=112861976201494" \
+-b "SESSDATA=xxx" 
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
 }
 ```
 

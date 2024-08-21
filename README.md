@@ -68,12 +68,15 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [已知的 APPKey](docs/misc/sign/APPKey.md)
     - [x] [Wbi 签名](docs/misc/sign/wbi.md)（`wts`与`w_rid`）
     - [ ] [bili_ticket](docs/misc/sign/bili_ticket.md)
-
-- [x] [公共错误码](docs/misc/errcode.md)
-- [x] [图片格式化](docs/misc/picture.md)
-- [x] [bvid 说明](docs/misc/bvid_desc.md)
-- [ ] [设备唯一标识BUVID](docs/misc/device_identity.md)
-- [ ] [获取 buvid3 / buvid4 / b_nut](docs/misc/buvid3_4.md)
+    - [ ] [v_voucher 验证](docs/misc/sign/v_voucher.md)
+- [ ] [杂项](docs/misc)
+    - [x] [获取当前时间戳](docs/misc/time_stamp.md)
+    - [x] [公共错误码](docs/misc/errcode.md)
+    - [x] [图片格式化](docs/misc/picture.md)
+    - [x] [bvid 说明](docs/misc/bvid_desc.md)
+    - [ ] [设备唯一标识BUVID](docs/misc/device_identity.md)
+    - [ ] [获取 buvid3 / buvid4 / b_nut](docs/misc/buvid3_4.md)
+    - [ ] [b23.tv 短链](docs/misc/b23tv.md)
 - [ ] [gRPC API 接口定义](grpc_api)
 - [ ] [登录](docs/login)
     - [x] [登录操作 (人机认证)](docs/login/login_action)
@@ -99,6 +102,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [用户注册](docs/user/register.md)
     - [x] [用户认证类型一览](docs/user/official_role.md)
     - [ ] [加入老粉计划](docs/user/contract.md)
+    - [x] [所有粉丝勋章](docs/user/medals.md)
 - [ ] [大会员](docs/vip)
     - [ ] [大会员基本信息](docs/vip/info.md)
     - [ ] [大会员中心](docs/vip/center.md)
@@ -122,6 +126,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [稿件投诉](docs/video/appeal.md)
     - [ ] [视频状态数](docs/video/status_number.md)
     - [ ] [视频合集](docs/video/collection.md)
+    - [ ] [播放器](docs/video/player.md)
 - [ ] [剧集 (番剧、影视)](docs/bangumi)
     - [ ] [基本信息](docs/bangumi/info.md)
     - [ ] [播放&下载地址（视频流）](docs/bangumi/videostream_url.md)
@@ -138,7 +143,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [弹幕操作](docs/danmaku/action.md)
     - [ ] 高级弹幕
     - [ ] 屏蔽管理
-    - [ ] 智能防挡弹幕
+    - [ ] [智能防挡弹幕](docs/danmaku/webmask.md)
     - [x] [弹幕个人配置修改](docs/danmaku/config.md)
     - [x] [名词解释](docs/danmaku/buzzword.md)
     - [x] [点赞查询](docs/danmaku/thumbup.md)
@@ -183,9 +188,12 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [表情及表情包信息](docs/emoji/list.md)
     - [x] [操作](docs/emoji/action.md)
 - [ ] [创作中心](docs/creativecenter)
+    - [ ] [投稿](docs/creativecenter/upload.md)
     - [ ] [统计与数据](docs/creativecenter/statistics&data.md)
     - [ ] 列表查询相关
     - [x] [电磁力数据](docs/creativecenter/railgun.md)
+    - [ ] [合集管理](docs/creativecenter/season.md)
+    - [ ] [视频相关杂项](docs/creativecenter/videos.md)
 - [x] [实时广播（通讯协议）](docs/broadcast)
     - [x] [视频内广播](docs/broadcast/video_room.md)
 - [ ] [充电](docs/electric)
@@ -201,8 +209,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [动态基本信息](docs/dynamic/basicInfo.md)
     - [ ] [动态详细信息字段](docs/dynamic/card_info.md)
     - [ ] [获取动态详情](docs/dynamic/detail.md)
-    - [ ] [动态类型](docs/dynamic/dynamic_enum.md)
+    - [ ] [动态类型对照](docs/dynamic/dynamic_enum.md)
     - [ ] [动态信息](docs/dynamic/content.md)
+    - [ ] [话题搜索](docs/dynamic/topic.md)
     - [ ] [发送 & 转载动态](docs/dynamic/publish.md)
     - [ ] [根据关键字搜索用户（at 别人时的填充列表）](docs/dynamic/atlist.md)
     - [ ] [操作](docs/dynamic/action.md)
@@ -210,7 +219,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
         - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
     - [ ] [导航栏动态](docs/dynamic/nav.md)
-- [ ] [相簿](docs/album)
+- [ ] [相簿](docs/album) (已下线)
     - [x] [基本信息](docs/album/info.md)
     - [x] [相簿列表](docs/album/list.md)
     - [x] [推荐作者](docs/album/recommend_author.md)
@@ -241,6 +250,10 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [直播间用户实用 API](docs/live/user.md)
     - [x] [直播间禁言相关](docs/live/silent_user_manage.md)
     - [ ] [关注UP直播情况](docs/live/follow_up_live.md)
+    - [ ] [直播心跳上报](docs/live/report.md)
+- [ ] [活动](docs/activity)
+    - [ ] [活动列表](docs/activity/list.md)
+    - [ ] [活动主题信息](docs/activity/info.md)
 - [ ] [转正答题](docs/newbie_exam)
     - [x] [查询信息](docs/newbie_exam/info.md)
     - [x] [拉取题目](docs/newbie_exam/fetch.md)
@@ -249,8 +262,8 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [青少年模式](docs/teenager/teenager_mode.md)
     - [ ] 亲子平台
     - [ ] 课堂模式
-- [ ] B币钱包
-    - [ ] 基本信息
+- [ ] [B币钱包](docs/wallet/)
+    - [ ] [基本信息](docs/wallet/info.md)
     - [ ] B币充值
     - [ ] 贝壳相关
 - [ ] [哔哩哔哩漫画](docs/manga)
@@ -267,16 +280,19 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] 哔哩哔哩游戏
 - [ ] [终端网络查询](docs/clientinfo)
     - [x] [基于 ip 的地理位置查询](docs/clientinfo/ip.md)
-- [ ] [其他](docs/misc)
-    - [x] [获取当前时间戳](docs/misc/time_stamp.md)
+- [ ] [客服中心](docs/customerservice)
+    - [ ] [客服消息](docs/customerservice/msg.md)
 - [ ] [web端组件](docs/web_widget)
     - [x] [分区当日投稿数](docs/web_widget/zone_upload.md)
     - [x] [404 页漫画收集](docs/web_widget/404_manga.md)
+    - [ ] [首页横幅头图](docs/web_widget/header.md)
 - [ ] [APP端组件](docs/APP_widget)
     - [x] [开屏图片 + 恰饭珍贵录像](docs/APP_widget/splash.md)
+    - [ ] [获取最新 APP 版本](docs/APP_widget/ver.md)
 - [ ] [个性装扮](docs/garb)
     - [x] [APP 主题](docs/garb/skin.md)
     - [x] [主题色](docs/garb/color.md)
+    - [ ] [装扮/收藏集](docs/garb/lottery.md)
 
 ## ✨鸣谢
 
