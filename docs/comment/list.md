@@ -862,8 +862,6 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）或APP
-
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
 
 注: Wbi 签名错误时返回 -403 而非 -352
@@ -876,6 +874,7 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 | type       | num  | 评论区类型代码 | 必要         | [类型代码见表](readme.md#评论区类型代码)                     |
 | oid        | num  | 目标评论区 id  | 必要         |                                                              |
 | mode       | num  | 排序方式       | 非必要       | 默认为 3<br />0 3：仅按热度<br />1：按热度+按时间<br />2：仅按时间 |
+| next       | num  | 翻页           | 非必要       | 不推荐, 已弃用, 优先级比 `pagination_str` 高 |
 | pagination_str | obj  | 分页信息       | 非必要       | 见下 |
 | plat       | num  | 平台类型       | 非必要       | 如 `1` |
 | seek_rpid  | str  | 空            | 非必要       | 当获取第一页评论时存在 |
@@ -892,7 +891,7 @@ curl -G 'https://api.bilibili.com/x/v2/reply' \
 | 参数名 | 类型 | 内容 | 备注 |
 | ----- | ---- | -- | - |
 | type | num | 类型 | 当 URL 参数 mode 为 2 时, 此项为 3<br />当 URL 参数 mode 为 3 时, 此项为 1 |
-| direction | num | 1 |  |
+| direction | num | 方向 | 1: 正序(默认)<br />2: 倒序 |
 | data | obj | 分页数据 | 当 type 为 1 时存在 |
 | Data | obj | 分页数据 | 当 type 为 3 时存在 |
 <!--not typo here-->
@@ -1054,8 +1053,7 @@ curl -G 'https://api.bilibili.com/x/v2/reply/wbi/main' \
 --data-urlencode 'type=1' \
 --data-urlencode 'mode=2' \
 --data-urlencode 'w_rid=xxx' \
---data-urlencode 'wts=xxx' \
--b 'SESSDATA='
+--data-urlencode 'wts=xxx'
 ```
 
 <details>
