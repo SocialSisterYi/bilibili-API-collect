@@ -10,9 +10,7 @@
 
 *方式：GET*
 
-认证方式：Cookie（SESSDATA）
-
-鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie 中含有 [`buvid3`](../misc/buvid3_4.md) 字段
 
 返回和关键字相关的20条信息
 
