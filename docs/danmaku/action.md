@@ -370,7 +370,7 @@ curl 'https://api.bilibili.com/x/v2/dm/command/post' \
 `data`对象:
 
 | 字段 | 类型 | 内容 | 备注 |
-| ---- | ---- |
+| ---- | ---- | ---- | ---- |
 | dmid | num | 弹幕dmid | |
 | dmid_str | str | 弹幕dmid | 字串形式 |
 | visible | bool | 是否可见 | |
