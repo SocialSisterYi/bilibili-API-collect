@@ -529,6 +529,8 @@ curl -G 'https://api.live.bilibili.com/live_user/v1/Master/info' \
 
 *请求方式: GET*
 
+注: 亦可用于批量获取
+
 <!--{
   "gh": [745]
 }-->
