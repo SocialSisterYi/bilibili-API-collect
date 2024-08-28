@@ -5,13 +5,15 @@ import markdownItTaskLists from "markdown-it-task-lists";
 import { searchPlugin } from "@vuepress/plugin-search";
 import { shikiPlugin } from '@vuepress/plugin-shiki'
 
+const base = "/bilibili-API-collect/";
+
 export default defineUserConfig({
   bundler: viteBundler(),
-  base: "/bilibili-API-collect/",
+  base: base,
   lang: "zh-CN",
   title: "BAC Document",
   description: "社区开源的第三方哔哩哔哩 API 文档",
-  head: [["link", { rel: "icon", href: "/logo2.jpg" }]],
+  head: [["link", { rel: "icon", href: base + "logo2.jpg" }]],
   locales: {
     "/": {
       lang: "zh-CN",
