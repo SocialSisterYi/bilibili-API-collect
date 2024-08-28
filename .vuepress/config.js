@@ -42,12 +42,20 @@ export default defineUserConfig({
     repo: "https://github.com/SocialSisterYi/bilibili-API-collect",
     docsBranch: "vp-next",
     editLinkText: "在 GitHub 上编辑此页",
-    colorMode: "auto"
+    colorMode: "auto",
+    themePlugins: {
+      prismjs: false,
+      sitemap: false
+    }
   }),
   plugins: [
     searchPlugin({}),
     shikiPlugin({
-      lineNumbers: true
+      langs: [
+        'javascript', 'typescript', 'markdown', 'protobuf', 'json', 'jsonc',
+        'shell', 'go', 'html', 'http', 'java', 'kotlin', 'python', 'rust', 'c',
+        'c++', 'cs', 'php', 'swift'
+      ]
     })
   ],
   extendsMarkdown: (md) => {

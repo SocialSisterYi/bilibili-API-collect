@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "vuepress dev",
-    "build": "vuepress build"
+    "build": "NODE_OPTIONS='--max-old-space-size=8192' vuepress build"
   },
   "devDependencies": {
     "@vuepress/bundler-vite": "^2.0.0-rc.15",
