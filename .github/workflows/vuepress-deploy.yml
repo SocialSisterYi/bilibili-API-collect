@@ -7,12 +7,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-
     - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@master
+      uses: IT4Change/vuepress-build-and-deploy@master
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: SessionHu/bilibili-API-collect
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TARGET_BRANCH: gh_pages
         BUILD_SCRIPT: yarn && yarn build
         BUILD_DIR: .vuepress/dist/
