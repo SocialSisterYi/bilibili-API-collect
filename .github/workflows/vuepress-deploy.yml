@@ -1,9 +1,9 @@
-name: deploy and pubish
+name: deploy and publish
 on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.repository == 'SessionHu/bilibili-API-collect'
+    # if: github.repository == 'SocialSisterYi/bilibili-API-collect'
     steps:
     - name: Checkout
       uses: actions/checkout@master
