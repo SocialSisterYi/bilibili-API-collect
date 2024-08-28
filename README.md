@@ -393,4 +393,7 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
   .shields a {
     margin: auto .5em;
   }
+  .shields a::after {
+    display: none !important;
+  }
 </style>

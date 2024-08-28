@@ -1,9 +1,12 @@
-import { defaultTheme, defineUserConfig } from "vuepress";
+import { defineUserConfig } from "vuepress";
+import { viteBundler } from '@vuepress/bundler-vite'
+import { defaultTheme } from "@vuepress/theme-default";
 import markdownItTaskLists from "markdown-it-task-lists";
-import { copyCodePlugin } from "vuepress-plugin-copy-code2";
 import { searchPlugin } from "@vuepress/plugin-search";
+import { shikiPlugin } from '@vuepress/plugin-shiki'
 
 export default defineUserConfig({
+  bundler: viteBundler(),
   base: "/bilibili-API-collect/",
   lang: "zh-CN",
   title: "BAC Document",
@@ -34,19 +37,18 @@ export default defineUserConfig({
         ],
       },
     ],
-    sidebar: "auto",
     repo: "https://github.com/SocialSisterYi/bilibili-API-collect",
     docsBranch: "master",
     editLinkText: "在 GitHub 上编辑此页",
     colorMode: "auto"
   }),
-  plugins: [copyCodePlugin({}), searchPlugin({})],
-  markdown: {
-    code: {
-      lineNumbers: true,
-    },
-  },
+  plugins: [
+    searchPlugin({}),
+    shikiPlugin({
+      lineNumbers: true
+    })
+  ],
   extendsMarkdown: (md) => {
     md.use(markdownItTaskLists);
-  },
+  }
 });
