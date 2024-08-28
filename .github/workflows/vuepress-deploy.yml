@@ -3,7 +3,7 @@ on: [push]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.repository == 'SocialSisterYi/bilibili-API-collect'
+    if: github.repository == 'SessionHu/bilibili-API-collect'
     steps:
     - name: Checkout
       uses: actions/checkout@master
@@ -12,7 +12,7 @@ jobs:
       uses: jenkey2011/vuepress-deploy@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: SocialSisterYi/bilibili-API-collect
+        TARGET_REPO: SessionHu/bilibili-API-collect
         TARGET_BRANCH: gh_pages
         BUILD_SCRIPT: yarn && yarn build
         BUILD_DIR: .vuepress/dist/
