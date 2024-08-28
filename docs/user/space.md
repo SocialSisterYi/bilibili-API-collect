@@ -842,8 +842,8 @@ curl 'https://api.bilibili.com/x/space/notice/set' \
 
 | 字段   | 类型                | 内容     | 备注 |
 | ------ | ------------------- | -------- | ---- |
-| status | bool             | 用户是否存在                                   | true：存在<br>false：不存在 |
-| data   | 用户存在时：obj<br>用户不存在时：str| 用户存在时：信息本体<br>用户不存在时：错误信息 |      |
+| status | bool             | 用户是否存在                                   | true：存在<br />false：不存在 |
+| data   | 用户存在时：obj<br />用户不存在时：str| 用户存在时：信息本体<br />用户不存在时：错误信息 |      |
 
 `data`对象：
 
@@ -859,7 +859,7 @@ curl 'https://api.bilibili.com/x/space/notice/set' \
 
 | 字段        | 类型 | 内容           | 备注                           |
 | ----------- | ---- | -------------- | ------------------------------ |
-| bangumi     | num  | 追番及追剧     | 0：隐藏<br>1：公开<br>**下同** |
+| bangumi     | num  | 追番及追剧     | 0：隐藏<br />1：公开<br />**下同** |
 | bbq         | num  | 轻视频         |                                |
 | channel     | num  | 频道           |                                |
 | coins_video | num  | 最近投币的视频 |                                |
@@ -876,7 +876,7 @@ curl 'https://api.bilibili.com/x/space/notice/set' \
 
 | 项   | 类型 | 内容      | 备注                                         |
 | ---- | ---- | --------- | -------------------------------------------- |
-| 0    | obj  | 板块1     | 根据板块布局顺序排序<br>先左侧布局后右侧布局 |
+| 0    | obj  | 板块1     | 根据板块布局顺序排序<br />先左侧布局后右侧布局 |
 | n    | obj  | 板块(n+1) |                                              |
 | ……   | obj  | ……        | ……                                           |
 
