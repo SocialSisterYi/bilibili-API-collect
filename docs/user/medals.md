@@ -51,7 +51,7 @@
 | target_icon | str  | 主播头像 URL |      |
 | link        | str  | 主播主页 URL |      |
 | live_status | num  | 直播状态     | 0: 未直播<br />1: 正在直播<br />2: 轮播中 |
-| offical     | num  | 主播认证类型 | 参见 [用户认证类型一览](offical_role.md) |
+| offical     | num  | 主播认证类型 | 参见 [用户认证类型一览](official_role.md) |
 | uinfo_medal | str  | 用户勋章信息 |      |
 
 `list` 数组中的对象中的 `medal_info` 对象:

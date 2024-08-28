@@ -96,8 +96,8 @@ curl 'https://api.bilibili.com/x/v2/history/report' \
 | w_video_duration          | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | 单位 秒 |
 | w_last_play_progress_time | num  | 参见请求正文同名无`w_`前缀参数 | 非必要 | 单位 秒 |
 | web_location              | num  | 网页位置                       | 非必要 | 视频详情页播放器: 1315873 |
-| w_rid                     | num  | WBI 签名                       | 非必要 | 参见[WBI 签名](docs/misc/sign/wbi.md) |
-| wts                       | num  | UNIX 秒级时间戳                | 非必要 | 参见[WBI 签名](docs/misc/sign/wbi.md) |
+| w_rid                     | num  | WBI 签名                       | 非必要 | 参见[WBI 签名](../misc/sign/wbi.md) |
+| wts                       | num  | UNIX 秒级时间戳                | 非必要 | 参见[WBI 签名](../misc/sign/wbi.md) |
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -191,8 +191,8 @@ curl 'https://api.bilibili.com/x/click-interface/web/heartbeat' \
 | w_stime | num  | 开始播放时间戳? | 不必要   | UNIX 秒级时间戳 |
 | w_type | num  | 视频类型 | 不必要   | 见[上报视频播放心跳（web端）](#上报视频播放心跳web端) |
 | web_location | num  | 网页位置? | 不必要   | 1315873 |
-| w_rid | num  | WBI 签名 | 不必要   | 参见[WBI 签名](docs/misc/sign/wbi.md) |
-| wts | num  | UNIX 秒级时间戳 | 不必要   | 参见[WBI 签名](docs/misc/sign/wbi.md) |
+| w_rid | num  | WBI 签名 | 不必要   | 参见[WBI 签名](../misc/sign/wbi.md) |
+| wts | num  | UNIX 秒级时间戳 | 不必要   | 参见[WBI 签名](../misc/sign/wbi.md) |
 
 **正文参数 (application/x-www-form-urlencoded):**
 
