@@ -50,7 +50,7 @@
 
 **示例:**
 
-```curl
+```shell
 curl -G 'https://app.bilibili.com/x/v2/version/fawkes/upgrade' \
 --url-query 'build=1145141' \
 --url-query 'channel=apt' \
