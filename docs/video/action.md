@@ -843,13 +843,19 @@ curl 'https://app.bilibili.com/x/v2/view/like/triple' \
 
 *请求方式：POST*
 
+鉴权方式: Cookie (buvid3)
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容                      | 必要性       | 备注                  |
 | ------ | ---- | ------------------------- | ------------ | --------------------- |
-| aid    | num  | 稿件 avid                 | 必要（可选） | avid 与 bvid 任选一个 |
-| bvid   | str  | 稿件 bvid                 | 必要（可选） | avid 与 bvid任 选一个 |
-| csrf   | str  | CSRF Token（位于 Cookie） | 必要         |                       |
+| aid | num | 稿件 aid | 必要 (可选) | aid 与 bvid 任选一个 |
+| bvid | str | 稿件 bvid | 必要 (可选) | aid 与 bvid 任选一个 |
+| csrf | str | CSRF Token (即 Cookie 中 bili_jct) | 不必要 | |
+| eab_x | num | 2 | 不必要 | 作用尚不明确 |
+| ramval | num | 0 | 不必要 | 作用尚不明确 |
+| source | str | web_normal | 不必要 | |
+| ga | num | 1 | 不必要 | 可能与风控有关? |
 
 **json回复：**
 
@@ -857,11 +863,10 @@ curl 'https://app.bilibili.com/x/v2/view/like/triple' \
 
 | 字段    | 类型 | 内容       | 备注                                                                      |
 | ------- | ---- | ---------- | ------------------------------------------------------------------------- |
-| code    | num  | 返回值     | 0：成功<br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
+| code    | num  | 返回值     | 0: 成功<br />-101: 账号未登录<br />-111: csrf校验失败<br />-400: 请求错误<br />403: 账号异常,操作失败<br />71000: 重复分享 |
 | message | str  | 错误信息   | 默认为0                                                                   |
 | ttl     | num  | 1          |                                                                           |
 | data    | num  | 当前分享数 |                                                                           |
-
 
 **示例：**
 
