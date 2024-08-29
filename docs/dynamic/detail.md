@@ -1,21 +1,21 @@
 # 获取动态详情
 
+## 动态详情
+
 > https://api.bilibili.com/x/polymer/web-dynamic/v1/detail
 
-请求方式：`GET`
+*请求方式: GET*
 
-是否需要登录：`否`
-
-## URL参数
+**URL参数:**
 
 | 参数名             | 类型  | 必填  | 内容     | 备注  |
 |-----------------|-----|-----|--------|-----|
 | timezone_offset | num |     | `-480` |     |
 | id              | num | √   | 动态id   |     |
 
-## Json回复
+**JSON回复:**
 
-### 根对象
+根对象:
 
 | 字段名     | 类型  | 内容   | 备注                       |
 |---------|-----|------|--------------------------|
@@ -24,26 +24,24 @@
 | ttl     | num | 1    |                          |
 | data    | obj | 信息本体 |                          |
 
-### `data`对象
+`data`对象:
 
 | 字段名  | 类型  | 内容  | 备注  |
 |------|-----|-----|-----|
 | item | obj |     |     |
 
-### `data`对象 -> `item`对象
+`data.item`对象:
 
 参照 [获取动态列表](./all.md#获取动态列表)
 
-## 请求示例
+**示例:**
 
 ```shell
 curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=724328028268658744'
 ```
 
-## 响应示例
-
 <details>
-<summary>点击查看</summary>
+<summary>查看响应示例:</summary>
 
 ```json
 {
@@ -263,6 +261,187 @@ curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=7243
       "visible": true
     }
   }
+}
+```
+
+</details>
+
+## 动态抽奖详情
+
+> https://api.vc.bilibili.com/lottery_svr/v1/lottery_svr/lottery_notice
+
+*请求方法: GET*
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ----- | ---- | -------- | ------ | ---- |
+| business_id | num | 动态 id | 必要   |      |
+| bussiness_type | num | 业务类型? | 必要   | 1: 动态抽奖 |
+| csrf | str | CSRF Token (即 Cookie 中 bili_jct 字段) | 不必要 | |
+| web_location | str | 333.1330 | 不必要 | |
+
+<details>
+<summary>旧版参数:</summary>
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ----- | ---- | -------- | ------ | ---- |
+| dynamic_id | num | 动态 id | 必要   |      |
+
+</details>
+
+**JSON回复:**
+
+根对象:
+
+| 字段名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| code | num | 返回值 | 0: 成功<br />-9999: 服务系统错误 |
+| message | str | 错误信息 | 无则为空串 |
+| msg | str | 错误信息 | 无则为空串 |
+| data | obj | 信息本体 | 错误时为空对象 |
+
+`data`对象:
+
+| 字段名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| lottery_id | num | 抽奖 id | |
+| sender_uid | num | 发送者 mid | |
+| business_type | num | 业务类型 | 1: 动态抽奖 |
+| business_id | num | 业务 id | 可能与请求参数不同 |
+| status | num | 抽奖状态 | 0: 未开奖<br />2: 已开奖 |
+| lottery_time | num | 开奖时间 | UNIX 秒级时间戳 |
+| lottery_at_num | num | at 人数? | |
+| lottery_feed_limit | num | 转发限制? | |
+| need_post | num | 是否需要发布? | |
+| pay_status | num | 支付状态? | |
+| first_prize | num | 一等奖数量 | |
+| second_prize | num | 二等奖数量 | |
+| third_prize | num | 三等奖数量 | |
+| ts | num | 发布时间 | UNIX 秒级时间戳 |
+| participants | num | 参与人数 | |
+| has_charge_right | bool | 是否有充值权? | |
+| participated | bool | 是否参与过? | |
+| followed | bool | 是否关注过 | |
+| reposted | bool | 是否转发过 | |
+| lottery_detail_url | str | 抽奖详情页 URL? | |
+| first_prize_cmt | str | 一等奖奖品名称 | |
+| third_prize_cmt | str | 三等奖奖品名称 | |
+| first_prize_pic | str | 一等奖奖品图片 URL | |
+| second_prize_pic | str | 二等奖奖品图片 URL | |
+| third_prize_pic | str | 三等奖奖品图片 URL | |
+| vip_batch_sign | str | ？ | |
+| prize_type_first | obj | 一等奖奖品类型 | |
+| prize_type_second | obj | 二等奖奖品类型 | 无则不存在 |
+| prize_type_third | obj | 三等奖奖品类型 | 无则不存在 |
+| lottery_result | obj | 抽奖结果 | 无则不存在 |
+
+`data`对象中的`prize_type_first`对象:
+
+| 字段名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| type | num | 奖品类型? | 0 |
+| value | obj | 奖品价值? | |
+
+`prize_type_first`对象中的`value`对象:
+
+| 字段名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| stype | num | 子奖品类型? | 0 |
+
+`data`对象中的`prize_type_second`对象:
+
+与 `prize_type_first` 格式相同
+
+`data`对象中的`prize_type_third`对象:
+
+与 `prize_type_first` 格式相同
+
+`data`对象中的`lottery_result`对象:
+
+| 字段名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| first_prize_result | array | 一等奖结果 | |
+| second_prize_result | array | 二等奖结果 | 无则不存在 |
+| third_prize_result | array | 三等奖结果 | 无则不存在 |
+
+`lottery_result`对象中的`first_prize_result`数组:
+
+| 项名 | 类型 | 内容 | 备注 |
+| - | - | - | - |
+| uid | num | 中奖者 mid | |
+| name | str | 中奖者名称 | |
+| face | str | 中奖者头像 URL | |
+| hongbao_money | num | 奖品金额? | |
+
+`lottery_result`对象中的`second_prize_result`数组:
+
+与 `first_prize_result` 格式相同
+
+`lottery_result`对象中的`third_prize_result`数组:
+
+与 `first_prize_result` 格式相同
+
+**示例:**
+
+```shell
+curl -G 'https://api.vc.bilibili.com/lottery_svr/v1/lottery_svr/lottery_notice' \
+--url-query 'business_id=969916293954142214' \
+--url-query 'business_type=1'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "data": {
+    "lottery_id": 314834,
+    "sender_uid": 36081646,
+    "business_type": 1,
+    "business_id": 969916293954142214,
+    "status": 2,
+    "lottery_time": 1724860800,
+    "lottery_at_num": 0,
+    "lottery_feed_limit": 1,
+    "need_post": 0,
+    "pay_status": 0,
+    "first_prize": 1,
+    "second_prize": 0,
+    "third_prize": 0,
+    "ts": 1724922650,
+    "participants": 9230,
+    "has_charge_right": false,
+    "participated": false,
+    "followed": false,
+    "reposted": false,
+    "lottery_detail_url": "",
+    "first_prize_cmt": "S档门票",
+    "third_prize_cmt": "",
+    "first_prize_pic": "",
+    "second_prize_pic": "",
+    "third_prize_pic": "",
+    "vip_batch_sign": "",
+    "prize_type_first": {
+      "type": 0,
+      "value": {
+        "stype": 0
+      }
+    },
+    "lottery_result": {
+      "first_prize_result": [
+        {
+          "uid": 1014634854,
+          "name": "lty世界第一吃货殿下",
+          "face": "https://i0.hdslb.com/bfs/face/c746083b15f6761ea75c602661123e68784c6b1c.jpg",
+          "hongbao_money": 0
+        }
+      ]
+    }
+  },
+  "message": "",
+  "msg": ""
 }
 ```
 
