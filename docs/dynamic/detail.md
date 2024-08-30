@@ -266,6 +266,293 @@ curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=7243
 
 </details>
 
+## 动态赞与转发列表
+
+> https://api.bilibili.com/x/polymer/web-dynamic/v1/detail/reaction
+
+*请求方式: GET*
+
+认证方式: Cookie (SESSDATA)
+
+注: 登录任意账号即可, 若不登录则返回数为 0
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| --- | --- | --- | --- | --- |
+| id | num | 动态 id | 必要 |  |
+| offset | obj | 偏移量 | 非必要 | 用于翻页, 即响应的 `data.offset` |
+| web_location | str | 333.1369 | 非必要 |  |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功 |
+| message | str | 错误信息 | 默认为 0 |
+| ttl | num | 1 |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| has_more | bool | 是否有更多 |  |
+| items | array | 赞与转发列表 |  |
+| offset | str | 偏移量 | 套了一层字符串的 JSON 对象, 用于下次请求 |
+| total | num | 总数 |  |
+
+`data` 对象中的 `items` 数组中的对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| action | str | 操作类型 | 赞了/转发了 |
+| attend | num | 参与数 | 1: 对方仅关注了发送者<br />2: 发送者关注了对方 |
+| desc | str | 描述 |  |
+| face | str | 头像 URL |  |
+| mid | num | 用户 mid |  |
+| name | str | 用户名 |  |
+
+**示例:**
+
+获取动态 `967717348014293017` 的赞与转发列表
+
+```shell
+curl -G 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail/reaction' \
+--url-query 'id=967717348014293017' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "has_more": true,
+    "items": [
+      {
+        "action": "赞了",
+        "attend": 2,
+        "desc": "",
+        "face": "https://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
+        "mid": "293793435",
+        "name": "社会易姐QwQ"
+      },
+      {
+        "action": "转发了",
+        "attend": 2,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/a8c0d532c19085ff14385abb51450d9c32afe93f.jpg",
+        "mid": "662407339",
+        "name": "XhuOffice"
+      },
+      {
+        "action": "赞了",
+        "attend": 2,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/a8c0d532c19085ff14385abb51450d9c32afe93f.jpg",
+        "mid": "662407339",
+        "name": "XhuOffice"
+      },
+      {
+        "action": "转发了",
+        "attend": 2,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/2c506dcf0b6507041b0bfafea7505cb1badf6ccd.jpg",
+        "mid": "616368979",
+        "name": "淡紫玲儿"
+      },
+      {
+        "action": "赞了",
+        "attend": 2,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/2c506dcf0b6507041b0bfafea7505cb1badf6ccd.jpg",
+        "mid": "616368979",
+        "name": "淡紫玲儿"
+      },
+      {
+        "action": "赞了",
+        "attend": 2,
+        "desc": "",
+        "face": "https://i2.hdslb.com/bfs/face/77906db03b1eefac02613de184afad03f7bc58d7.jpg",
+        "mid": "645769214",
+        "name": "Session小胡"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了3个Up主",
+        "face": "https://i0.hdslb.com/bfs/face/2ac46bacfdedebf9aecf6415b95dd58636b1e22a.jpg",
+        "mid": "340463550",
+        "name": "折耳喵之心"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/ec855a27a42e174521399d7508cece6c0c02c6ff.jpg",
+        "mid": "628114249",
+        "name": "at白日梦想家"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了3个Up主",
+        "face": "https://i1.hdslb.com/bfs/face/81362ba3f99b2702b9746ca7fe67ffc76d3a97c4.jpg",
+        "mid": "198175",
+        "name": "傲娇金发黑丝双马尾"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i2.hdslb.com/bfs/face/df1c9bc7d79c84b7227486a944d7a748093fbb31.jpg",
+        "mid": "1007349302",
+        "name": "用户9420594"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i0.hdslb.com/bfs/face/f17befd18cab5e157844ab986bd6c60d58d74738.jpg",
+        "mid": "1180456113",
+        "name": "人工智能小冰_yoyo"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了2个Up主",
+        "face": "https://i0.hdslb.com/bfs/face/f1b0ebdf19c2f4b768c5a3e57cbd50e404ad9549.jpg",
+        "mid": "273008643",
+        "name": "LV1渡劫失败降到"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i0.hdslb.com/bfs/face/a7732df2624c6a0b6e5856ceb27f3c96598a2fd4.jpg",
+        "mid": "452290620",
+        "name": "评论永远比视频精彩"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i0.hdslb.com/bfs/face/cc2ea9088f066b33f24d39434d23aa68cb8ab761.png",
+        "mid": "91671246",
+        "name": "樱樱之雪"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了3个Up主",
+        "face": "http://i1.hdslb.com/bfs/face/d20eae4d6339cef2267b36c1c262ae6466395b64.jpg",
+        "mid": "340632388",
+        "name": "天神永恒hb"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了21个Up主",
+        "face": "https://i0.hdslb.com/bfs/face/368b2a33eed5dc146bd9ab8bf62bc9667653a350.jpg",
+        "mid": "38120922",
+        "name": "vgwik"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了2个Up主",
+        "face": "https://i2.hdslb.com/bfs/face/efbd8bb841ea6340f39854b82d9741f47cb3351e.jpg",
+        "mid": "691494413",
+        "name": "熬夜肝不好"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/c46fe783ac7a5291dac4773744b3d35d7cebd77f.jpg",
+        "mid": "1486540726",
+        "name": "o_90"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/fece6f971d14fddbddcede65a42edc63d01884d4.jpg",
+        "mid": "34474963",
+        "name": "Neko_vecter"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了8个Up主",
+        "face": "https://i0.hdslb.com/bfs/face/e1d66345bdb6f8c75b782ed5c4b93440860c894d.jpg",
+        "mid": "88466370",
+        "name": "没有钱的首富"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了15个Up主",
+        "face": "https://i0.hdslb.com/bfs/face/f8a6e77e5839e64a7448ddeb7112af86eb47aa48.jpg",
+        "mid": "14625981",
+        "name": "龙凌洛"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i2.hdslb.com/bfs/face/18c0bb87fbc8f9fde0d7f92ab88917e517e53df1.jpg",
+        "mid": "36708269",
+        "name": "alcoholmole"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i0.hdslb.com/bfs/face/39f0e0ec39e6828b01afc28ad001471d1efa8c66.jpg",
+        "mid": "52874964",
+        "name": "黑暗战师"
+      },
+      {
+        "action": "赞了",
+        "attend": 1,
+        "desc": "对方关注了你",
+        "face": "https://i0.hdslb.com/bfs/face/07d73f7d01c8e8cfb9173d8fe6e40a0c8cb5713d.jpg",
+        "mid": "702368712",
+        "name": "-御帝哥哥-"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "共同关注了22个Up主",
+        "face": "http://i0.hdslb.com/bfs/face/member/noface.jpg",
+        "mid": "398095475",
+        "name": "meipeter"
+      },
+      {
+        "action": "赞了",
+        "attend": 0,
+        "desc": "",
+        "face": "https://i1.hdslb.com/bfs/face/a4a1566d7218307839345a079651bf58a69a028f.jpg",
+        "mid": "101358808",
+        "name": "香香软软的小阿芙"
+      }
+    ],
+    "offset": "{\"page\":2,\"like\":101358808,\"repost\":-1}",
+    "total": 65
+  }
+}
+```
+
+</details>
+
 ## 动态抽奖详情
 
 > https://api.vc.bilibili.com/lottery_svr/v1/lottery_svr/lottery_notice
