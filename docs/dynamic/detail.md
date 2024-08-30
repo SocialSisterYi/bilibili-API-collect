@@ -6,12 +6,24 @@
 
 *请求方式: GET*
 
+认证方式: Cookie (SESSDATA) (非必要)
+
+鉴权方式: Cookie (User-Agent) (必要), [Wbi 签名](../misc/sign/wbi.md) (非必要)
+
 **URL参数:**
 
-| 参数名             | 类型  | 必填  | 内容     | 备注  |
-|-----------------|-----|-----|--------|-----|
-| timezone_offset | num |     | `-480` |     |
-| id              | num | √   | 动态id   |     |
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| --- | --- | --- | --- | --- |
+| id | num | 动态 ID | 必要 |  |
+| timezone_offset | num | -480 | 非必要 |  |
+| platform | str | 平台 | 非必要 | `web` |
+| gaia_source | str | 来源 | 非必要 | `main_web` |
+| features | str | 功能 | 非必要 | `itemOpusStyle,opusBigCover,onlyfansVote,endFooterHidden,decorationCard,onlyfansAssetsV2,ugcDelete,onlyfansQaCard,commentsNewVersion` |
+| web_location | str | `333.1368` | 非必要 |  |
+| x-bili-device-req-json | obj | 设备信息? | 非必要 | `{"platform":"web","device":"pc"}` |
+| x-bili-web-req-json | obj | 请求信息? | 非必要 | `{"spm_id":"333.1368"}` |
+| w_rid | str | Wbi 签名 | 不必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
+| wts | num | UNIX 秒级时间戳 | 不必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
 
 **JSON回复:**
 
@@ -19,7 +31,7 @@
 
 | 字段名     | 类型  | 内容   | 备注                       |
 |---------|-----|------|--------------------------|
-| code    | num | 响应码  | 0：成功<br/>4101139：4101139 |
+| code    | num | 响应码  | 0: 成功<br/>-352: 风控校验失败<br />4101139: 4101139 |
 | message | str |      |                          |
 | ttl     | num | 1    |                          |
 | data    | obj | 信息本体 |                          |
@@ -37,7 +49,12 @@
 **示例:**
 
 ```shell
-curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=724328028268658744'
+curl -G 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail' \
+  -A 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0' \
+  -b 'SESSDATA=xxxxxx' \
+  --url-query 'id=967717348014293017' \
+  --url-query 'w_rid=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' \
+  --url-query 'wts=1724986186'
 ```
 
 <details>
@@ -51,65 +68,137 @@ curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=7243
   "data": {
     "item": {
       "basic": {
-        "comment_id_str": "724328028268658744",
-        "comment_type": 17,
+        "comment_id_str": "326122895",
+        "comment_type": 11,
         "like_icon": {
           "action_url": "",
           "end_url": "",
           "id": 0,
           "start_url": ""
         },
-        "rid_str": "724328032624443401"
+        "rid_str": "326122895"
       },
-      "id_str": "724328028268658744",
+      "id_str": "967717348014293017",
       "modules": {
         "module_author": {
-          "face": "https://i2.hdslb.com/bfs/face/876bf5dfa8c583acb5f8689fc923077f6a2aba23.jpg",
+          "avatar": {
+            "container_size": {
+              "height": 1.35,
+              "width": 1.35
+            },
+            "fallback_layers": {
+              "is_critical_group": true,
+              "layers": [
+                {
+                  "general_spec": {
+                    "pos_spec": {
+                      "axis_x": 0.675,
+                      "axis_y": 0.675,
+                      "coordinate_pos": 2
+                    },
+                    "render_spec": {
+                      "opacity": 1
+                    },
+                    "size_spec": {
+                      "height": 1,
+                      "width": 1
+                    }
+                  },
+                  "layer_config": {
+                    "is_critical": true,
+                    "tags": {
+                      "AVATAR_LAYER": {},
+                      "GENERAL_CFG": {
+                        "config_type": 1,
+                        "general_config": {
+                          "web_css_style": {
+                            "borderRadius": "50%"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "resource": {
+                    "res_image": {
+                      "image_src": {
+                        "placeholder": 6,
+                        "remote": {
+                          "bfs_style": "widget-layer-avatar",
+                          "url": "https://i2.hdslb.com/bfs/face/77906db03b1eefac02613de184afad03f7bc58d7.jpg"
+                        },
+                        "src_type": 1
+                      }
+                    },
+                    "res_type": 3
+                  },
+                  "visible": true
+                }
+              ]
+            },
+            "mid": "645769214"
+          },
+          "decorate": {
+            "card_url": "https://i0.hdslb.com/bfs/vip/a9e3d993c7a15e88ce0bf714a142f7d2b44121e2.png",
+            "fan": {
+              "color": "",
+              "color_format": null,
+              "is_fan": false,
+              "num_prefix": "",
+              "num_str": "",
+              "number": 0
+            },
+            "id": 28,
+            "jump_url": "https://www.bilibili.com/h5/mall/equity-link/collect-home?item_id=28&isdiy=0&part=card&from=post&f_source=garb&vmid=645769214&native.theme=1&navhide=1",
+            "name": "2233娘",
+            "type": 1
+          },
+          "face": "https://i2.hdslb.com/bfs/face/77906db03b1eefac02613de184afad03f7bc58d7.jpg",
           "face_nft": false,
           "following": null,
-          "jump_url": "//space.bilibili.com/11357018/dynamic",
+          "jump_url": "//space.bilibili.com/645769214/dynamic",
           "label": "",
-          "mid": 11357018,
-          "name": "动画魂-Anitama",
+          "mid": 645769214,
+          "name": "Session小胡",
           "official_verify": {
             "desc": "",
-            "type": 0
+            "type": -1
           },
           "pendant": {
             "expire": 0,
             "image": "",
             "image_enhance": "",
             "image_enhance_frame": "",
+            "n_pid": 0,
             "name": "",
             "pid": 0
           },
           "pub_action": "",
           "pub_location_text": "",
-          "pub_time": "2022-11-03 22:02",
-          "pub_ts": 1667484162,
+          "pub_time": "2024年08月20日 19:17",
+          "pub_ts": 1724152653,
           "type": "AUTHOR_TYPE_NORMAL",
           "vip": {
-            "avatar_subscript": 1,
+            "avatar_subscript": 0,
             "avatar_subscript_url": "",
-            "due_date": 1685808000000,
+            "due_date": 1665158400000,
             "label": {
-              "bg_color": "#FB7299",
-              "bg_style": 1,
+              "bg_color": "",
+              "bg_style": 0,
               "border_color": "",
               "img_label_uri_hans": "",
-              "img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/8d4f8bfc713826a5412a0a27eaaac4d6b9ede1d9.png",
+              "img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/d7b702ef65a976b20ed854cbd04cb9e27341bb79.png",
               "img_label_uri_hant": "",
-              "img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/VEW8fCC0hg.png",
-              "label_theme": "annual_vip",
+              "img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/KJunwh19T5.png",
+              "label_theme": "",
               "path": "",
-              "text": "年度大会员",
-              "text_color": "#FFFFFF",
+              "text": "",
+              "text_color": "",
               "use_img_label": true
             },
-            "nickname_color": "#FB7299",
-            "status": 1,
+            "nickname_color": "",
+            "status": 0,
             "theme_type": 0,
-            "type": 2
+            "type": 1
           }
         },
         "module_dynamic": {
@@ -117,147 +206,66 @@ curl -L -X GET 'https://api.bilibili.com/x/polymer/web-dynamic/v1/detail?id=7243
           "desc": {
             "rich_text_nodes": [
               {
-                "orig_text": "恭喜 @羽希plume @晕乎菌 中奖，已私信联系。——全天加码放水，红包力度很大，打开手淘搜“我爱你红包”，红包每天可以领，积少成多。 ——明天早上9点开另外一则抽奖，有打扰请多保函。\n",
-                "text": "恭喜 @羽希plume @晕乎菌 中奖，已私信联系。——全天加码放水，红包力度很大，打开手淘搜“我爱你红包”，红包每天可以领，积少成多。 ——明天早上9点开另外一则抽奖，有打扰请多保函。\n",
+                "orig_text": "今天因为Linux被骂, 决定放弃支持 Windows. 而且明天要开始军训了, 将停更若干时间, 遂发此动态, 望不知.",
+                "text": "今天因为Linux被骂, 决定放弃支持 Windows. 而且明天要开始军训了, 将停更若干时间, 遂发此动态, 望不知.",
                 "type": "RICH_TEXT_NODE_TYPE_TEXT"
               }
             ],
-            "text": "恭喜 @羽希plume @晕乎菌 中奖，已私信联系。——全天加码放水，红包力度很大，打开手淘搜“我爱你红包”，红包每天可以领，积少成多。 ——明天早上9点开另外一则抽奖，有打扰请多保函。\n"
+            "text": "今天因为Linux被骂, 决定放弃支持 Windows. 而且明天要开始军训了, 将停更若干时间, 遂发此动态, 望不知."
           },
-          "major": null,
+          "major": {
+            "draw": {
+              "id": 326122895,
+              "items": [
+                {
+                  "height": 1080,
+                  "size": 1005.29,
+                  "src": "http://i0.hdslb.com/bfs/new_dyn/0f6f939334104ddc347566514fa4bfa7645769214.jpg",
+                  "tags": [],
+                  "width": 1440
+                }
+              ]
+            },
+            "type": "MAJOR_TYPE_DRAW"
+          },
           "topic": null
         },
         "module_more": {
           "three_point_items": [
             {
-              "label": "举报",
-              "type": "THREE_POINT_REPORT"
+              "label": "删除",
+              "modal": {
+                "cancel": "取消",
+                "confirm": "确认删除",
+                "content": "动态删除后将无法恢复，请谨慎操作",
+                "title": "要删除动态吗？"
+              },
+              "params": {
+                "dyn_id_str": "967717348014293017",
+                "dyn_type": 2,
+                "rid_str": "326122895"
+              },
+              "type": "THREE_POINT_DELETE"
             }
           ]
         },
         "module_stat": {
           "comment": {
-            "count": 5,
+            "count": 34,
             "forbidden": false
           },
           "forward": {
-            "count": 1,
+            "count": 2,
             "forbidden": false
           },
           "like": {
-            "count": 170,
+            "count": 65,
             "forbidden": false,
-            "status": false
+            "status": true
           }
         }
       },
-      "orig": {
-        "basic": {
-          "comment_id_str": "",
-          "comment_type": 0,
-          "like_icon": {
-            "action_url": "",
-            "end_url": "",
-            "id": 0,
-            "start_url": ""
-          },
-          "rid_str": ""
-        },
-        "id_str": "720590749615259664",
-        "modules": {
-          "module_author": {
-            "face": "https://i2.hdslb.com/bfs/face/876bf5dfa8c583acb5f8689fc923077f6a2aba23.jpg",
-            "face_nft": false,
-            "following": null,
-            "jump_url": "//space.bilibili.com/11357018/dynamic",
-            "label": "",
-            "mid": 11357018,
-            "name": "动画魂-Anitama",
-            "official_verify": {
-              "desc": "",
-              "type": 0
-            },
-            "pendant": {
-              "expire": 0,
-              "image": "",
-              "image_enhance": "",
-              "image_enhance_frame": "",
-              "name": "",
-              "pid": 0
-            },
-            "pub_action": "",
-            "pub_time": "",
-            "pub_ts": 1666614008,
-            "type": "AUTHOR_TYPE_NORMAL",
-            "vip": {
-              "avatar_subscript": 1,
-              "avatar_subscript_url": "",
-              "due_date": 1685808000000,
-              "label": {
-                "bg_color": "#FB7299",
-                "bg_style": 1,
-                "border_color": "",
-                "img_label_uri_hans": "",
-                "img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/8d4f8bfc713826a5412a0a27eaaac4d6b9ede1d9.png",
-                "img_label_uri_hant": "",
-                "img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/VEW8fCC0hg.png",
-                "label_theme": "annual_vip",
-                "path": "",
-                "text": "年度大会员",
-                "text_color": "#FFFFFF",
-                "use_img_label": true
-              },
-              "nickname_color": "#FB7299",
-              "status": 1,
-              "theme_type": 0,
-              "type": 2
-            }
-          },
-          "module_dynamic": {
-            "additional": null,
-            "desc": {
-              "rich_text_nodes": [
-                {
-                  "orig_text": "​双11天猫红包，超大力度提前发放\n活动很猛，红包很大，加额加量！\n打开手淘搜“我爱你红包”\n打开手淘搜“我爱你红包”\n打开手淘搜“我爱你红包”\n最高可领取28888元\n\n一天可领3次，今天红包额度最大\n越早领取得现金概率越大！\n抽奖=转发+关注",
-                  "text": "​双11天猫红包，超大力度提前发放\n活动很猛，红包很大，加额加量！\n打开手淘搜“我爱你红包”\n打开手淘搜“我爱你红包”\n打开手淘搜“我爱你红包”\n最高可领取28888元\n\n一天可领3次，今天红包额度最大\n越早领取得现金概率越大！\n抽奖=转发+关注",
-                  "type": "RICH_TEXT_NODE_TYPE_TEXT"
-                },
-                {
-                  "jump_url": "//search.bilibili.com/all?keyword=%23%E4%BA%92%E5%8A%A8%E6%8A%BD%E5%A5%96%23",
-                  "orig_text": "#互动抽奖#",
-                  "text": "#互动抽奖#",
-                  "type": "RICH_TEXT_NODE_TYPE_TOPIC"
-                },
-                {
-                  "orig_text": "\n转+评，留言你领到多少红包\n评论区随机抽取2位，每人补贴50零花钱 ",
-                  "text": "\n转+评，留言你领到多少红包\n评论区随机抽取2位，每人补贴50零花钱 ",
-                  "type": "RICH_TEXT_NODE_TYPE_TEXT"
-                }
-              ],
-              "text": "​双11天猫红包，超大力度提前发放\n活动很猛，红包很大，加额加量！\n打开手淘搜“我爱你红包”\n打开手淘搜“我爱你红包”\n打开手淘搜“我爱你红包”\n最高可领取28888元\n\n一天可领3次，今天红包额度最大\n越早领取得现金概率越大！\n抽奖=转发+关注#互动抽奖#\n转+评，留言你领到多少红包\n评论区随机抽取2位，每人补贴50零花钱 "
-            },
-            "major": {
-              "draw": {
-                "id": 210334026,
-                "items": [
-                  {
-                    "height": 672,
-                    "size": 134.85938,
-                    "src": "https://i0.hdslb.com/bfs/new_dyn/37c21f8864e47cbeeb7c3e3a66bb250b11357018.jpg",
-                    "tags": [],
-                    "width": 576
-                  }
-                ]
-              },
-              "type": "MAJOR_TYPE_DRAW"
-            },
-            "topic": null
-          }
-        },
-        "type": "DYNAMIC_TYPE_DRAW",
-        "visible": true
-      },
-      "type": "DYNAMIC_TYPE_FORWARD",
+      "type": "DYNAMIC_TYPE_DRAW",
       "visible": true
     }
   }
