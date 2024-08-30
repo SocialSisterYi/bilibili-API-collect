@@ -3066,6 +3066,179 @@ curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/doc_list' \
 
 </details>
 
+### 查询用户投稿音频明细
+
+> https://api.bilibili.com/audio/music-service/web/song/upper
+
+*请求方法: GET*
+
+<!--{
+  "from": {
+    "url": "https://space.bilibili.com/8047632/audio",
+    "selector": ".be-tab-inner"
+  }
+  "gh": [442]
+}-->
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| --- | --- | --- | --- | --- |
+| mid | num | 用户 mid | 必要 |  |
+| pn | num | 页码 | 必要 | 默认为 1 |
+| ps | num | 每页项数 | 必要 | 默认为 30 |
+| order | str | 排序方式 | 必要 | 1: 最新发布<br />2: 最多播放<br />3: 最多收藏 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功<br />72000000: 缺少参数 |
+| msg | str | 返回信息 | 成功为 `success` |
+| data | str | 数据本体 | 失败时不存在 |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| curPage | num | 当前页码 |  |
+| pageCount | num | 总页数 |  |
+| totalSize | num | 总计数 |  |
+| pageSize | num | 每页项数 |  |
+| data | array | 音频列表 |  |
+
+`data` 对象中的 `data` 数组中的对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| id | num | 音频 AU 号 |  |
+| uid | num | 用户 mid |  |
+| uname | str | 用户名 |  |
+| author | null |  |  |
+| title | str | 音频标题 |  |
+| cover | str | 音频封面图片 URL |  |
+| intro | null |  |  |
+| lyric | str | 音频歌词 URL |  |
+| crtype | num | 1 |  |
+| duration | num | 音频时长 | 单位为 秒 |
+| passtime | num | 发布时间 | UNIX 秒级时间戳 |
+| curtime | num | 0 |  |
+| aid | null |  |  |
+| cid | null |  |  |
+| msid | null |  |  |
+| attr | null |  |  |
+| limit | null |  |  |
+| activityId | null |  |  |
+| limitdesc | null |  |  |
+| ctime | num | 发布时间 | UNIX 毫秒时间戳 |
+| statistic | obj | 统计数 |  |
+| coin_num | num | 硬币数量 |  |
+| is_cooper | null |  |  |
+
+`data` 数组中的对象中的 `statistic` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| sid | num | 音频 AU 号 |  |
+| play | num | 播放数 |  |
+| collect | num | 收藏数 |  |
+| comment | num | 评论数 |  |
+| share | num | 分享数 |  |
+
+**示例:**
+
+```shell
+curl -G 'https://api.bilibili.com/audio/music-service/web/song/upper' \
+--url-query 'uid=8047632' \
+--url-query 'pn=1' \
+--url-query 'ps=30' \
+--url-query 'order=2'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "curPage": 1,
+    "pageCount": 1,
+    "totalSize": 2,
+    "pageSize": 30,
+    "data": [
+      {
+        "id": 257709,
+        "uid": 8047632,
+        "uname": "哔哩哔哩弹幕网",
+        "author": null,
+        "title": "【2018拜年祭单品】与你同行~B With U~",
+        "cover": "http://i0.hdslb.com/bfs/music/0f890889c8e1101f37317def0c4c555068054c88.jpg",
+        "intro": null,
+        "lyric": "http://i0.hdslb.com/bfs/music/1519959250257709.lrc",
+        "crtype": 1,
+        "duration": 301,
+        "passtime": 1519878405,
+        "curtime": 0,
+        "aid": null,
+        "cid": null,
+        "msid": null,
+        "attr": null,
+        "limit": null,
+        "activityId": null,
+        "limitdesc": null,
+        "ctime": 1519875632000,
+        "statistic": {
+          "sid": 257709,
+          "play": 845264,
+          "collect": 21978,
+          "comment": 1983,
+          "share": 1685
+        },
+        "coin_num": 13368,
+        "is_cooper": null
+      },
+      {
+        "id": 378521,
+        "uid": 8047632,
+        "uname": "哔哩哔哩弹幕网",
+        "author": null,
+        "title": "《B TOGETHER》-bilibili九周年主题曲",
+        "cover": "http://i0.hdslb.com/bfs/music/109136c63e16d83fbad5ec9282a6fb96498d8144.jpg",
+        "intro": null,
+        "lyric": "http://i0.hdslb.com/bfs/music/1529979007378521.lrc",
+        "crtype": 1,
+        "duration": 261,
+        "passtime": 1529928347,
+        "curtime": 0,
+        "aid": null,
+        "cid": null,
+        "msid": null,
+        "attr": null,
+        "limit": null,
+        "activityId": null,
+        "limitdesc": null,
+        "ctime": 1529928235000,
+        "statistic": {
+          "sid": 378521,
+          "play": 123264,
+          "collect": 5501,
+          "comment": 1591,
+          "share": 535
+        },
+        "coin_num": 3640,
+        "is_cooper": null
+      }
+    ]
+  }
+}
+```
+
+</details>
+
 ## 频道
 
 <img src="../../assets/img/channel.svg" width="100" height="100" />
