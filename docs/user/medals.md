@@ -88,9 +88,9 @@
 | typ | num | 勋章类型? | |
 | is_light | num | 是否点亮? | |
 | ruid | num | 主播 mid |      |
-| guard_level | num | 守护等级? | 1: 总督<br />2: 提督<br />3: 舰长 |
+| guard_level | num | 大航海等级 | 1: 总督<br />2: 提督<br />3: 舰长 |
 | score | num | 勋章分数? | |
-| guard_icon | str | 守护徽章图标 URL? | 粉丝牌左边的图标 |
+| guard_icon | str | 大航海图标 URL? | 粉丝牌左边的图标 |
 | honor_icon | str | 荣誉徽章图标 URL? | |
 | v2_medal_color_start | str | 勋章开始颜色 | 16进制 |
 | v2_medal_color_end | str | 勋章结束颜色 | 同上 |
