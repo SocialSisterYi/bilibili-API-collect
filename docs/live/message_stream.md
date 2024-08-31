@@ -100,6 +100,8 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 
 **注: 特别的**, WS 与 WSS 连接地址带有路径 `/sub`, 如 `wss://broadcastlv.chat.bilibili.com:443/sub`.
 
+**再注:** B 站更新了隐私政策, 连接建立 5 分钟左右, 若该连接认证时传入信息来自未登录用户, 会提示 `为保护用户隐私，未注册登陆用户将无法查看他人昵称`, 随后所有发送弹幕的用户 mid 都为 `0`, 用户名部分也使用 `*` 保护, 参见 [#732](https://github.com/SocialSisterYi/bilibili-API-collect/issues/732)
+
 操作流程 (伪代码):
 
 ```javascript
