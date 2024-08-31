@@ -59,7 +59,7 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 | last_play_cid | num | 上次观看 cid? |  |
 | now_time | num | 当前 UNIX 秒级时间戳 |  |
 | online_count | num | 在线人数 |  |
-| need_login_subtitle | bool | false | 必须登陆才能查看字幕 |
+| need_login_subtitle | bool | 是否必须登陆才能查看字幕 | 是的 |
 | preview_toast | str | `为创作付费，购买观看完整视频|购买观看` |  |
 | options | obj |  |  |
 | guide_attention | any |  |  |
