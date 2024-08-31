@@ -2087,6 +2087,197 @@ while (!s.isclosed()) {
 
 </details>
 
+#### 直播间限时热门榜排名改变 (HOT_RANK_CHANGED)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `HOT_RANK_CHANGED` | |
+| data | obj | 信息本体 | |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| rank | num | 排名 |   |
+| trend | num | 趋势? |   |
+| countdown | num | 剩余时间? |  |
+| timestamp | num | 当前时间? | UNIX 秒级时间戳 |
+| web_url | str | 排行榜 URL |  |
+| live_url | str | 排行榜 URL |  |
+| blink_url | str | 排行榜 URL |  |
+| live_link_url | str | 排行榜 URL |  |
+| pc_link_url | str | 排行榜 URL |  |
+| icon | str | 图标 URL |  |
+| area_name | str | 分区名称 |  |
+| rank_desc | str | 空? |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+  "cmd": "HOT_RANK_CHANGED",
+  "data": {
+    "rank": 31,
+    "trend": 1,
+    "countdown": 1440,
+    "timestamp": 1651037760,
+    "web_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=2&area_id=9&parent_area_id=9&second_area_id=0",
+    "live_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=1&area_id=9&parent_area_id=9&second_area_id=0&is_live_half_webview=1&hybrid_rotate_d=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,12,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,12,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0",
+    "blink_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=3&area_id=9&parent_area_id=9&second_area_id=0&is_live_half_webview=1&hybrid_rotate_d=1&is_cling_player=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,0,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,0,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0",
+    "live_link_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=5&area_id=9&parent_area_id=9&second_area_id=0&is_live_half_webview=1&hybrid_rotate_d=1&is_cling_player=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,0,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,0,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0",
+    "pc_link_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=4&is_live_half_webview=1&area_id=9&parent_area_id=9&second_area_id=0&pc_ui=338,465,f4eefa,0",
+    "icon": "https://i0.hdslb.com/bfs/live/63217712edb588864b2c714225992e7f46b0b917.png",
+    "area_name": "虚拟",
+    "rank_desc": ""
+  }
+}
+```
+
+</details>
+
+#### 当前直播间限时热门榜排名改变V2 (HOT_RANK_CHANGED_V2)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `HOT_RANK_CHANGED_V2` | |
+| data | obj | 信息本体 | |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| rank | num | 排名 |   |
+| trend | num | 趋势? |   |
+| countdown | num | 剩余时间? |  |
+| timestamp | num | 当前时间? | UNIX 秒级时间戳 |
+| web_url | str | 排行榜 URL |  |
+| live_url | str | 排行榜 URL |  |
+| blink_url | str | 排行榜 URL |  |
+| live_link_url | str | 排行榜 URL |  |
+| pc_link_url | str | 排行榜 URL |  |
+| icon | str | 图标 URL |  |
+| area_name | str | 分区名称 |  |
+| rank_desc | str | 排行榜说明 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "HOT_RANK_CHANGED_V2",
+  "data": {
+    "rank": 31,
+    "trend": 0,
+    "countdown": 1440,
+    "timestamp": 1651037760,
+    "web_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=2&area_id=9&parent_area_id=9&second_area_id=371",
+    "live_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=1&area_id=9&parent_area_id=9&second_area_id=371&is_live_half_webview=1&hybrid_rotate_d=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,12,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,12,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0",
+    "blink_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=3&area_id=9&parent_area_id=9&second_area_id=371&is_live_half_webview=1&hybrid_rotate_d=1&is_cling_player=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,0,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,0,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0",
+    "live_link_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=5&area_id=9&parent_area_id=9&second_area_id=371&is_live_half_webview=1&hybrid_rotate_d=1&is_cling_player=1&hybrid_half_ui=1,3,100p,70p,f4eefa,0,30,100,0,0;2,2,375,100p,f4eefa,0,30,100,0,0;3,3,100p,70p,f4eefa,0,30,100,0,0;4,2,375,100p,f4eefa,0,30,100,0,0;5,3,100p,70p,f4eefa,0,30,100,0,0;6,3,100p,70p,f4eefa,0,30,100,0,0;7,3,100p,70p,f4eefa,0,30,100,0,0;8,3,100p,70p,f4eefa,0,30,100,0,0",
+    "pc_link_url": "https://live.bilibili.com/p/html/live-app-hotrank/index.html?clientType=4&is_live_half_webview=1&area_id=9&parent_area_id=9&second_area_id=371&pc_ui=338,465,f4eefa,0",
+    "icon": "https://i0.hdslb.com/bfs/live/cb2e160ac4f562b347bb5ae6e635688ebc69580f.png",
+    "area_name": "虚拟主播",
+    "rank_desc": "虚拟主播top50"
+  }
+}
+```
+
+</details>
+
+#### 限时热门榜上榜信息 (HOT_RANK_SETTLEMENT)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `HOT_RANK_SETTLEMENT` | |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| area_name | str | 分区名称 |  |
+| cache_key | str | ? |  |
+| dm_msg | str | 弹幕提示信息 |  |
+| dmscore | num | ? |  |
+| face | str | 主播头像 URL |  |
+| icon | str | 图标 URL |  |
+| rank | num | 排名 |  |
+| timestamp | num | 时间 | UNIX 秒级时间戳 |
+| uname | str | 主播用户名 |  |
+| url | str | 排行榜 URL |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "HOT_RANK_SETTLEMENT",
+  "data": {
+    "area_name": "虚拟主播",
+    "cache_key": "2f8baf923a6b7df5a045df6c7181984c",
+    "dm_msg": "恭喜主播 <% 白黑卡扣 %> 荣登限时热门榜虚拟主播榜top9! 即将获得热门流量推荐哦！",
+    "dmscore": 144,
+    "face": "http://i0.hdslb.com/bfs/face/ddfcd696213e07884ce227c6ba6d23a007a08c02.jpg",
+    "icon": "https://i0.hdslb.com/bfs/live/63217712edb588864b2c714225992e7f46b0b917.png",
+    "rank": 9,
+    "timestamp": 1651041000,
+    "uname": "白黑卡扣",
+    "url": "https://live.bilibili.com/p/html/live-app-hotrank/result.html?is_live_half_webview=1&hybrid_half_ui=1,5,250,200,f4eefa,0,30,0,0,0;2,5,250,200,f4eefa,0,30,0,0,0;3,5,250,200,f4eefa,0,30,0,0,0;4,5,250,200,f4eefa,0,30,0,0,0;5,5,250,200,f4eefa,0,30,0,0,0;6,5,250,200,f4eefa,0,30,0,0,0;7,5,250,200,f4eefa,0,30,0,0,0;8,5,250,200,f4eefa,0,30,0,0,0&areaId=9&cache_key=2f8baf923a6b7df5a045df6c7181984c"
+  }
+}
+```
+
+</details>
+
+#### 限时热门榜上榜信息V2 (HOT_RANK_SETTLEMENT_V2)
+
+**JSON消息:**
+
+基本同 [限时热门榜上榜信息](#限时热门榜上榜信息-hot_rank_settlement), 但没有 `data.dmscore` 字段
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "HOT_RANK_SETTLEMENT_V2",
+  "data": {
+    "rank": 9,
+    "uname": "白黑卡扣",
+    "face": "http://i0.hdslb.com/bfs/face/ddfcd696213e07884ce227c6ba6d23a007a08c02.jpg",
+    "timestamp": 1651040700,
+    "icon": "https://i0.hdslb.com/bfs/live/cb2e160ac4f562b347bb5ae6e635688ebc69580f.png",
+    "area_name": "虚拟主播",
+    "url": "https://live.bilibili.com/p/html/live-app-hotrank/result.html?is_live_half_webview=1&hybrid_half_ui=1,5,250,200,f4eefa,0,30,0,0,0;2,5,250,200,f4eefa,0,30,0,0,0;3,5,250,200,f4eefa,0,30,0,0,0;4,5,250,200,f4eefa,0,30,0,0,0;5,5,250,200,f4eefa,0,30,0,0,0;6,5,250,200,f4eefa,0,30,0,0,0;7,5,250,200,f4eefa,0,30,0,0,0;8,5,250,200,f4eefa,0,30,0,0,0&areaId=371&cache_key=693b7b029b66976a399cf4e3485d265a",
+    "cache_key": "693b7b029b66976a399cf4e3485d265a",
+    "dm_msg": "恭喜主播 <% 白黑卡扣 %> 荣登限时热门榜虚拟主播榜top9! 即将获得热门流量推荐哦！"
+  }
+}
+```
+
+</details>
+
 #### 直播间用户点赞 (LIKE_INFO_V3_CLICK)
 
 **JSON消息:**
@@ -2604,6 +2795,32 @@ while (!s.isclosed()) {
 
 </details>
 
+#### 全屏特效 (FULL_SCREEN_SPECIAL_EFFECT)
+
+**示例:**
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "cmd": "FULL_SCREEN_SPECIAL_EFFECT",
+  "data": {
+    "type": 2,
+    "ids": [
+      514
+    ],
+    "queue": 2,
+    "platform_in": [
+      1,
+      2
+    ]
+  }
+}
+```
+
+</details>
+
 #### 直播间在所属分区的排名改变 (AREA_RANK_CHANGED)
 
 **JSON消息:**
@@ -2940,6 +3157,90 @@ while (!s.isclosed()) {
 
 </details>
 
+#### 礼物心愿单进度 (WIDGET_WISH_LIST)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `WIDGET_WISH_LIST` | |
+| data | obj | 信息本体 | |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| wish | array | 礼物心愿单信息 | |
+| wish_status | num | ? | |
+| sid | num | ? | |
+| wish_status_info | array | ? | |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "WIDGET_WISH_LIST",
+  "data": {
+    "wish": [
+      {
+        "type": 3,
+        "gift_id": 10003,
+        "gift_name": "舰长",
+        "gift_img": "https://i0.hdslb.com/bfs/live/f1be2a2d5b227ce72641de1ad64bcc7f9e4111c3.png",
+        "gift_price": 198000,
+        "target_num": 5,
+        "current_num": 0
+      },
+      {
+        "type": 2,
+        "gift_id": 3,
+        "gift_name": "B坷垃",
+        "gift_img": "https://s1.hdslb.com/bfs/live/cc8bfcbc24c8b65937f62ce0d16b31ab987dce47.png",
+        "gift_price": 9900,
+        "target_num": 5,
+        "current_num": 0
+      },
+      {
+        "type": 2,
+        "gift_id": 31039,
+        "gift_name": "牛哇牛哇",
+        "gift_img": "https://s1.hdslb.com/bfs/live/b8a38b4bd3be120becddfb92650786f00dffad48.png",
+        "gift_price": 100,
+        "target_num": 10,
+        "current_num": 0
+      }
+    ],
+    "wish_status": 1,
+    "sid": 477,
+    "wish_status_info": [
+      {
+        "wish_status_msg": "设定心 愿",
+        "wish_status_img": "https://i0.hdslb.com/bfs/live/38f82bac32794e79776f7371269453652bd58a87.png",
+        "wish_status": 0
+      },
+      {
+        "wish_status_msg": "达成",
+        "wish_status_img": "https://i0.hdslb.com/bfs/live/1dae635924437239fc69e561a1a9467508521249.png",
+        "wish_status": 2
+      },
+      {
+        "wish_status_msg": "收集失败",
+        "wish_status_img": "https://i0.hdslb.com/bfs/live/3bbd30fdd32d085cc90e9ccd98c65a886dca9a8f.png",
+        "wish_status": 3
+      }
+    ],
+    "wish_name": "心愿"
+  }
+}
+```
+
+</details>
+
 #### 下播的直播间 (STOP_LIVE_ROOM_LIST)
 
 注: 估计是更新关注的主播直播状态的
@@ -2990,6 +3291,33 @@ while (!s.isclosed()) {
       24875243, 22777819, 24896061, 24619665
     ]
   }
+}
+```
+
+</details>
+
+#### 系统信息 (SYS_MSG)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `SYS_MSG` |  |
+| msg | str | 提示信息 |  |
+| url | str | 跳转 URL |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "SYS_MSG",
+  "msg": "争夺开启，时间周五20点至周日20点，逾期不候哟！",
+  "url": ""
 }
 ```
 
@@ -3153,7 +3481,7 @@ while (!s.isclosed()) {
 
 #### 开启等级禁言 (ROOM_SILENT_ON)
 
-**JSON对象:**
+**JSON消息:**
 
 根对象:
 
@@ -3190,7 +3518,7 @@ while (!s.isclosed()) {
 
 #### 关闭等级禁言 (ROOM_SILENT_OFF)
 
-**JSON对象:**
+**JSON消息:**
 
 根对象:
 
@@ -3220,6 +3548,336 @@ while (!s.isclosed()) {
     "second": 0
   },
   "cmd": "ROOM_SILENT_OFF"
+}
+```
+
+</details>
+
+#### 指定观众禁言 (ROOM_BLOCK_MSG)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ROOM_BLOCK_MSG` |  |
+| data | obj | 详细信息 |  |
+| uid | num | 禁言用户 mid |  |
+| uname | str | 禁言用户名 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| dmscore | num | 弹幕分数? |  |
+| operator | num | 操作者? |  |
+| uid | num | 禁言用户 mid |  |
+| uname | str | 禁言用户名 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "ROOM_BLOCK_MSG",
+  "data": {
+    "dmscore": 30,
+    "operator": 2,
+    "uid": 37903025,
+    "uname": "玉麟珑"
+  },
+  "uid": "37903025",
+  "uname": "玉麟珑"
+}
+```
+
+</details>
+
+#### 房管列表 (ROOM_ADMINS)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ROOM_ADMINS` |  |
+| uids | array | 房管 mid 列表 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  cmd: "ROOM_ADMINS",
+  uids: [ 898424, 384203692, 1309513, 30816752, 23931549, 223134 ]
+}
+```
+
+</details>
+
+#### 设立房管 (room_admin_entrance)
+
+注: 此处 cmd 内容为小写
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `room_admin_entrance` |  |
+| dmscore | num | 弹幕分数? |  |
+| level | num | 等级? |  |
+| msg | str | 提示信息 |  |
+| uid | num | 用户 mid |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "room_admin_entrance",
+  "dmscore": 45,
+  "level": 1,
+  "msg": "系统提示：你已被主播设为房管",
+  "uid": 223134
+}
+```
+
+</details>
+
+#### 撤销房管 (ROOM_ADMIN_REVOKE)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ROOM_ADMIN_REVOKE` |  |
+| msg | str | 提示信息 |  |
+| uid | num | 用户 mid |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "ROOM_ADMIN_REVOKE",
+  "msg": "撤销房管",
+  "uid": 6791627
+}
+```
+
+</details>
+
+#### 天选时刻合法检查 (ANCHOR_LOT_CHECKSTATUS)
+
+**示例:**
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "cmd": "ANCHOR_LOT_CHECKSTATUS",
+  "data": {
+    "id": 2553641,
+    "reject_reason": "由于奖品格式不合格,请仔细检查后再提交哦",
+    "status": 5,
+    "uid": 1827176970
+  }
+}
+```
+
+</details>
+
+#### 天选时刻开始 (ANCHOR_LOT_START)
+
+**示例:**
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "cmd": "ANCHOR_LOT_START",
+  "data": {
+    "asset_icon": "https://i0.hdslb.com/bfs/live/627ee2d9e71c682810e7dc4400d5ae2713442c02.png",
+    "award_image": "",
+    "award_name": "艺术头像绘制",
+    "award_num": 1,
+    "cur_gift_num": 0,
+    "current_time": 1651037946,
+    "danmu": "卡宝下午好",
+    "gift_id": 3,
+    "gift_name": "B坷垃",
+    "gift_num": 1,
+    "gift_price": 9900,
+    "goaway_time": 180,
+    "goods_id": 15,
+    "id": 2553648,
+    "is_broadcast": 1,
+    "join_type": 1,
+    "lot_status": 0,
+    "max_time": 600,
+    "require_text": "当前主播粉丝勋章至少1级",
+    "require_type": 2,
+    "require_value": 1,
+    "room_id": 23614753,
+    "send_gift_ensure": 0,
+    "show_panel": 1,
+    "start_dont_popup": 0,
+    "status": 1,
+    "time": 599,
+    "url": "https://live.bilibili.com/p/html/live-lottery/anchor-join.html?is_live_half_webview=1&hybrid_biz=live-lottery-anchor&hybrid_half_ui=1,5,100p,100p,000000,0,30,0,0,1;2,5,100p,100p,000000,0,30,0,0,1;3,5,100p,100p,000000,0,30,0,0,1;4,5,100p,100p,000000,0,30,0,0,1;5,5,100p,100p,000000,0,30,0,0,1;6,5,100p,100p,000000,0,30,0,0,1;7,5,100p,100p,000000,0,30,0,0,1;8,5,100p,100p,000000,0,30,0,0,1",
+    "web_url": "https://live.bilibili.com/p/html/live-lottery/anchor-join.html"
+  }
+}
+```
+
+</details>
+
+#### 天选时刻结束 (ANCHOR_LOT_END)
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "ANCHOR_LOT_END",
+  "data": {
+    "id": 2553648
+  }
+}
+```
+
+</details>
+
+#### 天选时刻中奖者 (ANCHOR_LOT_AWARD)
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "ANCHOR_LOT_AWARD",
+  "data": {
+    "award_dont_popup": 1,
+    "award_image": "",
+    "award_name": "艺术头像绘制",
+    "award_num": 1,
+    "award_users": [
+      {
+        "uid": 8318700,
+        "uname": "桥下念喬",
+        "face": "http://i0.hdslb.com/bfs/face/dfde2ffc6286c2c5189592cc84fd70bcf977b143.jpg",
+        "level": 21,
+        "color": 5805790
+      }
+    ],
+    "id": 2553648,
+    "lot_status": 2,
+    "url": "https://live.bilibili.com/p/html/live-lottery/anchor-join.html?is_live_half_webview=1&hybrid_biz=live-lottery-anchor&hybrid_half_ui=1,5,100p,100p,000000,0,30,0,0,1;2,5,100p,100p,000000,0,30,0,0,1;3,5,100p,100p,000000,0,30,0,0,1;4,5,100p,100p,000000,0,30,0,0,1;5,5,100p,100p,000000,0,30,0,0,1;6,5,100p,100p,000000,0,30,0,0,1;7,5,100p,100p,000000,0,30,0,0,1;8,5,100p,100p,000000,0,30,0,0,1",
+    "web_url": "https://live.bilibili.com/p/html/live-lottery/anchor-join.html"
+  }
+}
+```
+
+</details>
+
+#### 邀请视频连线 (VIDEO_CONNECTION_JOIN_START)
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "VIDEO_CONNECTION_JOIN_START",
+  "data": {
+    "status": 1,
+    "invited_uid": 351686170,
+    "channel_id": "72057594038132685",
+    "invited_uname": "小妹睡不醒",
+    "invited_face": "http://i1.hdslb.com/bfs/face/828562203e620f711fb4c786f05996357857ed4d.jpg",
+    "start_at": 1651237440,
+    "current_time": 1651237440
+  },
+  "roomid": 12401854
+}
+```
+
+</details>
+
+#### 视频连线信息 (VIDEO_CONNECTION_MSG)
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "VIDEO_CONNECTION_MSG",
+  "data": {
+    "channel_id": "72057594038132685",
+    "current_time": 1651237440,
+    "dmscore": 4,
+    "toast": "主播发起了视频连线"
+  }
+}
+```
+
+</details>
+
+#### 结束视频连线 (VIDEO_CONNECTION_JOIN_END)
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "VIDEO_CONNECTION_JOIN_END",
+  "data": {
+    "channel_id": "72057594038132685",
+    "start_at": 1651238384,
+    "toast": "主播 结束了与小妹睡不醒的连线.",
+    "current_time": 1651238384
+  },
+  "roomid": 22195814
+}
+```
+
+</details>
+
+#### 重连直播间? (REENTER_LIVE_ROOM)
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+  "cmd": "REENTER_LIVE_ROOM",
+  "data": {
+    "room_id": 22195814,
+    "request_random_sec_range": 10,
+    "reason": 1
+  },
+  "roomid": 22195814
 }
 ```
 
