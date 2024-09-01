@@ -37,7 +37,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/) ([Youtube备链](https://www.youtube.com/watch?v=nfF91Z6fqGk))
 
-::: warning ⚠️声明
+::: warning 声明
 
 1. 本项目遵守 CC-BY-NC 4.0 协议，禁止一切商业使用，如需转载请注明作者 ID
 2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
