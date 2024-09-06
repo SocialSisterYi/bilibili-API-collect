@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -68,6 +68,8 @@ service Space {
     rpc SearchDynamic (SearchDynamicReq) returns (SearchDynamicReply);
     // 
     rpc SearchTab (SearchTabReq) returns (SearchTabReply);
+    // 
+    rpc UpdateReserveStartTime (UpdateReserveStartTimeReq) returns (UpdateReserveStartTimeReply);
 }
 
 // 
@@ -78,6 +80,8 @@ service Teenagers {
     rpc ModeStatus (ModeStatusReq) returns (ModeStatusReply);
     // 
     rpc ModifyPwd (ModifyPwdReq) returns (ModifyPwdReply);
+    // 
+    rpc SetTeenagersModelAge (SetTeenagersModelAgeReq) returns (SetTeenagersModelAgeReply);
     // 
     rpc UpdateStatus (UpdateStatusReq) returns (UpdateStatusReply);
     // 
@@ -935,6 +939,14 @@ enum PwdFrom {
     TeenagersModifyPwdFrom = 10;
     // 
     FamilyQuitFrom = 11;
+    // 
+    OSTeenagersLogin = 12;
+    // 
+    OSTeenagersLogout = 13;
+    // 
+    TeenagersSetAge = 14;
+    // 
+    OSTeenagersSetAge = 15;
 }
 
 // 
@@ -1122,6 +1134,24 @@ message SearchTabReq {
 }
 
 // 
+message SetTeenagersModelAgeReply {
+}
+
+// 
+message SetTeenagersModelAgeReq {
+    // 
+    string pwd = 1;
+    // 
+    PwdFrom pwd_from = 2;
+    // 
+    string device_token = 3;
+    // 
+    int32 age = 4;
+    // 
+    bool is_dynamic = 5;
+}
+
+// 
 message ShowTab {
     // 
     TabType tab_type = 1;
@@ -1214,6 +1244,18 @@ enum TabType {
 }
 
 // 
+message UpdateReserveStartTimeReply {
+}
+
+// 
+message UpdateReserveStartTimeReq {
+    // 
+    int64 sid = 1;
+    // 
+    int64 new_live_plan_start_time = 2;
+}
+
+// 
 message UpdateStatusReply {
 }
 
@@ -1261,6 +1303,8 @@ message UserModel {
     bool must_real_name = 8;
     // 
     bool is_parent_control = 9;
+    // 
+    int32 age = 10;
 }
 
 // 

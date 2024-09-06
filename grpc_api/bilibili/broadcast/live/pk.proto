@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -98,6 +98,24 @@ message PKScoreMultiplePlay {
 }
 
 // 
+message PkCard {
+    // 
+    string card_id = 1;
+    // 
+    int64 card_type = 2;
+    // 
+    int64 end_time = 3;
+    // 
+    string text = 4;
+}
+
+// 
+message PkCardPlay {
+    // 
+    string rule_url = 1;
+}
+
+// 
 message PkInfo {
     // 
     pkBasic pk_basic = 1;
@@ -139,6 +157,8 @@ message PkPlay {
     DmConf dm_conf = 4;
     // 
     EscapeInfo escape = 5;
+    // 
+    PkCardPlay pk_card_play = 6;
 }
 
 // 
@@ -177,6 +197,8 @@ message pkBasic {
     int64 season_id = 16;
     // 
     string status_msg = 17;
+    // 
+    map<string, string> satellite_info = 18;
 }
 
 // 
@@ -225,5 +247,7 @@ message pkUser {
     string power = 16;
     // 
     bool is_latest_streak = 17;
+    // 
+    repeated PkCard pk_cards = 19;
 }
 

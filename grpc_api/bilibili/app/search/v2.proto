@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -18,7 +18,11 @@ service Search {
     // 
     rpc QueryRecComment (QueryRecAfterClickReq) returns (QueryRecAfterClickReply);
     // 
+    rpc SearchDelFollow (SearchDelFollowRequest) returns (SearchDelFollowResponse);
+    // 
     rpc SearchEgg (SearchEggReq) returns (SearchEggReply);
+    // 
+    rpc SearchFollow (SearchFollowRequest) returns (SearchFollowResponse);
     // 
     rpc SearchLike (SearchLikeReq) returns (SearchLikeReply);
     // 
@@ -53,6 +57,14 @@ message CancelChatTaskReq {
     string session_id = 1;
     // 
     string from_source = 2;
+}
+
+// 
+enum FollowTypeEnum {
+    // 
+    UNKNOWN = 0;
+    // 
+    COMIC = 1;
 }
 
 // 
@@ -148,6 +160,20 @@ message QueryRecAfterClickResult {
 }
 
 // 
+message SearchDelFollowRequest {
+    // 
+    int64 cid = 1;
+    // 
+    FollowTypeEnum follow_type = 2;
+}
+
+// 
+message SearchDelFollowResponse {
+    // 
+    string toast = 1;
+}
+
+// 
 message SearchEggInfo {
     // 
     int32 egg_type = 1;
@@ -195,6 +221,20 @@ message SearchEggReply {
 
 // 
 message SearchEggReq {
+}
+
+// 
+message SearchFollowRequest {
+    // 
+    int64 cid = 1;
+    // 
+    FollowTypeEnum follow_type = 2;
+}
+
+// 
+message SearchFollowResponse {
+    // 
+    string toast = 1;
 }
 
 // 

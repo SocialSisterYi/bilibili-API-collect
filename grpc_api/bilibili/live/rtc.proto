@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -55,6 +55,10 @@ message BAPILiveRTCStreamProto {
         Opus = 0;
         // 
         H264 = 1;
+        // 
+        H265 = 2;
+        // 
+        AV1 = 3;
     }
     
     // 
@@ -102,6 +106,8 @@ message BAPILiveRTCTokenProto {
         int32 version = 8;
         // 
         string business_name = 9;
+        // 
+        BAPILiveRTCTokenProto.TurnAddr turn_addr = 10;
     }
     
     // 
@@ -116,10 +122,40 @@ message BAPILiveRTCTokenProto {
         BAPILiveRTCUserProto.UserRole role = 4;
     }
     
+    // 
+    message TurnAddr {
+        // 
+        string username = 1;
+        // 
+        string password = 2;
+        // 
+        repeated string addr = 3;
+        // 
+        repeated int32 protocol = 4;
+    }
+    
+    // 
+    enum TurnProtocol {
+        // 
+        UDP = 0;
+        // 
+        TCP = 1;
+        // 
+        TLS = 2;
+    }
+    
 }
 
 // 
 message BAPILiveRTCUserProto {
+    // 
+    message CodecCapability {
+        // 
+        bool av1 = 1;
+        // 
+        bool h265 = 2;
+    }
+    
     // 
     message Stream {
         // 
@@ -148,6 +184,8 @@ message BAPILiveRTCUserProto {
         string platform = 4;
         // 
         string sdk_version = 5;
+        // 
+        BAPILiveRTCUserProto.CodecCapability decode_capability = 6;
     }
     
     // 

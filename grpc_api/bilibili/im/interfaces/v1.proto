@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -35,6 +35,8 @@ service ImInterface {
     rpc GetSpecificSessions (ReqGetSpecificSessions) returns (RspSessions);
     // 
     rpc GetTotalUnread (ReqTotalUnread) returns (RspTotalUnread);
+    // 
+    rpc GetUserCosmoState (GetUserCosmoStateReq) returns (GetUserCosmoStateRsp);
     // 
     rpc GroupAssisMsg (ReqGroupAssisMsg) returns (RspSessionMsg);
     // 
@@ -75,6 +77,8 @@ service ImInterface {
     rpc UpdateTotalUnread (ReqUpdateTotalUnread) returns (RspUpdateTotalUnread);
     // 
     rpc UpdateUnflwRead (DummyReq) returns (DummyRsp);
+    // 
+    rpc UpdateUserCosmoState (UpdateUserCosmoStateReq) returns (UpdateUserCosmoStateRsp);
 }
 
 // 
@@ -97,6 +101,28 @@ message EmotionInfo {
     int32 size = 3;
     // 
     string gif_url = 4;
+}
+
+// 
+message GetUserCosmoStateReq {
+    // 
+    string business = 1;
+    // 
+    int64 card_send_mid = 2;
+}
+
+// 
+message GetUserCosmoStateRsp {
+    // 
+    string business = 1;
+    // 
+    int64 card_send_mid = 2;
+    // 
+    int32 cosmo_state = 3;
+    // 
+    int32 op_type = 4;
+    // 
+    string text = 5;
 }
 
 // 
@@ -683,5 +709,23 @@ enum UpdateUnreadScope {
     Unfollowed = 2;
     // 
     Stranger = 3;
+}
+
+// 
+message UpdateUserCosmoStateReq {
+    // 
+    string business = 1;
+    // 
+    int64 card_send_mid = 2;
+    // 
+    int32 cosmo_state = 3;
+    // 
+    int32 op_type = 4;
+}
+
+// 
+message UpdateUserCosmoStateRsp {
+    // 
+    string text = 1;
 }
 

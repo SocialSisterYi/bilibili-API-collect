@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -81,6 +81,8 @@ message JoinResp {
     repeated bilibili.live.rtc.BAPILiveRTCUserProto.User users = 1;
     // 
     int32 call_id = 2;
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.CodecCapability encode_capability = 3;
 }
 
 // 
@@ -209,6 +211,8 @@ message RequestMessage {
         UpdateSubReq update_sub = 13;
         // 
         ClientStatsReq client_stats = 14;
+        // 
+        UpdateCodecReq update_codec = 15;
     }
     // 
     int64 request_id = 1;
@@ -258,6 +262,10 @@ message ResponseMessage {
         UpdateSubResp update_sub_resp = 20;
         // 
         ClientStatsResp client_stats_resp = 21;
+        // 
+        UpdateCodecResp update_codec_resp = 22;
+        // 
+        UpdateCodecNotify update_codec_notify = 23;
     }
     // 
     int64 request_id = 1;
@@ -330,6 +338,22 @@ message UnSubReq {
 
 // 
 message UnSubResp {
+}
+
+// 
+message UpdateCodecNotify {
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.CodecCapability encode_capability = 1;
+}
+
+// 
+message UpdateCodecReq {
+    // 
+    bilibili.live.rtc.BAPILiveRTCUserProto.CodecCapability decode_capability = 1;
+}
+
+// 
+message UpdateCodecResp {
 }
 
 // 

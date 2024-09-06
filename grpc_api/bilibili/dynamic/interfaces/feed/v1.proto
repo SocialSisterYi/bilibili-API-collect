@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -197,6 +197,8 @@ enum ConfigABEntry {
     CONFIG_AB_ENTRY_PUB_PAGE_TITLE = 1;
     // 
     CONFIG_AB_ENTRY_SELECT_PIC_PANEL = 2;
+    // 
+    CONFIG_AB_BIG_PLUS_PUB_ARTICLE = 3;
 }
 
 // 
@@ -209,6 +211,8 @@ message ConfigRsp {
     repeated ConfigAB ab_entries = 1;
     // 
     MaxPicCountType max_pic_count_type = 2;
+    // 
+    string article_loading_address = 3;
 }
 
 // 

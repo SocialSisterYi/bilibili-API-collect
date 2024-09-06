@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -945,6 +945,10 @@ message Opus {
     PubInfo pub_info = 8;
     // 
     Article article = 9;
+    // 
+    Version version = 10;
+    // 
+    int64 music_id = 11;
 }
 
 // 
@@ -1061,6 +1065,10 @@ message OpusSummary {
     repeated OpusTag tags = 5;
     // 
     PubInfo pub_info = 6;
+    // 
+    Version version = 7;
+    // 
+    int64 music_id = 8;
 }
 
 // 
@@ -1459,6 +1467,8 @@ enum UpPermissionType {
     UP_PERMISSION_TYPE_LIVE_VOYAGE = 13;
     // 
     UP_PERMISSION_TYPE_ONLY_FANS = 14;
+    // 
+    UP_PERMISSION_TYPE_TIMING_DYN = 15;
 }
 
 // 
@@ -1469,6 +1479,14 @@ message UserCreateMeta {
     LbsLoc loc = 2;
     // 
     int32 repost_mode = 3;
+}
+
+// 
+message Version {
+    // 
+    int64 cvid = 1;
+    // 
+    int64 version_id = 2;
 }
 
 // 

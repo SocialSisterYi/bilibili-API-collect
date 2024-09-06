@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -444,6 +444,8 @@ message Dimension {
     int64 height = 2;
     // 
     int64 rotate = 3;
+    // 
+    int64 variable = 4;
 }
 
 // 
@@ -620,6 +622,8 @@ enum FragmentType {
     AD_FRAGMENT = 1;
     // 
     OGV_FRAGMENT = 2;
+    // 
+    PUGV_FRAGMENT = 3;
 }
 
 // 
@@ -676,6 +680,14 @@ message GradientColor {
     string start_color = 1;
     // 
     string end_color = 2;
+}
+
+// 
+enum GroupStyle {
+    // 
+    GROUP_STYLE_DEFAULT = 0;
+    // 
+    GROUP_STYLE_HORIZON = 1;
 }
 
 // 
@@ -1012,6 +1024,8 @@ message SettingGroup {
     string title = 1;
     // 
     repeated SettingItem items = 2;
+    // 
+    GroupStyle group_style = 3;
 }
 
 // 
@@ -1020,6 +1034,8 @@ message SettingItem {
     oneof value {
         // 
         SettingMore more = 3;
+        // 
+        SettingVertical vertical = 4;
     }
     // 
     SettingBase base = 1;
@@ -1037,6 +1053,8 @@ enum SettingItemStyle {
     SETTING_STYLE_MORE = 2;
     // 
     SETTING_STYLE_SELECT = 3;
+    // 
+    SETTING_STYLE_VERTICAL = 4;
 }
 
 // 
@@ -1097,6 +1115,18 @@ enum SettingItemType {
     SETTING_EDIT = 26;
     // 
     SETTING_DISLIKE = 27;
+    // 
+    SETTING_BIHUO = 28;
+    // 
+    SETTING_GESTURE = 29;
+    // 
+    SETTING_DM = 30;
+    // 
+    SETTING_DEFINITION = 31;
+    // 
+    SETTING_SUGGEST = 32;
+    // 
+    SETTING_AUTOMATIC_SCROLL = 33;
 }
 
 // 
@@ -1123,6 +1153,16 @@ message SettingMore {
     SettingJumpType jump_type = 4;
     // 
     bool need_login = 5;
+}
+
+// 
+message SettingVertical {
+    // 
+    string url = 1;
+    // 
+    SettingJumpType jump_type = 2;
+    // 
+    bool need_login = 3;
 }
 
 // 

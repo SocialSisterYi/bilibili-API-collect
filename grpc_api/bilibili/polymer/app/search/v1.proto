@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -557,6 +557,16 @@ message FollowButton {
 }
 
 // 
+message FollowButtonV2 {
+    // 
+    string icon = 1;
+    // 
+    map<int32, string> texts = 2;
+    // 
+    string status_report = 3;
+}
+
+// 
 message FullTextResult {
     // 
     int32 type = 1;
@@ -1072,6 +1082,24 @@ message PlayerArgs {
 }
 
 // 
+message PlayerGrade {
+    // 
+    string nickname = 1;
+    // 
+    int64 player_id = 2;
+    // 
+    string portrait = 3;
+    // 
+    string hot_remark = 4;
+    // 
+    string grade_users_text = 5;
+    // 
+    string avg_grade = 6;
+    // 
+    WatchButton watch_button = 7;
+}
+
+// 
 message PlayerWidget {
     // 
     string title = 1;
@@ -1305,6 +1333,8 @@ message SearchAllResponse {
     double real_exposure_ratio = 15;
     // 
     int64 all_double_column = 19;
+    // 
+    int32 is_new_user = 20;
 }
 
 // 
@@ -1647,6 +1677,20 @@ message SearchComicCard {
     string badge = 6;
     // 
     CardLayout card_layout = 7;
+    // 
+    repeated EpisodeNew episodes_new = 8;
+    // 
+    ReasonStyle rec_tag = 9;
+    // 
+    FollowButtonV2 follow_button = 10;
+    // 
+    int32 is_attend = 11;
+    // 
+    string selection_style = 12;
+    // 
+    string rec_text = 13;
+    // 
+    int64 cid = 14;
 }
 
 // 
@@ -2573,6 +2617,8 @@ message SearchSportCard {
     int64 id = 8;
     // 
     CardLayout card_layout = 9;
+    // 
+    PlayerGrade player_grade = 10;
 }
 
 // 
@@ -2599,6 +2645,8 @@ message SearchSportInlineCard {
     string inline_type = 10;
     // 
     CardLayout card_layout = 11;
+    // 
+    PlayerGrade player_grade = 12;
 }
 
 // 

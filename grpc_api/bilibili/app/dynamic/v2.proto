@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -721,6 +721,22 @@ message AlumniDynamicsReq {
     int32 page = 5;
     // 
     CampusReqFromType from_type = 6;
+}
+
+// 
+message AuthorBadge {
+    // 
+    AuthorBadgeStyle badge_style = 1;
+    // 
+    IconBadge badge = 2;
+}
+
+// 
+enum AuthorBadgeStyle {
+    // 
+    AUTHOR_BADGE_STYLE_INVALID = 0;
+    // 
+    AUTHOR_BADGE_STYLE_GRAY_OUTLINE = 1;
 }
 
 // 
@@ -1610,6 +1626,16 @@ message CommentDetail {
 }
 
 // 
+message CommonShareCardInfo {
+    // 
+    int64 sketch_id = 1;
+    // 
+    int64 biz_type = 2;
+    // 
+    int64 biz_id = 3;
+}
+
+// 
 message Config {
     // 
     bool story_vertical_exp = 1;
@@ -1661,6 +1687,8 @@ enum CoverIcon {
     cover_icon_fav = 8;
     // 
     cover_icon_coin = 9;
+    // 
+    cover_icon_self_seen = 10;
 }
 
 // 
@@ -1701,6 +1729,8 @@ message CreationItemAction {
         CREATION_ACTION_RETRACT_CV = 4;
         // 
         CREATION_ACTION_EDIT_CV = 5;
+        // 
+        CREATION_ACTION_VISIBILITY_CHANGE = 6;
     }
     
     // 
@@ -1715,6 +1745,8 @@ message CreationItemAction {
     int64 remain_edit_times = 5;
     // 
     ThreePointDefaultToast confirmation_toast = 6;
+    // 
+    ThreePointVisibilityChange visibility_change = 7;
 }
 
 // 
@@ -2598,6 +2630,14 @@ message DynVideoUpdOffsetReq {
 }
 
 // 
+enum DynVisibilityStatus {
+    // 
+    DYN_VISIBILITY_PUBLIC = 0;
+    // 
+    DYN_VISIBILITY_SELF_SEEN_ONLY = 1;
+}
+
+// 
 message DynVoteReply {
     // 
     AdditionVote2 item = 1;
@@ -2925,6 +2965,8 @@ message Extend {
     string up_name = 30;
     // 
     string up_face = 31;
+    // 
+    DynVisibilityStatus desired_visibility_status = 32;
 }
 
 // 
@@ -2933,6 +2975,14 @@ message ExtendReply {
     string uri = 1;
     // 
     repeated ExtendReplyParam params = 2;
+    // 
+    int64 reply_biz_type = 3;
+    // 
+    int64 reply_biz_id = 4;
+    // 
+    bool no_load_comment = 5;
+    // 
+    string no_load_comment_hint_text = 6;
 }
 
 // 
@@ -4184,6 +4234,24 @@ message MdlDynPGC {
 }
 
 // 
+message MdlDynShareChargingQA {
+    // 
+    ImageSet background_img = 1;
+    // 
+    ImageSet left_icon_img = 2;
+    // 
+    string title = 3;
+    // 
+    IconButton jump_button = 4;
+    // 
+    string uri = 5;
+    // 
+    CommonShareCardInfo share_card_meta_info = 6;
+    // 
+    string title_prefix_bold = 7;
+}
+
+// 
 message MdlDynSubscription {
     // 
     int64 id = 1;
@@ -4508,6 +4576,8 @@ message ModuleAuthor {
     bool show_level = 15;
     // 
     OnlyFans only_fans = 16;
+    // 
+    AuthorBadge author_badge = 17;
 }
 
 // 
@@ -4809,6 +4879,8 @@ message ModuleDynamic {
         MdlDynTopicSet dyn_topic_set = 19;
         // 
         MdlDynChargingArchive dyn_charging_archive = 20;
+        // 
+        MdlDynShareChargingQA dyn_share_charging_qa = 21;
     }
     // 
     ModuleDynamicType type = 1;
@@ -4854,6 +4926,8 @@ enum ModuleDynamicType {
     mdl_dyn_topic_set = 17;
     // 
     mdl_dyn_charging_archive = 18;
+    // 
+    mdl_dyn_share_charging_qa = 19;
 }
 
 // 
@@ -5584,6 +5658,8 @@ message OpusCreationItem {
     repeated CreationItemAction tp_list = 8;
     // 
     Extend extend = 9;
+    // 
+    CoverIconWithText visibility_status = 10;
 }
 
 // 
@@ -6561,6 +6637,8 @@ message ThreePointDislike {
     string icon = 1;
     // 
     string title = 2;
+    // 
+    string feedback_biz_value = 3;
 }
 
 // 
@@ -6659,6 +6737,8 @@ message ThreePointItem {
         ThreePointDynEdit dyn_edit = 13;
         // 
         ThreePointDynCoin coin = 14;
+        // 
+        ThreePointVisibilityChange visibility_change = 15;
     }
     // 
     ThreePointType type = 1;
@@ -6758,6 +6838,34 @@ enum ThreePointType {
     coin = 19;
     // 
     ogv_subscribe = 20;
+    // 
+    visibility_change = 21;
+}
+
+// 
+message ThreePointVisibilityChange {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    repeated ThreePointVisibilityChangeItem item_list = 3;
+    // 
+    string obj_id = 4;
+}
+
+// 
+message ThreePointVisibilityChangeItem {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string sub_title = 3;
+    // 
+    bool is_selected = 4;
+    // 
+    string visibility_change_action_unselected = 5;
 }
 
 // 
@@ -7312,6 +7420,8 @@ message WeightDislike {
     string feed_back_type = 1;
     // 
     string title = 2;
+    // 
+    string feed_back_biz_value = 3;
 }
 
 // 

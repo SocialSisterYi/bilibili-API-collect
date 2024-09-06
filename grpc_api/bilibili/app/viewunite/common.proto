@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.7.0(8070300)
-// Helper: mikufans-bapis-decompiler/0.1.7-master-9d5260b-RELEASE built at 2024-07-31T21:43:44.301748411+08:00
+// MVer: tv.danmaku.bili@8.12.0(8120200)
+// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
 
 syntax = "proto3";
 
@@ -1134,6 +1134,14 @@ message OgvIntroduction {
     string score = 2;
     // 
     StatInfo play_data = 3;
+    // 
+    string score_color = 4;
+    // 
+    string score_night_color = 5;
+    // 
+    string text_color = 6;
+    // 
+    string text_night_color = 7;
 }
 
 // 
@@ -1178,6 +1186,8 @@ message OgvLiveReserve {
     string night_bt_text_color = 19;
     // 
     map<string, string> report = 20;
+    // 
+    int32 live_status = 21;
 }
 
 // 
@@ -1206,6 +1216,10 @@ message OgvTitle {
     TitleDeliveryButton title_delivery_button = 6;
     // 
     TitleDeliveryButton channel_redirect_entry_button = 7;
+    // 
+    string title_img = 8;
+    // 
+    string title_img_night = 9;
 }
 
 // 
@@ -2569,6 +2583,12 @@ message UgcEpisode {
     StatInfo danmaku = 9;
     // 
     BadgeInfo badge = 10;
+    // 
+    repeated Page pages = 11;
+    // 
+    double progress_percent = 12;
+    // 
+    int64 duration = 13;
 }
 
 // 
