@@ -63,7 +63,7 @@
 | fans                 | num  | 用户粉丝数   |                                          |
 | name                 | str  | 用户昵称     |                                          |
 | official_verify_type | num  | 用户认证状态 | -1：无<br />0：个人认证<br />1：机构认证 |
-| uid                  | num  | 用户mid      |                                          |
+| uid                  | str  | 用户mid      |                                          |
 
 **示例：**
 
