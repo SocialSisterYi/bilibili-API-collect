@@ -1,6 +1,6 @@
 # 获取 buvid3 / buvid4 / b_nut
 
-## 游客获取 buvid3 / buvid4
+## 接口获取 buvid3 / buvid4
 
 > https://api.bilibili.com/x/frontend/finger/spi
 
