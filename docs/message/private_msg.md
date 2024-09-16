@@ -12,7 +12,7 @@
 | top_ts               | num  | 置顶该会话的时间                 | 微秒级时间戳；若未置顶该会话则为 `0`；用于判断是否置顶了会话 |
 | group_name           | str  | 粉丝团名称                       | 在粉丝团会话中有效，其他会话中为空字符串            |
 | group_cover          | str  | 粉丝团头像                       | 在粉丝团会话中有效，其他会话中为空字符串            |
-| is_follow            | num  | 是否关注了对方                   | 在用户会话中有效，其他会话中为 `0`                  |
+| is_follow            | num  | 是否关注了对方                   | 在用户会话中有效，系统会话中为 `1`,  其他会话中为 `0`                  |
 | is_dnd               | num  | 是否对会话设置了免打扰           |                                                     |
 | ack_seqno            | num  | 最近一次已读的消息序列号         | 用于快速跳转到首条未读的消息                        |
 | ack_ts               | num  | 最近一次已读时间                 | 微秒级时间戳                                        |
@@ -28,7 +28,7 @@
 | is_guardian          | num  | 自己是否为对方的骑士（？）       | 在用户会话中有效<br />0：否<br />2：是（？）        |
 | is_intercept         | num  | 会话是否被拦截                   |                                                     |
 | is_trust             | num  | 是否信任此会话                   | 若为 `1`，则表示此会话之前被拦截过，但用户选择信任本会话 |
-| system_msg_type      | num  | 系统会话类型                     | 0：非系统会话<br />1：主播小助手<br />5：系统通知（？）<br />7：UP主小助手<br />8：客服消息 |
+| system_msg_type      | num  | 系统会话类型                     | 0：非系统会话<br />1：主播小助手<br />5：系统通知（？）<br />7：UP主小助手<br />8：客服消息<br />9：支付小助手 |
 | account_info         | obj  | 会话信息                         | 仅在系统会话中出现                                  |
 | live_status          | num  | 用户是否正在直播                 | 在用户会话中有效，其他会话中为 `0`                  |
 | biz_msg_unread_count | num  | 未读通知消息数                   |                                                     |
@@ -90,7 +90,7 @@
 | 13   | 粉丝团系统提示            | 如：粉丝团中的提示信息“欢迎xxx入群” |
 | 16   | 系统                      | 目前仅在 `msg_type` 为 `51` 时使用该代码 |
 | 17   | 互相关注                  | 互相关注时自动发送的私信“我们已互相关注，开始聊天吧~” |
-| 18   | 系统提示                  | 如：“对方主动回复或关注你前，最多发送1条消息” |
+| 18   | 系统提示                  | 目前仅在 `msg_type` 为 `18` 时使用该代码，如：“对方主动回复或关注你前，最多发送1条消息” |
 | 19   | AI                        | 如：给[搜索AI助手测试版](https://space.bilibili.com/1400565964/)发送私信时对方的自动回复 |
 
 ## 获取未读私信数
@@ -155,20 +155,20 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ```json
 {
-	"code": 0,
-	"msg": "0",
-	"message": "0",
-        "ttl": 1,
-	"data": {
-		"unfollow_unread": 1,
-		"follow_unread": 6,
-		"unfollow_push_msg": 0,
-		"dustbin_push_msg": 0,
-		"dustbin_unread": 0,
-		"biz_msg_unfollow_unread": 0,
-		"biz_msg_follow_unread": 0,
-		"custom_unread": 0
-	}
+    "code": 0,
+    "msg": "0",
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "unfollow_unread": 1,
+        "follow_unread": 6,
+        "unfollow_push_msg": 0,
+        "dustbin_push_msg": 0,
+        "dustbin_unread": 0,
+        "biz_msg_unfollow_unread": 0,
+        "biz_msg_follow_unread": 0,
+        "custom_unread": 0
+    }
 }
 ```
 
@@ -395,7 +395,8 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
         "is_address_list_empty": 0,
         "system_msg": {
             "1": 844424930131967,
-            "7": 844424930131966
+            "7": 844424930131966, 
+            "9": 844424930131965
         },
         "show_level": true
     }
@@ -1343,7 +1344,7 @@ public class Main {
 | msg_content   | str   | 发送的私信内容 | 一般同请求参数 `msg[content]` 的值，仅当请求参数 `msg[msg_type]` 为 `1` 时有此项 |
 | key_hit_infos | obj   | 触发的提示 | 仅当请求参数 `msg[msg_type]` 为 `1` 且 `msg[receiver_type]` 为 `1` 时有此项   |
 
-`data`对象中的`e_infos`数组：
+`e_infos`数组：
 
 | 项   | 类型 | 内容      | 备注 |
 | ---- | ---- | --------- | ---- |
@@ -1351,7 +1352,7 @@ public class Main {
 | n    | obj  | 表情(n+1) |      |
 | ……   | obj  | ……        | ……   |
 
-`data`对象中的`e_infos`数组中的对象：
+`e_infos`数组中的对象：
 
 | 字段    | 类型 | 内容        | 备注                                |
 | ------- | ---- | ----------- | ----------------------------------- |
@@ -1360,7 +1361,7 @@ public class Main {
 | size    | num  | 表情尺寸    | 1：小<br />2：大                    |
 | gif_url | str  | 表情GIF链接 | 仅部分表情存在此项，如小电视表情    |
 
-`data`对象中的`key_hit_infos`对象：
+`key_hit_infos`对象：
 
 | 字段      | 类型  | 内容         | 备注                                   |
 | --------- | ----- | ------------ | -------------------------------------- |
@@ -1368,7 +1369,7 @@ public class Main {
 | rule_id   | num   | 触发的规则id | 当触发了提示时有此项，详细信息有待补充 |
 | high_text | array | 高亮的文本   | 当触发了提示时有此项                   |
 
-`data`对象中的`key_hit_infos`对象中的`high_text`数组：
+`high_text`数组：
 
 | 项   | 类型 | 内容          | 备注             |
 | ---- | ---- | ------------- | ---------------- |
@@ -1380,8 +1381,7 @@ public class Main {
 
 给目标用户`mid=1`发一条文字私信：
 
-> up主你好，
-> 催更[doge]
+> up主你好，<br />催更[doge]
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
