@@ -65,6 +65,123 @@ curl 'https://api.bilibili.com/x/web-interface/search/default'
 
 </details>
 
+## 获取热搜列表
+
+> https://api.bilibili.com/x/web-interface/search/square
+
+*请求方式: GET*
+
+**URL参数:**
+
+|参数名|类型|内容|必要性|备注|
+|-|-|-|-|-|
+|limit|num|结果限制|必要|范围 [1, 50]|
+|platform|str|平台标识|不必要|web: web 端|
+
+**JSON回复:**
+
+根对象:
+
+|字段|类型|内容|备注|
+|-|-|-|-|
+|code|num|返回值|0: 成功<br />-400: 请求错误|
+|message|str|错误信息|默认为空|
+|ttl|num|1||
+|data|obj|数据本体||
+
+`data`对象:
+
+|字段|类型|内容|备注|
+|-|-|-|-|
+|trending|obj|热搜榜单|套了个娃|
+
+`data`中的`trending`对象:
+
+|字段|类型|内容|备注|
+|-|-|-|-|
+|title|str|标题||
+|trackid|str|跟踪 ID?||
+|list|array|热搜列表||
+|top_list|array|空||
+
+`trending`中的`list`数组:
+
+|项|类型|内容|备注|
+|-|-|-|-|
+|0|obj|热搜 1||
+|1|obj|热搜 2||
+|……|obj|……||
+|n|obj|热搜 (n+1)||
+
+`list`数组中的对象:
+
+|字段|类型|内容|备注|
+|-|-|-|-|
+|keyword|str|关键词||
+|show_name|str|显示文字||
+|icon|str|图标 URL||
+|uri|str|空||
+|goto|str|空||
+
+**示例:**
+
+获取热搜列表, 数量限制 4
+
+```shell
+curl -G --url 'https://api.bilibili.com/x/web-interface/search/square' \
+--url-query 'limit=4'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "trending": {
+      "title": "bilibili热搜",
+      "trackid": "8079760748892487175",
+      "list": [
+        {
+          "keyword": "马克龙祝贺中国世界前两名",
+          "show_name": "马克龙祝贺中国世界前两名",
+          "icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png",
+          "uri": "",
+          "goto": ""
+        },
+        {
+          "keyword": "小孩电竞世界杯夺冠",
+          "show_name": "小孩电竞世界杯夺冠",
+          "icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png",
+          "uri": "",
+          "goto": ""
+        },
+        {
+          "keyword": "孙颖莎说我全勤下班了",
+          "show_name": "孙颖莎说我全勤下班了",
+          "icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221118/eaf2dd702d7cc14d8d9511190245d057/UF7B1wVKT2.png",
+          "uri": "",
+          "goto": ""
+        },
+        {
+          "keyword": "7月广东新冠新增一万余例",
+          "show_name": "7月广东新冠新增一万余例",
+          "icon": "http://i0.hdslb.com/bfs/activity-plat/static/20221213/eaf2dd702d7cc14d8d9511190245d057/lrx9rnKo24.png",
+          "uri": "",
+          "goto": ""
+        }
+      ],
+      "top_list": []
+    }
+  }
+}
+```
+
+</details>
+
 ## 获取热搜列表（web端）
 
 > https://s.search.bilibili.com/main/hotword
@@ -109,7 +226,7 @@ curl 'https://api.bilibili.com/x/web-interface/search/default'
 | res        | array| null    |         |
 | show_name  | str  | 完整关键词|         |
 | pos        | num  | 名次     | 1-10    |
-| word_type  | num  | 条目属性 | 均返回8 |
+| word_type  | num  | 条目属性 | 4: 新<br />5: 热<br />6: [雾,咒,小丑(愚人节)] 具体看icon<b r/>7: 直播中<br />8: 默认(无标签)<br />9: 梗<br />11: 话题<br />12: 独家 |
 | id         | num  | 名次     | 1-10    |
 | goto_value | str  | 空       |         |
 | live_id    | array| null    |         |
@@ -353,7 +470,7 @@ curl 'https://s.search.bilibili.com/main/hotword'
 
 *请求方式：GET*
 
-榜单每隔固定时间统计一次，请求后返回搜索前20的关键词
+榜单每隔固定时间统计一次
 
 带有转义
 
@@ -361,7 +478,7 @@ curl 'https://s.search.bilibili.com/main/hotword'
 
 | 参数名  | 类型 | 内容             | 必要性 | 备注 |
 | ------- | ---- | ---------------- | ------ | ---- |
-| limit | num  | 热搜数量 | 非必要   |   1~100   |
+| limit | num  | 热搜数量 | 非必要   | 留空为20, 最大为100 |
 
 **json回复：**
 
@@ -395,7 +512,7 @@ curl 'https://s.search.bilibili.com/main/hotword'
 | position   | num  | 名次      |  1-20/limit   |
 | keyword    | str  | 关键词   |         |
 | show_name  | str  | 完整关键词|         |
-| word_type  | num  | 条目属性 | 4：新<br />5：热<br />6：雾？<br />8：默认 |
+| word_type  | num  | 条目属性 | 同 web 端 |
 | icon       | str  | 图标url  |         |
 | hot_id     | num  | 热词id  | 大概是吧？    |
 
