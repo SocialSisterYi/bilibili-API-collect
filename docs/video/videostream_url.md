@@ -112,7 +112,7 @@
 | fnval  | num  | 视频流格式标识 | 非必要       | 默认值为`1`（MP4 格式）<br />含义见 [上表](#fnval视频流格式标识) |
 | fnver  | num  | 0                | 非必要       |                                                       |
 | fourk  | num  | 是否允许 4K 视频 | 非必要       | 画质最高 1080P：0（默认）<br />画质最高 4K：1       |
-| session  | str  |    | 非必要       | 从视频播放页的 HTML 中获取       |
+| session  | str  |    | 非必要       | 从视频播放页的 HTML 中设置 window.\_\_playinfo\_\_ 处获取，或者通过 buvid3 +  当前UNIX毫秒级时间戳 经过md5获取     |
 | otype  | str  |    | 非必要       | 固定为`json`           |
 | type  | str  |    | 非必要       | 目前为空             |
 | platform | str |    | 非必要 | pc：web播放（默认值，视频流存在 referer鉴权）<br />html5：移动端 HTML5 播放（仅支持 MP4 格式，无 referer 鉴权可以直接使用`video`标签播放） |
