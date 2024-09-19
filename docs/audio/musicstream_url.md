@@ -28,6 +28,8 @@
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
 | sid    | num  | 音频auid | 必要   |      |
+| quality | num | 2 | 不必要 |  |
+| privilege | num | 2 | 不必要 |  |
 
 **json回复：**
 
@@ -35,8 +37,9 @@
 
 | 字段 | 类型 | 内容     | 备注                                                        |
 | ---- | ---- | -------- | ----------------------------------------------------------- |
-| code | num  | 返回值   | 0:成功<br />7201006：未找到或已下架<br />72000000：请求错误 |
-| msg  | str  | 错误信息 | 默认为success                                               |
+| code | num  | 返回值   | 0: 成功<br />4511006: 已跳过无法播放的歌曲<br />7201006：未找到或已下架<br />72000000：请求错误 |
+| message | str | 返回值 | 字符串形式的 code |
+| msg  | str  | 返回信息 | 成功为 success |
 | data | obj  | 数据本体 |                                                             |
 
 `data`对象：
@@ -45,27 +48,26 @@
 | --------- | ----- | --------- | --------------------------------------- |
 | sid       | num   | 音频auid  |                                         |
 | type      | num   | 音质标识  | -1：试听片段（192K）<br />1：192K       |
-| info      | str   | 空        | **作用尚不明确**                        |
+| info      | str   | 空        |                                       |
 | timeout   | num   | 有效时长  | 单位为秒<br />一般为3h                  |
 | size      | num   | 文件大小  | 单位为字节<br />当`type`为-1时`size`为0 |
 | cdns      | array | 音频流url |                                         |
-| qualities | null  | -         |                                         |
-| title     | null  | -         |                                         |
-| cover     | null  | -         |                                         |
+| qualities | null  |           |                                         |
+| title     | str  | 空        |                                         |
+| cover     | str  | 空        |                                         |
 
 `data`对象的`cdns`数组：
-
 
 | 项   | 类型 | 内容          | 备注 |
 | ---- | ---- | ------------- | ---- |
 | 0    | str  | 音频流url     |      |
-| 1    | str  | 备用音频流url |      |
+| 1    | str  | 备用音频流url | 可能不存在 |
 
 **示例：**
 
 ```shell
 curl -G 'https://www.bilibili.com/audio/music-service-c/web/url' \
---data-urlencode 'sid=sid=15664'
+--data-urlencode 'sid=777180'
 ```
 
 <details>
@@ -73,22 +75,22 @@ curl -G 'https://www.bilibili.com/audio/music-service-c/web/url' \
 
 ```json
 {
-    "code": 0,
-    "msg": "success",
-    "data": {
-        "sid": 15664,
-        "type": 1,
-        "info": "",
-        "timeout": 10800,
-        "size": 4853263,
-        "cdns": [
-            "https://upos-sz-mirrorkodo.bilivideo.com/ugaxcode/7bf6a3a3e94421ccc653f005457b1e8c-192k.m4a?deadline=1595331310&gen=uga&os=kodobv&uparams=deadline,gen,os&upsig=0ecd3c7a8d9539f260239d8fa4c093db",
-            "https://upos-sz-mirrorks3.bilivideo.com/ugaxcode/7bf6a3a3e94421ccc653f005457b1e8c-192k.m4a?deadline=1595331310&gen=uga&os=ks3bv&uparams=deadline,gen,os&upsig=f3fe53aff56655b1b7264ae4ab65872e"
-        ],
-        "qualities": null,
-        "title": null,
-        "cover": null
-    }
+  "code": 0,
+  "data": {
+    "sid": 777180,
+    "title": "",
+    "cover": "",
+    "type": 1,
+    "info": "",
+    "timeout": 10800,
+    "size": 5579903,
+    "cdns": [
+      "https://upos-sz-mirrorcos.bilivideo.com/ugaxcode/m190314ws1dikiap1oivtapctuj1agjc-192k.m4a?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1725013547&gen=playurlv2&os=cosbv&oi=1746706124&trid=493923009cef4225ab8e1b9bda42c635B&mid=0&platform=pc&og=cos&upsig=043779511e2770cf6c3da04ed8a89f25&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&orderid=0,1&logo=00000000"
+    ],
+    "qualities": null
+  },
+  "message": "0",
+  "msg": "success"
 }
 ```
 
@@ -176,7 +178,7 @@ curl -G 'https://www.bilibili.com/audio/music-service-c/web/url' \
 Cookie方式：
 
 ```shell
-curl -G 'https://api.bilibili.com/audio/music-service-c/url
+curl -G 'https://api.bilibili.com/audio/music-service-c/url' \
 --data-urlencode 'songid=682118' \
 --data-urlencode 'quality=3' \
 --data-urlencode 'privilege=2' \
@@ -188,7 +190,7 @@ curl -G 'https://api.bilibili.com/audio/music-service-c/url
 APP方式：
 
 ```shell
-curl -G 'https://api.bilibili.com/audio/music-service-c/url
+curl -G 'https://api.bilibili.com/audio/music-service-c/url' \
 --data-urlencode 'access_key=xxx' \
 --data-urlencode 'songid=682118' \
 --data-urlencode 'quality=3' \
@@ -262,17 +264,16 @@ curl -G 'https://api.bilibili.com/audio/music-service-c/url
 
 ## 音频流的获取
 
-将`data`.`cdns`.`[0]`或`data`.`cdns`.`[1]`中的内容作为url进行GET操作
+将 `data.cdns[n]` 作为 URL 进行 GET 操作
 
-需要验证请求`user-agent` 不为空
+需要验证请求头 `User-Agent` 不为空且不含敏感字串, 且 `Referer` 必须在 `.bilibili.com` 下
 
-**user-agent错误并且referer不在`*.bilibili.com`域名下的情况下会导致403 Forbidden，故无法获取**
+**示例:**
 
-**以上述音频url为例：**
+使用 cURL + FFPlay 直接从音频流播放
 
 ```shell
-wget 'https://upos-sz-mirrorkodo.bilivideo.com/ugaxcode/m190102ws2pzf6jitbem841vq2x0du5x-flac.flac?deadline=1595332269&gen=uga&os=kodobv&uparams=deadline,gen,os&upsig=ac2284d97a61ef8758681eccf621c56d' \
--O 'Download_music.flac'
+curl -G "https://upos-sz-mirrorcos.bilivideo.com/ugaxcode/7bf6a3a3e94421ccc653f005457b1e8c-192k.m4a?e=ig8euxZM2rNcNbdlhoNvNC8BqJIzNbfqXBvEqxTEto8BTrNvN0GvT90W5JZMkX_YN0MvXg8gNEV4NC8xNEV4N03eN0B5tZlqNxTEto8BTrNvNeZVuJ10Kj_g2UB02J0mN0B5tZlqNCNEto8BTrNvNC7MTX502C8f2jmMQJ6mqF2fka1mqx6gqj0eN0B599M=&uipk=5&nbs=1&deadline=1725013121&gen=playurlv2&os=cosbv&oi=1823807031&trid=1a4703f1e7344bb891691c5857e8cfb9B&mid=0&platform=pc&og=cos&upsig=e3a9fba59b46ab2720c8b1807844e9f3&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&orderid=0,1&logo=00000000" \
+--referer 'https://www.bilibili.com/' -A 'Mozilla/5.0' \
+--output - | ffplay -
 ```
-
-响应正文将返回一个flac文件

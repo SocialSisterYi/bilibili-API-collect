@@ -111,7 +111,7 @@ PEM 格式：
 
 ### 相关Demo
 
-该 Demo 提供 [JavaScript](#JavaScript)、[Python](#Python) 以及 [Vercel 云函数](#vercel云函数)，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
+该 Demo 提供 [JavaScript](#javascript) [Python](#python) [Kotlin](#kotlin) [Java](#java) [Go](#go) 以及 [Vercel 云函数](#vercel云函数)，感谢 [#524](https://github.com/SocialSisterYi/bilibili-API-collect/issues/524) 提供
 
 #### JavaScript
 
@@ -138,7 +138,7 @@ const ts = Date.now()
 console.log(await getCorrespondPath(ts))
 ```
 
-```
+```text
 b77f21ab5b7ce7879c410b2311dd6e7ea1a2cd1cd941073db067f4c3279fdabca3a06dfa744168ee14ad050b9f4889bd4edb8e76eb597fdd18c16804d82566b55c6dba8e225d838aa93d8e5b31cf7c56720db8244d92373f4944e0561f6ca5bf721a36ac079786060fc853605ccd1ddcb33f54617de6aedd44e3b9850d13b45f
 ```
 
@@ -170,7 +170,7 @@ ts = round(time.time() * 1000)
 print(getCorrespondPath(ts))
 ```
 
-```
+```text
 47bbd615f333d6a2c597bbb46ad47a6e59752a305a2f545d3ba5d49ca055309347796f80d257613696d36170c57443a0e9dea2b47f83b0b4224d431e46124fadd9a24c8fa468147e8bf2d2501eaacae43310e19bf58fc4a728d80c90b9401afcfc1536ba9a2f6438ea53c0b2652f8b8d01c87355dd5a5da51de998b1a35d519a
 ```
 
@@ -219,7 +219,7 @@ fun getCorrespondPath(timestamp: Long): String {
 }
 ```
 
-```
+```text
 1428cbd14605ae42a0b42e22662cfe51d8e5034eeaffb36a46db46bd2f93216cbfd4d150cca2de44395add7c664b40acf44424ee8d634fc821b909423665a34d18bd7f4e77ea5388a2b612daf875e2fe8df62990e14b64a465898b0707bc1288586b68f9f4f2f20bea5cb1cada296beb8009e91bc8fb57a4b81b8923299b6eb7
 ```
 
@@ -274,11 +274,12 @@ JNrRuoEUXpabUzGB8QIDAQAB
 }
 ```
 
-```
+```text
 97759947aa357ed5d88cf9bf1172737570b7bba2d6788d39006f082b2b25ddf53b581f1f0c61ed8573317485ef525d2789faa25a277b4602a4b9cbf837681093a03e96cb9773a11df4bb1e20f1587180b3e958194de922d7dd94d0a2f0b9b0ef74e426e8041f99b99e7c02407ef4ab38040e61be81e4fdfbdb73461e3a2ad810
 ```
 
 ### Java
+
 ```Java
 import javax.crypto.Cipher;
 import javax.crypto.spec.OAEPParameterSpec;
@@ -336,7 +337,7 @@ public class CookieRefresh {
 }
 ```
 
-```
+```text
 f87666152da692735123f4e49053e5a98c16854673b2e632f31a3ff0c029640772873661a9a8412db6be447a0bfa03a295d15548cbfd2bb35634e98ba5f25b1205519d6e6119b483f4c516c1e106d45b04ff98c73560949d379d3edaf3c0ecd10a1d46134fb9ca443122ab33c16d1dd48280496f949ed960a2fbcd65f10935e
 ```
 

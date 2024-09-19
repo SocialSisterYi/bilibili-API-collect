@@ -382,7 +382,7 @@ bar=514&baz=1919810&foo=114&wts=1684805578&w_rid=bb97e15f28edf445a0e4420d36f0157
 
 需要 `github.com/tidwall/gjson` 作为依赖
 
-```golang
+```go
 package main
 
 import (
@@ -731,9 +731,64 @@ public class WbiTest {
 
 ### Kotlin
 
+说明: 为了便于使用和缓存, 重新编写为实体类形式, 并拆分了多个文件. 使用官方的JSON序列化. (可以根据需要换成其他的)
+
+WbiParams.kt
+
 ```kotlin
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.jsonPrimitive
+
+private fun JsonElement?.get(): String {
+    check(this != null) { "No contents found" }
+    return this.jsonPrimitive.content.split('/').last().removeSuffix(".png")
+}
+
+private val mixinKeyEncTab = intArrayOf(
+    46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+    33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+    61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+    36, 20, 34, 44, 52
+)
+
+@Serializable
+data class WbiParams(
+    val imgKey: String,
+    val subKey: String,
+) {
+    // 此处整合了切分参数(直接传入{img_url:string, sub_url:string}即可), 不需要可以删掉
+    constructor(wbiImg: JsonObject) : this(wbiImg["img_url"].get(), wbiImg["sub_url"].get())
+
+    private val mixinKey: String
+        get() = (imgKey + subKey).let { s ->
+            buildString {
+                repeat(32) {
+                    append(s[mixinKeyEncTab[it]])
+                }
+            }
+        }
+
+    // 创建对象(GET获取或者读缓存, 比如Redis)之后, 直接调用此函数处理
+    fun enc(params: Map<String, Any?>): String {
+        val sorted = params.filterValues { it != null }.toSortedMap()
+        return buildString {
+            append(sorted.toQueryString())
+            val wts = System.currentTimeMillis() / 1000
+            sorted["wts"] = wts
+            append("&wts=")
+            append(wts)
+            append("&w_rid=")
+            append((sorted.toQueryString() + mixinKey).toMD5())
+        }
+    }
+}
+```
+
+Extensions.kt
+
+```kotlin
 import java.security.MessageDigest
 
 private val hexDigits = "0123456789abcdef".toCharArray()
@@ -751,52 +806,12 @@ fun String.toMD5(): String {
     return digest.toHexString()
 }
 
-private val mixinKeyEncTab = intArrayOf(
-    46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
-    33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
-    61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
-    36, 20, 34, 44, 52
-)
-
-fun getMixinKey(imgKey: String, subKey: String): String {
-    val s = imgKey + subKey
-    return buildString {
-        repeat(32) {
-            append(s[mixinKeyEncTab[it]])
-        }
-    }
-}
-
-fun Any.encodeURIComponent() =
-    URLEncoder.encode(this.toString(), StandardCharsets.UTF_8).replace("+", "%20")
-
-fun encWbi(params: Map<String, Any>, imgKey: String, subKey: String): String {
-    val mixinKey = getMixinKey(imgKey, subKey)
-    val s = params.toSortedMap().let {
-        it["wts"] to System.currentTimeMillis() / 1000
-        it.entries.joinToString("&") { (k, v) ->
-            "${k.encodeURIComponent()}=${v.encodeURIComponent()}"
-        }
-    }
-    return "$s&w_rid=${(s + mixinKey).toMD5()}"
-}
-
-fun main() {
-    val imgKey = "653657f524a547ac981ded72ea172057"
-    val subKey = "6e4909c702f846728e64f6007736a338"
-    val mixinKey = getMixinKey(imgKey, subKey)
-    println(mixinKey) // 72136226c6a73669787ee4fd02a74c27
-
-    // 需要加签的参数
-    val param = mapOf(
-        "foo" to "one+one four",
-        "bar" to "五一四",
-        "baz" to 1919810,
-    )
-
-    println(encWbi(param, imgKey, subKey))
+fun Map<String, Any?>.toQueryString() = this.filterValues { it != null }.entries.joinToString("&") { (k, v) ->
+    "${k.encodeURIComponent()}=${v!!.encodeURIComponent()}"
 }
 ```
+
+获取和使用案例略
 
 ### PHP
 

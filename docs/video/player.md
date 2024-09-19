@@ -4,44 +4,94 @@
 
 web 播放器的信息接口，提供正常播放需要的元数据，包括：智能防挡弹幕、字幕、章节看点等。
 
-> https://api.bilibili.com/x/player/wbi/v2
+> https://api.bilibili.com/x/player/wbi/v2  
+> https://api.bilibili.com/x/player/v2
 
 *请求方式：GET*
 
-**url 参数：**
+**URL参数:**
 
 | 参数名 | 类型 | 内容      | 必要性      | 备注              |
 | ------ | ---- | --------- | ----------- | ----------------- |
 | aid    | num  | 稿件 avid | 必要 (可选) | aid 与 bvid 任选 |
 | bvid   | str  | 稿件 bvid | 必要 (可选) | aid 与 bvid 任选 |
 | cid    | num  | 稿件 cid | 必要 | |
+| season_id | num | 番剧 season_id | 不必要 | |
+| ep_id | num | 剧集 ep_id | 不必要 | |
 | w_rid | str  | WBI 签名 | 不必要 |  |
 | wts   | num  | 当前 unix 时间戳 | 不必要 |  |
 
-**json 回复：**
+**JSON回复:**
 
-根对象：
+根对象:
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-400：请求错误 |
+| code    | num  | 返回值   | 0: 成功<br />-400: 请求错误 |
 | message | str  | 错误信息 | 默认为 0                     |
 | ttl     | num  | 1        |                             |
 | data    | obj  | 数据本体 |                             |
 
-`data` 对象：
+`data` 对象:
 
 | 字段      | 类型  | 内容     | 备注 |
 | --------- | ----- | -------- | ---- |
-|aid        | num  |  视频 aid   |      |
-|bvid       | str  |  视频 bvid   |      |
-|cid        | num  |  视频 cid   |      |
-|dm_mask    | obj  |       |  webmask 信息（如果没有这一项，说明这个视频没有防挡功能） |
-|subtitle   | obj  |       | 字幕信息（需要登录，不登录此项内容为 `[]` ）|
-|view_points| array  |       | 章节看点信息 |
-| 其他      | ...    |        | 主要是观看记录、使用者等级权限、背景音乐等信息   |
+| aid        | num  | 视频 aid   |      |
+| bvid       | str  | 视频 bvid  |      |
+| allow_bp   | bool |  |  |
+| no_share   | bool | 禁止分享? |  |
+| cid        | num  | 视频 cid   |      |
+| dm_mask    | obj  | webmask 防挡字幕信息 | 若无则没有防挡功能 |
+| subtitle   | obj  | 字幕信息 | 若无则没有字幕, 若不登陆则为空 |
+| view_points | array  |       | 章节看点信息 |
+| ip_info    | obj  | 请求 IP 信息 |      |
+| login_mid  | num  | 登录用户 mid |      |
+| login_mid_hash | str |  |  |
+| is_owner | bool | 是否为该视频 UP 主 |  |
+| name       | str  |  |  |
+| permission | num  |  |  |
+| level_info | obj  | 登录用户等级信息 |  |
+| vip        | obj  | 登录用户 VIP 信息 |  |
+| answer_status | num | 答题状态 |  |
+| block_time | num | 封禁时间? |  |
+| role | str |  |  |
+| last_play_time | num | 上次观看时间? |  |
+| last_play_cid | num | 上次观看 cid? |  |
+| now_time | num | 当前 UNIX 秒级时间戳 |  |
+| online_count | num | 在线人数 |  |
+| need_login_subtitle | bool | 是否必须登陆才能查看字幕 | 是的 |
+| preview_toast | str | `为创作付费，购买观看完整视频|购买观看` |  |
+| options | obj |  |  |
+| guide_attention | any |  |  |
+| jump_card | any |  |  |
+| operation_card | any |  |  |
+| online_switch | obj |  |  |
+| fawkes | obj | 播放器相关信息? |  |
+| show_switch | obj |  |  |
+| bgm_info | obj | 背景音乐信息 |  |
+| toast_block | bool |  |  |
+| is_upower_exclusive | bool | 充电专属? |  |
+| is_upower_play | bool |  |  |
+| is_ugc_pay_preview | bool |  |  |
+| elec_high_level | obj |  |  |
+| disable_show_up_info | bool |  |  |
 
-`dm_mask`对象（如果有）：
+`data` 对象中的 `options` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | --- | --- |
+| is_360 | bool | 是否 360 全景视频 |  |
+| without_vip | bool |  |  |
+
+`data` 对象中的 `bgm_info` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| music_id | str | 音乐 id |  |
+| music_title | str | 音乐标题 |  |
+| jump_url | str | 跳转 URL |  |
+
+`data` 对象中的 `dm_mask` 对象 (如果有):
 
 | 字段      | 类型  | 内容     | 备注 |
 | --------- | ----- | -------- | ---- |
@@ -53,7 +103,8 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 
 解析 webmask 请看 [智能防挡弹幕](../danmaku/webmask.md)
 
-`subtitle`对象：
+`data` 对象中的 `subtitle` 对象:
+
 | 字段      | 类型  | 内容     | 备注 |
 | --------- | ----- | -------- | ---- |
 |allow_submit|bool | true   |      |
@@ -61,7 +112,7 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 |lan_doc | str | ""    | |
 |subtitles| array |  | 不登录为 `[]` |
 
-`subtitles` 数组内的元素：
+`subtitle` 对象中的 `subtitles` 数组内的元素:
 
 | 字段      | 类型  | 内容     | 备注 |
 | --------- | ----- | -------- | ---- |
@@ -75,8 +126,8 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 |subtitle_url|str| 资源 url 地址 | |
 |type| num | 0 | |
 
+`view_point` 数组内的元素:
 
-`view_point` 数组内的元素：
 | 字段      | 类型  | 内容     | 备注 |
 | --------- | ----- | -------- | ---- |
 | content | num  |  章节名  |      |
@@ -86,68 +137,298 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 | imgUrl | str  |  图片资源地址  |      |
 | logoUrl | str  |  ""  |      |
 
-示例:
+**示例:**
+
+未登录, `aid=1906473802`
 
 ```shell
-curl -G "https://api.bilibili.com/x/player/wbi/v2?aid=515345690&cid=825851971"
+curl -G 'https://api.bilibili.com/x/player/wbi/v2' \
+--url-query 'bvid=BV1MU411S7iJ' \
+--url-query 'aid=1906473802' \
+--url-query 'cid=1625992822'
 ```
 
-```jsonc
+<details>
+<summary>查看响应示例:</summary>
+
+```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "aid": 515345690,
-        "bvid": "BV1Fg411D7Jy",
-        ... // 省略
-        "dm_mask": {
-            "cid": 825851971,
-            "plat": 0,
-            "fps": 30,
-            "time": 0,
-            "mask_url": "//upos-sz-staticcos-cmask.bilivideo.com/cmaskboss/825851971_30_0.webmask?trid=219266863a1442baa05086b4285ba923B&orderid=0,1&logo=00000000"
-        },
-        "view_points": [
-            {
-                "type": 2,
-                "from": 0,
-                "to": 27,
-                "content": "狗啃的",
-                "imgUrl": "http://i0.hdslb.com/bfs/vchapter/825851971_0.jpg",
-                "logoUrl": ""
-            },
-            {
-                "type": 2,
-                "from": 27,
-                "to": 63,
-                "content": "椒牌泡菜",
-                "imgUrl": "http://i0.hdslb.com/bfs/vchapter/825851971_27.jpg",
-                "logoUrl": ""
-            }, ... // 省略
-        ],
-        "subtitle": {
-            "allow_submit": true,
-            "lan": "",
-            "lan_doc": "",
-            "subtitles": [], // 未登录，下面是登录的版本
-            "subtitles":[
-                {
-                    "id": 1042985852759993300,
-                    "lan": "ai-zh",
-                    "lan_doc": "中文（自动生成）",
-                    "is_lock": false,
-                    "subtitle_url": "//aisubtitle.hdslb.com/bfs/ai_subtitle/prod/5153456908258519712094280c7c2884b77929bab82f64530f?auth_key=1714795727-a8eb254b60bc4a73bc8662da51005340-0-1c305894e48e959979b163636461fb8f",
-                    "type": 1,
-                    "id_str": "1042985852759993344",
-                    "ai_type": 0,
-                    "ai_status": 2
-                }
-            ]
-        }
-    }
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "aid": 1906473802,
+    "bvid": "BV1MU411S7iJ",
+    "allow_bp": false,
+    "no_share": false,
+    "cid": 1625992822,
+    "max_limit": 1000,
+    "page_no": 1,
+    "has_next": false,
+    "ip_info": {
+      "ip": "104.28.152.138",
+      "zone_ip": " 10.163.150.25",
+      "zone_id": 29409280,
+      "country": "美国",
+      "province": "加利福尼亚州",
+      "city": "东洛杉矶"
+    },
+    "login_mid": 0,
+    "login_mid_hash": "",
+    "is_owner": false,
+    "name": "",
+    "permission": "0",
+    "level_info": {
+      "current_level": 0,
+      "current_min": 0,
+      "current_exp": 0,
+      "next_exp": 0,
+      "level_up": 0
+    },
+    "vip": {
+      "type": 0,
+      "status": 0,
+      "due_date": 0,
+      "vip_pay_type": 0,
+      "theme_type": 0,
+      "label": {
+        "path": "",
+        "text": "",
+        "label_theme": "",
+        "text_color": "",
+        "bg_style": 0,
+        "bg_color": "",
+        "border_color": "",
+        "use_img_label": false,
+        "img_label_uri_hans": "",
+        "img_label_uri_hant": "",
+        "img_label_uri_hans_static": "",
+        "img_label_uri_hant_static": ""
+      },
+      "avatar_subscript": 0,
+      "nickname_color": "",
+      "role": 0,
+      "avatar_subscript_url": "",
+      "tv_vip_status": 0,
+      "tv_vip_pay_type": 0,
+      "tv_due_date": 0,
+      "avatar_icon": {
+        "icon_resource": {}
+      }
+    },
+    "answer_status": 0,
+    "block_time": 0,
+    "role": "",
+    "last_play_time": 0,
+    "last_play_cid": 0,
+    "now_time": 1725002188,
+    "online_count": 1,
+    "need_login_subtitle": false,
+    "view_points": [],
+    "preview_toast": "为创作付费，购买观看完整视频|购买观看",
+    "options": {
+      "is_360": false,
+      "without_vip": false
+    },
+    "guide_attention": [],
+    "jump_card": [],
+    "operation_card": [],
+    "online_switch": {
+      "enable_gray_dash_playback": "500",
+      "new_broadcast": "1",
+      "realtime_dm": "1",
+      "subtitle_submit_switch": "1"
+    },
+    "fawkes": {
+      "config_version": 30787,
+      "ff_version": 21289
+    },
+    "show_switch": {
+      "long_progress": false
+    },
+    "bgm_info": {
+      "music_id": "MA436038343856245020",
+      "music_title": "Unwelcome school",
+      "jump_url": "https://music.bilibili.com/h5/music-detail?music_id=MA436038343856245020&cid=1625992822&aid=1906473802"
+    },
+    "toast_block": false,
+    "is_upower_exclusive": false,
+    "is_upower_play": false,
+    "is_ugc_pay_preview": false,
+    "elec_high_level": {
+      "privilege_type": 0,
+      "title": "",
+      "sub_title": "",
+      "show_button": false,
+      "button_text": "",
+      "jump_url": "",
+      "intro": "",
+      "new": false
+    },
+    "disable_show_up_info": false
+  }
 }
 ```
+
+</details>
+
+已登陆, `aid=60977932`
+
+```shell
+curl -G 'https://api.bilibili.com/x/player/v2' \
+--url-query 'aid=60977932' \
+--url-query 'cid=106101299' \
+-b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "aid": 60977932,
+    "bvid": "BV1Jt411P77c",
+    "allow_bp": false,
+    "no_share": false,
+    "cid": 106101299,
+    "max_limit": 1000,
+    "page_no": 1,
+    "has_next": true,
+    "ip_info": {
+      "ip": "108.181.22.55",
+      "zone_ip": " 172.27.132.5",
+      "zone_id": 29409296,
+      "country": "美国",
+      "province": "加利福尼亚州",
+      "city": "洛杉矶"
+    },
+    "login_mid": 616368979,
+    "login_mid_hash": "445e7035",
+    "is_owner": false,
+    "name": "淡紫玲儿",
+    "permission": "10000,1001",
+    "level_info": {
+      "current_level": 3,
+      "current_min": 1500,
+      "current_exp": 2962,
+      "next_exp": 4500,
+      "level_up": -62135596800
+    },
+    "vip": {
+      "type": 1,
+      "status": 0,
+      "due_date": 1665417600000,
+      "vip_pay_type": 0,
+      "theme_type": 0,
+      "label": {
+        "path": "",
+        "text": "",
+        "label_theme": "",
+        "text_color": "",
+        "bg_style": 0,
+        "bg_color": "",
+        "border_color": "",
+        "use_img_label": true,
+        "img_label_uri_hans": "",
+        "img_label_uri_hant": "",
+        "img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/d7b702ef65a976b20ed854cbd04cb9e27341bb79.png",
+        "img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/KJunwh19T5.png"
+      },
+      "avatar_subscript": 0,
+      "nickname_color": "",
+      "role": 0,
+      "avatar_subscript_url": "",
+      "tv_vip_status": 0,
+      "tv_vip_pay_type": 0,
+      "tv_due_date": 0,
+      "avatar_icon": {
+        "icon_resource": {}
+      }
+    },
+    "answer_status": 0,
+    "block_time": 0,
+    "role": "0",
+    "last_play_time": 0,
+    "last_play_cid": 0,
+    "now_time": 1725003260,
+    "online_count": 1,
+    "need_login_subtitle": false,
+    "subtitle": {
+      "allow_submit": true,
+      "lan": "zh-CN",
+      "lan_doc": "中文（中国）",
+      "subtitles": [
+        {
+          "id": 13643112644608002,
+          "lan": "zh-Hans",
+          "lan_doc": "中文（简体）",
+          "is_lock": true,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/subtitle/c49b18a284739d99df1e3723cdf72c0c82db98e0.json?auth_key=1725003260-5d0391a07f4f47f6960f60cf5045dff3-0-fc16c1f67a6b41edcb2a89d5e0c9bfdd",
+          "type": 0,
+          "id_str": "13643112644608002",
+          "ai_type": 0,
+          "ai_status": 0
+        },
+        {
+          "id": 13643200114196484,
+          "lan": "en-US",
+          "lan_doc": "英语（美国）",
+          "is_lock": true,
+          "subtitle_url": "//aisubtitle.hdslb.com/bfs/subtitle/2b38bc0f5d7671176964d4c3de441ed37568500c.json?auth_key=1725003260-5f709a74aa884751b77f86b6f6a48078-0-9b2fc3c18b99b1bf0cc7c7e63d18f686",
+          "type": 0,
+          "id_str": "13643200114196484",
+          "ai_type": 0,
+          "ai_status": 0
+        }
+      ]
+    },
+    "view_points": [],
+    "preview_toast": "为创作付费，购买观看完整视频|购买观看",
+    "options": {
+      "is_360": false,
+      "without_vip": false
+    },
+    "guide_attention": [],
+    "jump_card": [],
+    "operation_card": [],
+    "online_switch": {
+      "enable_gray_dash_playback": "500",
+      "new_broadcast": "1",
+      "realtime_dm": "1",
+      "subtitle_submit_switch": "1"
+    },
+    "fawkes": {
+      "config_version": 30787,
+      "ff_version": 21289
+    },
+    "show_switch": {
+      "long_progress": false
+    },
+    "bgm_info": null,
+    "toast_block": false,
+    "is_upower_exclusive": false,
+    "is_upower_play": false,
+    "is_ugc_pay_preview": false,
+    "elec_high_level": {
+      "privilege_type": 0,
+      "title": "",
+      "sub_title": "",
+      "show_button": false,
+      "button_text": "",
+      "jump_url": "",
+      "intro": "",
+      "new": false
+    },
+    "disable_show_up_info": false
+  }
+}
+```
+
+</details>
 
 ## 播放反馈
 

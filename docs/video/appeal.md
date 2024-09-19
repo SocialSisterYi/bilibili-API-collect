@@ -40,7 +40,7 @@
 | remark   | str                            | 类型备注         |          |
 | ctime    | str                            |                  | 意义不明 |
 | mtime    | str                            |                  | 意义不明 |
-| controls | 拥有时：array<br>没有时：null  | 详细信息填写提示 |          |
+| controls | 拥有时：array<br />没有时：null  | 详细信息填写提示 |          |
 
 `controls`数组中的对象：
 

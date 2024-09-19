@@ -92,7 +92,7 @@
 
 | 字段       | 类型  | 内容  | 备注                                        |
 |----------|-----|-----|-------------------------------------------|
-| name     | str | 类型  | v_person: 个人认证(黄) <br> v_company: 企业认证(蓝) |
+| name     | str | 类型  | v_person: 个人认证(黄) <br /> v_company: 企业认证(蓝) |
 | position | num | 位置  |                                           |
 | value    | str | 值   |                                           |
 | desc     | str | 描述  |                                           |
@@ -529,6 +529,8 @@ curl -G 'https://api.live.bilibili.com/live_user/v1/Master/info' \
 
 *请求方式: GET*
 
+注: 亦可用于批量获取
+
 <!--{
   "gh": [745]
 }-->
@@ -707,7 +709,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getRoomBaseInfo' 
 | room_id             | num | 直播间房间号    | 直播间实际房间号                     |
 | uid                 | num | 主播mid     |                              |
 | online              | num | 直播间在线人数   |                              |
-| live_time           | num | 直播持续时长    |                              |
+| live_time           | num | 开播时间戳，单位秒，未开播时为0    |                              |
 | live_status         | num | 直播间开播状态   | 0：未开播<br />1：正在直播<br />2：轮播中 |
 | short_id            | num | 直播间房间号    | 直播间短房间号，常见于签约主播              |
 | area                | num | 直播间分区id   |                              |

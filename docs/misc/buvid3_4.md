@@ -1,5 +1,52 @@
 # 获取 buvid3 / buvid4 / b_nut
 
+## 仅获取 buvid3
+
+> https://api.bilibili.com/x/web-frontend/getbuvid
+
+*请求方式: GET*
+
+<!--{
+  "gh": [338]
+}-->
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注     |
+| ------- | ---- | -------- | -------- |
+| code    | num  | 返回值   | 0：成功  |
+| data    | obj  | 数据本体 |          |
+
+`data`对象:
+
+| 字段 | 类型 | 内容   | 备注 |
+| ---- | ---- | ------ | ---- |
+| buvid | str  | buvid3 | 需手动存放至 cookie 中 |
+
+**示例:**
+
+注: 不要复制
+
+```shell
+curl -G 'https://api.bilibili.com/x/web-frontend/getbuvid'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "data": {
+    "buvid": "54E5EFC1-3C8F-F690-2261-439E4F6A20A979439infoc"
+  }
+}
+```
+
+</details>
+
 ## 接口获取 buvid3 / buvid4
 
 > https://api.bilibili.com/x/frontend/finger/spi
