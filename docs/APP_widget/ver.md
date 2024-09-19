@@ -1,5 +1,78 @@
 # 获取最新 APP 版本
 
+## 获取版本信息
+
+> https://app.bilibili.com/x/v2/version
+
+*请求方法: GET*
+
+<!--{
+  "from": {
+    "url": "https://app.bilibili.com/"
+  }
+}-->
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| --- | --- | --- | --- | --- |
+| mobi_app | str | 目标客户端类型 | 不必要 | 留空为最新有更新的平台<br />android: Android 版<br />iphone: iPhone 版<br />ipad: iPad HD 版<br />win: UWP 版<br />android_tv_yst: TV 版<br />android_car: 车机版<br />pc_client: PC 客户端 |
+
+**JSON回复:**
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | int | 返回值 | 0: 成功 |
+| message | str | 错误信息 | 默认为 `0` |
+| ttl | int | 1 |  |
+| data | array | 版本信息列表 |  |
+
+`data` 数组中的对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| plat | int | 平台 | 0: Android<br />1: iPhone<br />2: iPad HD<br />3: UWP<br />12: TV 版<br />35: 车机版<br />40: PC 客户端 |
+| desc | str | 版本描述 |  |
+| version | str | 版本号 |  |
+| build | int | 内部版本号 |  |
+
+**示例:**
+
+```shell
+curl -G 'https://app.bilibili.com/x/v2/version' \
+--url-query'mobi_app=android'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": [
+    {
+      "plat": 0,
+      "desc": "-修复了一些bug，切了个大西瓜~",
+      "version": "8.9.0",
+      "build": 8090300,
+      "ptime": 1723612377
+    },
+    // ...
+    {
+      "plat": 0,
+      "desc": "[修正]横屏状态下,视频列表加载失败的问题\n[修正]超过48kHz采样率的音频无法播放的问题\n[修正]部分系统黑屏的问题\nPS:帮下面的同学祈祷早日上架",
+      "version": "2.0.4",
+      "build": 0,
+      "ptime": 1382630400
+    }
+  ]
+}
+```
+
+</details>
+
 ## 版本升级
 
 > https://app.bilibili.com/x/v2/version/fawkes/upgrade
@@ -67,18 +140,16 @@
 
 **示例:**
 
-```sh
-curl 'https://app.bilibili.com/x/v2/version/fawkes/upgrade' \
-  --url-query 'build=8000200' \
-  --url-query 'channel=master' \
-  --url-query 'mobi_app=android' \
-  --url-query 'ov=30' \
-  --url-query 'nt=1' \
-  --url-query 'sn=15088473' \
-  --url-query 'vn=8.0.0' \
-  --header 'app-key: android64' \
-  --header 'buvid: XU607DF6A8098F57B0BAF7FC107714C3035F0' \
-  --header 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36'
+```shell
+curl -G 'https://app.bilibili.com/x/v2/version/fawkes/upgrade' \
+--url-query 'build=1145141' \
+--url-query 'channel=apt' \
+--url-query 'mobi_app=android' \
+--url-query 'nt=awa' \
+--url-query 'ov=qwq' \
+--url-query 'platform=archlinux' \
+--url-query 'sn=919810' \
+--url-query 'vn=!!!'
 ```
 
 <details>

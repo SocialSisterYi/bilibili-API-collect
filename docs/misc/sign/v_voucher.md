@@ -2,7 +2,7 @@
 
 ## 简述
 
-当同一接口在短时间内被同一用户/IP/UA多次请求或异常时, 会触发风控, 如接口返回 `code` 为 `-352` 即 `风控校验失败`, 同时 `data` 中出现 `v_voucher` 字段
+当同一接口在短时间内被同一用户/IP/UA多次请求或异常时, 会触发风控, 如接口返回 `code` 为 `-352` 即 `风控校验失败`, 同时 `data` 中出现 `v_voucher` 字段, 响应头出现 `x-bili-gaia-vvoucher`
 
 `v_voucher` 结构为字符串 `voucher_` 尾随一串以 `-` 为分隔符的小写 UUID
 
@@ -14,7 +14,7 @@
 
 ## 操作流程
 
-1. 快速以不正确的姿势请求接口, 直到返回 `v_voucher` 字段如下
+1. 快速以不正确的姿势请求接口, 直到返回 `v_voucher` 字段如下. 若 `data` 中没有 `v_voucher` 字段, 则检查响应头 `x-bili-gaia-vvoucher`
 
    ```json
    {
@@ -31,9 +31,9 @@
 
 3. 按照 [验证captcha验证码](../../login/login_action/readme.md#验证captcha验证码) 进行验证, 记下验证结果的 `validate` 与 `seccode`
 
-4. [请求 `validate` 接口](#从验证结果获取-grisk_id), 请求体传入 `challenge` `token` `validate` `seccode` `csrf`, 该接口返回 `grisk_id` 即 `gaia_vtoken`
+4. [请求 `validate` 接口](#从验证结果获取-grisk_id), 请求体传入 `challenge` `token` `validate` `seccode` `csrf`, 该接口返回 `grisk_id` 即 `gaia_vtoken` 与 `x-bili-gaia-vtoken`
 
-5. 重新请求原接口, 原 URL 参数加入 `gaia_vtoken`, 即恢复正常
+5. 重新请求原接口, 原 URL 参数加入 `gaia_vtoken`, Cookie 加入 `x-bili-gaia-vtoken`, 即恢复正常
 
 ## 接口列表
 

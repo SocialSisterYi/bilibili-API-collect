@@ -156,7 +156,7 @@ curl 'https://api.bilibili.com/x/member/web/exp/reward' \
 | ------- | ---- | -------------------- | ----------- |
 | code    | num  | 返回值               | 0：成功     |
 | message | str  | 错误信息             | 默认为0     |
-| number  | num  | 每日投币所奖励的经验 | 上限为50<br |
+| number  | num  | 每日投币所奖励的经验 | 上限为50 |
 
 **示例：**
 

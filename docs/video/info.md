@@ -60,17 +60,24 @@
 | cid                     | num     | 视频1P cid                     |                                                              |
 | dimension               | obj     | 视频1P分辨率                   |                                                              |
 | premiere                |         | null                           |                                                              |
-| teenage_mode            | num     |                                |                                                              |
+| teenage_mode            | num     |                                | 用于青少年模式                                               |
 | is_chargeable_season    | bool    |                                |                                                              |
-| is_story                | bool    |                                |                                                              |
-| no_cache                | bool    |                                | 作用尚不明确                                                 |
+| is_story                | bool    | 是否可以在 Story Mode 展示?    |                                                              |
+| is_upower_exclusive     | bool    | 是否为充电专属                  |                                                              |
+| is_upower_pay           | bool    |                                 |                                                              |
+| is_upower_show          | bool    |                                 |                                                              |
+| no_cache                | bool    | 是否不允许缓存?                |                                                              |
 | pages                   | array   | 视频分P列表                    |                                                              |
 | subtitle                | obj     | 视频CC字幕信息                 |                                                              |
 | staff                   | array   | 合作成员列表                   | 非合作视频无此项                                             |
 | is_season_display       | bool    |                                |                                                              |
 | user_garb               | obj     | 用户装扮信息                   |                                                              |
 | honor_reply             | obj     |                                |                                                              |
-| like_icon               | str     |                                |                                                              |
+| like_icon               | str     | 空串                           |                                                              |
+| need_jump_bv            | bool    | 需要跳转到BV号?               |                                                              |
+| disable_show_up_info    | bool    | 禁止展示UP主信息?             |                                                              |
+| is_story_play           | bool    | 是否为 Story Mode 视频?       |                                                              |
+| is_view_self            | bool    | 是否为自己投稿的视频?          |                                                              |
 | argue_info              | obj     | 争议/警告信息                  |                                                              |
 
 `data`中的`desc_v2`数组：
@@ -83,7 +90,7 @@
 
 | 字段       | 类型  | 内容   | 备注  |
 |----------|-----|------|-----|
-| raw_text | str | 简介内容 |type=1时显示原文<br>type=2时显示'@'+raw_text+' '并链接至biz_id的主页|
+| raw_text | str | 简介内容 |type=1时显示原文<br />type=2时显示'@'+raw_text+' '并链接至biz_id的主页|
 | type     | num | 类型 |1：普通，2：@他人|
 | biz_id   | num |被@用户的mid|=0，当type=1|
 
@@ -170,7 +177,7 @@
 | 字段           | 类型    | 内容       | 备注  |
 |--------------|-------|----------|-----|
 | allow_submit | bool  | 是否允许提交字幕 |     |
-| list         | array | 字幕列表     |     |
+| list         | array | 字幕列表     | 未登录为空 |
 
 `subtitle`对象中的`list`数组：
 
@@ -233,7 +240,10 @@
 |------------|-----|--------|---------------------------|
 | type       | num | 成员会员类型 | 0：无<br />1：月会员<br />2：年会员 |
 | status     | num | 会员状态   | 0：无<br />1：有              |
+| due_date   | num | 到期时间   | UNIX 毫秒时间戳               |
+| vip_pay_type | num |           |                             |
 | theme_type | num | 0      |                           |
+| label      | obj |           |                             |
 
 `staff`数组中的对象中的`official`对象：
 
@@ -343,20 +353,20 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
     },
     "owner": {
       "mid": 66606350,
-      "name": "Crazy_Bucket_陈楒潼",
+      "name": "陈楒潼桶桶桶",
       "face": "https://i2.hdslb.com/bfs/face/c9af3b32cf74baec5a4b65af8ca18ae5ff571f77.jpg"
     },
     "stat": {
       "aid": 85440373,
-      "view": 2353489,
-      "danmaku": 12026,
-      "reply": 2648,
-      "favorite": 58761,
-      "coin": 72088,
-      "share": 9539,
+      "view": 2387699,
+      "danmaku": 12146,
+      "reply": 2671,
+      "favorite": 58591,
+      "coin": 72578,
+      "share": 9598,
       "now_rank": 0,
       "his_rank": 55,
-      "like": 159350,
+      "like": 160683,
       "dislike": 0,
       "evaluation": "",
       "vt": 0
@@ -379,6 +389,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
     "is_story": false,
     "is_upower_exclusive": false,
     "is_upower_play": false,
+    "is_upower_preview": false,
     "enable_vt": 0,
     "vt_display": "",
     "no_cache": false,
@@ -400,44 +411,19 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
     ],
     "subtitle": {
       "allow_submit": false,
-      "list": [
-        {
-          "id": 1061981378473780000,
-          "lan": "ai-zh",
-          "lan_doc": "中文（自动生成）",
-          "is_lock": false,
-          "subtitle_url": "",
-          "type": 1,
-          "id_str": "1061981378473779968",
-          "ai_type": 0,
-          "ai_status": 2,
-          "author": {
-            "mid": 0,
-            "name": "",
-            "sex": "",
-            "face": "",
-            "sign": "",
-            "rank": 0,
-            "birthday": 0,
-            "is_fake_account": 0,
-            "is_deleted": 0,
-            "in_reg_audit": 0,
-            "is_senior_member": 0
-          }
-        }
-      ]
+      "list": []
     },
     "staff": [
       {
         "mid": 66606350,
         "title": "UP主",
-        "name": "Crazy_Bucket_陈楒潼",
+        "name": "陈楒潼桶桶桶",
         "face": "https://i2.hdslb.com/bfs/face/c9af3b32cf74baec5a4b65af8ca18ae5ff571f77.jpg",
         "vip": {
           "type": 2,
           "status": 1,
-          "due_date": 1706112000000,
-          "vip_pay_type": 0,
+          "due_date": 1737820800000,
+          "vip_pay_type": 1,
           "theme_type": 0,
           "label": {
             "path": "",
@@ -459,7 +445,11 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
           "avatar_subscript_url": "",
           "tv_vip_status": 0,
           "tv_vip_pay_type": 0,
-          "tv_due_date": 0
+          "tv_due_date": 0,
+          "avatar_icon": {
+            "icon_type": 1,
+            "icon_resource": {}
+          }
         },
         "official": {
           "role": 1,
@@ -467,18 +457,18 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
           "desc": "",
           "type": 0
         },
-        "follower": 650859,
+        "follower": 629775,
         "label_style": 0
       },
       {
         "mid": 53456,
         "title": "曲绘",
         "name": "Warma",
-        "face": "https://i2.hdslb.com/bfs/face/c1bbee6d255f1e7fc434e9930f0f288c8b24293a.jpg",
+        "face": "https://i2.hdslb.com/bfs/face/87c0b7e4d3eedf04c458a82b9271013beaa4bc59.jpg",
         "vip": {
           "type": 2,
           "status": 1,
-          "due_date": 1738339200000,
+          "due_date": 1770480000000,
           "vip_pay_type": 0,
           "theme_type": 0,
           "label": {
@@ -501,7 +491,11 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
           "avatar_subscript_url": "",
           "tv_vip_status": 1,
           "tv_vip_pay_type": 1,
-          "tv_due_date": 1721145600
+          "tv_due_date": 1753286400,
+          "avatar_icon": {
+            "icon_type": 1,
+            "icon_resource": {}
+          }
         },
         "official": {
           "role": 1,
@@ -509,13 +503,13 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
           "desc": "",
           "type": 0
         },
-        "follower": 4223581,
+        "follower": 4600968,
         "label_style": 0
       }
     ],
     "is_season_display": false,
     "user_garb": {
-      "url_image_ani_cut": "https://i0.hdslb.com/bfs/garb/item/311b29b795eb3f09ed0401a56eddf5c90b8fbfd6.bin"
+      "url_image_ani_cut": ""
     },
     "honor_reply": {
       "honor": [
@@ -541,7 +535,9 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
     },
     "like_icon": "",
     "need_jump_bv": false,
-    "disable_show_up_info": false
+    "disable_show_up_info": false,
+    "is_story_play": 1,
+    "is_view_self": false
   }
 }
 ```

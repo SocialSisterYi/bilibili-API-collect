@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="./assets/img/logo.png" width="250" height="200">
+    <img src="./assets/img/logo.png" width="250" height="200" />
 </p>
 <h1 align="center">哔哩哔哩-API收集整理</h1>
 <p align="center" class="shields">
@@ -13,7 +13,7 @@
         <img src="https://img.shields.io/github/forks/SocialSisterYi/bilibili-API-collect.svg" alt="GitHub forks"/>
     </a>
     <a href="https://github.com/SocialSisterYi/bilibili-API-collect/actions">
-        <img src="https://img.shields.io/github/actions/workflow/status/SocialSisterYi/bilibili-API-collect/vuepress-deploy.yml">
+        <img src="https://img.shields.io/github/actions/workflow/status/SocialSisterYi/bilibili-API-collect/vuepress-deploy.yml" />
     </a>
     <a href="https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE" style="text-decoration:none" >
         <img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="GitHub license"/>
@@ -111,7 +111,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [视频](docs/video)
     - [x] [视频分区一览 (分区代码)](docs/video/video_zone.md)
     - [x] [基本信息](docs/video/info.md)
-    - [x] [状态数](docs/video/status_number.md)
+    - [x] [状态数](docs/video/status_number.md) (已失效)
     - [x] [快照](docs/video/snapshot.md)
     - [x] [点赞 & 投币 & 收藏 & 分享](docs/video/action.md)
     - [ ] [TAG](docs/video/tags.md)
@@ -312,7 +312,7 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 ## 💦交流
 
-<img src="https://avatars.githubusercontent.com/u/45892418" width="100" height="100">
+<img src="https://avatars.githubusercontent.com/u/45892418" width="100" height="100" />
 
 ⚠注意：开源社群欢迎交流探讨，**拒绝**咨询、**不支持**合作，**黑产号**一经发现立即拉黑并举报相关 SRC
 
@@ -327,7 +327,7 @@ protobuf 序列格式：[传送门](https://www.jianshu.com/p/a24c88c0526a )
 
 WeChat & Alipay：
 
-<img src="./assets/img/sponsorQR.jpg" width="300" height="300">
+<img src="./assets/img/sponsorQR.jpg" width="300" height="300" />
 
 OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 

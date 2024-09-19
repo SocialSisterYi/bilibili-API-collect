@@ -382,7 +382,7 @@ bar=514&baz=1919810&foo=114&wts=1684805578&w_rid=bb97e15f28edf445a0e4420d36f0157
 
 需要 `github.com/tidwall/gjson` 作为依赖
 
-```golang
+```go
 package main
 
 import (

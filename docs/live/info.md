@@ -92,7 +92,7 @@
 
 | 字段       | 类型  | 内容  | 备注                                        |
 |----------|-----|-----|-------------------------------------------|
-| name     | str | 类型  | v_person: 个人认证(黄) <br> v_company: 企业认证(蓝) |
+| name     | str | 类型  | v_person: 个人认证(黄) <br /> v_company: 企业认证(蓝) |
 | position | num | 位置  |                                           |
 | value    | str | 值   |                                           |
 | desc     | str | 描述  |                                           |
@@ -528,6 +528,8 @@ curl -G 'https://api.live.bilibili.com/live_user/v1/Master/info' \
 > https://api.live.bilibili.com/xlive/web-room/v1/index/getRoomBaseInfo
 
 *请求方式: GET*
+
+注: 亦可用于批量获取
 
 <!--{
   "gh": [745]

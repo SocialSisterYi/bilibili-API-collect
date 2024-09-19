@@ -89,7 +89,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 | msg[sender_uid]    | num                                  | 发送者mid                | 必要   |                                        |
 | msg[receiver_id]   | num                                  | 接收者mid                | 必要   |                                        |
 | msg[receiver_type] | num                                  | 1                        | 必要   | 固定为1                                |
-| msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1:发送文字<br>2:发送图片<br>5:撤回消息      |
+| msg[msg_type]      | num                                  | 消息类型                 | 必要   | 1:发送文字<br />2:发送图片<br />5:撤回消息      |
 | msg[msg_status]    | num                                  | 0                        | 非必要 |                                        |
 | msg[dev_id]        | string                               | 372778FD-E359-461D-86A3-EA2BCC6FF52A | 必要 |  **获取方式在下面**            |
 | msg[timestamp]     | num                                  | 时间戳（秒）               | 必要 |                                         |
@@ -161,7 +161,7 @@ public class Util{
 | height   | num  | 图片的高 | 单位：像素（非必要）                          |
 | type     | str  | 图片格式 | （非必要）                                    |
 | original | num  | 1        | **作用未知**（非必要）                        |
-| size     | num  | 文件大小 | 单位：千字节（非必要）<br>__向上取整__        |
+| size     | num  | 文件大小 | 单位：千字节（非必要）<br />__向上取整__        |
 
 当撤回消息时（`msg[msg_type]=5`）：
 
@@ -172,7 +172,7 @@ public class Util{
 根对象：
 | 字段    | 类型 | 内容     | 备注        |
 | ------- | ---- | -------- | ----------- |
-| code    | num  | 返回值   | 0：成功<br> |
+| code    | num  | 返回值   | 0：成功 |
 | message | str  | 错误信息 | 默认为ok    |
 | ttl     | num  |  | 默认为1    |
 | data    | obj  | 主体     | 出错时为空  |
@@ -222,7 +222,7 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 给目标用户`mid=1`发一条图片私信：
 
-> <img src="https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg" style="zoom:50%;" >
+> <img src="https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg" style="zoom:50%;" />
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
@@ -304,7 +304,7 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 | sender_uid    | num                                  | 发送者uid                |           注意名称是sender_uid                             |
 | receiver_type   | num                                  |  与session_type对应              |        1为用户，2为粉丝团                        |
 | receiver_id  | num                                  | 接收者uid                       |    注意名称是receiver_id                               |
-| msg_type     | num                                  | 消息类型                 | 1:文字消息<br>2:图片消息<br>5:撤回的消息<br>12、13:通知      |
+| msg_type     | num                                  | 消息类型                 | 1:文字消息<br />2:图片消息<br />5:撤回的消息<br />12、13:通知      |
 | content     | str                                 | 消息内容                 | 此处存在设计缺陷     |
 | msg_seqno  | num  | 消息序列号，保证按照时间顺序从小到大     |   |
 | timestamp   | num  | 消息发送时间戳    |      |

@@ -51,7 +51,7 @@
 | target_icon | str  | 主播头像 URL |      |
 | link        | str  | 主播主页 URL |      |
 | live_status | num  | 直播状态     | 0: 未直播<br />1: 正在直播<br />2: 轮播中 |
-| offical     | num  | 主播认证类型 | 参见 [用户认证类型一览](offical_role.md) |
+| offical     | num  | 主播认证类型 | 参见 [用户认证类型一览](official_role.md) |
 | uinfo_medal | str  | 用户勋章信息 |      |
 
 `list` 数组中的对象中的 `medal_info` 对象:
@@ -64,7 +64,7 @@
 | medal_color_start | num  | 勋章开始颜色 | 十进制(自行转换为16进制) |
 | medal_color_end   | num  | 勋章结束颜色 | 同上 |
 | medal_color_border | num  | 勋章边框颜色 | 同上 |
-| guard_level       | num  | 守护等级? |       |
+| guard_level       | num | 守护等级? | 1: 总督<br />2: 提督<br />3: 舰长 |
 | wearing_status    | num  | 佩戴状态 | 0: 未佩戴<br />1: 佩戴中 |
 | medal_id          | num  | 勋章 ID |      |
 | intimacy          | num  | 当前亲密度 |      |
@@ -80,17 +80,17 @@
 | ---- | ---- | ---- | ---- |
 | name | str  | 勋章名称 |      |
 | level | num  | 勋章等级 |      |
-| color_start | num | 勋章开始颜色 | 十进制(自行转换为16进制) |
-| color_end | num | 勋章结束颜色 | 同上 |
+| color_start | num | 勋章渐变开始颜色 | 十进制(自行转换为16进制) |
+| color_end | num | 勋章渐变结束颜色 | 同上 |
 | color_border | num | 勋章边框颜色 | 同上 |
-| color | num | 勋章文本色? | 同上 |
+| color | num | 勋章颜色 | 同上 |
 | id | num | 勋章 ID |      |
 | typ | num | 勋章类型? | |
-| is_light | num | 勋章亮色? | |
+| is_light | num | 是否点亮? | |
 | ruid | num | 主播 mid |      |
-| guard_level | num | 守护等级? | |
+| guard_level | num | 大航海等级 | 1: 总督<br />2: 提督<br />3: 舰长 |
 | score | num | 勋章分数? | |
-| guard_icon | str | 守护徽章图标 URL? | |
+| guard_icon | str | 大航海图标 URL? | 粉丝牌左边的图标 |
 | honor_icon | str | 荣誉徽章图标 URL? | |
 | v2_medal_color_start | str | 勋章开始颜色 | 16进制 |
 | v2_medal_color_end | str | 勋章结束颜色 | 同上 |
