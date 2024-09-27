@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.12.0(8120200)
-// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
 
 syntax = "proto3";
 
@@ -14,6 +14,8 @@ import "google/protobuf/empty.proto";
 service ImGatewayApi {
     // 
     rpc ClearBubbleMsg (ClearBubbleMsgReq) returns (ClearBubbleMsgRsp);
+    // 
+    rpc DelMsg (DelMsgReq) returns (DelMsgRsp);
     // 
     rpc DelMsgCard (DelMsgCardReq) returns (google.protobuf.Empty);
     // 
@@ -196,6 +198,28 @@ message DelMsgCardReq {
     MsgFeedFilterType filter_type = 4;
     // 
     bool delete_top_msg = 5;
+}
+
+// 
+message DelMsgItem {
+    // 
+    int64 talker_uid = 1;
+    // 
+    int64 msg_key = 2;
+    // 
+    int64 seq_no = 3;
+}
+
+// 
+message DelMsgReq {
+    // 
+    repeated DelMsgItem msgs = 1;
+}
+
+// 
+message DelMsgRsp {
+    // 
+    repeated DelMsgItem fail = 1;
 }
 
 // 

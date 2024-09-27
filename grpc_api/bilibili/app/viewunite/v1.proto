@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.12.0(8120200)
-// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
 
 syntax = "proto3";
 
@@ -19,6 +19,8 @@ service View {
     rpc CacheAuthentication (CacheAuthenticationReq) returns (CacheAuthenticationReply);
     // 
     rpc RelatesFeed (RelatesFeedReq) returns (RelatesFeedReply);
+    // 
+    rpc Story (StoryReq) returns (StoryReply);
     // 
     rpc View (ViewReq) returns (ViewReply);
     // 
@@ -549,6 +551,26 @@ enum PageType {
 }
 
 // 
+message PlayListReqParam {
+    // 
+    int64 media_id = 1;
+    // 
+    int64 biz_id = 2;
+    // 
+    int64 type = 3;
+    // 
+    bool page_direction = 4;
+    // 
+    bool first_page = 5;
+    // 
+    int64 offset = 6;
+    // 
+    int64 sort_desc = 7;
+    // 
+    int64 sort_field = 8;
+}
+
+// 
 message PlayToast {
     // 
     PlayToastEnum business = 1;
@@ -739,6 +761,15 @@ message SimpleReqUser {
 }
 
 // 
+message StoryActualCardWrapper {
+    // 
+    oneof actual_card {
+        // 
+        StoryVideoCard video_card = 1;
+    }
+}
+
+// 
 message StoryEntrance {
     // 
     bool arc_play_story = 1;
@@ -750,6 +781,67 @@ message StoryEntrance {
     string landscape_icon = 4;
     // 
     bool play_story = 5;
+}
+
+// 
+message StoryReply {
+    // 
+    repeated StoryActualCardWrapper story_card_wrappers = 1;
+}
+
+// 
+message StoryReq {
+    // 
+    oneof param {
+        // 
+        StoryReqParam story_req_param = 4;
+        // 
+        PlayListReqParam play_list_req_param = 5;
+    }
+    // 
+    int64 aid = 1;
+    // 
+    string bvid = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    int64 pull = 6;
+    // 
+    string from = 7;
+    // 
+    string spmid = 8;
+    // 
+    string from_spmid = 9;
+}
+
+// 
+message StoryReqParam {
+    // 
+    string track_id = 1;
+    // 
+    int64 display_id = 2;
+    // 
+    map<string, string> extra_content = 3;
+    // 
+    bool refresh = 4;
+    // 
+    map<string, string> business_info = 5;
+}
+
+// 
+message StoryVideoCard {
+    // 
+    VideoPlayData play_data = 1;
+    // 
+    ViewReply view_content = 2;
+    // 
+    string recommend_session_id = 3;
+    // 
+    string cover = 4;
+    // 
+    string track_id = 5;
+    // 
+    string goto = 6;
 }
 
 // 
@@ -835,6 +927,18 @@ message VideoGuide {
     ContractCard contract_card = 3;
     // 
     Material right_material = 4;
+}
+
+// 
+message VideoPlayData {
+    // 
+    string url = 1;
+    // 
+    bilibili.playershared.Dimension dimension = 2;
+    // 
+    int64 aid = 3;
+    // 
+    int64 ep_id = 4;
 }
 
 // 

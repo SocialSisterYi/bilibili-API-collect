@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.12.0(8120200)
-// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
 
 syntax = "proto3";
 
@@ -153,7 +153,7 @@ message BigItem {
     // 
     int32 can_play = 15;
     // 
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 16;
+    bilibili.app.card.v1.PlayerArgs player_args = 16;
     // 
     bool is_fav = 17;
 }
@@ -402,7 +402,7 @@ message CursorReq {
     // 
     PlayerPreloadParams player_preload = 3;
     // 
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    bilibili.app.card.v1.PlayerArgs player_args = 4;
 }
 
 // 
@@ -438,7 +438,7 @@ message CursorV2Req {
     // 
     PlayerPreloadParams player_preload = 3;
     // 
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    bilibili.app.card.v1.PlayerArgs player_args = 4;
     // 
     bool is_local = 5;
 }
@@ -814,7 +814,7 @@ message MediaVideoReq {
     // 
     int32 ps = 6;
     // 
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 7;
+    bilibili.app.card.v1.PlayerArgs player_args = 7;
 }
 
 // 
@@ -1070,7 +1070,7 @@ message SearchArchiveReq {
     // 
     int64 ps = 4;
     // 
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    bilibili.app.card.v1.PlayerArgs player_args = 5;
 }
 
 // 
@@ -1092,7 +1092,7 @@ message SearchDynamicReq {
     // 
     int64 ps = 4;
     // 
-    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    bilibili.app.card.v1.PlayerArgs player_args = 5;
 }
 
 // 
@@ -1245,6 +1245,8 @@ enum TabType {
 
 // 
 message UpdateReserveStartTimeReply {
+    // 
+    string desc_text = 1;
 }
 
 // 

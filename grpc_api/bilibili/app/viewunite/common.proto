@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.12.0(8120200)
-// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
 
 syntax = "proto3";
 
@@ -344,6 +344,8 @@ message CardBasicInfo {
     string from_spmid_suffix = 14;
     // 
     string report_flow_data = 15;
+    // 
+    string cover_right_text = 16;
 }
 
 // 
@@ -1444,6 +1446,8 @@ message PugvPackageItem {
     string desc = 6;
     // 
     string link = 7;
+    // 
+    int64 season_count = 8;
 }
 
 // 
@@ -2002,6 +2006,8 @@ message RelateCourseCard {
     BadgeInfo rcmd_reason = 3;
     // 
     BadgeInfo badge_info = 4;
+    // 
+    int32 style = 5;
 }
 
 // 

@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.12.0(8120200)
-// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
 
 syntax = "proto3";
 
@@ -118,6 +118,8 @@ message AdButtonDto {
     string game_sourcefrom = 11;
     // 
     bool show_game_custom_text = 12;
+    // 
+    string dlsuc_callup_text = 13;
 }
 
 // 
@@ -300,6 +302,8 @@ message AdCardDto {
     int32 live_page_type = 80;
     // 
     int32 playpage_card_style = 81;
+    // 
+    AppDownloadStyle app_download_style = 82;
 }
 
 // 
@@ -598,6 +602,24 @@ message AndroidTag {
     string text = 1;
     // 
     int32 type = 2;
+}
+
+// 
+message AppDownloadStyle {
+    // 
+    int32 style = 1;
+    // 
+    repeated string tags = 2;
+    // 
+    string guide_text = 3;
+    // 
+    repeated string head_imgs = 4;
+    // 
+    repeated string detail_imgs = 5;
+    // 
+    int32 detail_img_layout = 6;
+    // 
+    string detail_text = 7;
 }
 
 // 

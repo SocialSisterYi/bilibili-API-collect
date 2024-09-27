@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.12.0(8120200)
-// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
 
 syntax = "proto3";
 
@@ -36,6 +36,8 @@ service Feed {
     // 
     rpc DynMetricsActiveReport (DynMetricsActiveReportReq) returns (DynMetricsActiveReportRsp);
     // 
+    rpc DynPrivatePubSetting (DynPrivatePubSettingReq) returns (DynPrivatePubSettingRsp);
+    // 
     rpc DynamicButtonClick (DynamicButtonClickReq) returns (DynamicButtonClickRsp);
     // 
     rpc DynamicRepost (DynamicRepostReq) returns (bilibili.dynamic.common.CreateResp);
@@ -45,6 +47,8 @@ service Feed {
     rpc EditDyn (EditDynReq) returns (EditDynRsp);
     // 
     rpc GetEditDynInfo (GetEditDynInfoReq) returns (GetEditDynInfoRsp);
+    // 
+    rpc GetEditDynInfoWeb (GetEditDynInfoWebReq) returns (GetEditDynInfoWebRsp);
     // 
     rpc GetUidByName (bilibili.dynamic.common.GetUidByNameReq) returns (bilibili.dynamic.common.GetUidByNameRsp);
     // 
@@ -281,6 +285,14 @@ message CreatePageCommercialInfo {
     string label_text = 1;
     // 
     string desc = 2;
+    // 
+    bool valid = 3;
+    // 
+    int64 commercial_entity_type = 4;
+    // 
+    int64 commercial_entity_id = 5;
+    // 
+    bool editable = 6;
 }
 
 // 
@@ -343,6 +355,20 @@ message DynMetricsActiveReportReq {
 
 // 
 message DynMetricsActiveReportRsp {
+}
+
+// 
+message DynPrivatePubSettingReq {
+    // 
+    string object_id = 1;
+    // 
+    string action = 2;
+}
+
+// 
+message DynPrivatePubSettingRsp {
+    // 
+    string toast = 1;
 }
 
 // 
@@ -477,6 +503,40 @@ message GetEditDynInfoRsp {
     string edit_alert_msg = 12;
     // 
     int64 remain_edit_times = 13;
+    // 
+    CreatePageCommercialInfo commercial = 14;
+}
+
+// 
+message GetEditDynInfoWebReq {
+    // 
+    string dyn_id = 1;
+    // 
+    bilibili.dynamic.common.CreateInitCheckScene scene = 2;
+    // 
+    bilibili.dynamic.common.MetaDataCtrl meta = 3;
+}
+
+// 
+message GetEditDynInfoWebRsp {
+    // 
+    bilibili.dynamic.common.PublishWebSettings settings = 1;
+    // 
+    bilibili.dynamic.common.PermissionsWeb permissions = 2;
+    // 
+    bilibili.dynamic.common.CreateAttachCard attach_card = 3;
+    // 
+    CreatePageCommercialInfo commercial = 4;
+    // 
+    int64 only_fans = 5;
+    // 
+    string edit_alert_msg = 6;
+    // 
+    int64 remain_edit_times = 7;
+    // 
+    string orig_dyn_id_str = 8;
+    // 
+    string pre_dyn_id_str = 9;
 }
 
 // 
@@ -861,6 +921,8 @@ message SubmitCheckReq {
     bilibili.dynamic.common.CreateOption create_option = 5;
     // 
     bilibili.dynamic.common.Opus opus = 6;
+    // 
+    string dyn_id_str = 7;
 }
 
 // 

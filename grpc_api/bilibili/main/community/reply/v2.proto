@@ -1,5 +1,5 @@
-// MVer: tv.danmaku.bili@8.12.0(8120200)
-// Helper: mikufans-bapis-decompiler/0.2.1-master-79eb4d8-RELEASE built at 2024-09-06T22:42:17.001511900+08:00
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
 
 syntax = "proto3";
 
@@ -158,6 +158,16 @@ message SubjectDescriptionReply {
         // 
         message GradePanel {
             // 
+            message CidGradeGroup {
+                // 
+                int64 cid = 1;
+                // 
+                string title = 2;
+                // 
+                repeated SubjectDescriptionReply.InputConfig.GradePanel.Grade grades = 3;
+            }
+            
+            // 
             message Grade {
                 // 
                 int64 id = 1;
@@ -171,6 +181,8 @@ message SubjectDescriptionReply {
             string prompt_text = 1;
             // 
             repeated SubjectDescriptionReply.InputConfig.GradePanel.Grade grades = 2;
+            // 
+            repeated SubjectDescriptionReply.InputConfig.GradePanel.CidGradeGroup cid_grade_groups = 3;
         }
         
         // 
