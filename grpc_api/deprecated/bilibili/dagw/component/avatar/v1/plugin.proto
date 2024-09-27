@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package bilibili.dagw.component.avatar.v1.plugin;
+
+import "bilibili/dagw/component/avatar/common/common.proto";
+
+//
+message CommentDoubleClickConfig {
+    //
+    Interaction interaction = 1;
+    //
+    double animation_scale = 2;
+}
+
+//
+message GyroConfig {
+    //
+    NFTImageV2 gyroscope = 1;
+}
+
+//
+message GyroscopeContentV2 {
+    //
+    string file_url = 1;
+    //
+    float scale = 2;
+    //
+    repeated PhysicalOrientationV2 physical_orientation = 3;
+}
+
+//
+message GyroscopeEntityV2 {
+    //
+    string display_type = 1;
+    //
+    repeated GyroscopeContentV2 contents = 2;
+}
+
+//
+message Interaction {
+    //
+    string nft_id = 1;
+    //
+    bool enabled = 2;
+    //
+    string itype = 3;
+    //
+    string metadata_url = 4;
+}
+
+//
+message LiveAnimeConfig {
+    //
+    bool is_live = 1;
+}
+
+//
+message LiveAnimeItem {
+    //
+    bilibili.dagw.component.avatar.common.ColorConfig color = 1;
+    //
+    double start_ratio = 2;
+    //
+    double end_ratio = 3;
+    //
+    double start_stroke = 4;
+    //
+    double start_opacity = 5;
+    //
+    int64 phase = 6;
+}
+
+//
+message NFTImageV2 {
+    //
+    repeated GyroscopeEntityV2 gyroscope = 1;
+}
+
+//
+message PhysicalOrientationAnimation {
+    //
+    string type = 1;
+    //
+    string bezier = 3;
+}
+
+//
+message PhysicalOrientationV2 {
+    //
+    string type = 1;
+    //
+    repeated PhysicalOrientationAnimation animations = 3;
+}

@@ -1,0 +1,45 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
+syntax = "proto3";
+
+package bilibili.community.service.cert.v1;
+
+// 
+service FieldCert {
+    // 
+    rpc FieldCertPopAction (FieldCertPopActionReq) returns (FieldCertPopActionRsp);
+    // 
+    rpc FieldCertPopRecord (FieldCertPopRecordReq) returns (FieldCertPopRecordRsp);
+}
+
+// 
+enum Action {
+    // 
+    ACTION_CERT_CANCEL = 0;
+    // 
+    ACTION_CERT_CONFIRM = 1;
+}
+
+// 
+message FieldCertPopActionReq {
+    // 
+    int64 avid = 1;
+    // 
+    Action action = 2;
+}
+
+// 
+message FieldCertPopActionRsp {
+}
+
+// 
+message FieldCertPopRecordReq {
+    // 
+    int64 avid = 1;
+}
+
+// 
+message FieldCertPopRecordRsp {
+}
+

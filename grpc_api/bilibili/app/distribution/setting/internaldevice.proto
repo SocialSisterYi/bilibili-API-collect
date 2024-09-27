@@ -1,11 +1,15 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
 syntax = "proto3";
 
 package bilibili.app.distribution.setting.internaldevice;
 
-import "bilibili/app/distribution/v1/distribution.proto";
+import "bilibili/app/distribution.proto";
 
 // 
 message InternalDeviceConfig {
-    // 首次启动时间
-    bilibili.app.distribution.v1.Int64Value fts = 1;
+    // 
+    bilibili.app.distribution.Int64Value fts = 1;
 }
+

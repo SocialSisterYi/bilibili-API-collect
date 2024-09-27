@@ -1,0 +1,45 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
+syntax = "proto3";
+
+package bilibili.app.wall.v1;
+
+// 
+service Wall {
+    // 
+    rpc RuleInfo (RuleRequest) returns (RulesReply);
+}
+
+// 
+message RuleInfo {
+    // 
+    bool tf = 1;
+    // 
+    string m = 2;
+    // 
+    string a = 3;
+    // 
+    string p = 4;
+    // 
+    repeated string a_backup = 5;
+}
+
+// 
+message RuleRequest {
+}
+
+// 
+message RulesInfo {
+    // 
+    repeated RuleInfo rules_info = 1;
+}
+
+// 
+message RulesReply {
+    // 
+    map<string, RulesInfo> rules_info = 1;
+    // 
+    string hash_value = 2;
+}
+

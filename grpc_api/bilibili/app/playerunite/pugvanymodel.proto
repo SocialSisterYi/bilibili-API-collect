@@ -1,0 +1,81 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
+syntax = "proto3";
+
+package bilibili.app.playerunite.pugvanymodel;
+
+// 
+message ClipInfo {
+    // 
+    ClipType clip_type = 1;
+    // 
+    int64 material_no = 2;
+    // 
+    int32 start = 3;
+    // 
+    int32 end = 4;
+}
+
+// 
+enum ClipType {
+    // 
+    CLIP_TYPE_UNSPECIFIED = 0;
+    // 
+    CLIP_TYPE_HE = 1;
+}
+
+// 
+enum EpisodeStatus {
+    // 
+    EPISODE_STATUS_UNSPECIFIED = 0;
+    // 
+    EPISODE_STATUS_TRY_WATCH_WHOLE = 1;
+    // 
+    EPISODE_STATUS_NOT_TRY_WATCH = 2;
+    // 
+    EPISODE_STATUS_TRY_WATCH_5_MINUTES = 3;
+}
+
+// 
+message PUGVAnyModel {
+    // 
+    int64 season_id = 1;
+    // 
+    int64 episode_id = 2;
+    // 
+    EpisodeStatus status = 3;
+    // 
+    RiskControl risk_control = 4;
+    // 
+    PlayerMask player_mask = 5;
+    // 
+    ClipInfo clip_info = 6;
+}
+
+// 
+message PlayerMask {
+    // 
+    string title = 1;
+    // 
+    string prefix = 2;
+    // 
+    string suffix = 3;
+}
+
+// 
+message RiskControl {
+    // 
+    bool need_send_sms = 1;
+    // 
+    string title = 2;
+    // 
+    string risk_message = 3;
+    // 
+    string action_desc = 4;
+    // 
+    string send_sms_url = 5;
+    // 
+    string buvid = 6;
+}
+

@@ -1,0 +1,430 @@
+syntax = "proto3";
+
+package bilibili.app.viewunite.pugvanymodel;
+
+// 
+message AbTest {
+}
+
+// 
+message CatalogueInfo {
+    // 
+    repeated SeasonCatalogue catalogues = 1;
+    // 
+    CatalogueLiveInfo catalogue_live_info = 2;
+    // 
+    string catalogue_update_text = 3;
+}
+
+// 
+message CatalogueLiveInfo {
+    // 
+    int64 episode_id = 1;
+    // 
+    string title = 2;
+    // 
+    string subtitle = 3;
+    // 
+    string button_text = 4;
+    // 
+    LiveStatus status = 5;
+}
+
+// 
+message CourseCoach {
+    // 
+    string detail_url = 1;
+    // 
+    string directory_url = 2;
+}
+
+// 
+message Courseware {
+    // 
+    int64 file_id = 1;
+    // 
+    string file_name = 2;
+    // 
+    string file_type = 3;
+    // 
+    int64 file_size = 4;
+    // 
+    string desc = 5;
+    // 
+    string file_url = 6;
+}
+
+// 
+message CoursewareInfo {
+    // 
+    repeated Courseware coursewares = 1;
+}
+
+// 
+message DanmakuControl {
+    // 
+    bool disabled = 1;
+    // 
+    ExtraContent extra_content = 2;
+}
+
+message Episode {
+    // 
+    EpisodeType type = 1;
+    // 
+    oneof data {
+        // 
+        VideoEpisode video_episode = 2;
+        // 
+        LiveEpisode live_episode = 3;
+    }
+}
+
+// 
+message EpisodeHistory {
+    // 
+    bool last_play = 1;
+    // 
+    string last_play_text = 2;
+    // 
+    int64 max_progress = 3;
+    // 
+    string full_watched_text = 4;
+}
+
+// 
+message EpisodeLabel {
+    // 
+    string type_label = 1;
+}
+
+// 
+message EpisodeSelectionLabel {
+    // 
+    string type_label = 1;
+}
+
+// 
+enum EpisodeStatus {
+    EPISODE_STATUS_UNSPECIFIED = 0;
+    EPISODE_STATUS_TRY_WATCH_WHOLE = 1;
+    EPISODE_STATUS_NOT_TRY_WATCH = 2;
+    EPISODE_STATUS_TRY_WATCH_5_MINUTES = 3;
+}
+
+// 
+enum EpisodeType {
+    EPISODE_TYPE_UNSPECIFIED = 0;
+    EPISODE_TYPE_VIDEO = 1;
+    EPISODE_TYPE_LIVE = 2;
+}
+
+// 
+message ExtraContent {
+    // 
+    string disabled_reason = 1;
+}
+
+// 
+message LiveEpisode {
+    // 
+    int64 episode_id = 1;
+    // 
+    LiveStatus status = 2;
+    // 
+    bool jump = 3;
+    // 
+    int64 live_teacher_mid = 4;
+    // 
+    bool show_subscription_prebook_button = 5;
+    // 
+    bool be_subscription_prebook = 6;
+    // 
+    int64 index = 7;
+    // 
+    string title = 8;
+    // 
+    string play_way_subtitle = 9;
+    // 
+    string subtitle = 10;
+    // 
+    bool show_lock_icon = 11;
+    // 
+    EpisodeLabel episode_label = 12;
+    // 
+    EpisodeSelectionLabel selection_label = 13;
+}
+
+// 
+message LiveInfo {
+    // 
+    int64 episode_id = 1;
+    // 
+    LiveStatus status = 2;
+    // 
+    bool jump = 3;
+    // 
+    int64 live_teacher_mid = 4;
+    // 
+    bool show_subscription_prebook_button = 5;
+    // 
+    bool be_subscription_prebook = 6;
+}
+
+// 
+enum LiveStatus {
+    LIVE_STATUS_UNSPECIFIED = 0;
+    LIVE_STATUS_PREPARE = 1;
+    LIVE_STATUS_LIVE = 2;
+    LIVE_STATUS_PLAYBACK_GENERATING = 3;
+}
+
+// 
+message OperationArea {
+    // 
+    repeated OperationAreaButton buttons = 1;
+}
+
+// 
+message OperationAreaButton {
+    // 
+    OperationAreaButtonType type = 1;
+    // 
+    string text = 2;
+    // 
+    bool disabled = 3;
+    // 
+    string link = 4;
+}
+
+// 
+enum OperationAreaButtonType {
+    OPERATION_AREA_BUTTON_TYPE_UNSPECIFIED = 0;
+    OPERATION_AREA_BUTTON_TYPE_FAVORITE = 1;
+    OPERATION_AREA_BUTTON_TYPE_CONSULT = 2;
+    OPERATION_AREA_BUTTON_TYPE_SHARE = 3;
+    OPERATION_AREA_BUTTON_TYPE_PURCHASE = 4;
+}
+
+// 
+message SeasonCatalogue {
+    // 
+    string title = 1;
+    // 
+    int64 index = 2;
+    // 
+    int64 start_ep_index = 3;
+    // 
+    int64 end_ep_index = 4;
+}
+
+// 
+message SeasonCoupon {
+    // 
+    string token = 1;
+    // 
+    string title = 2;
+    // 
+    string start_time = 3;
+    // 
+    string expire_time = 4;
+    // 
+    double amount = 5;
+    // 
+    string show_amount = 6;
+    // 
+    SeasonCouponStatus status = 7;
+    // 
+    SeasonCouponType coupon_type = 8;
+    // 
+    string short_title = 9;
+    // 
+    string expire_minute = 10;
+    // 
+    string use_scope = 11;
+    // 
+    string discount_amount = 12;
+    // 
+    int64 receive_expire_time = 13;
+    // 
+    int64 use_expire_time = 14;
+    // 
+    string scene_mark = 15;
+    // 
+    string scene_background_img = 16;
+    // 
+    string scene_benefit_img = 17;
+    // 
+    bool scene_countdown = 18;
+}
+
+// 
+enum SeasonCouponStatus {
+    SEASON_COUPON_STATUS_UNSPECIFIED = 0;
+    SEASON_COUPON_STATUS_RECEIVED = 1;
+    SEASON_COUPON_STATUS_NOT_RECEIVED = 2;
+    SEASON_COUPON_STATUS_INVALID = 3;
+}
+
+// 
+enum SeasonCouponType {
+    SEASON_COUPON_TYPE_UNSPECIFIED = 0;
+    SEASON_COUPON_TYPE_DISCOUNT = 1;
+    SEASON_COUPON_TYPE_DECREASE = 2;
+}
+
+// 
+message SeasonCustom {
+    // 
+    WaterMark water_mark = 1;
+    // 
+    DanmakuControl danmaku_control = 2;
+}
+
+// 
+message SeasonOverview {
+    // 
+    int64 season_id = 1;
+    // 
+    bool support_cash = 2;
+    // 
+    SeasonStatus status = 3;
+    // 
+    SeasonType type = 4;
+    // 
+    string cover = 5;
+    // 
+    string title = 6;
+}
+
+// 
+message SeasonPayment {
+    // 
+    string price_unit = 1;
+    // 
+    string discount_price = 2;
+    // 
+    string discount_price_desc = 3;
+    // 
+    string original_price = 4;
+    // 
+    string original_price_desc = 5;
+}
+
+// 
+message SeasonSection {
+    // 
+    int64 section_id = 1;
+    // 
+    string title = 2;
+    // 
+    SeasonSectionType type = 3;
+    // 
+    repeated Courseware coursewares = 4;
+    // 
+    repeated Episode episodes = 5;
+}
+
+// 
+enum SeasonSectionType {
+    SEASON_SECTION_TYPE_UNSPECIFIED = 0;
+    SEASON_SECTION_TYPE_DEFAULT = 1;
+    SEASON_SECTION_TYPE_CUSTOM = 2;
+}
+
+// 
+enum SeasonStatus {
+    SEASON_STATUS_UNSPECIFIED = 0;
+    SEASON_STATUS_OFFLINE = 1;
+}
+
+// 
+enum SeasonType {
+    SEASON_TYPE_UNSPECIFIED = 0;
+    SEASON_TYPE_INSTALLMENT = 1;
+    SEASON_TYPE_FREE = 2;
+    SEASON_TYPE_SUBSCRIPTION = 3;
+}
+
+// 
+message SectionInfo {
+    // 
+    repeated SeasonSection sections = 1;
+}
+
+// 
+message VideoEpisode {
+    // 
+    repeated Courseware coursewares = 1;
+    // 
+    int64 index = 2;
+    // 
+    EpisodeStatus status = 3;
+    // 
+    int64 aid = 4;
+    // 
+    int64 cid = 5;
+    // 
+    string title = 6;
+    // 
+    string play_way_subtitle = 7;
+    // 
+    string subtitle = 8;
+    // 
+    int64 duration = 9;
+    // 
+    bool can_switch = 10;
+    // 
+    bool can_play = 11;
+    // 
+    bool show_lock_icon = 12;
+    // 
+    EpisodeLabel episode_label = 13;
+    // 
+    EpisodeSelectionLabel selection_label = 14;
+    // 
+    EpisodeHistory history = 15;
+    // 
+    VideoPlayWay play_way = 16;
+    // 
+    int64 episode_id = 17;
+}
+
+// 
+enum VideoPlayWay {
+    VIDEO_PLAY_WAY_UNSPECIFIED = 0;
+    VIDEO_PLAY_WAY_VOD = 1;
+    VIDEO_PLAY_WAY_LIVE_PLAYBACK = 2;
+}
+
+// 
+message ViewPugvAny {
+    // 
+    SeasonOverview season_overview = 1;
+    // 
+    SeasonPayment season_payment = 2;
+    // 
+    SeasonCoupon season_coupon = 3;
+    // 
+    CatalogueInfo catalogue_info = 4;
+    // 
+    SeasonCustom season_custom = 5;
+    // 
+    CoursewareInfo courseware_info = 6;
+    // 
+    CourseCoach course_coach = 7;
+    // 
+    SectionInfo section_info = 8;
+    // 
+    AbTest ab_test = 9;
+    // 
+    OperationArea operation_area = 10;
+}
+
+// 
+message WaterMark {
+    // 
+    bool show_watermark = 1;
+    // 
+    int64 watermark_interval = 2;
+}

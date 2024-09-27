@@ -1,3 +1,6 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
 syntax = "proto3";
 
 package bilibili.app.viewunite.pgcanymodel;
@@ -86,6 +89,8 @@ message OgvData {
     string horizontal_cover1610 = 26;
     // 
     int32 has_can_play_ep = 27;
+    // 
+    Skin skin = 28;
 }
 
 // 
@@ -98,9 +103,13 @@ message OgvSwitch {
     int32 merge_preview_section = 3;
     // 
     int32 enable_show_vt_info = 4;
+    // 
+    int32 hide_ep_vv_vt_dm = 5;
+    // 
+    int32 follow_guide = 6;
 }
 
-// 播放器浮层广告(?)
+// 
 message PlayFloatLayerActivity {
     // 
     int32 id = 1;
@@ -162,7 +171,7 @@ message Reserve {
     string tip = 2;
 }
 
-// 权限相关信息
+// 
 message Rights {
     // 
     int32 allow_download = 1;
@@ -199,6 +208,26 @@ message Rights {
 }
 
 // 
+message Skin {
+    // 
+    string tab_text_color = 1;
+    // 
+    string tab_text_night_color = 2;
+    // 
+    string bg_img = 3;
+    // 
+    string bg_img_night = 4;
+    // 
+    string dm_input_frame_bg_color = 5;
+    // 
+    string dm_input_frame_bg_night_color = 6;
+    // 
+    string dm_input_frame_color = 7;
+    // 
+    string dm_input_frame_night_color = 8;
+}
+
+// 
 message Stat {
     // 
     string followers = 1;
@@ -220,7 +249,7 @@ message UserStatus {
     int32 sponsor = 5;
     // 
     int32 vip = 6;
-    // vip 是否被冻结
+    // 
     int32 vip_frozen = 7;
     // 
     WatchProgress watch_progress = 8;
@@ -243,3 +272,4 @@ message WatchProgress {
     // 
     int64 last_time = 3;
 }
+

@@ -1,0 +1,73 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
+syntax = "proto3";
+
+package bilibili.app.show.mixture.v1;
+
+// 
+service Mixture {
+    // 
+    rpc ChannelRedirect (ChannelRedirectReq) returns (ChannelRedirectReply);
+    // 
+    rpc Widget (WidgetReq) returns (WidgetReply);
+}
+
+// 
+message ChannelRedirectReply {
+    // 
+    int64 code = 1;
+    // 
+    string url = 2;
+}
+
+// 
+message ChannelRedirectReq {
+    // 
+    int64 id = 1;
+}
+
+// 
+message RcmdReason {
+    // 
+    string content = 1;
+    // 
+    int32 corner_mark = 2;
+}
+
+// 
+message WidgetItem {
+    // 
+    string cover = 1;
+    // 
+    string view = 2;
+    // 
+    RcmdReason rcmd_reason = 3;
+    // 
+    string title = 4;
+    // 
+    string name = 5;
+    // 
+    string uri = 6;
+    // 
+    string goto = 7;
+    // 
+    int64 id = 8;
+    // 
+    int32 view_icon = 9;
+}
+
+// 
+message WidgetReply {
+    // 
+    repeated WidgetItem item = 1;
+}
+
+// 
+message WidgetReq {
+    // 
+    string from_spmid = 1;
+    // 
+    int32 page_no = 2;
+}
+

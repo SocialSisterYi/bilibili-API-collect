@@ -1,0 +1,29 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
+syntax = "proto3";
+
+package bilibili.metadata.locale;
+
+// 
+message Locale {
+    // 
+    LocaleIds c_locale = 1;
+    // 
+    LocaleIds s_locale = 2;
+    // 
+    string sim_code = 3;
+    // 
+    string timezone = 4;
+}
+
+// 
+message LocaleIds {
+    // 
+    string language = 1;
+    // 
+    string script = 2;
+    // 
+    string region = 3;
+}
+

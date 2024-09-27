@@ -1,0 +1,27 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
+syntax = "proto3";
+
+package bilibili.metadata.fawkes;
+
+// 
+message FawkesReply {
+    // 
+    string config = 1;
+    // 
+    string ff = 2;
+    // 
+    string dd = 3;
+}
+
+// 
+message FawkesReq {
+    // 
+    string appkey = 1;
+    // 
+    string env = 2;
+    // 
+    string session_id = 3;
+}
+

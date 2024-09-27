@@ -1,0 +1,13 @@
+// MVer: tv.danmaku.bili@8.15.0(8150400)
+// Helper: mikufans-bapis-decompiler/0.2.2-master-31a81e4-RELEASE built at 2024-09-27T22:12:19.791238800+08:00
+
+syntax = "proto3";
+
+package pgc.biz;
+
+// 
+message RoomProto {
+    // 
+    repeated string room_id = 1;
+}
+

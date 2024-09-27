@@ -1,0 +1,134 @@
+syntax = "proto3";
+
+package bilibili.app.viewunite.ugcanymodel;
+
+import "bilibili/app/viewunite/common.proto";
+
+// 
+message Dislike {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    repeated DislikeReason reasons = 3;
+}
+
+// 
+message DislikeReason {
+    // 
+    int64 id = 1;
+    // 
+    int64 mid = 2;
+    // 
+    int32 rid = 3;
+    // 
+    int64 tag_id = 4;
+    // 
+    string name = 5;
+}
+
+// 
+message ElecRank {
+    // 
+    repeated ElecRankItem list = 1;
+    // 
+    int64 count = 2;
+    // 
+    string text = 3;
+}
+
+// 
+message ElecRankItem {
+    // 
+    string avatar = 1;
+    // 
+    string nickname = 2;
+    // 
+    string message = 3;
+    // 
+    int64 mid = 4;
+}
+
+// 
+message Premiere {
+    // 
+    PremiereState premiere_state = 1;
+    // 
+    int64 start_time = 2;
+    // 
+    int64 service_time = 3;
+    // 
+    int64 room_id = 4;
+}
+
+// 
+message PremiereReserve {
+    // 
+    int64 reserve_id = 1;
+    // 
+    int64 count = 2;
+    // 
+    bool is_follow = 3;
+}
+
+// 
+message PremiereResource {
+    // 
+    Premiere premiere = 1;
+    // 
+    PremiereReserve reserve = 2;
+    // 
+    PremiereText text = 3;
+}
+
+enum PremiereState {
+    // 
+    premiere_none = 0;
+    // 
+    premiere_before = 1;
+    // 
+    premiere_in = 2;
+    // 
+    premiere_after = 3;
+}
+
+// 
+message PremiereText {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    string online_text = 3;
+    // 
+    string online_icon = 4;
+    // 
+    string online_icon_dark = 5;
+    // 
+    string intro_title = 6;
+    // 
+    string intro_icon = 7;
+    // 
+    string guidance_pulldown = 8;
+    // 
+    string guidance_entry = 9;
+    // 
+    string intro_icon_night = 10;
+}
+
+// 
+message ViewUgcAny {
+    // 
+    PremiereResource premiere = 1;
+    // 
+    Dislike dislike = 2;
+    // 
+    string short_link = 3;
+    // 
+    string share_subtitle = 4;
+    // 
+    repeated bilibili.app.viewunite.common.Page pages = 5;
+    // 
+    ElecRank elec_rank = 6;
+}
