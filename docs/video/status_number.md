@@ -1,9 +1,11 @@
 # 视频状态数
 
+本页接口均已失效
+
 ## 视频状态数（仅avid）
 
 <details>
-<summary>该接口已失效</summary>
+<summary>该接口已弃用 (HTTP 403)</summary>
 
 > https://api.bilibili.com/archive_stat/stat
 
@@ -86,6 +88,9 @@ curl -G 'https://api.bilibili.com/archive_stat/stat' \
 </details>
 
 ## 视频状态数（bvid/avid）
+
+<details>
+<summary>该接口已失效 (HTTP 404)</summary>
 
 > https://api.bilibili.com/x/web-interface/archive/stat
 
@@ -199,5 +204,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/stat' \
     "data":null
 }
 ```
+
+</details>
 
 </details>

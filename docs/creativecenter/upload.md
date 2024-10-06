@@ -143,7 +143,7 @@ JavaScript (Node.js) 请求[示例](https://gist.github.com/SessionHu/5e47a3a1a3
 curl -X POST --url 'https://member.bilibili.com/x/vupre/web/archive/types/predict' \
 --url-query 'csrf=d51eadf05ba3bc6c5f76def7fbcc0185' \
 --data-urlencode 'filename=' \
--b '
+-b 'SESSDATA=xxx; bili_jct=xxx'
 ```
 
 <details>

@@ -54,7 +54,7 @@
 | count         | num                             | 二级评论条数       |                                                              |
 | rcount        | num                             | 回复评论条数       |                                                              |
 | floor         | num                             | 评论楼层号         | **注：若不支持楼层则无此项**                                 |
-| state         | num                             | (?)                |                                                              |
+| state         | num                             | 评论状态 | 0: 正常<br />17: 被阿瓦隆系统隐藏 (无法被别人看到, 只能自己看到) |
 | fansgrade     | num                             | 是否具有粉丝标签   | 0：无<br />1：有                                             |
 | attr          | num                             | 某属性位？         |                                                              |
 | ctime         | num                             | 评论发送时间       | 时间戳                                                       |

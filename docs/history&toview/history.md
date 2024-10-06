@@ -10,6 +10,8 @@
 
 注：`max`、`business`、`view_at`参数用于历史记录列表的 IFS (无限滚动)，其用法类似链表的 next 指针
 
+本接口也可以返回已失效稿件的信息
+
 **url参数：**
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                                         |
@@ -348,6 +350,8 @@ curl -G 'https://api.bilibili.com/x/web-interface/history/cursor' \
 *请求方式：GET*
 
 认证方式：Cookie (SESSDATA)
+
+本接口也可以返回已失效稿件的信息
 
 **url参数：**
 
