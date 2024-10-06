@@ -50,10 +50,11 @@ export default defineUserConfig({
   plugins: [
     searchPlugin({}),
     shikiPlugin({
+      theme: 'dark-plus',
       langs: [
         'javascript', 'typescript', 'markdown', 'protobuf', 'json', 'jsonc',
         'shell', 'go', 'html', 'http', 'java', 'kotlin', 'python', 'rust', 'c',
-        'c++', 'cs', 'php', 'swift'
+        'c++', 'cs', 'php', 'swift', 'text'
       ]
     })
   ],

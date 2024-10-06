@@ -13,6 +13,20 @@
   </ParentLayout>
 </template>
 
+<style>
+  /* protect eyes (plain text) */
+  div[class*="language-"] pre code {
+    color: unset;
+  }
+  /* README.md */
+  .shields a {
+    margin: auto .25em;
+  }
+  .shields a::after {
+    display: none !important;
+  }
+</style>
+
 <script setup>
 import ParentLayout from '@vuepress/theme-default/layouts/Layout.vue';
 </script>
