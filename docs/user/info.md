@@ -128,7 +128,7 @@
 | type                 | num  | 会员类型           | 0：无<br />1：月大会员<br />2：年度及以上大会员              |
 | status               | num  | 会员状态           | 0：无<br />1：有                                             |
 | due_date             | num  | 会员过期时间       | 毫秒时间戳                                                   |
-| vip_pay_type         | num  | 支付类型           | 0：未支付（常见于官方账号）<br />1：已支付（以正常渠道获取的大会员均为此值） |
+| vip_pay_type         | num  | 支付类型           | 0：未开启自动续费<br />1：已开启自动续费                       |
 | theme_type           | num  | 0                  | 作用尚不明确                                                 |
 | label                | obj  | 会员标签           |                                                              |
 | avatar_subscript     | num  | 是否显示会员图标   | 0：不显示<br />1：显示                                       |
