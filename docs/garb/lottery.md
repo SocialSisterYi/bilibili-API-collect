@@ -12,7 +12,7 @@
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 |----- |--- |------- |----- |--- |
-| keyword | str | 关键词 | 不必要 |  |
+| key_word | str | 关键词 | 不必要 |  |
 | ps | int | 每页返回数据的最大值 | 不必要 | |
 | pn | int | 当前页数 | 不必要 | |
 
@@ -141,7 +141,7 @@
 
 ```shell
 curl -G 'https://api.bilibili.com/x/garb/v2/mall/home/search' \
---data-urlencode 'keyword=2233' \
+--data-urlencode 'key_word=2233' \
 -b 'SESSDATA=xxx'
 ```
 
