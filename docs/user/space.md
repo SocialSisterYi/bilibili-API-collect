@@ -2781,7 +2781,6 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
 
 ### 查询用户投稿明细（APP、无需wbi鉴权）
 
-<details>
 
 > https://app.biliapi.com/x/v2/space/archive/cursor
 
@@ -3070,8 +3069,6 @@ APP端请求对web端包容度最高，无需Cookie以外的任何认证，只�
 ```
 
 </details>
-
-</details> 
 
 
 ### 查询用户投稿相簿预览
