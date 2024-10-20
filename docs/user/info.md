@@ -627,8 +627,7 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
 ```shell
 curl -G 'https://api.bilibili.com/x/web-interface/card' \
 --data-urlencode 'mid=2' \
---data-urlencode 'photo=true' \
--b 'SESSDATA=xxx'
+--data-urlencode 'photo=true'
 ```
 
 <details>
