@@ -1157,12 +1157,11 @@ curl -G 'https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd' \
 | aid           | num  | 点击视频的aid            | 非必要         | 所点击视频的aid，会影响到后续视频内容       |
 | display_id    | num  | 视频列表页数             | 非必要          | 从1开始，第1页会得到比其他页多aid处所填视频 |
 | access_key    | str  | APP登录Token            | APP方式必要     |               |
-| session_id    | str  |
 | ad_extra      | str  | 额外广告？               | 非必要         |               |
 | appkey        | str  | APP密钥                 | APP方式必要     |               |
 | auto_play     | num  | 自动播放                | 非必要          | 可为0         |
 | build         | num  | 版本                    | APP方式必要     | 可为`8130300` |
-| bvid          | str  | 视频的bv号
+| bvid          | str  | 视频的bv号              | 非必要          | 可为空，如果没有会导致返回不正常 |
 | c_locale      | str  | 语言                    | 非必要          | zh_CN         |
 | channel       | num  | 频道                    | 非必要          |               |
 | cid           | num  | 目标频道id              | 非必要          |               |
