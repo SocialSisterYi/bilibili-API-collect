@@ -499,8 +499,6 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
 
 *请求方式：GET*
 
-认证方式：Cookie(SESSDATA)
-
 **url参数：**
 
 | 参数名 | 类型 | 内容                 | 必要性 | 备注                    |
@@ -627,8 +625,7 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
 ```shell
 curl -G 'https://api.bilibili.com/x/web-interface/card' \
 --data-urlencode 'mid=2' \
---data-urlencode 'photo=true' \
--b 'SESSDATA=xxx'
+--data-urlencode 'photo=true'
 ```
 
 <details>
