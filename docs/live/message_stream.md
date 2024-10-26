@@ -1245,6 +1245,8 @@ while (!s.isclosed()) {
 }
 ```
 
+</details>
+
 #### 送礼 (SEND_GIFT)
 
 **JSON消息:**
@@ -1856,6 +1858,8 @@ while (!s.isclosed()) {
 }
 ```
 
+</details>
+
 #### 主播信息更新 (ROOM_REAL_TIME_MESSAGE_UPDATE)
 
 **JSON消息:**
@@ -1930,7 +1934,7 @@ while (!s.isclosed()) {
 
 <details>
 <summary>查看消息示例：</summary>
-  
+
 ```json
 {
     "cmd": "ONLINE_RANK_V2",
@@ -1998,7 +2002,7 @@ while (!s.isclosed()) {
   }
 }
 ```
-  
+
 </details>
 
 #### 用户到达直播间高能榜前三名的消息 (ONLINE_RANK_TOP3)
