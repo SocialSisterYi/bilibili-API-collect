@@ -1230,6 +1230,7 @@ while (!s.isclosed()) {
 
 **示例:**
 
+<details>
 <summary>查看消息示例:</summary>
 
 ```json
@@ -1243,6 +1244,8 @@ while (!s.isclosed()) {
   "roomid": 23708804
 }
 ```
+
+</details>
 
 #### 送礼 (SEND_GIFT)
 
@@ -1839,6 +1842,7 @@ while (!s.isclosed()) {
 
 **示例:**
 
+<details>
 <summary>查看消息示例:</summary>
   
 ```json
@@ -1853,6 +1857,8 @@ while (!s.isclosed()) {
   "roomid": 23614753
 }
 ```
+
+</details>
 
 #### 主播信息更新 (ROOM_REAL_TIME_MESSAGE_UPDATE)
 
