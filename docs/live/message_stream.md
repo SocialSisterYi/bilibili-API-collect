@@ -1230,7 +1230,6 @@ while (!s.isclosed()) {
 
 **示例:**
 
-<details>
 <summary>查看消息示例:</summary>
 
 ```json
@@ -1840,7 +1839,6 @@ while (!s.isclosed()) {
 
 **示例:**
 
-<details>
 <summary>查看消息示例:</summary>
   
 ```json
