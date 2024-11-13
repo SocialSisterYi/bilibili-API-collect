@@ -18,7 +18,6 @@ export default defineUserConfig({
     logo: "/logo2.jpg",
     navbar: [
       { text: "首页", link: "/" },
-      { text: "目录", link: "/#🍴目录" },
       { text: "贡献指南", link: "/CONTRIBUTING.html" },
       {
         text: "相关社群",
