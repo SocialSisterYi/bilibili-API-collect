@@ -625,6 +625,181 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 基本同「[获取视频详细信息(web端)](#获取视频详细信息(web端))」中的data对象
 
+其中如果当前视频存在于某个视频合集中，则有`ugc_season`对象来描述当前视频所在合集的详细信息
+
+`View`中的`ugc_season`对象：
+
+| 字段         | 类型    | 内容      | 备注     |
+|------------|-------|---------|--------|
+| id       | num   | 视频合集id  |        |
+| title       | str   | 视频合集标题 |        |
+| mid       | str | 视频合集作者id |        |
+| intro      | str   | 视频合集介绍  |        |
+| sign_state      | num   | ？  |     作用尚不明确   |
+| attribute       | num  | 稿件属性位       | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
+| sections  | array   | 视频合集中分部列表，正片、看点等组成，一般视频合集只有正片       |  |
+
+`ugc_season`中的`sections`数组：
+
+| 字段         | 类型    | 内容      | 备注     |
+|------------|-------|---------|--------|
+| season_id       | num   | 视频合集中分部所属视频合集id  |        |
+| section_id       | num   | 视频合集中分部id |        |
+| title       | str | 视频合集中分部标题 |        |
+| type       | num   | ？  |   作用尚不明确     |
+| episodes       | array   | 视频合集中分部的视频列表 |        |
+
+`sections`中的`episodes`数组：
+
+| 字段         | 类型    | 内容      | 备注     |
+|------------|-------|---------|--------|
+| season_id       | num   | 视频合集中分部中视频所属视频合集id  |        |
+| section_id       | num   | 视频合集中视频合集中分部中视频所属视频合集分部id |        |
+| id       | num | 视频合集分部中视频id(以下简称视频) |        |
+| aid       | num   | 视频aid  |        |
+| cid       | num   | 视频cid |        |
+| title       | str   | 视频标题 |        |
+| ~~attribute~~(已经弃用) | ~~num~~ | ~~稿件属性位配置~~             | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
+| arc       | obj   | 视频详细信息 |   基本同「[获取视频详细信息(web端)](#获取视频详细信息(web端))」中的data对象     |
+
+`ugc_season`示例
+
+```json
+            "ugc_season": {
+                "id": 2974525,
+                "title": "楚汉传奇",
+                "cover": "https://archive.biliimg.com/bfs/archive/5a853e8bd10a041360b45a462785d90a58ec469e.png",
+                "mid": 1557073149,
+                "intro": "",
+                "sign_state": 0,
+                "attribute": 140,
+                "sections": [
+                    {
+                        "season_id": 2974525,
+                        "id": 3341804,
+                        "title": "正片",
+                        "type": 1,
+                        "episodes": [
+                            {
+                                "season_id": 2974525,
+                                "section_id": 3341804,
+                                "id": 64976947,
+                                "aid": 1804383120,
+                                "cid": 1541093346,
+                                "title": "项燕的10万大军惨败秦国，临死前，立下狠誓“楚虽三户，亡秦必楚”",
+                                "attribute": 0,
+                                "arc": {
+                                    "aid": 1804383120,
+                                    "videos": 0,
+                                    "type_id": 0,
+                                    "type_name": "",
+                                    "copyright": 0,
+                                    "pic": "http://i1.hdslb.com/bfs/archive/9d0ebd0a8abd7b005466cb57632ddaa550d24dab.jpg",
+                                    "title": "项燕的10万大军惨败秦国，临死前，立下狠誓“楚虽三户，亡秦必楚”",
+                                    "pubdate": 1715427472,
+                                    "ctime": 1715427472,
+                                    "desc": "",
+                                    "state": 0,
+                                    "duration": 612,
+                                    "rights": {
+                                        "bp": 0,
+                                        "elec": 0,
+                                        "download": 0,
+                                        "movie": 0,
+                                        "pay": 0,
+                                        "hd5": 0,
+                                        "no_reprint": 0,
+                                        "autoplay": 0,
+                                        "ugc_pay": 0,
+                                        "is_cooperation": 0,
+                                        "ugc_pay_preview": 0,
+                                        "arc_pay": 0,
+                                        "free_watch": 0
+                                    },
+                                    "author": {
+                                        "mid": 0,
+                                        "name": "",
+                                        "face": ""
+                                    },
+                                    "stat": {
+                                        "aid": 1804383120,
+                                        "view": 787330,
+                                        "danmaku": 1298,
+                                        "reply": 774,
+                                        "fav": 2589,
+                                        "coin": 1947,
+                                        "share": 271,
+                                        "now_rank": 0,
+                                        "his_rank": 0,
+                                        "like": 12320,
+                                        "dislike": 0,
+                                        "evaluation": "",
+                                        "argue_msg": "",
+                                        "vt": 2630119,
+                                        "vv": 787330
+                                    },
+                                    "dynamic": "",
+                                    "dimension": {
+                                        "width": 0,
+                                        "height": 0,
+                                        "rotate": 0
+                                    },
+                                    "desc_v2": null,
+                                    "is_chargeable_season": false,
+                                    "is_blooper": false,
+                                    "enable_vt": 0,
+                                    "vt_display": ""
+                                },
+                                "page": {
+                                    "cid": 1541093346,
+                                    "page": 1,
+                                    "from": "vupload",
+                                    "part": "项燕的10万大军惨败秦国，临死前，立下狠誓“楚虽三户，亡秦必楚”",
+                                    "duration": 612,
+                                    "vid": "",
+                                    "weblink": "",
+                                    "dimension": {
+                                        "width": 1920,
+                                        "height": 1080,
+                                        "rotate": 0
+                                    }
+                                },
+                                "bvid": "BV1Tb421b7mi",
+                                "pages": [
+                                    {
+                                        "cid": 1541093346,
+                                        "page": 1,
+                                        "from": "vupload",
+                                        "part": "项燕的10万大军惨败秦国，临死前，立下狠誓“楚虽三户，亡秦必楚”",
+                                        "duration": 612,
+                                        "vid": "",
+                                        "weblink": "",
+                                        "dimension": {
+                                            "width": 1920,
+                                            "height": 1080,
+                                            "rotate": 0
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "season_id": 2974525,
+                                "section_id": 3341804,
+                                "id": 65121012,
+                                "aid": 1004394994,
+                                "cid": 1542426326,
+                                "title": "卢绾斗鸡输了，眼看十个手指头保不住，刘邦倾家荡产帮了他",
+                                "attribute": 0,
+                                "arc": {
+                                  ///
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+```
+
 `data`中的`Card`对象：
 
 | 字段            | 类型   | 内容      | 备注                                                        |
