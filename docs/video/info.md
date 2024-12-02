@@ -225,7 +225,7 @@
 | sign_state      | num   | ？  |     作用尚不明确   |
 | attribute       | num  | 稿件属性位       | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
 | sections  | array   | 视频合集中分部列表，名称可由up主自定义，默认为正片       |  |
-| stat      | obj   | 视频合集中视频数量  |        |
+| stat      | obj   | 视频合集状态数  |        |
 | ep_count      | num   | 视频合集中视频数量  |        |
 | season_type      | num   | 作用尚不明确  |        |
 | is_pay_season      | bool   | 是否为付费合集  |        |
