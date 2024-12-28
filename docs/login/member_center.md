@@ -138,7 +138,7 @@ curl 'https://api.bilibili.com/x/member/web/exp/reward' \
 
 ## 查询每日投币获得经验数
 
-> ~~https://www.bilibili.com/plus/account/exp.php~~(已失效)
+> ~~https://www.bilibili.com/plus/account/exp.php~~ (已失效)
 >
 > https://api.bilibili.com/x/web-interface/coin/today/exp
 
