@@ -138,13 +138,13 @@ curl 'https://api.bilibili.com/x/member/web/exp/reward' \
 
 ## 查询每日投币获得经验数
 
->https://www.bilibili.com/plus/account/exp.php
+> ~~https://www.bilibili.com/plus/account/exp.php~~(已失效)
+>
+> https://api.bilibili.com/x/web-interface/coin/today/exp
 
 *请求方式：GET*
 
 认证方式：仅可Cookie（SESSDATA）
-
-鉴权方式：Cookie中`DedeUserID`存在且不为0
 
 该接口实时更新，未发现延迟
 
@@ -156,13 +156,13 @@ curl 'https://api.bilibili.com/x/member/web/exp/reward' \
 | ------- | ---- | -------------------- | ----------- |
 | code    | num  | 返回值               | 0：成功     |
 | message | str  | 错误信息             | 默认为0     |
-| number  | num  | 每日投币所奖励的经验 | 上限为50 |
+| data  | num  | 每日投币所奖励的经验 | 上限为50 |
 
 **示例：**
 
 ```shell
-curl 'https://www.bilibili.com/plus/account/exp.php' \
--b 'SESSDATA=xxx;DedeUserID=1'
+curl 'https://api.bilibili.com/x/web-interface/coin/today/exp' \
+-b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -172,7 +172,8 @@ curl 'https://www.bilibili.com/plus/account/exp.php' \
 {
     "code": 0,
     "message": "0",
-    "number": 20
+    "ttl": 1,
+    "data": 20
 }
 ```
 
