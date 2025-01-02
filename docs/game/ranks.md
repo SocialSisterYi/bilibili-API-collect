@@ -83,18 +83,25 @@ _请求方式：GET_
 | game_name                  | str    | 游戏名称            |                  |
 | expanded_name              | str    |                     |
 | game_name_v2               | str    | 游戏名称            |                  |
-| postfix_list               | arrary |                     | 默认为[]         |
+| postfix_list               | arrary | 是否是测试服        |                  |
 | icon                       | str    | icon 的 url         |                  |
 | game_desc                  | str    | 游戏介绍            |                  |
 | grade                      | str    | 游戏评分            |                  |
 | category_name              | str    | 游戏类型            |                  |
-| category                   | arrary |                     |                  |
-| tag_names                  | arrary |                     |                  |
+| category                   | obj    |                     |                  |
+| tag_names                  | arrary | 游戏标签            |                  |
 | tag_list                   | arrary |                     |                  |
 | video_cover_image          | str    | 视频封面的 url      |                  |
 | valid_comment_number       | num    | 评论数量            |                  |
 | is_pay_game                | bool   | 是否买断?           |                  |
 | purchase_type              | num    |                     | 默认为 0         |
+
+`data`中的 `category` 对象：
+
+| 字段   | 类型 | 内容                  | 备注 |
+| ------ | ---- | --------------------- | ---- |
+| tag_id | str  | 每个类别单独对应的 id |      |
+| name   | str  | 游戏类别              |      |
 
 **示例：**
 
@@ -1730,7 +1737,14 @@ _请求方式：GET_
 
 **json 回复：**
 
-[与上部分基本一致](#samePart)
+> [与上部分基本一致](#samePart)
+> 以下为开测表独有
+
+| 字段            | 类型 | 内容     | 备注 |
+| --------------- | ---- | -------- | ---- |
+| start_test_time | str  | 时间戳   |      |
+| start_test_type | str  | 测试状态 |      |
+| is_precise_time | num  |          |      |
 
 **示例：**
 
