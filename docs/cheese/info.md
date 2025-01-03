@@ -177,7 +177,7 @@
 | discount_prefix | str  | 折扣类型前缀         | 若无优惠则无此项        |
 | pay_shade       | str  | 观看所有视频付费说明 |                         |
 | price           | num  | 课程价格             | 单位为B币（折扣后价格） |
-| price_format    | str  | 课程价格             | 单位为B币折扣后价格）   |
+| price_format    | str  | 课程价格             | 单位为B币（折扣后价格）   |
 
 `data`中的`purchase_note`对象：
 
