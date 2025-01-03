@@ -251,7 +251,7 @@ curl -G 'https://api.bilibili.com/pgc/review/user' \
 | multi_view_info         | obj   |                |                                                          |
 | new_ep                  | obj   | 更新信息           |                                                          |
 | payment                 | obj   | 会员&付费信息        | 若无相关内容则无此项                                               |
-| payPack                 | obj   |                |                                                          |
+| payPack                 | obj   | 付费包信息          | 目前只有霹雳布袋戏付费套餐一种                                          |
 | play_strategy           | obj   |                |                                                          |
 | positive                | obj   |                |                                                          |
 | publish                 | obj   | 发布信息           |                                                          |
@@ -268,18 +268,19 @@ curl -G 'https://api.bilibili.com/pgc/review/user' \
 | share_sub_title         | str   | 备注             |                                                          |
 | share_url               | str   | 番剧播放页面url      |                                                          |
 | show                    | obj   | 网页全屏标志         |                                                          |
-| show_season_type        | num   |                |                                                          |
+| show_season_type        | num   | 1,2,3,4,5,7    |                                                          |
 | square_cover            | str   | 方形封面图片url      |                                                          |
-| staff                   | str   |                |                                                          |
+| staff                   | str   | 制作人员信息         |                                                          |
 | stat                    | obj   | 状态数            |                                                          |
 | status                  | num   |                |                                                          |
-| styles                  | array |                |                                                          |
+| styles                  | array | 标签             |                                                          |
 | subtitle                | str   | 剧集副标题          |                                                          |
 | title                   | str   | 剧集标题           |                                                          |
 | total                   | num   | 总计正片集数         | 未完结：大多为-1<br />已完结：正整数                                   |
 | type                    | num   | 剧集类型           | 1：番剧<br />2：电影<br />3：纪录片<br />4：国创<br />5：电视剧<br />7：综艺 |
 | up_info                 | obj   | UP主信息          | 若无相关内容则无此项                                               |
 | user_status             | obj   |                |                                                          |
+
 `result`中的`activity`对象：
 
 | 字段          | 类型    | 内容   | 备注     |
