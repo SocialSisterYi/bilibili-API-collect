@@ -181,7 +181,7 @@ $.ajax({
 
 </details>
 
-## 直播签到
+## ~~直播签到（已下线）~~
 
 > https://api.live.bilibili.com/xlive/web-ucenter/v1/sign/DoSign
 
@@ -199,6 +199,23 @@ _请求方式：GET_
 | ttl     | num  | 1        |                        |
 | message | str  | 错误信息 | 默认为当日签到奖励内容 |
 | data    | obj  | 信息本体 | 默认为空               |
+
+（目前已下线）
+
+<details>
+<summary>查看响应示例（下线后）：</summary>
+
+```json
+{
+    "code": 1,
+    "message": "签到活动已下线，无法使用。",
+    "ttl": 1,
+    "data": null
+}
+```
+
+</details>
+
 
 ## 本月直播签到信息
 
