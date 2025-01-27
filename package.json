@@ -12,11 +12,11 @@
     "build": "NODE_OPTIONS='--max-old-space-size=8192' vuepress build"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "^2.0.0-rc.17",
-    "@vuepress/plugin-search": "^2.0.0-rc.52",
-    "@vuepress/plugin-shiki": "^2.0.0-rc.52",
-    "@vuepress/theme-default": "^2.0.0-rc.52",
-    "sass-embedded": "^1.79.4",
-    "vuepress": "^2.0.0-rc.17"
+    "@vuepress/bundler-vite": "^2.0.0-rc.19",
+    "@vuepress/plugin-search": "^2.0.0-rc.74",
+    "@vuepress/plugin-shiki": "^2.0.0-rc.74",
+    "@vuepress/theme-default": "^2.0.0-rc.74",
+    "sass-embedded": "^1.83.4",
+    "vuepress": "^2.0.0-rc.19"
   }
 }
