@@ -141,6 +141,7 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/info' \
 | up_mid | num  | 目标用户mid | 必要   |      |
 | type   | num  | 目标内容属性 | 非必要 | 默认为全部<br />0：全部<br />2：视频稿件 |
 | rid    | num  | 目标内容id   | 非必要 | 视频稿件：视频稿件avid                   |
+| web_location | str | 333.1387 | 非必要|  |
 
 **json回复：**
 
@@ -176,7 +177,7 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/info' \
 | id          | num  | 收藏夹mlid（完整id）     | 收藏夹原始id+创建者mid尾号2位              |
 | fid         | num  | 收藏夹原始id             |                                            |
 | mid         | num  | 创建者mid                |                                            |
-| attr        | num  | 收藏夹属性         | 转换成8-bit二进制处理<br />详细说明见下表 |
+| attr        | num  | 收藏夹属性               | 二进制位属性<br />详细说明见下表           |
 | title       | str  | 收藏夹标题               |                                            |
 | fav_state   | num  | 目标id是否存在于该收藏夹 | 存在于该收藏夹：1<br />不存在于该收藏夹：0 |
 | media_count | num  | 收藏夹内容数量           |                                            |
