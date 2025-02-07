@@ -180,3 +180,55 @@ curl -G 'https://app.bilibili.com/x/v2/version/fawkes/upgrade' \
 ```
 
 </details>
+
+## 拼接最新版本下载地址
+
+> https://api.bilibili.com/x/web-frontend/getappversion
+
+*请求方法: GET*
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ---- | ---- | ---- | ---- | ---- |
+| target | string | 目标平台 | 目测仅 `pc_electron`, 错误的值会导致返回 `HTTP 404` |
+| cdn_url | string | CDN URL | 任意字符串, 默认 `https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe` |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| code | number | 返回值 | 0: 成功<br />-1: need target |
+| message | string | 错误消息 | 成功时无此项 |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| cdn_url | string | CDN URL | 内容同请求参数 `cdn_url` |
+| sole_cdn_url | string | 带版本的 CDN URL | `cdn_url + "?v=" + 最新版本` |
+
+**示例:**
+
+```shell
+curl -G 'https://api.bilibili.com/x/web-frontend/getappversion' \
+--url-query 'target=pc_electron' \
+--url-query 'cdn_url=https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "data": {
+    "cdn_url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe",
+    "sole_cdn_url": "https://dl.hdslb.com/mobile/fixed/bili_win/bili_win-install.exe?v=1.16.1-2"
+  }
+}
+```
+
+</details>
