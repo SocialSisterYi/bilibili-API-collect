@@ -13,6 +13,72 @@
 | platform     | string | 平台类型   | 必要   | 默认为 `web`, 实测可为任意非空串 |
 | web_location | string | `333.1007` | 非必要 |      |
 
+**JSON 回复:**
+
+根对象:
+
+| 字段    | 类型   | 内容     | 备注 |
+| ------- | ------ | -------- | ---- |
+| code    | number | 返回值   | 0: 成功 |
+| message | string | 错误信息 | 默认为 `0` |
+| ttl     | number | 1        |      |
+
+`data` 对象:
+
+| 字段                | 类型   | 内容          | 备注     |
+| ------------------- | ------ | ------------- | -------- |
+| recommend_room_list | Array  | 推荐房间列表  | 套了个娃 |
+| top_room_id         | number | 置顶直播间号? |          |
+
+`data` 对象中 `recommend_room_list` 数组中的对象:
+
+| 字段                   | 类型           | 内容             | 备注 |
+| ---------------------- | -------------- | ---------------- | ---- |
+| head_box               | object \| null | 头像框           | 无则为 `null` |
+| area_v2_id             | number         | 分区 ID          |      |
+| area_v2_parent_id      | number         | 父分区 ID        |      |
+| area_v2_name           | string         | 分区名称         |      |
+| area_v2_parent_name    | string         | 父分区名称       |      |
+| broadcast_type         | number         | 广播类型?        |      |
+| cover                  | string         | 封面 URL         |      |
+| link                   | string         | 直播间链接       | 仅 `pathname` 与 `query` 部分 |
+| online                 | number         | 观看人数         |      |
+| pendant_Info           | object         | ???              | 作用尚不明确 |
+| roomid                 | number         | 直播间 ID        |      |
+| title                  | string         | 直播间标题       |      |
+| uname                  | string         | 主播用户名       |      |
+| face                   | string         | 主播头像 URL     |      |
+| verify                 | object         | 认证信息         | 参见 [用户基本信息](../user/info.md) |
+| uid                    | number         | 主播用户 mid     |      |
+| keyframe               | string         | 关键帧 URL       |      |
+| is_auto_play           | number         | 是否自动播放?    |      |
+| head_box_type          | number         | 头像框类型?      |      |
+| flag                   | number         | 标记?            | 作用尚不明确 |
+| session_id             | string         | 会话 ID?         | 格式为: 本次请求相同的小写无分隔 UUID + 下划线 + 大写以连字符分隔的 UUID |
+| show_callback          | string         | 展示回调 URL?    |      |
+| click_callback         | string         | 点击回调 URL?    |      |
+| special_id             | number         | 特殊 ID?         | 作用尚不明确 |
+| watched_show           | object         | 观看展示         | 见下 |
+| is_nft                 | number         | 是否为 NFT 头像? |      |
+| nft_dmark              | string         | ???              | 作用尚不明确 |
+| is_ad                  | boolean        | 是否为广告       |      |
+| ad_transparent_content | unknown        | ???              | 作用尚不明确 |
+| show_ad_icon           | boolean        | 显示广告图标     |      |
+| status                 | boolean        | 状态?            | 作用尚不明确 |
+| followers              | number         | 0                | 作用尚不明确 |
+
+`recommend_room_list` 数组中的对象中的 `watched_show` 对象:
+
+| 字段          | 类型    | 内容     | 备注 |
+| ------------- | ------- | -------- | ---- |
+| switch        | boolean | ???      | 作用尚不明确 |
+| num           | number  | 看过人数 |      |
+| text_small    | string  | 小文本   | xxx  |
+| text_large    | string  | 大文本   | xxx人看过 |
+| icon          | string  | 图标 URL | 浅色线条眼睛图标 |
+| icon_location | number  | 0        |      |
+| icon_web      | string  | 图标 URL | 深色线条眼睛图标 (Web 端) |
+
 **示例:**
 
 ```shell
