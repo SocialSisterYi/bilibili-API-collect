@@ -728,3 +728,185 @@ curl -X POST 'https://member.bilibili.com/x2/creative/web/season/del' \
 ```
 
 </details>
+
+## 获取合集中的视频
+
+可以在给合集排序时使用
+
+> https://member.bilibili.com/x2/creative/web/season/section?id=3898622
+
+*请求方式: POST*
+
+认证方式: Cookie (SESSDATA)
+
+**正文参数 (application/x-www-form-urlencoded):**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| id    | num | 合集 ID | 必要 |    |
+
+**JSON回复:**
+
+| 字段    | 类型 | 内容     | 备注 |
+| ------- | ---- | -------- | ---- |
+| code    | num  | 返回值   | 0：成功 |
+| message | str  | 错误信息 |      |
+| ttl     | num  | 1        |      |
+| data    | obj  | 信息本体 |      |
+
+`data`对象:
+
+| 字段      | 类型 | 内容         | 备注 |
+| --------- | ---- | ------------ | ---- |
+| seasons   | obj  | 合集信息     |      |
+| episodes  | arr  | 合集中的视频 | |
+
+`seasons`对象:
+
+| 字段      | 类型 | 内容         | 备注 |
+| --------- | ---- | ------------ | ---- |
+| id        | num  | 合集 ID       |      |
+| type     | num  | 合集类型      |      |
+| cover     | str  | 合集封面 URL  |      |
+| isEnd     | num  | 是否已完结?   | 0: 未完结 |
+| state     | num  | 合集状态? | 0: 正常显示<br />-6: 正在审核 |
+| partState | num  | 合集分段状态? | 0 |
+| rejectReason | str | 合集拒绝原因? |      |
+| ctime     | num  | 创建时间      |      |
+| mtime     | num  | 修改时间      |      |
+| epCount    | num  | 视频总数     |      |
+| show | num | 是否公开? | 1: 公开 |
+| has_charging_pay | num | 是否充电付费? | 0: 否 |
+
+`episodes`数组中的对象:
+
+| 字段      | 类型 | 内容         | 备注 |
+| --------- | ---- | ------------ | ---- |
+| id        | num  | 合集内视频 ID |      |
+| title     | str  | 视频标题      |      |
+| aid       | num  | 视频 aid     |      |
+| bvid      | str  | 视频 bvid    |      |
+| cid       | num  | 视频 cid     |      |
+| seasonId  | num  | 合集 ID       |      |
+| sectionId | num  | 小节 ID       |      |
+| order     | num  | 排序编号      |      |
+| videoTitle | str | 视频标题 |      |
+| archiveTitle | str | 看起来也是标题 |      |
+| archiveState | num | 0 |      |
+| rejectReason | str | 拒绝理由?    |      |
+| state     | num  | 0 |      |
+| cover     | str  | 封面 URL      |      |
+| is_free   | num  | 是否免费? | 0: 免费 |
+| aid_owner | bool | 是否视频所有者 | true:是所有者  |
+| charging_pay | num | 充电付费? | 0: 否 |
+
+
+**示例:**
+
+获取合集176088的视频列表 `id=3541327`
+
+```shell
+curl -X GET 'https://member.bilibili.com/x2/creative/web/season/section?id=176088' \
+-b 'SESSDATA=xxx; bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+  
+会返回全部的，由于很长，这里只保留三个作为例子
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "section": {
+            "id": 176088,
+            "type": 1,
+            "seasonId": 152812,
+            "title": "正片",
+            "order": 1,
+            "state": 0,
+            "partState": 0,
+            "rejectReason": "",
+            "ctime": 1643250822,
+            "mtime": 1739466002,
+            "epCount": 112,
+            "cover": "http://i1.hdslb.com/bfs/archive/4439a182b142d92a169609e6e14e7217b3e14e0d.jpg",
+            "has_charging_pay": 0,
+            "Episodes": null,
+            "show": 1,
+            "has_pugv_pay": 0
+        },
+        "episodes": [
+            {
+                "id": 109100674,
+                "title": "「开箱评测」三星Note8 EMR2笔对比公版Wacom笔 套娃笔首选 10寸 RK PX30 Wacom 电子书 天喻墨学 M2 M3",
+                "aid": 113997323963614,
+                "bvid": "BV14BNfeSE5c",
+                "cid": 28376042631,
+                "seasonId": 152812,
+                "sectionId": 176088,
+                "order": 1,
+                "videoTitle": "「开箱评测」三星Note8 EMR2笔对比公版Wacom笔 套娃笔首选 10寸 RK PX30 Wacom 电子书 天喻墨学 M2 M3",
+                "archiveTitle": "「开箱评测」三星Note8 EMR2笔对比公版Wacom笔 套娃笔首选 10寸 RK PX30 Wacom 电子书 天喻墨学 M2 M3",
+                "archiveState": 0,
+                "rejectReason": "",
+                "state": 0,
+                "cover": "",
+                "is_free": 0,
+                "aid_owner": true,
+                "charging_pay": 0,
+                "member_first": 0,
+                "pugv_pay": 0
+            },
+            {
+                "id": 108733886,
+                "title": "「开箱评测」拆解 椭圆形的第三方AirTag GRTSZ S2 Tag",
+                "aid": 113982291576104,
+                "bvid": "BV1YyNvetEbX",
+                "cid": 28325121446,
+                "seasonId": 152812,
+                "sectionId": 176088,
+                "order": 2,
+                "videoTitle": "「开箱评测」拆解 椭圆形的第三方AirTag GRTSZ S2 Tag",
+                "archiveTitle": "「开箱评测」拆解 椭圆形的第三方AirTag GRTSZ S2 Tag",
+                "archiveState": 0,
+                "rejectReason": "",
+                "state": 0,
+                "cover": "",
+                "is_free": 0,
+                "aid_owner": true,
+                "charging_pay": 0,
+                "member_first": 0,
+                "pugv_pay": 0
+            },
+            {
+                "id": 106045797,
+                "title": "「开箱评测」这帕姆怎么射不出来呢！ 星穹铁道 KFC联动 财神帕姆 太可爱了",
+                "aid": 113892936122993,
+                "bvid": "BV1ZFFKeTEkr",
+                "cid": 28087484764,
+                "seasonId": 152812,
+                "sectionId": 176088,
+                "order": 3,
+                "videoTitle": "「开箱评测」这帕姆怎么射不出来呢！ 星穹铁道 KFC联动 财神帕姆 太可爱了",
+                "archiveTitle": "「开箱评测」这帕姆怎么射不出来呢！ 星穹铁道 KFC联动 财神帕姆 太可爱了",
+                "archiveState": 0,
+                "rejectReason": "",
+                "state": 0,
+                "cover": "",
+                "is_free": 0,
+                "aid_owner": true,
+                "charging_pay": 0,
+                "member_first": 0,
+                "pugv_pay": 0
+            }
+        ]
+    }
+}
+```
+
+</details>
+
