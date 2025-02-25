@@ -65,8 +65,8 @@
 | birthday         | str  | 生日             | MM-DD<br />如设置隐私为空                                    |
 | school           | obj  | 学校             |                                                              |
 | profession       | obj  | 专业资质信息     |                                                              |
-| tags             | null | 个人标签         |                                                              |
-| series           | obj  |                  |                                                              |
+| tags             | 有效时：array<br />无效时：null | 个人标签         |                                                              |
+| series           | obj  | （？）           |                                                              |
 | is_senior_member | num  | 是否为硬核会员   | 0：否<br />1：是                                             |
 | mcn_info         | null | （？）           |                                                              |
 | gaia_res_type    | num  | （？）           |                                                              |
@@ -74,11 +74,13 @@
 | is_risk          | bool | （？）           |                                                              |
 | elec             | obj  | 充电信息         |                                                              |
 | contract         | obj  | 是否显示老粉计划 |                                                              |
+| certificate_show | bool | （？）           |                                                              |
+| name_render      | 有效时：obj<br />无效时：null | 昵称渲染信息     |                                                              |
 
 `rank`示例
 
 | UID       | rank  |
-|-----------|-------|
+| --------- | ----- |
 | 2         | 20000 |
 | 16765     | 20000 |
 | 15773384  | 20000 |
@@ -105,7 +107,7 @@
 `profession`示例
 
 | UID        |
-|------------|
+| ---------- |
 | 654391     |
 | 1440295    |
 | 1785155    |
@@ -137,6 +139,8 @@
 | avatar_subscript_url | str  | 大会员角标地址     |                                                              |
 | tv_vip_status        | num  | 电视大会员状态     | 0：未开通                                                    |
 | tv_vip_pay_type      | num  | 电视大会员支付类型 |                                                              |
+| tv_due_date          | num  | 电视大会员过期时间 | 秒级时间戳                                                   |
+| avatar_icon          | obj  | 大会员角标信息     |                                                              |
 
 `vip`中的`label`对象：
 
@@ -155,6 +159,12 @@
 | img_label_uri_hans_static | str  | 大会员牌子图片  | 简体版                                                                                                                          |
 | img_label_uri_hant_static | str  | 大会员牌子图片  | 繁体版                                                                                                                          |
 
+`vip`中的`avatar_icon`对象：
+
+| 字段          | 类型 | 内容   | 备注         |
+| ------------  | ---- | ------ | ------------ |
+| icon_type     | num  | （？） | 作用尚不明确 |
+| icon_resource | obj  | （？） | 作用尚不明确 |
 
 `data`中的`pendant`对象：
 
@@ -162,25 +172,26 @@
 
 **动态头像框的`image`为png静态图片，`image_enhance`为webp动态图片，`image_enhance_frame`为png逐帧序列**
 
-| 字段                  | 类型  | 内容           | 备注         |
-|---------------------|-----|--------------|------------|
-| pid                 | num | 头像框id        |            |
-| name                | str | 头像框名称        |            |
-| image               | str | 头像框图片url     |            |
-| expire              | num | 过期时间         | 此接口返回恒为`0` |
-| image_enhance       | str | 头像框图片url     |            |
-| image_enhance_frame | str | 头像框图片逐帧序列url |            |
+| 字段                | 类型 | 内容                  | 备注              |
+| ------------------- | ---- | --------------------- | ----------------- |
+| pid                 | num  | 头像框id              |                   |
+| name                | str  | 头像框名称            |                   |
+| image               | str  | 头像框图片url         |                   |
+| expire              | num  | 过期时间              | 此接口返回恒为`0` |
+| image_enhance       | str  | 头像框图片url         |                   |
+| image_enhance_frame | str  | 头像框图片逐帧序列url |                   |
+| n_pid               | num  | 新版头像框id          |                   |
 
 `data`中的`nameplate`对象：
 
-| 字段          | 类型  | 内容      | 备注  |
-|-------------|-----|---------|-----|
-| nid         | num | 勋章id    |     |
-| name        | str | 勋章名称    |     |
-| image       | str | 勋章图标    |     |
-| image_small | str | 勋章图标（小） |     |
-| level       | str | 勋章等级    |     |
-| condition   | str | 获取条件    |     |
+| 字段        | 类型 | 内容           | 备注 |
+| ----------- | ---- | -------------- | ---- |
+| nid         | num  | 勋章id         |      |
+| name        | str  | 勋章名称       |      |
+| image       | str  | 勋章图标       |      |
+| image_small | str  | 勋章图标（小） |      |
+| level       | str  | 勋章等级       |      |
+| condition   | str  | 获取条件       |      |
 
 `data`中的`fans_medal`对象：
 
@@ -298,19 +309,19 @@
 
 `data`中的`elec`对象：
 
-| 字段        | 类型  | 内容  | 备注  |
-|-----------|-----|-----|-----|
-| show_info | obj |     |     |
+| 字段      | 类型 | 内容           | 备注 |
+| --------- | ---- | -------------- | ---- |
+| show_info | obj  | 显示的充电信息 |      |
 
 `elec`中的`show_info`对象：
 
-| 字段       | 类型   | 内容      | 备注               |
-|----------|------|---------|------------------|
-| show     | bool | 是否开通了充电 |                  |
-| state    | num  | 状态      | -1：未开通<br/>1：已开通 |
-| title    | str  | `空串`    |                  |
-| icon     | str  | `空串`    |                  |
-| jump_url | str  | `空串`    |                  |
+| 字段     | 类型 | 内容             | 备注             |
+| -------- | ---- | ---------------- | ---------------- |
+| show     | bool | 是否显示充电按钮 |                  |
+| state    | num  | 充电功能开启状态 | -1：未开通充电功能<br />1：已开通自定义充电<br />2：已开通包月、自定义充电<br />3：已开通高档、自定义充电 |
+| title    | str  | 充电按钮显示文字 | 空字符串或 `充电` 或 `充电中` |
+| icon     | str  | 充电图标         |                  |
+| jump_url | str  | 跳转url          |                  |
 
 `data`中的`contract`对象：
 
@@ -359,21 +370,23 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
             "wear": true,
             "medal": {
                 "uid": 2,
-                "target_id": 335115,
-                "medal_id": 45408,
-                "level": 21,
-                "medal_name": "伍千万",
-                "medal_color": 1725515,
-                "intimacy": 1980,
-                "next_intimacy": 2000,
+                "target_id": 548076,
+                "medal_id": 32525,
+                "level": 28,
+                "medal_name": "桜樱怪",
+                "medal_color": 398668,
+                "intimacy": 25364,
+                "next_intimacy": 160000,
                 "day_limit": 250000,
-                "medal_color_start": 1725515,
-                "medal_color_end": 5414290,
-                "medal_color_border": 1725515,
+                "today_feed": 2382,
+                "medal_color_start": 398668,
+                "medal_color_end": 6850801,
+                "medal_color_border": 6809855,
                 "is_lighted": 1,
+                "guard_level": 3,
                 "light_status": 1,
                 "wearing_status": 1,
-                "score": 50001980
+                "score": 50185364
             }
         },
         "official": {
@@ -385,7 +398,7 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
         "vip": {
             "type": 2,
             "status": 1,
-            "due_date": 3931344000000,
+            "due_date": 3979555200000,
             "vip_pay_type": 0,
             "theme_type": 0,
             "label": {
@@ -407,8 +420,12 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
             "role": 7,
             "avatar_subscript_url": "",
             "tv_vip_status": 1,
-            "tv_vip_pay_type": 0,
-            "tv_due_date": 2000822400
+            "tv_vip_pay_type": 1,
+            "tv_due_date": 2003500800,
+            "avatar_icon": {
+                "icon_type": 1,
+                "icon_resource": {}
+            }
         },
         "pendant": {
             "pid": 32257,
@@ -416,7 +433,8 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
             "image": "https://i2.hdslb.com/bfs/garb/item/488870931b1bba66da36d22848f0720480d3d79a.png",
             "expire": 0,
             "image_enhance": "https://i2.hdslb.com/bfs/garb/item/5974f17f9d96a88bafba2f6d18d647a486e88312.webp",
-            "image_enhance_frame": "https://i2.hdslb.com/bfs/garb/item/4316a3910bb0bd6f2f1c267a3e9187f0b9fe5bd0.png"
+            "image_enhance_frame": "https://i2.hdslb.com/bfs/garb/item/4316a3910bb0bd6f2f1c267a3e9187f0b9fe5bd0.png",
+            "n_pid": 32257
         },
         "nameplate": {
             "nid": 10,
@@ -429,10 +447,11 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
         "user_honour_info": {
             "mid": 0,
             "colour": null,
-            "tags": []
+            "tags": [],
+            "is_latest_100honour": 0
         },
-        "is_followed": true,
-        "top_photo": "http://i2.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
+        "is_followed": false,
+        "top_photo": "http://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png",
         "theme": {},
         "sys_notice": {},
         "live_room": {
@@ -446,9 +465,9 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
             "broadcast_type": 0,
             "watched_show": {
                 "switch": true,
-                "num": 19,
-                "text_small": "19",
-                "text_large": "19人看过",
+                "num": 3,
+                "text_small": "3",
+                "text_large": "3人看过",
                 "icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
                 "icon_location": "",
                 "icon_web": "https://i0.hdslb.com/bfs/live/8d9d0f33ef8bf6f308742752d13dd0df731df19c.png"
@@ -486,7 +505,9 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
         "contract": {
             "is_display": false,
             "is_follow_display": false
-        }
+        },
+        "certificate_show": false,
+        "name_render": null
     }
 }
 ```

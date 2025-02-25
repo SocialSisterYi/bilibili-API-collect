@@ -49,13 +49,13 @@
 
 数组`list`中的对象：
 
-| 字段      | 类型  | 内容            | 备注   |
-| --------- | ----- | --------------- | ------ |
-| up_uid    | num   | 充电UP主mid     |        |
-| user_name | str   | 充电UP主昵称    |        |
-| user_face | str   | 充电UP主头像url |        |
-| item      | array | 充电详情        |        |
-| start     | num   | 开始充电时间    | 时间戳 |
+| 字段      | 类型  | 内容            | 备注       |
+| --------- | ----- | --------------- | ---------- |
+| up_uid    | num   | 充电UP主mid     |            |
+| user_name | str   | 充电UP主昵称    |            |
+| user_face | str   | 充电UP主头像url |            |
+| item      | array | 充电详情        |            |
+| start     | num   | 开始充电时间    | 秒级时间戳 |
 
 数组`list`中的对象中的`item`数组：
 
@@ -67,10 +67,10 @@
 
 | 字段           | 类型                                          | 内容             | 备注             |
 | -------------- | --------------------------------------------- | ---------------- | ---------------- |
-| privilege_type | num                                           | 10（？）         | **作用尚不明确** |
+| privilege_type | num                                           | 充电类型         | 10：普通包月充电<br />20：高档充电 |
 | icon           | str                                           | 充电图标         |                  |
 | name           | str                                           | `包月充电`       |                  |
-| expire_time    | num                                           | 充电过期时间     | 时间戳           |
+| expire_time    | num                                           | 充电过期时间     | 秒级时间戳       |
 | renew          | 开启自动续费时：obj<br />关闭自动续费时：null | 充电自动续费详情 |                  |
 
 数组`item`中的对象中的`renew`对象：
@@ -81,8 +81,8 @@
 | ruid              | num  | UP主的mid    |                                                   |
 | goods_id          | num  | 充电类型     | 172：一个月<br />173：连续包月<br />174：连续包年 |
 | status            | num  | 充电状态     | 1                                                 |
-| next_execute_time | num  | 下次续费时间 | 时间戳                                            |
-| signed_time       | num  | 签约时间     | 时间戳                                            |
+| next_execute_time | num  | 下次续费时间 | 秒级时间戳                                        |
+| signed_time       | num  | 签约时间     | 秒级时间戳                                        |
 | signed_price      | num  | 下次续费金额 | 单位为千分之一元人民币                            |
 | pay_channel       | num  | 签约平台     | 2：微信支付<br />4：支付宝                        |
 | period            | num  | 下次充电天数 |                                                   |
@@ -466,7 +466,7 @@ curl 'https://api.bilibili.com/x/upower/charge/follow/info' \
 | nickname | str  | UP主昵称     |                                          |
 | avatar   | str  | UP主头像url  |                                          |
 | type     | num  | UP主认证类型 | -1：无<br />0：UP主认证<br />1：机构认证 |
-| title    | str  | UP主认证信息 |                                          |
+| title    | str  | UP主认证文字 |                                          |
 
 `data`中的`rank_info`数组：
 
@@ -476,7 +476,7 @@ curl 'https://api.bilibili.com/x/upower/charge/follow/info' \
 | n    | obj  | 用户(n+1) | 按照充电排名排列 |
 | ……   | obj  | ……        | ……               |
 
-数组`rank_info`中的对象：
+`rank_info`数组中的对象：
 
 | 字段        | 类型 | 内容             | 备注  |
 | ----------- | ---- | ---------------- | ----- |
@@ -497,13 +497,12 @@ curl 'https://api.bilibili.com/x/upower/charge/follow/info' \
 | avatar      | str  | 用户头像url      |                                 |
 | rank        | num  | 包月充电排名     | 不在包月充电用户列表里为-1      |
 | day         | num  | 包月充电天数     |                                 |
-| expire_at   | num  | 包月充电过期时间 | 时间戳，若从未给UP主包月充电为0 |
+| expire_at   | num  | 包月充电过期时间 | 秒级时间戳，若从未给UP主包月充电为0 |
 | remain_days | num  | 未过期时：剩余天数<br />已过期且之前给UP主包月充电过：自过期以来的天数 | |
 
 **示例：**
 
 获取给`mid=293793435`包月充电的用户排名
-
 
 ```shell
 curl 'https://api.bilibili.com/x/upower/up/member/rank/v2' \

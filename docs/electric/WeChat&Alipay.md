@@ -23,9 +23,9 @@
 
 | 参数名              | 类型 | 内容                     | 必要性 | 备注                                                         |
 | ------------------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| bp_num            | num  | 充电B币数量             | 必要   | 必须在2-9999之间                  |
-| up_mid              | num  | 充电对象用户mid          | 必要   |                                                              |
+| bp_num              | num  | 充电B币数量              | 必要   | 必须在2-9999之间                                             |
 | is_bp_remains_prior | bool | 是否优先扣除B币          | 必要   | true：是<br />false：否<br />在B币不足时剩余的部分利用支付平台支付 |
+| up_mid              | num  | 充电对象用户mid          | 必要   |                                                              |
 | otype               | str  | 充电来源                 | 必要   | up：空间充电<br />archive：视频充电                          |
 | oid                 | num  | 充电来源代码             | 必要   | 空间充电：充电对象用户mid<br />视频充电：稿件avid            |
 | csrf                | str  | CSRF Token（位于cookie） | 必要   |                                                              |
@@ -118,7 +118,7 @@ curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/qr_code/create' \
 
 **示例：**
 
-当申请到的支付二维码未被扫描时，`data`.`ststus`的值为`2`
+当申请到的支付二维码未被扫描时，`data`.`status`的值为`2`
 
 ```shell
 curl -G 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status' \
@@ -131,20 +131,20 @@ curl -G 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "qr_token":"c7cbdc47fc424cd18f2146db653597b8",
-        "mid":293793435,
-        "status":2
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "qr_token": "c7cbdc47fc424cd18f2146db653597b8",
+        "mid": 293793435,
+        "status": 2
     }
 }
 ```
 
 </details>
 
-当申请到的支付二维码已扫描但未确认时，`data`.`ststus`的值为`3`
+当申请到的支付二维码已扫描但未确认时，`data`.`status`的值为`3`
 
 ```shell
 curl -G 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status' \
@@ -157,20 +157,20 @@ curl -G 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "qr_token":"c7cbdc47fc424cd18f2146db653597b8",
-        "mid":293793435,
-        "status":3
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "qr_token": "c7cbdc47fc424cd18f2146db653597b8",
+        "mid": 293793435,
+        "status": 3
     }
 }
 ```
 
 </details>
 
-成功支付后，`data`.`ststus`的值为`1`，且`data`.`order_no`存在留言token
+成功支付后，`data`.`status`的值为`1`，且`data`.`order_no`存在留言token
 
 ```shell
 curl -G 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status' \
@@ -183,14 +183,14 @@ curl -G 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/order/status' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "qr_token":"bd649c836c524550bfe22a369334fc05",
-        "order_no":"BPTD36U3KP82I31RSSLG",
-        "mid":293793435,
-        "status":1
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "qr_token": "bd649c836c524550bfe22a369334fc05",
+        "order_no": "BPTD36U3KP82I31RSSLG",
+        "mid": 293793435,
+        "status": 1
     }
 }
 ```

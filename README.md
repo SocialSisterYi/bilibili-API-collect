@@ -203,7 +203,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [B 币方式充电](docs/electric/Bcoin.md)
     - [x] [微信 & 支付宝方式充电](docs/electric/WeChat&Alipay.md)
     - [x] [充电留言](docs/electric/charge_msg.md)
-    - [x] [充电列表](docs/electric/charge_list.md)
+  - [x] [充电列表](docs/electric/charge_list.md)
 - [ ] [动态](docs/dynamic)
     - [ ] [获取动态列表](docs/dynamic/all.md)
     - [ ] [获取用户空间动态](docs/dynamic/space.md)

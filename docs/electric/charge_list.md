@@ -42,7 +42,6 @@
 | 0    | obj  | 充电用户1     |                  |
 | n    | obj  | 充电用户(n+1) | 按照充电排名排列 |
 | ……   | obj  | ……            | ……               |
-| 29   | obj  | 充电用户30    | 最后一项         |
 
 `data`中的`list`数组中的对象：
 
@@ -60,11 +59,11 @@
 
 `list`数组中的对象中的`vip_info`对象：
 
-| 字段       | 类型 | 内容                 | 备注                                      |
-| ---------- | ---- | -------------------- | ----------------------------------------- |
-| vipDueMsec | num  | 大会员过期时间（？） | 恒为0                                     |
-| vipStatus  | num  | 大会员状态           | 0：无<br />1：有                          |
-| vipType    | num  | 大会员类型           | 0：无<br />1：月会员<br />2：年会员及以上 |
+| 字段       | 类型 | 内容           | 备注  |
+| ---------- | ---- | -------------- | ----- |
+| vipDueMsec | num  | 大会员过期时间 | 恒为0 |
+| vipStatus  | num  | 大会员状态     | 包月充电时恒为0<br />自定义充电：<br />0：无<br />1：有 |
+| vipType    | num  | 大会员类型     | 包月充电时恒为0<br />自定义充电：<br />0：无<br />1：月大会员<br />2：年度及以上大会员 |
 
 **示例：**
 
@@ -85,56 +84,33 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
     "message": "",
     "ttl": 0,
     "data": {
-        "count": 397,
+        "count": 8521,
         "list": [
             {
-                "uname": "Mars韩笑",
-                "avatar": "https://i1.hdslb.com/bfs/face/a46599fa41cac672eda677e334f0be93cca02f1f.jpg",
+                "uname": "云梦澡堂",
+                "avatar": "https://i1.hdslb.com/bfs/face/6589df5fdac0f80593f6a86e4d88dc08e25df3d2.jpg",
                 "mid": 53456,
-                "pay_mid": 5683462,
+                "pay_mid": 1555775947,
                 "rank": 1,
                 "trend_type": 0,
-                "vip_info": {
-                    "vipDueMsec": 0,
-                    "vipStatus": 1,
-                    "vipType": 2
-                },
-                "message": "你真棒，你是奇迹！（Warma真的是太棒了！",
+                "vip_info": { "vipDueMsec": 0, "vipStatus": 0, "vipType": 0 },
+                "message": "",
                 "message_hidden": 0
             },
             {
-                "uname": "愚星-",
-                "avatar": "https://i1.hdslb.com/bfs/face/7e4a8b150567a20a1b075aa3894dd3674a1e6ebe.jpg",
+                "uname": "在下小天子",
+                "avatar": "https://i1.hdslb.com/bfs/face/a3bfbe6186889bb50dcd87c1156d07a70227a25b.jpg",
                 "mid": 53456,
-                "pay_mid": 382630072,
+                "pay_mid": 508630801,
                 "rank": 2,
                 "trend_type": 0,
-                "vip_info": {
-                    "vipDueMsec": 0,
-                    "vipStatus": 1,
-                    "vipType": 1
-                },
-                "message": "感谢您给我带来的快乐！我的人生遇见你是我的荣幸！！",
-                "message_hidden": 0
-            },
-            {
-                "uname": "なか酱",
-                "avatar": "https://i0.hdslb.com/bfs/face/d4b74091d7f1c336399625dc062ddc93d676bcdc.jpg",
-                "mid": 53456,
-                "pay_mid": 446080731,
-                "rank": 3,
-                "trend_type": 0,
-                "vip_info": {
-                    "vipDueMsec": 0,
-                    "vipStatus": 1,
-                    "vipType": 2
-                },
+                "vip_info": { "vipDueMsec": 0, "vipStatus": 0, "vipType": 0 },
                 "message": "",
                 "message_hidden": 0
             }
         ],
-        "total_count": 27291,
-        "total": 27291,
+        "total_count": 41919,
+        "total": 41919,
         "special_day": 0
     }
 }
@@ -169,22 +145,41 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 
 `data`对象：
 
-| 字段        | 类型  | 内容             | 备注         |
-| ----------- | ----- | ---------------- | ------------ |
-| show_info   | obj   | 展示选项         |              |
-| av_count    | num   | 目标视频充电人数 |              |
-| count       | num   | 本月充电人数     |              |
-| total_count | num   | 总计充电人数     |              |
-| special_day | num   | 0                | 作用尚不明确 |
-| display_num | num   | 0                | 作用尚不明确 |
-| list        | array | 本月充电用户列表 |              |
+| 字段          | 类型  | 内容             | 备注         |
+| ------------- | ----- | ---------------- | ------------ |
+| show_info     | obj   | 展示选项         |              |
+| av_count      | num   | 目标视频充电人数 |              |
+| count         | num   | 本月充电人数     |              |
+| total_count   | num   | 总计充电人数     |              |
+| special_day   | num   | 0                | 作用尚不明确 |
+| display_num   | num   | 0                | 作用尚不明确 |
+| cnt_priv_type | num   | 0                | 作用尚不明确 |
+| list          | array | 本月充电用户列表 |              |
 
 `data`中的`show_info`对象：
 
-| 字段  | 类型 | 内容                     | 备注                          |
-| ----- | ---- | ------------------------ | ----------------------------- |
-| show  | bool | 是否展示视频充电鸣谢名单 | false：不展示<br />true：展示 |
-| state | num  | 0                        |                               |
+| 字段       | 类型 | 内容                     | 备注             |
+| ---------- | ---- | ------------------------ | ---------------- |
+| show       | bool | 是否展示视频充电鸣谢名单 |                  |
+| state      | num  | 充电功能开启状态         | -1：未开通充电功能<br />1：已开通自定义充电<br />2：已开通包月、自定义充电<br />3：已开通高档、自定义充电 |
+| title      | str  | 充电按钮显示文字         | 空字符串或 `充电` 或 `充电中` |
+| jump_url   | str  | 跳转url                  |                  |
+| icon       | str  | 充电图标                 |                  |
+| high_level | obj  | 高档充电信息             |                  |
+
+`show_info`中的`high_level`对象：
+
+| 字段           | 类型 | 内容                     | 备注             |
+| -------------- | ---- | ------------------------ | ---------------- |
+| privilege_type | num  |                          |                  |
+| title          | str  |                          |                  |
+| sub_title      | str  |                          |                  |
+| show_button    | bool |                          |                  |
+| button_text    | str  |                          |                  |
+| jump_url       | obj  |                          |                  |
+| intro          | str  |                          |                  |
+| open           | bool |                          |                  |
+| new            | bool |                          |                  |
 
 `data`中的`list`数组：
 
@@ -193,7 +188,6 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 | 0    | obj  | 充电用户1     |                  |
 | n    | obj  | 充电用户(n+1) | 按照充电排名排列 |
 | ……   | obj  | ……            | ……               |
-| 29   | obj  | 充电用户30    | 最后一项         |
 
 `data`中的`list`数组中的对象：
 
@@ -211,11 +205,11 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 
 `data`中的`list`数组中的`vip_info`对象：
 
-| 字段       | 类型 | 内容       | 备注                                |
-| ---------- | ---- | ---------- | ----------------------------------- |
-| vipType    | num  | 大会员类型 | 0：无<br />1：月会员<br />2：年会员 |
-| vipDueMsec | num  | 0          | 作用尚不明确                        |
-| vipStatus  | num  | 大会员状态 | 0：无<br />1：有                    |
+| 字段       | 类型 | 内容           | 备注  |
+| ---------- | ---- | -------------- | ----- |
+| vipType    | num  | 大会员类型     | 包月充电时恒为0<br />自定义充电：<br />0：无<br />1：月大会员<br />2：年度及以上大会员 |
+| vipDueMsec | num  | 大会员过期时间 | 恒为0 |
+| vipStatus  | num  | 大会员状态     | 包月充电时恒为0<br />自定义充电：<br />0：无<br />1：有 |
 
 **示例：**
 
@@ -248,45 +242,51 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
   "data": {
     "show_info": {
       "show": true,
-      "state": 0
+      "state": 2,
+      "title": "充电",
+      "jump_url": "https://www.bilibili.com/h5/upower/index?mid=53456&navhide=1&prePage=video&oid=967773538",
+      "icon": "https://i0.hdslb.com/bfs/garb/item/33e2e72d9a0c855f036b4cb55448f44af67a0635.png",
+      "high_level": {
+        "privilege_type": 0,
+        "title": "",
+        "sub_title": "",
+        "show_button": false,
+        "button_text": "",
+        "jump_url": { "up_link": "", "paywall_link": "", "previewbar_link": "" },
+        "intro": "",
+        "open": false,
+        "new": false
+      }
     },
     "av_count": 0,
     "count": 0,
-    "total_count": 19422,
+    "total_count": 41919,
     "special_day": 0,
     "display_num": 0,
+    "cnt_priv_type": 0,
     "list": [
       {
         "mid": 53456,
-        "pay_mid": 1216085164,
+        "pay_mid": 1555775947,
         "rank": 1,
-        "uname": "JZ72",
-        "avatar": "http://i1.hdslb.com/bfs/face/3d741682fafc286999b5e8089a844ae4f46651fe.jpg",
-        "message": "Warma YYDS ",
+        "uname": "云梦澡堂",
+        "avatar": "https://i1.hdslb.com/bfs/face/6589df5fdac0f80593f6a86e4d88dc08e25df3d2.jpg",
+        "message": "",
         "msg_deleted": 0,
-        "vip_info": {
-          "vipType": 2,
-          "vipDueMsec": 0,
-          "vipStatus": 1
-        },
+        "vip_info": { "vipType": 0, "vipDueMsec": 0, "vipStatus": 0 },
         "trend_type": 0
       },
       {
         "mid": 53456,
-        "pay_mid": 305858373,
+        "pay_mid": 508630801,
         "rank": 2,
-        "uname": "适应性神经系统",
-        "avatar": "http://i0.hdslb.com/bfs/face/2ad38dec879f66c32b5e5cb1750cb3f3e446bf91.jpg",
+        "uname": "在下小天子",
+        "avatar": "https://i1.hdslb.com/bfs/face/a3bfbe6186889bb50dcd87c1156d07a70227a25b.jpg",
         "message": "",
         "msg_deleted": 0,
-        "vip_info": {
-          "vipType": 1,
-          "vipDueMsec": 0,
-          "vipStatus": 0
-        },
+        "vip_info": { "vipType": 0, "vipDueMsec": 0, "vipStatus": 0 },
         "trend_type": 0
-      },
-      ......
+      }
     ]
   }
 }
@@ -307,7 +307,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 | 参数名      | 类型 | 内容     | 必要性 | 备注                |
 | ----------- | ---- | -------- | ------ | ------------------- |
 | currentPage | num  | 页数     | 必要   |                     |
-| pageSize    | num  | 分页大小 | 必要   | 取值范围[1,50]      |
+| pageSize    | num  | 分页大小 | 必要   | 取值范围\[1,50\]    |
 | customerId  | num  | (?)      | 必要   | 目前为固定值：10026 |
 | beginTime   | str  | 开始日期 | 非必要 | yyyy-MM-dd          |
 | endTime     | str  | 结束日期 | 非必要 | yyyy-MM-dd          |
@@ -318,12 +318,12 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />800501007：user not login<br />800501008：内部错误<br /> 800501011：请求参数有误 |
+| code    | num  | 返回值   | 0：成功<br />800501007：user not login<br />800501008：内部错误<br />800501011：请求参数有误 |
 | errno   | num  |          |                             |
 | msg     | str  |          |                             |
 | showMsg | str  |          |                             |
-| success | bool |          |                             |
 | data    | obj  | 信息本体 |                             |
+| success | bool |          |                             |
 
 `data`对象：
 
@@ -342,18 +342,6 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 | totalCount  | num  | 记录总数     |      |
 | totalPage   | num  | 总页数       |      |
 
-`config`数组中的对象：
-
-| 字段              | 类型 | 内容 | 备注       |
-| ----------------- | ---- | ---- | ---------- |
-| mid               | null |      | 总是为null |
-| name              | null |      | 总是为null |
-| avatar            | null |      | 总是为null |
-| originalThirdCoin | null |      | 总是为null |
-| brokerage         | null |      | 总是为null |
-| remark            | null |      | 总是为null |
-| ctime             | null |      | 总是为null |
-
 `result`数组中的对象：
 
 | 字段              | 类型 | 内容             | 备注                |
@@ -365,6 +353,18 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 | brokerage         | num  | 实际收到的贝壳数 |                     |
 | remark            | str  | 充电渠道         | Web/安卓/iOS        |
 | ctime             | str  | 充电时间         | yyyy-MM-dd HH:mm:ss |
+
+`config`数组中的对象：
+
+| 字段              | 类型 | 内容 | 备注       |
+| ----------------- | ---- | ---- | ---------- |
+| mid               | null |      | 总是为null |
+| name              | null |      | 总是为null |
+| avatar            | null |      | 总是为null |
+| originalThirdCoin | null |      | 总是为null |
+| brokerage         | null |      | 总是为null |
+| remark            | null |      | 总是为null |
+| ctime             | null |      | 总是为null |
 
 **示例：**
 
