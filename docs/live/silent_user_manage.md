@@ -72,7 +72,7 @@ curl -X POST 'https://api.live.bilibili.com/xlive/web-ucenter/v1/banned/AddSilen
 | 参数名        | 类型  | 内容         | 必要性 | 备注                 |
 | ---------- | --- | ---------- | --- | ------------------ |
 | room_id    | str | 直播间Id      | 必要  |                    |
-| ps1        | str | 列表页码       | 必要  |                    |
+| ps        | str | 列表页码       | 必要  |                    |
 | csrf_token | str | CSRF Token | 必要  | cookie中的bili_jct字段 |
 | csrf       | str | CSRF Token | 必要  | cookie中的bili_jct字段 |
 | visit_id   | str | 不明         | 非必要 |                    |
