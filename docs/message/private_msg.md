@@ -738,7 +738,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 | ----------------- | ---- | ---------------- | ------ | ------------------------------------------------------ |
 | talker_id         | num  | 聊天对象的id     | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
 | session_type      | num  | 聊天对象的类型   | 必要   | 1：用户<br />2：粉丝团                                 |
-| size              | num  | 返回消息数量     | 非必要 | 默认为 20，最大为 200                                  |
+| size              | num  | 返回消息数量     | 必要 | 默认为 0，最大为 200                                  |
 | begin_seqno       | num  | 开始的序列号     | 非必要 | 提供本参数时返回以本序列号开始（不包括本序列号）的消息 |
 | end_seqno         | num  | 结束的序列号     | 非必要 | 提供本参数时返回以本序列号结束（不包括本序列号）的消息 |
 | sender_device_id  | num  | 发送者设备       | 非必要 | 默认为 `1`                                             |
