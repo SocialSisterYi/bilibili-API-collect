@@ -1245,6 +1245,8 @@ while (!s.isclosed()) {
 }
 ```
 
+</details>
+
 #### 送礼 (SEND_GIFT)
 
 **JSON消息:**
@@ -1855,6 +1857,8 @@ while (!s.isclosed()) {
   "roomid": 23614753
 }
 ```
+
+</details>
 
 #### 主播信息更新 (ROOM_REAL_TIME_MESSAGE_UPDATE)
 
