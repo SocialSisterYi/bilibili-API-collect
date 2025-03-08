@@ -357,7 +357,7 @@ curl -G 'https://member.bilibili.com/x2/creative/web/seasons' \
 
 注: 有人工审核
 
-**正文参数:**
+**正文参数 (application/x-www-form-urlencoded):**
 
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
@@ -729,23 +729,23 @@ curl -X POST 'https://member.bilibili.com/x2/creative/web/season/del' \
 
 </details>
 
-## 获取合集中的视频
+## 获取合集小节中的视频
 
-可以在给合集排序时使用
+> https://member.bilibili.com/x2/creative/web/season/section
 
-> https://member.bilibili.com/x2/creative/web/season/section?id=3898622
-
-*请求方式: POST*
+*请求方法: GET*
 
 认证方式: Cookie (SESSDATA)
 
-**正文参数 (application/x-www-form-urlencoded):**
+可以在给合集排序时使用, 可以获取别人的
+
+**URL 参数:**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | ----- | --- | ---- | ----- | --- |
 | id    | num | 合集 ID | 必要 |    |
 
-**JSON回复:**
+**JSON 回复:**
 
 | 字段    | 类型 | 内容     | 备注 |
 | ------- | ---- | -------- | ---- |
@@ -754,31 +754,36 @@ curl -X POST 'https://member.bilibili.com/x2/creative/web/season/del' \
 | ttl     | num  | 1        |      |
 | data    | obj  | 信息本体 |      |
 
-`data`对象:
+`data` 对象:
 
 | 字段      | 类型 | 内容         | 备注 |
 | --------- | ---- | ------------ | ---- |
-| seasons   | obj  | 合集信息     |      |
-| episodes  | arr  | 合集中的视频 | |
+| section   | obj  | 小节信息     |      |
+| episodes  | arr  | 小节中的视频 | |
 
-`seasons`对象:
+`data` 对象中的 `section` 对象:
 
 | 字段      | 类型 | 内容         | 备注 |
 | --------- | ---- | ------------ | ---- |
-| id        | num  | 合集 ID       |      |
-| type     | num  | 合集类型      |      |
-| cover     | str  | 合集封面 URL  |      |
-| isEnd     | num  | 是否已完结?   | 0: 未完结 |
+| id        | num  | 小节 ID      |      |
+| type      | num  | 小节类型     |      |
+| seasonId  | num  | 合集 ID      |      |
+| title     | str  | 小结标题     |      |
+| order     | str  | 排序编号?    |      |
+| isEnd     | num  | 是否已完结?  | 0: 未完结 |
 | state     | num  | 合集状态? | 0: 正常显示<br />-6: 正在审核 |
 | partState | num  | 合集分段状态? | 0 |
 | rejectReason | str | 合集拒绝原因? |      |
 | ctime     | num  | 创建时间      |      |
 | mtime     | num  | 修改时间      |      |
-| epCount    | num  | 视频总数     |      |
+| epCount   | num  | 小节视频总数 |      |
+| cover     | num  | 合集封面     |      |
 | show | num | 是否公开? | 1: 公开 |
 | has_charging_pay | num | 是否充电付费? | 0: 否 |
+| Episodes  | null |      |   |
+| has_pugv_pay | num | 是否 PUGV 付费? | 0: 否 |
 
-`episodes`数组中的对象:
+`data` 对象中的 `episodes`数组中的对象:
 
 | 字段      | 类型 | 内容         | 备注 |
 | --------- | ---- | ------------ | ---- |
@@ -803,11 +808,12 @@ curl -X POST 'https://member.bilibili.com/x2/creative/web/season/del' \
 
 **示例:**
 
-获取合集176088的视频列表 `id=3541327`
+获取合集小节 176088 的视频
 
 ```shell
-curl -X GET 'https://member.bilibili.com/x2/creative/web/season/section?id=176088' \
--b 'SESSDATA=xxx; bili_jct=xxx'
+curl -G --url 'https://member.bilibili.com/x2/creative/web/season/section' \
+--url-query 'id=176088' \
+-b 'SESSDATA=xxx'
 ```
 
 <details>
