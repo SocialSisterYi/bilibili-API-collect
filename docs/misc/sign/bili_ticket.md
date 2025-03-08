@@ -292,7 +292,7 @@ async function getBiliTicket(csrf) {
         const data = await response.json();
         return data;
     } catch (e) {
-        throw error;
+        throw e;
     }
 }
 
@@ -301,7 +301,7 @@ async function getBiliTicket(csrf) {
         const ticketResponse = await getBiliTicket(''); // use empty CSRF here
         console.log(ticketResponse);
     } catch (e) {
-        console.error('Failed to get BiliTicket:', error);
+        console.error('Failed to get BiliTicket:', e);
     }
 })();
 ```
