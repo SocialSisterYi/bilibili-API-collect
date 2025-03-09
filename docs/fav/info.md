@@ -141,6 +141,7 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/info' \
 | up_mid | num  | 目标用户mid | 必要   |      |
 | type   | num  | 目标内容属性 | 非必要 | 默认为全部<br />0：全部<br />2：视频稿件 |
 | rid    | num  | 目标内容id   | 非必要 | 视频稿件：视频稿件avid                   |
+| web_location | str | 333.1387 | 非必要|  |
 
 **json回复：**
 
@@ -176,7 +177,7 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/info' \
 | id          | num  | 收藏夹mlid（完整id）     | 收藏夹原始id+创建者mid尾号2位              |
 | fid         | num  | 收藏夹原始id             |                                            |
 | mid         | num  | 创建者mid                |                                            |
-| attr        | num  | 属性位 |                                            |
+| attr        | num  | 收藏夹属性               | 二进制位属性<br />详细说明见下表           |
 | title       | str  | 收藏夹标题               |                                            |
 | fav_state   | num  | 目标id是否存在于该收藏夹 | 存在于该收藏夹：1<br />不存在于该收藏夹：0 |
 | media_count | num  | 收藏夹内容数量           |                                            |
@@ -185,8 +186,8 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/info' \
 
 | 位              | 内容             | 备注                             |
 | --------------- | ---------------- | -------------------------------- |
-| 0               | 是否为默认收藏夹 | 0：默认收藏夹<br />1：其他收藏夹 |
-| 1               | 私有收藏夹       | 0：公开<br />1：私有             |
+| 0               | 私有收藏夹       | 0：公开<br />1：私有             |
+| 1               | 是否为默认收藏夹 | 0：默认收藏夹<br />1：其他收藏夹 |
 | 其他有待补充... |                  |                                  |
 
 **示例：**
@@ -304,7 +305,7 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 | id          | num  | 收藏夹ml         |                                           |
 | fid         | num  | 原始收藏夹mlid       | 去除两位mid尾号                           |
 | mid         | num  | 创建用户mid        |                                           |
-| attr        | num  | 收藏夹属性         | 转换成8-bit二进制处理<br />详细说明见下表 |
+| attr        | num  | 收藏夹属性         | [同上 attr](#获取指定用户创建的所有收藏夹信息) |
 | title       | str  | 收藏夹标题         |                                           |
 | cover       | str  | 收藏夹封面图片url  |                                           |
 | upper       | obj  | 收藏夹创建用户信息 |                                           |
@@ -315,12 +316,6 @@ curl -G 'https://api.bilibili.com/x/v3/fav/folder/created/list-all' \
 | state       | num  | 0, 1                  | 0: 正常；1:收藏夹已失效                              |
 | fav_state   | num  | 0                  | 作用尚不明确                              |
 | media_count | num  | 收藏夹总计视频数   |                                           |
-
-`attr`属性二进制值表：
-
-| 其他有待补充... | 1：默认收藏夹                    | 0：公开性            |
-| --------------- | -------------------------------- | -------------------- |
-|                 | 0：默认收藏夹<br />1：其他收藏夹 | 0：公开<br />1：私有 |
 
 `data`中的`list`数组中的对象中的`upper`对象：
 
