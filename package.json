@@ -4,19 +4,17 @@
   "repository": "https://github.com/SocialSisterYi/bilibili-API-collect.git",
   "author": "SocialSisterYi <1440239038@qq.com>",
   "license": "CC-BY-NC-4.0",
-  "dependencies": {
-    "markdown-it-task-lists": "^2.1.1"
-  },
   "scripts": {
     "dev": "vuepress dev",
     "build": "NODE_OPTIONS='--max-old-space-size=8192' vuepress build"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "^2.0.0-rc.19",
-    "@vuepress/plugin-search": "^2.0.0-rc.74",
-    "@vuepress/plugin-shiki": "^2.0.0-rc.74",
-    "@vuepress/theme-default": "^2.0.0-rc.74",
-    "sass-embedded": "^1.83.4",
-    "vuepress": "^2.0.0-rc.19"
+    "@vuepress/bundler-vite": "^2.0.0-rc.20",
+    "@vuepress/plugin-search": "^2.0.0-rc.82",
+    "@vuepress/plugin-shiki": "^2.0.0-rc.82",
+    "@vuepress/theme-default": "^2.0.0-rc.82",
+    "markdown-it-task-lists": "^2.1.1",
+    "sass-embedded": "^1.85.1",
+    "vuepress": "^2.0.0-rc.20"
   }
 }

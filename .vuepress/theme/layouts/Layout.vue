@@ -14,10 +14,6 @@
 </template>
 
 <style>
-  /* protect eyes (plain text) */
-  div[class*="language-"] pre code {
-    color: unset;
-  }
   /* README.md */
   .shields a {
     margin: auto .25em;
