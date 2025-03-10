@@ -1108,9 +1108,9 @@ mod tests {
 需要 [Alamofire](https://github.com/Alamofire/Alamofire) 和 [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) 库
 
 ```swift
-import Foundation
-import CommonCrypto
 import Alamofire
+import CommonCrypto
+import Foundation
 import SwiftyJSON
 
 func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
@@ -1124,35 +1124,39 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
         let currTime = round(Date().timeIntervalSince1970)
         params["wts"] = currTime
         params = params.sorted { $0.key < $1.key }.reduce(into: [:]) { $0[$1.key] = $1.value }
-        params = params.mapValues { String(describing: $0).filter { !"!'()*".contains($0) } }
+        params = params.mapValues { value in
+            if let doubleValue = value as? Double, doubleValue.truncatingRemainder(dividingBy: 1) == 0 {
+                return String(Int(doubleValue)).filter { !"!'()*".contains($0) }
+            }
+            return String(describing: value).filter { !"!'()*".contains($0) }
+        }
         let query = params.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
         let wbiSign = calculateMD5(string: query + mixinKey)
         params["w_rid"] = wbiSign
         return params
     }
     
-   func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
-       let headers: HTTPHeaders = [
-           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-           "Referer": "https://www.bilibili.com/"
-       ]
+    func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
+        let headers: HTTPHeaders = [
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Referer": "https://www.bilibili.com/"
+        ]
        
-       AF.request("https://api.bilibili.com/x/web-interface/nav", headers: headers).responseJSON { response in
-           switch response.result {
-           case .success(let value):
-               let json = JSON(value)
-               let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
-               let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
-               let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
-               let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
-               completion(.success((imgKey, subKey)))
-           case .failure(let error):
-               completion(.failure(error))
-           }
-       }
-   }
+        AF.request("https://api.bilibili.com/x/web-interface/nav", headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
+                let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
+                let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                completion(.success((imgKey, subKey)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 
-    
     func calculateMD5(string: String) -> String {
         let data = Data(string.utf8)
         var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
@@ -1174,7 +1178,7 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
         case .success(let keys):
             let spdParam = param.components(separatedBy: "&")
             var spdDicParam = [String: String]()
-            spdParam.forEach { pair in
+            for pair in spdParam {
                 let components = pair.components(separatedBy: "=")
                 if components.count == 2 {
                     spdDicParam[components[0]] = components[1]
@@ -1191,6 +1195,22 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
     }
 }
 
+// 使用示例
+biliWbiSign(param: "bar=514&foo=114&zab=1919810") {
+    signedQuery in
+    if let signedQuery = signedQuery {
+        print("签名后的参数: \(signedQuery)")
+    } else {
+        print("签名失败")
+    }
+}
+
+RunLoop.main.run()//程序类型为命令行程序时需要添加这行代码
+
+```
+
+```text
+签名后的参数: bar=514&wts=1741082093&foo=114&zab=1919810&w_rid=04775bb3debbb45bab86a93a1c08d12a
 ```
 
 
