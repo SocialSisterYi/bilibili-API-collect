@@ -476,8 +476,8 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/coins' \
 | access_key    | str  | APP 登录 Token           | APP 方式必要   |                                |
 | rid           | num  | 稿件 avid                | 必要           |                                |
 | type          | num  | 必须为2                  | 必要           |                                |
-| add_media_ids | nums | 需要加入的收藏夹 mlid      | 非必要(可选)   | 同时添加多个，用`,`（%2C）分隔 |
-| del_media_ids | nums | 需要取消的收藏夹 mlid      | 非必要(可选)   | 同时取消多个，用`,`（%2C）分隔 |
+| add_media_ids | nums | 需要加入的收藏夹 mlid      | 必要(可选)   | 同时添加多个，用`,`（%2C）分隔 |
+| del_media_ids | nums | 需要取消的收藏夹 mlid      | 必要(可选)   | 同时取消多个，用`,`（%2C）分隔 |
 | csrf          | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                                |
 
 **json回复：**
@@ -553,8 +553,8 @@ curl 'https://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 | ------------- | ---- | ---------------------------------- | ------------ | ------------------------------ |
 | rid           | num  | 稿件 avid                          | 必要         |                                |
 | type          | num  | 必须为2                            | 必要         |                                |
-| add_media_ids | nums | 需要加入的收藏夹 mlid              | 非必要(可选) | 同时添加多个，用`,`（%2C）分隔 |
-| del_media_ids | nums | 需要取消的收藏夹 mlid              | 非必要(可选) | 同时取消多个，用`,`（%2C）分隔 |
+| add_media_ids | nums | 需要加入的收藏夹 mlid              | 必要(可选) | 同时添加多个，用`,`（%2C）分隔 |
+| del_media_ids | nums | 需要取消的收藏夹 mlid              | 必要(可选) | 同时取消多个，用`,`（%2C）分隔 |
 | csrf          | str  | CSRF Token (即 Cookie 中 bili_jct) | 必要         |                                |
 | platform      | str  | 平台标识?                          | 非必要       | web端: web                     |
 | eab_x         | num  | 1                                  | 非必要       | 作用尚不明确                   |
@@ -584,15 +584,15 @@ curl 'https://api.bilibili.com/medialist/gateway/coll/resource/deal' \
 
 **示例:**
 
-将视频 `av1906473802` 添加到收藏夹 `1164192068` 中
+将视频 `av2` 添加到收藏夹 `645769214` 中
 
 ```shell
-curl -sX POST "https://api.bilibili.com/x/v3/fav/resource/deal" \
---data-urlencode "rid=1906473802" \
---data-urlencode  "type=2" \
+curl -X POST "https://api.bilibili.com/x/v3/fav/resource/deal" \
+--data-urlencode "rid=2" \
+--data-urlencode "type=2" \
 --data-urlencode "csrf=xxx" \
---data-urlencode "add_media_ids=1164192068" \
--b "SESSDATA=xxx; bili_jct=xxx"
+--data-urlencode "add_media_ids=1428261914" \
+-b "SESSDATA=xxx"
 ```
 
 <details>

@@ -1,4 +1,3 @@
-mkdocs/html/
 /.vuepress/.cache/
 /.vuepress/.temp/
 /.vuepress/dist/
@@ -6,3 +5,4 @@ mkdocs/html/
 .idea/
 .vscode/
 .DS_Store
+*.swp

@@ -243,6 +243,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [播放 & 下载地址（视频流）](docs/cheese/videostream_url.md)
 - [ ] [直播](docs/live)
     - [ ] [直播间基本信息](docs/live/info.md)
+    - [ ] [直播推荐](docs/live/recommend.md)
     - [ ] [直播分区](docs/live/live_area.md)
     - [ ] [直播间管理](docs/live/manage.md)
     - [ ] 直播间操作
