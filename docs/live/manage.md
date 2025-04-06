@@ -152,7 +152,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | -------- | ---- | ------------------------ | ------ | ----------------------------------- |
 | room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                |
 | area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)        |
-| platform | str  | 直播平台                 | 必要   | web端：<br />bililink：android_link |
+| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />web端：<br />bililink：android_link |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                     |
 
 **json回复：**
