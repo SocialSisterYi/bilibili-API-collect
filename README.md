@@ -250,6 +250,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [直播视频流](docs/live/live_stream.md)
     - [ ] [直播信息流](docs/live/message_stream.md)
     - [ ] [直播红包](docs/live/redpocket.md)
+    - [ ] [直播间表情包](docs/live/emoticons.md)
     - [ ] [直播间用户实用 API](docs/live/user.md)
     - [x] [直播间禁言相关](docs/live/silent_user_manage.md)
     - [ ] [关注UP直播情况](docs/live/follow_up_live.md)
