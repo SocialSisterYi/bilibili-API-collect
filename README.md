@@ -243,12 +243,14 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [播放 & 下载地址（视频流）](docs/cheese/videostream_url.md)
 - [ ] [直播](docs/live)
     - [ ] [直播间基本信息](docs/live/info.md)
+    - [ ] [直播推荐](docs/live/recommend.md)
     - [ ] [直播分区](docs/live/live_area.md)
     - [ ] [直播间管理](docs/live/manage.md)
     - [ ] 直播间操作
     - [ ] [直播视频流](docs/live/live_stream.md)
     - [ ] [直播信息流](docs/live/message_stream.md)
     - [ ] [直播红包](docs/live/redpocket.md)
+    - [ ] [直播间表情包](docs/live/emoticons.md)
     - [ ] [直播间用户实用 API](docs/live/user.md)
     - [x] [直播间禁言相关](docs/live/silent_user_manage.md)
     - [ ] [关注UP直播情况](docs/live/follow_up_live.md)
@@ -384,6 +386,7 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 - [bloomrpc/bloomrpc](https://github.com/bloomrpc/bloomrpc): GUI Client for GRPC Services
 - [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#)
 - [glideapps/quicktype](https://github.com/glideapps/quicktype): quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages. 一键生成多种语言的JSON反序列化所需类，以便于快速反序列化，有网页版
+- [SessionHu/json-apidoc-gen](https://github.com/SessionHu/json-apidoc-gen): Simple CLI tool for generating BAC document template
 
 <style scoped>
   .shields a {
