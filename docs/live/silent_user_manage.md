@@ -18,7 +18,7 @@
 | tuid       | str | 要禁言的uid    | 必要  |                    |
 | msg        | str | 要禁言的弹幕内容   | 非必要 |                    |
 | mobile_app | str | web        | 必要  | 定值"web"即可          |
-| hour | str | 禁言时长 | 必要 | -1为永久，0为本场直播 |
+| hour | num | 禁言时长 | 必要 | -1为永久，0为本场直播 |
 | csrf_token | str | CSRF Token | 必要  | cookie中的bili_jct字段 |
 | csrf       | str | CSRF Token | 必要  | cookie中的bili_jct字段 |
 | visit_id   | str | 不明         | 非必要 |                    |
