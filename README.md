@@ -112,6 +112,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [大会员操作](docs/vip/action.md)
 - [ ] [视频](docs/video)
     - [x] [视频分区一览 (分区代码)](docs/video/video_zone.md)
+    - [x] [视频分区一览 (分区代码) (v2)](docs/video/video_zone_v2.md)
     - [x] [基本信息](docs/video/info.md)
     - [x] [状态数](docs/video/status_number.md) (已失效)
     - [x] [快照](docs/video/snapshot.md)

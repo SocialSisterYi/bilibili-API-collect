@@ -1259,21 +1259,21 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 
 **正文参数（application/x-www-form-urlencoded）：**
 
-| 参数名                | 类型 | 内容                     | 必要性 | 备注                                                 |
-| --------------------- | ---- | ------------------------ | ------ | ---------------------------------------------------- |
-| msg[sender_uid]       | num  | 发送者mid                | 必要   | 必须为自己的 mid                                     |
-| msg[receiver_id]      | num  | 接收者id                 | 必要   | `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
-| msg[receiver_type]    | num  | 接收者类型               | 必要   | 1：用户<br />2：粉丝团                               |
-| msg[msg_type]         | num  | 消息类型                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md)<br />**此接口仅支持传入 `1`、`2` 或 `5`** |
-| msg[msg_status]       | num  | 消息状态                 | 非必要 | 恒为 `0`                                             |
-| msg[dev_id]           | str  | 设备id                   | 必要   | 实质上即 UUID（版本 4），**生成方式见下**            |
-| msg[timestamp]        | num  | 当前时间戳（秒）         | 必要   |                                                      |
-| msg[new_face_version] | num  | 表情包版本               | 非必要 | 提供 `0` 或者未提供本参数表示旧版表情包，此时 B 站会自动转换成新版表情包，例如 `[doge]` -> `[tv_doge]`；`1` 为新版 |
-| msg[content]          | str  | 消息内容                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md) |
-| csrf_token            | str  | CSRF Token（位于cookie） | 必要   |                                                      |
-| csrf                  | str  | CSRF Token（位于cookie） | 必要   |                                                      |
-| build                 | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
-| mobi_app              | str  | 平台标识                 | 非必要 | 可为 `web` 等                                        |
+| 参数名                  | 类型 | 内容                     | 必要性 | 备注                                                 |
+| ----------------------- | ---- | ------------------------ | ------ | ---------------------------------------------------- |
+| msg\[sender_uid\]       | num  | 发送者mid                | 必要   | 必须为自己的 mid                                     |
+| msg\[receiver_id\]      | num  | 接收者id                 | 必要   | `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| msg\[receiver_type\]    | num  | 接收者类型               | 必要   | 1：用户<br />2：粉丝团                               |
+| msg\[msg_type\]         | num  | 消息类型                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md)<br />**此接口仅支持传入 `1`、`2` 或 `5`** |
+| msg\[msg_status\]       | num  | 消息状态                 | 非必要 | 恒为 `0`                                             |
+| msg\[dev_id\]           | str  | 设备id                   | 必要   | 实质上即 UUID（版本 4），**生成方式见下**            |
+| msg\[timestamp\]        | num  | 当前时间戳（秒）         | 必要   |                                                      |
+| msg\[new_face_version\] | num  | 表情包版本               | 非必要 | 提供 `0` 或者未提供本参数表示旧版表情包，此时 B 站会自动转换成新版表情包，例如 `[doge]` -> `[tv_doge]`；`1` 为新版 |
+| msg\[content\]          | str  | 消息内容                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md) |
+| csrf_token              | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| csrf                    | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| build                   | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
+| mobi_app                | str  | 平台标识                 | 非必要 | 可为 `web` 等                                        |
 
 ---
 

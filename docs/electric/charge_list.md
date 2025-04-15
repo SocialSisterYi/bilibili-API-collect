@@ -120,7 +120,7 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 
 ## 获取视频充电鸣谢名单
 
-> https://api.bilibili.com/x/web-interface/elec/show 
+> https://api.bilibili.com/x/web-interface/elec/show
 
 *请求方式:GET*
 
@@ -469,7 +469,7 @@ curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
 | -------- | ---- | ---------- | ------------------- |
 | aid      | num  | 0          |                     |
 | bvid     | str  | 空         |                     |
-| elec_num | num  | 充电电池数 |                     |               
+| elec_num | num  | 充电电池数 |                     |
 | title    | str  | 空         |                     |
 | uname    | str  | 空         |                     |
 | avatar   | str  | 空         |                     |
