@@ -662,7 +662,7 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 | view_addit        | obj   | ？               | 作用尚不明确 |
 | guide             | null  | ？               | 作用尚不明确 |
 | query_tags        | null  | ？               | 作用尚不明确 |
-| participle        | array | 分词信息         | 用于搜索？   |
+| participle        | array | 分词信息         | 用于推荐     |
 | module_ctrl       | null  | ？               | 作用尚不明确 |
 | replace_recommend | bool  | ？               | 作用尚不明确 |
 
@@ -716,13 +716,13 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 `data`中的`view_addit`对象：
 
-| 字段  | 类型   | 内容    | 备注     |
-|-----|------|-------|--------|
-| 63  | bool | false | 作用尚不明确 |
-| 64  | bool | false | 作用尚不明确 |
-| 69  | bool | false | 作用尚不明确 |
-| 71  | bool | false | 作用尚不明确 |
-| 72  | bool | false | 作用尚不明确 |
+| 字段 | 类型 | 内容                 | 备注         |
+| ---- | ---- | -------------------- | ------------ |
+| 63   | bool | 是否不显示直播推荐   |              |
+| 64   | bool | 是否不显示活动推荐   |              |
+| 69   | bool | ？                   | 作用尚不明确 |
+| 71   | bool | 是否不显示标签与笔记 |              |
+| 72   | bool | ？                   | 作用尚不明确 |
 
 **示例：**
 
