@@ -2,6 +2,24 @@
 
 <img src="../../assets/img/battery-100.png" width="100" height="100"/>
 
+## 常量说明
+
+### 充电档位代码（`privilege_type`）与定价
+
+| 代码 | 定价（单位：元人民币） |
+| :--: | :--------------------: |
+| 10   | 6    |
+| 20   | 30   |
+| 30   | 50   |
+| 40   | 88   |
+| 50   | 128  |
+| 60   | 288  |
+| 70   | 588  |
+| 80   | 998  |
+| 100  | 18   |
+| 110  | 238  |
+| 130  | 68   |
+
 ## 获取包月充电列表
 
 > https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord
@@ -49,31 +67,38 @@
 
 数组`list`中的对象：
 
-| 字段      | 类型  | 内容            | 备注       |
-| --------- | ----- | --------------- | ---------- |
-| up_uid    | num   | 充电UP主mid     |            |
-| user_name | str   | 充电UP主昵称    |            |
-| user_face | str   | 充电UP主头像url |            |
-| item      | array | 充电详情        |            |
-| start     | num   | 开始充电时间    | 秒级时间戳 |
+| 字段             | 类型  | 内容                     | 备注       |
+| ---------------- | ----- | ------------------------ | ---------- |
+| up_uid           | num   | 充电UP主mid              |            |
+| user_name        | str   | 充电UP主昵称             |            |
+| user_face        | str   | 充电UP主头像url          |            |
+| item             | array | 充电详情                 |            |
+| start            | num   | 开始充电时间             | 秒级时间戳 |
+| high_level_state | num   | 是否可对UP主进行高档充电 |            |
+| elec_reply_state | num   | 是否可对UP主进行专属问答 | 0：否<br />1：是<br />2：（？） |
 
 数组`list`中的对象中的`item`数组：
 
-| 项   | 类型 | 内容     | 备注     |
-| ---- | ---- | -------- | -------- |
-| 0    | obj  | 充电详情 | 套了个娃 |
+| 项   | 类型 | 内容          | 备注     |
+| ---- | ---- | ------------- | -------- |
+| 0    | obj  | 充电档位1     |          |
+| n    | obj  | 充电档位(n+1) |          |
+| ……   | obj  | ……        | ……       |
+
 
 数组`item`中的对象：
 
 | 字段           | 类型                                          | 内容             | 备注             |
 | -------------- | --------------------------------------------- | ---------------- | ---------------- |
-| privilege_type | num                                           | 充电类型         | 10：普通包月充电<br />20：高档充电 |
+| privilege_type | num                                           | 充电档位代码     | 详见[充电档位代码与定价](#充电档位代码privilege_type与定价) |
 | icon           | str                                           | 充电图标         |                  |
-| name           | str                                           | `包月充电`       |                  |
-| expire_time    | num                                           | 充电过期时间     | 秒级时间戳       |
+| name           | str                                           | 充电档位名称     |                  |
+| expire_time    | num                                           | 该档位过期时间   | 秒级时间戳       |
 | renew          | 开启自动续费时：obj<br />关闭自动续费时：null | 充电自动续费详情 |                  |
+| start_time     | num                                           | 该档位生效时间   | 秒级时间戳       |
+| renew_list     | 开启自动续费时：array<br />关闭自动续费时：null | 充电自动续费列表 |                  |
 
-数组`item`中的对象中的`renew`对象：
+`renew`对象、`renew_list`数组中的对象：
 
 | 字段              | 类型 | 内容         | 备注                                              |
 | ----------------- | ---- | ------------ | ------------------------------------------------- |
@@ -86,6 +111,7 @@
 | signed_price      | num  | 下次续费金额 | 单位为千分之一元人民币                            |
 | pay_channel       | num  | 签约平台     | 2：微信支付<br />4：支付宝                        |
 | period            | num  | 下次充电天数 |                                                   |
+| mobile_app        | num  | 充电渠道     | 可为`android`等                                   |
 
 **示例：**
 
@@ -117,7 +143,7 @@ curl 'https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord' \
                     {
                         "privilege_type": 10,
                         "icon": "https://s1.hdslb.com/bfs/templar/york-static/lightning_icon@2x.png",
-                        "name": "包月充电",
+                        "name": "为TA充电",
                         "expire_time": 1703519999,
                         "renew": {
                             "uid": 425503913,
@@ -128,11 +154,29 @@ curl 'https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord' \
                             "signed_time": 1671618921,
                             "signed_price": 36000,
                             "pay_channel": 2,
-                            "period": 366
-                        }
+                            "period": 366,
+                            "mobile_app": "android"
+                        },
+                        "start_time": 1671618921,
+                        "renew_list": [
+                            {
+                                "uid": 425503913,
+                                "ruid": 2233,
+                                "goods_id": 174,
+                                "status": 1,
+                                "next_execute_time": 1703174400,
+                                "signed_time": 1671618921,
+                                "signed_price": 36000,
+                                "pay_channel": 2,
+                                "period": 366,
+                                "mobile_app": "android"
+                            }
+                        ]
                     }
                 ],
-                "start": 1669183804
+                "start": 1669183804,
+                "high_level_state": 1,
+                "elec_reply_state": 1
             },
             {
                 "up_uid": 293793435,
@@ -142,7 +186,7 @@ curl 'https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord' \
                     {
                         "privilege_type": 10,
                         "icon": "https://s1.hdslb.com/bfs/templar/york-static/lightning_icon@2x.png",
-                        "name": "包月充电",
+                        "name": "为TA充电",
                         "expire_time": 1681401599,
                         "renew": {
                             "uid": 425503913,
@@ -153,11 +197,29 @@ curl 'https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord' \
                             "signed_time": 1677760921,
                             "signed_price": 5000,
                             "pay_channel": 4,
-                            "period": 31
-                        }
+                            "period": 31,
+                            "mobile_app": "android"
+                        },
+                        "start_time": 1677760921,
+                        "renew_list": [
+                            {
+                                "uid": 425503913,
+                                "ruid": 293793435,
+                                "goods_id": 173,
+                                "status": 1,
+                                "next_execute_time": 1680364800,
+                                "signed_time": 1677760921,
+                                "signed_price": 5000,
+                                "pay_channel": 4,
+                                "period": 31,
+                                "mobile_app": "android"
+                            }
+                        ]
                     }
                 ],
-                "start": 1676033795
+                "start": 1676033795,
+                "high_level_state": 1,
+                "elec_reply_state": 1
             }
         ],
         "page": 1,
@@ -273,8 +335,8 @@ curl 'https://api.bilibili.com/x/upower/item/detail' \
                 {
                     "rank": 1,
                     "mid": 425503913,
-                    "nickname": "wuziqian211",
-                    "avatar": "https://i2.hdslb.com/bfs/face/390f4b18b8b15c1f2ecdb6ee44e572aa18b9b2d0.png"
+                    "nickname": "晨叶梦春",
+                    "avatar": "https://i2.hdslb.com/bfs/face/540ed71e2fb2ddd8967c21b392026c34fc15673e.jpg"
                 }
             ]
         },
@@ -333,6 +395,7 @@ curl 'https://api.bilibili.com/x/upower/item/detail' \
 
 | 字段           | 类型 | 内容         | 备注 |
 | -------------- | ---- | ------------ | ---- |
+| mid            | num  | UP主mid      |      |
 | nickname       | str  | UP主昵称     |      |
 | official_title | str  | UP主认证信息 |      |
 | avatar         | str  | UP主头像url  |      |
@@ -391,13 +454,14 @@ curl 'https://api.bilibili.com/x/upower/charge/follow/info' \
     "data": {
         "days": 17,
         "up_card": {
+            "mid": 293793435,
             "nickname": "社会易姐QwQ",
             "official_title": "",
             "avatar": "https://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg"
         },
         "user_card": {
-            "avatar": "https://i2.hdslb.com/bfs/face/390f4b18b8b15c1f2ecdb6ee44e572aa18b9b2d0.png",
-            "nickname": "wuziqian211"
+            "avatar": "https://i2.hdslb.com/bfs/face/540ed71e2fb2ddd8967c21b392026c34fc15673e.jpg",
+            "nickname": "晨叶梦春"
         },
         "remain_days": 15,
         "remain_less_1day": 0,
@@ -408,8 +472,8 @@ curl 'https://api.bilibili.com/x/upower/charge/follow/info' \
                 {
                     "rank": 1,
                     "mid": 425503913,
-                    "nickname": "wuziqian211",
-                    "avatar": "https://i2.hdslb.com/bfs/face/390f4b18b8b15c1f2ecdb6ee44e572aa18b9b2d0.png"
+                    "nickname": "晨叶梦春",
+                    "avatar": "https://i2.hdslb.com/bfs/face/540ed71e2fb2ddd8967c21b392026c34fc15673e.jpg"
                 }
             ]
         },
@@ -529,8 +593,8 @@ curl 'https://api.bilibili.com/x/upower/up/member/rank/v2' \
         "rank_info": [
             {
                 "mid": 425503913,
-                "nickname": "wuziqian211",
-                "avatar": "https://i2.hdslb.com/bfs/face/390f4b18b8b15c1f2ecdb6ee44e572aa18b9b2d0.png",
+                "nickname": "晨叶梦春",
+                "avatar": "https://i2.hdslb.com/bfs/face/540ed71e2fb2ddd8967c21b392026c34fc15673e.jpg",
                 "rank": 1,
                 "day": 31,
                 "expire_at": 0,
@@ -539,8 +603,8 @@ curl 'https://api.bilibili.com/x/upower/up/member/rank/v2' \
         ],
         "user_info": {
             "mid": 425503913,
-            "nickname": "wuziqian211",
-            "avatar": "https://i2.hdslb.com/bfs/face/390f4b18b8b15c1f2ecdb6ee44e572aa18b9b2d0.png",
+            "nickname": "晨叶梦春",
+            "avatar": "https://i2.hdslb.com/bfs/face/540ed71e2fb2ddd8967c21b392026c34fc15673e.jpg",
             "rank": 1,
             "day": 31,
             "expire_at": 1678723199,
