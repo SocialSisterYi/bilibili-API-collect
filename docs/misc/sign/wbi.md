@@ -1355,6 +1355,7 @@ import Data.ByteString.Char8 (pack)
 import qualified Data.Map.Strict as Map
 import Distribution.Utils.MD5 (md5, showMD5)
 import URIEncoder (encodeURIComponent)
+import Data.Time.Clock.System (getSystemTime, systemSeconds)
 
 mixinKeyEncTab :: [Int]
 mixinKeyEncTab = [
@@ -1378,15 +1379,18 @@ wbi imgKey subKey wts params =
   in orig ++ "&w_rid=" ++ showMD5 (md5 $ pack $ orig ++ getMixinKey imgKey subKey)
 
 main :: IO ()
-main = -- hard encode for test
-  let params = Map.fromList [("foo", "114")
+main = do -- hard encode for test
+  let params1 = Map.fromList [("aid", "2")]
+      params2 = Map.fromList [("foo", "114")
                             ,("bar", "514")
                             ,("hello", "世 界")
                             ]
-      wts = 1702204169
       imgKey = "7cd084941338484aae1ad9425b84077c"
       subKey = "4932caff0ff746eab6f01bf08b70ac45"
-  in putStrLn $ wbi imgKey subKey wts params
+  wts1 <- getSystemTime 
+  putStrLn $ wbi imgKey subKey (toInteger $ systemSeconds wts1) params1
+  wts2 <- getSystemTime 
+  putStrLn $ wbi imgKey subKey (toInteger $ systemSeconds wts2) params2
 ```
 
 `URIEncoder.hs`<!--(by DS)-->:
@@ -1465,5 +1469,6 @@ percentEncode byte = '%' : toHex byte
 
 输出:
 ```text
-bar=514&foo=114&hello=%E4%B8%96%20%E7%95%8C&wts=1702204169&w_rid=89f9002a49e1d13c07a28054a1cc2614
+aid=2&wts=1744823207&w_rid=a3cd246bd42c066932752b24694eaf0d
+bar=514&foo=114&hello=%E4%B8%96%20%E7%95%8C&wts=1744823207&w_rid=93acf59d85f74453e40cea00056c3daf
 ```
