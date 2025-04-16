@@ -121,7 +121,7 @@
 
 ## Demo
 
-含 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)、[Java](#Java)、[Kotlin](#Kotlin)、[Swift](#Swift)、[C++](#CPlusPlus)、[Rust](#Rust) 语言编写的 Demo 。
+含 [Python](#python)、[JavaScript](#javascript)、[Golang](#golang)、[C#](#csharp)、[Java](#java)、[Kotlin](#kotlin)、[Swift](#swift)、[C++](#cplusplus)、[Rust](#rust)、[Haskell](#haskell) 语言编写的 Demo 。
 
 ### Python
 
@@ -1340,4 +1340,130 @@ int main() {
 
 ```text
 avid=1755630705&cid=1574294582&fnval=4048&fnver=0&fourk=1&qn=32&wts=1717922933&w_rid=43571b838a1611fa121189083cfc1784
+```
+
+### Haskell
+
+无第三方依赖: `base`, `Cabal-syntax`, `bytestring`, `containers`<br />
+注: 此处使用自写的 URI 编码模块, 实际可用别的第三方库替代
+
+`Main.hs`:
+```hs
+module Main (wbi, main) where
+
+import Data.ByteString.Char8 (pack)
+import qualified Data.Map.Strict as Map
+import Distribution.Utils.MD5 (md5, showMD5)
+import URIEncoder (encodeURIComponent)
+
+mixinKeyEncTab :: [Int]
+mixinKeyEncTab = [
+  46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+  33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+  61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+  36, 20, 34, 44, 52
+  ]
+
+getMixinKey :: String -> String -> String
+getMixinKey imgKey subKey =
+  let s = imgKey ++ subKey
+  in map (\i -> s !! (mixinKeyEncTab !! i)) [0..31]
+
+join :: [String] -> String -> String
+join arr ins = concatMap (++ ins) (init arr) ++ last arr
+
+wbi :: String -> String -> Integer -> Map.Map String String -> String
+wbi imgKey subKey wts params =
+  let orig = join (map (\(k, v) -> encodeURIComponent k ++ "=" ++ encodeURIComponent v) (Map.toList $ Map.insert "wts" (show wts) params)) "&"
+  in orig ++ "&w_rid=" ++ showMD5 (md5 $ pack $ orig ++ getMixinKey imgKey subKey)
+
+main :: IO ()
+main = -- hard encode for test
+  let params = Map.fromList [("foo", "114")
+                            ,("bar", "514")
+                            ,("hello", "世 界")
+                            ]
+      wts = 1702204169
+      imgKey = "7cd084941338484aae1ad9425b84077c"
+      subKey = "4932caff0ff746eab6f01bf08b70ac45"
+  in putStrLn $ wbi imgKey subKey wts params
+```
+
+`URIEncoder.hs`<!--(by DS)-->:
+```hs
+module URIEncoder (encodeURIComponent) where
+
+import Data.Char (ord, chr, intToDigit)
+import Data.Bits (shiftL, shiftR, (.&.))
+import Data.List (isInfixOf)
+
+-- ES 19.2.6.4 encodeURIComponent ( uriComponent )
+encodeURIComponent :: String -> String
+encodeURIComponent input = case encode input "" of
+  Right result -> result
+  Left err -> error err
+
+-- ES 19.2.6.5 Encode ( string, extraUnescaped )
+encode :: String -> String -> Either String String
+encode string extraUnescaped = loop 0 string
+  where
+    alwaysUnescaped = ['A'..'Z'] ++ ['a'..'z'] ++ ['0'..'9'] ++ "-.!~*'()"
+    unescapedSet = alwaysUnescaped ++ extraUnescaped
+    
+    loop k str
+      | k >= length str = Right []
+      | otherwise = case codePointAt str k of
+          (Nothing, _) -> Left "Unpaired surrogate"
+          (Just (cp, _), newK) ->
+            if [str !! k] `isInfixOf` unescapedSet
+            then (str !! k :) <$> loop (k + 1) str
+            else do
+              bytes <- utf8Encode cp
+              let escaped = concatMap percentEncode bytes
+              rest <- loop newK str
+              Right (escaped ++ rest)
+
+codePointAt :: String -> Int -> (Maybe (Int, Int), Int)
+codePointAt s k
+  | k >= length s = (Nothing, k)
+  | otherwise =
+      let c1 = ord (s !! k)
+      in if 0xD800 <= c1 && c1 <= 0xDBFF && k+1 < length s
+         then let c2 = ord (s !! (k+1))
+              in if 0xDC00 <= c2 && c2 <= 0xDFFF
+                 then ( Just (0x10000 + ((c1 - 0xD800) `shiftL` 10) + (c2 - 0xDC00), 2)
+                     , k + 2 )
+                 else (Just (c1, 1), k + 1)
+         else (Just (c1, 1), k + 1)
+
+utf8Encode :: Int -> Either String [Int]
+utf8Encode cp
+  | cp < 0 = Left "Invalid code point"
+  | cp <= 0x007F = Right [cp]
+  | cp <= 0x07FF = Right
+      [ 0xC0 + (cp `shiftR` 6)
+      , 0x80 + (cp .&. 0x3F) ]
+  | cp <= 0xFFFF = Right
+      [ 0xE0 + (cp `shiftR` 12)
+      , 0x80 + ((cp `shiftR` 6) .&. 0x3F)
+      , 0x80 + (cp .&. 0x3F) ]
+  | cp <= 0x10FFFF = Right
+      [ 0xF0 + (cp `shiftR` 18)
+      , 0x80 + ((cp `shiftR` 12) .&. 0x3F)
+      , 0x80 + ((cp `shiftR` 6) .&. 0x3F)
+      , 0x80 + (cp .&. 0x3F) ]
+  | otherwise = Left "Code point out of range"
+
+percentEncode :: Int -> String
+percentEncode byte = '%' : toHex byte
+  where
+    toHex n = [hexDigit (n `div` 16), hexDigit (n `mod` 16)]
+    hexDigit x
+      | x < 10 = intToDigit x
+      | otherwise = chr (x - 10 + ord 'A')
+```
+
+输出:
+```text
+bar=514&foo=114&hello=%E4%B8%96%20%E7%95%8C&wts=1702204169&w_rid=89f9002a49e1d13c07a28054a1cc2614
 ```
