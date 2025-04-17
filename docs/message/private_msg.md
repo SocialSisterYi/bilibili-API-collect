@@ -1264,7 +1264,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
 | w_sender_uid | num | 发送者mid | 必要 | 必须为自己的 mid |
-| w_receiver_id | num | 接收者id | 必要 | `w_receiver_id` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| w_receiver_id | num | 接收者id | 必要 | 请求参数 `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
 | w_dev_id | str | 设备id | 必要 | 实质上即 UUID（版本 4），**生成方式见下** |
 | w_rid | str | Wbi 签名 | 必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
 | wts | str | UNIX 秒级时间戳 | 必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
