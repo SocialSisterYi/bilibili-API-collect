@@ -6,7 +6,7 @@
 
 [bilibili-API-collect](https://github.com/SocialSisterYi/bilibili-API-collect) 项目（简称 BAC 或 b-a-c）是一个仅用于学习研究、社区开源、公益性质的 [B 站（哔哩哔哩）](https://www.bilibili.com/)API（应用程序接口）文档，使用 [CC-BY-NC 4.0 协议](https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/LICENSE)开源，它将无差别收集整理相关的**主站业务接口**。
 
-该项目使用 [MarkDown](https://zh.wikipedia.org/zh-cn/Markdown) 语法进行文档书写，按照业务类型及功能以**路径**＋**文件**形式索引，任何用户都可通过 Issue、Pull Request 与 Discussion 提供自己分析出的接口地址与使用说明。
+该项目使用 [Markdown](https://zh.wikipedia.org/zh-cn/Markdown) 语法进行文档书写，按照业务类型及功能以**路径**＋**文件**形式索引，任何用户都可通过 Issue、Pull Request 与 Discussion 提供自己分析出的接口地址与使用说明。
 
 本项目收集的接口类型包括但不限于 REST API、gRPC、WebSocket，文档内统一优先使用安全套接字协议，如 `https`、`securityRpc`、`wss`。
 
@@ -16,9 +16,9 @@
 
 提交 Issue 请遵守以下原则：
 
-1. 标题需要点明 API 的用处，如 `[新增请求] 新增 xx 接口`、`[更新请求] xx 接口地址已失效`、`[更新请求] xx 接口的参数有变化`，切勿仅填写 `补充`、`修复` 等标题
+1. 标题需要点明 API 的用处, `<title>` 要替换为标题主要内容而不是保留不动，切勿仅填写 `补充`、`修复`，形式良好的标题可以是 `[新增请求] 新增 xx 接口`、`[更新请求] xx 接口地址已失效`、`[更新请求] xx 接口的参数有变化`
 2. 正文请按照 Issue 模板进行填写，标明 API 来源（Web、Android、iOS、TV 等）、API 类型（REST、gRPC、WebSocket 等）、API 地址
-3. 详情描述需要提供该 API 的使用场景、请求及响应字段等，可附上原始抓包记录；在更新时还需指出原文档中与最新 API 行为不符之处，并附上已知的最新改动。例如：“在前端页面某地址 / APP 某界面访问某 API（标明地址），它的某参数与文档中不符（标明文档地址）”
+3. 详情描述需要提供该 API 的使用场景、请求及响应字段等，可附上原始抓包记录 (文本格式优先)；在更新时还需指出原文档中与最新 API 行为不符之处，并附上已知的最新改动。例如：“在前端页面某地址 / APP 某界面访问某 API（标明地址），它的某参数与文档中不符（标明文档地址）”
 
 发起 Discussion 请遵守以下原则：
 
@@ -69,27 +69,27 @@ Telegram 交流群主要用作 [BAC 项目](https://github.com/SocialSisterYi/bi
 
 ### 路径
 
-路径层级应当与文档目录一致，以文件夹的形式存放在项目中的 `/docs` 路径下，命名统一使用英文小写，如 `video`、`danmaku`、`comment`
+路径层级应当与文档目录一致，以文件夹的形式存放在项目中的 `/docs` 路径下，命名统一使用英文小写，如 `video`、`danmaku`、`comment`, 不建议出现 `&` 等特殊字符
 
 二级、三级路径应当存在二级三级目录，可选添加 `README.md` 以描述该子目录
 
 ### 文件
 
-各个子接口集整理为 MarkDown（md）文件，命名统一使用英文小写，如 `info.md`、`action.md`、`list.md`
+各个子接口集整理为 Markdown (.md) 文件，命名统一使用英文小写，如 `info.md`、`action.md`、`list.md`
 
 文档文件中用于存放相关的接口的说明，如 `video/` 下的 `info.md`，存在 `查询视频基本信息`、`查询视频简介`、`查询视频分P列表` 等内容
 
 ## Markdown 文档内容格式
 
-文档使用 [Vuepress](https://vuepress.vuejs.org/) 生成，可以使用 [Vuepress md 扩展语法](https://vuepress.vuejs.org/guide/markdown.html)编写
+文档使用 [VuePress](https://vuepress.vuejs.org/) 生成，可以使用 [VuePress Markdown 扩展语法](https://vuepress.vuejs.org/guide/markdown.html)编写
 
-注：以下文档范式可根据**实际情况**进行调整
+注：以下文档范式可根据**实际情况**进行调整, 你也可以使用 `json-apidoc-gen` 工具直接生成模板自行填充内容
 
 ### 头部
 
 文档首行为**一级标签**格式标题，如 `# 用户基本信息`
 
-**文档头部不再需要手写索引**，索引由 Vuepress 自动生成
+**文档头部不需要手写索引**，索引由 VuePress 自动生成
 
 ### 接口说明
 
@@ -121,7 +121,7 @@ e.g.：
 
 **请求参数**应在**接口说明**的下方，应注明参数类型 url 参数或正文参数（正文参数应注明 content-type，如 `application/x-www-form-urlencoded` 或 `multipart/form-data`），使用**加粗**语法
 
-对象的字段及其含义使用**表格**进行整理，表头统一依次为 `参数名`、`类型`、`内容`、`必要性`、`备注`，类型为 `num`、`str`、`bool`、`nums`、`strs`、`file` 等，必要性为 `必要`、`非必要`、`必要 (可选)` 等，表格内每个字段为一行
+对象的字段及其含义使用**表格**进行整理，表头统一依次为 `参数名`、`类型`、`内容`、`必要性`、`备注`，类型为 `num`、`str`、`bool`、`nums`、`strs`、`file` 等 (未来可能会统一改为基于 TypeScript 的类型系统)，必要性为 `必要`、`非必要`、`必要 (可选)` 等，表格内每个字段为一行
 
 e.g.：
 
@@ -132,13 +132,13 @@ e.g.：
 
 **响应正文**应在**请求参数**的下方，接口响应的数据格式应标注，如 `JSON 回复`、`XML 回复`、`ProtoBuf 回复`，使用**加粗**语法
 
-JSON Object 或 ProtoBuf Message 应以对象的**表格**形式书写，表头为 `根对象` 或 `xx 中的 yy 对象`，若对象位于数组中则为 `xx 数组中的对象`
+JSON Object 或 ProtoBuf Message 应以对象的**表格**形式书写，表头为 `根对象` 或 `xx 中的 yy 对象` 或 `xx.yy.zz 对象`，若对象位于数组中则为 `xx 数组中的对象` 或 `xx[] 中的对象`
 
 表头统一依次为 `字段`、`类型`、`内容`、`备注`，类型为 JSON / Protobuf 的标准类型，如 `num`、`str`、`bool`、`obj`、`array`、`null` 等
 
 不明确定义的字段说明在内容的末尾添加问号，如 `播放数？`；定义尚未明确的字段使用 `（？）` 在内容中占位，并在备注中填写 `作用尚不明确`
 
-多个对象及数组，使用**遍历树**的顺序进行排列
+多个对象及数组，使用**遍历树**的顺序进行排列, 若数组中的每一项结构均相同也可以直接省略为像 `xxx 数组中的对象` 这样的格式
 
 e.g.：
 
@@ -168,13 +168,13 @@ e.g.：
 
 **示例**部分位于所有**响应正文**部分下方，需要**加粗**格式，分为请求命令示例与响应体示例两部分
 
-请求命令示例为一段可测试该接口的 curl 命令或 Python 脚本，使用**代码块**语法书写，命令应当尽可能简短、便于使人阅读
+请求命令示例为一段可测试该接口的 cURL 命令或某种编程语言的代码，使用**代码块**语法书写，命令应当尽可能简短、便于使人阅读, 代码缩进为 **2** 个 **空格 (U+0020)**
 
 示例命令中的认证信息应做**脱敏处理**，如 Cookie、Token、access_key 等，可替换为 `xxx` 占位
 
 示例命令前后可以适当添加一些文字说明
 
-响应体示例为一段格式化后的 JSON 或 ProtoBuf Message，使用**代码块**语法书写，并使用 `<details>` 标签进行折叠
+响应体示例为一段格式化后的 JSON 或 ProtoBuf Message，使用**代码块**语法书写，并使用 `<details>` 标签进行折叠, 仍一律使用 **2** 个 **空格** 进行缩进
 
 e.g.：
 
@@ -258,6 +258,26 @@ message Author {
 
 ## 文档提交
 
-使用 Pull Request 将修改后的文档提交到 `master` 分支，标题需写明提交的内容
+### 拉取 (Pull) 与 提交 (Commit)
 
-（TODO）
+本项目仓库仅托管于 GitHub, 使用 Git 作为版本控制系统, 你需要对两者有基础的了解
+
+请先 fork, 然后在自己的 fork 上进行修改
+
+提交的标题不要使用默认的 `Update xxx`, 建议遵循 [Conventional Commits (约定式提交) 规范](https://www.conventionalcommits.org/zh-hans/v1.0.0/), 标题语言可根据个人习惯
+
+当发现远程与本地仓库不一致时, 若你操作的 fork 的 branch 无打开的 PR, 建议使用变基拉取, 而不是生成一个额外的合并提交的合并拉取, 反之则相反
+
+移动文件请使用 `git mv`, 而不是删除并添加同一个文件于不同位置 (该问题在 VSCode 的 GUI 版 Git 中存在)
+
+### 拉取请求 (Pull Request)
+
+使用 拉取请求 (Pull Request, PR) 将修改后的文档提交到 `master` 分支，标题需写明修改或新增的内容, `gh_pages` 分支将在 PR 合并后自动更新
+
+如果你还没有完成计划的全部修改, 请创建 Draft Pull Request 表示你还没有做好被合并的准备<!--(精神可嘉值得鼓励)-->
+
+PR 正文使用 **无序列表** 写明更改的每一项内容, 可以使用复选框表明进度, 需要关闭的 Issue 请使用 `close #xxxx` 这样的格式一并包含在内
+
+如果内容包含代码, 请一并提供测试的输入与输出的文本或截图, 最好可以附上完整的测试环境或相关可执行文件
+
+PR 合并后, 请及时删除或更新分支. 特别是在使用压缩合并或变基合并后, 请 `Discard changes` 或直接删除分支, 以免在下一次 PR 后出现重复相同提交的问题
