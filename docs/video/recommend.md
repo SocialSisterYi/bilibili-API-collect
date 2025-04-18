@@ -351,7 +351,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 | 字段                     | 类型 | 内容               | 备注                                      |
 |--------------------------|------|--------------------|-------------------------------------------|
 | av_feature               | null |                    |                                           |
-| business_info            | obj  | 商业推广信息       | 无为null, 此处无参考意义                  |
+| business_info            | obj  | 商业推广信息       | 无为null<br />对于推广内容，视频信息会在这个dict的"archive"属性下 |
 | bvid                     | str  | 视频bvid           |                                           |
 | cid                      | num  | 稿件cid            |                                           |
 | dislike_switch           | num  | 1                  | 显示不感兴趣开关?                         |

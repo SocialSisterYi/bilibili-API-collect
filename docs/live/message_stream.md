@@ -6,6 +6,10 @@
 
 *请求方法: GET*
 
+认证方式: Cookie(SESSDATA)
+
+可以选择进行认证，若未认证视作未登录，将会受到限制，详见后续内容。
+
 **URL参数：**
 
 | 参数名 | 类型 | 内容         | 必要性 | 备注 |
@@ -100,7 +104,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 
 **注: 特别的**, WS 与 WSS 连接地址带有路径 `/sub`, 如 `wss://broadcastlv.chat.bilibili.com:443/sub`.
 
-**再注:** B 站更新了隐私政策, 连接建立 5 分钟左右, 若该连接认证时传入信息来自未登录用户, 会提示 `为保护用户隐私，未注册登陆用户将无法查看他人昵称`, 随后所有发送弹幕的用户 mid 都为 `0`, 用户名部分也使用 `*` 保护, 参见 [#732](https://github.com/SocialSisterYi/bilibili-API-collect/issues/732)
+**再注:** B 站更新了隐私政策, 连接建立后, 若该连接认证时传入信息来自未登录用户, 会提示 `为保护用户隐私，未注册登陆用户将无法查看他人昵称`, 随后部分数据包（如“弹幕”、“进场或关注消息”）的用户 mid 都为 `0`, 用户名部分也使用 `*` 保护, 部分房间受到豁免, 参见 [#732](https://github.com/SocialSisterYi/bilibili-API-collect/issues/732)
 
 操作流程 (伪代码):
 
@@ -149,6 +153,8 @@ while (!s.isclosed()) {
 *方向: 上行*
 
 注: 连接成功后 5 秒内发送, 否则强制断开连接
+
+再注: 若`uid`字段填写的是用户mid，则通过`获取信息流认证密钥`接口使用的认证信息所属用户mid必须与`uid`字段相同，并正确传递认证密钥，否则强制断开连接。
 
 **JSON正文:**
 
@@ -370,7 +376,7 @@ while (!s.isclosed()) {
 | show_player_type | num  | 0?           |      |
 | user             | obj  | 用户相关信息 |      |
 
-`info[0[[15].extra` 表示的对象:
+`info[0][15].extra` 表示的对象:
 
 见下方 JSONC
 
@@ -681,7 +687,7 @@ while (!s.isclosed()) {
 
 </details>
 
-#### 连续弹幕消息 (DM_INTERACTION)
+#### 交互信息合并 (DM_INTERACTION)
 
 注: 连续多条相同弹幕时触发
 
@@ -696,14 +702,21 @@ while (!s.isclosed()) {
 
 `data` 对象:
 
-| 字段   | 类型 | 内容     | 备注 |
-| ------ | ---- | -------- | ---- |
-| id     | num  | 事件 ID  |      |
-| status | num  | 状态     |      |
-| type   | num  | 事件类型 |      |
-| data   | str  | 事件数据 |      |
+| 字段     | 类型 | 内容     | 备注 |
+| -------- | ---- | -------- | ---- |
+| id       | num  | 事件 ID  |      |
+| status   | num  | 状态     |      |
+| type     | num  | 事件类型 | 102:弹幕<br />103:<br />104:送礼<br />105:分享<br />106:点赞 |
+| data     | str  | 事件数据 | 一个JSON字符串 |
+| dmsource | num  |          |      |
 
-`data.data` 对象:
+`data.data` 字符串对象:
+
+内容格式取决于`data.type`的类型，下面将按照`data.data(类型)`进行区分标记。
+
+温馨提示: 要记得先解析`data.data`内的JSON字符串，不要直接使用哦。
+
+`data.data(102)` 对象: (弹幕)
 
 | 字段                 | 类型  | 内容                 | 备注 |
 | -------------------- | ----- | -------------------- | ---- |
@@ -712,7 +725,7 @@ while (!s.isclosed()) {
 | card_appear_interval | num   | 弹窗出现时间间隔     |      |
 | send_interval        | num   | 发送时间间隔         |      |
 
-`data.data.combo[n]` 对象:
+`data.data(102).combo[n]` 对象:
 
 | 字段          | 类型 | 内容           | 备注          |
 | ------------- | ---- | -------------- | ------------- |
@@ -724,10 +737,47 @@ while (!s.isclosed()) {
 | left_duration | num  | 左移时长       |               |
 | fade_duration | num  | 淡化时长       |               |
 
+`data.data(104)` 对象: (送礼)
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| fade\_duration | num |  |  |
+| cnt | num | 投喂计数 |  |
+| card_appear_interval | num |  |  |
+| suffix\_text | str | 提示文本 | `人在投喂` |
+| reset\_cnt | num |  |  |
+| display\_flag | num |  |  |
+| gift\_id | num | 礼物 ID |  |
+| gift_alert_message | str |  |  |
+
+`data.data(105)` 对象: (分享)
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| fade\_duration | num |  |  |
+| cnt | num | 分享计数 |  |
+| card_appear_interval | num |  |  |
+| suffix\_text | str | 提示文本 | `人分享了直播间` |
+| reset\_cnt | num |  |  |
+| display\_flag | num |  |  |
+
+`data.data(106)` 对象: (点赞)
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| fade\_duration | num |  |  |
+| cnt | num | 点赞计数 |  |
+| card_appear_interval | num |  |  |
+| suffix\_text | str | 提示文本 | `人正在点赞` |
+| reset\_cnt | num |  |  |
+| display\_flag | num |  |  |
+
 **示例:**
 
 <details>
 <summary>查看正文示例:</summary>
+
+type===102
 
 ```json
 {
@@ -756,6 +806,51 @@ while (!s.isclosed()) {
 }
 ```
 
+type===104
+
+```json
+{
+	"cmd": "DM_INTERACTION",
+	"data": {
+		"data": "{\"fade_duration\":10000,\"cnt\":5,\"card_appear_interval\":0,\"suffix_text\":\"人在投喂\",\"reset_cnt\":0,\"display_flag\":1,\"gift_id\":33988,\"gift_alert_message\":\"投喂一个%s支持主播\"}",
+		"dmscore": 36,
+		"id": 85744481752576,
+		"status": 5,
+		"type": 104
+	}
+}
+```
+
+type===105
+
+```json
+{
+	"cmd": "DM_INTERACTION",
+	"data": {
+		"data": "{\"fade_duration\":10000,\"cnt\":1,\"card_appear_interval\":0,\"suffix_text\":\"人分享了直播间\",\"reset_cnt\":0,\"display_flag\":1}",
+		"dmscore": 36,
+		"id": 85743053669888,
+		"status": 4,
+		"type": 105
+	}
+}
+```
+
+type===106
+
+```json
+{
+	"cmd": "DM_INTERACTION",
+	"data": {
+		"data": "{\"fade_duration\":10000,\"cnt\":11,\"card_appear_interval\":0,\"suffix_text\":\"人正在点赞\",\"reset_cnt\":1,\"display_flag\":1}",
+		"dmscore": 36,
+		"id": 66159395305984,
+		"status": 5,
+		"type": 106
+	}
+}
+```
+
 </details>
 
 #### 进场或关注消息 (INTERACT_WORD)
@@ -780,7 +875,7 @@ while (!s.isclosed()) {
 | fans_medal | obj | 粉丝勋章 |  |
 | identities | num | 待调查 |  |
 | is_spread | num | 待调查 |  |
-| msg_type | num  | 1为进场，2为关注 |  |
+| msg_type | num  | 1为进场，2为关注，3为分享 |  |
 | roomid | num | 房间号 |  |
 | is_spread | num  | 待调查 |  |
 | is_spread | num  | 待调查 |  |
@@ -1675,7 +1770,7 @@ while (!s.isclosed()) {
 | ---- | ---- | ------ | --------- |
 | cmd | str | `NOTICE_MSG` |  |
 | id | num | 待调查 | |
-| name | str | 通知名 | |
+| name | str | 通知名 |  |
 | full | obj | 完整显示信息? | |
 | half | obj | 半部显示信息? | | |
 | side | obj | 边缘显示信息? | |
@@ -1805,25 +1900,50 @@ while (!s.isclosed()) {
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
 | cmd | str | `PREPARING` | |
-| round | num | 轮播状态:<br/>1正在轮播<br/>0未轮播 | |
-| roomid | num | 直播间ID | 未知是真实ID还是短号 | |
+| round | num | 轮播状态:<br/>1正在轮播<br/>0未轮播 | 开启轮播时存在 |
+| roomid | str | 直播间ID | 未知是真实ID还是短号 | 类型似乎从num改为str |
+| msg\_id | str | 信息id? |  |
+| p\_is\_ack | bool |  | 未知 |
+| p\_msg\_type | num | `1` | 未知 |
+| send\_time | num | 发送时间 | UNIX 毫秒时间戳 |
 
 **示例:**
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
+有启用轮播:
+
 ```json
 {
   "cmd": "PREPARING",
+  "msg_id": "26964930181741056:1000:1000",
+  "p_is_ack": true,
+  "p_msg_type": 1,
+  "roomid": "1899237171",
   "round": 1,
-  "roomid": "8618057"
+  "send_time": 1739985402716
+}
+```
+
+未启用轮播:
+
+```json
+{
+  "cmd": "PREPARING",
+  "msg_id": "27040425357932032:1000:1000",
+  "p_is_ack": true,
+  "p_msg_type": 1,
+  "roomid": "1017",
+  "send_time": 1740129398337
 }
 ```
 
 </details>
 
 #### 直播开始 (LIVE)
+
+注：请求了开始直播接口、开始向服务器推流时下发。
 
 **JSON消息:**
 
@@ -1832,19 +1952,19 @@ while (!s.isclosed()) {
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
 | cmd | str | `LIVE` |  |
-| live_key | str | ? |  |
+| live_key | str | 标记直播场次的key | 与开始直播接口获得的live_key相同 |
 | voice_background | str | ? |  |
 | sub_session_key | str | ? |  |
-| live_platform | str | 开播平台? |  |
+| live_platform | str | 开播平台? | 推测由开播接口决定 |
 | live_model | num | ? |  |
-| live_time | num | 开播时间 | UNIX 秒级时间戳 |
+| live_time | num | 开播时间 | UNIX 秒级时间戳，只有请求了开始直播后立刻下发的那个数据包里存在 |
 | roomid | num | 直播间号 |  |
 
 **示例:**
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "LIVE",
@@ -2000,6 +2120,45 @@ while (!s.isclosed()) {
   "data": {
     "count": 4
   }
+}
+```
+
+</details>
+
+#### 未登录通知 (LOG_IN_NOTICE)
+
+注：未使用认证信息进行登录将会下发此数据包，通常于认证包回复后下发，在后续时间里也有可能会下发；部分受到豁免的直播间不会下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `LOG_IN_NOTICE` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| notice\_msg | str | 通知内容 |  |
+| image\_web | str | 在网页端使用的通知图片 |  |
+| image\_app | str | 在app端使用的图片 | (未确认) |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "LOG_IN_NOTICE",
+	"data": {
+		"notice_msg": "为保护用户隐私，未登录无法查看他人昵称",
+		"image_web": "http://i0.hdslb.com/bfs/dm/75e7c16b99208df259fe0a93354fd3440cbab412.png",
+		"image_app": "http://i0.hdslb.com/bfs/dm/b632f7dcd3acf47deffb5f9ccc9546ae97a3415b.png"
+	}
 }
 ```
 
@@ -3006,17 +3165,19 @@ while (!s.isclosed()) {
 |    字段    | 类型 |  内容  |    备注   |
 | ---------- | --- | ------ | --------- |
 | title | str | 直播间标题 | |
-| area_id | num | 当前直播间所属分区的ID | |
-| parent_area_id | num | 待调查 | |
-| area_name | str | 当前直播间所属分区的名称 | |
-| parent_area_name | str | 待调查 | |
-| live_key | str | 待调查 | |
-| sub_session_key | str | 待调查 | |
+| area_id | num | 当前直播间所属二级分区的ID | |
+| parent_area_id | num |  当前直播间所属一级分区的ID | |
+| area_name | str | 当前直播间所属二级分区的名称 | |
+| parent_area_name | str |  当前直播间所属一级分区名称 | |
+| live_key | str | 标记直播场次的key | 未开播更新直播间信息时为`"0"` |
+| sub_session_key | str | 待调查 | 未开播更新直播间信息时为`""`(空字符串) |
 
 **示例:**
 
 <details>
 <summary>查看消息示例:</summary>
+
+已开播:
 
 ```json
 {
@@ -3030,6 +3191,68 @@ while (!s.isclosed()) {
         "live_key": "320830629635915849",
         "sub_session_key": "320830629635915849sub_time:1673690546"
     }
+}
+```
+
+未开播:
+
+```json
+{
+  "cmd": "ROOM_CHANGE",
+  "data": {
+    "title": "随缘",
+    "area_id": 216,
+    "parent_area_id": 6,
+    "area_name": "我的世界",
+    "parent_area_name": "单机游戏",
+    "live_key": "0",
+    "sub_session_key": ""
+  }
+}
+```
+
+</details>
+
+#### 直播间内容审核报告 (ROOM_CONTENT_AUDIT_REPORT)
+
+注：这个数据包需要更新直播间标题且使用主播的登录信息才会下发，更新直播间标题后一般不会立刻下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ROOM_CONTENT_AUDIT_REPORT` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| audit_content_type | num | 审核内容类型? |  |
+| room\_id | num | 直播间ID | 未知是真实ID还是短号 |
+| anchor\_uid | num | 主播的用户mid |  |
+| audit\_status | num | 审核状态? |  |
+| audit\_title | str | 被审核的直播间标题 |  |
+| audit\_reason | str | 审核结果 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "ROOM_CONTENT_AUDIT_REPORT",
+	"data": {
+		"audit_content_type": 1,
+		"room_id": 1899237171,
+		"anchor_uid": 438160221,
+		"audit_status": 2,
+		"audit_title": "崩坏学园2",
+		"audit_reason": "一审通过"
+	}
 }
 ```
 
@@ -3378,6 +3601,320 @@ while (!s.isclosed()) {
   "cmd": "CUT_OFF",
   "msg": "违反直播言论规范，请立即调整",
   "roomid": 23993070
+}
+```
+
+</details>
+
+#### 切断V2 (CUT_OFF_V2)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `CUT_OFF_V2` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cut_off_scene | num |  |  |
+| timestamp | num | 操作时间戳 | UNIX 秒时间戳 |
+| cut_off_version | num | 切断提示信息版本? |  |
+| cut_off_data | obj | 切断提示信息 |  |
+
+`data.cut_off_data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cut_off_title | str | 对话框窗口标题 |  |
+| cut\_off\_message\_list | array | 对话框正文列表 |  |
+| cut\_off\_tip\_list | array | 对话框提示信息列表 |  |
+| cut\_off\_button\_list | array | 对话框按钮列表 |  |
+
+`data.cut_off_data.cut_off_message_list` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| 0 | obj | 首个正文信息 |  |
+| … | obj | 单个正文信息 |  |
+| i | obj | 最后正文信息 |  |
+
+`data.cut_off_data.cut_off_message_list[i]` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| type | num | 显示类别 | `1`:一个“`label`：`content`”格式的信息 |
+| label | str | 标签 |  |
+| content | str | 内容 |  |
+
+`data.cut_off_data.cut_off_tip_list` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| 0 | obj | 首个提示行信息 |  |
+| … | obj | 单个提示行信息 |  |
+| i | obj | 最后提示行信息 |  |
+
+`data.cut_off_data.cut_off_tip_list[i]` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| show\_platform | array | 要在哪个客户端显示的指代 |  |
+| message_list | array | 提示信息列表 |  |
+
+`data.cut_off_data.cut_off_tip_list[i].message_list` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+|:---:| --- | --- | --- |
+| 0 | obj | 首个提示组件信息 |  |
+| … | obj | 单个提示组件信息 |  |
+| i1 | obj | 最后提示组件信息 |  |
+
+`data.cut_off_data.cut_off_tip_list[i].message_list[i1]` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| type | num | 显示类型 | `1`:纯文本<br />`2`:链接 |
+| content | str | 显示文本 |  |
+| link_url | str | 链接 | type为2时有内容 |
+
+`data.cut_off_data.cut_off_button_list` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| 0 | obj | 首个按钮信息 |  |
+| … | obj | 单个按钮信息 |  |
+| i | obj | 最后按钮信息 |  |
+
+`data.cut_off_data.cut_off_button_list[i]` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| show_platform | array | 要在那个客户端显示的指代 | `1`和`2`可能是手机直播姬<br />`3`和`4`可能是pc直播姬或网页直播姬 |
+| button\_text | str | 按钮文本 |  |
+| button\_action | num | 按钮操作 | `1`:关闭窗口?<br />`2`:跳转到链接? |
+| button_link_url | str | 跳转链接 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "CUT_OFF_V2",
+	"data": {
+		"cut_off_scene": 1,
+		"timestamp": 1731590280,
+		"cut_off_version": 1,
+		"cut_off_data": {
+			"cut_off_title": "违规提示",
+			"cut_off_message_list": [
+				{
+					"type": 1,
+					"label": "处罚结果",
+					"content": "切断本场直播"
+				},
+				{
+					"type": 1,
+					"label": "违规原因",
+					"content": "您本场直播存在挂机、录播等消极直播行为，因此直播被切断，请您及时整改"
+				},
+				{
+					"type": 1,
+					"label": "处罚时间",
+					"content": "2024年11月14日21时17分"
+				}
+			],
+			"cut_off_tip_list": [
+				{
+					"show_platform": [
+						3,
+						4
+					],
+					"message_list": [
+						{
+							"type": 1,
+							"content": "请在",
+							"link_url": ""
+						},
+						{
+							"type": 2,
+							"content": "【处罚中心】",
+							"link_url": "https://link.bilibili.com/p/center/index?my-room/violation-records#/my-room/violation-records"
+						},
+						{
+							"type": 1,
+							"content": "查看你的违规记录",
+							"link_url": ""
+						}
+					]
+				}
+			],
+			"cut_off_button_list": [
+				{
+					"show_platform": [
+						1,
+						2
+					],
+					"button_text": "了解详情",
+					"button_action": 2,
+					"button_link_url": "https://live.bilibili.com/p/html/live-anchor-galaxy/violation_records/mobile.html?-Abrowser=live&is_live_webview=1"
+				},
+				{
+					"show_platform": [
+						3,
+						4
+					],
+					"button_text": "我知道了",
+					"button_action": 1,
+					"button_link_url": ""
+				}
+			]
+		}
+	}
+}
+```
+
+</details>
+
+#### 直播对话框 (ANCHOR_ECOLOGY_LIVING_DIALOG)
+
+注：推测在自动检测到画面不怎么变化且没人聊天时警告下发，见[#1139(issue正文)](https://github.com/SocialSisterYi/bilibili-API-collect/issues/1139#issue-2657488653)。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ANCHOR_ECOLOGY_LIVING_DIALOG` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| dialog\_scene | num |  |  |
+| timestamp | num | 触发时间戳 | UNIX 秒时间戳 |
+| valid_timestamp | num |  |  |
+| dialog\_top\_vertical\_img | str |  |  |
+| dialog\_top\_landscape_img | str |  |  |
+| dialog\_title | str | 对话框标题 |  |
+| dialog_message_list | array | 对话框正文列表 | 参见`CUT_OFF_V2` |
+| dialog_tip_list | array | 对话框提示信息列表 | 参见`CUT_OFF_V2` |
+| dialog_button_list | array | 对话框按钮列表 | 参见`CUT_OFF_V2` |
+
+`data.dialog_message_list` 数组:
+
+同`CUT_OFF_V2`的`data.cut_off_data.cut_off_message_list`数组。
+
+`data.dialog_tip_list` 数组:
+
+同`CUT_OFF_V2`的`data.cut_off_data.cut_off_tip_list`数组。
+
+`data.dialog_button_list` 数组:
+
+同`CUT_OFF_V2`的`data.cut_off_data.cut_off_button_list`数组。
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "ANCHOR_ECOLOGY_LIVING_DIALOG",
+	"data": {
+		"dialog_scene": 1,
+		"timestamp": 1731504845,
+		"valid_timestamp": 0,
+		"dialog_top_vertical_img": "https://i0.hdslb.com/bfs/live/ee359d3e89bb044914f72a557a4ac2d3b5ba4004.png",
+		"dialog_top_landscape_img": "https://i0.hdslb.com/bfs/live/ee359d3e89bb044914f72a557a4ac2d3b5ba4004.png",
+		"dialog_title": "直播间违规",
+		"dialog_message_list": [
+			{
+				"type": 1,
+				"label": "处罚结果",
+				"content": "警告"
+			},
+			{
+				"type": 1,
+				"label": "违规原因",
+				"content": "您本场直播存在挂机、录播等消极直播行为，请及时整改"
+			},
+			{
+				"type": 1,
+				"label": "处罚时间",
+				"content": "2024年11月13日21时34分"
+			}
+		],
+		"dialog_tip_list": [
+			{
+				"show_platform": [
+					1,
+					2
+				],
+				"message_list": [
+					{
+						"type": 1,
+						"content": "请在",
+						"link_url": ""
+					},
+					{
+						"type": 2,
+						"content": "【处罚中心】",
+						"link_url": "https://live.bilibili.com/p/html/live-anchor-galaxy/violation_records/mobile.html?is_live_half_webview=1u0026hybrid_rotate_d=1u0026is_cling_player=1u0026hybrid_half_ui=1,3,100p,70p,0,1,30,100;2,2,375,100p,0,1,30,100;3,3,100p,70p,0,1,30,100;4,2,375,100p,0,1,30,100;5,3,100p,70p,0,1,30,100;6,3,100p,70p,0,1,30,100;7,3,100p,70p,0,1,30,100;8,3,100p,70p,0,1,30,100#/"
+					},
+					{
+						"type": 1,
+						"content": "查看你的违规记录",
+						"link_url": ""
+					}
+				]
+			},
+			{
+				"show_platform": [
+					3,
+					4
+				],
+				"message_list": [
+					{
+						"type": 1,
+						"content": "请在",
+						"link_url": ""
+					},
+					{
+						"type": 2,
+						"content": "【处罚中心】",
+						"link_url": "https://link.bilibili.com/#/my-room/violation-records?jump_type=browser&app_common=open"
+					},
+					{
+						"type": 1,
+						"content": "查看你的违规记录",
+						"link_url": ""
+					}
+				]
+			}
+		],
+		"dialog_button_list": [
+			{
+				"show_platform": [
+					1,
+					2,
+					3,
+					4
+				],
+				"button_text": "我知道了",
+				"button_action": 1,
+				"button_link_url": ""
+			}
+		]
+	}
 }
 ```
 
@@ -3802,6 +4339,55 @@ while (!s.isclosed()) {
 
 </details>
 
+#### 天选时刻通知 (ANCHOR_LOT_NOTICE)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ANCHOR_LOT_NOTICE` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| notice\_type | num | 通知卡片类型? |  |
+| lottery\_card | obj | 通知卡片内容 |  |
+
+`data.lottery_card` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| show\_time | num | 显示时间? |  |
+| button\_text | str | 按钮文本? |  |
+| icon | str | 图标 |  |
+| title | str | 标题? |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"data": {
+		"notice_type": 1,
+		"lottery_card": {
+			"show_time": 30,
+			"button_text": "去发奖",
+			"icon": "https://i0.hdslb.com/bfs/live/95970204111233f181fc28622502aaf1a9359b9a.png",
+			"title": "发天选有助于人气累积"
+		}
+	},
+	"cmd": "ANCHOR_LOT_NOTICE"
+}
+```
+
+</details>
+
 #### 邀请视频连线 (VIDEO_CONNECTION_JOIN_START)
 
 **示例:**
@@ -3935,6 +4521,271 @@ while (!s.isclosed()) {
     "cur_fleet_num": 0,
     "max_fleet_num": 0
   }
+}
+```
+
+</details>
+
+#### 直播小助手? (ANCHOR_BROADCAST)
+
+第一次达到了某种条件下发。
+
+已知当在一个分区（中途不能切换）开播时长达到150、180、200、300分钟可能下发，直播间初次被分享1~2次时下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ANCHOR_BROADCAST` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| sender | str | 标题? | `直播小助手` |
+| msg | str | 提示消息 |  |
+| platform | num | 平台标识? | `0` |
+| button\_info | obj | 按钮信息? |  |
+| milestone\_type | str | 里程碑类型? | `session_livetime`，`first_share`，`session_share` |
+| milestone\_value | num | 里程值? |  |
+| milestone\_index | num | 里程碑类型的索引? | `1`，`5`，`6`，`7` |
+
+`data.button_info` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| button\_name | str |  |  |
+| blink_button_type | str |  |  |
+| blink_button_target | str |  |  |
+| blink_button_extra | str |  |  |
+| blink_button_label | num |  |  |
+| hime_button_type | str |  |  |
+| hime_button_target | str |  |  |
+| hime_button_extra | str |  |  |
+| hime\_button\_h5\_type | str |  |  |
+| hime_button_label | num |  |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "ANCHOR_BROADCAST",
+	"data": {
+		"sender": "直播小助手",
+		"msg": "恭喜你，开播时长达到180分钟！",
+		"platform": 0,
+		"button_info": {
+			"button_name": "",
+			"blink_button_type": "",
+			"blink_button_target": "",
+			"blink_button_extra": "",
+			"blink_button_label": 0,
+			"hime_button_type": "",
+			"hime_button_target": "",
+			"hime_button_extra": "",
+			"hime_button_h5_type": "",
+			"hime_button_label": 0
+		},
+		"milestone_type": "session_livetime",
+		"milestone_value": 10800,
+		"milestone_index": 6
+	}
+}
+```
+
+</details>
+
+#### 直播小助手? (ANCHOR_HELPER_DANMU)
+
+几乎与`ANCHOR_BROADCAST`一同下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `ANCHOR_HELPER_DANMU` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| sender | str | 标题? | `直播小助手` |
+| msg | str | 提示消息 |  |
+| platform | num | 平台标识? |  |
+| button\_platform | num |  |  |
+| button\_name | str |  |  |
+| button\_target | str |  |  |
+| button\_label | num |  |  |
+| report\_type | str | 上报类型? |  |
+| report | str |  |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "ANCHOR_HELPER_DANMU",
+	"data": {
+		"sender": "直播小助手",
+		"msg": "恭喜你，开播时长达到150分钟！",
+		"platform": 3,
+		"button_platform": 0,
+		"button_name": "",
+		"button_target": "",
+		"button_label": 0,
+		"report_type": "milestone",
+		"report": "session_livetime:5:9000"
+	}
+}
+```
+
+</details>
+
+#### 直播进度条节点标签 (PLAY_TAG)
+
+注: 在特定直播间的特定情况下发。
+
+例如: 在[直播间6](https://live.bilibili.com/6)内，有人打出了某种操作。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `PLAY_TAG` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| tag\_id | num | 标签 ID |  |
+| pic | str | 标签图标 | 通常显示于进度条之上 |
+| timestamp | num | UNIX 秒时间戳 |  |
+| type | str | 操作类型 | `ADD`:添加 |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "PLAY_TAG",
+	"data": {
+		"tag_id": 367751,
+		"pic": "https://i0.hdslb.com/bfs/live/0e04525fee9ea6ea6973e8bd1116d9f1f6501d37.png",
+		"timestamp": 1740319807,
+		"type": "ADD"
+	}
+}
+```
+
+</details>
+
+#### ??? (RECALL_DANMU_MSG)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `RECALL_DANMU_MSG` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| recall_type | num | 类型? | `2` |
+| target_id | num |  |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "RECALL_DANMU_MSG",
+	"data": {
+		"recall_type": 2,
+		"target_id": 525503743
+	}
+}
+```
+
+</details>
+
+#### 直播剪辑 (OTHER_SLICE_LOADING_RESULT)
+
+注: 点击剪辑按钮后的几秒内下发，目前只有网页端有这个按钮，且部分直播间可用(2025-02-20记录)。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `OTHER_SLICE_LOADING_RESULT` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| data | array | 剪辑片段数据 |  |
+| live_key | str | 标记直播场次的key | 未验证真实性 |
+
+`data.data` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| 0 | obj | 单个片段数据 |  |
+
+`data.data[i]` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| start\_time | num | 片段开始时间时间戳 | UNIX 秒时间戳 |
+| end\_time | num | 片段结束时间时间戳 | UNIX 秒时间戳 |
+| stream | str | 从开始时间到结束时间内的直播视频片段 | 需要使用浏览器用户代理字符串，特别是m3u文件内的视频链接 |
+| type | num | 类型? |  |
+| ban\_ec | bool | ? |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "OTHER_SLICE_LOADING_RESULT",
+	"data": {
+		"data": [
+			{
+				"start_time": 1740037738,
+				"end_time": 1740038916,
+				"stream": "https://jssz-boss.hdslb.com/live2arc_anchor_video/vod_579433011406177273.m3u?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=y4zI4XTQzlOkmSKg%2F20250220%2Fjssz%2Fs3%2Faws4_request&X-Amz-Date=20250220T080858Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=52be315e8e7def8e11f86d3c6d4952362725c3c087a433780926bc0e8c88c2e1",
+				"type": 0,
+				"ban_ec": false
+			}
+		],
+		"live_key": "579433011406177273"
+	}
 }
 ```
 
