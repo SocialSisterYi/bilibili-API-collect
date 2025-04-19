@@ -1223,17 +1223,15 @@ RunLoop.main.run()//程序类型为命令行程序时需要添加这行代码
 
 ### CPlusPlus
 
-需要 c++ 23 标准库，[cpr](https://github.com/libcpr/cpr)、[cryptopp](https://github.com/weidai11/cryptopp)、[nlohmann/json](https://github.com/nlohmann/json) 等依赖
+需要 c++ 23 标准库，[cpr](https://github.com/libcpr/cpr)、[botan](https://github.com/randombit/botan)、[nlohmann/json](https://github.com/nlohmann/json) 等依赖
 
 ```c++
-#include <array>    // std::array
-#include <locale>   // std::locale
 #include <print>    // std::println
 
 /// thrid party libraries
+#include <botan/hash.h>
+#include <botan/hex.h>
 #include <cpr/cpr.h>
-#include <cryptopp/md5.h>
-#include <cryptopp/hex.h>
 #include <nlohmann/json.hpp>
 
 /*
@@ -1249,19 +1247,9 @@ class Wbi {
 
     /* 获取 md5 hex(lower) */
     static std::string Get_md5_hex(const std::string &Input_str) {
-        CryptoPP::Weak1::MD5 hash;
-        std::string          md5_hex;
-
-        CryptoPP::StringSource ss(Input_str, true,
-            new CryptoPP::HashFilter(hash,
-                new CryptoPP::HexEncoder(
-                    new CryptoPP::StringSink(md5_hex)
-                )
-            )
-        );
-
-        std::ranges::for_each(md5_hex, [](char &x) { x = std::tolower(x); });
-        return md5_hex;
+        const auto md5 = Botan::HashFunction::create_or_throw("MD5");
+        md5->update(Input_str);
+        return Botan::hex_encode(md5->final(), false);
     }
 
 public:
