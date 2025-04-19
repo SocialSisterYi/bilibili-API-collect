@@ -384,7 +384,7 @@ func main() {
 
 
 ### C++
-```c++
+```cpp
 #include <algorithm>
 #include <cassert>
 #include <print>
@@ -497,9 +497,7 @@ int main() {
 
 ### 编程实现
 
-使用 [Python](#Python) [C](#C) [TypeScript](#TypeScript) [Java](#Java) [Kotlin](#Kotlin) [Golang](#Golang) [Rust](#Rust) 等语言作为示例，欢迎社区提交更多例程
-
-注: 新算法只提供了 [Python](#Python) 和 [Rust](#Rust) 版本
+使用 Python C TypeScript Java Kotlin Golang Rust 等语言作为示例，欢迎社区提交更多例程
 
 #### Python
 
