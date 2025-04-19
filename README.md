@@ -56,7 +56,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 1. 文档二级目录尚未完成
 2. 部分文档较旧，修改与更新没有跟进
-3. 目前文档使用 markdown 语法编写，不易生成编程语言的 SDK，详见 [#604](https://github.com/SocialSisterYi/bilibili-API-collect/issues/604)
+3. 目前文档使用 Markdown 语法编写，不易生成编程语言的 SDK，详见 [#604](https://github.com/SocialSisterYi/bilibili-API-collect/issues/604)
 
 更多信息请浏览 [贡献指南](CONTRIBUTING.md)
 
@@ -126,7 +126,6 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [视频在线人数](docs/video/online.md)
     - [x] [视频 AI 摘要](docs/video/summary.md)
     - [ ] [稿件投诉](docs/video/appeal.md)
-    - [ ] [视频状态数](docs/video/status_number.md)
     - [ ] [视频合集](docs/video/collection.md)
     - [ ] [播放器](docs/video/player.md)
 - [ ] [剧集 (番剧、影视)](docs/bangumi)
@@ -333,7 +332,7 @@ WeChat & Alipay：
 
 <img src="./assets/img/sponsorQR.jpg" width="300" height="300" />
 
-OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
+OR Aifadian：[https://afdian.com/@ShakaiAneE](https://afdian.com/@ShakaiAneE)
 
 ## 🔗相关项目推荐
 

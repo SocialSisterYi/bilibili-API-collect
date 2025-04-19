@@ -280,7 +280,7 @@ curl -G 'https://api.bilibili.com/pvideo' \
 
 示例拼版图片url：http://i0.hdslb.com/bfs/videoshot/49075258.jpg
 
-![](https://i0.hdslb.com/bfs/videoshot/49075258.jpg)
+<img src="https://i0.hdslb.com/bfs/videoshot/49075258.jpg" referrerpolicy="no-referrer" />
 
 ## bin格式截取时间表
 

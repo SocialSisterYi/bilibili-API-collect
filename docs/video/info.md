@@ -572,7 +572,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/view' \
 
 https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
-![](https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg)
+<img src="https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg" referrerpolicy="no-referrer" />
 
 ## 获取视频超详细信息(web端)
 

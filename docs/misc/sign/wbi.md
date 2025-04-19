@@ -2,7 +2,7 @@
 
 自 2023 年 3 月起，Bilibili Web 端部分接口开始采用 WBI 签名鉴权，表现在 REST API 请求时在 Query param 中添加了 `w_rid` 和 `wts` 字段。WBI 签名鉴权独立于 [APP 鉴权](APP.md) 与其他 Cookie 鉴权，目前被认为是一种 Web 端风控手段。
 
-经持续观察，大部分查询性接口都已经或准备采用 WBI 签名鉴权，请求 WBI 签名鉴权接口时，若签名参数 `w_rid` 与时间戳 `wts` 缺失、错误，会返回 `v_voucher`，如：
+经持续观察，大部分查询性接口都已经或准备采用 WBI 签名鉴权，请求 WBI 签名鉴权接口时，若签名参数 `w_rid` 与时间戳 `wts` 缺失、错误，会返回 [`v_voucher`](v_voucher.md)，如：
 
 ```json
 {"code":0,"message":"0","ttl":1,"data":{"v_voucher":"voucher_******"}}
@@ -11,6 +11,8 @@
 感谢 [#631](https://github.com/SocialSisterYi/bilibili-API-collect/issues/631) 的研究与逆向工程。
 
 细节更新：[#885](https://github.com/SocialSisterYi/bilibili-API-collect/issues/885)。
+
+最新进展: [#919](https://github.com/SocialSisterYi/bilibili-API-collect/issues/919)
 
 ## WBI 签名算法
 
@@ -30,6 +32,7 @@
    `img_key`、`sub_key` 全站统一使用，观测知应为**每日更替**，使用时建议做好**缓存和刷新**处理。
 
    特别地，发现部分接口将 `img_key`、`sub_key` 硬编码进 JavaScript 文件内，如搜索接口 `https://s1.hdslb.com/bfs/static/laputa-search/client/assets/index.1ea39bea.js`，暂不清楚原因及影响。
+   同时, 部分页面会在 SSR 的 `__INITIAL_STATE__` 包含 `wbiImgKey` 与 `wbiSubKey`, 具体可用性与区别尚不明确
 
 2. 打乱重排实时口令获得 `mixin_key`
 
@@ -78,9 +81,9 @@
 
    ```javascript
    {
-        foo: '114',
-        bar: '514',
-        zab: 1919810
+     foo: '114',
+     bar: '514',
+     zab: 1919810
    }
    ```
 
@@ -97,17 +100,17 @@
    }
    ```
 
-   随后按键名升序排序后编码 URL Query，拼接前面得到的 `mixin_key`，如 `bar=514&foo=114&wts=1702204169&zab=1919810ea1db124af3c7062474693fa704f4ff8`，计算其 MD5 即为 `w_rid`。
+   随后按键名升序排序后百分号编码 URL Query，拼接前面得到的 `mixin_key`，如 `bar=514&foo=114&wts=1702204169&zab=1919810ea1db124af3c7062474693fa704f4ff8`，计算其 MD5 即为 `w_rid`。
 
-   需要注意的是：如果参数值含中文或特殊字符等，编码字符字母应当**大写** （部分库会编码为小写字母），空格应当编码为 `%20`（部分库按 `application/x-www-form-urlencoded` 约定编码为 `+`）。
+   需要注意的是：如果参数值含中文或特殊字符等，编码字符字母应当**大写** （部分库会错误编码为小写字母），空格应当编码为 `%20`（部分库按 `application/x-www-form-urlencoded` 约定编码为 `+`）, 具体正确行为可参考 [encodeURIComponent 函数](https://tc39.es/ecma262/multipage/global-object.html#sec-encodeuricomponent-uricomponent)
 
    例如：
 
    ```javascript
    {
-        foo: 'one one four',
-        bar: '五一四',
-        baz: 1919810
+     foo: 'one one four',
+     bar: '五一四',
+     baz: 1919810
    }
    ```
 
@@ -121,7 +124,7 @@
 
 ## Demo
 
-含 [Python](#python)、[JavaScript](#javascript)、[Golang](#golang)、[C#](#csharp)、[Java](#java)、[Kotlin](#kotlin)、[Swift](#swift)、[C++](#cplusplus)、[Rust](#rust)、[Haskell](#haskell) 语言编写的 Demo 。
+含 [Python](#python)、[JavaScript](#javascript)、[Golang](#golang)、[C#](#csharp)、[Java](#java)、[Kotlin](#kotlin)、[Swift](#swift)、[C++](#cplusplus)、[Rust](#rust)、[Haskell](#haskell) 语言编写的 Demo
 
 ### Python
 

@@ -6,11 +6,13 @@
 
 `v_voucher` 结构为字符串 `voucher_` 尾随一串以 `-` 为分隔符的小写 UUID
 
-`v_voucher` 可用于申请 captcha 验证码, 根据验证结果使用 `validate` 接口获取 `grisk_id` 作为被风控接口的 `gaia_vtoken` 与 Cookie 中的 `x-bili-gaia-vtoken` 即可恢复正常访问
+`v_voucher` 可用于申请 captcha 验证码, 若无意外发生, 根据验证结果使用 `validate` 接口获取 `grisk_id` 作为被风控接口的 `gaia_vtoken` 与 Cookie 中的 `x-bili-gaia-vtoken`, 即可恢复正常访问
 
 若该情况出现在使用 Wbi 签名的接口中, 建议先检查 Wbi 签名是否正确. 若已检查 Wbi 签名或无需签名, 检查请求头中 `User-Agent` `Referer` 是否正常, 以及 `Cookie` 中 [`bili_ticket`](bili_ticket.md) [`b_nut` `buvid3` `buvid4`](../buvid3_4.md) 等是否存在. 使用 captcha 是最后的选择, 因为 captcha 验证需要用户操作<!--, 且这几天做验证码做的真的要疯了喵-->
 
 参见 [#1067](https://github.com/SocialSisterYi/bilibili-API-collect/issues/1067)
+
+**注意: 不是所有风控都可以使用本方式通过 captcha 解决**
 
 ## 操作流程
 
