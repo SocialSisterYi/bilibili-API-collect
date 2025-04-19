@@ -134,7 +134,7 @@ curl -G 'https://app.bilibili.com/x/v2/splash/brand/list' \
 
 如id=11的图片为：
 
-![]( https://i0.hdslb.com/bfs/archive/fe737da5cdedf9dad038e5fd30e957be8a063bc2.png )
+<img src="https://i0.hdslb.com/bfs/archive/fe737da5cdedf9dad038e5fd30e957be8a063bc2.png" referrerpolicy="no-referrer" />
 
 
 ## 获取APP端开屏幕广告信息
