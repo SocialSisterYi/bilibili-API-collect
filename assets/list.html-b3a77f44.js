@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-da455228","path":"/docs/fav/list.html","title":"收藏夹内容","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取收藏夹内容明细列表","slug":"获取收藏夹内容明细列表","link":"#获取收藏夹内容明细列表","children":[]},{"level":2,"title":"获取收藏夹全部内容id","slug":"获取收藏夹全部内容id","link":"#获取收藏夹全部内容id","children":[]}],"git":{},"filePathRelative":"docs/fav/list.md"}');export{l as data};

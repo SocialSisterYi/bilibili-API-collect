@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-b1f572fe","path":"/docs/danmaku/buzzword.html","title":"名词解释","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"拉取名词解释列表","slug":"拉取名词解释列表","link":"#拉取名词解释列表","children":[]},{"level":2,"title":"查询名词解释详情","slug":"查询名词解释详情","link":"#查询名词解释详情","children":[]}],"git":{},"filePathRelative":"docs/danmaku/buzzword.md"}');export{e as data};

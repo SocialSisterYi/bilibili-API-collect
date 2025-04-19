@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5ac2e77d","path":"/docs/live/report.html","title":"直播心跳上报","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"直播心跳 (Web端)","slug":"直播心跳-web端","link":"#直播心跳-web端","children":[]}],"git":{},"filePathRelative":"docs/live/report.md"}');export{e as data};

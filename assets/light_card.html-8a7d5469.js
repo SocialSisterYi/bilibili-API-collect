@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-6219086a","path":"/docs/manga/light_card.html","title":"获取轻享卡信息","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/manga/light_card.md"}');export{a as data};

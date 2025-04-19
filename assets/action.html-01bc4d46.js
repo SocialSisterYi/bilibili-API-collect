@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-9d5f1690","path":"/docs/dynamic/action.html","title":"动态操作","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"删除动态","slug":"删除动态","link":"#删除动态","children":[]}],"git":{},"filePathRelative":"docs/dynamic/action.md"}');export{t as data};

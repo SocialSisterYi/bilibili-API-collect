@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-52b13614","path":"/docs/manga/Activity.html","title":"漫画任务操作","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"分享漫画","slug":"分享漫画","link":"#分享漫画","children":[]}],"git":{},"filePathRelative":"docs/manga/Activity.md"}');export{t as data};

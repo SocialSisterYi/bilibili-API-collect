@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1efa602b","path":"/docs/cheese/videostream_url.html","title":"课程视频流URL","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取课程视频流URL（web端）","slug":"获取课程视频流url-web端","link":"#获取课程视频流url-web端","children":[]}],"git":{},"filePathRelative":"docs/cheese/videostream_url.md"}');export{e as data};

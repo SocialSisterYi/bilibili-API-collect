@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-02b431cb","path":"/docs/teenager/teenager_mode.html","title":"青少年模式","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"开启/关闭","slug":"开启-关闭","link":"#开启-关闭","children":[]}],"git":{},"filePathRelative":"docs/teenager/teenager_mode.md"}');export{e as data};

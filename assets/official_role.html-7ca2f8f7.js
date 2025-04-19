@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-b5df8b90","path":"/docs/user/official_role.html","title":"用户认证类型一览","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/user/official_role.md"}');export{e as data};

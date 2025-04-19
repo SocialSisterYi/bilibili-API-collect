@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-7f153540","path":"/docs/manga/Season.html","title":"漫画赛季","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取赛季信息","slug":"获取赛季信息","link":"#获取赛季信息","children":[]},{"level":2,"title":"赛季奖励领取","slug":"赛季奖励领取","link":"#赛季奖励领取","children":[]}],"git":{},"filePathRelative":"docs/manga/Season.md"}');export{e as data};

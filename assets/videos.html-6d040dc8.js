@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-b13d7c1e","path":"/docs/creativecenter/videos.html","title":"视频相关杂项","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取稿件列表","slug":"获取稿件列表","link":"#获取稿件列表","children":[]},{"level":2,"title":"视频基础信息","slug":"视频基础信息","link":"#视频基础信息","children":[]}],"git":{},"filePathRelative":"docs/creativecenter/videos.md"}');export{e as data};

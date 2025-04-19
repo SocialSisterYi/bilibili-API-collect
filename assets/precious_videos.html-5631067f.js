@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-7d2bb9de","path":"/docs/video_ranking/precious_videos.html","title":"入站必刷视频","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取入站必刷视频","slug":"获取入站必刷视频","link":"#获取入站必刷视频","children":[]}],"git":{},"filePathRelative":"docs/video_ranking/precious_videos.md"}');export{e as data};
