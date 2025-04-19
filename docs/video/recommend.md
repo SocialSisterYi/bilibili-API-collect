@@ -381,6 +381,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 `item`数组中的对象中的`owner`对象:
 
 | 字段 | 类型 | 内容    | 备注 |
+|------|------|---------|-------|
 | face | str  | 头像URL |      |
 | mid  | num  | UP主mid |      |
 | name | str  | UP昵称  |      |
@@ -388,6 +389,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/archive/related' \
 `item`数组中的对象中的`rcmd_reason`对象:
 
 | 字段        | 类型 | 内容     | 备注                                  |
+|-------------|------|---------|--------------------------------------|
 | reason_type | num  | 原因类型 | 0: 无<br />1: 已关注<br />3: 高点赞量 |
 | content     | str  | 原因描述 | 当 reason_type 为 3 时存在            |
 
