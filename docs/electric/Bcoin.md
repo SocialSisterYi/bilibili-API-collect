@@ -31,7 +31,7 @@
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功（并不代表充电成功） <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误 |
+| code    | num  | 返回值   | 0：成功（并不代表充电成功） <br />-101：账号未登录<br />-111：csrf校验失败<br />-400：请求错误<br />-500：服务器错误 |
 | message | str  | 错误信息 | 默认为0                                                      |
 | ttl     | num  | 1        |                                                              |
 | data    | obj  | 信息本体 |                                                              |
@@ -72,17 +72,17 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "mid":293793435,
-        "up_mid":293793435,
-        "order_no":"BPRG5CEC3VUPOOANA540",
-        "bp_num":2,
-        "exp":"2",
-        "status":4,
-        "msg":""
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 293793435,
+        "up_mid": 293793435,
+        "order_no": "BPRG5CEC3VUPOOANA540",
+        "bp_num": 2,
+        "exp": "2",
+        "status": 4,
+        "msg": ""
     }
 }
 ```
@@ -108,17 +108,17 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "mid":0,
-        "up_mid":0,
-        "order_no":"",
-        "bp_num":"0",
-        "exp":0,
-        "status":-2,
-        "msg":"elec raw order create failed: 88201"
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 0,
+        "up_mid": 0,
+        "order_no": "",
+        "bp_num": "0",
+        "exp": 0,
+        "status": -2,
+        "msg": "elec raw order create failed: 88201"
     }
 }
 ```
@@ -145,17 +145,17 @@ curl 'https://api.bilibili.com/x/ugcpay/web/v2/trade/elec/pay/quick' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "mid":0,
-        "up_mid":0,
-        "order_no":"",
-        "bp_num":"0",
-        "exp":0,
-        "status":-4,
-        "msg":"bp.to.battery http failed, invalid args, errNo=800409904: B 币余额不足"
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 0,
+        "up_mid": 0,
+        "order_no": "",
+        "bp_num": "0",
+        "exp": 0,
+        "status": -4,
+        "msg": "bp.to.battery http failed, invalid args, errNo=800409904: B 币余额不足"
     }
 }
 ```
@@ -232,17 +232,17 @@ curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "mid":293793435,
-        "up_mid":293793435,
-        "order_no":"BPRG5CEC3VUPOOANA540",
-        "elec_num":20,
-        "exp":2,
-        "status":4,
-        "msg":""
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 293793435,
+        "up_mid": 293793435,
+        "order_no": "BPRG5CEC3VUPOOANA540",
+        "elec_num": 20,
+        "exp": 2,
+        "status": 4,
+        "msg": ""
     }
 }
 ```
@@ -268,17 +268,17 @@ curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "mid":0,
-        "up_mid":0,
-        "order_no":"",
-        "elec_num":0,
-        "exp":0,
-        "status":-2,
-        "msg":"elec raw order create failed: 88201"
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 0,
+        "up_mid": 0,
+        "order_no": "",
+        "elec_num": 0,
+        "exp": 0,
+        "status": -2,
+        "msg": "elec raw order create failed: 88201"
     }
 }
 ```
@@ -304,17 +304,17 @@ curl 'https://api.bilibili.com/x/ugcpay/trade/elec/pay/quick' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{
-        "mid":0,
-        "up_mid":0,
-        "order_no":"",
-        "elec_num":0,
-        "exp":0,
-        "status":-4,
-        "msg":"bp.to.battery http failed, invalid args, errNo=800409904: B 币余额不足"
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "mid": 0,
+        "up_mid": 0,
+        "order_no": "",
+        "elec_num": 0,
+        "exp": 0,
+        "status": -4,
+        "msg": "bp.to.battery http failed, invalid args, errNo=800409904: B 币余额不足"
     }
 }
 ```

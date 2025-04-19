@@ -410,7 +410,7 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | 0：成功 |
+| code | num | 返回值 | 0：成功<br />-101：账号未登录<br />4126021：你没有绑定手机，无法发布动态 |
 | message | str | 错误信息 | 成功为空 |
 | data | obj | 数据本体 |  |
 
