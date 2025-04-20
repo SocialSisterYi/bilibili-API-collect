@@ -227,9 +227,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] ~~[活动列表](docs/album/activity_list.md)~~
     - [x] ~~[操作](docs/album/action.md)~~
     - [ ] ~~投稿~~
-- [ ] [历史记录 & 稍后再看](docs/history&toview)
-    - [x] [历史记录](docs/history&toview/history.md)
-    - [x] [稍后再看](docs/history&toview/toview.md)
+- [ ] [历史记录 & 稍后再看](docs/historytoview)
+    - [x] [历史记录](docs/historytoview/history.md)
+    - [x] [稍后再看](docs/historytoview/toview.md)
 - [ ] [收藏夹](docs/fav)
     - [x] [基本信息](docs/fav/info.md)
     - [x] [收藏夹内容](docs/fav/list.md)
