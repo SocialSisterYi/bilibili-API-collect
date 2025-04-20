@@ -38,13 +38,13 @@
 | mid               | num  | 用户 mid    |      |
 | totalBp           | num  | 总计 B 币   |      |
 | defaultBp         | num  | 默认 B 币?  |      |
-| isoBp             | num  | iOS B 币?   |      |
+| iosBp             | num  | iOS B 币?   |      |
 | couponBalance     | num  | 优惠券余额  |      |
 | availableBp       | num  | 可用 B 币   |      |
 | unavailableBp     | num  | 不可用 B 币 |      |
 | unavailableReason | str  | 不可用原因  |      |
 | tip               | str  | 请XXXXX     | 请投币?? |
-| needShowClassBalance | num | 需要显示类平衡?? | 1 |
+| needShowClassBalance | num | 需要显示类余额?? | 1 |
 
 **示例:**
 
