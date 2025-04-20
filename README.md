@@ -100,7 +100,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [状态数](docs/user/status_number.md)
     - [x] [关系](docs/user/relation.md)
     - [ ] [个人空间](docs/user/space.md)
-    - [x] [检查昵称是否可注册](docs/user/check_nickname.md)
+    - [x] ~~[检查昵称是否可注册](docs/user/check_nickname.md)~~ (已失效)
     - [x] [用户注册](docs/user/register.md)
     - [x] [用户认证类型一览](docs/user/official_role.md)
     - [ ] [加入老粉计划](docs/user/contract.md)
@@ -113,7 +113,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [视频](docs/video)
     - [x] [视频分区一览 (分区代码)](docs/video/video_zone.md)
     - [x] [基本信息](docs/video/info.md)
-    - [x] [状态数](docs/video/status_number.md) (已失效)
+    - [x] ~~[状态数](docs/video/status_number.md)~~ (已失效)
     - [x] [快照](docs/video/snapshot.md)
     - [x] [点赞 & 投币 & 收藏 & 分享](docs/video/action.md)
     - [ ] [TAG](docs/video/tags.md)
@@ -220,13 +220,13 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
         - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
     - [ ] [导航栏动态](docs/dynamic/nav.md)
-- [ ] [相簿](docs/album) (已下线)
-    - [x] [基本信息](docs/album/info.md)
-    - [x] [相簿列表](docs/album/list.md)
-    - [x] [推荐作者](docs/album/recommend_author.md)
-    - [x] [活动列表](docs/album/activity_list.md)
-    - [x] [操作](docs/album/action.md)
-    - [ ] 投稿
+- [ ] ~~[相簿](docs/album)~~ (已下线)
+    - [x] ~~[基本信息](docs/album/info.md)~~
+    - [x] ~~[相簿列表](docs/album/list.md)~~
+    - [x] ~~[推荐作者](docs/album/recommend_author.md)~~
+    - [x] ~~[活动列表](docs/album/activity_list.md)~~
+    - [x] ~~[操作](docs/album/action.md)~~
+    - [ ] ~~投稿~~
 - [ ] [历史记录 & 稍后再看](docs/history&toview)
     - [x] [历史记录](docs/history&toview/history.md)
     - [x] [稍后再看](docs/history&toview/toview.md)
