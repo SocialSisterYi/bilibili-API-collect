@@ -83,7 +83,7 @@ Telegram 交流群主要用作 [BAC 项目](https://github.com/SocialSisterYi/bi
 
 文档使用 [VuePress](https://vuepress.vuejs.org/) 生成，可以使用 [VuePress Markdown 扩展语法](https://vuepress.vuejs.org/guide/markdown.html)编写
 
-注：以下文档范式主要针对接口类文档, 可根据**实际情况**进行调整, 你也可以使用 `json-apidoc-gen` 工具直接生成模板自行填充内容. 非接口类文档, 如算法等, 可以参考已有的内容
+注：以下文档范式主要针对接口类文档, 可根据**实际情况**进行调整, 你也可以使用 [`json-apidoc-gen`](https://github.com/SessionHu/json-apidoc-gen) 工具直接生成模板自行填充内容. 非接口类文档, 如算法等, 可以参考已有的内容
 
 ### 头部
 
