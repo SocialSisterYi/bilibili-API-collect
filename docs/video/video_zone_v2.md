@@ -6,7 +6,7 @@
 
 ## 动画
 
-<img src="../../assets/zone_icon/douga.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/douga.svg" width="100" height="100" />
 
 | 名称          | 代号        | tid  | channelId | url 路由                                       |
 | ------------- | ----------- | ---- | --------- | ---------------------------------------------- |
@@ -32,7 +32,7 @@
 
 ## 游戏
 
-<img src="../../assets/zone_icon/game.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/game.svg" width="100" height="100" />
 
 | 名称           | 代号        | tid  | channelId | url 路由                                     |
 | -------------- | ----------- | ---- | --------- | -------------------------------------------- |
@@ -56,7 +56,7 @@
 
 ## 鬼畜
 
-<img src="../../assets/zone_icon/kichiku.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/kichiku.svg" width="100" height="100" />
 
 | 名称          | 代号            | tid  | channelId | url 路由                                           |
 | ------------- | --------------- | ---- | --------- | -------------------------------------------------- |
@@ -69,7 +69,7 @@
 
 ## 音乐
 
-<img src="../../assets/zone_icon/music.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/music.svg" width="100" height="100" />
 
 | 名称          | 代号       | tid  | channelId | url 路由                                       |
 | ------------- | ---------- | ---- | --------- | ---------------------------------------------- |
@@ -89,7 +89,7 @@
 
 ## 舞蹈
 
-<img src="../../assets/zone_icon/dance.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/dance.svg" width="100" height="100" />
 
 | 名称          | 代号     | tid  | channelId | url 路由                                       |
 | ------------- | -------- | ---- | --------- | ---------------------------------------------- |
@@ -106,7 +106,7 @@
 
 ## 影视
 
-<img src="../../assets/zone_icon/cinephile.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/cinephile.svg" width="100" height="100" />
 
 | 名称          | 代号        | tid  | channelId | url 路由                                               |
 | ------------- | ----------- | ---- | --------- | ------------------------------------------------------ |
@@ -122,7 +122,7 @@
 
 ## 娱乐
 
-<img src="../../assets/zone_icon/ent.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/entertainment.svg" width="100" height="100" />
 
 | 名称          | 代号        | tid  | channelId | url 路由                                   |
 | ------------- | ----------- | ---- | --------- | ------------------------------------------ |
@@ -137,7 +137,7 @@
 
 ## 知识
 
-<img src="../../assets/zone_icon/knowledge.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/knowledge.svg" width="100" height="100" />
 
 | 名称           | 代号               | tid  | channelId | url 路由                                               |
 | -------------- | ------------------ | ---- | --------- | ------------------------------------------------------ |
@@ -157,7 +157,7 @@
 
 ## 科技数码
 
-<img src="../../assets/zone_icon/tech.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/tech.svg" width="100" height="100" />
 
 | 名称              | 代号        | tid  | channelId | url 路由                                     |
 | ----------------- | ----------- | ---- | --------- | -------------------------------------------- |
@@ -172,7 +172,7 @@
 
 ## 资讯
 
-<img src="../../assets/zone_icon/information.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/information.svg" width="100" height="100" />
 
 | 名称          | 代号        | tid  | channelId | url 路由                                                   |
 | ------------- | ----------- | ---- | --------- | ---------------------------------------------------------- |
@@ -184,7 +184,7 @@
 
 ## 美食
 
-<img src="../../assets/zone_icon/food.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/food.svg" width="100" height="100" />
 
 | 名称          | 代号       | tid  | channelId | url 路由                                     |
 | ------------- | ---------- | ---- | --------- | -------------------------------------------- |
@@ -197,6 +197,8 @@
 
 ## 小剧场
 
+<img src="../../assets/zone_v2_icon/shortplay.svg" width="100" height="100" />
+
 | 名称            | 代号       | tid  | channelId | url 路由                                               |
 | --------------- | ---------- | ---- | --------- | ------------------------------------------------------ |
 | 小剧场 (主分区) | shortplay  | 1021 | 18        | [/c/shortplay/](https://www.bilibili.com/c/shortplay/) |
@@ -207,7 +209,7 @@
 
 ## 汽车
 
-<img src="../../assets/zone_icon/car.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/car.svg" width="100" height="100" />
 
 | 名称          | 代号       | tid  | channelId | url 路由                                 |
 | ------------- | ---------- | ---- | --------- | ---------------------------------------- |
@@ -220,7 +222,7 @@
 
 ## 时尚美妆
 
-<img src="../../assets/zone_icon/fashion.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/fashion.svg" width="100" height="100" />
 
 | 名称              | 代号        | tid  | channelId | url 路由                                           |
 | ----------------- | ----------- | ---- | --------- | -------------------------------------------------- |
@@ -237,7 +239,7 @@
 
 ## 体育运动
 
-<img src="../../assets/zone_icon/sports.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/sports.svg" width="100" height="100" />
 
 | 名称              | 代号        | tid  | channelId | url 路由                                         |
 | ----------------- | ----------- | ---- | --------- | ------------------------------------------------ |
@@ -255,7 +257,7 @@
 
 ## 动物
 
-<img src="../../assets/zone_icon/animal.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/animal.svg" width="100" height="100" />
 
 | 名称                  | 代号     | tid  | channelId | url 路由                                         |
 | --------------------- | -------- | ---- | --------- | ------------------------------------------------ |
@@ -268,6 +270,8 @@
 
 ## vlog
 
+<img src="../../assets/zone_v2_icon/vlog.svg" width="100" height="100" />
+
 | 名称          | 代号    | tid  | channelId | url 路由                                     |
 | ------------- | ------- | ---- | --------- | -------------------------------------------- |
 | vlog (主分区) | vlog    | 1029 | 23        | [/c/vlog/](https://www.bilibili.com/c/vlog/) |
@@ -277,6 +281,8 @@
 | 其他vlog      | other   | 2197 |           |                                              |
 
 ## 绘画
+
+<img src="../../assets/zone_v2_icon/painting.svg" width="100" height="100" />
 
 | 名称          | 代号     | tid  | channelId | url 路由                                             |
 | ------------- | -------- | ---- | --------- | ---------------------------------------------------- |
@@ -288,6 +294,8 @@
 
 ## 人工智能
 
+<img src="../../assets/zone_v2_icon/ai.svg" width="100" height="100" />
+
 | 名称              | 代号        | tid  | channelId | url 路由                                 |
 | ----------------- | ----------- | ---- | --------- | ---------------------------------------- |
 | 人工智能 (主分区) | ai          | 1011 | 25        | [/c/ai/](https://www.bilibili.com/c/ai/) |
@@ -296,6 +304,8 @@
 | AI杂谈            | other       | 2098 |           |                                          |
 
 ## 家装房产
+
+<img src="../../assets/zone_v2_icon/home.svg" width="100" height="100" />
 
 | 名称              | 代号       | tid  | channelId | url 路由                                     |
 | ----------------- | ---------- | ---- | --------- | -------------------------------------------- |
@@ -307,6 +317,8 @@
 
 ## 户外潮流
 
+<img src="../../assets/zone_v2_icon/outdoors.svg" width="100" height="100" />
+
 | 名称              | 代号     | tid  | channelId | url 路由                                             |
 | ----------------- | -------- | ---- | --------- | ---------------------------------------------------- |
 | 户外潮流 (主分区) | outdoors | 1016 | 27        | [/c/outdoors/](https://www.bilibili.com/c/outdoors/) |
@@ -316,6 +328,8 @@
 | 户外综合          | other    | 2127 |           |                                                      |
 
 ## 健身
+
+<img src="../../assets/zone_v2_icon/gym.svg" width="100" height="100" />
 
 | 名称          | 代号     | tid  | channelId | url 路由                                   |
 | ------------- | -------- | ---- | --------- | ------------------------------------------ |
@@ -327,6 +341,8 @@
 | 健身综合      | other    | 2132 |           |                                            |
 
 ## 手工
+
+<img src="../../assets/zone_v2_icon/handmake.svg" width="100" height="100" />
 
 | 名称          | 代号        | tid  | channelId | url 路由                                             |
 | ------------- | ----------- | ---- | --------- | ---------------------------------------------------- |
@@ -340,6 +356,8 @@
 
 ## 旅游出行
 
+<img src="../../assets/zone_v2_icon/travel.svg" width="100" height="100" />
+
 | 名称              | 代号      | tid  | channelId | url 路由                                         |
 | ----------------- | --------- | ---- | --------- | ------------------------------------------------ |
 | 旅游出行 (主分区) | travel    | 1022 | 30        | [/c/travel/](https://www.bilibili.com/c/travel/) |
@@ -349,6 +367,8 @@
 | 公共交通          | transport | 2161 |           |                                                  |
 
 ## 三农
+
+<img src="../../assets/zone_v2_icon/rural.svg" width="100" height="100" />
 
 | 名称          | 代号     | tid  | channelId | url 路由                                       |
 | ------------- | -------- | ---- | --------- | ---------------------------------------------- |
@@ -360,6 +380,8 @@
 | 农村生活      | life     | 2166 |           |                                                |
 
 ## 亲子
+
+<img src="../../assets/zone_v2_icon/parenting.svg" width="100" height="100" />
 
 | 名称          | 代号          | tid  | channelId | url 路由                                               |
 | ------------- | ------------- | ---- | --------- | ------------------------------------------------------ |
@@ -374,6 +396,8 @@
 
 ## 健康
 
+<img src="../../assets/zone_v2_icon/health.svg" width="100" height="100" />
+
 | 名称          | 代号       | tid  | channelId | url 路由                                         |
 | ------------- | ---------- | ---- | --------- | ------------------------------------------------ |
 | 健康 (主分区) | health     | 1026 | 33        | [/c/health/](https://www.bilibili.com/c/health/) |
@@ -386,6 +410,8 @@
 
 ## 情感
 
+<img src="../../assets/zone_v2_icon/emotion.svg" width="100" height="100" />
+
 | 名称          | 代号          | tid  | channelId | url 路由                                           |
 | ------------- | ------------- | ---- | --------- | -------------------------------------------------- |
 | 情感 (主分区) | emotion       | 1027 | 34        | [/c/emotion/](https://www.bilibili.com/c/emotion/) |
@@ -396,7 +422,7 @@
 
 ## 生活兴趣
 
-<img src="../../assets/zone_icon/life.svg" width="100" height="100" />
+<img src="../../assets/zone_v2_icon/life_joy.svg" width="100" height="100" />
 
 | 名称              | 代号              | tid  | channelId | url 路由                                             |
 | ----------------- | ----------------- | ---- | --------- | ---------------------------------------------------- |
@@ -409,6 +435,8 @@
 
 ## 生活经验
 
+<img src="../../assets/zone_v2_icon/life_experience.svg" width="100" height="100" />
+
 | 名称              | 代号            | tid  | channelId | url 路由                                                           |
 | ----------------- | --------------- | ---- | --------- | ------------------------------------------------------------------ |
 | 生活经验 (主分区) | life_experience | 1031 | 36        | [/c/life_experience/](https://www.bilibili.com/c/life_experience/) |
@@ -417,6 +445,8 @@
 | 婚嫁              | marriage        | 2205 |           |                                                                    |
 
 ## 神秘学 (未公开)
+
+该分区未出现在 B 站前端的界面中，也无图标
 
 | 名称            | 代号        | tid  | channelId | url 路由                                               |
 | --------------- | ----------- | ---- | --------- | ------------------------------------------------------ |
