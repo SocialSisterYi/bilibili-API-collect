@@ -158,6 +158,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [X] [基本信息](docs/article/info.md)
     - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
     - [X] [文集基本信息](docs/article/articles.md)
+    - [X] [删除](docs/article/delete.md)
 - [ ] [音频](docs/audio)
     - [x] [歌曲基本信息](docs/audio/info.md)
     - [ ] [歌单 & 音频收藏夹详细信息](docs/audio/music_list.md)
