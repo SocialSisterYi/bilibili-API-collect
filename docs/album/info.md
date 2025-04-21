@@ -1,5 +1,8 @@
 # 相簿基本信息
 
+<details>
+<summary>功能已下线</summary>
+
 ## 获取相簿详细信息
 
 >https://api.vc.bilibili.com/link_draw/v1/doc/detail
@@ -242,4 +245,5 @@ curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/detail' \
 }
 ```
 
+</details>
 </details>

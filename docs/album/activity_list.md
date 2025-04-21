@@ -1,5 +1,8 @@
 # 相簿活动列表
 
+<details>
+<summary>功能已下线</summary>
+
 ## 获取相簿热门活动列表
 
 > https://api.vc.bilibili.com/photo_activity/v2/Activity/list
@@ -145,4 +148,5 @@ curl -G 'https://api.vc.bilibili.com/photo_activity/v2/Activity/list' \
 }
 ```
 
+</details>
 </details>

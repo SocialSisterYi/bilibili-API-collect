@@ -1,5 +1,8 @@
 # 相簿列表
 
+<details>
+<summary>功能已下线</summary>
+
 ## 获取画友首页列表
 
 > https://api.vc.bilibili.com/link_draw/v2/Doc/index
@@ -2431,4 +2434,5 @@ curl -G 'https://api.vc.bilibili.com/link_draw/v1/doc/others' \
 }
 ```
 
+</details>
 </details>
