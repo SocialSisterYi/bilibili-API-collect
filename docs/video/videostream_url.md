@@ -555,8 +555,8 @@ avid 方式：
 curl -G 'https://api.bilibili.com/x/player/playurl' \
     --data-urlencode 'avid=969628065' \
     --data-urlencode 'cid=244954665' \
-    --data-urlencode 'qn=0' \
-    --data-urlencode 'fnval=80' \
+    --data-urlencode 'qn=80' \
+    --data-urlencode 'fnval=0' \
     --data-urlencode 'fnver=0' \
     --data-urlencode 'fourk=1' \
     -b 'SESSDATA=xxx'
@@ -568,8 +568,8 @@ curl -G 'https://api.bilibili.com/x/player/playurl' \
 curl -G 'https://api.bilibili.com/x/player/playurl' \
     --data-urlencode 'bvid=BV1rp4y1e745' \
     --data-urlencode 'cid=244954665' \
-    --data-urlencode 'qn=0' \
-    --data-urlencode 'fnval=80' \
+    --data-urlencode 'qn=80' \
+    --data-urlencode 'fnval=0' \
     --data-urlencode 'fnver=0' \
     --data-urlencode 'fourk=1' \
     -b 'SESSDATA=xxx'
