@@ -154,6 +154,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [笔记详细信息](docs/note/info.md)
     - [x] [笔记操作](docs/note/action.md)
 - [ ] [专栏](docs/article)
+    - [ ] [专栏内容](docs/article/view.md)
     - [ ] [专栏分类](docs/article/category.md)
     - [X] [基本信息](docs/article/info.md)
     - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
