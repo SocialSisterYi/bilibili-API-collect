@@ -54,7 +54,7 @@
 | list | object | 文集信息 | 见下 |
 | media | object | 媒体信息? |  |
 | mtime | number | 修改时间 | UNIX 秒级时间戳 |
-| opus | object | opus 信息 | 当 `type` 字段为 `3` 时存在 |
+| opus | object | opus 信息 | 当 `type` 字段为 `3` 时存在, 包含了更加详细的富文本信息 |
 | origin_image_urls | string[] | 原始图片 URL |  |
 | origin_template_id | number | 原始模板 ID? |  |
 | original | number | 是否原创 | 0: 非原创<br />1: 原创 |
