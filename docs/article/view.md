@@ -1272,3 +1272,6 @@ curl 'https://api.bilibili.com/x/article/view?id=41358718' \
     "total_art_num": 4
   }
 }
+```
+
+</details>
