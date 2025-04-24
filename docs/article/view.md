@@ -32,20 +32,20 @@
 | ---- | ---- | ---- | ---- |
 | act_id | number | 操作 ID? |  |
 | apply_time | string | 应用时间? |  |
-| attributes | number | 属性位? |  |
+| attributes | number | 属性位? | 可能不存在 |
 | authenMark | null | 授权码? |  |
 | author | object | 作者信息 | 参考 [用户基本信息](../user/info.md) |
-| banner_url | string | 文章头图 URL |  |
+| banner_url | string | 文章头图 URL | 空则为无 |
 | categories | object[] | 专栏分类信息 | 首项为主分区, 第二项为子分区 |
 | category | object | 专栏分类信息 | 子分区 |
 | check_state | number | 检查状态? |  |
 | check_time | string | 检查时间? |  |
-| content | string | 文章内容 | 可能为 JSON , 也可能为 HTML |
+| content | string | 文章内容 | `type` 字段为 `0` 为 HTML, `3` 为 JSON |
 | content_pic_list | unknown | 内容图片列表? |  |
 | cover_avid | number | 封面视频 AV 号 | `0` 为无视频 |
 | ctime | number | 创建时间 | UNIX 秒级时间戳 |
 | dispute | unknown | 争议信息? |  |
-| dyn_id_str | string | 动态 upos id |  |
+| dyn_id_str | string | 动态 opus id |  |
 | dynamic | string | 动态信息? | 可能不存在 |
 | id | number | 专栏文章 ID |  |
 | image_urls | string[] | 图片 URL |  |
@@ -54,6 +54,7 @@
 | list | object | 文集信息 | 见下 |
 | media | object | 媒体信息? |  |
 | mtime | number | 修改时间 | UNIX 秒级时间戳 |
+| opus | object | opus 信息 | 当 `type` 字段为 `3` 时存在 |
 | origin_image_urls | string[] | 原始图片 URL |  |
 | origin_template_id | number | 原始模板 ID? |  |
 | original | number | 是否原创 | 0: 非原创<br />1: 原创 |
@@ -62,14 +63,13 @@
 | reprint | number | 是否允许转载 | 0: 不允许<br />1: 允许规范转载 |
 | state | number | 专栏状态 |  |
 | stats | object | 统计数据 |  |
-| summary | string | 专栏开头部分内容 |  |
+| summary | string | 专栏开头部分内容 | 纯文本 |
 | tags | object[] | 专栏标签 |  |
 | template_id | number | 模板 ID? |  |
 | title | string | 专栏标题 |  |
 | top_video_info | unknown | 封面食品信息? |  |
 | total_art_num | number | 作者总文章数 |  |
 | type | number | 类型? |  |
-| upos | object | upos 信息 | 部分无该字段 |
 | version_id | number | 版本 ID? |  |
 | words | number | 文章总词数 |  |
 
