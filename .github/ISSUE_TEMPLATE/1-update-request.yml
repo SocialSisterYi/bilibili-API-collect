@@ -14,12 +14,13 @@ body:
     attributes:
       label: "API 来源"
       description: "该 API 在何平台中使用"
+      multiple: true
       options:
         - "Web 端（含 h5）"
         - "PC 客户端（Electron）"
         - "Android 客户端（含粉版、平板版、蓝版、概念版、国际版等）"
-        - "TV 客户端（含云试听小电视、车机、物联网版等）"
-        - "IOS 客户端（含粉版、平板版、概念版等）"
+        - "TV 客户端（含云视听小电视、车机、物联网版等）"
+        - "iOS 客户端（含粉版、平板版、概念版等）"
         - "必剪客户端"
         - "漫画客户端"
         - "其他（请在详情中备注）"
@@ -33,16 +34,16 @@ body:
       options:
         - "REST"
         - "gRPC"
-        - "长连接数据帧（含 ws、TCP）"
+        - "长连接数据帧（含 WebSocket、TCP）"
         - "其他类型（请在详情中备注）"
     validations:
       required: true
   - type: input
-    id: adderss
+    id: address
     attributes:
       label: "API 地址"
       description: "REST 的 url，或 gRPC 的包名+服务名，更新时可为原文档链接"
-      placeholder: "eg: https://api.bilibili.com/2333333"
+      placeholder: "e.g.: https://api.bilibili.com/x/..."
     validations:
       required: false
   - type: textarea

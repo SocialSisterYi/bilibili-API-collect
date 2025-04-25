@@ -676,7 +676,7 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 `data`中的`Tags`数组：
 
-基本同「[获取视频TAG信息](tags.md#获取视频TAG信息)」中的data数组
+基本同「[获取视频TAG信息（新）](tags.md#获取视频TAG信息新)」中的data数组
 
 `data`中的`Reply`对象：
 

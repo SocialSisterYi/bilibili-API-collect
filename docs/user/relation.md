@@ -1348,7 +1348,7 @@ curl 'https://api.bilibili.com/x/relation/modify' \
 | 参数名     | 类型 | 内容                      | 必要性          | 备注                                              |
 | ---------- | ---- | ------------------------- | --------------- | ------------------------------------------------- |
 | access_key | str  | APP 登录 Token            | APP 方式必要    |                                                   |
-| fids       | nums | 目标用户 mid 列表         | 必要            | 每个之间用`,`间隔                                 |
+| fids       | nums | 目标用户 mid 列表         | 必要            | 每个成员之间用 `,` 间隔，最多 50 个成员，不能包含自己的 mid |
 | act        | num  | 操作代码                  | 必要            | 同上<br />仅可为 1 或 5，故只能进行批量关注和拉黑 |
 | re_src     | num  | 关注来源代码              | 必要            | 同上                                              |
 | csrf       | str  | CSRF Token（位于 Cookie） | Cookie 方式必要 |                                                   |
@@ -1485,13 +1485,15 @@ curl -G 'https://api.bilibili.com/x/relation' \
 
 ### 查询用户与自己关系（互相关系）
 
-> https://api.bilibili.com/x/space/wbi/acc/relation
+> 接口1：https://api.bilibili.com/x/space/wbi/acc/relation
+
+> 接口2：https://api.bilibili.com/x/web-interface/relation
 
 *请求方式：GET*
 
 认证方式：Cookie（SESSDATA）或 APP
 
-鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
+鉴权方式（仅接口1）：[Wbi 签名](../misc/sign/wbi.md)
 
 ~~该接口的旧版 API ：https://api.bilibili.com/x/space/acc/relation~~（已废弃，不建议使用）
 
@@ -1501,8 +1503,8 @@ curl -G 'https://api.bilibili.com/x/relation' \
 | ---------- | ---- | ------------ | ----------- | ------------------------------------ |
 | access_key | str  | APP登录Token | APP方式必要 |                                      |
 | mid        | num  | 目标用户mid  | 必要        |                                      |
-| w_rid      | str  | Wbi 签名     | 必要        | 详见 [Wbi 签名](../misc/sign/wbi.md) |
-| wts        | num  | 当前时间戳   | 必要        | 详见 [Wbi 签名](../misc/sign/wbi.md) |
+| w_rid      | str  | Wbi 签名     | 仅接口1必要 | 详见 [Wbi 签名](../misc/sign/wbi.md) |
+| wts        | num  | 当前时间戳   | 仅接口1必要 | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 
 **json回复：**
 
