@@ -2689,7 +2689,7 @@ curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
 | coin       | num  | 合集总投币数 |                      |
 | danmaku    | num  | 合集总弹幕数 |                      |
 | favorite   | num  | 合集总收藏数 |                      |
-| like       | num  | 合集总点咱数 |                      |
+| like       | num  | 合集总点赞数 |                      |
 | mtime      | num  | unix时间(s)  | 其他统计数据更新时间 |
 | reply      | num  | 合集总评论数 |                      |
 | season_id  | num  | 合集id       |                      |
