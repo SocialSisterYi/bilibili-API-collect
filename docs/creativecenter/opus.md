@@ -1,4 +1,6 @@
-# 删除专栏
+# 图文操作
+
+## 删除专栏
 
 > <https://member.bilibili.com/x/web/article/delete>
 
