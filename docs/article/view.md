@@ -93,7 +93,7 @@
 | ---- | -------- | ---- | ---- |
 | ops  | object[] | 以 JSON 呈现的文本内容 | 套了个娃 |
 
-`data.content` 为字符串形式的 JSON 时代表的对象中的 `ops` 数组中的对象:
+`data.content` 代表的对象中的 `ops` 数组中的对象:
 
 | 字段 | 类型     | 内容 | 备注 |
 | ---- | -------- | ---- | ---- |
@@ -101,27 +101,34 @@
 | insert | string \| object | 插入内容 |  |
 
 
-`data.content` 为字符串形式的 JSON 时代表的对象中的 `ops` 数组中的对象中的 `attribute` 对象:
+`data.content` 代表的对象中的 `ops[].attribute` 对象:
 
 注: 此处属性备注为页面实际渲染的情况
 
 | 字段       | 类型     | 内容 | 备注 |
 | ---------- | -------- | ---- | ---- |
+| align      | string?  | 文字对齐 | 参见 [text-align](https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-align) |
 | blockquote | boolean? | 块级引用 | 参见 [\<blockquote\>：块级引用元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/blockquote) |
 | bold       | boolean? | 加粗 | 参见 [\<strong\>](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/strong) |
 | class      | string?  | 类名 | 参见 [class](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Global_attributes/class) |
-| color      | string?  | 颜色 | 参见 [color](https://developer.mozilla.org/zh-CN/docs/Web/CSS/color) |
+| color      | string?  | 颜色 | 十六进制颜色值, 参见 [color](https://developer.mozilla.org/zh-CN/docs/Web/CSS/color) |
 | header     | number?  | 标题级别 | 参见 [\<h1\>–\<h6\>：HTML 区域标题元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/Heading_Elements) |
 | strike     | boolean? | 删除线 | 参见 [\<s\>](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/s) |
+| link       | string?  | 站内链接 | 参见 [\<a\>：锚元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/a) |
 | italic     | boolean? | 斜体 | 参见 [\<em\>：强调元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/em) | list       | string?  | 列表 | `bullet`: 无序列表, 参见 [\<ul\>：无序列表元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/ul)<br />`ordered`: 有序列表, 参见 [\<ol\>](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/ol) |
 
-`data.content` 为字符串形式的 JSON 时代表的对象中的 `ops` 数组中的对象中的 `insert` 为对象时的对象:
+`data.content` 代表的对象中的 `ops[].insert` 为对象时的对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | native-image | object? | 原生图片 | 见下, 另见 [\<img\>：图像嵌入元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Reference/Elements/img) |
+| cut-off | object? | 分割线 | 见下 |
+| video-card | object? | 视频卡片 | 见下 |
+| article-card | object? | 专栏卡片 | 见下 |
+| vote-card | object? | 投票卡片 | 见下 |
+| live-card | object? | 投票卡片 | 见下 |
 
-`data.content` 为字符串形式的 JSON 时代表的对象中的 `ops` 数组中的对象中的 `insert` 为对象时的对象中的 `native-image` 对象:
+`data.content` 代表的对象中的 `ops[].insert.native-image` 对象:
 
 注: 此处属性备注为页面实际渲染的情况
 
@@ -133,6 +140,66 @@
 | height | number | 图像的高度 | 即 `<img>` 的 `data-h` 属性 |
 | size | number | 图像的文件大小 | 即 `<img>` 的 `data-size` 属性 |
 | status | number | `"loaded"` | 即 `<img>` 的 `data-status` 属性 |
+
+`data.content` 代表的对象中的 `ops[].insert.cut-off` 对象:
+
+| 字段 | 类型   | 内容 | 备注 |
+| ---- | ------ | ---- | ---- |
+| type | string | 类型 | 没错, 就是字符串 |
+| url  | string | 分割线图片 URL |  |
+
+`data.content` 代表的对象中的 `ops[].insert.video-card` 对象:
+
+| 字段 | 类型   | 内容 | 备注 |
+| ---- | ------ | ---- | ---- |
+| alt  | string |      |      |
+| height | number | 卡片高度 | 似乎恒定为 `352` |
+| id   | string | 视频 id | 如 `av99999999` |
+| size | null   |      |      |
+| status | string | `loaded` | |
+| tid  | number | `1.1` |     |
+| url  | string | 卡片图片 URL |  |
+| width | number | 卡片宽度 | 似乎恒定为 `2632` |
+
+`data.content` 代表的对象中的 `ops[].insert.article-card` 对象:
+
+| 字段 | 类型   | 内容 | 备注 |
+| ---- | ------ | ---- | ---- |
+| alt  | string |      |      |
+| height | number | 卡片高度 | 似乎恒定为 `320` |
+| id   | string | 文章 id | 如 `cv1` |
+| size | null   |      |      |
+| status | string | `loaded` | |
+| tid  | number | `2` |     |
+| url  | string | 卡片图片 URL |  |
+| width | number | 卡片宽度 | 似乎恒定为 `2632` |
+
+`data.content` 代表的对象中的 `ops[].insert.vote-card` 对象:
+
+| 字段 | 类型   | 内容 | 备注 |
+| ---- | ------ | ---- | ---- |
+| alt  | string |      |      |
+| height | number | 卡片高度 | 似乎恒定为 `320` |
+| id   | string | 投票 id | 确实是字符串, 如 `15111509` |
+| size | null   |      |      |
+| status | string | `loaded` | |
+| tid  | number | `7` |     |
+| url  | string | 卡片图片 URL |  |
+| width | number | 卡片宽度 | 似乎恒定为 `2632` |
+
+`data.content` 代表的对象中的 `ops[].insert.live-card` 对象:
+
+| 字段 | 类型   | 内容 | 备注 |
+| ---- | ------ | ---- | ---- |
+| alt  | string |      |      |
+| height | number | 卡片高度 | 似乎恒定为 `352` |
+| id   | string | 直播间 id | 可能为长也可能为短, 如 `lv1` `lv5440` |
+| size | null   |      |      |
+| status | string | `loaded` | |
+| tid  | number | `8` |     |
+| url  | string | 卡片图片 URL |  |
+| width | number | 卡片宽度 | 似乎恒定为 `2632` |
+
 
 `data.list` 对象:
 
