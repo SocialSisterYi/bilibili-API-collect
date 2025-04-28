@@ -116,6 +116,10 @@ curl -X POST 'https://api.vc.bilibili.com/dynamic_like/v1/dynamic_like/thumb' \ 
 
 ## 删除动态
 
+参见 [创作中心 -> 图文操作 -> 删除动态](../creativecenter/opus.md#删除动态)
+
+## 删除动态 (旧版)
+
 > <https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/rm_dynamic>
 
 *请求方式：POST*
