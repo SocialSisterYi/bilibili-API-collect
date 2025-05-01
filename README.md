@@ -153,6 +153,8 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [笔记列表](docs/note/list.md)
     - [x] [笔记详细信息](docs/note/info.md)
     - [x] [笔记操作](docs/note/action.md)
+- [ ] [图文](docs/opus)
+    - [x] [空间图文](docs/opus/space.md)
 - [ ] [专栏](docs/article)
     - [ ] [专栏内容](docs/article/view.md)
     - [ ] [专栏分类](docs/article/category.md)

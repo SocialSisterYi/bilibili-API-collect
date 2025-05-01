@@ -6,6 +6,10 @@
 
 认证方式：Cookie（SESSDATA）
 
+鉴权方式: WBI 签名
+
+注: 该接口现在有一些奇奇怪怪的校验, 参见 [#686](https://github.com/SocialSisterYi/bilibili-API-collect/issues/686)
+
 ## URL参数
 
 | 参数名             | 类型  | 必填  | 内容     | 备注  |
