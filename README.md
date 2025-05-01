@@ -176,7 +176,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
         - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
     - [ ] [导航栏动态](docs/dynamic/nav.md)
-    - [ ] [首页公告栏](docs/dynamic/banner.md)
+    - [x] [首页公告栏](docs/dynamic/banner.md)
 - [ ] [创作中心](docs/creativecenter)
     - [ ] [投稿](docs/creativecenter/upload.md)
     - [ ] [统计与数据](docs/creativecenter/statistics&data.md)
