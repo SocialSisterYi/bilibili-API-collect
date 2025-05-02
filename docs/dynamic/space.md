@@ -4,9 +4,7 @@
 
 请求方式：`GET`
 
-认证方式：Cookie（SESSDATA）
-
-鉴权方式: WBI 签名
+鉴权方式: 请求标头 `User-Agent` 字段, Cookie 需含 `buvid3`
 
 注: 该接口现在有一些奇奇怪怪的校验, 参见 [#686](https://github.com/SocialSisterYi/bilibili-API-collect/issues/686)
 
