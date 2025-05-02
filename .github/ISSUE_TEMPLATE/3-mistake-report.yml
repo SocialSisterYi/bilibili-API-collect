@@ -1,6 +1,6 @@
 name: "错误修正"  
 description: "发现文档内容有误并提交修正请求"  
-title: "[错误修正] <标题>"  
+title: "[错误修正] <title>"  
 labels: ["错误/Mistakes"]
 body:  
   - type: checkboxes  
