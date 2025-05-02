@@ -14,8 +14,10 @@ body:
     id: document_link
     attributes:
       label: "原文档链接"
-      description: "需要更新的文档链接，指定到具体 API"
-      placeholder: "eg: https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/docs/bangumi/info.md#获取剧集明细web端ssidepid方式 or https://socialsisteryi.github.io/bilibili-API-collect/docs/bangumi/info.html#获取剧集明细-web端-ssid-epid方式"
+      description: |
+        需要更新的文档链接，指定到具体 API<br>
+        eg: https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/docs/bangumi/info.md#获取剧集明细web端ssidepid方式<br>
+            https://socialsisteryi.github.io/bilibili-API-collect/docs/bangumi/info.html#获取剧集明细-web端-ssid-epid方式
     validations:
       required: true
   - type: textarea
