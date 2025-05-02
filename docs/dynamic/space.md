@@ -6,7 +6,7 @@
 
 鉴权方式: 请求标头 `User-Agent` 字段, Cookie 需含 `buvid3`
 
-注: 该接口现在有一些奇奇怪怪的校验, 参见 [#686](https://github.com/SocialSisterYi/bilibili-API-collect/issues/686)
+注: 该接口现在有一些奇奇怪怪的校验, 存在一定运气成分, 参见 [#686](https://github.com/SocialSisterYi/bilibili-API-collect/issues/686)
 
 ## URL参数
 
