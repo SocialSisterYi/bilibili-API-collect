@@ -1,0 +1,27 @@
+name: "更新请求"
+description: "请求补充或更新文档中已有的 API 定义"
+title: "[更新请求] <title>"
+labels: ["更新/Update"]
+body:
+  - type: checkboxes
+    id: reminders
+    attributes:
+      label: "提交前请确认"
+      options:
+        - label: "我已确认文档中相关内容存在错误或不足，且 Issues、Pull Requests 中无相关提交"
+          required: true
+  - type: input
+    id: document_link
+    attributes:
+      label: "原文档链接"
+      description: "需要更新的文档链接，指定到具体 API"
+      placeholder: "eg: https://github.com/SocialSisterYi/bilibili-API-collect/blob/master/docs/bangumi/info.md#获取剧集明细web端ssidepid方式 or https://socialsisteryi.github.io/bilibili-API-collect/docs/bangumi/info.html#获取剧集明细-web端-ssid-epid方式"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: "更新内容"
+      description: "请指出原文档中与最新 API 行为不符之处，并附上已知的最新改动和验证信息"
+    validations:
+      required: true
