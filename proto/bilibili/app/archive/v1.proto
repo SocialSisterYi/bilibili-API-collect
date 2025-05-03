@@ -6,67 +6,74 @@ package bilibili.app.archive.v1;
 message Arc {
     // 
     int64 aid = 1;
-    // 
+    // 分 P 数
     int64 videos = 2;
-    // 
+    // 分区 ID
     int32 type_id = 3;
-    // 
+    // 分区名称
     string type_name = 4;
-    // 
+    // 是否转载
+    //
+    // - 0: 历史上可能遗留的脏数据
+    // - 1: 原创
+    // - 2: 转载
     int32 copyright = 5;
-    // 
+    // 封面地址
     string pic = 6;
-    // 
+    // 标题
     string title = 7;
-    // 
+    // 发布时间戳
     int64 pubdate = 8;
-    // 
+    // 提交时间戳
     int64 ctime = 9;
-    // 
+    // 简介
     string desc = 10;
-    // 
+    // 状态 (>= 0 为正常可见状态)
     int32 state = 11;
+    // 是否可访问
     // 
+    // - 0: 公开
+    // - 10000: 仅登录用户
     int32 access = 12;
-    // 
+    // 属性
     int32 attribute = 13;
-    // 
+    // Depecated
     string tag = 14;
-    // 
+    // Deprecated
     repeated string tags = 15;
-    // 
+    // 所有分 P 加起来的总时长 (seconds)
     int64 duration = 16;
-    // 
+    // 参与的活动 id
     int64 mission_id = 17;
-    // 
+    // 参与的商单 id
     int64 order_id = 18;
-    // 
+    // 强制跳转地址
     string redirect_url = 19;
     // 
     int64 forward = 20;
-    // 
+    // 参见 [`Rights`]
     Rights rights = 21;
-    // 
+    // 稿件作者信息, 参见 [`Author`]
     Author author = 22;
-    // 
+    // 稿件计数信息, 参见 [`Stat`]
     Stat stat = 23;
     // 
     string report_result = 24;
-    // 
+    // 发布时动态描述
     string dynamic = 25;
-    // 
+    // 首个分 P 的 cid
     int64 first_cid = 26;
-    // 
+    // 首个分 P 的分辨率
     Dimension dimension = 27;
-    // 
+    // 联合投稿信息
     repeated StaffInfo staff_info = 28;
-    // 
+    // UGC 剧集 ID
     int64 season_id = 29;
-    // 
+    // 属性 (旧的 int32 不够用了)
     int64 attribute_v2 = 30;
-    // 
+    // ? UGC 剧集主题
     SeasonTheme season_theme = 31;
-    // 
+    // ? 短链接
     string short_link_v2 = 40;
     // 
     int32 up_from_v2 = 41;
@@ -74,79 +81,83 @@ message Arc {
     string first_frame = 42;
 }
 
-// 
+// 作者信息
 message Author {
-    // 
+    // UP mid
     int64 mid = 1;
-    // 
+    // UP 昵称
     string name = 2;
-    // 
+    // UP 头像
     string face = 3;
 }
 
-// 
+// 视频分辨率
 message Dimension {
-    // 
+    // 宽
     int64 width = 1;
-    // 
+    // 高
     int64 height = 2;
-    // 
+    // 是否竖屏
     int64 rotate = 3;
 }
 
-// 
+// 分 P 信息
 message Page {
-    // 
+    // 视频流 CID
     int64 cid = 1;
-    // 
+    // 视频序号
     int32 page = 2;
+    // 视频来源
     // 
+    // - vupload
+    // - qq: Tencent
+    // - hunan: Hunan TV
     string from = 3;
-    // 
+    // 视频标题
     string part = 4;
-    // 
+    // 视频时长 (seconds)
     int64 duration = 5;
-    // 
+    // 站外视频 vid
     string vid = 6;
-    // 
+    // 视频简介
     string desc = 7;
-    // 
+    // 站外视频跳转地址
     string web_link = 8;
-    // 
+    // 见 [`Dimension`]
     Dimension dimension = 9;
     // 
     string first_frame = 10;
 }
 
-// 
+// 常用属性, 0 否 1 是
 message Rights {
-    // 
+    // 是否付费(旧版)
     int32 bp = 1;
-    // 
+    // 是否支持充电
     int32 elec = 2;
-    // 
+    // 是否下载
     int32 download = 3;
-    // 
+    // 是否电影
     int32 movie = 4;
-    // 
+    // 是否是需要付费的 PGC 稿件
     int32 pay = 5;
-    // 
+    // Deprecated
     int32 hd5 = 6;
-    // 
+    // 是否允许转发
     int32 no_reprint = 7;
-    // 
+    // 是否可以自动播放
     int32 autoplay = 8;
-    // 
+    // 是否是需要付费的 UGC 稿件
     int32 ugc_pay = 9;
-    // 
+    // 是否联合投稿
     int32 is_cooperation = 10;
-    // 
+    // 需要付费的 PGC 稿件是否支持预览
     int32 ugc_pay_preview = 11;
-    // 
+    // 是否禁止后台播放
     int32 no_background = 12;
     // 
     int32 arc_pay = 13;
-    // 
+    // ? 需要付费的稿件是否支持免费畅览
     int32 pay_free_watch = 14;
 }
 
@@ -160,39 +171,39 @@ message SeasonTheme {
     string text_color = 3;
 }
 
-// 
+// 联合投稿成员
 message StaffInfo {
-    // 
+    // 联合投稿成员 mid
     int64 mid = 1;
-    // 
+    // 联合投稿成员角色
     string title = 2;
-    // 
+    // 属性
     int64 attribute = 3;
 }
 
-// 
+// 计数相关信息
 message Stat {
-    // 
+    // 稿件 avid
     int64 aid = 1;
-    // 
+    // 播放量
     int32 view = 2;
-    // 
+    // 弹幕数
     int32 danmaku = 3;
-    // 
+    // 评论数
     int32 reply = 4;
-    // 
+    // 收藏数
     int32 fav = 5;
-    // 
+    // 投币数
     int32 coin = 6;
-    // 
+    // 分享数
     int32 share = 7;
-    // 
+    // 当前排名
     int32 now_rank = 8;
-    // 
+    // 历史最高排名
     int32 his_rank = 9;
-    // 
+    // 点赞数
     int32 like = 10;
-    // 
+    // 点踩数 (Deprecated)
     int32 dislike = 11;
 }
 
