@@ -4,13 +4,16 @@ package bilibili.api.probe.v1;
 
 // 
 service Probe {
-    // 
+    // Simulate error codes and return
     rpc TestCode (CodeReq) returns (CodeReply);
-    // 
+    // Test a regular request, which can be placed together with a certain API
+    // to test connectivity.
     rpc TestReq (ProbeReq) returns (ProbeReply);
-    // 
+    // TODO: not implemented
     rpc TestStream (stream ProbeStreamReq) returns (stream ProbeStreamReply);
-    // 
+    // Within the test environment, the server sends a message every minute,
+    // containing a message ID. The client needs to record and report the
+    // message ID.
     rpc TestSub (ProbeSubReq) returns (stream ProbeSubReply);
 }
 
