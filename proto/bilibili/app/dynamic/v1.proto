@@ -4,33 +4,33 @@ package bilibili.app.dynamic.v1;
 
 import "bilibili/app/archive/middleware/v1.proto";
 
-// 
+// 动态
 service Dynamic {
-    // 
+    // 通过动态 ID 批量获取动态详情请求
     rpc DynDetails (DynDetailsReq) returns (DynDetailsReply);
     // 
     rpc DynMixUpListSearch (DynMixUpListSearchReq) returns (DynMixUpListSearchReply);
     // 
     rpc DynMixUpListViewMore (NoReq) returns (DynMixUpListViewMoreReply);
-    // 
+    // 动态同城页请求
     rpc DynOurCity (DynOurCityReq) returns (DynOurCityReply);
-    // 
+    // 动态同城开关请求
     rpc DynOurCitySwitch (DynOurCitySwitchReq) returns (NoReply);
-    // 
+    // 动态红点请求
     rpc DynRed (DynRedReq) returns (DynRedReply);
-    // 
+    // 动态 tab 请求
     rpc DynTab (DynTabReq) returns (DynTabReply);
-    // 
+    // 最近访问标记已读请求
     rpc DynUpdOffset (DynUpdOffsetReq) returns (NoReply);
-    // 
+    // 动态视频页请求
     rpc DynVideo (DynVideoReq) returns (DynVideoReqReply);
-    // 
+    // 最近访问个人视频 feed 流请求
     rpc DynVideoPersonal (DynVideoPersonalReq) returns (DynVideoPersonalReply);
     // 
     rpc GeoCoder (GeoCoderReq) returns (GeoCoderReply);
     // 
     rpc OurCityClickReport (OurCityClickReportReq) returns (OurCityClickReportReply);
-    // 
+    // 小视频连播
     rpc SVideo (SVideoReq) returns (SVideoReply);
 }
 
@@ -153,101 +153,101 @@ message BubbleModuleUser {
     repeated UserInfo users = 1;
 }
 
-// 
+// 付费课程批次卡片数据
 message CardCurrBatch {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 封面
     string cover = 2;
-    // 
+    // 跳转地址
     string uri = 3;
-    // 
+    // 展示项 1: 本集标题
     string text1 = 4;
-    // 
+    // 展示项 2: 更新了多少个视频
     string text2 = 5;
-    // 
+    // 角标
     VideoBadge badge = 6;
 }
 
-// 
+// 付费课程系列卡片数据
 message CardCurrSeason {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 封面
     string cover = 2;
-    // 
+    // 跳转地址
     string uri = 3;
-    // 
+    // 展示项 1 (展示更新信息)
     string text1 = 4;
-    // 
+    // 描述信息
     string desc = 5;
-    // 
+    // 角标
     VideoBadge badge = 6;
 }
 
-// 
+// PGC 视频卡片数据
 message CardPGC {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 封面
     string cover = 2;
-    // 
+    // 秒开地址
     string uri = 3;
-    // 
+    // 视频封面展示项 1
     string cover_left_text1 = 4;
-    // 
+    // 视频封面展示项 2
     string cover_left_text2 = 5;
-    // 
+    // 视频封面展示项 3
     string cover_left_text3 = 6;
-    // 
+    // 视频 cid
     int64 cid = 7;
-    // 
+    // PGC 剧集 ID
     int64 season_id = 8;
-    // 
+    // PGC 剧集分集 ID
     int64 epid = 9;
-    // 
+    // 视频 avid
     int64 aid = 10;
-    // 
+    // 视频源类型
     MediaType media_type = 11;
-    // 
+    // 番剧类型
     VideoSubType sub_type = 12;
-    // 
+    // 番剧是否为预览视频
     int32 is_preview = 13;
-    // 
+    // 分辨率
     Dimension dimension = 14;
-    // 
+    // 角标
     repeated VideoBadge badge = 15;
-    // 
+    // 是否能够自动播放
     int32 can_play = 16;
-    // 
+    // PGC 剧集信息
     PGCSeason season = 17;
 }
 
-// 
+// UGC 视频卡片数据
 message CardUGC {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 封面图
     string cover = 2;
-    // 
+    // 秒开地址
     string uri = 3;
-    // 
+    // 视频封面展示项 1
     string cover_left_text1 = 4;
-    // 
+    // 视频封面展示项 2
     string cover_left_text2 = 5;
-    // 
+    // 视频封面展示项 3
     string cover_left_text3 = 6;
-    // 
+    // 视频 avid
     int64 avid = 7;
-    // 
+    // 视频 cid
     int64 cid = 8;
-    // 
+    // 视频源类型
     MediaType media_type = 9;
-    // 
+    // 分辨率
     Dimension dimension = 10;
-    // 
+    // 角标
     repeated VideoBadge badge = 11;
-    // 
+    // 是否能够自动播放
     int32 can_play = 12;
 }
 
@@ -291,73 +291,73 @@ enum CornerType {
     corner_type_number = 5;
 }
 
-// 
+// 粉丝样式
 message DecoCardFan {
-    // 
+    // 是否是粉丝
     int32 is_fan = 1;
-    // 
+    // 数量
     int32 number = 2;
-    // 
+    // 颜色
     string color = 3;
 }
 
-// 
+// 装扮卡片
 message DecorateCard {
-    // 
+    // 装扮卡片 ID
     int64 id = 1;
-    // 
+    // 装扮卡片链接
     string card_url = 2;
-    // 
+    // 装扮卡片点击跳转链接
     string jump_url = 3;
-    // 
+    // 粉丝样式
     DecoCardFan fan = 4;
 }
 
-// 
+// 文本描述
 message Description {
-    // 
+    // 文本内容
     string text = 1;
-    // 
+    // 文本类型
     string type = 2;
-    // 
+    // 跳转地址
     string uri = 3;
-    // 
+    // emoji 类型
     string emoji_type = 4;
-    // 
+    // 商品类型
     string goods_type = 5;
 }
 
-// 
+// 分辨率信息
 message Dimension {
-    // 
+    // 高
     int64 height = 1;
-    // 
+    // 宽
     int64 width = 2;
-    // 
+    // 是否为竖屏
     int64 rotate = 3;
 }
 
-// 
+// 通过动态 ID 批量获取动态详情返回值
 message DynDetailsReply {
-    // 
+    // 动态列表
     repeated DynamicItem list = 1;
 }
 
-// 
+// 通过动态 ID 批量获取动态详情请求参数
 message DynDetailsReq {
-    // 
+    // 青少年模式
     int32 teenagers_mode = 1;
-    // 
+    // 动态 ID
     string dynamic_ids = 2;
-    // 
+    // 清晰度 (供秒开)
     int32 qn = 3;
-    // 
+    // 功能版本号 (供秒开)
     int32 fnver = 4;
-    // 
+    // 功能标识 (供秒开)
     int32 fnval = 5;
-    // 
+    // 返回 playurl 是否强制使用域名 (供秒开)
     int32 force_host = 6;
-    // 
+    // 是否需要 4K 视频 (供秒开)
     int32 fourk = 7;
 }
 
@@ -381,78 +381,97 @@ message DynMixUpListViewMoreReply {
     string search_default_text = 2;
 }
 
-// 
+// 动态同城物料
 message DynOurCityItem {
-    // 
+    // 卡片类型
+    //
+    // - av: 稿件
+    // - draw: 图文
     string card_type = 1;
-    // 
+    // 动态 ID
     int64 dyn_id = 2;
-    // 
+    // 跳转地址
     string uri = 3;
-    // 
+    // 模块列表
     repeated DynOurCityModule modules = 4;
-    // 
+    // 资源 ID
     int64 rid = 5;
-    // 
+    // ? DEBUG 信息
     string debug_info = 6;
 }
 
-// 
+// 动态同城物料模块
 message DynOurCityModule {
-    // 
+    // 模块类型
+    //
+    // - `cover`: 封面
+    // - `desc`: 描述
+    // - `author`: 发布人
+    // - `extend`: 扩展部分
     oneof module_item {
-        // 
+        // 参见 [`DynOurCityModuleCover`]
         DynOurCityModuleCover module_cover = 2;
-        // 
+        // 参见 [`DynOurCityModuleDesc`]
         DynOurCityModuleDesc module_desc = 3;
-        // 
+        // 参见 [`DynOurCityModuleAuthor`]
         DynOurCityModuleAuthor module_author = 4;
-        // 
+        // 参见 [`DynOurCityModuleExtend`]
         DynOurCityModuleExtend module_extend = 5;
     }
-    // 
+    // 模块类型
+    //
+    // - `cover`: 封面
+    // - `desc`: 描述
+    // - `author`: 发布人
+    // - `extend`: 扩展部分
     string module_type = 1;
 }
 
-// 
+// 动态同城物料发布人模块
 message DynOurCityModuleAuthor {
-    // 
+    // 发布人 mid
     int64 mid = 1;
-    // 
+    // 发布人昵称
     string name = 2;
-    // 
+    // 发布人头像
     string face = 3;
-    // 
+    // 跳转地址
     string uri = 4;
 }
 
-// 
+// 动态同城物料封面模块
 message DynOurCityModuleCover {
-    // 
+    // 封面图
+    //
+    // 单图样式取第一个元素
     repeated string covers = 1;
-    // 
+    // 封面样式
+    //
+    // - 1: 横图
+    // - 2: 竖图
+    // - 3: 方图
     int32 style = 2;
-    // 
+    // 视频封面展示项图标 1
     int32 cover_left_icon1 = 3;
-    // 
+    // 视频封面展示项 1
     string cover_left_text1 = 4;
-    // 
+    // 视频封面展示项图标 2
     int32 cover_left_icon2 = 5;
-    // 
+    // 视频封面展示项 2
     string cover_left_text2 = 6;
-    // 
+    // 视频封面展示项 3
     string cover_left_text3 = 7;
-    // 
+    // 角标
     repeated VideoBadge badge = 8;
 }
 
-// 
+// 动态同城物料详情模块
 message DynOurCityModuleDesc {
-    // 
+    // 详情
     string desc = 1;
 }
 
-// 
+// 动态同城物料拓展模块
 message DynOurCityModuleExtend {
     // 
     oneof extend {
@@ -463,69 +482,72 @@ message DynOurCityModuleExtend {
     string type = 1;
 }
 
-// 
+// 动态同城物料拓展模块: LBS
 message DynOurCityModuleExtendLBS {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 跳转地址
     string uri = 2;
-    // 
+    // 小图标
     string icon = 3;
     // 
     int32 poi_type = 4;
 }
 
-// 
+// 动态同城页请求返回值
 message DynOurCityReply {
-    // 
+    // 翻页游标
     string offset = 1;
-    // 
+    // 是否还有更多
     int32 has_more = 2;
-    // 
+    // 样式类型
+    //
+    // - 1: 双列
+    // - 2: 瀑布流
     int32 style = 3;
-    // 
+    // ? 顶部导引信息
     string top_label = 4;
-    // 
+    // 列表详情
     repeated DynOurCityItem list = 5;
-    // 
+    // ? 顶部导引按钮信息
     string top_button_label = 6;
-    // 
+    // 城市 ID
     int32 city_id = 7;
-    // 
+    // 城市名称
     string city_name = 8;
 }
 
-// 
+// 动态同城页请求参数
 message DynOurCityReq {
-    // 
+    // 城市 ID
     int64 city_id = 1;
-    // 
+    // 纬度
     double lat = 2;
-    // 
+    // 精度
     double lng = 3;
-    // 
+    // 透传上一次接口请求返回的 offset
     string offset = 4;
-    // 
+    // 每页元素个数
     int32 page_size = 5;
-    // 
+    // 青少年模式
     int32 teenagers_mode = 6;
-    // 
+    // 清晰度 (供秒开)
     int32 qn = 7;
-    // 
+    // 功能版本号 (供秒开)
     int32 fnver = 8;
-    // 
+    // 功能标识 (供秒开)
     int32 fnval = 9;
-    // 
+    // 返回 playurl 是否强制使用域名 (供秒开)
     int32 force_host = 10;
-    // 
+    // 是否需要 4K 视频 (供秒开)
     int32 fourk = 11;
-    // 
+    // 是否开启 LBS
     int32 lbs_state = 12;
     // 
     int32 refresh_city = 13;
-    // 
+    // ab 测试配置
     ExpConf exp_conf = 14;
-    // 
+    // 播放器参数 (供秒开)
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 15;
     // 
     int64 city_code = 16;
@@ -533,27 +555,31 @@ message DynOurCityReq {
     int64 build_time = 17;
 }
 
-// 
+// 动态同城开关请求参数
 message DynOurCitySwitchReq {
     // 
     int32 switch = 1;
 }
 
-// 
+// 红点具体信息
 message DynRedItem {
-    // 
+    // 数字红点有效更新数
     int64 count = 1;
 }
 
-// 
+// 动态红点返回值
 message DynRedReply {
-    // 
+    // 动态红点类型
+    //
+    // - count: 数字红点
+    // - point: 普通红点
+    // - no_point: 没有红点
     string red_type = 1;
-    // 
+    // 动态红点具体信息, 参见 [`DynRedItem`]
     DynRedItem dyn_red_item = 2;
-    // 
+    // 动态红点默认 tab 值, 对应 tab 接口下发的 anchor
     string default_tab = 3;
-    // 
+    // 动态红点样式
     DynRedStyle red_style = 4;
     // 
     string tab_recall_extra = 5;
@@ -561,7 +587,7 @@ message DynRedReply {
     BubbleInfo bubble_info = 6;
 }
 
-// 
+// 动态红点请求参数
 message DynRedReq {
     // 
     enum DynRedReqScene {
@@ -575,7 +601,7 @@ message DynRedReq {
         RED_REQ_SWITCH_ACCOUNT = 3;
     }
     
-    // 
+    // 参见 [`TabOffset`]
     repeated TabOffset tab_offset = 1;
     // 
     bool is_new_install = 2;
@@ -587,7 +613,7 @@ message DynRedReq {
     DynRedReq.DynRedReqScene req_scene = 5;
 }
 
-// 
+// 动态红点样式
 message DynRedStyle {
     // 
     BgType bg_type = 1;
@@ -617,141 +643,158 @@ message DynRedStyleUp {
     Color border_color = 4;
 }
 
-// 
+// 动态 tab
 message DynTab {
-    // 
+    // tab 标题
+    //
+    // 优先展示用, 未开启状态第一次请求返回 `同城`, 后续请求返回对应城市名
     string title = 1;
-    // 
+    // 跳转链接
     string uri = 2;
-    // 
+    // 气泡内容
     string bubble = 3;
-    // 
+    // 是否推红点
     int32 red_point = 4;
-    // 
+    // 城市 ID
     int64 city_id = 5;
-    // 
+    // 是否弹窗
     int32 is_popup = 6;
-    // 
+    // 弹窗内容
     Popup popup = 7;
-    // 
+    // 是否默认 tab
     bool default_tab = 8;
-    // 
+    // 副标题
+    //
+    // 对应城市名
     string sub_title = 9;
-    // 
+    // 锚点字段
     string anchor = 10;
-    // 
+    // ? 内部测试
     string internal_test = 11;
 }
 
-// 
+// 动态 tab 请求返回值
 message DynTabReply {
-    // 
+    // 参见 [`DynTab`]
     repeated DynTab dyn_tab = 1;
 }
 
-// 
+// 动态 tab 请求参数
 message DynTabReq {
-    // 
+    // 青少年模式
     int32 teenagers_mode = 1;
 }
 
-// 
+// 最近访问标记已读请求参数
 message DynUpdOffsetReq {
-    // 
+    // 被访问者的 mid
     int64 host_uid = 1;
-    // 
+    // 用户已读进度
     string read_offset = 2;
 }
 
-// 
+// 最近访问个人视频 feed 流返回值
 message DynVideoPersonalReply {
-    // 
+    // 参见 [`DynamicItem`]
     repeated DynamicItem list = 1;
-    // 
+    // 偏移量
     string offset = 2;
-    // 
+    // 是否还有更多
     int32 has_more = 3;
-    // 
+    // 已读进度
     string read_offset = 4;
 }
 
-// 
+// 最近访问个人视频 feed 流请求参数
 message DynVideoPersonalReq {
-    // 
+    // 青少年模式
     int32 teenagers_mode = 1;
-    // 
+    // 被访问者的 mid
     int64 host_uid = 2;
-    // 
+    // 偏移量
+    //
+    // 第一页可传空
     string offset = 3;
-    // 
+    // 标明下拉几次
     int32 page = 4;
-    // 
+    // 是否是预加载
     int32 is_preload = 5;
-    // 
+    // 清晰度 (供秒开)
     int32 qn = 6;
-    // 
+    // 功能版本号 (供秒开)
     int32 fnver = 7;
-    // 
+    // 功能标识 (供秒开)
     int32 fnval = 8;
-    // 
+    // 返回 playurl 是否强制使用域名 (供秒开)
     int32 force_host = 9;
-    // 
+    // 是否需要 4K 视频 (供秒开)
     int32 fourk = 10;
 }
 
-// 
+// 动态视频页请求参数
 message DynVideoReq {
-    // 
+    // 青少年模式
     int32 teenagers_mode = 1;
-    // 
+    // 透传参数
     string update_baseline = 2;
-    // 
+    // 透传参数
     string offset = 3;
-    // 
+    // 向下翻页数
     int32 page = 4;
+    // 刷新方式
     // 
+    // - 1: 向上刷新
+    // - 2: 向下翻页
     int32 refresh_type = 5;
-    // 
+    // 清晰度 (供秒开)
     int32 qn = 6;
-    // 
+    // 功能版本号 (供秒开)
     int32 fnver = 7;
-    // 
+    // 功能标识 (供秒开)
     int32 fnval = 8;
-    // 
+    // 返回 playurl 是否强制使用域名 (供秒开)
     int32 force_host = 9;
-    // 
+    // 是否需要 4K 视频 (供秒开)
     int32 fourk = 10;
 }
 
-// 
+// 动态视频页返回值
 message DynVideoReqReply {
-    // 
+    // 动态列表
     repeated DynamicItem list = 1;
-    // 
+    // 更新的动态数
     int32 update_num = 2;
-    // 
+    // 历史偏移
     string history_offset = 3;
-    // 
+    // 更新基础信息
     string update_baseline = 4;
-    // 
+    // 是否还有更多
     int32 has_more = 5;
 }
 
-// 
+// 动态卡片项
 message DynamicItem {
-    // 
+    // 动态卡片类型
+    //
+    // - 转发: `forward`
+    // - 稿件视频: `av`
+    // - 折叠: `fold`
+    // - PGC 内容: `pgc`
+    // - 付费视频: `courses`
+    // - 最近访问列表: `upList`
+    // - 我的追番列表: `followList`
     string card_type = 1;
-    // 
+    // 转发类型的 items 的类型
     string item_type = 2;
-    // 
+    // 模块内容
     repeated Module modules = 3;
-    // 
+    // 动态 ID (string)
     string dyn_id_str = 4;
-    // 
+    // 转发源动态 ID(string)
     string orig_dyn_id_str = 5;
     // 
     int32 r_type = 6;
-    // 
+    // 该卡片下面是否含折叠卡片
     int32 has_fold = 7;
 }
 
@@ -771,90 +814,100 @@ message ExpConf {
     repeated Exp exps = 2;
 }
 
-// 
+// 拓展信息: 游戏小卡
 message ExtInfoGame {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 跳转地址
     string uri = 2;
-    // 
+    // 图标
     string icon = 3;
 }
 
-// 
+// 拓展信息: 热门视频
 message ExtInfoHot {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 跳转地址
     string uri = 2;
-    // 
+    // 图标
     string icon = 3;
 }
 
-// 
+// 拓展信息: LBS
 message ExtInfoLBS {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 跳转地址
     string uri = 2;
-    // 
+    // 图标
     string icon = 3;
     // 
     int32 poi_type = 4;
 }
 
-// 
+// 拓展信息: 话题小卡
 message ExtInfoTopic {
-    // 
+    // 话题名
     string title = 1;
-    // 
+    // 跳转地址
     string uri = 2;
-    // 
+    // 图标
     string icon = 3;
 }
 
-// 
+// 拓展
 message Extend {
-    // 
+    // 类型
+    //
+    // - 话题小卡: `topic`
+    // - lbs: `lbs`
+    // - 热门视频: `hot`
+    // - 游戏: `game`
     oneof extend {
-        // 
+        // 参见 [`ExtInfoTopic`]
         ExtInfoTopic ext_info_topic = 2;
-        // 
+        // 参见 [`ExtInfoLBS`]
         ExtInfoLBS ext_info_lbs = 3;
-        // 
+        // 参见 [`ExtInfoHot`]
         ExtInfoHot ext_info_hot = 4;
-        // 
+        // 参见 [`ExtInfoGame`]
         ExtInfoGame ext_info_game = 5;
     }
-    // 
+    // 类型
+    //
+    // - 话题小卡: `topic`
+    // - lbs: `lbs`
+    // - 热门视频: `hot`
+    // - 游戏: `game`
     string type = 1;
 }
 
-// 
+// 折叠分类
 enum FoldType {
-    // 
+    // 占位
     FoldTypeZero = 0;
-    // 
+    // 用户发布折叠
     FoldTypePublish = 1;
-    // 
+    // 转发超频折叠
     FoldTypeFrequent = 2;
-    // 
+    // 联合投稿折叠
     FoldTypeUnite = 3;
-    // 
+    // 动态受限折叠
     FoldTypeLimit = 4;
 }
 
-// 
+// 我的追番列表项目
 message FollowListItem {
-    // 
+    // 剧集 ID
     int32 season_id = 1;
-    // 
+    // 标题
     string title = 2;
-    // 
+    // 封面
     string cover = 3;
-    // 
+    // 跳转链接
     string url = 4;
-    // 
+    // 剧集最新分集
     NewEP new_ep = 5;
 }
 
@@ -886,55 +939,55 @@ message Gps {
     double lng = 2;
 }
 
-// 
+// 点赞动画
 message LikeAnimation {
-    // 
+    // 开始动画
     string begin = 1;
-    // 
+    // 过程动画
     string proc = 2;
-    // 
+    // 结束动画
     string end = 3;
-    // 
+    // ID
     int64 like_icon_id = 4;
 }
 
-// 
+// 点赞拓展信息
 message LikeInfo {
-    // 
+    // 点赞动画
     LikeAnimation animation = 1;
-    // 
+    // 是否点赞
     int32 is_like = 2;
 }
 
-// 
+// 点赞用户
 message LikeUser {
-    // 
+    // 点赞用户 mid
     int64 uid = 1;
-    // 
+    // 点赞用户昵称
     string uname = 2;
-    // 
+    // 点击跳转链接
     string uri = 3;
 }
 
-// 
+// 直播信息
 message LiveInfo {
-    // 
+    // 正在直播
     int32 is_living = 1;
-    // 
+    // 跳转地址
     string uri = 2;
 }
 
-// 
+// 播放器类型
 enum MediaType {
-    // 
+    // 本地
     MediaTypeNone = 0;
-    // 
+    // UGC
     MediaTypeUGC = 1;
-    // 
+    // PGC
     MediaTypePGC = 2;
-    // 
+    // 直播
     MediaTypeLive = 3;
-    // 
+    // 小视频
     MediaTypeVCS = 4;
 }
 
@@ -974,175 +1027,190 @@ message MixUpListLiveItem {
     string uri = 3;
 }
 
-// 
+// 卡片模块
 message Module {
-    // 
+    // - 折叠: `fold`
+    // - 发布人: `author`
+    // - 动态卡片内容: `dynamic`
+    // - 描述信息: `desc`
+    // - 争议小黄条: `dispute`
+    // - 转发: `forward`
+    // - 点赞用户: `likeUser`
+    // - 小卡信息: `extend`
+    // - 计数信息: `state`
+    // - 最近访问列表: `upList`
+    // - 我的追番: `followList`
     oneof module_item {
-        // 
+        // 参见 [`ModuleFold`]
         ModuleFold module_fold = 2;
-        // 
+        // 参见 [`ModuleAuthor`]
         ModuleAuthor module_author = 3;
-        // 
+        // 参见 [`ModuleDynamic`]
         ModuleDynamic module_dynamic = 4;
-        // 
+        // 参见 [`ModuleState`]
         ModuleState module_state = 5;
-        // 
+        // 参见 [`ModuleForward`]
         ModuleForward module_forward = 6;
-        // 
+        // 参见 [`ModuleExtend`]
         ModuleExtend module_extend = 7;
-        // 
+        // 参见 [`ModuleDispute`]
         ModuleDispute module_dispute = 8;
-        // 
+        // 参见 [`ModuleDesc`]
         ModuleDesc module_desc = 9;
-        // 
+        // 参见 [`ModuleLikeUser`]
         ModuleLikeUser module_like_user = 10;
-        // 
+        // 参见 [`ModuleDynUpList`]
         ModuleDynUpList module_up_list = 11;
-        // 
+        // 参见 [`ModuleFollowList`]
         ModuleFollowList module_follow_list = 12;
     }
     // 
     string module_type = 1;
 }
 
-// 
+// Module: 作者信息
 message ModuleAuthor {
-    // 
+    // 作者 mid
     int64 id = 1;
-    // 
+    // 时间标签
     string ptime_label_text = 2;
-    // 
+    // 用户详情
     UserInfo author = 3;
-    // 
+    // 装扮卡片
     DecorateCard decorate_card = 4;
 }
 
-// 
+// Module: 文本内容
 message ModuleDesc {
     // 
     repeated Description desc = 1;
 }
 
-// 
+// Module: 争议小黄条
 message ModuleDispute {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 描述
     string desc = 2;
-    // 
+    // 跳转地址
     string uri = 3;
 }
 
-// 
+// 最近访问 UP 主列表
 message ModuleDynUpList {
-    // 
+    // 标题展示文案
     string module_title = 1;
-    // 
+    // "全部" 按钮文案
     string show_all = 2;
-    // 
+    // UP 主列表
     repeated UpListItem list = 3;
 }
 
-// 
+// Module: 动态详情
 message ModuleDynamic {
-    // 
+    // 动态卡片类型
     oneof card {
-        // 
+        // UGC 视频卡片
         CardUGC card_ugc = 2;
-        // 
+        // PGC 视频卡片
         CardPGC card_pgc = 3;
-        // 
+        // 付费课程系列
         CardCurrSeason card_curr_season = 4;
-        // 
+        // 付费课程批次
         CardCurrBatch card_curr_batch = 5;
     }
-    // 
+    // 动态卡片类型
+    //
+    // - UGC 视频卡片: `ugc`
+    // - PGC 视频卡片: `pgc`
+    // - 付费课程系列: `currSeason`
+    // - 付费课程批次: `currBatch`
     string card_type = 1;
 }
 
-// 
+// Module: 拓展
 message ModuleExtend {
     // 
     repeated Extend extend = 1;
 }
 
-// 
+// Module: 折叠
 message ModuleFold {
-    // 
+    // Deprecated, see [`Self::fold_type_v2`] instead.
     FoldType fold_type = 1;
-    // 
+    // 折叠文案
     string text = 2;
-    // 
+    // 被折叠的动态
     string fold_ids = 3;
-    // 
+    // 被折叠的用户
     repeated UserInfo fold_users = 4;
-    // 
+    // 折叠分类
     FoldType fold_type_v2 = 5;
 }
 
-// 
+// 我的追番列表
 message ModuleFollowList {
-    // 
+    // 查看全部的跳转链接
     string view_all_link = 1;
-    // 
+    // 参见 [`FollowListItem`]
     repeated FollowListItem list = 2;
 }
 
-// 
+// Module: 转发
 message ModuleForward {
-    // 
+    // 卡片类型
     string card_type = 1;
-    // 
+    // 嵌套的 modules
     repeated Module modules = 2;
 }
 
-// 
+// Module: 点赞用户
 message ModuleLikeUser {
-    // 
+    // 点赞用户
     repeated LikeUser like_users = 1;
-    // 
+    // 文案
     string display_text = 2;
 }
 
-// 
+// Module: 计数状态
 message ModuleState {
-    // 
+    // 转发数
     int32 repost = 1;
-    // 
+    // 点赞数
     int32 like = 2;
-    // 
+    // 评论数
     int32 reply = 3;
-    // 
+    // 点赞拓展信息
     LikeInfo like_info = 4;
-    // 
+    // 禁止评论
     bool no_comment = 5;
-    // 
+    // 禁止转发
     bool no_forward = 6;
 }
 
-// 
+// 认证名牌
 message Nameplate {
-    // 
+    // 认证名牌 ID
     int64 nid = 1;
-    // 
+    // 认证名牌名称
     string name = 2;
-    // 
+    // 认证名牌图片
     string image = 3;
-    // 
+    // 认证名牌图片(小)
     string image_small = 4;
-    // 
+    // 等级
     string level = 5;
-    // 
+    // 获取条件
     string condition = 6;
 }
 
-// 
+// 剧集最新分集
 message NewEP {
-    // 
+    // 剧集最新分集的 ID
     int32 id = 1;
-    // 
+    // 更新至 XX 话
     string index_show = 2;
-    // 
+    // 更新剧集的封面
     string cover = 3;
 }
 
@@ -1154,11 +1222,13 @@ message NoReply {
 message NoReq {
 }
 
-// 
+// 认证信息
 message OfficialVerify {
-    // 
+    // - 0: 个人
+    // - 1: 官方
+    // - 127: 未认证
     int32 type = 1;
-    // 
+    // 认证描述
     string desc = 2;
     // 
     int32 is_atten = 3;
@@ -1180,13 +1250,13 @@ message OurCityClickReportReq {
     double lng = 4;
 }
 
-// 
+// PGC 剧集信息
 message PGCSeason {
-    // 
+    // 已完结
     int32 is_finish = 1;
-    // 
+    // 标题
     string title = 2;
-    // 
+    // 类型
     int32 type = 3;
 }
 
@@ -1204,13 +1274,13 @@ message PlayerPreloadParams {
     int32 fourk = 5;
 }
 
-// 
+// 动态 tab 弹窗详情
 message Popup {
-    // 
+    // 标题
     string title = 1;
-    // 
+    // 文案
     string desc = 2;
-    // 
+    // 文案附加跳转地址
     string uri = 3;
 }
 
@@ -1333,7 +1403,7 @@ message SVideoReply {
     SVideoTop top = 4;
 }
 
-// 
+// 小视频连播页请求参数
 message SVideoReq {
     // 
     int64 oid = 1;
@@ -1395,21 +1465,21 @@ enum SVideoType {
     TypePopularHotword = 3;
 }
 
-// 
+// 分享信息
 message ShareInfo {
-    // 
+    // 稿件 avid
     int64 aid = 1;
-    // 
+    // 稿件 bvid
     string bvid = 2;
-    // 
+    // 稿件标题
     string title = 3;
-    // 
+    // 稿件字幕
     string subtitle = 4;
-    // 
+    // 稿件方面
     string cover = 5;
-    // 
+    // UP 主 mid
     int64 mid = 6;
-    // 
+    // UP 主昵称
     string name = 7;
 }
 
@@ -1427,113 +1497,114 @@ enum StyleType {
     STYLE_TYPE_COLLECTION_UP = 4;
 }
 
-// 
+// 动态红点接口各 tab offset 信息
 message TabOffset {
-    // 
+    // - 1: 综合页
+    // - 2: 视频页
     int32 tab = 1;
-    // 
+    // 上一次对应列表页 offset
     string offset = 2;
 }
 
-// 
+// UP 主列表
 message UpListItem {
-    // 
+    // 是否有更新
     int32 has_update = 1;
-    // 
+    // 头像
     string face = 2;
-    // 
+    // 昵称
     string name = 3;
-    // 
+    // mid
     int64 uid = 4;
 }
 
-// 
+// 用户信息
 message UserInfo {
-    // 
+    // 用户 mid
     int64 mid = 1;
-    // 
+    // 用户昵称
     string name = 2;
-    // 
+    // 用户头像
     string face = 3;
-    // 
+    // 用户认证信息
     OfficialVerify official = 4;
-    // 
+    // 用户大会员信息
     VipInfo vip = 5;
-    // 
+    // 用户直播信息
     LiveInfo live = 6;
-    // 
+    // 空间页跳转链接
     string uri = 7;
-    // 
+    // 挂件
     UserPendant pendant = 8;
-    // 
+    // 认证名牌
     Nameplate nameplate = 9;
 }
 
-// 
+// 挂件
 message UserPendant {
-    // 
+    // 挂件 ID
     int64 pid = 1;
-    // 
+    // 挂件名称
     string name = 2;
-    // 
+    // 挂件图片
     string image = 3;
-    // 
+    // 挂件有效期
     int64 expire = 4;
 }
 
-// 
+// 角标
 message VideoBadge {
-    // 
+    // 文案
     string text = 1;
-    // 
+    // 文案文本颜色
     string text_color = 2;
-    // 
+    // 文案文本颜色 (暗黑模式下)
     string text_color_night = 3;
-    // 
+    // 背景颜色
     string bg_color = 4;
-    // 
+    // 背景颜色 (暗黑模式下)
     string bg_color_night = 5;
-    // 
+    // 边框颜色
     string border_color = 6;
-    // 
+    // 边框颜色 (暗黑模式下)
     string border_color_night = 7;
-    // 
+    // 样式
     int32 bg_style = 8;
 }
 
-// 
+// 番剧类型
 enum VideoSubType {
-    // 
+    // 没有子类型
     VideoSubTypeNone = 0;
-    // 
+    // 番剧
     VideoSubTypeBangumi = 1;
-    // 
+    // 电影
     VideoSubTypeMovie = 2;
-    // 
+    // 纪录片
     VideoSubTypeDocumentary = 3;
-    // 
+    // 国创
     VideoSubTypeDomestic = 4;
-    // 
+    // 电视剧
     VideoSubTypeTeleplay = 5;
 }
 
-// 
+// 大会员信息
 message VipInfo {
-    // 
+    // 大会员类型
     int32 type = 1;
-    // 
+    // 大会员状态
     int32 status = 2;
-    // 
+    // 大会员过期时间
     int64 due_date = 3;
-    // 
+    // 大会员标签
     VipLabel label = 4;
-    // 
+    // 大会员主题
     int32 theme_type = 5;
 }
 
-// 
+// 大会员标签
 message VipLabel {
-    // 
+    // 图片地址
     string path = 1;
 }
 
