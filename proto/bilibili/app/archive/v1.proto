@@ -37,7 +37,7 @@ message Arc {
     int32 access = 12;
     // 属性
     int32 attribute = 13;
-    // Depecated
+    // Deprecated
     string tag = 14;
     // Deprecated
     repeated string tags = 15;
