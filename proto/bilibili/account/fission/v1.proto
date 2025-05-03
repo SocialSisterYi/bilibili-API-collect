@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package bilibili.account.fission.v1;
+
+// 
+service Fission {
+    // 
+    rpc Entrance (EntranceReq) returns (EntranceReply);
+    // 
+    rpc Privacy (PrivacyReq) returns (PrivacyReply);
+    // 
+    rpc Window (WindowReq) returns (WindowReply);
+}
+
+// 
+message AnimateIcon {
+    // 
+    string icon = 1;
+    // 
+    string json = 2;
+}
+
+// 
+message EntranceReply {
+    // 
+    string icon = 1;
+    // 
+    string name = 2;
+    // 
+    string url = 3;
+    // 
+    AnimateIcon animate_icon = 4;
+}
+
+// 
+message EntranceReq {
+}
+
+// 
+message PrivacyReply {
+    // 
+    string message = 1;
+}
+
+// 
+message PrivacyReq {
+    // 
+    string activity_uid = 1;
+}
+
+// 
+message WindowReply {
+    // 
+    int32 type = 1;
+    // 
+    string url = 2;
+    // 
+    string report_data = 3;
+}
+
+// 
+message WindowReq {
+}
+

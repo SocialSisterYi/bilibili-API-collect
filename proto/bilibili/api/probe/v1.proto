@@ -1,0 +1,192 @@
+syntax = "proto3";
+
+package bilibili.api.probe.v1;
+
+// 
+service Probe {
+    // 
+    rpc TestCode (CodeReq) returns (CodeReply);
+    // 
+    rpc TestReq (ProbeReq) returns (ProbeReply);
+    // 
+    rpc TestStream (stream ProbeStreamReq) returns (stream ProbeStreamReply);
+    // 
+    rpc TestSub (ProbeSubReq) returns (stream ProbeSubReply);
+}
+
+// 
+service ProbeService {
+    // 
+    rpc Echo (SimpleMessage) returns (SimpleMessage);
+    // 
+    rpc EchoBody (SimpleMessage) returns (SimpleMessage);
+    // 
+    rpc EchoDelete (SimpleMessage) returns (SimpleMessage);
+    // 
+    rpc EchoError (ErrorMessage) returns (ErrorMessage);
+    // 
+    rpc EchoPatch (DynamicMessageUpdate) returns (DynamicMessageUpdate);
+}
+
+// 
+enum Category {
+    // 
+    CATEGORY_UNSPECIFIED = 0;
+    // 
+    CATEGORY_ONE = 1;
+    // 
+    CATEGORY_TWO = 2;
+    // 
+    CATEGORY_THREE = 3;
+    // 
+    CATEGORY_FOUR = 4;
+}
+
+// 
+message CodeReply {
+    // 
+    string id = 1;
+    // 
+    string id1 = 2;
+    // 
+    int64 code = 3;
+    // 
+    string message_s = 4;
+}
+
+// 
+message CodeReq {
+    // 
+    int64 code = 1;
+}
+
+// 
+message CreatTask {
+    // 
+    string name = 1;
+}
+
+// 
+message CreateTopic {
+    // 
+    int64 id = 1;
+}
+
+// 
+message DynamicMessageUpdate {
+    // 
+    SimpleMessage body = 1;
+}
+
+// 
+message Embedded {
+    // 
+    bool bool_val = 1;
+    // 
+    int32 int32_val = 2;
+    // 
+    int64 int64_val = 3;
+    // 
+    float float_val = 4;
+    // 
+    double double_val = 5;
+    // 
+    string string_val = 6;
+    // 
+    repeated bool repeated_bool_val = 7;
+    // 
+    repeated int32 repeated_int32_val = 8;
+    // 
+    repeated int64 repeated_int64_val = 9;
+    // 
+    repeated float repeated_float_val = 10;
+    // 
+    repeated double repeated_double_val = 11;
+    // 
+    repeated string repeated_string_val = 12;
+    // 
+    map<string, string> map_string_val = 13;
+    // 
+    map<string, ErrorMessage> map_error_val = 14;
+}
+
+// 
+message ErrorMessage {
+    // 
+    int64 code = 1;
+    // 
+    string reason = 2;
+    // 
+    string message = 3;
+}
+
+// 
+message ProbeReply {
+    // 
+    string content = 1;
+    // 
+    int64 timestamp = 2;
+}
+
+// 
+message ProbeReq {
+    // 
+    int64 mid = 1;
+    // 
+    string buvid = 2;
+}
+
+// 
+message ProbeStreamReply {
+    // 
+    int64 sequence = 1;
+    // 
+    int64 timestamp = 2;
+    // 
+    string content = 3;
+}
+
+// 
+message ProbeStreamReq {
+    // 
+    int64 mid = 1;
+    // 
+    int64 sequence = 2;
+}
+
+// 
+message ProbeSubReply {
+    // 
+    int64 message_id = 1;
+}
+
+// 
+message ProbeSubReq {
+    // 
+    string buvid = 1;
+}
+
+// 
+message SimpleMessage {
+    // 
+    int32 id = 1;
+    // 
+    int64 num = 2;
+    // 
+    string lang = 3;
+    // 
+    Category cate = 4;
+    // 
+    Embedded embedded = 5;
+}
+
+// 
+message Task {
+    // 
+    string name = 1;
+    // 
+    string author = 2;
+    // 
+    bool cache = 3;
+}
+

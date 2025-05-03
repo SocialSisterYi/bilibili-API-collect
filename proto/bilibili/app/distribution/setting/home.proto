@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.home;
+
+import "bilibili/app/distribution.proto";
+
+// 
+message MidHomeConfig {
+    // 
+    bilibili.app.distribution.Int64Value top_left_goto = 1;
+    // 
+    bilibili.app.distribution.Int64Value recent_page_tab = 2;
+    // 
+    repeated bilibili.app.distribution.Int64Value android_mine_selection_option_items_id = 3;
+    // 
+    repeated bilibili.app.distribution.Int64Value i_o_s_mine_selection_option_items_id = 4;
+}
+

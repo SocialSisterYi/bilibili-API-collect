@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.story;
+
+import "bilibili/app/distribution.proto";
+
+// 
+message MidStoryConfig {
+    // 
+    bilibili.app.distribution.Int64Value gesture_type = 1;
+}
+
+// 
+message StoryConfig {
+    // 
+    bilibili.app.distribution.Int64Value gesture_type = 1;
+}
+

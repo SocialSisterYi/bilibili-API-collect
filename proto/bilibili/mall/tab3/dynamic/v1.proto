@@ -1,0 +1,316 @@
+syntax = "proto3";
+
+package bilibili.mall.tab3.dynamic.v1;
+
+import "bilibili/app/dynamic/v2.proto";
+
+// 
+service Opus {
+    // 
+    rpc OpusDetail (OpusDetailReq) returns (OpusDetailResp);
+}
+
+// 
+message AuthorInfo {
+    // 
+    string face = 1;
+    // 
+    int64 mid = 2;
+    // 
+    string name = 3;
+    // 
+    RelationInfo relation_info = 4;
+    // 
+    LiveInfo live_info = 5;
+    // 
+    string link = 6;
+    // 
+    string right_icon = 7;
+    // 
+    string right_icon_dark = 8;
+    // 
+    string nickname_color = 9;
+    // 
+    string icon = 10;
+}
+
+// 
+message Bottom {
+    // 
+    bilibili.app.dynamic.v2.ModuleButtom module_buttom = 1;
+    // 
+    bilibili.app.dynamic.v2.DynModuleType module_type = 2;
+}
+
+// 
+message IconInfo {
+    // 
+    string icon_url = 1;
+    // 
+    string icon_night_url = 2;
+    // 
+    int32 icon_width = 3;
+    // 
+    int32 icon_height = 4;
+}
+
+// 
+message IpCity {
+    // 
+    bilibili.app.dynamic.v2.ModuleCopyright module_copyright = 1;
+    // 
+    bilibili.app.dynamic.v2.DynModuleType module_type = 2;
+}
+
+// 
+message ItemInfoDescVO {
+    // 
+    int64 items_id = 1;
+    // 
+    string name = 2;
+    // 
+    string img = 3;
+    // 
+    string price = 4;
+    // 
+    string price_symbol = 5;
+    // 
+    string cache = 6;
+    // 
+    string same_kind_desc = 7;
+    // 
+    int32 count = 8;
+    // 
+    string url = 9;
+    // 
+    string guide_text = 10;
+}
+
+// 
+message LiveInfo {
+    // 
+    int32 status = 1;
+    // 
+    string icon = 2;
+    // 
+    string dark_icon = 3;
+    // 
+    string live_link = 4;
+}
+
+// 
+message MallBenefit {
+    // 
+    repeated MallTagInfo mall_tags = 1;
+}
+
+// 
+message MallTagInfo {
+    // 
+    string tag_type = 1;
+    // 
+    string tag_id = 2;
+    // 
+    string name = 3;
+    // 
+    IconInfo icon = 4;
+    // 
+    IconInfo name_suffix_icon = 5;
+    // 
+    string url = 6;
+}
+
+// 
+message OpusDetailReq {
+    // 
+    int64 dyn_id = 1;
+    // 
+    string ad_extra = 2;
+    // 
+    int32 local_time = 3;
+}
+
+// 
+message OpusDetailResp {
+    // 
+    bilibili.app.dynamic.v2.OpusItem opus_item = 1;
+    // 
+    TitleInfo title = 2;
+    // 
+    AuthorInfo author_info = 3;
+    // 
+    IpCity ip_city = 4;
+    // 
+    Bottom bottom = 5;
+    // 
+    ItemInfoDescVO item_info_desc_v_o = 6;
+    // 
+    repeated ItemInfoDescVO items_info_v_o_s = 7;
+    // 
+    Pic pic = 8;
+    // 
+    int64 pub_time = 9;
+    // 
+    TopicInfo topic_info = 10;
+    // 
+    string item_scene = 11;
+    // 
+    ReserveInfo reserve_info = 12;
+    // 
+    ShareInfo share_info = 13;
+    // 
+    MallBenefit mall_benefit = 14;
+    // 
+    map<string, string> track_map = 15;
+    // 
+    string item_type = 16;
+}
+
+// 
+message Pic {
+    // 
+    repeated PicInfo pics = 1;
+    // 
+    string style = 2;
+}
+
+// 
+message PicInfo {
+    // 
+    string url = 1;
+    // 
+    double width = 2;
+    // 
+    double height = 3;
+    // 
+    double size = 4;
+}
+
+// 
+message RelationInfo {
+    // 
+    int32 status = 1;
+    // 
+    string icon = 2;
+    // 
+    string dark_icon = 3;
+}
+
+// 
+message ReserveInfo {
+    // 
+    int64 sid = 1;
+    // 
+    string title = 2;
+    // 
+    int64 total = 3;
+    // 
+    string total_str = 4;
+    // 
+    string live_time_capsule = 5;
+    // 
+    string live_time_float = 6;
+    // 
+    UpActReserveRelationLotteryType lottery_type = 7;
+    // 
+    UpActReserveRelationPrizeInfo prize_info = 8;
+    // 
+    string up_name_str = 9;
+    // 
+    string avatar = 10;
+    // 
+    int64 is_follow = 11;
+    // 
+    string desc = 12;
+    // 
+    int64 live_plan_start_time = 13;
+    // 
+    ReserveState state = 14;
+    // 
+    map<int32, string> state_map = 15;
+    // 
+    string live_room_url = 16;
+    // 
+    string prize_info_text = 17;
+    // 
+    int64 room_id = 18;
+}
+
+// 
+enum ReserveState {
+    // 
+    INVALID = 0;
+    // 
+    Reserve = 1;
+    // 
+    PrizeReserve = 2;
+    // 
+    CancelReserve = 3;
+    // 
+    Cancel = 4;
+    // 
+    PrizeCancel = 5;
+    // 
+    Going = 6;
+    // 
+    End = 7;
+    // 
+    Expired = -2;
+    // 
+    Canceled = -1;
+}
+
+// 
+message ShareInfo {
+    // 
+    string share_id = 1;
+    // 
+    string share_origin = 2;
+    // 
+    int64 oid = 3;
+    // 
+    string title = 4;
+    // 
+    string sub_title = 5;
+    // 
+    string img_url = 6;
+    // 
+    string link_url = 7;
+    // 
+    bool share = 8;
+    // 
+    string out_link_url = 9;
+}
+
+// 
+message TitleInfo {
+    // 
+    repeated bilibili.app.dynamic.v2.Module modules = 1;
+}
+
+// 
+message TopicInfo {
+    // 
+    int64 topic_id = 1;
+    // 
+    string topic_name = 2;
+    // 
+    string jump_url = 3;
+}
+
+// 
+enum UpActReserveRelationLotteryType {
+    // 
+    UpActReserveRelationLotteryTypeDefault = 0;
+    // 
+    UpActReserveRelationLotteryTypeCron = 1;
+}
+
+// 
+message UpActReserveRelationPrizeInfo {
+    // 
+    string text = 1;
+    // 
+    string jump_url = 2;
+}
+

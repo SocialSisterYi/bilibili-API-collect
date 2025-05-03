@@ -1,0 +1,816 @@
+syntax = "proto3";
+
+package bilibili.im.gateway.interfaces.v1;
+
+import "bilibili/app/dynamic/v2.proto";
+import "bilibili/im/interfaces/v1.proto";
+import "bilibili/im/type.proto";
+import "google/protobuf/empty.proto";
+
+// 
+service ImGatewayApi {
+    // 
+    rpc ClearBubbleMsg (ClearBubbleMsgReq) returns (ClearBubbleMsgRsp);
+    // 
+    rpc ClearMessageToast (ClearMessageToastReq) returns (google.protobuf.Empty);
+    // 
+    rpc DelMsg (DelMsgReq) returns (DelMsgRsp);
+    // 
+    rpc DelMsgCard (DelMsgCardReq) returns (google.protobuf.Empty);
+    // 
+    rpc GetAIInfo (ReqGetAIInfo) returns (RspGetAIInfo);
+    // 
+    rpc GetBubbleMsg (GetBubbleMsgReq) returns (GetBubbleMsgRsp);
+    // 
+    rpc GetSessions (ReqGetSessions) returns (bilibili.im.interfaces.v1.RspSessions);
+    // 
+    rpc GetSystemNotice (ReqGetSystemNotice) returns (RspGetSystemNotice);
+    // 
+    rpc GetTotalUnread (GetTotalUnreadReq) returns (GetTotalUnreadRsp);
+    // 
+    rpc HarmonyTotalUnread (GetTotalUnreadReq) returns (HarmonyTotalUnreadRsp);
+    // 
+    rpc MessageToast (MessageToastReq) returns (MessageToastRsp);
+    // 
+    rpc MsgFeedAction (MsgFeedActionReq) returns (MsgFeedActionRsp);
+    // 
+    rpc MsgFeedMsgList (MsgListReq) returns (MsgListRsp);
+    // 
+    rpc NewSessions (ReqNewSessions) returns (bilibili.im.interfaces.v1.RspSessions);
+    // 
+    rpc Prompt (PromptReq) returns (PromptRsp);
+    // 
+    rpc QuickLink (QuickLinkReq) returns (QuickLinkRsp);
+    // 
+    rpc RemoveSession (ReqRemoveSession) returns (DummyRsp);
+    // 
+    rpc SetMsgFeedNotice (SetMsgFeedNoticeReq) returns (google.protobuf.Empty);
+    // 
+    rpc SetTop (ReqSetTop) returns (DummyRsp);
+    // 
+    rpc SingleInbox (ReqSingleInbox) returns (RspSingleInbox);
+    // 
+    rpc UpdateTotalUnread (google.protobuf.Empty) returns (google.protobuf.Empty);
+    // 
+    rpc UpdateTotalUnreadV2 (bilibili.im.interfaces.v1.ReqUpdateTotalUnread) returns (google.protobuf.Empty);
+}
+
+// 
+message AtBiz {
+    // 
+    int64 subject_id = 1;
+    // 
+    int64 root_id = 2;
+    // 
+    int64 source_id = 3;
+    // 
+    int64 target_id = 4;
+    // 
+    string source_content = 5;
+    // 
+    repeated User at_details = 6;
+    // 
+    bool hide_reply_button = 7;
+}
+
+// 
+message AtCard {
+    // 
+    CommonMsgCard at_msg = 1;
+    // 
+    AtBiz at_biz = 2;
+}
+
+// 
+message BubbleMsg {
+    // 
+    int64 mid = 1;
+    // 
+    string avatar = 2;
+    // 
+    string nick_name = 3;
+    // 
+    string content = 4;
+    // 
+    MsgTabType tab_type = 5;
+    // 
+    MsgFeedMsgType msg_type = 6;
+}
+
+// 
+message CardItem {
+    // 
+    int64 id = 1;
+    // 
+    int64 item_id = 2;
+    // 
+    int64 origin_id = 3;
+    // 
+    int64 business_id = 4;
+    // 
+    string cover_title = 7;
+    // 
+    string cover_desc = 8;
+    // 
+    string cover_image = 9;
+    // 
+    string cover_text = 10;
+    // 
+    string native_uri = 11;
+}
+
+// 
+message ClearBubbleMsgReq {
+    // 
+    MsgTabType tab_type = 1;
+}
+
+// 
+message ClearBubbleMsgRsp {
+}
+
+// 
+message ClearMessageToastReq {
+    // 
+    ToastType toast_type = 1;
+}
+
+// 
+message CoinCard {
+    // 
+    CommonMsgCard coin_msg = 1;
+    // 
+    int32 notice_state = 2;
+    // 
+    ThankButton thank_button = 3;
+}
+
+// 
+message CommonMsgCard {
+    // 
+    int64 id = 1;
+    // 
+    repeated User users = 2;
+    // 
+    int64 item_id = 3;
+    // 
+    int64 msg_time = 4;
+    // 
+    int64 origin_id = 5;
+    // 
+    int64 business_id = 6;
+    // 
+    string cover_image = 7;
+    // 
+    string cover_text = 8;
+    // 
+    string native_uri = 9;
+    // 
+    int64 counts = 10;
+    // 
+    RichTextContent rich_text_content = 11;
+    // 
+    string biz_type = 12;
+    // 
+    bool is_unread = 13;
+}
+
+// 
+message Cursor {
+    // 
+    bool is_end = 1;
+    // 
+    int64 id = 2;
+    // 
+    int64 time = 3;
+}
+
+// 
+message DanmuCard {
+    // 
+    CommonMsgCard danmu_msg = 1;
+}
+
+// 
+message DanmuInfo {
+    // 
+    int64 aid = 1;
+    // 
+    int64 progress = 2;
+}
+
+// 
+message DelMsgCardReq {
+    // 
+    int64 id = 1;
+    // 
+    MsgTabType tab_type = 2;
+    // 
+    MsgFeedMsgType msg_type = 3;
+    // 
+    MsgFeedFilterType filter_type = 4;
+    // 
+    bool delete_top_msg = 5;
+}
+
+// 
+message DelMsgItem {
+    // 
+    int64 talker_uid = 1;
+    // 
+    int64 msg_key = 2;
+    // 
+    int64 seq_no = 3;
+}
+
+// 
+message DelMsgReq {
+    // 
+    repeated DelMsgItem msgs = 1;
+}
+
+// 
+message DelMsgRsp {
+    // 
+    repeated DelMsgItem fail = 1;
+}
+
+// 
+message DummyRsp {
+}
+
+// 
+message FavoriteCard {
+    // 
+    CommonMsgCard fav_msg = 1;
+    // 
+    int32 notice_state = 2;
+}
+
+// 
+message GetBubbleMsgReq {
+}
+
+// 
+message GetBubbleMsgRsp {
+    // 
+    BubbleMsg bubble_msg = 1;
+}
+
+// 
+message GetTotalUnreadReq {
+    // 
+    int32 unread_type = 1;
+    // 
+    int32 show_unfollow_list = 2;
+    // 
+    int32 show_dustbin = 3;
+}
+
+// 
+message GetTotalUnreadRsp {
+    // 
+    SessionUnread session_unread = 1;
+    // 
+    MsgFeedUnread msg_feed_unread = 2;
+    // 
+    SysMsgInterfaceLastMsg sys_msg_interface_last_msg = 3;
+    // 
+    int64 custom_unread = 4;
+    // 
+    int32 total_unread = 5;
+    // 
+    TotalUnreadNew total_unread_new = 6;
+}
+
+// 
+message HarmonyTotalUnreadRsp {
+    // 
+    TotalUnreadNew total_unread = 1;
+}
+
+// 
+message LikeCard {
+    // 
+    CommonMsgCard like_msg = 1;
+    // 
+    int32 notice_state = 2;
+    // 
+    ThankButton thank_button = 3;
+}
+
+// 
+message MessageToastReq {
+}
+
+// 
+message MessageToastRsp {
+    // 
+    string content = 1;
+    // 
+    string title = 2;
+    // 
+    ToastType toast_type = 3;
+}
+
+// 
+message MsgFeedActionReq {
+    // 
+    int64 msg_id = 1;
+    // 
+    MsgFeedActionType action_type = 2;
+    // 
+    MsgFeedActionThankParams thank_params = 3;
+    // 
+    MsgFeedMsgType msg_type = 4;
+    // 
+    MsgFeedFilterType filter_type = 5;
+    // 
+    bool is_top_msg = 6;
+}
+
+// 
+message MsgFeedActionRsp {
+    // 
+    string toast = 1;
+}
+
+// 
+message MsgFeedActionThankParams {
+    // 
+    int64 receiver_mid = 1;
+}
+
+// 
+enum MsgFeedActionType {
+    // 
+    MSG_FEED_ACTION_TYPE_INVALID = 0;
+    // 
+    MSG_FEED_ACTION_TYPE_THANK = 1;
+}
+
+// 
+message MsgFeedFilter {
+    // 
+    MsgFeedFilterType type = 1;
+    // 
+    string name = 2;
+}
+
+// 
+enum MsgFeedFilterType {
+    // 
+    MsgFeed_All = 0;
+    // 
+    MsgFeed_Following = 1;
+    // 
+    MsgFeed_AtMe = 2;
+}
+
+// 
+message MsgFeedMsgCard {
+    // 
+    MsgFeedMsgType msg_type = 1;
+    // 
+    int64 msg_id = 2;
+    // 
+    int64 msg_time = 3;
+    // 
+    MsgItem msg_item = 4;
+}
+
+// 
+enum MsgFeedMsgType {
+    // 
+    LikeMsg = 0;
+    // 
+    ReplyMsg = 1;
+    // 
+    AtMsg = 2;
+    // 
+    DanmuMsg = 3;
+    // 
+    CoinMsg = 4;
+    // 
+    FavoriteMsg = 5;
+}
+
+// 
+message MsgFeedUnread {
+    // 
+    map<string, int64> unread = 1;
+}
+
+// 
+message MsgItem {
+    // 
+    oneof msg_card {
+        // 
+        ReplyCard reply_card = 1;
+        // 
+        AtCard at_card = 2;
+        // 
+        DanmuCard danmu_card = 3;
+        // 
+        LikeCard like_card = 4;
+        // 
+        CoinCard coin_card = 5;
+        // 
+        FavoriteCard favorite_card = 6;
+    }
+}
+
+// 
+message MsgListLimit {
+    // 
+    bool limit = 1;
+    // 
+    string desc = 2;
+}
+
+// 
+message MsgListReq {
+    // 
+    Cursor cursor = 1;
+    // 
+    int64 pagesize = 2;
+    // 
+    MsgTabType tab_type = 3;
+    // 
+    MsgFeedFilterType filter_type = 4;
+}
+
+// 
+message MsgListRsp {
+    // 
+    Cursor cursor = 1;
+    // 
+    repeated MsgFeedMsgCard msg_cards = 2;
+    // 
+    int64 last_view_at = 3;
+    // 
+    repeated MsgFeedFilter filters = 4;
+    // 
+    repeated MsgFeedMsgCard top_cards = 5;
+    // 
+    MsgListLimit limit = 6;
+}
+
+// 
+enum MsgTabType {
+    // 
+    LikeMe = 0;
+    // 
+    ReplyMe = 1;
+    // 
+    AtMe = 2;
+    // 
+    SystemMsg = 3;
+    // 
+    HuaHuo = 4;
+    // 
+    NewFollow = 5;
+    // 
+    ReceiveReply = 100;
+    // 
+    ReceiveLike = 101;
+}
+
+// 
+message Prompt {
+    // 
+    string msg = 1;
+}
+
+// 
+message PromptReq {
+    // 
+    int64 talker_ai = 1;
+    // 
+    int64 key = 2;
+}
+
+// 
+message PromptRsp {
+    // 
+    repeated Prompt items = 1;
+}
+
+// 
+message QuickLinkItem {
+    // 
+    MsgTabType tab_type = 1;
+    // 
+    string title = 2;
+    // 
+    string icon = 3;
+    // 
+    string icon_dark = 4;
+    // 
+    string url = 5;
+}
+
+// 
+message QuickLinkReq {
+    // 
+    int32 teenager_mode = 1;
+    // 
+    int32 lessons_mode = 2;
+}
+
+// 
+message QuickLinkRsp {
+    // 
+    repeated QuickLinkItem items = 1;
+    // 
+    bool is_experiment = 2;
+    // 
+    repeated SessionsFilter filters = 3;
+}
+
+// 
+message ReplyBiz {
+    // 
+    int64 subject_id = 1;
+    // 
+    int64 root_id = 2;
+    // 
+    int64 source_id = 3;
+    // 
+    int64 target_id = 4;
+    // 
+    string source_content = 5;
+    // 
+    string root_reply_content = 6;
+    // 
+    string target_reply_content = 7;
+    // 
+    repeated User at_details = 8;
+    // 
+    repeated TopicInfo topic_details = 9;
+    // 
+    bool hide_reply_button = 10;
+    // 
+    bool hide_like_button = 11;
+    // 
+    int32 like_state = 12;
+    // 
+    string message = 13;
+}
+
+// 
+message ReplyCard {
+    // 
+    CommonMsgCard reply_msg = 1;
+    // 
+    ReplyBiz reply_biz = 2;
+}
+
+// 
+message ReqGetAIInfo {
+    // 
+    int64 ai_uid = 1;
+    // 
+    int64 uid = 2;
+    // 
+    int64 guest_id = 3;
+}
+
+// 
+message ReqGetSessions {
+    // 
+    int64 begin_ts = 1;
+    // 
+    int64 end_ts = 2;
+    // 
+    int32 size = 3;
+    // 
+    int32 session_type = 4;
+    // 
+    int32 unfollow_fold = 5;
+    // 
+    int32 group_fold = 6;
+    // 
+    int32 sort_rule = 7;
+    // 
+    int32 teenager_mode = 8;
+    // 
+    int32 lessons_mode = 9;
+    // 
+    repeated int32 sids = 11;
+    // 
+    int64 ai_uid = 12;
+}
+
+// 
+message ReqGetSystemNotice {
+}
+
+// 
+message ReqNewSessions {
+    // 
+    int64 begin_ts = 1;
+    // 
+    int32 size = 2;
+    // 
+    int32 teenager_mode = 3;
+    // 
+    int32 lessons_mode = 4;
+    // 
+    repeated int32 sids = 6;
+}
+
+// 
+message ReqRemoveSession {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int64 shop_id = 3;
+    // 
+    int64 shop_father_id = 4;
+    // 
+    int32 system_msg_type = 5;
+}
+
+// 
+message ReqSetTop {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int32 op_type = 3;
+    // 
+    int64 shop_id = 4;
+    // 
+    int64 shop_father_id = 5;
+    // 
+    int32 system_msg_type = 6;
+}
+
+// 
+message ReqSingleInbox {
+    // 
+    int64 talker_uid = 1;
+    // 
+    int64 begin_seqno = 2;
+    // 
+    int64 end_seqno = 3;
+    // 
+    int32 size = 4;
+}
+
+// 
+message RichTextContent {
+    // 
+    repeated bilibili.app.dynamic.v2.Paragraph paragraphs = 1;
+}
+
+// 
+message RspGetAIInfo {
+    // 
+    bilibili.im.type.AiInfo ai_info = 1;
+}
+
+// 
+message RspGetSystemNotice {
+    // 
+    string text = 1;
+}
+
+// 
+message RspSingleInbox {
+    // 
+    map<int64, int64> msgs = 1;
+}
+
+// 
+message SessionUnread {
+    // 
+    int32 unfollow_unread = 1;
+    // 
+    int32 follow_unread = 2;
+    // 
+    int32 unfollow_push_msg = 3;
+    // 
+    int32 dustbin_push_msg = 4;
+    // 
+    int32 dustbin_unread = 5;
+    // 
+    int32 biz_msg_unfollow_unread = 6;
+    // 
+    int32 biz_msg_follow_unread = 7;
+    // 
+    int32 huahuo_unread = 8;
+    // 
+    int32 custom_unread = 9;
+    // 
+    int32 system_unread = 10;
+    // 
+    int32 stranger_unread = 11;
+    // 
+    bool stranger_push_msg = 12;
+    // 
+    int32 account_unread = 13;
+}
+
+// 
+message SessionsFilter {
+    // 
+    SessionsFilterType type = 1;
+    // 
+    string name = 2;
+}
+
+// 
+enum SessionsFilterType {
+    // 
+    Sessions_All = 0;
+    // 
+    Sessions_Following = 1;
+}
+
+// 
+message SetMsgFeedNoticeReq {
+    // 
+    int64 id = 1;
+    // 
+    MsgFeedMsgType msg_type = 2;
+    // 
+    int32 notice_state = 3;
+    // 
+    bool is_top_msg = 4;
+}
+
+// 
+message SysMsgInterfaceLastMsg {
+    // 
+    int32 unread = 1;
+    // 
+    string title = 2;
+    // 
+    string time = 3;
+    // 
+    int64 id = 4;
+}
+
+// 
+message ThankButton {
+    // 
+    bool has_sent = 1;
+    // 
+    string receiver_name = 2;
+    // 
+    string sender_avatar = 3;
+    // 
+    string msg_text = 4;
+    // 
+    int64 receiver_mid = 5;
+}
+
+// 
+enum ToastType {
+    // 
+    ToastTypeDefault = 0;
+    // 
+    ToastTypeBanned = 1;
+    // 
+    ToastTypeReport = 2;
+}
+
+// 
+message TopicInfo {
+    // 
+    int64 topic_id = 1;
+    // 
+    string topic_name = 2;
+    // 
+    int64 is_activity = 3;
+    // 
+    string topic_link = 4;
+}
+
+// 
+message TotalUnreadNew {
+    // 
+    int32 unread_count = 1;
+    // 
+    int32 unread_type = 2;
+}
+
+// 
+message User {
+    // 
+    int64 mid = 1;
+    // 
+    string nickname = 2;
+    // 
+    string avatar = 3;
+    // 
+    string link = 4;
+    // 
+    bool guest = 5;
+}
+

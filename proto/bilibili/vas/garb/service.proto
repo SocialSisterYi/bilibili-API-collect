@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package bilibili.vas.garb.service;
+
+import "bilibili/metadata/device.proto";
+import "bilibili/vas/garb/model.proto";
+
+// 
+message SailingEquipMultiReply {
+    // 
+    map<int64, bilibili.vas.garb.model.UserSailing> data = 1;
+}
+
+// 
+message SailingEquipMultiReq {
+    // 
+    repeated int64 mids = 1;
+    // 
+    int64 up_mid = 2;
+    // 
+    int64 otype = 3;
+    // 
+    int64 oid = 4;
+    // 
+    int64 mid = 5;
+    // 
+    bilibili.metadata.device.Device device = 6;
+}
+
+// 
+message UserCard {
+    // 
+    int64 id = 1;
+    // 
+    int64 item_id = 2;
+    // 
+    string name = 3;
+    // 
+    string card_url = 4;
+    // 
+    string big_card_url = 5;
+    // 
+    int64 card_type = 6;
+    // 
+    int64 expire_time = 7;
+    // 
+    string card_type_name = 8;
+    // 
+    string jump_url = 9;
+    // 
+    bilibili.vas.garb.model.UserFanShow fan = 10;
+    // 
+    string image_enhance = 12;
+    // 
+    bilibili.vas.garb.model.ImageGroup image_group = 13;
+}
+
+// 
+message UserCardMultiReply {
+    // 
+    map<int64, UserCard> cards = 1;
+}
+
+// 
+message UserCardMultiReq {
+    // 
+    repeated int64 mids = 1;
+    // 
+    bilibili.metadata.device.Device device = 2;
+}
+

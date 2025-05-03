@@ -1,0 +1,272 @@
+syntax = "proto3";
+
+package bilibili.pgc.gateway.player.v1;
+
+import "bilibili/app/playurl/v1.proto";
+
+// 
+message BusinessInfo {
+    // 
+    bool is_preview = 1;
+    // 
+    bool bp = 2;
+    // 
+    string marlin_token = 3;
+}
+
+// 
+message Event {
+    // 
+    Shake shake = 1;
+}
+
+// 
+message LivePlayInfo {
+    // 
+    int32 current_qn = 1;
+    // 
+    repeated QualityDescription quality_description = 2;
+    // 
+    repeated ResponseDataUrl durl = 3;
+}
+
+// 
+message LivePlayViewReply {
+    // 
+    RoomInfo room_info = 1;
+    // 
+    LivePlayInfo play_info = 2;
+}
+
+// 
+message LivePlayViewReq {
+    // 
+    int64 ep_id = 1;
+    // 
+    int32 quality = 2;
+    // 
+    int32 ptype = 3;
+    // 
+    bool https = 4;
+    // 
+    int32 play_type = 5;
+    // 
+    int32 device_type = 6;
+}
+
+// 
+message PlayAbilityConf {
+    // 
+    bool background_play_disable = 1;
+    // 
+    bool flip_disable = 2;
+    // 
+    bool cast_disable = 3;
+    // 
+    bool feedback_disable = 4;
+    // 
+    bool subtitle_disable = 5;
+    // 
+    bool playback_rate_disable = 6;
+    // 
+    bool time_up_disable = 7;
+    // 
+    bool playback_mode_disable = 8;
+    // 
+    bool scale_mode_disable = 9;
+    // 
+    bool like_disable = 10;
+    // 
+    bool dislike_disable = 11;
+    // 
+    bool coin_disable = 12;
+    // 
+    bool elec_disable = 13;
+    // 
+    bool share_disable = 14;
+    // 
+    bool screen_shot_disable = 15;
+    // 
+    bool lock_screen_disable = 16;
+    // 
+    bool recommend_disable = 17;
+    // 
+    bool playback_speed_disable = 18;
+    // 
+    bool definition_disable = 19;
+    // 
+    bool selections_disable = 20;
+    // 
+    bool next_disable = 21;
+    // 
+    bool edit_dm_disable = 22;
+    // 
+    bool small_window_disable = 23;
+    // 
+    bool shake_disable = 24;
+    // 
+    bool outer_dm_disable = 25;
+    // 
+    bool inner_dm_disable = 26;
+    // 
+    bool freya_enter_disable = 27;
+    // 
+    bool dolby_disable = 28;
+    // 
+    bool freya_full_disable = 29;
+    // 
+    bool skip_oped_switch_disable = 30;
+}
+
+// 
+message PlayViewReply {
+    // 
+    bilibili.app.playurl.v1.VideoInfo video_info = 1;
+    // 
+    PlayAbilityConf play_conf = 2;
+    // 
+    BusinessInfo business = 3;
+    // 
+    Event event = 4;
+}
+
+// 
+message PlayViewReq {
+    // 
+    int64 ep_id = 1;
+    // 
+    int64 cid = 2;
+    // 
+    int64 qn = 3;
+    // 
+    int32 fnver = 4;
+    // 
+    int32 fnval = 5;
+    // 
+    int32 download = 6;
+    // 
+    int32 force_host = 7;
+    // 
+    bool fourk = 8;
+    // 
+    string spmid = 9;
+    // 
+    string from_spmid = 10;
+    // 
+    int32 teenagers_mode = 11;
+    // 
+    bilibili.app.playurl.v1.CodeType prefer_codec_type = 12;
+    // 
+    bool is_preview = 13;
+    // 
+    int64 room_id = 14;
+}
+
+// 
+message ProjectReply {
+    // 
+    bilibili.app.playurl.v1.PlayURLReply project = 1;
+}
+
+// 
+message ProjectReq {
+    // 
+    int64 ep_id = 1;
+    // 
+    int64 cid = 2;
+    // 
+    int64 qn = 3;
+    // 
+    int32 fnver = 4;
+    // 
+    int32 fnval = 5;
+    // 
+    int32 download = 6;
+    // 
+    int32 force_host = 7;
+    // 
+    bool fourk = 8;
+    // 
+    string spmid = 9;
+    // 
+    string from_spmid = 10;
+    // 
+    int32 protocol = 11;
+    // 
+    int32 device_type = 12;
+    // 
+    bool use_new_project_code = 13;
+    // 
+    int64 aid = 14;
+    // 
+    string sku = 15;
+}
+
+// 
+message QualityDescription {
+    // 
+    int32 qn = 1;
+    // 
+    string desc = 2;
+}
+
+// 
+message ResponseDataUrl {
+    // 
+    string url = 1;
+    // 
+    int32 stream_type = 2;
+    // 
+    int32 ptag = 3;
+}
+
+// 
+message RoomInfo {
+    // 
+    int64 room_id = 1;
+    // 
+    int64 uid = 2;
+    // 
+    RoomStatusInfo status = 3;
+    // 
+    RoomShowInfo show = 4;
+}
+
+// 
+message RoomShowInfo {
+    // 
+    int64 short_id = 1;
+    // 
+    int64 popularity_count = 8;
+    // 
+    int64 live_start_time = 10;
+}
+
+// 
+message RoomStatusInfo {
+    // 
+    int64 live_status = 1;
+    // 
+    int64 live_screen_type = 2;
+    // 
+    int64 live_mark = 3;
+    // 
+    int64 lock_status = 4;
+    // 
+    int64 lock_time = 5;
+    // 
+    int64 hidden_status = 6;
+    // 
+    int64 hidden_time = 7;
+    // 
+    int64 live_type = 8;
+    // 
+    int64 room_shield = 9;
+}
+
+// 
+message Shake {
+    // 
+    string file = 1;
+}
+

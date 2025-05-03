@@ -1,0 +1,147 @@
+syntax = "proto3";
+
+package bilibili.app.story.v1;
+
+// 
+service Story {
+    // 
+    rpc AIAudio (AIAudioReq) returns (AIAudioReply);
+    // 
+    rpc ArchiveStatus (ArchiveStatusReq) returns (ArchiveStatusReply);
+    // 
+    rpc BgmPlay (BgmPlayReq) returns (BgmPlayReply);
+    // 
+    rpc Rerank (RerankReq) returns (RerankReply);
+}
+
+// 
+message AIAudioItem {
+    // 
+    repeated DashItem audio_info = 1;
+    // 
+    string title = 2;
+    // 
+    string button_title = 3;
+    // 
+    string subtitle_lang = 4;
+}
+
+// 
+message AIAudioReply {
+    // 
+    bool support_ai_audio = 1;
+    // 
+    repeated AIAudioItem ai_audio_items = 2;
+    // 
+    string ai_open_toast = 3;
+    // 
+    string ai_close_toast = 4;
+}
+
+// 
+message AIAudioReq {
+    // 
+    int64 aid = 1;
+    // 
+    int64 cid = 2;
+    // 
+    int64 up_mid = 3;
+}
+
+// 
+message ArchiveStatusReply {
+    // 
+    bool is_archive_normal = 1;
+}
+
+// 
+message ArchiveStatusReq {
+    // 
+    int64 aid = 1;
+}
+
+// 
+message BgmPlayReply {
+    // 
+    string url = 1;
+}
+
+// 
+message BgmPlayReq {
+    // 
+    int64 music_id = 1;
+}
+
+// 
+message DashItem {
+    // 
+    int32 id = 1;
+    // 
+    string base_url = 2;
+    // 
+    repeated string backup_url = 3;
+    // 
+    int32 bandwidth = 4;
+    // 
+    int32 codecid = 5;
+    // 
+    string md5 = 6;
+    // 
+    int64 size = 7;
+    // 
+    string frame_rate = 8;
+    // 
+    string widevine_pssh = 9;
+    // 
+    string bilidrm_uri = 10;
+}
+
+// 
+message RerankAdInfo {
+    // 
+    string request_id = 1;
+}
+
+// 
+message RerankCardInfo {
+    // 
+    oneof info {
+        // 
+        RerankAdInfo ad_info = 6;
+    }
+    // 
+    int32 display_id = 1;
+    // 
+    int32 display_pos = 2;
+    // 
+    string card_goto = 3;
+    // 
+    string param = 4;
+    // 
+    map<string, string> player_args = 5;
+}
+
+// 
+message RerankReply {
+    // 
+    repeated RerankCardInfo card = 1;
+}
+
+// 
+message RerankReq {
+    // 
+    int64 pre_ad_start_ts = 1;
+    // 
+    int64 pre_ad_end_ts = 2;
+    // 
+    RerankCardInfo pre_ad_card = 3;
+    // 
+    int64 last_card_ts = 4;
+    // 
+    RerankCardInfo last_card = 5;
+    // 
+    repeated RerankCardInfo unexposed_card = 6;
+    // 
+    int32 last_ad_gap = 7;
+}
+

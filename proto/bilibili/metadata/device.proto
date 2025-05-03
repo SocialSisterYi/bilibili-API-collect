@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package bilibili.metadata.device;
+
+// 
+message Device {
+    // 
+    int32 app_id = 1;
+    // 
+    int32 build = 2;
+    // 
+    string buvid = 3;
+    // 
+    string mobi_app = 4;
+    // 
+    string platform = 5;
+    // 
+    string device = 6;
+    // 
+    string channel = 7;
+    // 
+    string brand = 8;
+    // 
+    string model = 9;
+    // 
+    string osver = 10;
+    // 
+    string fp_local = 11;
+    // 
+    string fp_remote = 12;
+    // 
+    string version_name = 13;
+    // 
+    string fp = 14;
+    // 
+    int64 fts = 15;
+    // 
+    string guest_id = 16;
+}
+
+// 
+message DeviceType {
+}
+
+// 
+message MobiApp {
+}
+
+// 
+message Platform {
+}
+

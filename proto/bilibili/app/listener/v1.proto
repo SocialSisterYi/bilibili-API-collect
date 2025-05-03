@@ -1,0 +1,1537 @@
+syntax = "proto3";
+
+package bilibili.app.listener.v1;
+
+import "bilibili/app/archive/middleware/v1.proto";
+import "bilibili/app/interfaces/v1.proto";
+import "bilibili/app/playurl/v1.proto";
+import "bilibili/pagination.proto";
+import "google/protobuf/empty.proto";
+
+// 
+service Listener {
+    // 
+    rpc BKArcDetails (BKArcDetailsReq) returns (BKArcDetailsResp);
+    // 
+    rpc CoinAdd (CoinAddReq) returns (CoinAddResp);
+    // 
+    rpc Event (EventReq) returns (EventResp);
+    // 
+    rpc FavFolderCreate (FavFolderCreateReq) returns (FavFolderCreateResp);
+    // 
+    rpc FavFolderDelete (FavFolderDeleteReq) returns (FavFolderDeleteResp);
+    // 
+    rpc FavFolderDetail (FavFolderDetailReq) returns (FavFolderDetailResp);
+    // 
+    rpc FavFolderList (FavFolderListReq) returns (FavFolderListResp);
+    // 
+    rpc FavItemAdd (FavItemAddReq) returns (FavItemAddResp);
+    // 
+    rpc FavItemBatch (FavItemBatchReq) returns (FavItemBatchResp);
+    // 
+    rpc FavItemDel (FavItemDelReq) returns (FavItemDelResp);
+    // 
+    rpc FavoredInAnyFolders (FavoredInAnyFoldersReq) returns (FavoredInAnyFoldersResp);
+    // 
+    rpc Medialist (MedialistReq) returns (MedialistResp);
+    // 
+    rpc PickCardDetail (PickCardDetailReq) returns (PickCardDetailResp);
+    // 
+    rpc PickFeed (PickFeedReq) returns (PickFeedResp);
+    // 
+    rpc Ping (google.protobuf.Empty) returns (google.protobuf.Empty);
+    // 
+    rpc PlayActionReport (PlayActionReportReq) returns (google.protobuf.Empty);
+    // 
+    rpc PlayHistory (PlayHistoryReq) returns (PlayHistoryResp);
+    // 
+    rpc PlayHistoryAdd (PlayHistoryAddReq) returns (google.protobuf.Empty);
+    // 
+    rpc PlayHistoryDel (PlayHistoryDelReq) returns (google.protobuf.Empty);
+    // 
+    rpc PlayURL (PlayURLReq) returns (PlayURLResp);
+    // 
+    rpc Playlist (PlaylistReq) returns (PlaylistResp);
+    // 
+    rpc PlaylistAdd (PlaylistAddReq) returns (google.protobuf.Empty);
+    // 
+    rpc PlaylistDel (PlaylistDelReq) returns (google.protobuf.Empty);
+    // 
+    rpc RcmdPlaylist (RcmdPlaylistReq) returns (RcmdPlaylistResp);
+    // 
+    rpc ThumbUp (ThumbUpReq) returns (ThumbUpResp);
+    // 
+    rpc TripleLike (TripleLikeReq) returns (TripleLikeResp);
+}
+
+// 
+service Music {
+    // 
+    rpc Click (ClickReq) returns (ClickResp);
+    // 
+    rpc FavTabShow (FavTabShowReq) returns (FavTabShowResp);
+    // 
+    rpc MainFavMusicMenuList (MainFavMusicMenuListReq) returns (MainFavMusicMenuListResp);
+    // 
+    rpc MainFavMusicSubTabList (MainFavMusicSubTabListReq) returns (MainFavMusicSubTabListResp);
+    // 
+    rpc MenuDelete (MenuDeleteReq) returns (MenuDeleteResp);
+    // 
+    rpc MenuEdit (MenuEditReq) returns (MenuEditResp);
+    // 
+    rpc MenuSubscribe (MenuSubscribeReq) returns (MenuSubscribeResp);
+}
+
+// 
+message Author {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string avatar = 3;
+    // 
+    FollowRelation relation = 4;
+}
+
+// 
+message BKArcDetailsReq {
+    // 
+    repeated PlayItem items = 1;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 2;
+}
+
+// 
+message BKArcDetailsResp {
+    // 
+    repeated DetailItem list = 1;
+}
+
+// 
+message BKArcPart {
+    // 
+    int64 oid = 1;
+    // 
+    int64 sub_id = 2;
+    // 
+    string title = 3;
+    // 
+    int64 duration = 4;
+    // 
+    int32 page = 5;
+}
+
+// 
+message BKArcRights {
+    // 
+    int32 no_reprint = 1;
+}
+
+// 
+message BKArchive {
+    // 
+    int64 oid = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    string desc = 4;
+    // 
+    int64 duration = 5;
+    // 
+    int32 rid = 6;
+    // 
+    string rname = 7;
+    // 
+    int64 publish = 8;
+    // 
+    string displayed_oid = 9;
+    // 
+    int32 copyright = 10;
+    // 
+    BKArcRights rights = 11;
+}
+
+// 
+message BKStat {
+    // 
+    int32 like = 1;
+    // 
+    int32 coin = 2;
+    // 
+    int32 favourite = 3;
+    // 
+    int32 reply = 4;
+    // 
+    int32 share = 5;
+    // 
+    int32 view = 6;
+    // 
+    bool has_like = 7;
+    // 
+    bool has_coin = 8;
+    // 
+    bool has_fav = 9;
+    // 
+    bool use_view_vt = 10;
+    // 
+    string view_vt_text = 11;
+}
+
+// 
+message CardModule {
+    // 
+    oneof module {
+        // 
+        PkcmHeader module_header = 2;
+        // 
+        PkcmArchive module_archive = 3;
+        // 
+        PkcmCenterButton module_cbtn = 4;
+    }
+    // 
+    CardModuleType module_type = 1;
+}
+
+// 
+enum CardModuleType {
+    // 
+    Module_invalid = 0;
+    // 
+    Module_header = 1;
+    // 
+    Module_archive = 2;
+    // 
+    Module_cbtn = 3;
+}
+
+// 
+message ClickReq {
+    // 
+    enum ClickAction {
+        // 
+        INVALID = 0;
+        // 
+        SHARE = 1;
+    }
+    
+    // 
+    int64 sid = 1;
+    // 
+    ClickReq.ClickAction action = 2;
+}
+
+// 
+message ClickResp {
+}
+
+// 
+message CoinAddReq {
+    // 
+    PlayItem item = 1;
+    // 
+    int32 num = 2;
+    // 
+    bool thumb_up = 3;
+}
+
+// 
+message CoinAddResp {
+    // 
+    string message = 1;
+}
+
+// 
+message DashItem {
+    // 
+    int32 id = 1;
+    // 
+    string base_url = 2;
+    // 
+    repeated string backup_url = 3;
+    // 
+    int32 bandwidth = 4;
+    // 
+    string mime_type = 5;
+    // 
+    string codecs = 6;
+    // 
+    DashSegmentBase segment_base = 12;
+    // 
+    int32 codecid = 13;
+    // 
+    string md5 = 14;
+    // 
+    int64 size = 15;
+}
+
+// 
+message DashSegmentBase {
+    // 
+    string initialization = 1;
+    // 
+    string index_range = 2;
+}
+
+// 
+message DetailItem {
+    // 
+    PlayItem item = 1;
+    // 
+    BKArchive arc = 2;
+    // 
+    repeated BKArcPart parts = 3;
+    // 
+    Author owner = 4;
+    // 
+    BKStat stat = 5;
+    // 
+    int64 last_part = 6;
+    // 
+    int64 progress = 7;
+    // 
+    int32 playable = 8;
+    // 
+    string message = 9;
+    // 
+    map<int64, PlayInfo> player_info = 10;
+    // 
+    PlayItem associated_item = 11;
+    // 
+    int64 last_play_time = 12;
+    // 
+    string history_tag = 13;
+    // 
+    bilibili.app.interfaces.v1.DeviceType device_type = 14;
+    // 
+    FavFolder ugc_season_info = 15;
+}
+
+// 
+message EventReq {
+    // 
+    enum EventType {
+        // 
+        INVALID_EventType = 0;
+        // 
+        GUIDE_BAR_SHOW = 1;
+    }
+    
+    // 
+    EventReq.EventType event_type = 1;
+    // 
+    PlayItem item = 2;
+}
+
+// 
+message EventResp {
+}
+
+// 
+message EventTracking {
+    // 
+    string operator = 1;
+    // 
+    string batch = 2;
+    // 
+    string track_id = 3;
+    // 
+    string entity_type = 4;
+    // 
+    string entity_id = 5;
+    // 
+    string track_json = 6;
+}
+
+// 
+message FavFolder {
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+    // 
+    FavFolderAuthor owner = 3;
+    // 
+    string name = 4;
+    // 
+    string cover = 5;
+    // 
+    string desc = 6;
+    // 
+    int32 count = 7;
+    // 
+    int32 attr = 8;
+    // 
+    int32 state = 9;
+    // 
+    int32 favored = 10;
+    // 
+    int64 ctime = 11;
+    // 
+    int64 mtime = 12;
+    // 
+    int32 stat_fav_cnt = 13;
+    // 
+    int32 stat_share_cnt = 14;
+    // 
+    int32 stat_like_cnt = 15;
+    // 
+    int32 stat_play_cnt = 16;
+    // 
+    int32 stat_reply_cnt = 17;
+    // 
+    int32 fav_state = 18;
+    // 
+    bool use_view_vt = 19;
+    // 
+    string view_vt_text = 20;
+}
+
+// 
+message FavFolderAction {
+    // 
+    enum Action {
+        // 
+        UNSPECIFIED = 0;
+        // 
+        ADD = 1;
+        // 
+        DEL = 2;
+    }
+    
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+    // 
+    FavFolderAction.Action action = 3;
+}
+
+// 
+message FavFolderAuthor {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+}
+
+// 
+message FavFolderCreateReq {
+    // 
+    string name = 1;
+    // 
+    string desc = 2;
+    // 
+    int32 public = 3;
+    // 
+    int32 folder_type = 4;
+}
+
+// 
+message FavFolderCreateResp {
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+    // 
+    string message = 3;
+}
+
+// 
+message FavFolderDeleteReq {
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+}
+
+// 
+message FavFolderDeleteResp {
+    // 
+    string message = 1;
+}
+
+// 
+message FavFolderDetailReq {
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+    // 
+    int64 fav_mid = 3;
+    // 
+    FavItem last_item = 4;
+    // 
+    int32 page_size = 5;
+    // 
+    bool need_folder_info = 6;
+}
+
+// 
+message FavFolderDetailResp {
+    // 
+    int32 total = 1;
+    // 
+    bool reach_end = 2;
+    // 
+    repeated FavItemDetail list = 3;
+    // 
+    FavFolder folder_info = 4;
+}
+
+// 
+message FavFolderListReq {
+    // 
+    repeated int32 folder_types = 1;
+    // 
+    PlayItem item = 2;
+}
+
+// 
+message FavFolderListResp {
+    // 
+    repeated FavFolder list = 1;
+}
+
+// 
+message FavFolderMeta {
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+}
+
+// 
+message FavItem {
+    // 
+    int32 item_type = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 fid = 3;
+    // 
+    int64 mid = 4;
+    // 
+    int64 mtime = 5;
+    // 
+    int64 ctime = 6;
+    // 
+    EventTracking et = 7;
+}
+
+// 
+message FavItemAddReq {
+    // 
+    oneof item {
+        // 
+        PlayItem play = 3;
+        // 
+        FavItem fav = 4;
+    }
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+    // 
+    bool is_fast_add_fav = 5;
+}
+
+// 
+message FavItemAddResp {
+    // 
+    string message = 1;
+}
+
+// 
+message FavItemAuthor {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+}
+
+// 
+message FavItemBatchReq {
+    // 
+    oneof item {
+        // 
+        PlayItem play = 2;
+        // 
+        FavItem fav = 3;
+    }
+    // 
+    repeated FavFolderAction actions = 1;
+}
+
+// 
+message FavItemBatchResp {
+    // 
+    string message = 1;
+}
+
+// 
+message FavItemDelReq {
+    // 
+    oneof item {
+        // 
+        PlayItem play = 3;
+        // 
+        FavItem fav = 4;
+    }
+    // 
+    int64 fid = 1;
+    // 
+    int32 folder_type = 2;
+    // 
+    bool is_fast_del_fav = 5;
+}
+
+// 
+message FavItemDelResp {
+    // 
+    string message = 1;
+}
+
+// 
+message FavItemDetail {
+    // 
+    FavItem item = 1;
+    // 
+    FavItemAuthor owner = 2;
+    // 
+    FavItemStat stat = 3;
+    // 
+    string cover = 4;
+    // 
+    string name = 5;
+    // 
+    int64 duration = 6;
+    // 
+    int32 state = 7;
+    // 
+    string message = 8;
+    // 
+    int32 parts = 9;
+}
+
+// 
+message FavItemStat {
+    // 
+    int32 view = 1;
+    // 
+    int32 reply = 2;
+    // 
+    bool use_view_vt = 3;
+    // 
+    string view_vt_text = 4;
+}
+
+// 
+message FavTabShowReq {
+    // 
+    int64 mid = 1;
+}
+
+// 
+message FavTabShowResp {
+    // 
+    bool show_menu = 1;
+}
+
+// 
+message FavoredInAnyFoldersReq {
+    // 
+    repeated int32 folder_types = 1;
+    // 
+    PlayItem item = 2;
+}
+
+// 
+message FavoredInAnyFoldersResp {
+    // 
+    repeated FavFolderMeta folders = 1;
+    // 
+    PlayItem item = 2;
+}
+
+// 
+message FollowRelation {
+    // 
+    enum RelationStatus {
+        // 
+        UNSPECIFIED_RelationStatus = 0;
+        // 
+        NO_FOLLOW = 1;
+        // 
+        FOLLOWING = 2;
+        // 
+        FOLLOWED = 3;
+        // 
+        MUTUAL_FOLLOWING = 4;
+        // 
+        SPECIAL_FOLLOWING = 5;
+    }
+    
+    // 
+    FollowRelation.RelationStatus status = 1;
+}
+
+// 
+message FormatDescription {
+    // 
+    int32 quality = 1;
+    // 
+    string format = 2;
+    // 
+    string description = 3;
+    // 
+    string display_desc = 4;
+    // 
+    string superscript = 5;
+}
+
+// 
+enum ListOrder {
+    // 
+    NO_ORDER = 0;
+    // 
+    ORDER_NORMAL = 1;
+    // 
+    ORDER_REVERSE = 2;
+    // 
+    ORDER_RANDOM = 3;
+}
+
+// 
+enum ListSortField {
+    // 
+    NO_SORT = 0;
+    // 
+    SORT_CTIME = 1;
+    // 
+    SORT_VIEWCNT = 2;
+    // 
+    SORT_FAVCNT = 3;
+}
+
+// 
+message MainFavMusicMenuListReq {
+    // 
+    int32 tab_type = 1;
+    // 
+    string offset = 2;
+}
+
+// 
+message MainFavMusicMenuListResp {
+    // 
+    int32 tab_type = 1;
+    // 
+    repeated MusicMenu menu_list = 2;
+    // 
+    bool has_more = 3;
+    // 
+    string offset = 4;
+}
+
+// 
+message MainFavMusicSubTabListReq {
+}
+
+// 
+message MainFavMusicSubTabListResp {
+    // 
+    repeated MusicSubTab tabs = 1;
+    // 
+    MainFavMusicMenuListResp default_tab_res = 2;
+    // 
+    map<int32, MainFavMusicMenuListResp> first_page_res = 3;
+}
+
+// 
+message MedialistItem {
+    // 
+    PlayItem item = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    int64 duration = 4;
+    // 
+    int32 parts = 5;
+    // 
+    int64 up_mid = 6;
+    // 
+    string up_name = 7;
+    // 
+    int32 state = 8;
+    // 
+    string message = 9;
+    // 
+    int64 stat_view = 10;
+    // 
+    int64 stat_reply = 11;
+    // 
+    bool use_stat_view_vt = 12;
+    // 
+    string stat_view_vt_text = 13;
+}
+
+// 
+message MedialistReq {
+    // 
+    int64 list_type = 1;
+    // 
+    int64 biz_id = 2;
+    // 
+    string offset = 3;
+}
+
+// 
+message MedialistResp {
+    // 
+    int64 total = 1;
+    // 
+    bool has_more = 2;
+    // 
+    string offset = 3;
+    // 
+    repeated MedialistItem items = 4;
+    // 
+    MedialistUpInfo up_info = 5;
+}
+
+// 
+message MedialistUpInfo {
+    // 
+    int64 mid = 1;
+    // 
+    string avatar = 2;
+    // 
+    int64 fans = 3;
+    // 
+    string name = 4;
+}
+
+// 
+message MenuDeleteReq {
+    // 
+    int64 id = 1;
+}
+
+// 
+message MenuDeleteResp {
+    // 
+    string message = 1;
+}
+
+// 
+message MenuEditReq {
+    // 
+    int64 id = 1;
+    // 
+    string title = 2;
+    // 
+    string desc = 3;
+    // 
+    int32 is_public = 4;
+}
+
+// 
+message MenuEditResp {
+    // 
+    string message = 1;
+}
+
+// 
+message MenuSubscribeReq {
+    // 
+    enum SubscribeAction {
+        // 
+        INVALID_SubscribeAction = 0;
+        // 
+        ADD_SubscribeAction = 1;
+        // 
+        DEL_SubscribeAction = 2;
+    }
+    
+    // 
+    MenuSubscribeReq.SubscribeAction action = 1;
+    // 
+    int64 target_id = 2;
+}
+
+// 
+message MenuSubscribeResp {
+    // 
+    string message = 1;
+}
+
+// 
+message MusicMenu {
+    // 
+    int64 id = 1;
+    // 
+    int32 menu_type = 2;
+    // 
+    string title = 3;
+    // 
+    string desc = 4;
+    // 
+    string cover = 5;
+    // 
+    MusicMenuAuthor owner = 6;
+    // 
+    int32 state = 7;
+    // 
+    int64 attr = 8;
+    // 
+    MusicMenuStat stat = 9;
+    // 
+    int64 total = 10;
+    // 
+    int64 ctime = 11;
+    // 
+    string uri = 12;
+}
+
+// 
+message MusicMenuAuthor {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string avatar = 3;
+}
+
+// 
+message MusicMenuStat {
+    // 
+    int64 play = 1;
+    // 
+    int64 reply = 2;
+}
+
+// 
+message MusicSubTab {
+    // 
+    string name = 1;
+    // 
+    int32 tab_type = 2;
+    // 
+    int64 total = 3;
+}
+
+// 
+message PageOption {
+    // 
+    enum Direction {
+        // 
+        SCROLL_DOWN = 0;
+        // 
+        SCROLL_UP = 1;
+    }
+    
+    // 
+    int32 page_size = 1;
+    // 
+    PageOption.Direction direction = 2;
+    // 
+    PlayItem last_item = 3;
+}
+
+// 
+message PickArchive {
+    // 
+    PlayItem item = 1;
+    // 
+    string title = 2;
+    // 
+    PickArchiveAuthor owner = 3;
+    // 
+    string cover = 4;
+    // 
+    int64 duration = 5;
+    // 
+    int32 parts = 6;
+    // 
+    int32 stat_view = 7;
+    // 
+    int32 stat_reply = 8;
+    // 
+    int32 state = 9;
+    // 
+    string message = 10;
+    // 
+    bool use_stat_view_vt = 11;
+    // 
+    string stat_view_vt_text = 12;
+}
+
+// 
+message PickArchiveAuthor {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+}
+
+// 
+message PickCard {
+    // 
+    int64 pick_id = 1;
+    // 
+    int64 card_id = 2;
+    // 
+    string card_name = 3;
+    // 
+    repeated CardModule modules = 4;
+}
+
+// 
+message PickCardDetailReq {
+    // 
+    int64 card_id = 1;
+    // 
+    int64 pick_id = 2;
+}
+
+// 
+message PickCardDetailResp {
+    // 
+    int64 card_id = 1;
+    // 
+    int64 pick_id = 2;
+    // 
+    repeated CardModule modules = 3;
+}
+
+// 
+message PickFeedReq {
+    // 
+    int64 offset = 1;
+}
+
+// 
+message PickFeedResp {
+    // 
+    int64 offset = 1;
+    // 
+    repeated PickCard cards = 2;
+}
+
+// 
+message PkcmArchive {
+    // 
+    PickArchive arc = 1;
+    // 
+    string pick_reason = 2;
+}
+
+// 
+message PkcmCenterButton {
+    // 
+    string icon_head = 1;
+    // 
+    string icon_tail = 2;
+    // 
+    string title = 3;
+    // 
+    string uri = 4;
+}
+
+// 
+message PkcmHeader {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string btn_icon = 3;
+    // 
+    string btn_text = 4;
+    // 
+    string btn_uri = 5;
+}
+
+// 
+message PlayActionReportReq {
+    // 
+    PlayItem item = 1;
+    // 
+    string from_spmid = 2;
+}
+
+// 
+message PlayDASH {
+    // 
+    int32 duration = 1;
+    // 
+    float min_buffer_time = 2;
+    // 
+    repeated DashItem audio = 3;
+}
+
+// 
+message PlayHistoryAddReq {
+    // 
+    PlayItem item = 1;
+    // 
+    int64 progress = 2;
+    // 
+    int64 duration = 3;
+    // 
+    int32 play_style = 4;
+}
+
+// 
+message PlayHistoryDelReq {
+    // 
+    repeated PlayItem items = 1;
+    // 
+    bool truncate = 2;
+}
+
+// 
+message PlayHistoryReq {
+    // 
+    PageOption page_opt = 1;
+    // 
+    int64 local_today_zero = 2;
+    // 
+    bilibili.pagination.Pagination pagination = 3;
+}
+
+// 
+message PlayHistoryResp {
+    // 
+    int32 total = 1;
+    // 
+    bool reach_end = 2;
+    // 
+    repeated DetailItem list = 3;
+    // 
+    bilibili.pagination.PaginationReply pagination_reply = 4;
+}
+
+// 
+message PlayInfo {
+    // 
+    oneof info {
+        // 
+        PlayURL play_url = 4;
+        // 
+        PlayDASH play_dash = 5;
+    }
+    // 
+    int32 qn = 1;
+    // 
+    string format = 2;
+    // 
+    int32 qn_type = 3;
+    // 
+    int32 fnver = 6;
+    // 
+    int32 fnval = 7;
+    // 
+    repeated FormatDescription formats = 8;
+    // 
+    int32 video_codecid = 9;
+    // 
+    int64 length = 10;
+    // 
+    int32 code = 11;
+    // 
+    string message = 12;
+    // 
+    int64 expire_time = 13;
+    // 
+    bilibili.app.playurl.v1.VolumeInfo volume = 14;
+}
+
+// 
+message PlayItem {
+    // 
+    int32 item_type = 1;
+    // 
+    int64 oid = 3;
+    // 
+    repeated int64 sub_id = 4;
+    // 
+    EventTracking et = 5;
+    // 
+    int64 pos = 6;
+}
+
+// 
+message PlayURL {
+    // 
+    repeated ResponseUrl durl = 1;
+}
+
+// 
+message PlayURLReq {
+    // 
+    PlayItem item = 1;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 2;
+}
+
+// 
+message PlayURLResp {
+    // 
+    PlayItem item = 1;
+    // 
+    int32 playable = 2;
+    // 
+    string message = 3;
+    // 
+    map<int64, PlayInfo> player_info = 4;
+}
+
+// 
+message PlaylistAddReq {
+    // 
+    oneof pos {
+        // 
+        PlayItem after = 2;
+        // 
+        bool head = 3;
+        // 
+        bool tail = 4;
+    }
+    // 
+    repeated PlayItem items = 1;
+}
+
+// 
+message PlaylistDelReq {
+    // 
+    repeated PlayItem items = 1;
+    // 
+    bool truncate = 2;
+}
+
+// 
+message PlaylistOffset {
+    // 
+    enum PlaylistScrollDirection {
+        // 
+        DOWN = 0;
+        // 
+        UP = 1;
+    }
+    
+    // 
+    PlaylistOffset.PlaylistScrollDirection direction = 1;
+    // 
+    PlayItem last_item = 2;
+    // 
+    RandomOrderStatus random_state = 3;
+    // 
+    SortOption sort_opt = 4;
+}
+
+// 
+message PlaylistReq {
+    // 
+    PlaylistSource from = 1;
+    // 
+    int64 id = 2;
+    // 
+    PlayItem anchor = 3;
+    // 
+    PageOption page_opt = 4;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    // 
+    int64 extra_id = 6;
+    // 
+    SortOption sort_opt = 7;
+    // 
+    bilibili.pagination.Pagination pagination = 8;
+}
+
+// 
+message PlaylistResp {
+    // 
+    int32 total = 1;
+    // 
+    bool reach_start = 2;
+    // 
+    bool reach_end = 3;
+    // 
+    repeated DetailItem list = 4;
+    // 
+    PlayItem last_play = 5;
+    // 
+    int64 last_progress = 6;
+    // 
+    bilibili.pagination.PaginationReply pagination_reply = 7;
+}
+
+// 
+enum PlaylistSource {
+    // 
+    DEFAULT = 0;
+    // 
+    MEM_SPACE = 1;
+    // 
+    AUDIO_COLLECTION = 2;
+    // 
+    AUDIO_CARD = 3;
+    // 
+    USER_FAVOURITE = 4;
+    // 
+    UP_ARCHIVE = 5;
+    // 
+    AUDIO_CACHE = 6;
+    // 
+    PICK_CARD = 7;
+    // 
+    MEDIA_LIST = 8;
+}
+
+// 
+message RandomOrderStatus {
+    // 
+    repeated int64 exposed_pos = 1;
+}
+
+// 
+message RcmdOffset {
+    // 
+    int64 rcmd_from = 1;
+    // 
+    int64 id = 2;
+    // 
+    int32 page = 3;
+    // 
+    string session_id = 4;
+    // 
+    string from_trackid = 5;
+}
+
+// 
+message RcmdPlaylistReq {
+    // 
+    enum RcmdFrom {
+        // 
+        UNSPECIFIED_RcmdFrom = 0;
+        // 
+        UP_ARCHIVE_RcmdFrom = 1;
+        // 
+        INDEX_ENTRY = 2;
+        // 
+        ARCHIVE_VIEW = 3;
+    }
+    
+    // 
+    RcmdPlaylistReq.RcmdFrom from = 1;
+    // 
+    int64 id = 2;
+    // 
+    bool need_history = 3;
+    // 
+    bool need_top_cards = 4;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    // 
+    bilibili.pagination.Pagination page = 6;
+    // 
+    map<string, string> annotations = 7;
+}
+
+// 
+message RcmdPlaylistResp {
+    // 
+    repeated DetailItem list = 1;
+    // 
+    int64 history_len = 2;
+    // 
+    repeated TopCard top_cards = 3;
+    // 
+    bilibili.pagination.PaginationReply next_page = 4;
+}
+
+// 
+message ResponseUrl {
+    // 
+    int32 order = 1;
+    // 
+    int64 length = 2;
+    // 
+    int64 size = 3;
+    // 
+    string ahead = 4;
+    // 
+    string vhead = 5;
+    // 
+    string url = 6;
+    // 
+    repeated string backup_url = 7;
+    // 
+    string md5 = 8;
+}
+
+// 
+message SortOption {
+    // 
+    ListOrder order = 1;
+    // 
+    ListSortField sort_field = 2;
+    // 
+    bool is_switching = 3;
+}
+
+// 
+message ThumbUpReq {
+    // 
+    enum ThumbType {
+        // 
+        LIKE = 0;
+        // 
+        CANCEL_LIKE = 1;
+        // 
+        DISLIKE = 2;
+        // 
+        CANCEL_DISLIKE = 3;
+    }
+    
+    // 
+    PlayItem item = 1;
+    // 
+    ThumbUpReq.ThumbType action = 2;
+}
+
+// 
+message ThumbUpResp {
+    // 
+    string message = 1;
+}
+
+// 
+message TopCard {
+    // 
+    enum PlayStrategy {
+        // 
+        NO_INTERRUPT = 0;
+        // 
+        PLAY_TARGET = 1;
+        // 
+        PLAY_FIRST = 2;
+    }
+    
+    // 
+    oneof card {
+        // 
+        TpcdHistory listen_history = 4;
+        // 
+        TpcdFavFolder fav_folder = 5;
+        // 
+        TpcdUpRecall up_recall = 6;
+        // 
+        TpcdPickToday pick_today = 7;
+    }
+    // 
+    string title = 1;
+    // 
+    TopCard.PlayStrategy play_style = 2;
+    // 
+    TopCardType card_type = 3;
+    // 
+    int64 pos = 8;
+    // 
+    string title_icon = 9;
+}
+
+// 
+enum TopCardType {
+    // 
+    UNSPECIFIED_TopCardType = 0;
+    // 
+    LISTEN_HISTORY = 1;
+    // 
+    FAVORITE_FOLDER = 2;
+    // 
+    UP_RECALL = 3;
+    // 
+    PICK_TODAY = 4;
+}
+
+// 
+message TpcdFavFolder {
+    // 
+    DetailItem item = 1;
+    // 
+    string text = 2;
+    // 
+    string pic = 3;
+    // 
+    int64 fid = 4;
+    // 
+    int32 folder_type = 5;
+}
+
+// 
+message TpcdHistory {
+    // 
+    DetailItem item = 1;
+    // 
+    string text = 2;
+    // 
+    string pic = 3;
+}
+
+// 
+message TpcdPickToday {
+    // 
+    DetailItem item = 1;
+    // 
+    string text = 2;
+    // 
+    string pic = 3;
+    // 
+    int64 pick_id = 4;
+    // 
+    int64 pick_card_id = 5;
+}
+
+// 
+message TpcdUpRecall {
+    // 
+    int64 up_mid = 1;
+    // 
+    string text = 2;
+    // 
+    string avatar = 3;
+    // 
+    int64 medialist_type = 4;
+    // 
+    int64 medialist_biz_id = 5;
+    // 
+    DetailItem item = 6;
+}
+
+// 
+message TripleLikeReq {
+    // 
+    PlayItem item = 1;
+}
+
+// 
+message TripleLikeResp {
+    // 
+    string message = 1;
+    // 
+    bool thumb_ok = 2;
+    // 
+    bool coin_ok = 3;
+    // 
+    bool fav_ok = 4;
+}
+

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.search;
+
+import "bilibili/app/distribution.proto";
+
+// 
+message SearchAutoPlay {
+    // 
+    bilibili.app.distribution.Int64Value value = 1;
+    // 
+    bilibili.app.distribution.BoolValue affected_by_server_side = 2;
+}
+
+// 
+message SearchDeviceConfig {
+    // 
+    SearchAutoPlay auto_play = 1;
+}
+

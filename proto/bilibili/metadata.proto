@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package bilibili.metadata;
+
+// 
+message Metadata {
+    // 
+    string access_key = 1;
+    // 
+    string mobi_app = 2;
+    // 
+    string device = 3;
+    // 
+    int32 build = 4;
+    // 
+    string channel = 5;
+    // 
+    string buvid = 6;
+    // 
+    string platform = 7;
+}
+

@@ -1,0 +1,309 @@
+syntax = "proto3";
+
+package bilibili.live.rtc;
+
+// 
+message BAPILiveRTCHealthProto {
+    // 
+    message Bandwidth {
+        // 
+        int64 tx_rate = 1;
+        // 
+        int64 rx_rate = 2;
+    }
+    
+    // 
+    message Cpu {
+        // 
+        float usage = 1;
+    }
+    
+    // 
+    message Disk {
+        // 
+        float usage = 1;
+        // 
+        int64 free = 2;
+    }
+    
+    // 
+    message HealthInfo {
+        // 
+        string node_name = 1;
+        // 
+        BAPILiveRTCHealthProto.Cpu cpu = 2;
+        // 
+        BAPILiveRTCHealthProto.Memory memory = 3;
+        // 
+        BAPILiveRTCHealthProto.Disk disk = 4;
+        // 
+        BAPILiveRTCHealthProto.Bandwidth bandwidth = 5;
+        // 
+        BAPILiveRTCHealthProto.ServiceQuality up_link = 6;
+        // 
+        BAPILiveRTCHealthProto.ServiceQuality dn_link = 7;
+        // 
+        bool offline = 8;
+        // 
+        bool network_available = 9;
+        // 
+        BAPILiveRTCHealthProto.TransportBandwidth transbandwidth = 10;
+    }
+    
+    // 
+    message Memory {
+        // 
+        float usage = 1;
+        // 
+        int64 free = 2;
+    }
+    
+    // 
+    message ServiceQuality {
+        // 
+        int64 stream_num = 1;
+        // 
+        int32 score_average = 2;
+        // 
+        float zero_score_ratio = 3;
+    }
+    
+    // 
+    message TransportBandwidth {
+        // 
+        float total_tx_byterate = 1;
+        // 
+        float total_rx_byterate = 2;
+        // 
+        float wan_tx_byterate = 3;
+        // 
+        float wan_rx_byterate = 4;
+        // 
+        float lan_tx_byterate = 5;
+        // 
+        float lan_rx_byterate = 6;
+    }
+    
+}
+
+// 
+message BAPILiveRTCLegacyProto {
+    // 
+    enum MediaType {
+        // 
+        AUDIO = 0;
+        // 
+        VIDEO = 1;
+        // 
+        DATA = 2;
+        // 
+        SMALL_VIDEO = 3;
+        // 
+        OTHER = 15;
+    }
+    
+    // 
+    message MediaTypeField {
+        // 
+        repeated int32 media_type = 1;
+    }
+    
+    // 
+    message RtcSubscribe {
+        // 
+        map<int32, BAPILiveRTCLegacyProto.MediaTypeField> subscribe = 1;
+    }
+    
+}
+
+// 
+message BAPILiveRTCStreamProto {
+    // 
+    message AudioMetaData {
+        // 
+        int64 channels = 1;
+        // 
+        int64 sample_rate = 2;
+        // 
+        int64 payload = 3;
+        // 
+        int32 ssrc = 4;
+    }
+    
+    // 
+    enum Codec {
+        // 
+        Opus = 0;
+        // 
+        H264 = 1;
+        // 
+        H265 = 2;
+        // 
+        AV1 = 3;
+    }
+    
+    // 
+    message StreamMeta {
+        // 
+        oneof metadata {
+            // 
+            BAPILiveRTCStreamProto.AudioMetaData audio = 2;
+            // 
+            BAPILiveRTCStreamProto.VideoMetaData video = 3;
+        }
+        // 
+        BAPILiveRTCStreamProto.Codec codec = 1;
+    }
+    
+    // 
+    message VideoMetaData {
+        // 
+        int64 payload = 1;
+        // 
+        int32 ssrc = 2;
+    }
+    
+}
+
+// 
+message BAPILiveRTCTokenProto {
+    // 
+    message AccessToken {
+        // 
+        int64 channel_id = 1;
+        // 
+        int64 uid = 2;
+        // 
+        string token = 3;
+        // 
+        repeated string addr = 4;
+        // 
+        string fingerprint = 5;
+        // 
+        string password = 6;
+        // 
+        repeated string http_dns = 7;
+        // 
+        int32 version = 8;
+        // 
+        string business_name = 9;
+        // 
+        BAPILiveRTCTokenProto.TurnAddr turn_addr = 10;
+        // 
+        string media_server_name = 11;
+    }
+    
+    // 
+    message Token {
+        // 
+        int64 channel_id = 1;
+        // 
+        int64 uid = 2;
+        // 
+        int64 timestamp = 3;
+        // 
+        BAPILiveRTCUserProto.UserRole role = 4;
+    }
+    
+    // 
+    message TurnAddr {
+        // 
+        string username = 1;
+        // 
+        string password = 2;
+        // 
+        repeated string addr = 3;
+        // 
+        repeated int32 protocol = 4;
+        // 
+        bool turn_only = 5;
+    }
+    
+    // 
+    enum TurnProtocol {
+        // 
+        UDP = 0;
+        // 
+        TCP = 1;
+        // 
+        TLS = 2;
+    }
+    
+}
+
+// 
+message BAPILiveRTCUserProto {
+    // 
+    message CodecCapability {
+        // 
+        bool av1 = 1;
+        // 
+        bool h265 = 2;
+    }
+    
+    // 
+    message Stream {
+        // 
+        bool has_video = 1;
+        // 
+        bool has_audio = 2;
+        // 
+        bool audio_muted = 3;
+        // 
+        bool video_muted = 4;
+        // 
+        int32 video_count = 5;
+        // 
+        int32 temporal_count = 6;
+    }
+    
+    // 
+    message User {
+        // 
+        int64 uid = 1;
+        // 
+        BAPILiveRTCUserProto.UserRole role = 2;
+        // 
+        BAPILiveRTCUserProto.Stream pub_stream = 3;
+        // 
+        string platform = 4;
+        // 
+        string sdk_version = 5;
+        // 
+        BAPILiveRTCUserProto.CodecCapability decode_capability = 6;
+    }
+    
+    // 
+    enum UserLeaveReason {
+        // 
+        NORMAL = 0;
+        // 
+        KICKED = 1;
+        // 
+        TIMEOUT = 2;
+        // 
+        KILLED = 3;
+        // 
+        RECONNECT = 4;
+    }
+    
+    // 
+    enum UserRole {
+        // 
+        Normal = 0;
+        // 
+        Audience = 1;
+        // 
+        Monitor = 2;
+        // 
+        Relay = 3;
+        // 
+        App = 4;
+        // 
+        Mix = 5;
+        // 
+        Unknown = 99;
+    }
+    
+}
+

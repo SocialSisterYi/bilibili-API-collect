@@ -1,0 +1,305 @@
+syntax = "proto3";
+
+package bilibili.app.show.mixture.v1;
+
+import "bilibili/app/archive/middleware/v1.proto";
+
+// 
+service Mixture {
+    // 
+    rpc ChannelRedirect (ChannelRedirectReq) returns (ChannelRedirectReply);
+    // 
+    rpc Clarity (ClarityReq) returns (ClarityReply);
+    // 
+    rpc RegionIndex (RegionIndexReq) returns (RegionIndexReply);
+    // 
+    rpc RegionList (RegionListReq) returns (RegionListReply);
+    // 
+    rpc RegionShortcut (RegionShortcutReq) returns (RegionShortcutReply);
+    // 
+    rpc Widget (WidgetReq) returns (WidgetReply);
+    // 
+    rpc WidgetGuide (WidgetGuideReq) returns (WidgetGuideReply);
+}
+
+// 
+message ChannelRedirectReply {
+    // 
+    int64 code = 1;
+    // 
+    string url = 2;
+}
+
+// 
+message ChannelRedirectReq {
+    // 
+    int64 id = 1;
+}
+
+// 
+message ClarityReply {
+    // 
+    bool is_play_story = 1;
+    // 
+    bool is_set_play_qn = 2;
+    // 
+    int64 last_play_qn_value = 3;
+}
+
+// 
+message ClarityReq {
+}
+
+// 
+message GuideCard {
+    // 
+    string image = 1;
+    // 
+    string subtitle = 2;
+}
+
+// 
+message GuideItem {
+    // 
+    repeated GuideCard card = 1;
+    // 
+    string title = 2;
+}
+
+// 
+message GuideTip {
+    // 
+    string image = 1;
+    // 
+    string subtitle = 2;
+    // 
+    string title = 3;
+}
+
+// 
+enum GuideType {
+    // 
+    GUIDE_TYPE_DEFAULT = 0;
+    // 
+    GUIDE_TYPE_FUNC = 1;
+}
+
+// 
+message RcmdReason {
+    // 
+    string content = 1;
+    // 
+    int32 corner_mark = 2;
+}
+
+// 
+message RegionAv {
+    // 
+    string cover = 1;
+    // 
+    string cover_view_text = 2;
+    // 
+    string cover_dm_text = 3;
+    // 
+    string cover_right_text1 = 4;
+    // 
+    string jump_url = 5;
+    // 
+    string up_name = 6;
+    // 
+    int64 aid = 7;
+    // 
+    string title = 8;
+    // 
+    string cover43 = 9;
+}
+
+// 
+message RegionBanner {
+    // 
+    string title = 1;
+    // 
+    string sub_title = 2;
+    // 
+    string url = 3;
+    // 
+    int64 index = 4;
+    // 
+    string cover = 5;
+    // 
+    int64 id = 6;
+}
+
+// 
+message RegionCard {
+    // 
+    oneof item {
+        // 
+        RegionAv av = 2;
+    }
+    // 
+    RegionCardType type = 1;
+    // 
+    ThreePoint three_point = 3;
+}
+
+// 
+enum RegionCardType {
+    // 
+    REGION_CARD_TYPE_DEFAULT = 0;
+    // 
+    REGION_CARD_TYPE_AV = 1;
+}
+
+// 
+message RegionContent {
+    // 
+    string title = 1;
+    // 
+    repeated RegionIcon icons = 2;
+}
+
+// 
+message RegionIcon {
+    // 
+    string img = 1;
+    // 
+    string title = 2;
+    // 
+    string url = 3;
+    // 
+    int64 unique_id = 4;
+    // 
+    int64 rid = 5;
+}
+
+// 
+message RegionIndexReply {
+    // 
+    repeated RegionBanner banner = 1;
+    // 
+    bool has_next = 2;
+    // 
+    repeated RegionCard cards = 3;
+    // 
+    string title = 4;
+}
+
+// 
+message RegionIndexReq {
+    // 
+    int64 rid = 1;
+    // 
+    int32 display_id = 2;
+    // 
+    bool need_banner = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 
+    string uuid = 5;
+}
+
+// 
+message RegionLimit {
+    // 
+    RegionLimitCode code = 1;
+    // 
+    string message = 2;
+}
+
+// 
+enum RegionLimitCode {
+    // 
+    REGION_LIMIT_CODE_DEFAULT = 0;
+    // 
+    REGION_LIMIT_CODE_NO_LOGIN = 1;
+    // 
+    REGION_LIMIT_CODE_MAX = 2;
+    // 
+    REGION_LIMIT_CODE_ERROR = 3;
+}
+
+// 
+message RegionListReply {
+    // 
+    RegionContent shortcut = 1;
+    // 
+    repeated RegionContent contents = 2;
+}
+
+// 
+message RegionListReq {
+}
+
+// 
+message RegionShortcutReply {
+    // 
+    RegionLimit limit = 1;
+}
+
+// 
+message RegionShortcutReq {
+    // 
+    repeated int64 unique_id = 1;
+}
+
+// 
+message ThreePoint {
+    // 
+    bool watch_later = 1;
+}
+
+// 
+message WidgetGuideReply {
+    // 
+    int32 code = 1;
+    // 
+    GuideItem guide_item = 2;
+    // 
+    GuideTip tip = 3;
+}
+
+// 
+message WidgetGuideReq {
+    // 
+    string from_spmid = 1;
+    // 
+    GuideType guide_type = 2;
+}
+
+// 
+message WidgetItem {
+    // 
+    string cover = 1;
+    // 
+    string view = 2;
+    // 
+    RcmdReason rcmd_reason = 3;
+    // 
+    string title = 4;
+    // 
+    string name = 5;
+    // 
+    string uri = 6;
+    // 
+    string goto = 7;
+    // 
+    int64 id = 8;
+    // 
+    int32 view_icon = 9;
+}
+
+// 
+message WidgetReply {
+    // 
+    repeated WidgetItem item = 1;
+}
+
+// 
+message WidgetReq {
+    // 
+    string from_spmid = 1;
+    // 
+    int32 page_no = 2;
+}
+

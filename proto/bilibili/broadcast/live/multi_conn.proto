@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package bilibili.broadcast.live.multi_conn;
+
+// 
+message ScoreEvent {
+    // 
+    message info {
+        // 
+        int64 uid = 1;
+        // 
+        int64 room_id = 2;
+        // 
+        string avatar = 3;
+        // 
+        string nickname = 4;
+        // 
+        int64 price = 5;
+        // 
+        string price_text = 6;
+        // 
+        int64 gender = 7;
+    }
+    
+    // 
+    repeated ScoreEvent.info data = 1;
+    // 
+    int64 invoking_time = 2;
+    // 
+    int64 version = 3;
+    // 
+    string layout = 4;
+    // 
+    int64 room_status = 5;
+    // 
+    string biz_session_id = 6;
+}
+

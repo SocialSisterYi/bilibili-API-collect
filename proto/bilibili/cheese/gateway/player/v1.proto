@@ -1,0 +1,194 @@
+syntax = "proto3";
+
+package bilibili.cheese.gateway.player.v1;
+
+import "bilibili/app/playurl/v1.proto";
+
+// 
+enum DrmTechType {
+    // 
+    NON = 0;
+    // 
+    FAIR_PLAY = 1;
+    // 
+    WIDE_VINE = 2;
+    // 
+    BILI_DRM = 3;
+}
+
+// 
+message PlayAbilityConf {
+    // 
+    bool background_play_disable = 1;
+    // 
+    bool flip_disable = 2;
+    // 
+    bool cast_disable = 3;
+    // 
+    bool feedback_disable = 4;
+    // 
+    bool subtitle_disable = 5;
+    // 
+    bool playback_rate_disable = 6;
+    // 
+    bool time_up_disable = 7;
+    // 
+    bool playback_mode_disable = 8;
+    // 
+    bool scale_mode_disable = 9;
+    // 
+    bool like_disable = 10;
+    // 
+    bool dislike_disable = 11;
+    // 
+    bool coin_disable = 12;
+    // 
+    bool elec_disable = 13;
+    // 
+    bool share_disable = 14;
+    // 
+    bool screen_shot_disable = 15;
+    // 
+    bool lock_screen_disable = 16;
+    // 
+    bool recommend_disable = 17;
+    // 
+    bool playback_speed_disable = 18;
+    // 
+    bool definition_disable = 19;
+    // 
+    bool selections_disable = 20;
+    // 
+    bool next_disable = 21;
+    // 
+    bool edit_dm_disable = 22;
+    // 
+    bool outer_dm_disable = 25;
+    // 
+    bool inner_dm_disable = 26;
+    // 
+    bool small_window_disable = 27;
+    // 
+    string cast_disable_reason_code = 28;
+    // 
+    string cast_disable_reason_text = 29;
+}
+
+// 
+message PlayViewBusinessInfo {
+    // 
+    DrmTechType drm_tech_type = 1;
+}
+
+// 
+message PlayViewReply {
+    // 
+    bilibili.app.playurl.v1.VideoInfo video_info = 1;
+    // 
+    PlayAbilityConf play_conf = 2;
+    // 
+    PlayViewBusinessInfo business = 3;
+    // 
+    RiskControl risk_control = 4;
+}
+
+// 
+message PlayViewReq {
+    // 
+    int64 ep_id = 1;
+    // 
+    int64 cid = 2;
+    // 
+    int64 qn = 3;
+    // 
+    int32 fnver = 4;
+    // 
+    int32 fnval = 5;
+    // 
+    int32 download = 6;
+    // 
+    int32 force_host = 7;
+    // 
+    bool fourk = 8;
+    // 
+    string spmid = 9;
+    // 
+    string from_spmid = 10;
+    // 
+    int32 teenagers_mode = 11;
+    // 
+    bilibili.app.playurl.v1.CodeType prefer_codec_type = 12;
+    // 
+    bool is_preview = 13;
+    // 
+    bool is_raw_stream = 14;
+    // 
+    SecurityLevel security_level = 15;
+}
+
+// 
+message ProjectReply {
+    // 
+    bilibili.app.playurl.v1.PlayURLReply project = 1;
+}
+
+// 
+message ProjectReq {
+    // 
+    int64 ep_id = 1;
+    // 
+    int64 cid = 2;
+    // 
+    int64 qn = 3;
+    // 
+    int32 fnver = 4;
+    // 
+    int32 fnval = 5;
+    // 
+    int32 download = 6;
+    // 
+    int32 force_host = 7;
+    // 
+    bool fourk = 8;
+    // 
+    string spmid = 9;
+    // 
+    string from_spmid = 10;
+    // 
+    int32 protocol = 11;
+    // 
+    int32 device_type = 12;
+    // 
+    bool flv_proj = 13;
+    // 
+    int64 aid = 14;
+}
+
+// 
+message RiskControl {
+    // 
+    bool need_send_sms = 1;
+    // 
+    string title = 2;
+    // 
+    string risk_message = 3;
+    // 
+    string action_desc = 4;
+    // 
+    string send_sms_url = 5;
+    // 
+    string buvid = 6;
+}
+
+// 
+enum SecurityLevel {
+    // 
+    LEVEL_UNKNOWN = 0;
+    // 
+    LEVEL_L1 = 1;
+    // 
+    LEVEL_L2 = 2;
+    // 
+    LEVEL_L3 = 3;
+}
+

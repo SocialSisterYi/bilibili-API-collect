@@ -1,0 +1,117 @@
+syntax = "proto3";
+
+package bilibili.app.show.popular.v1;
+
+import "bilibili/app/archive/middleware/v1.proto";
+import "bilibili/app/card/v1.proto";
+
+// 
+service Popular {
+    // 
+    rpc Index (PopularResultReq) returns (PopularReply);
+}
+
+// 
+message Bubble {
+    // 
+    string bubble_content = 1;
+    // 
+    int32 version = 2;
+    // 
+    int64 stime = 3;
+}
+
+// 
+message Config {
+    // 
+    string item_title = 1;
+    // 
+    string bottom_text = 2;
+    // 
+    string bottom_text_cover = 3;
+    // 
+    string bottom_text_url = 4;
+    // 
+    repeated EntranceShow top_items = 5;
+    // 
+    string head_image = 6;
+    // 
+    repeated EntranceShow page_items = 7;
+    // 
+    int64 hit = 8;
+    // 
+    string toast = 9;
+}
+
+// 
+message EntranceShow {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string module_id = 3;
+    // 
+    string uri = 4;
+    // 
+    Bubble bubble = 5;
+    // 
+    int64 entrance_id = 6;
+    // 
+    string top_photo = 7;
+    // 
+    int32 entrance_type = 8;
+}
+
+// 
+message PopularAd {
+    // 
+    string extra = 1;
+}
+
+// 
+message PopularReply {
+    // 
+    repeated bilibili.app.card.v1.Card items = 1;
+    // 
+    Config config = 2;
+    // 
+    string ver = 3;
+}
+
+// 
+message PopularResultReq {
+    // 
+    int64 idx = 1;
+    // 
+    int32 login_event = 2;
+    // 
+    int32 qn = 3;
+    // 
+    int32 fnver = 4;
+    // 
+    int32 fnval = 5;
+    // 
+    int32 force_host = 6;
+    // 
+    int32 fourk = 7;
+    // 
+    string spmid = 8;
+    // 
+    string last_param = 9;
+    // 
+    string ver = 10;
+    // 
+    int64 entrance_id = 11;
+    // 
+    string location_ids = 12;
+    // 
+    int32 source_id = 13;
+    // 
+    int32 flush = 14;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 15;
+    // 
+    PopularAd popular_ad = 16;
+}
+

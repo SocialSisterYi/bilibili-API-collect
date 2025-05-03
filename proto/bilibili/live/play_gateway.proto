@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package bilibili.live.play_gateway;
+
+// 
+message Behavior {
+    // 
+    int64 qn = 1;
+    // 
+    PlayStyle play_style = 2;
+}
+
+// 
+message GetMasterPlayQualityReq {
+    // 
+    int64 room_id = 1;
+}
+
+// 
+message GetMasterPlayQualityResp {
+    // 
+    repeated Behavior behaviors = 1;
+    // 
+    repeated Qoe qoes = 2;
+}
+
+// 
+enum PlayStyle {
+    // 
+    PLAY_STYLE_HORRIZ = 0;
+    // 
+    PLAY_STYLE_VERT = 1;
+    // 
+    PLAY_STYLE_TINYWINDOW = 2;
+}
+
+// 
+message Qoe {
+    // 
+    string qoe = 1;
+}
+

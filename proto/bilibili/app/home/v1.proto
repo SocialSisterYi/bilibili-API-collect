@@ -1,0 +1,484 @@
+syntax = "proto3";
+
+package bilibili.app.home.v1;
+
+import "bilibili/app/archive/middleware/v1.proto";
+
+// 
+service Home {
+    // 
+    rpc HomePopup (HomePopupReq) returns (HomePopupRes);
+    // 
+    rpc MineSelectionContent (MineSelectionContentReq) returns (MineSelectionContentRes);
+    // 
+    rpc MineSelectionOptionItems (MineSelectionOptionItemsReq) returns (MineSelectionOptionItemsRes);
+    // 
+    rpc MineSelectionOptionUpdate (MineSelectionOptionUpdateReq) returns (MineSelectionOptionUpdateRes);
+    // 
+    rpc Recent (RecentReq) returns (RecentRes);
+    // 
+    rpc RemoveVideo (RemoveVideoReq) returns (RemoveVideoRes);
+    // 
+    rpc TopLeftTab (TopLeftTabReq) returns (TopLeftTabRes);
+    // 
+    rpc TopLeftTabUpdate (TopLeftTabUpdateReq) returns (TopLeftTabUpdateRes);
+}
+
+// 
+message ArcContentPool {
+    // 
+    repeated ArcInfo show_arcs = 1;
+    // 
+    repeated ArcInfo backup_arcs = 2;
+}
+
+// 
+message ArcInfo {
+    // 
+    RecentRecommendMetaInfo rec_meta = 1;
+    // 
+    int64 duration_sec = 2;
+    // 
+    int64 progress_sec = 3;
+}
+
+// 
+message Badge {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    BgStyle bg_style = 6;
+}
+
+// 
+enum BgStyle {
+    // 
+    BG_STYLE_UNKNOWN = 0;
+    // 
+    BG_STYLE_FILL = 1;
+    // 
+    BG_STYLE_STROKE = 2;
+    // 
+    BG_STYLE_FILL_AND_STROKE = 3;
+    // 
+    BG_STYLE_NO_FILL_AND_NO_STROKE = 4;
+}
+
+// 
+message DirectRatingGuide {
+    // 
+    string title = 1;
+    // 
+    PopupButton goto_button = 2;
+    // 
+    PopupButton feedback_button = 3;
+    // 
+    PopupButton cancel_button = 4;
+}
+
+// 
+message FavContentPool {
+    // 
+    repeated FavInfo show_favs = 1;
+    // 
+    repeated FavInfo backup_favs = 2;
+}
+
+// 
+message FavInfo {
+    // 
+    RecentRecommendMetaInfo rec_meta = 1;
+}
+
+// 
+message HalfWatchedVideo {
+    // 
+    ModuleInfo module_info = 1;
+    // 
+    ArcContentPool arc_content_pool = 2;
+}
+
+// 
+message HomePopupReq {
+    // 
+    bool cold_start = 1;
+    // 
+    RemindUsePCClientPopupParams rupcp = 2;
+    // 
+    RatingGuidePopupParams rgpp = 3;
+}
+
+// 
+message HomePopupRes {
+    // 
+    PopupBasicInfo remind_use_pc_client = 1;
+    // 
+    RatingGuidePopup rating_guide = 2;
+}
+
+// 
+message IconItem {
+    // 
+    string id = 1;
+    // 
+    string icon = 2;
+    // 
+    string url = 3;
+    // 
+    string name = 4;
+    // 
+    RedDot red_dot = 5;
+    // 
+    bool fixure = 6;
+}
+
+// 
+message MineSelection {
+    // 
+    repeated IconItem items = 1;
+}
+
+// 
+message MineSelectionContentReq {
+}
+
+// 
+message MineSelectionContentRes {
+    // 
+    MineSelection mine_selection = 1;
+}
+
+// 
+message MineSelectionOptionItemsReq {
+}
+
+// 
+message MineSelectionOptionItemsRes {
+    // 
+    repeated SimpleMineSection sections = 1;
+}
+
+// 
+message MineSelectionOptionUpdateReq {
+    // 
+    repeated int64 item_ids = 1;
+}
+
+// 
+message MineSelectionOptionUpdateRes {
+}
+
+// 
+message ModuleInfo {
+    // 
+    More more = 1;
+    // 
+    string title = 2;
+    // 
+    int64 pos = 3;
+}
+
+// 
+enum ModuleType {
+    // 
+    MODULE_TYPE_UNKNOWN = 0;
+    // 
+    MODULE_TYPE_TOVIEW = 1;
+    // 
+    MODULE_TYPE_RECENT_FAV = 2;
+    // 
+    MODULE_TYPE_HALF_WATCHED_VIDEO = 3;
+}
+
+// 
+message More {
+    // 
+    string name = 1;
+    // 
+    string icon = 2;
+    // 
+    string url = 3;
+}
+
+// 
+message PopupBasicInfo {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    string icon = 3;
+    // 
+    PopupButton confirm_button = 4;
+    // 
+    PopupButton cancel_button = 5;
+}
+
+// 
+message PopupButton {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+}
+
+// 
+message RatingGuidePopup {
+    // 
+    DirectRatingGuide direct_rating_guide = 1;
+    // 
+    RatingThenGuide rating_then_guide = 2;
+}
+
+// 
+message RatingGuidePopupParams {
+    // 
+    int32 show_count = 1;
+    // 
+    int64 like_count = 2;
+    // 
+    int32 special_page = 3;
+}
+
+// 
+message RatingPopup {
+    // 
+    string title = 1;
+}
+
+// 
+message RatingThenGuide {
+    // 
+    RatingPopup rating_popup = 1;
+    // 
+    PopupBasicInfo guide_popup = 2;
+}
+
+// 
+enum RecType {
+    // 
+    REC_TYPE_UNKNOWN = 0;
+    // 
+    REC_TYPE_UGC = 1;
+    // 
+    REC_TYPE_OGV = 2;
+    // 
+    REC_TYPE_SEASON = 3;
+    // 
+    REC_TYPE_FAV_FOLDER = 4;
+}
+
+// 
+message RecentFav {
+    // 
+    ModuleInfo module_info = 1;
+    // 
+    FavContentPool fav_content_pool = 3;
+}
+
+// 
+enum RecentRecReasonEnum {
+    // 
+    RECENT_REC_REASON_UNKNOWN = 0;
+    // 
+    RECENT_REC_REASON_TOVIEW = 1;
+    // @Deprecated
+    RECENT_REC_REASON_HISTORY = 2;
+    // 
+    RECENT_REC_REASON_FAV_FOLDER = 21;
+    // 
+    RECENT_REC_REASON_FAV_DETAIL = 22;
+    // 
+    RECENT_REC_REASON_DEEP_WATCHING_HALF = 31;
+    // 
+    RECENT_REC_REASON_LOOK_BACK_HALF = 32;
+    // 
+    RECENT_REC_REASON_LOOK_BACK_MORE_HALF = 33;
+    // 
+    RECENT_REC_REASON_LOOK_BACK_MORE = 34;
+}
+
+// 
+message RecentRecommendMetaInfo {
+    // 
+    int64 id = 1;
+    // 
+    string cover = 2;
+    // 
+    string title = 3;
+    // 
+    string add_time = 4;
+    // 
+    string url = 5;
+    // 
+    Badge badge = 6;
+    // 
+    RecType rec_type = 7;
+    // 
+    RecentRecReasonEnum rec_reason_enum = 8;
+    // 
+    string sub_title = 9;
+    // 
+    int64 add_time_sec = 10;
+}
+
+// 
+message RecentReq {
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 1;
+}
+
+// 
+message RecentRes {
+    // 
+    MineSelection mine_selection = 1;
+    // 
+    RecentUsed recent_used = 2;
+    // 
+    HalfWatchedVideo half_watched_videos = 3;
+    // 
+    ToView to_view = 4;
+    // 
+    RecentFav recent_fav = 5;
+}
+
+// 
+message RecentUsed {
+    // 
+    ModuleInfo module_info = 1;
+    // 
+    repeated IconItem items = 2;
+}
+
+// 
+message RedDot {
+    // 
+    bool show = 1;
+    // 
+    int64 num = 2;
+}
+
+// 
+message RemindUsePCClientPopupParams {
+    // 
+    bool has_installed_pc_client = 1;
+}
+
+// 
+message RemoveVideoReq {
+    // 
+    ModuleType module_type = 1;
+    // 
+    int64 id = 2;
+    // 
+    RecentRecReasonEnum rec_reason_enum = 3;
+}
+
+// 
+message RemoveVideoRes {
+}
+
+// 
+message SimpleMineSection {
+    // 
+    string id = 1;
+    // 
+    string name = 2;
+    // 
+    repeated IconItem items = 3;
+}
+
+// 
+enum Tab {
+    // 
+    TAB_UNKNOWN = 0;
+    // 
+    TAB_LISTEN = 1;
+    // 
+    TAB_STORY = 2;
+    // 
+    TAB_RECENT = 3;
+}
+
+// 
+message TabExtraInfo {
+    // 
+    bool switch_to_mine_config_bubble = 1;
+}
+
+// 
+enum TabSelection {
+    // 
+    TS_UNKNOWN = 0;
+    // 
+    TS_ONLY_LISTEN = 1;
+    // 
+    TS_ONLY_STORY = 2;
+    // 
+    TS_ONLY_RECENT = 3;
+    // 
+    TS_ALL = 4;
+}
+
+// 
+enum TabUpdateSource {
+    // 
+    SOURCE_RECENT = 0;
+    // 
+    SOURCE_GAME = 1;
+}
+
+// 
+message ToView {
+    // 
+    ModuleInfo module_info = 1;
+    // 
+    ArcContentPool arc_content_pool = 2;
+}
+
+// 
+enum TopLeftGoto {
+    // 
+    GOTO_UNKNOWN = 0;
+    // 
+    GOTO_MINE = 1;
+    // 
+    GOTO_RECENT = 2;
+}
+
+// 
+message TopLeftTabReq {
+}
+
+// 
+message TopLeftTabRes {
+    // 
+    repeated int32 tabs = 1;
+    // 
+    Tab default_tab = 2;
+    // 
+    TabExtraInfo extra = 3;
+}
+
+// 
+message TopLeftTabUpdateReq {
+    // 
+    TopLeftGoto tab_goto = 1;
+    // 
+    TabSelection tab_selection = 2;
+    // 
+    TabUpdateSource source = 3;
+}
+
+// 
+message TopLeftTabUpdateRes {
+}
+

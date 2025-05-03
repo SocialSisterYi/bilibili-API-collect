@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package bilibili.vas.garb.model;
+
+// 
+message FanNumColorFormat {
+    // 
+    string start_point = 1;
+    // 
+    string end_point = 2;
+    // 
+    repeated string colors = 3;
+    // 
+    repeated int64 gradients = 4;
+}
+
+// 
+message ImageGroup {
+    // 
+    message VisualEffect {
+        // 
+        string medal_image = 1;
+        // 
+        string color_theme = 2;
+    }
+    
+    // 
+    int64 type = 1;
+    // 
+    VisualEffect effect_visual = 2;
+}
+
+// 
+message UserCardBG {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    string jump_url = 4;
+    // 
+    UserFanShow fan = 5;
+    // 
+    string type = 6;
+    // 
+    ImageGroup image_group = 7;
+}
+
+// 
+message UserFanShow {
+    // 
+    int64 is_fan = 1;
+    // 
+    int64 number = 2;
+    // 
+    string color = 3;
+    // 
+    string name = 4;
+    // 
+    string num_desc = 5;
+    // 
+    string num_prefix = 6;
+    // 
+    FanNumColorFormat color_format = 7;
+}
+
+// 
+message UserPendant {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    string jump_url = 4;
+    // 
+    string type = 5;
+    // 
+    string image_enhance = 6;
+    // 
+    string image_enhance_frame = 7;
+}
+
+// 
+message UserSailing {
+    // 
+    UserPendant pendant = 1;
+    // 
+    UserCardBG card_bg = 2;
+    // 
+    UserCardBG card_bg_with_focus = 3;
+}
+

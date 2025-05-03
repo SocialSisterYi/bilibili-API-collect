@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package bilibili.broadcast.live;
+
+import "google/protobuf/any.proto";
+
+// 
+message BroadcastMessage {
+    // 
+    string target_path = 1;
+    // 
+    google.protobuf.Any biz_body = 2;
+    // 
+    Common common = 3;
+}
+
+// 
+message Common {
+    // 
+    int64 message_id = 1;
+    // 
+    int64 timestamp = 2;
+    // 
+    string cmd = 3;
+    // 
+    int64 dm_score = 4;
+    // 
+    MessageFormat format = 5;
+    // 
+    int64 sort = 6;
+}
+
+// 
+enum MessageFormat {
+    // 
+    MessageFormatUnknown = 0;
+    // 
+    MessageFormatProto = 1;
+    // 
+    MessageFormatJSON = 2;
+}
+

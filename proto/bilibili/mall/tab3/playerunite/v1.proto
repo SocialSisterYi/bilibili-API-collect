@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package bilibili.mall.tab3.playerunite.v1;
+
+import "bilibili/playershared.proto";
+import "google/protobuf/any.proto";
+
+// 
+service Player {
+    // 
+    rpc PlayViewUnite (PlayViewUniteReq) returns (PlayViewUniteReply);
+}
+
+// 
+message PlayViewUniteReply {
+    // 
+    bilibili.playershared.VodInfo vod_info = 1;
+    // 
+    bilibili.playershared.PlayArcConf play_arc_conf = 2;
+    // 
+    bilibili.playershared.PlayDeviceConf play_device_conf = 3;
+    // 
+    bilibili.playershared.Event event = 4;
+    // 
+    google.protobuf.Any supplement = 5;
+    // 
+    bilibili.playershared.PlayArc play_arc = 6;
+    // 
+    bilibili.playershared.QnTrialInfo qn_trial_info = 7;
+    // 
+    bilibili.playershared.History history = 8;
+    // 
+    bilibili.playershared.ViewInfo view_info = 9;
+}
+
+// 
+message PlayViewUniteReq {
+    // 
+    bilibili.playershared.VideoVod vod = 1;
+    // 
+    string spmid = 2;
+    // 
+    string from_spmid = 3;
+    // 
+    map<string, string> extra_content = 4;
+    // 
+    string bvid = 5;
+}
+

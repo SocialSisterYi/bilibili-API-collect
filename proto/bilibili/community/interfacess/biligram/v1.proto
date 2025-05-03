@@ -1,0 +1,596 @@
+syntax = "proto3";
+
+package bilibili.community.interfacess.biligram.v1;
+
+import "bilibili/pagination.proto";
+
+// 
+message ActionButton {
+    // 
+    string text = 1;
+    // 
+    string icon = 2;
+}
+
+// 
+message Button {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message Category {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    repeated Topic topic = 3;
+}
+
+// 
+message CreateTopicReply {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    TopicStatus status = 3;
+    // 
+    int64 category_id = 4;
+}
+
+// 
+message CreateTopicReq {
+    // 
+    string name = 1;
+    // 
+    int64 category_id = 2;
+    // 
+    int64 up_mid = 3;
+}
+
+// 
+message DelMessageReply {
+}
+
+// 
+message DelMessageReq {
+    // 
+    int64 id = 1;
+    // 
+    int64 topic_id = 2;
+}
+
+// 
+message DelTopicReply {
+}
+
+// 
+message DelTopicReq {
+    // 
+    int64 id = 1;
+}
+
+// 
+message DialogButton {
+    // 
+    string title = 1;
+    // 
+    string content = 2;
+    // 
+    ActionButton confirm = 3;
+    // 
+    string cancel = 4;
+    // 
+    string text = 5;
+}
+
+// 
+message EditTopicReply {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    TopicStatus status = 3;
+    // 
+    int64 category_id = 4;
+}
+
+// 
+message EditTopicReq {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    int64 category_id = 3;
+}
+
+// 
+message GetManagePageReply {
+    // 
+    int64 up_mid = 1;
+    // 
+    ServerStatus status = 2;
+    // 
+    DialogButton online = 3;
+    // 
+    DialogButton offline = 4;
+}
+
+// 
+message GetManagePageReq {
+    // 
+    int64 up_mid = 1;
+}
+
+// 
+message HasServerReply {
+    // 
+    bool hit_server = 1;
+}
+
+// 
+message HasServerReq {
+    // 
+    int64 mid = 1;
+}
+
+// 
+enum IconPosition {
+    // 
+    IconPositionPrefix = 0;
+    // 
+    IconPositionSuffix = 1;
+}
+
+// 
+message Input {
+    // 
+    string placeholder = 1;
+}
+
+// 
+message ItemContentEmoji {
+    // 
+    string uri = 1;
+}
+
+// 
+message ItemContentHighlight {
+    // 
+    string text = 1;
+    // 
+    string icon = 2;
+    // 
+    IconPosition icon_position = 3;
+    // 
+    string jump_url = 4;
+}
+
+// 
+message ItemContentItem {
+    // 
+    ItemContentType type = 1;
+    // 
+    ItemContentText text = 2;
+    // 
+    ItemContentHighlight highlight = 3;
+    // 
+    ItemContentEmoji emoji = 4;
+    // 
+    string raw_text = 5;
+}
+
+// 
+message ItemContentText {
+    // 
+    string text = 1;
+}
+
+// 
+enum ItemContentType {
+    // 
+    ItemContentTypeUnknown = 0;
+    // 
+    ItemContentTypeText = 1;
+    // 
+    ItemContentTypeHighlight = 2;
+    // 
+    ItemContentTypeEmoji = 3;
+}
+
+// 
+message LikeMessageReply {
+}
+
+// 
+message LikeMessageReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    int64 message_id = 2;
+    // 
+    MessageActionType action = 3;
+}
+
+// 
+message Message {
+    // 
+    int64 id = 1;
+    // 
+    int64 timestamp = 2;
+    // 
+    MessageStatus status = 3;
+    // 
+    repeated MessageItem items = 4;
+    // 
+    MessageType type = 5;
+    // 
+    int64 order = 6;
+}
+
+// 
+enum MessageActionType {
+    // 
+    MessageActionTypeUnknown = 0;
+    // 
+    MessageActionTypeLike = 1;
+    // 
+    MessageActionTypeUnlike = 2;
+}
+
+// 
+message MessageItem {
+    // 
+    MessageItemType type = 1;
+    // 
+    MessageItemAuthor author = 2;
+    // 
+    MessageItemNotice notice = 3;
+    // 
+    MessageItemContent content = 4;
+    // 
+    MessageItemPicture picture = 5;
+    // 
+    MessageItemAddition addition = 6;
+}
+
+// 
+message MessageItemAddition {
+    // 
+    int64 likes = 1;
+    // 
+    bool liked = 2;
+    // 
+    bool show_menu = 3;
+    // 
+    Button report = 4;
+    // 
+    DialogButton delete = 5;
+    // 
+    DialogButton blacklist = 6;
+}
+
+// 
+message MessageItemAuthor {
+    // 
+    UserInfo author = 1;
+    // 
+    string send_time = 2;
+    // 
+    string location = 3;
+}
+
+// 
+message MessageItemContent {
+    // 
+    repeated ItemContentItem desc = 1;
+    // 
+    string jump_uri = 2;
+    // 
+    string origin_text = 3;
+    // 
+    int32 threshold_lines = 4;
+}
+
+// 
+message MessageItemNotice {
+    // 
+    string title = 1;
+}
+
+// 
+message MessageItemPicture {
+    // 
+    repeated Picture pictures = 1;
+}
+
+// 
+enum MessageItemType {
+    // 
+    MessageItemTypeUnknown = 0;
+    // 
+    MessageItemTypeAuthor = 1;
+    // 
+    MessageItemTypeNotice = 2;
+    // 
+    MessageItemTypeContent = 3;
+    // 
+    MessageItemTypePicture = 4;
+    // 
+    MessageItemTypeAddition = 5;
+}
+
+// 
+message MessagePositionReply {
+}
+
+// 
+message MessagePositionReq {
+    // 
+    int64 up_mid = 1;
+    // 
+    int64 topic_id = 2;
+    // 
+    string next = 3;
+}
+
+// 
+enum MessageStatus {
+    // 
+    MessageStatusNormal = 0;
+    // 
+    MessageStatusAudit = 1;
+    // 
+    MessageStatusSelfSeen = 2;
+    // 
+    MessageStatusDelete = 3;
+}
+
+// 
+enum MessageType {
+    // 
+    MessageTypeNone = 0;
+    // 
+    MessageTypeText = 1;
+    // 
+    MessageTypeImage = 2;
+}
+
+// 
+message MessagesReply {
+    // 
+    string title = 1;
+    // 
+    int64 up_mid = 2;
+    // 
+    int64 permission = 3;
+    // 
+    repeated Message message = 4;
+    // 
+    bilibili.pagination.FeedPaginationReply page = 5;
+    // 
+    Button setting = 6;
+    // 
+    Input input = 7;
+}
+
+// 
+message MessagesReq {
+    // 
+    int64 id = 1;
+    // 
+    bilibili.pagination.FeedPagination page = 2;
+}
+
+// 
+message Picture {
+    // 
+    string uri = 1;
+    // 
+    double width = 2;
+    // 
+    double height = 3;
+    // 
+    double size = 4;
+}
+
+// 
+message SendMessageReply {
+    // 
+    Message message = 1;
+}
+
+// 
+message SendMessageReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    string message = 2;
+    // 
+    map<string, int64> at_name_to_mid = 3;
+    // 
+    repeated Picture picture = 4;
+}
+
+// 
+message ServerReply {
+    // 
+    int64 up_mid = 1;
+    // 
+    string top_photo = 2;
+    // 
+    UserInfo user_info = 3;
+    // 
+    ServerStatus status = 4;
+    // 
+    string head_word = 5;
+    // 
+    repeated Category category = 6;
+    // 
+    Button create = 7;
+    // 
+    DialogButton online = 8;
+    // 
+    Button setting = 9;
+    // 
+    Button tip = 10;
+    // 
+    int64 permission = 11;
+    // 
+    string night_top_photo = 12;
+}
+
+// 
+message ServerReq {
+    // 
+    int64 up_mid = 1;
+}
+
+// 
+enum ServerStatus {
+    // 
+    ServerStatusUnknown = 0;
+    // 
+    ServerStatusOnline = 1;
+    // 
+    ServerStatusOffline = 2;
+}
+
+// 
+message ServerStatusReply {
+}
+
+// 
+message ServerStatusReq {
+    // 
+    ServerStatus status = 1;
+}
+
+// 
+message Topic {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    TopicStatus status = 3;
+    // 
+    string unread_count = 4;
+    // 
+    string head_icon = 5;
+    // 
+    TopicTailType tail_type = 6;
+    // 
+    string tail_string = 7;
+    // 
+    Button tail = 8;
+    // 
+    bool is_template = 9;
+    // 
+    string route = 10;
+}
+
+// 
+message TopicReply {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    TopicStatus status = 3;
+    // 
+    bool name_editable = 4;
+}
+
+// 
+message TopicReq {
+    // 
+    int64 id = 1;
+}
+
+// 
+enum TopicStatus {
+    // 
+    TopicStatusUnknown = 0;
+    // 
+    TopicStatusNormal = 1;
+    // 
+    TopicStatusAudit = 2;
+    // 
+    TopicStatusDeleted = 3;
+    // 
+    TopicStatusAuditDeleted = 4;
+}
+
+// 
+enum TopicTailType {
+    // 
+    TopicTailTypeUnknown = 0;
+    // 
+    TopicTailTypeUnreadGray = 1;
+    // 
+    TopicTailTypeUnreadRed = 2;
+    // 
+    TopicTailTypeEdit = 3;
+}
+
+// 
+message UpServer {
+    // 
+    int64 id = 1;
+    // 
+    int64 mid = 2;
+    // 
+    UpServerType type = 3;
+    // 
+    string face = 4;
+    // 
+    int64 unread_count = 5;
+    // 
+    string name = 6;
+}
+
+// 
+message UpServerListReply {
+    // 
+    repeated UpServer server = 1;
+}
+
+// 
+message UpServerListReq {
+    // 
+    int64 mid = 1;
+}
+
+// 
+enum UpServerType {
+    // 
+    UpServerTypeUnknown = 0;
+    // 
+    UpServerTypeCreate = 1;
+    // 
+    UpServerTypeUp = 2;
+    // 
+    UpServerTypeFollow = 3;
+}
+
+// 
+message UserInfo {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    string route = 4;
+}
+

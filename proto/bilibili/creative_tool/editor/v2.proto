@@ -1,0 +1,422 @@
+syntax = "proto3";
+
+package bilibili.creative_tool.editor.v2;
+
+// 
+message EditorBody {
+    // 
+    int32 version = 1;
+    // 
+    repeated Material materials = 2;
+    // 
+    repeated Feature features = 3;
+    // 
+    Metadata metadata = 4;
+}
+
+// 
+message Feature {
+    // 
+    FeatureFlag flag = 1;
+    // 
+    string ext = 2;
+}
+
+// 
+enum FeatureFlag {
+    // 
+    _ff_none = 0;
+    // 
+    LinearMask = 1;
+    // 
+    MirrorMask = 2;
+    // 
+    RectangularMask = 3;
+    // 
+    RecognitionTitle = 21;
+    // 
+    IdentificationRecording = 22;
+    // 
+    MyMaterialLibrary = 23;
+    // 
+    TextReading = 24;
+    // 
+    EditorHighlightRecognition = 25;
+    // 
+    LinkExtractMusic = 26;
+    // 
+    BatchRoughShears = 27;
+    // 
+    MaterialCenter = 28;
+    // 
+    CommandBarrage = 29;
+    // 
+    CoverMattingFunction = 30;
+    // 
+    VideoExtractMusic = 31;
+    // 
+    LocalMusic = 32;
+    // 
+    DynamicFeatures = 33;
+    // 
+    VideoDotFunction = 34;
+    // 
+    DynamicTracking = 35;
+    // 
+    MusicalSpeedChange = 36;
+    // 
+    SoundSpeedChange = 37;
+    // 
+    TextReadingSpeedChange = 38;
+    // 
+    RecordingSpeedChange = 39;
+    // 
+    AvatarsCustomizeParts = 40;
+    // 
+    CropCustomizeStickers = 41;
+    // 
+    MattingCustomStickers = 42;
+    // 
+    VtuberFeature = 43;
+    // 
+    Matting = 44;
+    // 
+    Vtuber = 45;
+    // 
+    Adjust = 46;
+    // 
+    KichikuRap = 47;
+    // 
+    PrefabricatedDraft = 48;
+    // 
+    CircularMask = 49;
+    // 
+    KeyFrame = 50;
+    // 
+    VoiceChanger = 51;
+    // 
+    LOLMaterial = 52;
+    // 
+    AudioSeparation = 53;
+    // 
+    QuickVtuberMV = 54;
+    // 
+    VideoInAnimation = 55;
+    // 
+    VideoOutAnimation = 56;
+    // 
+    VideoCompositeAnimation = 57;
+    // 
+    recommendedTemplateCover = 58;
+    // 
+    CoverMakesRecommended = 59;
+    // 
+    GraphicTemplate = 61;
+    // 
+    HeadMatting = 63;
+    // 
+    PortraitMatting = 64;
+    // 
+    CustomMatting = 65;
+    // 
+    TitleGhostAnimal = 66;
+    // 
+    PlayVideoBackwards = 67;
+    // 
+    DraftStorylineGenerated = 70;
+    // 
+    VtuberRecording = 71;
+    // 
+    OneClickPacking = 72;
+    // 
+    DubbingCreation1_6 = 73;
+    // 
+    DubbingCreation3 = 74;
+    // 
+    PictureAudioRecording = 76;
+    // 
+    Play4D = 77;
+    // 
+    RecommendedMusic = 78;
+    // 
+    GraphicIntelligentMapping = 79;
+    // 
+    Recording = 80;
+    // 
+    Shoot = 81;
+    // 
+    VideoSpeedChange = 82;
+    // 
+    CameraFlip = 83;
+    // 
+    ScreenRecording = 84;
+    // 
+    DefaultEnd = 85;
+    // 
+    WhetherGameHighlights = 86;
+    // 
+    RecordingInscription = 87;
+    // 
+    PictureInPicture = 88;
+    // 
+    VoiceQuickClip = 89;
+    // 
+    OneKeyMakeVideo = 90;
+    // 
+    SmartMakeVideo = 91;
+    // 
+    ShootSpeedChange = 92;
+    // 
+    NoiseReduction = 93;
+    // 
+    AIImage2Image = 94;
+    // 
+    KichikuScene = 95;
+    // 
+    ShootBeauty = 100;
+    // 
+    ShootBeautyTemplate = 101;
+    // 
+    ShootCountdown = 102;
+    // 
+    ShootFlashlight = 103;
+    // 
+    IntellectTitle = 104;
+    // 
+    AiKeywordExtra = 105;
+    // 
+    PictureTagRecognition = 106;
+    // 
+    IntellectCover = 107;
+    // 
+    AIActivity = 108;
+    // 
+    DigitalHuman = 109;
+    // 
+    AIStraightTitle = 110;
+    // 
+    GameFactory = 111;
+    // 
+    NonSmartVideo = 112;
+    // 
+    Replace = 113;
+    // 
+    TTSClone = 114;
+    // 
+    SmartTitlePink = 115;
+    // 
+    RecognitionMusic = 116;
+    // 
+    AIVideoStoryTool = 117;
+    // 
+    AIVideoStoryPlay = 118;
+    // 
+    AIVideoMusicTool = 119;
+    // 
+    AIVideoMusicPlay = 120;
+    // 
+    VideoClipCut = 121;
+    // 
+    FastPublish = 122;
+    // 
+    TextToAudio = 123;
+    // 
+    CloudDraft = 124;
+}
+
+// 
+message FeatureHighlightExt {
+    // 
+    int32 count = 1;
+}
+
+// 
+message FeatureVtuberExt {
+    // 
+    repeated int32 exp = 1;
+    // 
+    repeated int32 action = 2;
+    // 
+    repeated int32 combine = 3;
+}
+
+// 
+message Material {
+    // 
+    int64 id = 1;
+    // 
+    MaterialType type = 2;
+    // 
+    MaterialForm from = 3;
+    // 
+    int32 duration = 4;
+    // 
+    string ext = 5;
+}
+
+// 
+enum MaterialForm {
+    // 
+    Normal = 0;
+    // 
+    AIRecommend = 1;
+    // 
+    TacticsRecommend = 2;
+    // 
+    Search = 3;
+}
+
+// 
+enum MaterialType {
+    // 
+    Subtitles = 0;
+    // 
+    Fonts = 1;
+    // 
+    Filters = 2;
+    // 
+    Bgms = 3;
+    // 
+    ShootStickers = 5;
+    // 
+    VideoupStickers = 7;
+    // 
+    Trans = 8;
+    // 
+    Cooperates = 9;
+    // 
+    Themes = 10;
+    // 
+    Makeups = 11;
+    // 
+    Surgerys = 12;
+    // 
+    Videofxs = 13;
+    // 
+    Rhythms = 14;
+    // 
+    BSticker = 15;
+    // 
+    Particle = 16;
+    // 
+    Effects = 17;
+    // 
+    Backgrounds = 18;
+    // 
+    Videos = 19;
+    // 
+    Sounds = 20;
+    // 
+    Flower = 21;
+    // 
+    BcutHotWord = 22;
+    // 
+    VUPerBG = 25;
+    // 
+    CoverTemplates = 26;
+    // 
+    TTS = 27;
+    // 
+    Openings = 28;
+    // 
+    Vupers = 30;
+    // 
+    InstructBarrageTemplate = 31;
+    // 
+    LovelySticker = 32;
+    // 
+    LovelyStickerHotWord = 33;
+    // 
+    QuickBeauty = 34;
+    // 
+    MakeupBeauty = 35;
+    // 
+    Textmotion = 36;
+    // 
+    BcutAudioHotWord = 37;
+    // 
+    VideoTemplatesFull = 38;
+    // 
+    VideoTemplatesStart = 39;
+    // 
+    HotTopicEffects = 40;
+    // 
+    CoverTemplate = 41;
+    // 
+    InteractiveBarrage = 42;
+    // 
+    VideoHotWord = 43;
+    // 
+    TextToVideoTemplate = 44;
+    // 
+    OpeningTemplate = 45;
+    // 
+    VideoTemplate = 46;
+    // 
+    VupTemplate = 47;
+    // 
+    RemixTemplate = 49;
+    // 
+    GameTemplate = 50;
+    // 
+    ProcessBar = 51;
+    // 
+    VtuberProperty = 52;
+    // 
+    VtuberBackground = 53;
+    // 
+    DubbingTool = 55;
+    // 
+    HotTopicVideos = 60;
+    // 
+    ASR = 61;
+    // 
+    WebCoverTemplate = 62;
+    // 
+    CameraFilter = 63;
+    // 
+    CameraEffect = 64;
+    // 
+    VideoWave = 66;
+    // 
+    VirtualBg = 67;
+    // 
+    VirtualProp = 68;
+    // 
+    VoiceChange = 71;
+    // 
+    SmartTemplate = 72;
+    // 
+    WzryGameTemplate = 73;
+    // 
+    AiDrawingModel = 74;
+    // 
+    AiPlayModel = 75;
+    // 
+    VideoGenMaterialUse = 79;
+}
+
+// 
+message Metadata {
+    // 
+    int32 duration = 1;
+    // 
+    int32 pic_count = 2;
+    // 
+    int32 video_count = 3;
+    // 
+    int32 video_tracks = 12;
+    // 
+    int32 audio_tracks = 13;
+    // 
+    int32 story_id = 19;
+    // 
+    int64 draft_id = 20;
+    // 
+    string draft_key = 21;
+    // 
+    int32 local_material_count = 22;
+    // 
+    string sdk_type = 23;
+}
+

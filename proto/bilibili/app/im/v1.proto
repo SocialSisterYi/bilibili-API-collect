@@ -1,0 +1,1077 @@
+syntax = "proto3";
+
+package bilibili.app.im.v1;
+
+import "bilibili/account/service/v1.proto";
+import "bilibili/dagw/component/avatar/v1.proto";
+
+// 
+enum AirDropFrom {
+    // 
+    ADF_UNKNOWN = 0;
+    // 
+    ADF_INSIDE_APP = 1;
+    // 
+    ADF_OUTSIDE_APP = 2;
+}
+
+// 
+message AirDropShareUserInfo {
+    // 
+    int64 mid = 1;
+    // 
+    string face = 2;
+    // 
+    string url = 3;
+    // 
+    string name = 4;
+}
+
+// 
+message AirDropToImReply {
+    // 
+    repeated AirDropShareUserInfo user_infos = 1;
+}
+
+// 
+message AirDropToImReq {
+    // 
+    AirDropFrom adf = 1;
+}
+
+// 
+enum AlertToastType {
+    // 
+    ALERT_TOAST_TYPE_UNSPECIFIED = 0;
+    // 
+    ALERT_TOAST_TYPE_BANNED = 1;
+    // 
+    ALERT_TOAST_TYPE_REPORT = 2;
+}
+
+// 
+message AutoReplyToast {
+    // 
+    string title = 1;
+    // 
+    string url = 2;
+}
+
+// 
+message BehaviorAlertToast {
+    // 
+    string title = 1;
+    // 
+    string content = 2;
+    // 
+    string type_str = 3;
+    // 
+    AlertToastType type = 4;
+}
+
+// 
+message BorderedLabel {
+    // 
+    string icon = 1;
+    // 
+    string text = 2;
+}
+
+// 
+message CancelInterceptInDustbinReply {
+}
+
+// 
+message CancelInterceptInDustbinReq {
+    // 
+    SessionId session_id = 1;
+}
+
+// 
+message ClearAlertReply {
+}
+
+// 
+message ClearAlertReq {
+    // 
+    AlertToastType type = 1;
+}
+
+// 
+message ClearUnreadReply {
+}
+
+// 
+message ClearUnreadReq {
+    // 
+    SessionPageType page_type = 1;
+    // 
+    SessionId session_id = 2;
+}
+
+// 
+message Contact {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem avatar = 3;
+    // 
+    string vip_info = 4;
+    // 
+    string url = 5;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 6;
+    // 
+    bool is_special_follow = 7;
+    // 
+    string face = 8;
+    // 
+    int32 official_type = 9;
+}
+
+// 
+message ContactTab {
+    // 
+    ContactTabType tab = 1;
+    // 
+    string name = 2;
+}
+
+// 
+enum ContactTabType {
+    // 
+    TAB_UNKNOWN = 0;
+    // 
+    TAB_GROUP = 1;
+    // 
+    TAB_FOLLOW = 2;
+    // 
+    TAB_FANS = 3;
+}
+
+// 
+message ContactsReply {
+    // 
+    repeated Contact contacts = 1;
+    // 
+    repeated ContactTab tab = 2;
+    // 
+    ContactTabType current_tab = 3;
+    // 
+    PaginationParams pagination_params = 4;
+}
+
+// 
+message ContactsReq {
+    // 
+    ContactTabType tab = 1;
+    // 
+    PaginationParams pagination_params = 2;
+}
+
+// 
+message ContactsSearchReply {
+    // 
+    repeated Contact contacts = 1;
+    // 
+    PaginationParams pagination_params = 2;
+}
+
+// 
+message ContactsSearchReq {
+    // 
+    string keyword = 1;
+    // 
+    ContactTabType tab = 2;
+    // 
+    PaginationParams pagination_params = 3;
+}
+
+// 
+message CustomerId {
+    // 
+    int64 shop_id = 1;
+    // 
+    int64 shop_type = 2;
+}
+
+// 
+message DeleteSessionListReply {
+}
+
+// 
+message DeleteSessionListReq {
+    // 
+    SessionPageType page_type = 1;
+}
+
+// 
+message DeleteSessionReply {
+}
+
+// 
+message DeleteSessionReq {
+    // 
+    SessionId session_id = 1;
+}
+
+// 
+message FilledLabel {
+    // 
+    string text = 1;
+}
+
+// 
+message FilterConfig {
+    // 
+    repeated SessionsFilter filters = 1;
+    // 
+    SessionFilterType current_filter = 2;
+}
+
+// 
+message FoldId {
+    // 
+    SessionType type = 1;
+}
+
+// 
+message GetImSettingsReply {
+    // 
+    string page_title = 1;
+    // 
+    map<int32, Setting> settings = 2;
+}
+
+// 
+message GetImSettingsReq {
+    // 
+    IMSettingType type = 1;
+}
+
+// 
+message GetQuickLinkUnreadReply {
+    // 
+    repeated QuickLinkUnreadItem items = 1;
+}
+
+// 
+message GetQuickLinkUnreadReq {
+}
+
+// 
+message GetTotalUnreadReply {
+    // 
+    Unread total = 1;
+}
+
+// 
+message GetTotalUnreadReq {
+}
+
+// 
+message GroupId {
+    // 
+    int64 group_id = 1;
+}
+
+// 
+enum IMSettingType {
+    // 
+    SETTING_TYPE_NEED_ALL = 0;
+    // 
+    SETTING_TYPE_REPLY_ME = 1;
+    // 
+    SETTING_TYPE_NEW_FANS = 2;
+    // 
+    SETTING_TYPE_RECEIVE_LIKE = 3;
+    // 
+    SETTING_TYPE_MSG_REMIND = 4;
+    // 
+    SETTING_TYPE_MSG_INTERCEPTION = 5;
+    // 
+    SETTING_TYPE_FANS_GROUP_MSG = 6;
+    // 
+    SETTING_TYPE_FANS_GROUP_MSG_RECEIVE = 7;
+    // 
+    SETTING_TYPE_FANS_GROUP_MSG_FOLD = 8;
+    // 
+    SETTING_TYPE_FANS_GROUP_MSG_JOIN_GUIDE = 9;
+    // 
+    SETTING_TYPE_UNFOLLOWED_MSG = 10;
+    // 
+    SETTING_TYPE_UNFOLLOWED_MSG_FOLD = 11;
+    // 
+    SETTING_TYPE_BLACK_LIST = 12;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT = 13;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT_SWITCH = 14;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT_OPEN_TIP_TEXT = 15;
+    // 
+    SETTING_TYPE_CLOSE_FANS_GROUP = 16;
+    // 
+    SETTING_TYPE_OLD_REPLY_ME = 17;
+    // 
+    SETTING_TYPE_OLD_AT_ME = 18;
+    // 
+    SETTING_TYPE_OLD_RECEIVE_LIKE = 19;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT_INTERACT_LIMITS = 20;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT_DURATION = 21;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT_COMMENT_LIMITS = 22;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT_DANMU_LIMITS = 23;
+    // 
+    SETTING_TYPE_UNFOLLOWED_MSG_RECEIVE = 24;
+    // 
+    SETTING_TYPE_ANTI_HARASSMENT_IM_LIMITS = 25;
+    // 
+    SETTING_TYPE_KEYWORD_BLOCKING = 26;
+}
+
+// 
+message ImageLabel {
+    // 
+    string url = 1;
+    // 
+    int32 width = 2;
+    // 
+    int32 height = 3;
+}
+
+// 
+message KeywordBlockingAddReply {
+    // 
+    string toast = 1;
+    // 
+    KeywordBlockingItem item = 2;
+}
+
+// 
+message KeywordBlockingAddReq {
+    // 
+    string keyword = 1;
+}
+
+// 
+message KeywordBlockingDeleteReply {
+    // 
+    string toast = 1;
+}
+
+// 
+message KeywordBlockingDeleteReq {
+    // 
+    string keyword = 1;
+}
+
+// 
+message KeywordBlockingItem {
+    // 
+    string keyword = 1;
+}
+
+// 
+message KeywordBlockingListReply {
+    // 
+    repeated KeywordBlockingItem items = 1;
+    // 
+    int32 list_limit = 2;
+    // 
+    int32 char_limit = 3;
+    // 
+    string list_limit_text = 4;
+}
+
+// 
+message KeywordBlockingListReq {
+}
+
+// 
+enum LabelType {
+    // 
+    LABEL_TYPE_DEFAULT = 0;
+    // 
+    LABEL_TYPE_HUA_HUO = 1;
+    // 
+    LABEL_TYPE_ORIGINAL_FANS = 2;
+    // 
+    LABEL_TYPE_SPECIAL_ATTENTION = 3;
+    // 
+    LABEL_TYPE_CONTRACT_UP = 4;
+    // 
+    LABEL_TYPE_OLD_FANS = 5;
+    // 
+    LABEL_TYPE_SPECIAL_ATTENTION_2 = 6;
+    // 
+    LABEL_TYPE_FANS_MEDAL = 7;
+    // 
+    LABEL_TYPE_GUARD_MEDAL = 8;
+}
+
+// 
+message Medal {
+    // 
+    int64 uid = 1;
+    // 
+    int32 medal_id = 2;
+    // 
+    int32 level = 3;
+    // 
+    string medal_name = 4;
+    // 
+    int32 score = 5;
+    // 
+    int32 intimacy = 6;
+    // 
+    int32 master_status = 7;
+    // 
+    int32 is_receive = 8;
+    // 
+    string medal_color_start = 9;
+    // 
+    string medal_color_end = 10;
+    // 
+    string medal_color_border = 11;
+    // 
+    string medal_color_name = 12;
+    // 
+    string medal_color_level = 13;
+    // 
+    int64 guard_level = 14;
+}
+
+// 
+message MsgSummary {
+    // 
+    string raw_msg = 1;
+    // 
+    MsgSummaryPrefixType prefix_type = 2;
+    // 
+    string prefix_text = 3;
+    // 
+    bool is_group_owner = 4;
+}
+
+// 
+enum MsgSummaryPrefixType {
+    // 
+    MSG_SUMMARY_PREFIX_TYPE_NONE = 0;
+    // 
+    MSG_SUMMARY_PREFIX_TYPE_NOTIFICATION = 1;
+    // 
+    MSG_SUMMARY_PREFIX_TYPE_GROUP_BLOCKED = 2;
+    // 
+    MSG_SUMMARY_PREFIX_TYPE_MENTIONED = 3;
+    // 
+    MSG_SUMMARY_PREFIX_TYPE_UNREAD = 4;
+}
+
+// 
+message Offset {
+    // 
+    int64 normal_offset = 1;
+    // 
+    int64 top_offset = 2;
+}
+
+// 
+message OperationContent {
+    // 
+    bool show = 1;
+    // 
+    string text = 2;
+}
+
+// 
+message PaginationParams {
+    // 
+    map<int32, Offset> offsets = 1;
+    // 
+    bool has_more = 2;
+}
+
+// 
+message PinSessionReply {
+    // 
+    int64 sequence_number = 1;
+    // 
+    int64 code = 2;
+    // 
+    string message = 3;
+}
+
+// 
+message PinSessionReq {
+    // 
+    SessionId session_id = 1;
+    // 
+    int64 top_time_micros = 2;
+}
+
+// 
+message PrivateId {
+    // 
+    int64 talker_uid = 1;
+}
+
+// 
+message QuickLinkBubble {
+    // 
+    int64 mid = 1;
+    // 
+    string avatar = 2;
+    // 
+    string nick_name = 3;
+    // 
+    string content = 4;
+    // 
+    QuickLinkItemType quick_link_item = 5;
+    // 
+    QuickLinkMsgType msg_type = 6;
+}
+
+// 
+message QuickLinkConfig {
+    // 
+    repeated QuickLinkItem items = 1;
+    // 
+    QuickLinkBubble bubble = 2;
+    // 
+    bool is_legacy_style = 3;
+}
+
+// 
+message QuickLinkItem {
+    // 
+    string title = 1;
+    // 
+    string icon = 2;
+    // 
+    string icon_dark = 3;
+    // 
+    string url = 4;
+    // 
+    Unread unread = 5;
+    // 
+    QuickLinkItemType item_type = 6;
+}
+
+// 
+enum QuickLinkItemType {
+    // 
+    QUICK_LINK_ITEM_TYPE_UNKNOWN = 0;
+    // 
+    QUICK_LINK_ITEM_TYPE_OLD_LIKE = 1;
+    // 
+    QUICK_LINK_ITEM_TYPE_OLD_REPLY = 2;
+    // 
+    QUICK_LINK_ITEM_TYPE_AT = 3;
+    // 
+    QUICK_LINK_ITEM_TYPE_SYSTEM = 4;
+    // 
+    QUICK_LINK_ITEM_TYPE_HUA_HUO = 5;
+    // 
+    QUICK_LINK_ITEM_TYPE_FOLLOW = 6;
+    // 
+    QUICK_LINK_ITEM_TYPE_REPLY = 100;
+    // 
+    QUICK_LINK_ITEM_TYPE_LIKE = 101;
+}
+
+// 
+enum QuickLinkMsgType {
+    // 
+    LikeMsg = 0;
+    // 
+    ReplyMsg = 1;
+    // 
+    AtMsg = 2;
+    // 
+    DanmuMsg = 3;
+    // 
+    CoinMsg = 4;
+    // 
+    FavoriteMsg = 5;
+}
+
+// 
+message QuickLinkUnreadItem {
+    // 
+    QuickLinkItemType item_type = 1;
+    // 
+    Unread unread = 2;
+}
+
+// 
+message RestrictedMode {
+    // 
+    bool teenagers = 1;
+    // 
+    bool lessons = 2;
+}
+
+// 
+message SelectItem {
+    // 
+    int32 item_type = 1;
+    // 
+    string text = 2;
+    // 
+    bool selected = 3;
+}
+
+// 
+message Session {
+    // 
+    SessionId id = 1;
+    // 
+    SessionInfo session_info = 2;
+    // 
+    Unread unread = 3;
+    // 
+    MsgSummary msg_summary = 4;
+    // 
+    int64 timestamp = 5;
+    // 
+    bool is_pinned = 6;
+    // 
+    int64 sequence_number = 7;
+    // 
+    bool is_muted = 8;
+    // 
+    string chat_url = 9;
+    // 
+    SessionOperation operation = 10;
+    // 
+    map<string, string> trace_params = 11;
+}
+
+// 
+enum SessionFilterType {
+    // 
+    FILTER_DEFAULT = 0;
+    // 
+    FILTER_FOLLOW = 1;
+}
+
+// 
+message SessionId {
+    // 
+    oneof id {
+        // 
+        PrivateId private_id = 1;
+        // 
+        GroupId group_id = 2;
+        // 
+        FoldId fold_id = 3;
+        // 
+        SystemId system_id = 4;
+        // 
+        CustomerId customer_id = 5;
+    }
+}
+
+// 
+message SessionInfo {
+    // 
+    string session_name = 1;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 2;
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem avatar = 3;
+    // 
+    string vip_info = 4;
+    // 
+    UserLabel user_label = 5;
+    // 
+    bool is_live = 6;
+}
+
+// 
+message SessionListExtraInfo {
+    // 
+    AutoReplyToast auto_reply_toast = 1;
+    // 
+    bool show_anti_harassment_popup = 2;
+    // 
+    string customer_hint_title = 3;
+    // 
+    BehaviorAlertToast behavior_alert_toast = 4;
+}
+
+// 
+message SessionListUpdateReply {
+    // 
+    repeated Session sessions = 1;
+    // 
+    UpdateSessionParams update_session_params = 2;
+}
+
+// 
+message SessionListUpdateReq {
+    // 
+    RestrictedMode restricted_mode = 1;
+    // 
+    UpdateSessionParams update_params = 2;
+    // 
+    SessionPageType page_type = 3;
+    // 
+    SessionFilterType filter_type = 4;
+}
+
+// 
+message SessionMainReply {
+    // 
+    PaginationParams pagination_params = 1;
+    // 
+    UpdateSessionParams update_session_params = 2;
+    // 
+    QuickLinkConfig quick_link_config = 3;
+    // 
+    FilterConfig filter_config = 4;
+    // 
+    repeated Session sessions = 5;
+    // 
+    repeated ThreeDotItem three_dot_items = 6;
+    // 
+    repeated ThreeDotItem outside_item = 7;
+    // 
+    SessionListExtraInfo extra_info = 8;
+}
+
+// 
+message SessionMainReq {
+    // 
+    RestrictedMode restricted_mode = 1;
+    // 
+    PaginationParams pagination_params = 2;
+    // 
+    SessionFilterType filter_type = 3;
+}
+
+// 
+message SessionOperation {
+    // 
+    OperationContent pin = 1;
+    // 
+    OperationContent unpin = 2;
+    // 
+    OperationContent delete = 3;
+    // 
+    OperationContent clear_unread = 4;
+    // 
+    OperationContent unblock = 5;
+}
+
+// 
+enum SessionPageType {
+    // 
+    SESSION_PAGE_TYPE_UNKNOWN = 0;
+    // 
+    SESSION_PAGE_TYPE_HOME = 1;
+    // 
+    SESSION_PAGE_TYPE_UNFOLLOWED = 2;
+    // 
+    SESSION_PAGE_TYPE_STRANGER = 3;
+    // 
+    SESSION_PAGE_TYPE_DUSTBIN = 4;
+    // 
+    SESSION_PAGE_TYPE_GROUP = 5;
+    // 
+    SESSION_PAGE_TYPE_HUA_HUO = 6;
+    // 
+    SESSION_PAGE_TYPE_AI = 7;
+    // 
+    SESSION_PAGE_TYPE_CUSTOMER = 8;
+}
+
+// 
+message SessionSecondaryReply {
+    // 
+    PaginationParams pagination_params = 1;
+    // 
+    UpdateSessionParams update_session_params = 2;
+    // 
+    repeated Session sessions = 3;
+    // 
+    repeated ThreeDotItem three_dot_items = 4;
+    // 
+    repeated ThreeDotItem outside_item = 5;
+}
+
+// 
+message SessionSecondaryReq {
+    // 
+    RestrictedMode restricted_mode = 1;
+    // 
+    PaginationParams pagination_params = 2;
+    // 
+    SessionPageType page_type = 3;
+}
+
+// 
+enum SessionType {
+    // 
+    SESSION_TYPE_UNKNOWN = 0;
+    // 
+    SESSION_TYPE_PRIVATE = 1;
+    // 
+    SESSION_TYPE_GROUP = 2;
+    // 
+    SESSION_TYPE_GROUP_FOLD = 3;
+    // 
+    SESSION_TYPE_UNFOLLOWED = 4;
+    // 
+    SESSION_TYPE_STRANGER = 5;
+    // 
+    SESSION_TYPE_DUSTBIN = 6;
+    // 
+    SESSION_TYPE_CUSTOMER_FOLD = 7;
+    // 
+    SESSION_TYPE_SYSTEM = 8;
+    // 
+    SESSION_TYPE_AI_FOLD = 9;
+    // 
+    SESSION_TYPE_CUSTOMER_ACCOUNT = 10;
+}
+
+// 
+message SessionUpdateReply {
+    // 
+    Session session = 1;
+}
+
+// 
+message SessionUpdateReq {
+    // 
+    SessionId session_id = 1;
+    // 
+    SessionPageType page_type = 2;
+}
+
+// 
+message SessionsFilter {
+    // 
+    SessionFilterType stype = 1;
+    // 
+    string title = 2;
+}
+
+// 
+message SetImSettingsReply {
+    // 
+    string toast = 1;
+}
+
+// 
+message SetImSettingsReq {
+    // 
+    map<int32, Setting> settings = 1;
+}
+
+// 
+message Setting {
+    // 
+    oneof content {
+        // 
+        SettingSwitch switch = 1;
+        // 
+        SettingSelect select = 2;
+        // 
+        SettingRedirect redirect = 3;
+        // 
+        SettingText text = 4;
+    }
+}
+
+// 
+message SettingRedirect {
+    // 
+    oneof content {
+        // 
+        redirect2SettingPage setting_page = 1;
+        // 
+        redirect2OtherPage other_page = 2;
+        // 
+        redirect2Popup popup = 6;
+        // 
+        redirectWindowSelect window_select = 7;
+    }
+    // 
+    string title = 3;
+    // 
+    string subtitle = 4;
+    // 
+    string selected_summary = 5;
+}
+
+// 
+message SettingSelect {
+    // 
+    repeated SelectItem item = 1;
+}
+
+// 
+message SettingSwitch {
+    // 
+    bool switch_on = 1;
+    // 
+    string title = 2;
+    // 
+    string subtitle = 3;
+}
+
+// 
+message SettingText {
+    // 
+    string text = 1;
+}
+
+// 
+message SystemId {
+    // 
+    SessionType type = 1;
+}
+
+// 
+message ThreeDotItem {
+    // 
+    string title = 1;
+    // 
+    string icon = 2;
+    // 
+    string url = 3;
+    // 
+    ThreeDotItemType type = 4;
+    // 
+    bool has_red_dot = 5;
+}
+
+// 
+enum ThreeDotItemType {
+    // 
+    THREE_DOT_ITEM_TYPE_UNKNOWN = 0;
+    // 
+    THREE_DOT_ITEM_TYPE_READ_ALL = 1;
+    // 
+    THREE_DOT_ITEM_TYPE_MSG_SETTING = 2;
+    // 
+    THREE_DOT_ITEM_TYPE_AUTO_REPLY = 3;
+    // 
+    THREE_DOT_ITEM_TYPE_UP_HELPER = 4;
+    // 
+    THREE_DOT_ITEM_TYPE_LIVE_HELPER = 5;
+    // 
+    THREE_DOT_ITEM_TYPE_FANS_GROUP_HELPER = 6;
+    // 
+    THREE_DOT_ITEM_TYPE_CONTRIBUTION_PUSH = 7;
+    // 
+    THREE_DOT_ITEM_TYPE_CONTACTS = 8;
+    // 
+    THREE_DOT_ITEM_TYPE_CLEAR_LIST = 9;
+}
+
+// 
+message UnPinSessionReply {
+    // 
+    int64 sequence_number = 1;
+}
+
+// 
+message UnPinSessionReq {
+    // 
+    SessionId session_id = 1;
+}
+
+// 
+message Unread {
+    // 
+    UnreadStyle style = 1;
+    // 
+    int64 number = 2;
+    // 
+    string number_show = 3;
+}
+
+// 
+enum UnreadStyle {
+    // 
+    UNREAD_STYLE_NONE = 0;
+    // 
+    UNREAD_STYLE_DOT = 1;
+    // 
+    UNREAD_STYLE_NUMBER = 2;
+}
+
+// 
+message UpdateSessionParams {
+    // 
+    map<int32, Offset> max_session_ts = 1;
+}
+
+// 
+message UserLabel {
+    // 
+    LabelType type = 1;
+    // 
+    UserLabelStyle style = 2;
+}
+
+// 
+message UserLabelStyle {
+    // 
+    oneof style {
+        // 
+        BorderedLabel bordered_label = 2;
+        // 
+        FilledLabel filled_label = 3;
+        // 
+        ImageLabel image_label = 4;
+        // 
+        Medal medal_label = 5;
+    }
+}
+
+// 
+message redirect2OtherPage {
+    // 
+    string url = 1;
+}
+
+// 
+message redirect2Popup {
+    // 
+    string title = 1;
+    // 
+    string subtitle = 2;
+    // 
+    string url = 3;
+}
+
+// 
+message redirect2SettingPage {
+    // 
+    map<int32, Setting> sub_settings = 1;
+    // 
+    string page_title = 2;
+    // 
+    string url = 3;
+    // 
+    IMSettingType parent_setting_type = 4;
+}
+
+// 
+message redirectWindowSelect {
+    // 
+    string title = 1;
+    // 
+    repeated SelectItem item = 2;
+}
+

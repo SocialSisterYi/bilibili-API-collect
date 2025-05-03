@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package bilibili.polymer.chronos.v1;
+
+// 
+service ChronosService {
+    // 
+    rpc ObtainChronosPackage (ObtainChronosPackageReq) returns (ObtainChronosPackageRsp);
+    // 
+    rpc ObtainChronosPackageV2 (ObtainChronosPackageV2Req) returns (ObtainChronosPackageRsp);
+}
+
+// 
+message ObtainChronosPackageReq {
+    // 
+    string service_key = 1;
+    // 
+    string engine_version = 2;
+    // 
+    string biz_id = 3;
+}
+
+// 
+message ObtainChronosPackageRsp {
+    // 
+    string md5 = 1;
+    // 
+    string url = 2;
+    // 
+    string sign = 3;
+}
+
+// 
+message ObtainChronosPackageV2Req {
+    // 
+    string service_key = 1;
+    // 
+    string engine_version = 2;
+    // 
+    string biz_id = 3;
+    // 
+    string business_app_key = 4;
+}
+

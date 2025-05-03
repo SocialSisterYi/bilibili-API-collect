@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package bilibili.live.approom.api.grpc.v1;
+
+// 
+message DoComboReq {
+    // 
+    int64 room_id = 1;
+    // 
+    int64 interaction_id = 2;
+    // 
+    int32 cnt = 3;
+    // 
+    string msg = 4;
+}
+
+// 
+message DoComboResp {
+}
+
+// 
+message SendComboMsgReq {
+    // 
+    int64 room_id = 1;
+    // 
+    string msg = 2;
+    // 
+    string rnd = 3;
+}
+
+// 
+message SendComboMsgResp {
+}
+

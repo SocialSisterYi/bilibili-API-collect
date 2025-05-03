@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package bilibili.app.archive.middleware.v1;
+
+// 
+message PlayerArgs {
+    // 
+    int64 qn = 1;
+    // 
+    int64 fnver = 2;
+    // 
+    int64 fnval = 3;
+    // 
+    int64 force_host = 4;
+    // 
+    int64 voice_balance = 5;
+    // 
+    QnPolicy qn_policy = 6;
+}
+
+// 
+enum QnPolicy {
+    // 
+    QN_POLICY_DEFAULT = 0;
+    // 
+    QN_POLICY_AUTO_QN_ENABLE = 1;
+}
+

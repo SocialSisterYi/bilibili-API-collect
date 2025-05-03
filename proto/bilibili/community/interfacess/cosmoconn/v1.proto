@@ -1,0 +1,220 @@
+syntax = "proto3";
+
+package bilibili.community.interfacess.cosmoconn.v1;
+
+import "google/protobuf/empty.proto";
+
+// 
+service CosmoInterface {
+    // 
+    rpc Ping (google.protobuf.Empty) returns (google.protobuf.Empty);
+    // 
+    rpc SimpleAction (SimpleActionReq) returns (SimpleActionRsp);
+    // 
+    rpc Subscribe (SubscribeReq) returns (SubscribeRsp);
+    // 
+    rpc SubscribeCard (SubscribeCardReq) returns (SubscribeCardRsp);
+}
+
+// 
+enum Action {
+    // 
+    ACTION_INVALID = 0;
+    // 
+    ACTION_THUMB = 1;
+    // 
+    ACTION_CANCEL_THUMB = 2;
+    // 
+    ACTION_FAV = 3;
+    // 
+    ACTION_CANCEL_FAV = 4;
+}
+
+// 
+message Button {
+    // 
+    bool disable = 1;
+    // 
+    int32 op_type = 2;
+    // 
+    string text = 3;
+    // 
+    string jump_url = 4;
+    // 
+    TimeLimited time_limit = 5;
+}
+
+// 
+message CosmoBusiness {
+    // 
+    string business = 1;
+    // 
+    string sub_business = 2;
+}
+
+// 
+message CosmoMeta {
+    // 
+    string platform = 1;
+    // 
+    string build = 2;
+    // 
+    string mobi_app = 3;
+    // 
+    string buvid = 4;
+    // 
+    string device = 5;
+    // 
+    string version = 6;
+    // 
+    int32 network = 7;
+    // 
+    string ip = 8;
+    // 
+    string port = 9;
+    // 
+    string ua = 10;
+    // 
+    string refer = 11;
+    // 
+    string spmid = 12;
+    // 
+    string from_spmid = 13;
+    // 
+    string trace_id = 14;
+    // 
+    int32 teenager_mode = 15;
+    // 
+    int32 cold_start = 16;
+    // 
+    string from = 17;
+    // 
+    string buvid3 = 18;
+    // 
+    int64 app_id = 19;
+}
+
+// 
+message CosmoParaMeta {
+    // 
+    string spmid = 1;
+    // 
+    string from_spmid = 2;
+    // 
+    string from = 3;
+    // 
+    string action_id = 4;
+}
+
+// 
+message Entity {
+    // 
+    EntityType type = 1;
+    // 
+    int64 object_id = 2;
+    // 
+    string object_id_str = 3;
+    // 
+    int64 up_mid = 4;
+}
+
+// 
+enum EntityBiz {
+    // 
+    ENTITY_BIZ_INVALID = 0;
+    // 
+    ENTITY_BIZ_VIDEO = 1;
+    // 
+    ENTITY_BIZ_OPUS = 2;
+    // 
+    ENTITY_BIZ_DYNAMIC = 3;
+    // 
+    ENTITY_BIZ_REPLY = 4;
+    // 
+    ENTITY_BIZ_TOPIC = 5;
+}
+
+// 
+message EntityType {
+    // 
+    EntityBiz biz = 1;
+}
+
+// 
+message IconRes {
+    // 
+    string light = 1;
+    // 
+    string dark = 2;
+}
+
+// 
+message ShowText {
+    // 
+    string title = 1;
+    // 
+    string sub_title = 2;
+}
+
+// 
+message SimpleActionReq {
+    // 
+    Entity entity = 1;
+    // 
+    Action action = 2;
+    // 
+    CosmoParaMeta meta = 3;
+}
+
+// 
+message SimpleActionRsp {
+}
+
+// 
+message SubscribeCard {
+    // 
+    ShowText show_text = 1;
+    // 
+    IconRes icon_res = 2;
+    // 
+    Button button = 3;
+}
+
+// 
+message SubscribeCardReq {
+    // 
+    CosmoBusiness business = 1;
+}
+
+// 
+message SubscribeCardRsp {
+    // 
+    string unique_id = 1;
+    // 
+    SubscribeCard card = 2;
+}
+
+// 
+message SubscribeReq {
+    // 
+    CosmoBusiness business = 1;
+    // 
+    string unique_id = 2;
+    // 
+    Button button = 3;
+}
+
+// 
+message SubscribeRsp {
+    // 
+    Button button = 1;
+}
+
+// 
+message TimeLimited {
+    // 
+    int64 start_ts = 1;
+    // 
+    int64 end_ts = 2;
+}
+

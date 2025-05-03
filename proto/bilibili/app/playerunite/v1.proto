@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package bilibili.app.playerunite.v1;
+
+import "bilibili/playershared.proto";
+import "google/protobuf/any.proto";
+
+// 
+service Player {
+    // 
+    rpc PlayAddition (PlayAdditionReq) returns (PlayAdditionReply);
+    // 
+    rpc PlayHalfChannels (PlayHalfChannelsReq) returns (PlayHalfChannelsReply);
+    // 
+    rpc PlayViewUnite (PlayViewUniteReq) returns (PlayViewUniteReply);
+}
+
+// 
+message PlayAdditionReply {
+    // 
+    UgcViewInfoMaterial ugc_view_info_material = 1;
+}
+
+// 
+message PlayAdditionReq {
+}
+
+// 
+message PlayHalfChannelsReply {
+    // 
+    repeated bilibili.playershared.SettingGroup groups = 1;
+}
+
+// 
+message PlayHalfChannelsReq {
+    // 
+    int64 aid = 1;
+    // 
+    int64 cid = 2;
+    // 
+    map<string, string> extra_content = 3;
+    // 
+    string from_scene = 4;
+    // 
+    ResourceType resource_type = 5;
+}
+
+// 
+message PlayViewUniteReply {
+    // 
+    bilibili.playershared.VodInfo vod_info = 1;
+    // 
+    bilibili.playershared.PlayArcConf play_arc_conf = 2;
+    // 
+    bilibili.playershared.PlayDeviceConf play_device_conf = 3;
+    // 
+    bilibili.playershared.Event event = 4;
+    // 
+    google.protobuf.Any supplement = 5;
+    // 
+    bilibili.playershared.PlayArc play_arc = 6;
+    // 
+    bilibili.playershared.QnTrialInfo qn_trial_info = 7;
+    // 
+    bilibili.playershared.History history = 8;
+    // 
+    bilibili.playershared.ViewInfo view_info = 9;
+    // 
+    bilibili.playershared.FragmentVideo fragment_video = 10;
+    // 
+    bilibili.playershared.VideoCtrl video_ctrl = 11;
+}
+
+// 
+message PlayViewUniteReq {
+    // 
+    bilibili.playershared.VideoVod vod = 1;
+    // 
+    string spmid = 2;
+    // 
+    string from_spmid = 3;
+    // 
+    map<string, string> extra_content = 4;
+    // 
+    string bvid = 5;
+    // 
+    string ad_extra = 6;
+    // 
+    bilibili.playershared.Fragment fragment = 7;
+    // 
+    string from_scene = 8;
+    // 
+    bilibili.playershared.PlayCtrl play_ctrl = 9;
+}
+
+// 
+enum ResourceType {
+    // 
+    RESOURCE_TYPE_DEFAULT = 0;
+    // 
+    RESOURCE_TYPE_OPUS = 1;
+}
+
+// 
+message UgcViewInfoMaterial {
+    // 
+    string title = 1;
+    // 
+    string btn_text = 2;
+    // 
+    string btn_url = 3;
+    // 
+    int32 btn_jump_type = 4;
+    // 
+    string desc_text = 5;
+    // 
+    string desc_url = 6;
+    // 
+    map<string, string> track = 7;
+}
+

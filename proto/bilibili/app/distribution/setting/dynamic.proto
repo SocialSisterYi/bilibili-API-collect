@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.dynamic;
+
+import "bilibili/app/distribution.proto";
+
+// 
+message DynamicAutoPlay {
+    // 
+    bilibili.app.distribution.Int64Value value = 1;
+}
+
+// 
+message DynamicDeviceConfig {
+    // 
+    DynamicAutoPlay auto_play = 1;
+}
+

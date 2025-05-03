@@ -1,0 +1,198 @@
+syntax = "proto3";
+
+package bilibili.app.archive.v1;
+
+// 
+message Arc {
+    // 
+    int64 aid = 1;
+    // 
+    int64 videos = 2;
+    // 
+    int32 type_id = 3;
+    // 
+    string type_name = 4;
+    // 
+    int32 copyright = 5;
+    // 
+    string pic = 6;
+    // 
+    string title = 7;
+    // 
+    int64 pubdate = 8;
+    // 
+    int64 ctime = 9;
+    // 
+    string desc = 10;
+    // 
+    int32 state = 11;
+    // 
+    int32 access = 12;
+    // 
+    int32 attribute = 13;
+    // 
+    string tag = 14;
+    // 
+    repeated string tags = 15;
+    // 
+    int64 duration = 16;
+    // 
+    int64 mission_id = 17;
+    // 
+    int64 order_id = 18;
+    // 
+    string redirect_url = 19;
+    // 
+    int64 forward = 20;
+    // 
+    Rights rights = 21;
+    // 
+    Author author = 22;
+    // 
+    Stat stat = 23;
+    // 
+    string report_result = 24;
+    // 
+    string dynamic = 25;
+    // 
+    int64 first_cid = 26;
+    // 
+    Dimension dimension = 27;
+    // 
+    repeated StaffInfo staff_info = 28;
+    // 
+    int64 season_id = 29;
+    // 
+    int64 attribute_v2 = 30;
+    // 
+    SeasonTheme season_theme = 31;
+    // 
+    string short_link_v2 = 40;
+    // 
+    int32 up_from_v2 = 41;
+    // 
+    string first_frame = 42;
+}
+
+// 
+message Author {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+}
+
+// 
+message Dimension {
+    // 
+    int64 width = 1;
+    // 
+    int64 height = 2;
+    // 
+    int64 rotate = 3;
+}
+
+// 
+message Page {
+    // 
+    int64 cid = 1;
+    // 
+    int32 page = 2;
+    // 
+    string from = 3;
+    // 
+    string part = 4;
+    // 
+    int64 duration = 5;
+    // 
+    string vid = 6;
+    // 
+    string desc = 7;
+    // 
+    string web_link = 8;
+    // 
+    Dimension dimension = 9;
+    // 
+    string first_frame = 10;
+}
+
+// 
+message Rights {
+    // 
+    int32 bp = 1;
+    // 
+    int32 elec = 2;
+    // 
+    int32 download = 3;
+    // 
+    int32 movie = 4;
+    // 
+    int32 pay = 5;
+    // 
+    int32 hd5 = 6;
+    // 
+    int32 no_reprint = 7;
+    // 
+    int32 autoplay = 8;
+    // 
+    int32 ugc_pay = 9;
+    // 
+    int32 is_cooperation = 10;
+    // 
+    int32 ugc_pay_preview = 11;
+    // 
+    int32 no_background = 12;
+    // 
+    int32 arc_pay = 13;
+    // 
+    int32 pay_free_watch = 14;
+}
+
+// 
+message SeasonTheme {
+    // 
+    string bg_color = 1;
+    // 
+    string selected_bg_color = 2;
+    // 
+    string text_color = 3;
+}
+
+// 
+message StaffInfo {
+    // 
+    int64 mid = 1;
+    // 
+    string title = 2;
+    // 
+    int64 attribute = 3;
+}
+
+// 
+message Stat {
+    // 
+    int64 aid = 1;
+    // 
+    int32 view = 2;
+    // 
+    int32 danmaku = 3;
+    // 
+    int32 reply = 4;
+    // 
+    int32 fav = 5;
+    // 
+    int32 coin = 6;
+    // 
+    int32 share = 7;
+    // 
+    int32 now_rank = 8;
+    // 
+    int32 his_rank = 9;
+    // 
+    int32 like = 10;
+    // 
+    int32 dislike = 11;
+}
+

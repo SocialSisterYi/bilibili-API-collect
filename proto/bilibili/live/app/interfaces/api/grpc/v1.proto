@@ -1,0 +1,152 @@
+syntax = "proto3";
+
+package bilibili.live.app.interfaces.api.grpc.v1;
+
+import "bilibili/pagination.proto";
+
+// 
+message GetMoreLiveRoomsReq {
+    // 
+    int64 room_id = 1;
+    // 
+    bilibili.pagination.Pagination idol_pagination = 2;
+    // 
+    bilibili.pagination.Pagination rooms_pagination = 3;
+    // 
+    int64 uid = 4;
+    // 
+    int64 fnval = 5;
+}
+
+// 
+message GetMoreLiveRoomsResp {
+    // 
+    bilibili.pagination.PaginationReply idol_pagination_reply = 1;
+    // 
+    bilibili.pagination.PaginationReply rooms_pagination_reply = 2;
+    // 
+    bool idol_has_more = 3;
+    // 
+    repeated MyIdolInfo my_idol_info = 4;
+    // 
+    repeated MoreLiveRoomInfo more_live_info = 5;
+    // 
+    repeated ViewHistory view_history = 6;
+}
+
+// 
+message GetViewHistoryReq {
+    // 
+    int64 uid = 1;
+    // 
+    bilibili.pagination.Pagination pagination = 2;
+    // 
+    int64 fnval = 3;
+}
+
+// 
+message GetViewHistoryResp {
+    // 
+    repeated ViewHistory history = 1;
+    // 
+    bilibili.pagination.PaginationReply pagination_reply = 2;
+}
+
+// 
+message MoreLiveRoomInfo {
+    // 
+    int64 room_id = 1;
+    // 
+    string uname = 2;
+    // 
+    string room_cover = 3;
+    // 
+    string room_title = 4;
+    // 
+    RoomType room_type = 5;
+    // 
+    string text_small = 6;
+    // 
+    string icon = 7;
+    // 
+    string area_name = 8;
+    // 
+    string link = 9;
+    // 
+    string face = 10;
+}
+
+// 
+message MyIdolInfo {
+    // 
+    int64 room_id = 1;
+    // 
+    int64 uid = 2;
+    // 
+    string uname = 3;
+    // 
+    string face = 4;
+    // 
+    string title = 5;
+    // 
+    string link = 6;
+}
+
+// 
+message RemoveViewHistoryReq {
+    // 
+    repeated int64 kids = 1;
+    // 
+    int64 uid = 2;
+    // 
+    string buvid = 3;
+}
+
+// 
+message RemoveViewHistoryResp {
+}
+
+// 
+enum RoomType {
+    // 
+    Watched = 0;
+    // 
+    Popularity = 1;
+}
+
+// 
+message ViewHistory {
+    // 
+    int64 kid = 1;
+    // 
+    int64 anchor_uid = 2;
+    // 
+    string uname = 3;
+    // 
+    string face = 4;
+    // 
+    int64 room_id = 5;
+    // 
+    string title = 6;
+    // 
+    string cover = 7;
+    // 
+    int64 living_status = 8;
+    // 
+    int64 parent_area_id = 9;
+    // 
+    string parent_area_name = 10;
+    // 
+    int64 area_id = 11;
+    // 
+    string area_name = 12;
+    // 
+    bool follow_status = 13;
+    // 
+    int64 view_time = 14;
+    // 
+    string device = 15;
+    // 
+    string link = 16;
+}
+

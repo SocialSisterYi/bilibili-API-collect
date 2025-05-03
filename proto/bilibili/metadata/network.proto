@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package bilibili.metadata.network;
+
+// 
+message NetQuality {
+    // 
+    float success_rate = 1;
+    // 
+    int32 speed = 2;
+    // 
+    int64 speed_timestamp = 3;
+    // 
+    int32 net_type = 4;
+}
+
+// 
+message Network {
+    // 
+    NetworkType type = 1;
+    // 
+    TFType tf = 2;
+    // 
+    string oid = 3;
+}
+
+// 
+enum NetworkType {
+    // 
+    NT_UNKNOWN = 0;
+    // 
+    WIFI = 1;
+    // 
+    CELLULAR = 2;
+    // 
+    OFFLINE = 3;
+    // 
+    OTHERNET = 4;
+    // 
+    ETHERNET = 5;
+}
+
+// 
+enum TFType {
+    // 
+    TF_UNKNOWN = 0;
+    // 
+    U_CARD = 1;
+    // 
+    U_PKG = 2;
+    // 
+    C_CARD = 3;
+    // 
+    C_PKG = 4;
+    // 
+    T_CARD = 5;
+    // 
+    T_PKG = 6;
+}
+

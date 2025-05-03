@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package bilibili.rpc;
+
+import "google/protobuf/any.proto";
+
+// 
+message Status {
+    // 
+    int32 code = 1;
+    // 
+    string message = 2;
+    // 
+    repeated google.protobuf.Any details = 3;
+}
+

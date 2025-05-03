@@ -1,0 +1,1567 @@
+syntax = "proto3";
+
+package bilibili.playershared;
+
+import "google/protobuf/any.proto";
+
+// 
+message AIAudio {
+    // 
+    bool support_ai_audio = 1;
+    // 
+    repeated AIAudioItem ai_audio_items = 2;
+    // 
+    string ai_open_toast = 3;
+    // 
+    string ai_close_toast = 4;
+    // 
+    Badge badge = 5;
+    // 
+    string default_title = 6;
+    // 
+    string list_title = 7;
+    // 
+    string list_desc = 8;
+}
+
+// 
+message AIAudioItem {
+    // 
+    repeated DashItem audio_info = 1;
+    // 
+    string title = 2;
+    // 
+    string button_title = 3;
+    // 
+    string subtitle_lang = 4;
+}
+
+// 
+message ArcConf {
+    // 
+    bool is_support = 1;
+    // 
+    bool disabled = 2;
+    // 
+    ExtraContent extra_content = 3;
+    // 
+    repeated int32 unsupport_scene = 4;
+    // 
+    UnsupportState unsupport_state = 5;
+}
+
+// 
+enum ArcType {
+    // 
+    ARC_TYPE_NORMAL = 0;
+    // 
+    ARC_TYPE_INTERACT = 1;
+}
+
+// 
+message AutoQnCtl {
+    // 
+    int64 login_half = 1;
+    // 
+    int64 nologin_half = 2;
+    // 
+    int64 login_full = 3;
+    // 
+    int64 nologin_full = 4;
+    // 
+    int64 mobile_login_full = 5;
+    // 
+    int64 mobile_nologin_full = 6;
+    // 
+    map<string, AutoQnRange> scene_qn_range = 7;
+}
+
+// 
+message AutoQnRange {
+    // 
+    int64 max = 1;
+    // 
+    int64 min = 2;
+}
+
+// 
+message BackgroundInfo {
+    // 
+    string drawable_color = 1;
+    // 
+    string drawable_bitmap_url = 2;
+    // 
+    Effects effects = 3;
+}
+
+// 
+message Badge {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    string border_color = 6;
+    // 
+    string border_color_night = 7;
+    // 
+    int32 bg_style = 8;
+}
+
+// 
+message BadgeInfo {
+    // 
+    string text = 1;
+    // 
+    string bg_color = 2;
+    // 
+    string bg_color_night = 3;
+    // 
+    string text_color = 4;
+    // 
+    GradientColor bg_gradient_color = 5;
+    // 
+    string img = 6;
+}
+
+// 
+message Banner {
+    // 
+    string jump_link = 1;
+    // 
+    string image_link = 2;
+    // 
+    string half_image_link = 3;
+    // 
+    Report report = 4;
+}
+
+// 
+message BenefitInfo {
+    // 
+    string title = 1;
+    // 
+    string icon = 2;
+}
+
+// 
+enum BizType {
+    // 
+    BIZ_TYPE_UNKNOWN = 0;
+    // 
+    BIZ_TYPE_UGC = 1;
+    // 
+    BIZ_TYPE_PGC = 2;
+    // 
+    BIZ_TYPE_PUGV = 3;
+}
+
+// 
+message BottomDisplay {
+    // 
+    TextInfo title = 1;
+    // 
+    string icon = 2;
+}
+
+// 
+message Button {
+    // 
+    string text = 1;
+    // 
+    string link = 2;
+    // 
+    map<string, string> report_params = 3;
+}
+
+// 
+enum ButtonAction {
+    // 
+    BUTTON_UNKNOWN = 0;
+    // 
+    PAY = 1;
+    // 
+    VIP = 2;
+    // 
+    PACK = 3;
+    // 
+    LINK = 4;
+    // 
+    COUPON = 5;
+    // 
+    DEMAND = 6;
+    // 
+    DEMAND_PACK = 7;
+    // 
+    FOLLOW = 8;
+    // 
+    APPOINTMENT = 9;
+    // 
+    VIP_FREE = 10;
+    // 
+    TASK = 11;
+    // 
+    CHARGINGPLUS = 12;
+    // 
+    BP = 13;
+    // 
+    PRE_SELL = 14;
+    // 
+    LOGIN = 15;
+    // 
+    BUTTON_ACTION_CHEESE_PAY = 16;
+    // 
+    DELIVER_REPORT = 17;
+    // 
+    DEVICE_MANAGE = 18;
+    // 
+    RELOAD = 19;
+}
+
+// 
+message ButtonInfo {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    string link = 6;
+    // 
+    ButtonAction action_type = 7;
+    // 
+    BadgeInfo badge_info = 8;
+    // 
+    Report report = 9;
+    // 
+    string left_strikethrough_text = 10;
+    // 
+    TextInfo simple_text_info = 11;
+    // 
+    string simple_bg_color = 12;
+    // 
+    string simple_bg_color_night = 13;
+    // 
+    GradientColor bg_gradient_color = 14;
+    // 
+    map<string, string> order_report_params = 15;
+    // 
+    TaskParam task_param = 16;
+    // 
+    string frame_color = 17;
+    // 
+    string icon = 18;
+    // 
+    int32 font_size = 19;
+    // 
+    string tips_link = 20;
+    // 
+    string deliver_code = 21;
+}
+
+// 
+message ChargingExt {
+    // 
+    bool hide_bg_img = 1;
+}
+
+// 
+enum CodeType {
+    // 
+    NOCODE = 0;
+    // 
+    CODE264 = 1;
+    // 
+    CODE265 = 2;
+    // 
+    CODEAV1 = 3;
+}
+
+// 
+message ComprehensiveToast {
+    // 
+    ToastType type = 1;
+    // 
+    ButtonInfo button = 2;
+    // 
+    ShowStyleType show_style_type = 3;
+    // 
+    string icon = 4;
+    // 
+    TextInfo toast_text = 5;
+    // 
+    Report report = 6;
+    // 
+    map<string, string> order_report_params = 7;
+}
+
+// 
+enum ConfType {
+    // 
+    NoType = 0;
+    // 
+    FLIPCONF = 1;
+    // 
+    CASTCONF = 2;
+    // 
+    FEEDBACK = 3;
+    // 
+    SUBTITLE = 4;
+    // 
+    PLAYBACKRATE = 5;
+    // 
+    TIMEUP = 6;
+    // 
+    PLAYBACKMODE = 7;
+    // 
+    SCALEMODE = 8;
+    // 
+    BACKGROUNDPLAY = 9;
+    // 
+    LIKE = 10;
+    // 
+    DISLIKE = 11;
+    // 
+    COIN = 12;
+    // 
+    ELEC = 13;
+    // 
+    SHARE = 14;
+    // 
+    SCREENSHOT = 15;
+    // 
+    LOCKSCREEN = 16;
+    // 
+    RECOMMEND = 17;
+    // 
+    PLAYBACKSPEED = 18;
+    // 
+    DEFINITION = 19;
+    // 
+    SELECTIONS = 20;
+    // 
+    NEXT = 21;
+    // 
+    EDITDM = 22;
+    // 
+    SMALLWINDOW = 23;
+    // 
+    SHAKE = 24;
+    // 
+    OUTERDM = 25;
+    // 
+    INNERDM = 26;
+    // 
+    PANORAMA = 27;
+    // 
+    DOLBY = 28;
+    // 
+    COLORFILTER = 29;
+    // 
+    LOSSLESS = 30;
+    // 
+    FREYAENTER = 31;
+    // 
+    FREYAFULLENTER = 32;
+    // 
+    SKIPOPED = 33;
+    // 
+    RECORDSCREEN = 34;
+    // 
+    DUBBING = 35;
+    // 
+    LISTEN = 36;
+    // 
+    WATCH_LATER = 37;
+    // 
+    SYSTEM_RECORD = 38;
+}
+
+// 
+message ConfValue {
+    // 
+    oneof value {
+        // 
+        bool switch_val = 1;
+        // 
+        int64 selected_val = 2;
+    }
+}
+
+// 
+message CountDownItem {
+    // 
+    int64 fold_countdown = 1;
+    // 
+    TextInfo title = 2;
+    // 
+    TextInfo subtitle = 3;
+}
+
+// 
+message DashItem {
+    // 
+    int32 id = 1;
+    // 
+    string base_url = 2;
+    // 
+    repeated string backup_url = 3;
+    // 
+    int32 bandwidth = 4;
+    // 
+    int32 codecid = 5;
+    // 
+    string md5 = 6;
+    // 
+    int64 size = 7;
+    // 
+    string frame_rate = 8;
+    // 
+    string widevine_pssh = 9;
+    // 
+    string bilidrm_uri = 10;
+}
+
+// 
+message DashVideo {
+    // 
+    string base_url = 1;
+    // 
+    repeated string backup_url = 2;
+    // 
+    int32 bandwidth = 3;
+    // 
+    int32 codecid = 4;
+    // 
+    string md5 = 5;
+    // 
+    int64 size = 6;
+    // 
+    int32 audio_id = 7;
+    // 
+    bool no_rexcode = 8;
+    // 
+    string frame_rate = 9;
+    // 
+    int32 width = 10;
+    // 
+    int32 height = 11;
+    // 
+    string widevine_pssh = 12;
+    // 
+    string bilidrm_uri = 13;
+}
+
+// 
+message DeviceConf {
+    // 
+    ConfValue conf_value = 1;
+}
+
+// 
+message Dialog {
+    // 
+    GuideStyle style_type = 1;
+    // 
+    BackgroundInfo background_info = 2;
+    // 
+    TextInfo title = 3;
+    // 
+    TextInfo subtitle = 4;
+    // 
+    ImageInfo image = 5;
+    // 
+    repeated ButtonInfo button = 6;
+    // 
+    ButtonInfo bottom_desc = 7;
+    // 
+    Report report = 8;
+    // 
+    int32 count_down_sec = 9;
+    // 
+    TextInfo right_bottom_desc = 10;
+    // 
+    repeated BottomDisplay bottom_display = 11;
+    // 
+    ExtData ext_data = 12;
+    // 
+    LimitActionType limit_action_type = 13;
+    // 
+    int32 is_hide_more_btn = 14;
+    // 
+    int32 hide_button_on_half = 15;
+    // 
+    string deliver_win_id = 16;
+    // 
+    map<string, string> conditions = 17;
+}
+
+// 
+message Dimension {
+    // 
+    int64 width = 1;
+    // 
+    int64 height = 2;
+    // 
+    int64 rotate = 3;
+    // 
+    int64 variable = 4;
+}
+
+// 
+message DolbyItem {
+    // 
+    enum Type {
+        // 
+        NONE = 0;
+        // 
+        COMMON = 1;
+        // 
+        ATMOS = 2;
+    }
+    
+    // 
+    DolbyItem.Type type = 1;
+    // 
+    repeated DashItem audio = 2;
+}
+
+// 
+enum DrmTechType {
+    // 
+    UNKNOWN_DRM = 0;
+    // 
+    FAIR_PLAY = 1;
+    // 
+    WIDE_VINE = 2;
+    // 
+    BILI_DRM = 3;
+}
+
+// 
+enum Effects {
+    // 
+    EFFECTS_UNKNOWN = 0;
+    // 
+    GAUSSIAN_BLUR = 1;
+    // 
+    HALF_ALPHA = 2;
+}
+
+// 
+message EpInlineVideo {
+    // 
+    int64 material_no = 1;
+    // 
+    int64 aid = 2;
+    // 
+    int64 cid = 3;
+}
+
+// 
+message EpInlineVideoInfo {
+    // 
+    repeated EpInlineVideo ep_inline_video = 1;
+}
+
+// 
+message Event {
+    // 
+    Shake shake = 1;
+    // 
+    QnTip qn_tip = 2;
+}
+
+// 
+message ExpSwitch {
+    // 
+    int32 hit_opti_try_watch = 2;
+    // 
+    map<string, string> exp_ab = 3;
+}
+
+// 
+message ExtData {
+    // 
+    oneof data {
+        // 
+        PlayListInfo play_list_info = 2;
+        // 
+        Banner banner = 3;
+        // 
+        EpInlineVideoInfo ep_inline_video_info = 4;
+        // 
+        ChargingExt charging_ext = 5;
+        // 
+        QrCode qr_code = 6;
+    }
+    // 
+    ExtDataType type = 1;
+}
+
+// 
+enum ExtDataType {
+    // 
+    EXT_DATA_TYPE_UNKNOWN = 0;
+    // 
+    PLAY_LIST = 1;
+    // 
+    BANNER = 2;
+    // 
+    HE_INLINE = 3;
+    // 
+    EXT_DATA_TYPE_CHARGING = 4;
+    // 
+    QR_CODE = 5;
+}
+
+// 
+message ExtraContent {
+    // 
+    string disabled_reason = 1;
+    // 
+    int64 disabled_code = 2;
+}
+
+// 
+message FoldData {
+    // 
+    oneof data {
+        // 
+        CountDownItem count_down = 2;
+    }
+    // 
+    FoldStyle fold_style = 1;
+}
+
+// 
+enum FoldStyle {
+    // 
+    FOLD_STYLE_UNSPECIFIED = 0;
+    // 
+    FOLD_STYLE_COUNT_DOWN = 1;
+    // 
+    FOLD_STYLE_ONLY_BUTTON = 2;
+}
+
+// 
+message Fragment {
+    // 
+    repeated FragmentInfo infos = 1;
+}
+
+// 
+message FragmentInfo {
+    // 
+    int32 index = 1;
+    // 
+    FragmentPosition fragment_position = 2;
+    // 
+    FragmentType fragment_type = 3;
+    // 
+    int64 aid = 4;
+    // 
+    int64 cid = 5;
+    // 
+    int64 start_time = 6;
+    // 
+    google.protobuf.Any report = 7;
+}
+
+// 
+enum FragmentPosition {
+    // 
+    INVALID = 0;
+    // 
+    PRE = 1;
+    // 
+    MIDDLE = 2;
+    // 
+    POST = 3;
+}
+
+// 
+enum FragmentType {
+    // 
+    UNKNOWN = 0;
+    // 
+    AD_FRAGMENT = 1;
+    // 
+    OGV_FRAGMENT = 2;
+    // 
+    PUGV_FRAGMENT = 3;
+}
+
+// 
+message FragmentVideo {
+    // 
+    repeated FragmentVideoInfo videos = 1;
+}
+
+// 
+message FragmentVideoInfo {
+    // 
+    FragmentInfo fragment_info = 1;
+    // 
+    VodInfo vod_info = 2;
+    // 
+    PlayArcConf play_arc_conf = 3;
+    // 
+    Dimension dimension = 4;
+    // 
+    int64 timelength = 5;
+    // 
+    BizType video_type = 6;
+    // 
+    bool playable_status = 7;
+}
+
+// 
+message FullPromptBar {
+    // 
+    string icon = 1;
+    // 
+    TextInfo title = 2;
+    // 
+    int64 timer_countdown = 3;
+    // 
+    bool countdown_enable = 4;
+    // 
+    TextInfo subtitle = 5;
+    // 
+    repeated ButtonInfo button = 6;
+    // 
+    FoldData fold_data = 7;
+    // 
+    Report report = 8;
+    // 
+    string bg_image = 9;
+    // 
+    int32 bar_height = 10;
+}
+
+// 
+message GradientColor {
+    // 
+    string start_color = 1;
+    // 
+    string end_color = 2;
+}
+
+// 
+enum GroupStyle {
+    // 
+    GROUP_STYLE_DEFAULT = 0;
+    // 
+    GROUP_STYLE_HORIZON = 1;
+}
+
+// 
+enum GuideStyle {
+    // 
+    STYLE_UNKNOWN = 0;
+    // 
+    HORIZONTAL_IMAGE = 1;
+    // 
+    VERTICAL_TEXT = 2;
+    // 
+    SIMPLE_TEXT = 3;
+    // 
+    CHARGING_TEXT = 4;
+    // 
+    UNIVERSAL_INTERCEPT = 5;
+    // 
+    MSG_ATTACH_QR_CODE = 6;
+}
+
+// 
+message History {
+    // 
+    HistoryInfo current_video = 1;
+    // 
+    HistoryInfo related_video = 2;
+}
+
+// 
+message HistoryInfo {
+    // 
+    int64 progress = 1;
+    // 
+    int64 last_play_cid = 2;
+    // 
+    Toast toast = 3;
+    // 
+    Toast toast_without_time = 4;
+    // 
+    int64 last_play_aid = 5;
+}
+
+// 
+message ImageInfo {
+    // 
+    string url = 1;
+}
+
+// 
+message Interaction {
+    // 
+    Node history_node = 1;
+    // 
+    int64 graph_version = 2;
+    // 
+    string msg = 3;
+    // 
+    int64 mark = 4;
+}
+
+// 
+enum LimitActionType {
+    // 
+    LAT_UNKNOWN = 0;
+    // 
+    SHOW_LIMIT_DIALOG = 1;
+    // 
+    SKIP_CURRENT_EP = 2;
+}
+
+// 
+message LossLessItem {
+    // 
+    bool is_lossless_audio = 1;
+    // 
+    DashItem audio = 2;
+    // 
+    bool need_vip = 3;
+}
+
+// 
+message MultiDashVideo {
+    // 
+    repeated DashVideo dash_videos = 1;
+}
+
+// 
+message Node {
+    // 
+    int64 node_id = 1;
+    // 
+    string title = 2;
+    // 
+    int64 cid = 3;
+}
+
+// 
+message PayWallOnshowAction {
+    // 
+    string link = 1;
+    // 
+    map<string, string> order_report_params = 2;
+    // 
+    ButtonAction action_type = 3;
+}
+
+// 
+message PlayArc {
+    // 
+    BizType video_type = 1;
+    // 
+    int64 aid = 2;
+    // 
+    int64 cid = 3;
+    // 
+    DrmTechType drm_tech_type = 4;
+    // 
+    ArcType arc_type = 5;
+    // 
+    Interaction interaction = 6;
+    // 
+    Dimension dimension = 7;
+    // 
+    int64 duration = 8;
+    // 
+    bool is_preview = 9;
+    // 
+    int64 watch_time_length = 10;
+    // 
+    int64 duration_ms = 11;
+}
+
+// 
+message PlayArcConf {
+    // 
+    map<int32, ArcConf> arc_confs = 1;
+}
+
+// 
+enum PlayCtrl {
+    // 
+    PLAY_CTRL_DEFAULT = 0;
+    // 
+    PLAY_CTRL_SIMPLE = 1;
+}
+
+// 
+message PlayDeviceConf {
+    // 
+    map<int32, DeviceConf> device_confs = 1;
+}
+
+// 
+enum PlayErr {
+    // 
+    NoErr = 0;
+    // 
+    WithMultiDeviceLoginErr = 1;
+}
+
+// 
+message PlayList {
+    // 
+    int64 season_id = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    string link = 4;
+    // 
+    BadgeInfo badge_info = 5;
+}
+
+// 
+message PlayListInfo {
+    // 
+    repeated PlayList play_list = 2;
+}
+
+// 
+message PromptBar {
+    // 
+    TextInfo title = 1;
+    // 
+    TextInfo sub_title = 2;
+    // 
+    string sub_title_icon = 3;
+    // 
+    string bg_image = 4;
+    // 
+    GradientColor bg_gradient_color = 5;
+    // 
+    repeated ButtonInfo button = 6;
+    // 
+    Report report = 7;
+    // 
+    string full_screen_ip_icon = 8;
+    // 
+    GradientColor full_screen_bg_gradient_color = 9;
+    // 
+    PromptBarType prompt_bar_type = 10;
+    // 
+    PromptBarStyle prompt_bar_style = 11;
+    // 
+    repeated BenefitInfo benefit_infos = 12;
+    // 
+    int64 end_time = 13;
+    // 
+    int32 show_on_paywall = 14;
+}
+
+// 
+enum PromptBarStyle {
+    // 
+    PROMPT_BAR_STYLE_UNKNOWN = 0;
+    // 
+    TEXT = 1;
+    // 
+    CURING_BENEFITS = 2;
+    // 
+    CARD_OPENING_GIFT = 3;
+    // 
+    COUNTDOWN = 4;
+}
+
+// 
+enum PromptBarType {
+    // 
+    PROMPT_BAR_TYPE_UNKNOWN = 0;
+    // 
+    OPEN_PROMPT_BAR = 1;
+    // 
+    TRY_PROMPT_BAR = 2;
+}
+
+// 
+message QnExp {
+    // 
+    bool qn_exp1 = 1;
+    // 
+    bool qn_exp2 = 2;
+}
+
+// 
+enum QnPolicy {
+    // 
+    QN_POLICY_DEFAULT = 0;
+    // 
+    QN_POLICY_AUTO_QN_ENABLE = 1;
+}
+
+// 
+message QnTip {
+    // 
+    string msg = 1;
+}
+
+// 
+message QnTrialInfo {
+    // 
+    bool trial_able = 1;
+    // 
+    int32 remaining_times = 2;
+    // 
+    int32 start = 3;
+    // 
+    int32 time_length = 4;
+    // 
+    Toast start_toast = 5;
+    // 
+    Toast end_toast = 6;
+    // 
+    Button quality_open_tip_btn = 8;
+    // 
+    int32 trial_quality_type = 9;
+}
+
+// 
+message QrCode {
+    // 
+    string link = 1;
+    // 
+    string link_desc = 2;
+}
+
+// 
+message Report {
+    // 
+    string show_event_id = 1;
+    // 
+    string click_event_id = 2;
+    // 
+    string extends = 3;
+}
+
+// 
+message ResidentBar {
+    // 
+    string icon = 1;
+    // 
+    TextInfo question_text = 2;
+    // 
+    ButtonInfo button = 3;
+    // 
+    string link = 4;
+    // 
+    Report report = 5;
+    // 
+    string bg_image = 6;
+}
+
+// 
+message ResponseDash {
+    // 
+    repeated DashItem video = 1;
+    // 
+    repeated DashItem audio = 2;
+}
+
+// 
+message ResponseUrl {
+    // 
+    int32 order = 1;
+    // 
+    int64 length = 2;
+    // 
+    int64 size = 3;
+    // 
+    string url = 4;
+    // 
+    repeated string backup_url = 5;
+    // 
+    string md5 = 6;
+}
+
+// 
+message Scheme {
+    // 
+    enum ActionType {
+        // 
+        UNKNOWN_ActionType = 0;
+        // 
+        SHOW_TOAST = 1;
+    }
+    
+    // 
+    Scheme.ActionType action_type = 1;
+    // 
+    string toast = 2;
+}
+
+// 
+message SegmentVideo {
+    // 
+    repeated ResponseUrl segment = 1;
+}
+
+// 
+message SettingBase {
+    // 
+    string left_icon = 1;
+    // 
+    string left_title = 2;
+    // 
+    SettingItemType type = 3;
+    // 
+    SettingControl control = 4;
+    // 
+    map<string, string> report = 5;
+}
+
+// 
+message SettingControl {
+    // 
+    bool disabled = 1;
+    // 
+    string disabled_reason = 2;
+    // 
+    bool disable_gray = 3;
+}
+
+// 
+message SettingGroup {
+    // 
+    string title = 1;
+    // 
+    repeated SettingItem items = 2;
+    // 
+    GroupStyle group_style = 3;
+}
+
+// 
+message SettingItem {
+    // 
+    oneof value {
+        // 
+        SettingMore more = 3;
+        // 
+        SettingVertical vertical = 4;
+        // 
+        SettingSwitch switch = 5;
+    }
+    // 
+    SettingBase base = 1;
+    // 
+    SettingItemStyle style = 2;
+}
+
+// 
+enum SettingItemStyle {
+    // 
+    SETTING_STYLE_NONE = 0;
+    // 
+    SETTING_STYLE_SWITCH = 1;
+    // 
+    SETTING_STYLE_MORE = 2;
+    // 
+    SETTING_STYLE_SELECT = 3;
+    // 
+    SETTING_STYLE_VERTICAL = 4;
+}
+
+// 
+enum SettingItemType {
+    // 
+    SETTING_NONE = 0;
+    // 
+    SETTING_PLAYBACK_RATE = 1;
+    // 
+    SETTING_WATCH_LATER = 2;
+    // 
+    SETTING_DOWNlOAD = 3;
+    // 
+    SETTING_SMALL_WINDOW = 4;
+    // 
+    SETTING_FREYAENTER = 5;
+    // 
+    SETTING_PLAYBACK_MODE = 6;
+    // 
+    SETTING_LOOP_PLAYBACK = 7;
+    // 
+    SETTING_TIMING_SWITCH = 8;
+    // 
+    SETTING_BACKGROUND_PLAY = 9;
+    // 
+    SETTING_SUBTITLE = 10;
+    // 
+    SETTING_SUBTITLE_EXCHANGE = 11;
+    // 
+    SETTING_FLIP_CONF = 12;
+    // 
+    SETTING_MORE_PLAY = 13;
+    // 
+    SETTING_SHAKE = 14;
+    // 
+    SETTING_SKIP_OPED = 15;
+    // 
+    SETTING_NOTE = 16;
+    // 
+    SETTING_REPORT = 17;
+    // 
+    SETTING_FEEDBACK = 18;
+    // 
+    SETTING_FREE_GIFT = 19;
+    // 
+    SETTING_DUB = 20;
+    // 
+    SETTING_LISTEN = 21;
+    // 
+    SETTING_PROJECT = 22;
+    // 
+    SETTING_PIC_SIZE = 23;
+    // 
+    SETTING_PANORAMA = 24;
+    // 
+    SETTING_VISION_ASSIST = 25;
+    // 
+    SETTING_EDIT = 26;
+    // 
+    SETTING_DISLIKE = 27;
+    // 
+    SETTING_BIHUO = 28;
+    // 
+    SETTING_GESTURE = 29;
+    // 
+    SETTING_DM = 30;
+    // 
+    SETTING_DEFINITION = 31;
+    // 
+    SETTING_SUGGEST = 32;
+    // 
+    SETTING_AUTOMATIC_SCROLL = 33;
+    // 
+    SETTING_BACKTRACKING = 34;
+    // 
+    SETTING_AI_AUDIO = 35;
+    // 
+    SETTING_AI_AUDIO_EXCHANGE = 36;
+}
+
+// 
+enum SettingJumpType {
+    // 
+    SETTING_JUMP_TYPE_NONE = 0;
+    // 
+    SETTING_JUMP_TYPE_OPEN_URL = 1;
+    // 
+    SETTING_JUMP_TYPE_HALF_SCREEN = 2;
+    // 
+    SETTING_JUMP_TYPE_OPEN_URL_BY_OUTER_BROWSER = 3;
+}
+
+// 
+message SettingMore {
+    // 
+    string url = 1;
+    // 
+    string right_title = 2;
+    // 
+    string right_icon = 3;
+    // 
+    SettingJumpType jump_type = 4;
+    // 
+    bool need_login = 5;
+    // 
+    Badge badge = 6;
+}
+
+// 
+message SettingSwitch {
+    // 
+    Badge badge = 1;
+}
+
+// 
+message SettingVertical {
+    // 
+    string url = 1;
+    // 
+    SettingJumpType jump_type = 2;
+    // 
+    bool need_login = 3;
+    // 
+    Badge badge = 4;
+}
+
+// 
+message Shake {
+    // 
+    string file = 1;
+}
+
+// 
+enum ShowStyleType {
+    // 
+    SHOW_STYLE_TYPE_UNKNOWN = 0;
+    // 
+    SHOW_STYLE_TYPE_ORDINARY = 1;
+    // 
+    SHOW_STYLE_TYPE_RESIDENT = 2;
+}
+
+// 
+message Stream {
+    // 
+    oneof content {
+        // 
+        DashVideo dash_video = 2;
+        // 
+        SegmentVideo segment_video = 3;
+        // 
+        MultiDashVideo multi_dash_video = 4;
+    }
+    // 
+    StreamInfo stream_info = 1;
+}
+
+// 
+message StreamInfo {
+    // 
+    int32 quality = 1;
+    // 
+    string format = 2;
+    // 
+    string description = 3;
+    // 
+    PlayErr err_code = 4;
+    // 
+    StreamLimit limit = 5;
+    // 
+    bool need_vip = 6;
+    // 
+    bool need_login = 7;
+    // 
+    bool intact = 8;
+    // 
+    bool no_rexcode = 9;
+    // 
+    int64 attribute = 10;
+    // 
+    string new_description = 11;
+    // 
+    string display_desc = 12;
+    // 
+    string superscript = 13;
+    // 
+    bool vip_free = 14;
+    // 
+    string subtitle = 15;
+    // 
+    Scheme scheme = 16;
+    // 
+    bool support_drm = 17;
+}
+
+// 
+message StreamLimit {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string msg = 3;
+}
+
+// 
+message TaskParam {
+    // 
+    string task_type = 1;
+    // 
+    int64 activity_id = 2;
+    // 
+    int64 tips_id = 3;
+}
+
+// 
+message TextInfo {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    int32 font_size = 4;
+}
+
+// 
+message Toast {
+    // 
+    string text = 1;
+    // 
+    Button button = 2;
+}
+
+// 
+enum ToastType {
+    // 
+    TOAST_TYPE_UNKNOWN = 0;
+    // 
+    VIP_CONTENT_REMIND = 1;
+    // 
+    VIP_DEFINITION_REMIND = 2;
+    // 
+    VIP_DEFINITION_GUIDE = 3;
+    // 
+    OGV_VIDEO_START_TOAST = 4;
+    // 
+    CHARGING_TOAST = 5;
+    // 
+    VIP_SKIP_FRAGMENT_TOAST = 6;
+    // 
+    VIP_AI_FIX_DEFINITION_REMIND = 7;
+    // 
+    NEW_USER_DEFINITION_REMIND = 8;
+    // 
+    VIP_RISK_TOAST = 9;
+}
+
+// 
+enum UnsupportScene {
+    // 
+    UNKNOWN_SCENE = 0;
+    // 
+    PREMIERE = 1;
+}
+
+// 
+enum UnsupportState {
+    // 
+    NONE_UnsupportState = 0;
+    // 
+    HALF = 1;
+    // 
+    FULL = 2;
+}
+
+// 
+message VideoCtrl {
+    // 
+    AutoQnCtl auto_qn_ctl = 1;
+    // 
+    QnExp qn_exp = 2;
+}
+
+// 
+message VideoVod {
+    // 
+    int64 aid = 1;
+    // 
+    int64 cid = 2;
+    // 
+    int64 qn = 3;
+    // 
+    int32 fnver = 4;
+    // 
+    int32 fnval = 5;
+    // 
+    int32 download = 6;
+    // 
+    int32 force_host = 7;
+    // 
+    bool fourk = 8;
+    // 
+    CodeType prefer_codec_type = 9;
+    // 
+    int64 voice_balance = 10;
+    // 
+    bool is_need_trial = 11;
+    // 
+    QnPolicy qn_policy = 12;
+    // 
+    int64 soft_fnval = 13;
+}
+
+// 
+message ViewInfo {
+    // 
+    map<string, Dialog> dialog_map = 1;
+    // 
+    PromptBar prompt_bar = 2;
+    // 
+    repeated ComprehensiveToast toasts = 3;
+    // 
+    PayWallOnshowAction pay_wall_onshow_action = 4;
+    // 
+    ExpSwitch exp_switch = 5;
+    // 
+    FullPromptBar full_prompt_bar = 6;
+    // 
+    ResidentBar resident_bar = 7;
+}
+
+// 
+message VodInfo {
+    // 
+    int32 quality = 1;
+    // 
+    string format = 2;
+    // 
+    int64 timelength = 3;
+    // 
+    int32 video_codecid = 4;
+    // 
+    repeated Stream stream_list = 5;
+    // 
+    repeated DashItem dash_audio = 6;
+    // 
+    DolbyItem dolby = 7;
+    // 
+    VolumeInfo volume = 8;
+    // 
+    LossLessItem loss_less_item = 9;
+    // 
+    bool support_project = 10;
+    // 
+    AIAudio ai_audio = 11;
+}
+
+// 
+message VolumeInfo {
+    // 
+    double measured_i = 1;
+    // 
+    double measured_lra = 2;
+    // 
+    double measured_tp = 3;
+    // 
+    double measured_threshold = 4;
+    // 
+    double target_offset = 5;
+    // 
+    double target_i = 6;
+    // 
+    double target_tp = 7;
+    // 
+    map<string, string> multi_scene_args = 8;
+}
+
