@@ -1,0 +1,287 @@
+syntax = "proto3";
+
+package datacenter.hakase.protobuf;
+
+// Android device information
+message AndroidDeviceInfo {
+    // SDK version
+    string sdkver = 1;
+    // app product id, allocated by data platform
+    //
+    // - 粉: 1
+    // - 白: 2
+    // - 蓝: 3
+    // - 直播姬: 4
+    // - HD: 5
+    // - 海外: 6
+    // - OTT: 7
+    // - 漫画: 8
+    // - TV野版: 9
+    // - 小视频: 10
+    // - 网易漫画: 11
+    // - 网易漫画 lite: 12
+    // - 网易漫画 HD: 13
+    // - 国际版: 14
+    // - SEA: 30
+    string app_id = 2;
+    // app version, like `"7.39.0"`
+    string app_version = 3;
+    // app version code, like `"7390300"`
+    string app_version_code = 4;
+    // user mid
+    string mid = 5;
+    // channel id, like `"master"`
+    string chid = 6;
+    // Timestamp (in milliseconds) when the user launches the app at the first
+    // time after installation.
+    int64 fts = 7;
+    //  Device local fingerprint (actually not BUVID)
+    string buvid_local = 8;
+    // If it's the first time user launches the app after installation.
+    int32 first = 9;
+    // app process name, like `"tv.danmaku.bili"`
+    string proc = 10;
+    // Local network device list, format: "{interface},{ipv6},{ipv4},"
+    string net = 11;
+    // Radio firmware version (`Build.getRadioVersion()`), like `"21C20B686S000C000,21C20B686S000C000"`.
+    string band = 12;
+    // OS version, like `"12"`
+    string osver = 13;
+    // System timestamp (in milliseconds)
+    int64 t = 14;
+    // CPU logical core count
+    int32 cpu_count = 15;
+    // Phone model, like `"NOH-AN01"`
+    string model = 16;
+    // Phone brand, like `"HUAWEI"`
+    string brand = 17;
+    // Screen info, like `"1288,2646,560"`, i.e. "{width},{height},{pixel}"
+    string screen = 18;
+    // CPU model, left blank or determine according to actual situation
+    string cpu_model = 19;
+    // Bluetooth MAC, left blank or determine according to actual situation
+    string btmac = 20;
+    // Linux kernel bootid
+    int64 boot = 21;
+    // emulator detect, like `"000"` (in this example, there're 3 items have been checked. Code `1` indicates a emulator, `0``
+    // indicates a real device)
+    string emu = 22;
+    // Cellular network MCC MNC, like China Mobile: 46007
+    string oid = 23;
+    // Current Network type, can be `WIFI` / `CELLULAR` / `OFFLINE` / `OTHERNET`
+    // / `ETHERNET`
+    string network = 24;
+    // Total memory (in bytes)
+    int64 mem = 25;
+    // Sensors, format: ["{name},{vendor}", "{name},{vendor}", ...]
+    string sensor = 26;
+    // CPU frequency, like `2045000`
+    int64 cpu_freq = 27;
+    // CPU vendor, like "ARM"
+    string cpu_vendor = 28;
+    // SIM card status, "true" means SIM card is present, "false" means no SIM card
+    string sim = 29;
+    // Screen brightness, like `110`
+    int32 brightness = 30;
+    // Android Build.prop,i ncluding `net.hostname`, `ro.boot.hardware`, etc.
+    //
+    // The actual key-value pairs need to be determined through technical means.
+    map<string, string> props = 31;
+    // Android Build.sys, including `product`, `cpu_model_name`, `display`, `cpu_abi_list`, etc.
+    //
+    // The actual key-value pairs need to be determined through technical means.
+    map<string, string> sys = 32;
+    // WIFI MAC, just leave blank
+    string wifimac = 33;
+    // Android ID
+    string adid = 34;
+    // OS name, like "android"
+    string os = 35;
+    // IMEI, just leave blank
+    string imei = 36;
+    // Cellular network base station information, just leave blank
+    string cell = 37;
+    // IMSI, just leave blank
+    string imsi = 38;
+    // ICCID, just leave blank
+    string iccid = 39;
+    // Camera count, just leave blank
+    int32 camcnt = 40;
+    // Camera pixel, just leave blank
+    string campx = 41;
+    // Internal storage (in bytes)
+    int64 total_space = 42;
+    // Whether the Xposed framework activ, just set to "false"
+    string axposed = 43;
+    // Whether the Xposed or Substrate framework is active in the process, the
+    // value can be `Xposed` or `substrate`, just leave blank
+    string maps = 44;
+    // `files` dir, like "/data/user/0/tv.danmaku.bili/files"
+    string files = 45;
+    // Multi-instance detection, just set to `"0"`
+    string virtual = 46;
+    // Multi-instance process list, just set to `"[]"`
+    string virtualproc = 47;
+    // Google AD ID, just leave blank
+    string gadid = 48;
+    // Google AD whether tracing is allowed, just leave blank
+    string glimit = 49;
+    // List of the 20 most recently installed apps on the device, like `"[]"`
+    string apps = 50;
+    // GUID
+    string guid = 51;
+    // Android multi users, the user id, just set to `"0"`
+    string uid = 52;
+    // Whether the device is rooted, just set to `0`
+    int32 root = 53;
+    // ? Camera zoom level, just leave blank
+    string camzoom = 54;
+    // ? Camera flash light count, just leave blank
+    string camlight = 55;
+    // OAID 匿名设备标识符, see *T/TAF 095-2021 安卓系统补充设备标识技术规范*, 默认 "00000000-0000-0000-0000-000000000000"
+    string oaid = 56;
+    // UDID 设备唯一标识符, see *T/TAF 095-2021 安卓系统补充设备标识技术规范*, just leave blank
+    string udid = 57;
+    // VAID 开发者匿名设备标识符, see *T/TAF 095-2021 安卓系统补充设备标识技术规范*, just leave blank
+    string vaid = 58;
+    // AAID, 应用匿名设备标识符, see *T/TAF 095-2021 安卓系统补充设备标识技术规范*, just leave blank
+    string aaid = 59;
+    // ?, just set to `"[]"`
+    string androidapp20 = 60;
+    // ?, just set to `0`
+    int32 androidappcnt = 61;
+    // ?, just set to `"[]"`
+    string androidsysapp20 = 62;
+    // Current remaining battery level, like `100`
+    int32 battery = 63;
+    // Android battery state, like "BATTERY_STATUS_DISCHARGING"
+    string battery_state = 64;
+    // Wifi BSSID, just leave blank
+    string bssid = 65;
+    // ?, like "NOH-AN01 4.0.0.102(DEVC00E100R7P5)"
+    string build_id = 67;
+    // ISO country code, like "CN"
+    string country_iso = 68;
+    // Free memory (in bytes)
+    int64 free_memory = 70;
+    // Free internal storage (in bytes)
+    string fstorage = 71;
+    // Linux kernel version
+    string kernel_version = 74;
+    // Lang, like "zh"
+    string languages = 75;
+    //  ?, just leave blank
+    string mac = 76;
+    // The currently connected WiFi SSID, just leave blank
+    string ssid = 79;
+    // System volume, just set to `0`
+    int32 systemvolume = 80;
+    //  WIFI MACs list (?), just leave blank
+    string wifimaclist = 81;
+    // Total memory (in bytes)
+    int64 memory = 82;
+    // Current remaining battery level, like `"100"`
+    string str_battery = 83;
+    // Whether the device is rooted, just set to `false`
+    bool is_root = 84;
+    // Screen brightness, like `"110"`
+    string str_brightness = 85;
+    // See `app_id`
+    string str_app_id = 86;
+    // Current IP (?), just leave blank
+    string ip = 87;
+    // ?, just leave blank
+    string user_agent = 88;
+    // ?, like: "1.25"
+    string light_intensity = 89;
+    // Device xyz direction angle
+    repeated float device_angle = 90;
+    // Number of GPS sensors (or whether there're any GPS sensors?), just set to `"1"`
+    int64 gps_sensor = 91;
+    // Number of speed sensors (or whether there're any speed sensors?), just set to `"1"`
+    int64 speed_sensor = 92;
+    // Number of linear acceleration sensors (or whether there're any linear acceleration sensors?), just set to `"1"`
+    int64 linear_speed_sensor = 93;
+    // Number of gyroscope sensors (or whether there're any gyroscope sensors?), just set to `"1"`
+    int64 gyroscope_sensor = 94;
+    // Number of biometric sensors (or whether there're any biometric sensors?), just set to `"1"`
+    int64 biometric = 95;
+    // Biometric sensor types (?), like "touchid"
+    repeated string biometrics = 96;
+    // Timestamp (in milliseconds) of the last crash dump
+    int64 last_dump_ts = 97;
+    // ?, just leave blank
+    string location = 98;
+    // ?, just leave blank
+    string country = 99;
+    // ?, just leave blank
+    string city = 100;
+    // ?, just set to `0`
+    int32 data_activity_state = 101;
+    // ?, just set to `0`
+    int32 data_connect_state = 102;
+    // ?, just set to `0`
+    int32 data_network_type = 103;
+    // ?, just set to `0`
+    int32 voice_network_type = 104;
+    // ?, just set to `0`
+    int32 voice_service_state = 105;
+    // Whether USB is connected, just set to `0`
+    int32 usb_connected = 106;
+    // Whether ADB is enabled, just set to `0`
+    int32 adb_enabled = 107;
+    // System UI version (?), like "14.0.0"
+    string ui_version = 108;
+    // Accessibility service, just leave blank
+    repeated string accessibility_service = 109;
+    // Sensors info (should be the same with `sensor`)
+    repeated SensorInfo sensors_info = 110;
+    // DrmId
+    string drmid = 111;
+    // Whether battery present, just set to `true`
+    bool battery_present = 112;
+    // Battery technology, like "Li-poly"
+    string battery_technology = 113;
+    // Battery temperature (milli degree celsius)
+    int32 battery_temperature = 114;
+    // Battery voltage (mV)
+    int32 battery_voltage = 115;
+    // Whether is the battery disconnected, just set to `0`
+    int32 battery_plugged = 116;
+    // Battery health, like `2`
+    int32 battery_health = 117;
+    // ?, just leave blank
+    repeated string cpu_abi_list = 118;
+    // ?, just leave blank
+    string cpu_abi_libc = 119;
+    // ?, just leave blank
+    string cpu_abi_libc64 = 120;
+    // ?, just leave blank
+    string cpu_processor = 121;
+    // ?, just leave blank
+    string cpu_model_name = 122;
+    // ?, just leave blank
+    string cpu_hardware = 123;
+    // ?, just leave blank
+    string cpu_features = 124;
+}
+
+// Sensor Info
+message SensorInfo {
+    // Sensor name, like "rotation Vector"
+    string name = 1;
+    // 
+    string vendor = 2;
+    // 
+    int32 version = 3;
+    // 
+    int32 type = 4;
+    // 
+    float max_range = 5;
+    // 
+    float resolution = 6;
+    // Power (mA)
+    float power = 7;
+    // 
+    int32 min_delay = 8;
+}
