@@ -97,6 +97,82 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get' \
 
 </details>
 
+## 修改用户偏好设置
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/set>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+参数名称与值基本同「[获取用户偏好设置](#获取用户偏好设置)」中的 `data` 对象，修改设置时只需提供修改的设置对应的参数即可
+
+开启自动回复功能需要 1000 粉丝及以上，否则会提示 700009 `权限不足`
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名                   | 类型 | 内容                     | 必要性 | 备注                                                  |
+| ------------------------ | ---- | ------------------------ | ------ | ----------------------------------------------------- |
+| show_unfollowed_msg      | num  | 收起未关注人消息         | 非必要 | 0：不收起<br />1：收起                                |
+| msg_notify               | num  | 消息提醒                 | 非必要 | 1：接收<br />3：不接收                                |
+| set_like                 | num  | 收到的赞提醒             | 非必要 | 0：接收<br />5：不接收                                |
+| set_comment              | num  | 回复我的提醒             | 非必要 | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒 |
+| set_at                   | num  | @ 我的提醒               | 非必要 | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒 |
+| is_group_fold            | num  | 收起应援团消息           | 非必要 | 0：不收起<br />1：收起                                |
+| should_receive_group     | num  | 接收应援团消息           | 非必要 | 0：不接收<br />1：接收                                |
+| receive_unfollow_msg     | num  | 接收未关注人消息         | 非必要 | 0：不接收<br />1：接收                                |
+| followed_reply           | num  | 被关注回复               | 非必要 | 需要有自动回复权限<br />0：关闭<br />1：开启          |
+| keys_reply               | num  | 关键词回复               | 非必要 | 需要有自动回复权限<br />0：关闭<br />1：开启          |
+| recv_reply               | num  | 收到消息回复             | 非必要 | 需要有自动回复权限<br />0：关闭<br />1：开启          |
+| voyage_reply             | num  | 大航海上船回复           | 非必要 | 需要有自动回复权限<br />0：关闭<br />1：开启          |
+| recommend_followed_reply | num  | 被关注时自动推送作品     | 非必要 | 需要有自动回复权限<br />0：关闭<br />1：开启          |
+| ai_intercept             | num  | 私信智能拦截             | 非必要 | 0：关闭<br />1：开启                                  |
+| build                    | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                            |
+| mobi_app                 | str  | 平台标识                 | 非必要 | 可为 `web` 等                                         |
+| csrf_token               | str  | CSRF Token（位于cookie） | 必要   |                                                       |
+| csrf                     | str  | CSRF Token（位于cookie） | 必要   |                                                       |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                |
+| ------- | ---- | -------- | --------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />700009：权限不足 |
+| msg     | str  | 错误信息 | 默认为0                                             |
+| message | str  | 错误信息 | 默认为0                                             |
+| ttl     | num  | 1        |                                                     |
+| data    | obj  | 信息本体 | 空对象                                              |
+
+**示例：**
+
+开启接收消息提醒
+
+```shell
+curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set' \
+  --data-urlencode 'msg_notify=1' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  --data-urlencode 'csrf_token=xxx' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
 ## 获取系统设置
 
 > <https://api.vc.bilibili.com/link_setting/v1/link_setting/get_sys_setting>
