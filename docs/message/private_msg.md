@@ -1222,12 +1222,12 @@ curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
---data-urlencode 'talker_id=293793435' \
---data-urlencode 'session_type=1' \
---data-urlencode 'ack_seqno=1236306587877408' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'talker_id=293793435' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'ack_seqno=1236306587877408' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1399,18 +1399,18 @@ public class Main {
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
---data-urlencode 'msg[sender_uid]=293793435' \
---data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type]=1' \
---data-urlencode 'msg[msg_type]=1' \
---data-urlencode 'msg[msg_status]=0' \
---data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
---data-urlencode 'msg[timestamp]=1626181379' \
---data-urlencode 'msg[new_face_version]=1' \
---data-urlencode 'msg[content]={"content":"up主你好，\n催更[doge]"}' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'msg[sender_uid]=293793435' \
+  --data-urlencode 'msg[receiver_id]=1' \
+  --data-urlencode 'msg[receiver_type]=1' \
+  --data-urlencode 'msg[msg_type]=1' \
+  --data-urlencode 'msg[msg_status]=0' \
+  --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
+  --data-urlencode 'msg[timestamp]=1626181379' \
+  --data-urlencode 'msg[new_face_version]=1' \
+  --data-urlencode 'msg[content]={"content":"up主你好，\n催更[doge]"}' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1444,17 +1444,17 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
---data-urlencode 'msg[sender_uid]=293793435' \
---data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type]=1' \
---data-urlencode 'msg[msg_type]=2' \
---data-urlencode 'msg[msg_status]=0' \
---data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
---data-urlencode 'msg[timestamp]=1626181379' \
---data-urlencode 'msg[content]={"url":"https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg","height":300,"width":300,"imageType":"jpeg","original":1,"size":54.144}' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'msg[sender_uid]=293793435' \
+  --data-urlencode 'msg[receiver_id]=1' \
+  --data-urlencode 'msg[receiver_type]=1' \
+  --data-urlencode 'msg[msg_type]=2' \
+  --data-urlencode 'msg[msg_status]=0' \
+  --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
+  --data-urlencode 'msg[timestamp]=1626181379' \
+  --data-urlencode 'msg[content]={"url":"https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg","height":300,"width":300,"imageType":"jpeg","original":1,"size":54.144}' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1478,17 +1478,17 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
---data-urlencode 'msg[sender_uid]=293793435' \
---data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type]=1' \
---data-urlencode 'msg[msg_type]=1' \
---data-urlencode 'msg[msg_status]=0' \
---data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
---data-urlencode 'msg[timestamp]=1626181379' \
---data-urlencode 'msg[content]={"content":"支付宝"}' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'msg[sender_uid]=293793435' \
+  --data-urlencode 'msg[receiver_id]=1' \
+  --data-urlencode 'msg[receiver_type]=1' \
+  --data-urlencode 'msg[msg_type]=1' \
+  --data-urlencode 'msg[msg_status]=0' \
+  --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
+  --data-urlencode 'msg[timestamp]=1626181379' \
+  --data-urlencode 'msg[content]={"content":"支付宝"}' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
