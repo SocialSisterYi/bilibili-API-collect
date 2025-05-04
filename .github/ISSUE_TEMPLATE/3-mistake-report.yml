@@ -8,7 +8,7 @@ body:
     attributes:  
       label: "提交前请确认"  
       options:  
-        - label: "我已确认文档中的错误存在，且 Issues、Pull Requests 中无相同修正"  
+        - label: "我已阅读贡献指南, 已确认文档中有错误存在，且 Issues、Pull Requests 中无相同修正"  
           required: true  
         - label: "我已验证修正内容的正确性"  
           required: false  
@@ -34,7 +34,7 @@ body:
         - "参数错误"  
         - "响应数据结构或响应示例错误"    
         - "描述性内容错误（如拼写/流程说明）"
-        - "接口已弃用下线"  
+        - "接口已弃用或下线"  
         - "其他（请在下文说明）"  
     validations:  
       required: true  
