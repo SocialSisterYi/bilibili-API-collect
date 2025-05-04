@@ -93,7 +93,9 @@
 | 18   | 系统提示                  | 目前仅在 `msg_type` 为 `18` 时使用该代码，如：“对方主动回复或关注你前，最多发送1条消息” |
 | 19   | AI                        | 如：给[搜索AI助手测试版](https://space.bilibili.com/1400565964/)发送私信时对方的自动回复 |
 
-## 获取未读私信数
+## 会话相关
+
+### 获取未读私信数
 
 > <https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread>
 
@@ -176,7 +178,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 </details>
 
-## 获取指定类型会话列表
+### 获取指定类型会话列表
 
 > <https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions>
 
@@ -407,7 +409,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
 
 </details>
 
-## 获取新会话列表
+### 获取新会话列表
 
 > <https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions>
 
@@ -620,7 +622,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 
 </details>
 
-## 获取会话详细信息
+### 获取会话详细信息
 
 > <https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail>
 
@@ -720,7 +722,145 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 </details>
 
-## 查询私信消息记录
+### 获取会话限制状态
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit>
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+仅对用户会话调用本接口
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| uid    | num  | 聊天对象mid | 必要   |      |
+| type   | num  | 1           | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段         | 类型 | 内容                     | 备注                         |
+| ------------ | ---- | ------------------------ | ---------------------------- |
+| is_limit     | num  | 用户是否被封禁           |                              |
+| report_limit | num  | 自己是否被限制举报该会话 | 常见于自己被封禁时出现该情况 |
+
+**示例：**
+
+获取`uid=123`的限制状态：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
+  --data-urlencode 'uid=123' \
+  --data-urlencode 'type=1' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "is_limit": 0,
+    "report_limit": 0
+  }
+}
+```
+
+</details>
+
+### 获取会话推送设置
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss>
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+仅对用户会话调用本接口
+
+**url参数：**
+
+| 参数名     | 类型 | 内容             | 必要性 | 备注          |
+| ---------- | ---- | ---------------- | ------ | ------------- |
+| talker_uid | num  | 聊天对象mid      | 必要   |               |
+| build      | num  | 客户端内部版本号 | 非必要 | 默认为 `0`    |
+| mobi_app   | str  | 平台标识         | 非必要 | 可为 `web` 等 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段              | 类型 | 内容                   | 备注                                |
+| ----------------- | ---- | ---------------------- | ----------------------------------- |
+| follow_status     | num  | 对方对于自己的关注属性 | 0：未关注<br />~~1：悄悄关注（现已下线）~~<br />2：已关注<br />6：已互粉<br />128：已拉黑 |
+| special           | num  | 自己是否特别关注了对方 |                                     |
+| push_setting      | num  | 推送设置               | 0：接收推送<br />1：不接收推送      |
+| show_push_setting | num  | 是否显示推送设置       |                                     |
+
+**示例：**
+
+获取`talker_uid=123`的推送设置：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss' \
+  --data-urlencode 'talker_uid=123' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "follow_status": 6,
+    "special": 1,
+    "push_setting": 0,
+    "show_push_setting": 1
+  }
+}
+```
+
+</details>
+
+## 私信消息相关
+
+### 查询私信消息记录
 
 > <https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs>
 
@@ -869,143 +1009,7 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 
 </details>
 
-## 获取会话限制状态
-
-> <https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit>
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-仅对用户会话调用本接口
-
-**url参数：**
-
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| uid    | num  | 聊天对象mid | 必要   |      |
-| type   | num  | 1           | 必要   |      |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                                              |
-| ------- | ---- | -------- | ------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
-| msg     | str  | 错误信息 | 默认为0                                           |
-| message | str  | 错误信息 | 默认为0                                           |
-| ttl     | num  | 1        |                                                   |
-| data    | obj  | 数据本体 |                                                   |
-
-`data`对象：
-
-| 字段         | 类型 | 内容                     | 备注                         |
-| ------------ | ---- | ------------------------ | ---------------------------- |
-| is_limit     | num  | 用户是否被封禁           |                              |
-| report_limit | num  | 自己是否被限制举报该会话 | 常见于自己被封禁时出现该情况 |
-
-**示例：**
-
-获取`uid=123`的限制状态：
-
-```shell
-curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
-  --data-urlencode 'uid=123' \
-  --data-urlencode 'type=1' \
-  -b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-  "code": 0,
-  "msg": "0",
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "is_limit": 0,
-    "report_limit": 0
-  }
-}
-```
-
-</details>
-
-## 获取会话推送设置
-
-> <https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss>
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-仅对用户会话调用本接口
-
-**url参数：**
-
-| 参数名     | 类型 | 内容             | 必要性 | 备注          |
-| ---------- | ---- | ---------------- | ------ | ------------- |
-| talker_uid | num  | 聊天对象mid      | 必要   |               |
-| build      | num  | 客户端内部版本号 | 非必要 | 默认为 `0`    |
-| mobi_app   | str  | 平台标识         | 非必要 | 可为 `web` 等 |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                                              |
-| ------- | ---- | -------- | ------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
-| msg     | str  | 错误信息 | 默认为0                                           |
-| message | str  | 错误信息 | 默认为0                                           |
-| ttl     | num  | 1        |                                                   |
-| data    | obj  | 数据本体 |                                                   |
-
-`data`对象：
-
-| 字段              | 类型 | 内容                   | 备注                                |
-| ----------------- | ---- | ---------------------- | ----------------------------------- |
-| follow_status     | num  | 对方对于自己的关注属性 | 0：未关注<br />~~1：悄悄关注（现已下线）~~<br />2：已关注<br />6：已互粉<br />128：已拉黑 |
-| special           | num  | 自己是否特别关注了对方 |                                     |
-| push_setting      | num  | 推送设置               | 0：接收推送<br />1：不接收推送      |
-| show_push_setting | num  | 是否显示推送设置       |                                     |
-
-**示例：**
-
-获取`talker_uid=123`的推送设置：
-
-```shell
-curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss' \
-  --data-urlencode 'talker_uid=123' \
-  --data-urlencode 'build=0' \
-  --data-urlencode 'mobi_app=web' \
-  -b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-  "code": 0,
-  "msg": "0",
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "follow_status": 6,
-    "special": 1,
-    "push_setting": 0,
-    "show_push_setting": 1
-  }
-}
-```
-
-</details>
-
-## 获取多个视频、番剧、专栏的信息
+### 获取多个视频、番剧、专栏的信息
 
 > <https://api.vc.bilibili.com/x/im/feed/infoweb>
 
@@ -1178,7 +1182,7 @@ curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
 
 </details>
 
-## 设置私信为已读
+### 设置私信为已读
 
 > <https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack>
 
@@ -1245,7 +1249,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 
 </details>
 
-## 发送私信（web端）
+### 发送私信（web端）
 
 > <https://api.vc.bilibili.com/web_im/v1/web_im/send_msg>
 
@@ -1296,7 +1300,7 @@ dev_id 实质上就是 UUID（版本 4）
 <details>
 <summary>查看生成 UUID 的代码</summary>
 
-### Python
+#### Python
 
 ```python
 import uuid
@@ -1304,7 +1308,7 @@ import uuid
 dev_id = str(uuid.uuid4())
 ```
 
-### JavaScript
+#### JavaScript
 
 以下代码适用于较新版的 JS 引擎（Chrome≥92，Firefox≥95，Safari≥15.4，Node.js≥19.0.0）：
 
@@ -1321,7 +1325,7 @@ const dev_id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function
 }));
 ```
 
-### Java
+#### Java
 
 ```java
 import java.util.UUID;
