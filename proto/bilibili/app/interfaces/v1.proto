@@ -7,15 +7,15 @@ import "bilibili/app/archive/v1.proto";
 import "bilibili/app/card/v1.proto";
 import "bilibili/app/dynamic/v2.proto";
 
-// 
+// 历史记录
 service History {
     // 
     rpc Clear (ClearReq) returns (NoReply);
-    // 
+    // 历史记录列表请求
     rpc Cursor (CursorReq) returns (CursorReply);
-    // 
+    // 历史记录列表请求
     rpc CursorV2 (CursorV2Req) returns (CursorV2Reply);
-    // 
+    // 历史记录删除请求
     rpc Delete (DeleteReq) returns (NoReply);
     // 
     rpc HistoryTab (HistoryTabReq) returns (HistoryTabReply);
@@ -183,107 +183,107 @@ message Button {
     string has_title = 7;
 }
 
-// 
+// 专栏卡片
 message CardArticle {
-    // 
+    // 封面
     repeated string covers = 1;
-    // 
+    // 标题
     string name = 2;
-    // 
+    // UP 主 mid
     int64 mid = 3;
-    // 
+    // 是否展示 "关注" 按钮
     bool display_attention = 4;
-    // 
+    // 角标
     string badge = 5;
-    // 
+    // 新关注组件
     Relation relation = 6;
 }
 
-// 
+// 付费课程卡片
 message CardCheese {
-    // 
+    // 封面
     string cover = 1;
-    // 
+    // 观看进度
     int64 progress = 2;
-    // 
+    // 时长
     int64 duration = 3;
-    // 
+    // 分集标题
     string subtitle = 4;
     // 
     int64 state = 5;
 }
 
-// 
+// 直播卡片
 message CardLive {
-    // 
+    // 封面
     string cover = 1;
-    // 
+    // UP 主昵称 
     string name = 2;
-    // 
+    // UP 主 mid
     int64 mid = 3;
-    // 
+    // tag 名称
     string tag = 4;
-    // 
+    // 直播状态
     int32 status = 5;
-    // 
+    // 是否展示 "关注" 按钮
     bool display_attention = 6;
-    // 
+    // 新关注组件
     Relation relation = 7;
 }
 
-// 
+// OGV 稿件卡片
 message CardOGV {
-    // 
+    // 封面
     string cover = 1;
-    // 
+    // 观看进度
     int64 progress = 2;
-    // 
+    // 总时长
     int64 duration = 3;
-    // 
+    // 番剧卡分集标题
     string subtitle = 4;
-    // 
+    // 角标
     string badge = 5;
     // 
     int64 state = 6;
 }
 
-// 
+// UGC 稿件卡片
 message CardUGC {
-    // 
+    // 封面
     string cover = 1;
-    // 
+    // 观看进度
     int64 progress = 2;
-    // 
+    // 时长
     int64 duration = 3;
-    // 
+    // UP 昵称
     string name = 4;
-    // 
+    // UP mid
     int64 mid = 5;
-    // 
+    // 是否展示 "关注" 按钮
     bool display_attention = 6;
-    // 
+    // 分 P 的 cid
     int64 cid = 7;
-    // 
+    // 分 P
     int32 page = 8;
-    // 
+    // 分 P 的标题
     string subtitle = 9;
-    // 
+    // 新关注组件
     Relation relation = 10;
-    // 
+    // 稿件 bvid
     string bvid = 11;
-    // 
+    // ? 分 P 总数
     int64 videos = 12;
-    // 
+    // ? 短链接
     string short_link = 13;
-    // 
+    // ? 分享标题
     string share_subtitle = 14;
-    // 
+    // ? 播放量
     int64 view = 15;
     // 
     int64 state = 16;
-    // 
+    // ? 角标
     string badge = 17;
-    // 
+    // ? 角标
     Badge badge_v2 = 18;
 }
 
@@ -335,90 +335,95 @@ enum CommentType {
     comment_type_judge = 2;
 }
 
-// 
+// 历史记录游标
 message Cursor {
-    // 
+    // 本页最大值游标值
     int64 max = 1;
-    // 
+    // 本页最大值游标类型
     int32 max_tp = 2;
 }
 
-// 
+// 历史记录卡片内容
 message CursorItem {
-    // 
+    // 历史记录卡片内容
     oneof card_item {
-        // 
+        // 参见 [`CardUGC`]
         CardUGC card_ugc = 1;
-        // 
+        // 参见 [`CardOGV`]
         CardOGV card_ogv = 2;
-        // 
+        // 参见 [`CardArticle`]
         CardArticle card_article = 3;
-        // 
+        // 参见 [`CardLive`]
         CardLive card_live = 4;
-        // 
+        // 参见 [`CardCheese`]
         CardCheese card_cheese = 5;
     }
-    // 
+    // 标题
     string title = 6;
-    // 
+    // 跳转链接
     string uri = 7;
-    // 
+    // 观看时间
     int64 view_at = 8;
-    // 
+    // 历史记录主键
     int64 kid = 9;
-    // 
+    // 业务 ID (如稿件 avid 或直播间 room_id 等)
     int64 oid = 10;
-    // 
+    // 业务类型
     string business = 11;
-    // 
+    // 业务类型
     int32 tp = 12;
-    // 
+    // 播放设备
     DeviceType dt = 13;
-    // 
+    // ? 是否带分享按钮
     bool has_share = 14;
-    // 
+    // ? 埋点上报参数
     string report = 15;
 }
 
-// 
+// 历史记录列表请求返回值
 message CursorReply {
-    // 
+    // 参见 [`CursorItem`]
     repeated CursorItem items = 1;
-    // 
+    // 参见 [`CursorTab`]
     repeated CursorTab tab = 2;
-    // 
+    // 当前偏移
     Cursor cursor = 3;
-    // 
+    // 是否还有更多数据
     bool has_more = 4;
 }
 
-// 
+// 历史记录列表请求参数
 message CursorReq {
-    // 
+    // 翻页游标 (透传上一页的游标)
     Cursor cursor = 1;
-    // 
+    // 业务类型
+    //
+    // - 全部: `all`
+    // - 视频: `archive`
+    // - 直播: `live`
+    // - 专栏: `article`
     string business = 2;
-    // 
+    // 秒开参数
     PlayerPreloadParams player_preload = 3;
-    // 
+    // 秒开参数
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
 }
 
-// 
+// 历史记录顶部 tab
 message CursorTab {
-    // 
+    // 业务类型
     string business = 1;
-    // 
+    // 业务名称
     string name = 2;
-    // 
+    // ? app 内部跳转路由
     string router = 3;
-    // 
+    // ? 是否选中
     bool focus = 4;
 }
 
-// 
+// 参见 [`CursorReply`]
 message CursorV2Reply {
-    // 
+    //
     repeated CursorItem items = 1;
     // 
     Cursor cursor = 2;
@@ -428,7 +433,7 @@ message CursorV2Reply {
     string empty_link = 4;
 }
 
-// 
+// 参见 [`CursorReq`]
 message CursorV2Req {
     // 
     Cursor cursor = 1;
@@ -442,7 +447,7 @@ message CursorV2Req {
     bool is_local = 5;
 }
 
-// 
+// 设备类型
 enum DT {
     // 
     Unknown = 0;
@@ -526,19 +531,19 @@ message DefaultWordsReq {
     int32 search_page_return = 15;
 }
 
-// 
+// 历史记录删除请求参数
 message DeleteReq {
-    // 
+    // 要删除的历史信息
     repeated HisInfo his_info = 1;
     // 
     string tab = 2;
 }
 
-// 
+// 设备类型
 message DeviceType {
-    // 
+    // 设备类型
     DT type = 1;
-    // 
+    // 图标
     string icon = 2;
 }
 
@@ -972,13 +977,24 @@ message ReasonStyle {
     int32 bg_style = 8;
 }
 
-// 
+// 新关注组件
 message Relation {
-    // 
+    // 按钮展示文案
+    //
+    // - 1: 未关注
+    // - 2: 已关注
+    // - 3: 被关注
+    // - 4: 互相关注
     int32 status = 1;
-    // 
+    // 用户关注 UP 主
+    //
+    // - 0: 未关注
+    // - 1: 已关注
     int32 is_follow = 2;
-    // 
+    // UP 主关注用户
+    //
+    // - 0: 未被关注
+    // - 1: 已被关注
     int32 is_followed = 3;
 }
 
