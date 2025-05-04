@@ -162,3 +162,60 @@ curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_sys_setting' 
 ```
 
 </details>
+
+## 是否显示创建粉丝团按钮
+
+> <https://api.vc.bilibili.com/link_group/v1/member/show_create_group_icon>
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名   | 类型 | 内容             | 必要性 | 备注                      |
+| -------- | ---- | ---------------- | ------ | ------------------------- |
+| build    | num  | 客户端内部版本号 | 非必要 | 默认为 `0`                |
+| mobi_app | str  | 平台标识         | 非必要 | 可为 `web` 等             |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| msg     | str  | 错误信息 | 默认为0                       |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        |                               |
+| data    | obj  | 信息本体 |                               |
+
+`data` 对象：
+
+| 字段 | 类型 | 内容                   | 备注                   |
+| ---- | ---- | ---------------------- | ---------------------- |
+| show | num  | 是否显示创建粉丝团按钮 | 粉丝数达到 1000 后显示 |
+
+**示例：**
+
+```shell
+curl 'https://api.vc.bilibili.com/link_group/v1/member/show_create_group_icon' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "show": 1
+  }
+}
+```
+
+</details>
