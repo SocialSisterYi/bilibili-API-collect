@@ -67,7 +67,7 @@
 | is_chargeable_season    | bool    |                                |                                                              |
 | is_story                | bool    | 是否可以在 Story Mode 展示?    |                                                              |
 | is_upower_exclusive     | bool    | 是否为充电专属视频             |                                                              |
-| is_upower_pay           | bool    |                                |                                                              |
+| is_upower_play          | bool    |                                |                                                              |
 | is_upower_preview       | bool    | 充电专属视频是否支持试看       |                                                              |
 | no_cache                | bool    | 是否不允许缓存?                |                                                              |
 | pages                   | array   | 视频分P列表                    |                                                              |
