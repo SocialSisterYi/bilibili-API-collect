@@ -22,7 +22,7 @@
 
 ## 获取包月充电列表
 
-> https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord
+> <https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord>
 
 *请求方式：GET*
 
@@ -237,7 +237,7 @@ curl 'https://api.live.bilibili.com/xlive/revenue/v1/guard/getChargeRecord' \
 
 ## UP主包月充电详情
 
-> https://api.bilibili.com/x/upower/item/detail
+> <https://api.bilibili.com/x/upower/item/detail>
 
 *请求方式：GET*
 
@@ -396,7 +396,7 @@ curl 'https://api.bilibili.com/x/upower/item/detail' \
 
 ## 与UP主的包月充电关系
 
-> https://api.bilibili.com/x/upower/charge/follow/info
+> <https://api.bilibili.com/x/upower/charge/follow/info>
 
 *请求方式：GET*
 
@@ -547,7 +547,7 @@ curl 'https://api.bilibili.com/x/upower/charge/follow/info' \
 
 ## 包月充电用户排名
 
-> https://api.bilibili.com/x/upower/up/member/rank/v2
+> <https://api.bilibili.com/x/upower/up/member/rank/v2>
 
 *请求方式：GET*
 

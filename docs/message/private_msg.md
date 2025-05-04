@@ -95,7 +95,7 @@
 
 ## 获取未读私信数
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread>
 
 *请求方式：GET*
 
@@ -178,7 +178,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ## 获取指定类型会话列表
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions>
 
 *请求方式：GET*
 
@@ -409,7 +409,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
 
 ## 获取新会话列表
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions>
 
 *请求方式：GET*
 
@@ -622,7 +622,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 
 ## 获取会话详细信息
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail>
 
 *请求方式：GET*
 
@@ -722,7 +722,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 ## 查询私信消息记录
 
-> https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs
+> <https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs>
 
 *请求方式：GET*
 
@@ -871,7 +871,7 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 
 ## 获取会话限制状态
 
-> https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit>
 
 *请求方式：GET*
 
@@ -936,7 +936,7 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
 
 ## 获取会话推送设置
 
-> https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss>
 
 *请求方式：GET*
 
@@ -1007,7 +1007,7 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss
 
 ## 获取多个视频、番剧、专栏的信息
 
-> https://api.vc.bilibili.com/x/im/feed/infoweb
+> <https://api.vc.bilibili.com/x/im/feed/infoweb>
 
 *请求方式：GET*
 
@@ -1180,7 +1180,7 @@ curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
 
 ## 设置私信为已读
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack>
 
 *请求方式：POST*
 
@@ -1247,7 +1247,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 
 ## 发送私信（web端）
 
-> https://api.vc.bilibili.com/web_im/v1/web_im/send_msg
+> <https://api.vc.bilibili.com/web_im/v1/web_im/send_msg>
 
 *请求方式：POST*
 

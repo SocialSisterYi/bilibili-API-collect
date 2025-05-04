@@ -2,7 +2,7 @@
 
 ## 获取空间充电公示列表
 
-> https://api.bilibili.com/x/ugcpay-rank/elec/month/up
+> <https://api.bilibili.com/x/ugcpay-rank/elec/month/up>
 
 *请求方式：GET*
 
@@ -120,7 +120,7 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 
 ## 获取视频充电鸣谢名单
 
-> https://api.bilibili.com/x/web-interface/elec/show
+> <https://api.bilibili.com/x/web-interface/elec/show>
 
 *请求方式:GET*
 
@@ -307,7 +307,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 
 ## 查询我收到的充电列表
 
-> https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord
+> <https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord>
 
 *请求方式：GET*
 
@@ -443,7 +443,7 @@ curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
 
 ## 查询历史充电数据
 
-> https://member.bilibili.com/x/h5/elec/rank/recent
+> <https://member.bilibili.com/x/h5/elec/rank/recent>
 
 *请求方式：GET*
 
