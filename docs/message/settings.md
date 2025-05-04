@@ -1,5 +1,102 @@
 # 消息设置
 
+## 获取用户偏好设置
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/get>
+
+*请求方式：GET 或 POST*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数（GET）或 正文参数（application/x-www-form-urlencoded，POST）：**
+
+| 参数名              | 类型 | 内容                             | 必要性       | 备注                      |
+| ------------------- | ---- | -------------------------------- | ------------ | ------------------------- |
+| msg_notify          | num  | 是否显示 “消息提醒” 设置         | 非必要       | 若此项为任意整数，则返回数据中有 `msg_notify` 项 |
+| show_unfollowed_msg | num  | 是否显示 “收起未关注人消息” 设置 | 非必要       | 若此项为任意整数，则返回数据中有 `show_unfollowed_msg` 项 |
+| build               | num  | 客户端内部版本号                 | 非必要       | 默认为 `0`                |
+| mobi_app            | str  | 平台标识                         | 非必要       | 可为 `web` 等             |
+| csrf_token          | str  | CSRF Token（位于cookie）         | POST方式必要 |                           |
+| csrf                | str  | CSRF Token（位于cookie）         | POST方式必要 |                           |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| msg     | str  | 错误信息 | 默认为0                       |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        |                               |
+| data    | obj  | 信息本体 |                               |
+
+`data` 对象：
+
+| 字段                     | 类型 | 内容                 | 备注                                                                        |
+| ------------------------ | ---- | -------------------- | --------------------------------------------------------------------------- |
+| show_unfollowed_msg      | num  | 收起未关注人消息     | 请求参数 `show_unfollowed_msg` 为整数时显示此项<br />0：不收起<br />1：收起 |
+| msg_notify               | num  | 消息提醒             | 请求参数 `msg_notify` 为整数时显示此项<br />1：接收<br />3：不接收          |
+| set_like                 | num  | 收到的赞提醒（旧）   | 0：接收<br />5：不接收                                                      |
+| set_comment              | num  | 回复我的提醒（旧）   | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒                       |
+| set_at                   | num  | @ 我的提醒 （旧）    | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒                       |
+| is_group_fold            | num  | 收起应援团消息       | 0：不收起<br />1：收起                                                      |
+| should_receive_group     | num  | 接收应援团消息       | 0：不接收<br />1：接收                                                      |
+| receive_unfollow_msg     | num  | 接收未关注人消息     | 前端隐藏此开关<br />0：不接收<br />1：接收                                  |
+| followed_reply           | num  | 被关注回复           | 0：关闭<br />1：开启                                                        |
+| keys_reply               | num  | 关键词回复           | 0：关闭<br />1：开启                                                        |
+| recv_reply               | num  | 收到消息回复         | 0：关闭<br />1：开启                                                        |
+| voyage_reply             | num  | 大航海上船回复       | 0：关闭<br />1：开启                                                        |
+| recommend_followed_reply | num  | 被关注时自动推送作品 | 0：关闭<br />1：开启                                                        |
+| ai_intercept             | num  | 私信智能拦截         | 0：关闭<br />1：开启                                                        |
+| anti_harassment          | null | 防骚扰和互动人群设置 | 恒为 `null`                                                                 |
+| set_recv_reply           | num  | 收到回复提醒（新）   | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒                       |
+| set_recv_like            | num  | 收到喜欢提醒（新）   | 0：接收<br />2：不接收                                                      |
+| set_new_follow           | num  | 新增粉丝提醒（新）   | 0：接收<br />2：不接收                                                      |
+
+**示例：**
+
+```shell
+curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get' \
+  --data-urlencode 'msg_notify=1' \
+  --data-urlencode 'show_unfollowed_msg=1' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "show_unfollowed_msg": 0,
+    "msg_notify": 1,
+    "set_like": 0,
+    "set_comment": 0,
+    "set_at": 0,
+    "is_group_fold": 0,
+    "should_receive_group": 1,
+    "receive_unfollow_msg": 1,
+    "followed_reply": 1,
+    "keys_reply": 0,
+    "recv_reply": 1,
+    "voyage_reply": 0,
+    "recommend_followed_reply": 1,
+    "ai_intercept": 1,
+    "anti_harassment": null,
+    "set_recv_reply": 0,
+    "set_recv_like": 0,
+    "set_new_follow": 0
+  }
+}
+```
+
+</details>
+
 ## 获取系统设置
 
 > <https://api.vc.bilibili.com/link_setting/v1/link_setting/get_sys_setting>
