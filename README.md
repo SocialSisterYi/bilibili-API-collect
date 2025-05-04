@@ -255,6 +255,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [直播间禁言相关](docs/live/silent_user_manage.md)
     - [ ] [关注UP直播情况](docs/live/follow_up_live.md)
     - [ ] [直播心跳上报](docs/live/report.md)
+    - [ ] [直播间弹幕](docs/live/danmaku.md)
 - [ ] [活动](docs/activity)
     - [ ] [活动列表](docs/activity/list.md)
     - [ ] [活动主题信息](docs/activity/info.md)
