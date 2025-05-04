@@ -1395,7 +1395,7 @@ public class Main {
 
 给目标用户`mid=1`发一条文字私信：
 
-> up主你好，<br />催更[doge]
+> up主你好，<br />催更\[doge\]
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
