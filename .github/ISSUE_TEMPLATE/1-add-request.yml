@@ -1,13 +1,14 @@
-name: "新增/更新请求"
-description: "请求添加/补充/更新文档中的 API 定义"
-title: "[新增/更新请求] <title>"
+name: "新增请求"
+description: "请求添加文档中未收录的 API 定义"
+title: "[新增请求] <title>"
+labels: ["新增/Add"]
 body:
   - type: checkboxes
     id: reminders
     attributes:
       label: "提交前请确认"
       options:
-        - label: "我已检索仓库中文档，不包含所提及内容，或所提及内容在本仓库中存在错误，且 Issues、Pull Requests 中无相关提交"
+        - label: "我已检索仓库中文档，确认不包含所提及内容，且 Issues、Pull Requests 中无相关提交"
           required: true
   - type: dropdown
     id: source
@@ -34,7 +35,7 @@ body:
       options:
         - "REST"
         - "gRPC"
-        - "长连接数据帧（含 WebSocket、TCP）"
+        - "长连接数据帧（含 ws、TCP）"
         - "其他类型（请在详情中备注）"
     validations:
       required: true
@@ -42,14 +43,14 @@ body:
     id: address
     attributes:
       label: "API 地址"
-      description: "REST 的 url，或 gRPC 的包名+服务名，更新时可为原文档链接"
-      placeholder: "e.g.: https://api.bilibili.com/x/..."
+      description: "REST 的 url，或 gRPC 的包名+服务名"
+      placeholder: "eg: https://api.bilibili.com/2333333"
     validations:
-      required: false
+      required: true
   - type: textarea
     id: details
     attributes:
       label: "详情描述"
-      description: "新增时请描述该 API 的使用场景、请求及响应字段等，可附上原始抓包记录；更新时请指出原文档中与最新 API 行为不符之处，并附上已知的最新改动"
+      description: "请描述该 API 的使用场景、请求及响应字段等，可附上原始抓包记录"
     validations:
       required: true
