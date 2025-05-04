@@ -94,7 +94,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [通知类消息](docs/message/msg.md)
     - [ ] [私信](docs/message/private_msg.md)
         - [ ] [私信消息类型、内容说明](docs/message/private_msg_content.md)
-    - [ ] 设置
+    - [ ] [设置](docs/message/settings.md)
 - [ ] [用户](docs/user)
     - [x] [基本信息](docs/user/info.md)
     - [x] [状态数](docs/user/status_number.md)
