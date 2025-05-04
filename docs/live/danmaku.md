@@ -72,7 +72,7 @@
 获取未登录用户在直播间 `1` 的弹幕配置可用情况
 
 ```shell
-curl https://api.live.bilibili.com/xlive/web-room/v1/dM/GetDMConfigByGroup?room_id=1
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/dM/GetDMConfigByGroup?room_id=1'
 ```
 
 <details>
@@ -436,7 +436,7 @@ curl 'https://api.live.bilibili.com/xlive/web-room/v1/dM/AjaxSetConfig' \
 
 `data.mode_info` 对象:
 
-基本上与[直播间信息流#弹幕 (DANMU_MSG)](message_stream.md#弹幕-danmu_msg)的`info[0][15]`对象。
+基本上与[直播间信息流#弹幕 (DANMU_MSG)](message_stream.md#弹幕-danmu_msg)的`info[0][15]`对象相同。
 
 **示例：**
 
