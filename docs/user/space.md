@@ -2905,7 +2905,7 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
 			"count": 786
 		},
 		"episodic_button": {
-			"text": "æ­æ¾å¨é¨",
+			"text": "播放全部",
 			"uri": "//www.bilibili.com/medialist/play/946974?from=space"
 		},
 		"is_risk": false,
