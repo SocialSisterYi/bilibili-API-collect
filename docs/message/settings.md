@@ -650,7 +650,7 @@ curl 'https://api.vc.bilibili.com/x/im/auto_reply/del_reply_text' \
 | vc_hint_detail_button             | str  | 关闭稿件自动推送按钮内容                                                                 | `关闭推送`                 |
 | auto_reply_html                   | str  | 自动回复H5页面url                                                                        | `https://message.bilibili.com/h5/app/auto-reply` |
 | is_receive_unfollow_wl            | num  | 是否显示限制接收未关注人消息功能                                                         |                            |
-| is_voyage                         | num  | 是否在自动回复页面显示 “大航海自动回复” 按钮                                             | 仅部分用户开启             |
+| is_voyage                         | num  | 是否在自动回复页面显示 “大航海自动回复” 选项                                             | 仅部分用户开启             |
 | is_auto_reply_recommend_available | num  | 是否在自动回复中的 “被关注回复” 页面显示 “被关注后，向关注我的人推送我的往期作品” 复选框 | 仅部分用户开启             |
 | is_discuss_style_im_page          | num  | （？）                                                                                   | **作用尚不明确**           |
 | discuss_unread_style_im_page      | num  | （？）                                                                                   | **作用尚不明确**           |

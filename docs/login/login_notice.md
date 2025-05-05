@@ -2,7 +2,7 @@
 
 ## 查询登录记录
 
-> https://api.bilibili.com/x/safecenter/login_notice
+> <https://api.bilibili.com/x/safecenter/login_notice>
 
 *请求方式：GET*
 
@@ -43,9 +43,9 @@
 
 ```shell
 curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
---data-urlencode 'mid=293793435' \
---data-urlencode 'buvid=fuck_chenrui' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'mid=293793435' \
+  --data-urlencode 'buvid=fuck_chenrui' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -71,7 +71,7 @@ curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
 
 ## 最近一周的登录情况
 
-> https://api.bilibili.com/x/member/web/login/log
+> <https://api.bilibili.com/x/member/web/login/log>
 
 *请求方式: GET*
 
@@ -127,7 +127,7 @@ curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
 
 ```shell
 curl -G "https://api.bilibili.com/x/member/web/login/log" \
--b "SESSDATA=xxx"
+  -b "SESSDATA=xxx"
 ```
 
 <details>
