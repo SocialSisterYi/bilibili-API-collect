@@ -251,7 +251,7 @@ curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set' \
 | hidden_pic_btn   | bool | 是否隐藏发送图片按钮 |                     |
 | max_height       | num  | 最大高度（？）       | **作用尚不明确**    |
 | hint_text        | str  | 私信输入框的提示内容 | `你想问什么问题呢?` |
-| hidden_top_hint  | str  | （？）               | **作用尚不明确**    |
+| hidden_top_hint  | bool | （？）               | **作用尚不明确**    |
 | is_gpt_account   | bool | 是否为AI会话         |                     |
 
 `data` 中的 `game_msg` 对象：
