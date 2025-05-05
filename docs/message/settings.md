@@ -173,6 +173,205 @@ curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set' \
 
 </details>
 
+## 获取消息屏蔽词
+
+> <https://api.vc.bilibili.com/x/im/link_setting/get_block_words>
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名   | 类型 | 内容             | 必要性 | 备注          |
+| -------- | ---- | ---------------- | ------ | ------------- |
+| build    | num  | 客户端内部版本号 | 非必要 | 默认为 `0`    |
+| mobi_app | str  | 平台标识         | 非必要 | 可为 `web` 等 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| msg     | str  | 错误信息 | 默认为0                       |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1        |                               |
+| data    | obj  | 信息本体 |                               |
+
+`data` 对象：
+
+| 字段            | 类型                            | 内容               | 备注             |
+| --------------- | ------------------------------- | ------------------ | ---------------- |
+| words           | 有效时：array<br />无效时：null | 消息屏蔽词列表     |                  |
+| message         | str                             | （？）             | **作用尚不明确** |
+| max_word_length | num                             | 单个屏蔽词最大长度 | 目前为 `20`      |
+| max_words_size  | num                             | 屏蔽词最大数量     | 目前为 `200`     |
+
+`data` 中的 `words` 数组：
+
+| 项   | 类型 | 内容        | 备注 |
+| ---- | ---- | ----------- | ---- |
+| 0    | obj  | 屏蔽词1     |      |
+| n    | obj  | 屏蔽词(n+1) |      |
+| ……   | obj  | ……          | ……   |
+
+`words` 数组中的对象：
+
+| 字段    | 类型 | 内容           | 备注       |
+| ------- | ---- | -------------- | ---------- |
+| content | str  | 屏蔽词内容     |            |
+| ctime   | num  | 屏蔽词添加时间 | 秒级时间戳 |
+
+**示例：**
+
+```shell
+curl -G 'https://api.vc.bilibili.com/x/im/link_setting/get_block_words' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "words": [
+      {
+        "content": "屏蔽词",
+        "ctime": 1746422088
+      }
+    ],
+    "message": "",
+    "max_word_length": 20,
+    "max_words_size": 200
+  }
+}
+```
+
+</details>
+
+## 添加消息屏蔽词
+
+> <https://api.vc.bilibili.com/x/im/link_setting/add_block_word>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名     | 类型 | 内容                     | 必要性 | 备注          |
+| ---------- | ---- | ------------------------ | ------ | ------------- |
+| content    | str  | 屏蔽词内容               | 必要   |               |
+| build      | num  | 客户端内部版本号         | 非必要 | 默认为 `0`    |
+| mobi_app   | str  | 平台标识                 | 非必要 | 可为 `web` 等 |
+| csrf_token | str  | CSRF Token（位于cookie） | 必要   |               |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |               |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                                                  |
+| ------- | ---- | -------- | ------------------------------------------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />19004：添加失败，屏蔽词限制最多20个字 |
+| msg     | str  | 错误信息 | 默认为0                                                                               |
+| message | str  | 错误信息 | 默认为0                                                                               |
+| ttl     | num  | 1        |                                                                                       |
+| data    | obj  | 信息本体 | 空对象                                                                                |
+
+**示例：**
+
+```shell
+curl 'https://api.vc.bilibili.com/x/im/link_setting/add_block_word' \
+  --data-urlencode 'content=屏蔽词' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  --data-urlencode 'csrf_token=xxx' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+## 删除消息屏蔽词
+
+> <https://api.vc.bilibili.com/x/im/link_setting/del_block_word>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名     | 类型 | 内容                     | 必要性 | 备注          |
+| ---------- | ---- | ------------------------ | ------ | ------------- |
+| content    | str  | 屏蔽词内容               | 必要   |               |
+| build      | num  | 客户端内部版本号         | 非必要 | 默认为 `0`    |
+| mobi_app   | str  | 平台标识                 | 非必要 | 可为 `web` 等 |
+| csrf_token | str  | CSRF Token（位于cookie） | 必要   |               |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |               |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 信息本体 | 空对象                                            |
+
+**示例：**
+
+```shell
+curl 'https://api.vc.bilibili.com/x/im/link_setting/del_block_word' \
+  --data-urlencode 'content=屏蔽词' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  --data-urlencode 'csrf_token=xxx' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
 ## 获取自动回复文本/关键词回复规则
 
 > <https://api.vc.bilibili.com/x/im/auto_reply/get_reply_text>
