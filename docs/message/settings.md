@@ -173,7 +173,7 @@ curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set' \
 
 </details>
 
-## 获取自动回复文本
+## 获取自动回复文本/关键词回复规则
 
 > <https://api.vc.bilibili.com/x/im/auto_reply/get_reply_text>
 
@@ -279,6 +279,132 @@ curl -G 'https://api.vc.bilibili.com/x/im/auto_reply/get_reply_text' \
       }
     ]
   }
+}
+```
+
+</details>
+
+## 修改自动回复文本/关键词回复规则
+
+> <https://api.vc.bilibili.com/x/im/auto_reply/set_reply_text>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+仅调用本接口不会开启或关闭自动回复功能，请使用 “[修改用户偏好设置](#修改用户偏好设置)” 接口
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名     | 类型 | 内容                     | 必要性                 | 备注                                                                         |
+| ---------- | ---- | ------------------------ | ---------------------- | ---------------------------------------------------------------------------- |
+| type       | num  | 自动回复类型             | 必要                   | 1：被关注回复<br />2：关键词回复<br />3：收到消息回复<br />5：大航海上船回复 |
+| reply      | str  | 回复内容                 | 必要                   | 最多 500 个字符                                                              |
+| id         | str  | 规则id                   | 非必要                 | 当类型为 “关键词回复” 时有效<br />为 `0` 或为空时新增回复规则，否则修改 id 对应的回复规则 |
+| title      | str  | 规则名称                 | 关键词回复必要         | 当类型为 “关键词回复” 时有效，最多 30 个字符                                 |
+| key1       | str  | 精确匹配关键词           | 关键词回复必要（可选） | 当类型为 “关键词回复” 时有效，`key1` 与 `key2` 须至少填一个参数<br />以中文逗号分隔每一个关键词，最多 20 项 |
+| key2       | str  | 模糊匹配关键词           | 关键词回复必要（可选） | 当类型为 “关键词回复” 时有效，`key1` 与 `key2` 须至少填一个参数<br />以中文逗号分隔每一个关键词，最多 20 项 |
+| build      | num  | 客户端内部版本号         | 非必要                 | 默认为 `0`                                                                   |
+| mobi_app   | str  | 平台标识                 | 非必要                 | 可为 `web` 等                                                                |
+| csrf_token | str  | CSRF Token（位于cookie） | 必要                   |                                                                              |
+| csrf       | str  | CSRF Token（位于cookie） | 必要                   |                                                                              |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                                                  |
+| ------- | ---- | -------- | ------------------------------------------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />27011：请求参数错误<br />1500001：自动回复内容太长 |
+| message | str  | 错误信息 | 默认为0                                                                               |
+| ttl     | num  | 1        |                                                                                       |
+| data    | obj  | 信息本体 | 空对象                                                                                |
+
+**示例：**
+
+修改关键词回复规则 `id=201321`，规则名称为 `谢谢`，精确匹配关键词为 `谢谢，Thank you，感谢`，回复内容为 `嗯嗯，不用谢[tv_微笑]`
+
+```shell
+curl 'https://api.vc.bilibili.com/x/im/auto_reply/set_reply_text' \
+  --data-urlencode 'type[]=2' \
+  --data-urlencode 'reply=嗯嗯，不用谢[tv_微笑]' \
+  --data-urlencode 'id=201321' \
+  --data-urlencode 'title=谢谢' \
+  --data-urlencode 'key1=谢谢，Thank you，感谢' \
+  --data-urlencode 'key2=' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  --data-urlencode 'csrf_token=xxx' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+## 删除关键词回复规则
+
+> <https://api.vc.bilibili.com/x/im/auto_reply/del_reply_text>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名     | 类型 | 内容                     | 必要性 | 备注          |
+| ---------- | ---- | ------------------------ | ------ | ------------- |
+| id         | str  | 规则id                   | 必要   |               |
+| build      | num  | 客户端内部版本号         | 非必要 | 默认为 `0`    |
+| mobi_app   | str  | 平台标识                 | 非必要 | 可为 `web` 等 |
+| csrf_token | str  | CSRF Token（位于cookie） | 必要   |               |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |               |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                                |
+| ------- | ---- | -------- | --------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-500：服务器错误 |
+| message | str  | 错误信息 | 默认为0                                             |
+| ttl     | num  | 1        |                                                     |
+| data    | obj  | 信息本体 | 空对象                                              |
+
+**示例：**
+
+删除关键词回复规则 `id=201321`
+
+```shell
+curl 'https://api.vc.bilibili.com/x/im/auto_reply/del_reply_text' \
+  --data-urlencode 'id=201321' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  --data-urlencode 'csrf_token=xxx' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
 }
 ```
 
