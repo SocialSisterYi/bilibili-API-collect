@@ -7,7 +7,7 @@
 *请求方法: GET*
 
 鉴权方式:
-* 未登录: 请求标头 `User-Agent` 字段, `Cookie` 需含已激活的 `buvid3`
+* 未登录: 请求标头 `User-Agent` 字段, `Cookie` 需含 `buvid3`; WBI 签名, `dm_img` 系列风控
 * 已登录: 请求标头 `Cookie` 含有效 `SESSDATA`
 
 注: 该接口现在有一些奇奇怪怪的校验, 存在一定运气成分, 参见 [#686](https://github.com/SocialSisterYi/bilibili-API-collect/issues/686), 所以建议您还是登录吧~
@@ -22,7 +22,11 @@
 | platform        | string | 平台 | 不必要 | 如 `web` |
 | features        | string | 功能 | 不必要 | 留空为空, 默认为 `itemOpusStyle,listOnlyfans,opusBigCover,onlyfansVote,forwardListHidden,decorationCard,commentsNewVersion,onlyfansAssetsV2,ugcDelete,onlyfansQaCard`, 参见 [功能模块](../opus/features.md#features) |
 | web_location    | string | `333.1387` | 不必要 |  |
-| dm_img_switch   | number | `0` | 不必要 |  |
+| dm_img_switch   | number | `0` | 不必要 | 仅登录时存在 |
+| dm_img_list     | object[] | `dm_img` 系列风控 | 不必要 | 仅未登录时存在 |
+| dm_img_str      | string |  `dm_img` 系列风控 | 不必要 | 仅未登录时存在 |
+| dm_cover_img_str | string |  `dm_img` 系列风控 | 不必要 | 仅未登录时存在 |
+| dm_img_inter    | object | `dm_img` 系列风控 | 不必要 | 仅未登录时存在 |
 | x-bili-device-req-json | object | `{"platform":"web","device":"pc"}` | 不必要 | |
 | x-bili-web-req-json | object | `{"spm_id":"333.1387"}` | 不必要 |  |
 | w_rid           | string | WBI 签名 | 不必要 | 参见 [WBI 签名](../misc/sign/wbi.md) |
