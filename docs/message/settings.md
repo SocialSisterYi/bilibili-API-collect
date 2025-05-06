@@ -268,13 +268,13 @@ curl -G 'https://api.vc.bilibili.com/x/im/link_setting/get_block_words' \
 
 **正文参数（application/x-www-form-urlencoded）：**
 
-| 参数名     | 类型 | 内容                     | 必要性 | 备注          |
-| ---------- | ---- | ------------------------ | ------ | ------------- |
-| content    | str  | 屏蔽词内容               | 必要   |               |
-| build      | num  | 客户端内部版本号         | 非必要 | 默认为 `0`    |
-| mobi_app   | str  | 平台标识                 | 非必要 | 可为 `web` 等 |
-| csrf_token | str  | CSRF Token（位于cookie） | 必要   |               |
-| csrf       | str  | CSRF Token（位于cookie） | 必要   |               |
+| 参数名     | 类型 | 内容                     | 必要性 | 备注           |
+| ---------- | ---- | ------------------------ | ------ | -------------- |
+| content    | str  | 屏蔽词内容               | 必要   | 最多 20 个字符 |
+| build      | num  | 客户端内部版本号         | 非必要 | 默认为 `0`     |
+| mobi_app   | str  | 平台标识                 | 非必要 | 可为 `web` 等  |
+| csrf_token | str  | CSRF Token（位于cookie） | 必要   |                |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |                |
 
 **json回复：**
 
@@ -282,7 +282,7 @@ curl -G 'https://api.vc.bilibili.com/x/im/link_setting/get_block_words' \
 
 | 字段    | 类型 | 内容     | 备注                                                                                  |
 | ------- | ---- | -------- | ------------------------------------------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />19004：添加失败，屏蔽词限制最多20个字 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />1900004：添加失败，屏蔽词限制最多20个字<br />1900005：添加失败，最多可以添加200个屏蔽词<br />1900006：添加失败，屏蔽词重复<br />1900007：添加失败，屏蔽词不支持空格 |
 | msg     | str  | 错误信息 | 默认为0                                                                               |
 | message | str  | 错误信息 | 默认为0                                                                               |
 | ttl     | num  | 1        |                                                                                       |

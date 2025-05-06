@@ -6,7 +6,7 @@
 
 | 字段                 | 类型 | 内容                             | 备注                                                |
 | -------------------- | ---- | -------------------------------- | --------------------------------------------------- |
-| talker_id            | num  | 聊天对象的id                     | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| talker_id            | num  | 聊天对象的id                     | `session_type` 为 `1` 时表示 mid，为 `2` 时表示粉丝团 id |
 | session_type         | num  | 聊天对象的类型                   | 1：用户<br />2：粉丝团                              |
 | at_seqno             | num  | 最近一次未读at自己的消息的序列号 | 在粉丝团会话中有效，若没有未读的 at 自己的消息则为 `0` |
 | top_ts               | num  | 置顶该会话的时间                 | 微秒级时间戳；若未置顶该会话则为 `0`；用于判断是否置顶了会话 |
@@ -730,7 +730,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 认证方式：Cookie（SESSDATA）
 
-仅对用户会话调用本接口
+仅支持用户会话
 
 **url参数：**
 
@@ -795,7 +795,7 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
 
 认证方式：Cookie（SESSDATA）
 
-仅对用户会话调用本接口
+仅支持用户会话
 
 **url参数：**
 
@@ -853,6 +853,251 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss
     "push_setting": 0,
     "show_push_setting": 1
   }
+}
+```
+
+</details>
+
+### 修改会话置顶状态
+
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/set_top>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名       | 类型 | 内容                     | 必要性 | 备注                                                 |
+| ------------ | ---- | ------------------------ | ------ | ---------------------------------------------------- |
+| talker_id    | num  | 聊天对象的id             | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| session_type | num  | 聊天对象的类型           | 必要   | 1：用户<br />2：粉丝团                               |
+| op_type      | num  | 操作类型                 | 必要   | 0：置顶<br />1：取消置顶                             |
+| csrf_token   | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| csrf         | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| build        | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
+| mobi_app     | str  | 平台标识                 | 非必要 | 可为 `web` 等                                        |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+置顶会话`talker_id=293793435&session_type=1`
+
+```shell
+curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/set_top' \
+  --data-urlencode 'talker_id=2' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'op_type=0' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+### 移除指定会话
+
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/remove_session>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+将指定会话从会话列表中移除，不会删除聊天记录
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名       | 类型 | 内容                     | 必要性 | 备注                                                 |
+| ------------ | ---- | ------------------------ | ------ | ---------------------------------------------------- |
+| talker_id    | num  | 聊天对象的id             | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| session_type | num  | 聊天对象的类型           | 必要   | 1：用户<br />2：粉丝团                               |
+| csrf_token   | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| csrf         | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| build        | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
+| mobi_app     | str  | 平台标识                 | 非必要 | 可为 `web` 等                                        |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+移除会话`talker_id=2&session_type=1`
+
+```shell
+curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/remove_session' \
+  --data-urlencode 'talker_id=2' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+### 修改会话免打扰状态
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/set_msg_dnd>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名       | 类型 | 内容                     | 必要性       | 备注                             |
+| ------------ | ---- | ------------------------ | ------------ | -------------------------------- |
+| uid          | num  | 自己的mid                | 非必要       |                                  |
+| setting      | num  | 免打扰设置               | 必要         | 0：取消免打扰<br />1：开启免打扰 |
+| dnd_uid      | num  | 用户mid                  | 必要（可选） | 当聊天对象为用户时有效           |
+| dnd_group_id | num  | 粉丝团id                 | 必要（可选） | 当聊天对象为粉丝团时有效         |
+| csrf_token   | str  | CSRF Token（位于cookie） | 必要         |                                  |
+| csrf         | str  | CSRF Token（位于cookie） | 必要         |                                  |
+| build        | num  | 客户端内部版本号         | 非必要       | 默认为 `0`                       |
+| mobi_app     | str  | 平台标识                 | 非必要       | 可为 `web` 等                    |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+对会话`dnd_uid=2`开启免打扰
+
+```shell
+curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set_msg_dnd' \
+  --data-urlencode 'uid=425503913' \
+  --data-urlencode 'setting=1' \
+  --data-urlencode 'dnd_uid=2' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+### 修改会话推送设置
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/set_push_ss>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+仅支持用户会话
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名     | 类型 | 内容                     | 必要性 | 备注                           |
+| ---------- | ---- | ------------------------ | ------ | ------------------------------ |
+| talker_uid | num  | 聊天对象mid              | 必要   |                                |
+| setting    | num  | 推送设置                 | 必要   | 0：接收推送<br />1：不接收推送 |
+| csrf_token | str  | CSRF Token（位于cookie） | 必要   |                                |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |                                |
+| build      | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                     |
+| mobi_app   | str  | 平台标识                 | 非必要 | 可为 `web` 等                  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+修改`talker_uid=2`的推送设置为不接收推送
+
+```shell
+curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set_push_ss' \
+  --data-urlencode 'talker_uid=2' \
+  --data-urlencode 'setting=1' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
 }
 ```
 
@@ -1214,11 +1459,7 @@ curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
 | msg     | str  | 错误信息 | 成功时为0                                         |
 | message | str  | 错误信息 | 成功时为0                                         |
 | ttl     | num  |          | 默认为1                                           |
-| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 |                                                   |
-
-`data`对象：
-
-一个不含任何项目的对象，即 `{}`
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
 
 **示例：**
 
