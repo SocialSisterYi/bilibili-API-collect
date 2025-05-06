@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-60c67fef","path":"/docs/live/follow_up_live.html","title":"关注UP直播情况","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"用户关注的所有UP的直播情况","slug":"用户关注的所有up的直播情况","link":"#用户关注的所有up的直播情况","children":[]}],"git":{},"filePathRelative":"docs/live/follow_up_live.md"}');export{e as data};

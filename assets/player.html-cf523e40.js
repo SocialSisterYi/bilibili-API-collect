@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-17800a69","path":"/docs/video/player.html","title":"播放器","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"web 播放器信息","slug":"web-播放器信息","link":"#web-播放器信息","children":[]},{"level":2,"title":"播放反馈","slug":"播放反馈","link":"#播放反馈","children":[]}],"git":{},"filePathRelative":"docs/video/player.md"}');export{e as data};

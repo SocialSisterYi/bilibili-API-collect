@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-673bee43","path":"/docs/misc/picture.html","title":"图片格式化","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"avg_color格式说明","slug":"avg-color格式说明","link":"#avg-color格式说明","children":[]}],"git":{},"filePathRelative":"docs/misc/picture.md"}');export{e as data};
