@@ -71,7 +71,7 @@
 
 ```shell
 curl 'https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/feed/space' \
---url-query 'host_mid=645769214' 
+--url-query 'host_mid=645769214'
 ```
 
 <details>
