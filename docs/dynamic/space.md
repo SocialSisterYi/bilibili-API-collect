@@ -4461,3 +4461,7 @@ curl 'https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space?host_mid=2095
 ```
 
 </details>
+
+## 设置置顶动态
+
+参见 [置顶动态](action.md#置顶动态)

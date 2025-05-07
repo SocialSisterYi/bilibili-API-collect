@@ -229,3 +229,62 @@ curl 'https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/rm_draft' \
 ```
 
 </details>
+
+## 置顶动态
+
+> https://api.bilibili.com/x/dynamic/feed/space/set_top
+
+**请求方法: POST**
+
+认证方式: Cookie (SESSDATA)
+
+**URL 参数:**
+
+| 参数名 | 类型   | 内容   | 必要性 | 备注 |
+| ------ | ------ | ------ | ------ | ---- |
+| csrf   | string | CSRF Token (即 Cookie 中 bili_jct) | 必要 |  |
+
+**正文参数 (application/json):**
+
+根对象:
+
+| 参数名  | 类型   | 内容     | 必要性 | 备注 |
+| ------- | ------ | -------- | ------ | ---- |
+| dyn_str | string | 动态 id  | 必要   |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型   | 内容 | 备注 |
+| ---- | ------ | ---- | ---- |
+| code | number | 返回值 | 0: 成功<br />-101: 账号未登录<br />-111: csrf 校验失败<br />4100001: 参数错误 |
+| message | string | 错误消息 | 成功时为 `0` |
+| ttl  | number | `1`  |      |
+| data | object | 空对象 |    |
+
+**示例:**
+
+
+置顶动态 `1063487284684259332`
+
+```shell
+curl -X POST 'https://api.bilibili.com/x/dynamic/feed/space/set_top' \
+  --url-query 'csrf=xxx' \
+  -b 'SESSDATA=xxxxx' \
+  -H 'content-type: application/json' \
+  --data-raw '{"dyn_str":"1063487284684259332"}'
+```
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
