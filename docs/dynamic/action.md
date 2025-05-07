@@ -238,6 +238,8 @@ curl 'https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/rm_draft' \
 
 认证方式: Cookie (SESSDATA)
 
+鉴权方式: Cookie 中 `buvid3` 不为空
+
 **URL 参数:**
 
 | 参数名 | 类型   | 内容   | 必要性 | 备注 |
@@ -271,7 +273,7 @@ curl 'https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/rm_draft' \
 ```shell
 curl -X POST 'https://api.bilibili.com/x/dynamic/feed/space/set_top' \
   --url-query 'csrf=xxx' \
-  -b 'SESSDATA=xxxxx' \
+  -b 'SESSDATA=xxxxx; buvid3=aaa' \
   -H 'content-type: application/json' \
   --data-raw '{"dyn_str":"1063487284684259332"}'
 ```
