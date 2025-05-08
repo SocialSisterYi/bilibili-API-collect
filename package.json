@@ -9,12 +9,12 @@
     "build": "NODE_OPTIONS='--max-old-space-size=8192' vuepress build"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "^2.0.0-rc.21",
-    "@vuepress/plugin-search": "^2.0.0-rc.94",
-    "@vuepress/plugin-shiki": "^2.0.0-rc.94",
-    "@vuepress/theme-default": "^2.0.0-rc.96",
+    "@vuepress/bundler-vite": "^2.0.0-rc.23",
+    "@vuepress/plugin-search": "^2.0.0-rc.103",
+    "@vuepress/plugin-shiki": "^2.0.0-rc.103",
+    "@vuepress/theme-default": "^2.0.0-rc.103",
     "markdown-it-task-lists": "^2.1.1",
-    "sass-embedded": "^1.86.3",
-    "vuepress": "^2.0.0-rc.21"
+    "sass-embedded": "^1.87.0",
+    "vuepress": "^2.0.0-rc.23"
   }
 }
