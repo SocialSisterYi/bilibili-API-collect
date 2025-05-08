@@ -248,7 +248,7 @@ curl -G 'https://app.bilibili.com/x/topic/pub/rcmd/search'
 **示例:**
 
 ```shell
-curl -
+curl -G 'https://app.bilibili.com/x/topic/web/dynamic/rcmd?page_size=9'
 ```
 
 <details>
