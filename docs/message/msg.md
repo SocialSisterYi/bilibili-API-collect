@@ -2,8 +2,9 @@
 
 ## 获取未读消息数
 
-> https://api.bilibili.com/x/msgfeed/unread
-> https://api.vc.bilibili.com/x/im/web/msgfeed/unread (新接口)
+> <https://api.bilibili.com/x/msgfeed/unread>
+
+> <https://api.vc.bilibili.com/x/im/web/msgfeed/unread> (新接口)
 
 *请求方式：GET*
 
@@ -52,7 +53,7 @@
 
 ```shell
 curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
--b 'SESSDATA=xxx'
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -60,23 +61,23 @@ curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"at": 3,
-		"chat": 0,
-		"coin": 0,
-		"danmu": 0,
-		"favorite": 0,
-		"like": 10,
-		"recv_like": 10,
-		"recv_reply": 4,
-		"reply": 4,
-		"sys_msg": 2,
-		"sys_msg_style": 1,
-		"up": 1
-	}
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "at": 3,
+    "chat": 0,
+    "coin": 0,
+    "danmu": 0,
+    "favorite": 0,
+    "like": 10,
+    "recv_like": 10,
+    "recv_reply": 4,
+    "reply": 4,
+    "sys_msg": 2,
+    "sys_msg_style": 1,
+    "up": 1
+  }
 }
 ```
 

@@ -6,7 +6,7 @@
 
 | 字段                 | 类型 | 内容                             | 备注                                                |
 | -------------------- | ---- | -------------------------------- | --------------------------------------------------- |
-| talker_id            | num  | 聊天对象的id                     | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| talker_id            | num  | 聊天对象的id                     | `session_type` 为 `1` 时表示 mid，为 `2` 时表示粉丝团 id |
 | session_type         | num  | 聊天对象的类型                   | 1：用户<br />2：粉丝团                              |
 | at_seqno             | num  | 最近一次未读at自己的消息的序列号 | 在粉丝团会话中有效，若没有未读的 at 自己的消息则为 `0` |
 | top_ts               | num  | 置顶该会话的时间                 | 微秒级时间戳；若未置顶该会话则为 `0`；用于判断是否置顶了会话 |
@@ -93,9 +93,11 @@
 | 18   | 系统提示                  | 目前仅在 `msg_type` 为 `18` 时使用该代码，如：“对方主动回复或关注你前，最多发送1条消息” |
 | 19   | AI                        | 如：给[搜索AI助手测试版](https://space.bilibili.com/1400565964/)发送私信时对方的自动回复 |
 
-## 获取未读私信数
+## 会话相关
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread
+### 获取未读私信数
+
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread>
 
 *请求方式：GET*
 
@@ -144,12 +146,12 @@
 
 ```shell
 curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
-    --data-urlencode 'unread_type=0' \
-    --data-urlencode 'show_unfollow_list=1' \
-    --data-urlencode 'show_dustbin=1' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
+  --data-urlencode 'unread_type=0' \
+  --data-urlencode 'show_unfollow_list=1' \
+  --data-urlencode 'show_dustbin=1' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -157,28 +159,28 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ```json
 {
-    "code": 0,
-    "msg": "0",
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "unfollow_unread": 1,
-        "follow_unread": 6,
-        "unfollow_push_msg": 0,
-        "dustbin_push_msg": 0,
-        "dustbin_unread": 0,
-        "biz_msg_unfollow_unread": 0,
-        "biz_msg_follow_unread": 0,
-        "custom_unread": 0
-    }
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "unfollow_unread": 1,
+    "follow_unread": 6,
+    "unfollow_push_msg": 0,
+    "dustbin_push_msg": 0,
+    "dustbin_unread": 0,
+    "biz_msg_unfollow_unread": 0,
+    "biz_msg_follow_unread": 0,
+    "custom_unread": 0
+  }
 }
 ```
 
 </details>
 
-## 获取指定类型会话列表
+### 获取指定类型会话列表
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions>
 
 *请求方式：GET*
 
@@ -241,14 +243,14 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 
 ```shell
 curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
-    --data-urlencode 'session_type=1' \
-    --data-urlencode 'group_fold=0' \
-    --data-urlencode 'unfollow_fold=0' \
-    --data-urlencode 'sort_rule=2' \
-    --data-urlencode 'size=3' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'group_fold=0' \
+  --data-urlencode 'unfollow_fold=0' \
+  --data-urlencode 'sort_rule=2' \
+  --data-urlencode 'size=3' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -256,160 +258,160 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
 
 ```json
 {
-    "code": 0,
-    "msg": "0",
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "session_list": [
-            {
-                "talker_id": 844424930131966,
-                "session_type": 1,
-                "at_seqno": 0,
-                "top_ts": 0,
-                "group_name": "",
-                "group_cover": "",
-                "is_follow": 1,
-                "is_dnd": 0,
-                "ack_seqno": 1238729956474887,
-                "ack_ts": 1709536924979884,
-                "session_ts": 1712305278098351,
-                "unread_count": 4,
-                "last_msg": {
-                    "sender_uid": 844424930131966,
-                    "receiver_type": 1,
-                    "receiver_id": 425503913,
-                    "msg_type": 10,
-                    "content": "{\"title\":\"流量奖励到账通知\",\"text\":\"恭喜您已获得2000流量曝光奖励，快来投稿使用吧。\",\"jump_text\":\"\",\"jump_uri\":\"\",\"modules\":null,\"jump_text_2\":\"\",\"jump_uri_2\":\"\",\"jump_text_3\":\"\",\"jump_uri_3\":\"\",\"notifier\":null,\"jump_uri_config\":{\"all_uri\":\"https://member.bilibili.com/york/flow-reward?navhide=1\\u0026from=msgrecall\",\"text\":\"\"},\"jump_uri_2_config\":{\"text\":\"\"},\"jump_uri_3_config\":{\"text\":\"\"},\"biz_content\":null}",
-                    "msg_seqno": 1285290404823041,
-                    "timestamp": 1712305278,
-                    "at_uids": null,
-                    "msg_key": 7354295169819585966,
-                    "msg_status": 0,
-                    "notify_code": "2091_253",
-                    "new_face_version": 1,
-                    "msg_source": 6
-                },
-                "group_type": 0,
-                "can_fold": 0,
-                "status": 0,
-                "max_seqno": 1285290404823041,
-                "new_push_msg": 1,
-                "setting": 0,
-                "is_guardian": 0,
-                "is_intercept": 0,
-                "is_trust": 0,
-                "system_msg_type": 7,
-                "account_info": {
-                    "name": "UP主小助手",
-                    "pic_url": "https://message.biliimg.com/bfs/im/489a63efadfb202366c2f88853d2217b5ddc7a13.png"
-                },
-                "live_status": 0,
-                "biz_msg_unread_count": 0,
-                "user_label": null
-            },
-            {
-                "talker_id": 293793435,
-                "session_type": 1,
-                "at_seqno": 0,
-                "top_ts": 0,
-                "group_name": "",
-                "group_cover": "",
-                "is_follow": 1,
-                "is_dnd": 0,
-                "ack_seqno": 1236306587877408,
-                "ack_ts": 1709536984481314,
-                "session_ts": 1709385615744065,
-                "unread_count": 0,
-                "last_msg": {
-                    "sender_uid": 293793435,
-                    "receiver_type": 1,
-                    "receiver_id": 425503913,
-                    "msg_type": 11,
-                    "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
-                    "msg_seqno": 1236306587877408,
-                    "timestamp": 1709385615,
-                    "at_uids": null,
-                    "msg_key": 7341755312943193481,
-                    "msg_status": 0,
-                    "notify_code": "",
-                    "new_face_version": 1,
-                    "msg_source": 6
-                },
-                "group_type": 0,
-                "can_fold": 0,
-                "status": 0,
-                "max_seqno": 1236306587877408,
-                "new_push_msg": 0,
-                "setting": 0,
-                "is_guardian": 0,
-                "is_intercept": 0,
-                "is_trust": 0,
-                "system_msg_type": 0,
-                "live_status": 0,
-                "biz_msg_unread_count": 0,
-                "user_label": null
-            },
-            {
-                "talker_id": 221082140,
-                "session_type": 2,
-                "at_seqno": 0,
-                "top_ts": 0,
-                "group_name": "社会易姐QwQ的应援团",
-                "group_cover": "http://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
-                "is_follow": 0,
-                "is_dnd": 0,
-                "ack_seqno": 20,
-                "ack_ts": 1695011620552332,
-                "session_ts": 1693626568439784,
-                "unread_count": 0,
-                "last_msg": {
-                    "sender_uid": 0,
-                    "receiver_type": 2,
-                    "receiver_id": 221082140,
-                    "msg_type": 306,
-                    "content": "{\"group_id\":221082140,\"content\":\"欢迎罗板栗入群\"}",
-                    "msg_seqno": 20,
-                    "timestamp": 1693626568,
-                    "at_uids": null,
-                    "msg_key": 7274070721607234847,
-                    "msg_status": 0,
-                    "notify_code": "",
-                    "msg_source": 13
-                },
-                "group_type": 0,
-                "can_fold": 0,
-                "status": 0,
-                "max_seqno": 20,
-                "new_push_msg": 0,
-                "setting": 0,
-                "is_guardian": 0,
-                "is_intercept": 0,
-                "is_trust": 0,
-                "system_msg_type": 0,
-                "live_status": 0,
-                "biz_msg_unread_count": 0,
-                "user_label": null
-            }
-        ],
-        "has_more": 1,
-        "anti_disturb_cleaning": false,
-        "is_address_list_empty": 0,
-        "system_msg": {
-            "1": 844424930131967,
-            "7": 844424930131966, 
-            "9": 844424930131965
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "session_list": [
+      {
+        "talker_id": 844424930131966,
+        "session_type": 1,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "",
+        "group_cover": "",
+        "is_follow": 1,
+        "is_dnd": 0,
+        "ack_seqno": 1238729956474887,
+        "ack_ts": 1709536924979884,
+        "session_ts": 1712305278098351,
+        "unread_count": 4,
+        "last_msg": {
+          "sender_uid": 844424930131966,
+          "receiver_type": 1,
+          "receiver_id": 425503913,
+          "msg_type": 10,
+          "content": "{\"title\":\"流量奖励到账通知\",\"text\":\"恭喜您已获得2000流量曝光奖励，快来投稿使用吧。\",\"jump_text\":\"\",\"jump_uri\":\"\",\"modules\":null,\"jump_text_2\":\"\",\"jump_uri_2\":\"\",\"jump_text_3\":\"\",\"jump_uri_3\":\"\",\"notifier\":null,\"jump_uri_config\":{\"all_uri\":\"https://member.bilibili.com/york/flow-reward?navhide=1\\u0026from=msgrecall\",\"text\":\"\"},\"jump_uri_2_config\":{\"text\":\"\"},\"jump_uri_3_config\":{\"text\":\"\"},\"biz_content\":null}",
+          "msg_seqno": 1285290404823041,
+          "timestamp": 1712305278,
+          "at_uids": null,
+          "msg_key": 7354295169819585966,
+          "msg_status": 0,
+          "notify_code": "2091_253",
+          "new_face_version": 1,
+          "msg_source": 6
         },
-        "show_level": true
-    }
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 1285290404823041,
+        "new_push_msg": 1,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 7,
+        "account_info": {
+          "name": "UP主小助手",
+          "pic_url": "https://message.biliimg.com/bfs/im/489a63efadfb202366c2f88853d2217b5ddc7a13.png"
+        },
+        "live_status": 0,
+        "biz_msg_unread_count": 0,
+        "user_label": null
+      },
+      {
+        "talker_id": 293793435,
+        "session_type": 1,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "",
+        "group_cover": "",
+        "is_follow": 1,
+        "is_dnd": 0,
+        "ack_seqno": 1236306587877408,
+        "ack_ts": 1709536984481314,
+        "session_ts": 1709385615744065,
+        "unread_count": 0,
+        "last_msg": {
+          "sender_uid": 293793435,
+          "receiver_type": 1,
+          "receiver_id": 425503913,
+          "msg_type": 11,
+          "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
+          "msg_seqno": 1236306587877408,
+          "timestamp": 1709385615,
+          "at_uids": null,
+          "msg_key": 7341755312943193481,
+          "msg_status": 0,
+          "notify_code": "",
+          "new_face_version": 1,
+          "msg_source": 6
+        },
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 1236306587877408,
+        "new_push_msg": 0,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 0,
+        "live_status": 0,
+        "biz_msg_unread_count": 0,
+        "user_label": null
+      },
+      {
+        "talker_id": 221082140,
+        "session_type": 2,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "社会易姐QwQ的应援团",
+        "group_cover": "http://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
+        "is_follow": 0,
+        "is_dnd": 0,
+        "ack_seqno": 20,
+        "ack_ts": 1695011620552332,
+        "session_ts": 1693626568439784,
+        "unread_count": 0,
+        "last_msg": {
+          "sender_uid": 0,
+          "receiver_type": 2,
+          "receiver_id": 221082140,
+          "msg_type": 306,
+          "content": "{\"group_id\":221082140,\"content\":\"欢迎罗板栗入群\"}",
+          "msg_seqno": 20,
+          "timestamp": 1693626568,
+          "at_uids": null,
+          "msg_key": 7274070721607234847,
+          "msg_status": 0,
+          "notify_code": "",
+          "msg_source": 13
+        },
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 20,
+        "new_push_msg": 0,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 0,
+        "live_status": 0,
+        "biz_msg_unread_count": 0,
+        "user_label": null
+      }
+    ],
+    "has_more": 1,
+    "anti_disturb_cleaning": false,
+    "is_address_list_empty": 0,
+    "system_msg": {
+      "1": 844424930131967,
+      "7": 844424930131966,
+      "9": 844424930131965
+    },
+    "show_level": true
+  }
 }
 ```
 
 </details>
 
-## 获取新会话列表
+### 获取新会话列表
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions>
 
 *请求方式：GET*
 
@@ -462,11 +464,11 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
 
 ```shell
 curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
-    --data-urlencode 'begin_ts=1712420213519391' \
-    --data-urlencode 'size=3' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
+  --data-urlencode 'begin_ts=1712420213519391' \
+  --data-urlencode 'size=3' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -474,155 +476,155 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 
 ```json
 {
-    "code": 0,
-    "msg": "0",
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "session_list": [
-            {
-                "talker_id": 844424930131966,
-                "session_type": 1,
-                "at_seqno": 0,
-                "top_ts": 0,
-                "group_name": "",
-                "group_cover": "",
-                "is_follow": 1,
-                "is_dnd": 0,
-                "ack_seqno": 1238729956474887,
-                "ack_ts": 1709536924979884,
-                "session_ts": 1712305278098351,
-                "unread_count": 4,
-                "last_msg": {
-                    "sender_uid": 844424930131966,
-                    "receiver_type": 1,
-                    "receiver_id": 425503913,
-                    "msg_type": 10,
-                    "content": "{\"title\":\"流量奖励到账通知\",\"text\":\"恭喜您已获得2000流量曝光奖励，快来投稿使用吧。\",\"jump_text\":\"\",\"jump_uri\":\"\",\"modules\":null,\"jump_text_2\":\"\",\"jump_uri_2\":\"\",\"jump_text_3\":\"\",\"jump_uri_3\":\"\",\"notifier\":null,\"jump_uri_config\":{\"all_uri\":\"https://member.bilibili.com/york/flow-reward?navhide=1\\u0026from=msgrecall\",\"text\":\"\"},\"jump_uri_2_config\":{\"text\":\"\"},\"jump_uri_3_config\":{\"text\":\"\"},\"biz_content\":null}",
-                    "msg_seqno": 1285290404823041,
-                    "timestamp": 1712305278,
-                    "at_uids": null,
-                    "msg_key": 7354295169819585966,
-                    "msg_status": 0,
-                    "notify_code": "2091_253",
-                    "new_face_version": 1,
-                    "msg_source": 6
-                },
-                "group_type": 0,
-                "can_fold": 0,
-                "status": 0,
-                "max_seqno": 1285290404823041,
-                "new_push_msg": 1,
-                "setting": 0,
-                "is_guardian": 0,
-                "is_intercept": 0,
-                "is_trust": 0,
-                "system_msg_type": 7,
-                "account_info": {
-                    "name": "UP主小助手",
-                    "pic_url": "https://message.biliimg.com/bfs/im/489a63efadfb202366c2f88853d2217b5ddc7a13.png"
-                },
-                "live_status": 0,
-                "biz_msg_unread_count": 0,
-                "user_label": null
-            },
-            {
-                "talker_id": 293793435,
-                "session_type": 1,
-                "at_seqno": 0,
-                "top_ts": 0,
-                "group_name": "",
-                "group_cover": "",
-                "is_follow": 1,
-                "is_dnd": 0,
-                "ack_seqno": 1236306587877408,
-                "ack_ts": 1709536984481314,
-                "session_ts": 1709385615744065,
-                "unread_count": 0,
-                "last_msg": {
-                    "sender_uid": 293793435,
-                    "receiver_type": 1,
-                    "receiver_id": 425503913,
-                    "msg_type": 11,
-                    "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
-                    "msg_seqno": 1236306587877408,
-                    "timestamp": 1709385615,
-                    "at_uids": null,
-                    "msg_key": 7341755312943193481,
-                    "msg_status": 0,
-                    "notify_code": "",
-                    "new_face_version": 1,
-                    "msg_source": 6
-                },
-                "group_type": 0,
-                "can_fold": 0,
-                "status": 0,
-                "max_seqno": 1236306587877408,
-                "new_push_msg": 0,
-                "setting": 0,
-                "is_guardian": 0,
-                "is_intercept": 0,
-                "is_trust": 0,
-                "system_msg_type": 0,
-                "live_status": 0,
-                "biz_msg_unread_count": 0,
-                "user_label": null
-            },
-            {
-                "talker_id": 221082140,
-                "session_type": 2,
-                "at_seqno": 0,
-                "top_ts": 0,
-                "group_name": "社会易姐QwQ的应援团",
-                "group_cover": "http://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
-                "is_follow": 0,
-                "is_dnd": 0,
-                "ack_seqno": 20,
-                "ack_ts": 1695011620552332,
-                "session_ts": 1693626568439784,
-                "unread_count": 0,
-                "last_msg": {
-                    "sender_uid": 0,
-                    "receiver_type": 2,
-                    "receiver_id": 221082140,
-                    "msg_type": 306,
-                    "content": "{\"group_id\":221082140,\"content\":\"欢迎罗板栗入群\"}",
-                    "msg_seqno": 20,
-                    "timestamp": 1693626568,
-                    "at_uids": null,
-                    "msg_key": 7274070721607234847,
-                    "msg_status": 0,
-                    "notify_code": "",
-                    "msg_source": 13
-                },
-                "group_type": 0,
-                "can_fold": 0,
-                "status": 0,
-                "max_seqno": 20,
-                "new_push_msg": 0,
-                "setting": 0,
-                "is_guardian": 0,
-                "is_intercept": 0,
-                "is_trust": 0,
-                "system_msg_type": 0,
-                "live_status": 0,
-                "biz_msg_unread_count": 0,
-                "user_label": null
-            }
-        ],
-        "has_more": 0,
-        "anti_disturb_cleaning": false,
-        "is_address_list_empty": 0,
-        "show_level": false
-    }
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "session_list": [
+      {
+        "talker_id": 844424930131966,
+        "session_type": 1,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "",
+        "group_cover": "",
+        "is_follow": 1,
+        "is_dnd": 0,
+        "ack_seqno": 1238729956474887,
+        "ack_ts": 1709536924979884,
+        "session_ts": 1712305278098351,
+        "unread_count": 4,
+        "last_msg": {
+          "sender_uid": 844424930131966,
+          "receiver_type": 1,
+          "receiver_id": 425503913,
+          "msg_type": 10,
+          "content": "{\"title\":\"流量奖励到账通知\",\"text\":\"恭喜您已获得2000流量曝光奖励，快来投稿使用吧。\",\"jump_text\":\"\",\"jump_uri\":\"\",\"modules\":null,\"jump_text_2\":\"\",\"jump_uri_2\":\"\",\"jump_text_3\":\"\",\"jump_uri_3\":\"\",\"notifier\":null,\"jump_uri_config\":{\"all_uri\":\"https://member.bilibili.com/york/flow-reward?navhide=1\\u0026from=msgrecall\",\"text\":\"\"},\"jump_uri_2_config\":{\"text\":\"\"},\"jump_uri_3_config\":{\"text\":\"\"},\"biz_content\":null}",
+          "msg_seqno": 1285290404823041,
+          "timestamp": 1712305278,
+          "at_uids": null,
+          "msg_key": 7354295169819585966,
+          "msg_status": 0,
+          "notify_code": "2091_253",
+          "new_face_version": 1,
+          "msg_source": 6
+        },
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 1285290404823041,
+        "new_push_msg": 1,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 7,
+        "account_info": {
+          "name": "UP主小助手",
+          "pic_url": "https://message.biliimg.com/bfs/im/489a63efadfb202366c2f88853d2217b5ddc7a13.png"
+        },
+        "live_status": 0,
+        "biz_msg_unread_count": 0,
+        "user_label": null
+      },
+      {
+        "talker_id": 293793435,
+        "session_type": 1,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "",
+        "group_cover": "",
+        "is_follow": 1,
+        "is_dnd": 0,
+        "ack_seqno": 1236306587877408,
+        "ack_ts": 1709536984481314,
+        "session_ts": 1709385615744065,
+        "unread_count": 0,
+        "last_msg": {
+          "sender_uid": 293793435,
+          "receiver_type": 1,
+          "receiver_id": 425503913,
+          "msg_type": 11,
+          "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
+          "msg_seqno": 1236306587877408,
+          "timestamp": 1709385615,
+          "at_uids": null,
+          "msg_key": 7341755312943193481,
+          "msg_status": 0,
+          "notify_code": "",
+          "new_face_version": 1,
+          "msg_source": 6
+        },
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 1236306587877408,
+        "new_push_msg": 0,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 0,
+        "live_status": 0,
+        "biz_msg_unread_count": 0,
+        "user_label": null
+      },
+      {
+        "talker_id": 221082140,
+        "session_type": 2,
+        "at_seqno": 0,
+        "top_ts": 0,
+        "group_name": "社会易姐QwQ的应援团",
+        "group_cover": "http://i0.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg",
+        "is_follow": 0,
+        "is_dnd": 0,
+        "ack_seqno": 20,
+        "ack_ts": 1695011620552332,
+        "session_ts": 1693626568439784,
+        "unread_count": 0,
+        "last_msg": {
+          "sender_uid": 0,
+          "receiver_type": 2,
+          "receiver_id": 221082140,
+          "msg_type": 306,
+          "content": "{\"group_id\":221082140,\"content\":\"欢迎罗板栗入群\"}",
+          "msg_seqno": 20,
+          "timestamp": 1693626568,
+          "at_uids": null,
+          "msg_key": 7274070721607234847,
+          "msg_status": 0,
+          "notify_code": "",
+          "msg_source": 13
+        },
+        "group_type": 0,
+        "can_fold": 0,
+        "status": 0,
+        "max_seqno": 20,
+        "new_push_msg": 0,
+        "setting": 0,
+        "is_guardian": 0,
+        "is_intercept": 0,
+        "is_trust": 0,
+        "system_msg_type": 0,
+        "live_status": 0,
+        "biz_msg_unread_count": 0,
+        "user_label": null
+      }
+    ],
+    "has_more": 0,
+    "anti_disturb_cleaning": false,
+    "is_address_list_empty": 0,
+    "show_level": false
+  }
 }
 ```
 
 </details>
 
-## 获取会话详细信息
+### 获取会话详细信息
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail>
 
 *请求方式：GET*
 
@@ -657,11 +659,11 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/new_sessions' \
 
 ```shell
 curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' \
-    --data-urlencode 'talker_id=293793435' \
-    --data-urlencode 'session_type=1' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
+  --data-urlencode 'talker_id=293793435' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -669,60 +671,443 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 ```json
 {
-    "code": 0,
-    "msg": "0",
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "talker_id": 293793435,
-        "session_type": 1,
-        "at_seqno": 0,
-        "top_ts": 0,
-        "group_name": "",
-        "group_cover": "",
-        "is_follow": 1,
-        "is_dnd": 0,
-        "ack_seqno": 1236306587877408,
-        "ack_ts": 1709536984481314,
-        "session_ts": 1709385615744065,
-        "unread_count": 0,
-        "last_msg": {
-            "sender_uid": 293793435,
-            "receiver_type": 1,
-            "receiver_id": 425503913,
-            "msg_type": 11,
-            "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
-            "msg_seqno": 1236306587877408,
-            "timestamp": 1709385615,
-            "at_uids": null,
-            "msg_key": 7341755312943193481,
-            "msg_status": 0,
-            "notify_code": "",
-            "new_face_version": 1,
-            "msg_source": 6
-        },
-        "group_type": 0,
-        "can_fold": 0,
-        "status": 0,
-        "max_seqno": 1236306587877408,
-        "new_push_msg": 0,
-        "setting": 0,
-        "is_guardian": 0,
-        "is_intercept": 0,
-        "is_trust": 0,
-        "system_msg_type": 0,
-        "live_status": 0,
-        "biz_msg_unread_count": 0,
-        "user_label": null
-    }
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "talker_id": 293793435,
+    "session_type": 1,
+    "at_seqno": 0,
+    "top_ts": 0,
+    "group_name": "",
+    "group_cover": "",
+    "is_follow": 1,
+    "is_dnd": 0,
+    "ack_seqno": 1236306587877408,
+    "ack_ts": 1709536984481314,
+    "session_ts": 1709385615744065,
+    "unread_count": 0,
+    "last_msg": {
+      "sender_uid": 293793435,
+      "receiver_type": 1,
+      "receiver_id": 425503913,
+      "msg_type": 11,
+      "content": "{\"title\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"times\":14,\"cover\":\"http://i0.hdslb.com/bfs/archive/8821c03ab27a0bcf2bf32af814e758ab17a1e27e.png\",\"rid\":1951316064,\"type_\":8,\"desc\":\"OHHHHHH家人们，我分数终于破w了！紫框了这下确实不好意思说自己是只打红谱的萌新了\",\"bvid\":\"BV1zC411p7JN\",\"view\":452,\"danmaku\":0,\"pub_date\":1709385603,\"attach_msg\":null}",
+      "msg_seqno": 1236306587877408,
+      "timestamp": 1709385615,
+      "at_uids": null,
+      "msg_key": 7341755312943193481,
+      "msg_status": 0,
+      "notify_code": "",
+      "new_face_version": 1,
+      "msg_source": 6
+    },
+    "group_type": 0,
+    "can_fold": 0,
+    "status": 0,
+    "max_seqno": 1236306587877408,
+    "new_push_msg": 0,
+    "setting": 0,
+    "is_guardian": 0,
+    "is_intercept": 0,
+    "is_trust": 0,
+    "system_msg_type": 0,
+    "live_status": 0,
+    "biz_msg_unread_count": 0,
+    "user_label": null
+  }
 }
 ```
 
 </details>
 
-## 查询私信消息记录
+### 获取会话限制状态
 
-> https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit>
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+仅支持用户会话
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| uid    | num  | 聊天对象mid | 必要   |      |
+| type   | num  | 1           | 必要   |      |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段         | 类型 | 内容                     | 备注                         |
+| ------------ | ---- | ------------------------ | ---------------------------- |
+| is_limit     | num  | 用户是否被封禁           |                              |
+| report_limit | num  | 自己是否被限制举报该会话 | 常见于自己被封禁时出现该情况 |
+
+**示例：**
+
+获取`uid=123`的限制状态：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
+  --data-urlencode 'uid=123' \
+  --data-urlencode 'type=1' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "is_limit": 0,
+    "report_limit": 0
+  }
+}
+```
+
+</details>
+
+### 获取会话推送设置
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss>
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+仅支持用户会话
+
+**url参数：**
+
+| 参数名     | 类型 | 内容             | 必要性 | 备注          |
+| ---------- | ---- | ---------------- | ------ | ------------- |
+| talker_uid | num  | 聊天对象mid      | 必要   |               |
+| build      | num  | 客户端内部版本号 | 非必要 | 默认为 `0`    |
+| mobi_app   | str  | 平台标识         | 非必要 | 可为 `web` 等 |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 默认为0                                           |
+| message | str  | 错误信息 | 默认为0                                           |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 数据本体 |                                                   |
+
+`data`对象：
+
+| 字段              | 类型 | 内容                   | 备注                                |
+| ----------------- | ---- | ---------------------- | ----------------------------------- |
+| follow_status     | num  | 对方对于自己的关注属性 | 0：未关注<br />~~1：悄悄关注（现已下线）~~<br />2：已关注<br />6：已互粉<br />128：已拉黑 |
+| special           | num  | 自己是否特别关注了对方 |                                     |
+| push_setting      | num  | 推送设置               | 0：接收推送<br />1：不接收推送      |
+| show_push_setting | num  | 是否显示推送设置       |                                     |
+
+**示例：**
+
+获取`talker_uid=123`的推送设置：
+
+```shell
+curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss' \
+  --data-urlencode 'talker_uid=123' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "follow_status": 6,
+    "special": 1,
+    "push_setting": 0,
+    "show_push_setting": 1
+  }
+}
+```
+
+</details>
+
+### 修改会话置顶状态
+
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/set_top>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名       | 类型 | 内容                     | 必要性 | 备注                                                 |
+| ------------ | ---- | ------------------------ | ------ | ---------------------------------------------------- |
+| talker_id    | num  | 聊天对象的id             | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| session_type | num  | 聊天对象的类型           | 必要   | 1：用户<br />2：粉丝团                               |
+| op_type      | num  | 操作类型                 | 必要   | 0：置顶<br />1：取消置顶                             |
+| csrf_token   | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| csrf         | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| build        | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
+| mobi_app     | str  | 平台标识                 | 非必要 | 可为 `web` 等                                        |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+置顶会话`talker_id=293793435&session_type=1`
+
+```shell
+curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/set_top' \
+  --data-urlencode 'talker_id=2' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'op_type=0' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+### 移除指定会话
+
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/remove_session>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+将指定会话从会话列表中移除，不会删除聊天记录
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名       | 类型 | 内容                     | 必要性 | 备注                                                 |
+| ------------ | ---- | ------------------------ | ------ | ---------------------------------------------------- |
+| talker_id    | num  | 聊天对象的id             | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
+| session_type | num  | 聊天对象的类型           | 必要   | 1：用户<br />2：粉丝团                               |
+| csrf_token   | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| csrf         | str  | CSRF Token（位于cookie） | 必要   |                                                      |
+| build        | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
+| mobi_app     | str  | 平台标识                 | 非必要 | 可为 `web` 等                                        |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+移除会话`talker_id=2&session_type=1`
+
+```shell
+curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/remove_session' \
+  --data-urlencode 'talker_id=2' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+### 修改会话免打扰状态
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/set_msg_dnd>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名       | 类型 | 内容                     | 必要性       | 备注                             |
+| ------------ | ---- | ------------------------ | ------------ | -------------------------------- |
+| uid          | num  | 自己的mid                | 非必要       |                                  |
+| setting      | num  | 免打扰设置               | 必要         | 0：取消免打扰<br />1：开启免打扰 |
+| dnd_uid      | num  | 用户mid                  | 必要（可选） | 当聊天对象为用户时有效           |
+| dnd_group_id | num  | 粉丝团id                 | 必要（可选） | 当聊天对象为粉丝团时有效         |
+| csrf_token   | str  | CSRF Token（位于cookie） | 必要         |                                  |
+| csrf         | str  | CSRF Token（位于cookie） | 必要         |                                  |
+| build        | num  | 客户端内部版本号         | 非必要       | 默认为 `0`                       |
+| mobi_app     | str  | 平台标识                 | 非必要       | 可为 `web` 等                    |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+对会话`dnd_uid=2`开启免打扰
+
+```shell
+curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set_msg_dnd' \
+  --data-urlencode 'uid=425503913' \
+  --data-urlencode 'setting=1' \
+  --data-urlencode 'dnd_uid=2' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+### 修改会话推送设置
+
+> <https://api.vc.bilibili.com/link_setting/v1/link_setting/set_push_ss>
+
+*请求方式：POST*
+
+认证方式：Cookie（SESSDATA）
+
+仅支持用户会话
+
+**正文参数（application/x-www-form-urlencoded）：**
+
+| 参数名     | 类型 | 内容                     | 必要性 | 备注                           |
+| ---------- | ---- | ------------------------ | ------ | ------------------------------ |
+| talker_uid | num  | 聊天对象mid              | 必要   |                                |
+| setting    | num  | 推送设置                 | 必要   | 0：接收推送<br />1：不接收推送 |
+| csrf_token | str  | CSRF Token（位于cookie） | 必要   |                                |
+| csrf       | str  | CSRF Token（位于cookie） | 必要   |                                |
+| build      | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                     |
+| mobi_app   | str  | 平台标识                 | 非必要 | 可为 `web` 等                  |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| msg     | str  | 错误信息 | 成功时为0                                         |
+| message | str  | 错误信息 | 成功时为0                                         |
+| ttl     | num  |          | 默认为1                                           |
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
+
+**示例：**
+
+修改`talker_uid=2`的推送设置为不接收推送
+
+```shell
+curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/set_push_ss' \
+  --data-urlencode 'talker_uid=2' \
+  --data-urlencode 'setting=1' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
+## 私信消息相关
+
+### 查询私信消息记录
+
+> <https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs>
 
 *请求方式：GET*
 
@@ -738,7 +1123,7 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 | ----------------- | ---- | ---------------- | ------ | ------------------------------------------------------ |
 | talker_id         | num  | 聊天对象的id     | 必要   | `session_type` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
 | session_type      | num  | 聊天对象的类型   | 必要   | 1：用户<br />2：粉丝团                                 |
-| size              | num  | 返回消息数量     | 非必要 | 默认为 0，最大为 200 <br />本参数不存在时，只返回系统提示 |
+| size              | num  | 返回消息数量     | 非必要 | 默认为 0，最大为 2000<br />当本参数为 `0` 或不存在时，只返回系统提示 |
 | begin_seqno       | num  | 开始的序列号     | 非必要 | 提供本参数时返回以本序列号开始（不包括本序列号）的消息 |
 | end_seqno         | num  | 结束的序列号     | 非必要 | 提供本参数时返回以本序列号结束（不包括本序列号）的消息 |
 | sender_device_id  | num  | 发送者设备       | 非必要 | 默认为 `1`                                             |
@@ -798,13 +1183,13 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/session_detail' 
 
 ```shell
 curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
-    --data-urlencode 'talker_id=123' \
-    --data-urlencode 'session_type=1' \
-    --data-urlencode 'size=20' \
-    --data-urlencode 'sender_device_id=1' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
+  --data-urlencode 'talker_id=123' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'size=20' \
+  --data-urlencode 'sender_device_id=1' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -812,202 +1197,66 @@ curl -G 'https://api.vc.bilibili.com/svr_sync/v1/svr_sync/fetch_session_msgs' \
 
 ```json
 {
-    "code": 0,
-    "msg": "0",
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "messages": [
-            {
-                "sender_uid": 2239814,
-                "receiver_type": 1,
-                "receiver_id": 123,
-                "msg_type": 1,
-                "content": "{\"content\":\"[口罩]\"}",
-                "msg_seqno": 309675413389322,
-                "timestamp": 1654154093,
-                "at_uids": [
-                    0
-                ],
-                "msg_key": 7104537732714964358,
-                "msg_status": 0,
-                "notify_code": "",
-                "new_face_version": 1,
-                "msg_source": 2
-            },
-            {
-                "sender_uid": 2239814,
-                "receiver_type": 1,
-                "receiver_id": 123,
-                "msg_type": 5,
-                "content": "{\"content\":\"1\"}",
-                "msg_seqno": 308302399586307,
-                "timestamp": 1654072255,
-                "at_uids": [
-                    0
-                ],
-                "msg_key": 7104186240789226795,
-                "msg_status": 0,
-                "notify_code": "",
-                "msg_source": 7
-
-            },
+  "code": 0,
+  "msg": "0",
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "messages": [
+      {
+        "sender_uid": 2239814,
+        "receiver_type": 1,
+        "receiver_id": 123,
+        "msg_type": 1,
+        "content": "{\"content\":\"[口罩]\"}",
+        "msg_seqno": 309675413389322,
+        "timestamp": 1654154093,
+        "at_uids": [
+          0
         ],
-        "has_more": 0,
-        "min_seqno": 308188515844097,
-        "max_seqno": 309675413389322,
-        "e_infos": [
-            {
-                "text": "[口罩]",
-                "url": "http://i0.hdslb.com/bfs/emote/3ad2f66b151496d2a5fb0a8ea75f32265d778dd3.png",
-                "size": 1
-            }
-        ]
-    }
-}
-```
+        "msg_key": 7104537732714964358,
+        "msg_status": 0,
+        "notify_code": "",
+        "new_face_version": 1,
+        "msg_source": 2
+      },
+      {
+        "sender_uid": 2239814,
+        "receiver_type": 1,
+        "receiver_id": 123,
+        "msg_type": 5,
+        "content": "{\"content\":\"1\"}",
+        "msg_seqno": 308302399586307,
+        "timestamp": 1654072255,
+        "at_uids": [
+          0
+        ],
+        "msg_key": 7104186240789226795,
+        "msg_status": 0,
+        "notify_code": "",
+        "msg_source": 7
 
-</details>
-
-## 获取会话限制状态
-
-> https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-仅对用户会话调用本接口
-
-**url参数：**
-
-| 参数名 | 类型 | 内容        | 必要性 | 备注 |
-| ------ | ---- | ----------- | ------ | ---- |
-| uid    | num  | 聊天对象mid | 必要   |      |
-| type   | num  | 1           | 必要   |      |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                                              |
-| ------- | ---- | -------- | ------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
-| msg     | str  | 错误信息 | 默认为0                                           |
-| message | str  | 错误信息 | 默认为0                                           |
-| ttl     | num  | 1        |                                                   |
-| data    | obj  | 数据本体 |                                                   |
-
-`data`对象：
-
-| 字段         | 类型 | 内容                     | 备注                         |
-| ------------ | ---- | ------------------------ | ---------------------------- |
-| is_limit     | num  | 用户是否被封禁           |                              |
-| report_limit | num  | 自己是否被限制举报该会话 | 常见于自己被封禁时出现该情况 |
-
-**示例：**
-
-获取`uid=123`的限制状态：
-
-```shell
-curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
-    --data-urlencode 'uid=123' \
-    --data-urlencode 'type=1' \
-    -b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-  "code": 0,
-  "msg": "0",
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "is_limit": 0,
-    "report_limit": 0
+      },
+    ],
+    "has_more": 0,
+    "min_seqno": 308188515844097,
+    "max_seqno": 309675413389322,
+    "e_infos": [
+      {
+        "text": "[口罩]",
+        "url": "http://i0.hdslb.com/bfs/emote/3ad2f66b151496d2a5fb0a8ea75f32265d778dd3.png",
+        "size": 1
+      }
+    ]
   }
 }
 ```
 
 </details>
 
-## 获取会话推送设置
+### 获取多个视频、番剧、专栏的信息
 
-> https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss
-
-*请求方式：GET*
-
-认证方式：Cookie（SESSDATA）
-
-仅对用户会话调用本接口
-
-**url参数：**
-
-| 参数名     | 类型 | 内容             | 必要性 | 备注          |
-| ---------- | ---- | ---------------- | ------ | ------------- |
-| talker_uid | num  | 聊天对象mid      | 必要   |               |
-| build      | num  | 客户端内部版本号 | 非必要 | 默认为 `0`    |
-| mobi_app   | str  | 平台标识         | 非必要 | 可为 `web` 等 |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                                              |
-| ------- | ---- | -------- | ------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />2：非法参数<br />-101：账号未登录<br />-400：请求错误 |
-| msg     | str  | 错误信息 | 默认为0                                           |
-| message | str  | 错误信息 | 默认为0                                           |
-| ttl     | num  | 1        |                                                   |
-| data    | obj  | 数据本体 |                                                   |
-
-`data`对象：
-
-| 字段              | 类型 | 内容                   | 备注                                |
-| ----------------- | ---- | ---------------------- | ----------------------------------- |
-| follow_status     | num  | 对方对于自己的关注属性 | 0：未关注<br />~~1：悄悄关注（现已下线）~~<br />2：已关注<br />6：已互粉<br />128：已拉黑 |
-| special           | num  | 自己是否特别关注了对方 |                                     |
-| push_setting      | num  | 推送设置               | 0：接收推送<br />1：不接收推送      |
-| show_push_setting | num  | 是否显示推送设置       |                                     |
-
-**示例：**
-
-获取`talker_uid=123`的推送设置：
-
-```shell
-curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss' \
-    --data-urlencode 'talker_uid=123' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-  "code": 0,
-  "msg": "0",
-  "message": "0",
-  "ttl": 1,
-  "data": {
-    "follow_status": 6,
-    "special": 1,
-    "push_setting": 0,
-    "show_push_setting": 1
-  }
-}
-```
-
-</details>
-
-## 获取多个视频、番剧、专栏的信息
-
-> https://api.vc.bilibili.com/x/im/feed/infoweb
+> <https://api.vc.bilibili.com/x/im/feed/infoweb>
 
 *请求方式：GET*
 
@@ -1111,12 +1360,12 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_session_ss
 
 ```shell
 curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
-    --data-urlencode 'aids=170001' \
-    --data-urlencode 'ep_ids=780019' \
-    --data-urlencode 'article_ids=1' \
-    --data-urlencode 'build=0' \
-    --data-urlencode 'mobi_app=web' \
-    -b 'SESSDATA=xxx'
+  --data-urlencode 'aids=170001' \
+  --data-urlencode 'ep_ids=780019' \
+  --data-urlencode 'article_ids=1' \
+  --data-urlencode 'build=0' \
+  --data-urlencode 'mobi_app=web' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1178,9 +1427,9 @@ curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
 
 </details>
 
-## 设置私信为已读
+### 设置私信为已读
 
-> https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack
+> <https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack>
 
 *请求方式：POST*
 
@@ -1210,11 +1459,7 @@ curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
 | msg     | str  | 错误信息 | 成功时为0                                         |
 | message | str  | 错误信息 | 成功时为0                                         |
 | ttl     | num  |          | 默认为1                                           |
-| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 |                                                   |
-
-`data`对象：
-
-一个不含任何项目的对象，即 `{}`
+| data    | 有效时：obj<br />无效时：不存在该项 | 信息本体 | 空对象                                            |
 
 **示例：**
 
@@ -1222,12 +1467,12 @@ curl -G 'https://api.vc.bilibili.com/x/im/feed/infoweb' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
---data-urlencode 'talker_id=293793435' \
---data-urlencode 'session_type=1' \
---data-urlencode 'ack_seqno=1236306587877408' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'talker_id=293793435' \
+  --data-urlencode 'session_type=1' \
+  --data-urlencode 'ack_seqno=1236306587877408' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1245,9 +1490,9 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 
 </details>
 
-## 发送私信（web端）
+### 发送私信（web端）
 
-> https://api.vc.bilibili.com/web_im/v1/web_im/send_msg
+> <https://api.vc.bilibili.com/web_im/v1/web_im/send_msg>
 
 *请求方式：POST*
 
@@ -1259,15 +1504,15 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 
 调用该接口会将该会话设置为已读
 
-**URL参数:**
+**URL参数：**
 
-| 参数名 | 类型 | 内容 | 必要性 | 备注 |
-| --- | --- | --- | --- | --- |
-| w_sender_uid | num | 发送者mid | 必要 | 必须为自己的 mid |
-| w_receiver_id | num | 接收者id | 必要 | 请求参数 `msg[receiver_type]` 为 `1` 时表示用户 mid，为 `2` 时表示粉丝团 id |
-| w_dev_id | str | 设备id | 必要 | 实质上即 UUID（版本 4），**生成方式见下** |
-| w_rid | str | Wbi 签名 | 必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
-| wts | str | UNIX 秒级时间戳 | 必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
+| 参数名        | 类型 | 内容            | 必要性 | 备注                                 |
+| ------------- | ---- | --------------- | ------ | ------------------------------------ |
+| w_sender_uid  | num  | 发送者mid       | 非必要 | 同正文参数 `msg[sender_uid]`         |
+| w_receiver_id | num  | 接收者id        | 非必要 | 同正文参数 `msg[receiver_id]`        |
+| w_dev_id      | str  | 设备id          | 非必要 | 同正文参数 `msg[dev_id]`             |
+| w_rid         | str  | Wbi 签名        | 非必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
+| wts           | str  | UNIX 秒级时间戳 | 非必要 | 参见 [Wbi 签名](../misc/sign/wbi.md) |
 
 **正文参数（application/x-www-form-urlencoded）：**
 
@@ -1281,7 +1526,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_ack' \
 | msg\[dev_id\]           | str  | 设备id                   | 必要   | 实质上即 UUID（版本 4），**生成方式见下**            |
 | msg\[timestamp\]        | num  | 当前时间戳（秒）         | 必要   |                                                      |
 | msg\[new_face_version\] | num  | 表情包版本               | 非必要 | 提供 `0` 或者未提供本参数表示旧版表情包，此时 B 站会自动转换成新版表情包，例如 `[doge]` -> `[tv_doge]`；`1` 为新版 |
-| msg\[content\]          | str  | 消息内容                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md) |
+| msg\[content\]          | str  | 消息内容                 | 必要   | 详见[私信消息类型、内容说明](private_msg_content.md)，接受最多2000字节的内容 |
 | csrf_token              | str  | CSRF Token（位于cookie） | 必要   |                                                      |
 | csrf                    | str  | CSRF Token（位于cookie） | 必要   |                                                      |
 | build                   | num  | 客户端内部版本号         | 非必要 | 默认为 `0`                                           |
@@ -1296,7 +1541,7 @@ dev_id 实质上就是 UUID（版本 4）
 <details>
 <summary>查看生成 UUID 的代码</summary>
 
-### Python
+#### Python
 
 ```python
 import uuid
@@ -1304,7 +1549,7 @@ import uuid
 dev_id = str(uuid.uuid4())
 ```
 
-### JavaScript
+#### JavaScript
 
 以下代码适用于较新版的 JS 引擎（Chrome≥92，Firefox≥95，Safari≥15.4，Node.js≥19.0.0）：
 
@@ -1321,16 +1566,16 @@ const dev_id = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (function
 }));
 ```
 
-### Java
+#### Java
 
 ```java
 import java.util.UUID;
 
 public class Main {
-    private String getDevId() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString();
-    }
+  private String getDevId() {
+    UUID uuid = UUID.randomUUID();
+    return uuid.toString();
+  }
 }
 ```
 
@@ -1395,22 +1640,22 @@ public class Main {
 
 给目标用户`mid=1`发一条文字私信：
 
-> up主你好，<br />催更[doge]
+> up主你好，<br />催更\[doge\]
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
---data-urlencode 'msg[sender_uid]=293793435' \
---data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type]=1' \
---data-urlencode 'msg[msg_type]=1' \
---data-urlencode 'msg[msg_status]=0' \
---data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
---data-urlencode 'msg[timestamp]=1626181379' \
---data-urlencode 'msg[new_face_version]=1' \
---data-urlencode 'msg[content]={"content":"up主你好，\n催更[doge]"}' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'msg[sender_uid]=293793435' \
+  --data-urlencode 'msg[receiver_id]=1' \
+  --data-urlencode 'msg[receiver_type]=1' \
+  --data-urlencode 'msg[msg_type]=1' \
+  --data-urlencode 'msg[msg_status]=0' \
+  --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
+  --data-urlencode 'msg[timestamp]=1626181379' \
+  --data-urlencode 'msg[new_face_version]=1' \
+  --data-urlencode 'msg[content]={"content":"up主你好，\n催更[doge]"}' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1444,17 +1689,17 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
---data-urlencode 'msg[sender_uid]=293793435' \
---data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type]=1' \
---data-urlencode 'msg[msg_type]=2' \
---data-urlencode 'msg[msg_status]=0' \
---data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
---data-urlencode 'msg[timestamp]=1626181379' \
---data-urlencode 'msg[content]={"url":"https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg","height":300,"width":300,"imageType":"jpeg","original":1,"size":54.144}' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'msg[sender_uid]=293793435' \
+  --data-urlencode 'msg[receiver_id]=1' \
+  --data-urlencode 'msg[receiver_type]=1' \
+  --data-urlencode 'msg[msg_type]=2' \
+  --data-urlencode 'msg[msg_status]=0' \
+  --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
+  --data-urlencode 'msg[timestamp]=1626181379' \
+  --data-urlencode 'msg[content]={"url":"https://i1.hdslb.com/bfs/face/aebb2639a0d47f2ce1fec0631f412eaf53d4a0be.jpg","height":300,"width":300,"imageType":"jpeg","original":1,"size":54.144}' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -1478,17 +1723,17 @@ curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/web_im/v1/web_im/send_msg' \
---data-urlencode 'msg[sender_uid]=293793435' \
---data-urlencode 'msg[receiver_id]=1' \
---data-urlencode 'msg[receiver_type]=1' \
---data-urlencode 'msg[msg_type]=1' \
---data-urlencode 'msg[msg_status]=0' \
---data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
---data-urlencode 'msg[timestamp]=1626181379' \
---data-urlencode 'msg[content]={"content":"支付宝"}' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'csrf_token=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'msg[sender_uid]=293793435' \
+  --data-urlencode 'msg[receiver_id]=1' \
+  --data-urlencode 'msg[receiver_type]=1' \
+  --data-urlencode 'msg[msg_type]=1' \
+  --data-urlencode 'msg[msg_status]=0' \
+  --data-urlencode 'msg[dev_id]=372778FD-E359-461D-86A3-EA2BCC6FF52A' \
+  --data-urlencode 'msg[timestamp]=1626181379' \
+  --data-urlencode 'msg[content]={"content":"支付宝"}' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'csrf_token=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>

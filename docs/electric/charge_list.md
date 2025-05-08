@@ -2,7 +2,7 @@
 
 ## 获取空间充电公示列表
 
-> https://api.bilibili.com/x/ugcpay-rank/elec/month/up
+> <https://api.bilibili.com/x/ugcpay-rank/elec/month/up>
 
 *请求方式：GET*
 
@@ -20,7 +20,7 @@
 
 | 字段    | 类型 | 内容     | 备注                         |
 | ------- | ---- | -------- | ---------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />-400：请求错误<br />88214：up主未开通充电 |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误<br />88214：up主未开通充电 |
 | message | str  | 错误信息 |                              |
 | ttl     | num  | 0        |                              |
 | data    | obj  | 数据本体 |                              |
@@ -71,8 +71,8 @@
 
 ```shell
 curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
--A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36' \
---data-urlencode 'up_mid=53456'
+  -A 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36' \
+  --data-urlencode 'up_mid=53456'
 ```
 
 <details>
@@ -80,39 +80,39 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 
 ```json
 {
-    "code": 0,
-    "message": "",
-    "ttl": 0,
-    "data": {
-        "count": 8521,
-        "list": [
-            {
-                "uname": "云梦澡堂",
-                "avatar": "https://i1.hdslb.com/bfs/face/6589df5fdac0f80593f6a86e4d88dc08e25df3d2.jpg",
-                "mid": 53456,
-                "pay_mid": 1555775947,
-                "rank": 1,
-                "trend_type": 0,
-                "vip_info": { "vipDueMsec": 0, "vipStatus": 0, "vipType": 0 },
-                "message": "",
-                "message_hidden": 0
-            },
-            {
-                "uname": "在下小天子",
-                "avatar": "https://i1.hdslb.com/bfs/face/a3bfbe6186889bb50dcd87c1156d07a70227a25b.jpg",
-                "mid": 53456,
-                "pay_mid": 508630801,
-                "rank": 2,
-                "trend_type": 0,
-                "vip_info": { "vipDueMsec": 0, "vipStatus": 0, "vipType": 0 },
-                "message": "",
-                "message_hidden": 0
-            }
-        ],
-        "total_count": 41919,
-        "total": 41919,
-        "special_day": 0
-    }
+  "code": 0,
+  "message": "",
+  "ttl": 0,
+  "data": {
+    "count": 8521,
+    "list": [
+      {
+        "uname": "云梦澡堂",
+        "avatar": "https://i1.hdslb.com/bfs/face/6589df5fdac0f80593f6a86e4d88dc08e25df3d2.jpg",
+        "mid": 53456,
+        "pay_mid": 1555775947,
+        "rank": 1,
+        "trend_type": 0,
+        "vip_info": { "vipDueMsec": 0, "vipStatus": 0, "vipType": 0 },
+        "message": "",
+        "message_hidden": 0
+      },
+      {
+        "uname": "在下小天子",
+        "avatar": "https://i1.hdslb.com/bfs/face/a3bfbe6186889bb50dcd87c1156d07a70227a25b.jpg",
+        "mid": 53456,
+        "pay_mid": 508630801,
+        "rank": 2,
+        "trend_type": 0,
+        "vip_info": { "vipDueMsec": 0, "vipStatus": 0, "vipType": 0 },
+        "message": "",
+        "message_hidden": 0
+      }
+    ],
+    "total_count": 41919,
+    "total": 41919,
+    "special_day": 0
+  }
 }
 ```
 
@@ -120,7 +120,7 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 
 ## 获取视频充电鸣谢名单
 
-> https://api.bilibili.com/x/web-interface/elec/show
+> <https://api.bilibili.com/x/web-interface/elec/show>
 
 *请求方式:GET*
 
@@ -161,25 +161,36 @@ curl -G 'https://api.bilibili.com/x/ugcpay-rank/elec/month/up' \
 | 字段       | 类型 | 内容                     | 备注             |
 | ---------- | ---- | ------------------------ | ---------------- |
 | show       | bool | 是否展示视频充电鸣谢名单 |                  |
-| state      | num  | 充电功能开启状态         | -1：未开通充电功能<br />1：已开通自定义充电<br />2：已开通包月、自定义充电<br />3：已开通高档、自定义充电 |
+| state      | num  | 充电功能开启状态         | -1：未开通充电功能<br />1：已开通自定义充电<br />2：已开通包月、自定义充电<br />3：已开通包月高档、自定义充电 |
 | title      | str  | 充电按钮显示文字         | 空字符串或 `充电` 或 `充电中` |
 | jump_url   | str  | 跳转url                  |                  |
 | icon       | str  | 充电图标                 |                  |
-| high_level | obj  | 高档充电信息             |                  |
+| high_level | obj  | 充电专属视频信息         |                  |
+| with_qa_id | num  | 充电问答id               |                  |
 
 `show_info`中的`high_level`对象：
 
-| 字段           | 类型 | 内容                     | 备注             |
-| -------------- | ---- | ------------------------ | ---------------- |
-| privilege_type | num  |                          |                  |
-| title          | str  |                          |                  |
-| sub_title      | str  |                          |                  |
-| show_button    | bool |                          |                  |
-| button_text    | str  |                          |                  |
-| jump_url       | obj  |                          |                  |
-| intro          | str  |                          |                  |
-| open           | bool |                          |                  |
-| new            | bool |                          |                  |
+| 字段           | 类型 | 内容                           | 备注             |
+| -------------- | ---- | ------------------------------ | ---------------- |
+| privilege_type | num  | 解锁视频所需最低定价档位的代码 | 见[充电档位代码与定价](../electric/monthly.md#充电档位代码privilege_type与定价) |
+| title          | str  | 提示标题                       | `该视频为「{充电档位名称}」专属视频` |
+| sub_title      | str  | 提示子标题                     | `开通「{充电档位定价}元档包月充电」即可观看` |
+| show_button    | bool | 是否显示按钮                   |                  |
+| button_text    | str  | 按钮文本                       | `去开通`         |
+| jump_url       | obj  | 跳转url信息                    | 详细信息有待补充 |
+| intro          | str  | 充电介绍语                     |                  |
+| open           | bool | （？）                         |                  |
+| new            | bool | （？）                         |                  |
+| question_text  | str  | （？）                         |                  |
+| qa_detail_link | str  | （？）                         |                  |
+
+`high_level`中的`jump_url`对象：
+
+| 字段            | 类型 | 内容                    | 备注 |
+| --------------- | ---- | ----------------------- | ---- |
+| up_link         | str  | UP主包月充电购买页面url |      |
+| paywall_link    | str  | 视频试看后的提示页面url |      |
+| previewbar_link | str  | 视频预览页面url         |      |
 
 `data`中的`list`数组：
 
@@ -219,16 +230,16 @@ avid方式：
 
 ```shell
 curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
---data-urlencode 'mid=53456' \
---data-urlencode 'aid=967773538'
+  --data-urlencode 'mid=53456' \
+  --data-urlencode 'aid=967773538'
 ```
 
 bvid方式：
 
 ```shell
 curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
---data-urlencode 'mid=53456' \
---data-urlencode 'bvid=BV1up4y1y77i'
+  --data-urlencode 'mid=53456' \
+  --data-urlencode 'bvid=BV1up4y1y77i'
 ```
 
 <details>
@@ -296,7 +307,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 
 ## 查询我收到的充电列表
 
-> https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord
+> <https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord>
 
 *请求方式：GET*
 
@@ -370,10 +381,10 @@ curl -G 'https://api.bilibili.com/x/web-interface/elec/show' \
 
 ```shell
 curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
---data-urlencode 'currentPage=1' \
---data-urlencode 'pageSize=2' \
---data-urlencode 'customerId=10026' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'currentPage=1' \
+  --data-urlencode 'pageSize=2' \
+  --data-urlencode 'customerId=10026' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -432,7 +443,7 @@ curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
 
 ## 查询历史充电数据
 
-> https://member.bilibili.com/x/h5/elec/rank/recent
+> <https://member.bilibili.com/x/h5/elec/rank/recent>
 
 *请求方式：GET*
 
@@ -487,7 +498,7 @@ curl -G 'https://pay.bilibili.com/bk/brokerage/listForCustomerRechargeRecord' \
 
 ```shell
 curl -G 'https://member.bilibili.com/x/h5/elec/rank/recent' \
--b 'SESSDATA=xxx'
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -495,36 +506,36 @@ curl -G 'https://member.bilibili.com/x/h5/elec/rank/recent' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "list": [
-            {
-                "aid": 0,
-                "bvid": "",
-                "elec_num": 50,
-                "title": "",
-                "uname": "",
-                "avatar": "",
-                "ctime": "2020-04-02 03:12:22"
-            },
-            {
-                "aid": 0,
-                "bvid": "",
-                "elec_num": 20,
-                "title": "",
-                "uname": "",
-                "avatar": "",
-                "ctime": "2020-04-02 03:12:00"
-            }
-        ],
-        "pager": {
-            "current": 1,
-            "size": 20,
-            "total": 38
-        }
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "list": [
+      {
+        "aid": 0,
+        "bvid": "",
+        "elec_num": 50,
+        "title": "",
+        "uname": "",
+        "avatar": "",
+        "ctime": "2020-04-02 03:12:22"
+      },
+      {
+        "aid": 0,
+        "bvid": "",
+        "elec_num": 20,
+        "title": "",
+        "uname": "",
+        "avatar": "",
+        "ctime": "2020-04-02 03:12:00"
+      }
+    ],
+    "pager": {
+      "current": 1,
+      "size": 20,
+      "total": 38
     }
+  }
 }
 ```
 

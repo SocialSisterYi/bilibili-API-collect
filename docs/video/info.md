@@ -67,7 +67,7 @@
 | is_chargeable_season    | bool    |                                |                                                              |
 | is_story                | bool    | 是否可以在 Story Mode 展示?    |                                                              |
 | is_upower_exclusive     | bool    | 是否为充电专属视频             |                                                              |
-| is_upower_pay           | bool    |                                |                                                              |
+| is_upower_play          | bool    |                                |                                                              |
 | is_upower_preview       | bool    | 充电专属视频是否支持试看       |                                                              |
 | no_cache                | bool    | 是否不允许缓存?                |                                                              |
 | pages                   | array   | 视频分P列表                    |                                                              |
@@ -676,7 +676,7 @@ https://i1.hdslb.com/bfs/archive/ea0dd34bf41e23a68175680a00e3358cd249105f.jpg
 
 `data`中的`Tags`数组：
 
-基本同「[获取视频TAG信息](tags.md#获取视频TAG信息)」中的data数组
+基本同「[获取视频TAG信息（新）](tags.md#获取视频TAG信息新)」中的data数组
 
 `data`中的`Reply`对象：
 
