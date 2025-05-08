@@ -45,7 +45,7 @@ curl 'https://api.bilibili.com/x/dynamic/feed/operate/remove' \
 --url-query 'csrf=05fa8d65755655c2893d40d3692d4c70' \
 -H 'content-type: application/json'
 --data-raw '{"dyn_id_str":"667831766353969169"}' \
--b 'SESSDATA=xxxxxx \
+-b 'SESSDATA=xxxxxx' \
 ```
 
 <details>
