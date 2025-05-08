@@ -49,7 +49,7 @@
 | voyage_reply             | num  | 大航海上船回复       | 0：关闭<br />1：开启                                                        |
 | recommend_followed_reply | num  | 被关注时自动推送作品 | 0：关闭<br />1：开启                                                        |
 | ai_intercept             | num  | 私信智能拦截         | 0：关闭<br />1：开启                                                        |
-| anti_harassment          | null | 防骚扰和互动人群设置 | 恒为 `null`                                                                 |
+| anti_harassment          | null | 防骚扰和互动人群设置 | 此接口恒返回 `null`                                                         |
 | set_recv_reply           | num  | 收到回复提醒（新）   | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒                       |
 | set_recv_like            | num  | 收到喜欢提醒（新）   | 0：接收<br />2：不接收                                                      |
 | set_new_follow           | num  | 新增粉丝提醒（新）   | 0：接收<br />2：不接收                                                      |
@@ -136,13 +136,13 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get' \
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                |
-| ------- | ---- | -------- | --------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />700009：权限不足 |
-| msg     | str  | 错误信息 | 默认为0                                             |
-| message | str  | 错误信息 | 默认为0                                             |
-| ttl     | num  | 1        |                                                     |
-| data    | obj  | 信息本体 | 空对象                                              |
+| 字段    | 类型 | 内容     | 备注                                                                 |
+| ------- | ---- | -------- | -------------------------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />2：非法参数<br />700009：权限不足 |
+| msg     | str  | 错误信息 | 默认为0                                                              |
+| message | str  | 错误信息 | 默认为0                                                              |
+| ttl     | num  | 1        |                                                                      |
+| data    | obj  | 信息本体 | 空对象                                                               |
 
 **示例：**
 
@@ -514,7 +514,7 @@ curl -G 'https://api.vc.bilibili.com/x/im/auto_reply/get_reply_text' \
 
 | 字段    | 类型 | 内容     | 备注                                                                                  |
 | ------- | ---- | -------- | ------------------------------------------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />27011：请求参数错误<br />1500001：自动回复内容太长 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />27011：请求参数错误<br />1500001：自动回复内容太长<br />1500002：规则数量已达上限，请删除后新建<br />1500003：您保存的内容含敏感信息，请修改后重试 |
 | message | str  | 错误信息 | 默认为0                                                                               |
 | ttl     | num  | 1        |                                                                                       |
 | data    | obj  | 信息本体 | 空对象                                                                                |
@@ -525,7 +525,7 @@ curl -G 'https://api.vc.bilibili.com/x/im/auto_reply/get_reply_text' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/x/im/auto_reply/set_reply_text' \
-  --data-urlencode 'type[]=2' \
+  --data-urlencode 'type=2' \
   --data-urlencode 'reply=嗯嗯，不用谢[tv_微笑]' \
   --data-urlencode 'id=201321' \
   --data-urlencode 'title=谢谢' \
@@ -576,7 +576,7 @@ curl 'https://api.vc.bilibili.com/x/im/auto_reply/set_reply_text' \
 
 | 字段    | 类型 | 内容     | 备注                                                |
 | ------- | ---- | -------- | --------------------------------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-500：服务器错误 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-500：服务器错误<br />1003：不能删除别人的规则 |
 | message | str  | 错误信息 | 默认为0                                             |
 | ttl     | num  | 1        |                                                     |
 | data    | obj  | 信息本体 | 空对象                                              |
@@ -772,7 +772,7 @@ curl 'https://api.vc.bilibili.com/link_setting/v1/link_setting/get_sys_setting' 
 
 </details>
 
-## 是否显示创建粉丝团按钮
+## 获取创建粉丝团按钮可见性
 
 > <https://api.vc.bilibili.com/link_group/v1/member/show_create_group_icon>
 
