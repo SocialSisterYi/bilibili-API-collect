@@ -23,7 +23,7 @@
 
 ## Demo
 
-该 Demo 提供 [Python](#Python)、[Java](#Java)、[TS/JS](#TypeScript/JavaScript)、[Swift](#Swift)、[C++](#CplusPlus) 语言例程
+该 Demo 提供 [Python](#python)、[Java](#java)、[TS/JS](#typescript-javascript)、[Swift](#swift)、[C++](#cplusplus) 语言例程
 
 使用 appkey = `1d8b6e7d45233436`, appsec = `560c52ccd288fed045859ed18bffd973` 对如下 `params` 参数进行签名
 

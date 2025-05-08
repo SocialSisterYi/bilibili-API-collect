@@ -56,7 +56,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 1. 文档二级目录尚未完成
 2. 部分文档较旧，修改与更新没有跟进
-3. 目前文档使用 markdown 语法编写，不易生成编程语言的 SDK，详见 [#604](https://github.com/SocialSisterYi/bilibili-API-collect/issues/604)
+3. 目前文档使用 Markdown 语法编写，不易生成编程语言的 SDK，详见 [#604](https://github.com/SocialSisterYi/bilibili-API-collect/issues/604)
 
 更多信息请浏览 [贡献指南](CONTRIBUTING.md)
 
@@ -100,7 +100,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [状态数](docs/user/status_number.md)
     - [x] [关系](docs/user/relation.md)
     - [ ] [个人空间](docs/user/space.md)
-    - [x] [检查昵称是否可注册](docs/user/check_nickname.md)
+    - [x] ~~[检查昵称是否可注册](docs/user/check_nickname.md)~~ (已失效)
     - [x] [用户注册](docs/user/register.md)
     - [x] [用户认证类型一览](docs/user/official_role.md)
     - [ ] [加入老粉计划](docs/user/contract.md)
@@ -112,8 +112,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [大会员操作](docs/vip/action.md)
 - [ ] [视频](docs/video)
     - [x] [视频分区一览 (分区代码)](docs/video/video_zone.md)
+    - [ ] [视频分区一览 (分区代码) (v2)](docs/video/video_zone_v2.md)
     - [x] [基本信息](docs/video/info.md)
-    - [x] [状态数](docs/video/status_number.md) (已失效)
+    - [x] ~~[状态数](docs/video/status_number.md)~~ (已失效)
     - [x] [快照](docs/video/snapshot.md)
     - [x] [点赞 & 投币 & 收藏 & 分享](docs/video/action.md)
     - [ ] [TAG](docs/video/tags.md)
@@ -126,7 +127,6 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [视频在线人数](docs/video/online.md)
     - [x] [视频 AI 摘要](docs/video/summary.md)
     - [ ] [稿件投诉](docs/video/appeal.md)
-    - [ ] [视频状态数](docs/video/status_number.md)
     - [ ] [视频合集](docs/video/collection.md)
     - [ ] [播放器](docs/video/player.md)
 - [ ] [剧集 (番剧、影视)](docs/bangumi)
@@ -158,7 +158,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [X] [基本信息](docs/article/info.md)
     - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
     - [X] [文集基本信息](docs/article/articles.md)
-    - [X] [获取用户专栏文章列表](docs/article/list.md)
+    - [X] [删除](docs/article/delete.md)
 - [ ] [音频](docs/audio)
     - [x] [歌曲基本信息](docs/audio/info.md)
     - [ ] [歌单 & 音频收藏夹详细信息](docs/audio/music_list.md)
@@ -204,7 +204,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [B 币方式充电](docs/electric/Bcoin.md)
     - [x] [微信 & 支付宝方式充电](docs/electric/WeChat&Alipay.md)
     - [x] [充电留言](docs/electric/charge_msg.md)
-    - [x] [充电列表](docs/electric/charge_list.md)
+  - [x] [充电列表](docs/electric/charge_list.md)
 - [ ] [动态](docs/dynamic)
     - [ ] [获取动态列表](docs/dynamic/all.md)
     - [ ] [获取用户空间动态](docs/dynamic/space.md)
@@ -221,16 +221,16 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
         - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
     - [ ] [导航栏动态](docs/dynamic/nav.md)
-- [ ] [相簿](docs/album) (已下线)
-    - [x] [基本信息](docs/album/info.md)
-    - [x] [相簿列表](docs/album/list.md)
-    - [x] [推荐作者](docs/album/recommend_author.md)
-    - [x] [活动列表](docs/album/activity_list.md)
-    - [x] [操作](docs/album/action.md)
-    - [ ] 投稿
-- [ ] [历史记录 & 稍后再看](docs/history&toview)
-    - [x] [历史记录](docs/history&toview/history.md)
-    - [x] [稍后再看](docs/history&toview/toview.md)
+- [ ] ~~[相簿](docs/album)~~ (已下线)
+    - [x] ~~[基本信息](docs/album/info.md)~~
+    - [x] ~~[相簿列表](docs/album/list.md)~~
+    - [x] ~~[推荐作者](docs/album/recommend_author.md)~~
+    - [x] ~~[活动列表](docs/album/activity_list.md)~~
+    - [x] ~~[操作](docs/album/action.md)~~
+    - [ ] ~~投稿~~
+- [ ] [历史记录 & 稍后再看](docs/historytoview)
+    - [x] [历史记录](docs/historytoview/history.md)
+    - [x] [稍后再看](docs/historytoview/toview.md)
 - [ ] [收藏夹](docs/fav)
     - [x] [基本信息](docs/fav/info.md)
     - [x] [收藏夹内容](docs/fav/list.md)
@@ -255,6 +255,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [直播间禁言相关](docs/live/silent_user_manage.md)
     - [ ] [关注UP直播情况](docs/live/follow_up_live.md)
     - [ ] [直播心跳上报](docs/live/report.md)
+    - [ ] [直播间弹幕](docs/live/danmaku.md)
 - [ ] [活动](docs/activity)
     - [ ] [活动列表](docs/activity/list.md)
     - [ ] [活动主题信息](docs/activity/info.md)
@@ -333,7 +334,7 @@ WeChat & Alipay：
 
 <img src="./assets/img/sponsorQR.jpg" width="300" height="300" />
 
-OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
+OR Aifadian：[https://afdian.com/@ShakaiAneE](https://afdian.com/@ShakaiAneE)
 
 ## 🔗相关项目推荐
 

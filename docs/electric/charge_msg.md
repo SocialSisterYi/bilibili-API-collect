@@ -8,7 +8,7 @@
 
 认证方式：Cookie（SESSDATA）
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数（application/x-www-form-urlencoded）：**
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注 |
 | -------- | ---- | ------------------------ | ------ | ---- |
@@ -32,10 +32,10 @@
 
 ```shell
 curl 'https://api.bilibili.com/x/ugcpay/trade/elec/message' \
---data-urlencode 'order_id=BPRG5CEC3VUPOOANA540' \
---data-urlencode 'message=支持一下大佬' \
---data-urlencode 'csrf=xxx' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'order_id=BPRG5CEC3VUPOOANA540' \
+  --data-urlencode 'message=支持一下大佬' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -43,9 +43,9 @@ curl 'https://api.bilibili.com/x/ugcpay/trade/elec/message' \
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1
+    "code": 0,
+    "message": "0",
+    "ttl": 1
 }
 ```
 
@@ -55,71 +55,71 @@ curl 'https://api.bilibili.com/x/ugcpay/trade/elec/message' \
 
 > https://member.bilibili.com/x/web/elec/remark/list
 
-*请求方式:GET*
+*请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
 
 **url参数：**
 
-| 参数名 | 类型 | 内容         | 必要性       | 备注               |
-| ------ | ---- | ------------ | ------------ | ------------------ |
-| begin    | str  | 起始日期  |          |      默认2016-01-01              |
-| end    | str  | 结束日期 |  | 默认2050-01-01 |
-| pn   | str  | 页数 |  |  |
-| ps   | str  | 分页大小 |  | 取值范围[1,12] |
+| 参数名 | 类型 | 内容      | 必要性 | 备注             |
+| ------ | ---- | --------- | ------ | ---------------- |
+| begin  | str  | 起始日期  | 非必要 | 默认2016-01-01   |
+| end    | str  | 结束日期  | 非必要 | 默认2050-01-01   |
+| pn     | str  | 页数      | 非必要 |                  |
+| ps     | str  | 分页大小  | 非必要 | 取值范围\[1,12\] |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                        |
-| ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录|
-| msg     | str  |   0      |                             |
-| ttl     | num  |   1      |                             |
-| data    | obj  | 信息本体 |                             |
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| msg     | str  | 错误信息 | 成功时为`0`                   |
+| ttl     | num  | 1        |                               |
+| data    | obj  | 信息本体 |                               |
 
 `data`对象：
 
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| page | obj | 分页信息 |      |
-| list | array | 信息本体 |      |
-
-`page`对象：
-
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| current | num | 当前页数 |      |
-| size | num | 当前分页大小 |      |
-| total | num | 记录总数 |      |
+| 字段  | 类型  | 内容     | 备注 |
+| ----- | ----- | -------- | ---- |
+| list  | array | 信息本体 |      |
+| pager | obj   | 分页信息 |      |
 
 `list`数组中的对象：
 
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| aid | num |  |      |
-| bvid | str |  |      |
-| id | num | 留言记录id |      |
-| mid | num |  |      |
-| reply_mid | num |  0|      |
-| elec_num | num | 0 |      |
-| state | num | UP是否已经回复这条留言 | 0：未回复<br />1：已回复     |
-| msg | str | 留言信息 |      |
-| aname | str | 空 |      |
-| uname | str |空  |      |
-| avator | str | 空 |      |
-| reply_name | str | 空 |      |
-| reply_avator | str | 空 |      |
-| reply_msg | str | 空 |      |
-| ctime | num | 留言时间 |  毫秒级时间戳    |
-| reply_time | num | 0 |      |
+| 字段         | 类型 | 内容                   | 备注 |
+| ------------ | ---- | ---------------------- | ---- |
+| aid          | num  |                        |      |
+| bvid         | str  |                        |      |
+| id           | num  | 留言记录id             |      |
+| mid          | num  | 0                      |      |
+| reply_mid    | num  | 0                      |      |
+| elec_num     | num  | 0                      |      |
+| state        | num  | UP是否已经回复这条留言 | 0：未回复<br />1：已回复 |
+| msg          | str  | 留言信息               |      |
+| aname        | str  | 空                     |      |
+| uname        | str  | 空                     |      |
+| avator       | str  | 空                     |      |
+| reply_name   | str  | 空                     |      |
+| reply_avator | str  | 空                     |      |
+| reply_msg    | str  | 空                     |      |
+| ctime        | num  | 留言时间               | 毫秒级时间戳 |
+| reply_time   | num  | 0                      |      |
+
+`pager`对象：
+
+| 字段    | 类型 | 内容         | 备注 |
+| ------- | ---- | ------------ | ---- |
+| current | num  | 当前页数     |      |
+| size    | num  | 当前分页大小 |      |
+| total   | num  | 记录总数     |      |
 
 **示例：**
 
 ```shell
-curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/list?begin=2016-01-01&end=2050-01-01&pn=1&ps=10' \
--H 'Cookie: SESSDATA=xxx;'
+curl 'https://member.bilibili.com/x/web/elec/remark/list?begin=2016-01-01&end=2050-01-01&pn=1&ps=10' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -166,51 +166,53 @@ curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/list?begin=2016-01
 
 > https://member.bilibili.com/x/web/elec/remark/detail
 
+*请求方式：GET*
+
 认证方式：Cookie（SESSDATA）
 
 **url参数：**
 
-| 参数名   | 类型 | 内容     | 必要性 | 备注                             |
-| -------- | ---- | -------- | ------ | -------------------------------- |
-| id | num  | 留言id | 必要   |  |
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| id     | num  | 留言id   | 必要   |      |
 
 **json回复：**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                        |
-| ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误|
-| message     | str  |   0      |                             |
-| ttl     | num  |  1       |                             |
-| data    | obj  | 信息本体 |                             |
+| 字段    | 类型 | 内容     | 备注                                              |
+| ------- | ---- | -------- | ------------------------------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| message | str  | 错误信息 | 成功时为 `0`                                      |
+| ttl     | num  | 1        |                                                   |
+| data    | obj  | 信息本体 |                                                   |
 
 `data`对象：
 
-| 字段     | 类型  | 内容   | 备注 |
-| -------- | ----- | ------ | ---- |
-| aid | num |  |      |
-| bvid | str |  |      |
-| id | num | 留言id |      |
-| mid | num | 留言者uid（充电用户） |      |
-| reply_mid | num | UP主uid |      |
-| elec_num | num | 0 |      |
-| state | num | UP是否已经回复这条留言 |  0：未回复<br />1：已回复    |
-| msg | str | 留言内容 |     |
-| aname | str | 空 |     |
-| uname | str | 留言者用户名 |     |
-| avator | str | 留言者头像 |     |
-| reply_name | str | UP主用户名 |     |
-| reply_avator | str | UP主头像 |     |
-| reply_msg | str | 回复内容 |     |
-| ctime | num | 留言时间 | 毫秒级时间戳    |
-| reply_time | num | 回复时间 | 毫秒级时间戳    |
+| 字段         | 类型 | 内容                   | 备注 |
+| ------------ | ---- | ---------------------- | ---- |
+| aid          | num  |                        |      |
+| bvid         | str  |                        |      |
+| id           | num  | 留言id                 |      |
+| mid          | num  | 留言者mid（充电用户）  |      |
+| reply_mid    | num  | UP主mid                |      |
+| elec_num     | num  | 0                      |      |
+| state        | num  | UP是否已经回复这条留言 | 0：未回复<br />1：已回复 |
+| msg          | str  | 留言内容               |      |
+| aname        | str  | 空                     |      |
+| uname        | str  | 留言者用户名           |      |
+| avator       | str  | 留言者头像             |      |
+| reply_name   | str  | UP主用户名             |      |
+| reply_avator | str  | UP主头像               |      |
+| reply_msg    | str  | 回复内容               |      |
+| ctime        | num  | 留言时间               | 毫秒级时间戳 |
+| reply_time   | num  | 回复时间               | 毫秒级时间戳 |
 
 **示例：**
 
 ```shell
-curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/detail?id=6507563' \
--H 'cookie: SESSDATA=xxx'
+curl 'https://member.bilibili.com/x/web/elec/remark/detail?id=6507563' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -252,13 +254,13 @@ curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/detail?id=6507563'
 
 认证方式：Cookie（SESSDATA）
 
-**正文参数（ application/x-www-form-urlencoded ）：**
+**正文参数（application/x-www-form-urlencoded）：**
 
-| 参数名       | 类型   | 内容                     | 必要性         | 备注                                                         |
-| ------------ | ------ | ------------------------ | -------------- | ------------------------------------------------------------ |
-| csrf   | str    | csrf             |  必要   |                                                              |
-| id   | num    | 留言id             |  必要   |                                                              |
-| msg   | str    | 回复信息             |     |                                                              |
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| csrf   | str  | csrf     | 必要   |      |
+| id     | num  | 留言id   | 必要   |      |
+| msg    | str  | 回复信息 | 必要   |      |
 
 **json回复：**
 
@@ -266,19 +268,19 @@ curl -L -X GET 'https://member.bilibili.com/x/web/elec/remark/detail?id=6507563'
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误20004：充电服务异常<br /> |
-| message | str  | 错误信息 |                                                       |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-111：csrf 校验失败<br />-400：请求错误<br />20004：充电服务异常 |
+| message | str  | 错误信息 |                                                              |
 | ttl     | num  | 1        |                                                              |
+| data    | num  | 数据本体 | 1：成功<br />2：失败                                         |
 
 **示例：**
 
 ```shell
-curl -L -X POST 'https://member.bilibili.com/x/web/elec/remark/reply' \
--H 'cookie: SESSDATA=xxx' \
--H 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'csrf=xxx' \
---data-urlencode 'id=6258929' \
---data-urlencode 'msg=(￣3￣)'
+curl 'https://member.bilibili.com/x/web/elec/remark/reply' \
+  -b 'SESSDATA=xxx' \
+  --data-urlencode 'csrf=xxx' \
+  --data-urlencode 'id=6258929' \
+  --data-urlencode 'msg=(￣3￣)'
 ```
 
 <details>
