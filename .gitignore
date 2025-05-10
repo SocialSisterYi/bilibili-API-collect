@@ -6,3 +6,6 @@
 .vscode/
 .DS_Store
 *.swp
+/*.*js
+/*.json
+/*.sh
