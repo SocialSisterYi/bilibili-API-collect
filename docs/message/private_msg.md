@@ -254,7 +254,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/my_group_unread' \
 | session_type  | num  | 会话类型             | 必要   | 1：用户与系统<br />2：未关注人<br />3：粉丝团<br />4：所有<br />5：被拦截<br />6：花火商单<br />7：所有系统消息<br />8：陌生人（与 “未关注人” 不同，不包含官方消息）<br />9：关注的人与系统 |
 | group_fold    | num  | 是否折叠粉丝团消息   | 非必要 | 0：否<br />1：是          |
 | unfollow_fold | num  | 是否折叠未关注人消息 | 非必要 | 0：否<br />1：是          |
-| sort_rule     | num  | 排序方式             | 非必要 | 仅当 `session_type` 不为 `4`、`7` 时有效<br />1、2：按会话时间逆向排序<br />3：按已读时间逆向排序<br />其他：用户与系统按会话时间逆向排序，粉丝团按加群时间正向排序 |
+| sort_rule     | num  | 排序方式             | 非必要 | 仅当 `session_type` 不为 `4`、`7` 时有效<br />1、2：按会话时间逆向排序<br />3：按已读时间逆向排序<br />其他：用户与系统按会话时间逆向排序，粉丝团按加入时间正向排序 |
 | begin_ts      | num  | 起始时间             | 非必要 | 微秒级时间戳              |
 | end_ts        | num  | 终止时间             | 非必要 | 微秒级时间戳              |
 | size          | num  | 返回的会话数         | 非必要 | 默认为 `20`，最大为 `100` |
@@ -300,11 +300,11 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/my_group_unread' \
 
 **示例：**
 
-获取会话列表：
+获取所有类型的会话列表：
 
 ```shell
 curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
-  --data-urlencode 'session_type=1' \
+  --data-urlencode 'session_type=4' \
   --data-urlencode 'group_fold=0' \
   --data-urlencode 'unfollow_fold=0' \
   --data-urlencode 'sort_rule=2' \
@@ -856,8 +856,6 @@ curl -G 'https://api.vc.bilibili.com/link_setting/v1/link_setting/is_limit' \
 
 认证方式：Cookie（SESSDATA）
 
-仅支持用户会话
-
 **url参数：**
 
 | 参数名    | 类型 | 内容             | 必要性 | 备注                    |
@@ -1171,7 +1169,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/remove_session' \
 
 ```shell
 curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/set_top' \
-  --data-urlencode 'talker_id=2' \
+  --data-urlencode 'talker_id=293793435' \
   --data-urlencode 'session_type=1' \
   --data-urlencode 'op_type=0' \
   --data-urlencode 'csrf=xxx' \
