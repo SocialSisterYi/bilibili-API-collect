@@ -24,8 +24,8 @@
 | vip             | obj                                         | 会员信息                   |                                                              |
 | name_render     | 有效时：obj<br />无效时：null               | 昵称渲染信息               |                                                              |
 | nft_icon        | str                                         | （？）                     |                                                              |
-| rec_reason      | str                                         | 推荐该用户的原因           | 一般为空；如：`xxx关注了TA`、`xx粉丝 xx视频`                 |
-| track_id        | str                                         | 内部记录id                 | 一般为空；如：`up_rec_0.router-main-2021485-5f84c987cf-dv8fg.1746380060327.607` |
+| rec_reason      | str                                         | 推荐该用户的原因           | 大多数情况下为空；如：`xxx关注了TA`、`xx粉丝 xx视频`         |
+| track_id        | str                                         | 内部记录id                 | 大多数情况下为空；如：`up_rec_0.router-main-2021485-5f84c987cf-dv8fg.1746380060327.607` |
 | follow_time     | str                                         | （？）                     |                                                              |
 
 `list`中的对象中的`tag`数组：
@@ -89,13 +89,14 @@
 
 **url参数：**
 
-| 参数名     | 类型 | 内容           | 必要性       | 备注                                                                |
-| ---------- | ---- | -------------- | ------------ | ------------------------------------------------------------------- |
-| vmid       | num  | 目标用户 mid   | 必要         |                                                                     |
-| ps         | num  | 每页项数       | 非必要       | 默认为 50                                                           |
-| pn         | num  | 页码           | 非必要       | 默认为 1                                                            |
-| offset     | str  | 偏移量         | 非必要       | 此项有效且不为 `rcmd` 时会从此偏移量开始返回粉丝列表，忽略参数 `pn` |
-| from       | str  | 请求来源       | 非必要       | 当为 `main` 且目标用户为自己时，粉丝列表按照**智能推荐算法**排序，此时 `$.data.list[]` 中的 `rec_reason` 与 `track_id` 为非空 |
+| 参数名         | 类型 | 内容                   | 必要性       | 备注                                                                |
+| -------------- | ---- | ---------------------- | ------------ | ------------------------------------------------------------------- |
+| vmid           | num  | 目标用户 mid           | 必要         |                                                                     |
+| ps             | num  | 每页项数               | 非必要       | 默认为 50                                                           |
+| pn             | num  | 页码                   | 非必要       | 默认为 1                                                            |
+| offset         | str  | 偏移量                 | 非必要       | 从上次请求的响应数据中的 `data.offset` 获取<br />此项有效且不为 `rcmd` 时会从此偏移量开始返回粉丝列表，忽略参数 `pn` |
+| last_access_ts | num  | 上次访问粉丝列表的时间 | 非必要       | 秒级时间戳，从[获取自己粉丝列表的未读状态](#获取自己粉丝列表的未读状态)接口获取<br />当按照**智能推荐算法**排序时，会优先展示此时间后关注的粉丝 |
+| from           | str  | 请求来源               | 非必要       | 当为 `main` 且目标用户为自己时，粉丝列表按照**智能推荐算法**排序，此时响应数据中的 `data.list` 的成员中的 `rec_reason` 与 `track_id` 为非空 |
 
 **json回复：**
 
@@ -153,9 +154,7 @@ curl -G 'https://api.bilibili.com/x/relation/fans' \
         "mtime": 1746199088,
         "tag": null,
         "special": 0,
-        "contract_info": {
-
-        },
+        "contract_info": {},
         "uname": "Astlinga_星灵",
         "face": "https://i1.hdslb.com/bfs/face/005264524d05c0b8c132acc3ee88bb839351025b.jpg",
         "sign": "",
@@ -185,9 +184,7 @@ curl -G 'https://api.bilibili.com/x/relation/fans' \
           "nickname_color": "",
           "avatar_subscript_url": ""
         },
-        "name_render": {
-
-        },
+        "name_render": {},
         "nft_icon": "",
         "rec_reason": "",
         "track_id": "",
@@ -199,9 +196,7 @@ curl -G 'https://api.bilibili.com/x/relation/fans' \
         "mtime": 1746098997,
         "tag": null,
         "special": 0,
-        "contract_info": {
-
-        },
+        "contract_info": {},
         "uname": "JSRCode",
         "face": "https://i1.hdslb.com/bfs/face/f6c74700c72d27ae224c5311634b4a3770e3cdcf.jpg",
         "sign": "一个喜欢码代码的高中牲",
@@ -231,9 +226,7 @@ curl -G 'https://api.bilibili.com/x/relation/fans' \
           "nickname_color": "",
           "avatar_subscript_url": ""
         },
-        "name_render": {
-
-        },
+        "name_render": {},
         "nft_icon": "",
         "rec_reason": "",
         "track_id": "",
@@ -325,9 +318,7 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
         "mtime": 1746199088,
         "tag": null,
         "special": 0,
-        "contract_info": {
-
-        },
+        "contract_info": {},
         "uname": "Astlinga_星灵",
         "face": "https://i1.hdslb.com/bfs/face/005264524d05c0b8c132acc3ee88bb839351025b.jpg",
         "sign": "",
@@ -357,9 +348,7 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
           "nickname_color": "",
           "avatar_subscript_url": ""
         },
-        "name_render": {
-
-        },
+        "name_render": {},
         "nft_icon": "",
         "rec_reason": "",
         "track_id": "",
@@ -371,9 +360,7 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
         "mtime": 1746098997,
         "tag": null,
         "special": 0,
-        "contract_info": {
-
-        },
+        "contract_info": {},
         "uname": "JSRCode",
         "face": "https://i1.hdslb.com/bfs/face/f6c74700c72d27ae224c5311634b4a3770e3cdcf.jpg",
         "sign": "一个喜欢码代码的高中牲",
@@ -403,9 +390,7 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
           "nickname_color": "",
           "avatar_subscript_url": ""
         },
-        "name_render": {
-
-        },
+        "name_render": {},
         "nft_icon": "",
         "rec_reason": "",
         "track_id": "",
@@ -414,6 +399,58 @@ curl -G 'https://api.bilibili.com/x/relation/followers' \
     ],
     "re_version": 0,
     "total": 3776
+  }
+}
+```
+
+</details>
+
+### 获取自己粉丝列表的未读状态
+
+> <https://api.bilibili.com/x/relation/followers/unread/count>
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+调用此接口后会重置未读状态
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                          |
+| ------- | ---- | -------- | ----------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
+| message | str  | 错误信息 | 默认为 0                      |
+| ttl     | num  | 1        |                               |
+| data    | obj  | 信息本体 |                               |
+
+`data`对象：
+
+| 字段  | 类型 | 内容                       | 备注                               |
+| ----- | ---- | -------------------------- | ---------------------------------- |
+| count | num  | 自上次访问后新增的粉丝个数 |                                    |
+| time  | num  | 上次访问粉丝列表时间       | 秒级时间戳；当没有新增粉丝时为 `0` |
+
+**示例：**
+
+```shell
+curl 'https://api.bilibili.com/x/relation/followers/unread/count' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "count": 55,
+    "time": 1743677191
   }
 }
 ```
@@ -574,7 +611,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings' \
 
 *请求方式：GET*
 
-仅可查看前 5 页，对于已设置可见性隐私关注列表的用户，`$.data.list` 为 null，且 `$.data.total` 为0
+仅可查看前 5 页，对于已设置可见性隐私关注列表的用户，响应数据中的 `data.list` 为 null，且 `data.total` 为0
 
 **url参数：**
 
@@ -911,9 +948,7 @@ curl -G 'https://api.bilibili.com/x/relation/followings/search' \
         "mid": 53456,
         "attribute": 2,
         "mtime": 1586415053,
-        "tag": [
-          -10
-        ],
+        "tag": [-10],
         "special": 1,
         "uname": "Warma",
         "face": "https://i2.hdslb.com/bfs/face/c1bbee6d255f1e7fc434e9930f0f288c8b24293a.jpg",
@@ -1039,9 +1074,7 @@ curl -G 'https://api.bilibili.com/x/relation/same/followings' \
         "mid": 517717593,
         "attribute": 2,
         "mtime": 1592126052,
-        "tag": [
-          207542
-        ],
+        "tag": [207542],
         "special": 0,
         "uname": "上海爱丽丝幻乐团",
         "face": "https://i0.hdslb.com/bfs/face/851a9191cbe93e66304d7577c0f6f83834e52109.jpg",
@@ -1265,9 +1298,7 @@ curl -G 'https://api.bilibili.com/x/relation/friends' \
         "mid": 24022863,
         "attribute": 6,
         "mtime": 1685026230,
-        "tag": [
-          -10
-        ],
+        "tag": [-10],
         "special": 1,
         "uname": "黄禄轩电脑专用账号",
         "face": "https://i0.hdslb.com/bfs/face/a70ec7d2a3822980a915ef4b30371af0cbc79132.jpg",
@@ -1306,9 +1337,7 @@ curl -G 'https://api.bilibili.com/x/relation/friends' \
         "mid": 85438718,
         "attribute": 6,
         "mtime": 1684759843,
-        "tag": [
-          194110
-        ],
+        "tag": [194110],
         "special": 0,
         "uname": "忘忧北萱草Official",
         "face": "https://i2.hdslb.com/bfs/face/68d8cba01aab907dbb2cf2e17074f20947156237.jpg",
@@ -1667,9 +1696,9 @@ curl 'https://api.bilibili.com/x/relation/batch/modify' \
 | 字段      | 类型                                    | 内容         | 备注                                                     |
 | --------- | --------------------------------------- | ------------ | -------------------------------------------------------- |
 | mid       | num                                     | 目标用户 mid |                                                          |
-| attribute | num                                     | 关系属性     | 0：未关注<br />2：已关注<br />6：已互粉<br />128：已拉黑 |
+| attribute | num                                     | 关系属性     | 0：未关注<br />~~1：悄悄关注（已弃用）~~<br />2：已关注<br />6：已互粉<br />128：已拉黑 |
 | mtime     | num                                     | 关注对方时间 | 时间戳<br />未关注为 0                                   |
-| tag       | null默认分组<br />array存在至少一个分组 | 分组 id      |                                                          |
+| tag       | 默认分组：null<br />存在至少一个分组：array | 分组 id      |                                                          |
 | special   | num                                     | 特别关注标志 | 0：否<br />1：是                                         |
 
 `tag`数组：
@@ -1706,7 +1735,7 @@ curl 'https://api.bilibili.com/x/relation/batch/modify' \
 | ttl     | num  | 1        |                                                   |
 | data    | obj  | 信息本体 | 详见 [关系属性对象](#关系属性对象)                |
 
-`data`对象：**示例：**
+**示例：**
 
 可得对于`mid=258150656`的用户，在`2018/10/28 0:51:41`时关注，且设为特别关注，并位于为`-10`分组中
 
@@ -1804,21 +1833,14 @@ curl -G 'https://api.bilibili.com/x/space/acc/relation' \
       "mid": 15858903,
       "attribute": 6,
       "mtime": 1548311059,
-      "tag": [
-        -10,
-        194110,
-        248468
-      ],
+      "tag": [-10, 194110, 248468],
       "special": 1
     },
     "be_relation": {
       "mid": 293793435,
       "attribute": 6,
       "mtime": 1548311059,
-      "tag": [
-        56502,
-        -10
-      ],
+      "tag": [56502, -10],
       "special": 1
     }
   }
@@ -1945,7 +1967,7 @@ curl -G 'https://api.bilibili.com/x/relation/relations' \
 
 | 字段  | 类型 | 内容       | 备注 |
 | ----- | ---- | ---------- | ---- |
-| tagid | num  | 分组 id    |  -10：特别关注<br />0：默认分组    |
+| tagid | num  | 分组 id    | -10：特别关注<br />0：默认分组 |
 | name  | str  | 分组名称   |      |
 | count | num  | 分组成员数 |      |
 | tip   | str  | 提示信息   |      |
@@ -2014,7 +2036,7 @@ curl 'https://api.bilibili.com/x/relation/tags' \
 | 参数名     | 类型 | 内容           | 必要性       | 备注                                                    |
 | ---------- | ---- | -------------- | ------------ | ------------------------------------------------------- |
 | access_key | str  | APP 登录 Token | APP 方式必要 |                                                         |
-| tagid      | num  | 分组 id        | 必要         |                                                         |
+| tagid      | num  | 分组 id        | 必要         | 0：默认分组<br />-10：特别关注<br />-20：所有           |
 | order_type | str  | 排序方式       | 非必要       | 按照关注顺序排列：留空<br />按照最常访问排列：attention |
 | ps         | num  | 每页项数       | 非必要       | 默认为 20                                               |
 | pn         | num  | 页数           | 非必要       | 默认为1                                                 |
