@@ -291,7 +291,7 @@ curl -X POST 'https://api.bilibili.com/x/dynamic/feed/space/set_top' \
 
 </details>
 
-## 取消置顶u动态
+## 取消置顶动态
 
 > https://api.bilibili.com/x/dynamic/feed/space/rm_top
 
