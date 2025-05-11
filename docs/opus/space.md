@@ -17,8 +17,8 @@
 | offset   | number | 偏移信息 | 不必要 | 上一次返回的 `offset` (同时也是最后一条的 opus id),  默认为空 |
 | type     | string | 类型 | 不必要 | all: 全部 (默认)<br />article: 专栏<br />dynamic: 动态 |
 | web_location | string | `333.1387` | 不必要 |  |
-| w_rid    | string | WBI 签名 | 不必要 | 参见 [WBI 签名](../miac/sign/wbi.md) |
-| wts      | number | UNIX 秒级时间戳 | 不必要 | 参见 [WBI 签名](../miac/sign/wbi.md) |
+| w_rid    | string | WBI 签名 | 不必要 | 参见 [WBI 签名](../misc/sign/wbi.md) |
+| wts      | number | UNIX 秒级时间戳 | 不必要 | 参见 [WBI 签名](../misc/sign/wbi.md) |
 
 **JSON 回复:**
 
