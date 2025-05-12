@@ -480,6 +480,8 @@ curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/get_sessions' \
 
 获取指定时间之后的新会话列表
 
+注：该接口默认每 20 秒请求一次
+
 **url参数：**
 
 | 参数名   | 类型 | 内容             | 必要性 | 备注                      |
