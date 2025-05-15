@@ -145,7 +145,7 @@
 以下信息代表未读未关注用户私信数为 `1` 条，未读已关注用户私信数为 `6` 条
 
 ```shell
-curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
+curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
   --data-urlencode 'unread_type=0' \
   --data-urlencode 'show_unfollow_list=1' \
   --data-urlencode 'show_dustbin=1' \
@@ -216,7 +216,7 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/single_unread' \
 以下信息代表未读粉丝团私信数为 `497` 条
 
 ```shell
-curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/my_group_unread' \
+curl -G 'https://api.vc.bilibili.com/session_svr/v1/session_svr/my_group_unread' \
   --data-urlencode 'build=0' \
   --data-urlencode 'mobi_app=web' \
   -b 'SESSDATA=xxx'
@@ -1376,6 +1376,8 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/update_intercept' \
 }
 ```
 
+</details>
+
 ### 设置所有拦截会话为已读
 
 > <https://api.vc.bilibili.com/session_svr/v1/session_svr/batch_update_dustbin_ack>
@@ -1427,6 +1429,8 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/batch_update_dustbi
 }
 ```
 
+</details>
+
 ### 移除所有拦截会话
 
 > <https://api.vc.bilibili.com/session_svr/v1/session_svr/batch_rm_dustbin>
@@ -1477,6 +1481,8 @@ curl 'https://api.vc.bilibili.com/session_svr/v1/session_svr/batch_rm_dustbin' \
   "data": {}
 }
 ```
+
+</details>
 
 ## 私信消息相关
 
