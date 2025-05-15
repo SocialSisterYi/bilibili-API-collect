@@ -167,8 +167,8 @@
 
 **按钮显示逻辑说明：**
 
-- **按钮的url：**首先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中表示当前设备类型的 url（如 `web_uri`、`android_uri` 等）；若为空值，则尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `all_uri` 的值；若仍为空值，则读取根对象中 `jump_uri`、`jump_uri_2`、`jump_uri_3` 的值；若仍为空值，则不显示该按钮（无论提示文字是否为空）
-- **按钮提示文字：**若按钮是可见的，则先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `text` 的值；若为空值，则读取根对象中 `jump_text`、`jump_text_2`、`jump_text_3` 的值；若仍为空值，则提示文字为 `查看详情`
+- **按钮的url**：首先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中表示当前设备类型的 url（如 `web_uri`、`android_uri` 等）；若为空值，则尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `all_uri` 的值；若仍为空值，则读取根对象中 `jump_uri`、`jump_uri_2`、`jump_uri_3` 的值；若仍为空值，则不显示该按钮（无论提示文字是否为空）
+- **按钮提示文字**：若按钮是可见的，则先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `text` 的值；若为空值，则读取根对象中 `jump_text`、`jump_text_2`、`jump_text_3` 的值；若仍为空值，则提示文字为 `查看详情`
 
 根对象：
 
