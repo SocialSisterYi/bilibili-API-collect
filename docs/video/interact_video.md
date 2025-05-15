@@ -16,7 +16,7 @@
 | ------------- | ---- | -------- | ------------ | ------------------ |
 | aid           | num  | 稿件avid | 必要（可选） | avid与bvid任选一个 |
 | bvid          | str  | 稿件bvid | 必要（可选） | avid与bvid任选一个 |
-| graph_version | num  | 剧情图id | 必要         | 位于`player.so`中  |
+| graph_version | num  | 剧情图id | 必要         | 可于[播放器](/docs/video/player.md)接口的 `interaction` 對象取得 |
 | edge_id       | num  | 模块编号 | 非必要       | 0或留空为起始模块  |
 
 **json回复：**
