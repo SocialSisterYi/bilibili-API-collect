@@ -296,7 +296,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | status    | str   | 直播间状态       | `LIVE`                 |
 | room_type | num   | 0                | 作用尚不明确           |
 | rtmp      | obj   | RTMP推流地址信息 |                        |
-| protocols | array | ？？？           | 作用尚不明确           |
+| protocols | array | 推流协议、地址、密钥等信息<br />其中地址、密钥与 `rtmp` 字段的内容是一致的 | 协议只见到过 `rtmp` |
 | try_time  | str   | ？？？           | 作用尚不明确           |
 | live_key  | str   | 标记直播场次的key |                        |
 | sub_session_key | str   | 信息变动标识 |      |
@@ -314,23 +314,23 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | addr     | str  | RTMP推流（发送）地址             | **重要**     |
 | code     | str  | RTMP推流参数（密钥）             | **重要**     |
 | new_link | str  | 获取CDN推流ip地址重定向信息的url | 没啥用       |
-| provider | str  | ？？？                           | 作用尚不明确 |
+| provider | str  | 推流云服务节点厂商    | `txy`: 腾讯云            |
 
 `data`中的`protocols`数组：
 
 | 项   | 类型 | 内容   | 备注         |
 | ---- | ---- | ------ | ------------ |
-| 0    | obj  | ？？？ | 作用尚不明确 |
+| 0    | obj  | 与 `rtmp` 字段在地址和密钥上相同的推流协议信息 |           |
 
 `data`中的`protocols`数组中的对象：
 
 | 字段     | 类型 | 内容                             | 备注         |
 | -------- | ---- | -------------------------------- | ------------ |
-| protocol | str  | rtmp                             | 作用尚不明确 |
-| addr     | str  | RTMP推流（发送）地址             |              |
-| code     | str  | RTMP推流参数（密钥）             |              |
+| protocol | str  | rtmp                             | 推流协议     |
+| addr     | str  | RTMP推流（发送）地址             | 格式为 `rtmp://<推流节点>/live-bvc/` |
+| code     | str  | RTMP推流参数（密钥）             | 格式为 `?streamname=live_<B站UID>_<未知数字>&key=<密钥>&schedule=rtmp&pflag=2` |
 | new_link | str  | 获取CDN推流ip地址重定向信息的url |              |
-| provider | str  | txy                              | 作用尚不明确 |
+| provider | str  | 推流云服务节点厂商                              | `txy`: 腾讯云 |
 
 `data`中的`notice`对象：
 
