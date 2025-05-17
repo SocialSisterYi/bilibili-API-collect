@@ -78,7 +78,7 @@
 | --- | --- | --- | --- |
 | module_author | obj | UP主信息 | 参见 [MODULE_TYPE_AUTHOR](../opus/features.md#MODULE_TYPE_AUTHOR) 中的 `module_author` 对象 |
 | module_dynamic | obj | 动态内容信息 | |
-| module_more | obj | 动态右上角三点菜单 | |
+| module_more | obj | 动态右上角三点菜单 | 参见 [module_more](../opus/features.md#module-more) 中的 `module_more` 对象 |
 | module_stat | obj | 动态统计数据 | |
 | module_interaction | obj | 热度评论 | |
 | module_fold | obj | 动态折叠信息 | |
@@ -556,37 +556,6 @@
 | id | num | 话题id | |
 | jump_url | str | 跳转URL | |
 | name | str | 话题名称 | |
-
-`data.items[n].modules.module_more`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| three_point_items | array | 右上角三点菜单 | |
-
-`data.items[n].modules.module_more.three_point_items[o]`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| label | str | 显示文本 | |
-| type | str | 类型 | 参见 [动态主体类型](dynamic_enum.md#动态主体类型) |
-| modal | obj | 弹出框信息 | 删除动态时弹出 |
-| params | obj | 参数 | 置顶/取消置顶时使用 |
-
-`data.items[n].modules.module_more.three_point_items[o].modal`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| cancel | str | 取消按钮 | `我点错了` |
-| confirm | str | 确认按钮 | `删除` |
-| content | str | 提示内容 | `确定要删除此条动态吗？` |
-| title | str | 标题 | `删除动态` |
-
-`data.items[n].modules.module_more.three_point_items[o].params`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| dynamic_id | str | 当前动态ID | deprecated? |
-| status | bool | 当前动态是否处于置顶状态 | deprecated? |
 
 `data.items[n].modules.module_stat`:
 
