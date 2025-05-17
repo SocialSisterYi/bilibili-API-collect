@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-edc6a97c","path":"/docs/video/summary.html","title":"视频AI总结","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取AI总结内容","slug":"获取ai总结内容","link":"#获取ai总结内容","children":[]},{"level":2,"title":"点赞&点踩摘要","slug":"点赞-点踩摘要","link":"#点赞-点踩摘要","children":[]}],"git":{},"filePathRelative":"docs/video/summary.md"}');export{e as data};

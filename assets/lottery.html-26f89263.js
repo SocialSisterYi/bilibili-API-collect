@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-767cd3fa","path":"/docs/garb/lottery.html","title":"装扮/收藏集","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"装扮/收藏集搜索API","slug":"装扮-收藏集搜索api","link":"#装扮-收藏集搜索api","children":[]},{"level":2,"title":"收藏集信息API","slug":"收藏集信息api","link":"#收藏集信息api","children":[]}],"git":{},"filePathRelative":"docs/garb/lottery.md"}');export{t as data};

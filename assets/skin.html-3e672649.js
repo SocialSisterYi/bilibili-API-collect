@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-a09b7e1c","path":"/docs/garb/skin.html","title":"APP主题","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取主题及加载动画","slug":"获取主题及加载动画","link":"#获取主题及加载动画","children":[]},{"level":2,"title":"主题包结构","slug":"主题包结构","link":"#主题包结构","children":[]}],"git":{},"filePathRelative":"docs/garb/skin.md"}');export{e as data};

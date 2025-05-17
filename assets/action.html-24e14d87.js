@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3b30947e","path":"/docs/note/action.html","title":"笔记操作","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"保存视频笔记","slug":"保存视频笔记","link":"#保存视频笔记","children":[]},{"level":2,"title":"删除视频笔记","slug":"删除视频笔记","link":"#删除视频笔记","children":[]}],"git":{},"filePathRelative":"docs/note/action.md"}');export{e as data};

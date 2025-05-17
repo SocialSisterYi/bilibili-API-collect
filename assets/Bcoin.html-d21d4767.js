@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-76365d86","path":"/docs/electric/Bcoin.html","title":"B币方式充电","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"新版本B币充电","slug":"新版本b币充电","link":"#新版本b币充电","children":[]},{"level":2,"title":"老版本B币充电","slug":"老版本b币充电","link":"#老版本b币充电","children":[]}],"git":{},"filePathRelative":"docs/electric/Bcoin.md"}');export{e as data};
