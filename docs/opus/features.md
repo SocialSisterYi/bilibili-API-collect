@@ -22,6 +22,7 @@
 | onlyfansQaCard    |  |  |  |
 | commentsNewVersion |  |  |  |
 | decorationCard | 是否以卡片形式显示装扮 | 对于图文类型接口无效 | 566950981753221664 |
+| editable | 是否在右上角三点菜单中显示 `编辑` | 必须是自己发送的动态才有效果 | 1065142062572109830 |
 
 ## modules
 
