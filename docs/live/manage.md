@@ -328,7 +328,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | -------- | ---- | -------------------------------- | ------------ |
 | protocol | str  | rtmp                             | 推流协议     |
 | addr     | str  | RTMP推流（发送）地址             | 格式为 `rtmp://<推流节点>/live-bvc/` |
-| code     | str  | RTMP推流参数（密钥）             | 格式为 `?streamname=live_<B站UID>_<未知数字>&key=<密钥>&schedule=rtmp&pflag=2` |
+| code     | str  | RTMP推流参数（密钥）             | 格式为 `?streamname=live_<B站UID>_<未知数字>&key=<密钥>&schedule=rtmp&pflag=<数字>` |
 | new_link | str  | 获取CDN推流ip地址重定向信息的url |              |
 | provider | str  | 推流云服务节点厂商                              | `txy`: 腾讯云 |
 
