@@ -76,10 +76,10 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| module_author | obj | UP主信息 | 参见 [MODULE_TYPE_AUTHOR](../opus/features.md#MODULE_TYPE_AUTHOR) 中的 `module_author` 对象 |
+| module_author | obj | UP主信息 | 参见 [MODULE_TYPE_AUTHOR](../opus/features.md#module-type-author) 中的 `module_author` 对象 |
 | module_dynamic | obj | 动态内容信息 | |
 | module_more | obj | 动态右上角三点菜单 | 参见 [module_more](../opus/features.md#module-more) 中的 `module_more` 对象 |
-| module_stat | obj | 动态统计数据 | |
+| module_stat | obj | 动态统计数据 | 参见 [MODULE_TYPE_STAT](../opus/features.md#module-type-stat) 中的 `module_stat` 对象 |
 | module_interaction | obj | 热度评论 | |
 | module_fold | obj | 动态折叠信息 | |
 | module_dispute | obj | 争议小黄条 | |
@@ -556,37 +556,6 @@
 | id | num | 话题id | |
 | jump_url | str | 跳转URL | |
 | name | str | 话题名称 | |
-
-`data.items[n].modules.module_stat`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| comment | obj | 评论数据 | |
-| forward | obj | 转发数据 | |
-| like | obj | 点赞数据 | |
-
-`data.items[n].modules.module_stat.comment`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| count | num | 评论数 | |
-| forbidden | bool | `false` | |
-| hidden | bool | 是否隐藏 | 直播类型动态会隐藏回复功能 |
-
-`data.items[n].modules.module_stat.forward`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| count | num | 转发数 | |
-| forbidden | bool | `false` | |
-
-`data.items[n].modules.module_stat.like`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| count | num | 点赞数 | |
-| forbidden | bool | `false` | |
-| status | bool | 当前用户是否点赞 | |
 
 `data.items[n].modules.module_interaction`:
 
