@@ -40,7 +40,7 @@
 
 | 字段     | 类型 | 内容     | 备注                         |
 | -------- | ---- | -------- | ---------------------------- |
-| author   | obj  | UP主     | 参考 [MODULE_TYPE_AUTHOR](../opus/features.md#MODULE_TYPE_AUTHOR) |
+| author   | obj  | UP主     | 参考 [MODULE_TYPE_AUTHOR](../opus/features.md#module-type-author) |
 | cover    | str  | 封面URL  |                              |
 | id_str   | str  | 动态id   |                              |
 | pub_time | str  | 发布时间 | 文字表述的相对时间           |
