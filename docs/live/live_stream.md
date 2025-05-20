@@ -4,23 +4,22 @@
 
 > https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo
 
-_请求方式：GET_
+*请求方式：GET*
 
 **url参数：**
+
 | 参数名     | 类型  | 内容     | 必要性 | 备注 |
 | ---------- | ----- | -------- | ------ | ---- |
 | room_id    | num   | 直播间号 | 必要   | 房间号 |
 | no_playurl | num   | 无视频流 | 非必要 | 置`0`才有视频流 |
-| mask       | num   | -        | -      | 作用未知，未观察到响应改变 默认1 |
+| mask       | num   | （？）   | 非必要 | 作用未知，未观察到响应改变 默认1 |
 | qn         | num   | 质量     | 非必要 | 3000杜比 20000 4K 10000 原画 <br /> 400 蓝光 250 超清 150 高清 <br /> 0 应该是默认 |
-| platform   | str   | 平台     | -      | 参考：`web` |
-| protocol   | num[] | 协议     | -      | 参考：`0,1` |
-| format     | num[] | 格式     | -      | 参考：`0,1,2`  |
-| codec      | num[] | 编码     | -      | 参考：`0,1,2`  |
-| dolby      | num   | 杜比     | -      | 参考：`5`  |
-| panorama   | num   | 环绕音   | -      | 参考：`1`  |
-
-> 注意：请将Referer设置为相关链接，如`https://live.bilibili.com/`
+| platform   | str   | 平台     | 非必要 | 参考：`web` |
+| protocol   | num[] | 协议     | 非必要 | 参考：`0,1` |
+| format     | num[] | 格式     | 非必要 | 参考：`0,1,2`  |
+| codec      | num[] | 编码     | 非必要 | 参考：`0,1,2`  |
+| dolby      | num   | 杜比     | 非必要 | 参考：`5`  |
+| panorama   | num   | 环绕音   | 非必要 | 参考：`1`  |
 
 **json回复：**
 
@@ -32,6 +31,7 @@ _请求方式：GET_
 <summary>查看响应示例及响应含义</summary>
 
 请求：
+
 ```bash
 curl -G 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo' \
   --data-urlencode 'room_id=123456789' \  # 请自行替换对应房间号
@@ -42,11 +42,11 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo' 
   --data-urlencode 'codec=0,1,2' \
   --data-urlencode 'dolby=5' \
   --data-urlencode 'panorama=1' \
-  --header 'Referer: https://live.bilibili.com' \
   --header 'accept: application/json'
 ```
 
 响应：
+
 ```jsonc
 {
   "code": 0,        // 标记是否成功
@@ -59,7 +59,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo' 
     "is_hidden": false,         // 是否隐藏
     "is_locked": false,         // 是否锁定
     "is_portrait": false,       
-    "live_status": 1,           // 直播状态：1为开播，0为下播
+    "live_status": 1,           // 直播状态：1为开播，2为未开播，0为下播
     "hidden_till": 0,           // 隐藏直到（目前未找到相关样本）
     "lock_till": 0,             // 同上，锁定直到
     "encrypted": false,         
@@ -145,6 +145,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo' 
   }
 }
 ```
+
 </details>
 
 ## 视频取流
@@ -155,6 +156,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v2/index/getRoomPlayInfo' 
 - 最终链接为 `host + base_url + extra`
 
 示例代码（javascript）:
+
 ```javascript
 function get_stream_url(data) {
   let result = [];
@@ -172,6 +174,7 @@ function get_stream_url(data) {
 ```
 
 示例代码（python）:
+
 ```python
 def get_stream_url(data):
     for stream in data['data']['playurl_info']['playurl']['stream']:
@@ -180,9 +183,7 @@ def get_stream_url(data):
                 for url_info in codec['url_info']:
                     yield ''.join([url_info['host'], codec['base_url'], url_info['extra']])
 ```
+
 最终从响应的链接随意选择一个即可，按照一般视频流处理即可（目前发现有m3u8和flv两种格式），至于编码格式之类问题，相关的下载器应该都能处理，或者自己根据需要在json回应中挑选
 
 另外，有注意到部分链接可能包含客户端ip地址，在这方面（现在或者将来）可能有检测
-
-
-> [根据真实直播间号获取直播视频流 （旧）](https://github.com/SocialSisterYi/bilibili-API-collect/blob/f6760f4be38d5b592d396b211e48c666286524de/docs/live/live_stream.md)
