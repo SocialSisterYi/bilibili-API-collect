@@ -1,8 +1,5 @@
 # 直播流水
 
-- [获取所有礼物列表](#获取所有礼物列表)
-- [获取流水](#获取流水)
-
 ## 获取所有礼物列表
 
 > https://api.live.bilibili.com/gift/v1/master/getGiftTypes
@@ -35,7 +32,7 @@
 <details>
 <summary>查看响应示例：</summary>
 
-```json
+```jsonc
   {
     "code": 0,
     "msg": "success",
@@ -127,14 +124,12 @@
         "price": 0,
         "gift_name": "粉丝团灯牌"
       },
-      ...
+      // ...
     ]
   }
 ```
 
 </details>
-
----
 
 ## 获取流水
 
@@ -147,13 +142,13 @@
 请求参数：
 
 | 参数名     | 类型          | 内容                    | 必要性     | 备注                                   |
-| ---------- | ------------- | ----------------------- | ---------- |
+| ---------- | ------------- | ----------------------- | ---------- | -------------------------------------- |
 | limit      | num           | 一页有多少条目          | 必要       |                                        |
 | coin_type  | num           | 礼物类型                | 必要       | 0 为所有，1 为电池礼物，2 为银瓜子礼物 |
 | begin_time | date / string | 流水的日期              | 必要       | 格式为 yyyy-MM-dd                      |
 | uname      | string        | 筛选的用户名            | 非必要     |                                        |
 | last_id    | num           | 上一页页末的礼物列表 id | 翻页时必要 | 见下方 `list` 数组说明                 |
-| gift_id    | num           | 筛选的礼物 id           |            |
+| gift_id    | num           | 筛选的礼物 id           |            |                                        |
 
 请求示例：`https://api.live.bilibili.com/xlive/revenue/v1/giftStream/getReceivedGiftStreamNextList?limit=20&coin_type=0&begin_time=2023-01-01`
 
@@ -175,8 +170,8 @@
 | 字段          | 类型  | 内容           | 备注           |
 | ------------- | ----- | -------------- | -------------- |
 | has_more      | num   | 是否由下一页   | 1 为是，0 为否 |
-| total_hamster | num   | 总的金仓鼠收益 |
-| list          | array | 礼物列表       |
+| total_hamster | num   | 总的金仓鼠收益 |                |
+| list          | array | 礼物列表       |                |
 
 `list` 数组：
 
@@ -190,8 +185,8 @@
 | gift_img           | str        | 礼物图片链接                          |                            |
 | gift_num           | num        | 礼物数量                              |                            |
 | hamster            | num        | 金仓鼠数量                            |                            |
-| gold               | num        | 礼物价值（金瓜子）                    |
-| silver             | num        | 礼物价值（银瓜子）                    |
+| gold               | num        | 礼物价值（金瓜子）                    |                            |
+| silver             | num        | 礼物价值（银瓜子）                    |                            |
 | ios_hamster        | num        | 由 iOS 端送出的礼物所收到的金仓鼠     |                            |
 | normal_hamster     | num        | 一般情况下收到的金仓鼠                |                            |
 | ios_gold           | num        | 由 iOS 端送出的礼物所收到的金瓜子数量 |                            |
