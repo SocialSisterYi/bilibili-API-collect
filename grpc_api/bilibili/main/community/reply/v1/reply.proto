@@ -7,25 +7,27 @@ import "google/protobuf/any.proto";
 // 评论区
 service Reply {
     // 主评论列表接口
-    rpc MainList (MainListReq) returns (MainListReply);
+    rpc MainList(MainListReq) returns (MainListReply);
     // 二级评论明细接口
-    rpc DetailList (DetailListReq) returns (DetailListReply);
+    rpc DetailList(DetailListReq) returns (DetailListReply);
     // 对话评论树接口
-    rpc DialogList (DialogListReq) returns (DialogListReply);
+    rpc DialogList(DialogListReq) returns (DialogListReply);
     // 评论预览接口
-    rpc PreviewList (PreviewListReq) returns (PreviewListReply);
+    rpc PreviewList(PreviewListReq) returns (PreviewListReply);
     // 评论搜索item前置发布接口
-    rpc SearchItemPreHook (SearchItemPreHookReq) returns (SearchItemPreHookReply);
+    rpc SearchItemPreHook(SearchItemPreHookReq) returns (SearchItemPreHookReply);
     // 评论搜索插入项目接口
-    rpc SearchItem (SearchItemReq) returns (SearchItemReply);
-    //
-    rpc AtSearch (AtSearchReq) returns (AtSearchReply);
-    //
-    rpc ReplyInfo (ReplyInfoReq) returns (ReplyInfoReply);
-    //
-    rpc UserCallback (UserCallbackReq) returns (UserCallbackReply);
-    //
-    rpc ShareRepliesInfo (ShareRepliesInfoReq) returns (ShareRepliesInfoResp);
+    rpc SearchItem(SearchItemReq) returns (SearchItemReply);
+    // 评论at用户搜索接口
+    rpc AtSearch(AtSearchReq) returns (AtSearchReply);
+    // 查询单条评论接口
+    rpc ReplyInfo(ReplyInfoReq) returns (ReplyInfoReply);
+    // 用户回调上报接口
+    rpc UserCallback(UserCallbackReq) returns (UserCallbackReply);
+    // 评论分享材料接口
+    rpc ShareRepliesInfo(ShareRepliesInfoReq) returns (ShareRepliesInfoResp);
+    // 评论表情推荐列表接口
+    rpc SuggestEmotes(SuggestEmotesReq) returns (SuggestEmotesResp);
 }
 
 // 活动
@@ -49,41 +51,41 @@ message ArticleSearchItem {
     repeated string covers = 3;
 }
 
-//
+// 评论at用户搜索组
 message AtGroup {
-    //
+    // 组类型
     int32 group_type = 1;
-    //
+    // 组标题
     string group_name = 2;
-    //
+    // 评论at用户搜索列表
     repeated AtItem items = 3;
 }
 
-//
+// 评论at用户搜索条目
 message AtItem {
-    //
+    // 用户mid
     int64 mid = 1;
-    //
+    // 用户名
     string name = 2;
-    //
+    // 用户头像url
     string face = 3;
-    //
+    // 用户是否关注
     int32 fans = 4;
-    //
+    // 用户认证类型
     int32 official_verify_type = 5;
 }
 
-//
+// 评论at用户搜索-响应
 message AtSearchReply {
-    //
+    // 评论at用户搜索组
     repeated AtGroup groups = 1;
 }
 
-//
+// 评论at用户搜索-请求
 message AtSearchReq {
     //
     int64 mid = 1;
-    //
+    // 关键字
     string keyword = 2;
 }
 
@@ -97,7 +99,7 @@ message CM {
 message Content {
     // 评论文本
     string message = 1;
-    // at到的用户信息
+    // 需要渲染的用户转义
     map<string, Member> menber = 2;
     // 需要渲染的表情转义
     map<string, Emote> emote = 3;
@@ -107,6 +109,24 @@ message Content {
     map<string, Url> url = 5;
     // 投票信息
     Vote vote = 6;
+    // at到的用户mid列表
+    map<string, int64> at_name_to_mid = 7;
+    // 富文本
+    RichText rich_text = 8;
+    // 评论图片
+    repeated  Picture pictures = 9;
+}
+
+// 图片信息
+message Picture {
+    // 图片URL
+    string img_src = 1;
+    // 图片宽度
+    double img_width = 2;
+    // 图片高度
+    double img_height = 3;
+    // 图片大小，单位KB
+    double img_size = 4;
 }
 
 // 页面游标回复
@@ -154,7 +174,7 @@ message DetailListReply {
 message DetailListReq {
     // 目标评论区id
     int64 oid = 1;
-    // 目标评论区类型
+    // 目标评论区业务type
     int64 type = 2;
     // 根评论rpid
     int64 root = 3;
@@ -168,9 +188,9 @@ message DetailListReq {
 
 // 来源标识
 enum DetailListScene {
-    REPLY = 0;    // 评论区展开
+    REPLY    = 0; // 评论区展开
     MSG_FEED = 1; // 回复消息推送
-    NOTIFY = 2;   //
+    NOTIFY   = 2; //
 }
 
 // 对话评论树-响应
@@ -189,7 +209,7 @@ message DialogListReply {
 message DialogListReq {
     // 目标评论区id
     int64 oid = 1;
-    // 目标评论区类型
+    // 目标评论区业务type
     int64 type = 2;
     // 根评论rpid
     int64 root = 3;
@@ -222,6 +242,8 @@ message Emote {
     int64 package_id = 6;
     //
     string gif_url = 7;
+    //
+    string text = 8;
 }
 
 // 商品项目
@@ -318,20 +340,56 @@ message MainListReply {
 message MainListReq {
     // 目标评论区id
     int64 oid = 1;
-    // 目标评论区类型
+    // 目标评论区业务type
     int64 type = 2;
     // 页面游标
     CursorReq cursor = 3;
     // 扩展数据json
     string extra = 4;
-    // 广告扩展json
+    // 广告扩展
     string ad_extra = 5;
     // 目标评论rpid
     int64 rpid = 6;
+    //
+    int64 seek_rpid = 7;
+    // 评论区筛选类型 取值可为: ["全部" "粉丝评论" "笔记长评"]
+    string filter_tag_name = 8;
 }
 
 // 用户信息
 message Member {
+    // 地区类型
+    enum RegionType {
+        DEFAULT  = 0; // 默认
+        MAINLAND = 1; // 大陆地区
+        GAT      = 2; //
+    }
+    //
+    enum ShowStatus {
+        SHOWDEFAULT    = 0; // 默认
+        ZOOMINMAINLAND = 1; //
+        RAW            = 2; //
+    }
+    // NFT地区
+    message Region {
+        // 地区类型
+        RegionType type = 1;
+        // 角标url
+        string icon = 2;
+        //
+        ShowStatus show_status = 3;
+    }
+    // NFT信息
+    message NftInteraction {
+        //
+        string itype = 1;
+        //
+        string metadata_url = 2;
+        //
+        string nft_id = 3;
+        // NFT地区
+        Region region = 4;
+    }
     /**********基础信息**********/
     // 用户mid
     int64 mid = 1;
@@ -386,30 +444,186 @@ message Member {
     string vip_label_text = 23;
     // 会员标颜色
     string vip_label_theme = 24;
-    //
+    // 粉丝勋章底色
     int64 fans_medal_color_end = 25;
-    //
+    // 粉丝勋章边框颜色
     int64 fans_medal_color_border = 26;
-    //
+    // 粉丝勋章名颜色
     int64 fans_medal_color_name = 27;
-    //
+    // 粉丝勋章等级颜色
     int64 fans_medal_color_level = 28;
     //
     int64 fans_guard_level = 29;
     //
     int32 face_nft = 30;
-    //
+    // 是否NFT头像
     int32 face_nft_new = 31;
-    //
+    // 是否为硬核会员
     int32 is_senior_member = 32;
+    // NFT信息
+    NftInteraction nft_interaction = 33;
+    //
+    string fans_guard_icon = 34;
+    //
+    string fans_honor_icon = 35;
+}
+
+// 用户信息V2
+message MemberV2 {
+    // 基本信息
+    message Basic {
+        // 用户mid
+        int64 mid = 1;
+        // 昵称
+        string name = 2;
+        // 性别
+        string sex = 3;
+        // 头像url
+        string face = 4;
+        // 等级
+        int64 level = 5;
+    }
+    // 认证
+    message Official {
+        // 认证类型
+        int64 verify_type = 1;
+    }
+    // 大会员
+    message Vip {
+        // 会员类型
+        // 0:不是大会员 1:月度会员 2:年度大会员
+        int64 type = 1;
+        // 会员状态
+        int64 status = 2;
+        // 会员样式
+        int64 theme_type = 3;
+        // 会员铭牌样式url
+        string label_path = 4;
+        //
+        string nickname_color = 5;
+        //
+        int32 avatar_subscript = 6;
+        //
+        string label_text = 7;
+        //
+        string vip_label_theme = 8;
+    }
+    // 装扮
+    message Garb {
+        // 头像框url
+        string pendant_image = 1;
+        // 装扮卡url
+        string card_image = 2;
+        // 有关注按钮时的装扮卡url
+        string card_image_with_focus = 3;
+        // 专属装扮页面url
+        string card_jump_url = 4;
+        // 专属装扮id
+        string card_number = 5;
+        // 专属装扮id显示颜色
+        string card_fan_color = 6;
+        // 是否为专属装扮卡
+        bool card_is_fan = 7;
+    }
+    // 粉丝勋章
+    message Medal {
+        // 粉丝勋章名
+        string name = 1;
+        // 粉丝勋章等级
+        int64 level = 2;
+        // 粉丝勋章显示颜色
+        int64 color_start = 3;
+        // 粉丝勋章底色
+        int64 color_end = 4;
+        // 粉丝勋章边框颜色
+        int64 color_border = 5;
+        // 粉丝勋章名颜色
+        int64 color_name = 6;
+        // 粉丝勋章等级颜色
+        int64 color_level = 7;
+        //
+        int64 guard_level = 8;
+        //
+        string first_icon = 9;
+        //
+        int64 level_bg_color = 11;
+    }
+    // 地区类型
+    enum RegionType {
+        DEFAULT  = 0; // 默认
+        MAINLAND = 1; // 大陆地区
+        GAT      = 2; //
+    }
+    //
+    enum ShowStatus {
+        SHOWDEFAULT    = 0; //
+        ZOOMINMAINLAND = 1; //
+        RAW            = 2; //
+    }
+    // NFT地区
+    message Region {
+        // 地区类型
+        RegionType type = 1;
+        // 角标url
+        string icon = 2;
+        //
+        ShowStatus show_status = 3;
+    }
+    // NFT信息
+    message Interaction {
+        //
+        string itype = 1;
+        //
+        string metadata_url = 2;
+        //
+        string nft_id = 3;
+        // NFT地区
+        Region region = 4;
+
+    }
+    // NFT
+    message Nft {
+        //
+        int32 face = 1;
+        //
+        Interaction interaction = 2;
+    }
+    // 硬核会员
+    message Senior {
+        // 是否为硬核会员
+        int32 is_senior_member = 1;
+    }
+    // 契约
+    message Contractor {
+        // 是否和up签订契约
+        bool is_contractor = 1;
+        // 契约显示文案
+        string contract_desc = 2;
+    }
+    // 基本信息
+    Basic basic = 1;
+    // 认证信息
+    Official official = 2;
+    // 大会员信息
+    Vip vip = 3;
+    // 装扮信息
+    Garb garb = 4;
+    // 粉丝勋章信息
+    Medal medal = 5;
+    // NFT信息
+    Nft nft = 6;
+    // 硬核会员信息
+    Senior senior = 7;
+    // 契约信息
+    Contractor contractor = 8;
 }
 
 // 排序方式
 enum Mode {
-    DEFAULT = 0;        //
-    UNSPECIFIED = 1;    // 默认排序
+    DEFAULT        = 0; //
+    UNSPECIFIED    = 1; // 默认排序
     MAIN_LIST_TIME = 2; // 按时间
-    MAIN_LIST_HOT = 3;  // 按热度
+    MAIN_LIST_HOT  = 3; // 按热度
 }
 
 //
@@ -436,6 +650,8 @@ message Operation {
     string link = 5;
     //
     string report_extra = 6;
+    //
+    string icon = 7;
 }
 
 //
@@ -476,7 +692,7 @@ message PreviewListReply {
 message PreviewListReq {
     // 目标评论区id
     int64 oid = 1;
-    // 目标评论区类型
+    // 目标评论区业务type
     int64 type = 2;
     // 页面游标
     CursorReq cursor = 3;
@@ -510,30 +726,34 @@ message QoeScoreItem {
     float score = 3;
 }
 
-//
+// 评论条目标签信息
 message ReplyCardLabel {
-    //
+    // 标签文本
     string text_content = 1;
-    //
+    // 文本颜色
     string text_color_day = 2;
-    //
+    // 文本颜色夜间
     string text_color_night = 3;
-    //
+    // 标签颜色
     string label_color_day = 4;
-    //
+    // 标签颜色夜间
     string label_color_night = 5;
     //
     string image = 6;
-    //
+    // 标签类型 0:UP主觉得很赞 1:妙评
     int32 type = 7;
-    //
+    // 背景url
     string background = 8;
-    //
+    // 背景宽
     double background_width = 9;
-    //
+    // 背景高
     double background_height = 10;
-    //
+    // 点击跳转url
     string jump_url = 11;
+    //
+    int64 effect = 12;
+    //
+    int64 effect_start_time = 13;
 }
 
 // 评论条目控制字段
@@ -575,18 +795,20 @@ message ReplyControl {
     bool is_contractor = 17;
     // 是否是笔记评论
     bool is_note = 18;
-    //
+    // 评论条目标签列表
     repeated ReplyCardLabel card_labels = 19;
-    //
+    // 子评论数文案 "共x条回复"
     string sub_reply_entry_text = 20;
-    //
+    // 子评论数文案 "相关回复共x条"
     string sub_reply_title_text = 21;
-    //
+    // 契约显示文案
     string contract_desc = 22;
-    //
+    // 发布时间文案 "x天前发布"
     string time_desc = 23;
     //
     string biz_scene = 24;
+    // IP属地信息 "IP属地：xxx"
+    string location = 25;
 }
 
 //
@@ -631,20 +853,43 @@ message ReplyInfo {
     Member member = 13;
     // 评论控制字段
     ReplyControl reply_control = 14;
+    // 发布者信息V2
+    MemberV2 member_v2 = 15;
 }
 
-//
+// 查询单条评论-响应
 message ReplyInfoReply {
-    //
+    // 评论条目信息
     ReplyInfo reply = 1;
 }
 
-//
+// 查询单条评论-请求
 message ReplyInfoReq {
-    //
+    // 评论rpid
     int64 rpid = 1;
     //
     int32 scene = 2;
+}
+
+// 富文本
+message RichText {
+    // 富文本类型
+    oneof item {
+        // 笔记
+        RichTextNote note = 1;
+    }
+}
+
+// 笔记
+message RichTextNote {
+    // 预览文本
+    string summary = 1;
+    // 笔记预览图片url列表
+    repeated string images = 2;
+    // 笔记页面url
+    string click_url = 3;
+    // 发布日期 YYYY-mm-dd
+    string last_mtime_text = 4;
 }
 
 // 评论搜索插入项目
@@ -692,7 +937,7 @@ message SearchItemPreHookReply {
 message SearchItemPreHookReq {
     // 目标评论区id
     int64 oid = 1;
-    // 目标评论区类型
+    // 目标评论区业务type
     int64 type = 2;
 }
 
@@ -714,22 +959,22 @@ message SearchItemReplyExtraInfo {
 
 // 评论搜索插入项目-请求
 message SearchItemReq {
-    //页面游标
+    // 页面游标
     SearchItemCursorReq cursor = 1;
-    //目标评论区id
+    // 目标评论区id
     int64 oid = 2;
-    //评论区类型
+    // 目标评论区业务type
     int64 type = 3;
-    //搜索关键词
+    // 搜索关键词
     string keyword = 4;
 }
 
 //
 enum SearchItemType {
     DEFAULT_ITEM_TYPE = 0; //
-    GOODS = 1;             //
-    VIDEO = 2;             //
-    ARTICLE = 3;           //
+    GOODS             = 1; //
+    VIDEO             = 2; //
+    ARTICLE           = 3; //
 }
 
 //
@@ -738,34 +983,36 @@ enum SearchItemVideoSubType {
     PGC = 1; //
 }
 
-//
+// 评论分享材料-请求
 message ShareRepliesInfoReq {
-    //
+    // 评论rpid列表
+    repeated int64 rpids = 1;
+    // 目标评论区id
     int64 oid = 2;
-    //
+    // 目标评论区业务type
     int64 type = 3;
 }
 
-//
+// 评论分享材料-响应
 message ShareRepliesInfoResp {
     //
     message ShareExtra {
         //
-        bool is_pgc = 1;  
+        bool is_pgc = 1;
     }
-    //
+    // 评论分享条目列表
     repeated ShareReplyInfo infos = 1;
-    //
+    // 源内容标题
     string from_title = 2;
-    //
+    // 源内容UP主
     string from_up = 3;
-    //
+    // 源内容封面url
     string from_pic = 4;
-    //
+    // 源内容页面url
     string url = 5;
-    //
+    // logo url
     string slogan_pic = 6;
-    //
+    // 标语
     string slogan_text = 7;
     //
     ShareReplyTopic topic = 8;
@@ -773,17 +1020,17 @@ message ShareRepliesInfoResp {
     ShareExtra extra = 9;
 }
 
-//
+// 评论分享条目信息
 message ShareReplyInfo {
-    //
+    // 用户信息
     Member member = 1;
-    //
+    // 评论主体信息
     Content content = 2;
-    //
+    // 分享标题(评论发布者昵称)
     string title = 3;
-    //
+    // 分享副标题 "发表了评论"
     string sub_title = 4;
-    //
+    // 荣誉信息文案 "获得了up主点赞"
     string achievement_text = 5;
     //
     string label_url = 6;
@@ -799,6 +1046,13 @@ message ShareReplyTopic {
 
 // 评论区控制字段
 message SubjectControl {
+    // 评论区筛选类型
+    message FilterTag {
+        // 类型名
+        string name = 1;
+        //
+        string event_id = 2;
+    }
     // UP主mid
     int64 up_mid = 1;
     // 自己是否为协管
@@ -835,10 +1089,32 @@ message SubjectControl {
     string title = 17;
     // 离开态输入框的文案
     string giveup_text = 18;
-    //
+    // 是否允许笔记
     bool has_note_access = 19;
     //
     bool disable_jump_emote = 20;
+    //
+    string empty_background_text_plain = 21;
+    //
+    string empty_background_text_highlight = 22;
+    //
+    string empty_background_uri = 23;
+    // 评论区筛选类型列表
+    repeated FilterTag support_filter_tags = 24;
+}
+
+// 评论表情推荐列表-请求
+message SuggestEmotesReq {
+    // 目标评论区id
+    int64 oid = 1;
+    // 目标评论区业务type
+    int64 type = 2;
+}
+
+// 评论表情推荐列表-响应
+message SuggestEmotesResp {
+    // 表情推荐列表
+    repeated Emote emotes = 1;
 }
 
 // 话题项
@@ -861,7 +1137,7 @@ message UGCVideoSearchItem {
     string cover = 4;
 }
 
-//
+// 精选评论
 message UpSelection {
     // 待审评论数
     int64 pending_count = 1;
@@ -871,24 +1147,47 @@ message UpSelection {
 
 // 超链项
 message Url {
+    // 扩展字段
+    message Extra {
+        //
+        int64 goods_item_id = 1;
+        //
+        string goods_prefetched_cache = 2;
+        //
+        int32 goods_show_type = 3;
+        // 热词搜索
+        bool is_word_search = 4;
+        //
+        int64 goods_cm_control = 5;
+    }
     // 标题
     string title = 1;
     //
     int64 state = 2;
     // 图标url
     string prefix_icon = 3;
-    //
+    // 客户端内跳转uri
     string app_url_schema = 4;
     //
     string app_name = 5;
     //
     string app_package_name = 6;
-    // 上报id
+    // 点击上报数据
     string click_report = 7;
-    //
+    // 是否半屏打开
     bool is_half_screen = 8;
-    //
+    // 展现上报数据
     string exposure_report = 9;
+    // 扩展字段
+    Extra extra = 10;
+    // 是否下划线
+    bool underline = 11;
+    //
+    bool match_once = 12;
+    // 网页url
+    string pc_url = 13;
+    //
+    int32 icon_position = 14;
 }
 
 //
@@ -896,22 +1195,20 @@ enum UserCallbackAction {
     Dismiss = 0; //
 }
 
-//
-message UserCallbackReply {
+// 用户回调上报-响应
+message UserCallbackReply {}
 
-}
-
-//
+// 用户回调上报-请求
 message UserCallbackReq {
-    //
+    // 用户mid
     int64 mid = 1;
     //
     UserCallbackScene scene = 2;
     //
     UserCallbackAction action = 3;
-    //
+    // 目标评论区id
     int64 oid = 4;
-    //
+    // 目标评论区业务type
     int64 type = 5;
 }
 

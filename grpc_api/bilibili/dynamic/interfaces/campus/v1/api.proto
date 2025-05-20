@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package bilibili.dynamic.interfaces.campus.v1;
+
+// 
+service Campus {
+    // 
+    rpc ActionReport (ActionReportReq) returns (ActionReportReply);
+}
+
+// 
+message ActionReportReply {}
+
+// 
+message ActionReportReq {
+    // 
+    string identity = 1;
+    // 
+    ActionType action = 2;
+    // 
+    int64 campus_id = 3;
+}
+
+// 
+enum ActionType {
+    ACTION_NOTHING = 0;
+    ACTION_CLOSE_YELLOW_BAR = 1;
+}

@@ -27,5 +27,7 @@ message Card {
         PopularTopEntrance popular_top_entrance = 9;
         //
         RcmdOneItem rcmd_one_item = 10;
+        //
+        SmallCoverV5Ad small_cover_v5_ad = 11;
     }
 }

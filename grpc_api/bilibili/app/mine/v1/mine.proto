@@ -1,0 +1,245 @@
+syntax = "proto3";
+
+package bilibili.app.mine.v1;
+
+import "bilibili/app/dynamic/v2/dynamic.proto";
+
+// 
+service Mine {
+    // 
+    rpc PubModule (PubModuleReq) returns (PubModuleResp);
+}
+
+// 
+message Arc {
+    // 
+    string date = 1;
+    // 
+    Stat stat = 2;
+    // 
+    string cover = 3;
+    // 
+    int64 duration = 4;
+    // 
+    int64 aid = 5;
+    // 
+    int64 cid = 6;
+    // 
+    int32 state = 7;
+}
+
+// 
+enum ArcState {
+    // 
+    STATE_UNKNOWN = 0;
+    // 
+    OPEN = 1;
+    // 
+    ORANGE = 2;
+    // 
+    WAIT = 3;
+    // 
+    RECICLE = 4;
+    // 
+    LOCK = 5;
+    // 
+    FIXED = 6;
+    // 
+    USER_DELAY = 7;
+    // 
+    FAST_PUB = 8;
+    // 
+    XCODE_FAIL = 9;
+}
+
+// 
+message Button {
+    // 
+    string light_icon = 1;
+    // 
+    string dark_icon = 2;
+    // 
+    string url = 3;
+    // 
+    string text = 4;
+}
+
+// 
+message CardMore {
+    // 
+    Button button = 1;
+}
+
+// 
+message CardOpus {
+    // 
+    bilibili.app.dynamic.v2.Paragraph word_paragraph = 1;
+    // 
+    string cover = 2;
+    // 
+    string url = 3;
+    // 
+    SubTitleWithStat stat_title = 4;
+    // 
+    Stat stat = 5;
+    // 
+    string date = 6;
+    // 
+    int64 dyn_id = 7;
+    // 
+    bool has_share = 8;
+    // 
+    int32 state = 9;
+}
+
+// 
+message CardPubGuide {
+    // 
+    Title title = 1;
+    // 
+    Button button = 2;
+    // 
+    repeated PubGuideMaterial material = 3;
+    // 
+    Button more_button = 4;
+}
+
+// 
+enum CardType {
+    // 
+    CARD_UNKNOWN = 0;
+    // 
+    PUBGUIDE = 1;
+    // 
+    UGC = 2;
+    // 
+    OPUS = 3;
+    // 
+    MORE = 4;
+}
+
+// 
+message CardUGC {
+    // 
+    string title = 1;
+    // 
+    Color title_color = 2;
+    // 
+    oneof subtitle {
+        // 
+        string button_title = 3;
+        // 
+        string stat_title = 4;
+    }
+    // 
+    Arc arc = 5;
+    // 
+    string url = 6;
+    // 
+    bool has_share = 7;
+}
+
+// 
+message Color {
+    // 
+    string light_color = 1;
+    // 
+    string dark_color = 2;
+}
+
+// 
+enum OpusState {
+    // 
+    OPUS_UNKNOWN = 0;
+    // 
+    OPUS_OPEN = 1;
+    // 
+    OPUS_NO_FORWARD = 2;
+}
+
+// 
+message PubCard {
+    // 
+    oneof card {
+        // 
+        CardPubGuide pub_guide = 1;
+        // 
+        CardUGC ugc = 2;
+        // 
+        CardOpus opus = 3;
+        // 
+        CardMore more = 4;
+    }
+    // 
+    CardType card_type = 5;
+}
+
+// 
+message PubGuideMaterial {
+    // 
+    int64 id = 1;
+    // 
+    Title title = 2;
+    // 
+    string cover = 3;
+    // 
+    string url = 4;
+}
+
+// 
+message PubModuleReq {
+    // 
+    int64 user_original_state = 1;
+    // 
+    repeated int64 dyn_ids = 2;
+    // 
+    int64 card_num = 3;
+}
+
+// 
+message PubModuleResp {
+    // 
+    repeated PubCard pub_card = 1;
+}
+
+// 
+message Stat {
+    // 
+    string play_icon = 1;
+    // 
+    string play = 2;
+    // 
+    string like_icon = 3;
+    // 
+    string like = 4;
+}
+
+// 
+message SubTitleWithButton {
+    // 
+    string icon = 1;
+    // 
+    string url = 2;
+    // 
+    Color background_color = 3;
+    // 
+    string text = 4;
+    // 
+    Color text_color = 5;
+}
+
+// 
+message SubTitleWithStat {
+    // 
+    repeated string icon = 1;
+    // 
+    string text = 2;
+}
+
+// 
+message Title {
+    // 
+    string main = 1;
+    // 
+    string sub = 2;
+}

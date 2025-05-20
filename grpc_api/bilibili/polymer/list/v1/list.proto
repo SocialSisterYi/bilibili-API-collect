@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package bilibili.polymer.list.v1;
+
+//
+service List {
+    //
+    rpc FavoriteTab(FavoriteTabReq) returns (FavoriteTabReply);
+    //
+    rpc CheckAccount(CheckAccountReq) returns (CheckAccountReply);
+}
+
+//
+message CheckAccountReply {
+    //
+    bool is_new = 1;
+}
+
+//
+message CheckAccountReq {
+    //
+    int64 uid = 1;
+    //
+    string periods = 2;
+}
+
+//
+message FavoriteTabItem {
+    //
+    string name = 1;
+    //
+    string uri = 2;
+    //
+    string type = 3;
+}
+
+//
+message FavoriteTabReply {
+    //
+    repeated FavoriteTabItem items = 1;
+}
+
+//
+message FavoriteTabReq {}

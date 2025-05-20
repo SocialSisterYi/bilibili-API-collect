@@ -1,0 +1,56 @@
+name: "新增请求"
+description: "请求添加文档中未收录的 API 定义"
+title: "[新增请求] <title>"
+labels: ["新增/Add"]
+body:
+  - type: checkboxes
+    id: reminders
+    attributes:
+      label: "提交前请确认"
+      options:
+        - label: "我已检索仓库中文档，确认不包含所提及内容，且 Issues、Pull Requests 中无相关提交"
+          required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: "API 来源"
+      description: "该 API 在何平台中使用"
+      multiple: true
+      options:
+        - "Web 端（含 h5）"
+        - "PC 客户端（Electron）"
+        - "Android 客户端（含粉版、平板版、蓝版、概念版、国际版等）"
+        - "TV 客户端（含云视听小电视、车机、物联网版等）"
+        - "iOS 客户端（含粉版、平板版、概念版等）"
+        - "必剪客户端"
+        - "漫画客户端"
+        - "其他（请在详情中备注）"
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: "API 类型"
+      description: "API 所使用的协议标准及调用方式"
+      options:
+        - "REST"
+        - "gRPC"
+        - "长连接数据帧（含 ws、TCP）"
+        - "其他类型（请在详情中备注）"
+    validations:
+      required: true
+  - type: input
+    id: address
+    attributes:
+      label: "API 地址"
+      description: "REST 的 url，或 gRPC 的包名+服务名"
+      placeholder: "eg: https://api.bilibili.com/2333333"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: "详情描述"
+      description: "请描述该 API 的使用场景、请求及响应字段等，可附上原始抓包记录"
+    validations:
+      required: true

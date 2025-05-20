@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package bilibili.im.interfaces.v1;
+package bilibili.im.interface.v1;
 
 import "bilibili/im/type/im.proto";
 
@@ -71,21 +71,6 @@ message DummyRsp {
     reserved 1;
 }
 
-//
-enum ENUM_FOLD {
-    FOLD_NO = 0;      //
-    FOLD_YES = 1;     //
-    FOLD_UNKNOWN = 2; //
-}
-
-//
-enum ENUM_UNREAD_TYPE{
-    UNREAD_TYPE_ALL = 0;      //
-    UNREAD_TYPE_FOLLOW = 1;   //
-    UNREAD_TYPE_UNFOLLOW = 2; //
-    UNREAD_TYPE_DUSTBIN = 3;  //
-}
-
 // 表情资源信息
 message EmotionInfo {
     // 表情
@@ -97,6 +82,21 @@ message EmotionInfo {
     int32  size = 3;
     // gif url
     string gif_url = 4;
+}
+
+//
+enum ENUM_FOLD {
+    FOLD_NO      = 0; //
+    FOLD_YES     = 1; //
+    FOLD_UNKNOWN = 2; //
+}
+
+//
+enum ENUM_UNREAD_TYPE{
+    UNREAD_TYPE_ALL      = 0; //
+    UNREAD_TYPE_FOLLOW   = 1; //
+    UNREAD_TYPE_UNFOLLOW = 2; //
+    UNREAD_TYPE_DUSTBIN  = 3; //
 }
 
 //
@@ -476,6 +476,10 @@ message RspSingleUnread {
     int32 dustbin_push_msg = 4;
     //
     int64 dustbin_unread = 5;
+    //
+    int64 biz_msg_unfollow_unread = 6;
+    //
+    int64 biz_msg_follow_unread = 7;
 }
 
 // -响应
@@ -509,13 +513,13 @@ message RspUpdateTotalUnread {
 }
 
 //
-enum SESSION_TYPE {               //
-    UNKNOWN         = 0;          //
-    UN_FOLD_SESSION = 1;          //
+enum SESSION_TYPE {
+    UNKNOWN                  = 0; //
+    UN_FOLD_SESSION          = 1; //
     UN_FOLLOW_SINGLE_SESSION = 2; //
-    MY_GROUP_SESSION = 3;         //
-    ALL_SESSION = 4;              //
-    DUSTBIN_SESSION = 5;          //
+    MY_GROUP_SESSION         = 3; //
+    ALL_SESSION              = 4; //
+    DUSTBIN_SESSION          = 5; //
 }
 
 //
@@ -564,39 +568,3 @@ message SysMsgInterfaceLastMsgRsp {
     //
     int64 id = 4;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

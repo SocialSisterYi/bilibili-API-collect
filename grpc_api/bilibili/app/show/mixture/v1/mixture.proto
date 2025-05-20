@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package bilibili.app.show.mixture.v1;
+
+// 
+service Mixture {
+    // 
+    rpc Widget(WidgetReq) returns (WidgetReply);
+}
+
+// 
+message RcmdReason {
+    // 
+    string content = 1;
+    // 
+    uint32 corner_mark = 2;
+}
+
+// 
+message WidgetItem {
+    // 
+    string cover = 1;
+    // 
+    string view = 2;
+    // 
+    RcmdReason rcmd_reason = 3;
+    // 
+    string title = 4;
+    // 
+    string name = 5;
+    // 
+    string uri = 6;
+    // 
+    string goto = 7;
+    // 
+    int64 id = 8;
+    // 
+    int32 view_icon = 9;
+}
+
+// 
+message WidgetReply {
+    // 
+    repeated WidgetItem item = 1;
+}
+
+// 
+message WidgetReq {
+    // 
+    string from_spmid = 1;
+    // 
+    uint32 page_no = 2;
+}

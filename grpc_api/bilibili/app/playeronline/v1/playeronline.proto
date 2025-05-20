@@ -6,17 +6,14 @@ package bilibili.app.playeronline.v1;
 service PlayerOnline {
     // 获取在线人数
     rpc PlayerOnline (PlayerOnlineReq) returns (PlayerOnlineReply);
+    //
+    rpc PremiereInfo(PremiereInfoReq) returns (PremiereInfoReply);
+    //
+    rpc ReportWatch(ReportWatchReq) returns (NoReply);
 }
 
-// 获取在线人数-请求
-message PlayerOnlineReq {
-    // 稿件 avid
-    int64 aid = 1;
-    // 视频 cid
-    int64 cid = 2;
-    // 是否在播放中
-    bool play_open = 3;
-}
+// 空回复
+message NoReply {}
 
 // 获取在线人数-回复
 message PlayerOnlineReply {
@@ -30,4 +27,44 @@ message PlayerOnlineReply {
     bool sdm_show = 4;
     //
     string sdm_text = 5;
+    //
+    int64 total_number = 6;
+    //
+    string total_number_text = 7;
+}
+
+// 获取在线人数-请求
+message PlayerOnlineReq {
+    // 稿件 avid
+    int64 aid = 1;
+    // 视频 cid
+    int64 cid = 2;
+    // 是否在播放中
+    bool play_open = 3;
+}
+
+//
+message PremiereInfoReply {
+    //
+    string premiere_over_text = 1;
+    //
+    int64 participant = 2;
+    //
+    int64 interaction = 3;
+}
+
+//
+message PremiereInfoReq {
+    //
+    int64 aid = 1;
+}
+
+//
+message ReportWatchReq {
+    //
+    int64 aid = 1;
+    //
+    string biz = 2;
+    //
+    string buvid = 3;
 }

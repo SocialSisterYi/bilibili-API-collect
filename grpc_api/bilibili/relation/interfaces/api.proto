@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package bilibili.relation.interface.v1;
+
+service RelationInterface {
+    // 评论区 At 用户列表 (无需登录鉴权)
+    rpc AtSearch (AtSearchReq) returns (AtSearchReply);
+}
+
+message AtSearchReq {
+    // 可以为 1 , 但是不能为 0 或空 不知道有啥用
+    int64 mid = 1;
+    // 用户名搜索关键词
+    string keyword = 2;
+}
+
+message AtSearchReply {
+    // 搜索结果分组
+    repeated AtGroup items = 1;
+}
+
+message AtGroup {
+    // 分组类型  2: 我的关注 4:其他 ,其他自测
+    int32 group_type = 1;
+    // 分组名称
+    string group_name = 2;
+    // 用户列表
+    repeated AtItem items = 3;
+}
+
+message AtItem {
+  int64 mid = 1;
+  string name = 2;
+  string face = 3;
+  int32 fans = 4;
+  int32 official_verify_type = 5;
+}

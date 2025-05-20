@@ -1,0 +1,282 @@
+syntax = "proto3";
+
+package bilibili.web.space.v1;
+
+//
+message NoReply {}
+
+//
+message OfficialReply {
+    //
+    int64 id = 1;
+    //
+    int64 uid = 2;
+    //
+    string name = 3;
+    //
+    string icon = 4;
+    //
+    string scheme = 5;
+    //
+    string rcmd = 6;
+    //
+    string ios_url = 7;
+    //
+    string android_url = 8;
+    //
+    string button = 9;
+    //
+    string deleted = 10;
+    //
+    int64 mtime = 11;
+}
+
+//
+message OfficialRequest {
+    //
+    int64 mid = 1;
+}
+
+//
+message PhotoMall {
+    //
+    int64 id = 1;
+    //
+    string name = 2;
+    //
+    string img = 3;
+    //
+    string night_img = 4;
+    //
+    int64 is_activated = 5;
+}
+
+//
+message PhotoMallListReply {
+    //
+    repeated PhotoMall list = 1;
+}
+
+//
+message PhotoMallListReq {
+    //
+    string mobiapp = 1;
+    //
+    int64 mid = 2;
+    //
+    string device = 3;
+}
+
+//
+message PrivacyReply {
+    //
+    map<string, int64> privacy = 1;
+}
+
+//
+message PrivacyRequest {
+    //
+    int64 mid = 1;
+}
+
+//
+message SetTopPhotoReq {
+    //
+    string mobiapp = 1;
+    //
+    int64 i_d = 2;
+    //
+    int64 mid = 3;
+    //
+    int32 type = 4;
+}
+
+//
+message SpaceSettingReply {
+    //
+    int64 channel = 1;
+    //
+    int64 fav_video = 2;
+    //
+    int64 coins_video = 3;
+    //
+    int64 likes_video = 4;
+    //
+    int64 bangumi = 5;
+    //
+    int64 played_game = 6;
+    //
+    int64 groups = 7;
+    //
+    int64 comic = 8;
+    //
+    int64 b_bq = 9;
+    //
+    int64 dress_up = 10;
+    //
+    int64 disable_following = 11;
+    //
+    int64 live_playback = 12;
+    //
+    int64 close_space_medal = 13;
+    //
+    int64 only_show_wearing = 14;
+    //
+    int64 disable_show_school = 15;
+    //
+    int64 disable_show_nft = 16;
+}
+
+//
+message SpaceSettingReq {
+    //
+    int64 mid = 1;
+}
+
+//
+message TopPhoto {
+    //
+    string img_url = 1;
+    //
+    string night_img_url = 2;
+    //
+    int64 sid = 3;
+}
+
+//
+message TopPhotoArc {
+    //
+    bool show = 1;
+    //
+    int64 aid = 2;
+    //
+    string pic = 3;
+}
+
+//
+message TopPhotoArcCancelReq {
+    //
+    int64 mid = 1;
+}
+
+//
+message TopPhotoReply {
+    //
+    TopPhoto top_photo = 1;
+    //
+    TopPhotoArc top_photo_arc = 2;
+}
+
+//
+message TopPhotoReq {
+    //
+    string mobiapp = 1;
+    //
+    int64 mid = 2;
+    //
+    int32 build = 3;
+    //
+    string device = 4;
+    //
+    int64 login_mid = 5;
+}
+
+//
+enum TopPhotoType {
+    UNKNOWN = 0; //
+    PIC     = 1; //
+    ARCHIVE = 2; //
+}
+
+//
+message UpActivityTabReq {
+    //
+    int64 mid = 1;
+    //
+    int32 state = 2;
+    //
+    int64 tab_cont = 3;
+    //
+    string tab_name = 4;
+}
+
+//
+message UpActivityTabResp {
+    //
+    bool success = 1;
+}
+
+//
+message UpRcmdBlackListReply {}
+
+//
+message UserTabReply {
+    //
+    int32 tab_type = 1;
+    //
+    int64 mid = 2;
+    //
+    string tab_name = 3;
+    //
+    int32 tab_order = 4;
+    //
+    int64 tab_cont = 5;
+    //
+    int32 is_default = 6;
+    //
+    string h5_link = 7;
+}
+
+//
+message UserTabReq {
+    //
+    int64 mid = 1;
+    //
+    int32 plat = 2;
+    //
+    int32 build = 3;
+}
+
+//
+message WhitelistAddReply {
+    //
+    bool add_ok = 1;
+}
+
+//
+message WhitelistAddReq {
+    //
+    int64 mid = 1;
+    //
+    int64 stime = 2;
+    //
+    int64 etime = 3;
+}
+
+//
+message WhitelistReply {
+    //
+    bool is_white = 1;
+}
+
+//
+message WhitelistReq {
+    //
+    int64 mid = 1;
+}
+
+//
+message WhitelistUpReply {
+    //
+    bool up_ok = 1;
+}
+
+//
+message WhitelistValidTimeReply {
+    //
+    bool is_white = 1;
+    //
+    int64 stime = 2;
+    //
+    int64 etime = 3;
+}

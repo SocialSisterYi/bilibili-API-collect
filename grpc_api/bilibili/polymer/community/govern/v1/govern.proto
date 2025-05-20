@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package bilibili.polymer.app.govern.v1;
+
+// 反骚扰
+service AntiHarassmentService {
+    //
+    rpc StoreAntiHarassmentSettings(StoreAntiHarassmentSettingsReq) returns (StoreAntiHarassmentSettingsRsp);
+    //
+    rpc LoadAntiHarassmentSettings(LoadAntiHarassmentSettingsReq) returns (LoadAntiHarassmentSettingsRsp);
+}
+
+//
+message AntiHarassmentInfo {
+    //
+    int32 limit = 1;
+    //
+    int32 follow_time_limit_second = 2;
+    //
+    int64 expire_time = 3;
+}
+
+//
+enum AntiHarassmentLimit {
+    DefaultLimit  = 0; //
+    FollowLimit   = 1; //
+    ReFollowLimit = 2; //
+    TwoWayFollow  = 3; //
+    AllLimit      = 4; //
+}
+
+//
+message AntiHarassmentSetting {
+    //
+    int64 mid = 1;
+    //
+    bool auto_limit = 2;
+    //
+    AntiHarassmentInfo im = 3;
+    //
+    AntiHarassmentInfo reply = 4;
+    //
+    AntiHarassmentInfo dm = 5;
+    //
+    AntiHarassmentInfo reply_me = 6;
+    //
+    AntiHarassmentInfo like_me = 7;
+    //
+    AntiHarassmentInfo at_me = 8;
+    //
+    int64 auto_limit_expire_time = 9;
+}
+
+//
+enum BizType {
+    InvalidBizType = 0; //
+    Im             = 1; //
+    Dm             = 2; //
+    Reply          = 3; //
+    ReplyMe        = 4; //
+    LikeMe         = 5; //
+    AtMe           = 6; //
+}
+
+//
+message LoadAntiHarassmentSettingsReq {
+    //
+    int32 biz_type = 1;
+    //
+    int64 recv_mid = 2;
+    //
+    int64 send_mid = 3;
+}
+
+//
+message LoadAntiHarassmentSettingsRsp {
+    //
+    bool anti_harassment_ret = 1;
+    //
+    AntiHarassmentSetting anti_harassment_setting = 2;
+    //
+    int32 show_window = 3;
+}
+
+//
+message StoreAntiHarassmentSettingsReq {
+    //
+    int32 biz_type = 1;
+    //
+    int64 mid = 2;
+    //
+    AntiHarassmentSetting anti_harassment_setting = 3;
+}
+
+//
+message StoreAntiHarassmentSettingsRsp {}
