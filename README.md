@@ -92,9 +92,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [Web 端 Cookie 刷新](docs/login/cookie_refresh.md)
 - [ ] [消息中心](docs/message)
     - [ ] [通知类消息](docs/message/msg.md)
-    - [ ] [私信](docs/message/private_msg.md)
-        - [ ] [私信消息类型、内容说明](docs/message/private_msg_content.md)
-    - [ ] 设置
+    - [x] [私信](docs/message/private_msg.md)
+        - [x] [私信消息类型、内容说明](docs/message/private_msg_content.md)
+    - [x] [设置](docs/message/settings.md)
 - [ ] [用户](docs/user)
     - [x] [基本信息](docs/user/info.md)
     - [x] [状态数](docs/user/status_number.md)
@@ -386,6 +386,7 @@ OR Aifadian：[https://afdian.com/@ShakaiAneE](https://afdian.com/@ShakaiAneE)
 - [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
 - [kingwingfly/fav](https://github.com/kingwingfly/fav): 自动同步bili收藏夹、合集视频到本地的CLI工具（Rust实现，并提供一个文档测试完善的Rust风格的用于构建有状态爬虫的核心库）
 - [linyuye/Bilibili_crawler](https://github.com/linyuye/Bilibili_crawler): 基于bilibili懒加载api爬取b站动态，视频等评论区
+- [ouzexi/bilibili-hot-tags](https://github.com/ouzexi/bilibili-hot-tags): 一个B站热门视频标签检索统计小工具
 
 ### 其他
 
