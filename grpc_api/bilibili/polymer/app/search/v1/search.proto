@@ -7,9 +7,9 @@ import "bilibili/pagination/pagination.proto";
 
 //
 service Search {
-    //
+    // 搜索所有类型结果
     rpc SearchAll(SearchAllRequest) returns (SearchAllResponse);
-    //
+    // 搜索指定类型结果
     rpc SearchByType(SearchByTypeRequest) returns (SearchByTypeResponse);
     //
     rpc SearchComic(SearchComicRequest) returns (SearchComicResponse);
@@ -1098,18 +1098,38 @@ message SearchBannerCard {
 
 //
 message SearchByTypeRequest {
-    //
+    enum CategorySort {
+        CATEGORY_SORT_DEFAULT = 0;
+        CATEGORY_SORT_PUBLISH_TIME = 1;
+        CATEGORY_SORT_CLICK_COUNT = 2;
+        CATEGORY_SORT_COMMENT_COUNT = 3;
+        CATEGORY_SORT_LIKE_COUNT = 4;
+    }
+    enum UserType {
+        ALL = 0;
+        UP = 1;
+        NORMAL_USER = 2;
+        AUTHENTICATED_USER = 3;
+    }
+    enum UserSort {
+        USER_SORT_DEFAULT = 0;
+        USER_SORT_FANS_DESCEND = 1;
+        USER_SORT_FANS_ASCEND = 2;
+        USER_SORT_LEVEL_DESCEND = 3;
+        USER_SORT_LEVEL_ASCEND = 4;
+    }
+    // 搜索目标类型, 番剧为7
     int32 type = 1;
-    //
+    // 关键词
     string keyword = 2;
     //
-    int32 category_sort = 3;
+    CategorySort category_sort = 3;
     //
     int64 category_id = 4;
     //
-    int32 user_type = 5;
+    UserType user_type = 5;
     //
-    int32 user_sort = 6;
+    UserSort user_sort = 6;
     //
     bilibili.pagination.Pagination pagination = 7;
     //
@@ -1118,21 +1138,21 @@ message SearchByTypeRequest {
 
 //
 message SearchByTypeResponse {
-    //
+    // 追踪id
     string trackid = 1;
-    //
+    // 当前页码
     int32 pages = 2;
     //
     string exp_str = 3;
-    //
+    // 搜索关键词
     string keyword = 4;
-    //
+    // 是否为推荐结果
     int32 result_is_recommend = 5;
-    //
+    // 搜索结果条目
     repeated Item items = 6;
-    //
+    // 分页信息
     bilibili.pagination.PaginationReply pagination = 7;
-    //
+    // 
     map<string, string> annotation = 8;
 }
 

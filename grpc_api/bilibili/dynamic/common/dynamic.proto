@@ -1,8 +1,24 @@
 syntax = "proto3";
 
-package bilibili.dynamic;
+package bilibili.dynamic.common;
 
 import "bilibili/app/dynamic/v2/dynamic.proto";
+
+// 
+message Article {
+    // 
+    int64 category_id = 1;
+    // 
+    int64 list_id = 2;
+    // 
+    int32 originality = 3;
+    // 
+    int32 reproduced = 4;
+    // 
+    repeated Pic cover = 5;
+    // 
+    repeated string biz_tags = 6;
+}
 
 // at分组信息
 message AtGroup {
@@ -75,6 +91,11 @@ enum AttachCardType {
     ATTACH_CARD_PUGV              = 13;  // 课程
     ATTACH_CARD_RESERVE           = 14;  // 预约
     ATTACH_CARD_UP_TOPIC          = 15;  // up主话题活动
+    ATTACH_CARD_UP_ACTIVITY       = 16;
+    ATTACH_CARD_UP_MAOER          = 17;
+    ATTACH_CARD_MEMBER_GOODS      = 18;
+    ATTACH_CARD_MAN_TIAN_XING     = 19;
+    ATTACH_CARD_LOTTERY           = 20;
 }
 
 //
@@ -83,6 +104,30 @@ message BottomBusiness {
     int64 rid = 1;
     // 业务方类型，定义在BottomBizType中
     int64 type = 2;
+}
+
+// 
+message CardParagraph {
+    // 
+    LinkNode card = 1;
+    // 
+    string default_text = 2;
+}
+
+// 
+message CodeParagraph {
+    // 
+    string lang = 1;
+    // 
+    string content = 2;
+}
+
+// 
+message Colors {
+    // 
+    string color_day = 1;
+    // 
+    string color_night = 2;
 }
 
 //
@@ -125,6 +170,8 @@ message CreateAttachCard {
     CreateGoodsCard goods = 1;
     // 通用附加大卡，目前仅限定Match,Game,Ugc,Pugv,Reserve，且同时只能有一个
     CreateCommonAttachCard common_card = 2;
+    // 商业推广大卡
+    CreateCommercialCard commercial = 3;
 }
 
 // 发布页预校验-响应
@@ -139,6 +186,14 @@ message CreateCheckResp {
     PublishYellowBar yellow_bar = 4;
     //
     PlusRedDot plus_red_dot = 5;
+}
+
+// 
+message CreateCommercialCard {
+    // 
+    int64 commercial_entity_type = 1;
+    // 
+    int64 commercial_entity_id = 2;
 }
 
 // 创建动态时附带的通用附加卡详情
@@ -157,6 +212,8 @@ message CreateCommonAttachCard {
 message CreateContent {
     // 描述信息（已按高亮拆分）
     repeated CreateContentItem contents = 1;
+    // 
+    string title = 2;
 }
 
 // 文本描述
@@ -230,6 +287,12 @@ message CreateDynVideo {
     int64 up_from = 28;
     //
     int64 duration = 29;
+    // 
+    int64 topic_id = 30;
+    // 
+    string upload_id = 31;
+    // 
+    DynVideoTopic topic_detail = 32;
 }
 
 // 创建动态视频的应答包（透传给客户端）
@@ -257,6 +320,7 @@ enum CreateInitCheckScene {
     CREATE_INIT_CHECK_SCENE_REPOST        = 2; // 动态feed流转发、三点分享，动态详情页转发
     CREATE_INIT_CHECK_SCENE_SHARE         = 3; // 其他页面分享到动态
     CREATE_INIT_CHECK_SCENE_RESERVE_SHARE = 4; //
+    CREATE_INIT_CHECK_SCENE_ARTICLE       = 5;
 }
 
 // 动态创建时的特殊选项
@@ -280,6 +344,18 @@ message CreateOption {
     VideoShareInfo video_share_info = 6;
     //
     CreateActivity activity = 7;
+    // 
+    int32 pic_mode = 10;
+    // 粉丝专享(充电专享)
+    int64 only_fans = 11;
+    // 限制推广?
+    int32 limit_pegasus = 12;
+    // 限制搜索?
+    int32 limit_search = 13;
+    // 定时发布
+    int64 timer_pub_time = 14;
+    // 
+    int64 only_fans_dnd = 15;
 }
 
 // 创建图文动态时的图片信息
@@ -342,6 +418,8 @@ message CreateResp {
     bilibili.app.dynamic.v2.DynamicItem fake_card = 5;
     // 视频
     CreateDynVideoResult video_result = 6;
+    // 
+    ShareDynWindow share_window = 7;
 }
 
 // 发布类型（场景）
@@ -356,6 +434,9 @@ enum CreateScene {
     CREATE_SCENE_SHARE_PROGRAM         = 7;  // 分享小程序
     CREATE_SCENE_REPLY_SYNC            = 8;  // 评论同步到动态
     CREATE_SCENE_REPLY_CREATE_ACTIVITY = 9;  // 评论同步到动态并且发起活动
+    CREATE_SCENE_CREATE_AD             = 10; // 广告推广
+    CREATE_SCENE_CREATE_LIVE_RCMD      = 11; // 直播推荐
+    CREATE_SCENE_CREATE_ARTICLE        = 12; // 动态文章
 }
 
 // 动态附带的小卡
@@ -368,12 +449,18 @@ message CreateTag {
     BottomBusiness diversion = 3;
 }
 
-//
+// 
 message CreateTopic {
-    //
+    // 
     int64 id = 1;
-    //
+    // 
     string name = 2;
+    // 
+    string from_source = 3;
+    // 
+    int64 from_topic_id = 4;
+    // 
+    int64 super_topic_id = 5;
 }
 
 // 动态的标识
@@ -526,6 +613,14 @@ message DynVideoSubmitActBanner {
     repeated DynVideoHotAct list = 3;
 }
 
+// 
+message DynVideoTopic {
+    // 
+    string from_source = 1;
+    // 
+    int64 from_topic_id = 2;
+}
+
 //
 message DynVideoVote {
     //
@@ -549,6 +644,12 @@ message DynVideoWatermark {
     int32 position = 3;
 }
 
+// 
+message EmoteNode {
+    // 
+    string raw_text = 1;
+}
+
 //
 message ExtLbs {
     //
@@ -567,6 +668,16 @@ message ExtLbs {
     string title = 7;
     //
     string show_distance = 8;
+}
+
+// 
+message FormulaNode {
+    // 
+    string latex_content = 1;
+    // 
+    ImgInlineCfg image_spec = 2;
+    // 
+    bytes png_image_data = 3;
 }
 
 // 根据name取uid-请求
@@ -590,6 +701,16 @@ message GoodsContent {
     int64 item_id = 2;
     // 店铺的id，兼容老版本
     int64 shop_id = 3;
+}
+
+// 
+message ImgInlineCfg {
+    // 
+    double width = 1;
+    // 
+    double height = 2;
+    // 
+    Colors color = 3;
 }
 
 // UP已经创建的活动列表
@@ -620,6 +741,30 @@ message LbsLoc {
     double lat = 1;
     // 纬度
     double lng = 2;
+}
+
+// 
+message LineParagraph {
+    // 
+    Pic pic = 1;
+}
+
+// 
+message LinkNode {
+    // 
+    string show_text = 1;
+    // 
+    string link = 2;
+    // 
+    string icon = 3;
+    // 
+    string icon_suffix = 4;
+    // 
+    int32 link_type = 5;
+    // 
+    string biz_id = 6;
+    // 
+    VideoTs video_ts = 7;
 }
 
 //
@@ -653,6 +798,232 @@ message MetaDataCtrl {
     string ip = 13;
 }
 
+// 
+message OnlyFansDndSetting {
+    // 
+    string title = 1;
+    // 
+    string pop_title = 2;
+    // 
+    string pop_desc = 3;
+    // 
+    string pop_picture = 4;
+    // 
+    string pop_btn_text = 5;
+}
+
+// 
+message OnlyFansOption {
+    // 
+    OnlyFansOptionType type = 1;
+    // 
+    int32 disabled = 2;
+    // 
+    string title = 3;
+    // 
+    string subtitle = 4;
+    // 
+    string icon = 5;
+    // 
+    string only_fans_name = 6;
+    // 
+    string desc_subtitle = 7;
+}
+
+enum OnlyFansOptionType {
+    // 
+    ONLY_FANS_OPTION_NONE = 0;
+    // 
+    ONLY_FANS_OPTION_UPOWER = 1;
+    // 
+    ONLY_FANS_OPTION_HIGH_UPOWER = 2;
+}
+
+// 
+message OnlyFansPermission {
+    // 
+    int32 permission = 1;
+    // 
+    string title = 2;
+    // 
+    string subtitle = 3;
+    // 
+    string icon = 4;
+    // 
+    string toast = 5;
+    // 
+    repeated OnlyFansOption options = 6;
+    // 
+    OnlyFansDndSetting dnd_setting = 7;
+}
+
+// 
+message Opus {
+    // 
+    int64 opus_id = 1;
+    // 
+    int32 opus_source = 2;
+    // 
+    string title = 3;
+    // 
+    int64 cover_avid = 4;
+    // 
+    string h5_content = 5;
+    // 
+    OpusContent content = 6;
+    // 
+    repeated OpusTag tags = 7;
+    // 
+    PubInfo pub_info = 8;
+    // 
+    Article article = 9;
+}
+
+// 
+enum OpusBizType {
+    DEFAULT = 0;
+    VIDEO = 1;
+    RESERVE = 2;
+    BIZ_VOTE = 3; // rename from "VOTE" due to name collision
+    LIVE = 4;
+    BIZ_LOTTERY = 5; // rename from "LOTTERY" due to name collision
+    MATCH = 6;
+    BIZ_GOODS = 7; // rename from "GOODS" due to name collision
+    OGV_SS = 8;
+    BIZ_OGV_EP = 9; // rename from "OGV_EP" due to name collision
+    MANGA = 10;
+    CHEESE = 11;
+    VIDEO_TS = 12;
+    BIZ_AT = 13; // rename from "AT" due to name collision
+    HASH_TAG = 14;
+    BIZ_CV = 15; // rename from "CV" due to name collision
+    URL = 16;
+    BIZ_MAIL = 17; // rename from "MAIL" due to name collision
+    LBS = 18;
+    ACTIVITY = 19;
+    BIZ_ATTACH_CARD_OFFICIAL_ACTIVITY = 20; // rename from "ATTACH_CARD_OFFICIAL_ACTIVITY" due to name collision
+    GAME = 21;
+    DECORATION = 22;
+    UP_TOPIC = 23;
+    UP_ACTIVITY = 24;
+    UP_MAOER = 25;
+    MEMBER_GOODS = 26;
+    OPENMALL_UP_ITEMS = 27;
+    MUSIC = 29;
+}
+
+// 
+message OpusContent {
+    // 
+    repeated Paragraph paragraphs = 1;
+}
+
+enum OpusSource {
+    DEFAULT_SOURCE = 0;
+    ALBUM = 1;
+    ARTICLE = 2;
+    NOTE = 3;
+    OGV_COMMENT = 4;
+    ARTICLE_H5 = 5;
+    WORD = 6;
+}
+
+// 
+message OpusSummary {
+    // 
+    int32 opus_source = 1;
+    // 
+    string title = 2;
+    // 
+    repeated Pic cover = 3;
+    // 
+    OpusContent summary = 4;
+    // 
+    repeated OpusTag tags = 5;
+    // 
+    PubInfo pub_info = 6;
+}
+
+// 
+message OpusTag {
+    // 
+    LinkNode tag = 1;
+}
+
+// 
+message Paragraph {
+    // 
+    enum ParagraphType {
+        DEFAULT = 0;
+        TEXT = 1;
+        PICTURES = 2;
+        LINE = 3;
+        REFERENCE = 4;
+        SORTED_LIST = 5;
+        UNSORTED_LIST = 6;
+        LINK_CARD = 7;
+    }
+    // 
+    message ListFormat {
+        // 
+        int32 level = 1;
+        // 
+        int32 order = 2;
+        // 
+        string theme = 3;
+    }
+    // 
+    message ParagraphFormat {
+        // 
+        int32 align = 1;
+        // 
+        ListFormat list_format = 2;
+    }
+
+    // 
+    ParagraphType para_type = 1;
+    // 
+    ParagraphFormat format = 2;
+    // 
+    TextParagraph text = 3;
+    // 
+    PicParagraph pic = 4;
+    // 
+    LineParagraph line = 5;
+    // 
+    CardParagraph link_card = 6;
+    // 
+    CodeParagraph code = 7;
+}
+
+// 
+message Pic {
+    // 
+    string url = 1;
+    // 
+    double width = 2;
+    // 
+    double height = 3;
+    // 
+    double size = 4;
+    // 
+    string comment = 5;
+}
+
+// 
+message PicParagraph {
+    // 
+    enum PicParagraphStyle {
+        DEFAULT = 0;
+        NINE_CELL = 1;
+        SCROLL = 2;
+    }
+    // 
+    repeated Pic pics = 1;
+    // 
+    PicParagraphStyle style = 2;
+}
+
 //
 message PlusRedDot {
     //
@@ -677,6 +1048,18 @@ message Program {
     string jump_text = 7;
 }
 
+// 
+message PubInfo {
+    // 
+    int64 uid = 1;
+    // 
+    int64 pub_time = 2;
+    // 
+    int64 last_mtime = 3;
+    // 
+    int64 timer_pub_time = 4;
+}
+
 // 发布相关的设置项
 message PublishSetting {
     // 提示转为专栏的最小字数，使用utf-16编码计算字符数
@@ -685,6 +1068,12 @@ message PublishSetting {
     int32 max_words_to_article = 2;
     // gif上传的最大值，单位：MB
     int32 upload_size = 3;
+    // 
+    int32 max_at_count = 4;
+    // 
+    int32 max_draft_count = 5;
+    // 
+    int64 title_max_len = 6;
 }
 
 // 发布页小黄条
@@ -735,6 +1124,16 @@ message ShareChannelItem {
     string share_channel = 3;
     // 预约卡分享图信息，仅分享有预约信息的动态时存在
     ShareReserve reserve = 4;
+}
+
+// 
+message ShareDynWindow {
+    // 
+    string main_title = 1;
+    // 
+    string sub_title = 2;
+    // 
+    bilibili.app.dynamic.v2.DynamicItem dyn_item = 3;
 }
 
 //
@@ -811,6 +1210,35 @@ message Sketch {
     string target_url = 7;
 }
 
+// 
+message TextNode {
+    // 
+    enum TextNodeType {
+        DEFAULT = 0;
+        WORDS = 1;
+        EMOTE = 2;
+        AT = 3;
+        BIZ_LINK = 4;
+        FORMULA = 5;
+    }
+    // 
+    TextNodeType node_type = 1;
+    // 
+    WordNode word = 2;
+    // 
+    EmoteNode emote = 3;
+    // 
+    LinkNode link = 4;
+    // 
+    FormulaNode formula = 5;
+}
+
+// 
+message TextParagraph {
+    // 
+    repeated TextNode nodes = 1;
+}
+
 // 发布相关的权限内容
 message UpPermission {
     // 通用权限列表
@@ -819,6 +1247,8 @@ message UpPermission {
     LaunchedActivity launched_activity = 2;
     //
     ShareResult share_result = 3;
+    // 
+    OnlyFansPermission only_fans_permission = 4;
 }
 
 // 通用发布权限内容的详细定义
@@ -854,6 +1284,9 @@ enum UpPermissionType {
     UP_PERMISSION_TYPE_CONTROL_DANMU     = 7;  // 是否有权限关闭弹幕（仅对动态视频生效），默认有
     UP_PERMISSION_TYPE_VIDEO_RESERVE     = 8;  // 是否可以发起稿件预约
     UP_PERMISSION_TYPE_LIVE_RESERVE      = 9;  // 是否可以发起直播预约
+    UP_PERMISSION_TYPE_BIZ_LINK          = 10; // 
+    UP_PERMISSION_TYPE_COMMERCIAL        = 11; // 是否允许商业推广
+    UP_PERMISSION_TYPE_BIG_COVER         = 12; // 是否允许大封面
 }
 
 // 用户主动发布（app/web发布）时的meta信息
@@ -872,4 +1305,53 @@ message VideoShareInfo {
     int64 cid = 1;
     //
     int32 part = 2;
+}
+
+// 
+message VideoTs {
+    // 
+    int64 cid = 1;
+    // 
+    int64 oid_type = 2;
+    // 
+    int64 status = 3;
+    // 
+    int64 index = 4;
+    // 
+    int64 seconds = 5;
+    // 
+    int64 cidcount = 6;
+    // 
+    string key = 7;
+    // 
+    string title = 8;
+    // 
+    int64 epid = 9;
+    // 
+    string desc = 10;
+}
+
+// 
+message WordNode {
+    // 
+    message WordNodeStyle {
+        // 
+        bool bold = 1;
+        // 
+        bool italic = 2;
+        // 
+        bool strikethrough = 3;
+        // 
+        bool underline = 4;
+    }
+    // 
+    string words = 1;
+    // 
+    double font_size = 2;
+    // 
+    string color = 3;
+    // 
+    string dark_color = 4;
+    // 
+    WordNodeStyle style = 5;
 }

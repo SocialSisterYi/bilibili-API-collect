@@ -2,16 +2,30 @@ syntax = "proto3";
 
 package bilibili.api.probe.v1;
 
-//
+// 服务可用性探针
 service Probe {
     //
     rpc TestCode (CodeReq) returns (CodeReply);
     //
     rpc TestReq (ProbeReq) returns (ProbeReply);
-    //
+    // 
     rpc TestStream (ProbeStreamReq) returns (ProbeStreamReply);
     //
     rpc TestSub (ProbeSubReq) returns (ProbeSubReply);
+}
+
+// 服务可用性探针
+service ProbeService {
+    // 
+    rpc Echo(SimpleMessage) returns (SimpleMessage);
+    // 
+    rpc EchoBody(SimpleMessage) returns (SimpleMessage);
+    // 
+    rpc EchoDelete(SimpleMessage) returns (SimpleMessage);
+    // 
+    rpc EchoError(ErrorMessage) returns (ErrorMessage);
+    // 
+    rpc EchoPatch(DynamicMessageUpdate) returns (DynamicMessageUpdate);
 }
 
 //
@@ -19,16 +33,38 @@ enum Category {
     CATEGORY_UNSPECIFIED = 0; //
     CATEGORY_ONE         = 1; //
     CATEGORY_TWO         = 2; //
-    CATEGORY_THREE       = 3; //
+    CATEGORY_THREE       = 3; // 
+    CATEGORY_FOUR        = 4; // 
 }
 
 //
-message CodeReply {}
+message CodeReply {
+    // 
+    string id = 1;
+    // 
+    string id1 = 2;
+    // 
+    int64 code = 3;
+    // 
+    string message_s = 4;
+}
 
 //
 message CodeReq {
     //
     int64 code = 1;
+}
+
+// 
+message CreateTopic {
+    // 
+    int64 id = 1;
+}
+
+// 
+message CreatTask {
+    // 
+    string name = 1;
 }
 
 //
@@ -52,8 +88,16 @@ message Embedded {
     //
     string string_val = 6;
     //
+    repeated bool repeated_bool_val = 7;
+    // 
     repeated int32 repeated_int32_val = 8;
     //
+    repeated int64 repeated_int64_val = 9;
+    // 
+    repeated float repeated_float_val = 10;
+    // 
+    repeated double repeated_double_val = 11;
+    // 
     repeated string repeated_string_val = 12;
     //
     map<string, string> map_string_val = 13;
@@ -71,7 +115,7 @@ message ErrorMessage {
     string message = 3;
 }
 
-//
+// Deprecated
 enum ErrorReason {
     PROBE_UNSPECIFIED       = 0; //
     PROBE_CATEGORY_NOTFOUND = 1; //
@@ -120,7 +164,7 @@ message ProbeSubReply {
 //
 message ProbeSubReq {
     //
-    int64 buvid = 1;
+    string buvid = 1;
 }
 
 //
@@ -135,4 +179,14 @@ message SimpleMessage {
     int32 cate = 4;
     //
     Embedded embedded = 5;
+}
+
+// 
+message Task {
+    // 
+    string name = 1;
+    // 
+    string author = 2;
+    // 
+    bool cache = 3;
 }

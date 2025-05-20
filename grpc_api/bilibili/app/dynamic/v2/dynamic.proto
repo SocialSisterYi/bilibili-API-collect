@@ -4,99 +4,122 @@ package bilibili.app.dynamic.v2;
 
 import "google/protobuf/any.proto";
 import "bilibili/app/archive/middleware/v1/preload.proto";
+import "bilibili/dagw/component/avatar/v1/avatar.proto";
 
-// v2动态
+// v2动态, rpc 按字母顺序排列
 service Dynamic {
-    // 动态视频页
-    rpc DynVideo(DynVideoReq) returns (DynVideoReply);
+    // 
+    rpc AlumniDynamics (AlumniDynamicsReq) returns (AlumniDynamicsReply);
+    // 
+    rpc CampusBillBoard (CampusBillBoardReq) returns (CampusBillBoardReply);
+    // 
+    rpc CampusEntryTab(CampusEntryTabReq) returns (CampusEntryTabResp);
+    // 
+    rpc CampusFeedback(CampusFeedbackReq) returns (CampusFeedbackReply);
+    // 
+    rpc CampusHomePages(CampusHomePagesReq) returns (CampusHomePagesReply);
+    // 
+    rpc CampusMateLikeList(CampusMateLikeListReq) returns (CampusMateLikeListReply);
+    // 
+    rpc CampusMngDetail(CampusMngDetailReq) returns (CampusMngDetailReply);
+    // 
+    rpc CampusMngQuizOperate(CampusMngQuizOperateReq) returns (CampusMngQuizOperateReply);
+    // 
+    rpc CampusMngSubmit(CampusMngSubmitReq) returns (CampusMngSubmitReply);
+    // 
+    rpc CampusRcmd(CampusRcmdReq) returns (CampusRcmdReply);
+    // 
+    rpc CampusRcmdFeed(CampusRcmdFeedReq) returns (CampusRcmdFeedReply);
+    // 
+    rpc CampusRecommend(CampusRecommendReq) returns (CampusRecommendReply);
+    // 
+    rpc CampusRedDot(CampusRedDotReq) returns (CampusRedDotReply);
+    // 
+    rpc CampusSquare(CampusSquareReq) returns (CampusSquareReply);
+    // 
+    rpc CampusTopicRcmdFeed(CampusTopicRcmdFeedReq) returns (CampusTopicRcmdFeedReply);
+    // 动态通用附加卡-follow/取消follow
+    rpc DynAdditionCommonFollow(DynAdditionCommonFollowReq) returns (DynAdditionCommonFollowReply);
     // 动态综合页
     rpc DynAll(DynAllReq) returns (DynAllReply);
-    // 批量动态id获取动态详情
-    rpc DynDetails(DynDetailsReq) returns (DynDetailsReply);
-    // 视频页最近访问 - 个人feed流
-    rpc DynVideoPersonal(DynVideoPersonalReq) returns (DynVideoPersonalReply);
-    // 视频页最近访问 - 标记已读
-    rpc DynVideoUpdOffset(DynVideoUpdOffsetReq) returns (NoReply);
-    // 动态通用附加卡-follow/取消follow
-    rpc DynAdditionCommonFollow(DynAdditionCommonFollowReq) returns(DynAdditionCommonFollowReply);
-    // 动态点赞
-    rpc DynThumb(DynThumbReq) returns(NoReply);
-    // 动态发布生成临时卡
-    rpc DynFakeCard(DynFakeCardReq) returns(DynFakeCardReply);
-    // 关注推荐up主换一换
-    rpc DynRcmdUpExchange(DynRcmdUpExchangeReq) returns(DynRcmdUpExchangeReply);
     // 综合页最近访问 - 个人feed流
     rpc DynAllPersonal(DynAllPersonalReq) returns (DynAllPersonalReply);
     // 综合页最近访问 - 标记已读
     rpc DynAllUpdOffset(DynAllUpdOffsetReq) returns (NoReply);
-    // 投票操作接口
-    rpc DynVote(DynVoteReq) returns (DynVoteReply);
-    // 网关调用 - 查看更多-列表
-    rpc DynMixUpListViewMore(DynMixUpListViewMoreReq) returns (DynMixUpListViewMoreReply);
-    // 轻浏览
-    rpc DynLight(DynLightReq) returns (DynLightReply);
     // 动态详情页
     rpc DynDetail(DynDetailReq) returns (DynDetailReply);
-    // 点赞列表
-    rpc LikeList(LikeListReq) returns (LikeListReply);
-    // 转发列表
-    rpc RepostList(RepostListReq) returns (RepostListRsp);
+    // 批量动态id获取动态详情
+    rpc DynDetails(DynDetailsReq) returns (DynDetailsReply);
+    // 动态发布生成临时卡
+    rpc DynFakeCard(DynFakeCardReq) returns (DynFakeCardReply);
+    // 
+    rpc DynFriend(DynFriendReq) returns (DynFriendReply);
+    // 轻浏览
+    rpc DynLight(DynLightReq) returns (DynLightReply);
+    // 网关调用 - 查看更多-列表
+    rpc DynMixUpListViewMore(DynMixUpListViewMoreReq) returns (DynMixUpListViewMoreReply);
+    // 关注推荐up主换一换
+    rpc DynRcmdUpExchange(DynRcmdUpExchangeReq) returns (DynRcmdUpExchangeReply);
+    // 
+    rpc DynSearch(DynSearchReq) returns (DynSearchReply);
+    // 
+    rpc DynServerDetails(DynServerDetailsReq) returns (DynServerDetailsReply);
     // 空间页动态
     rpc DynSpace(DynSpaceReq) returns (DynSpaceRsp);
+    // 
+    rpc DynSpaceSearchDetails(DynSpaceSearchDetailsReq) returns (DynSpaceSearchDetailsReply);
+    // 
+    rpc DynTab(DynTabReq) returns (DynTabReply);
+    // 动态点赞
+    rpc DynThumb(DynThumbReq) returns (NoReply);
     // 未登录页分区UP主推荐
     rpc DynUnLoginRcmd(DynRcmdReq) returns (DynRcmdReply);
-    //
-    rpc DynServerDetails (DynServerDetailsReq) returns (DynServerDetailsReply);
-    //
-    rpc DynSearch(DynSearchReq) returns (DynSearchReply);
-    //
-    rpc SetDecision(SetDecisionReq) returns (NoReply);
-    //
-    rpc AlumniDynamics(AlumniDynamicsReq) returns (AlumniDynamicsReply);
-    //
-    rpc CampusRcmd(CampusRcmdReq) returns (CampusRcmdReply);
-    //
-    rpc SubscribeCampus(SubscribeCampusReq) returns (NoReply);
-    //
-    rpc SetRecentCampus(SetRecentCampusReq) returns (NoReply);
-    //
-    rpc DynTab(DynTabReq) returns (DynTabReply);
-    //
-    rpc SchoolSearch(SchoolSearchReq) returns (SchoolSearchReply);
-    //
-    rpc SchoolRecommend(SchoolRecommendReq) returns (SchoolRecommendReply);
-    //
-    rpc DynSpaceSearchDetails(DynSpaceSearchDetailsReq) returns (DynSpaceSearchDetailsReply);
-    //
+    // 动态视频页
+    rpc DynVideo(DynVideoReq) returns (DynVideoReply);
+    // 视频页最近访问 - 个人feed流
+    rpc DynVideoPersonal(DynVideoPersonalReq) returns (DynVideoPersonalReply);
+    // 视频页最近访问 - 标记已读
+    rpc DynVideoUpdOffset(DynVideoUpdOffsetReq) returns (NoReply);
+    // 
+    rpc DynVote(DynVoteReq) returns (DynVoteReply);
+    // 
+    rpc FeedFilter(FeedFilterReq) returns (FeedFilterReply);
+    // 
+    rpc FetchTabSetting(NoReq) returns (FetchTabSettingReply);
+    // 
+    rpc HomeSubscribe(HomeSubscribeReq) returns (HomeSubscribeReply);
+    // 
+    rpc LbsPoi(LbsPoiReq) returns (LbsPoiReply);
+    // 
+    rpc LegacyTopicFeed(LegacyTopicFeedReq) returns (LegacyTopicFeedReply);
+    // 点赞列表
+    rpc LikeList(LikeListReq) returns (LikeListReply);
+    // 
     rpc OfficialAccounts(OfficialAccountsReq) returns (OfficialAccountsReply);
-    //
+    // 
     rpc OfficialDynamics(OfficialDynamicsReq) returns (OfficialDynamicsReply);
-    //
-    rpc CampusRedDot(CampusRedDotReq) returns (CampusRedDotReply);
-    //
-    rpc CampusRcmdFeed(CampusRcmdFeedReq) returns (CampusRcmdFeedReply);
-    //
-    rpc TopicSquare(TopicSquareReq) returns (TopicSquareReply);
-    //
+    // 新版动态转发点赞列表 需要登录
+    rpc ReactionList(ReactionListReq) returns (ReactionListReply);
+    // 转发列表
+    rpc RepostList(RepostListReq) returns (RepostListRsp);
+    // 
+    rpc SchoolRecommend(SchoolRecommendReq) returns (SchoolRecommendReply);
+    // 
+    rpc SchoolSearch(SchoolSearchReq) returns (SchoolSearchReply);
+    // 
+    rpc SetDecision(SetDecisionReq) returns (NoReply);
+    // 
+    rpc SetRecentCampus(SetRecentCampusReq) returns (NoReply);
+    // 
+    rpc SubscribeCampus(SubscribeCampusReq) returns (NoReply);
+    // 
     rpc TopicList(TopicListReq) returns (TopicListReply);
-    //
-    rpc CampusMateLikeList(CampusMateLikeListReq) returns (CampusMateLikeListReply);
-    //
-    rpc CampusFeedback(CampusFeedbackReq) returns (CampusFeedbackReply);
-    //
-    rpc CampusBillboard(CampusBillBoardReq) returns (CampusBillBoardReply);
-    //
-    rpc CampusBillboardInternal(CampusBillboardInternalReq) returns (CampusBillBoardReply);
-    //
-    rpc CampusTopicRcmdFeed(CampusTopicRcmdFeedReq) returns (CampusTopicRcmdFeedReply);
-}
-
-// 综合页请求广告所需字段，由客户端-网关透传
-message AdParam {
-    // 综合页请求广告所需字段，由客户端-网关透传
-    string ad_extra = 1;
-    // request_id
-    string request_id = 2;
+    // 
+    rpc TopicSquare(TopicSquareReq) returns (TopicSquareReply);
+    // 
+    rpc UnfollowMatch(UnfollowMatchReq) returns (NoReply);
+    // 
+    rpc UpdateTabSetting(UpdateTabSettingReq) returns (NoReply);
 }
 
 //
@@ -111,309 +134,6 @@ enum AddButtonType {
     bt_none = 0;   // 占位
     bt_jump = 1;   // 跳转
     bt_button = 2; // 按钮
-}
-
-// 动态-附加卡-通用卡
-message AdditionCommon {
-    // 头部说明文案
-    string head_text = 1;
-    // 标题
-    string title = 2;
-    // 展示图
-    string image_url = 3;
-    // 描述文字1
-    string desc_text_1 = 4;
-    // 描述文字2
-    string desc_text_2 = 5;
-    // 点击跳转链接
-    string url = 6;
-    // 按钮
-    AdditionalButton button = 7;
-    // 头部icon
-    string head_icon = 8;
-    // style
-    ImageStyle style = 9;
-    // 动态本身的类型 type
-    string type = 10;
-    // 附加卡类型
-    string card_type = 11; // ogv manga
-}
-
-// 动态-附加卡-电竞卡
-message AdditionEsport {
-    // 电竞类型
-    EspaceStyle style = 1;
-    oneof item {
-        // moba类
-        AdditionEsportMoba addition_esport_moba = 2;
-    }
-    // 动态本身的类型 type
-    string type = 3;
-    // 附加卡类型
-    string card_type = 4; // ogv manga
-}
-
-// 动态-附加卡-电竞卡-moba类
-message AdditionEsportMoba {
-    // 头部说明文案
-    string head_text = 1;
-    // 标题
-    string title = 2;
-    // 战队列表
-    repeated MatchTeam match_team = 3;
-    // 比赛信息
-    AdditionEsportMobaStatus addition_esport_moba_status = 4;
-    // 卡片跳转
-    string uri = 5;
-    // 按钮
-    AdditionalButton button = 6;
-    // 副标题
-    string sub_title = 7;
-    // 动态本身的类型 type
-    string type = 10;
-    // 附加卡类型
-    string card_type = 11;
-    // 附加卡图标
-    string head_icon = 12;
-}
-
-// 动态-附加卡-电竞卡-moba类-比赛信息
-message AdditionEsportMobaStatus {
-    // 文案类
-    repeated AdditionEsportMobaStatusDesc addition_esport_moba_status_desc = 1;
-    // 比赛状态文案
-    string title = 2;
-    // 比赛状态状态
-    int32 status = 3;
-    // 日间色值
-    string color = 4;
-    // 夜间色值
-    string night_color = 5;
-}
-
-// 动态-附加卡-电竞卡-moba类-比赛信息-文案类
-message AdditionEsportMobaStatusDesc {
-    // 文案
-    string title = 1;
-    // 日间色值
-    string color = 2;
-    // 夜间色值
-    string night_color = 3;
-}
-
-// 动态-附加卡-商品卡
-message AdditionGoods {
-    // 推荐文案
-    string rcmd_desc = 1;
-    // 商品信息
-    repeated GoodsItem goods_items = 2;
-    // 附加卡类型
-    string card_type = 3;
-    // 头部icon
-    string icon = 4;
-    // 商品附加卡整卡跳转
-    string uri = 5;
-    // 商品类型
-    // 1:淘宝 2:会员购，注：实际是获取的goods_items里面的第一个source_type
-    int32 source_type = 6;
-}
-
-// up主预约发布卡
-message AdditionUP {
-    // 标题
-    string title = 1;
-    // 高亮文本，描述文字1
-    HighlightText desc_text_1 = 2;
-    // 描述文字2
-    string desc_text_2 = 3;
-    // 点击跳转链接
-    string url = 4;
-    // 按钮
-    AdditionalButton button = 5;
-    // 附加卡类型
-    string card_type = 6;
-    // 预约人数(用于预约人数变化)
-    int64 reserve_total = 7;
-    // 活动皮肤
-    AdditionalActSkin act_skin = 8;
-    // 预约id
-    int64 rid = 9;
-    //
-    int32 lottery_type = 10;
-    //
-    HighlightText desc_text3 = 11;
-    //
-    int64 up_mid = 12;
-    //
-    AdditionUserInfo user_info = 13;
-    //
-    string dynamic_id = 14;
-    //
-    bool show_text2 = 15;
-    //
-    int64 dyn_type = 16;
-    //
-    string business_id = 17;
-}
-
-// 动态-附加卡-UGC视频附加卡
-message AdditionUgc {
-    // 说明文案
-    string head_text = 1;
-    // 稿件标题
-    string title = 2;
-    // 封面
-    string cover = 3;
-    // 描述文字1
-    string desc_text_1 = 4;
-    // 描述文字2
-    string desc_text_2 = 5;
-    // 接秒开
-    string uri = 6;
-    // 时长
-    string duration = 7;
-    // 标题支持换行-标题支持单行和双行，本期不支持填充up昵称，支持双行展示，字段默认为true
-    bool line_feed = 8;
-    // 附加卡类型
-    string card_type = 9;
-}
-
-//
-message AdditionUserInfo {
-    //
-    string name = 1;
-    //
-    string face = 2;
-}
-
-// 动态-附加卡-投票
-message AdditionVote {
-    // 封面图
-    string image_url = 1;
-    // 标题
-    string title = 2;
-    // 展示项1
-    string text_1 = 3;
-    // button文案
-    string button_text = 4;
-    // 点击跳转链接
-    string url = 5;
-}
-
-// 动态模块-投票
-message AdditionVote2 {
-    // 投票类型
-    AdditionVoteType addition_vote_type = 1;
-    // 投票ID
-    int64 vote_id = 2;
-    // 标题
-    string title = 3;
-    // 已过期： xxx人参与· 投票已过期。button 展示去查看
-    // 未过期： xxx人参与· 剩xx天xx时xx分。button展示去投票
-    string label = 4;
-    // 剩余时间
-    int64 deadline = 5;
-    // 生效文案
-    string open_text = 6;
-    // 过期文案
-    string close_text = 7;
-    // 已投票
-    string voted_text = 8;
-    // 投票状态
-    AdditionVoteState state = 9;
-    // 投票信息
-    oneof item {
-        //
-        AdditionVoteWord addition_vote_word = 10;
-        //
-        AdditionVotePic addition_vote_pic = 11;
-        //
-        AdditionVoteDefaule addition_vote_defaule = 12;
-    }
-    // 业务类型
-    // 0:动态投票 1:话题h5组件
-    int32 biz_type = 13;
-    // 投票总人数
-    int64 total = 14;
-    // 附加卡类型
-    string card_type = 15;
-    // 异常提示
-    string tips = 16;
-    // 跳转地址
-    string uri = 17;
-    // 是否投票
-    bool is_voted = 18;
-    // 投票最多多选个数，单选为1
-    int32 choice_cnt = 19;
-    // 是否默认选中分享到动态
-    bool defaule_select_share = 20;
-}
-
-// 外露投票
-message AdditionVoteDefaule {
-    // 图片 多张
-    repeated string cover = 1;
-}
-
-// 外露图片类型
-message AdditionVotePic {
-    // 图片投票详情
-    repeated AdditionVotePicItem item = 1;
-}
-
-// 图片投票详情
-message AdditionVotePicItem {
-    // 选项索引，从1开始
-    int32 opt_idx = 1;
-    // 图片
-    string cover = 2;
-    // 选中状态
-    bool is_vote = 3;
-    // 人数
-    int32 total = 4;
-    // 占比
-    double persent = 5;
-    // 标题文案
-    string title = 6;
-    // 是否投票人数最多的选项
-    bool  is_max_option = 7;
-}
-
-// 投票状态
-enum AdditionVoteState {
-    addition_vote_state_none = 0;  //
-    addition_vote_state_open = 1;  //
-    addition_vote_state_close = 2; //
-}
-
-// 投票类型
-enum AdditionVoteType {
-    addition_vote_type_none = 0;    //
-    addition_vote_type_word = 1;    //
-    addition_vote_type_pic = 2;     //
-    addition_vote_type_default = 3; //
-}
-
-// 外露文字类型
-message AdditionVoteWord {
-    // 外露文字投票详情
-    repeated AdditionVoteWordItem item = 1;
-}
-
-// 外露文字投票详情
-message AdditionVoteWordItem {
-    // 选项索引，从1开始
-    int32 opt_idx = 1;
-    // 文案
-    string title = 2;
-    // 选中状态
-    bool is_vote = 3;
-    // 人数
-    int32 total = 4;
-    // 占比
-    double persent = 5;
-    // 是否投票人数最多的选项
-    bool  is_max_option = 6;
 }
 
 // 活动皮肤
@@ -541,6 +261,362 @@ enum AdditionalType {
     additional_type_up_reservation = 8; // UP主预约卡
 }
 
+// 动态-附加卡-专栏
+message AdditionArticle {
+    // 
+    string title = 1;
+    // 
+    MdlDynDrawItem cover = 2;
+    // 
+    string desc_text_left = 3;
+    // 
+    string desc_text_right = 4;
+    // 
+    string uri = 5;
+    // 
+    string card_type = 6;
+}
+
+// 动态-附加卡-通用卡
+message AdditionCommon {
+    // 头部说明文案
+    string head_text = 1;
+    // 标题
+    string title = 2;
+    // 展示图
+    string image_url = 3;
+    // 描述文字1
+    string desc_text_1 = 4;
+    // 描述文字2
+    string desc_text_2 = 5;
+    // 点击跳转链接
+    string url = 6;
+    // 按钮
+    AdditionalButton button = 7;
+    // 头部icon
+    string head_icon = 8;
+    // style
+    ImageStyle style = 9;
+    // 动态本身的类型 type
+    string type = 10;
+    // 附加卡类型
+    string card_type = 11; // ogv manga
+}
+
+// 动态-附加卡-电竞卡
+message AdditionEsport {
+    // 电竞类型
+    EspaceStyle style = 1;
+    oneof item {
+        // moba类
+        AdditionEsportMoba addition_esport_moba = 2;
+    }
+    // 动态本身的类型 type
+    string type = 3;
+    // 附加卡类型
+    string card_type = 4; // ogv manga
+}
+
+// 动态-附加卡-电竞卡-moba类
+message AdditionEsportMoba {
+    // 头部说明文案
+    string head_text = 1;
+    // 标题
+    string title = 2;
+    // 战队列表
+    repeated MatchTeam match_team = 3;
+    // 比赛信息
+    AdditionEsportMobaStatus addition_esport_moba_status = 4;
+    // 卡片跳转
+    string uri = 5;
+    // 按钮
+    AdditionalButton button = 6;
+    // 副标题
+    string sub_title = 7;
+    // 动态本身的类型 type
+    string type = 10;
+    // 附加卡类型
+    string card_type = 11;
+    // 附加卡图标
+    string head_icon = 12;
+}
+
+// 动态-附加卡-电竞卡-moba类-比赛信息
+message AdditionEsportMobaStatus {
+    // 文案类
+    repeated AdditionEsportMobaStatusDesc addition_esport_moba_status_desc = 1;
+    // 比赛状态文案
+    string title = 2;
+    // 比赛状态状态
+    int32 status = 3;
+    // 日间色值
+    string color = 4;
+    // 夜间色值
+    string night_color = 5;
+}
+
+// 动态-附加卡-电竞卡-moba类-比赛信息-文案类
+message AdditionEsportMobaStatusDesc {
+    // 文案
+    string title = 1;
+    // 日间色值
+    string color = 2;
+    // 夜间色值
+    string night_color = 3;
+}
+
+// 动态-附加卡-商品卡
+message AdditionGoods {
+    // 推荐文案
+    string rcmd_desc = 1;
+    // 商品信息
+    repeated GoodsItem goods_items = 2;
+    // 附加卡类型
+    string card_type = 3;
+    // 头部icon
+    string icon = 4;
+    // 商品附加卡整卡跳转
+    string uri = 5;
+    // 商品类型
+    // 1:淘宝 2:会员购，注：实际是获取的goods_items里面的第一个source_type
+    int32 source_type = 6;
+    // 
+    int32 jump_type = 7;
+    // 
+    string app_name = 8;
+    // 
+    string ad_mark_icon = 9;
+}
+
+// 动态-附加卡-直播附加卡
+message AdditionLiveRoom {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    VideoBadge badge = 3;
+    // 
+    CoverIconWithText desc_text_upper = 4;
+    // 
+    string desc_text_lower = 5;
+    // 
+    string uri = 6;
+    // 
+    string card_type = 7;
+}
+
+// 动态-附加卡-UGC视频附加卡
+message AdditionUgc {
+    // 说明文案
+    string head_text = 1;
+    // 稿件标题
+    string title = 2;
+    // 封面
+    string cover = 3;
+    // 描述文字1
+    string desc_text_1 = 4;
+    // 描述文字2
+    string desc_text_2 = 5;
+    // 接秒开
+    string uri = 6;
+    // 时长
+    string duration = 7;
+    // 标题支持换行-标题支持单行和双行，本期不支持填充up昵称，支持双行展示，字段默认为true
+    bool line_feed = 8;
+    // 附加卡类型
+    string card_type = 9;
+}
+
+// up主预约发布卡
+message AdditionUP {
+    // 标题
+    string title = 1;
+    // 高亮文本，描述文字1
+    HighlightText desc_text_1 = 2;
+    // 描述文字2
+    string desc_text_2 = 3;
+    // 点击跳转链接
+    string url = 4;
+    // 按钮
+    AdditionalButton button = 5;
+    // 附加卡类型
+    string card_type = 6;
+    // 预约人数(用于预约人数变化)
+    int64 reserve_total = 7;
+    // 活动皮肤
+    AdditionalActSkin act_skin = 8;
+    // 预约id
+    int64 rid = 9;
+    //
+    int32 lottery_type = 10;
+    //
+    HighlightText desc_text3 = 11;
+    //
+    int64 up_mid = 12;
+    //
+    AdditionUserInfo user_info = 13;
+    //
+    string dynamic_id = 14;
+    //
+    bool show_text2 = 15;
+    //
+    int64 dyn_type = 16;
+    //
+    string business_id = 17;
+    // 
+    string badge_text = 18;
+    // 
+    bool is_premiere = 19;
+}
+
+// 
+message AdditionUserInfo {
+    // 
+    string name = 1;
+    // 
+    string face = 2;
+}
+
+// 动态-附加卡-投票
+message AdditionVote {
+    // 封面图
+    string image_url = 1;
+    // 标题
+    string title = 2;
+    // 展示项1
+    string text_1 = 3;
+    // button文案
+    string button_text = 4;
+    // 点击跳转链接
+    string url = 5;
+}
+
+// 动态模块-投票
+message AdditionVote2 {
+    // 投票类型
+    AdditionVoteType addition_vote_type = 1;
+    // 投票ID
+    int64 vote_id = 2;
+    // 标题
+    string title = 3;
+    // 已过期： xxx人参与· 投票已过期。button 展示去查看
+    // 未过期： xxx人参与· 剩xx天xx时xx分。button展示去投票
+    string label = 4;
+    // 剩余时间
+    int64 deadline = 5;
+    // 生效文案
+    string open_text = 6;
+    // 过期文案
+    string close_text = 7;
+    // 已投票
+    string voted_text = 8;
+    // 投票状态
+    AdditionVoteState state = 9;
+    // 投票信息
+    oneof item {
+        //
+        AdditionVoteWord addition_vote_word = 10;
+        //
+        AdditionVotePic addition_vote_pic = 11;
+        //
+        AdditionVoteDefaule addition_vote_defaule = 12;
+    }
+    // 业务类型
+    // 0:动态投票 1:话题h5组件
+    int32 biz_type = 13;
+    // 投票总人数
+    int64 total = 14;
+    // 附加卡类型
+    string card_type = 15;
+    // 异常提示
+    string tips = 16;
+    // 跳转地址
+    string uri = 17;
+    // 是否投票
+    bool is_voted = 18;
+    // 投票最多多选个数，单选为1
+    int32 choice_cnt = 19;
+    // 是否默认选中分享到动态
+    bool defaule_select_share = 20;
+}
+
+// 外露投票
+message AdditionVoteDefaule {
+    // 图片 多张
+    repeated string cover = 1;
+}
+
+// 外露图片类型
+message AdditionVotePic {
+    // 图片投票详情
+    repeated AdditionVotePicItem item = 1;
+}
+
+// 图片投票详情
+message AdditionVotePicItem {
+    // 选项索引，从1开始
+    int32 opt_idx = 1;
+    // 图片
+    string cover = 2;
+    // 选中状态
+    bool is_vote = 3;
+    // 人数
+    int32 total = 4;
+    // 占比
+    double persent = 5;
+    // 标题文案
+    string title = 6;
+    // 是否投票人数最多的选项
+    bool  is_max_option = 7;
+}
+
+// 投票状态
+enum AdditionVoteState {
+    addition_vote_state_none = 0;  //
+    addition_vote_state_open = 1;  //
+    addition_vote_state_close = 2; //
+}
+
+// 投票类型
+enum AdditionVoteType {
+    addition_vote_type_none = 0;    //
+    addition_vote_type_word = 1;    //
+    addition_vote_type_pic = 2;     //
+    addition_vote_type_default = 3; //
+}
+
+
+// 外露文字类型
+message AdditionVoteWord {
+    // 外露文字投票详情
+    repeated AdditionVoteWordItem item = 1;
+}
+
+// 外露文字投票详情
+message AdditionVoteWordItem {
+    // 选项索引，从1开始
+    int32 opt_idx = 1;
+    // 文案
+    string title = 2;
+    // 选中状态
+    bool is_vote = 3;
+    // 人数
+    int32 total = 4;
+    // 占比
+    double persent = 5;
+    // 是否投票人数最多的选项
+    bool  is_max_option = 6;
+}
+
+// 综合页请求广告所需字段，由客户端-网关透传
+message AdParam {
+    // 综合页请求广告所需字段，由客户端-网关透传
+    string ad_extra = 1;
+    // request_id
+    string request_id = 2;
+}
+
 //
 message AlumniDynamicsReply {
     //
@@ -561,6 +637,8 @@ message AlumniDynamicsReq {
     int32 local_time = 4;
     //
     int32 page = 5;
+    // 
+    int32 from_type = 6;
 }
 
 //
@@ -569,6 +647,16 @@ message CampusBannerInfo {
     string image = 1;
     //
     string jump_url = 2;
+}
+
+//
+message CampusBillboardInternalReq {
+    //
+    int64 mid = 1;
+    //
+    int64 campus_id = 2;
+    //
+    string version_code = 3;
 }
 
 //
@@ -593,6 +681,8 @@ message CampusBillBoardReply {
     string update_toast = 9;
     //
     int64 campus_id = 10;
+    // 
+    CampusFeatureProgress open_progress = 11;
 }
 
 //
@@ -603,16 +693,44 @@ message CampusBillBoardReq {
     string version_code = 2;
     //
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    CampusReqFromType from_type = 4;
 }
 
-//
-message CampusBillboardInternalReq {
-    //
-    int64 mid = 1;
-    //
-    int64 campus_id = 2;
-    //
-    string version_code = 3;
+// 
+message CampusEntryTabReq {
+    // 
+    int64 campus_id = 1;
+}
+
+// 
+message CampusEntryTabResp {
+    // 
+    CampusEntryType entry_type = 1;
+}
+
+// 
+enum CampusEntryType {
+    // 
+    NONE = 0;
+    // 
+    ENTRY_DYNAMIC = 1;
+    // 
+    ENTRY_HOME = 2;
+}
+
+// 
+message CampusFeatureProgress {
+    // 
+    int64 progress_full = 1;
+    // 
+    int64 progress_achieved = 2;
+    // 
+    string desc_title = 3;
+    // 
+    string desc_1 = 4;
+    // 
+    CampusLabel btn = 5;
 }
 
 //
@@ -641,6 +759,60 @@ message CampusFeedbackReq {
     int32 from = 2;
 }
 
+// 
+message CampusHomePagesReply {
+    // 
+    CampusRcmdTop top = 1;
+    // 
+    CampusTop campus_top = 2;
+    // 
+    int32 page_type = 3;
+}
+
+// 
+message CampusHomePagesReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    double lat = 3;
+    // 
+    double lng = 4;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    // 
+    int32 page_type = 6;
+}
+
+//
+enum CampusRcmdReqFrom {
+    CAMPUS_RCMD_FROM_UNKNOWN = 0;
+    CAMPUS_RCMD_FROM_HOME_UN_OPEN = 1;
+    CAMPUS_RCMD_FROM_VISIT_OTHER = 2;
+    CAMPUS_RCMD_FROM_HOME_MOMENT = 3;
+    CAMPUS_RCMD_FROM_DYN_MOMENT = 4;
+    CAMPUS_RCMD_FROM_PAGE_SUBORDINATE_MOMENT = 5;
+}
+
+// 
+enum CampusHomePageType {
+    // 
+    PAGE_MAJOR = 0;
+    // 
+    PAGE_SUBORDINATE = 1;
+    // 
+    PAGE_MAJOR_DETAIL = 2;
+}
+
+// 
+message CampusHomeRcmdTopic {
+    // 
+    ModuleTitle title = 1;
+    // 
+    repeated TopicItem topic = 2;
+}
+
 //
 message CampusInfo {
     //
@@ -651,6 +823,8 @@ message CampusInfo {
     string desc = 3;
     //
     int64 online = 4;
+    // 
+    string url = 5;
 }
 
 //
@@ -673,6 +847,181 @@ message CampusMateLikeListReply {
 message CampusMateLikeListReq {
     //
     int64 dynamic_id = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+enum CampusMngAuditStatus {
+    // 
+    campus_mng_audit_none = 0;
+    // 
+    campus_mng_audit_in_process = 1;
+    // 
+    campus_mng_audit_failed = 2;
+}
+
+// 
+message CampusMngBadge {
+    // 
+    string title = 1;
+    // 
+    string badge_url = 2;
+    // 
+    string upload_hint_msg = 3;
+}
+
+// 
+message CampusMngBasicInfo {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    string hint_msg = 3;
+}
+
+// 
+message CampusMngDetailReply {
+    // 
+    repeated CampusMngItem items = 1;
+    // 
+    string top_hint_bar_msg = 2;
+    // 
+    string bottom_submit_hint_msg = 3;
+    // 
+    int64 campus_id = 4;
+    // 
+    string campus_name = 5;
+}
+
+// 
+message CampusMngDetailReq {
+    // 
+    int64 campus_id = 1;
+}
+
+// 
+message CampusMngItem {
+    // 
+    int32 audit_status = 1;
+    // 
+    string audit_message = 2;
+    // 
+    int32 item_type = 3;
+    // 
+    string mng_item_id = 4;
+    // 
+    bool is_del = 5;
+    // Oneof field:
+    oneof item {
+        // 
+        CampusMngBasicInfo basic_info = 6;
+        // 
+        CampusMngBadge badge = 7;
+        // 
+        string slogan = 8;
+        // 
+        CampusMngQuiz quiz = 9;
+    }
+}
+
+// 
+enum CampusMngItemType {
+    // 
+    campus_mng_none = 0;
+    // 
+    campus_mng_basic_info = 1;
+    // 
+    campus_mng_badge = 2;
+    // 
+    campus_mng_slogan = 3;
+    // 
+    campus_mng_quiz = 4;
+}
+
+// 
+message CampusMngQuiz {
+    // 
+    string title = 1;
+    // 
+    CampusLabel more_label = 2;
+    // 
+    string add_label = 3;
+    // 
+    string submit_label = 4;
+    // 
+    int64 quiz_count = 5;
+}
+
+// 
+enum CampusMngQuizAction {
+    // 
+    campus_mng_quiz_act_list = 0;
+    // 
+    campus_mng_quiz_act_add = 1;
+    // 
+    campus_mng_quiz_act_del = 2;
+}
+
+// 
+message CampusMngQuizDetail {
+    // 
+    int64 quiz_id = 1;
+    // 
+    string question = 2;
+    // 
+    string correct_answer = 3;
+    // 
+    repeated string wrong_answer_list = 4;
+    // 
+    int32 audit_status = 5;
+    // 
+    string audit_message = 6;
+}
+
+// 
+message CampusMngQuizOperateReply {
+    // 
+    string toast = 1;
+    // 
+    repeated CampusMngQuizDetail quiz = 2;
+    // 
+    int64 quiz_total = 3;
+}
+
+// 
+message CampusMngQuizOperateReq {
+    // 
+    int32 action = 1;
+    // 
+    int64 campus_id = 2;
+    // 
+    repeated CampusMngQuizDetail quiz = 3;
+}
+
+// 
+message CampusMngSlogan {
+    // 
+    string title = 1;
+    // 
+    string slogan = 2;
+    // 
+    string input_hint_msg = 3;
+}
+
+// 
+message CampusMngSubmitReply {
+    // 
+    string toast = 1;
+}
+
+// 
+message CampusMngSubmitReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    repeated CampusMngItem modified_items = 2;
 }
 
 //
@@ -683,6 +1032,14 @@ message CampusNoticeInfo {
     string desc = 2;
     //
     CampusLabel button = 3;
+}
+
+// 
+enum CampusOnlineStatus {
+    // 
+    campus_online_offline = 0;
+    // 
+    campus_online_online = 1;
 }
 
 //
@@ -715,6 +1072,8 @@ message CampusRcmdFeedReq {
     int32 scroll = 6;
     //
     string view_dyn_id = 7;
+    // 
+    CampusReqFromType from_type = 8;
 }
 
 //
@@ -747,6 +1106,8 @@ message CampusRcmdReply {
     CampusTop campus_top = 3;
     //
     int32 page_type = 4;
+    // 
+    int32 jump_home_pop = 5;
 }
 
 //
@@ -761,6 +1122,10 @@ message CampusRcmdReq {
     double lng = 4;
     //
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    // 
+    CampusReqFromType from_type = 6;
+    // 
+    CampusHomePageType page_type = 7;
 }
 
 //
@@ -791,6 +1156,38 @@ message CampusRcmdTop {
     CampusLabel reserve_label = 12;
     //
     int64 reserve_number = 13;
+    // 
+    int64 max_reserve = 14;
+    // 
+    CampusLabel school_label = 15;
+    // 
+    CampusLabel mng_label = 16;
+    // 
+    CampusHomeRcmdTopic rcmd_topic = 17;
+    // 
+    bool audit_before_open = 18;
+    // 
+    string audit_message = 19;
+}
+
+// 
+message CampusRecommendReply {
+    // 
+    repeated RcmdItem items = 1;
+    // 
+    bool has_more = 2;
+}
+
+// 
+message CampusRecommendReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    int64 page_no = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    CampusRcmdReqFrom from = 4;
 }
 
 //
@@ -803,6 +1200,16 @@ message CampusRedDotReply {
 message CampusRedDotReq {
     //
     int64 campus_id = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+enum CampusReqFromType {
+    // 
+    DYNAMIC = 0;
+    // 
+    HOME = 1;
 }
 
 //
@@ -815,6 +1222,28 @@ message CampusShowTabInfo {
     int32 type = 3;
     //
     int32 red_dot = 4;
+    // 
+    string icon_url = 5;
+}
+
+// 
+message CampusSquareReply {
+    // 
+    string title = 1;
+    // 
+    repeated RcmdCampusBrief list = 2;
+    // 
+    CampusLabel button = 3;
+}
+
+// 
+message CampusSquareReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    double lat = 2;
+    // 
+    double lng = 3;
 }
 
 //
@@ -825,6 +1254,7 @@ enum CampusTabType {
     campus_account = 3;   //
     campus_billboard = 4; //
     campus_topic = 5;     //
+    campues_other = 6;    //
 }
 
 //
@@ -851,6 +1281,16 @@ message CampusTop {
     string campus_badge = 10;
     //
     string campus_background = 11;
+    // 
+    string campus_motto = 12;
+    // 
+    CampusLabel mng_entry = 13;
+    // 
+    string campus_intro = 14;
+    // 
+    string campus_name_link = 15;
+    // 
+    string bottom_left_text = 16;
 }
 
 //
@@ -863,6 +1303,8 @@ message CampusTopicRcmdFeedReply {
     bool has_more = 3;
     //
     string offset = 4;
+    // 
+    IconButton join_discuss = 5;
 }
 
 //
@@ -875,6 +1317,18 @@ message CampusTopicRcmdFeedReq {
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
     //
     int32 local_time = 4;
+    // 
+    CampusReqFromType from_type = 5;
+}
+
+// 
+message CardParagraph {
+    // 
+    ModuleAdditional additional_card = 1;
+    // 
+    string biz_id = 3;
+    // 
+    LinkNodeType biz_type = 2;
 }
 
 // 动态卡片列表
@@ -919,6 +1373,8 @@ message CardVideoUpList {
     bool show_in_personal = 8;
     // 是否展示右侧查看更多按钮
     bool show_more_button = 9;
+    // 
+    repeated UpListItem list_second = 10;
 }
 
 //
@@ -953,6 +1409,14 @@ message CmtShowItem {
     string comment = 4;
 }
 
+// 
+message Colors {
+    // 
+    string color_day = 1;
+    // 
+    string color_night = 2;
+}
+
 // 精选评论区
 message CommentDetail {
     // 该功能能不能用
@@ -962,10 +1426,29 @@ message CommentDetail {
     int64 status = 2;
 }
 
+// 
+message Config {
+    // 
+    bool story_vertical_exp = 1;
+    // 
+    int64 detail_view_bits = 2;
+}
+
 //
 enum CoverIcon {
-    cover_icon_none = 0; // 占位 啥都不展示
-    cover_icon_play = 1; // 播放icon
+    cover_icon_none = 0;    // 占位 啥都不展示
+    cover_icon_play = 1;    // 播放icon
+    cover_icon_danmaku = 2; // 
+    cover_icon_up = 3;      // 
+    cover_icon_vt = 4;      // ? 竖屏模式 icon
+}
+
+// 
+message CoverIconWithText {
+    // 
+    int32 icon = 1;
+    // 
+    string text = 2;
 }
 
 // 装扮卡片-粉丝勋章信息
@@ -992,29 +1475,6 @@ message DecorateCard {
     DecoCardFan fan = 4;
 }
 
-// 文本类型
-enum DescType {
-    desc_type_none = 0;         // 占位
-    desc_type_text = 1;         // 文本
-    desc_type_aite = 2;         // @
-    desc_type_lottery = 3;      // 抽奖
-    desc_type_vote = 4;         // 投票
-    desc_type_topic = 5;        // 话题
-    desc_type_goods = 6;        // 商品
-    desc_type_bv = 7;           // bv
-    desc_type_av = 8;           // av
-    desc_type_emoji = 9;        // 表情
-    desc_type_user = 10;        // 外露用户
-    desc_type_cv   = 11;        // 专栏
-    desc_type_vc   = 12;        // 小视频
-    desc_type_web  = 13;        // 网址
-    desc_type_taobao  = 14;     // 淘宝
-    desc_type_mail = 15;        // 邮箱
-    desc_type_ogv_season = 16;  // 番剧season
-    desc_type_ogv_ep = 17;      // 番剧ep
-    desc_type_search_word = 18; //
-}
-
 // 文本描述
 message Description {
     // 文本内容
@@ -1039,7 +1499,33 @@ message Description {
     string orig_text = 10;
     //
     int32 emoji_size = 11;
+    // 
+    EmojiSizeSpec emoji_size_spec = 12;
 }
+
+// 文本类型
+enum DescType {
+    desc_type_none = 0;         // 占位
+    desc_type_text = 1;         // 文本
+    desc_type_aite = 2;         // @
+    desc_type_lottery = 3;      // 抽奖
+    desc_type_vote = 4;         // 投票
+    desc_type_topic = 5;        // 话题
+    desc_type_goods = 6;        // 商品
+    desc_type_bv = 7;           // bv
+    desc_type_av = 8;           // av
+    desc_type_emoji = 9;        // 表情
+    desc_type_user = 10;        // 外露用户
+    desc_type_cv   = 11;        // 专栏
+    desc_type_vc   = 12;        // 小视频
+    desc_type_web  = 13;        // 网址
+    desc_type_taobao  = 14;     // 淘宝
+    desc_type_mail = 15;        // 邮箱
+    desc_type_ogv_season = 16;  // 番剧season
+    desc_type_ogv_ep = 17;      // 番剧ep
+    desc_type_search_word = 18; //
+}
+
 
 // 尺寸信息
 message Dimension {
@@ -1087,6 +1573,10 @@ message DynAllPersonalReply {
     Relation relation = 5;
     // 顶部预约卡
     TopAdditionUP addition_up = 6;
+    // 
+    string title = 7;
+    // 
+    string title_sub = 8;
 }
 
 // 最近访问-个人feed流列表-请求
@@ -1109,6 +1599,8 @@ message DynAllPersonalReq {
     string from = 8;
     // 秒开用
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 9;
+    // 
+    string personal_extra = 10;
 }
 
 // 动态综合页-响应
@@ -1123,6 +1615,8 @@ message DynAllReply {
     Unfollow unfollow = 4;
     // 分区UP推荐
     DynRegionRcmd region_rcmd = 5;
+    // 
+    Config config = 6;
 }
 
 // 动态综合页-请求
@@ -1165,6 +1659,71 @@ message DynAllUpdOffsetReq {
     string read_offset = 2;
     // 服务端生成的透传上报字段
     string footprint = 3;
+    // 
+    string personal_extra = 4;
+}
+
+
+// 动态卡片
+message DynamicItem {
+    // 动态卡片类型
+    DynamicType card_type = 1;
+    // 转发类型下，源卡片类型
+    DynamicType item_type = 2;
+    // 模块内容
+    repeated Module modules = 3;
+    // 操作相关字段
+    Extend extend = 4;
+    // 该卡片下面是否含有折叠卡
+    int32 has_fold = 5;
+    // 透传到客户端的埋点字段。
+    string server_info = 6;
+}
+
+//动态卡片列表
+message DynamicList {
+    // 动态列表
+    repeated DynamicItem list = 1;
+    // 更新的动态数
+    int64 update_num = 2;
+    // 历史偏移
+    string history_offset = 3;
+    // 更新基础信息
+    string update_baseline = 4;
+    // 是否还有更多数据
+    bool has_more = 5;
+}
+
+// 枚举-动态类型
+enum DynamicType {
+    dyn_none = 0;          // 占位
+    forward = 1;           // 转发
+    av = 2;                // 稿件: ugc、小视频、短视频、UGC转PGC
+    pgc = 3;               // pgc：番剧、PGC番剧、PGC电影、PGC电视剧、PGC国创、PGC纪录片
+    courses = 4;           // 付费更新批次
+    fold = 5;              // 折叠
+    word = 6;              // 纯文字
+    draw = 7;              // 图文
+    article = 8;           // 专栏 原仅phone端
+    music = 9;             // 音频 原仅phone端
+    common_square = 10;    // 通用卡 方形
+    common_vertical = 11;  // 通用卡 竖形
+    live = 12;             // 直播卡 只有转发态
+    medialist = 13;        // 播单 原仅phone端 只有转发态
+    courses_season = 14;   // 付费更新批次 只有转发态
+    ad = 15;               // 广告卡
+    applet = 16;           // 小程序卡
+    subscription = 17;     // 订阅卡
+    live_rcmd = 18;        // 直播推荐卡
+    banner = 19;           // 通栏
+    ugc_season = 20;       // 合集卡
+    subscription_new = 21; // 新订阅卡
+    story = 22;            //
+    topic_rcmd = 23;       //
+    cour_up = 24;          // 
+    topic_set = 25;        // 
+    notice = 26;           // 
+    text_notice = 27;      // 
 }
 
 // 动态详情页-响应
@@ -1198,6 +1757,8 @@ message DynDetailReq {
     int32 local_time = 10;
     // pattern
     string pattern = 11;
+    // 
+    Config config = 12;
 }
 
 // 批量动态id获取动态详情-响应
@@ -1216,6 +1777,8 @@ message DynDetailsReq {
     int32 local_time = 3;
     // 秒开参数
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 
+    Config config = 5;
 }
 
 // 动态小卡类型
@@ -1241,6 +1804,32 @@ message DynFakeCardReply {
 message DynFakeCardReq {
     //卡片内容json string
     string content = 1;
+}
+
+// 
+message DynFeatureGate {
+    // 
+    bool enhanced_interaction = 1;
+}
+
+// 
+message DynFriendReply {
+    // 
+    repeated DynamicItem dyn_list = 1;
+    // 
+    bool has_more = 2;
+    // 
+    string offset = 3;
+}
+
+// 
+message DynFriendReq {
+    // 
+    string offset = 1;
+    // 
+    int32 local_time = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
 }
 
 // 轻浏览-响应
@@ -1318,6 +1907,14 @@ enum DynModuleType {
     module_top_tag = 25;           //
     module_topic_brief = 26;       //
     module_title = 27;             //
+    module_button = 28;
+    module_notice = 29;
+    module_opus_summary = 30;
+    module_copyright = 31;
+    module_paragraph = 32;
+    module_blocked = 33;
+    module_text_notice = 34;
+    module_opus_collection = 35;
 }
 
 // 推荐页-响应
@@ -1374,6 +1971,22 @@ message DynRegionRcmdItem {
     repeated ModuleRcmd items = 3;
 }
 
+// 
+message DynScreenTab {
+    // 
+    string title = 1;
+    // 
+    string name = 2;
+    // 
+    bool default_tab = 3;
+    // 
+    bool strategy_show_on_entrance = 4;
+    // 
+    bool strategy_show_on_refresh = 5;
+    // 
+    bool strategy_show_on_pull_up = 6;
+}
+
 //
 message DynSearchReply {
     //
@@ -1422,6 +2035,8 @@ message DynServerDetailsReq {
     string platform = 9;
     //
     bool is_master = 10;
+    // 
+    repeated int64 top_dynamic_ids = 11;
 }
 
 // 空间页动态-请求
@@ -1518,12 +2133,16 @@ message DynTab {
 message DynTabReply {
     //
     repeated DynTab dyn_tab = 1;
+    // 
+    repeated DynScreenTab screen_tab = 2;
 }
 
 //
 message DynTabReq {
     //
     int32 teenagers_mode = 1;
+    // 
+    CampusReqFromType from_type = 2;
 }
 
 // 动态点赞-请求
@@ -1540,13 +2159,6 @@ message DynThumbReq {
     ThumbType type = 5;
 }
 
-//
-enum DynUriType {
-    dyn_uri_type_none = 0;   //
-    dyn_uri_type_direct = 1; // 直接跳转对应uri
-    dyn_uri_type_suffix = 2; // 作为后缀拼接
-}
-
 // 最近访问-个人feed流列表-响应
 message DynVideoPersonalReply {
     // 动态列表
@@ -1561,6 +2173,10 @@ message DynVideoPersonalReply {
     Relation relation = 5;
     // 顶部预约卡
     TopAdditionUP addition_up = 6;
+    // 
+    string title = 7;
+    // 
+    string title_sub = 8;
 }
 
 // 最近访问-个人feed流列表-请求
@@ -1583,6 +2199,10 @@ message DynVideoPersonalReq {
     string from = 8;
     // 秒开参数
     bilibili.app.archive.middleware.v1.PlayerArgs player_args = 9;
+    // 
+    int64 pegasus_avid = 10;
+    // 
+    string personal_extra = 11;
 }
 
 // 动态视频页-响应
@@ -1626,6 +2246,8 @@ message DynVideoUpdOffsetReq {
     string read_offset = 2;
     // 服务端生成的透传上报字段
     string footprint = 3;
+    // 
+    string personal_extra = 4;
 }
 
 // 投票操作-响应
@@ -1650,62 +2272,10 @@ message DynVoteReq {
     bool share = 5;
 }
 
-// 动态卡片
-message DynamicItem {
-    // 动态卡片类型
-    DynamicType card_type = 1;
-    // 转发类型下，源卡片类型
-    DynamicType item_type = 2;
-    // 模块内容
-    repeated Module modules = 3;
-    // 操作相关字段
-    Extend extend = 4;
-    // 该卡片下面是否含有折叠卡
-    int32 has_fold = 5;
-    // 透传到客户端的埋点字段。
-    string server_info = 6;
-}
-
-//动态卡片列表
-message DynamicList {
-    // 动态列表
-    repeated DynamicItem list = 1;
-    // 更新的动态数
-    int64 update_num = 2;
-    // 历史偏移
-    string history_offset = 3;
-    // 更新基础信息
-    string update_baseline = 4;
-    // 是否还有更多数据
-    bool has_more = 5;
-}
-
-// 枚举-动态类型
-enum DynamicType {
-    dyn_none = 0;          // 占位
-    forward = 1;           // 转发
-    av = 2;                // 稿件: ugc、小视频、短视频、UGC转PGC
-    pgc = 3;               // pgc：番剧、PGC番剧、PGC电影、PGC电视剧、PGC国创、PGC纪录片
-    courses = 4;           // 付费更新批次
-    fold = 5;              // 折叠
-    word = 6;              // 纯文字
-    draw = 7;              // 图文
-    article = 8;           // 专栏 原仅phone端
-    music = 9;             // 音频 原仅phone端
-    common_square = 10;    // 通用卡 方形
-    common_vertical = 11;  // 通用卡 竖形
-    live = 12;             // 直播卡 只有转发态
-    medialist = 13;        // 播单 原仅phone端 只有转发态
-    courses_season = 14;   // 付费更新批次 只有转发态
-    ad = 15;               // 广告卡
-    applet = 16;           // 小程序卡
-    subscription = 17;     // 订阅卡
-    live_rcmd = 18;        // 直播推荐卡
-    banner = 19;           // 通栏
-    ugc_season = 20;       // 合集卡
-    subscription_new = 21; // 新订阅卡
-    story = 22;            //
-    topic_rcmd = 23;       //
+//
+message EmojiSizeSpec {
+    //
+    int64 width = 1;
 }
 
 // 表情包类型
@@ -1716,9 +2286,99 @@ enum EmojiType {
     vip = 3;        // 大会员表情
 }
 
+//
+message EmoteNode {
+    //
+    string emote_url = 2;
+    //
+    EmoteSize emote_width = 3;
+    //
+    ImgInlineCfg inline_img_cfg = 5;
+    //
+    bool is_inline_img = 4;
+    //
+    WordNode raw_text = 1;
+}
+
+// 
+message EmoteSize {
+    // 
+    double width = 1;
+    // 
+    int32 emoji_size = 2;
+}
+
 // 附加大卡-电竞卡样式
 enum EspaceStyle {
     moba = 0; // moba类
+}
+
+// 扩展字段，用于动态部分操作使用
+message Extend {
+    // 动态id
+    string dyn_id_str = 1;
+    // 业务方id
+    string business_id = 2;
+    // 源动态id
+    string orig_dyn_id_str = 3;
+    // 转发卡：用户名
+    string orig_name = 4;
+    // 转发卡：图片url
+    string orig_img_url = 5;
+    // 转发卡：文字内容
+    repeated Description orig_desc = 6;
+    // 填充文字内容
+    repeated Description desc = 7;
+    // 被转发的源动态类型
+    DynamicType orig_dyn_type = 8;
+    // 分享到站外展示类型
+    string share_type = 9;
+    // 分享的场景
+    string share_scene = 10;
+    // 是否快速转发
+    bool is_fast_share = 11;
+    // r_type 分享和转发
+    int32 r_type = 12;
+    // 数据源的动态类型
+    int64 dyn_type = 13;
+    // 用户id
+    int64 uid = 14;
+    // 卡片跳转
+    string card_url = 15;
+    // 透传字段
+    google.protobuf.Any source_content = 16;
+    // 转发卡：用户头像
+    string orig_face = 17;
+    // 评论跳转
+    ExtendReply reply = 18;
+    // 
+    string track_id = 19;
+    // 
+    ModuleOpusSummary opus_summary = 20;
+    // 
+    OnlyFansProperty only_fans_property = 21;
+    // 
+    DynFeatureGate feature_gate = 22;
+    // 
+    bool is_in_audit = 23;
+    // 
+    map<string, string> history_report = 24;
+}
+
+// 评论扩展
+message ExtendReply {
+    // 基础跳转地址
+    string uri = 1;
+    // 参数部分
+    repeated ExtendReplyParam params = 2;
+}
+
+// 评论扩展参数部分
+message ExtendReplyParam {
+    // 参数名
+    string key = 1;
+    // 参数值
+    string value = 2;
 }
 
 // 动态-拓展小卡模块-通用小卡
@@ -1793,60 +2453,38 @@ message ExtInfoTopic {
     string icon = 3;
 }
 
-// 扩展字段，用于动态部分操作使用
-message Extend {
-    // 动态id
-    string dyn_id_str = 1;
-    // 业务方id
-    string business_id = 2;
-    // 源动态id
-    string orig_dyn_id_str = 3;
-    // 转发卡：用户名
-    string orig_name = 4;
-    // 转发卡：图片url
-    string orig_img_url = 5;
-    // 转发卡：文字内容
-    repeated Description orig_desc = 6;
-    // 填充文字内容
-    repeated Description desc = 7;
-    // 被转发的源动态类型
-    DynamicType orig_dyn_type = 8;
-    // 分享到站外展示类型
-    string share_type = 9;
-    // 分享的场景
-    string share_scene = 10;
-    // 是否快速转发
-    bool is_fast_share = 11;
-    // r_type 分享和转发
-    int32 r_type = 12;
-    // 数据源的动态类型
-    int64 dyn_type = 13;
-    // 用户id
-    int64 uid = 14;
-    // 卡片跳转
-    string card_url = 15;
-    // 透传字段
-    google.protobuf.Any source_content = 16;
-    // 转发卡：用户头像
-    string orig_face = 17;
-    // 评论跳转
-    ExtendReply reply = 18;
+// 
+message FeedFilterReply {
+    // 
+    string offset = 1;
+    // 
+    bool has_more = 2;
+    // 
+    repeated DynamicItem list = 3;
 }
 
-// 评论扩展
-message ExtendReply {
-    // 基础跳转地址
-    string uri = 1;
-    // 参数部分
-    repeated ExtendReplyParam params = 2;
+// 
+message FeedFilterReq {
+    // 
+    string offset = 1;
+    // 
+    string tab = 2;
+    // 
+    int32 local_time = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 
+    AdParam ad_param = 5;
+    // 
+    int32 cold_start = 6;
+    // 
+    int64 page = 7;
 }
 
-// 评论扩展参数部分
-message ExtendReplyParam {
-    // 参数名
-    string key = 1;
-    // 参数值
-    string value = 2;
+// 
+message FetchTabSettingReply {
+    // 
+    int32 status = 1;
 }
 
 // 折叠类型
@@ -1856,6 +2494,7 @@ enum FoldType {
     FoldTypeFrequent = 2; // 转发超频折叠
     FoldTypeUnite = 3;    // 联合投稿折叠
     FoldTypeLimit = 4;    // 动态受限折叠
+    FoldTypeTopicMerged = 5;
 }
 
 // 视频页-我的追番-番剧信息
@@ -1911,6 +2550,17 @@ message GoodsItem {
     bool user_web_v2 = 12;
     // ad mark
     string ad_mark = 13;
+    // 
+    string app_name = 14;
+    // 
+    GoodsJumpType jump_type = 15;
+}
+
+// 
+enum GoodsJumpType {
+    goods_none = 0;
+    goods_schema = 1;
+    goods_url = 2;
 }
 
 //
@@ -1947,6 +2597,27 @@ enum HighlightTextStyle {
     style_highlight = 1; // 高亮
 }
 
+// 
+enum HomePageTabSttingStatus {
+    SETTING_INVALID = 0;
+    SETTING_OPEN = 1;
+    SETTING_CLOSE = 2;
+}
+
+// 
+message HomeSubscribeReply {
+    // 
+    int32 online = 1;
+}
+
+// 
+message HomeSubscribeReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+}
+
 //
 message IconBadge {
     //
@@ -1967,10 +2638,34 @@ message IconButton {
     string jump_uri = 4;
 }
 
+// 
+enum IconResLocal {
+    ICON_RES_LOCAL_NONE = 0;
+    ICON_RES_LOCAL_LIVE = 1;
+}
+
+// 
+message ImageSet {
+    // 
+    string img_day = 1;
+    // 
+    string img_dark = 2;
+}
+
 // 枚举-附加卡样式
 enum ImageStyle {
     add_style_vertical = 0; //
     add_style_square = 1;   //
+}
+
+// 
+message ImgInlineCfg {
+    // 
+    double width = 1;
+    // 
+    double height = 2;
+    // 
+    Colors color = 3;
 }
 
 // 动态-拓展小卡模块-ogv小卡-(one of 片单、榜单、分区)
@@ -2017,6 +2712,78 @@ message InteractionItem {
 message InteractionStat {
     //
     int64 like = 1;
+}
+
+// 
+message LbsPoiDetail {
+    // 
+    string poi = 1;
+    // 
+    int64 type = 2;
+    // 
+    repeated string base_pic = 3;
+    // 
+    repeated string cover = 4;
+    // 
+    string address = 5;
+    // 
+    string title = 6;
+}
+
+// 
+message LbsPoiReply {
+    // 
+    bool has_more = 1;
+    // 
+    string offset = 2;
+    // 
+    LbsPoiDetail detail = 3;
+    // 
+    repeated DynamicItem list = 4;
+}
+
+// 
+message LbsPoiReq {
+    // 
+    string poi = 1;
+    // 
+    int64 type = 2;
+    // 
+    string offset = 3;
+    // 
+    int32 refresh_type = 4;
+    // 
+    int32 local_time = 5;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 6;
+}
+
+// 
+message LegacyTopicFeedReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    bool has_more = 2;
+    // 
+    string offset = 3;
+    // 
+    repeated SortType supported_sort_types = 4;
+    // 
+    repeated SortType feed_card_filters = 5;
+}
+
+// 
+message LegacyTopicFeedReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    string topic_name = 2;
+    // 
+    string offset = 3;
+    // 
+    SortType sort_type = 4;
+    // 
+    SortType card_filter = 5;
 }
 
 //
@@ -2079,6 +2846,69 @@ message LikeUser {
     string uri = 3;
 }
 
+// 
+message LineParagraph {
+    // 
+    MdlDynDrawItem pic = 1;
+}
+
+// 
+message LinkNode {
+    // 
+    string show_text = 1;
+    // 
+    string link = 2;
+    // 
+    string icon = 3;
+    // 
+    string icon_suffix = 4;
+    // 
+    string link_type = 5;
+    // 
+    LinkNodeType link_type_enum = 6;
+    // 
+    string biz_id = 7;
+    // 
+    int64 timestamp = 8;
+    // 
+    GoodsItem goods_item = 9;
+    // 
+    NoteVideoTS note_video_ts = 10;
+}
+
+// 
+enum LinkNodeType {
+    INVALID = 0;
+    VIDEO = 1;
+    RESERVE = 2;
+    VOTE = 3;
+    LIVE = 4;
+    LOTTERY = 5;
+    MATCH = 6;
+    GOODS = 7;
+    OGV_SS = 8;
+    OGV_EP = 9;
+    MANGA = 10;
+    CHEESE = 11;
+    VIDEO_TS = 12;
+    AT = 13;
+    HASH_TAG = 14;
+    ARTICLE = 15;
+    URL = 16;
+    MAIL = 17;
+    LBS = 18;
+    ACTIVITY = 19;
+    ATTACH_CARD_OFFICIAL_ACTIVITY = 20;
+    GAME = 21;
+    DECORATION = 22;
+    UP_TOPIC = 23;
+    UP_ACTIVITY = 24;
+    UP_MAOER = 25;
+    MEMBER_GOODS = 26;
+    OPENMALL_UP_ITEMS = 27;
+    SEARCH = 28;
+}
+
 // 直播信息
 message LiveInfo {
     // 是否在直播
@@ -2111,6 +2941,9 @@ enum LiveState {
 enum LocalIconType {
     local_icon_comment = 0; //
     local_icon_like = 1;    //
+    local_icon_avatar = 2;
+    local_icon_cover = 3;
+    local_icon_like_and_forward = 4;
 }
 
 // 动态-附加卡-电竞卡-战队
@@ -2125,6 +2958,14 @@ message MatchTeam {
     string color = 4;
     // 夜间色值
     string night_color = 5;
+}
+
+// 
+enum MdlBlockedStyle {
+    BLOCKED_STYLE_DEFAULT = 0;
+    BLOCKED_STYLE_IN_AUDIT = 1;
+    BLOCKED_STYLE_ONLY_FANS_LIST = 2;
+    BLOCKED_STYLE_ONLY_FANS_VIDEO = 3;
 }
 
 // 动态列表渲染部分-详情模块-小程序/小游戏
@@ -2203,6 +3044,16 @@ message MdlDynArchive {
     string bvid = 26;
     // 播放数
     int32 view = 27;
+    // 
+    bool show_premiere_badge = 28;
+    // 
+    bool premiere_card = 29;
+    // 
+    bool show_progress = 30;
+    // 
+    int64 part_duration = 31;
+    // 
+    int64 part_progress = 32;
 }
 
 // 动态列表渲染部分-详情模块-专栏模块
@@ -2272,6 +3123,26 @@ message MdlDynCourBatch {
     VideoBadge badge = 6;
     // 播放按钮
     string play_icon = 7;
+    // 
+    bool can_play = 8;
+    // 
+    bool is_preview = 9;
+    // 
+    string cover_left_text_1 = 10;
+    // 
+    string cover_left_text_2 = 11;
+    // 
+    string cover_left_text_3 = 12;
+    // 
+    int64 avid = 13;
+    // 
+    int64 cid = 14;
+    // 
+    int64 epid = 15;
+    // 
+    int64 duration = 16;
+    // 
+    int64 season_id = 17;
 }
 
 // 动态-详情模块-付费课程系列
@@ -2290,6 +3161,52 @@ message MdlDynCourSeason {
     VideoBadge badge = 6;
     // 播放按钮
     string play_icon = 7;
+    // 
+    bool can_play = 8;
+    // 
+    bool is_preview = 9;
+    // 
+    int64 avid = 10;
+    // 
+    int64 cid = 11;
+    // 
+    int64 epid = 12;
+    // 
+    int64 duration = 13;
+    // 
+    int64 season_id = 14;
+}
+
+// 
+message MdlDynCourUp {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string cover = 3;
+    // 
+    string uri = 4;
+    // 
+    string text_1 = 5;
+    // 
+    VideoBadge badge = 6;
+    // 
+    string play_icon = 7;
+    // 
+    bool can_play = 8;
+    // 
+    bool is_preview = 9;
+    // 
+    int64 avid = 10;
+    // 
+    int64 cid = 11;
+    // 
+    int64 epid = 12;
+    // 
+    int64 duration = 13;
+    // 
+    int64 season_id = 14;
 }
 
 // 动态列表渲染部分-详情模块-图文模块
@@ -2300,6 +3217,12 @@ message MdlDynDraw {
     string uri = 2;
     // 图文ID
     int64 id = 3;
+    // 
+    bool is_draw_first = 4;
+    // 
+    bool is_big_cover = 5;
+    // 
+    bool is_article_cover = 6;
 }
 
 // 动态列表渲染部分-详情模块-图文
@@ -2526,6 +3449,18 @@ enum MdlDynSubscriptionNewStyle {
     mdl_dyn_subscription_new_style_draw = 2; // 图文
 }
 
+// 
+message MdlDynTopicSet {
+    // 
+    repeated TopicItem topics = 1;
+    // 
+    IconButton more_btn = 2;
+    // 
+    int64 topic_set_id = 3;
+    // 
+    int64 push_id = 4;
+}
+
 // 动态列表渲染部分-UGC合集
 message MdlDynUGCSeason {
     // 标题
@@ -2664,6 +3599,22 @@ message Module {
         ModuleTopicBrief module_topic_brief = 26;
         //
         ModuleTitle module_title = 27;
+        // 
+        ModuleButton module_button = 28;
+        // 
+        ModuleNotice module_notice = 29;
+        // 
+        ModuleOpusSummary module_opus_summary = 30;
+        // 
+        ModuleCopyright module_copyright = 31;
+        // 
+        ModuleParagraph module_paragraph = 32;
+        // 
+        ModuleBlocked module_blocked = 33;
+        // 
+        ModuleTextNotice module_text_notice = 34;
+        // 
+        ModuleOpusCollection module_opus_collection = 35;
     }
 }
 
@@ -2704,6 +3655,10 @@ message ModuleAdditional {
         AdditionUgc  ugc = 9;
         // up主预约发布卡
         AdditionUP up = 10;
+        // 
+        AdditionArticle article = 12;
+        // 
+        AdditionLiveRoom live = 13;
     }
     // 附加卡物料ID
     int64 rid = 7;
@@ -2744,6 +3699,8 @@ message ModuleAuthor {
     string ptime_location_text = 14;
     //
     bool show_level = 15;
+    // 
+    OnlyFans only_fans = 16;
 }
 
 // 动态列表渲染部分-用户模块-按钮
@@ -2842,18 +3799,73 @@ message ModuleBannerUserItem {
     AdditionalButton button = 8;
     // 跳转地址
     string uri = 9;
+    // 
+    Relation relation = 10;
+}
+
+// 
+message ModuleBlocked {
+    // 
+    ImageSet icon = 1;
+    // 
+    ImageSet bg_img = 2;
+    // 
+    string hint_message = 3;
+    // 
+    IconButton act_btn = 4;
+    // 
+    MdlBlockedStyle block_style = 5;
+    // 
+    string sub_hint_message = 6;
+    // 
+    OneLineText video_bottom_text_upper = 7;
+    // 
+    OneLineText video_bottom_text_lower = 8;
+    // 
+    string archive_title = 9;
+    // 
+    OneLineText hint_message_one_line = 10;
 }
 
 // 底部模块
 message ModuleButtom {
+    enum InteractionIcon {
+        ICON_INVALID = 0;
+        ICON_FORWARD = 1;
+        ICON_COMMENT = 2;
+        ICON_FAVORITE = 3;
+        ICON_LIKE = 4;
+    }
     // 计数模块
     ModuleStat module_stat = 1;
+    // 
+    bool comment_box = 2;
+    // 
+    string comment_box_msg = 3;
+    // 
+    repeated InteractionIcon interaction_icons = 4;
+    // 
+    repeated InteractionFace faces = 5;
+}
+
+// 
+message ModuleButton {
+    // 
+    IconButton btn = 1;
 }
 
 // 评论外露模块
 message ModuleComment {
     // 评论外露展示项
     repeated CmtShowItem cmtShowItem = 1;
+}
+
+// 
+message ModuleCopyright {
+    // 
+    string left_text = 1;
+    // 
+    string right_text = 2;
 }
 
 // 动态-描述文字模块
@@ -2885,6 +3897,10 @@ message ModuleDescGoods {
     string ad_mark = 7;
     // schemaPackageName(Android用)
     string schema_package_name = 8;
+    // 
+    int32 jump_type = 9;
+    // 
+    string app_name = 10;
 }
 
 // 动态-争议小黄条模块
@@ -2934,6 +3950,10 @@ message ModuleDynamic {
         MdlDynUGCSeason dyn_ugc_season = 16;
         //订阅卡
         MdlDynSubscriptionNew dyn_subscription_new = 17;
+        //课程
+        MdlDynCourUp dyn_cour_batch_up = 18;
+        //话题集合
+        MdlDynTopicSet dyn_topic_set = 19;
     }
 }
 
@@ -2955,6 +3975,8 @@ enum ModuleDynamicType {
     mdl_dyn_live_rcmd = 13;        // 直播推荐卡
     mdl_dyn_ugc_season = 14;       // UGC合集
     mdl_dyn_subscription_new = 15; // 订阅卡
+    mdl_dyn_cour_batch_up = 16;    // 课程
+    mdl_dyn_topic_set = 17;        // 话题集合
 }
 
 // 动态-小卡模块
@@ -2982,7 +4004,7 @@ message ModuleExtendItem {
         //
         ExtInfoCommon ext_info_common = 6;
         //
-        ExtInfoOGV  ext_info_ogv = 7;
+        ExtInfoOGV ext_info_ogv = 7;
     }
 }
 
@@ -2996,6 +4018,8 @@ message ModuleFold {
     string fold_ids = 3;
     // 被折叠的用户信息
     repeated UserInfo fold_users = 4;
+    // 
+    TopicMergedResource topic_merged_resource = 5;
 }
 
 // 外露交互模块
@@ -3018,6 +4042,56 @@ message ModuleLikeUser {
     repeated LikeUser like_users = 1;
     // 文案
     string display_text = 2;
+}
+
+// 
+message ModuleNotice {
+    // 
+    string identity = 1;
+    // 
+    string icon = 2;
+    // 
+    string title = 3;
+    // 
+    string url = 4;
+    // 
+    int32 notice_type = 5;
+}
+
+// 
+message ModuleOpusCollection {
+    // 
+    OpusCollection collection_info = 1;
+    // 
+    string title_upper = 2;
+    // 
+    string title = 3;
+    // 
+    string title_prefix_icon = 4;
+    // 
+    string total_text = 5;
+}
+
+// 
+message ModuleOpusSummary {
+    // 
+    Paragraph title = 1;
+    // 
+    Paragraph summary = 2;
+    // 
+    string summary_jump_btn_text = 3;
+    // 
+    repeated MdlDynDrawItem covers = 4;
+}
+
+// 
+message ModuleParagraph {
+    // 
+    Paragraph paragraph = 1;
+    // 
+    bool is_article_title = 2;
+    // 
+    ParaSpacing para_spacing = 3;
 }
 
 // 推荐模块
@@ -3100,24 +4174,32 @@ message ModuleStory {
     string publish_text = 7;
 }
 
+// 
+message ModuleTextNotice {
+    // 
+    OneLineText notice = 1;
+}
+
 //
 message ModuleTitle {
     //
     string title = 1;
     //
     IconButton right_btn = 2;
+    // 
+    int32 title_style = 3;
 }
 
 // 顶部模块
 message ModuleTop {
     // 三点模块
     repeated ThreePointItem tp_list = 1;
-}
-
-//
-message ModuleTopTag {
-    //
-    string tag_name = 1;
+    // 
+    MdlDynArchive archive = 2;
+    // 
+    ModuleAuthor author = 3;
+    // 
+    bool hidden_nav_bar = 4;
 }
 
 //
@@ -3140,6 +4222,12 @@ message ModuleTopicBrief {
 message ModuleTopicDetailsExt {
     //
     string comment_guide = 1;
+}
+
+//
+message ModuleTopTag {
+    //
+    string tag_name = 1;
 }
 
 // 认证名牌
@@ -3177,6 +4265,30 @@ message NewEP {
     string cover = 3;
 }
 
+// 
+message NFTInfo {
+    // 
+    NFTRegionType region_type = 1;
+    // 
+    string region_icon = 2;
+    // 
+    NFTShowStatus region_show_status = 3;
+}
+
+// 
+enum NFTRegionType {
+    nft_region_default = 0;
+    nft_region_mainlang = 1;
+    nft_region_gat = 2;
+}
+
+// 
+enum NFTShowStatus {
+    nft_show_default = 0;
+    nft_show_zoominmainlang = 1;
+    nft_show_raw = 2;
+}
+
 // 空响应
 message NoReply {
 
@@ -3185,6 +4297,30 @@ message NoReply {
 // 空请求
 message NoReq {
 
+}
+
+// 
+message NoteVideoTS {
+    // 
+    int64 cid = 1;
+    // 
+    int64 oid_type = 2;
+    // 
+    int64 status = 3;
+    // 
+    int64 index = 4;
+    // 
+    int64 seconds = 5;
+    // 
+    int64 cid_count = 6;
+    // 
+    string key = 7;
+    // 
+    int64 epid = 9;
+    // 
+    string title = 8;
+    // 
+    string desc = 10;
 }
 
 //
@@ -3327,6 +4463,113 @@ message OfficialVerify {
     int32 is_atten = 3;
 }
 
+// 
+message OneLineText {
+    // 
+    repeated TextWithPriority texts = 1;
+}
+
+// 
+message OnlyFans {
+    // 
+    bool is_only_fans = 1;
+    // 
+    IconBadge badge = 2;
+}
+
+// 
+message OnlyFansProperty {
+    // 
+    bool has_privilege = 1;
+    // 
+    bool is_only_fans = 2;
+}
+
+// 
+message OpusCollection {
+    // 
+    int64 collection_id = 1;
+    // 
+    OneLineText title = 2;
+    // 
+    string detail_uri = 3;
+    // 
+    string intro = 4;
+    // 
+    repeated OpusCollectionItem all_items = 5;
+}
+
+// 
+message OpusCollectionItem {
+    // 
+    int64 opus_id = 1;
+    // 
+    string title = 2;
+    // 
+    string pub_time = 3;
+    // 
+    string uri = 4;
+    // 
+    bool is_selected_highlight = 5;
+}
+
+// 
+message Paragraph {
+    // 
+    message ListFormat {
+        // 
+        int32 level = 1;
+        // 
+        int32 order = 2;
+        // 
+        string theme = 3;
+    }
+    enum ParagraphAlign {
+        LEFT = 0;
+        MIDDLE = 1;
+        RIGHT = 2;
+    }    
+    // 
+    message ParagraphFormat {
+        // 
+        ParagraphAlign align = 1;
+        // 
+        ListFormat list_format = 2;
+    }
+    // 
+    enum ParagraphType {
+        INVALID = 0;
+        TEXT = 1;
+        PICTURES = 2;
+        LINE = 3;
+        REFERENCE = 4;
+        SORTED_LIST = 5;
+        UNSORTED_LIST = 6;
+        LINK_CARD = 7;
+    }
+    // 
+    ParagraphType para_type = 1;
+    // 
+    ParagraphFormat para_format = 2;
+    // 
+    oneof content {
+        TextParagraph text = 3;
+        PicParagraph pic = 4;
+        LineParagraph line = 5;
+        CardParagraph link_card = 6;
+    }
+}
+
+// 
+message ParaSpacing {
+    // 
+    double spacing_before_para = 1;
+    // 
+    double spacing_after_para = 2;
+    // 
+    double line_spacing = 3;
+}
+
 // PGC单季信息
 message PGCSeason {
     // 是否完结
@@ -3335,6 +4578,20 @@ message PGCSeason {
     string title = 2;
     // 类型
     int32 type = 3;
+}
+
+// 
+message PicParagraph {
+    // 
+    enum PicParagraphStyle {
+        INVALID = 0;
+        NINE_CELL = 1;
+        BIG_SCROLL = 2;
+    }    
+    // 
+    MdlDynDraw pics = 1;
+    // 
+    PicParagraphStyle style = 2;
 }
 
 // 秒开通用参数
@@ -3399,6 +4656,18 @@ message RcmdAuthor {
     Relation relation = 3;
 }
 
+// 
+message RcmdCampusBrief {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    string campus_badge = 4;
+    // 
+    string url = 5;
+}
+
 // 推荐卡片列表
 message RcmdItem {
     // 卡片类型
@@ -3414,6 +4683,26 @@ message RcmdItem {
 message RcmdOption{
     // 视频是否展示标题
     bool show_title = 1;
+}
+
+// 
+message RcmdReason {
+    // 
+    string campus_name = 1;
+    // 
+    RcmdReasonStyle style = 2;
+    // 
+    string rcmd_reason = 3;
+    // 
+    string up_name = 4;
+}
+
+// 
+enum RcmdReasonStyle {
+    rcmd_reason_style_none = 0;
+    rcmd_reason_style_campus_nearby = 1;
+    rcmd_reason_style_campus_up = 2;
+    rcmd_reason_style_campus_near_up_mix = 3;
 }
 
 //
@@ -3433,6 +4722,42 @@ enum RcmdType {
 // 推荐up主入参
 message RcmdUPsParam {
     int64 dislike_ts = 1;
+}
+
+message ReactionListItem {
+    // 用户信息
+    UserInfo user = 1;
+    // 关注关系
+    Relation relation = 2;
+    // 显示文字
+    string act_text = 3;
+    // 
+    string rcmd_reason = 4;
+}
+
+
+// 新版动态转发点赞列表-响应
+message ReactionListReply {
+    // 标题
+    string title = 1;
+    // 列表
+    repeated ReactionListItem list = 2;
+    // 偏移
+    string offset = 3;
+    // 是否还有更多
+    bool has_more = 4;
+}
+
+// 新版动态转发点赞列表-请求
+message ReactionListReq {
+    // 动态ID
+    int64 dynamic_id = 1;
+    // 动态类型
+    int64 dyn_type = 2;
+    // 业务方资源id
+    int64 rid = 3;
+    // 偏移,使用上一页回包中的offset字段；第一页不传。
+    string offset = 4;
 }
 
 // 刷新方式
@@ -3512,6 +4837,11 @@ enum ReserveType {
     reserve_recall = 1; // 预约召回
 }
 
+enum RouterAction {
+    OPEN = 0;
+    EMBED = 1;
+}
+
 //
 message SchoolRecommendReply {
     //
@@ -3524,6 +4854,8 @@ message SchoolRecommendReq {
     float lat = 1;
     //
     float lng = 2;
+    // 
+    CampusReqFromType from_type = 3;
 }
 
 //
@@ -3538,6 +4870,8 @@ message SchoolSearchReply {
 message SchoolSearchReq {
     //
     string keyword = 1;
+    // 
+    CampusReqFromType from_type = 2;
 }
 
 //
@@ -3610,6 +4944,8 @@ message SearchTopicItem {
 message SetDecisionReq {
     //
     int32 result = 1;
+    // 
+    CampusReqFromType from_type = 2;
 }
 
 //
@@ -3618,6 +4954,8 @@ message SetRecentCampusReq {
     int64 campus_id = 1;
     //
     string campus_name = 2;
+    // 
+    CampusReqFromType from_type = 3;
 }
 
 // 分享渠道组件
@@ -3704,16 +5042,53 @@ message SubscribeCampusReq {
     int64 campus_id = 1;
     //
     string campus_name = 2;
+    // 
+    CampusReqFromType from_type = 3;
 }
 
-//
+// 
+message TextNode {
+    enum TextNodeType {
+        INVALID = 0;
+        WORDS = 1;
+        EMOTE = 2;
+        AT = 3;
+        BIZ_LINK = 4;
+    }    
+    // 
+    TextNodeType node_type = 1;
+    string raw_text = 2;
+    // 
+    oneof text {
+        WordNode word = 3;
+        EmoteNode emote = 4;
+        LinkNode link = 5;
+    }
+}
+
+// 
+message TextParagraph {
+    // 
+    repeated TextNode nodes = 1;
+}
+
+// 
+message TextWithPriority {
+    // 
+    string text = 1;
+    // 
+    int64 priority = 2;
+}
+
+// 免流类型
 enum TFType {
-    U_CARD = 0; //
-    U_PKG = 1;  //
-    C_CARD = 2; //
-    C_PKG = 3;  //
-    T_CARD = 4; //
-    T_PKG = 5;  //
+    TF_UNKNOWN = 0; // 未知
+    U_CARD = 1; // 联通卡
+    U_PKG = 2;  // 联通免流包
+    C_CARD = 3; // 移动卡
+    C_PKG = 4;  // 移动免流包
+    T_CARD = 5; // 电信卡
+    T_PKG = 6;  // 电信免流包
 }
 
 // 三点-关注
@@ -3971,12 +5346,6 @@ message TopAdditionUP {
     int32 has_fold = 2;
 }
 
-// 状态
-enum TopType {
-    top_none = 0;   // 默认 置顶
-    top_cancel = 1; // 取消置顶
-}
-
 // 话题广场操作按钮
 message TopicButton {
     // 按钮图标
@@ -4063,6 +5432,14 @@ message TopicListReq {
     string offset = 2;
 }
 
+// 
+message TopicMergedResource {
+    // 
+    int32 merge_type = 1;
+    // 
+    int32 merged_res_cnt = 2;
+}
+
 //
 message TopicRcmdCard {
     //
@@ -4103,6 +5480,12 @@ message TopicSquareReq {
     int64 campus_id = 1;
 }
 
+// 状态
+enum TopType {
+    top_none = 0;   // 默认 置顶
+    top_cancel = 1; // 取消置顶
+}
+
 // 综合页-无关注列表
 message Unfollow {
     // 标题展示文案
@@ -4111,6 +5494,12 @@ message Unfollow {
     repeated UnfollowUserItem list = 2;
     // trackID
     string TrackId = 3;
+}
+
+// 
+message UnfollowMatchReq {
+    // 
+    int64 cid = 1;
 }
 
 // 综合页-无关注列表
@@ -4141,6 +5530,12 @@ message UnfollowUserItem {
     string uri = 12;
 }
 
+// 
+message UpdateTabSettingReq {
+    // 
+    HomePageTabSttingStatus status = 1;
+}
+
 // 动态顶部up列表-up主信息
 message UpListItem {
     // 是否有更新
@@ -4169,6 +5564,14 @@ message UpListItem {
     string uri = 12;
     // UP主预约上报使用
     bool is_recall = 13;
+    // 
+    IconBadge update_icon = 14;
+    // 
+    string live_rcmd_reason = 15;
+    // 
+    string live_cover = 16;
+    // 
+    string personal_extra = 17;
 }
 
 // 最常访问-查看更多
@@ -4207,6 +5610,12 @@ message UserInfo {
     int32 face_nft = 12;
     //
     int32 face_nft_new = 13;
+    // 
+    NFTInfo nft_info = 14;
+    // 
+    int32 is_senior_member = 15;
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem avatar = 16;
 }
 
 // 直播头像样式
@@ -4230,6 +5639,11 @@ enum UserItemType {
     user_item_type_live_custom = 2; //
     user_item_type_normal = 3;      //
     user_item_type_extend = 4;      //
+    user_item_type_premiere_reserve = 5;
+    user_item_type_premiere = 6;
+    user_item_type_live_card = 7;
+    user_item_type_ogv_season = 8;
+    user_item_type_ugc_season = 9;
 }
 
 // 头像挂件信息
@@ -4363,4 +5777,34 @@ enum WeightType {
     weight_none = 0;    // 默认 占位
     weight_dislike = 1; // 不感兴趣
     weight_jump = 2;    // 跳链
+}
+
+// 
+enum WFItemType {
+    WATER_FLOW_TYPE_NONE = 0;
+    WATER_FLOW_TYPE_ARCHIVE = 1;
+    WATER_FLOW_TYPE_DYNAMIC = 2;
+}
+
+// 
+message WordNode {
+    // 
+    message WordNodeStyle {
+        // 
+        bool bold = 1;
+        // 
+        bool italic = 2;
+        // 
+        bool strikethrough = 3;
+        // 
+        bool underline = 4;
+    }
+    // 
+    string words = 1;
+    // 
+    double font_size = 2;
+    // 
+    Colors color = 3;
+    // 
+    WordNodeStyle style = 4;
 }

@@ -4,16 +4,18 @@ package bilibili.app.interface.v1;
 
 //
 service Media {
-    //
-    rpc MediaTab(MediaTabReq) returns (MediaTabReply);
+    // 
+    rpc MediaComment(MediaCommentReq) returns (MediaCommentReply);
     //
     rpc MediaDetail(MediaDetailReq) returns (MediaDetailReply);
     //
-    rpc MediaVideo(MediaVideoReq) returns (MediaVideoReply);
+    rpc MediaFollow(MediaFollowReq) returns (MediaFollowReply);
     //
     rpc MediaRelation(MediaRelationReq) returns (MediaRelationReply);
     //
-    rpc MediaFollow(MediaFollowReq) returns (MediaFollowReply);
+    rpc MediaTab(MediaTabReq) returns (MediaTabReply);
+    //
+    rpc MediaVideo(MediaVideoReq) returns (MediaVideoReply);
 }
 
 //
@@ -135,6 +137,18 @@ message MediaCard {
     string label = 4;
     //
     Button but_first = 5;
+}
+
+// 
+message MediaCommentReply {
+    // 
+    string err_msg = 1;
+}
+
+// 
+message MediaCommentReq {
+    // 
+    string id = 1;
 }
 
 //

@@ -7,6 +7,7 @@ enum ModeType {
     NORMAL    = 0; // 正常模式
     TEENAGERS = 1; // 青少年模式
     LESSONS   = 2; // 课堂模式
+    BASIC     = 3; // 
 }
 
 // 限制条件
@@ -19,6 +20,8 @@ message Restriction {
     ModeType mode = 3;
     // app 审核review状态
     bool review = 4;
-    //
+    // 客户端是否选择关闭个性化推荐
     bool disable_rcmd = 5;
+    // 
+    bool basic_mode = 6;
 }

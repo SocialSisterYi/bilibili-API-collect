@@ -1,0 +1,158 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.v1;
+
+import "google/protobuf/any.proto";
+
+// APP配置
+service Distribution {
+    // 获取云端储存的用户偏好
+    rpc GetUserPreference (GetUserPreferenceReq) returns (GetUserPreferenceReply);
+    // 设定用户偏好
+    rpc SetUserPreference (SetUserPreferenceReq) returns (SetUserPreferenceReply);
+    // 获取云控配置
+    rpc UserPreference (UserPreferenceReq) returns (UserPreferenceReply);
+}
+
+// 
+message GetUserPreferenceReq {
+    // 
+    repeated string type_url = 1;
+    // 
+    map<string, string> extra_context = 2;
+}
+
+// 
+message GetUserPreferenceReply {
+    // 对应 GetUserPreferenceReq 的请求的类型
+    repeated google.protobuf.Any value = 1;
+}
+
+// 
+message SetUserPreferenceReq {
+    // 
+    repeated google.protobuf.Any preference = 1;
+    // 
+    map<string, string> extra_context = 2;
+}
+
+// 
+message SetUserPreferenceReply {}
+
+// 
+message UserPreferenceReq {}
+
+// 云控配置下发
+message UserPreferenceReply {
+    // 具体解码需要根据实际请求 type_url 来判断
+    repeated google.protobuf.Any preference = 1;
+}
+
+// 
+message BoolValue {
+    // 
+    bool value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    bool default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message BytesValue {
+    // 
+    bytes value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    bytes default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message DoubleValue {
+    // 
+    double value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    double default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message FloatValue {
+    // 
+    float value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    float default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message Int32Value {
+    // 
+    int32 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    int32 default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message Int64Value {
+    // 
+    int64 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    int64 default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message StringValue {
+    // 
+    string value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    string default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message UInt32Value {
+    // 
+    uint32 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    uint32 default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message UInt64Value {
+    // 
+    uint64 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    uint64 default_value = 3;
+    // 
+    string exp = 4;
+}
+

@@ -1,0 +1,195 @@
+syntax = "proto3";
+
+package bilibili.app.search.v2;
+
+import "bilibili/broadcast/message/main/search.proto";
+
+service Search {
+    // 
+    rpc CancelChatTask (CancelChatTaskReq) returns (CancelChatTaskReply);
+    // 
+    rpc GetChatAuth (GetChatAuthReq) returns (GetChatAuthReply);
+    // 
+    rpc GetChatResult (GetChatResultReq) returns (bilibili.broadcast.message.main.ChatResult);
+    // 
+    rpc QueryRecAfterClick (QueryRecAfterClickReq) returns (QueryRecAfterClickReply);
+    // 
+    rpc SearchEgg (SearchEggReq) returns (SearchEggReply);
+    // 
+    rpc SubmitChatTask (SubmitChatTaskReq) returns (SubmitChatTaskReply);
+}
+
+// 
+message CancelChatTaskReq {
+    // 
+    string session_id = 1;
+    // 
+    string from_source = 2;
+}
+
+// 
+message CancelChatTaskReply {
+    // 
+    int32 code = 1;
+}
+
+// 
+message GetChatAuthReq {}
+
+// 
+message GetChatAuthReply {
+    // 
+    bool display = 1;
+    // 
+    string icon = 2;
+    // 
+    string icon_night = 3;
+    // 
+    string jump_link = 4;
+    // 
+    string text_guide = 5;
+    // 
+    int32 jump_link_type = 6;
+}
+
+// 
+message GetChatResultReq {
+    // 
+    string query = 1;
+    // 
+    string session_id = 2;
+    // 
+    string from_source = 3;
+    // 
+    string track_id = 4;
+}
+
+// 
+message QueryRecAfterClickItem {
+    // 
+    string show_name = 1;
+    // 
+    string recommend_reason = 2;
+    // 
+    int32 icon_type = 3;
+    // 
+    string url = 4;
+    // 
+    string icon = 5;
+    // 
+    string icon_night = 6;
+}
+
+// 
+message QueryRecAfterClickReply {
+    // 
+    int32 code = 1;
+    // 
+    QueryRecAfterClickResult query_rec_result = 2;
+}
+
+// 
+message QueryRecAfterClickReq {
+    // 
+    string param = 1;
+    // 
+    int32 pos = 2;
+    // 
+    string track_id = 3;
+    // 
+    string qv_id = 4;
+    // 
+    string keyword = 5;
+    // 
+    string click_url = 6;
+    // 
+    string from_source = 7;
+}
+
+// 
+message QueryRecAfterClickResult {
+    // 
+    repeated QueryRecAfterClickItem query_rec_list = 1;
+    // 
+    string related_title = 2;
+    // 
+    string param = 3;
+    // 
+    string goto = 4;
+    // 
+    string linktype = 5;
+    // 
+    int32 position = 6;
+    // 
+    string trackid = 7;
+}
+
+// 
+message SearchEggInfo {
+    // 
+    int32 egg_type = 1;
+    // 
+    int64 id = 2;
+    // 
+    int32 is_commercial = 3;
+    // 
+    string mask_color = 4;
+    // 
+    int64 mask_transparency = 5;
+    // 
+    string md5 = 6;
+    // 
+    int32 re_type = 7;
+    // 
+    string re_url = 8;
+    // 
+    string re_value = 9;
+    // 
+    int32 show_count = 10;
+    // 
+    int64 size = 11;
+    // 
+    int64 source = 12;
+    // 
+    string url = 13;
+}
+
+// 
+message SearchEggInfos {
+    // 
+    repeated SearchEggInfo egg_info = 1;
+}
+
+// 
+message SearchEggReply {
+    // 
+    int32 code = 1;
+    // 
+    string seid = 2;
+    // 
+    SearchEggInfos result = 3;
+}
+
+// 
+message SearchEggReq {
+
+}
+
+// 
+message SubmitChatTaskReply {
+    // 
+    int32 code = 1;
+    // 
+    string session_id = 2;
+}
+
+// 
+message SubmitChatTaskReq {
+    // 
+    string query = 1;
+    // 
+    string track_id = 2;
+    // 
+    string from_source = 3;
+}
+

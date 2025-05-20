@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package bilibili.app.click.v1;
+
+service Click {
+    // 客户端心跳上传
+    rpc HeartBeat (HeartBeatReq) returns (HeartBeatReply);
+}
+
+// 账户信息
+message AccountInfo {
+    // 
+    uint64 mid = 1;
+}
+
+// 
+message AppInfo {
+    // 
+    string top_page_class = 1;
+    // 客户端首次启动时的毫秒时间戳
+    int64 ftime = 2;
+    // 
+    string did = 3;
+}
+
+// 心跳补充信息
+message Extra {
+    // 
+    string session = 1;
+    // 
+    string refer = 2;
+}
+
+message HeartBeatReply {} 
+
+// 
+message HeartBeatReq {
+    // 
+    string session_v2 = 1;
+    // 
+    Stage stage = 2;
+    // 流加载失败timeout
+    uint64 stream_timeout = 3;
+    // 
+    uint64 batch_frequency = 4;
+    // 
+    float frequency = 5;
+    // 
+    VideoMeta video_meta = 6;
+    // 
+    AppInfo app_info = 7;
+    // 
+    AccountInfo account_info = 8;
+    // 
+    PreProcessResult pre_process_result = 9;
+    // 
+    repeated PlayerStatus player_status = 10;
+    // 
+    VideoInfo video_info = 11;
+}
+
+// 
+message PlayerStatus {
+    // 
+    float playback_rate = 1;
+    // 
+    uint64 progress = 2;
+    // 
+    PlayState play_state = 3;
+    // 
+    bool is_buffering = 4;
+}
+
+// 
+enum PlayState {
+    // 
+    STATE_UNKNOWN = 0;
+    // 
+    PREPARING = 1;
+    // 
+    PREPARED = 2;
+    // 
+    PLAYING = 3;
+    // 
+    PAUSED = 4;
+    // 
+    STOPPED = 5;
+    // 
+    FAILED = 6;
+}
+
+// 
+message PreProcessResult {
+    // 
+    int64 vt = 1;
+}
+
+// 
+enum Stage {
+    // 
+    STAGE_UNKNOWN = 0;
+    // 
+    START = 1;
+    // 
+    END = 2;
+    // 
+    SAMPLE = 3;
+}
+
+// 
+message VideoInfo {
+    // 
+    uint64 cid_duration = 1;
+}
+
+// 
+message VideoMeta {
+    // 
+    uint64 aid = 1;
+    // 
+    uint64 cid = 2;
+}

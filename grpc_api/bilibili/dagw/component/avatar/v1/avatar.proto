@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+package bilibili.dagw.component.avatar.v1;
+
+import "bilibili/dagw/component/avatar/common/common.proto";
+import "bilibili/dagw/component/avatar/v1/plugin.proto";
+
+//
+message AvatarItem {
+    //
+    bilibili.dagw.component.avatar.common.SizeSpec container_size = 1;
+    //
+    repeated LayerGroup layers = 2;
+    //
+    LayerGroup fallback_layers = 3;
+    //
+    int64 mid = 4;
+}
+
+//
+message BasicLayerResource {
+    //
+    int32 res_type = 1;
+    //
+    oneof payload {
+        //
+        ResImage res_image = 2;
+        //
+        ResAnimation res_animation = 3;
+        ///
+        ResNativeDraw res_native_draw = 4;
+    };
+}
+
+//
+message GeneralConfig {
+    //
+    map<string, string> web_css_style = 1;
+}
+
+//
+message Layer {
+    //
+    string layer_id = 1;
+    //
+    bool visible = 2;
+    //
+    bilibili.dagw.component.avatar.common.LayerGeneralSpec general_spec = 3;
+    //
+    LayerConfig layer_config = 4;
+    //
+    BasicLayerResource resource = 5;
+}
+
+//
+message LayerConfig {
+    //
+    map<string, LayerTagConfig> tags = 1;
+    //
+    bool is_critical = 2;
+    //
+    bool allow_over_paint = 3;
+    //
+    bilibili.dagw.component.avatar.common.MaskProperty layer_mask = 4;
+}
+
+//
+message LayerGroup {
+    //
+    string group_id = 1;
+    //
+    repeated Layer layers = 2;
+    //
+    bilibili.dagw.component.avatar.common.MaskProperty group_mask = 3;
+    //
+    bool is_critical_group = 4;
+}
+
+//
+message LayerTagConfig {
+    //
+    int32 config_type = 1;
+    //
+    oneof config {
+        //
+        GeneralConfig general_config = 2;
+        //
+        bilibili.dagw.component.avatar.v1.plugin.GyroConfig gyro_config = 3;
+        //
+        bilibili.dagw.component.avatar.v1.plugin.CommentDoubleClickConfig comment_doubleClick_config = 4;
+        //
+        bilibili.dagw.component.avatar.v1.plugin.LiveAnimeConfig live_anime_config = 5;
+    };
+}
+
+//
+message ResAnimation {
+    //
+    bilibili.dagw.component.avatar.common.ResourceSource webp_src = 1;
+}
+
+//
+message ResImage {
+    //
+    bilibili.dagw.component.avatar.common.ResourceSource image_src = 1;
+}
+
+//
+message ResNativeDraw {
+    //
+    bilibili.dagw.component.avatar.common.ResourceSource draw_src = 1;
+}

@@ -1,8 +1,0 @@
-site_name: 哔哩哔哩-API收集整理
-repo_url: https://github.com/SocialSisterYi/bilibili-API-collect
-
-site_description: 本项目旨在对B站web端、移动端以及TV端散落在世界各地的野生api进行收集整理，研究使用方法并对其进行说明
-site_author: 所有的贡献者们
-
-docs_dir: '..'
-site_dir: 'html'
