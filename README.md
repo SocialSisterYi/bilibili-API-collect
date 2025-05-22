@@ -257,6 +257,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [直播心跳上报](docs/live/report.md)
     - [ ] [直播间弹幕](docs/live/danmaku.md)
     - [ ] [直播流水](docs/live/live_bill.md)
+    - [ ] [直播回放](docs/live/live_replay.md)
 - [ ] [活动](docs/activity)
     - [ ] [活动列表](docs/activity/list.md)
     - [ ] [活动主题信息](docs/activity/info.md)
