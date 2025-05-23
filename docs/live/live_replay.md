@@ -1,5 +1,7 @@
 # 直播回放
 
+<!-- 网页端: https://link.bilibili.com/#/my-room/live-record ;移动端: https://live.bilibili.com/p/html/live-app-playback/index.html#new -->
+
 ## 获取直播回放列表
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetReplayList
@@ -1160,7 +1162,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4006：标题已使用 |
+| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4002：片段已投稿<br />4006：标题已使用 |
 | message | str | 错误信息 |  |
 | ttl | num | `1` |  |
 | data | obj | 信息本体 | 成功时有效 |
@@ -1221,9 +1223,13 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublish
 
 ## 直播回放片段发布页面
 
-通过此处的链接可以打开web直播回放片段发布页面。
+通过此处的链接可以打开直播回放片段发布页面。
 
-> https://live.bilibili.com/web-cut/quick-publish.html
+> https://live.bilibili.com/web-cut/quick-publish.html (网页端)
+
+> https://live.bilibili.com/web-cut/quick-publish-mobile.html (移动端)
+
+注：移动端强制限制只能投稿15分钟的片段，网页端则看[投稿直播回放片段](#投稿直播回放片段)接口允许多长的时间。
 
 **url查询参数：**
 
@@ -1234,7 +1240,11 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublish
 | live_key | str | 标记直播场次的key | 必要 | 对应[获取直播回放列表](#获取直播回放列表)的`data.replay_info[i].live_key` |
 | cover | str | 封面URL | 非必要 | 可以自定义封面，或者在[获取直播回放列表](#获取直播回放列表)使用直播封面 |
 
-**示例链接：** https://live.bilibili.com/web-cut/quick-publish.html?start_time=1747508293&end_time=1747508499&live_key=609041817764368179&cover=https%3A%2F%2Fi0.hdslb.com%2Fbfs%2Flive%2F59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png
+**示例链接：**
+
+网页端： https://live.bilibili.com/web-cut/quick-publish.html?start_time=1747508293&end_time=1747508499&live_key=609041817764368179&cover=https%3A%2F%2Fi0.hdslb.com%2Fbfs%2Flive%2F59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png
+
+移动端： https://live.bilibili.com/web-cut/quick-publish-mobile.html?start_time=1747508293&end_time=1747508499&live_key=609041817764368179
 
 ## 直播回放剪辑页面
 
