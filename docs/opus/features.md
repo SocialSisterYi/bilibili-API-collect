@@ -21,7 +21,7 @@
 | ugcDelete         |  |  |  |
 | onlyfansQaCard    |  |  |  |
 | commentsNewVersion |  |  |  |
-| decorationCard | 是否以卡片形式显示装扮 | 对于图文类型接口无效 | 566950981753221664 |
+| decorationCard | 是否以卡片形式显示装扮 |  | 566950981753221664 |
 | editable | 是否在右上角三点菜单中显示 `编辑` | 必须是自己发送的动态才有效果 | 1065142062572109830 |
 
 ## modules
@@ -234,7 +234,7 @@
 | id | number | 装扮 ID |  |
 | image_enhance | string | 同 `card_url`? |  |
 | item_id | number | 项目 ID? |  |
-| item_type | number | 项目类型? |  |
+| item_type | number? | 项目类型? | 图文接口当 `decorationCard` 时才有此项 |
 | jump_url | string | 跳转 URL |  |
 | name | string | 装扮名称 |  |
 
