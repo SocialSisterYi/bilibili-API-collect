@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package bilibili.metadata.locale;
+
+// 
+message Locale {
+    // 
+    LocaleIds c_locale = 1;
+    // 
+    LocaleIds s_locale = 2;
+    // 
+    string sim_code = 3;
+    // 
+    string timezone = 4;
+    // 
+    string utc_offset = 5;
+    // 
+    bool is_daylight_time = 6;
+    // 
+    bool always_translate = 7;
+}
+
+// 
+message LocaleIds {
+    // 
+    string language = 1;
+    // 
+    string script = 2;
+    // 
+    string region = 3;
+}
+

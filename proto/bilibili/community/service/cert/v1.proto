@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package bilibili.community.service.cert.v1;
+
+// 
+service FieldCert {
+    // 
+    rpc FieldCertPopAction (FieldCertPopActionReq) returns (FieldCertPopActionRsp);
+    // 
+    rpc FieldCertPopRecord (FieldCertPopRecordReq) returns (FieldCertPopRecordRsp);
+}
+
+// 
+enum Action {
+    // 
+    ACTION_CERT_CANCEL = 0;
+    // 
+    ACTION_CERT_CONFIRM = 1;
+}
+
+// 
+message FieldCertPopActionReq {
+    // 
+    int64 avid = 1;
+    // 
+    Action action = 2;
+}
+
+// 
+message FieldCertPopActionRsp {
+}
+
+// 
+message FieldCertPopRecordReq {
+    // 
+    int64 avid = 1;
+}
+
+// 
+message FieldCertPopRecordRsp {
+}
+

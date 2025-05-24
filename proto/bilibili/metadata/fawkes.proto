@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package bilibili.metadata.fawkes;
+
+// 
+message FawkesReply {
+    // 
+    string config = 1;
+    // 
+    string ff = 2;
+    // 
+    string dd = 3;
+}
+
+// 
+message FawkesReq {
+    // 
+    string appkey = 1;
+    // 
+    string env = 2;
+    // 
+    string session_id = 3;
+}
+
