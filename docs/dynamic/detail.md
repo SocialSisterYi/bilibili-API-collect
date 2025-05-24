@@ -18,7 +18,7 @@
 | timezone_offset | num | -480 | 非必要 |  |
 | platform | str | 平台 | 非必要 | `web` |
 | gaia_source | str | 来源 | 非必要 | `main_web` |
-| features | str | 功能 | 非必要 | `itemOpusStyle,opusBigCover,onlyfansVote,endFooterHidden,decorationCard,onlyfansAssetsV2,ugcDelete,onlyfansQaCard,commentsNewVersion` |
+| features | str | 功能 | 必要 | `itemOpusStyle,opusBigCover,onlyfansVote,endFooterHidden,decorationCard,onlyfansAssetsV2,ugcDelete,onlyfansQaCard,commentsNewVersion` |
 | web_location | str | `333.1368` | 非必要 |  |
 | x-bili-device-req-json | obj | 设备信息? | 非必要 | `{"platform":"web","device":"pc"}` |
 | x-bili-web-req-json | obj | 请求信息? | 非必要 | `{"spm_id":"333.1368"}` |

@@ -60,7 +60,7 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 | now_time | num | 当前 UNIX 秒级时间戳 |  |
 | online_count | num | 在线人数 |  |
 | need_login_subtitle | bool | 是否必须登陆才能查看字幕 | 是的 |
-| preview_toast | str | `为创作付费，购买观看完整视频|购买观看` |  |
+| preview_toast | str | `为创作付费，购买观看完整视频\|购买观看` |  |
 | interaction | obj | 互动视频资讯 | 若非互动视频，则无该栏位（直接没有该键，而非栏位值为空）|
 | options | obj |  |  |
 | guide_attention | any |  |  |
@@ -71,10 +71,10 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 | show_switch | obj |  |  |
 | bgm_info | obj | 背景音乐信息 |  |
 | toast_block | bool |  |  |
-| is_upower_exclusive | bool | 充电专属? |  |
+| is_upower_exclusive | bool | 是否为充电专属视频 |  |
 | is_upower_play | bool |  |  |
 | is_ugc_pay_preview | bool |  |  |
-| elec_high_level | obj |  |  |
+| elec_high_level | obj | 充电专属视频信息 |  |
 | disable_show_up_info | bool |  |  |
 
 `data` 对象中的 `options` 对象:
@@ -127,7 +127,7 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 |subtitle_url|str| 资源 url 地址 | |
 |type| num | 0 | |
 
-`view_point` 数组内的元素:
+`data`对象中的`view_point` 数组内的元素:
 
 | 字段      | 类型  | 内容     | 备注 |
 | --------- | ----- | -------- | ---- |
@@ -149,6 +149,22 @@ web 播放器的信息接口，提供正常播放需要的元数据，包括：�
 | error_toast | str | 错误信息？ | 所有互动视频皆返回 `剧情图被修改已失效`，不确定有没有例外 |
 | mark | num | 0? |   |
 | need_reload | num | 0? |   |
+
+`data`对象中的`elec_high_level`对象：
+
+| 字段           | 类型 | 内容                           | 备注             |
+| -------------- | ---- | ------------------------------ | ---------------- |
+| privilege_type | num  | 解锁视频所需最低定价档位的代码 | 见[充电档位代码与定价](../electric/monthly.md#充电档位代码privilege_type与定价) |
+| title          | str  | 提示标题                       | `该视频为「{充电档位名称}」专属视频` |
+| sub_title      | str  | 提示子标题                     | `开通「{充电档位定价}元档包月充电」即可观看` |
+| show_button    | bool | 是否显示按钮                   |                  |
+| button_text    | str  | 按钮文本                       | `去开通`         |
+| jump_url       | obj  | 跳转url信息                    | 详细信息有待补充 |
+| intro          | str  | 充电介绍语                     |                  |
+| open           | bool | （？）                         |                  |
+| new            | bool | （？）                         |                  |
+| question_text  | str  | （？）                         |                  |
+| qa_detail_link | str  | （？）                         |                  |
 
 **示例:**
 
