@@ -65,7 +65,7 @@
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | module_author | object | 作者模块 |  |
-| module_type | string | 模块类型 |  |
+| module_type | string | 模块类型 | `MODULE_TYPE_AUTHOR` |
 
 `module_author` 对象:
 
@@ -583,7 +583,7 @@
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | module_stat | object | 统计模块 |  |
-| module_type | string | 模块类型 |  |
+| module_type | string | 模块类型 | `MODULE_TYPE_STAT` |
 
 `module_stat` 对象:
 
