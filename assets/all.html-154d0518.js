@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-3c9c4ba3","path":"/docs/dynamic/all.html","title":"获取动态列表","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取全部动态列表","slug":"获取全部动态列表","link":"#获取全部动态列表","children":[]},{"level":2,"title":"检测是否有新动态","slug":"检测是否有新动态","link":"#检测是否有新动态","children":[]}],"git":{},"filePathRelative":"docs/dynamic/all.md"}');export{l as data};

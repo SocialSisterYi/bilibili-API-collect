@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-2e61077f","path":"/docs/emoji/action.html","title":"表情操作","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"添加表情包","slug":"添加表情包","link":"#添加表情包","children":[]},{"level":2,"title":"移除表情包","slug":"移除表情包","link":"#移除表情包","children":[]}],"git":{},"filePathRelative":"docs/emoji/action.md"}');export{e as data};

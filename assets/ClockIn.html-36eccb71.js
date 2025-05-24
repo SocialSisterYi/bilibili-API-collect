@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-37a976bc","path":"/docs/manga/ClockIn.html","title":"签到","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/manga/ClockIn.md"}');export{a as data};
