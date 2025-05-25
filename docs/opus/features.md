@@ -1,7 +1,7 @@
 # 功能模块
 
 部分动态相关接口请求存在 `features` 参数, 意为功能<br />
-主要用于控制返回结果中的 `modules`, 意为模块<br />
+主要用于控制返回结果中的 `modules` 中的内容, 意为模块<br />
 此两者在一定程度上为对应关系, 但也存在大量例外<br />
 本页文档整理了大部分常见的已知功能与模块以供参考
 
@@ -515,7 +515,7 @@
 | label | string | 显示文本 |  |
 | modal | object? | 弹出框文本 |  |
 | params | object? | 参数信息 |  |
-| type | string | 三点操作类型 |  |
+| type | string | 三点操作类型 | 参见 [右上角三点菜单](../dynamic/dynamic_enum.md#右上角三点菜单) |
 
 `module_more.three_point_items[].modal` 对象:
 
