@@ -61,6 +61,8 @@
 | AUTHOR_TYPE_PGC        | 剧集更新 |     |
 | AUTHOR_TYPE_UGC_SEASON | 合集更新 |     |
 
+## 
+
 | 类型              | 说明  | 示例  | 
 |-----------------|-----|-----|
 | EMOJI_TYPE_NONE |     |     |
@@ -82,11 +84,15 @@
 | ADDITIONAL_TYPE_UGC     | 视频跳转 | [716489253410832401](https://t.bilibili.com/716489253410832401)          |
 | ADDITIONAL_TYPE_RESERVE |      | 直播预约<br/>[716524987542929443](https://t.bilibili.com/716524987542929443) |
 
+## 
+
 | 类型                            | 说明  | 示例  | 
 |-------------------------------|-----|-----|
 | ADDITIONAL_BUTTON_TYPE_NONE   |     |     |
 | ADDITIONAL_BUTTON_TYPE_JUMP   |     |     |
 | ADDITIONAL_BUTTON_TYPE_BUTTON |     |     |
+
+## 
 
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
@@ -94,21 +100,29 @@
 | ADDITIONAL_BUTTON_STATUS_UNCHECK |     |     |
 | ADDITIONAL_BUTTON_STATUS_CHECK   |     |     |
 
+## 
+
 | 类型                            | 说明  | 示例  | 
 |-------------------------------|-----|-----|
 | ADD_BUTTON_CLICK_TYPE_NONE    |     |     |
 | ADD_BUTTON_CLICK_TYPE_RESERVE |     |     |
+
+## 
 
 | 类型                      | 说明  | 示例  | 
 |-------------------------|-----|-----|
 | DISABLE_STATE_HIGHLIGHT |     |     |
 | DISABLE_STATE_GRAY      |     |     |
 
+## 
+
 | 类型                         | 说明  | 示例  | 
 |----------------------------|-----|-----|
 | ADD_BUTTON_BG_STYLE_FILL   |     |     |
 | ADD_BUTTON_BG_STYLE_STROKE |     |     |
 | ADD_BUTTON_BG_STYLE_GRAY   |     |     |
+
+## 
 
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
@@ -137,12 +151,16 @@
 | MAJOR_TYPE_UGC_SEASON       | 合计更新  | [716509100448415814](https://t.bilibili.com/716509100448415814) |
 | MAJOR_TYPE_SUBSCRIPTION_NEW |       |                                                                 |
 
+## 
+
 | 类型              | 说明  | 示例  | 
 |-----------------|-----|-----|
 | MEDIA_TYPE_NONE |     |     |
 | MEDIA_TYPE_UGC  |     |     |
 | MEDIA_TYPE_PGC  |     |     |
 | MEDIA_TYPE_LIVE |     |     |
+
+## 
 
 | 类型                       | 说明  | 示例  | 
 |--------------------------|-----|-----|
@@ -153,6 +171,8 @@
 | PGC_SUB_TYPE_DOMESTIC    |     |     |
 | PGC_SUB_TYPE_TV          |     |     |
 
+## 
+
 | 类型                   | 说明  | 示例  | 
 |----------------------|-----|-----|
 | DRAW_TAG_TYPE_NONE   |     |     |
@@ -162,16 +182,22 @@
 | DRAW_TAG_TYPE_TOPIC  |     |     |
 | DRAW_TAG_TYPE_LBS    |     |     |
 
+## 
+
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
 | MAJOR_COMMON_STYLE_TYPE_NONE     |     |     |
 | MAJOR_COMMON_STYLE_TYPE_SQUARE   |     |     |
 | MAJOR_COMMON_STYLE_TYPE_VERTICAL |     |     |
 
+## 
+
 | 类型                  | 说明  | 示例  | 
 |---------------------|-----|-----|
 | RESERVE_TYPE_NONE   |     |     |
 | RESERVE_TYPE_RECALL |     |     |
+
+## 
 
 | 类型                       | 说明  | 示例  | 
 |--------------------------|-----|-----|
@@ -179,11 +205,15 @@
 | LIVE_STATE_TYPE_LIVE     |     |     |
 | LIVE_STATE_TYPE_ROTATION |     |     |
 
+## 
+
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
 | SUBSCRIPTION_NEW_STYLE_TYPE_NONE |     |     |
 | SUBSCRIPTION_NEW_STYLE_TYPE_DRAW |     |     |
 | SUBSCRIPTION_NEW_STYLE_TYPE_LIVE |     |     |
+
+## 右上角三点菜单
 
 | 类型                           | 说明      | 示例  | 
 |------------------------------|---------|-----|
@@ -198,6 +228,8 @@
 | THREE_POINT_RCMD_RESOURCE    |         |     |
 | THREE_POINT_RCMD_FEEDBACK    |         |     |
 
+## 
+
 | 类型                 | 说明  | 示例  | 
 |--------------------|-----|-----|
 | FOLD_TYPE_NONE     |     |     |
@@ -205,6 +237,8 @@
 | FOLD_TYPE_FREQUENT |     |     |
 | FOLD_TYPE_UNITE    |     |     |
 | FOLD_TYPE_LIMIT    |     |     |
+
+## 
 
 | 类型                           | 说明  | 示例  | 
 |------------------------------|-----|-----|
@@ -214,6 +248,8 @@
 | DYN_STATUS_TYPE_SELF_VISIBLE |     |     |
 | DYN_STATUS_TYPE_DELETED      |     |     |
 
+## 
+
 | 类型            | 说明  | 示例  | 
 |---------------|-----|-----|
 | SCENE_DETAIL  |     |     |
@@ -221,5 +257,3 @@
 | SCENE_GENERAL |     |     |
 | SCENE_SPACE   |     |     |
 | SCENE_TOPIC   |     |     |
-
-
