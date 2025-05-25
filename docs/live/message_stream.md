@@ -2054,7 +2054,7 @@ type===106
 
 <details>
 <summary>查看消息示例：</summary>
-  
+
 ```json
 {
     "cmd": "ONLINE_RANK_V2",
@@ -2122,7 +2122,7 @@ type===106
   }
 }
 ```
-  
+
 </details>
 
 #### 未登录通知 (LOG_IN_NOTICE)
