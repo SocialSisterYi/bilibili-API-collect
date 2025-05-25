@@ -44,6 +44,7 @@
 | RICH_TEXT_NODE_TYPE_USER        |      |                                                                 |
 | RICH_TEXT_NODE_TYPE_CV          |      |                                                                 |
 | RICH_TEXT_NODE_TYPE_VC          |      |                                                                 |
+| RICH_TEXT_NODE_TYPE_VIEW_PICTURE | 查看图片 | [1069394178937454662](https://t.bilibili.com/1069394178937454662) |
 | RICH_TEXT_NODE_TYPE_WEB         | 网页链接 | [716751027361022055](https://t.bilibili.com/716751027361022055) |
 | RICH_TEXT_NODE_TYPE_TAOBAO      |      |                                                                 |
 | RICH_TEXT_NODE_TYPE_MAIL        | 邮箱地址 | [721314095109767220](https://t.bilibili.com/721314095109767220) |

@@ -292,6 +292,7 @@
 | rid | str | 关联id | |
 | goods | obj | 商品信息 | |
 | icon_name | str | 图标名称 | `taobao` |
+| pics | arr | 图片信息 | |
 
 `data.items[n].modules.module_dynamic.desc.rich_text_nodes[o].emoji`:
 
@@ -308,6 +309,15 @@
 | --- | --- | --- | --- |
 | jump_url | str | 跳转URL | |
 | type | num | `1` | |
+
+`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o].pics[p]`:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| height | num | 高度 | |
+| size | num | 大小? | 单位为 K |
+| src | str | 图片 URL | |
+| width | num | 宽度 | |
 
 `data.items[n].modules.module_dynamic.major`:
 
