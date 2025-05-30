@@ -1070,3 +1070,178 @@ curl  'https://api.live.bilibili.com//xlive/general-interface/v1/rank/getOnlineG
 }
 ```
 </details>
+
+## 查询自己在某直播间观看时长
+
+> https://api.live.bilibili.com/xlive/general-interface/v1/guard/GuardActive
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）或 APP
+
+**url 参数：**
+
+| 参数名   | 类型 | 内容    | 必要性 | 备注 |
+| -------- | ---- | ------- | ------ | ---- |
+| platform | str  | android | 必要   |      |
+| ruid     | num  | 主播uid | 必要   |      |
+
+**json 回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注 |
+| ------- | ---- | -------- | ---- |
+| code    | num  | 返回值   |      |
+| message | str  | 错误信息 |      |
+| ttl     | num  | 1        |      |
+| data    | obj  | 信息本体 |      |
+
+
+
+
+
+`data`中的对象：
+
+| 字段        | 类型 | 内容           | 备注                          |
+| ----------- | ---- | -------------- | ----------------------------- |
+| ruid        | num  | 主播uid        |                               |
+| rusername   | str  | 主播用户名     |                               |
+| rface       | str  | 主播头像       |                               |
+| username    | str  | 自己的用户名   |                               |
+| accomany    | int  | 大航海陪伴天数 | 似乎b站程序员把这个单词拼错了 |
+| rusername   | str  | 主播用户名     |                               |
+| watch_time  | num  | 观看时长       | 单位是秒                      |
+| up_medal    | obj  | 粉丝牌         |                               |
+| guard_num_3 | num  | 主播舰长数量   |
+| guard_num_2 | num  | 主播提督数量   |                               |
+| guard_num_1 | num  | 主播总督数量   |                               |
+| is_live     | num  | 直播状态       |                               |
+
+
+
+## 查询用户在直播间的信息
+
+> https://api.live.bilibili.com/xlive/app-ucenter/v2/card/user
+
+*请求方式：GET*
+
+认证方式：无
+
+**url 参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| uid    | num  | 目标用户uid | 必要   |      |
+| ruid   | num  | 主播uid     | 必要   |      |
+
+**json 回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注 |
+| ------- | ---- | -------- | ---- |
+| code    | num  | 返回值   |      |
+| message | str  | 错误信息 |      |
+| ttl     | num  | 1        |      |
+| data    | obj  | 信息本体 |
+
+
+`data`对象：
+
+| 字段          | 类型 | 内容               | 备注                           |
+| ------------- | ---- | ------------------ | ------------------------------ |
+| uid           | num  | 目标用户id         |                                |
+| uname         | str  | 目标用户名         |                                |
+| desc          | str  | 目标用户认证信息   |                                |
+| face          | str  | 目标用户头像       |                                |
+| follow_num    | num  | 目标用户粉丝数     |                                |
+| attention_num | num  | 目标用户关注数     |
+| main_vip      | num  | 目标用户大会员状态 | 0：无 2：大会员                |
+| is_block      | num  | 是否被拉黑？       | 始终为0？                      |
+| is_admin      | num  | 是否房管           |                                |
+| is_black      | num  | 是否被关小黑屋     |                                |
+| wealth_info   | obj  | 荣耀等级           |                                |
+| fans_medal    | obj  | 粉丝牌             | 如果目标用户隐藏粉丝牌则为null |
+
+`wealth_info`对象：
+| 字段               | 类型 | 内容                       | 备注 |
+| ------------------ | ---- | -------------------------- | ---- |
+| level              | num  | 荣耀等级                   |      |
+| level_total_score  | num  | 下一等级的荣耀值           |      |
+| cur_score          | num  | 当前荣耀值                 |      |
+| upgrade_need_score | num  | 升到下一等级还差多少荣耀值 |      |
+
+**示例：**
+
+```shell
+curl  'https://api.live.bilibili.com/xlive/app-ucenter/v2/card/user?ruid=504140200&uid=504140200'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"uid": 504140200,
+		"uname": "软软riu",
+		"face": "https://i1.hdslb.com/bfs/face/2d083d686b704eb7010e3d94595d47f5a89c8aef.jpg",
+		"verify_type": 0,
+		"desc": "bilibili UP主认证：bilibili 知名虚拟UP主、直播高能主播",
+		"uname_color": 2171169,
+		"room_id": 23174842,
+		"pendant": "https://i1.hdslb.com/bfs/garb/open/8806f97581082d68edcf2207368290b3fb3491bb.png",
+		"pendant_from": 2,
+		"follow_num": 214882,
+		"attention_num": 202,
+		"relation_status": 1,
+		"privilege_type": 3,
+		"fans_medal": null,
+		"title_sum": 10,
+		"wearing_title": "",
+		"main_vip": 0,
+		"is_block": 0,
+		"is_admin": 0,
+		"fans_medal_list_url": "https://live.bilibili.com/p/html/live-fansmedal-wall/index.html?tId=504140200#/medal",
+		"wearing": {},
+		"is_black": 0,
+		"admin_level": 0,
+		"head_picture": "http://i0.hdslb.com/bfs/live/3f536f59e337a731c5367f623bca79b32197ddd5.png",
+		"head_text": "大航海舰长",
+		"head_url": "",
+		"head_business": 1,
+		"head_skin_icon": "http://i0.hdslb.com/bfs/live/d44e103f424f5ae01ef3d0133ef812f8241d15b0.png",
+		"privilege_center": {},
+		"is_nft": 0,
+		"nft_dmark": "https://i0.hdslb.com/bfs/live/9f176ff49d28c50e9c53ec1c3297bd1ee539b3d6.gif",
+		"is_real_fans": false,
+		"wealth_info": {
+			"uid": 504140200,
+			"level": 35,
+			"level_total_score": 6000000,
+			"cur_score": 5012900,
+			"upgrade_need_score": 987100,
+			"status": 1,
+			"dm_icon_key": ""
+		},
+		"guard": {
+			"accompany": 0,
+			"accompany_slake": 0
+		},
+		"chat_url_android": "activity://im/conversation/?conversation_type=1&reciveid=504140200",
+		"chat_url_ios": "bilibili://link/chat?session_id=s504140200",
+		"gift_star": null,
+		"is_mystery": false,
+		"text_control": null,
+		"uinfo_medal": null,
+		"guard_attire": {},
+		"flash_buy": 0,
+		"flash_buy_url": ""
+	}
+}
+```
+</details>
