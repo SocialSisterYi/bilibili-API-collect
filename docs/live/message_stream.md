@@ -8,6 +8,8 @@
 
 认证方式: Cookie(SESSDATA)
 
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md)
+
 可以选择进行认证，若未认证视作未登录，将会受到限制，详见后续内容。
 
 **URL参数：**
@@ -15,6 +17,12 @@
 | 参数名 | 类型 | 内容         | 必要性 | 备注 |
 | ------ | ---- | ------------ | ------ | ---- |
 | id     | num  | 直播间真实id | 必要   |      |
+| type   | num  | (?)          | 非必要 | 作用尚不明确 |
+| web_location | str | (?)     | 非必要 | 作用尚不明确 |
+| w_rid  | str | Wbi 签名 | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
+| wts    | num | 当前时间戳  | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
+
+注: 从2025年5月26日开始正式强制要求Wbi签名。
 
 **JSON回复：**
 
@@ -50,11 +58,10 @@
 
 **示例:**
 
-获得直播间 `14047` 的信息流认证秘钥
+获得直播间 `1017` 的信息流认证秘钥
 
 ```shell
-curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
---url-query 'id=14047'
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo?id=1017&type=0&web_location=444.8&w_rid=cf24f88ea0cbb61e7b29aed0c070187d&wts=1748266797'
 ```
 
 <details>
@@ -65,30 +72,42 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
   "code": 0,
   "message": "0",
   "ttl": 1,
-  "data": {
+  "data":{
     "group": "live",
     "business_id": 0,
     "refresh_row_factor": 0.125,
     "refresh_rate": 100,
     "max_delay": 5000,
-    "token": "IFfrzJxUd-K6mBPLGCpu-Z9QAz1V3KzIxde_-tCzvah05fYgfXjBWyuqRywF8Ov2w-MGQWt7l80pLiZEsfx3OPEDsXSRaJlzihV0hTXYwkiJvRmzMH3JjfAjdzlvI8sytUCrIbezBgbr_grGPd4ENTEknvu165L-ocW_cyql1e-L_EE=",
-    "host_list": [
+    "token": "gZ2Pp2T4rIc2HfD0e53FHhQAwKWjb6-QDD84AcxXi8sk3S89XcdvPWOgClZIMZ5mESr19-JKTOFxayX4IjeSQuckWqohE5Y0aHn-agpc2uU7aPXW3-Xmra3QEKljMZS5fM3q2vCf2XcAsjc8Xup7MVAc8SLWWXhQz0s7f1alCkaJBAIPA-i2nS39Ri4O",
+    "host_list":[
       {
-        "host": "hw-sg-live-comet-02.chat.bilibili.com",
+        "host": "zj-cn-live-comet.chat.bilibili.com",
         "port": 2243,
-        "wss_port": 443,
+        "wss_port": 2245,
         "ws_port": 2244
       },
       {
-        "host": "hw-sg-live-comet-01.chat.bilibili.com",
+        "host": "zj-cn-live-comet.chat.bilibili.com",
         "port": 2243,
-        "wss_port": 443,
+        "wss_port": 2245,
+        "ws_port": 2244
+      },
+      {
+        "host": "bd-sz-live-comet-14.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 2245,
+        "ws_port": 2244
+      },
+      {
+        "host": "bd-bj-live-comet-09.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 2245,
         "ws_port": 2244
       },
       {
         "host": "broadcastlv.chat.bilibili.com",
         "port": 2243,
-        "wss_port": 443,
+        "wss_port": 2245,
         "ws_port": 2244
       }
     ]

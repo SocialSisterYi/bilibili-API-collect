@@ -1146,7 +1146,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | ----- | --- | ---- | ----- | --- |
-| live_key | str | 标记直播场次的key | 必要 |  |
+| live_key | str | 标记直播场次的key | 必要 | 必须为自己的live_key |
 | start_ts | num | 开始时间戳 | 必要 | 开始和结束时间目前相差不能大于2小时 |
 | end_ts | num | 结束时间戳 | 必要 | 开始和结束时间目前相差不能大于2小时 |
 | av_title | str | 切片标题 | 必要 | 不能与现有标题重复 |
@@ -1162,7 +1162,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4002：片段已投稿<br />4006：标题已使用 |
+| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4002：片段已投稿<br />4003：请选择精彩片段再投稿哦<br />4006：标题已使用 |
 | message | str | 错误信息 |  |
 | ttl | num | `1` |  |
 | data | obj | 信息本体 | 成功时有效 |
@@ -1172,6 +1172,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
 | video_slice_id | num | 切片id |  |
+
+注: 若返回值出现4001不一定就是操作太快，不提供某些必要参数或某个参数不正确也会导致返回4001。
 
 **示例：**
 
