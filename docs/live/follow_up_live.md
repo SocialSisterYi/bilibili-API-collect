@@ -159,3 +159,159 @@ curl -G 'https://api.live.bilibili.com/xlive/web-ucenter/user/following' \
 ```
 
 </details>
+
+## 用户关注的所有UP且正在直播的列表（PC端）
+
+> https://api.live.bilibili.com/xlive/web-ucenter/v1/xfetter/GetWebList
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+**url参数：**
+
+| 参数名 | 类型   | 内容                               | 必要性 | 备注               |
+|-----|------|----------------------------------|-----|------------------|
+| hit_ab | bool | 会影响到json回复中部分字段的值，具体的影响效果会在下表列出。 | 非必要 | 默认为true，不填为false |
+
+**json回复：**
+
+根对象：
+
+| 字段      | 类型  | 内容   | 备注               |
+|---------|-----|------|------------------|
+| code    | num | 返回值  | 0：成功<br />1：参数错误 |
+| msg     | str | 错误信息 | 默认为空             |
+| message | str | 错误信息 | 默认为空             |
+| data    | obj | 信息本体 |                  |
+
+`data`对象：
+
+| 字段      | 类型   | 内容           | 备注                                                                 |
+|---------|------|--------------|--------------------------------------------------------------------|
+| rooms   | list | 正在直播的房间列表    | 受到url参数hit_ab的影响：<br />true时能够获取到全部正在开播的直播间列表，<br />false时只会获取到前10个。 |
+| list    | list | 正在直播的房间列表    | 疑似与rooms字段的内容相同，并且同样受到url参数hit_ab的影响，受影响的效果同rooms字段。               |
+| count | num  | 关注列表中正在直播的人数 | 受到url参数hit_ab的影响：hit_ab为true时为0                              |
+| not_living_num    | num  | 关注列表中未开播的人数  | 受到url参数hit_ab的影响：hit_ab为false时为0                             |
+
+`rooms`对象：
+
+| 字段      | 类型   | 内容           | 备注                                                            |
+|---------|------|--------------|---------------------------------------------------------------|
+| title    | num  | 直播间标题        |                                                               |
+| room_id     | num  | 直播间真实id      |                                                               |
+| uid | num  | 目标用户mid      |                                                               |
+| online    | num  | 观看人数         | 受url参数hit_ab的影响，hit_ab为true时为0                                |
+| live_time    | num  | 已经直播的时长（单位为秒）      | 受url参数hit_ab的影响，hit_ab为true时为0                                |
+| live_status    | num  | 开播状态         | 0：未开播<br />1：直播中<br />2：轮播中                                   |
+| short_id    | num  | 直播间短id       | 受url参数hit_ab的影响，hit_ab为true时为0                                |
+| area    | num  | 分区id         | 受url参数hit_ab的影响，hit_ab为true时为0                                |
+| area_name    | str  | 分区名称         |                                                               |
+| area_v2_id    | num  | 二级分区id       |                                                               |
+| area_v2_name    | str  | 二级分区名        |                                                               |
+| area_v2_parent_name    | str  | 二级父分区名       |                                                               |
+| area_v2_parent_id    | num  | 二级父分区id      |                                                               |
+| uname    | str  | 用户名          |                                                               |
+| face    | str  | 用户头像图片链接     |                                                               |
+| tag_name    | str  | 标签名          |                                                               |
+| tags    | str  | 标签列表         |                                                               |
+| cover_from_user    | str  | 直播间封面图片链接    | 受url参数hit_ab的影响，hit_ab为true时为0                                |
+| keyframe    | str  | 关键帧图片链接      | 用于网页端悬浮展示。受url参数hit_ab的影响，hit_ab为true时为0                      |
+| lock_till    | str  | 未知           | 时间日期格式为：yyyy-MM-dd hh-mm-ss。<br />受url参数hit_ab的影响，hit_ab为true时为空字符串 |
+| hidden_till    | str  | 未知           | 时间日期格式为：yyyy-MM-dd hh-mm-ss。<br />受url参数hit_ab的影响，hit_ab为true时为空字符串                            |
+| broadcast_type    | num  | 广播类型 |                                                               |
+| is_encrypt    | bool | 直播间是否加密      |                                                               |
+| link    | str  | 直播间链接        | 受url参数hit_ab的影响，hit_ab为true时为空字符串                             |
+| nickname    | str  | 用户昵称         | 受url参数hit_ab的影响，hit_ab为true时为空字符串                             |
+| roomname    | str  | 直播间名称        | 受url参数hit_ab的影响，hit_ab为true时为空字符串                             |
+| roomid    | num  | 直播间真实id      | 受url参数hit_ab的影响，hit_ab为true时为0                                |
+| liveTime    | num  | 开播时间         | 受url参数hit_ab的影响，hit_ab为true时为0                                |
+
+**示例：**
+
+```shell
+curl -G 'https://api.live.bilibili.com/xlive/web-ucenter/v1/xfetter/GetWebList' \
+--header 'Cookie: SESSDATA=xxx' \
+--data-urlencode 'hit_ab=false'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "rooms": [
+            {
+                "title": "虚拟区优质跨年直播展演",
+                "room_id": 21496316,
+                "uid": 441666939,
+                "online": 2308,
+                "live_time": 17313,
+                "live_status": 1,
+                "short_id": 36,
+                "area": 6,
+                "area_name": "生活娱乐",
+                "area_v2_id": 744,
+                "area_v2_name": "虚拟Singer",
+                "area_v2_parent_name": "虚拟主播",
+                "area_v2_parent_id": 9,
+                "uname": "虚拟区官方频道",
+                "face": "https://i0.hdslb.com/bfs/face/a26b52bc7837ce6867802575d300ed70d5e6f2d5.jpg",
+                "tag_name": "",
+                "tags": "",
+                "cover_from_user": "https://i0.hdslb.com/bfs/live/new_room_cover/5d7a4526062cf1dc4e88e016638a856c1ac7db03.jpg",
+                "keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe12311645000021496316pkuk08.jpg",
+                "lock_till": "0000-00-00 00:00:00",
+                "hidden_till": "0000-00-00 00:00:00",
+                "broadcast_type": 0,
+                "is_encrypt": false,
+                "link": "https://live.bilibili.com/21496316?broadcast_type=0",
+                "nickname": "虚拟区官方频道",
+                "roomname": "虚拟区优质跨年直播展演",
+                "roomid": 21496316,
+                "liveTime": 1735617438
+            }
+        ],
+        "list": [
+            {
+                "title": "虚拟区优质跨年直播展演",
+                "room_id": 21496316,
+                "uid": 441666939,
+                "online": 2308,
+                "live_time": 17313,
+                "live_status": 1,
+                "short_id": 36,
+                "area": 6,
+                "area_name": "生活娱乐",
+                "area_v2_id": 744,
+                "area_v2_name": "虚拟Singer",
+                "area_v2_parent_name": "虚拟主播",
+                "area_v2_parent_id": 9,
+                "uname": "虚拟区官方频道",
+                "face": "https://i0.hdslb.com/bfs/face/a26b52bc7837ce6867802575d300ed70d5e6f2d5.jpg",
+                "tag_name": "",
+                "tags": "",
+                "cover_from_user": "https://i0.hdslb.com/bfs/live/new_room_cover/5d7a4526062cf1dc4e88e016638a856c1ac7db03.jpg",
+                "keyframe": "https://i0.hdslb.com/bfs/live-key-frame/keyframe12311645000021496316pkuk08.jpg",
+                "lock_till": "0000-00-00 00:00:00",
+                "hidden_till": "0000-00-00 00:00:00",
+                "broadcast_type": 0,
+                "is_encrypt": false,
+                "link": "https://live.bilibili.com/21496316?broadcast_type=0",
+                "nickname": "虚拟区官方频道",
+                "roomname": "虚拟区优质跨年直播展演",
+                "roomid": 21496316,
+                "liveTime": 1735617438
+            }
+        ],
+        "count": 1,
+        "not_living_num": 0
+    }
+}
+```
+
+</details>
