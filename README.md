@@ -56,7 +56,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 1. 文档二级目录尚未完成
 2. 部分文档较旧，修改与更新没有跟进
-3. 目前文档使用 markdown 语法编写，不易生成编程语言的 SDK，详见 [#604](https://github.com/SocialSisterYi/bilibili-API-collect/issues/604)
+3. 目前文档使用 Markdown 语法编写，不易生成编程语言的 SDK，详见 [#604](https://github.com/SocialSisterYi/bilibili-API-collect/issues/604)
 
 更多信息请浏览 [贡献指南](CONTRIBUTING.md)
 
@@ -92,15 +92,15 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [Web 端 Cookie 刷新](docs/login/cookie_refresh.md)
 - [ ] [消息中心](docs/message)
     - [ ] [通知类消息](docs/message/msg.md)
-    - [ ] [私信](docs/message/private_msg.md)
-        - [ ] [私信消息类型、内容说明](docs/message/private_msg_content.md)
-    - [ ] 设置
+    - [x] [私信](docs/message/private_msg.md)
+        - [x] [私信消息类型、内容说明](docs/message/private_msg_content.md)
+    - [x] [设置](docs/message/settings.md)
 - [ ] [用户](docs/user)
     - [x] [基本信息](docs/user/info.md)
     - [x] [状态数](docs/user/status_number.md)
     - [x] [关系](docs/user/relation.md)
     - [ ] [个人空间](docs/user/space.md)
-    - [x] [检查昵称是否可注册](docs/user/check_nickname.md)
+    - [x] ~~[检查昵称是否可注册](docs/user/check_nickname.md)~~ (已失效)
     - [x] [用户注册](docs/user/register.md)
     - [x] [用户认证类型一览](docs/user/official_role.md)
     - [ ] [加入老粉计划](docs/user/contract.md)
@@ -112,8 +112,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [大会员操作](docs/vip/action.md)
 - [ ] [视频](docs/video)
     - [x] [视频分区一览 (分区代码)](docs/video/video_zone.md)
+    - [ ] [视频分区一览 (分区代码) (v2)](docs/video/video_zone_v2.md)
     - [x] [基本信息](docs/video/info.md)
-    - [x] [状态数](docs/video/status_number.md) (已失效)
+    - [x] ~~[状态数](docs/video/status_number.md)~~ (已失效)
     - [x] [快照](docs/video/snapshot.md)
     - [x] [点赞 & 投币 & 收藏 & 分享](docs/video/action.md)
     - [ ] [TAG](docs/video/tags.md)
@@ -126,7 +127,6 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [视频在线人数](docs/video/online.md)
     - [x] [视频 AI 摘要](docs/video/summary.md)
     - [ ] [稿件投诉](docs/video/appeal.md)
-    - [ ] [视频状态数](docs/video/status_number.md)
     - [ ] [视频合集](docs/video/collection.md)
     - [ ] [播放器](docs/video/player.md)
 - [ ] [剧集 (番剧、影视)](docs/bangumi)
@@ -155,10 +155,10 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [笔记操作](docs/note/action.md)
 - [ ] [专栏](docs/article)
     - [ ] [专栏分类](docs/article/category.md)
-    - [X] [基本信息](docs/article/info.md)
-    - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
-    - [X] [文集基本信息](docs/article/articles.md)
-    - [X] [获取用户专栏文章列表](docs/article/list.md)
+    - [x] [基本信息](docs/article/info.md)
+    - [x] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
+    - [x] [文集基本信息](docs/article/articles.md)
+    - [x] [删除](docs/article/delete.md)
 - [ ] [音频](docs/audio)
     - [x] [歌曲基本信息](docs/audio/info.md)
     - [ ] [歌单 & 音频收藏夹详细信息](docs/audio/music_list.md)
@@ -204,7 +204,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [B 币方式充电](docs/electric/Bcoin.md)
     - [x] [微信 & 支付宝方式充电](docs/electric/WeChat&Alipay.md)
     - [x] [充电留言](docs/electric/charge_msg.md)
-    - [x] [充电列表](docs/electric/charge_list.md)
+  - [x] [充电列表](docs/electric/charge_list.md)
 - [ ] [动态](docs/dynamic)
     - [ ] [获取动态列表](docs/dynamic/all.md)
     - [ ] [获取用户空间动态](docs/dynamic/space.md)
@@ -221,16 +221,16 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
         - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
     - [ ] [导航栏动态](docs/dynamic/nav.md)
-- [ ] [相簿](docs/album) (已下线)
-    - [x] [基本信息](docs/album/info.md)
-    - [x] [相簿列表](docs/album/list.md)
-    - [x] [推荐作者](docs/album/recommend_author.md)
-    - [x] [活动列表](docs/album/activity_list.md)
-    - [x] [操作](docs/album/action.md)
-    - [ ] 投稿
-- [ ] [历史记录 & 稍后再看](docs/history&toview)
-    - [x] [历史记录](docs/history&toview/history.md)
-    - [x] [稍后再看](docs/history&toview/toview.md)
+- [ ] ~~[相簿](docs/album)~~ (已下线)
+    - [x] ~~[基本信息](docs/album/info.md)~~
+    - [x] ~~[相簿列表](docs/album/list.md)~~
+    - [x] ~~[推荐作者](docs/album/recommend_author.md)~~
+    - [x] ~~[活动列表](docs/album/activity_list.md)~~
+    - [x] ~~[操作](docs/album/action.md)~~
+    - [ ] ~~投稿~~
+- [ ] [历史记录 & 稍后再看](docs/historytoview)
+    - [x] [历史记录](docs/historytoview/history.md)
+    - [x] [稍后再看](docs/historytoview/toview.md)
 - [ ] [收藏夹](docs/fav)
     - [x] [基本信息](docs/fav/info.md)
     - [x] [收藏夹内容](docs/fav/list.md)
@@ -243,16 +243,20 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [播放 & 下载地址（视频流）](docs/cheese/videostream_url.md)
 - [ ] [直播](docs/live)
     - [ ] [直播间基本信息](docs/live/info.md)
+    - [ ] [直播推荐](docs/live/recommend.md)
     - [ ] [直播分区](docs/live/live_area.md)
     - [ ] [直播间管理](docs/live/manage.md)
     - [ ] 直播间操作
     - [ ] [直播视频流](docs/live/live_stream.md)
     - [ ] [直播信息流](docs/live/message_stream.md)
     - [ ] [直播红包](docs/live/redpocket.md)
+    - [ ] [直播间表情包](docs/live/emoticons.md)
     - [ ] [直播间用户实用 API](docs/live/user.md)
     - [x] [直播间禁言相关](docs/live/silent_user_manage.md)
     - [ ] [关注UP直播情况](docs/live/follow_up_live.md)
     - [ ] [直播心跳上报](docs/live/report.md)
+    - [ ] [直播间弹幕](docs/live/danmaku.md)
+    - [ ] [直播流水](docs/live/live_bill.md)
 - [ ] [活动](docs/activity)
     - [ ] [活动列表](docs/activity/list.md)
     - [ ] [活动主题信息](docs/activity/info.md)
@@ -331,7 +335,7 @@ WeChat & Alipay：
 
 <img src="./assets/img/sponsorQR.jpg" width="300" height="300" />
 
-OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
+OR Aifadian：[https://afdian.com/@ShakaiAneE](https://afdian.com/@ShakaiAneE)
 
 ## 🔗相关项目推荐
 
@@ -377,6 +381,7 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 - [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
 - [kingwingfly/fav](https://github.com/kingwingfly/fav): 自动同步bili收藏夹、合集视频到本地的CLI工具（Rust实现，并提供一个文档测试完善的Rust风格的用于构建有状态爬虫的核心库）
 - [linyuye/Bilibili_crawler](https://github.com/linyuye/Bilibili_crawler): 基于bilibili懒加载api爬取b站动态，视频等评论区
+- [ouzexi/bilibili-hot-tags](https://github.com/ouzexi/bilibili-hot-tags): 一个B站热门视频标签检索统计小工具
 
 ### 其他
 
@@ -384,6 +389,7 @@ OR Aifadian：[https://afdian.net/@ShakaiAneE](https://afdian.net/@ShakaiAneE)
 - [bloomrpc/bloomrpc](https://github.com/bloomrpc/bloomrpc): GUI Client for GRPC Services
 - [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#)
 - [glideapps/quicktype](https://github.com/glideapps/quicktype): quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages. 一键生成多种语言的JSON反序列化所需类，以便于快速反序列化，有网页版
+- [SessionHu/json-apidoc-gen](https://github.com/SessionHu/json-apidoc-gen): Simple CLI tool for generating BAC document template
 
 <style scoped>
   .shields a {

@@ -179,7 +179,8 @@ curl 'https://api.bilibili.com/x/click-interface/web/heartbeat' \
 
 认证方式: Cookie (SESSDATA)
 
-该接口亦被用于计算播放量, 播放量更新不是实时的
+该接口亦被用于计算播放量, 播放量更新不是实时的<br />
+该接口使用似乎存在 200 播放限制, **请勿滥用!**
 
 **URL参数:**
 

@@ -1,6 +1,9 @@
 # 检查昵称是否可注册
 
-## 检查昵称
+## ~~检查昵称（已失效）~~
+
+<details>
+<summary>查看折叠内容</summary>
 
 > https://passport.bilibili.com/web/generic/check/nickname
 
@@ -131,3 +134,12 @@ curl -G 'https://passport.bilibili.com/web/generic/check/nickname' \
 ```
 
 </details>
+
+</details>
+
+目前该接口无论参数，稳定返回：
+```json
+{
+    "code": 0
+}
+```

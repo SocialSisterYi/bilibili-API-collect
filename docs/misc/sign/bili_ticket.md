@@ -30,6 +30,8 @@
 
 *请求方式: POST*
 
+鉴权方式: 请求头 `Referer` 为空或 `.bilibili.com` 子域下任意页
+
 **URL参数:**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
@@ -279,21 +281,16 @@ async function getBiliTicket(csrf) {
         'context[ts]': ts,
         csrf: csrf || ''
     });
-    try {
-        const response = await fetch(`${url}?${params.toString()}`, {
-            method: 'POST',
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0'
-            }
-        });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+    const response = await fetch(`${url}?${params.toString()}`, {
+        method: 'POST',
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0'
         }
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        throw error;
+    });
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
     }
+    return response.json();
 }
 
 (async () => {
@@ -301,7 +298,7 @@ async function getBiliTicket(csrf) {
         const ticketResponse = await getBiliTicket(''); // use empty CSRF here
         console.log(ticketResponse);
     } catch (e) {
-        console.error('Failed to get BiliTicket:', error);
+        console.error('Failed to get BiliTicket:', e);
     }
 })();
 ```
