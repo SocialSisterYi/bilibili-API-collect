@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-728812ef","path":"/docs/misc/errcode.html","title":"公共错误码","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"权限类","slug":"权限类","link":"#权限类","children":[]},{"level":2,"title":"请求类","slug":"请求类","link":"#请求类","children":[]}],"git":{},"filePathRelative":"docs/misc/errcode.md"}');export{e as data};

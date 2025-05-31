@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-1f2d7972","path":"/docs/live/live_bill.html","title":"直播流水","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取所有礼物列表","slug":"获取所有礼物列表","link":"#获取所有礼物列表","children":[]},{"level":2,"title":"获取流水","slug":"获取流水","link":"#获取流水","children":[]}],"git":{},"filePathRelative":"docs/live/live_bill.md"}');export{l as data};

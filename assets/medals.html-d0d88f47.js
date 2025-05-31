@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1f4b69b4","path":"/docs/user/medals.html","title":"所有粉丝勋章","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"指定用户的所有粉丝勋章信息","slug":"指定用户的所有粉丝勋章信息","link":"#指定用户的所有粉丝勋章信息","children":[]}],"git":{},"filePathRelative":"docs/user/medals.md"}');export{e as data};

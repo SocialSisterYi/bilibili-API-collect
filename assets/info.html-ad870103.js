@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-64c3e144","path":"/docs/vip/info.html","title":"大会员信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"卡券状态查询","slug":"卡券状态查询","link":"#卡券状态查询","children":[]}],"git":{},"filePathRelative":"docs/vip/info.md"}');export{e as data};

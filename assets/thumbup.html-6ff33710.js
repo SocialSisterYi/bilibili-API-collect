@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-547b7003","path":"/docs/danmaku/thumbup.html","title":"弹幕点赞查询","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"查询指定dmid的点赞数","slug":"查询指定dmid的点赞数","link":"#查询指定dmid的点赞数","children":[]}],"git":{},"filePathRelative":"docs/danmaku/thumbup.md"}');export{t as data};

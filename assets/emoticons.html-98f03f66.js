@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-051817f4","path":"/docs/live/emoticons.html","title":"直播间表情","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取直播间的表情包","slug":"获取直播间的表情包","link":"#获取直播间的表情包","children":[]}],"git":{},"filePathRelative":"docs/live/emoticons.md"}');export{e as data};

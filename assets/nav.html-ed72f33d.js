@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-4e377d61","path":"/docs/dynamic/nav.html","title":"获取导航栏动态","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取导航栏动态列表","slug":"获取导航栏动态列表","link":"#获取导航栏动态列表","children":[]}],"git":{},"filePathRelative":"docs/dynamic/nav.md"}');export{e as data};

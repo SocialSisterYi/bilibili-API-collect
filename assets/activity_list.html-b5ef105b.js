@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-15f43666","path":"/docs/album/activity_list.html","title":"相簿活动列表","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取相簿热门活动列表","slug":"获取相簿热门活动列表","link":"#获取相簿热门活动列表","children":[]}],"git":{},"filePathRelative":"docs/album/activity_list.md"}');export{t as data};

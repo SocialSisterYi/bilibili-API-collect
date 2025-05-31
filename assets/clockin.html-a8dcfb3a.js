@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1fe3cbb3","path":"/docs/vip/clockin.html","title":"大会员签到","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"大积分签到","slug":"大积分签到","link":"#大积分签到","children":[]}],"git":{},"filePathRelative":"docs/vip/clockin.md"}');export{e as data};

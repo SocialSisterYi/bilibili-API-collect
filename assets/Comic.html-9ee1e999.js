@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-14f31e98","path":"/docs/manga/Comic.html","title":"购买漫画章节","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/manga/Comic.md"}');export{a as data};
