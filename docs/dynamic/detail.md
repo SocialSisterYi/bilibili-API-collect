@@ -3,6 +3,7 @@
 ## 动态详情
 
 > https://api.bilibili.com/x/polymer/web-dynamic/v1/detail
+> https://api.bilibili.com/x/polymer/web-dynamic/desktop/v1/detail
 
 *请求方式: GET*
 
