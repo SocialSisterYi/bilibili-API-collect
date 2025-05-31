@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package bilibili.app.show.gateway.v1;
+
+import "bilibili/broadcast/message/main.proto";
+
+// 
+service AppShow {
+    // 
+    rpc GetActProgress (GetActProgressReq) returns (GetActProgressReply);
+}
+
+// 
+message GetActProgressReply {
+    // 
+    bilibili.broadcast.message.main.NativePageEvent event = 1;
+}
+
+// 
+message GetActProgressReq {
+    // 
+    int64 page_i_d = 1;
+    // 
+    int64 mid = 2;
+}
+
