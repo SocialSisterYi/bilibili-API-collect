@@ -283,7 +283,7 @@
 
 `ugc_season`示例
 
-```json
+```jsonc
             "ugc_season": {
                 "id": 2974525,
                 "title": "楚汉传奇",
