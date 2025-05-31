@@ -4,42 +4,42 @@
 
 > https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs
 
-*请求方式：POST*
+*请求方法: POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式: Cookie (SESSDATA)
 
-注意：非日常类型像素宽高必须大于420
+注意: 非日常类型像素宽高必须大于 420
 
-**正文参数 (multipart/form-data)：**
+**正文参数 (multipart/form-data):**
 
-| 参数名   | 类型 | 内容                     | 必要性 | 备注                                                         |
-| -------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| file_up  | file | 需要上传的图片文件       | 必要   | 格式仅支持jpg  png  gif                                      |
-| category | str  | 图片类型                 | 必要   | daily：日常（动态）<br />draw：绘画（画友）<br />cos：摄影（COSPLAY） |
-| biz      | str  |                          |        |                                                              |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                              |
+| 参数名   | 类型 | 内容                  | 必要性 | 备注 |
+| -------- | ---- | --------------------- | ------ | ---- |
+| file_up  | file | 需要上传的图片文件    | 必要   | 格式仅支持 `jpg` `png` `gif` |
+| category | string | 图片类型            | 必要   | daily: 日常 (动态)<br />draw: 绘画 (画友)<br />cos: 摄影 (COSPLAY) |
+| biz      | string |                    | 不必要 |      |
+| csrf     | string | CSRF Token (即 Cookie 中 bili_jct) | 必要   |    |
 
-**json回复：**
+**JSON 回复:**
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                                                         |
-| ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功 <br />-1：未添加图片<br />-2：参数错误<br />-3：图片尺寸过小<br />-4：账号未登录<br />-7：图片信息错误 |
-| message | str  | 错误信息 | 默认为success                                                |
-| data    | obj  | 信息本体 | 仅在正确时既`code=0`时为有效信息                             |
+| 字段    | 类型 | 内容     | 备注 |
+| ------- | ---- | -------- | ---- |
+| code    | number | 返回值   | 0: 成功<br />-1: 未添加图片<br />-2: 参数错误<br />-3: 图片尺寸过小<br />-4: 账号未登录<br />-7: 图片信息错误 |
+| message | string | 错误信息 | 默认为 `success` |
+| data    | object | 信息本体 | 成功时为有效信息 |
 
-`data`对象：
+`data` 对象：
 
 | 字段         | 类型 | 内容           | 备注 |
 | ------------ | ---- | -------------- | ---- |
-| image_url | str  | 已上传图片url  |      |
-| image_width  | num  | 已上传图片宽度 | 像素 |
-| image_height | num  | 已上传图片高度 | 像素 |
+| image_url | string | 已上传图片 URL  |      |
+| image_width  | number | 已上传图片宽度 | 像素 |
+| image_height | number | 已上传图片高度 | 像素 |
 
-**示例：**
+**示例:**
 
-上传了一张图片`test.png`类型为`日常`
+上传图片 `test.png` 类型为 `日常`
 
 ```shell
 curl 'https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
@@ -49,67 +49,66 @@ curl 'https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
 ```
 
 <details>
-<summary>查看响应示例：</summary>
+<summary>查看响应示例:</summary>
 
 ```json
 {
-    "code":0,
-    "message":"success",
-    "data":{
-     	"image_url":"http:\/\/i0.hdslb.com\/bfs\/album\/13f9523efe186a8066b2d72e80283cea2437eb62.png",
-        "image_width":1225,
-        "image_height":850
-    }
+  "code": 0,
+  "message": "success",
+  "data": {
+    "image_url": "http://i0.hdslb.com/bfs/album/13f9523efe186a8066b2d72e80283cea2437eb62.png",
+    "image_width": 1225,
+    "image_height": 850
+  }
 }
 ```
 
 </details>
 
-
 ## 创建投票
 
 > https://api.vc.bilibili.com/vote_svr/v1/vote_svr/create_vote
 
-*请求方式：POST*
+*请求方法: POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式: Cookie (SESSDATA)
 
-注意: options最少两个,下标n从0开始
+注意: `options` 最少两个, 下标 `n` 从 `0` 开始
 
 **正文参数 (multipart/form-data)：**
 
-| 参数名                       | 类型 | 内容                     | 必要性 | 备注                                                     |
-| ---------------------------- | ---- | ------------------------ | ------ | -------------------------------------------------------- |
-| info[title]                  | str  | 投票标题                 | 必要   |                                                          |
-| info[desc]                   | str  | 投票描述                 | 非必要 | 可为空                                                   |
-| info[type]                   | num  | 投票类型                 | 必要   | 0:文字投票 1:图片投票                                    |
-| info[choice_cnt]             | num  | 最多选几项               | 必要   |                                                          |
-| info[duration]               | num  | 投票持续秒数             | 必要   | 常用:<br/>三天:259200<br/>七天:604800<br/>三十天:2592000 |
-| info[options]\[ n ][desc]    | str  | 第n项选项文字内容        | 必要   |                                                          |
-| info[options]\[ n ][img_url] | str  | 第n项选项投票图片        | 非必要 |                                                          |
-| csrf                         | str  | CSRF Token（位于cookie） | 非必要 | 头次见非必要的csrf                                       |
+| 参数名                     | 类型 | 内容 | 必要性 | 备注 |
+| -------------------------- | ---- | ---- | ------ | ---- |
+| info[title]                | string | 投票标题     | 必要   | |
+| info[desc]                 | string | 投票描述     | 非必要 | 可为空 |
+| info[type]                 | number | 投票类型     | 必要   | 0: 文字投票<br />1: 图片投票 |
+| info[choice_cnt]           | number | 最多选几项   | 必要   | |
+| info[duration]             | number | 投票持续秒数 | 必要   | 常用:<br/>三天: 259200<br/>七天: 604800<br/>三十天: 2592000 |
+| info[options]\[ n ][desc]  | string | 第 n 项选项文字内容 | 必要   | |
+| info[options]\[ n ][img_url] | strin  | 第 n 项选项投票图片        | 非必要 ||
+| csrf                       | string | CSRF Token (即 Cookie 中 bili_jct) | 非必要 | |
 
-**json回复：**
+**JSON 回复：**
 
 根对象：
 
 | 字段    | 类型 | 内容     | 备注                             |
 | ------- | ---- | -------- | -------------------------------- |
-| code    | num  | 返回值   | 0：成功 <br />5100001: 参数错误  |
-| msg     | str  | 错误信息 | 成功为空                         |
-| message | str  | 错误信息 | 跟上面那个一模一样               |
-| data    | obj  | 信息本体 | 仅在正确时既`code=0`时为有效信息 |
+| code    | number | 返回值   | 0：成功 <br />5100001: 参数错误  |
+| msg     | string | 错误信息 | 成功为空                         |
+| message | string | 错误信息 | 跟上面那个一模一样               |
+| data    | object | 信息本体 | 仅在正确时既`code=0`时为有效信息 |
 
-`data`对象：
+`data` 对象：
 
 | 字段         | 类型 | 内容           | 备注 |
 | ------------ | ---- | -------------- | ---- |
-| vote_id | num | 投票id |      |
-| \_gt\_ | num  | 0 |  |
+| vote_id | number | 投票 id |      |
+| \_gt\_ | number  | 0 |  |
 
-**示例：**
+**示例:**
 
-创建一个标题为`是否自愿开学`持续七天的纯文本投票
+创建一个标题为 `是否自愿开学` 持续七天的纯文本投票
 
 ```shell
 curl -X POST 'https://api.vc.bilibili.com/vote_svr/v1/vote_svr/create_vote' \
@@ -124,17 +123,17 @@ curl -X POST 'https://api.vc.bilibili.com/vote_svr/v1/vote_svr/create_vote' \
 ```
 
 <details>
-<summary>查看响应示例：</summary>
+<summary>查看响应示例:</summary>
 
 ```json
 {
-    "code": 0,
-    "msg": "",
-    "message": "",
-    "data": {
-        "vote_id": 4947171,
-        "_gt_": 0
-    }
+  "code": 0,
+  "msg": "",
+  "message": "",
+  "data": {
+    "vote_id": 4947171,
+    "_gt_": 0
+  }
 }
 ```
 
@@ -144,83 +143,87 @@ curl -X POST 'https://api.vc.bilibili.com/vote_svr/v1/vote_svr/create_vote' \
 
 > https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create
 
-*请求方式：POST*
+*请求方法: POST*
 
-认证方式：Cookie (SESSDATA)
+认证方式: Cookie (SESSDATA)
 
-**正文参数（multipart/form-data）：**
+**正文参数 (multipart/form-data):**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
-| dynamic_id | num | 0 | 必要 |  |
-| type | num | 4 | 必要 |  |
-| rid | num | 0 | 必要 |  |
-| content | str | 动态内容 | 必要 |  |
-| up_choose_comment | num | 0 | 非必要 |  |
-| up_close_comment | num | 0 | 非必要 |  |
+| dynamic_id | number | 0 | 必要 |  |
+| type | number | 4 | 必要 |  |
+| rid | number | 0 | 必要 |  |
+| content | string | 动态内容 | 必要 |  |
+| up_choose_comment | number | 0 | 非必要 |  |
+| up_close_comment | number | 0 | 非必要 |  |
 | extension | json | 位置信息 | 非必要 |  |
-| at_uids | str | 动态中 at 到的用户的 uid | 非必要 | 使用逗号`,`分隔 |
+| at_uids | string | 动态中 at 到的用户的 uid | 非必要 | 使用逗号`,`分隔 |
 | ctrl | array | 特殊格式控制 (如 at 别人时的蓝字体和链接) | 非必要 |  |
-| csrf_token | str | CSRF Token (位于 cookie) | 非必要 |  |
-| csrf | str | CSRF Token (位于 cookie) | 非必要 |  |
+| csrf_token | string | CSRF Token (即 Cookie 中 bili_jct) | 非必要 |  |
+| csrf | string | CSRF Token (即 Cookie 中 bili_jct) | 非必要 |  |
 
-extension参数值:
-```json
+`extension` 参数值:
+
+```jsonc
 {
-    "emoji_type": 1,
-    "lbs_cfg": {
-        "title": "**市",
-        "poi": "156330200",
-        "show_title": "**市",
-        "type": 1,
-        "address": "**市",
-        "location": {
-            "lng":显示的经度数值,
-            "lat":显示的纬度数值
-        },
-        "distance": 0
+  "emoji_type": 1,
+  "lbs_cfg": {
+    "title": "**市",
+    "poi": "156330200",
+    "show_title": "**市",
+    "type": 1,
+    "address": "**市",
+    "location": {
+      "lng": //显示的经度数值,
+      "lat": //显示的纬度数值
     },
-    "flag_cfg": {},
-    "from_cfg": {
-        "location": {
-            "lat":用户实际纬度数值,
-            "lng":用户实际经度数值
-        }
+    "distance": 0
+  },
+  "flag_cfg": {},
+  "from_cfg": {
+    "location": {
+      "lat": //用户实际纬度数值,
+      "lng": //用户实际经度数值
     }
+  }
 }
 ```
 
-ctrl单个对象(注意用的时候是数组出现):
-| 参数名 | 类型 | 内容 |
-| --- | --- | --- |
-| location | num | 从全文第几个字开始变蓝 |
-| type | num | 1 (可能1代表链接到用户uid) |
-| length | num | 这一段变蓝多少字 |
-| data | str | 链接目标(被at人的uid) |
+`ctrl` 数组中的对象:
 
-**json回复：**
+| 参数名 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| location | number | 从全文第几个字开始变蓝 | |
+| type | number | 1 | 可能 1 代表链接到用户 mid |
+| length | number | 这一段变蓝多少字 | |
+| data | string | 链接目标 | 被 at 人的 mid |
 
-根对象：
+**JSON 回复:**
+
+根对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | 0：成功 |
-| message | str | 错误信息 | 成功为空 |
-| data | obj | 数据本体 |  |
+| code | number | 返回值 | 0: 成功 |
+| message | string | 错误信息 | 成功为空 |
+| data | object | 数据本体 |  |
 
-`data`对象:
+`data` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| result | num | 0 |  |
-| errmsg | str | 像是服务器日志一样的东西 |  |
-| dynamic_id | num | 动态 id |  |
-| create_result | num | 1 |  |
-| dynamic_id_str | str | 动态 id | 字符串格式 |
-| \_gt_ | num | 0 |  |
+| result | number | 0 |  |
+| errmsg | string | 像是服务器日志一样的东西 |  |
+| dynamic_id | number | 动态 id |  |
+| create_result | number | 1 |  |
+| dynamic_id_str | string | 动态 id | 字符串格式 |
+| \_gt_ | number | 0 |  |
+
+**示例:**
 
 <details>
-<summary>查看示例(纯文本)</summary>
+<summary>纯文本:</summary>
 
 ```bash
 curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
@@ -252,13 +255,12 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
     "_gt_": 0
   }
 }
-
 ```
 
 </details>
 
 <details>
-<summary>查看示例(at两个人)</summary>
+<summary>at 两个人:</summary>
 
 动态正文
 ```
@@ -297,67 +299,65 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 </details>
 
-
-
 ## 发表复杂动态
-
-
 
 > https://api.bilibili.com/x/dynamic/feed/create/dyn
 
-*请求方式：POST*
+*请求方法：POST*
 
 认证方式：Cookie (SESSDATA)
 
-**URL参数**
+**URL 参数:**
 
 | 参数名 | 类型 | 内容                     | 必要性 | 备注 |
 | ------ | ---- | ------------------------ | ------ | ---- |
-| csrf   | str  | CSRF Token（位于cookie） | 必要   |      |
+| csrf   | string  | CSRF Token (即 Cookie 中 bili_jct) | 必要   |      |
 
-**正文参数（application/json）：**
-
-| 参数名 | 类型 | 内容 | 必要性 | 备注 |
-| --- | --- | --- | --- | --- |
-| dyn_req | obj | 请求本体 | 必要 |  |
-
-`dyn_req`对象:
+**正文参数 (application/json):**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
-| attach_card | obj | 特殊卡片 | 非必要 | 如直播预约等 |
-| content | obj | 动态内容 | 必要 | |
-| meta | obj | 元信息 | 非必要 | 大概是来源信息 |
-| scene | num | 动态类型? | 必要 | 纯文本: 1<br/>带图: 2 |
+| dyn_req | object | 请求本体 | 必要 |  |
+
+`dyn_req` 对象:
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| --- | --- | --- | --- | --- |
+| attach_card | object | 特殊卡片 | 非必要 | 如直播预约等 |
+| content | object | 动态内容 | 必要 | |
+| meta | object | 元信息 | 非必要 | 大概是来源信息 |
+| scene | number | 动态类型? | 必要 | 纯文本: 1<br/>带图: 2 |
 | pics | array | 携带图片 | 非必要 | 最多九个 |
-| topic | obj | 话题 | 非必要 | |
-| option | obj | 互动设置 | 非必要 | 没有此项时默认开启评论区 |
-| upload_id | str | 客户端生成的 | 非必要 | 内容为`发送人mid`+`当前秒级时间戳`+`四位随机整数`,中间用`_`隔开 |
+| topic | object | 话题 | 非必要 | |
+| option | object | 互动设置 | 非必要 | 没有此项时默认开启评论区 |
+| upload_id | string | 客户端生成的 | 非必要 | 内容为`发送人mid`+`当前秒级时间戳`+`四位随机整数`,中间用`_`隔开 |
 
-`dyn_req`对象的`meta`对象,大概是来源信息,很简单就不详细列表了:
+`dyn_req` 对象的 `meta` 对象:
+
+大概是来源信息, 示例见下
 
 ```json
 {
-    "app_meta": {
-        "from": "create.dynamic.web", 
-        "mobi_app": "web"
-    }
+  "app_meta": {
+    "from": "create.dynamic.web",
+    "mobi_app": "web"
+  }
 }
 ```
 
-`dyn_req`对象的`content`对象:
+`dyn_req` 对象的 `content` 对象:
 
 | 参数名   | 类型  | 内容                 | 必要性 | 备注 |
 | -------- | ----- | -------------------- | ------ | ---- |
 | contents | array | 动态组件对象有序数组 | 必要   |      |
 
-`contents`数组内每一个动态组件对象:
+`contents` 数组内每一个动态组件对象:
 
-```json
+```jsonc
 {
-    "raw_text": "ui上直接显示的字符串",
-    "type": 组件类型id,
-    "biz_id": "动态组件的内容id转字符串,比如投票id"
+  "raw_text": "ui上直接显示的字符串",
+  "type": 组件类型id,
+  "biz_id": "动态组件的内容id转字符串,比如投票id"
 }
 ```
 
@@ -370,49 +370,49 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 | 表情   | 9    | 空           |
 | 投票   | 4    | 投票id       |
 
-`dyn_req`对象的`topic`对象
+`dyn_req` 对象的 `topic` 对象:
 
 | 参数名        | 类型 | 内容    | 必要性 | 备注                       |
 | ------------- | ---- | ------- | ------ | -------------------------- |
-| from_source   | str  | 来源id? | 必要   | 网页版直接选为dyn.web.list |
-| from_topic_id | num  | 0       | 必要   |                            |
-| id            | num  | 话题id  | 必要   |                            |
-| name          | str  | 话题名  | 必要   |                            |
+| from_source   | string  | 来源id? | 必要   | 网页版直接选为 `dyn.web.list` |
+| from_topic_id | number  | 0       | 必要   |                            |
+| id            | number  | 话题id  | 必要   |                            |
+| name          | string  | 话题名  | 必要   |                            |
 
-`dyn_req`对象的`pics`数组的每一项对象:
+`dyn_req` 对象的 `pics` 数组的每一项对象:
 
-| 参数名     | 类型  | 内容             | 必要性 | 备注                                                         |
+| 参数名     | 类型  | 内容             | 必要性 | 备注 |
 | ---------- | ----- | ---------------- | ------ | ------------------------------------------------------------ |
-| img_height | num   | 图片高           | 非必要 | 这个东西会直接原封不动传到前端,比如你都写0在网页上就看不见了,但是还会加载 |
-| img_width  | num   | 图片宽           | 非必要 | 同上                                                         |
+| img_height | number   | 图高           | 非必要 | 这个东西会直接原封不动传到前端,比如你都写 0 在网页上就看不见了, 但是还会加载 |
+| img_width  | number   | 图宽           | 非必要 | 同上                                                         |
 | img_size   | float | 图片文件大小(KB) | 非必要 |                                                              |
-| img_src    | str   | 图片bfs链接      | 必要   |                                                              |
+| img_src    | string   | 图片 URL      | 必要   |                                                              |
 
 `dyn_req`对象的`option`对象:
 
 | 参数名            | 类型 | 内容         | 必要性 | 备注            |
 | ----------------- | ---- | ------------ | ------ | --------------- |
-| up_choose_comment | num  | 精选评论flag | 非必要 | 1: 开启         |
-| close_comment     | num  | 关闭评论flag | 非必要 | 同上,与上二选一 |
+| up_choose_comment | number | 精选评论flag | 非必要 | 1: 开启         |
+| close_comment     | number | 关闭评论flag | 非必要 | 同上, 上二选一 |
 
 `dyn_req`对象的`topic`对象:
 
 | 参数名        | 类型 | 内容         | 必要性 | 备注     |
 | ------------- | ---- | ------------ | ------ | -------- |
-| from_source   | str  | dyn.web.list | 非必要 | 作用不明 |
-| from_topic_id | num  | 0            | 非必要 | 作用不明 |
-| id            | num  | 话题id       | 必要   |          |
-| name          | str  | 话题名       | 非必要 |          |
+| from_source   | string  | `dyn.web.list` | 非必要 | 作用不明 |
+| from_topic_id | number  | 0            | 非必要 | 作用不明 |
+| id            | number  | 话题id       | 必要   |          |
+| name          | string  | 话题名       | 非必要 |          |
 
-**json回复：**
+**JSON 回复:**
 
 根对象：
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | 0：成功<br />-101：账号未登录<br />4126021：你没有绑定手机，无法发布动态 |
-| message | str | 错误信息 | 成功为空 |
-| data | obj | 数据本体 |  |
+| code | number | 返回值 | 0: 成功<br />-101: 账号未登录<br />4126021: 你没有绑定手机，无法发布动态 |
+| message | string | 错误信息 | 成功为空 |
+| data | object | 数据本体 |  |
 
 `data`对象:
 
@@ -420,12 +420,12 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| result | num | 0 |  |
-| message | str | 错误信息 |  |
-| dyn_id | num | 动态 id |  |
-| dyn_id_str | str | 动态 id | 字符串格式 |
-| dyn_type | num | 动态类型 | 不带图片: 4<br/>带图片: 2<br/>其他请参考 get_dynamic_detail.md |
-| \_gt_ | num | 0 |  |
+| result | number | 0 |  |
+| message | string | 错误信息 |  |
+| dyn_id | number | 动态 id |  |
+| dyn_id_str | string | 动态 id | 字符串格式 |
+| dyn_type | number | 动态类型 | 不带图片: 4<br/>带图片: 2<br/>其他请参考 get_dynamic_detail.md |
+| \_gt_ | number | 0 |  |
 
 **警告:下面的内容又乱又杂,而且绝大多数情况用不到,我建议大家用这个接口的时候随便带一个buvid3的cookie屏蔽掉它们算了.**
 
@@ -433,22 +433,22 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 | 字段      | 类型 | 内容 | 备注         |
 | --------- | ---- | ---- | ------------ |
-| fake_card | obj  | 0    | 又多又乱又杂 |
+| fake_card | object  | 0    | 又多又乱又杂 |
 
 `fake_card`对象:
 
 | 字段      | 类型  | 内容         | 备注                                                         |
 | --------- | ----- | ------------ | ------------------------------------------------------------ |
-| card_type | num   | 卡片类型     | 不带图片: 4<br/>带图片: 2<br/>其他请参考 [获取特定动态卡片信息](get_dynamic_detail.md) |
+| card_type | number   | 卡片类型     | 不带图片: 4<br/>带图片: 2<br/>其他请参考 [获取特定动态卡片信息](get_dynamic_detail.md) |
 | modules   | array | 卡片组件列表 |                                                              |
-| extend    | obj   | 其他杂项信息 |                                                              |
+| extend    | object   | 其他杂项信息 |                                                              |
 
 `fake_card`对象的`modules`数组中每一项对象:
 
 | 字段        | 类型 | 内容     | 备注                                         |
 | ----------- | ---- | -------- | -------------------------------------------- |
-| module_type | num  | 组件类型 | 1: 作者信息<br/>3: 动态内容<br/>其他有待发现 |
-| ModuleItem  | obj  | 卡片组件 |                                              |
+| module_type | number  | 组件类型 | 1: 作者信息<br/>3: 动态内容<br/>其他有待发现 |
+| ModuleItem  | object  | 卡片组件 |                                              |
 
 `ModuleItem`对象与`module_type`对应关系:
 
@@ -463,40 +463,40 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 
 | 字段             | 类型 | 内容                             | 备注                                             |
 | ---------------- | ---- | -------------------------------- | ------------------------------------------------ |
-| mid              | num  | 发送者mid                        |                                                  |
-| ptime_label_text | str  | 发送时间(人类可读形式)肯定是刚刚 |                                                  |
-| author           | obj  | 作者详细信息                     | 请参考[用户基本信息](../user/info.md),不再赘述.. |
+| mid              | number  | 发送者mid                        |                                                  |
+| ptime_label_text | string  | 发送时间(人类可读形式)肯定是刚刚 |                                                  |
+| author           | object  | 作者详细信息                     | 请参考[用户基本信息](../user/info.md),不再赘述.. |
 
   `ModuleItem`内`module_desc`:
 
 | 字段 | 类型  | 内容           | 备注 |
 | ---- | ----- | -------------- | ---- |
 | desc | array | 动态组件列表   |      |
-| text | str   | 动态纯文本形式 |      |
+| text | string   | 动态纯文本形式 |      |
 
 `module_desc`的`desc`数组:
 
 | 项   | 类型 | 备注                |
 | ---- | ---- | ------------------- |
-| 0    | obj  | 第0个动态组件       |
-| n    | obj  | 第n+1个动态组件组件 |
-| ...  | obj  | ...                 |
+| 0    | object  | 第0个动态组件       |
+| n    | object  | 第n+1个动态组件组件 |
+| ...  | object  | ...                 |
 
 `desc`数组的每一项:
 
 | 字段 | 类型 | 内容                                             | 备注                          |
 | ---- | ---- | ------------------------------------------------ | ----------------------------- |
-| text | str  | 该组件对外显示的纯文本                           | 对应请求时该组件的`raw_text`  |
-| type | num  | 组件类型                                         | 对应请求时该组件的`type`      |
-| rid  | str  | 组件内容的id,例如@人的mid                        | 根据需要出现,比如纯文本就没有 |
-| uri  | str  | b站自定义`bilibili://`协议链接,用于@人点击跳转等 | 根据需要出现,比如纯文本就没有 |
+| text | string  | 该组件对外显示的纯文本                           | 对应请求时该组件的`raw_text`  |
+| type | number  | 组件类型                                         | 对应请求时该组件的`type`      |
+| rid  | string  | 组件内容的id,例如@人的mid                        | 根据需要出现,比如纯文本就没有 |
+| uri  | string  | b站自定义`bilibili://`协议链接,用于@人点击跳转等 | 根据需要出现,比如纯文本就没有 |
 
   `ModuleItem`内`module_dynamic`:
 
 | 字段       | 类型 | 内容               | 备注                 |
 | ---------- | ---- | ------------------ | -------------------- |
-| type       | num  | 不知道是什么的类型 | 5: 图片<br/>其他未知 |
-| ModuleItem | obj  | 组件?              | 怎么还有套娃的?      |
+| type       | number  | 不知道是什么的类型 | 5: 图片<br/>其他未知 |
+| ModuleItem | object  | 组件?              | 怎么还有套娃的?      |
 
 当`module_dynamic`的`type`字段为`5`时:
 
@@ -505,33 +505,35 @@ curl 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/create' \
 | 字段  | 类型  | 内容                             | 备注                                             |
 | ----- | ----- | -------------------------------- | ------------------------------------------------ |
 | items | array | 图片数组                         | 与请求部分`dyn_req.pics`一致                     |
-| id    | num   | 这条图片动态所对应的相簿`doc_id` | 可以参考本文档的[相簿基本信息](../album/info.md) |
+| id    | number   | 这条图片动态所对应的相簿`doc_id` | 可以参考本文档的[相簿基本信息](../album/info.md) |
 
 `fake_card`的`extend`对象:
 
 | 字段          | 类型  | 内容                                           | 备注                                     |
 | ------------- | ----- | ---------------------------------------------- | ---------------------------------------- |
-| dyn_id_str    | str   | 动态id字符串形式                               |                                          |
-| business_id   | str   | 未知                                           | 根据情况出现                             |
-| orif_img_url  | str   | 封面图url(如果有)                              |                                          |
-| share_type    | str   | 一般为3                                        | 未知                                     |
-| share_scene   | str   | 一般为dynamic                                  | 未知                                     |
+| dyn_id_str    | string   | 动态id字符串形式                               |                                          |
+| business_id   | string   | 未知                                           | 根据情况出现                             |
+| orif_img_url  | string   | 封面图url(如果有)                              |                                          |
+| share_type    | string   | 一般为3                                        | 未知                                     |
+| share_scene   | string   | 一般为dynamic                                  | 未知                                     |
 | is_fast_share | bool  | 一般为true                                     | 未知                                     |
-| dyn_type      | num   | 动态类型                                       | 不带图片: 4<br/>带图片: 2<br/>其他待探索 |
-| uid           | num   | 发送者mid                                      |                                          |
-| card_url      | str   | b站自定义`bilibili://`协议链接,指向该条动态    |                                          |
+| dyn_type      | number   | 动态类型                                       | 不带图片: 4<br/>带图片: 2<br/>其他待探索 |
+| uid           | number   | 发送者mid                                      |                                          |
+| card_url      | string   | b站自定义`bilibili://`协议链接,指向该条动态    |                                          |
 | desc          | array | 动态组件列表,重复了一遍`module_desc`的desc数组 |                                          |
-| reply         | obj   | 评论区相关                                     |                                          |
+| reply         | object   | 评论区相关                                     |                                          |
 
 `extend`的`reply`对象:
 
 | 字段   | 类型  | 内容                                              | 备注 |
 | ------ | ----- | ------------------------------------------------- | ---- |
-| uri    | str   | b站自定义`bilibili://`协议链接,指向该条动态评论区 |      |
+| uri    | string   | b站自定义`bilibili://`协议链接,指向该条动态评论区 |      |
 | params | array | 未知                                              |      |
 
+**示例:**
+ 
 <details>
-<summary>查看示例(不带`buvid3`)</summary>
+<summary>Cookie 不带 `buvid3`:</summary>
 
 ```bash
 curl -X POST 'https://api.bilibili.com/x/dynamic/feed/create/dyn?csrf=xxxxx' \
@@ -744,7 +746,7 @@ curl -X POST 'https://api.bilibili.com/x/dynamic/feed/create/dyn?csrf=xxxxx' \
 </details>
 
 <details>
-<summary>查看示例(带`buvid3`)</summary>
+<summary>Cookie 带 `buvid3`:</summary>
 
 动态正文
 ```
@@ -817,35 +819,33 @@ curl -X POST 'https://api.bilibili.com/x/dynamic/feed/create/dyn?csrf=xxxxx' \
 }
 ```
 
-
-
 </details>
 
 ## 立即发布定时动态
 
 > https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/publish_now
 
-*请求方式：POST*
+*请求方法: POST*
 
-认证方式：Cookie（SESSDATA）
+认证方式: Cookie (SESSDATA)
 
-**正文参数 (application/x-www-form-urlencoded)：**
+**正文参数 (application/x-www-form-urlencoded):**
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注 |
 | -------- | ---- | ------------------------ | ------ | ---- |
 | draft_id | file | 定时动态(草稿)id         | 必要   |      |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |      |
+| csrf     | string | CSRF Token（即 Cookie 中 bili_jct) | 必要   |      |
 
-**json回复：**
+**JSON 回复:**
 
-根对象：
+根对象:
 
 | 字段    | 类型 | 内容     | 备注         |
 | ------- | ---- | -------- | ------------ |
-| code    | num  | 返回值   | 0：成功      |
-| data    | obj  | 信息本体 | 正常为空对象 |
-| message | str  | 错误消息 | 正常为"0"    |
-| ttl     | num  | 1        | 不明         |
+| code    | number  | 返回值   | 0: 成功      |
+| data    | object  | 信息本体 | 正常为空对象 |
+| message | string  | 错误消息 | 正常为 `0`   |
+| ttl     | number  | 1        |              |
 
 <details>
 <summary>查看示例</summary>
@@ -861,12 +861,11 @@ curl -X POST 'https://api.vc.bilibili.com/dynamic_draft/v1/dynamic_draft/publish
 
 ```json
 {
-    "code":0,
-    "message":"0",
-    "ttl":1,
-    "data":{}
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
 }
 ```
 
 </details>
-
