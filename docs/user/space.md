@@ -2781,13 +2781,14 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
 
 ### 查询用户投稿明细（APP、无需wbi鉴权）
 
-
 > https://app.biliapi.com/x/v2/space/archive/cursor
 
 *请求方式：GET*
 
 可以获取APP端可获得的用户空间投稿所有信息
+
 APP端请求对web端包容度最高，无需Cookie以外的任何认证，只需填写vmid即可查询
+
 认证方式：Cookie 或 APP
 
 **url参数：**
