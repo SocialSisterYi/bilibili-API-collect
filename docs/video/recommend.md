@@ -1148,7 +1148,6 @@ curl -G 'https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd' \
 *请求方式：GET*
 
 在APP端点击主页视频后发出的请求
-认证方式：Cookie 或 APP
 
 **url参数：**  
 
@@ -1168,7 +1167,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd' \
 | contain       | bool | 未知                    | 非必要          | 可为false      |
 | creative_id   | num  | 未知                    | 非必要          | 默认为 `0`     |
 | device_name   | str  | 设备名称                | 非必要          | 随意字符串都行  |
-| disable_rcmd` | num  | 未知                    | 非必要          | 默认为 `1`     |
+| disable_rcmd  | num  | 未知                    | 非必要          | 默认为 `1`     |
 | epid          | num  | 未知                    | 非必要          | 默认为 `0`     |
 | feed_status   | num  | 未知                    | 非必要          | 默认为 `0`     |
 | fnval         | num  | 视频流类型               | 非必要          |               |
@@ -1299,6 +1298,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd' \
 **示例：**
 
 (1)模拟点击aid=113350747029965的视频并获取短视频推荐列表
+
 ```python
 import json
 import requests
@@ -1327,16 +1327,16 @@ response = requests.get(story_url, params=story_params, headers=mobile_headers)
 
 print(json.dumps(response.json(), indent=4))
 ```
+
 返回值内容过长，暂不予展示
 
 (2)随机的短视频推荐
 
 > https://app.bilibili.com/x/v2/feed/index/story
+
 浏览器直接输入
 
 返回值内容过长，暂不予展示
-
-
 
 ## 获取短视频模式视频列表
 
