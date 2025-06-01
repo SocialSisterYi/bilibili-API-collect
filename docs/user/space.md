@@ -2598,6 +2598,7 @@ curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
 
 | 字段  | 类型   | 内容             | 备注 |
 | ----- | ------ | ---------------- | ---- |
+| slist | array  | 空数组           |      |
 | tlist | obj    | 投稿视频分区索引 |      |
 | vlist | array | 投稿视频列表     |      |
 
@@ -2626,30 +2627,76 @@ curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
 
 `list`中的`vlist`数组中的对象：
 
-| 字段           | 类型 | 内容           | 备注                         |
-| -------------- | ---- | -------------- | ---------------------------- |
-| aid            | num  | 稿件avid       |                              |
-| attribute      | num  |                |                              |
-| author         | str  | 视频UP主       | 不一定为目标用户（合作视频） |
-| bvid           | str  | 稿件bvid       |                              |
-| comment        | num  | 视频评论数     |                              |
-| copyright      | str  | 视频版权类型   |                              |
-| created        | num  | 投稿时间       | 时间戳                       |
-| description    | str  | 视频简介       |                              |
-| enable_vt      | num  |                |                              |
-| hide_click     | bool | false          | 作用尚不明确                 |
-| is_pay         | num  | 0              | 作用尚不明确                 |
-| is_union_video | num  | 是否为合作视频 | 0：否<br />1：是             |
-| length         | str  | 视频长度       | MM:SS                        |
-| mid            | num  | 视频UP主mid    | 不一定为目标用户（合作视频） |
-| meta           | obj  |                | 无数据时为 null              |
-| pic            | str  | 视频封面       |                              |
-| play           | num  | 视频播放次数   |                              |
-| review         | num  | 0              | 作用尚不明确                 |
-| subtitle       | str  | 空             | 作用尚不明确                 |
-| title          | str  | 视频标题       |                              |
-| typeid         | num  | 视频分区tid    |                              |
-| video_review   | num  | 视频弹幕数     |                              |
+| 字段               | 类型 | 内容           | 备注                         |
+| ------------------ | ---- | -------------- | ---------------------------- |
+| aid                | num  | 稿件avid       |                              |
+| attribute          | num  |                |                              |
+| author             | str  | 视频UP主       | 不一定为目标用户（合作视频） |
+| bvid               | str  | 稿件bvid       |                              |
+| comment            | num  | 视频评论数     |                              |
+| copyright          | str  | 视频版权类型   |                              |
+| created            | num  | 投稿时间       | 时间戳                       |
+| description        | str  | 视频简介       |                              |
+| elec_arc_type      | num  | 充电为1，否则0 | 可能还有其他情况             |
+| enable_vt          | num  | 0              | 作用尚不明确                 |
+| hide_click         | bool | false          | 作用尚不明确                 |
+| is_avoided         | num  | 0              | 作用尚不明确                 |
+| is_charging_arc    | bool | 是否为充电视频 |                              |
+| is_lesson_video    | num  | 是否为课堂视频 | 0：否<br />1：是             |
+| is_lesson_finished | num  | 课堂是否已完结 | 0：否<br />1：是             |
+| is_live_playback   | num  | 是否为直播回放 | 0：否<br />1：是             |
+| is_pay             | num  | 0              | 作用尚不明确                 |
+| is_self_view       | bool | false          | 作用尚不明确                 |
+| is_steins_gate     | num  | 是否为互动视频 | 0：否<br />1：是             |
+| is_union_video     | num  | 是否为合作视频 | 0：否<br />1：是             |
+| jump_url           | str  | 跳转链接       | 跳转到课堂的链接，否则为""   |
+| length             | str  | 视频长度       | MM:SS                        |
+| mid                | num  | 视频UP主mid    | 不一定为目标用户（合作视频） |
+| meta               | obj  | 所属合集或课堂 | 无数据时为 null              |
+| pic                | str  | 视频封面       |                              |
+| play               | num  | 视频播放次数   |                              |
+| playback_position  | num  | 百分比播放进度 | 封面下方显示的粉色条         |
+| review             | num  | 0              | 作用尚不明确                 |
+| season_id          | num  | 合集或课堂编号 | 都不属于时为0                |
+| subtitle           | str  | 空             | 作用尚不明确                 |
+| title              | str  | 视频标题       |                              |
+| typeid             | num  | 视频分区tid    |                              |
+| video_review       | num  | 视频弹幕数     |                              |
+| vt                 | num  | 0              | 作用尚不明确                 |
+| vt_display         | str  | 空             | 作用尚不明确                 |
+
+`list`中的`vlist`数组中的对象中的`meta`对象：
+
+| 字段       | 类型 | 内容         | 备注             |
+| ---------- | ---- | ------------ | ---------------- |
+| attribute  | num  | 0            | 作用尚不明确     |
+| cover      | str  | 合集封面URL  |                  |
+| ep_count   | num  | 合集视频数量 |                  |
+| ep_num     | num  | 合集视频数量 |                  |
+| first_aid  | num  | 首个视频av号 |                  |
+| id         | num  | 合集id       |                  |
+| intro      | str  | 合集介绍     |                  |
+| mid        | num  | UP主uid      | 若为课堂，则为0  |
+| ptime      | num  | unix时间(s)  | 最后更新时间     |
+| sign_state | num  | 0            | 作用尚不明确     |
+| stat       | obj  | 合集统计数据 |                  |
+| title      | str  | 合集名称     |                  |
+
+`list`中的`vlist`数组中的对象中的`meta`对象中的`stat`对象：
+
+| 字段       | 类型 | 内容         | 备注                 |
+| ---------- | ---- | ------------ | -------------------- |
+| coin       | num  | 合集总投币数 |                      |
+| danmaku    | num  | 合集总弹幕数 |                      |
+| favorite   | num  | 合集总收藏数 |                      |
+| like       | num  | 合集总点赞数 |                      |
+| mtime      | num  | unix时间(s)  | 其他统计数据更新时间 |
+| reply      | num  | 合集总评论数 |                      |
+| season_id  | num  | 合集id       |                      |
+| share      | num  | 合集总分享数 |                      |
+| view       | num  | 合集总播放量 |                      |
+| vt         | num  | 0            | 作用尚不明确         |
+| vv         | num  | 0            | 作用尚不明确         |
 
 `data`中的`page`对象：
 
@@ -2684,99 +2731,485 @@ curl -G 'https://api.bilibili.com/x/space/arc/search' \
 
 ```json
 {
-    "code": 0,
-    "message": "0",
-    "ttl": 1,
-    "data": {
-        "list": {
-            "tlist": {
-                "1": {
-                    "tid": 1,
-                    "count": 26,
-                    "name": "动画"
-                },
-                "160": {
-                    "tid": 160,
-                    "count": 42,
-                    "name": "生活"
-                },
-                "211": {
-                    "tid": 211,
-                    "count": 3,
-                    "name": "美食"
-                },
-                "3": {
-                    "tid": 3,
-                    "count": 33,
-                    "name": "音乐"
-                },
-                "4": {
-                    "tid": 4,
-                    "count": 72,
-                    "name": "游戏"
-                }
-            },
-            "vlist": [
-                {
-                    "comment": 3558,
-                    "typeid": 47,
-                    "play": 1275661,
-                    "pic": "//i2.hdslb.com/bfs/archive/90157806a34646ac2d4c6af3e8b6156cb3460d14.jpg",
-                    "subtitle": "",
-                    "description": "第一期：BV1ak4y1B7aG\n第二期：BV1eA411Y7FN\n脚本/绘画/配音/动画/片尾曲：warma\n第三期终于做完啦！这是一个以我平时发呆的时候想到的一些灵感组成的冷笑话合集，名字叫《沃玛的生活》，可以当作日常搞笑单元小动画来看。\n如果你喜欢这个系列的话请点赞投币收藏一键三连给我一些继续制作的动力吧，我真的非常非常需要更多的动力！\n祝看得开心~\n我的微博：@_warma_",
-                    "copyright": "",
-                    "title": "【warma】沃玛的新番更新！从现在开始放飞自我【沃玛的生活/第三期】",
-                    "review": 0,
-                    "author": "Warma",
-                    "mid": 53456,
-                    "created": 1605844817,
-                    "length": "05:16",
-                    "video_review": 7470,
-                    "aid": 585275804,
-                    "bvid": "BV1sz4y1y7KJ",
-                    "hide_click": false,
-                    "is_pay": 0,
-                    "is_union_video": 0,
-                    "is_steins_gate": 0
-                },
-                {
-                    "comment": 2979,
-                    "typeid": 21,
-                    "play": 840676,
-                    "pic": "//i2.hdslb.com/bfs/archive/b43f88c6ebae8fdc7dfb663f6f6f2931b924c763.jpg",
-                    "subtitle": "",
-                    "description": "前一阵子过生日，大家的礼物经过几番转寄终于收到了~于是录了这期礼物开箱视频。\n现在也在感慨，大家的礼物真的都太强了，居然这些全都是手工做的，真的好厉害！\n这些手工礼物背后得花多少时间和心力啊……这些对我来说都是无价的礼物，制作礼物的大家真的有心了，谢谢！！\n收到这些礼物真的很开心，视频的封面也是在这样激动的情况下画出来的，祝你看得开心~\n我的微博：@_warma_",
-                    "copyright": "",
-                    "title": "【warma】来开箱！大家寄来的生日礼物",
-                    "review": 0,
-                    "author": "Warma",
-                    "mid": 53456,
-                    "created": 1604635221,
-                    "length": "24:28",
-                    "video_review": 10476,
-                    "aid": 287744380,
-                    "bvid": "BV1xf4y1q7XN",
-                    "hide_click": false,
-                    "is_pay": 0,
-                    "is_union_video": 0,
-                    "is_steins_gate": 0
-                }
-            ]
-        },
-        "page": {
-            "pn": 1,
-            "ps": 2,
-            "count": 176
-        },
-        "episodic_button": {
-            "text": "播放全部",
-            "uri": "//www.bilibili.com/medialist/play/53456?from=space"
-        }
-    }
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"list": {
+			"slist": [],
+			"tlist": {
+				"1": {
+					"tid": 1,
+					"count": 3,
+					"name": "动画"
+				},
+				"129": {
+					"tid": 129,
+					"count": 1,
+					"name": "舞蹈"
+				},
+				"160": {
+					"tid": 160,
+					"count": 96,
+					"name": "生活"
+				},
+				"177": {
+					"tid": 177,
+					"count": 4,
+					"name": "纪录片"
+				},
+				"181": {
+					"tid": 181,
+					"count": 50,
+					"name": "影视"
+				},
+				"188": {
+					"tid": 188,
+					"count": 444,
+					"name": "科技"
+				},
+				"196": {
+					"tid": 196,
+					"count": 2,
+					"name": "课堂"
+				}
+			},
+			"vlist": [{
+				"comment": 985,
+				"typeid": 250,
+				"play": 224185,
+				"pic": "http://i0.hdslb.com/bfs/archive/5e56c10a9bd67f2fcac46fdd0fc2caa8769700c8.jpg",
+				"subtitle": "",
+				"description": "这一次，我们的样片日记首次来到了西藏，在桃花季开启了藏东样片之旅！这趟“开荒”之旅我们跋山涉水，一路硬刚，多亏有路虎卫士这样的神队友撑全场！这次的素材我们也上传到了官网（ysjf.com/material），欢迎大家去看看~如果你喜欢这期视频，请多多支持我们，并把视频分享给你的朋友们一起看看！",
+				"copyright": "1",
+				"title": "和朋友去西藏拍样片日记……",
+				"review": 0,
+				"author": "影视飓风",
+				"mid": 946974,
+				"created": 1745290800,
+				"length": "22:11",
+				"video_review": 2365,
+				"aid": 114375683741573,
+				"bvid": "BV1ac5yzhE94",
+				"hide_click": false,
+				"is_pay": 0,
+				"is_union_video": 1,
+				"is_steins_gate": 0,
+				"is_live_playback": 0,
+				"is_lesson_video": 0,
+				"is_lesson_finished": 0,
+				"lesson_update_info": "",
+				"jump_url": "",
+				"meta": {
+					"id": 2046621,
+					"title": "样片日记",
+					"cover": "https://archive.biliimg.com/bfs/archive/e2ca3e5a6672cf35c9e61ac02e8d739cc0aafa8b.jpg",
+					"mid": 946974,
+					"intro": "",
+					"sign_state": 0,
+					"attribute": 140,
+					"stat": {
+						"season_id": 2046621,
+						"view": 31755096,
+						"danmaku": 171253,
+						"reply": 33685,
+						"favorite": 409505,
+						"coin": 935105,
+						"share": 199467,
+						"like": 1791607,
+						"mtime": 1745309513,
+						"vt": 0,
+						"vv": 0
+					},
+					"ep_count": 13,
+					"first_aid": 238588630,
+					"ptime": 1745290800,
+					"ep_num": 13
+				},
+				"is_avoided": 0,
+				"season_id": 2046621,
+				"attribute": 16793984,
+				"is_charging_arc": false,
+				"elec_arc_type": 0,
+				"vt": 0,
+				"enable_vt": 0,
+				"vt_display": "",
+				"playback_position": 0,
+				"is_self_view": false
+			}, {
+				"comment": 0,
+				"typeid": 197,
+				"play": 8506,
+				"pic": "https://archive.biliimg.com/bfs/archive/489f3df26a190a152ad479bfe50a73f1cd4c43c5.jpg",
+				"subtitle": "",
+				"description": "8节课，Tim和青青带你用iPhone拍出电影感",
+				"copyright": "1",
+				"title": "【影视飓风】只看8节课，用iPhone拍出电影感",
+				"review": 0,
+				"author": "影视飓风",
+				"mid": 946974,
+				"created": 1744865737,
+				"length": "00:00",
+				"video_review": 9,
+				"aid": 114351440726681,
+				"bvid": "BV1WB5ezxEnz",
+				"hide_click": false,
+				"is_pay": 0,
+				"is_union_video": 0,
+				"is_steins_gate": 0,
+				"is_live_playback": 0,
+				"is_lesson_video": 1,
+				"is_lesson_finished": 1,
+				"lesson_update_info": "8",
+				"jump_url": "https://www.bilibili.com/cheese/play/ss190402215",
+				"meta": {
+					"id": 190402215,
+					"title": "【影视飓风】只看8节课，用iPhone拍出电影感",
+					"cover": "https://archive.biliimg.com/bfs/archive/489f3df26a190a152ad479bfe50a73f1cd4c43c5.jpg",
+					"mid": 0,
+					"intro": "",
+					"sign_state": 0,
+					"attribute": 0,
+					"stat": {
+						"season_id": 190402215,
+						"view": 1111222,
+						"danmaku": 1853,
+						"reply": 0,
+						"favorite": 0,
+						"coin": 0,
+						"share": 0,
+						"like": 0,
+						"mtime": 0,
+						"vt": 0,
+						"vv": 0
+					},
+					"ep_count": 0,
+					"ptime": 1744865737,
+					"ep_num": 0
+				},
+				"is_avoided": 0,
+				"season_id": 190402215,
+				"attribute": 1073758592,
+				"is_charging_arc": false,
+				"elec_arc_type": 0,
+				"vt": 0,
+				"enable_vt": 0,
+				"vt_display": "",
+				"playback_position": 0,
+				"is_self_view": false
+			}]
+		},
+		"page": {
+			"pn": 1,
+			"ps": 42,
+			"count": 786
+		},
+		"episodic_button": {
+			"text": "播放全部",
+			"uri": "//www.bilibili.com/medialist/play/946974?from=space"
+		},
+		"is_risk": false,
+		"gaia_res_type": 0,
+		"gaia_data": null
+	}
 }
 ```
 
 </details>
+
+
+### 查询用户投稿明细（APP、无需wbi鉴权）
+
+> https://app.biliapi.com/x/v2/space/archive/cursor
+
+*请求方式：GET*
+
+可以获取APP端可获得的用户空间投稿所有信息
+
+APP端请求对web端包容度最高，无需Cookie以外的任何认证，只需填写vmid即可查询
+
+认证方式：Cookie 或 APP
+
+**url参数：**
+
+| 参数名        | 类型 | 内容                     | 必要性          | 备注          |
+| ------------- | ---- | ----------------------- | -------------- | ------------- |
+| vmid          | num  | 目标用户mid             | 必要            |               |
+| aid           | num  | 请求返回起始视频         | 首次请求不需要   | 填写上次请求返回最后视频的aid  |
+| order         | str  | 排序方式                | 非必要          | `click`代表最多播放，`pubdate`代表最新发布 |
+| sort          | str  | 确有影响，但这是什么呢？  | 非必要          | 创建时间: asc<br />修改时间: desc |
+| access_key    | str  | APP登录Token            | APP方式必要     |               |
+| appkey        | str  | APP密钥                 | APP方式必要     |               |
+| build         | num  | 版本                    | APP方式必要     | 可为`8130300` |
+| c_locale      | str  | 语言                    | 非必要          | zh_CN         |
+| channel       | num  | 频道                    | 非必要          |               |
+| fnval         | num  | 视频流类型               | 非必要          |               |
+| fnver         | num  | 请求时提供的fnver        | 非必要          | 可为 0         |
+| force_host    | num  | 源url类型               | 非必要           |  0:无限制 1:使用http 2:使用https    |
+| fourk         | num  | 是否允许 4K 视频         | 非必要          | 画质最高 1080P：0（默认）<br />画质最高 4K：1    |
+| include_cursor| bool | 未知                    | 非必要          | 可为false      |
+| mobi_app      | str  | 平台标识                | 非必要          | 可为 `web`、`android` 等 |
+| platform      | str  | 平台                    | 非必要          | 可为`web`     |
+| ps            | int  | 每页条数                | 非必要          | 默认为 `20`    |
+| pn            | int  | 似乎不是页码             | 非必要          | 默认为 `32`    |
+| pn_policy     | int  | 未知                    | 非必要          | 可为 `1`       |
+| s_locale      | str  | 语言                    | 非必要          | zh_CN          |
+| statistics    | str  | 位置                    | 非必要           | 可为{"appId":1,"platform":3,"version":"8.13.0","abtest":""} |
+| ts            | num  | 秒级时间戳               | 非必要          |               |
+| voice_balance | num  | 未知                     | 非必要          |  默认为 `1`   |
+| sign          | str  | APP签名                  | APP方式必要     |               |
+
+**json回复：**
+
+| 字段    | 类型  | 内容     | 备注                          |
+| ------- | ---- | -------- | ---------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误    |
+| message | str  | 错误信息 | 默认为0                       |
+| ttl     | num  | 1       |                               |
+| data    | obj  | 视频信息 |                               |
+
+`data`对象：
+
+| 字段                  | 类型    | 内容          | 备注                          |
+| --------------------- | ------ | ------------- | ----------------------------- |
+| count                 | num    | 总数           | 0：成功<br />-400：请求错误    |
+| episodic_button       | obj    | 播放按钮       | 播放按钮的显示文字与跳转链接    |
+| has_next              | bool   | 有无后续       | true：有；false：没有          |
+| has_prev              | bool   | 有无前置       | true：有；false：没有          |
+| item                  | array  | 视频列表       | 注意是item没有复数             |
+| last_watched_locator  | obj    | 上次播放定位   | 上次播放定位的一些信息          |
+| order                 | array  | 排列方式       | 排列方式的显示与值             |
+
+`episodic_button`对象
+
+| 字段  | 类型    | 内容              | 备注    |
+| ----- | ------ | ----------------- | ------ |
+| text  | str    | 四个大字“播放全部” |         |
+| uri   | str    | 跳转链接           |        |
+
+`item`数组：
+
+| 项   | 类型 | 内容          | 备注 |
+| ---- | ---- | ------------ | ---- |
+| 0    | obj  | 视频信息1     |      |
+| n    | obj  | 视频信息(n+1) |      |
+| ……   | obj  | ……           | ……   |
+
+`item`数组元素：
+
+| 参数名            | 类型   | 内容                     | 备注                      |
+| ----------------- | ----- | ----------------------- | ------------------------ |
+| author            | str   | 作者昵称                |                           |
+| bvid              | str   | 视频bv号                |                           |
+| cover             | str   | 封面url                 |                           |
+| cover_icon        | str   | 封面icon？未知           |                           |
+| ctime             | num   | 应该是发布时间秒级时间戳  |                           |
+| cursor_attr       | obj   | 上次观看标记             |                           |
+| danmaku           | num   | 弹幕数                  |                            |
+| duration          | num   | 视频时长                |                            |
+| first_cid         | num   | 首个频道cid             |                            |
+| goto              | str   | 应该是跳转去向类型       | 已知av为视频                |
+| icon_type         | num   | icon类型？未知          |                            |
+| is_cooperation    | bool  | 是否为合作视频           | 如果true会有粉色合作视频标签 |
+| is_fold           | bool  | 是否折叠？未知           |                            |
+| is_live_playback  | bool  | 是否为直播回放           | 如果true会有粉色直播回放标签 |
+| is_onself         | bool  | 是否自己？未知           |                            |
+| is_pgc            | bool  | 是否开pgc               |                            |
+| is_popular        | bool  | 是否上热门              | 如果true会有热门标签         |
+| is_pugv           | bool  | 未知                    |                            |
+| is_steins         | bool  | 未知                    |                            |
+| is_ugcpay         | bool  | 未知                    |                            |
+| length            | num   | 长度？未知              |                            |
+| param             | str   | 参数，实际为视频aid      |                            |
+| play              | num   | 播放量                  |                            |
+| publish_time_text | str   | 发布时间汉字字符串版     |                            |
+| state             | bool  | 状态？未知               |                            |
+| subtitle          | str   | 子标题                  |                            |
+| three_points      | array | 三点按钮内容             | 关于稍后再看和分享的显示内容 |
+| title             | str   | 标题                    |                            |
+| tname             | str   | tag的name               |                            |
+| ugc_pay           | num   | ugc支付？未知            |                            |
+| uri               | str   | APP 跳转 uri            |                            |
+| video             | num   | 未知                    |                            |
+| view_content      | str   | 播放量字符串版           |                            |
+
+`item`元素中的`cursor_attr`对象：
+
+| 参数名              | 类型 | 内容                     | 备注                                    |
+| ------------------- | ---- | ----------------------- | -------------------------------------- |
+| is_last_watched_arc | bool | 是否为上次播放           | 如果ture则封面笼罩一层写有“上次播放”的灰幕 |
+| rank                | num  | 视频所处该列表排名       |                                         |
+
+`last_watched_locator`对象：
+
+| 字段               | 类型   | 内容              | 备注    |
+| ------------------ | ----- | ----------------- | ------ |
+| display_threshold  | num   | 显示阈值          |         |
+| insert_ranking     | num   | 嵌入排名          |         |
+| text               | str   | 定位上次观看字样   |         |
+
+`order`数组：
+
+| 项   | 类型 | 内容          | 备注              |
+| ---- | ---- | ------------ | ----------------- |
+| 0    | obj  | 最新发布的内容 | 内包括文字和值    |
+| 1    | obj  | 最多播放的内容 | 内包括文字和值    |
+
+**示例：**
+
+查询用户mid=1240283469的稿件
+以播放量排序，显示3个稿件，但假设aid=1301087872及以前稿件已经加载过
+
+> https://app.biliapi.com/x/v2/space/archive/cursor?vmid=1240283469&order=click&ps=3&aid=1301087872
+输入浏览器
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "episodic_button": {
+            "text": "播放全部",
+            "uri": "bilibili://music/playlist/spacepage/1240283469?desc=1\u0026offset=0\u0026oid=0\u0026order=time\u0026page_type=1\u0026playlist_intro=UP%E4%B8%BB%E7%9A%84%E5%85%A8%E9%83%A8%E8%A7%86%E9%A2%91\u0026ps=20\u0026sort_field=2\u0026sort_hidden=1\u0026total_count=33\u0026user_name=%E7%A5%9E%E5%9D%A1%E5%86%9C%E8%8E%AB"
+        },
+        "order": [
+            {
+                "title": "最新发布",
+                "value": "pubdate"
+            },
+            {
+                "title": "最多播放",
+                "value": "click"
+            }
+        ],
+        "count": 33,
+        "item": [
+            {
+                "title": "【神坡农二】后半段更是天籁！汉堡仙人神坡农二吃完快餐深情演唱《樱花树下的约定》",
+                "subtitle": "",
+                "tname": "搞笑",
+                "cover": "http://i2.hdslb.com/bfs/archive/3e5d02f50b2e0a756cc5e3dd7f705abc58c3a439.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/1351875564?history_progress=0\u0026player_height=1920\u0026player_rotate=0\u0026player_width=1080",
+                "param": "1351875564",
+                "goto": "av",
+                "length": "",
+                "duration": 45,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "is_oneself": false,
+                "play": 1248,
+                "danmaku": 1,
+                "ctime": 1710518403,
+                "ugc_pay": 0,
+                "author": "神坡农莫",
+                "state": false,
+                "bvid": "BV1H6421w7Gy",
+                "videos": 1,
+                "three_point": [
+                    {
+                        "type": "addtoview",
+                        "icon": "https://i0.hdslb.com/bfs/app/25cc01346574a601dafd45c94226d92a67eed79a.png",
+                        "text": "添加至稍后再看"
+                    },
+                    {
+                        "type": "share",
+                        "icon": "https://i0.hdslb.com/bfs/app/a5787f586c72f2d6f6ade4b33c64908938c4a01f.png",
+                        "text": "分享",
+                        "share_succ_toast": "分享成功",
+                        "share_fail_toast": "分享失败",
+                        "share_path": "pages/video/video?avid=1351875564",
+                        "short_link": "https://b23.tv/BV1H6421w7Gy"
+                    }
+                ],
+                "first_cid": 1471110689,
+                "cursor_attr": {
+                    "is_last_watched_arc": false,
+                    "rank": 1
+                },
+                "view_content": "1248",
+                "icon_type": 0,
+                "publish_time_text": "3月16日"
+            },
+            {
+                "title": "【迪迦奥特曼】亲自配音？迪迦超战神联合网络新星神坡农二！共同打造奥特曼大电影！",
+                "subtitle": "",
+                "tname": "搞笑",
+                "cover": "http://i0.hdslb.com/bfs/archive/c6c94d16aeeefca148c1694e45fd352b22cac3fb.jpg",
+                "cover_icon": "",
+                "uri": "bilibili://video/1950389780?history_progress=0\u0026player_height=1080\u0026player_rotate=0\u0026player_width=1920",
+                "param": "1950389780",
+                "goto": "av",
+                "length": "",
+                "duration": 101,
+                "is_popular": false,
+                "is_steins": false,
+                "is_ugcpay": false,
+                "is_cooperation": false,
+                "is_pgc": false,
+                "is_live_playback": false,
+                "is_pugv": false,
+                "is_fold": false,
+                "is_oneself": false,
+                "play": 1184,
+                "danmaku": 0,
+                "ctime": 1707431804,
+                "ugc_pay": 0,
+                "author": "神坡农莫",
+                "state": false,
+                "bvid": "BV1fC411x7uf",
+                "videos": 1,
+                "three_point": [
+                    {
+                        "type": "addtoview",
+                        "icon": "https://i0.hdslb.com/bfs/app/25cc01346574a601dafd45c94226d92a67eed79a.png",
+                        "text": "添加至稍后再看"
+                    },
+                    {
+                        "type": "share",
+                        "icon": "https://i0.hdslb.com/bfs/app/a5787f586c72f2d6f6ade4b33c64908938c4a01f.png",
+                        "text": "分享",
+                        "share_succ_toast": "分享成功",
+                        "share_fail_toast": "分享失败",
+                        "share_path": "pages/video/video?avid=1950389780",
+                        "short_link": "https://b23.tv/BV1fC411x7uf"
+                    }
+                ],
+                "first_cid": 1434820367,
+                "cursor_attr": {
+                    "is_last_watched_arc": false,
+                    "rank": 2
+                },
+                "view_content": "1184",
+                "icon_type": 0,
+                "publish_time_text": "2月9日"
+            }
+        ],
+        "last_watched_locator": {
+            "display_threshold": 10,
+            "insert_ranking": 6,
+            "text": "定位至上次观看"
+        },
+        "has_next": true,
+        "has_prev": true
+    }
+}
+
+```
+
+</details>
+
 
 ### 查询用户投稿相簿预览
 

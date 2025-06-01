@@ -20,7 +20,7 @@
 
 ```json
 {
-    "content": "Hello"
+  "content": "Hello"
 }
 ```
 
@@ -28,7 +28,7 @@
 
 在发送私信时，请确保下面的对象合法且 `url` 项的值为 B 站的图床 url，否则会报 21037 `图片格式不合法，不要调戏接口啦` 错误
 
-建议设置 `height` 与 `width` 属性，否则可能会导致消息显示异常
+建议设置 `height` 与 `width` 属性为图片的尺寸，否则可能会导致消息显示异常
 
 根对象：
 
@@ -47,12 +47,12 @@
 
 ```json
 {
-    "url": "https://message.biliimg.com/bfs/im_new/c161fdf51d901c1607a15e30f10116dd425503913.jpg",
-    "height": 300,
-    "width": 300,
-    "imageType": "jpeg",
-    "original": 1,
-    "size": 55.443
+  "url": "https://message.biliimg.com/bfs/im_new/c161fdf51d901c1607a15e30f10116dd425503913.jpg",
+  "height": 300,
+  "width": 300,
+  "imageType": "jpeg",
+  "original": 1,
+  "size": 55.443
 }
 ```
 
@@ -100,13 +100,13 @@
 
 ```json
 {
-    "author": "社会易姐QwQ",
-    "headline": "",
-    "id": 246551172,
-    "source": 5,
-    "thumb": "http://i2.hdslb.com/bfs/archive/14ba78056f946ece8c954a10677ef6b073edb178.jpg",
-    "title": "合 成 大 東 瓜",
-    "bvid": "BV16v411e7CW"
+  "author": "社会易姐QwQ",
+  "headline": "",
+  "id": 246551172,
+  "source": 5,
+  "thumb": "http://i2.hdslb.com/bfs/archive/14ba78056f946ece8c954a10677ef6b073edb178.jpg",
+  "title": "合 成 大 東 瓜",
+  "bvid": "BV16v411e7CW"
 }
 ```
 
@@ -150,14 +150,14 @@
 
 ```json
 {
-    "avatar": "http://i0.hdslb.com/bfs/mall/mall/7b/dd/7bdd072290de017593791b52e937ca29.png",
-    "cover": "http://i0.hdslb.com/bfs/mall/mall/7b/dd/7bdd072290de017593791b52e937ca29.png",
-    "id": "bili91e3e7e93af281f9",
-    "jump_uri": "https://mall.bilibili.com/miniapp/bili91e3e7e93af281f9/pages/main?___timestamp=1689526821040&_biliFrom=about_bili_message&share_medium=android&share_source=bili_message&bbid=XU8CE838022AF6625C64B2153A3EF1E571AFF&ts=1689526821048",
-    "label_cover": "https://i0.hdslb.com/bfs/mall/mall/ae/0e/ae0ee4a857df5e307e1d04b5d420cb5b.png",
-    "label_name": "小程序",
-    "name": "主站测试专用小程序",
-    "title": "主站测试专用小程序"
+  "avatar": "http://i0.hdslb.com/bfs/mall/mall/7b/dd/7bdd072290de017593791b52e937ca29.png",
+  "cover": "http://i0.hdslb.com/bfs/mall/mall/7b/dd/7bdd072290de017593791b52e937ca29.png",
+  "id": "bili91e3e7e93af281f9",
+  "jump_uri": "https://mall.bilibili.com/miniapp/bili91e3e7e93af281f9/pages/main?___timestamp=1689526821040&_biliFrom=about_bili_message&share_medium=android&share_source=bili_message&bbid=XU8CE838022AF6625C64B2153A3EF1E571AFF&ts=1689526821048",
+  "label_cover": "https://i0.hdslb.com/bfs/mall/mall/ae/0e/ae0ee4a857df5e307e1d04b5d420cb5b.png",
+  "label_name": "小程序",
+  "name": "主站测试专用小程序",
+  "title": "主站测试专用小程序"
 }
 ```
 
@@ -167,8 +167,8 @@
 
 **按钮显示逻辑说明：**
 
-- **按钮的url：**首先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中表示当前设备类型的 url（如 `web_uri`、`android_uri` 等）；若为空值，则尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `all_uri` 的值；若仍为空值，则读取根对象中 `jump_uri`、`jump_uri_2`、`jump_uri_3` 的值；若仍为空值，则不显示该按钮（无论提示文字是否为空）
-- **按钮提示文字：**若按钮是可见的，则先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `text` 的值；若为空值，则读取根对象中 `jump_text`、`jump_text_2`、`jump_text_3` 的值；若仍为空值，则提示文字为 `查看详情`
+- **按钮的url**：首先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中表示当前设备类型的 url（如 `web_uri`、`android_uri` 等）；若为空值，则尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `all_uri` 的值；若仍为空值，则读取根对象中 `jump_uri`、`jump_uri_2`、`jump_uri_3` 的值；若仍为空值，则不显示该按钮（无论提示文字是否为空）
+- **按钮提示文字**：若按钮是可见的，则先尝试读取 `jump_uri_config`、`jump_uri_2_config`、`jump_uri_3_config` 对象中 `text` 的值；若为空值，则读取根对象中 `jump_text`、`jump_text_2`、`jump_text_3` 的值；若仍为空值，则提示文字为 `查看详情`
 
 根对象：
 
@@ -176,12 +176,12 @@
 | ----------------- | ----- | ------------- | ------------------------- |
 | title             | str   | 通知标题      |                           |
 | text              | str   | 通知内容      |                           |
-| jump_text         | str   | 按钮1提示文字 | 若按钮1不存在则为空；若按钮1存在此项也可能为空，此时前端显示文字为 `查看详情` |
+| jump_text         | str   | 按钮1提示文字 | 若按钮1不存在则为空；若按钮1存在，此项也可能为空，此时前端显示文字为 `查看详情` |
 | jump_uri          | str   | 按钮1跳转链接 | 若按钮1不存在则为空           |
 | modules           | 有效时：array<br />无效时：null | 详细信息      |                           |
-| jump_text_2       | str   | 按钮2提示文字 | 若按钮2不存在则为空；若按钮2存在此项也可能为空，此时前端显示文字为 `查看详情` |
+| jump_text_2       | str   | 按钮2提示文字 | 若按钮2不存在则为空；若按钮2存在，此项也可能为空，此时前端显示文字为 `查看详情` |
 | jump_uri_2        | str   | 按钮2跳转链接 | 若按钮2不存在则为空           |
-| jump_text_3       | str   | 按钮3提示文字 | 若按钮3不存在则为空；若按钮3存在此项也可能为空，此时前端显示文字为 `查看详情` |
+| jump_text_3       | str   | 按钮3提示文字 | 若按钮3不存在则为空；若按钮3存在，此项也可能为空，此时前端显示文字为 `查看详情` |
 | jump_uri_3        | str   | 按钮3跳转链接 | 若按钮3不存在则为空           |
 | notifier          | 有效时：obj<br />无效时：null | 发送者信息    |                           |
 | jump_uri_config   | obj   | 按钮1配置     |                           |
@@ -241,44 +241,44 @@
 
 ```json
 {
-    "title": "直播开始提醒",
-    "text": "你预约的直播已开始，快来围观吧~",
-    "jump_text": "进入直播间",
-    "jump_uri": "https://live.bilibili.com/22747055?broadcast_type=0&is_room_feed=1&live_from=27040",
-    "modules": [{
-        "title": "预约主题",
-        "detail": "2024哔哩哔哩拜年纪"
-    }, {
-        "title": "开播时间",
-        "detail": "2024-02-09 19:32"
-    }, {
-        "title": "UP主",
-        "detail": "哔哩哔哩拜年纪"
-    }],
-    "jump_text_2": "",
-    "jump_uri_2": "",
-    "jump_text_3": "",
-    "jump_uri_3": "",
-    "notifier": null,
-    "jump_uri_config": {
-        "all_uri": "https://live.bilibili.com/22747055?broadcast_type=0&is_room_feed=1&live_from=27040",
-        "text": "进入直播间"
-    },
-    "jump_uri_2_config": {
-        "text": ""
-    },
-    "jump_uri_3_config": {
-        "text": ""
-    },
-    "biz_content": {
-        "cover": "",
-        "backup_cover": "http://i0.hdslb.com/bfs/live/new_room_cover/bdae2665883ec8aa4e79aca16f3c5ee2df1da64f.jpg",
-        "refresh_type": 1,
-        "biz_type": 2,
-        "biz_id1": "1868902080",
-        "biz_id2": "473923647994271663",
-        "biz_status": 0
-    }
+  "title": "直播开始提醒",
+  "text": "你预约的直播已开始，快来围观吧~",
+  "jump_text": "进入直播间",
+  "jump_uri": "https://live.bilibili.com/22747055?broadcast_type=0&is_room_feed=1&live_from=27040",
+  "modules": [{
+    "title": "预约主题",
+    "detail": "2024哔哩哔哩拜年纪"
+  }, {
+    "title": "开播时间",
+    "detail": "2024-02-09 19:32"
+  }, {
+    "title": "UP主",
+    "detail": "哔哩哔哩拜年纪"
+  }],
+  "jump_text_2": "",
+  "jump_uri_2": "",
+  "jump_text_3": "",
+  "jump_uri_3": "",
+  "notifier": null,
+  "jump_uri_config": {
+    "all_uri": "https://live.bilibili.com/22747055?broadcast_type=0&is_room_feed=1&live_from=27040",
+    "text": "进入直播间"
+  },
+  "jump_uri_2_config": {
+    "text": ""
+  },
+  "jump_uri_3_config": {
+    "text": ""
+  },
+  "biz_content": {
+    "cover": "",
+    "backup_cover": "http://i0.hdslb.com/bfs/live/new_room_cover/bdae2665883ec8aa4e79aca16f3c5ee2df1da64f.jpg",
+    "refresh_type": 1,
+    "biz_type": 2,
+    "biz_id1": "1868902080",
+    "biz_id2": "473923647994271663",
+    "biz_status": 0
+  }
 }
 ```
 
@@ -315,17 +315,17 @@
 
 ```json
 {
-    "title": "【2023嵌入式大赛】浅浅测试一下龙芯开发板",
-    "times": 308,
-    "cover": "http://i2.hdslb.com/bfs/archive/880c937de9af758451aa94ee29771e0264c1903a.jpg",
-    "rid": 740817783,
-    "type_": 8,
-    "desc": "最近把龙芯开发板部分（任务一）程序完成了，时间非常紧迫，就不知道为啥突然给省赛加个（本来国赛的题\n从硬件焊接开始，到软件整完不过5天啊喂，肝疼，过几天比赛完发硬件制作过程\n硬件使用龙芯一号（LS1B010）SOC，软件使用 C 语言+FreeRTOS+VSCode 开发",
-    "bvid": "BV1Dk4y1E7MZ",
-    "view": 13492,
-    "danmaku": 5,
-    "pub_date": 1683381582,
-    "attach_msg": null
+  "title": "【2023嵌入式大赛】浅浅测试一下龙芯开发板",
+  "times": 308,
+  "cover": "http://i2.hdslb.com/bfs/archive/880c937de9af758451aa94ee29771e0264c1903a.jpg",
+  "rid": 740817783,
+  "type_": 8,
+  "desc": "最近把龙芯开发板部分（任务一）程序完成了，时间非常紧迫，就不知道为啥突然给省赛加个（本来国赛的题\n从硬件焊接开始，到软件整完不过5天啊喂，肝疼，过几天比赛完发硬件制作过程\n硬件使用龙芯一号（LS1B010）SOC，软件使用 C 语言+FreeRTOS+VSCode 开发",
+  "bvid": "BV1Dk4y1E7MZ",
+  "view": 13492,
+  "danmaku": 5,
+  "pub_date": 1683381582,
+  "attach_msg": null
 }
 ```
 
@@ -370,19 +370,19 @@
 
 ```json
 {
-    "rid": 18275013,
-    "title": "【单片机】遛弯捕捉到野生U盾，点亮它！",
-    "summary": "前一阵在学校那会，偶然的机会晚上饭后出去遛弯，在路边看到个被抛弃的 U盾，这么一想应该是附近拆迁搬东西时丢出去的，随即捕捉它。作为一个啥都折腾的捡垃圾技术宅肯定要去研究一波（笑是个建行的 U盾，按键部分还有点老灰，屏幕的尺寸盲猜 128x64，不可能再大了背面除了序列号没有别的东西，顶部有个盖子，像极了上古时期的 U盘插上充电宝可以正常点亮，至少屏没坏拆解&分析电路直接开拆，用刀片沿着四周缝隙插入并挑开卡扣内部结构挺简单，只有两颗较大的芯片，屏幕的 FPC 排线直接焊接在 PCB 上中间的这颗是",
-    "author": "社会易姐QwQ",
-    "view": 872,
-    "like": 38,
-    "reply": 7,
-    "template_id": 4,
-    "image_urls": [
-        "https://i0.hdslb.com/bfs/article/c7c60e018c43c5c3a6e1520239021ea2753b2880.jpg"
-    ],
-    "attach_msg": null,
-    "pub_date": 1661358081
+  "rid": 18275013,
+  "title": "【单片机】遛弯捕捉到野生U盾，点亮它！",
+  "summary": "前一阵在学校那会，偶然的机会晚上饭后出去遛弯，在路边看到个被抛弃的 U盾，这么一想应该是附近拆迁搬东西时丢出去的，随即捕捉它。作为一个啥都折腾的捡垃圾技术宅肯定要去研究一波（笑是个建行的 U盾，按键部分还有点老灰，屏幕的尺寸盲猜 128x64，不可能再大了背面除了序列号没有别的东西，顶部有个盖子，像极了上古时期的 U盘插上充电宝可以正常点亮，至少屏没坏拆解&分析电路直接开拆，用刀片沿着四周缝隙插入并挑开卡扣内部结构挺简单，只有两颗较大的芯片，屏幕的 FPC 排线直接焊接在 PCB 上中间的这颗是",
+  "author": "社会易姐QwQ",
+  "view": 872,
+  "like": 38,
+  "reply": 7,
+  "template_id": 4,
+  "image_urls": [
+    "https://i0.hdslb.com/bfs/article/c7c60e018c43c5c3a6e1520239021ea2753b2880.jpg"
+  ],
+  "attach_msg": null,
+  "pub_date": 1661358081
 }
 ```
 
@@ -402,9 +402,9 @@
 
 ```json
 {
-    "pic_url": "http://i0.hdslb.com/bfs/location/9e57aff7245c226c05ba46ddd1e82667f74d5a06.png",
-    "jump_url": "https://www.bilibili.com/h5/mall/suit/detail?navhide=1&id=66359&from=Banner",
-    "title": "原神，启动！"
+  "pic_url": "http://i0.hdslb.com/bfs/location/9e57aff7245c226c05ba46ddd1e82667f74d5a06.png",
+  "jump_url": "https://www.bilibili.com/h5/mall/suit/detail?navhide=1&id=66359&from=Banner",
+  "title": "原神，启动！"
 }
 ```
 
@@ -429,12 +429,12 @@
 
 ```json
 {
-    "author": "哔哩哔哩晚会",
-    "cover": "https://i1.hdslb.com/bfs/face/1b593d28fcd0cf63837c3ea80ac96d01bb85ec3b.jpg",
-    "desc": "主播：哔哩哔哩晚会 https://live.bilibili.com/21738461",
-    "source": "直播",
-    "title": "2023最美的夜 bilibili晚会",
-    "url": "https://live.bilibili.com/21738461?broadcast_type=0&is_room_feed=1&live_from=41000&share_medium=android&share_source=bili_message&bbid=XU8CE838022AF6625C64B2153A3EF1E571AFF&ts=1704038936971"
+  "author": "哔哩哔哩晚会",
+  "cover": "https://i1.hdslb.com/bfs/face/1b593d28fcd0cf63837c3ea80ac96d01bb85ec3b.jpg",
+  "desc": "主播：哔哩哔哩晚会 https://live.bilibili.com/21738461",
+  "source": "直播",
+  "title": "2023最美的夜 bilibili晚会",
+  "url": "https://live.bilibili.com/21738461?broadcast_type=0&is_room_feed=1&live_from=41000&share_medium=android&share_source=bili_message&bbid=XU8CE838022AF6625C64B2153A3EF1E571AFF&ts=1704038936971"
 }
 ```
 
@@ -477,42 +477,42 @@
 
 ```json
 {
-    "main_title": "更多宝藏内容",
-    "reply_content": "感谢大佬关注哦～[doge][脱单doge][doge]\n这里是科技区底边小UP，日常瞎折腾，软硬件电路程序网络服务器都折腾，视频月更风格硬核略小众，咕咕咕.....\n老大二了，就不中二了\n有什么好的建议欢迎私信",
-    "sub_cards": [{
-        "card_id": 379743801,
-        "card_type": 1,
-        "jump_url": "https://b23.tv/BV1hZ4y197Cz",
-        "cover_url": "http://i2.hdslb.com/bfs/archive/bfb87f033272926efe6ff4caee8e6c49c07ff6fe.jpg",
-        "field1": "【宿舍评测】性能与便携两全 华为matebook E 2022深度体验及伪开箱",
-        "field2": "2021-12-10",
-        "field3": "20万",
-        "icon3": 1,
-        "field4": "479",
-        "icon4": 3
-    }, {
-        "card_id": 768716232,
-        "card_type": 1,
-        "jump_url": "https://b23.tv/BV13r4y187R8",
-        "cover_url": "http://i1.hdslb.com/bfs/archive/bb1d41ef0c17c2df25c8b6ef98f01466bdee0c1f.jpg",
-        "field1": "【BadApple】使用古董示波器Aron BS-601播放BadApple!!!",
-        "field2": "2022-05-03",
-        "field3": "15万",
-        "icon3": 1,
-        "field4": "297",
-        "icon4": 3
-    }, {
-        "card_id": 524989935,
-        "card_type": 1,
-        "jump_url": "https://b23.tv/BV17M411E7Kq",
-        "cover_url": "http://i1.hdslb.com/bfs/archive/17335854dfad9d7990943d8cc6dc07c85912b103.jpg",
-        "field1": "【拆解】华为 Matebook E 更换固态硬盘：从未见过如此好拆的二合一",
-        "field2": "2023-02-24",
-        "field3": "5万",
-        "icon3": 1,
-        "field4": "102",
-        "icon4": 3
-    }]
+  "main_title": "更多宝藏内容",
+  "reply_content": "感谢大佬关注哦～[doge][脱单doge][doge]\n这里是科技区底边小UP，日常瞎折腾，软硬件电路程序网络服务器都折腾，视频月更风格硬核略小众，咕咕咕.....\n老大二了，就不中二了\n有什么好的建议欢迎私信",
+  "sub_cards": [{
+    "card_id": 379743801,
+    "card_type": 1,
+    "jump_url": "https://b23.tv/BV1hZ4y197Cz",
+    "cover_url": "http://i2.hdslb.com/bfs/archive/bfb87f033272926efe6ff4caee8e6c49c07ff6fe.jpg",
+    "field1": "【宿舍评测】性能与便携两全 华为matebook E 2022深度体验及伪开箱",
+    "field2": "2021-12-10",
+    "field3": "20万",
+    "icon3": 1,
+    "field4": "479",
+    "icon4": 3
+  }, {
+    "card_id": 768716232,
+    "card_type": 1,
+    "jump_url": "https://b23.tv/BV13r4y187R8",
+    "cover_url": "http://i1.hdslb.com/bfs/archive/bb1d41ef0c17c2df25c8b6ef98f01466bdee0c1f.jpg",
+    "field1": "【BadApple】使用古董示波器Aron BS-601播放BadApple!!!",
+    "field2": "2022-05-03",
+    "field3": "15万",
+    "icon3": 1,
+    "field4": "297",
+    "icon4": 3
+  }, {
+    "card_id": 524989935,
+    "card_type": 1,
+    "jump_url": "https://b23.tv/BV17M411E7Kq",
+    "cover_url": "http://i1.hdslb.com/bfs/archive/17335854dfad9d7990943d8cc6dc07c85912b103.jpg",
+    "field1": "【拆解】华为 Matebook E 更换固态硬盘：从未见过如此好拆的二合一",
+    "field2": "2023-02-24",
+    "field3": "5万",
+    "icon3": 1,
+    "field4": "102",
+    "icon4": 3
+  }]
 }
 ```
 
@@ -522,8 +522,8 @@
 
 根对象：
 
-| 字段    | 类型 | 内容     | 备注                   |
-| ------- | ---- | -------- | ---------------------- |
+| 字段    | 类型 | 内容     | 备注                       |
+| ------- | ---- | -------- | -------------------------- |
 | content | str  | 提示列表 | **经过序列化后**的JSON数组 |
 
 `content`文本经JSON解析后的数组：
@@ -549,7 +549,7 @@
 
 ```json
 {
-    "content": "[{\"text\":\"对方主动回复或关注你前，最多发送1条消息\",\"color_day\":\"#9499A0\",\"color_nig\":\"#9499A0\"}]"
+  "content": "[{\"text\":\"对方主动回复或关注你前，最多发送1条消息\",\"color_day\":\"#9499A0\",\"color_nig\":\"#9499A0\"}]"
 }
 ```
 
@@ -601,10 +601,10 @@
 
 根对象：
 
-| 字段     | 类型 | 内容     | 备注 |
-| -------- | ---- | -------- | ---- |
-| group_id | num  | 粉丝团id |      |
-| content  | str  | 提示文字 |      |
+| 字段     | 类型 | 内容     | 备注       |
+| -------- | ---- | -------- | ---------- |
+| group_id | num  | 粉丝团id | （非必要） |
+| content  | str  | 提示文字 |            |
 
 **示例：**
 
@@ -612,8 +612,8 @@
 
 ```json
 {
-    "group_id": 221082140,
-    "content": "社会易姐QwQ的应援团开通啦 (>▽<)"
+  "group_id": 221082140,
+  "content": "社会易姐QwQ的应援团开通啦 (>▽<)"
 }
 ```
 
@@ -621,7 +621,7 @@
 
 ```json
 {
-    "group_id": 221082140,
-    "content": "欢迎wuziqian211入群"
+  "group_id": 221082140,
+  "content": "欢迎wuziqian211入群"
 }
 ```

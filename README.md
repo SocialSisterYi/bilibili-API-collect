@@ -92,9 +92,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [Web 端 Cookie 刷新](docs/login/cookie_refresh.md)
 - [ ] [消息中心](docs/message)
     - [ ] [通知类消息](docs/message/msg.md)
-    - [ ] [私信](docs/message/private_msg.md)
-        - [ ] [私信消息类型、内容说明](docs/message/private_msg_content.md)
-    - [ ] 设置
+    - [x] [私信](docs/message/private_msg.md)
+        - [x] [私信消息类型、内容说明](docs/message/private_msg_content.md)
+    - [x] [设置](docs/message/settings.md)
 - [ ] [用户](docs/user)
     - [x] [基本信息](docs/user/info.md)
     - [x] [状态数](docs/user/status_number.md)
@@ -155,10 +155,10 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [笔记操作](docs/note/action.md)
 - [ ] [专栏](docs/article)
     - [ ] [专栏分类](docs/article/category.md)
-    - [X] [基本信息](docs/article/info.md)
-    - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
-    - [X] [文集基本信息](docs/article/articles.md)
-    - [X] [删除](docs/article/delete.md)
+    - [x] [基本信息](docs/article/info.md)
+    - [x] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
+    - [x] [文集基本信息](docs/article/articles.md)
+    - [x] [删除](docs/article/delete.md)
 - [ ] [音频](docs/audio)
     - [x] [歌曲基本信息](docs/audio/info.md)
     - [ ] [歌单 & 音频收藏夹详细信息](docs/audio/music_list.md)
@@ -255,6 +255,8 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [直播间禁言相关](docs/live/silent_user_manage.md)
     - [ ] [关注UP直播情况](docs/live/follow_up_live.md)
     - [ ] [直播心跳上报](docs/live/report.md)
+    - [ ] [直播间弹幕](docs/live/danmaku.md)
+    - [ ] [直播流水](docs/live/live_bill.md)
 - [ ] [活动](docs/activity)
     - [ ] [活动列表](docs/activity/list.md)
     - [ ] [活动主题信息](docs/activity/info.md)
@@ -379,6 +381,7 @@ OR Aifadian：[https://afdian.com/@ShakaiAneE](https://afdian.com/@ShakaiAneE)
 - [CzJam/Bili_Realtime_Data](https://github.com/CzJam/Bili_Realtime_Data): Bilibili粉丝与视频实时数据统计
 - [kingwingfly/fav](https://github.com/kingwingfly/fav): 自动同步bili收藏夹、合集视频到本地的CLI工具（Rust实现，并提供一个文档测试完善的Rust风格的用于构建有状态爬虫的核心库）
 - [linyuye/Bilibili_crawler](https://github.com/linyuye/Bilibili_crawler): 基于bilibili懒加载api爬取b站动态，视频等评论区
+- [ouzexi/bilibili-hot-tags](https://github.com/ouzexi/bilibili-hot-tags): 一个B站热门视频标签检索统计小工具
 
 ### 其他
 
