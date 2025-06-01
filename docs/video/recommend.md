@@ -1143,6 +1143,202 @@ curl -G 'https://api.bilibili.com/x/web-interface/wbi/index/top/feed/rcmd' \
 
 </details>
 
+## 根据点击视频获取的短视频播放列表
+
+> https://app.bilibili.com/x/v2/feed/index/story
+
+*请求方式：GET*
+
+在APP端点击主页视频后发出的请求
+
+**url参数：**  
+
+| 参数名        | 类型  | 内容                    | 必要性          | 备注                                      |
+|---------------|------|-------------------------|----------------|------------------------------------------|
+| aid           | num  | 点击视频的aid            | 非必要         | 所点击视频的aid，会影响到后续视频内容       |
+| display_id    | num  | 视频列表页数             | 非必要          | 从1开始，第1页会得到比其他页多aid处所填视频 |
+| access_key    | str  | APP登录Token            | APP方式必要     |               |
+| ad_extra      | str  | 额外广告？               | 非必要         |               |
+| appkey        | str  | APP密钥                 | APP方式必要     |               |
+| auto_play     | num  | 自动播放                | 非必要          | 可为0         |
+| build         | num  | 版本                    | APP方式必要     | 可为`8130300` |
+| bvid          | str  | 视频的bv号              | 非必要          | 可为空，如果没有会导致返回不正常 |
+| c_locale      | str  | 语言                    | 非必要          | zh_CN         |
+| channel       | num  | 频道                    | 非必要          |               |
+| cid           | num  | 目标频道id              | 非必要          |               |
+| contain       | bool | 未知                    | 非必要          | 可为false      |
+| creative_id   | num  | 未知                    | 非必要          | 默认为 `0`     |
+| device_name   | str  | 设备名称                | 非必要          | 随意字符串都行  |
+| disable_rcmd  | num  | 未知                    | 非必要          | 默认为 `1`     |
+| epid          | num  | 未知                    | 非必要          | 默认为 `0`     |
+| feed_status   | num  | 未知                    | 非必要          | 默认为 `0`     |
+| fnval         | num  | 视频流类型               | 非必要          |               |
+| fnver         | num  | 请求时提供的fnver        | 非必要          | 可为 0         |
+| force_host    | num  | 源url类型               | 非必要           |  0:无限制 1:使用http 2:使用https    |
+| fourk         | num  | 是否允许 4K 视频         | 非必要          | 画质最高 1080P：0（默认）<br />画质最高 4K：1    |
+| from          | num  | 未知                    | 非必要           | 可为 `7`         |
+| from_spmid    | str  | 未知                    | 非必要           | tm.recommend.0.0 |
+| goto          | str  | 未知                    | 非必要           |              |
+| mobi_app      | str  | 平台标识                | 非必要           | 可为 `web`、`android` 等 |
+| network       | str  | 网络                    | 非必要          | 可为 `wifi`    |
+| ogv_style     | num  | 未知                    | 非必要          | 默认为 `0`     |
+| platform      | str  | 平台                    | 非必要          | 可为`web`或`android`     |
+| player_net    | num  | 未知                    | 非必要          | 默认为 `1`     |
+| pull          | num  | 未知                    | 非必要          | 默认为 `1`     |
+| pn            | num  | 似乎不是页码             | 非必要          | 默认为 `32`    |
+| request_from  | num  | 未知                    | 非必要          | 默认为 `0`     |
+| s_locale      | str  | 语言                    | 非必要          | zh_CN          |
+| spmid         | str  | 未知                    | 非必要           | main.ugc-video-detail-vertical.0.0 |
+| statistics    | str  | 位置                    | 非必要           | 可为{"appId":1,"platform":3,"version":"8.13.0","abtest":""} |
+| story_param   | str  | 未知                    | 非必要           |              |
+| trackid       | str  | 路径id？未知             | 非必要          |               |
+| ts            | num  | 秒级时间戳               | 非必要          |               |
+| video_mode    | num  | 视频模式？未知            | 非必要          | 可为 `2`，应该是可以逆向出来的    |
+| voice_balance | num  | 未知                     | 非必要          | 默认为 `1`    |
+| sign          | str  | APP签名                  | APP方式必要     |               |
+
+**json回复：**
+
+| 字段    | 类型  | 内容     | 备注                          |
+| ------- | ---- | -------- | ---------------------------- |
+| code    | num  | 返回值   | 0：成功<br />-400：请求错误    |
+| message | str  | 错误信息 | 默认为 0                      |
+| ttl     | num  | 1       |                               |
+| data    | obj  | 视频信息 |                               |
+
+`data`对象：
+
+| 字段    | 类型   | 内容     | 备注                          |
+| ------- | ----- | -------- | ---------------------------- |
+| config  | obj   | 配置     |                               |
+| items   | array | 视频信息  |                               |
+
+`items`数组：
+
+| 项   | 类型 | 内容          | 备注 |
+| ---- | ---- | ------------ | ---- |
+| 0    | obj  | 视频信息1     |      |
+| n    | obj  | 视频信息(n+1) |      |
+| ……   | obj  | ……           | ……   |
+
+`items`数组元素：
+
+| 字段                | 类型   | 内容                     | 备注                     |
+| ------------------- | ----- | ----------------------- | ------------------------ |
+| bvid                | str   | 视频bv号                 |                          |
+| card_goto           | str   | 卡片跳转                 |                          |
+| copyright           | num   | 版权                     |                          |
+| cover               | str   | 封面url                  |                          |
+| desc                | str   | 视频描述                 |                           |
+| dimension           | num   | 包括视频尺寸、旋转角度     |                          |
+| dislike_reasons_v2  | obj   | 不喜欢原因v2的各种显示     |                          |
+| dislike_reasons_v3  | obj   | 不喜欢原因v3的各种显示     |                          |
+| duration            | num   | 视频时长                  |                          |
+| ff_cover            | str   | 短视频封面原图            |                          |
+| goto                | str   | 应该是跳转去向类型        | 此处为vertical_av         |
+| owner               | obj   | 拥有者，也就是up信息      |                           |
+| param               | str   | 参数，实际为视频aid       |                           |
+| player_args         | obj   | 播放器参数               |                           |
+| pubdate             | num   | 发布时间秒级时间戳        |                           |
+| report_flow_data    | str   | 报告流数据               | 是个伪装成obj的str         |
+| req_user            | ?     | 未知                     | 空的                      |
+| rights              | obj   | 未知                     |                           |
+| share_bottom_button | obj   | 分享下方按钮              |                           |
+| share_guide         | obj   | 未知                     |                           |
+| short_link          | str   | 视频短链接                |                           |
+| show_report         | obj   | 显示举报                  |                           |
+| stat                | obj   | 视频信息                  |                           |
+| sub_title           | str   | 子标题                    | 但显示的是描述播放量的文字  |
+| submission_entrance | obj   | 提交入口                  | icon的uri                 |
+| three_point_button  | obj   | 三点按钮要显示的内容       | 里面有两个array            |
+| thumb_up_animation  | str   | 未知                      |                           |
+| title               | str   | 视频标题                  |                           |
+| top_search_bar      | obj   | 搜索栏                    | 内含一个跳转的uri          |
+| track_id            | str   | 路由track                 |                          |
+| uri                 | str   | uri                       |                          |
+| view_content        | str   | 用于显示的文本形式播放量    |                          |
+| vip                 | obj   | vip相关的信息              |                          |
+
+`owner`对象：
+
+| 字段                | 类型   | 内容                    | 备注                     |
+| ------------------- | ----- | ----------------------- | ------------------------ |
+| attention           | num   | 未知                    | 包含一个mid的int字段      |
+| avatar              | obj   | 一些显示设置             |                          |
+| face                | str   | 头像url                 |                          |
+| fans                | num   | 粉丝量                   |                          |
+| like_num            | num   | 获赞数                   |                           |
+| mid                 | num   | up主的mid                |                          |
+| name                | str   | up主的昵称               |                          |
+| official_verify     | obj   | 官方认证                 | type=-1为无认证，没有其他字段；type=0为黄闪电同时role=1，type=1为蓝闪电同时role大于1，且type不为-1时有字段title为称号 |
+| relation            | num   | 关系？未知               |                          |
+| sub_avatar          | obj   | 子形象                   | 包含一个mid的int字段      |
+| upower              | obj   | 充电相关                 | 包含一个button_uri字段类型为str，是充电跳转链接 |
+
+`player_args`对象：
+
+| 字段                | 类型   | 内容                    | 备注                     |
+| ------------------- | ----- | ----------------------- | ------------------------ |
+| aid                 | num   | 视频作者的aid            |                          |
+| cid                 | num   | 所属频道的cid            |                          |
+| type                | str   | 内容类型                 | 视频一般都是av            |
+
+`player_args`对象：
+
+| 字段                | 类型   | 内容                     | 备注                     |
+| ------------------- | ----- | ------------------------ | ------------------------ |
+| aid                 | num   | 视频作者的aid             |                          |
+| coin                | num   | 视频硬币数                |                          |
+| danmaku             | num   | 视频弹幕数                |                          |
+| favorite            | num   | 视频收藏数                |                          |
+| follow              | num   | 未知                      | 很多都是0                |
+| like                | num   | 视频点赞数                |                          |
+| reply               | num   | 视频评论与回复总数         |                          |
+| share               | num   | 视频分享数                |                          |
+| view                | num   | 视频播放                  |                          |
+
+**示例：**
+
+(1)模拟点击aid=113350747029965的视频并获取短视频推荐列表
+
+```python
+import json
+import requests
+
+mobile_headers = {
+    "User-Agent": "xxx",
+    "env": "prod",
+    "session_id": "xxx",        # 在实际使用中，session_id需要及时更新，否则将导致响应列表有问题
+    "APP-KEY": "android64",
+    'Buvid': "xxx"
+}
+
+story_url = "https://app.bilibili.com/x/v2/feed/index/story"
+
+story_params = {
+    "aid": 113350747029965,
+    "display_id": 1,
+    "appkey": "1d8b6e7d45233436",
+    "build": "8130300",
+    "bvid": "",
+    "mobi_app": "android",
+    "statistics": "{\"appId\":1,\"platform\":3,\"version\":\"8.13.0\",\"abtest\":\"\"}"
+}
+
+response = requests.get(story_url, params=story_params, headers=mobile_headers)
+
+print(json.dumps(response.json(), indent=4))
+```
+
+返回值内容过长，暂不予展示
+
+(2)随机的短视频推荐
+
+> https://app.bilibili.com/x/v2/feed/index/story
+
+浏览器直接输入
+
+返回值内容过长，暂不予展示
 
 ## 获取短视频模式视频列表
 
