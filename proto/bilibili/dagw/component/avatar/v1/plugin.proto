@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+package bilibili.dagw.component.avatar.v1.plugin;
+
+import "bilibili/dagw/component/avatar/common.proto";
+
+// 
+message BorderConfig {
+    // 
+    bilibili.dagw.component.avatar.common.ColorConfig color = 1;
+    // 
+    double border_width = 2;
+    // 
+    double ratio = 3;
+}
+
+// 
+message CommentDoubleClickConfig {
+    // 
+    Interaction interaction = 1;
+    // 
+    double animation_scale = 2;
+}
+
+// 
+message FollowActionConfig {
+    // 
+    bool has_follow = 1;
+    // 
+    bilibili.dagw.component.avatar.common.ResourceSource icon_res = 2;
+    // 
+    double border_width = 3;
+    // 
+    bilibili.dagw.component.avatar.common.ColorConfig border_color = 4;
+    // 
+    int64 mid = 5;
+    // 
+    double icon_width_ratio = 6;
+    // 
+    double icon_size_offset = 7;
+}
+
+// 
+message FollowIconConfig {
+    // 
+    bool has_follow = 1;
+    // 
+    bilibili.dagw.component.avatar.common.ResourceSource icon_res = 2;
+    // 
+    double border_width = 3;
+    // 
+    bilibili.dagw.component.avatar.common.ColorConfig border_color = 4;
+    // 
+    int64 mid = 5;
+}
+
+// 
+message GyroConfig {
+    // 
+    NFTImageV2 gyroscope = 1;
+}
+
+// 
+message GyroscopeContentV2 {
+    // 
+    string file_url = 1;
+    // 
+    float scale = 2;
+    // 
+    repeated PhysicalOrientationV2 physical_orientation = 3;
+}
+
+// 
+message GyroscopeEntityV2 {
+    // 
+    string display_type = 1;
+    // 
+    repeated GyroscopeContentV2 contents = 2;
+}
+
+// 
+message Interaction {
+    // 
+    string nft_id = 1;
+    // 
+    bool enabled = 2;
+    // 
+    string itype = 3;
+    // 
+    string metadata_url = 4;
+}
+
+// 
+message LiveAnimeConfig {
+    // 
+    bool is_live = 1;
+    // 
+    LiveTextConfig config = 2;
+    // 
+    repeated LiveAnimeItem items = 3;
+    // 
+    repeated BorderConfig border_config = 4;
+}
+
+// 
+message LiveAnimeItem {
+    // 
+    bilibili.dagw.component.avatar.common.ColorConfig color = 1;
+    // 
+    double start_ratio = 2;
+    // 
+    double end_ratio = 3;
+    // 
+    double start_stroke = 4;
+    // 
+    double start_opacity = 5;
+    // 
+    int64 phase = 6;
+}
+
+// 
+message LiveTextConfig {
+    // 
+    double width = 1;
+    // 
+    double height = 2;
+    // 
+    double offset_y = 3;
+    // 
+    double border_width = 4;
+    // 
+    double text_size = 5;
+    // 
+    bilibili.dagw.component.avatar.common.ColorConfig border_color = 7;
+    // 
+    bilibili.dagw.component.avatar.common.ColorConfig background = 8;
+}
+
+// 
+message NFTImageV2 {
+    // 
+    repeated GyroscopeEntityV2 gyroscope = 1;
+}
+
+// 
+message PhysicalOrientationAnimation {
+    // 
+    string type = 1;
+    // 
+    repeated float value = 2;
+    // 
+    string bezier = 3;
+}
+
+// 
+message PhysicalOrientationV2 {
+    // 
+    string type = 1;
+    // 
+    repeated float angle = 2;
+    // 
+    repeated PhysicalOrientationAnimation animations = 3;
+}
+
+// 
+message WebLiveAnimeConfig {
+    // 
+    double circle_gap_width = 1;
+    // 
+    double pink_circle_width = 2;
+    // 
+    double live_label_width = 3;
+    // 
+    double live_label_height = 4;
+    // 
+    double live_label_offset_y = 5;
+    // 
+    double live_label_border_width = 6;
+}
+
