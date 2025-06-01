@@ -1,5 +1,8 @@
 # 相簿操作
 
+<details>
+<summary>功能已下线</summary>
+
 ## ~~点赞相簿~~
 
 > https://api.vc.bilibili.com/link_draw/v2/Vote/operate
@@ -167,4 +170,5 @@ curl 'https://api.vc.bilibili.com/user_plus/v1/Fav/delete' \
 }
 ```
 
+</details>
 </details>

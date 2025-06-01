@@ -2,7 +2,7 @@
 
 自 2023 年 3 月起，Bilibili Web 端部分接口开始采用 WBI 签名鉴权，表现在 REST API 请求时在 Query param 中添加了 `w_rid` 和 `wts` 字段。WBI 签名鉴权独立于 [APP 鉴权](APP.md) 与其他 Cookie 鉴权，目前被认为是一种 Web 端风控手段。
 
-经持续观察，大部分查询性接口都已经或准备采用 WBI 签名鉴权，请求 WBI 签名鉴权接口时，若签名参数 `w_rid` 与时间戳 `wts` 缺失、错误，会返回 `v_voucher`，如：
+经持续观察，大部分查询性接口都已经或准备采用 WBI 签名鉴权，请求 WBI 签名鉴权接口时，若签名参数 `w_rid` 与时间戳 `wts` 缺失、错误，会返回 [`v_voucher`](v_voucher.md)，如：
 
 ```json
 {"code":0,"message":"0","ttl":1,"data":{"v_voucher":"voucher_******"}}
@@ -11,6 +11,8 @@
 感谢 [#631](https://github.com/SocialSisterYi/bilibili-API-collect/issues/631) 的研究与逆向工程。
 
 细节更新：[#885](https://github.com/SocialSisterYi/bilibili-API-collect/issues/885)。
+
+最新进展: [#919](https://github.com/SocialSisterYi/bilibili-API-collect/issues/919)
 
 ## WBI 签名算法
 
@@ -30,6 +32,7 @@
    `img_key`、`sub_key` 全站统一使用，观测知应为**每日更替**，使用时建议做好**缓存和刷新**处理。
 
    特别地，发现部分接口将 `img_key`、`sub_key` 硬编码进 JavaScript 文件内，如搜索接口 `https://s1.hdslb.com/bfs/static/laputa-search/client/assets/index.1ea39bea.js`，暂不清楚原因及影响。
+   同时, 部分页面会在 SSR 的 `__INITIAL_STATE__` 包含 `wbiImgKey` 与 `wbiSubKey`, 具体可用性与区别尚不明确
 
 2. 打乱重排实时口令获得 `mixin_key`
 
@@ -78,9 +81,9 @@
 
    ```javascript
    {
-        foo: '114',
-        bar: '514',
-        zab: 1919810
+     foo: '114',
+     bar: '514',
+     zab: 1919810
    }
    ```
 
@@ -97,17 +100,17 @@
    }
    ```
 
-   随后按键名升序排序后编码 URL Query，拼接前面得到的 `mixin_key`，如 `bar=514&foo=114&wts=1702204169&zab=1919810ea1db124af3c7062474693fa704f4ff8`，计算其 MD5 即为 `w_rid`。
+   随后按键名升序排序后百分号编码 URL Query，拼接前面得到的 `mixin_key`，如 `bar=514&foo=114&wts=1702204169&zab=1919810ea1db124af3c7062474693fa704f4ff8`，计算其 MD5 即为 `w_rid`。
 
-   需要注意的是：如果参数值含中文或特殊字符等，编码字符字母应当**大写** （部分库会编码为小写字母），空格应当编码为 `%20`（部分库按 `application/x-www-form-urlencoded` 约定编码为 `+`）。
+   需要注意的是：如果参数值含中文或特殊字符等，编码字符字母应当**大写** （部分库会错误编码为小写字母），空格应当编码为 `%20`（部分库按 `application/x-www-form-urlencoded` 约定编码为 `+`）, 具体正确行为可参考 [encodeURIComponent 函数](https://tc39.es/ecma262/multipage/global-object.html#sec-encodeuricomponent-uricomponent)
 
    例如：
 
    ```javascript
    {
-        foo: 'one one four',
-        bar: '五一四',
-        baz: 1919810
+     foo: 'one one four',
+     bar: '五一四',
+     baz: 1919810
    }
    ```
 
@@ -121,7 +124,7 @@
 
 ## Demo
 
-含 [Python](#Python)、[JavaScript](#JavaScript)、[Golang](#Golang)、[C#](#CSharp)、[Java](#Java)、[Kotlin](#Kotlin)、[Swift](#Swift)、[C++](#CPlusPlus)、[Rust](#Rust) 语言编写的 Demo 。
+含 [Python](#python)、[JavaScript](#javascript)、[Golang](#golang)、[C#](#csharp)、[Java](#java)、[Kotlin](#kotlin)、[Swift](#swift)、[C++](#cplusplus)、[Rust](#rust)、[Haskell](#haskell) 语言编写的 Demo
 
 ### Python
 
@@ -380,178 +383,185 @@ bar=514&baz=1919810&foo=114&wts=1684805578&w_rid=bb97e15f28edf445a0e4420d36f0157
 
 ### Golang
 
-需要 `github.com/tidwall/gjson` 作为依赖
+无第三方库
 
 ```go
 package main
 
 import (
-	"crypto/md5"
-	"encoding/hex"
-	"fmt"
-	"io"
-	"net/http"
-	"net/url"
-	"sort"
-	"strconv"
-	"strings"
-	"sync"
-	"time"
-
-	"github.com/tidwall/gjson"
-)
-
-var (
-	mixinKeyEncTab = []int{
-		46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
-		33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
-		61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
-		36, 20, 34, 44, 52,
-	}
-	cache          sync.Map
-	lastUpdateTime time.Time
+    "bytes"
+    "crypto/md5"
+    "encoding/hex"
+    "encoding/json"
+    "fmt"
+    "io"
+    "net/http"
+    "net/url"
+    "strconv"
+    "strings"
+    "time"
 )
 
 func main() {
-	urlStr := "https://api.bilibili.com/x/space/wbi/acc/info?mid=1850091"
-	newUrlStr, err := signAndGenerateURL(urlStr)
-	if err != nil {
-		fmt.Printf("Error: %s", err)
-		return
-	}
-	req, err := http.NewRequest("GET", newUrlStr, nil)
-	if err != nil {
-		fmt.Printf("Error: %s", err)
-		return
-	}
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-	req.Header.Set("Referer", "https://www.bilibili.com/")
-	response, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Printf("Request failed: %s", err)
-		return
-	}
-	defer response.Body.Close()
-	body, err := io.ReadAll(response.Body)
-	if err != nil {
-		fmt.Printf("Failed to read response: %s", err)
-		return
-	}
-	fmt.Println(string(body))
+    u, err := url.Parse("https://api.bilibili.com/x/space/wbi/acc/info?mid=1850091")
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("orig: %s\n", u.String())
+    err = Sign(u)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Printf("signed: %s\n", u.String())
+
+    // 获取 wbi 时未修改 header
+    // 但实际使用签名后的 url 时发现风控较为严重
 }
 
-func signAndGenerateURL(urlStr string) (string, error) {
-	urlObj, err := url.Parse(urlStr)
-	if err != nil {
-		return "", err
-	}
-	imgKey, subKey := getWbiKeysCached()
-	query := urlObj.Query()
-	params := map[string]string{}
-	for k, v := range query {
-		params[k] = v[0]
-	}
-	newParams := encWbi(params, imgKey, subKey)
-	for k, v := range newParams {
-		query.Set(k, v)
-	}
-	urlObj.RawQuery = query.Encode()
-	newUrlStr := urlObj.String()
-	return newUrlStr, nil
+// Sign 为链接签名
+func Sign(u *url.URL) error {
+    return wbiKeys.Sign(u)
 }
 
-func encWbi(params map[string]string, imgKey, subKey string) map[string]string {
-	mixinKey := getMixinKey(imgKey + subKey)
-	currTime := strconv.FormatInt(time.Now().Unix(), 10)
-	params["wts"] = currTime
-
-	// Sort keys
-	keys := make([]string, 0, len(params))
-	for k := range params {
-		keys = append(keys, k)
-	}
-	sort.Strings(keys)
-
-	// Remove unwanted characters
-	for k, v := range params {
-		v = sanitizeString(v)
-		params[k] = v
-	}
-
-	// Build URL parameters
-	query := url.Values{}
-	for _, k := range keys {
-		query.Set(k, params[k])
-	}
-	queryStr := query.Encode()
-
-	// Calculate w_rid
-	hash := md5.Sum([]byte(queryStr + mixinKey))
-	params["w_rid"] = hex.EncodeToString(hash[:])
-	return params
+// Update 无视过期时间更新
+func Update() error {
+    return wbiKeys.Update()
 }
 
-func getMixinKey(orig string) string {
-	var str strings.Builder
-	for _, v := range mixinKeyEncTab {
-		if v < len(orig) {
-			str.WriteByte(orig[v])
-		}
-	}
-	return str.String()[:32]
+func Get() (wk WbiKeys, err error) {
+    if err = wk.update(false); err != nil {
+        return WbiKeys{}, err
+    }
+    return wbiKeys, nil
 }
 
-func sanitizeString(s string) string {
-	unwantedChars := []string{"!", "'", "(", ")", "*"}
-	for _, char := range unwantedChars {
-		s = strings.ReplaceAll(s, char, "")
-	}
-	return s
+var wbiKeys WbiKeys
+
+type WbiKeys struct {
+    Img            string
+    Sub            string
+    Mixin          string
+    lastUpdateTime time.Time
 }
 
-func updateCache() {
-	if time.Since(lastUpdateTime).Minutes() < 10 {
-		return
-	}
-	imgKey, subKey := getWbiKeys()
-	cache.Store("imgKey", imgKey)
-	cache.Store("subKey", subKey)
-	lastUpdateTime = time.Now()
+// Sign 为链接签名
+func (wk *WbiKeys) Sign(u *url.URL) (err error) {
+    if err = wk.update(false); err != nil {
+        return err
+    }
+
+    values := u.Query()
+
+    values = removeUnwantedChars(values, '!', '\'', '(', ')', '*') // 必要性存疑?
+
+    values.Set("wts", strconv.FormatInt(time.Now().Unix(), 10))
+
+    // [url.Values.Encode] 内会对参数排序,
+    // 且遍历 map 时本身就是无序的
+    hash := md5.Sum([]byte(values.Encode() + wk.Mixin)) // Calculate w_rid
+    values.Set("w_rid", hex.EncodeToString(hash[:]))
+    u.RawQuery = values.Encode()
+    return nil
 }
 
-func getWbiKeysCached() (string, string) {
-	updateCache()
-	imgKeyI, _ := cache.Load("imgKey")
-	subKeyI, _ := cache.Load("subKey")
-	return imgKeyI.(string), subKeyI.(string)
+// Update 无视过期时间更新
+func (wk *WbiKeys) Update() (err error) {
+    return wk.update(true)
 }
 
-func getWbiKeys() (string, string) {
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", "https://api.bilibili.com/x/web-interface/nav", nil)
-	if err != nil {
-		fmt.Printf("Error creating request: %s", err)
-		return "", ""
-	}
-	req.Header.Set("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-	req.Header.Set("Referer", "https://www.bilibili.com/")
-	resp, err := client.Do(req)
-	if err != nil {
-		fmt.Printf("Error sending request: %s", err)
-		return "", ""
-	}
-	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Printf("Error reading response: %s", err)
-		return "", ""
-	}
-	json := string(body)
-	imgURL := gjson.Get(json, "data.wbi_img.img_url").String()
-	subURL := gjson.Get(json, "data.wbi_img.sub_url").String()
-	imgKey := strings.Split(strings.Split(imgURL, "/")[len(strings.Split(imgURL, "/"))-1], ".")[0]
-	subKey := strings.Split(strings.Split(subURL, "/")[len(strings.Split(subURL, "/"))-1], ".")[0]
-	return imgKey, subKey
+// update 按需更新
+func (wk *WbiKeys) update(purge bool) error {
+    if !purge && time.Since(wk.lastUpdateTime) < time.Hour {
+        return nil
+    }
+
+    // 测试下来不用修改 header 也能过
+    resp, err := http.Get("https://api.bilibili.com/x/web-interface/nav")
+    if err != nil {
+        return err
+    }
+    defer resp.Body.Close()
+    body, err := io.ReadAll(resp.Body)
+    if err != nil {
+        return err
+    }
+
+    nav := Nav{}
+    err = json.Unmarshal(body, &nav)
+    if err != nil {
+        return err
+    }
+
+    if nav.Code != 0 && nav.Code != -101 { // -101 未登录时也会返回两个 key
+        return fmt.Errorf("unexpected code: %d, message: %s", nav.Code, nav.Message)
+    }
+    img := nav.Data.WbiImg.ImgUrl
+    sub := nav.Data.WbiImg.SubUrl
+    if img == "" || sub == "" {
+        return fmt.Errorf("empty image or sub url: %s", body)
+    }
+
+    // https://i0.hdslb.com/bfs/wbi/7cd084941338484aae1ad9425b84077c.png
+    imgParts := strings.Split(img, "/")
+    subParts := strings.Split(sub, "/")
+
+    // 7cd084941338484aae1ad9425b84077c.png
+    imgPng := imgParts[len(imgParts)-1]
+    subPng := subParts[len(subParts)-1]
+
+    // 7cd084941338484aae1ad9425b84077c
+    wbiKeys.Img = strings.TrimSuffix(imgPng, ".png")
+    wbiKeys.Sub = strings.TrimSuffix(subPng, ".png")
+
+    wbiKeys.mixin()
+    wbiKeys.lastUpdateTime = time.Now()
+    return nil
+}
+
+func (wk *WbiKeys) mixin() {
+    var mixin [32]byte
+    wbi := wk.Img + wk.Sub
+    for i := range mixin { // for i := 0; i < len(mixin); i++ {
+        mixin[i] = wbi[mixinKeyEncTab[i]]
+    }
+    wk.Mixin = string(mixin[:])
+}
+
+var mixinKeyEncTab = [...]int{
+    46, 47, 18, 2, 53, 8, 23, 32,
+    15, 50, 10, 31, 58, 3, 45, 35,
+    27, 43, 5, 49, 33, 9, 42, 19,
+    29, 28, 14, 39, 12, 38, 41, 13,
+    37, 48, 7, 16, 24, 55, 40, 61,
+    26, 17, 0, 1, 60, 51, 30, 4,
+    22, 25, 54, 21, 56, 59, 6, 63,
+    57, 62, 11, 36, 20, 34, 44, 52,
+}
+
+func removeUnwantedChars(v url.Values, chars ...byte) url.Values {
+    b := []byte(v.Encode())
+    for _, c := range chars {
+        b = bytes.ReplaceAll(b, []byte{c}, nil)
+    }
+    s, err := url.ParseQuery(string(b))
+    if err != nil {
+        panic(err)
+    }
+    return s
+}
+
+type Nav struct {
+    Code    int    `json:"code"`
+    Message string `json:"message"`
+    Ttl     int    `json:"ttl"`
+    Data    struct {
+        WbiImg struct {
+            ImgUrl string `json:"img_url"`
+            SubUrl string `json:"sub_url"`
+        } `json:"wbi_img"`
+
+        // ......
+    } `json:"data"`
 }
 ```
 
@@ -1108,9 +1118,9 @@ mod tests {
 需要 [Alamofire](https://github.com/Alamofire/Alamofire) 和 [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) 库
 
 ```swift
-import Foundation
-import CommonCrypto
 import Alamofire
+import CommonCrypto
+import Foundation
 import SwiftyJSON
 
 func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
@@ -1124,35 +1134,39 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
         let currTime = round(Date().timeIntervalSince1970)
         params["wts"] = currTime
         params = params.sorted { $0.key < $1.key }.reduce(into: [:]) { $0[$1.key] = $1.value }
-        params = params.mapValues { String(describing: $0).filter { !"!'()*".contains($0) } }
+        params = params.mapValues { value in
+            if let doubleValue = value as? Double, doubleValue.truncatingRemainder(dividingBy: 1) == 0 {
+                return String(Int(doubleValue)).filter { !"!'()*".contains($0) }
+            }
+            return String(describing: value).filter { !"!'()*".contains($0) }
+        }
         let query = params.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
         let wbiSign = calculateMD5(string: query + mixinKey)
         params["w_rid"] = wbiSign
         return params
     }
     
-   func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
-       let headers: HTTPHeaders = [
-           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-           "Referer": "https://www.bilibili.com/"
-       ]
+    func getWbiKeys(completion: @escaping (Result<(imgKey: String, subKey: String), Error>) -> Void) {
+        let headers: HTTPHeaders = [
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            "Referer": "https://www.bilibili.com/"
+        ]
        
-       AF.request("https://api.bilibili.com/x/web-interface/nav", headers: headers).responseJSON { response in
-           switch response.result {
-           case .success(let value):
-               let json = JSON(value)
-               let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
-               let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
-               let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
-               let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
-               completion(.success((imgKey, subKey)))
-           case .failure(let error):
-               completion(.failure(error))
-           }
-       }
-   }
+        AF.request("https://api.bilibili.com/x/web-interface/nav", headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                let imgURL = json["data"]["wbi_img"]["img_url"].string ?? ""
+                let subURL = json["data"]["wbi_img"]["sub_url"].string ?? ""
+                let imgKey = imgURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                let subKey = subURL.components(separatedBy: "/").last?.components(separatedBy: ".").first ?? ""
+                completion(.success((imgKey, subKey)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 
-    
     func calculateMD5(string: String) -> String {
         let data = Data(string.utf8)
         var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
@@ -1174,7 +1188,7 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
         case .success(let keys):
             let spdParam = param.components(separatedBy: "&")
             var spdDicParam = [String: String]()
-            spdParam.forEach { pair in
+            for pair in spdParam {
                 let components = pair.components(separatedBy: "=")
                 if components.count == 2 {
                     spdDicParam[components[0]] = components[1]
@@ -1191,6 +1205,22 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
     }
 }
 
+// 使用示例
+biliWbiSign(param: "bar=514&foo=114&zab=1919810") {
+    signedQuery in
+    if let signedQuery = signedQuery {
+        print("签名后的参数: \(signedQuery)")
+    } else {
+        print("签名失败")
+    }
+}
+
+RunLoop.main.run()//程序类型为命令行程序时需要添加这行代码
+
+```
+
+```text
+签名后的参数: bar=514&wts=1741082093&foo=114&zab=1919810&w_rid=04775bb3debbb45bab86a93a1c08d12a
 ```
 
 
@@ -1313,4 +1343,135 @@ int main() {
 
 ```text
 avid=1755630705&cid=1574294582&fnval=4048&fnver=0&fourk=1&qn=32&wts=1717922933&w_rid=43571b838a1611fa121189083cfc1784
+```
+
+### Haskell
+
+无第三方依赖: `base`, `Cabal-syntax`, `bytestring`, `containers`<br />
+注: 此处使用自写的 URI 编码模块, 实际可用别的第三方库替代
+
+`Main.hs`:
+```hs
+module Main (wbi, main) where
+
+import Data.ByteString.Char8 (pack)
+import qualified Data.Map.Strict as Map
+import Distribution.Utils.MD5 (md5, showMD5)
+import URIEncoder (encodeURIComponent)
+import Data.Time.Clock.System (getSystemTime, systemSeconds)
+
+mixinKeyEncTab :: [Int]
+mixinKeyEncTab = [
+  46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49,
+  33, 9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40,
+  61, 26, 17, 0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11,
+  36, 20, 34, 44, 52
+  ]
+
+getMixinKey :: String -> String -> String
+getMixinKey imgKey subKey =
+  let s = imgKey ++ subKey
+  in map (\i -> s !! (mixinKeyEncTab !! i)) [0..31]
+
+join :: [String] -> String -> String
+join arr ins = concatMap (++ ins) (init arr) ++ last arr
+
+wbi :: String -> String -> Integer -> Map.Map String String -> String
+wbi imgKey subKey wts params =
+  let orig = join (map (\(k, v) -> encodeURIComponent k ++ "=" ++ encodeURIComponent v) (Map.toList $ Map.insert "wts" (show wts) params)) "&"
+  in orig ++ "&w_rid=" ++ showMD5 (md5 $ pack $ orig ++ getMixinKey imgKey subKey)
+
+main :: IO ()
+main = do -- hard encode for test
+  let params1 = Map.fromList [("aid", "2")]
+      params2 = Map.fromList [("foo", "114")
+                            ,("bar", "514")
+                            ,("hello", "世 界")
+                            ]
+      imgKey = "7cd084941338484aae1ad9425b84077c"
+      subKey = "4932caff0ff746eab6f01bf08b70ac45"
+  wts1 <- getSystemTime 
+  putStrLn $ wbi imgKey subKey (toInteger $ systemSeconds wts1) params1
+  wts2 <- getSystemTime 
+  putStrLn $ wbi imgKey subKey (toInteger $ systemSeconds wts2) params2
+```
+
+`URIEncoder.hs`<!--(by DS)-->:
+```hs
+module URIEncoder (encodeURIComponent) where
+
+import Data.Char (ord, chr, intToDigit)
+import Data.Bits (shiftL, shiftR, (.&.))
+import Data.List (isInfixOf)
+
+-- ES 19.2.6.4 encodeURIComponent ( uriComponent )
+encodeURIComponent :: String -> String
+encodeURIComponent input = case encode input "" of
+  Right result -> result
+  Left err -> error err
+
+-- ES 19.2.6.5 Encode ( string, extraUnescaped )
+encode :: String -> String -> Either String String
+encode string extraUnescaped = loop 0 string
+  where
+    alwaysUnescaped = ['A'..'Z'] ++ ['a'..'z'] ++ ['0'..'9'] ++ "-.!~*'()"
+    unescapedSet = alwaysUnescaped ++ extraUnescaped
+    
+    loop k str
+      | k >= length str = Right []
+      | otherwise = case codePointAt str k of
+          (Nothing, _) -> Left "Unpaired surrogate"
+          (Just (cp, _), newK) ->
+            if [str !! k] `isInfixOf` unescapedSet
+            then (str !! k :) <$> loop (k + 1) str
+            else do
+              bytes <- utf8Encode cp
+              let escaped = concatMap percentEncode bytes
+              rest <- loop newK str
+              Right (escaped ++ rest)
+
+codePointAt :: String -> Int -> (Maybe (Int, Int), Int)
+codePointAt s k
+  | k >= length s = (Nothing, k)
+  | otherwise =
+      let c1 = ord (s !! k)
+      in if 0xD800 <= c1 && c1 <= 0xDBFF && k+1 < length s
+         then let c2 = ord (s !! (k+1))
+              in if 0xDC00 <= c2 && c2 <= 0xDFFF
+                 then ( Just (0x10000 + ((c1 - 0xD800) `shiftL` 10) + (c2 - 0xDC00), 2)
+                     , k + 2 )
+                 else (Just (c1, 1), k + 1)
+         else (Just (c1, 1), k + 1)
+
+utf8Encode :: Int -> Either String [Int]
+utf8Encode cp
+  | cp < 0 = Left "Invalid code point"
+  | cp <= 0x007F = Right [cp]
+  | cp <= 0x07FF = Right
+      [ 0xC0 + (cp `shiftR` 6)
+      , 0x80 + (cp .&. 0x3F) ]
+  | cp <= 0xFFFF = Right
+      [ 0xE0 + (cp `shiftR` 12)
+      , 0x80 + ((cp `shiftR` 6) .&. 0x3F)
+      , 0x80 + (cp .&. 0x3F) ]
+  | cp <= 0x10FFFF = Right
+      [ 0xF0 + (cp `shiftR` 18)
+      , 0x80 + ((cp `shiftR` 12) .&. 0x3F)
+      , 0x80 + ((cp `shiftR` 6) .&. 0x3F)
+      , 0x80 + (cp .&. 0x3F) ]
+  | otherwise = Left "Code point out of range"
+
+percentEncode :: Int -> String
+percentEncode byte = '%' : toHex byte
+  where
+    toHex n = [hexDigit (n `div` 16), hexDigit (n `mod` 16)]
+    hexDigit x
+      | x < 10 = intToDigit x
+      | otherwise = chr (x - 10 + ord 'A')
+```
+
+输出:
+```text
+aid=2&wts=1744823207&w_rid=a3cd246bd42c066932752b24694eaf0d
+bar=514&foo=114&hello=%E4%B8%96%20%E7%95%8C&wts=1744823207&w_rid=93acf59d85f74453e40cea00056c3daf
 ```

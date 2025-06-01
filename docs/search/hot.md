@@ -67,7 +67,8 @@ curl 'https://api.bilibili.com/x/web-interface/search/default'
 
 ## 获取热搜列表
 
-> https://api.bilibili.com/x/web-interface/search/square
+> https://api.bilibili.com/x/web-interface/wbi/search/square
+> ~~https://api.bilibili.com/x/web-interface/search/square~~
 
 *请求方式: GET*
 

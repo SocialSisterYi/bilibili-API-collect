@@ -78,7 +78,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/preLive/CreateRoom' \
 
 
 
-## 更新直播间标题
+## 更新直播间信息
 
 > https://api.live.bilibili.com/room/v1/Room/update
 
@@ -92,10 +92,15 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/preLive/CreateRoom' \
 
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
-| room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
-| title   | str  | 直播间标题               |        | 最大20字符           |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
-| csrf_token | str  | CSRF Token（位于 cookie） |     |                       |
+| csrf_token | str  | CSRF Token（位于 cookie） | 非必要 |                       |
+| platform | str | 平台标识                 | 非必要 |      |
+| visit_id | str | (?)                      | 非必要 | 某种标识？      |
+| room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
+| title   | str  | 直播间标题               | 非必要 | 上限40个字符 |
+| area\_id | num | 直播分区id（子分区id）  | 非必要 | 详见[直播分区](live_area.md) |
+| add\_tag | str | 要添加的标签          | 非必要 | 开播设置界面上限10个字符 |
+| del\_tag | str | 要删除的标签          | 非必要 | 若存在`add_tag`时不起作用 |
 
 **json回复：**
 
@@ -103,10 +108,26 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/preLive/CreateRoom' \
 
 | 字段    | 类型   | 内容     | 备注                                                   |
 | ------- | ------ | -------- | ------------------------------------------------------ |
-| code    | num    | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误 |
+| code    | num    | 返回值   | 0：成功<br />-1：操作太频繁<br />1：错误<br />3：未登录或鉴权失败<br />405：不允许的请求方法<br />60009：分区已下线<br />65530：token错误（登录错误）<br /> |
 | msg     | str    | 错误信息 | 默认为ok                                               |
 | message | str    | 错误信息 | 默认为ok                                               |
-| data    | array | 空       |                                                        |
+| data    | obj    | 信息本体 | 部分失败情况下是`[]`（空数组）                             |
+
+`data`对象：
+
+| 字段            | 类型 | 内容 | 备注 |
+| --------------- | ---- | ---- | ---- |
+| sub_session_key | str  | 信息变动标识 |      |
+| audit_info      | obj  | 标题审核信息 |      |
+
+`data`中的`audit_info`对象：
+
+| 字段               | 类型 | 内容 | 备注 |
+| ------------------ | ---- | ---- | ---- |
+| audit_title_reason | str  | 标题审核提示 |      |
+| audit_title_status | num  | 标题审核状态 |      |
+| audit_title        | str  | 被审核的标题 | 更新标题时存在 |
+| update_title       | str  | `""`   | 作用尚不明确 |
 
 **示例：**
 
@@ -114,10 +135,10 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/preLive/CreateRoom' \
 
 ```shell
 curl 'https://api.live.bilibili.com/room/v1/Room/update' \
---data-urlencode 'room_id=10352053' \
---data-urlencode 'title=测试' \
---data-urlencode 'csrf=xxx' \
--b 'SESSDATA=xxx;bili_jct=xx'
+  --data-urlencode 'room_id=10352053' \
+  --data-urlencode 'title=测试' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xx'
 ```
 
 <details>
@@ -125,10 +146,111 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 
 ```json
 {
-    "code": 0,
-    "msg": "ok",
-    "message": "ok",
-    "data": []
+  "code":0,
+  "msg":"ok",
+  "message":"ok",
+  "data":{
+    "sub_session_key":"",
+    "audit_info":{
+      "audit_title_reason":"先发后审",
+      "update_title":"",
+      "audit_title_status":2,
+      "audit_title":"测试"
+    }
+  }
+}
+```
+
+</details>
+
+修改直播间`10352053`分区为`40`
+
+```shell
+curl 'https://api.live.bilibili.com/room/v1/Room/update' \
+  --data-urlencode 'room_id=10352053' \
+  --data-urlencode 'area_id=40' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "ok",
+  "message": "ok",
+  "data": {
+    "sub_session_key": "",
+    "audit_info": {
+      "audit_title_reason": "",
+      "update_title": "",
+      "audit_title_status": 0
+    }
+  }
+}
+```
+
+</details>
+
+给直播间`11996900`添加一个标签为`测试标签`
+
+```shell
+curl 'https://api.live.bilibili.com/room/v1/Room/update' \
+  --data-urlencode 'room_id=11996900' \
+  --data-urlencode 'add_tag=测试标签' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "ok",
+  "message": "ok",
+  "data": {
+    "sub_session_key": "",
+    "audit_info": {
+      "audit_title_reason": "",
+      "update_title": "",
+      "audit_title_status": 0
+    }
+  }
+}
+```
+
+</details>
+
+给直播间`11996900`删除内容为`测试标签`的标签
+
+```shell
+curl 'https://api.live.bilibili.com/room/v1/Room/update' \
+  --data-urlencode 'room_id=11996900' \
+  --data-urlencode 'del_tag=测试标签' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "msg": "ok",
+  "message": "ok",
+  "data": {
+    "sub_session_key": "",
+    "audit_info": {
+      "audit_title_reason": "",
+      "update_title": "",
+      "audit_title_status": 0
+    }
+  }
 }
 ```
 
@@ -152,7 +274,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | -------- | ---- | ------------------------ | ------ | ----------------------------------- |
 | room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                |
 | area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)        |
-| platform | str  | 直播平台                 | 必要   | web端：<br />bililink：android_link |
+| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />web在线直播：web_link<br />bililink：android_link |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                     |
 
 **json回复：**
@@ -171,13 +293,19 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | 字段      | 类型  | 内容             | 备注                   |
 | --------- | ----- | ---------------- | ---------------------- |
 | change    | num   | 是否改变状态     | 0：未改变<br />1：改变 |
-| status    | str   | LIVE             |                        |
+| status    | str   | 直播间状态       | `LIVE`                 |
 | room_type | num   | 0                | 作用尚不明确           |
 | rtmp      | obj   | RTMP推流地址信息 |                        |
 | protocols | array | ？？？           | 作用尚不明确           |
 | try_time  | str   | ？？？           | 作用尚不明确           |
-| live_key  | str   | ？？？           | 作用尚不明确           |
+| live_key  | str   | 标记直播场次的key |                        |
+| sub_session_key | str   | 信息变动标识 |      |
 | notice    | obj   | ？？？           | 作用尚不明确           |
+| qr        | str   | `""`          | 作用尚不明确    |
+| need_face_auth | bool  | 需要人脸识别? | 作用尚不明确  |
+| service_source | str   | ？？？    | 作用尚不明确  |
+| rtmp\_backup | null  | ？？？    | 作用尚不明确  |
+| up_stream_extra | obj   | 主播推流额外信息? |    |
 
 `data`中的`rtmp`对象：
 
@@ -215,6 +343,12 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | button_text | str  | 空   | 作用尚不明确 |
 | button_url  | str  | 空   | 作用尚不明确 |
 
+`data`中的`up_stream_extra`对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| isp | str | 主播的互联网服务提供商 |  |
+
 **示例：**
 
 以`27`作为分区id开播直播间`10352053`
@@ -237,39 +371,47 @@ curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 
 ```json
 {
-    "code": 0,
-    "msg": "",
-    "message": "",
-    "data": {
-        "change": 1,
-        "status": "LIVE",
-        "room_type": 0,
-        "rtmp": {
-            "addr": "rtmp://txy.live-send.acg.tv/live-txy/",
-            "code": "?streamname=live_293793435_1567354&key=***",
-            "new_link": "http://tcdns.myqcloud.com:8086/bilibili_redirect?up_rtmp=txy.live-send.acg.tv%2Flive-txy%2F%3Fstreamname%3Dlive_293793435_1567354%26key%3D***",
-            "provider": "txy"
-        },
-        "protocols": [
-            {
-                "protocol": "rtmp",
-                "addr": "rtmp://txy.live-send.acg.tv/live-txy/",
-                "code": "?streamname=live_293793435_1567354&key=***",
-                "new_link": "http://tcdns.myqcloud.com:8086/bilibili_redirect?up_rtmp=txy.live-send.acg.tv%2Flive-txy%2F%3Fstreamname%3Dlive_293793435_1567354%26key%3D***",
-                "provider": "txy"
-            }
-        ],
-        "try_time": "0000-00-00 00:00:00",
-        "live_key": "l:one:live:record:10352053:1589344980",
-        "notice": {
-            "type": 1,
-            "status": 0,
-            "title": "",
-            "msg": "",
-            "button_text": "",
-            "button_url": ""
-        }
+  "code": 0,
+  "data":{
+    "change": 1,
+    "status": "LIVE",
+    "try_time": "0000-00-00 00:00:00",
+    "room_type": 0,
+    "live_key": "608336837537435443",
+    "sub_session_key": "608336837537435443sub_time:1747292297",
+    "rtmp":{
+      "type": 1,
+      "addr": "rtmp://live-push.bilivideo.com/live-bvc/",
+      "code": "?streamname=live_348892132_32373699\u0026key=e03061d4a7529d8eaa322dc4d330ca1c\u0026schedule=rtmp\u0026pflag=11",
+      "new_link": "https://core.bilivideo.com/video/uplinkcore/selfbuild/schedule?up_rtmp=live-push.bilivideo.com%2Flive-bvc%2F%3Fstreamname%3Dlive_348892132_32373699%26key%3De73061d8a7539d8eaa233dc4d880ca1c%26schedule%3Drtmp%26pflag%3D11\u0026edge=edge",
+      "provider": "live"
+    },
+    "protocols":[
+      {
+        "protocol": "rtmp",
+        "addr": "rtmp://live-push.bilivideo.com/live-bvc/","code":"?streamname=live_348892132_32373699\u0026key=e73061d4a1002d8eaa322dc4d880ca1c\u0026schedule=rtmp\u0026pflag=11",
+        "new_link": "https://core.bilivideo.com/video/uplinkcore/selfbuild/schedule?up_rtmp=live-push.bilivideo.com%2Flive-bvc%2F%3Fstreamname%3Dlive_348892132_32373699%26key%3De10298d4a7539d8eaa322dc4d220ca1c%26schedule%3Drtmp%26pflag%3D11\u0026edge=edge",
+        "provider": "txy"
+      }
+    ],
+    "notice":{
+      "type": 1,
+      "status": 0,
+      "title": "",
+      "msg": "",
+      "button_text": "",
+      "button_url": ""
+    },
+    "qr": "",
+    "need_face_auth": false,
+    "service_source": "live-streaming",
+    "rtmp_backup": null,
+    "up_stream_extra":{
+      "isp": "电信"
     }
+  },
+  "message": "",
+  "msg": ""
 }
 ```
 
@@ -308,7 +450,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 | 字段   | 类型 | 内容         | 备注                   |
 | ------ | ---- | ------------ | ---------------------- |
 | change | num  | 是否改变状态 | 0：未改变<br />1：改变 |
-| status | str  | PREPARING    |                        |
+| status | str  | 直播间状态   | `PREPARING`、`ROUND` |
 
 **示例：**
 
@@ -316,9 +458,9 @@ curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 
 ```shell
 curl 'https://api.live.bilibili.com/room/v1/Room/stopLive' \
---data-urlencode 'room_id=10352053' \
---data-urlencode 'csrf=xxx' \
--b 'SESSDATA=xxx;bili_jct=xxx'
+  --data-urlencode 'room_id=10352053' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
 ```
 
 <details>
@@ -393,117 +535,6 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
     "message": "0",
     "ttl": 1,
     "data": {}
-}
-```
-
-</details>
-
-## 编辑直播间标签
-
-> https://api.live.bilibili.com/room/v1/Room/update
-
-*请求方式：POST*
-
-认证方式：Cookie（SESSDATA）
-
-鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
-
-**正文参数（ application/x-www-form-urlencoded ）：**
-
-| 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
-| ------- | ---- | ------------------------ | ------ | -------------------- |
-| room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
-| add_tag | str  | 要添加的标签             | 必要   | 最大10个字符         |
-| del_tag | str  | 要删除的标签             | 必要   |                      |
-| csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
-| csrf_token | str  | CSRF Token（位于 cookie） |     |                       |
-
-**json回复：**
-
-根对象：
-
-| 字段    | 类型 | 内容     | 备注                                                   |
-| ------- | ---- | -------- | ------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误 |
-| data    | obj  |          |                                                        |
-| message | str  | 错误信息 | 默认为ok                                               |
-| msg     | str  | 错误信息 | 默认为ok                                               |
-
-`data`对象：
-
-| 字段            | 类型 | 内容 | 备注 |
-| --------------- | ---- | ---- | ---- |
-| audit_info      | obj  |      |      |
-| sub_session_key | str  |      |      |
-
-`data`中的`audit_info`对象：
-
-| 字段               | 类型 | 内容 | 备注 |
-| ------------------ | ---- | ---- | ---- |
-| audit_title_reason | str  |      |      |
-| audit_title_status | num  | 0    |      |
-| update_title       | str  |      |      |
-
-**示例：**
-
-给直播间`11996900`添加一个标签为`测试标签`
-
-```shell
-curl 'https://api.live.bilibili.com/room/v1/Room/update' \
---data-urlencode 'room_id=11996900' \
---data-urlencode 'add_tag=测试标签' \
---data-urlencode 'csrf_token=xxx' \
---data-urlencode 'csrf=xxx' \
--b 'SESSDATA=xxx;bili_jct=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-    "code": 0,
-    "msg": "ok",
-    "message": "ok",
-    "data": {
-        "sub_session_key": "",
-        "audit_info": {
-            "audit_title_reason": "",
-            "update_title": "",
-            "audit_title_status": 0
-        }
-    }
-}
-```
-</details>
-
-给直播间`11996900`删除内容为`测试标签`的标签
-
-```shell
-curl 'https://api.live.bilibili.com/room/v1/Room/update' \
---data-urlencode 'room_id=11996900' \
---data-urlencode 'del_tag=测试标签' \
---data-urlencode 'csrf_token=xxx' \
---data-urlencode 'csrf=xxx' \
--b 'SESSDATA=xxx;bili_jct=xxx'
-```
-
-<details>
-<summary>查看响应示例：</summary>
-
-```json
-{
-    "code": 0,
-    "msg": "ok",
-    "message": "ok",
-    "data": {
-        "sub_session_key": "",
-        "audit_info": {
-            "audit_title_reason": "",
-            "update_title": "",
-            "audit_title_status": 0
-        }
-    }
 }
 ```
 

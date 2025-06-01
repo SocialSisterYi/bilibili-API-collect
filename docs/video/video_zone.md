@@ -1,24 +1,26 @@
 # 视频分区一览
 
-用于通过稿件 avid 判断所在的分区，或推荐分区视频等.......
+用于判断视频所在的分区，或推荐分区视频等……
 
 亦可用于更深♂入了解B站的分区
+
+本文档中的内容适用于 `tid`、`tname` 等字段，关于 `tid_v2`、`tname_v2` 等字段请参阅 “[视频分区一览 (v2)](./video_zone_v2.md)” 文档
 
 ## 动画
 
 <img src="../../assets/zone_icon/douga.svg" width="100" height="100"/>
 
-| 名称      | 代号         | tid | 简介                                    | url路由                                                              |
-|---------|------------|-----|---------------------------------------|--------------------------------------------------------------------|
-| 动画(主分区) | douga      | 1   |                                       | [/v/douga](https://www.bilibili.com/v/douga)                       |
-| MAD·AMV | mad        | 24  | 具有一定制作程度的动画或静画的二次创作视频                 | [/v/douga/mad](https://www.bilibili.com/v/douga/mad)               |
-| MMD·3D  | mmd        | 25  | 使用MMD（MikuMikuDance）和其他3D建模类软件制作的视频   | [/v/douga/mmd](https://www.bilibili.com/v/douga/mmd)               |
-| 短片·手书   | handdrawn  | 47  | 追求个人特色和创意表达的动画短片及手书（绘）                | [/v/douga/handdrawn](https://www.bilibili.com/v/douga/handdrawn)   |
-| 配音      | voice      | 257 | 使用ACGN相关画面或台本素材进行人工配音创作的内容            | [/v/douga/voice](https://www.bilibili.com/v/douga/voice)           |
-| 手办·模玩   | garage_kit | 210 | 手办模玩的测评、改造或其他衍生内容                     | [/v/douga/garage_kit](https://www.bilibili.com/v/douga/garage_kit) |
-| 特摄      | tokusatsu  | 86  | 特摄相关衍生视频                              | [/v/douga/tokusatsu](https://www.bilibili.com/v/douga/tokusatsu)   |
-| 动漫杂谈    | acgntalks  | 253 | 以谈话形式对ACGN文化圈进行的鉴赏、吐槽、评点、解说、推荐、科普等内容  | [/v/douga/acgntalks](https://www.bilibili.com/v/douga/acgntalks)   |
-| 综合      | other      | 27  | 以动画及动画相关内容为素材，包括但不仅限于音频替换、恶搞改编、排行榜等内容 | [/v/douga/other](https://www.bilibili.com/v/douga/other)           |
+| 名称                    | 代号         | tid | 简介                                                               | url路由                                                              |
+|-----------------------|------------|-----|------------------------------------------------------------------|--------------------------------------------------------------------|
+| 动画(主分区)               | douga      | 1   |                                                                  | [/v/douga](https://www.bilibili.com/v/douga)                       |
+| MAD·AMV               | mad        | 24  | 具有一定制作程度的动画或静画的二次创作视频                                            | [/v/douga/mad](https://www.bilibili.com/v/douga/mad)               |
+| MMD·3D                | mmd        | 25  | 使用MMD（MikuMikuDance）和其他3D建模类软件制作的视频                              | [/v/douga/mmd](https://www.bilibili.com/v/douga/mmd)               |
+| 同人·手书<br>(~~原短片·手书~~) | handdrawn  | 47  | 追求个人特色和创意表达的手书（绘）、以及同人作品展示、宣传为主的内容 | [/v/douga/handdrawn](https://www.bilibili.com/v/douga/handdrawn)   |
+| 配音                    | voice      | 257 | 使用ACGN相关画面或台本素材进行人工配音创作的内容                                       | [/v/douga/voice](https://www.bilibili.com/v/douga/voice)           |
+| 手办·模玩                 | garage_kit | 210 | 手办模玩的测评、改造或其他衍生内容                                                | [/v/douga/garage_kit](https://www.bilibili.com/v/douga/garage_kit) |
+| 特摄                    | tokusatsu  | 86  | 特摄相关衍生视频                                                         | [/v/douga/tokusatsu](https://www.bilibili.com/v/douga/tokusatsu)   |
+| 动漫杂谈                  | acgntalks  | 253 | 以谈话形式对ACGN文化圈进行的鉴赏、吐槽、评点、解说、推荐、科普等内容                             | [/v/douga/acgntalks](https://www.bilibili.com/v/douga/acgntalks)   |
+| 综合                    | other      | 27  | 以动画及动画相关内容为素材，包括但不仅限于音频替换、恶搞改编、排行榜等内容                            | [/v/douga/other](https://www.bilibili.com/v/douga/other)           |
 
 ## 番剧
 
@@ -49,34 +51,37 @@
 
 <img src="../../assets/zone_icon/music.svg" width="100" height="100"/>
 
-| 名称            | 代号             | tid     | 简介                                             | url路由                                                              |
-|---------------|----------------|---------|------------------------------------------------|--------------------------------------------------------------------|
-| 音乐(主分区)       | music          | 3       |                                                | [/v/music](https://www.bilibili.com/v/music)                       |
-| 原创音乐          | original       | 28      | 原创歌曲及纯音乐，包括改编、重编曲及remix                        | [/v/music/original](https://www.bilibili.com/v/music/original)     |
-| 翻唱            | cover          | 31      | 对曲目的人声再演绎视频                                    | [/v/music/cover](https://www.bilibili.com/v/music/cover)           |
-| VOCALOID·UTAU | vocaloid       | 30      | 以VOCALOID等歌声合成引擎为基础，运用各类音源进行的创作                | [/v/music/vocaloid](https://www.bilibili.com/v/music/vocaloid)     |
-| 演奏            | perform        | 59      | 乐器和非传统乐器器材的演奏作品。                               | [/v/music/perform](https://www.bilibili.com/v/music/perform)       |
-| MV            | mv             | 193     | 为音乐作品配合拍摄或制作的音乐录影带（Music Video），以及自制拍摄、剪辑、翻拍MV | [/v/music/mv](https://www.bilibili.com/v/music/mv)                 |
-| 音乐现场          | live           | 29      | 音乐表演的实况视频，包括官方/个人拍摄的综艺节目、音乐剧、音乐节、演唱会等          | [/v/music/live](https://www.bilibili.com/v/music/live)             |
-| 音乐综合          | other          | 130     | 所有无法被收纳到其他音乐二级分区的音乐类视频                         | [/v/music/other](https://www.bilibili.com/v/music/other)           |
-| 乐评盘点          | commentary     | 243     | 音乐类新闻、盘点、点评、reaction、榜单、采访、幕后故事、唱片开箱等          | [/v/music/commentary](https://www.bilibili.com/v/music/commentary) |
-| 音乐教学          | tutorial       | 244     | 以音乐教学为目的的内容                                    | [/v/music/tutorial](https://www.bilibili.com/v/music/tutorial)     |
-| ~~电音~~(已下线)   | ~~electronic~~ | ~~194~~ | ~~以电子合成器、音乐软体等产生的电子声响制作的音乐~~                   | ~~/v/music/electronic~~                                            |
+| 名称            | 代号             | tid     | 简介                                                       | url路由                                                              |
+|---------------|----------------|---------|----------------------------------------------------------|--------------------------------------------------------------------|
+| 音乐(主分区)       | music          | 3       |                                                          | [/v/music](https://www.bilibili.com/v/music)                       |
+| 原创音乐          | original       | 28      | 原创歌曲及纯音乐，包括改编、重编曲及remix                                  | [/v/music/original](https://www.bilibili.com/v/music/original)     |
+| 音乐现场          | live           | 29      | 音乐表演的实况视频，包括官方的综艺节目、音乐剧、音乐节、演唱会、打歌舞台现场等，以及个人演出/街头表演现场等   | [/v/music/live](https://www.bilibili.com/v/music/live)             |
+| 翻唱            | cover          | 31      | 对曲目的人声再演绎视频                                              | [/v/music/cover](https://www.bilibili.com/v/music/cover)           |
+| 演奏            | perform        | 59      | 乐器和非传统乐器器材的演奏作品                                          | [/v/music/perform](https://www.bilibili.com/v/music/perform)       |
+| 乐评盘点          | commentary     | 243     | 音乐类新闻、盘点、点评、reaction、榜单、采访、幕后故事、唱片开箱等                    | [/v/music/commentary](https://www.bilibili.com/v/music/commentary) |
+| VOCALOID·UTAU | vocaloid       | 30      | 以VOCALOID等歌声合成引擎为基础，运用各类音源进行的创作                          | [/v/music/vocaloid](https://www.bilibili.com/v/music/vocaloid)     |
+| MV            | mv             | 193     | 为音乐作品配合拍摄或制作的音乐录影带（Music Video），以及自制拍摄、剪辑、翻拍MV           | [/v/music/mv](https://www.bilibili.com/v/music/mv)                 |
+| 音乐粉丝饭拍        | fan_videos     | 266     | 在音乐演出现场由粉丝团体或个人拍摄的非官方记录视频，包括但不限于粉丝自制饭拍、直拍、Vlog以及衍生的内容混剪等 | [/v/music/fan_videos](https://www.bilibili.com/v/music/fan_videos) |
+| AI音乐          | ai_music       | 265     | 以AI合成技术为基础，运用各类工具进行的AI作编曲、AI作词、AI语音、AI变声、AI翻唱、AI MV等创作   | [/v/music/ai_music](https://www.bilibili.com/v/music/ai_music)     |
+| 电台            | radio          | 267     | 音乐分享、播单、白噪音、有声读物等以听为主的播放内容                               | [/v/music/radio](https://www.bilibili.com/v/music/radio)           |
+| 音乐教学          | tutorial       | 244     | 以音乐教学为目的的内容                                              | [/v/music/tutorial](https://www.bilibili.com/v/music/tutorial)     |
+| 音乐综合          | other          | 130     | 所有无法被收纳到其他音乐二级分区的音乐类视频                                   | [/v/music/other](https://www.bilibili.com/v/music/other)           |
+| ~~电音~~(已下线)   | ~~electronic~~ | ~~194~~ | ~~以电子合成器、音乐软体等产生的电子声响制作的音乐~~                             | ~~/v/music/electronic~~                                            |
 
 ## 舞蹈
 
 <img src="../../assets/zone_icon/dance.svg" width="100" height="100"/>
 
-| 名称      | 代号       | tid | 简介                                   | url路由                                                          |
-|---------|----------|-----|--------------------------------------|----------------------------------------------------------------|
-| 舞蹈(主分区) | dance    | 129 |                                      | [/v/dance](https://www.bilibili.com/v/dance)                   |
-| 宅舞      | otaku    | 20  | 与ACG相关的翻跳、原创舞蹈                       | [/v/dance/otaku](https://www.bilibili.com/v/dance/otaku)       |
-| 舞蹈综合    | three_d  | 154 | 收录无法定义到其他舞蹈子分区的舞蹈视频                  | [/v/dance/three_d](https://www.bilibili.com/v/dance/three_d)   |
-| 舞蹈教程    | demo     | 156 | 镜面慢速，动作分解，基础教程等具有教学意义的舞蹈视频           | [/v/dance/demo](https://www.bilibili.com/v/dance/demo)         |
-| 街舞      | hiphop   | 198 | 收录街舞相关内容，包括赛事现场、舞室作品、个人翻跳、FREESTYLE等 | [/v/dance/hiphop](https://www.bilibili.com/v/dance/hiphop)     |
-| 明星舞蹈    | star     | 199 | 国内外明星发布的官方舞蹈及其翻跳内容                   | [/v/dance/star](https://www.bilibili.com/v/dance/star)         |
-| 国风舞蹈    | china    | 200 | 收录国风向舞蹈内容，包括中国舞、民族民间舞、汉唐舞、国风爵士等      | [/v/dance/china](https://www.bilibili.com/v/dance/china)       |
-| 手势·网红舞  | gestures | 255 | 手势舞及网红流行舞蹈、短视频舞蹈等相关视频                | [/v/dance/gestures](https://www.bilibili.com/v/dance/gestures) |
+| 名称                      | 代号       | tid | 简介                                   | url路由                                                          |
+|-------------------------|----------|-----|--------------------------------------|----------------------------------------------------------------|
+| 舞蹈(主分区)                 | dance    | 129 |                                      | [/v/dance](https://www.bilibili.com/v/dance)                   |
+| 宅舞                      | otaku    | 20  | 与ACG相关的翻跳、原创舞蹈                       | [/v/dance/otaku](https://www.bilibili.com/v/dance/otaku)       |
+| 街舞                      | hiphop   | 198 | 收录街舞相关内容，包括赛事现场、舞室作品、个人翻跳、FREESTYLE等 | [/v/dance/hiphop](https://www.bilibili.com/v/dance/hiphop)     |
+| 明星舞蹈                    | star     | 199 | 国内外明星发布的官方舞蹈及其翻跳内容                   | [/v/dance/star](https://www.bilibili.com/v/dance/star)         |
+| 国风舞蹈                    | china    | 200 | 收录国风向舞蹈内容，包括中国舞、民族民间舞、汉唐舞、国风爵士等      | [/v/dance/china](https://www.bilibili.com/v/dance/china)       |
+| 颜值·网红舞<br>(~~原手势·网红舞~~) | gestures | 255 | 手势舞及网红流行舞蹈、短视频舞蹈等相关视频                | [/v/dance/gestures](https://www.bilibili.com/v/dance/gestures) |
+| 舞蹈综合                    | three_d  | 154 | 收录无法定义到其他舞蹈子分区的舞蹈视频                  | [/v/dance/three_d](https://www.bilibili.com/v/dance/three_d)   |
+| 舞蹈教程                    | demo     | 156 | 镜面慢速，动作分解，基础教程等具有教学意义的舞蹈视频           | [/v/dance/demo](https://www.bilibili.com/v/dance/demo)         |
 
 ## 游戏
 
@@ -153,12 +158,12 @@
 |---------------|------------------|---------|---------------------------------------------------------------|----------------------------------------------------------------------------|
 | 汽车(主分区)       | car              | 223     |                                                               | [/v/car](https://www.bilibili.com/v/car)                                   |
 | 汽车知识科普        | knowledge        | 258     | 关于汽车技术与文化的硬核科普，以及生活中学车、用车、养车的相关知识                             | [/v/car/knowledge](https://www.bilibili.com/v/car/knowledge)               |
+| 购车攻略          | strategy         | 227     | 丰富详实的购车建议和新车体验                                                | [/v/car/strategy](https://www.bilibili.com/v/car/strategy)                 |
+| 新能源车          | newenergyvehicle | 247     | 新能源汽车相关内容，包括电动汽车、混合动力汽车等车型种类，包含不限于新车资讯、试驾体验、专业评测、技术解读、知识科普等内容 | [/v/car/newenergyvehicle](https://www.bilibili.com/v/car/newenergyvehicle) |
 | 赛车            | racing           | 245     | F1等汽车运动相关                                                     | [/v/car/racing](https://www.bilibili.com/v/car/racing)                     |
 | 改装玩车          | modifiedvehicle  | 246     | 汽车文化及改装车相关内容，包括改装车、老车修复介绍、汽车聚会分享等内容                           | [/v/car/modifiedvehicle](https://www.bilibili.com/v/car/modifiedvehicle)   |
-| 新能源车          | newenergyvehicle | 247     | 新能源汽车相关内容，包括电动汽车、混合动力汽车等车型种类，包含不限于新车资讯、试驾体验、专业评测、技术解读、知识科普等内容 | [/v/car/newenergyvehicle](https://www.bilibili.com/v/car/newenergyvehicle) |
-| 房车            | touringcar       | 248     | 房车及营地相关内容，包括不限于产品介绍、驾驶体验、房车生活和房车旅行等内容                         | [/v/car/touringcar](https://www.bilibili.com/v/car/touringcar)             |
 | 摩托车           | motorcycle       | 240     | 骑士们集合啦                                                        | [/v/car/motorcycle](https://www.bilibili.com/v/car/motorcycle)             |
-| 购车攻略          | strategy         | 227     | 丰富详实的购车建议和新车体验                                                | [/v/car/strategy](https://www.bilibili.com/v/car/strategy)                 |
+| 房车            | touringcar       | 248     | 房车及营地相关内容，包括不限于产品介绍、驾驶体验、房车生活和房车旅行等内容                         | [/v/car/touringcar](https://www.bilibili.com/v/car/touringcar)             |
 | 汽车生活          | life             | 176     | 分享汽车及出行相关的生活体验类视频                                             | [/v/car/life](https://www.bilibili.com/v/car/life)                         |
 | ~~汽车文化~~(已下线) | ~~culture~~      | ~~224~~ | ~~车迷的精神圣地，包括汽车赛事、品牌历史、汽车改装、经典车型和汽车模型等~~                       | ~~/v/car/culture~~                                                         |
 | ~~汽车极客~~(已下线) | ~~geek~~         | ~~225~~ | ~~汽车硬核达人聚集地，包括DIY造车、专业评测和技术知识分享~~                             | ~~/v/car/geek~~                                                            |
@@ -172,13 +177,13 @@
 |--------------|----------------|---------|-----------------------------------|----------------------------------------------------------------|
 | 生活(主分区)      | life           | 160     |                                   | [/v/life](https://www.bilibili.com/v/life)                     |
 | 搞笑           | funny          | 138     | 各种沙雕有趣的搞笑剪辑，挑战，表演，配音等视频           | [/v/life/funny](https://www.bilibili.com/v/life/funny)         |
+| 亲子           | parenting      | 254     | 分享亲子、萌娃、母婴、育儿相关的视频                | [/v/life/parenting](https://www.bilibili.com/v/life/parenting) |
 | 出行           | travel         | 250     | 为达到观光游览、休闲娱乐为目的的远途旅行、中近途户外生活、本地探店 | [/v/life/travel](https://www.bilibili.com/v/life/travel)       |
 | 三农           | rurallife      | 251     | 分享美好农村生活                          | [/v/life/rurallife](https://www.bilibili.com/v/life/rurallife) |
 | 家居房产         | home           | 239     | 与买房、装修、居家生活相关的分享                  | [/v/life/home](https://www.bilibili.com/v/life/home)           |
 | 手工           | handmake       | 161     | 手工制品的制作过程或成品展示、教程、测评类视频           | [/v/life/handmake](https://www.bilibili.com/v/life/handmake)   |
 | 绘画           | painting       | 162     | 绘画过程或绘画教程，以及绘画相关的所有视频             | [/v/life/painting](https://www.bilibili.com/v/life/painting)   |
 | 日常           | daily          | 21      | 记录日常生活，分享生活故事                     | [/v/life/daily](https://www.bilibili.com/v/life/daily)         |
-| 亲子           | parenting      | 254     | 分享亲子、萌娃、母婴、育儿相关的视频                | [/v/life/parenting](https://www.bilibili.com/v/life/parenting) |
 | ~~美食圈~~(重定向) | ~~food~~       | ~~76~~  | ~~美食鉴赏&料理制作教程~~                   | ~~/v/life/food~~                                               |
 | ~~动物圈~~(重定向) | ~~animal~~     | ~~75~~  | ~~萌萌的动物都在这里哦~~                    | ~~/v/life/animal~~                                             |
 | ~~运动~~(重定向)  | ~~sports~~     | ~~163~~ | ~~运动相关的记录、教程、装备评测和精彩瞬间剪辑视频~~      | ~~/v/life/sports~~                                             |
@@ -207,9 +212,9 @@
 | 动物圈(主分区) | animal           | 217 |                                           | [/v/animal](https://www.bilibili.com/v/animal)                                   |
 | 喵星人      | cat              | 218 | 喵喵喵喵喵                                     | [/v/animal/cat](https://www.bilibili.com/v/animal/cat)                           |
 | 汪星人      | dog              | 219 | 汪汪汪汪汪                                     | [/v/animal/dog](https://www.bilibili.com/v/animal/dog)                           |
-| 动物二创     | second_edition   | 220 | 解说、配音、剪辑、混剪                               | [/v/animal/second_edition](https://www.bilibili.com/v/animal/second_edition)     |
-| 野生动物     | wild_animal      | 221 | 内有“猛兽”出没                                  | [/v/animal/wild_animal](https://www.bilibili.com/v/animal/wild_animal)           |
 | 小宠异宠     | reptiles         | 222 | 奇妙宠物大赏                                    | [/v/animal/reptiles](https://www.bilibili.com/v/animal/reptiles)                 |
+| 野生动物     | wild_animal      | 221 | 内有“猛兽”出没                                  | [/v/animal/wild_animal](https://www.bilibili.com/v/animal/wild_animal)           |
+| 动物二创     | second_edition   | 220 | 解说、配音、剪辑、混剪                               | [/v/animal/second_edition](https://www.bilibili.com/v/animal/second_edition)     |
 | 动物综合     | animal_composite | 75  | 收录除上述子分区外，其余动物相关视频以及非动物主体或多个动物主体的动物相关延伸内容 | [/v/animal/animal_composite](https://www.bilibili.com/v/animal/animal_composite) |
 
 ## 鬼畜
@@ -268,27 +273,33 @@
 
 <img src="../../assets/zone_icon/ent.svg" width="100" height="100"/>
 
-| 名称               | 代号        | tid     | 简介                     | url路由                                                        |
-|------------------|-----------|---------|------------------------|--------------------------------------------------------------|
-| 娱乐(主分区)          | ent       | 5       |                        | [/v/ent](https://www.bilibili.com/v/ent)                     |
-| 综艺               | variety   | 71      | 所有综艺相关，全部一手掌握！         | [/v/ent/variety](https://www.bilibili.com/v/ent/variety)     |
-| 娱乐杂谈             | talker    | 241     | 娱乐人物解读、娱乐热点点评、娱乐行业分析   | [/v/ent/talker](https://www.bilibili.com/v/ent/talker)       |
-| 粉丝创作             | fans      | 242     | 粉丝向创作视频                | [/v/ent/fans](https://www.bilibili.com/v/ent/fans)           |
-| 明星综合             | celebrity | 137     | 娱乐圈动态、明星资讯相关           | [/v/ent/celebrity](https://www.bilibili.com/v/ent/celebrity) |
-| ~~Korea相关~~(已下线) | ~~korea~~ | ~~131~~ | ~~Korea相关音乐、舞蹈、综艺等视频~~ | ~~/v/ent/korea~~                                             |
+| 名称                    | 代号                 | tid     | 简介                                       | url路由                                                                          |
+|-----------------------|--------------------|---------|------------------------------------------|--------------------------------------------------------------------------------|
+| 娱乐(主分区)               | ent                | 5       |                                          | [/v/ent](https://www.bilibili.com/v/ent)                                       |
+| 娱乐杂谈                  | talker             | 241     | 娱乐人物解读、娱乐热点点评、娱乐行业分析                     | [/v/ent/talker](https://www.bilibili.com/v/ent/talker)                         |
+| CP安利                  | cp_recommendation  | 262     | 以安利各类娱乐名人、角色CP之间默契于火花为主题的混剪、解说，观点表达类视频   | [/v/ent/cp_recommendation](https://www.bilibili.com/v/ent/cp_recommendation)   |
+| 颜值安利                  | beauty             | 263     | 以各类娱乐名人、角色的颜值、气质魅力为核心的混剪视频               | [/v/ent/beauty](https://www.bilibili.com/v/ent/beauty)                         |
+| 娱乐粉丝创作<br>(~~原粉丝创作~~) | fans               | 242     | 粉丝向创作视频                                  | [/v/ent/fans](https://www.bilibili.com/v/ent/fans)                             |
+| 娱乐资讯                  | entertainment_news | 264     | 具备趣味价值的文化娱乐新闻与动态报道，如名人动态，作品发布，舞台演出，趣闻盘点等 | [/v/ent/entertainment_news](https://www.bilibili.com/v/ent/entertainment_news) |
+| 明星综合                  | celebrity          | 137     | 娱乐圈动态、明星资讯相关                             | [/v/ent/celebrity](https://www.bilibili.com/v/ent/celebrity)                   |
+| 综艺                    | variety            | 71      | 所有综艺相关，全部一手掌握！                           | [/v/ent/variety](https://www.bilibili.com/v/ent/variety)                       |
+| ~~Korea相关~~(已下线)      | ~~korea~~          | ~~131~~ | ~~Korea相关音乐、舞蹈、综艺等视频~~                   | ~~/v/ent/korea~~                                                               |
 
 ## 影视
 
 <img src="../../assets/zone_icon/cinephile.svg" width="100" height="100"/>
 
-| 名称      | 代号           | tid | 简介               | url路由                                                                          |
-|---------|--------------|-----|------------------|--------------------------------------------------------------------------------|
-| 影视(主分区) | cinephile    | 181 |                  | [/v/cinephile](https://www.bilibili.com/v/cinephile)                           |
-| 影视杂谈    | cinecism     | 182 | 影视评论、解说、吐槽、科普等   | [/v/cinephile/cinecism](https://www.bilibili.com/v/cinephile/cinecism)         |
-| 影视剪辑    | montage      | 183 | 对影视素材进行剪辑再创作的视频  | [/v/cinephile/montage](https://www.bilibili.com/v/cinephile/montage)           |
-| 小剧场     | shortfilm    | 85  | 有场景、有剧情的演绎类内容    | [/v/cinephile/shortfilm](https://www.bilibili.com/v/cinephile/shortfilm)       |
-| 预告·资讯   | trailer_info | 184 | 影视类相关资讯，预告，花絮等视频 | [/v/cinephile/trailer_info](https://www.bilibili.com/v/cinephile/trailer_info) |
-| 短片      | shortfilm    | 256 | 各种类型的短片          | [/v/cinephile/shortfilm](https://www.bilibili.com/v/cinephile/shortfilm)       |
+| 名称      | 代号            | tid | 简介                            | url路由                                                                            |
+|---------|---------------|-----|-------------------------------|----------------------------------------------------------------------------------|
+| 影视(主分区) | cinephile     | 181 |                               | [/v/cinephile](https://www.bilibili.com/v/cinephile)                             |
+| 影视杂谈    | cinecism      | 182 | 影视评论、解说、吐槽、科普等                | [/v/cinephile/cinecism](https://www.bilibili.com/v/cinephile/cinecism)           |
+| 影视剪辑    | montage       | 183 | 对影视素材进行剪辑再创作的视频               | [/v/cinephile/montage](https://www.bilibili.com/v/cinephile/montage)             |
+| 影视整活    | mashup        | 260 | 使用影视素材制造的有趣、有梗的创意混剪、配音、特效玩梗视频 | [/v/cinephile/mashup](https://www.bilibili.com/v/cinephile/mashup)               |
+| AI影像    | ai_imaging    | 259 | 分享AI制作的影像作品、创作历程、技术风向         | [/v/cinephile/ai_imaging](https://www.bilibili.com/v/cinephile/ai_imaging)       |
+| 预告·资讯   | trailer_info  | 184 | 影视类相关资讯，预告，花絮等视频              | [/v/cinephile/trailer_info](https://www.bilibili.com/v/cinephile/trailer_info)   |
+| 小剧场     | shortplay     | 85  | 有场景、有剧情的演绎类内容                 | [/v/cinephile/shortplay](https://www.bilibili.com/v/cinephile/shortplay)         |
+| 短片      | shortfilm     | 256 | 各种类型的短片                       | [/v/cinephile/shortfilm](https://www.bilibili.com/v/cinephile/shortfilm)         |
+| 影视综合    | comprehensive | 261 | 一切无法被收纳其他影视二级分区的影视相关内容        | [/v/cinephile/comprehensive](https://www.bilibili.com/v/cinephile/comprehensive) |
 
 ## 纪录片
 

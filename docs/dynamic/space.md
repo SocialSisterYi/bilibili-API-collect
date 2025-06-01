@@ -4,7 +4,7 @@
 
 请求方式：`GET`
 
-是否需要登录：`否`
+认证方式：Cookie（SESSDATA）
 
 ## URL参数
 
