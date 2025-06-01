@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-37a7e09a","path":"/docs/article/delete.html","title":"删除专栏","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"docs/article/delete.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-7e3f2e37","path":"/docs/audio/status_number.html","title":"音频状态数","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"歌曲状态数","slug":"歌曲状态数","link":"#歌曲状态数","children":[]}],"git":{},"filePathRelative":"docs/audio/status_number.md"}');export{t as data};

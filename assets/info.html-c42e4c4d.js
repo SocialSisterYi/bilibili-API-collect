@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-5938a1f0","path":"/docs/album/info.html","title":"相簿基本信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取相簿详细信息","slug":"获取相簿详细信息","link":"#获取相簿详细信息","children":[]}],"git":{},"filePathRelative":"docs/album/info.md"}');export{t as data};
