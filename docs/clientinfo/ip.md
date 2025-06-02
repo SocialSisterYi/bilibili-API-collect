@@ -5,6 +5,8 @@
 > https://api.bilibili.com/x/web-interface/zone
 >
 > https://api.live.bilibili.com/xlive/web-room/v1/index/getIpInfo
+>
+> https://app.bilibili.com/x/resource/ip
 
 *请求方式：GET*
 
