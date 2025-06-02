@@ -1,6 +1,6 @@
 # 直播间用户实用 API
 
-## 获取用户持有的粉丝勋章信息
+## 获取自己持有的粉丝勋章信息
 
 > ~~https://api.live.bilibili.com/fans_medal/v5/live_fans_medal/iApiMedal~~ (旧)
 > https://api.live.bilibili.com/xlive/app-ucenter/v1/user/GetMyMedals
@@ -115,6 +115,7 @@ curl https://api.live.bilibili.com/xlive/app-ucenter/v1/user/GetMyMedals?page=1&
 ```
 
 </details>
+
 
 ## 佩戴勋章
 
