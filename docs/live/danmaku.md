@@ -408,10 +408,10 @@ curl 'https://api.live.bilibili.com/xlive/web-room/v1/dM/AjaxSetConfig' \
 | bubble | num | (?) | 非必要 | 值为`0` |
 | room\_type | num | (?) | 非必要 | `0` |
 | jumpfrom | num | (?) | 非必要 | `0` |
-| reply\_mid | num | (?) | 非必要 | `0` |
+| reply\_mid | num | 要“@”的用户mid | 非必要 | 默认为`0` |
 | reply\_attr | num | (?) | 非必要 | `0` |
-| reply\_uname | str | (?) | 非必要 | `""` |
-| replay\_dmid | str | (?) | 非必要 | `""` |
+| reply\_uname | str | 要“@”的用户名称 | 非必要 | 默认为`""`，提供reply\_mid时不需要提供 |
+| replay\_dmid | str | 要回复的弹幕id | 非必要 | 默认为`""` |
 | statistics | str | (?) | 非必要 | `{"appId":100,"platform":5}` |
 | csrf_token | str | 同csrf | 非必要 |  |
 
