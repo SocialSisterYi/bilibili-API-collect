@@ -83,11 +83,6 @@ curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
 
 </details>
 
-## 获取“回复我的”信息
-
-根据提供的 JSON 数据，我将完善文档中"获取‘回复我的’信息"部分的 `items` 对象结构。以下是完善后的文档内容：
-
----
 
 ## 获取"回复我的"信息
 
@@ -97,7 +92,7 @@ curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
 
 认证方式：Cookie（SESSDATA）
 
-**URL 参数:**
+**URL参数:**
 
 | 参数名       | 类型 | 内容             | 必要性 | 备注          |
 | ------------ | ---- | ---------------- | ------ | ------------- |
@@ -108,7 +103,7 @@ curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
 | platform     | str  | 平台标识         | 非必要 | 可为 `web` 等 |
 | web_location | str  | 暂时不知道是啥   | 非必要 |               |
 
-**json 回复：**
+**json回复：**
 
 根对象：
 
@@ -161,7 +156,7 @@ curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
 
 | 字段                 | 类型  | 内容             | 备注                          |
 | -------------------- | ----- | ---------------- | ----------------------------- |
-| subject_id           | num   | 主体 id          | 可能是动态/视频 ID            |
+| subject_id           | num   | 主体 id          |                              |
 | root_id              | num   | 根评论 id        | 最顶层的评论 ID               |
 | source_id            | num   | 源评论 id        | 直接回复的评论 ID             |
 | target_id            | num   | 目标评论 id      | 被回复的评论 ID               |
@@ -208,145 +203,63 @@ curl 'https://api.bilibili.com/x/msgfeed/reply' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"cursor": {
-			"is_end": false,
-			"id": 799449693724680,
-			"time": 1746636230
-		},
-		"items": [
-			{
-				"id": 821743585689601,
-				"user": {
-					"mid": 18275670,
-					"fans": 0,
-					"nickname": "用户A",
-					"avatar": "https://example.com/avatar1.jpg",
-					"mid_link": "",
-					"follow": false
-				},
-				"item": {
-					"subject_id": 353543696,
-					"root_id": 264918441776,
-					"source_id": 263898848977,
-					"target_id": 264927311456,
-					"type": "reply",
-					"business_id": 11,
-					"business": "评论",
-					"title": "你对这个话题的见解很深刻...",
-					"desc": "",
-					"image": "",
-					"uri": "https://www.bilibili.com/opus/1075638099321552896",
-					"native_uri": "bilibili://comment/detail/11/353543696/264918441776/...",
-					"detail_title": "",
-					"root_reply_content": "你对这个话题的见解很深刻，我看到的是...",
-					"source_content": "回复 @用户B : 谢谢你的观点",
-					"target_reply_content": "@用户C @用户D @用户A",
-					"at_details": [
-						{
-							"mid": 321257047,
-							"fans": 0,
-							"nickname": "用户B",
-							"avatar": "https://example.com/avatar2.jpg",
-							"mid_link": "",
-							"follow": false
-						}
-					],
-					"topic_details": [],
-					"hide_reply_button": false,
-					"hide_like_button": false,
-					"like_state": 0,
-					"danmu": null,
-					"message": ""
-				},
-				"counts": 1,
-				"is_multi": 0,
-				"reply_time": 1749293868
-			},
-			{
-				"id": 821238205480961,
-				"user": {
-					"mid": 179013671,
-					"fans": 0,
-					"nickname": "用户C",
-					"avatar": "https://example.com/avatar3.jpg",
-					"mid_link": "",
-					"follow": false
-				},
-				"item": {
-					"subject_id": 114637743855429,
-					"root_id": 264873726528,
-					"source_id": 263838897153,
-					"target_id": 264873726528,
-					"type": "reply",
-					"business_id": 1,
-					"business": "视频",
-					"title": "你的视频内容很有趣",
-					"desc": "",
-					"image": "",
-					"uri": "https://www.bilibili.com/video/BV1fbTgzZEVr",
-					"native_uri": "bilibili://video/114637743855429?page=0&...",
-					"detail_title": "",
-					"root_reply_content": "你的视频内容很有趣",
-					"source_content": "感谢支持",
-					"target_reply_content": "",
-					"at_details": [],
-					"topic_details": [],
-					"hide_reply_button": false,
-					"hide_like_button": false,
-					"like_state": 0,
-					"danmu": null,
-					"message": ""
-				},
-				"counts": 1,
-				"is_multi": 0,
-				"reply_time": 1749233623
-			},
-			{
-				"id": 820914723848210,
-				"user": {
-					"mid": 3537122193574340,
-					"fans": 0,
-					"nickname": "用户D",
-					"avatar": "https://example.com/avatar4.jpg",
-					"mid_link": "",
-					"follow": false
-				},
-				"item": {
-					"subject_id": 353409399,
-					"root_id": 264815515152,
-					"source_id": 264818622496,
-					"target_id": 264815515152,
-					"type": "reply",
-					"business_id": 11,
-					"business": "评论",
-					"title": "这个观点很有启发性",
-					"desc": "",
-					"image": "",
-					"uri": "https://www.bilibili.com/opus/1075252634599817218",
-					"native_uri": "bilibili://comment/detail/11/353409399/264815515152/...",
-					"detail_title": "",
-					"root_reply_content": "这个观点很有启发性",
-					"source_content": "两人500，还行吧",
-					"target_reply_content": "",
-					"at_details": [],
-					"topic_details": [],
-					"hide_reply_button": false,
-					"hide_like_button": false,
-					"like_state": 0,
-					"danmu": null,
-					"message": ""
-				},
-				"counts": 1,
-				"is_multi": 0,
-				"reply_time": 1749195061
-			}
-		],
-		"last_view_at": 1749440007
-	}
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "cursor": {
+      "is_end": false,
+      "id": 123456789,
+      "time": 1749293868
+    },
+    "items": [{
+      "id": 123456789,
+      "user": {
+        "mid": 18275678,
+        "fans": 0,
+        "nickname": "用户A",
+        "avatar": "https://example.com/avatar1.jpg",
+        "mid_link": "",
+        "follow": false
+      },
+      "item": {
+        "subject_id": 353543696,
+        "root_id": 264918441776,
+        "source_id": 263898848977,
+        "target_id": 264927311456,
+        "type": "reply",
+        "business_id": 11,
+        "business": "评论",
+        "title": "你对这个话题的见解很深刻...",
+        "desc": "",
+        "image": "",
+        "uri": "https://www.bilibili.com/opus/107563809932155289",
+        "native_uri": "bilibili://comment/detail/11/353543696/26491844177/...",
+        "detail_title": "",
+        "root_reply_content": "你对这个话题的见解很深刻，我看到的是...",
+        "source_content": "回复 @用户B : 谢谢你的观点",
+        "target_reply_content": "@用户C @用户D @用户A",
+        "at_details": [{
+          "mid": 321257048,
+          "fans": 0,
+          "nickname": "用户B",
+          "avatar": "https://example.com/avatar2.jpg",
+          "mid_link": "",
+          "follow": false
+        }],
+        "topic_details": [],
+        "hide_reply_button": false,
+        "hide_like_button": false,
+        "like_state": 0,
+        "danmu": null,
+        "message": ""
+      },
+      "counts": 1,
+      "is_multi": 0,
+      "reply_time": 1749293868
+    }],
+    "last_view_at": 1749440007
+  }
 }
 ```
 
