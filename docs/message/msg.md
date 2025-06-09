@@ -6,50 +6,50 @@
 
 > <https://api.vc.bilibili.com/x/im/web/msgfeed/unread> (新接口)
 
-_请求方式：GET_
+*请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
 
 本接口不会返回未读的私信数，要获取未读的私信数请参阅[未读私信数](private_msg.md#未读私信数)相关说明
 
-**URL 参数:**
+**URL参数:**
 
-| 参数名   | 类型 | 内容             | 必要性 | 备注          |
-| -------- | ---- | ---------------- | ------ | ------------- |
-| build    | num  | 客户端内部版本号 | 非必要 | 默认为 `0`    |
-| mobi_app | str  | 平台标识         | 非必要 | 可为 `web` 等 |
+| 参数名   | 类型 | 内容             | 必要性 | 备注                      |
+| -------- | ---- | ---------------- | ------ | ------------------------- |
+| build    | num  | 客户端内部版本号 | 非必要 | 默认为 `0`                |
+| mobi_app | str  | 平台标识         | 非必要 | 可为 `web` 等             |
 
-**json 回复：**
+**json回复：**
 
 根对象：
 
 | 字段    | 类型 | 内容     | 备注                          |
 | ------- | ---- | -------- | ----------------------------- |
 | code    | num  | 返回值   | 0：成功<br />-101：账号未登录 |
-| message | str  | 错误信息 | 默认为 0                      |
+| message | str  | 错误信息 | 默认为0                       |
 | ttl     | num  | 1        |                               |
 | data    | obj  | 信息本体 |                               |
 
 `data` 对象：
 
-| 字段          | 类型 | 内容                 | 备注                       |
-| ------------- | ---- | -------------------- | -------------------------- |
-| at            | num  | 未读 at 数           |                            |
-| chat          | num  | 0                    | 仅旧接口，**作用尚不明确** |
-| coin          | num  | 未读投币数           |                            |
-| danmu         | num  | 未读弹幕数           |                            |
-| favorite      | num  | 未读收藏数           |                            |
-| like          | num  | 未读点赞数           |                            |
-| recv_like     | num  | 未读点赞数           | 同 `like`                  |
-| recv_reply    | num  | 未读回复数           | 同 `reply`                 |
-| reply         | num  | 未读回复数           |                            |
-| sys_msg       | num  | 未读系统通知数       |                            |
-| sys_msg_style | num  | 1                    | 仅新接口, **作用尚不明确** |
-| up            | num  | 未读 UP 主助手信息数 |                            |
+| 字段          | 类型 | 内容               | 备注                       |
+| ------------- | ---- | ------------------ | -------------------------- |
+| at            | num  | 未读at数           |                            |
+| chat          | num  | 0                  | 仅旧接口，**作用尚不明确** |
+| coin          | num  | 未读投币数         |                            |
+| danmu         | num  | 未读弹幕数         |                            |
+| favorite      | num  | 未读收藏数         |                            |
+| like          | num  | 未读点赞数         |                            |
+| recv_like     | num  | 未读点赞数         | 同 `like`                  |
+| recv_reply    | num  | 未读回复数         | 同 `reply`                 |
+| reply         | num  | 未读回复数         |                            |
+| sys_msg       | num  | 未读系统通知数     |                            |
+| sys_msg_style | num  | 1                  | 仅新接口, **作用尚不明确** |
+| up            | num  | 未读UP主助手信息数 |                            |
 
 **示例：**
 
-以下信息代表了未读点赞数为 10，未读回复数为 4，未读 at 消息数为 3，未读系统通知数为 2，未读 UP 主助手信息数为 1
+以下信息代表了未读点赞数为10，未读回复数为4，未读at消息数为3，未读系统通知数为2，未读UP主助手信息数为1
 
 ```shell
 curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
@@ -61,23 +61,23 @@ curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
 
 ```json
 {
-	"code": 0,
-	"message": "0",
-	"ttl": 1,
-	"data": {
-		"at": 3,
-		"chat": 0,
-		"coin": 0,
-		"danmu": 0,
-		"favorite": 0,
-		"like": 10,
-		"recv_like": 10,
-		"recv_reply": 4,
-		"reply": 4,
-		"sys_msg": 2,
-		"sys_msg_style": 1,
-		"up": 1
-	}
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "at": 3,
+    "chat": 0,
+    "coin": 0,
+    "danmu": 0,
+    "favorite": 0,
+    "like": 10,
+    "recv_like": 10,
+    "recv_reply": 4,
+    "reply": 4,
+    "sys_msg": 2,
+    "sys_msg_style": 1,
+    "up": 1
+  }
 }
 ```
 
@@ -93,7 +93,7 @@ curl 'https://api.vc.bilibili.com/x/im/web/msgfeed/unread' \
 
 > <https://api.bilibili.com/x/msgfeed/reply>
 
-_请求方式：GET_
+*请求方式：GET*
 
 认证方式：Cookie（SESSDATA）
 
@@ -196,4 +196,158 @@ _请求方式：GET_
 | mid_link | str  | 用户主页链接   | 固定为空字符串     |
 | follow   | bool | 是否关注该用户 | `false` 表示未关注 |
 
----
+**示例：**
+
+```shell
+curl 'https://api.bilibili.com/x/msgfeed/reply' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+	"code": 0,
+	"message": "0",
+	"ttl": 1,
+	"data": {
+		"cursor": {
+			"is_end": false,
+			"id": 799449693724680,
+			"time": 1746636230
+		},
+		"items": [
+			{
+				"id": 821743585689601,
+				"user": {
+					"mid": 18275670,
+					"fans": 0,
+					"nickname": "用户A",
+					"avatar": "https://example.com/avatar1.jpg",
+					"mid_link": "",
+					"follow": false
+				},
+				"item": {
+					"subject_id": 353543696,
+					"root_id": 264918441776,
+					"source_id": 263898848977,
+					"target_id": 264927311456,
+					"type": "reply",
+					"business_id": 11,
+					"business": "评论",
+					"title": "你对这个话题的见解很深刻...",
+					"desc": "",
+					"image": "",
+					"uri": "https://www.bilibili.com/opus/1075638099321552896",
+					"native_uri": "bilibili://comment/detail/11/353543696/264918441776/...",
+					"detail_title": "",
+					"root_reply_content": "你对这个话题的见解很深刻，我看到的是...",
+					"source_content": "回复 @用户B : 谢谢你的观点",
+					"target_reply_content": "@用户C @用户D @用户A",
+					"at_details": [
+						{
+							"mid": 321257047,
+							"fans": 0,
+							"nickname": "用户B",
+							"avatar": "https://example.com/avatar2.jpg",
+							"mid_link": "",
+							"follow": false
+						}
+					],
+					"topic_details": [],
+					"hide_reply_button": false,
+					"hide_like_button": false,
+					"like_state": 0,
+					"danmu": null,
+					"message": ""
+				},
+				"counts": 1,
+				"is_multi": 0,
+				"reply_time": 1749293868
+			},
+			{
+				"id": 821238205480961,
+				"user": {
+					"mid": 179013671,
+					"fans": 0,
+					"nickname": "用户C",
+					"avatar": "https://example.com/avatar3.jpg",
+					"mid_link": "",
+					"follow": false
+				},
+				"item": {
+					"subject_id": 114637743855429,
+					"root_id": 264873726528,
+					"source_id": 263838897153,
+					"target_id": 264873726528,
+					"type": "reply",
+					"business_id": 1,
+					"business": "视频",
+					"title": "你的视频内容很有趣",
+					"desc": "",
+					"image": "",
+					"uri": "https://www.bilibili.com/video/BV1fbTgzZEVr",
+					"native_uri": "bilibili://video/114637743855429?page=0&...",
+					"detail_title": "",
+					"root_reply_content": "你的视频内容很有趣",
+					"source_content": "感谢支持",
+					"target_reply_content": "",
+					"at_details": [],
+					"topic_details": [],
+					"hide_reply_button": false,
+					"hide_like_button": false,
+					"like_state": 0,
+					"danmu": null,
+					"message": ""
+				},
+				"counts": 1,
+				"is_multi": 0,
+				"reply_time": 1749233623
+			},
+			{
+				"id": 820914723848210,
+				"user": {
+					"mid": 3537122193574340,
+					"fans": 0,
+					"nickname": "用户D",
+					"avatar": "https://example.com/avatar4.jpg",
+					"mid_link": "",
+					"follow": false
+				},
+				"item": {
+					"subject_id": 353409399,
+					"root_id": 264815515152,
+					"source_id": 264818622496,
+					"target_id": 264815515152,
+					"type": "reply",
+					"business_id": 11,
+					"business": "评论",
+					"title": "这个观点很有启发性",
+					"desc": "",
+					"image": "",
+					"uri": "https://www.bilibili.com/opus/1075252634599817218",
+					"native_uri": "bilibili://comment/detail/11/353409399/264815515152/...",
+					"detail_title": "",
+					"root_reply_content": "这个观点很有启发性",
+					"source_content": "两人500，还行吧",
+					"target_reply_content": "",
+					"at_details": [],
+					"topic_details": [],
+					"hide_reply_button": false,
+					"hide_like_button": false,
+					"like_state": 0,
+					"danmu": null,
+					"message": ""
+				},
+				"counts": 1,
+				"is_multi": 0,
+				"reply_time": 1749195061
+			}
+		],
+		"last_view_at": 1749440007
+	}
+}
+```
+
+</details>
