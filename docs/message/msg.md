@@ -205,48 +205,40 @@ curl 'https://api.bilibili.com/x/msgfeed/reply' \
 {
   "code": 0,
   "message": "0",
-  "ttl": 1,
   "data": {
     "cursor": {
-      "is_end": false,
-      "id": 123456789,
-      "time": 1749293868
+      "is_end": true,
+      "id": 823260581625886,
+      "time": 1749474709
     },
     "items": [{
-      "id": 123456789,
+      "id": 823260581625886,
       "user": {
-        "mid": 18275678,
+        "mid": 3546910497441845,
         "fans": 0,
-        "nickname": "用户A",
-        "avatar": "https://example.com/avatar1.jpg",
+        "nickname": "佘总累了",
+        "avatar": "https://i2.hdslb.com/bfs/face/e45c62bd47729e07dd01a788988be865ed3d210e.jpg",
         "mid_link": "",
         "follow": false
       },
       "item": {
-        "subject_id": 353543696,
-        "root_id": 264918441776,
-        "source_id": 263898848977,
-        "target_id": 264927311456,
-        "type": "reply",
-        "business_id": 11,
-        "business": "评论",
-        "title": "你对这个话题的见解很深刻...",
+        "subject_id": 1073543151725051921,
+        "root_id": 0,
+        "source_id": 265141324256,
+        "target_id": 0,
+        "type": "dynamic",
+        "business_id": 17,
+        "business": "动态",
+        "title": "我已成为哔哩哔哩第245743680位转正会员，挑战转正答题考试获得60分。",
         "desc": "",
         "image": "",
-        "uri": "https://www.bilibili.com/opus/107563809932155289",
-        "native_uri": "bilibili://comment/detail/11/353543696/26491844177/...",
+        "uri": "https://www.bilibili.com/opus/1073543151725051921#reply265141324256",
+        "native_uri": "bilibili://opus/detail/1073543151725051921?comment_root_id=265141324256&comment_on=1",
         "detail_title": "",
-        "root_reply_content": "你对这个话题的见解很深刻，我看到的是...",
-        "source_content": "回复 @用户B : 谢谢你的观点",
-        "target_reply_content": "@用户C @用户D @用户A",
-        "at_details": [{
-          "mid": 321257048,
-          "fans": 0,
-          "nickname": "用户B",
-          "avatar": "https://example.com/avatar2.jpg",
-          "mid_link": "",
-          "follow": false
-        }],
+        "root_reply_content": "",
+        "source_content": "60",
+        "target_reply_content": "",
+        "at_details": [],
         "topic_details": [],
         "hide_reply_button": false,
         "hide_like_button": false,
@@ -256,9 +248,9 @@ curl 'https://api.bilibili.com/x/msgfeed/reply' \
       },
       "counts": 1,
       "is_multi": 0,
-      "reply_time": 1749293868
+      "reply_time": 1749474709
     }],
-    "last_view_at": 1749440007
+    "last_view_at": 1749474724
   }
 }
 ```
