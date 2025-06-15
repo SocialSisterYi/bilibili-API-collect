@@ -36,8 +36,8 @@
 | 字段名           | 类型   | 内容                                | 备注  |
 |---------------|------|-----------------------------------|-----|
 | allow_message | bool | `true`                            |     |
-| input_text    | str  | `UP主加油！看好你噢`                      |     |
-| input_title   | str  | `感谢你对UP主的特别支持，“老粉”可期！私信留言鼓励下TA吧 ` |     |
+| input_text    | str  | `UP主加油！看好你噢~`                      |     |
+| input_title   | str  | `感谢你对UP主的特别支持，“老粉”可期！私信留言鼓励下TA吧~ ` |     |
 
 **示例：**
 
@@ -59,8 +59,8 @@ curl --location --request POST 'https://api.bilibili.com/x/v1/contract/add_contr
   "ttl": 1,
   "data": {
     "allow_message": true,
-    "input_text": "UP主加油！看好你噢",
-    "input_title": "感谢你对UP主的特别支持，“老粉”可期！私信留言鼓励下TA吧 "
+    "input_text": "UP主加油！看好你噢~",
+    "input_title": "感谢你对UP主的特别支持，“老粉”可期！私信留言鼓励下TA吧~"
   }
 }
 ```
