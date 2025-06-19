@@ -2,7 +2,7 @@
 
 ## 查询登录记录
 
-> https://api.bilibili.com/x/safecenter/login_notice
+> <https://api.bilibili.com/x/safecenter/login_notice>
 
 *请求方式：GET*
 
@@ -12,7 +12,7 @@
 
 | 参数名 | 类型 | 内容       | 必要性 | 备注                                                         |
 | ------ | ---- | ---------- | ------ | ------------------------------------------------------------ |
-| mid    | num  | 用户mid    | 必要   |                                                              |
+| mid    | num  | 用户mid    | 必要   | 必须为自己的mid                                              |
 | buvid  | str  | 设备虚拟id | 非必要 | web端为操作登录接口时Cookie中的`buvid3`<br />若登录设备无`buvid`则留空 |
 
 **json回复：**
@@ -21,7 +21,7 @@
 
 | 字段    | 类型 | 内容     | 备注                        |
 | ------- | ---- | -------- | --------------------------- |
-| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误 |
+| code    | num  | 返回值   | 0：成功<br />-101：账号未登录<br />-400：请求错误<br />-403：访问权限不足 |
 | message | str  | 错误信息 | 默认为0                     |
 | ttl     | num  | 1        |                             |
 | data    | obj  | 信息本体 |                             |
@@ -43,9 +43,9 @@
 
 ```shell
 curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
---data-urlencode 'mid=293793435' \
---data-urlencode 'buvid=fuck_chenrui' \
--b 'SESSDATA=xxx'
+  --data-urlencode 'mid=293793435' \
+  --data-urlencode 'buvid=fuck_chenrui' \
+  -b 'SESSDATA=xxx'
 ```
 
 <details>
@@ -71,7 +71,7 @@ curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
 
 ## 最近一周的登录情况
 
-> https://api.bilibili.com/x/member/web/login/log
+> <https://api.bilibili.com/x/member/web/login/log>
 
 *请求方式: GET*
 
@@ -114,7 +114,7 @@ curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
 
 | 字段     | 类型 | 内容           | 备注  |
 | -------- | ---- | -------------- | ---- |
-| ip       | str  | 登录 IP         | 末两位以 `*` 打码 |
+| ip       | str  | 登录 IP         | IPv4：末 2 位以 `*` 打码<br />IPv6：末 5 位以 `*` 打码 |
 | time     | num  | 登录时间     | UNIX 秒级时间戳 |
 | time_at  | str  | 登录时间     | 格式为 `yyyy-MM-dd HH:mm:ss` |
 | status   | bool | 是否登录成功? |      |
@@ -127,7 +127,7 @@ curl -G 'https://api.bilibili.com/x/safecenter/login_notice' \
 
 ```shell
 curl -G "https://api.bilibili.com/x/member/web/login/log" \
--b "SESSDATA=xxx"
+  -b "SESSDATA=xxx"
 ```
 
 <details>
@@ -139,8 +139,16 @@ curl -G "https://api.bilibili.com/x/member/web/login/log" \
   "message": "0",
   "ttl": 1,
   "data": {
-    "count": 14,
+    "count": 15,
     "list": [
+      {
+        "ip": "240e:*:*:*:*:*:*:*",
+        "time": 1746038055,
+        "time_at": "2025-05-01 02:34:15",
+        "status": true,
+        "type": 0,
+        "geo": "中国广西梧州电信"
+      },
       {
         "ip": "108.181.*.*",
         "time": 1722036741,

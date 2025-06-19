@@ -167,6 +167,12 @@
 
 **示例：**
 
+```shell
+curl -G 'https://api.bilibili.com/x/credit/v2/jury/case/info' \
+  --data-urlencode 'case_id=AC2SiaD8jlrL' \
+  -b 'SESSDATA=xxx'
+```
+
 <details>
 <summary>查看响应示例：</summary>
 

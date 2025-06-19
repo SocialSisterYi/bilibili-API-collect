@@ -726,7 +726,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getRoomBaseInfo' 
 | keyframe            | str | 直播间关键帧url |                              |
 | lock_till           | str | 直播间封禁信息   |                              |
 | hidden_till         | str | 直播间隐藏信息   |                              |
-| broadcast_type      | num | 直播类型      | 0:普通直播<br />1：手机直播           |
+| broadcast_type      | num | 直播类型      | 0：普通直播<br />1：手机直播          |
 
 **示例：**
 
@@ -829,7 +829,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
 | dm_type | num | 弹幕类型 | |
 | uid | num | 弹幕发送者的UID | |
 | nickname | str | 弹幕发送者的昵称 | |
-| uname_color | str | 弹幕发送者的颜色? | |
+| uname_color | str | 弹幕发送者的昵称颜色? | |
 | timeline | str | 弹幕发送时间 | 格式为`yyyy-MM-dd HH:mm:ss` |
 | isadmin | num | 是否为管理员 | |
 | vip | num | 是否为VIP? ||
@@ -839,9 +839,9 @@ curl 'https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
 | user_level | array | 用户等级信息? | 格式不明 |
 | rank | num | 排名? | [用户空间详细信息](../user/info.md#获取用户详细信息) |
 | teamid | num |  | |
-| rnd | str | 发送时间? | UNIX 秒级时间戳 |
-| user_title | 用户标题? | 格式不明 |
-| guard_level |  | | |
+| rnd | str | 随机数种子? |  |
+| user_title | str | 用户头衔? |格式不明|
+| guard_level |  | 大航海等级？ | |
 | bubble |  | | |
 | bubble_color |  | | |
 | lpl |  | | |
@@ -849,14 +849,42 @@ curl 'https://api.live.bilibili.com/room/v1/Room/get_status_info_by_uids' \
 | jump_to_url |  | | |
 | check_info | obj | 弹幕审核信息? |  |
 | voice_dm_info | obj | 语音弹幕信息? |  |
-| emoticon | obj | 表情信息? |  |
-| emots | null |  | |
+| emoticon | obj | 房间独有表情信息 |  |
+| emots | obj | 默认表情信息 | 结构为`表情名-信息`组成的键值对<br />如果信息不含默认表情，则返回 null |
 | id_str | str | 弹幕ID? |  |
 | wealth_level | num | 财富等级? |  |
 | bubble_id_v2 | num |  |  |
-| reply | obj |  |  |
+| reply | obj | 回复的弹幕 |  |
 | group_medal | null |  |  |
 | user | obj | 该用户信息 ||
+
+`data`对象中的`emoticon`对象:
+
+| 字段            | 类型 | 内容                     | 备注                         |
+| --------------- | ---- | ------------------------ | ---------------------------- |
+| id              | num  | 0                        |                              |
+| emoticon_unique | str  | 表情的独特标识           | 格式为`room_房间号_表情id`   |
+| text            | text | 表情的触发词             |                              |
+| perm            | num  | 发送权限？               | 1：所有人都可发送            |
+| url             | str  | 表情的图像链接           |                              |
+| in_player_area  | num  | 是否显示在直播画面区域？ |                              |
+| bulge_display   | num  | 是否高亮显示？           |                              |
+| is_dynamic      | num  | 是否为动态表情           | 0：静态图像<br />1：动态图像 |
+| height          | num  | 表情的高度               |                              |
+| width           | num  | 表情的宽度               |                              |
+
+`data`对象中的`emots`对象中的任意一个值对象:
+
+| 字段           | 类型 | 内容             | 备注                      |
+| -------------- | ---- | ---------------- | ------------------------- |
+| count          | num  | 重复发送数量     |                           |
+| descript       | str  | 表情描述         |                           |
+| emoji          | str  | 表情描述         |                           |
+| emotion_id     | num  | 表情 id          |                           |
+| emotion_unique | str  | 表情的独特标识符 | 格式可能为`emoji_表情 id` |
+| height         | num  | 表情的宽度       |                           |
+| url            | str  | 表情的图像链接   |                           |
+| width          | num  | 表情的高度       |                           |
 
 `data`对象中的`user`对象:
 
