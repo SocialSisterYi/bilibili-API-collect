@@ -693,6 +693,12 @@ curl -G "https://member.bilibili.com/preupload?r=probe"
 | rank | num | 排序权重? |       |
 | max_video_count | num | 最大视频数量? |       |
 | request_id | str | 空 |       |
+| human_type | obj\|null | 新分区ID，好像除第一个之外都是null | 
+
+`human_type` 参数
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| id   | num | 新分区id | 可在 [获取新分区ID](#获取新分区ID) 找到对应名称      |
 
 **示例:**
 
@@ -922,8 +928,8 @@ curl -G 'https://member.bilibili.com/x/vupre/web/tag/recommend' \
 | cover43 | str  | 视频封面 URL (比例为 4:3) | 非必要   | 可为空 |
 | title  | str  | 视频标题 | 必要   | 最多 80 字 |
 | copyright | num  | 1: 自制<br />2: 转载 | 必要   |      |
-| tid    | num  | 分区 ID | 必要   |      |
-| human_type2 | num  | 新分区ID | 非必要| 从 `getHumanType2List` 获取  |
+| tid    | num  | 分区 ID | 必要   | Web端此参数已无法手动设置，参数值为从[预测稿件类型](#预测稿件类型)中获取第一个固定id     |
+| human_type2 | num  | 新分区ID | 非必要| 从 [新分区ID](#获取新分区ID) 获取 |
 | tag    | str  | 视频标签 | 必要   | 多个标签用 `,` 分隔, 最多 10 个 |
 | desc_format_id | num  | 简介格式 ID? | 必要   | 9999: 纯文本 |
 | desc   | str  | 视频简介 | 非必要   | 最多 2000 字 |
@@ -1095,7 +1101,7 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/add/v3" \
 | dynamic | str  | 粉丝动态 | 必要   |      |
 | interactive | num  | 互动视频? | 必要   | 0: 否 |
 | act_reserve_create | num  | 活动预约? | 必要   | 0: 否 |
-| no_disturbance | num  | 勿扰模式? | 必要   | 0: 否 |
+| no_disturbance | num  | 是否推送到动态 | 必要   | 0：不推送<br />1：推送 |
 | no_reprint | num  | 是否允许转载 | 必要   | 1: 允许<br />0: 不允许 |
 | subtitle | obj | 字幕信息 | 必要   |      |
 | web_os | num  | 操作系统 | 必要   | 1: Web |
