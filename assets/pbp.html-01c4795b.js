@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-0919deac","path":"/docs/video/pbp.html","title":"高能进度条","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取弹幕趋势顶点列表","slug":"获取弹幕趋势顶点列表","link":"#获取弹幕趋势顶点列表","children":[]}],"git":{},"filePathRelative":"docs/video/pbp.md"}');export{e as data};

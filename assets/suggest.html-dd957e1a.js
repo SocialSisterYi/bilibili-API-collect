@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-ba17e9fe","path":"/docs/search/suggest.html","title":"搜索建议","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取搜索建议关键词（web端）","slug":"获取搜索建议关键词-web端","link":"#获取搜索建议关键词-web端","children":[]}],"git":{},"filePathRelative":"docs/search/suggest.md"}');export{e as data};

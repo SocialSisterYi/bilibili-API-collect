@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-68f62c48","path":"/docs/article/articles.html","title":"文集基本信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取文集基本信息","slug":"获取文集基本信息","link":"#获取文集基本信息","children":[]}],"git":{},"filePathRelative":"docs/article/articles.md"}');export{t as data};

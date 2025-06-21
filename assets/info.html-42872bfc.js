@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-38c89e50","path":"/docs/wallet/info.html","title":"基本信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取用户钱包","slug":"获取用户钱包","link":"#获取用户钱包","children":[]}],"git":{},"filePathRelative":"docs/wallet/info.md"}');export{e as data};

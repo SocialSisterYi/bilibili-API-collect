@@ -1,0 +1,1 @@
+const l=JSON.parse('{"key":"v-306d26a0","path":"/docs/garb/color.html","title":"主题色","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取主题色基本信息1","slug":"获取主题色基本信息1","link":"#获取主题色基本信息1","children":[]},{"level":2,"title":"获取主题色基本信息2","slug":"获取主题色基本信息2","link":"#获取主题色基本信息2","children":[]}],"git":{},"filePathRelative":"docs/garb/color.md"}');export{l as data};

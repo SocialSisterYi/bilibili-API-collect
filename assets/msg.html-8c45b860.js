@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-02292a0a","path":"/docs/message/msg.html","title":"通知消息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取未读消息数","slug":"获取未读消息数","link":"#获取未读消息数","children":[]},{"level":2,"title":"获取\\"回复我的\\"信息","slug":"获取-回复我的-信息","link":"#获取-回复我的-信息","children":[]}],"git":{},"filePathRelative":"docs/message/msg.md"}');export{e as data};
