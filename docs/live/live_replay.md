@@ -2,6 +2,8 @@
 
 <!-- 网页端: https://link.bilibili.com/#/my-room/live-record ;移动端: https://live.bilibili.com/p/html/live-app-playback/index.html#new -->
 
+注: 直播回放相关接口较新，随时可能出现变化。
+
 ## 获取直播回放列表
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetReplayList
@@ -221,7 +223,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetRepl
 | ctime | str | 切片创建时间 |  |
 | start_tm | str | 切片开始时间 |  |
 | end_tm | str | 切片结束时间 |  |
-| av_duration | num | 切片时长 | 状态为2时存在 |
+| av_duration | num | 切片时长 | 状态为2且创作中心出现有效视频时长时存在 |
 | failed_reason | str | 失败原因 | 状态为3时存在，2024-09-01前发布失败的切片可能不存在 |
 | live_type | num | (?) | 作用尚不明确 |
 | cnt_play | num | 播放数 | 视频有播放时存在；若该页出现任意状态不为2的项也会不存在 |
@@ -1150,10 +1152,11 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 | start_ts | num | 开始时间戳 | 必要 | 开始和结束时间目前相差不能大于2小时 |
 | end_ts | num | 结束时间戳 | 必要 | 开始和结束时间目前相差不能大于2小时 |
 | av_title | str | 切片标题 | 必要 | 不能与现有标题重复 |
-| av_cover | str | 切片封面URL | 必要 |  |
+| av_cover | str | 切片封面URL | 必要 | 必须为`.hdslb.com`域名下的图片，否则合成结束时会出错 |
 | av_highlight | num | 高光绑定? | 非必要 |  |
 | with_subtitle | num | 是否自动生成字幕? | 非必要 | 效果不明确 |
 | with_danmaku | num | 是否带弹幕? | 非必要 | 传递`1`时可能导致处于“发布中”状态时不在[获取已发布片段的信息](#获取已发布片段的信息)中显示 |
+| with_reserve | num | (?) | 非必要 | 作用尚不明确 |
 | csrf | str | CSRF Token（位于cookie） | 必要 |  |
 
 **json回复：**
