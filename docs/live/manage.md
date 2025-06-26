@@ -274,7 +274,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | -------- | ---- | ------------------------ | ------ | ----------------------------------- |
 | room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                |
 | area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)        |
-| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />web在线直播：web_link<br />bililink：android_link |
+| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />web在线直播：web_link（已下线）<br />bililink：android_link |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                     |
 
 **json回复：**
@@ -283,7 +283,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误<br />60009：分区不存在<br />60024: 目标分区需要人脸认证<br />60013：非常抱歉，您所在的地区受实名认证限制无法开播<br />**（其他错误码有待补充）** |
+| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误<br />60009：分区不存在<br />60013：非常抱歉，您所在的地区受实名认证限制无法开播<br />60024: 目标分区需要人脸认证<br />60037: web 在线开播已下线<br />**（其他错误码有待补充）** |
 | msg     | str  | 错误信息 | 默认为空                                                     |
 | message | str  | 错误信息 | 默认为空                                                     |
 | data    | obj  | 信息本体 |                                                              |
@@ -296,7 +296,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | status    | str   | 直播间状态       | `LIVE`                 |
 | room_type | num   | 0                | 作用尚不明确           |
 | rtmp      | obj   | RTMP推流地址信息 |                        |
-| protocols | array | ？？？           | 作用尚不明确           |
+| protocols | array | 推流协议、地址、密钥等信息<br />其中地址、密钥与 `rtmp` 字段的内容是一致的 | 协议只见到过 `rtmp` |
 | try_time  | str   | ？？？           | 作用尚不明确           |
 | live_key  | str   | 标记直播场次的key |                        |
 | sub_session_key | str   | 信息变动标识 |      |
@@ -314,23 +314,23 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | addr     | str  | RTMP推流（发送）地址             | **重要**     |
 | code     | str  | RTMP推流参数（密钥）             | **重要**     |
 | new_link | str  | 获取CDN推流ip地址重定向信息的url | 没啥用       |
-| provider | str  | ？？？                           | 作用尚不明确 |
+| provider | str  | 推流云服务节点厂商    | `txy`: 腾讯云            |
 
 `data`中的`protocols`数组：
 
 | 项   | 类型 | 内容   | 备注         |
 | ---- | ---- | ------ | ------------ |
-| 0    | obj  | ？？？ | 作用尚不明确 |
+| 0    | obj  | 与 `rtmp` 字段在地址和密钥上相同的推流协议信息 |           |
 
 `data`中的`protocols`数组中的对象：
 
 | 字段     | 类型 | 内容                             | 备注         |
 | -------- | ---- | -------------------------------- | ------------ |
-| protocol | str  | rtmp                             | 作用尚不明确 |
-| addr     | str  | RTMP推流（发送）地址             |              |
-| code     | str  | RTMP推流参数（密钥）             |              |
+| protocol | str  | rtmp                             | 推流协议     |
+| addr     | str  | RTMP推流（发送）地址             | 格式为 `rtmp://<推流节点>/live-bvc/` |
+| code     | str  | RTMP推流参数（密钥）             | 格式为 `?streamname=live_<B站UID>_<未知数字>&key=<密钥>&schedule=rtmp&pflag=<开播平台标志>` |
 | new_link | str  | 获取CDN推流ip地址重定向信息的url |              |
-| provider | str  | txy                              | 作用尚不明确 |
+| provider | str  | 推流云服务节点厂商                              | `txy`: 腾讯云 |
 
 `data`中的`notice`对象：
 
@@ -480,6 +480,121 @@ curl 'https://api.live.bilibili.com/room/v1/Room/stopLive' \
 
 </details>
 
+## 预更新直播间信息
+
+> https://api.live.bilibili.com/xlive/app-blink/v1/preLive/UpdatePreLiveInfo
+
+*请求方法: POST*
+
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| csrf | str | CSRF Token（位于cookie） | 必要 |  |
+| csrf_token | str | CSRF Token（位于cookie） | 必要 |  |
+| platform | str | 平台标识 | 必要 | 似乎可随意提供<br />网页端: web |
+| mobi_app | str | 平台标识? | 必要 | 似乎可随意提供<br />网页端: web |
+| build | num | 构建标识? | 必要 | 建议取`1`，似乎可随意提供 |
+| cover | str | 直播封面链接 | 非必要 | 图片链接需要在`.hdslb.com`域名下 |
+| title | str | 直播间标题 | 非必要 | 参见[更新直播间信息](#更新直播间信息)的title参数 |
+| coverVertical | str | (?) | 非必要 | 作用尚不明确 |
+| liveDirectionType | num | (?) | 非必要 | `1` |
+| visit_id | str | (?) | 非必要 | `""` |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功<br />1: 错误<br />100402: 图片地址不合法 |
+| message | str | 错误信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 内容本体 |  |
+
+`data`对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| audit_info | obj | 审核信息 |  |
+
+`data.audit_info`对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| audit_title | str | 被审核的标题 |  |
+| audit_title_status | num | 标题审核状态 |  |
+| audit_title_reason | str | 标题审核提示 |  |
+
+**示例：**
+
+更新直播间封面
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/app-blink/v1/preLive/UpdatePreLiveInfo' \
+  --data-urlencode 'platform=web' \
+  --data-urlencode 'mobi_app=web' \
+  --data-urlencode 'build=1' \
+  --data-urlencode 'cover=https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data":{
+    "audit_info":{
+      "audit_title": "",
+      "audit_title_status": 0,
+      "audit_title_reason": ""
+    }
+  }
+}
+```
+
+</details>
+
+使用此接口更新直播间标题
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/app-blink/v1/preLive/UpdatePreLiveInfo' \
+  --data-urlencode 'platform=web' \
+  --data-urlencode 'mobi_app=web' \
+  --data-urlencode 'build=1' \
+  --data-urlencode 'title=你好你好，我是花火~咱们来找点乐子吧？小灰毛，不要害羞嘛，要大胆的来，一起欢愉吧' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data":{
+    "audit_info":{
+      "audit_title": "你好你好，我是花火~咱们来找点乐子吧？小灰毛，不要害羞嘛，要大胆的来，一起欢愉吧",
+      "audit_title_status": 2,
+      "audit_title_reason": "先发后审"
+    }
+  }
+}
+```
+
+</details>
 
 ## 更新直播间公告
 

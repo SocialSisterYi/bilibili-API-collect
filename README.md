@@ -259,6 +259,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [直播流水](docs/live/live_bill.md)
     - [ ] [礼物相关](docs/live/gift.md)
     - [ ] [大航海/粉丝团](docs/live/guard.md)
+    - [ ] [直播回放](docs/live/live_replay.md)
 - [ ] [活动](docs/activity)
     - [ ] [活动列表](docs/activity/list.md)
     - [ ] [活动主题信息](docs/activity/info.md)
