@@ -110,6 +110,7 @@
 | avid   | num  | 稿件 avid        | 必要（可选） | avid 与 bvid 任选一个                                        |
 | bvid   | str  | 稿件 bvid        | 必要（可选） | avid 与 bvid 任选一个                                        |
 | cid    | num  | 视频 cid         | 必要         |                                                              |
+| gaiagaia_source   | str  | view-card  | 必要         |                                                              |
 | qn     | num  | 视频清晰度选择   | 非必要       | 未登录默认 32（480P），登录后默认 64（720P）<br />含义见 [上表](#qn视频清晰度标识)<br />**DASH 格式时无效** |
 | fnval  | num  | 视频流格式标识 | 非必要       | 默认值为`1`（MP4 格式）<br />含义见 [上表](#fnval视频流格式标识) |
 | fnver  | num  | 0                | 非必要       |                                                       |
