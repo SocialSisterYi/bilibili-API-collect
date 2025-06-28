@@ -431,8 +431,10 @@ curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
+| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />web在线直播：web_link（已下线）<br />bililink：android_link |
 | room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
+| uid     | num  | 用户id                   | 非必要   |                       |
 
 **json回复：**
 
