@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-be421d0c","path":"/docs/live/redpocket.html","title":"直播间人气红包","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取指定直播间的红包信息","slug":"获取指定直播间的红包信息","link":"#获取指定直播间的红包信息","children":[]}],"git":{},"filePathRelative":"docs/live/redpocket.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-180bc312","path":"/docs/article/info.html","title":"专栏基本信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取专栏文章基本信息","slug":"获取专栏文章基本信息","link":"#获取专栏文章基本信息","children":[]}],"git":{},"filePathRelative":"docs/article/info.md"}');export{t as data};

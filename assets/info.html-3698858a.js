@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-0e0e11ae","path":"/docs/cheese/info.html","title":"课程基本信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取课程基本信息","slug":"获取课程基本信息","link":"#获取课程基本信息","children":[]},{"level":2,"title":"获取课程分集列表","slug":"获取课程分集列表","link":"#获取课程分集列表","children":[]}],"git":{},"filePathRelative":"docs/cheese/info.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3bb3d8ab","path":"/docs/comment/","title":"评论区","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"评论区类型代码","slug":"评论区类型代码","link":"#评论区类型代码","children":[]},{"level":2,"title":"评论条目对象","slug":"评论条目对象","link":"#评论条目对象","children":[]}],"git":{},"filePathRelative":"docs/comment/readme.md"}');export{e as data};

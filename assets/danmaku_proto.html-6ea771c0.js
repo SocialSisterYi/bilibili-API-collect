@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-bf935f48","path":"/docs/danmaku/danmaku_proto.html","title":"protobuf弹幕","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取实时弹幕","slug":"获取实时弹幕","link":"#获取实时弹幕","children":[]}],"git":{},"filePathRelative":"docs/danmaku/danmaku_proto.md"}');export{t as data};

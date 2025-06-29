@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-116820eb","path":"/docs/customerservice/msg.html","title":"客服消息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"心跳","slug":"心跳","link":"#心跳","children":[]},{"level":2,"title":"上传文件","slug":"上传文件","link":"#上传文件","children":[]}],"git":{},"filePathRelative":"docs/customerservice/msg.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-37e58b45","path":"/docs/live/recommend.html","title":"直播推荐","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"主页获取直播推荐","slug":"主页获取直播推荐","link":"#主页获取直播推荐","children":[]}],"git":{},"filePathRelative":"docs/live/recommend.md"}');export{e as data};
