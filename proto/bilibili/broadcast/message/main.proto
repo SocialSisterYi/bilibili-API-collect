@@ -1,0 +1,350 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.main;
+
+import "bilibili/app/dynamic/v2.proto";
+import "google/protobuf/empty.proto";
+
+// 
+service NativePage {
+    // 
+    rpc WatchNotify (google.protobuf.Empty) returns (stream NativePageEvent);
+}
+
+// 
+service Resource {
+    // 
+    rpc TopActivity (google.protobuf.Empty) returns (stream TopActivityReply);
+}
+
+// 
+service Search {
+    // 
+    rpc ChatResultPush (google.protobuf.Empty) returns (stream ChatResult);
+}
+
+// 
+message Animate {
+    // 
+    string icon = 1;
+    // 
+    string json = 2;
+    // 
+    string svg = 3;
+    // 
+    int32 loop = 4;
+}
+
+// 
+message ArticleCard {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string cover = 3;
+    // 
+    string author = 4;
+    // 
+    int64 mid = 5;
+    // 
+    int32 view = 6;
+    // 
+    int32 like = 7;
+    // 
+    int32 reply = 8;
+    // 
+    string pub_time = 9;
+    // 
+    string badge = 10;
+}
+
+// 
+message Bubble {
+    // 
+    repeated bilibili.app.dynamic.v2.Paragraph paragraphs = 1;
+    // 
+    repeated CardItem item = 2;
+}
+
+// 
+message CardItem {
+    // 
+    oneof card_item {
+        // 
+        ArticleCard article = 4;
+        // 
+        VideoCard av = 5;
+    }
+    // 
+    string uri = 1;
+    // 
+    string param = 2;
+    // 
+    string goto = 3;
+}
+
+// 
+message ChatResult {
+    // 
+    int32 code = 1;
+    // 
+    string session_id = 2;
+    // 
+    repeated Bubble bubbles = 3;
+    // 
+    string rewrite_word = 4;
+    // 
+    string title = 5;
+    // 
+    string business = 6;
+    // 
+    int64 message_id = 7;
+    // 
+    LikeState like_state = 8;
+    // 
+    int64 like_number = 9;
+}
+
+// 
+message CommandDm {
+    // 
+    int64 id = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 mid = 3;
+    // 
+    int32 type = 4;
+    // 
+    string command = 5;
+    // 
+    string content = 6;
+    // 
+    int32 state = 7;
+    // 
+    int32 progress = 8;
+    // 
+    string ctime = 9;
+    // 
+    string mtime = 10;
+    // 
+    string extra = 11;
+    // 
+    string id_str = 12;
+}
+
+// 
+message DanmakuElem {
+    // 
+    int64 id = 1;
+    // 
+    int32 progress = 2;
+    // 
+    int32 mode = 3;
+    // 
+    int32 fontsize = 4;
+    // 
+    int32 color = 5;
+    // 
+    string mid_hash = 6;
+    // 
+    string content = 7;
+    // 
+    int64 ctime = 8;
+    // 
+    string action = 9;
+    // 
+    int32 pool = 10;
+    // 
+    string id_str = 11;
+    // 
+    int32 weight = 12;
+    // 
+    int32 attr = 13;
+    // 
+    string animation = 14;
+}
+
+// 
+message DanmukuEvent {
+    // 
+    repeated DanmakuElem elems = 1;
+}
+
+// 
+message EventItem {
+    // 
+    int64 item_i_d = 1;
+    // 
+    string type = 2;
+    // 
+    int64 num = 3;
+    // 
+    string display_num = 4;
+    // 
+    string web_key = 5;
+    // 
+    int64 dimension = 6;
+}
+
+// 
+message HistoryReportEvent {
+    // 
+    int64 aid = 1;
+    // 
+    int32 type = 2;
+    // 
+    int64 cid = 3;
+    // 
+    int64 epid = 4;
+    // 
+    int64 sid = 5;
+    // 
+    int32 sub_type = 6;
+    // 
+    int32 dt = 7;
+    // 
+    int64 realtime = 8;
+    // 
+    string source = 9;
+    // 
+    int64 progress = 10;
+    // 
+    int64 duration = 11;
+    // 
+    string platform = 12;
+    // 
+    string device = 13;
+    // 
+    int64 play_time = 14;
+    // 
+    string statistics = 15;
+    // 
+    int64 start_ts = 16;
+    // 
+    int64 device_ts = 17;
+    // 
+    string scene = 18;
+}
+
+// 
+enum LikeState {
+    // 
+    DEFAULT = 0;
+    // 
+    LIKE = 1;
+    // 
+    DISLIKE = 2;
+}
+
+// 
+message NativePageEvent {
+    // 
+    int64 page_i_d = 1;
+    // 
+    repeated EventItem items = 2;
+}
+
+// 
+message ReasonStyle {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    string border_color = 6;
+    // 
+    string border_color_night = 7;
+    // 
+    int32 bg_style = 8;
+}
+
+// 
+message RedDot {
+    // 
+    int32 type = 1;
+    // 
+    int32 number = 2;
+}
+
+// 
+message Stats {
+    // 
+    int32 like = 1;
+    // 
+    int32 coin = 2;
+    // 
+    int32 fav = 3;
+    // 
+    int32 share = 4;
+}
+
+// 
+message TopActivityReply {
+    // 
+    TopOnline online = 1;
+    // 
+    string hash = 2;
+}
+
+// 
+message TopOnline {
+    // 
+    int32 type = 1;
+    // 
+    string icon = 2;
+    // 
+    string uri = 3;
+    // 
+    string unique_id = 4;
+    // 
+    Animate animate = 5;
+    // 
+    RedDot red_dot = 6;
+    // 
+    string name = 7;
+    // 
+    int64 interval = 8;
+}
+
+// 
+message VideoCard {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string cover = 3;
+    // 
+    string author = 4;
+    // 
+    string duration = 5;
+    // 
+    repeated ReasonStyle new_rec_tags = 6;
+    // 
+    repeated ReasonStyle badges = 7;
+    // 
+    string show_card_desc2 = 8;
+    // 
+    string view_content = 9;
+    // 
+    int32 icon_type = 10;
+}
+
+// 
+message ViewPush {
+    // 
+    Stats stats = 1;
+    // 
+    int64 aid = 2;
+    // 
+    int64 up_time = 3;
+}
+
