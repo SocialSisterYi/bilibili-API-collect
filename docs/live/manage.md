@@ -274,7 +274,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | -------- | ---- | ------------------------ | ------ | ----------------------------------- |
 | room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                |
 | area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)        |
-| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />web在线直播：web_link（已下线）<br />bililink：android_link |
+| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />直播姬（android）：android_link |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                     |
 
 **json回复：**
@@ -283,9 +283,9 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误<br />60009：分区不存在<br />60013：非常抱歉，您所在的地区受实名认证限制无法开播<br />60024: 目标分区需要人脸认证<br />60037: web 在线开播已下线<br />**（其他错误码有待补充）** |
-| msg     | str  | 错误信息 | 默认为空                                                     |
-| message | str  | 错误信息 | 默认为空                                                     |
+| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误<br />60009：分区不存在<br />60013：非常抱歉，您所在的地区受实名认证限制无法开播<br />60024: 目标分区需要人脸认证<br />60034: 系统维护仅支持直播姬开播<br />60037: web 在线开播已下线<br />**（其他错误码有待补充）** |
+| msg     | str  | 提示信息 | 默认为空                                                     |
+| message | str  | 提示信息 | 默认为空                                                     |
 | data    | obj  | 信息本体 |                                                              |
 
 `data`对象：
@@ -431,7 +431,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
-| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />web在线直播：web_link（已下线）<br />bililink：android_link |
+| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />直播姬（android）：android_link |
 | room_id | num  | 直播间id                 | 必要   | 必须为自己的直播间id |
 | csrf    | str  | CSRF Token（位于cookie） | 必要   |                      |
 
@@ -441,9 +441,9 @@ curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />-400：没有权限<br />**（其他错误码有待补充）** |
-| msg     | str  | 错误信息 | 默认为空                                                     |
-| message | str  | 错误信息 | 默认为空                                                     |
+| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />-400：没有权限<br />60034: 系统维护仅支持直播姬关播<br />**（其他错误码有待补充）** |
+| msg     | str  | 提示信息 | 默认为空                                                     |
+| message | str  | 提示信息 | 默认为空                                                     |
 | data    | obj  | 信息本体 |                                                              |
 
 `data`对象：
@@ -459,6 +459,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/startLive' \
 
 ```shell
 curl 'https://api.live.bilibili.com/room/v1/Room/stopLive' \
+  --data-urlencode 'platform=pc_link' \
   --data-urlencode 'room_id=10352053' \
   --data-urlencode 'csrf=xxx' \
   -b 'SESSDATA=xxx;bili_jct=xxx'
