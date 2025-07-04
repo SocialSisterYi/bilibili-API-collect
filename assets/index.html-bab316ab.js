@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-672ca53c","path":"/docs/note/","title":"视频笔记","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"附表-笔记正文序列格式","slug":"附表-笔记正文序列格式","link":"#附表-笔记正文序列格式","children":[]}],"git":{},"filePathRelative":"docs/note/readme.md"}');export{e as data};

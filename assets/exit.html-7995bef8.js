@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-215493fa","path":"/docs/login/exit.html","title":"退出账号登录","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"退出登录(web端)","slug":"退出登录-web端","link":"#退出登录-web端","children":[]}],"git":{},"filePathRelative":"docs/login/exit.md"}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1326e701","path":"/docs/live/gift.html","title":"","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"获取直播间内礼物","slug":"获取直播间内礼物","link":"#获取直播间内礼物","children":[]},{"level":2,"title":"获取盲盒概率","slug":"获取盲盒概率","link":"#获取盲盒概率","children":[]}],"git":{},"filePathRelative":"docs/live/gift.md"}');export{e as data};

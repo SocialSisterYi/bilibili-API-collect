@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5eaf8994","path":"/docs/dynamic/get_dynamic_detail.html","title":"获取特定动态卡片信息","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"最近更新UP主列表","slug":"最近更新up主列表","link":"#最近更新up主列表","children":[]}],"git":{},"filePathRelative":"docs/dynamic/get_dynamic_detail.md"}');export{e as data};
