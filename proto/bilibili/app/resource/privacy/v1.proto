@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package bilibili.app.resource.privacy.v1;
+
+// 
+service Privacy {
+    // 
+    rpc PrivacyConfig (NoArgRequest) returns (PrivacyConfigReply);
+    // 
+    rpc SetPrivacyConfig (SetPrivacyConfigRequest) returns (NoReply);
+}
+
+// 
+message NoArgRequest {
+}
+
+// 
+message NoReply {
+}
+
+// 
+message PrivacyConfigItem {
+    // 
+    PrivacyConfigType privacy_config_type = 1;
+    // 
+    string title = 2;
+    // 
+    PrivacyConfigState state = 3;
+    // 
+    string sub_title = 4;
+    // 
+    string sub_title_uri = 5;
+}
+
+// 
+message PrivacyConfigReply {
+    // 
+    repeated PrivacyConfigItem privacy_config_item = 1;
+}
+
+// 
+enum PrivacyConfigState {
+    // 
+    close = 0;
+    // 
+    open = 1;
+}
+
+// 
+enum PrivacyConfigType {
+    // 
+    none = 0;
+    // 
+    dynamic_city = 1;
+}
+
+// 
+message SetPrivacyConfigRequest {
+    // 
+    PrivacyConfigType privacy_config_type = 1;
+    // 
+    PrivacyConfigState state = 2;
+}
+

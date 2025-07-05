@@ -1,0 +1,538 @@
+syntax = "proto3";
+
+package bilibili.live.app.room.v1;
+
+// 
+enum Gender {
+    // 
+    Gender_Woman = 0;
+    // 
+    Gender_Man = 1;
+}
+
+// 
+message GetStudioListReq {
+    // 
+    int64 room_id = 1;
+}
+
+// 
+message GetStudioListResp {
+    // 
+    message Pendants {
+        // 
+        message Pendant {
+            // 
+            string name = 1;
+            // 
+            int64 position = 2;
+            // 
+            string value = 3;
+            // 
+            string desc = 4;
+        }
+        
+        // 
+        Pendant frame = 1;
+        // 
+        Pendant badge = 2;
+    }
+    
+    // 
+    message StudioMaster {
+        // 
+        int64 uid = 1;
+        // 
+        int64 room_id = 2;
+        // 
+        string uname = 3;
+        // 
+        string face = 4;
+        // 
+        GetStudioListResp.Pendants pendants = 5;
+        // 
+        string tag = 6;
+        // 
+        int64 tag_type = 7;
+    }
+    
+    // 
+    int64 status = 1;
+    // 
+    repeated GetStudioListResp.StudioMaster master_list = 2;
+}
+
+// 
+message InteractConnect {
+    // 
+    InteractConnectType interact_connect_type = 1;
+    // 
+    PubStatus default_pub_status = 2;
+    // 
+    SubMode default_sub_mode = 3;
+    // 
+    PlayMode audio_play_mode = 4;
+    // 
+    PlayMode video_play_mode = 5;
+    // 
+    int64 connect_timeout = 6;
+}
+
+// 
+enum InteractConnectType {
+    // 
+    InteractConnectTypeAll = 0;
+    // 
+    InteractConnectTypeOnlyVoice = 1;
+    // 
+    InteractConnectTypeOnlyVideo = 2;
+}
+
+// 
+enum InteractJoinType {
+    // 
+    InteractJoinTypeInvalid = 0;
+    // 
+    InteractJoinTypeInvitation = 1;
+    // 
+    InteractJoinTypeApply = 2;
+    // 
+    InteractJoinTypeChannelLink = 3;
+    // 
+    InteractJoinTypePullUp = 4;
+}
+
+// 
+message InteractLayoutData {
+    // 
+    int32 width = 1;
+    // 
+    int32 height = 2;
+    // 
+    LayoutCell default_cell = 3;
+    // 
+    repeated LayoutCell cells = 4;
+    // 
+    RtcResolution rtc_resolution = 5;
+    // 
+    int32 best_area_show_pos = 6;
+    // 
+    RtcResolution rtc_resolution_simulcast = 7;
+}
+
+// 
+message InteractMode {
+    // 
+    InteractModeType interact_mode_type = 1;
+    // 
+    repeated int32 join_types = 2;
+    // 
+    int64 invite_timeout = 3;
+    // 
+    int64 apply_timeout = 4;
+    // 
+    InteractPositionMode position_mode = 5;
+}
+
+// 
+enum InteractModeType {
+    // 
+    InteractModeB2B = 0;
+    // 
+    InteractModeB2C = 1;
+}
+
+// 
+enum InteractPositionMode {
+    // 
+    InteractPositionModeDefault = 0;
+    // 
+    InteractPositionModeChronological = 1;
+    // 
+    InteractPositionModeCustom = 2;
+}
+
+// 
+message InteractSceneConfig {
+    // 
+    string interact_scene_id = 1;
+    // 
+    InteractTemplate interact_template = 2;
+    // 
+    InteractMode interact_mode = 3;
+    // 
+    InteractConnect interact_connect = 4;
+    // 
+    int64 interact_max_users = 5;
+}
+
+// 
+message InteractTemplate {
+    // 
+    message Layout {
+        // 
+        string layout_id = 1;
+        // 
+        string video_size = 2;
+        // 
+        int64 max_users = 3;
+    }
+    
+    // 
+    string template_id = 1;
+    // 
+    bool is_variable_layout = 2;
+    // 
+    repeated InteractTemplate.Layout layout_list = 3;
+    // 
+    bool show_interact_ui = 4;
+    // 
+    string layout_id = 5;
+    // 
+    InteractLayoutData layout_data = 6;
+}
+
+// 
+message LayoutCell {
+    // 
+    double x = 1;
+    // 
+    double y = 2;
+    // 
+    double width = 3;
+    // 
+    double height = 4;
+    // 
+    int32 z_index = 5;
+    // 
+    int64 position = 6;
+    // 
+    LayoutCellOpen default_open = 7;
+    // 
+    int32 mobile_font_size = 8;
+    // 
+    int32 mobile_avatar_size = 9;
+    // 
+    int32 pc_web_font_size = 10;
+    // 
+    int32 pc_web_avatar_size = 11;
+    // 
+    int32 can_zoom = 12;
+    // 
+    int32 video_index = 13;
+    // 
+    string position_text = 14;
+}
+
+// 
+enum LayoutCellOpen {
+    // 
+    LayoutCellOpenInvalid = 0;
+    // 
+    LayoutCellOpenVisible = 1;
+    // 
+    LayoutCellOpenInvisible = 2;
+}
+
+// 
+message Members {
+    // 
+    int64 uid = 1;
+    // 
+    string uname = 2;
+    // 
+    string face = 3;
+    // 
+    int64 position = 4;
+    // 
+    UserStreamControl stream_control = 5;
+    // 
+    int64 join_time = 6;
+    // 
+    string link_id = 7;
+    // 
+    Gender gender = 8;
+    // 
+    int64 room_id = 9;
+}
+
+// 
+message MultiConnInfo {
+    // 
+    message Score {
+        // 
+        int64 uid = 1;
+        // 
+        int64 price = 2;
+        // 
+        string price_text = 3;
+    }
+    
+    // 
+    repeated MultiConnInfo.Score scores = 1;
+    // 
+    int64 room_owner = 2;
+    // 
+    int64 show_score = 3;
+}
+
+// 
+message MultiConnInfoReq {
+    // 
+    int64 room_id = 1;
+    // 
+    int64 anchor_uid = 2;
+    // 
+    string biz_session_id = 3;
+}
+
+// 
+message MultiConnInfoResp {
+    // 
+    message info {
+        // 
+        int64 uid = 1;
+        // 
+        int64 room_id = 2;
+        // 
+        string avatar = 3;
+        // 
+        string nickname = 4;
+        // 
+        int64 price = 5;
+        // 
+        string price_text = 6;
+        // 
+        int64 gender = 7;
+    }
+    
+    // 
+    repeated MultiConnInfoResp.info data = 1;
+    // 
+    int64 invoking_time = 2;
+    // 
+    int64 version = 3;
+    // 
+    string layout = 4;
+    // 
+    int64 room_status = 5;
+    // 
+    string biz_session_id = 6;
+}
+
+// 
+enum MuteLocalMode {
+    // 
+    mute_mode_none = 0;
+    // 
+    mute_mode_packet = 1;
+    // 
+    mute_mode_capture = 2;
+}
+
+// 
+message Operator {
+    // 
+    int64 anchor_uid = 1;
+    // 
+    int64 room_id = 2;
+    // 
+    string live_key = 3;
+    // 
+    int64 uid = 4;
+    // 
+    string platform = 5;
+    // 
+    string buvid = 6;
+    // 
+    int64 build = 7;
+    // 
+    string ip = 8;
+    // 
+    string mobi_app = 9;
+}
+
+// 
+enum PlayMode {
+    // 
+    play_mode_default = 0;
+    // 
+    play_mode_explicit = 1;
+}
+
+// 
+enum PubStatus {
+    // 
+    pub_status_none = 0;
+    // 
+    pub_status_audio = 1;
+    // 
+    pub_status_video = 2;
+    // 
+    pub_status_all = 3;
+}
+
+// 
+enum RoomStatus {
+    // 
+    RoomStatusNotStart = 0;
+    // 
+    RoomStatusStarted = 1;
+    // 
+    RoomStatusEnded = 2;
+}
+
+// 
+message RtcResolution {
+    // 
+    int32 vertical_width = 1;
+    // 
+    int32 vertical_height = 2;
+    // 
+    int32 horizontal_width = 3;
+    // 
+    int32 horizontal_height = 4;
+    // 
+    int64 code_rate_init = 5;
+    // 
+    int64 code_rate_min = 6;
+    // 
+    int64 code_rate_max = 7;
+    // 
+    double scale_down_ratio = 8;
+    // 
+    int64 small_bitrate_weight = 9;
+    // 
+    int64 big_bitrate_weight = 10;
+    // 
+    int64 small_max_fps = 11;
+    // 
+    int64 big_max_fps = 12;
+    // 
+    bool small_bitrate_active = 13;
+}
+
+// 
+enum SessionStatus {
+    // 
+    SessionStatusNotStart = 0;
+    // 
+    SessionStatusStarted = 1;
+    // 
+    SessionStatusEnded = 2;
+}
+
+// 
+enum SubMode {
+    // 
+    sub_mode_none = 0;
+    // 
+    sub_mode_audio = 1;
+    // 
+    sub_mode_video = 2;
+    // 
+    sub_mode_all = 3;
+}
+
+// 
+message UniversalInfoReq {
+    // 
+    string biz_session_id = 1;
+    // 
+    int64 anchor_uid = 2;
+    // 
+    int64 room_id = 3;
+}
+
+// 
+message UniversalInfoResp {
+    // 
+    string biz_session_id = 1;
+    // 
+    string interact_channel_id = 2;
+    // 
+    InteractMode interact_mode = 3;
+    // 
+    InteractTemplate interact_template = 4;
+    // 
+    InteractConnectType interact_connect_type = 5;
+    // 
+    int64 interact_max_users = 6;
+    // 
+    repeated Members members = 7;
+    // 
+    int64 version = 8;
+    // 
+    SessionStatus session_status = 9;
+    // 
+    MultiConnInfo multi_conn_info = 10;
+    // 
+    string business_label = 11;
+    // 
+    int64 invoking_time = 12;
+    // 
+    int64 members_version = 13;
+    // 
+    RoomStatus room_status = 14;
+    // 
+    int64 system_time_unix = 15;
+    // 
+    int64 room_owner = 16;
+    // 
+    string session_start_at = 17;
+    // 
+    int64 session_start_at_ts = 18;
+    // 
+    string room_start_at = 19;
+    // 
+    int64 room_start_at_ts = 20;
+    // 
+    string trace_id = 21;
+}
+
+// 
+message UserStreamControl {
+    // 
+    message ExplicitSubMode {
+        // 
+        int64 uid = 1;
+        // 
+        SubMode sub_mode = 2;
+    }
+    
+    // 
+    message PubSubControl {
+        // 
+        PubStatus pub_status = 1;
+        // 
+        repeated UserStreamControl.ExplicitSubMode explicit_sub_users = 2;
+        // 
+        int64 version = 3;
+        // 
+        RtcResolution rtc_resolution = 4;
+        // 
+        map<int64, int32> sub_video_index = 5;
+        // 
+        RtcResolution rtc_resolution_simulcast = 6;
+    }
+    
+    // 
+    message UserStreamControlItem {
+        // 
+        MuteLocalMode mute_local_mode = 1;
+        // 
+        repeated int64 mute_remote_uids = 2;
+        // 
+        repeated int64 receive_uids = 3;
+        // 
+        int64 version = 4;
+    }
+    
+    // 
+    UserStreamControlItem audio_control = 1;
+    // 
+    UserStreamControlItem video_control = 2;
+    // 
+    PubSubControl pub_sub_control = 3;
+}
+

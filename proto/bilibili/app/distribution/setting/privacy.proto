@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.privacy;
+
+import "bilibili/app/distribution.proto";
+
+// 
+message MidPrivacySettingsConfig {
+    // 
+    bilibili.app.distribution.BoolValue recommend_to_known = 1;
+    // 
+    repeated bilibili.app.distribution.StringValue blocked_words = 2;
+}
+
+// 
+message PrivacySettingsConfig {
+    // 
+    bilibili.app.distribution.BoolValue ad_recommand_store = 1;
+    // 
+    bilibili.app.distribution.BoolValue sensor_access = 2;
+}
+

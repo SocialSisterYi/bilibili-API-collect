@@ -1,0 +1,730 @@
+syntax = "proto3";
+
+package bilibili.im.interfaces.v1;
+
+import "bilibili/im/type.proto";
+
+// 
+service ImInterface {
+    // 
+    rpc AckAssisMsg (ReqAckAssisMsg) returns (DummyRsp);
+    // 
+    rpc AckSessions (ReqAckSessions) returns (RspSessions);
+    // 
+    rpc BatchGetMsgDetail (ReqGetMsg) returns (RspGetMsg);
+    // 
+    rpc BatchRmDustbin (DummyReq) returns (DummyRsp);
+    // 
+    rpc BatchRmSessions (ReqBatRmSess) returns (DummyRsp);
+    // 
+    rpc BatchSessDetail (ReqSessionDetails) returns (RspSessionDetails);
+    // 
+    rpc BatchUpdateDustbinAck (DummyReq) returns (DummyRsp);
+    // 
+    rpc CloseClearUnreadUI (ReqCloseClearUnreadUI) returns (RspCloseClearUnreadUI);
+    // 
+    rpc GetDiscussListInImPage (ReqGetDiscussListInImPage) returns (RspGetDiscussListInImPage);
+    // 
+    rpc GetLiveInfo (ReqLiveInfo) returns (RspLiveInfo);
+    // 
+    rpc GetSessions (ReqGetSessions) returns (RspSessions);
+    // 
+    rpc GetSpecificSessions (ReqGetSpecificSessions) returns (RspSessions);
+    // 
+    rpc GetTotalUnread (ReqTotalUnread) returns (RspTotalUnread);
+    // 
+    rpc GetUserCosmoState (GetUserCosmoStateReq) returns (GetUserCosmoStateRsp);
+    // 
+    rpc GroupAssisMsg (ReqGroupAssisMsg) returns (RspSessionMsg);
+    // 
+    rpc LikeMsg (ReqLikeMsg) returns (DummyRsp);
+    // 
+    rpc MsgHasLike (ReqMsgHasLike) returns (RspMsgHasLike);
+    // 
+    rpc MyGroupUnread (DummyReq) returns (RspMyGroupUnread);
+    // 
+    rpc NewSessions (ReqNewSessions) returns (RspSessions);
+    // 
+    rpc RemoveSession (ReqRemoveSession) returns (DummyRsp);
+    // 
+    rpc SendMsg (ReqSendMsg) returns (RspSendMsg);
+    // 
+    rpc SessionDetail (ReqSessionDetail) returns (bilibili.im.type.SessionInfo);
+    // 
+    rpc SetTop (ReqSetTop) returns (DummyRsp);
+    // 
+    rpc ShareList (ReqShareList) returns (RspShareList);
+    // 
+    rpc ShowClearUnreadUI (ReqShowClearUnreadUI) returns (RspShowClearUnreadUI);
+    // 
+    rpc SingleUnread (ReqSingleUnread) returns (RspSingleUnread);
+    // 
+    rpc SpecificSingleUnread (ReqSpecificSingleUnread) returns (RspSpecificSingleUnread);
+    // 
+    rpc SyncAck (ReqSyncAck) returns (RspSyncAck);
+    // 
+    rpc SyncFetchSessionMsgs (ReqSessionMsg) returns (RspSessionMsg);
+    // 
+    rpc SyncRelation (ReqRelationSync) returns (RspRelationSync);
+    // 
+    rpc UpdateAck (ReqUpdateAck) returns (DummyRsp);
+    // 
+    rpc UpdateIntercept (ReqUpdateIntercept) returns (DummyRsp);
+    // 
+    rpc UpdateTotalUnread (ReqUpdateTotalUnread) returns (RspUpdateTotalUnread);
+    // 
+    rpc UpdateUnflwRead (DummyReq) returns (DummyRsp);
+    // 
+    rpc UpdateUserCosmoState (UpdateUserCosmoStateReq) returns (UpdateUserCosmoStateRsp);
+}
+
+// 
+message DummyReq {
+    // 
+    int32 idl = 1;
+}
+
+// 
+message DummyRsp {
+}
+
+// 
+message EmotionInfo {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+    // 
+    int32 size = 3;
+    // 
+    string gif_url = 4;
+}
+
+// 
+message GetUserCosmoStateReq {
+    // 
+    string business = 1;
+    // 
+    int64 card_send_mid = 2;
+}
+
+// 
+message GetUserCosmoStateRsp {
+    // 
+    string business = 1;
+    // 
+    int64 card_send_mid = 2;
+    // 
+    int32 cosmo_state = 3;
+    // 
+    int32 op_type = 4;
+    // 
+    string text = 5;
+}
+
+// 
+message HasLikeState {
+    // 
+    MSG_LIKE_STATE state = 1;
+}
+
+// 
+enum MSG_LIKE_ACTION {
+    // 
+    ACTION_UNSPECIFIED = 0;
+    // 
+    ACTION_LIKE = 1;
+    // 
+    ACTION_CANCEL_LIKE = 2;
+    // 
+    ACTION_DISLIKE = 3;
+    // 
+    ACTION_CANCEL_DISLIKE = 4;
+}
+
+// 
+enum MSG_LIKE_STATE {
+    // 
+    STATE_UNSPECIFIED = 0;
+    // 
+    STATE_LIKE = 1;
+    // 
+    STATE_DISLIKE = 2;
+}
+
+// 
+message MsgDetail {
+    // 
+    int64 msg_key = 1;
+    // 
+    int64 seqno = 2;
+}
+
+// 
+message MsgFeedUnreadRsp {
+    // 
+    map<string, int64> unread = 1;
+}
+
+// 
+message NewTotalUnread {
+    // 
+    int32 unread_count = 1;
+    // 
+    int32 unread_type = 2;
+}
+
+// 
+message ReqAckAssisMsg {
+    // 
+    int64 ack_seqno = 1;
+}
+
+// 
+message ReqAckSessions {
+    // 
+    int64 begin_ts = 1;
+    // 
+    int32 end_ts = 2;
+    // 
+    int32 size = 3;
+}
+
+// 
+message ReqBatRmSess {
+}
+
+// 
+message ReqCloseClearUnreadUI {
+}
+
+// 
+message ReqGetDiscussListInImPage {
+}
+
+// 
+message ReqGetMsg {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    repeated MsgDetail msg_detail = 3;
+}
+
+// 
+message ReqGetSessions {
+    // 
+    int64 begin_ts = 1;
+    // 
+    int64 end_ts = 2;
+    // 
+    int32 size = 3;
+    // 
+    int32 session_type = 4;
+    // 
+    int32 unfollow_fold = 5;
+    // 
+    int32 group_fold = 6;
+    // 
+    int32 sort_rule = 7;
+    // 
+    int32 teenager_mode = 8;
+    // 
+    int32 lessons_mode = 9;
+    // 
+    repeated int32 sids = 10;
+    // 
+    int64 ai_uid = 11;
+}
+
+// 
+message ReqGetSpecificSessions {
+    // 
+    repeated SimpleSession talker_sessions = 1;
+}
+
+// 
+message ReqGroupAssisMsg {
+    // 
+    int64 client_seqno = 1;
+    // 
+    int32 size = 2;
+}
+
+// 
+message ReqLikeMsg {
+    // 
+    int64 msg_key = 1;
+    // 
+    MSG_LIKE_ACTION action = 2;
+}
+
+// 
+message ReqLiveInfo {
+    // 
+    int64 uid = 1;
+    // 
+    int64 talker_id = 2;
+}
+
+// 
+message ReqMsgHasLike {
+    // 
+    repeated int64 msg_keys = 1;
+}
+
+// 
+message ReqNewSessions {
+    // 
+    int64 begin_ts = 1;
+    // 
+    int32 size = 2;
+    // 
+    int32 teenager_mode = 3;
+    // 
+    int32 lessons_mode = 4;
+    // 
+    repeated int32 sids = 5;
+}
+
+// 
+message ReqRelationSync {
+    // 
+    int64 client_relation_oplog_seqno = 1;
+}
+
+// 
+message ReqRemoveSession {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int64 shop_id = 3;
+    // 
+    int64 shop_father_id = 4;
+}
+
+// 
+message ReqSendMsg {
+    // 
+    bilibili.im.type.Msg msg = 1;
+    // 
+    string cookie = 2;
+    // 
+    string cookie2 = 3;
+    // 
+    int32 error_code = 4;
+    // 
+    string dev_id = 5;
+}
+
+// 
+message ReqSessionDetail {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int64 uid = 3;
+}
+
+// 
+message ReqSessionDetails {
+    // 
+    repeated ReqSessionDetail sess_ids = 1;
+}
+
+// 
+message ReqSessionMsg {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int64 end_seqno = 3;
+    // 
+    int64 begin_seqno = 4;
+    // 
+    int32 size = 5;
+    // 
+    int32 order = 6;
+    // 
+    string dev_id = 7;
+    // 
+    string canal_token = 8;
+    // 
+    int64 ai_uid = 9;
+    // 
+    bool need_ai_msg = 10;
+}
+
+// 
+message ReqSetTop {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int32 op_type = 3;
+    // 
+    int64 shop_id = 4;
+    // 
+    int64 shop_father_id = 5;
+}
+
+// 
+message ReqShareList {
+    // 
+    int32 size = 1;
+    // 
+    int32 source = 2;
+}
+
+// 
+message ReqShowClearUnreadUI {
+    // 
+    int32 unread_type = 1;
+    // 
+    int32 show_unfollow_list = 2;
+    // 
+    int32 show_dustbin = 4;
+}
+
+// 
+message ReqSingleUnread {
+    // 
+    int32 unread_type = 1;
+    // 
+    int32 show_unfollow_list = 2;
+    // 
+    int64 uid = 3;
+    // 
+    int32 show_dustbin = 4;
+}
+
+// 
+message ReqSpecificSingleUnread {
+    // 
+    repeated SimpleSession talker_sessions = 1;
+}
+
+// 
+message ReqSyncAck {
+    // 
+    int64 client_seqno = 1;
+}
+
+// 
+message ReqTotalUnread {
+    // 
+    int32 unread_type = 1;
+    // 
+    int32 show_unfollow_list = 2;
+    // 
+    int64 uid = 3;
+    // 
+    int32 show_dustbin = 4;
+    // 
+    int32 singleunread_on = 5;
+    // 
+    int32 msgfeed_on = 6;
+    // 
+    int32 sysup_on = 7;
+}
+
+// 
+message ReqUpdateAck {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+    // 
+    int64 ack_seqno = 3;
+}
+
+// 
+message ReqUpdateIntercept {
+    // 
+    int64 uid = 1;
+    // 
+    int64 talker_id = 2;
+    // 
+    int32 status = 3;
+}
+
+// 
+message ReqUpdateTotalUnread {
+    // 
+    UpdateUnreadScope scope = 1;
+}
+
+// 
+message RspCloseClearUnreadUI {
+}
+
+// 
+message RspGetDiscussListInImPage {
+    // 
+    repeated SingleDiscussInImPage discuss_list = 1;
+}
+
+// 
+message RspGetMsg {
+    // 
+    repeated bilibili.im.type.Msg msg = 1;
+}
+
+// 
+message RspLiveInfo {
+    // 
+    int64 live_status = 1;
+    // 
+    string jump_url = 2;
+}
+
+// 
+message RspMsgHasLike {
+    // 
+    map<int64, HasLikeState> states = 1;
+}
+
+// 
+message RspMyGroupUnread {
+    // 
+    int32 unread_count = 1;
+}
+
+// 
+message RspRelationSync {
+    // 
+    int32 full = 1;
+    // 
+    repeated bilibili.im.type.RelationLog relation_logs = 2;
+    // 
+    repeated bilibili.im.type.FriendRelation friend_list = 3;
+    // 
+    int64 server_relation_oplog_seqno = 4;
+    // 
+    repeated bilibili.im.type.GroupRelation group_list = 5;
+}
+
+// 
+message RspSendMsg {
+    // 
+    int64 msg_key = 1;
+    // 
+    repeated EmotionInfo e_infos = 2;
+    // 
+    string msg_content = 3;
+    // 
+    bilibili.im.type.KeyHitInfos key_hit_infos = 4;
+    // 
+    bilibili.im.type.RichTextMsgContent rich_text_msg_content = 5;
+    // 
+    int64 seqno = 6;
+}
+
+// 
+message RspSessionDetails {
+    // 
+    repeated bilibili.im.type.SessionInfo sess_infos = 1;
+}
+
+// 
+message RspSessionMsg {
+    // 
+    repeated bilibili.im.type.Msg messages = 1;
+    // 
+    int32 has_more = 2;
+    // 
+    int64 min_seqno = 3;
+    // 
+    int64 max_seqno = 4;
+    // 
+    repeated EmotionInfo e_infos = 5;
+}
+
+// 
+message RspSessions {
+    // 
+    repeated bilibili.im.type.SessionInfo session_list = 1;
+    // 
+    int32 has_more = 2;
+    // 
+    bool anti_disturb_cleaning = 3;
+    // 
+    int32 is_address_list_empty = 4;
+    // 
+    map<int32, int64> system_msg = 5;
+    // 
+    bool show_level = 6;
+}
+
+// 
+message RspShareList {
+    // 
+    repeated ShareSessionInfo session_list = 1;
+    // 
+    int32 is_address_list_empty = 2;
+}
+
+// 
+message RspShowClearUnreadUI {
+    // 
+    bool display = 1;
+    // 
+    string text = 2;
+}
+
+// 
+message RspSingleUnread {
+    // 
+    int64 unfollow_unread = 1;
+    // 
+    int64 follow_unread = 2;
+    // 
+    int32 unfollow_push_msg = 3;
+    // 
+    int32 dustbin_push_msg = 4;
+    // 
+    int64 dustbin_unread = 5;
+    // 
+    int64 biz_msg_unfollow_unread = 6;
+    // 
+    int64 biz_msg_follow_unread = 7;
+}
+
+// 
+message RspSpecificSingleUnread {
+    // 
+    map<int64, int64> talker_unread_cnt = 1;
+    // 
+    int64 all_unread_cnt = 2;
+}
+
+// 
+message RspSyncAck {
+}
+
+// 
+message RspTotalUnread {
+    // 
+    SessionSingleUnreadRsp session_single_unread = 1;
+    // 
+    MsgFeedUnreadRsp msg_feed_unread = 2;
+    // 
+    SysMsgInterfaceLastMsgRsp sys_msg_interface_last_msg = 3;
+    // 
+    int32 total_unread = 4;
+    // 
+    int64 custom_unread = 5;
+    // 
+    NewTotalUnread new_total_unread = 6;
+}
+
+// 
+message RspUpdateTotalUnread {
+}
+
+// 
+message SessionSingleUnreadRsp {
+    // 
+    int64 unfollow_unread = 1;
+    // 
+    int64 follow_unread = 2;
+    // 
+    int32 unfollow_push_msg = 3;
+    // 
+    int32 dustbin_push_msg = 4;
+    // 
+    int64 dustbin_unread = 5;
+    // 
+    int64 biz_msg_unfollow_unread = 6;
+    // 
+    int64 biz_msg_follow_unread = 7;
+    // 
+    int64 huahuo_unread = 8;
+    // 
+    int64 custom_unread = 9;
+}
+
+// 
+message ShareSessionInfo {
+    // 
+    int64 talker_id = 1;
+    // 
+    string talker_uname = 2;
+    // 
+    string talker_icon = 3;
+    // 
+    int32 official_type = 4;
+}
+
+// 
+message SimpleSession {
+    // 
+    int64 talker_id = 1;
+    // 
+    int32 session_type = 2;
+}
+
+// 
+message SingleDiscussInImPage {
+    // 
+    int64 discuss_id = 1;
+    // 
+    int64 mid = 2;
+    // 
+    string face = 3;
+    // 
+    string name = 4;
+    // 
+    int32 unread_count = 5;
+    // 
+    int32 type = 6;
+}
+
+// 
+message SysMsgInterfaceLastMsgRsp {
+    // 
+    int32 unread = 1;
+    // 
+    string title = 2;
+    // 
+    string time = 3;
+    // 
+    int64 id = 4;
+}
+
+// 
+enum UpdateUnreadScope {
+    // 
+    All = 0;
+    // 
+    Dustbin = 1;
+    // 
+    Unfollowed = 2;
+    // 
+    Stranger = 3;
+}
+
+// 
+message UpdateUserCosmoStateReq {
+    // 
+    string business = 1;
+    // 
+    int64 card_send_mid = 2;
+    // 
+    int32 cosmo_state = 3;
+    // 
+    int32 op_type = 4;
+}
+
+// 
+message UpdateUserCosmoStateRsp {
+    // 
+    string text = 1;
+}
+
