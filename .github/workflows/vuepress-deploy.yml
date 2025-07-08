@@ -23,7 +23,7 @@ jobs:
     - name: Setup Node.js environment
       uses: actions/setup-node@v4.0.3
       with:
-        node-version: 20
+        node-version: 22
         cache: yarn
     - name: Build with yarn
       run: yarn && yarn build
