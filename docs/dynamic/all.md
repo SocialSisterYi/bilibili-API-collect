@@ -92,7 +92,7 @@
 | additional | obj | 相关内容卡片信息 | |
 | desc | obj | 动态文字内容 |其他动态时为null |
 | major | obj | 动态主体对象 |转发动态时为null |
-| topic | obj | 话题信息 | |
+| topic | obj | 话题信息 | 无时为 null, 参见 [MODULE_TYPE_TOPIC](../opus/features.md#module-type-topic) |
 
 `data.items[n].modules.module_dynamic.additional`:
 
@@ -519,14 +519,6 @@
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
 | tips | str | 动态失效显示文案 | deprecated? |
-
-`data.items[n].modules.module_dynamic.topic`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| id | num | 话题id | |
-| jump_url | str | 跳转URL | |
-| name | str | 话题名称 | |
 
 `data.items[n].modules.module_interaction`:
 
