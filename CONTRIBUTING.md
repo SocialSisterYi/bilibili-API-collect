@@ -31,7 +31,7 @@
 - QQ 交流群：[邀请链接](https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=ympvb3LAPT-Ulu3ezhGqbkJ8zXMKImOX&authKey=z1KdkOdKO3wytN43m9K6On9nBtnDL4pAoD6VQHCipFBb9TasNDKuDHCmOE6TF3uc&noverify=0&group_code=191187164)
 - Telegram 交流群：[@bilibili_API_collect_community](https://t.me/bilibili_API_collect_community)
 
-::: tip ✅提示
+::: tip 提示
 
 QQ 交流群为综合技术交流群（兼 Owner 的粉丝群），可交流探讨任何技术，包括但不限于 [BAC 项目](https://github.com/SocialSisterYi/bilibili-API-collect)
 
@@ -39,7 +39,7 @@ Telegram 交流群主要用作 [BAC 项目](https://github.com/SocialSisterYi/bi
 
 :::
 
-::: warning ⚠️注意
+::: warning 注意
 
 群内讨论同样需要遵守**公开交流**的原则，以及群内会定期清理不活跃成员。
 
@@ -47,7 +47,7 @@ Telegram 交流群主要用作 [BAC 项目](https://github.com/SocialSisterYi/bi
 
 :::
 
-::: danger 🈲禁止
+::: danger 禁止
 
 项目 Issue 及其相关社群中**禁止**询问讨论 风控解除、爬虫（采集）、破解、漏洞利用、买卖代码和账号 相关内容，抵制基于本项目进行的一切黑产行为！
 

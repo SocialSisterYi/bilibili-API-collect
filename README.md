@@ -37,7 +37,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/) ([Youtube 备链](https://www.youtube.com/watch?v=nfF91Z6fqGk))
 
-::: warning ⚠️声明
+::: warning 声明
 
 1. 本项目遵守 CC-BY-NC 4.0 协议，禁止一切商业使用，如需转载请注明作者 ID
 2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
@@ -393,9 +393,3 @@ OR Aifadian：[https://afdian.com/@ShakaiAneE](https://afdian.com/@ShakaiAneE)
 - [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#)
 - [glideapps/quicktype](https://github.com/glideapps/quicktype): quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages. 一键生成多种语言的JSON反序列化所需类，以便于快速反序列化，有网页版
 - [SessionHu/json-apidoc-gen](https://github.com/SessionHu/json-apidoc-gen): Simple CLI tool for generating BAC document template
-
-<style scoped>
-  .shields a {
-    margin: auto .5em;
-  }
-</style>
