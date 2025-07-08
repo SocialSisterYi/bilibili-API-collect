@@ -50,7 +50,7 @@
 | recommend_followed_reply | num  | 被关注时自动推送作品 | 0：关闭<br />1：开启                                                        |
 | ai_intercept             | num  | 私信智能拦截         | 0：关闭<br />1：开启                                                        |
 | anti_harassment          | null | 防骚扰和互动人群设置 | 此接口恒返回 `null`                                                         |
-| set_recv_reply           | num  | 收到回复提醒（新）   | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒                       |
+| set_recv_reply           | num  | 回复与@提醒（新）    | 0：所有人<br />1：关注的人<br />2：不接受任何消息提醒                       |
 | set_recv_like            | num  | 收到喜欢提醒（新）   | 0：接收<br />2：不接收                                                      |
 | set_new_follow           | num  | 新增粉丝提醒（新）   | 0：接收<br />2：不接收                                                      |
 

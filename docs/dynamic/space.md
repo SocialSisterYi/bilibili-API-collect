@@ -3,6 +3,8 @@
 ## 获取用户空间动态
 
 > https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/space
+> 
+> https://api.bilibili.com/x/polymer/web-dynamic/desktop/v1/feed/space
 
 *请求方法: GET*
 
