@@ -277,47 +277,8 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
+| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](../opus/rich_text_nodes.md#富文本节点类型) |
 | text | str | 动态的文字内容 | |
-
-`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o]`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| orig_text | str | 原始文本 | |
-| text | str | 替换后的文本 | |
-| type | str | 节点类型 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
-| emoji | obj | 表情信息 | |
-| jump_url | str | 跳转URL | |
-| rid | str | 关联id | |
-| goods | obj | 商品信息 | |
-| icon_name | str | 图标名称 | `taobao` |
-| pics | arr | 图片信息 | |
-
-`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o].emoji`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| icon_url | str | 表情图片URL | |
-| size | num | 表情尺寸 | `1` `2` |
-| text | str | 表情的文字代码 | |
-| type | num | 表情类型 | `1` `2` `3` |
-
-`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o].goods`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| jump_url | str | 跳转URL | |
-| type | num | `1` | |
-
-`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o].pics[p]`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| height | num | 高度 | |
-| size | num | 大小? | 单位为 K |
-| src | str | 图片 URL | |
-| width | num | 宽度 | |
 
 `data.items[n].modules.module_dynamic.major`:
 
@@ -584,27 +545,8 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
+| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](../opus/rich_text_nodes.md#富文本节点类型) |
 | text | str | 评论内容 | |
-
-`data.items[n].modules.module_interaction.items[o].desc.rich_text_nodes`数组中的:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| orig_text | str | 原始文本 | |
-| rid | str | 关联ID | 用户UID |
-| text | str | 替换后文本 | |
-| type | str | 富文本节点类型 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
-| emoji | obj | 表情信息 | |
-
-`data.items[n].modules.module_interaction.items[o].desc.rich_text_nodes[n].emoji`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| icon_url | str | 表情图片URL | |
-| size | num | 表情尺寸 | `1` `2` |
-| text | str | 表情的文字代码 | |
-| type | num | 表情类型 | `1` `2` `3` |
 
 `data.items[n].modules.module_fold`:
 

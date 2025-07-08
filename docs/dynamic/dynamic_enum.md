@@ -29,28 +29,7 @@
 
 ## 富文本节点类型
 
-| 类型                              | 说明   | 示例                                                              | 
-|---------------------------------|------|-----------------------------------------------------------------|
-| RICH_TEXT_NODE_TYPE_NONE        |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_TEXT        | 文字节点 | [721295772787671059](https://t.bilibili.com/721295772787671059) |
-| RICH_TEXT_NODE_TYPE_AT          | @用户  | [721296515797090324](https://t.bilibili.com/721296515797090324) |
-| RICH_TEXT_NODE_TYPE_LOTTERY     | 互动抽奖 | [720907383182721040](https://t.bilibili.com/720907383182721040) |
-| RICH_TEXT_NODE_TYPE_VOTE        | 投票   | [721203899129659408](https://t.bilibili.com/721203899129659408) |
-| RICH_TEXT_NODE_TYPE_TOPIC       | 话题   | [721188862459641879](https://t.bilibili.com/721188862459641879) |
-| RICH_TEXT_NODE_TYPE_GOODS       | 商品链接 | [721282703208480790](https://t.bilibili.com/721282703208480790) |
-| RICH_TEXT_NODE_TYPE_BV          | 视频链接 | [716752002311258165](https://t.bilibili.com/716752002311258165) |
-| RICH_TEXT_NODE_TYPE_AV          |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_EMOJI       | 表情   | [716751108968546393](https://t.bilibili.com/716751108968546393) |
-| RICH_TEXT_NODE_TYPE_USER        |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_CV          |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_VC          |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_VIEW_PICTURE | 查看图片 | [1069394178937454662](https://t.bilibili.com/1069394178937454662) |
-| RICH_TEXT_NODE_TYPE_WEB         | 网页链接 | [716751027361022055](https://t.bilibili.com/716751027361022055) |
-| RICH_TEXT_NODE_TYPE_TAOBAO      |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_MAIL        | 邮箱地址 | [721314095109767220](https://t.bilibili.com/721314095109767220) |
-| RICH_TEXT_NODE_TYPE_OGV_SEASON  | 剧集信息 | [721282046064853080](https://t.bilibili.com/721282046064853080) |
-| RICH_TEXT_NODE_TYPE_OGV_EP      |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_SEARCH_WORD |      |                                                                 |
+参见 [图文富文本节点类型](../opus/rich_text_nodes.md#富文本节点类型)
 
 ## 作者类型
 
