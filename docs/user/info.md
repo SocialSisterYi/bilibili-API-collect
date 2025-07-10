@@ -8,7 +8,8 @@
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：Cookie（SESSDATA，bili_ticket，sid）
+**注意：** Cookie 中的 `sid` 可为任意内容
 
 鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie (对于某些 IP 地址，需要在 Cookie 中提供任意非空的 `buvid3` 字段)
 
