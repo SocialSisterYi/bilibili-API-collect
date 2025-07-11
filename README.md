@@ -172,12 +172,10 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [获取动态详情](docs/dynamic/detail.md)
     - [ ] [动态类型对照](docs/dynamic/dynamic_enum.md)
     - [ ] [动态信息](docs/dynamic/content.md)
-    - [ ] [话题搜索](docs/dynamic/topic.md)
     - [ ] [发送 & 转载动态](docs/dynamic/publish.md)
     - [ ] [根据关键字搜索用户（at 别人时的填充列表）](docs/dynamic/atlist.md)
     - [ ] [操作](docs/dynamic/action.md)
-    - [ ] 动态列表
-        - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
+    - [ ] [话题](docs/dynamic/topic.md)
     - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
     - [ ] [导航栏动态](docs/dynamic/nav.md)
     - [x] [首页公告栏](docs/dynamic/banner.md)
