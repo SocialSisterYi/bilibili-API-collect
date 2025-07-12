@@ -29,27 +29,7 @@
 
 ## 富文本节点类型
 
-| 类型                              | 说明   | 示例                                                              | 
-|---------------------------------|------|-----------------------------------------------------------------|
-| RICH_TEXT_NODE_TYPE_NONE        |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_TEXT        | 文字节点 | [721295772787671059](https://t.bilibili.com/721295772787671059) |
-| RICH_TEXT_NODE_TYPE_AT          | @用户  | [721296515797090324](https://t.bilibili.com/721296515797090324) |
-| RICH_TEXT_NODE_TYPE_LOTTERY     | 互动抽奖 | [720907383182721040](https://t.bilibili.com/720907383182721040) |
-| RICH_TEXT_NODE_TYPE_VOTE        | 投票   | [721203899129659408](https://t.bilibili.com/721203899129659408) |
-| RICH_TEXT_NODE_TYPE_TOPIC       | 话题   | [721188862459641879](https://t.bilibili.com/721188862459641879) |
-| RICH_TEXT_NODE_TYPE_GOODS       | 商品链接 | [721282703208480790](https://t.bilibili.com/721282703208480790) |
-| RICH_TEXT_NODE_TYPE_BV          | 视频链接 | [716752002311258165](https://t.bilibili.com/716752002311258165) |
-| RICH_TEXT_NODE_TYPE_AV          |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_EMOJI       | 表情   | [716751108968546393](https://t.bilibili.com/716751108968546393) |
-| RICH_TEXT_NODE_TYPE_USER        |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_CV          |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_VC          |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_WEB         | 网页链接 | [716751027361022055](https://t.bilibili.com/716751027361022055) |
-| RICH_TEXT_NODE_TYPE_TAOBAO      |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_MAIL        | 邮箱地址 | [721314095109767220](https://t.bilibili.com/721314095109767220) |
-| RICH_TEXT_NODE_TYPE_OGV_SEASON  | 剧集信息 | [721282046064853080](https://t.bilibili.com/721282046064853080) |
-| RICH_TEXT_NODE_TYPE_OGV_EP      |      |                                                                 |
-| RICH_TEXT_NODE_TYPE_SEARCH_WORD |      |                                                                 |
+参见 [图文富文本节点类型](../opus/rich_text_nodes.md#富文本节点类型)
 
 ## 作者类型
 
@@ -59,6 +39,8 @@
 | AUTHOR_TYPE_NORMAL     | 普通更新 |     |
 | AUTHOR_TYPE_PGC        | 剧集更新 |     |
 | AUTHOR_TYPE_UGC_SEASON | 合集更新 |     |
+
+## 
 
 | 类型              | 说明  | 示例  | 
 |-----------------|-----|-----|
@@ -81,11 +63,15 @@
 | ADDITIONAL_TYPE_UGC     | 视频跳转 | [716489253410832401](https://t.bilibili.com/716489253410832401)          |
 | ADDITIONAL_TYPE_RESERVE |      | 直播预约<br/>[716524987542929443](https://t.bilibili.com/716524987542929443) |
 
+## 
+
 | 类型                            | 说明  | 示例  | 
 |-------------------------------|-----|-----|
 | ADDITIONAL_BUTTON_TYPE_NONE   |     |     |
 | ADDITIONAL_BUTTON_TYPE_JUMP   |     |     |
 | ADDITIONAL_BUTTON_TYPE_BUTTON |     |     |
+
+## 
 
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
@@ -93,21 +79,29 @@
 | ADDITIONAL_BUTTON_STATUS_UNCHECK |     |     |
 | ADDITIONAL_BUTTON_STATUS_CHECK   |     |     |
 
+## 
+
 | 类型                            | 说明  | 示例  | 
 |-------------------------------|-----|-----|
 | ADD_BUTTON_CLICK_TYPE_NONE    |     |     |
 | ADD_BUTTON_CLICK_TYPE_RESERVE |     |     |
+
+## 
 
 | 类型                      | 说明  | 示例  | 
 |-------------------------|-----|-----|
 | DISABLE_STATE_HIGHLIGHT |     |     |
 | DISABLE_STATE_GRAY      |     |     |
 
+## 
+
 | 类型                         | 说明  | 示例  | 
 |----------------------------|-----|-----|
 | ADD_BUTTON_BG_STYLE_FILL   |     |     |
 | ADD_BUTTON_BG_STYLE_STROKE |     |     |
 | ADD_BUTTON_BG_STYLE_GRAY   |     |     |
+
+## 
 
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
@@ -136,12 +130,16 @@
 | MAJOR_TYPE_UGC_SEASON       | 合计更新  | [716509100448415814](https://t.bilibili.com/716509100448415814) |
 | MAJOR_TYPE_SUBSCRIPTION_NEW |       |                                                                 |
 
+## 
+
 | 类型              | 说明  | 示例  | 
 |-----------------|-----|-----|
 | MEDIA_TYPE_NONE |     |     |
 | MEDIA_TYPE_UGC  |     |     |
 | MEDIA_TYPE_PGC  |     |     |
 | MEDIA_TYPE_LIVE |     |     |
+
+## 
 
 | 类型                       | 说明  | 示例  | 
 |--------------------------|-----|-----|
@@ -152,6 +150,8 @@
 | PGC_SUB_TYPE_DOMESTIC    |     |     |
 | PGC_SUB_TYPE_TV          |     |     |
 
+## 
+
 | 类型                   | 说明  | 示例  | 
 |----------------------|-----|-----|
 | DRAW_TAG_TYPE_NONE   |     |     |
@@ -161,16 +161,22 @@
 | DRAW_TAG_TYPE_TOPIC  |     |     |
 | DRAW_TAG_TYPE_LBS    |     |     |
 
+## 
+
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
 | MAJOR_COMMON_STYLE_TYPE_NONE     |     |     |
 | MAJOR_COMMON_STYLE_TYPE_SQUARE   |     |     |
 | MAJOR_COMMON_STYLE_TYPE_VERTICAL |     |     |
 
+## 
+
 | 类型                  | 说明  | 示例  | 
 |---------------------|-----|-----|
 | RESERVE_TYPE_NONE   |     |     |
 | RESERVE_TYPE_RECALL |     |     |
+
+## 
 
 | 类型                       | 说明  | 示例  | 
 |--------------------------|-----|-----|
@@ -178,11 +184,15 @@
 | LIVE_STATE_TYPE_LIVE     |     |     |
 | LIVE_STATE_TYPE_ROTATION |     |     |
 
+## 
+
 | 类型                               | 说明  | 示例  | 
 |----------------------------------|-----|-----|
 | SUBSCRIPTION_NEW_STYLE_TYPE_NONE |     |     |
 | SUBSCRIPTION_NEW_STYLE_TYPE_DRAW |     |     |
 | SUBSCRIPTION_NEW_STYLE_TYPE_LIVE |     |     |
+
+## 右上角三点菜单
 
 | 类型                           | 说明      | 示例  | 
 |------------------------------|---------|-----|
@@ -197,6 +207,8 @@
 | THREE_POINT_RCMD_RESOURCE    |         |     |
 | THREE_POINT_RCMD_FEEDBACK    |         |     |
 
+## 
+
 | 类型                 | 说明  | 示例  | 
 |--------------------|-----|-----|
 | FOLD_TYPE_NONE     |     |     |
@@ -204,6 +216,8 @@
 | FOLD_TYPE_FREQUENT |     |     |
 | FOLD_TYPE_UNITE    |     |     |
 | FOLD_TYPE_LIMIT    |     |     |
+
+## 
 
 | 类型                           | 说明  | 示例  | 
 |------------------------------|-----|-----|
@@ -213,6 +227,8 @@
 | DYN_STATUS_TYPE_SELF_VISIBLE |     |     |
 | DYN_STATUS_TYPE_DELETED      |     |     |
 
+## 
+
 | 类型            | 说明  | 示例  | 
 |---------------|-----|-----|
 | SCENE_DETAIL  |     |     |
@@ -220,5 +236,3 @@
 | SCENE_GENERAL |     |     |
 | SCENE_SPACE   |     |     |
 | SCENE_TOPIC   |     |     |
-
-
