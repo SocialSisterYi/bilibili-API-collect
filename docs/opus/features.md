@@ -658,46 +658,175 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
-| paragraphs | object[] |  |  |
+| paragraphs | object[] | 段落 |  |
 
 `module_content.paragraphs[]` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
-| align | number |  |  |
-| para_type | number |  |  |
-| text | object |  |  |
+| align | number | 对齐方式 | 0: 左对齐 (默认)<br />1: 居中<br />2: 右对齐 |
+| para_type | number | 段落类型 | 1: 文本<br />2: 图片<br />3: 段落行<br />4: 块引用<br />5: 列表<br />6: 链接卡片<br />8: 代码 |
+| text | object | 文本 | `para_type=1` |
+| pics | object | 图片 | `para_type=2` |
 
 `module_content.paragraphs[].text` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
-| nodes | object[] |  |  |
+| nodes | object[] | 文本节点 |  |
 
 `module_content.paragraphs[].text.nodes[]` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
-| type | string |  |  |
-| word | object |  |  |
+| type | string | 文本节点类型 | 纯文本: `TEXT_NODE_TYPE_WORD`<br />富文本: `TEXT_NODE_TYPE_RICH` |
+| word | object | 纯文本 | 仅 `type='TEXT_NODE_TYPE_WORD'` |
+| rich | object | 富文本 | 仅 `type='TEXT_NODE_TYPE_RICH'`, 详细参见 [富文本节点](rich_text_nodes.md) |
 
 `module_content.paragraphs[].text.nodes[].word` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
-| font_size | number |  |  |
-| style | object |  |  |
-| words | string |  |  |
+| font_size | number | 字体大小 | 用于控制文本所用标签名 (如 `h1` `h2` `p`) 及行高 |
+| style | object | 补充样式 |  |
+| words | string | 文本内容 |  |
 
-`module_content.paragraphs[].text.nodes[].word.style` 对象:
+`module_content.paragraphs[].pic` 对象:
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
+| pics | object[] | 图片 | 套了个娃 |
+| style | number | 样式 | 1: isAlbum |
+
+`module_content.paragraphs[].pic.pics[]` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| height | number | 高度 | |
+| live_url | unknown | 动图 URL? | |
+| size | number | 大小 | 单位: ki |
+| url | string | 图片 URL | |
+| width | number | 宽度 | |
 
 **示例:**
 
 <details>
 <summary>查看示例:</summary>
+
+```json
+{
+  "module_content": {
+    "paragraphs": [
+      {
+        "align": 0,
+        "para_type": 1,
+        "text": {
+          "nodes": [
+            {
+              "type": "TEXT_NODE_TYPE_WORD",
+              "word": {
+                "font_size": 17,
+                "style": {},
+                "words": "洛天依2025「无限共鸣·流光协奏」全息巡回演唱会·成都站\n部分演出歌曲歌单抢先看~"
+              }
+            },
+            {
+              "rich": {
+                "emoji": {
+                  "gif_url": "https://i0.hdslb.com/bfs/garb/3ed01457a5a2c7c2ec304a1aa0565033f4b7fde4.gif",
+                  "icon_url": "https://i0.hdslb.com/bfs/garb/d6a4aeb51134e1ddf0024a8c1fa48a91700207e2.png",
+                  "size": 2,
+                  "text": "[洛天依·天星问动态_萌]",
+                  "type": 3,
+                  "webp_url": "https://i0.hdslb.com/bfs/garb/1c017fee22994ff261b90c9790a2cfc553ef1845.webp"
+                },
+                "orig_text": "[洛天依·天星问动态_萌]",
+                "text": "[洛天依·天星问动态_萌]",
+                "type": "RICH_TEXT_NODE_TYPE_EMOJI"
+              },
+              "type": "TEXT_NODE_TYPE_RICH"
+            },
+            {
+              "type": "TEXT_NODE_TYPE_WORD",
+              "word": {
+                "font_size": 17,
+                "style": {},
+                "words": "\n《Dramatic》\n《蝴蝶》\n\n✨成都站城市限定演出歌曲\n《又见月光光》\n\n有没有你期待的歌曲呀？"
+              }
+            },
+            {
+              "rich": {
+                "emoji": {
+                  "gif_url": "https://i0.hdslb.com/bfs/emote/55bbe7e1c69fb5382764cd467a6ef43c97e8fb81.gif",
+                  "icon_url": "https://i0.hdslb.com/bfs/emote/e55207be553ac505ac80892a3f325be383139aa2.png",
+                  "size": 2,
+                  "text": "[心律共鸣动态表情包_啾啾]",
+                  "type": 3,
+                  "webp_url": "https://i0.hdslb.com/bfs/emote/fc0c8ef4ba8271521d934b9b6ee1a7c60ab27e4c.webp"
+                },
+                "orig_text": "[心律共鸣动态表情包_啾啾]",
+                "text": "[心律共鸣动态表情包_啾啾]",
+                "type": "RICH_TEXT_NODE_TYPE_EMOJI"
+              },
+              "type": "TEXT_NODE_TYPE_RICH"
+            },
+            {
+              "type": "TEXT_NODE_TYPE_WORD",
+              "word": {
+                "font_size": 17,
+                "style": {},
+                "words": "\n天依已经迫不及待在演唱会的舞台上和大家相见啦！"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "align": 0,
+        "para_type": 2,
+        "pic": {
+          "pics": [
+            {
+              "height": 5755,
+              "live_url": null,
+              "size": 4180.7216796875,
+              "url": "http://i0.hdslb.com/bfs/new_dyn/bda8c1b1e9c98e09994742a26c1f62c636081646.jpg",
+              "width": 1080
+            }
+          ],
+          "style": 1
+        }
+      },
+      {
+        "link_card": {
+          "card": {
+            "goods": {
+              "head_icon": "",
+              "head_text": "UP主的推荐",
+              "items": [
+                {
+                  "brief": "",
+                  "cover": "https://i0.hdslb.com/bfs/openplatform/202506/aNnr4PFN1749449633226.jpeg",
+                  "id": 102803,
+                  "jump_desc": "去看看",
+                  "jump_url": "https://mall.bilibili.com/neul-next/ticket/detail.html?noTitleBar=1&id=102803&track_id=__BGMT__&contentId=&from=&msource=cps_Mdynamic_36081646_cont-2-1077137468098084900",
+                  "name": "成都·2025洛天依「无限共鸣•流光协奏」全息演唱会-成都站",
+                  "price": "¥480"
+                }
+              ],
+              "jump_url": ""
+            },
+            "oid": "undefined",
+            "type": "LINK_CARD_TYPE_GOODS"
+          }
+        },
+        "para_type": 6
+      }
+    ]
+  },
+  "module_type": "MODULE_TYPE_CONTENT"
+}
+```
 
 ```json
 {
