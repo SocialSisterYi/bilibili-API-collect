@@ -713,7 +713,16 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
-| card | object | 卡片内容 | 基本同 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[n].modules.module_dynamic.additional` |
+| card | object | 卡片内容 | |
+
+`module_content.paragraphs[].link_card` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| oid  | string | 关联 id | 可能为 `"undefined"` <!--这说明 B 站图文的后端用的是 Node--> |
+| type | string | 卡片类型 | |
+| common | object | 一般信息 | 仅 `type='LINK_CARD_TYPE_COMMON', 基本同 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[].modules.module_dynamic.additional.common` |
+| goods | object | 商品信息 | 仅 `type='LINK_CARD_TYPE_GOODS'`, 基本同 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[].modules.module_dynamic.additional.goods` |
 
 **示例:**
 
