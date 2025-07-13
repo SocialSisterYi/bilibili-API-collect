@@ -668,6 +668,7 @@
 | para_type | number | 段落类型 | 1: 文本<br />2: 图片<br />3: 段落行<br />4: 块引用<br />5: 列表<br />6: 链接卡片<br />8: 代码 |
 | text | object | 文本 | `para_type=1` |
 | pics | object | 图片 | `para_type=2` |
+| link_card | object | 链接卡片 | `para_type=6` |
 
 `module_content.paragraphs[].text` 对象:
 
@@ -707,6 +708,12 @@
 | size | number | 大小 | 单位: ki |
 | url | string | 图片 URL | |
 | width | number | 宽度 | |
+
+`module_content.paragraphs[].link_card` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| card | object | 卡片内容 | 基本同 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[n].modules.module_dynamic.additional` |
 
 **示例:**
 
