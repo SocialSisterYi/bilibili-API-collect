@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.im;
+
+import "bilibili/app/distribution.proto";
+
+// 
+message MidImConfig {
+    // 
+    bilibili.app.distribution.BoolValue can_airdrop_to_im = 1;
+}
+

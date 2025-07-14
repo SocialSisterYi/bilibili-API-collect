@@ -1,0 +1,185 @@
+syntax = "proto3";
+
+package bilibili.app.distribution;
+
+import "google/protobuf/any.proto";
+
+// 
+service Distribution {
+    // 
+    rpc GetUserPreference (GetUserPreferenceReq) returns (GetUserPreferenceReply);
+    // 
+    rpc SetUserPreference (SetUserPreferenceReq) returns (SetUserPreferenceReply);
+    // 
+    rpc UserPreference (UserPreferenceReq) returns (UserPreferenceReply);
+}
+
+// 
+message BoolValue {
+    // 
+    bool value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    bool default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message BytesValue {
+    // 
+    bytes value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    bytes default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message DoubleValue {
+    // 
+    double value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    double default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message FloatValue {
+    // 
+    float value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    float default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message GetUserPreferenceReply {
+    // 
+    repeated google.protobuf.Any value = 1;
+}
+
+// 
+message GetUserPreferenceReq {
+    // 
+    repeated string type_url = 1;
+    // 
+    map<string, string> extra_context = 2;
+}
+
+// 
+message Int32Value {
+    // 
+    int32 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    int32 default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message Int64Value {
+    // 
+    int64 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    int64 default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message SetUserPreferenceReply {
+}
+
+// 
+message SetUserPreferenceReq {
+    // 
+    repeated google.protobuf.Any preference = 1;
+    // 
+    map<string, string> extra_context = 2;
+}
+
+// 
+message StringValue {
+    // 
+    string value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    string default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message UInt32Value {
+    // 
+    int32 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    int32 default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message UInt64Value {
+    // 
+    int64 value = 1;
+    // 
+    int64 last_modified = 2;
+    // 
+    int64 default_value = 3;
+    // 
+    string exp = 4;
+}
+
+// 
+message UserPreferenceReply {
+    // 
+    repeated google.protobuf.Any preference = 1;
+}
+
+// 
+message UserPreferenceReq {
+}
+
+// 
+message defaultValue {
+    // 
+    oneof value {
+        // 
+        double double_value = 1;
+        // 
+        float float_value = 2;
+        // 
+        int64 int64_value = 3;
+        // 
+        int64 uint64_value = 4;
+        // 
+        int32 int32_value = 5;
+        // 
+        int32 uint32_value = 6;
+        // 
+        bool bool_value = 7;
+        // 
+        string string_value = 8;
+        // 
+        bytes bytes_value = 9;
+    }
+}
+
