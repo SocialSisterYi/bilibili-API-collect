@@ -58,7 +58,7 @@
 | ADDITIONAL_TYPE_GOODS   | 商品信息 |                                                                          |
 | ADDITIONAL_TYPE_VOTE    | 投票   | [716365292050055176](https://t.bilibili.com/716365292050055176)          |
 | ADDITIONAL_TYPE_COMMON  | 一般类型 | 游戏<br/>[716357878942793745](https://t.bilibili.com/716357878942793745)   |
-| ADDITIONAL_TYPE_MATCH   |      |                                                                          |
+| ADDITIONAL_TYPE_MATCH   | 比赛信息? |                                                                          |
 | ADDITIONAL_TYPE_UP_RCMD |      |                                                                          |
 | ADDITIONAL_TYPE_UGC     | 视频跳转 | [716489253410832401](https://t.bilibili.com/716489253410832401)          |
 | ADDITIONAL_TYPE_RESERVE |      | 直播预约<br/>[716524987542929443](https://t.bilibili.com/716524987542929443) |

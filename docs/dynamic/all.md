@@ -104,6 +104,7 @@
 | goods | obj | 商品内容 | `ADDITIONAL_TYPE_GOODS`类型独有 |
 | vote | obj | 投票信息 | `ADDITIONAL_TYPE_VOTE`类型独有 |
 | ugc | obj | 视频信息 | `ADDITIONAL_TYPE_UGC`类型独有 |
+| match | object | 比赛信息? | `ADDITIONAL_TYPE_MATCH`类型独有, 参见 [MODULE_TYPE_CONTENT](../opus/features.md#module-type-content) 的 `module_content.paragraphs[].link_card.match` |
 
 `data.items[n].modules.module_dynamic.additional.common`:
 
