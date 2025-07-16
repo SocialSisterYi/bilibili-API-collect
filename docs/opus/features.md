@@ -730,6 +730,8 @@
 | upower_lottery | object | 充电专属抽奖信息 | 仅 `type='LINK_CARD_TYPE_UPOWER_LOTTERY'` |
 | opus | object | 图文信息 | 仅 `type='LINK_CARD_TYPE_OPUS'` |
 | music | object | 音乐信息 | 仅 `type='LINK_CARD_TYPE_MUSIC'`, 参见 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[].modules.module_dynamic.major.music` |
+| live | object | 直播信息 | 仅 `type='LINK_CARD_TYPE_LIVE'`, 参见 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[].modules.module_dynamic.major.live` |
+| item_null | object | 提示信息 | 仅 `type='LINK_CARD_TYPE_ITEM_NULL'` |
 
 `module_content.paragraphs[].link_card.card.match` 对象:
 
@@ -841,6 +843,12 @@
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | view | number | 阅读数 |  |
+
+`module_content.paragraphs[].link_card.card.item_null` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| text | string | 文字 |  |
 
 **示例:**
 
