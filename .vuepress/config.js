@@ -1,14 +1,19 @@
-import { defaultTheme, defineUserConfig } from "vuepress";
+import { defineUserConfig } from "vuepress";
+import { viteBundler } from '@vuepress/bundler-vite'
+import { defaultTheme } from "@vuepress/theme-default";
 import markdownItTaskLists from "markdown-it-task-lists";
-import { copyCodePlugin } from "vuepress-plugin-copy-code2";
 import { searchPlugin } from "@vuepress/plugin-search";
+import { shikiPlugin } from '@vuepress/plugin-shiki'
+
+const base = "/bilibili-API-collect/";
 
 export default defineUserConfig({
-  base: "/bilibili-API-collect/",
+  bundler: viteBundler(),
+  base: base,
   lang: "zh-CN",
   title: "BAC Document",
   description: "社区开源的第三方哔哩哔哩 API 文档",
-  head: [["link", { rel: "icon", href: "/logo2.jpg" }]],
+  head: [["link", { rel: "icon", href: base + "logo2.jpg" }]],
   locales: {
     "/": {
       lang: "zh-CN",
@@ -34,19 +39,26 @@ export default defineUserConfig({
         ],
       },
     ],
-    sidebar: "auto",
     repo: "https://github.com/SocialSisterYi/bilibili-API-collect",
     docsBranch: "master",
     editLinkText: "在 GitHub 上编辑此页",
-    colorMode: "auto"
+    colorMode: "auto",
+    themePlugins: {
+      prismjs: false
+    }
   }),
-  plugins: [copyCodePlugin({}), searchPlugin({})],
-  markdown: {
-    code: {
-      lineNumbers: true,
-    },
-  },
+  plugins: [
+    searchPlugin({}),
+    shikiPlugin({
+      theme: 'dark-plus',
+      langs: [
+        'javascript', 'typescript', 'markdown', 'protobuf', 'json', 'jsonc',
+        'shell', 'go', 'html', 'http', 'java', 'kotlin', 'python', 'rust', 'c',
+        'c++', 'cs', 'php', 'swift', 'text'
+      ]
+    })
+  ],
   extendsMarkdown: (md) => {
     md.use(markdownItTaskLists);
-  },
+  }
 });

@@ -8,6 +8,8 @@
 
 认证方式: Cookie(SESSDATA)
 
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie中的`buvid3`不为空
+
 可以选择进行认证，若未认证视作未登录，将会受到限制，详见后续内容。
 
 **URL参数：**
@@ -15,6 +17,12 @@
 | 参数名 | 类型 | 内容         | 必要性 | 备注 |
 | ------ | ---- | ------------ | ------ | ---- |
 | id     | num  | 直播间真实id | 必要   |      |
+| type   | num  | (?)          | 非必要 | 作用尚不明确 |
+| web_location | str | (?)     | 非必要 | 作用尚不明确 |
+| w_rid  | str | Wbi 签名 | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
+| wts    | num | 当前时间戳  | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
+
+注: 从2025年5月26日开始正式强制要求Wbi签名，2025年6月27日开始要求`buvid3`。见[#1295](https://github.com/SocialSisterYi/bilibili-API-collect/issues/1295)
 
 **JSON回复：**
 
@@ -50,11 +58,10 @@
 
 **示例:**
 
-获得直播间 `14047` 的信息流认证秘钥
+获得直播间 `1017` 的信息流认证秘钥
 
 ```shell
-curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
---url-query 'id=14047'
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo?id=1017&type=0&web_location=444.8&w_rid=cf24f88ea0cbb61e7b29aed0c070187d&wts=1748266797'
 ```
 
 <details>
@@ -65,30 +72,42 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
   "code": 0,
   "message": "0",
   "ttl": 1,
-  "data": {
+  "data":{
     "group": "live",
     "business_id": 0,
     "refresh_row_factor": 0.125,
     "refresh_rate": 100,
     "max_delay": 5000,
-    "token": "IFfrzJxUd-K6mBPLGCpu-Z9QAz1V3KzIxde_-tCzvah05fYgfXjBWyuqRywF8Ov2w-MGQWt7l80pLiZEsfx3OPEDsXSRaJlzihV0hTXYwkiJvRmzMH3JjfAjdzlvI8sytUCrIbezBgbr_grGPd4ENTEknvu165L-ocW_cyql1e-L_EE=",
-    "host_list": [
+    "token": "gZ2Pp2T4rIc2HfD0e53FHhQAwKWjb6-QDD84AcxXi8sk3S89XcdvPWOgClZIMZ5mESr19-JKTOFxayX4IjeSQuckWqohE5Y0aHn-agpc2uU7aPXW3-Xmra3QEKljMZS5fM3q2vCf2XcAsjc8Xup7MVAc8SLWWXhQz0s7f1alCkaJBAIPA-i2nS39Ri4O",
+    "host_list":[
       {
-        "host": "hw-sg-live-comet-02.chat.bilibili.com",
+        "host": "zj-cn-live-comet.chat.bilibili.com",
         "port": 2243,
-        "wss_port": 443,
+        "wss_port": 2245,
         "ws_port": 2244
       },
       {
-        "host": "hw-sg-live-comet-01.chat.bilibili.com",
+        "host": "zj-cn-live-comet.chat.bilibili.com",
         "port": 2243,
-        "wss_port": 443,
+        "wss_port": 2245,
+        "ws_port": 2244
+      },
+      {
+        "host": "bd-sz-live-comet-14.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 2245,
+        "ws_port": 2244
+      },
+      {
+        "host": "bd-bj-live-comet-09.chat.bilibili.com",
+        "port": 2243,
+        "wss_port": 2245,
         "ws_port": 2244
       },
       {
         "host": "broadcastlv.chat.bilibili.com",
         "port": 2243,
-        "wss_port": 443,
+        "wss_port": 2245,
         "ws_port": 2244
       }
     ]
@@ -104,7 +123,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/index/getDanmuInfo' \
 
 **注: 特别的**, WS 与 WSS 连接地址带有路径 `/sub`, 如 `wss://broadcastlv.chat.bilibili.com:443/sub`.
 
-**再注:** B 站更新了隐私政策, 连接建立后, 若该连接认证时传入信息来自未登录用户, 会提示 `为保护用户隐私，未注册登陆用户将无法查看他人昵称`, 随后部分数据包（如“弹幕”、“进场或关注消息”）的用户 mid 都为 `0`, 用户名部分也使用 `*` 保护, 部分房间受到豁免, 参见 [#732](https://github.com/SocialSisterYi/bilibili-API-collect/issues/732)
+**再注:** B 站更新了隐私政策, 连接建立后, 若该连接认证时传入信息来自未登录用户, 会提示 `为保护用户隐私，未注册登陆用户将无法查看他人昵称`, 随后部分数据包（如“弹幕”、“用户交互消息”）的用户 mid 都为 `0`, 用户名部分也使用 `*` 保护, 部分房间受到豁免, 参见 [#732](https://github.com/SocialSisterYi/bilibili-API-collect/issues/732)
 
 操作流程 (伪代码):
 
@@ -380,7 +399,7 @@ while (!s.isclosed()) {
 
 见下方 JSONC
 
-```json
+```jsonc
 {
   "send_from_me": false,      // 是否由该接收消息的用户发送
   "mode": 0,                  // 弹幕模式 (info[0][1])
@@ -706,7 +725,7 @@ while (!s.isclosed()) {
 | -------- | ---- | -------- | ---- |
 | id       | num  | 事件 ID  |      |
 | status   | num  | 状态     |      |
-| type     | num  | 事件类型 | 102:弹幕<br />103:<br />104:送礼<br />105:分享<br />106:点赞 |
+| type     | num  | 事件类型 | 101:投票<br />102:弹幕<br />103:关注<br />104:送礼<br />105:分享<br />106:点赞 |
 | data     | str  | 事件数据 | 一个JSON字符串 |
 | dmsource | num  |          |      |
 
@@ -715,6 +734,49 @@ while (!s.isclosed()) {
 内容格式取决于`data.type`的类型，下面将按照`data.data(类型)`进行区分标记。
 
 温馨提示: 要记得先解析`data.data`内的JSON字符串，不要直接使用哦。
+
+`data.data(101)` 对象: (投票)
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| question | str | 投票问题 |  |
+| options | obj | 投票详细选项 |  |
+| vote_id | num | 投票id |  |
+| cnt | num | 弹幕计数 |  |
+| duration | num | 持续时间 | 单位毫秒 |
+| left_duration | num | 剩余时间 | 单位毫秒 |
+| fade_duration | num | (?) |  |
+| waiting_duration | num | (?) |  |
+| result | num | 投票倾向状态 |  |
+| result_text | str | 投票倾向提示 |  |
+| component | str | 投票链接 |  |
+| natural_die_duration | num | (?) |  |
+| my_vote | num | (?) |  |
+| component_anchor | str | 投票控制链接 |  |
+| audit_reason | str | 审核结果 |  |
+| combo | obj | 投票状态展示 |  |
+
+`data.data(101).options` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| idx | num | 选项索引 |  |
+| desc | str | 选项内容 |  |
+| cnt | num | 票数 |  |
+| percent | num | 显示占比 |  |
+
+`data.data(101).combo` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| id | num | 标识id | 同`data.data.options`数组中对象的`idx` |
+| status | num | 状态 | 同`data.status` |
+| content | str | 投票选项内容 |  |
+| cnt | str | 弹幕计数 |  |
+| guide | str | (?) | 空字符串 |
+| left_duration | num | 剩余时间 |  |
+| fade_duration | num | (?) |  |
+| prefix_icon | str | 投票选项图标 |  |
 
 `data.data(102)` 对象: (弹幕)
 
@@ -736,6 +798,17 @@ while (!s.isclosed()) {
 | guide         | str  | 标题词         | "他们都在说:" |
 | left_duration | num  | 左移时长       |               |
 | fade_duration | num  | 淡化时长       |               |
+
+`data.data(103)` 对象: (关注)
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| fade\_duration | num |  |  |
+| cnt | num | 关注计数 |  |
+| card_appear_interval | num |  |  |
+| suffix\_text | str | 提示文本 | `人关注了主播` |
+| reset\_cnt | num |  |  |
+| display\_flag | num |  |  |
 
 `data.data(104)` 对象: (送礼)
 
@@ -777,6 +850,21 @@ while (!s.isclosed()) {
 <details>
 <summary>查看正文示例:</summary>
 
+type===101
+
+```json
+{
+	"cmd": "DM_INTERACTION",
+	"data": {
+		"data": "{\"question\":\"投票\",\"options\":[{\"idx\":1,\"desc\":\"赞成\",\"cnt\":0,\"percent\":0.5},{\"idx\":2,\"desc\":\"弃权\",\"cnt\":0,\"percent\":0.5}],\"vote_id\":98014370742272,\"cnt\":0,\"duration\":60000,\"left_duration\":60000,\"fade_duration\":1000,\"waiting_duration\":-1,\"result\":1,\"result_text\":\"平局\",\"component\":\"https://live.bilibili.com/p/html/live-app-guessing-game/vote.html?is_live_half_webview=1\\u0026hybrid_half_ui=1,3,100p,245,0,0,30,100,12,0;2,2,375,100p,0,0,30,100,12,0;3,3,100p,245,0,0,30,100,12,0;4,2,375,100p,0,0,30,100,12,0;5,3,100p,70p,0,0,30,100,12,0;6,3,100p,70p,0,0,30,100,12,0;7,3,100p,70p,0,0,30,100,12,0;8,3,100p,70p,0,0,30,100,12,0\",\"natural_die_duration\":30000,\"my_vote\":0,\"component_anchor\":\"https://live.bilibili.com/p/html/live-app-guessing-game/anchor_vote.html?pc_ui=390,428,0,3\\u0026is_live_half_webview=1\\u0026hybrid_half_ui=1,3,100p,448,0,0,30,0,12,0;2,2,375,100p,0,0,30,0,12,0;3,3,100p,448,0,0,30,0,12,0;4,2,375,100p,0,0,30,0,12,0;5,3,100p,448,0,0,30,0,12,0;6,2,320,100p,0,0,30,0,12,0;7,2,320,100p,0,0,30,0,12,0;8,2,320,100p,0,0,30,0,12,0#/\",\"audit_reason\":\"您提交的弹幕投票未审核通过，请修改\",\"combo\":[{\"id\":1,\"status\":2,\"content\":\"赞成\",\"cnt\":0,\"guide\":\"\",\"left_duration\":60000,\"fade_duration\":0,\"prefix_icon\":\"http://i0.hdslb.com/bfs/dm/7d7e3682c9116aa3503418abe3cde6b45ed2e91e.png\"},{\"id\":2,\"status\":2,\"content\":\"弃权\",\"cnt\":0,\"guide\":\"\",\"left_duration\":60000,\"fade_duration\":0,\"prefix_icon\":\"http://i0.hdslb.com/bfs/dm/f83c7280b2a90b4f58a68fd8c594ea7d5667e3cb.png\"}]}",
+		"dmscore": 36,
+		"id": 98014370742272,
+		"status": 2,
+		"type": 101
+	}
+}
+```
+
 type===102
 
 ```json
@@ -803,6 +891,21 @@ type===102
       "send_interval": 1000
     }
   }
+}
+```
+
+type===103
+
+```json
+{
+	"cmd": "DM_INTERACTION",
+	"data": {
+		"data": "{\"fade_duration\":10000,\"cnt\":6,\"card_appear_interval\":0,\"suffix_text\":\"人关注了主播\",\"reset_cnt\":0,\"display_flag\":1}",
+		"dmscore": 36,
+		"id": 94362402889728,
+		"status": 4,
+		"type": 103
+	}
 }
 ```
 
@@ -853,9 +956,9 @@ type===106
 
 </details>
 
-#### 进场或关注消息 (INTERACT_WORD)
+#### 用户交互消息 (INTERACT_WORD)
 
-注: 有用户进入直播间或关注主播时触发
+注: 有用户进入直播间、关注主播、分享直播间时触发
 
 **JSON消息:**
 
@@ -2054,7 +2157,7 @@ type===106
 
 <details>
 <summary>查看消息示例：</summary>
-  
+
 ```json
 {
     "cmd": "ONLINE_RANK_V2",
@@ -2122,7 +2225,7 @@ type===106
   }
 }
 ```
-  
+
 </details>
 
 #### 未登录通知 (LOG_IN_NOTICE)
@@ -2901,6 +3004,7 @@ type===106
 | priority                | num   | 优先级?          |      |
 | basemap_url             | str   | 进场特效背景 URL | APP 端 |
 | show_avatar             | num   | 是否显示用户头像 | 1: 显示<br/>0: 不显示 |
+| effective_time          | num   | ?                |      |
 | web_basemap_url         | str   | 进场特效背景 URL | 网页端 |
 | web_effective_time      | num   | 进场特效生存时间 | 网页端 |
 | web_effect_close        | num   | ?                |      |
@@ -2916,6 +3020,13 @@ type===106
 | web_dynamic_url_webp    | str   | ?                |      |
 | web_dynamic_url_apng    | str   | ?                |      |
 | mobile_dynamic_url_webp | str   | ?                |      |
+| wealthy_info            | obj   | 荣耀等级信息       |      |
+| new_style               | num   | ?                |      |
+| is_mystery              | bool  | ?                |      |
+| uinfo                   | obj   | 用户信息          |      |
+| full_cartoon_id         | num   | ?                |      |
+| priority_level          | num   | ?                |      |
+| wealth_style_info       | obj   | 荣耀等级样式信息    |      |
 
 **示例:**
 
@@ -2924,37 +3035,181 @@ type===106
   
 ```json
 {
-  "cmd": "ENTRY_EFFECT",
-  "data": {
-    "id": 4,
-    "uid": 489893482,
-    "target_id": 27717502,
-    "mock_effect": 0,
-    "face": "https://i0.hdslb.com/bfs/face/member/noface.jpg",
-    "privilege_type": 3,
-    "copy_writing": "欢迎舰长 <%天使雨晰%> 进入直播间",
-    "copy_color": "#ffffff",
-    "highlight_color": "#E6FF00",
-    "priority": 1,
-    "basemap_url": "https://i0.hdslb.com/bfs/live/mlive/11a6e8eb061c3e715d0a6a2ac0ddea2faa15c15e.png",
-    "show_avatar": 1,
-    "effective_time": 2,
-    "web_basemap_url": "https://i0.hdslb.com/bfs/live/mlive/11a6e8eb061c3e715d0a6a2ac0ddea2faa15c15e.png",
-    "web_effective_time": 2,
-    "web_effect_close": 0,
-    "web_close_time": 0,
-    "business": 1,
-    "copy_writing_v2": "欢迎舰长 <%天使雨晰%> 进入直播间",
-    "icon_list": [],
-    "max_delay_time": 7,
-    "trigger_time": 1673625604373633300,
-    "identities": 6,
-    "effect_silent_time": 0,
-    "effective_time_new": 0,
-    "web_dynamic_url_webp": "",
-    "web_dynamic_url_apng": "",
-    "mobile_dynamic_url_webp": ""
-  }
+	"cmd": "ENTRY_EFFECT",
+	"data": {
+		"id": 380,
+		"uid": 31382283,
+		"target_id": 12892411,
+		"mock_effect": 0,
+		"face": "https://i0.hdslb.com/bfs/face/876e30e89faa5672858cc17bdb357362ec96bc29.jpg",
+		"privilege_type": 0,
+		"copy_writing": "<%WYCBat%> 来了",
+		"copy_color": "#F7F7F7",
+		"highlight_color": "#FFFFFF",
+		"priority": 1,
+		"basemap_url": "",
+		"show_avatar": 0,
+		"effective_time": 0,
+		"web_basemap_url": "https://i0.hdslb.com/bfs/live/mlive/19e7564ed9d466b02f341abfa979c6e38c2ffffb.png",
+		"web_effective_time": 4,
+		"web_effect_close": 1,
+		"web_close_time": 900,
+		"business": 6,
+		"copy_writing_v2": "<%WYCBat%> 来了",
+		"icon_list": [],
+		"max_delay_time": 7,
+		"trigger_time": 1748545763327647435,
+		"identities": 1,
+		"effect_silent_time": 0,
+		"effective_time_new": 0,
+		"web_dynamic_url_webp": "",
+		"web_dynamic_url_apng": "",
+		"mobile_dynamic_url_webp": "",
+		"wealthy_info": {
+			"uid": 0,
+			"level": 17,
+			"level_total_score": 0,
+			"cur_score": 0,
+			"upgrade_need_score": 0,
+			"status": 0,
+			"dm_icon_key": ""
+		},
+		"new_style": 1,
+		"is_mystery": false,
+		"uinfo": {
+			"uid": 31382283,
+			"base": {
+				"name": "WYCBat",
+				"face": "https://i0.hdslb.com/bfs/face/876e30e89faa5672858cc17bdb357362ec96bc29.jpg",
+				"name_color": 0,
+				"is_mystery": false,
+				"risk_ctrl_info": null,
+				"origin_info": null,
+				"official_info": null,
+				"name_color_str": ""
+			},
+			"medal": null,
+			"wealth": {
+				"level": 17,
+				"dm_icon_key": ""
+			},
+			"title": null,
+			"guard": {
+				"level": 0,
+				"expired_str": ""
+			},
+			"uhead_frame": null,
+			"guard_leader": null
+		},
+		"full_cartoon_id": 1802,
+		"priority_level": 0,
+		"wealth_style_info": {
+			"url": "https://i0.hdslb.com/bfs/live/b6f2bf3e27f22b3039594842f0005b05a0dc5dae.png"
+		}
+	}
+}
+```
+
+</details>
+
+#### 必须接受的用户进场特效 (ENTRY_EFFECT_MUST_RECEIVE)
+
+注: 在部分主播进入自己的直播间时下发。
+
+结构与 [用户进场特效 (ENTRY_EFFECT)](#用户进场特效-ENTRY_EFFECT) 完全相同。
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "ENTRY_EFFECT_MUST_RECEIVE",
+	"data": {
+		"id": 135,
+		"uid": 438160221,
+		"target_id": 438160221,
+		"mock_effect": 0,
+		"face": "https://i0.hdslb.com/bfs/face/member/noface.jpg",
+		"privilege_type": 0,
+		"copy_writing": "<%weatfe%> 来了",
+		"copy_color": "#000000",
+		"highlight_color": "#FFF100",
+		"priority": 1,
+		"basemap_url": "https://i0.hdslb.com/bfs/live/mlive/da6933ea70f31c4df63f4b68b735891284888357.png",
+		"show_avatar": 1,
+		"effective_time": 1,
+		"web_basemap_url": "https://i0.hdslb.com/bfs/live/mlive/da6933ea70f31c4df63f4b68b735891284888357.png",
+		"web_effective_time": 2,
+		"web_effect_close": 0,
+		"web_close_time": 900,
+		"business": 3,
+		"copy_writing_v2": "<%weatfe%> 来了",
+		"icon_list": [],
+		"max_delay_time": 7,
+		"trigger_time": 1746031259272981482,
+		"identities": 1,
+		"effect_silent_time": 0,
+		"effective_time_new": 0,
+		"web_dynamic_url_webp": "",
+		"web_dynamic_url_apng": "",
+		"mobile_dynamic_url_webp": "",
+		"wealthy_info": null,
+		"new_style": 0,
+		"is_mystery": false,
+		"uinfo": {
+			"uid": 438160221,
+			"base": {
+				"name": "weatfe",
+				"face": "https://i0.hdslb.com/bfs/face/member/noface.jpg",
+				"name_color": 0,
+				"is_mystery": false,
+				"risk_ctrl_info": null,
+				"origin_info": null,
+				"official_info": null,
+				"name_color_str": ""
+			},
+			"medal": {
+				"name": "粉丝团",
+				"level": 11,
+				"color_start": 9272486,
+				"color_end": 9272486,
+				"color_border": 9272486,
+				"color": 9272486,
+				"id": 2956282,
+				"typ": 0,
+				"is_light": 1,
+				"ruid": 438160221,
+				"guard_level": 0,
+				"score": 16000,
+				"guard_icon": "",
+				"honor_icon": "",
+				"v2_medal_color_start": "#596FE099",
+				"v2_medal_color_end": "#596FE099",
+				"v2_medal_color_border": "#596FE099",
+				"v2_medal_color_text": "#FFFFFFFF",
+				"v2_medal_color_level": "#000B7099",
+				"user_receive_count": 0
+			},
+			"wealth": {
+				"level": 5,
+				"dm_icon_key": ""
+			},
+			"title": null,
+			"guard": {
+				"level": 0,
+				"expired_str": ""
+			},
+			"uhead_frame": null,
+			"guard_leader": null
+		},
+		"full_cartoon_id": 0,
+		"priority_level": 0,
+		"wealth_style_info": {
+			"url": "https://i0.hdslb.com/bfs/live/24f6ef867c3905064136f5c4e33a8d423d41ebdd.png"
+		}
+	}
 }
 ```
 
@@ -3465,6 +3720,123 @@ type===106
     ],
     "wish_name": "心愿"
   }
+}
+```
+
+</details>
+
+#### 礼物星球信息 (WIDGET_WISH_INFO)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `WIDGET_WISH_INFO` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| sid | num | (?) |  |
+| wish | arr | 礼物需求信息 |  |
+| jump_url | str | 用户端礼物星球界面 |  |
+| wish_status | num | 礼物星球状态 |  |
+| card_text | str | 卡片提示文本 |  |
+| modal_text | str | 需求标题 |  |
+| button_text | str | 按钮文本 |  |
+| show_time | num | 显示时间 | 单位秒 |
+| ts | num | 发送时间戳 | Unix秒时间戳 |
+| tid | num | (?) |  |
+| wish_status_info | arr | 状态对照信息 |  |
+| wish_name | str | 礼物星球名称 |  |
+
+`data.wish` 数组中的对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| gift_id | num | 礼物id |  |
+| target_num | num | 需求数量 |  |
+| gift_img | str | 礼物图片URL |  |
+| gift_price | num | 礼物金瓜子标价 | CNY×1000 |
+| gift_name | str | 礼物名称 |  |
+| wish_status | num | 该礼物达成状态 |  |
+
+`data.wish_status_info` 数组中的对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| wish_status_msg | str | 状态提示信息 |  |
+| wish_status_img | str | 状态图片URL |  |
+| wish_status | str | 状态 |  |
+| wish_status_desc | str | 状态描述 | 不一定存在 |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "WIDGET_WISH_INFO",
+	"data": {
+		"sid": 658537,
+		"wish": [
+			{
+				"gift_id": 31036,
+				"target_num": 1,
+				"gift_img": "https://s1.hdslb.com/bfs/live/8b40d0470890e7d573995383af8a8ae074d485d9.png",
+				"gift_price": 100,
+				"gift_name": "小花花",
+				"wish_status": 1
+			},
+			{
+				"gift_id": 30758,
+				"target_num": 1,
+				"gift_img": "https://s1.hdslb.com/bfs/live/3ddb10b055b9d1826829ec0fad93ab56484d4a90.png",
+				"gift_price": 100,
+				"gift_name": "这个好诶",
+				"wish_status": 1
+			},
+			{
+				"gift_id": 31039,
+				"target_num": 1,
+				"gift_img": "https://s1.hdslb.com/bfs/live/91ac8e35dd93a7196325f1e2052356e71d135afb.png",
+				"gift_price": 100,
+				"gift_name": "牛哇牛哇",
+				"wish_status": 1
+			}
+		],
+		"jump_url": "https://live.bilibili.com/p/html/bilili-page-gift-wishes-mix-planet/user.html?is_live_half_webview=1&hybrid_half_ui=1,3,100p,70p,0,0,30,100,15,0;2,2,375,100p,0,0,30,100,15,0;3,3,100p,70p,0,0,30,100,15,0;4,2,375,100p,0,0,30,100,15,0;5,3,100p,70p,0,0,30,100,15,0;6,3,100p,70p,0,0,30,100,15,0;7,3,100p,70p,0,0,30,100,15,0;8,3,100p,70p,0,0,30,100,15,0",
+		"wish_status": 1,
+		"card_text": "主播今日心愿还未完成",
+		"modal_text": "今日心愿礼物",
+		"button_text": "去助力",
+		"show_time": 5,
+		"ts": 1746257134,
+		"tid": 6585370000,
+		"wish_status_info": [
+			{
+				"wish_status_msg": "礼物星球待点亮",
+				"wish_status_img": "https://i0.hdslb.com/bfs/live/e507f8b101289b2ce6741880a28304215a65f5bf.png",
+				"wish_status": -1
+			},
+			{
+				"wish_status_msg": "今日心愿暂未达成",
+				"wish_status_img": "https://i0.hdslb.com/bfs/live/e507f8b101289b2ce6741880a28304215a65f5bf.png",
+				"wish_status": 1
+			},
+			{
+				"wish_status_msg": "今日心愿已达成",
+				"wish_status_img": "https://i0.hdslb.com/bfs/live/e507f8b101289b2ce6741880a28304215a65f5bf.png",
+				"wish_status": 2,
+				"wish_status_desc": "已完成"
+			}
+		],
+		"wish_name": "心愿礼物"
+	}
 }
 ```
 
@@ -4388,6 +4760,63 @@ type===106
 
 </details>
 
+#### 语音连麦开关 (VOICE_JOIN_SWITCH)
+
+在直播姬开关连麦功能时下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `VOICE_JOIN_SWITCH` |  |
+| data | obj | 信息本体 |  |
+| room_id | num | 直播间id |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| room_id | num | 直播间id |  |
+| room_status | num | 连麦开关状态 |  |
+| root_status | num | 连麦开关状态 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+开:
+
+```json
+{
+	"cmd": "VOICE_JOIN_SWITCH",
+	"data": {
+		"room_id": 1899237171,
+		"room_status": 1,
+		"root_status": 1
+	},
+	"room_id": 1899237171
+}
+```
+
+关:
+
+```json
+{
+	"cmd": "VOICE_JOIN_SWITCH",
+	"data": {
+		"room_id": 1899237171,
+		"room_status": 0,
+		"root_status": 0
+	},
+	"room_id": 1899237171
+}
+```
+
+</details>
+
 #### 邀请视频连线 (VIDEO_CONNECTION_JOIN_START)
 
 **示例:**
@@ -4526,11 +4955,46 @@ type===106
 
 </details>
 
+#### ??? (PLAYTOGETHER_ICON_CHANGE)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `PLAYTOGETHER_ICON_CHANGE` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| area_id | num | 直播分区id |  |
+| has_perm | num |  |  |
+| show_count | num |  |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "PLAYTOGETHER_ICON_CHANGE",
+	"data": {
+		"area_id": 40,
+		"has_perm": 0,
+		"show_count": 0
+	}
+}
+```
+
+</details>
+
 #### 直播小助手? (ANCHOR_BROADCAST)
 
 第一次达到了某种条件下发。
-
-已知当在一个分区（中途不能切换）开播时长达到150、180、200、300分钟可能下发，直播间初次被分享1~2次时下发。
 
 **JSON消息:**
 
@@ -4786,6 +5250,476 @@ type===106
 		],
 		"live_key": "579433011406177273"
 	}
+}
+```
+
+</details>
+
+#### 有人购买主播推荐商品 (GOTO_BUY_FLOW)
+
+用户昵称会打星号(`*`)显示。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `GOTO_BUY_FLOW` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| text | str | 去购买提示 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "GOTO_BUY_FLOW",
+	"data": {
+		"text": "回**正在去买"
+	}
+}
+```
+
+</details>
+
+#### 热抢提示 (HOT_BUY_NUM)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `HOT_BUY_NUM` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| num | num | 热抢数量 |  |
+| goods_id | str | 商品id |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "HOT_BUY_NUM",
+	"data": {
+		"num": 81,
+		"goods_id": "1817875296579985408"
+	}
+}
+```
+
+</details>
+
+#### 荣耀等级通知 (WEALTH_NOTIFY)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `WEALTH_NOTIFY` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| flag | num | 标志? |  |
+| info | obj | 信息 |  |
+
+`data.info`:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| effect_key | num | (?) |  |
+| has_items_changed | num | (?) |  |
+| level | num | 达到的等级 |  |
+| send_time | num | 发送时间 | UNIX 毫秒时间戳 |
+| status | num | 状态? |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "WEALTH_NOTIFY",
+	"data": {
+		"flag": 3,
+		"info": {
+			"effect_key": 1073,
+			"has_items_changed": 1,
+			"level": 5,
+			"send_time": 1743337942833,
+			"status": 1
+		}
+	}
+}
+```
+
+</details>
+
+#### ??? (USER_PANEL_RED_ALARM)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `USER_PANEL_RED_ALARM` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| module | str | (?) |  |
+| alarm_num | num | (?) |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "USER_PANEL_RED_ALARM",
+	"data": {
+		"module": "user_head_dot",
+		"alarm_num": 1
+	}
+}
+```
+
+</details>
+
+#### ??? (GIFT_BOARD_RED_DOT)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `GIFT_BOARD_RED_DOT` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| categoryL1 | str | (?) | 作用尚不明确 |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "GIFT_BOARD_RED_DOT",
+	"data": {
+		"categoryL1": "3"
+	}
+}
+```
+
+</details>
+
+#### 粉丝勋章更新 (MESSAGEBOX_USER_MEDAL_CHANGE)
+
+升级或点亮时下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `MESSAGEBOX_USER_MEDAL_CHANGE` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| type | num | 提示类型 | 1：升级<br />2：点亮 |
+| uid | num | 用户mid |  |
+| up_uid | num | 主播mid |  |
+| medal_level | num | 粉丝勋章等级 |  |
+| medal_name | str | 粉丝勋章名称 |  |
+| medal_color_start | num | 十进制粉丝勋章起始颜色 |  |
+| medal_color_end | num | 十进制粉丝勋章结束颜色 |  |
+| medal_color_border | num | 十进制粉丝勋章边框颜色 |  |
+| is_lighted | num | 是否点亮? | 1：点亮? |
+| is_lighted_v2 | bool | 是否点亮v2? |  |
+| guard_level | num | 大航海等级 |  |
+| unlock | num | (?) |  |
+| unlock_level | num | (?) |  |
+| multi_unlock_level | str | (?) |  |
+| upper_bound_content | str | 提示内容 |  |
+| uinfo_medal | obj | 粉丝勋章信息 | 参见 [指定用户的所有粉丝勋章信息](../user/medals.md#指定用户的所有粉丝勋章信息) `data.list[n].uinfo_medal` 对象 |
+| effect_id | num | (?) |  |
+
+`data.uinfo_medal` 对象:
+
+参见 [指定用户的所有粉丝勋章信息](../user/medals.md#指定用户的所有粉丝勋章信息) json回复的 `data.list[n].uinfo_medal` 对象。
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "MESSAGEBOX_USER_MEDAL_CHANGE",
+	"data": {
+		"type": 2,
+		"uid": 438160221,
+		"up_uid": 407045223,
+		"medal_level": 3,
+		"medal_name": "研究猿",
+		"medal_color_start": 6067854,
+		"medal_color_end": 6067854,
+		"medal_color_border": 6067854,
+		"is_lighted": 1,
+		"is_lighted_v2": true,
+		"guard_level": 0,
+		"unlock": 0,
+		"unlock_level": 0,
+		"multi_unlock_level": "",
+		"upper_bound_content": "",
+		"uinfo_medal": {
+			"name": "研究猿",
+			"level": 3,
+			"color_start": 6067854,
+			"color_end": 6067854,
+			"color_border": 6067854,
+			"color": 0,
+			"id": 0,
+			"typ": 0,
+			"is_light": 1,
+			"ruid": 407045223,
+			"guard_level": 0,
+			"score": 0,
+			"guard_icon": "",
+			"honor_icon": "",
+			"v2_medal_color_start": "#5762A799",
+			"v2_medal_color_end": "#5762A799",
+			"v2_medal_color_border": "#5762A799",
+			"v2_medal_color_text": "#FFFFFFFF",
+			"v2_medal_color_level": "#000B7099",
+			"user_receive_count": 0
+		},
+		"effect_id": 1861
+	}
+}
+```
+
+</details>
+
+#### 获得粉丝勋章 (MESSAGEBOX_USER_GAIN_MEDAL)
+
+获得时下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `MESSAGEBOX_USER_GAIN_MEDAL` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| type | num | 类型 | 0 |
+| uid | num | 用户mid |  |
+| up_uid | num | 主播uid |  |
+| medal_id | num | 勋章id |  |
+| medal_name | str | 勋章名称 |  |
+| medal_level | num | 勋章等级 |  |
+| medal_color | num | 勋章颜色 |  |
+| medal_color_start | num | 十进制勋章起始颜色 |  |
+| medal_color_end | num | 十进制勋章结束颜色 |  |
+| medal_color_border | num | 十进制勋章边框颜色 |  |
+| msg_title | str | 消息标题 |  |
+| msg_content | str | 消息内容 |  |
+| normal_color | num | (?) |  |
+| highlight_color | num | (?) |  |
+| intimacy | num | 当前亲密度 |  |
+| next_intimacy | num | 升级所需亲密度 |  |
+| today_feed | num | 今日亲密度 |  |
+| day_limit | num | 今日亲密度上限 |  |
+| is_wear | num | (?) |  |
+| guard_level | num | 大航海等级 |  |
+| is_received | num | (?) |  |
+| is_lighted | num | 是否点亮? | 1：点亮? |
+| is_lighted_v2 | bool | 是否点亮v2? |  |
+| toast | str | 提示 |  |
+| fan_name | str | 粉丝名称 |  |
+| uinfo_medal | obj | 粉丝勋章信息 | 参见 [指定用户的所有粉丝勋章信息](../user/medals.md#指定用户的所有粉丝勋章信息) `data.list[n].uinfo_medal` 对象 |
+
+`data.uinfo_medal` 对象:
+
+参见 [指定用户的所有粉丝勋章信息](../user/medals.md#指定用户的所有粉丝勋章信息) json回复的 `data.list[n].uinfo_medal` 对象。
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "MESSAGEBOX_USER_GAIN_MEDAL",
+	"data": {
+		"type": 0,
+		"uid": 438160221,
+		"up_uid": 11602644,
+		"medal_id": 19252517,
+		"medal_name": "广药",
+		"medal_level": 1,
+		"medal_color": 6067854,
+		"medal_color_start": 6067854,
+		"medal_color_end": 6067854,
+		"medal_color_border": 6067854,
+		"msg_title": "恭喜你获得【WuGuangYao】的粉丝勋章~",
+		"msg_content": "获得100点亲密度\n你的粉丝勋章达到1级",
+		"normal_color": 7697781,
+		"highlight_color": 16478873,
+		"intimacy": 100,
+		"next_intimacy": 201,
+		"today_feed": 100,
+		"day_limit": 2000,
+		"is_wear": 0,
+		"guard_level": 0,
+		"is_received": 1,
+		"is_lighted": 1,
+		"is_lighted_v2": true,
+		"toast": "成功入团并关注主播，得1级大礼包",
+		"fan_name": "weatfe",
+		"uinfo_medal": {
+			"name": "广药",
+			"level": 1,
+			"color_start": 6067854,
+			"color_end": 6067854,
+			"color_border": 6067854,
+			"color": 6067854,
+			"id": 19252517,
+			"typ": 0,
+			"is_light": 1,
+			"ruid": 11602644,
+			"guard_level": 0,
+			"score": 0,
+			"guard_icon": "",
+			"honor_icon": "",
+			"v2_medal_color_start": "#5762A799",
+			"v2_medal_color_end": "#5762A799",
+			"v2_medal_color_border": "#5762A799",
+			"v2_medal_color_text": "#FFFFFFFF",
+			"v2_medal_color_level": "#000B7099",
+			"user_receive_count": 0
+		}
+	}
+}
+```
+
+</details>
+
+#### 粉丝团戳一戳礼物通知 (FANS_CLUB_POKE_GIFT_NOTICE)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `FANS_CLUB_POKE_GIFT_NOTICE` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| icon | str | 图标 |  |
+| uface | str | 头像 |  |
+| bg_img_url | str | 背景图片 |  |
+| text | str | 提示文本 |  |
+| highlight_text | str | 高亮文本? |  |
+| button_text | str | 按钮文本 |  |
+| display_duration | num | 显示时间? |  |
+| room_id | num | 房间号 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "FANS_CLUB_POKE_GIFT_NOTICE",
+	"data": {
+		"icon": "https://i0.hdslb.com/bfs/live/37a2fe03f2af95928c67cbac889e10dab6f7d42a.png",
+		"uface": "https://i0.hdslb.com/bfs/face/member/noface.jpg",
+		"bg_img_url": "https://i0.hdslb.com/bfs/live/fbe99002b5914157d783f8e07f021e2fd6ba5c1b.png",
+		"text": "主播戳了戳你~投喂礼物获5倍亲密度加成",
+		"highlight_text": "5倍亲密度加成",
+		"button_text": "去投喂",
+		"display_duration": 8,
+		"room_id": 1899237171
+	}
+}
+```
+
+</details>
+
+#### ??? (master_qn_strategy_chg)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `master_qn_strategy_chg` |  |
+| data | str | 信息本体 | JSON文本 |
+
+`data` JSON解析后对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| mtime | num | (?) | Unix秒时间戳 |
+| scatter | arr | (?) |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "master_qn_strategy_chg",
+	"data": "{\"mtime\":1744380444,\"scatter\":[0,300]}"
 }
 ```
 
