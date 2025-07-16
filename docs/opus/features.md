@@ -729,6 +729,7 @@
 | reserve | object | 预约信息 | 仅 `type='LINK_CARD_TYPE_RESERVE'`, 参见 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[].modules.module_dynamic.additional.reserve` |
 | upower_lottery | object | 充电专属抽奖信息 | 仅 `type='LINK_CARD_TYPE_UPOWER_LOTTERY'` |
 | opus | object | 图文信息 | 仅 `type='LINK_CARD_TYPE_OPUS'` |
+| music | object | 音乐信息 | 仅 `type='LINK_CARD_TYPE_MUSIC'`, 参见 [获取全部动态列表](../dynamic/all.md#获取全部动态列表) 的 `data.items[].modules.module_dynamic.major.music` |
 
 `module_content.paragraphs[].link_card.card.match` 对象:
 
