@@ -665,10 +665,13 @@
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | align | number | 对齐方式 | 0: 左对齐 (默认)<br />1: 居中<br />2: 右对齐 |
-| para_type | number | 段落类型 | 1: 文本<br />2: 图片<br />3: 段落行<br />4: 块引用<br />5: 列表<br />6: 链接卡片<br />8: 代码 |
-| text | object | 文本 | `para_type=1` |
+| para_type | number | 段落类型 | 1: 文本<br />2: 图片<br />3: 分割线<br />4: 块引用<br />5: 列表<br />6: 链接卡片<br />7: 代码 |
+| text | object | 文本 | `para_type=1` 或 `para_type=4` |
 | pics | object | 图片 | `para_type=2` |
+| line | object | 分割线 | `para_type=3` |
+| list | object | 列表 | `para_type=5` |
 | link_card | object | 链接卡片 | `para_type=6` |
+| code | object | 代码 | `para_type=7` |
 
 `module_content.paragraphs[].text` 对象:
 
@@ -683,6 +686,7 @@
 | type | string | 文本节点类型 | 纯文本: `TEXT_NODE_TYPE_WORD`<br />富文本: `TEXT_NODE_TYPE_RICH` |
 | word | object | 纯文本 | 仅 `type='TEXT_NODE_TYPE_WORD'` |
 | rich | object | 富文本 | 仅 `type='TEXT_NODE_TYPE_RICH'`, 详细参见 [富文本节点](rich_text_nodes.md) |
+| formula | object | 公式 | 仅 `type='TEXT_NODE_TYPE_FORMULA' |
 
 `module_content.paragraphs[].text.nodes[].word` 对象:
 
@@ -691,6 +695,40 @@
 | font_size | number | 字体大小 | 用于控制文本所用标签名 (如 `h1` `h2` `p`) 及行高 |
 | style | object | 补充样式 |  |
 | words | string | 文本内容 |  |
+
+`module_content.paragraphs[].text.nodes[].formula` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| latex_content | string | 公式内容 | LaTeX |
+
+`module_content.paragraphs[].line` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| pic | object | 图片 |  |
+
+`module_content.paragraphs[].line.pic` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| height | number | 高度 |  |
+| url | string | 图片 URL |  |
+
+`module_content.paragraphs[].list` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| style | number | 样式 | 1: 有序列表<br />2: 无序列表 |
+| items | object[] | 列表项 |  |
+
+`module_content.paragraphs[].list.items[]` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| level | number | 级别 |   |
+| nodes | object[] | 文本节点 | 同 `module_content.paragraphs[].text.nodes[]` 对象 |
+| order | number | 序号 |  |
 
 `module_content.paragraphs[].pic` 对象:
 
@@ -705,7 +743,7 @@
 | ---- | ---- | ---- | ---- |
 | height | number | 高度 | |
 | live_url | unknown | 动图 URL? | |
-| size | number | 大小 | 单位: ki |
+| size | number \| null | 大小 | 单位: ki |
 | url | string | 图片 URL | |
 | width | number | 宽度 | |
 
@@ -846,9 +884,18 @@
 
 `module_content.paragraphs[].link_card.card.item_null` 对象:
 
+注: 该对象结构根据前端代码推断得出未经验证仅供参考
+
 | 字段 | 类型 | 内容 | 备注 |
 | ---- | ---- | ---- | ---- |
 | text | string | 文字 |  |
+
+`module_content.paragraphs[].code` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| content | string | 内容 |  |
+| lang | string | 语言 | 如 `language-html` `language-bash` |
 
 **示例:**
 
