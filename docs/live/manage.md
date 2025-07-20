@@ -666,7 +666,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
 
 </details>
 
-## 直播姬版本号获取
+## PC直播姬版本号获取
 > https://api.live.bilibili.com/xlive/app-blink/v1/liveVersionInfo/getHomePageLiveVersion
 
 *请求方式：GET*
