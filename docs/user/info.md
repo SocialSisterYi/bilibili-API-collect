@@ -8,14 +8,9 @@
 
 *请求方式：GET*
 
-认证方式为以下三种情况
-|值1|值2|值3|
-|:-|:-|:-|
-|SESSDATA|bili_ticket|bili_jct|
-|SESSDATA|bili_ticket|sid(任意字符)|
-|SESSDATA|bili_jct|sid(任意字符)|
+认证方式：Cookie（SESSDATA）
 
-鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie (对于某些 IP 地址，需要在 Cookie 中提供任意非空的 `buvid3` 字段)
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie (对于某些 IP 地址，需要在 Cookie 中提供任意非空的 `buvid3` 字段), bili_ticket	, bili_jct , sid(任意字符)
 
 ~~该接口的旧版 API ：<https://api.bilibili.com/x/space/acc/info>~~（已废弃，不建议使用）
 
