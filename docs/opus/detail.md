@@ -1,3 +1,5 @@
+# 图文详细
+
 ## 获取图文详细信息
 
 > https://api.bilibili.com/x/polymer/web-dynamic/v1/opus/detail
