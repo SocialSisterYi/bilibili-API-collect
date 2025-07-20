@@ -19,13 +19,13 @@
 | onlyfansAssetsV2  |  |  |  |
 | forwardListHidden |  |  |  |
 | ugcDelete         |  |  |  |
-| onlyfansQaCard    |  |  |  |
+| onlyfansQaCard    | 是否展示更详细的展示充电专属问答 |  | 1087983622038749191 |
 | commentsNewVersion |  |  |  |
 | decorationCard | 是否以卡片形式显示装扮 |  | 566950981753221664 |
 | editable | 是否在右上角三点菜单中显示 `编辑` | 必须是自己发送的动态才有效果 | 1065142062572109830 |
 | opusPrivateVisible | | | |
 | tribeeEdit | | | |
-| avatarAutoTheme | | | |
+| avatarAutoTheme | 头像颜色使用 CSS 变量 | 对于纯动态类型接口无效 | 933099353259638816 |
 | avatarTypeOpus | | | |
 
 ## modules
