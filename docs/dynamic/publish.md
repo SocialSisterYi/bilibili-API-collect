@@ -15,8 +15,8 @@
 | 参数名   | 类型 | 内容                  | 必要性 | 备注 |
 | -------- | ---- | --------------------- | ------ | ---- |
 | file_up  | file | 需要上传的图片文件    | 必要   | 格式仅支持 `jpg` `png` `gif` |
-| category | string | 图片类型            | 必要   | daily: 日常 (动态)<br />draw: 绘画 (画友)<br />cos: 摄影 (COSPLAY) |
-| biz      | string |                    | 不必要 |      |
+| category | string | 图片类型            | 不必要   | daily: 日常 (动态) (默认)<br />draw: 绘画 (画友)<br />cos: 摄影 (COSPLAY) |
+| biz      | string |                    | 不必要 | `new_dyn` |
 | csrf     | string | CSRF Token (即 Cookie 中 bili_jct) | 必要   |    |
 
 **JSON 回复:**
@@ -25,9 +25,10 @@
 
 | 字段    | 类型 | 内容     | 备注 |
 | ------- | ---- | -------- | ---- |
-| code    | number | 返回值   | 0: 成功<br />-1: 未添加图片<br />-2: 参数错误<br />-3: 图片尺寸过小<br />-4: 账号未登录<br />-7: 图片信息错误 |
-| message | string | 错误信息 | 默认为 `success` |
+| code    | number | 返回值   | 0: 成功<br />4100001: 参数错误<br />-101: 账号未登录 |
+| message | string | 错误信息 | 默认为 `0` |
 | data    | object | 信息本体 | 成功时为有效信息 |
+| ttl | number | `1` | |
 
 `data` 对象：
 
@@ -36,6 +37,7 @@
 | image_url | string | 已上传图片 URL  |      |
 | image_width  | number | 已上传图片宽度 | 像素 |
 | image_height | number | 已上传图片高度 | 像素 |
+| img_size | number | 已上传图片大小 | k |
 
 **示例:**
 
@@ -44,7 +46,8 @@
 ```shell
 curl 'https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
 -F 'file_up=@test.png' \
--F 'category=daily'
+-F 'category=daily' \
+-F 'csrf=xxxx' \
 -b 'SESSDATA=xxx'
 ```
 
@@ -54,11 +57,13 @@ curl 'https://api.bilibili.com/x/dynamic/feed/draw/upload_bfs' \
 ```json
 {
   "code": 0,
-  "message": "success",
+  "message": "0",
+  "ttl": 1,
   "data": {
-    "image_url": "http://i0.hdslb.com/bfs/album/13f9523efe186a8066b2d72e80283cea2437eb62.png",
-    "image_width": 1225,
-    "image_height": 850
+    "image_url": "http://i0.hdslb.com/bfs/new_dyn/8ad5640045a114b62580614cb512bbc32095498218.png",
+    "image_width": 73,
+    "image_height": 71,
+    "img_size": 6.261
   }
 }
 ```
