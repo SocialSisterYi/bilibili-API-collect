@@ -277,7 +277,7 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 | area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)                                 |
 | platform | str  | 直播平台                 | 必要   | 可选值：`pc`、`pc_link` (直播姬PC), `android_link` (直播姬Android) |
 | csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                              |
-| csrf_token     | str  | CSRF Token（位于cookie） | 必要   |                                                              |
+| csrf_token     | str  | CSRF Token（位于cookie） | 非必要   |                                                              |
 | version  | str  | 直播姬版本号             | 非必要 | 建议与`build`一同提供，详见下方说明。可从[直播姬版本号获取](#直播姬版本号获取)接口获得。 |
 | build    | num  | 直播姬构建号             | 非必要 | 建议与`version`一同提供。                                      |
 | appkey   | str  | APP密钥                   | 条件性必要 | 特定情况下必要，详见下方说明。                   |
