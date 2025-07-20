@@ -671,9 +671,9 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
 
 *请求方式：GET*
 
-认证方式：Cookie（SESSDATA）
+认证方式：无
 
-鉴权方式：Cookie
+鉴权方式：无
 
 **请求参数 (Query)：**
 
