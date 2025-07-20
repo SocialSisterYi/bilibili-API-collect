@@ -11,6 +11,7 @@
 鉴权方式：Cookie中`bili_jct`的值正确并与`csrf`相同
 
 **正文参数（ application/x-www-form-urlencoded ）：**
+
 | 参数名  | 类型 | 内容                     | 必要性 | 备注                 |
 | ------- | ---- | ------------------------ | ------ | -------------------- |
 | platform | str  | 客户端？                 | 必要   | 默认值web |
@@ -270,12 +271,16 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
-| 参数名   | 类型 | 内容                     | 必要性 | 备注                                |
-| -------- | ---- | ------------------------ | ------ | ----------------------------------- |
-| room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                |
-| area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)        |
-| platform | str  | 直播平台                 | 必要   | 直播姬（pc）：pc_link<br />直播姬（android）：android_link |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |                                     |
+| 参数名   | 类型 | 内容                     | 必要性 | 备注                                                         |
+| -------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
+| room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                                         |
+| area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)                                 |
+| platform | str  | 直播平台                 | 必要   | 可选值：`pc`、`pc_link` (直播姬PC), `android_link` (直播姬Android) |
+| csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                              |
+| version  | str  | 直播姬版本号             | 非必要 | 建议与`build`一同提供，否则有概率返回`60024`(需要人脸认证)。可从[直播姬版本号获取](#直播姬版本号获取)接口获得。 |
+| build    | num  | 直播姬构建号             | 非必要 | 建议与`version`一同提供。                                      |
+| appkey   | str  | APP密钥                   | 条件性必要 | 当提供的`version`和`build`为`7.19.0.9432`和`9432`时，此参数为必要。                   |
+| sign     | str  | APP API签名得到的sign     | 条件性必要 | 当提供的`version`和`build`为`7.19.0.9432`和`9432`时，此参数为必要。                   |
 
 **json回复：**
 
@@ -283,10 +288,11 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0：成功<br />65530：token错误（登录错误）<br />1：错误<br />60009：分区不存在<br />60013：非常抱歉，您所在的地区受实名认证限制无法开播<br />60024: 目标分区需要人脸认证<br />60034: 系统维护仅支持直播姬开播<br />60037: web 在线开播已下线<br />**（其他错误码有待补充）** |
+| code    | num  | 返回值   | 0: 成功<br />-400: 请求错误 (如`appkey`/`sign`缺失)<br />1: 错误<br />60009: 分区不存在<br />60013: 所在地区受实名认证限制无法开播<br />60024: 目标分区需要人脸认证<br />60034: 系统维护仅支持直播姬开播<br />60037: web在线开播已下线<br />65530: token错误 (登录失效)<br />**(其他错误码有待补充)** |
 | msg     | str  | 提示信息 | 默认为空                                                     |
 | message | str  | 提示信息 | 默认为空                                                     |
-| data    | obj  | 信息本体 |                                                              |
+| data    | obj  | 信息本体 | 成功时返回                                                   |
+
 
 `data`对象：
 
@@ -656,3 +662,82 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
 ```
 
 </details>
+
+好的，这是为您补充的“直播姬版本号获取”API文档部分。
+
+---
+
+## 直播姬版本号获取
+> https://api.live.bilibili.com/xlive/app-blink/v1/liveVersionInfo/getHomePageLiveVersion
+
+*请求方式：GET*
+
+认证方式：Cookie（SESSDATA）
+
+鉴权方式：Cookie
+
+**请求参数 (Query)：**
+
+| 参数名  | 类型 | 内容                     | 必要性 | 备注                  |
+| ------- | ---- | ------------------------ | ------ | --------------------- |
+| appkey   | str  | APP密钥                   | 不必要  |使用PC投稿工具的appkey和appsec|
+| sign     | str  | APP API签名得到的sign     | 不必要  |                       |
+| system_version | num  | 暂不清楚                 | 必要   | 可以直接写2           |
+| ts       | num | 10位时间戳           | 不必要 |                       |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型  | 内容     | 备注                                                   |
+| ------- | ----- | -------- | ------------------------------------------------------ |
+| code    | num   | 返回值   | 0：成功<br />-400：请求错误                             |
+| message | str   | 错误信息 | 默认为0                                                |
+| ttl     | num   | 1        | 作用尚不明确                                           |
+| data    | obj   | 内容本体 |                                                        |
+
+`data`对象：
+
+| 字段            | 类型 | 内容                     | 备注                   |
+| --------------- | ---- | ------------------------ | ---------------------- |
+| curr_version    | str  | 直播姬当前版本号         |                        |
+| build           | num  | 直播姬构建号             |                        |
+| instruction     | str  | 更新说明（简要）         |                        |
+| file_size       | str  | 文件大小（字节）         |                        |
+| file_md5        | str  | 安装包文件MD5            |                        |
+| content         | str  | HTML格式的更新内容       |                        |
+| download_url    | str  | 安装包下载链接           |                        |
+| hdiffpatch_switch | num  | 增量更新开关?            |                        |
+
+**示例：**
+
+获取直播姬最新版本信息
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/app-blink/v1/liveVersionInfo/getHomePageLiveVersion?appkey=aae92bc66f3edfab&sign=49d289e3ad34c509cc66fbee1c0affec&system_version=2&ts=1752971145'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+    "code": 0,
+    "message": "0",
+    "ttl": 1,
+    "data": {
+        "curr_version": "7.19.0.9432",
+        "build": 9432,
+        "instruction": "\u3010\u65b0\u589e\u3011\u65b0\u589e\u7f8e\u989c\u8c03\u6574\u5165\u53e3\n\u3010\u4f18\u5316\u3011\u5df2\u77e5\u95ee\u9898\u4f18\u5316",
+        "file_size": "300867136",
+        "file_md5": "e1619a8e2603aa94b58a58121f94403f",
+        "content": "<p>\u3010\u65b0\u589e\u3011\u65b0\u589e\u7f8e\u989c\u8c03\u6574\u5165\u53e3<br>\u3010\u4f18\u5316\u3011\u5df2\u77e5\u95ee\u9898\u4f18\u5316</p><p></p><p><br></p>",
+        "download_url": "https://dl.hdslb.com/bili/bililive/win/Livehime-Win-beta-7.19.0.9432-x64.exe",
+        "hdiffpatch_switch": 1
+    }
+}
+```
+
+</details>
+
+
