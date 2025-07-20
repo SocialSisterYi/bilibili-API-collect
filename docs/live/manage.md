@@ -696,7 +696,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
 
 | 字段            | 类型 | 内容                     | 备注                   |
 | --------------- | ---- | ------------------------ | ---------------------- |
-| curr_version    | str  | 直播姬当前版本号         |                        |
+| curr_version    | str  | 直播姬最新版本号         |                        |
 | build           | num  | 直播姬构建号             |                        |
 | instruction     | str  | 更新说明（简要）         |                        |
 | file_size       | str  | 文件大小（字节）         |                        |
