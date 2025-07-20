@@ -663,10 +663,6 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/index/updateRoomNews' \
 
 </details>
 
-好的，这是为您补充的“直播姬版本号获取”API文档部分。
-
----
-
 ## 直播姬版本号获取
 > https://api.live.bilibili.com/xlive/app-blink/v1/liveVersionInfo/getHomePageLiveVersion
 
