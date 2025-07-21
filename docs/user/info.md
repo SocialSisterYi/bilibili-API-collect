@@ -339,7 +339,7 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
   --data-urlencode 'mid=2' \
   --data-urlencode 'wts=1685070149' \
   --data-urlencode 'w_rid=f7b376124782ae8cb42c56fdd69144ed' \
-  -b 'SESSDATA=xxx ;a= ; b='
+  -b 'SESSDATA=xxx ;a= ; b=' \
   -A 'Mozilla/9.0 (X11; qwq)'
 ```
 
