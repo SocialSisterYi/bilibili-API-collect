@@ -10,7 +10,7 @@
 
 认证方式：Cookie（SESSDATA）
 
-鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie (对于某些 IP 地址，需要在 Cookie 中提供任意非空的 `buvid3` 字段)
+鉴权方式：[Wbi 签名](../misc/sign/wbi.md), Cookie (包含 SESSDATA 与空值的总项数大于等于 3)
 
 ~~该接口的旧版 API ：<https://api.bilibili.com/x/space/acc/info>~~（已废弃，不建议使用）
 
@@ -339,7 +339,8 @@ curl -G 'https://api.bilibili.com/x/space/wbi/acc/info' \
   --data-urlencode 'mid=2' \
   --data-urlencode 'wts=1685070149' \
   --data-urlencode 'w_rid=f7b376124782ae8cb42c56fdd69144ed' \
-  -b 'SESSDATA=xxx'
+  -b 'SESSDATA=xxx ;a= ; b=' \
+  -A 'Mozilla/9.0 (X11; qwq)'
 ```
 
 <details>
