@@ -74,6 +74,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [获取当前时间戳](docs/misc/time_stamp.md)
     - [x] [公共错误码](docs/misc/errcode.md)
     - [x] [图片格式化](docs/misc/picture.md)
+    - [x] [表达式渲染](docs/misc/mathjax.md)
     - [x] [bvid 说明](docs/misc/bvid_desc.md)
     - [ ] [设备唯一标识 BUVID](docs/misc/device_identity.md)
     - [ ] [获取 buvid3 / buvid4 / b_nut](docs/misc/buvid3_4.md)
