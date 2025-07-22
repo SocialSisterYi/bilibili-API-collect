@@ -273,17 +273,17 @@ curl 'https://api.live.bilibili.com/room/v1/Room/update' \
 
 | 参数名   | 类型 | 内容                     | 必要性 | 备注                                                         |
 | -------- | ---- | ------------------------ | ------ | ------------------------------------------------------------ |
-| room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间id                                         |
-| area_v2  | num  | 直播分区id（子分区id）   | 必要   | 详见[直播分区](live_area.md)                                 |
-| platform | str  | 直播平台                 | 必要   | 可选值：`pc`、`pc_link` (直播姬PC), `android_link` (直播姬Android) |
-| csrf     | str  | CSRF Token（位于cookie） | 必要   |                                                              |
-| csrf_token     | str  | CSRF Token（位于cookie） | 非必要   |                                                              |
-| version  | str  | 直播姬版本号             | 非必要 | 建议与`build`一同提供，详见下方说明。可从[直播姬版本号获取](#直播姬版本号获取)接口获得。 |
-| build    | num  | 直播姬构建号             | 非必要 | 建议与`version`一同提供。                                      |
+| room_id  | num  | 直播间id                 | 必要   | 必须为自己的直播间 id                                         |
+| area_v2  | num  | 直播分区id（子分区 id）   | 必要   | 详见[直播分区](live_area.md)                                 |
+| platform | str  | 直播平台                 | 必要   | 可选值：`pc`、`pc_link` (直播姬 PC), `android_link` (直播姬 Android) |
+| csrf     | str  | CSRF Token（位于 cookie） | 必要   |                                                              |
+| csrf_token     | str  | CSRF Token（位于 cookie） | 非必要   |                                                              |
+| version  | str  | 直播姬版本号             | 非必要 | 建议与 `build` 一同提供，详见下方说明。可从[直播姬版本号获取](#直播姬版本号获取)接口获得。 |
+| build    | num  | 直播姬构建号             | 非必要 | 建议与 `version` 一同提供。                                      |
 | appkey   | str  | APP密钥                   | 条件性必要 | 特定情况下必要，详见下方说明。                   |
-| sign     | str  | APP API签名得到的sign     | 条件性必要 | 特定情况下必要，详见下方说明。                   |
+| sign     | str  | APP API签名得到的 sign     | 条件性必要 | 特定情况下必要，详见下方说明。                   |
 
-**说明**:截止至2025年7月20日，部分账户不提供`version` `build` `appkey` `sign`也可获取推流码，部分账户会返回`60024`(需要人脸认证)，此时请尝试提供`version` `build`，目前似乎没有校验，提供了就可以。(比如`version:1.0.0` `build:1234`) 如果仍然返回`60024`，请尝试提供`appkey` `sign`参数。如果你的`version`和`build`为`7.19.0.9432`和`9432`，必须提供`appkey` `sign`。
+**说明**: 截止至 2025 年 7 月 20 日，部分账户不提供 `version` `build` `appkey` `sign` 也可获取推流码，部分账户会返回 `60024` (需要人脸认证)，此时请尝试提供 `version` `build`，目前似乎没有校验，提供了就可以。(比如 `version:1.0.0` `build:1234`) 如果仍然返回 `60024`，请尝试提供 `appkey` `sign` 参数。如果你的 `version` 和 `build` 为 `7.19.0.9432` 和 `9432`，必须提供 `appkey` `sign`。
 
 **json回复：**
 
