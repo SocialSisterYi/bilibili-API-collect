@@ -171,7 +171,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [获取动态列表](docs/dynamic/all.md)
     - [ ] [用户空间动态](docs/dynamic/space.md)
     - [ ] [动态基本信息](docs/dynamic/basicInfo.md)
-    - [ ] [动态详细信息字段](docs/dynamic/card_info.md)
+    - [ ] [动态卡片信息字段](docs/dynamic/card_info.md)
     - [ ] [获取动态详情](docs/dynamic/detail.md)
     - [ ] [动态类型对照](docs/dynamic/dynamic_enum.md)
     - [ ] [动态信息](docs/dynamic/content.md)
