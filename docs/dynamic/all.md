@@ -461,9 +461,9 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| bg_color | str | `空串` | |
-| color | str | `空串` | |
-| text | str | `空串` | |
+| bg_color | str | 背景色 | |
+| color | str | 前景色 | |
+| text | str | 文本 | |
 
 `data.items[n].modules.module_dynamic.major.pgc`:
 
