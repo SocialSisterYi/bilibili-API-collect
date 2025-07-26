@@ -3,6 +3,7 @@
 ## 获取话题下动态列表
 
 > https://api.bilibili.com/x/polymer/web-dynamic/v1/feed/topic
+> https://app.bilibili.com/x/topic/web/details/cards
 
 *请求方法: GET*
 
@@ -14,8 +15,9 @@
 | sort_by | number | 排序方式 | 不必要 | 见回复 `data.topic_card_list.topic_sort_by_conf` 对象 |
 | offset | string | 偏移量 | 不必要 | 上一次请求回复的 `data.topic_card_list.offset` |
 | page_size | number | 每页数量 | 不必要 | 默认为 `20` |
-| source | string | 来源 | 不必要 | 如 `Web` |
-| features | string | 功能模块 | 不必要 | 如 `itemOpusStyle,listOnlyfans,opusBigCover,onlyfansVote,decorationCard`, 参见 [功能模块](../opus/features.md) |
+| source | string | 来源 | 不必要 | 如 `Web` (接口 1) `H5` (接口 2) |
+| features | string | 功能模块 | 不必要 | 仅接口 1, 如 `itemOpusStyle,listOnlyfans,opusBigCover,onlyfansVote,decorationCard`, 参见 [功能模块](../opus/features.md) |
+| web_location | string | `333.1036` | 不必要 | 仅接口 2 |
 
 **JSON 回复:**
 
