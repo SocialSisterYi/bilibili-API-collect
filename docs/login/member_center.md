@@ -840,7 +840,7 @@ curl -G "https://api.bilibili.com/x/member/web/exp/log" \
 
 ```shell
 curl -G "https://api.bilibili.com/x/member/web/moral/log" \
--b "SESSDATA=xxx
+-b "SESSDATA=xxx"
 ```
 
 <details>
