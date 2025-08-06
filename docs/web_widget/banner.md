@@ -121,38 +121,4 @@ curl -G "https://api.bilibili.com/x/web-show/region/banner" \
 ```
 </details>
 
-## 图片主色调获取
-
-* 前提是基于`https://i0.hdslb.com/bfs/archive` host 下的图片
-
-### 使用方法
-
-*请求方式: GET*
-
-访问地址: 在所获取的图片地址中尾部加入`@.avg_color`
-
->  https://i0.hdslb.com/bfs/archive/`图片地址`@.avg_color
-
-**JSON回复:**
-| 字段 | 类型 | 内容 |
-| -- | -- | -- |
-| RGB | str | 封面的主色调的RGB 16进制代码 |
-
-**示例:**
-获取图片 [潘玮柏狂爱《Yes I Do》](http://i0.hdslb.com/bfs/app/134cede692acbbe3080dc2a2ecc920db1f4f7498.jpg) 封面的主色调的RGB 16进制代码
-
-```shell
-curl -G "http://i0.hdslb.com/bfs/app/134cede692acbbe3080dc2a2ecc920db1f4f7498.jpg@.avg_color" \
-```
-
-
-<details>
-<summary>查看响应示例:</summary>
-
-```json
-{
-  "RGB": "#c6434a"
-}
-```
-
-</details>
+* Tip: 可以使用 [图片格式化](../misc/picture.md)中 获取主色调的方式获取轮播图封面的主色调
