@@ -260,7 +260,7 @@
 | id       | num | 视频合集分部中视频id(以下简称视频) |        |
 | aid       | num   | 视频aid  |        |
 | cid       | num   | 视频cid |        |
-| title       | str   | 视频标题 |每集真实标题或者在[创作中心-合集管理-单集标题](https://member.bilibili.com/platform/upload-manager/ep)编辑后的展示标题|
+| title       | str   | 视频标题 |合集中的单集展示标题 或 实际标题（详见[创作中心-合集管理-单集标题](https://member.bilibili.com/platform/upload-manager/ep)）|
 | ~~attribute~~(已经弃用) | ~~num~~ | ~~稿件属性位配置~~             | 详情见[属性数据文档](attribute_data.md#attribute字段值(稿件属性位)) |
 | arc       | obj   | 视频详细信息 |   基本同「[获取视频详细信息(web端)](#获取视频详细信息(web端))」中的data对象     |
 
