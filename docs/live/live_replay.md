@@ -40,6 +40,7 @@
 | pagination | obj | 分页信息 |  |
 | archive_flag | bool | (?) | 作用尚不明确 |
 | can\_edit | num | (?) | 作用尚不明确 |
+| can_upload | bool | (?) | 作用尚不明确 |
 
 `data.replay_info` 数组中的对象：
 
@@ -486,7 +487,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/DeleteSliceDr
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | -101：未登录<br />-111：csrf校验失败<br />0：成功<br />100：非法参数<br />210：回放id或场次key无效 |
+| code | num | 返回值 | -101：未登录<br />-111：csrf校验失败<br />0：成功<br />100：非法参数<br />210：回放id或场次key无效<br />217：未找到直播录像 |
 | message | str | 错误信息 | 成功时为`"0"` |
 | ttl | num | `1` |  |
 | data | obj | 信息本体 |  |
@@ -770,6 +771,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
 | list | arr | 直播回放视频列表 | 如果该场回放没有视频流将为`null` |
+| ban_list | null | 不可发布的回放列表? | [需要验证] |
 
 `data.list` 数组中的对象：
 
@@ -817,7 +819,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStrea
         "stream": "https://bvc-live.bilivideo.com/hls-record-gateway/videoPlay?biz_id=live2vod-clip&end_time=1746879298&header_name=1746863105.m4s&host_id=edge-hls-bvc-self-cn-jsyz-ct-03-59-6d854b4bd8-gnlb7&no_end=0&schema=https&sign=70929627354f4380b54b97fcdb69c8a2&start_time=1746879269&stream_name=live_438160221_32373699&ts=1752930893&version=2",
         "type": 2
       }
-    ]
+    ],
+    "ban_list": null
   }
 }
 ```
@@ -862,6 +865,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStrea
 | max_value | num | (?) | 效果未知 |
 | high_light_data | arr | 高光时刻数据 |  |
 | ass_url | str | ASS字幕链接 | 用作弹幕显示 |
+| high_light_stat | obj | 高亮状态信息 |  |
 
 `data.session_data` 数组中的对象：
 
@@ -881,6 +885,15 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStrea
 | title | str | 高光提示标题 |  |
 | cover | str | (?) | 目前为`""` |
 | extra | str | (?) | 目前为`""` |
+
+`data.high_light_stat` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| original_hl | num | “高光时刻”数量 | 有“高光时刻”时存在 |
+| manual_hl | num | “已保存”数量 | 有“已保存”时存在，调用[手动保存高亮片段](#手动保存高亮片段)进行保存 |
+
+注: 可能还存在一个“回溯录制”的字段。
 
 **示例：**
 
@@ -902,144 +915,241 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetLiveSessio
   "data": {
     "session_data": [
       {
-        "ts": 1746863100,
+        "ts": 1752927300,
         "value": 0
       },
       {
-        "ts": 1746863160,
+        "ts": 1752927360,
         "value": 0
       },
       {
-        "ts": 1746863220,
+        "ts": 1752927420,
+        "value": 0
+      },
+      // 省略掉大部分重复内容
+      {
+        "ts": 1752946620,
         "value": 0
       },
       {
-        "ts": 1746863280,
+        "ts": 1752946680,
         "value": 0
       },
       {
-        "ts": 1746863340,
-        "value": 0
-      },
-      {
-        "ts": 1746863400,
-        "value": 0
-      },
-      {
-        "ts": 1746863460,
-        "value": 0
-      },
-      {
-        "ts": 1746863520,
-        "value": 0
-      },
-      {
-        "ts": 1746863580,
-        "value": 0
-      },
-      {
-        "ts": 1746863640,
-        "value": 0
-      },
-      {
-        "ts": 1746863700,
-        "value": 0
-      },
-      {
-        "ts": 1746863760,
-        "value": 0
-      },
-      {
-        "ts": 1746863820,
-        "value": 0
-      },
-      // 省略100多条数据
-      {
-        "ts": 1746878520,
-        "value": 0
-      },
-      {
-        "ts": 1746878580,
-        "value": 0
-      },
-      {
-        "ts": 1746878640,
-        "value": 0
-      },
-      {
-        "ts": 1746878700,
-        "value": 0
-      },
-      {
-        "ts": 1746878760,
-        "value": 0
-      },
-      {
-        "ts": 1746878820,
-        "value": 0
-      },
-      {
-        "ts": 1746878880,
-        "value": 0
-      },
-      {
-        "ts": 1746878940,
-        "value": 0
-      },
-      {
-        "ts": 1746879000,
-        "value": 0
-      },
-      {
-        "ts": 1746879060,
-        "value": 0
-      },
-      {
-        "ts": 1746879120,
-        "value": 0
-      },
-      {
-        "ts": 1746879180,
-        "value": 0
-      },
-      {
-        "ts": 1746879240,
+        "ts": 1752946740,
         "value": 0
       }
     ],
-    "max_danmaku": 1746864660,
-    "max_pcu": 1746864660,
+    "max_danmaku": 1752928860,
+    "max_pcu": 1752928200,
     "max_value": 0,
     "high_light_data": [
       {
-        "id": 6226272,
+        "id": 9628113,
         "type": 1,
-        "start_time": 1746873300,
-        "end_time": 1746873480,
+        "start_time": 1752928860,
+        "end_time": 1752929040,
         "title": "弹幕高光 Top 1",
         "cover": "",
         "extra": ""
       },
       {
-        "id": 6226274,
+        "id": 9628114,
         "type": 1,
-        "start_time": 1746873120,
-        "end_time": 1746873420,
+        "start_time": 1752938460,
+        "end_time": 1752938640,
         "title": "弹幕高光 Top 2",
         "cover": "",
         "extra": ""
       },
       {
-        "id": 6226271,
+        "id": 9628115,
+        "type": 1,
+        "start_time": 1752938040,
+        "end_time": 1752938220,
+        "title": "弹幕高光 Top 3",
+        "cover": "",
+        "extra": ""
+      },
+      {
+        "id": 9628112,
         "type": 2,
-        "start_time": 1746864600,
-        "end_time": 1746864780,
+        "start_time": 1752928140,
+        "end_time": 1752928320,
         "title": "进房高光时刻",
         "cover": "",
         "extra": ""
       }
     ],
-    "ass_url": "https://jssz-boss.hdslb.com/live2arc_anchor_video/dmass_1899237171_607113721045847859.ass?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=y4zI4XTQzlOkmSKg%2F20250520%2Fjssz%2Fs3%2Faws4_request&X-Amz-Date=20250520T130358Z&X-Amz-Expires=7200&X-Amz-SignedHeaders=host&X-Amz-Signature=5e3ddfbcb8893dc6e76deea7981165e18e5df9a7579f4e6e97c7a32abec53d84"
+    "ass_url": "https://jssz-boss.hdslb.com/live2arc_anchor_video/dmass_1899237171_625727121464233779.ass?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=y4zI4XTQzlOkmSKg%2F20250802%2Fjssz%2Fs3%2Faws4_request\u0026X-Amz-Date=20250802T072504Z\u0026X-Amz-Expires=7200\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=384b42382469059a1f4c6b04c7bd2290a0c74c01375df1681eedb3ba8aca5c3c",
+    "high_light_stat": {
+      "original_hl": 4,
+      "manual_hl": 6
+    }
+  }
+}
+```
+
+</details>
+
+## 获取用户高光列表
+
+> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManualHighlightList
+
+*请求方法: GET*
+
+认证方式: Cookie (SESSDATA)
+
+**url参数：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_key | str | 标记直播场次的key | 必要 |  |
+| manual_type | num | 查询类型 | 必要 | 1：回溯录制<br />2：已保存片段 |
+| web_location | str | (?) | 非必要 | 作用尚不明确 |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -400：请求错误<br />-101：未登录<br />0：成功 |
+| message | str | 错误信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| high_light_stat | obj | 高亮状态信息 |  |
+| manual_highlight_list | arr | 高光列表 | 有内容时存在 |
+
+`data.manual_highlight_list` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| 0 | obj | 第一条高光信息 | 最少存在1条，目前没有高光内容将看不到这个数组 |
+| … | obj | 某一条高光信息 |  |
+| i | obj | 最后一条高光信息 |  |
+
+`data.manual_highlight_list` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| manual_id | num | 片段id |  |
+| highlight_title | str | 片段标题 |  |
+| start_ts | num | 开始时间戳 | Unix 秒时间戳 |
+| end_ts | num | 结束时间戳 | Unix 秒时间戳 |
+| uid | num | 保存者uid? |  |
+| ruid | num | 主播uid |  |
+| live_key | str | 标记直播场次的key |  |
+
+`data.high_light_stat` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| original_hl | num | “高光时刻”数量 | 有“高光时刻”时存在 |
+| manual_hl | num | “已保存”数量 | 有“已保存”时存在，调用[手动保存高亮片段](#手动保存高亮片段)进行保存 |
+
+注: 可能还存在一个“回溯录制”的字段。
+
+**示例：**
+
+获取用户保存列表
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManualHighlightList?live_key=625727121464233779&manual_type=2' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+只有高光时刻的示例:
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "high_light_stat": {
+      "original_hl": 4
+    }
+  }
+}
+```
+
+有保存片段的示例:
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "manual_highlight_list": [
+      {
+        "manual_id": 14434,
+        "highlight_title": "手动保存片段【6】",
+        "start_ts": 1752935402,
+        "end_ts": 1752935402,
+        "uid": 438160221,
+        "ruid": 438160221,
+        "live_key": "625727121464233779"
+      },
+      {
+        "manual_id": 14428,
+        "highlight_title": "手动保存片段【5】",
+        "start_ts": 1752935402,
+        "end_ts": 1752935204,
+        "uid": 438160221,
+        "ruid": 438160221,
+        "live_key": "625727121464233779"
+      },
+      {
+        "manual_id": 14426,
+        "highlight_title": "手动保存片段【4】",
+        "start_ts": 1752935402,
+        "end_ts": 1752935404,
+        "uid": 438160221,
+        "ruid": 438160221,
+        "live_key": "625727121464233779"
+      },
+      {
+        "manual_id": 14425,
+        "highlight_title": "手动保存片段【3】",
+        "start_ts": 1752935402,
+        "end_ts": 1752935404,
+        "uid": 438160221,
+        "ruid": 438160221,
+        "live_key": "625727121464233779"
+      },
+      {
+        "manual_id": 14424,
+        "highlight_title": "手动保存片段【2】",
+        "start_ts": 1752927342,
+        "end_ts": 1752935404,
+        "uid": 438160221,
+        "ruid": 438160221,
+        "live_key": "625727121464233779"
+      },
+      {
+        "manual_id": 14423,
+        "highlight_title": "手动保存片段【1】",
+        "start_ts": 1752927336,
+        "end_ts": 1752946748,
+        "uid": 438160221,
+        "ruid": 438160221,
+        "live_key": "625727121464233779"
+      }
+    ],
+    "high_light_stat": {
+      "original_hl": 4,
+      "manual_hl": 6
+    }
   }
 }
 ```
@@ -1134,6 +1244,72 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 </details>
 
+## 手动保存高亮片段
+
+> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSaveHighlight
+
+*请求方法: POST*
+
+认证方式: Cookie (SESSDATA)
+
+鉴权方式: Cookie中`bili_jct`的值正确并与`csrf`相同
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_key | str | 标记直播场次的key | 必要 | 必须为自己的live_key |
+| start_ts | num | 开始时间戳 | 必要 | Unix 秒时间戳 |
+| end_ts | num | 结束时间戳 | 必要 | Unix 秒时间戳 |
+| csrf | str | CSRF Token（位于cookie） | 必要 |  |
+
+注: 开始时间减结束时间的结果小于1可能导致[直播回放片段发布页面](#直播回放片段发布页面)无法处理这个片段。
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -400：请求错误<br />-111：csrf校验失败<br />-101：未登录<br />0：成功<br /> |
+| message | str | 错误信息 |  |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 | 成功时为空对象 |
+
+`data` 对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | `-1` |  |
+| message | str | 错误提示 | `主播没有对应场次` , `保存时间点未开播` |
+
+**示例：**
+
+手动保存一个片段
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSaveHighlight' \
+  --data-urlencode 'live_key=625727121464233779' \
+  --data-urlencode 'start_ts=1752935402' \
+  --data-urlencode 'end_ts=1752935404' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {}
+}
+```
+
+</details>
+
 ## 投稿直播回放片段
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublishVideoSlice
@@ -1156,7 +1332,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 | av_highlight | num | 高光绑定? | 非必要 |  |
 | with_subtitle | num | 是否自动生成字幕? | 非必要 | 效果不明确 |
 | with_danmaku | num | 是否带弹幕? | 非必要 | 传递`1`时可能导致处于“发布中”状态时不在[获取已发布片段的信息](#获取已发布片段的信息)中显示 |
-| with_reserve | num | (?) | 非必要 | 作用尚不明确 |
+| with_reserve | num | 投稿携带下场直播提醒 | 非必要 | 0：不携带，1：携带 |
+| av_speed | str | 倍速投稿 | 非必要 | 格式为 `倍速值 + "x"` ，使用非1x倍速时可能导致处于“发布中”状态时不在[获取已发布片段的信息](#获取已发布片段的信息)中显示<br />允许值: `0.5x` , `0.75x` , `1.0x` , `1.25x` , `1.5x` , `2.0x` |
 | csrf | str | CSRF Token（位于cookie） | 必要 |  |
 
 **json回复：**
@@ -1165,7 +1342,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4002：片段已投稿<br />4003：请选择精彩片段再投稿哦<br />4006：标题已使用 |
+| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4002：片段已投稿<br />4003：请选择精彩片段再投稿哦<br />4006：标题已使用<br />4008：不被允许的视频倍速 |
 | message | str | 错误信息 |  |
 | ttl | num | `1` |  |
 | data | obj | 信息本体 | 成功时有效 |
