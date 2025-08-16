@@ -106,7 +106,7 @@ curl 'https://passport.bilibili.com/web/generic/country/list'
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
-| cid | num  | 国际冠字码    | 必要 | 可以从[获取国际冠字码](#获取国际冠字码(web端))获取 |
+| cid | num  | 国际冠字码    | 必要 | 可以从[获取国际冠字码](#获取国际冠字码-web端)获取 |
 | tel | num | 手机号码 | 必要 | |
 | login_session_id | str | 登录标识 | 必要 | uuid去掉'-'后得到
 | recaptcha_token | str  | 登录 API token | 必要 | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
@@ -199,7 +199,7 @@ static buvid() : string {
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
-| cid | num  | 国际冠字码    | 必要 | 可以从[获取国际冠字码](#获取国际冠字码(web端))获取 |
+| cid | num  | 国际冠字码    | 必要 | 可以从[获取国际冠字码](#获取国际冠字码-web端)获取 |
 | tel | num | 手机号码 | 必要 | |
 | source | str  | 登录来源 | 必要 | `main_web`：独立登录页<br />`main_mini`：小窗登录 |
 | token | str  | 登录 API token | 必要 | 在[申请 captcha 验证码](readme.md#申请captcha验证码)接口处获取 |
@@ -267,11 +267,11 @@ curl 'https://passport.bilibili.com/x/passport-login/web/sms/send' \
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
-| cid         | num  | 国际冠字码     | 必要   | 可以从[获取国际冠字码](#获取国际冠字码(web端))获取 |
+| cid         | num  | 国际冠字码     | 必要   | 可以从[获取国际冠字码](#获取国际冠字码-web端)获取 |
 | tel | num | 手机号码 | 必要 | |
 | login_session_id | str | 登录标识 | 必要 | 必须与上述login_session_id保持一致
 | code | num | 短信验证码 | 必要 | timeout 为 5min |
-| captcha_key | str | 短信登录 token | 必要 | 从[上述API](#发送短信验证码(web端))请求成功后返回 |
+| captcha_key | str | 短信登录 token | 必要 | 从[上述API](#发送短信验证码-web端)请求成功后返回 |
 
 **json回复：**
 
@@ -372,11 +372,11 @@ X-Cache-Webcdn: BYPASS from jd-sxhz-dx-w-01
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | --- | --- | --- | --- | --- |
-| cid         | num  | 国际冠字码     | 必要   | 可以从[获取国际冠字码](#获取国际冠字码(web端))获取 |
+| cid         | num  | 国际冠字码     | 必要   | 可以从[获取国际冠字码](#获取国际冠字码-web端)获取 |
 | tel | num | 手机号码 | 必要 | |
 | code | num | 短信验证码 | 必要 | timeout 为 5min |
 | source      | str  | 登录来源       | 必要   | `main_web`：独立登录页<br />`main_mini`：小窗登录 |
-| captcha_key | str | 短信登录 token | 必要 | 从[上述API](#发送短信验证码(web端))请求成功后返回 |
+| captcha_key | str | 短信登录 token | 必要 | 从[上述API](#发送短信验证码-web端)请求成功后返回 |
 | go_url | str | 跳转url | 非必要 | 默认为 https://www.bilibili.com |
 | keep | bool | 是否记住登录 | 非必要 | `true`：记住登录<br />`false`：不记住登录 |
 

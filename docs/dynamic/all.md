@@ -76,124 +76,14 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| module_author | obj | UP主信息 | |
+| module_author | obj | UP主信息 | 参见 [MODULE_TYPE_AUTHOR](../opus/features.md#module-type-author) 中的 `module_author` 对象 |
 | module_dynamic | obj | 动态内容信息 | |
-| module_more | obj | 动态右上角三点菜单 | |
-| module_stat | obj | 动态统计数据 | |
+| module_more | obj | 动态右上角三点菜单 | 参见 [module_more](../opus/features.md#module-more) 中的 `module_more` 对象 |
+| module_stat | obj | 动态统计数据 | 参见 [MODULE_TYPE_STAT](../opus/features.md#module-type-stat) 中的 `module_stat` 对象 |
 | module_interaction | obj | 热度评论 | |
 | module_fold | obj | 动态折叠信息 | |
 | module_dispute | obj | 争议小黄条 | |
 | module_tag | obj | 置顶信息 | |
-
-`data.items[n].modules.module_author`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| avater | obj | 头像信息 | 主要用于网页渲染, 若感兴趣可参考 [图片格式化](../misc/picture.md) |
-| face | str | 头像 URL | |
-| face_nft | bool | 是否为NFT头像 | |
-| following | bool | 是否关注此UP主 | 自己的动态为`null` |
-| jump_url | str | 跳转链接 | |
-| label | str | 名称前标签 | `合集`<br/>`电视剧`<br/>`番剧` |
-| mid | num | UP主UID<br/>剧集SeasonId | |
-| name | str | UP主名称<br/>剧集名称<br/>合集名称 | |
-| official_verify | obj | UP主认证信息 | |
-| pendant | obj | UP主头像框 | |
-| pub_action | str | 更新动作描述 | `投稿了视频`<br/>`直播了`<br/>`投稿了文章`<br/>`更新了合集`<br/>`与他人联合创作`<br/>`发布了动态视频`<br/>`投稿了直播回放` |
-| pub_location_text | str | 空 | |
-| pub_time | str | 更新时间 | `x分钟前`<br/>`x小时前`<br/>`昨天` |
-| pub_ts | num | 更新时间戳 | UNIX 秒级时间戳 |
-| type | str | 作者类型 | [作者类型](./dynamic_enum.md#作者类型) |
-| vip | obj | UP主大会员信息 | |
-| decorate | obj | 装扮信息 | |
-| nft_info | obj | NFT头像信息 | |
-
-`data.items[n].modules.module_author.official_verify`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| desc | str | 认证说明 | |
-| type | num | 认证类型 | |
-
-`data.items[n].modules.module_author.pendant`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| expire | num | 过期时间 | 此接口返回恒为`0` |
-| image | str | 头像框图片url | |
-| image_enhance | str | 头像框图片url | |
-| image_enhance_frame | str | 头像框图片逐帧序列url | |
-| name | str | 头像框名称 | |
-| pid | num | 头像框id | |
-| n_pid | num | 同 pid | |
-
-`data.items[n].modules.module_author.vip`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| avatar_subscript | num | 是否显示角标 | 0：不显示<br/>1：显示 |
-| avatar_subscript_url | str | `空串` | |
-| due_date | num | 大会员过期时间戳 | UNIX 毫秒时间戳 |
-| label | obj | 大会员标签 | |
-| nickname_color | str | 名字显示颜色 | 大会员：`#FB7299` |
-| status | num | 大会员状态 | 0：无<br />1：有<br/>2：封禁？ |
-| theme_type | num | `0` | |
-| type | num | 大会员类型 | 0：无<br />1：月大会员<br />2：年度及以上大会员 |
-
-`data.items[n].modules.module_author.vip.label`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| bg_color | str | 会员标签背景颜色 | `#FB7299` |
-| bg_style | num | `0` `1` | |
-| border_color | str | 空 | |
-| img_label_uri_hans | str | 大会员牌子图片 | 动态版 简体版 |
-| img_label_uri_hans_static | str | 大会员牌子图片 | 静态版 简体版 |
-| img_label_uri_hant | str | 大会员牌子图片 | 动态版 繁体版 |
-| img_label_uri_hant_static | str | 大会员牌子图片 | 静态版 繁体版 |
-| label_theme | str | 会员标签 | vip：大会员<br />annual_vip：年度大会员<br />ten_annual_vip：十年大会员<br />hundred_annual_vip：百年大会员<br/>fools_day_hundred_annual_vip：最强绿鲤鱼 |
-| path | str | 空 | |
-| text | str | 会员类型文案 | `大会员` `年度大会员` `十年大会员` `百年大会员` `最强绿鲤鱼` |
-| text_color | str | 用户名文字颜色 | |
-| use_img_label | bool | `true` | |
-
-`data.items[n].modules.module_author.decorate`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| card_url | str | 动态卡片小图标图片URL | |
-| fan | obj | 粉丝装扮信息 | |
-| id | num | 装扮ID | |
-| jump_url | str | 跳转URL | |
-| name | str | 装扮名称 | |
-| type | num | `1` `2` `3` | |
-
-`data.items[n].modules.module_author.decorate.fan`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| color | str | 编号颜色 | |
-| color_format | obj | 颜色格式 | |
-| is_fan | bool | 是否是粉丝装扮 | |
-| num_str | str | 装扮编号前缀 | 如 `NO.` |
-| number | num | 装扮编号 | |
-
-`data.items[n].modules.module_author.decorate.fan.color_format`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| colors | array | 颜色 | 带 `#` 前缀的 16 进制颜色代码 |
-| end_point | str| 端点 | `0,100` |
-| gradients | array | 渐变 | 内容 [0, 100] |
-| start_point | str | 起点 | `0,0` |
-
-`data.items[n].modules.module_author.nft_info`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| region_icon | str | NFT头像角标URL | 类型1：https://i0.hdslb.com/bfs/activity-plat/static/20220506/334553dd7c506a92b88eaf4d59ac8b4d/j8AeXAkEul.gif <br/>类型2：https://i0.hdslb.com/bfs/activity-plat/static/20220506/334553dd7c506a92b88eaf4d59ac8b4d/IOHoVs1ebP.gif |
-| region_type | num | NFT头像角标类型 | 1,2 |
-| show_status | num | `1` | |
 
 `data.items[n].modules.module_dynamic`:
 
@@ -202,7 +92,7 @@
 | additional | obj | 相关内容卡片信息 | |
 | desc | obj | 动态文字内容 |其他动态时为null |
 | major | obj | 动态主体对象 |转发动态时为null |
-| topic | obj | 话题信息 | |
+| topic | obj | 话题信息 | 无时为 null, 参见 [MODULE_TYPE_TOPIC](../opus/features.md#module-type-topic) |
 
 `data.items[n].modules.module_dynamic.additional`:
 
@@ -214,6 +104,8 @@
 | goods | obj | 商品内容 | `ADDITIONAL_TYPE_GOODS`类型独有 |
 | vote | obj | 投票信息 | `ADDITIONAL_TYPE_VOTE`类型独有 |
 | ugc | obj | 视频信息 | `ADDITIONAL_TYPE_UGC`类型独有 |
+| match | object | 比赛信息? | `ADDITIONAL_TYPE_MATCH`类型独有, 参见 [MODULE_TYPE_CONTENT](../opus/features.md#module-type-content) 的 `module_content.paragraphs[].link_card.match` |
+| upower_lottery | object | 充电专属抽奖信息 | `ADDITIONAL_TYPE_UPOWER_LOTTERY`类型独有, 参见 [MODULE_TYPE_CONTENT](../opus/features.md#module-type-content) 的 `module_content.paragraphs[].link_card.upower_lottery` |
 
 `data.items[n].modules.module_dynamic.additional.common`:
 
@@ -387,37 +279,8 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
+| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](../opus/rich_text_nodes.md#富文本节点类型) |
 | text | str | 动态的文字内容 | |
-
-`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o]`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| orig_text | str | 原始文本 | |
-| text | str | 替换后的文本 | |
-| type | str | 节点类型 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
-| emoji | obj | 表情信息 | |
-| jump_url | str | 跳转URL | |
-| rid | str | 关联id | |
-| goods | obj | 商品信息 | |
-| icon_name | str | 图标名称 | `taobao` |
-
-`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o].emoji`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| icon_url | str | 表情图片URL | |
-| size | num | 表情尺寸 | `1` `2` |
-| text | str | 表情的文字代码 | |
-| type | num | 表情类型 | `1` `2` `3` |
-
-`data.items[n].modules.module_dynamic.desc.rich_text_nodes[o].goods`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| jump_url | str | 跳转URL | |
-| type | num | `1` | |
 
 `data.items[n].modules.module_dynamic.major`:
 
@@ -436,6 +299,53 @@
 | opus | obj | 图文动态 | `MAJOR_TYPE_OPUS` |
 | live | obj | | |
 | none | obj | 动态失效 | `MAJOR_TYPE_NONE` |
+| upower_common | obj | 充电相关 | `MAJOR_TYPE_UPOWER_COMMON` |
+
+`data.items[].modules.module_dynamic.major.upower_common` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| background | object | 背景 |  |
+| button | object | 按钮 |  |
+| icon | object | 图标 |  |
+| jump_url | string | 跳转 URL |  |
+| rid | string | 关联 id |  |
+| title | string | 标题 |  |
+| title_prefix | string | 标题前缀 |  |
+| type | number | 类型 |  |
+| up_mid | number | UP 主 mid (UID) |  |
+| upower_action_state | number | 充电操作状态? |  |
+| upower_level | number | 充电级别? |  |
+
+`data.items[].modules.module_dynamic.major.upower_common.background` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| dark_src | string | 深色背景 |  |
+| light_src | string | 浅色背景 |  |
+
+`data.items[].modules.module_dynamic.major.upower_common.button` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| jump_style | object | 跳转样式 |  |
+| jump_url | string | 跳转 URL |  |
+| type | number | 类型 |  |
+
+`data.items[].modules.module_dynamic.major.upower_common.button.jump_style` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| text | string | 文本 |  |
+
+`data.items[].modules.module_dynamic.major.upower_common.icon` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| dark_src | string | 深色图标 URL |  |
+| light_src | string | 浅色图标 URL |  |
+
+<!-- Generated by json-apidoc-gen @ 2025-07-20T07:08:06.175919645Z -->
 
 `data.items[n].modules.module_dynamic.major.ugc_season`:
 
@@ -551,9 +461,9 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| bg_color | str | `空串` | |
-| color | str | `空串` | |
-| text | str | `空串` | |
+| bg_color | str | 背景色 | |
+| color | str | 前景色 | |
+| text | str | 文本 | |
 
 `data.items[n].modules.module_dynamic.major.pgc`:
 
@@ -659,76 +569,6 @@
 | --- | --- | --- | --- |
 | tips | str | 动态失效显示文案 | deprecated? |
 
-`data.items[n].modules.module_dynamic.topic`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| id | num | 话题id | |
-| jump_url | str | 跳转URL | |
-| name | str | 话题名称 | |
-
-`data.items[n].modules.module_more`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| three_point_items | array | 右上角三点菜单 | |
-
-`data.items[n].modules.module_more.three_point_items[o]`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| label | str | 显示文本 | |
-| type | str | 类型 | 参见 [动态主体类型](dynamic_enum.md#动态主体类型) |
-| modal | obj | 弹出框信息 | 删除动态时弹出 |
-| params | obj | 参数 | 置顶/取消置顶时使用 |
-
-`data.items[n].modules.module_more.three_point_items[o].modal`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| cancel | str | 取消按钮 | `我点错了` |
-| confirm | str | 确认按钮 | `删除` |
-| content | str | 提示内容 | `确定要删除此条动态吗？` |
-| title | str | 标题 | `删除动态` |
-
-`data.items[n].modules.module_more.three_point_items[o].params`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| dynamic_id | str | 当前动态ID | deprecated? |
-| status | bool | 当前动态是否处于置顶状态 | deprecated? |
-
-`data.items[n].modules.module_stat`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| comment | obj | 评论数据 | |
-| forward | obj | 转发数据 | |
-| like | obj | 点赞数据 | |
-
-`data.items[n].modules.module_stat.comment`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| count | num | 评论数 | |
-| forbidden | bool | `false` | |
-| hidden | bool | 是否隐藏 | 直播类型动态会隐藏回复功能 |
-
-`data.items[n].modules.module_stat.forward`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| count | num | 转发数 | |
-| forbidden | bool | `false` | |
-
-`data.items[n].modules.module_stat.like`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| count | num | 点赞数 | |
-| forbidden | bool | `false` | |
-| status | bool | 当前用户是否点赞 | |
-
 `data.items[n].modules.module_interaction`:
 
 | 字段 | 类型 | 内容 | 备注 |
@@ -746,27 +586,8 @@
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
+| rich_text_nodes | array | 富文本节点列表 | [富文本节点类型](../opus/rich_text_nodes.md#富文本节点类型) |
 | text | str | 评论内容 | |
-
-`data.items[n].modules.module_interaction.items[o].desc.rich_text_nodes`数组中的:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| orig_text | str | 原始文本 | |
-| rid | str | 关联ID | 用户UID |
-| text | str | 替换后文本 | |
-| type | str | 富文本节点类型 | [富文本节点类型](./dynamic_enum.md#富文本节点类型) |
-| emoji | obj | 表情信息 | |
-
-`data.items[n].modules.module_interaction.items[o].desc.rich_text_nodes[n].emoji`:
-
-| 字段 | 类型 | 内容 | 备注 |
-| --- | --- | --- | --- |
-| icon_url | str | 表情图片URL | |
-| size | num | 表情尺寸 | `1` `2` |
-| text | str | 表情的文字代码 | |
-| type | num | 表情类型 | `1` `2` `3` |
 
 `data.items[n].modules.module_fold`:
 
