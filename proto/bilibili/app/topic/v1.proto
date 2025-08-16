@@ -1,0 +1,1188 @@
+syntax = "proto3";
+
+package bilibili.app.topic.v1;
+
+import "bilibili/app/archive/middleware/v1.proto";
+import "bilibili/app/card/v1.proto";
+import "bilibili/app/dynamic/v2.proto";
+import "google/protobuf/empty.proto";
+
+// 
+service Topic {
+    // 
+    rpc ReportUserCloseFeedCard (ReportUserCloseFeedCardReq) returns (google.protobuf.Empty);
+    // 
+    rpc ReportUserRatingFeedCardChoice (ReportUserRatingFeedCardChoiceReq) returns (google.protobuf.Empty);
+    // 
+    rpc SetTopTopicRes (SetTopTopicResReq) returns (SetTopTopicResReply);
+    // 
+    rpc TopicDetailsAll (TopicDetailsAllReq) returns (TopicDetailsAllReply);
+    // 
+    rpc TopicDetailsFold (TopicDetailsFoldReq) returns (TopicDetailsFoldReply);
+    // 
+    rpc TopicMergedResource (TopicMergedResourceReq) returns (TopicMergedResourceReply);
+    // 
+    rpc TopicReserveButtonClick (TopicReserveButtonClickReq) returns (TopicReserveButtonClickReply);
+    // 
+    rpc TopicSetDetails (TopicSetDetailsReq) returns (TopicSetDetailsReply);
+}
+
+// 
+message ButtonMeta {
+    // 
+    string text = 1;
+    // 
+    string icon = 2;
+}
+
+// 
+message ClickPath {
+    // 
+    int32 type = 1;
+    // 
+    string path = 2;
+    // 
+    string underlying = 3;
+    // 
+    string wx_pro_name = 4;
+    // 
+    string wx_pro_id = 5;
+}
+
+// 
+message DetailsTopInfo {
+    // 
+    TopicInfo topic_info = 1;
+    // 
+    User user = 2;
+    // 
+    string stats_desc = 3;
+    // 
+    bool has_create_jurisdiction = 4;
+    // 
+    OperationContent operation_content = 5;
+    // 
+    string head_img_url = 6;
+    // 
+    string head_img_backcolor = 7;
+    // 
+    int32 word_color = 8;
+    // 
+    int32 mission_page_show_type = 9;
+    // 
+    string mission_url = 10;
+    // 
+    string mission_text = 11;
+    // 
+    TopicSet topic_set = 12;
+    // 
+    string symbol = 13;
+    // 
+    string icon = 14;
+    // 
+    string head_bg_img_url = 15;
+}
+
+// 
+message EsportInfo {
+    // 
+    int64 id = 1;
+    // 
+    repeated MatchInfo items = 2;
+    // 
+    int64 start_time = 3;
+    // 
+    int64 end_time = 4;
+    // 
+    PlayerRatingInMatch player_rating = 5;
+}
+
+// 
+message FeedCard {
+    // 
+    oneof detail {
+        // 
+        FeedCardUserRating user_rating = 2;
+        // 
+        FeedCardLeadCollection lead_collection = 3;
+        // 
+        ItemCard item_card = 4;
+        // 
+        FeedCardTask task_card = 5;
+    }
+    // 
+    FeedCardType type = 1;
+}
+
+// 
+message FeedCardLeadCollection {
+    // 
+    string title = 1;
+    // 
+    string button_text = 2;
+    // 
+    string icon = 3;
+    // 
+    string pressed_button_text = 4;
+}
+
+// 
+message FeedCardTask {
+    // 
+    string title = 1;
+    // 
+    string sub_title = 2;
+    // 
+    string cover = 3;
+    // 
+    string button_text = 4;
+    // 
+    string jump_url = 5;
+}
+
+// 
+enum FeedCardType {
+    // 
+    FEED_CARD_TYPE_UNKNOWN = 0;
+    // 
+    FEED_CARD_TYPE_USER_RATING = 1;
+    // 
+    FEED_CARD_TYPE_LEAD_COLLECTION = 2;
+    // 
+    FEED_CARD_TYPE_ITEM = 3;
+    // 
+    FEED_CARD_TYPE_TASK = 4;
+}
+
+// 
+message FeedCardUserRating {
+    // 
+    message UserRatingOption {
+        // 
+        string icon = 1;
+        // 
+        string text = 2;
+        // 
+        FeedCardUserRatingOptionType type = 3;
+    }
+    
+    // 
+    string title = 1;
+    // 
+    repeated FeedCardUserRating.UserRatingOption options = 2;
+}
+
+// 
+enum FeedCardUserRatingOptionType {
+    // 
+    FEED_CARD_USER_RATING_OPTION_TYPE_UNKNOWN = 0;
+    // 
+    FEED_CARD_USER_RATING_OPTION_TYPE_VERY_DISSATISFIED = 1;
+    // 
+    FEED_CARD_USER_RATING_OPTION_TYPE_DISSATISFIED = 2;
+    // 
+    FEED_CARD_USER_RATING_OPTION_TYPE_AVERAGE = 3;
+    // 
+    FEED_CARD_USER_RATING_OPTION_TYPE_SATISFIED = 4;
+    // 
+    FEED_CARD_USER_RATING_OPTION_TYPE_VERY_SATISFIED = 5;
+}
+
+// 
+message FoldCardItem {
+    // 
+    int32 is_show_fold = 1;
+    // 
+    int64 fold_count = 2;
+    // 
+    string card_show_desc = 3;
+    // 
+    string fold_desc = 4;
+}
+
+// 
+message FunctionalCard {
+    // 
+    repeated TopicCapsule capsules = 1;
+    // 
+    TrafficCard traffic_card = 2;
+    // 
+    GameCard game_card = 3;
+    // 
+    int64 start_time = 4;
+    // 
+    int64 end_time = 5;
+}
+
+// 
+message GameCard {
+    // 
+    int64 game_id = 1;
+    // 
+    string game_icon = 2;
+    // 
+    string game_name = 3;
+    // 
+    string score = 4;
+    // 
+    string game_tags = 5;
+    // 
+    string notice = 6;
+    // 
+    string game_link = 7;
+}
+
+// 
+message HeadClickAreaCard {
+    // 
+    repeated HeadClickAreaRow click_rows = 1;
+    // 
+    int64 start_time = 2;
+    // 
+    int64 end_time = 3;
+}
+
+// 
+message HeadClickAreaRow {
+    // 
+    repeated HeadClickRect rects = 1;
+}
+
+// 
+message HeadClickRect {
+    // 
+    int32 w = 1;
+    // 
+    int32 h = 2;
+    // 
+    string pic = 3;
+    // 
+    ClickPath path = 4;
+}
+
+// 
+message IPTopicCard {
+    // 
+    repeated IPTopicInfo items = 1;
+    // 
+    int64 start_time = 2;
+    // 
+    int64 end_time = 3;
+}
+
+// 
+message IPTopicInfo {
+    // 
+    string name = 1;
+    // 
+    string stats_desc = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string icon = 4;
+    // 
+    int64 id = 5;
+}
+
+// 
+message InlineProgressBar {
+    // 
+    string icon_drag = 1;
+    // 
+    string icon_drag_hash = 2;
+    // 
+    string icon_stop = 3;
+    // 
+    string icon_stop_hash = 4;
+}
+
+// 
+message ItemCard {
+    // 
+    int64 item_id = 1;
+    // 
+    string biz_data = 2;
+    // 
+    int64 start_time = 3;
+    // 
+    int64 end_time = 4;
+}
+
+// 
+message LargeCoverInline {
+    // 
+    bilibili.app.card.v1.Base base = 1;
+    // 
+    string cover_left_text1 = 2;
+    // 
+    int32 cover_left_icon1 = 3;
+    // 
+    string cover_left_text2 = 4;
+    // 
+    int32 cover_left_icon2 = 5;
+    // 
+    RightTopLiveBadge right_top_live_badge = 6;
+    // 
+    string extra_uri = 7;
+    // 
+    InlineProgressBar inline_progress_bar = 8;
+    // 
+    TopicThreePoint topic_three_point = 9;
+    // 
+    string cover_left_desc = 10;
+    // 
+    bool hide_danmu_switch = 11;
+    // 
+    bool disable_danmu = 12;
+    // 
+    int32 can_play = 13;
+    // 
+    string duration_text = 14;
+    // 
+    RelationData relation_data = 15;
+}
+
+// 
+message LiveBadgeResource {
+    // 
+    string text = 1;
+    // 
+    string animation_url = 2;
+    // 
+    string animation_url_hash = 3;
+    // 
+    string background_color_light = 4;
+    // 
+    string background_color_night = 5;
+    // 
+    int64 alpha_light = 6;
+    // 
+    int64 alpha_night = 7;
+    // 
+    string font_color = 8;
+}
+
+// 
+message MatchCardDisplay {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string uri = 4;
+    // 
+    string live_link = 5;
+    // 
+    Texts texts = 6;
+    // 
+    int32 state = 7;
+}
+
+// 
+message MatchInfo {
+    // 
+    int64 id = 1;
+    // 
+    int32 status = 2;
+    // 
+    string match_stage = 3;
+    // 
+    MatchTeamInfo home = 4;
+    // 
+    MatchTeamInfo away = 5;
+    // 
+    MatchCardDisplay match_label = 6;
+    // 
+    MatchCardDisplay match_time = 7;
+    // 
+    MatchCardDisplay match_button = 8;
+}
+
+// 
+message MatchTeamInfo {
+    // 
+    int64 id = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    int64 score = 4;
+}
+
+// 
+message NoCardResultReply {
+    // 
+    string default_guide_text = 1;
+    // 
+    ShowButton show_button = 2;
+}
+
+// 
+message OperationCard {
+    // 
+    oneof card {
+        // 
+        LargeCoverInline large_cover_inline = 1;
+    }
+}
+
+// 
+message OperationContent {
+    // 
+    OperationCard operation_card = 1;
+    // 
+    int64 start_time = 2;
+    // 
+    int64 end_time = 3;
+}
+
+// 
+message PlayerRatingInMatch {
+    // 
+    string player_face = 1;
+    // 
+    string player_name = 2;
+    // 
+    string hot_remark = 3;
+    // 
+    string rating = 4;
+    // 
+    string jump_uri = 5;
+    // 
+    int64 player_id = 6;
+    // 
+    int64 match_id = 7;
+}
+
+// 
+message PubLayer {
+    // 
+    int32 show_type = 1;
+    // 
+    string jump_link = 2;
+    // 
+    ButtonMeta button_meta = 3;
+    // 
+    bool close_pub_layer_entry = 4;
+    // 
+    string user_avatar = 5;
+    // 
+    bool is_half_screen = 6;
+}
+
+// 
+message RelationData {
+    // 
+    bool is_fav = 1;
+    // 
+    bool is_coin = 2;
+    // 
+    bool is_follow = 3;
+    // 
+    bool is_like = 4;
+    // 
+    int64 like_count = 5;
+}
+
+// 
+message ReportUserCloseFeedCardReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    FeedCardType feed_card_type = 2;
+}
+
+// 
+message ReportUserRatingFeedCardChoiceReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    FeedCardUserRatingOptionType option_type = 2;
+}
+
+// 
+enum ResSetTopOptType {
+    // 
+    ResSetTopNone = 0;
+    // 
+    ResSetTop = 1;
+    // 
+    ResSetTopCancel = 2;
+}
+
+// 
+enum ReserveButtonMode {
+    // 
+    RESERVE_BUTTON_MODE_NONE = 0;
+    // 
+    RESERVE_BUTTON_MODE_RESERVE = 1;
+    // 
+    RESERVE_BUTTON_MODE_UP_CANCEL = 2;
+}
+
+// 
+enum ReserveButtonStatus {
+    // 
+    RESERVE_BUTTON_STATUS_NONE = 0;
+    // 
+    RESERVE_BUTTON_STATUS_UNCHECK = 1;
+    // 
+    RESERVE_BUTTON_STATUS_CHECK = 2;
+}
+
+// 
+message ReserveCalendarInfo {
+    // 
+    string title = 1;
+    // 
+    int64 start_ts = 2;
+    // 
+    int64 end_ts = 3;
+    // 
+    string description = 4;
+    // 
+    string business_id = 5;
+}
+
+// 
+message ReserveRelationInfo {
+    // 
+    int64 sid = 1;
+    // 
+    string title = 2;
+    // 
+    int64 total = 3;
+    // 
+    int64 stime = 4;
+    // 
+    int64 etime = 5;
+    // 
+    int64 is_follow = 6;
+    // 
+    int32 state = 7;
+    // 
+    string oid = 8;
+    // 
+    int32 type = 9;
+    // 
+    int64 upmid = 10;
+    // 
+    int64 reserve_record_ctime = 11;
+    // 
+    int64 live_plan_start_time = 12;
+    // 
+    string time_desc_text = 13;
+    // 
+    string number_desc_text = 14;
+    // 
+    int64 start_time = 15;
+    // 
+    int64 end_time = 16;
+}
+
+// 
+message RightTopLiveBadge {
+    // 
+    int64 live_status = 1;
+    // 
+    LiveBadgeResource in_live = 2;
+    // 
+    string live_stats_desc = 3;
+}
+
+// 
+message SetTopTopicResReply {
+}
+
+// 
+message SetTopTopicResReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    int64 dynamic_id = 2;
+    // 
+    ResSetTopOptType opt_type = 3;
+    // 
+    TopicCardType type = 4;
+}
+
+// 
+message ShowButton {
+    // 
+    string show_text = 1;
+    // 
+    string jump_url = 2;
+}
+
+// 
+message SortContent {
+    // 
+    int64 sort_by = 1;
+    // 
+    string sort_name = 2;
+}
+
+// 
+message Texts {
+    // 
+    string booking_text = 1;
+    // 
+    string unbooking_text = 2;
+}
+
+// 
+message ThreePointItem {
+    // 
+    string title = 1;
+    // 
+    string jump_url = 2;
+}
+
+// 
+message TimeLineEvents {
+    // 
+    int64 event_id = 1;
+    // 
+    string title = 2;
+    // 
+    string time_desc = 3;
+    // 
+    string jump_link = 4;
+}
+
+// 
+message TimeLineResource {
+    // 
+    int64 time_line_id = 1;
+    // 
+    string time_line_title = 2;
+    // 
+    repeated TimeLineEvents time_line_events = 3;
+    // 
+    bool has_more = 4;
+    // 
+    int64 start_time = 5;
+    // 
+    int64 end_time = 6;
+}
+
+// 
+message TopicActivities {
+    // 
+    repeated TopicActivity activity = 1;
+    // 
+    string act_list_title = 2;
+}
+
+// 
+message TopicActivity {
+    // 
+    int64 activity_id = 1;
+    // 
+    string activity_name = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string icon_url = 4;
+}
+
+// 
+message TopicCapsule {
+    // 
+    string name = 1;
+    // 
+    string jump_url = 2;
+    // 
+    string icon_url = 3;
+}
+
+// 
+message TopicCapsuleInfo {
+    // 
+    repeated TopicCapsule capsules = 1;
+}
+
+// 
+message TopicCardItem {
+    // 
+    TopicCardType type = 1;
+    // 
+    bilibili.app.dynamic.v2.DynamicItem dynamic_item = 2;
+    // 
+    FoldCardItem ford_card_item = 3;
+    // 
+    VideoSmallCardItem video_small_card_item = 4;
+    // 
+    FeedCard feed_card = 5;
+}
+
+// 
+message TopicCardList {
+    // 
+    repeated TopicCardItem topic_card_items = 1;
+    // 
+    string offset = 2;
+    // 
+    bool has_more = 3;
+    // 
+    TopicSortByConf topic_sort_by_conf = 4;
+    // 
+    NoCardResultReply no_card_result_reply = 5;
+}
+
+// 
+enum TopicCardType {
+    // 
+    ILLEGAL_TYPE = 0;
+    // 
+    DYNAMIC = 1;
+    // 
+    FOLD = 2;
+    // 
+    VIDEO_SMALL_CARD = 3;
+    // 
+    FEED_CARD = 4;
+}
+
+// 
+enum TopicCategory {
+    // 
+    Default = 0;
+    // 
+    Questions = 1;
+    // 
+    IPTopic = 2;
+    // 
+    Commerce = 3;
+}
+
+// 
+message TopicDetailsAllReply {
+    // 
+    DetailsTopInfo details_top_info = 1;
+    // 
+    TopicActivities topic_activities = 2;
+    // 
+    TopicCardList topic_card_list = 3;
+    // 
+    FunctionalCard functional_card = 4;
+    // 
+    PubLayer pub_layer = 5;
+    // 
+    TimeLineResource time_line_resource = 6;
+    // 
+    TopicServerConfig topic_server_config = 7;
+    // 
+    TopicOnline topic_online = 8;
+    // 
+    repeated TopicTopCard topic_top_cards = 9;
+}
+
+// 
+message TopicDetailsAllReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    int64 sort_by = 2;
+    // 
+    string offset = 3;
+    // 
+    int32 page_size = 4;
+    // 
+    int32 local_time = 5;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 6;
+    // 
+    int32 need_refresh = 7;
+    // 
+    string source = 8;
+    // 
+    TopicDetailsExtMode topic_details_ext_mode = 9;
+    // 
+    string from_spmid = 10;
+    // 
+    map<string, string> extra = 11;
+    // 
+    bool is_top_dynamic = 12;
+}
+
+// 
+enum TopicDetailsExtMode {
+    // 
+    MODE_ILLEGAL_TYPE = 0;
+    // 
+    STORY = 1;
+}
+
+// 
+message TopicDetailsFoldReply {
+    // 
+    TopicCardList topic_card_list = 1;
+    // 
+    int64 fold_count = 2;
+}
+
+// 
+message TopicDetailsFoldReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    string offset = 2;
+    // 
+    int32 page_size = 3;
+    // 
+    int32 local_time = 4;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    // 
+    int64 from_sort_by = 6;
+}
+
+// 
+message TopicInfo {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    int64 uid = 3;
+    // 
+    int64 view = 4;
+    // 
+    int64 discuss = 5;
+    // 
+    int64 fav = 6;
+    // 
+    int64 dynamics = 7;
+    // 
+    int32 state = 8;
+    // 
+    string jump_url = 9;
+    // 
+    string backcolor = 10;
+    // 
+    bool is_fav = 11;
+    // 
+    string description = 12;
+    // 
+    int32 create_source = 13;
+    // 
+    string share_pic = 14;
+    // 
+    int64 share = 15;
+    // 
+    int64 like = 16;
+    // 
+    string share_url = 17;
+    // 
+    bool is_like = 18;
+    // 
+    int32 type = 19;
+    // 
+    string stats_desc = 20;
+    // 
+    string fixed_topic_icon = 21;
+    // 
+    int64 categories = 22;
+    // 
+    map<int32, bool> category_map = 23;
+    // 
+    repeated string topic_categories = 24;
+    // 
+    bool is_business = 25;
+    // 
+    bool show_interact_data = 26;
+}
+
+// 
+message TopicMergedResourceReply {
+    // 
+    TopicCardList topic_card_list = 1;
+}
+
+// 
+message TopicMergedResourceReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    int32 type = 2;
+    // 
+    int64 rid = 3;
+    // 
+    int32 merge_type = 4;
+    // 
+    string offset = 5;
+    // 
+    int32 local_time = 6;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 7;
+    // 
+    int64 from_sort_by = 8;
+}
+
+// 
+message TopicOnline {
+    // 
+    int64 online_num = 1;
+    // 
+    string online_text = 2;
+}
+
+// 
+message TopicReserveButtonClickReply {
+    // 
+    ReserveButtonStatus final_btn_status = 1;
+    // 
+    ReserveButtonMode btn_mode = 2;
+    // 
+    int64 reserve_update = 3;
+    // 
+    string desc_update = 4;
+    // 
+    bool has_activity = 5;
+    // 
+    string activity_url = 6;
+    // 
+    string toast = 7;
+    // 
+    ReserveCalendarInfo reserve_calendar_info = 8;
+}
+
+// 
+message TopicReserveButtonClickReq {
+    // 
+    int64 uid = 1;
+    // 
+    int64 reserve_id = 2;
+    // 
+    int64 reserve_total = 3;
+    // 
+    ReserveButtonStatus cur_btn_status = 4;
+}
+
+// 
+message TopicServerConfig {
+    // 
+    int64 pub_events_increase_threshold = 1;
+    // 
+    int64 pub_events_hidden_timeout_threshold = 2;
+    // 
+    int64 vert_online_refresh_time = 3;
+}
+
+// 
+message TopicSet {
+    // 
+    int64 set_id = 1;
+    // 
+    string set_name = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string desc = 4;
+    // 
+    string set_type_text = 5;
+    // 
+    string set_type_color = 6;
+    // 
+    int32 set_type = 7;
+}
+
+// 
+message TopicSetDetailsReply {
+    // 
+    TopicSetHeadInfo topic_set_head_info = 1;
+    // 
+    repeated TopicInfo topic_info = 2;
+    // 
+    bool has_more = 3;
+    // 
+    string offset = 4;
+    // 
+    TopicSetSortCfg sort_cfg = 5;
+}
+
+// 
+message TopicSetDetailsReq {
+    // 
+    int64 set_id = 1;
+    // 
+    int64 sort_by = 2;
+    // 
+    string offset = 3;
+    // 
+    int32 page_size = 4;
+}
+
+// 
+message TopicSetHeadInfo {
+    // 
+    TopicSet topic_set = 1;
+    // 
+    string topic_cnt_text = 2;
+    // 
+    string head_img_url = 3;
+    // 
+    string mission_url = 4;
+    // 
+    string mission_text = 5;
+    // 
+    string icon_url = 6;
+    // 
+    bool is_fav = 7;
+    // 
+    bool is_first_time = 8;
+    // 
+    string record_text = 9;
+}
+
+// 
+message TopicSetSortCfg {
+    // 
+    int64 default_sort_by = 1;
+    // 
+    repeated SortContent all_sort_by = 2;
+}
+
+// 
+message TopicSortByConf {
+    // 
+    int64 default_sort_by = 1;
+    // 
+    repeated SortContent all_sort_by = 2;
+    // 
+    int64 show_sort_by = 3;
+}
+
+// 
+message TopicThreePoint {
+    // 
+    repeated bilibili.app.dynamic.v2.ThreePointItem dyn_three_point_items = 1;
+}
+
+// 
+message TopicTopCard {
+    // 
+    oneof card_item {
+        // 
+        TopicCapsuleInfo capsules = 2;
+        // 
+        TrafficCard traffic_card = 3;
+        // 
+        GameCard game_card = 4;
+        // 
+        TimeLineResource time_line_resource = 5;
+        // 
+        LargeCoverInline large_cover_inline = 6;
+        // 
+        ReserveRelationInfo reservation_card = 7;
+        // 
+        EsportInfo esport_card = 8;
+        // 
+        IPTopicCard ip_topic_card = 11;
+        // 
+        HeadClickAreaCard head_click_area_card = 12;
+        // 
+        ItemCard item_card = 13;
+    }
+    // 
+    TopicTopCardType type = 1;
+    // 
+    int64 start_time = 9;
+    // 
+    int64 end_time = 10;
+}
+
+// 
+enum TopicTopCardType {
+    // 
+    Unknown_Type = 0;
+    // 
+    Capsules_Type = 1;
+    // 
+    Traffic_Card_Type = 2;
+    // 
+    Game_Card_Type = 3;
+    // 
+    Time_Line_Type = 4;
+    // 
+    Large_Cover_Inline_Type = 5;
+    // 
+    Reservation_Card_Type = 6;
+    // 
+    Esport_Card_Type = 7;
+    // 
+    IPTopic_Card_Type = 8;
+    // 
+    Head_Click_Area_Card_Type = 9;
+    // 
+    Item_Card_Type = 10;
+}
+
+// 
+message TrafficCard {
+    // 
+    string name = 1;
+    // 
+    string jump_url = 2;
+    // 
+    string icon_url = 3;
+    // 
+    string base_pic = 4;
+    // 
+    string benefit_point = 5;
+    // 
+    string card_desc = 6;
+    // 
+    string jump_title = 7;
+}
+
+// 
+message User {
+    // 
+    int64 uid = 1;
+    // 
+    string face = 2;
+    // 
+    string name = 3;
+    // 
+    string name_desc = 4;
+}
+
+// 
+message VideoCardBase {
+    // 
+    string cover = 1;
+    // 
+    string title = 2;
+    // 
+    string up_name = 3;
+    // 
+    int64 play = 4;
+    // 
+    string jump_link = 5;
+    // 
+    int64 aid = 6;
+}
+
+// 
+message VideoSmallCardItem {
+    // 
+    VideoCardBase video_card_base = 1;
+    // 
+    string cover_left_badge_text = 2;
+    // 
+    int64 card_stat_icon1 = 3;
+    // 
+    string card_stat_text1 = 4;
+    // 
+    int64 card_stat_icon2 = 5;
+    // 
+    string card_stat_text2 = 6;
+    // 
+    string server_info = 7;
+}
+
