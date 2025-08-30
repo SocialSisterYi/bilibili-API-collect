@@ -41,6 +41,7 @@
 | archive_flag | bool | (?) | 作用尚不明确 |
 | can\_edit | num | (?) | 作用尚不明确 |
 | can_upload | bool | (?) | 作用尚不明确 |
+| has_third_platform_live| bool | (?) | 作用尚不明确 |
 
 `data.replay_info` 数组中的对象：
 
@@ -63,6 +64,7 @@
 | cover | str | 直播封面 |  |
 | live_time | num | 直播时间 | 同`data.replay_info[i].start_time` |
 | live_type | num | 直播类型? | 作用尚不明确 |
+| platform | str | 直播平台 |  |
 
 `data.replay_info[i].video_info` 对象：
 
@@ -112,65 +114,69 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetRepl
   "data": {
     "replay_info": [
       {
-        "replay_id": 10707737,
+        "replay_id": 13517082,
         "live_info": {
-          "title": "摆",
+          "title": "随缘摸鱼",
           "cover": "https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png",
-          "live_time": 1747509268,
-          "live_type": 1
+          "live_time": 1756479520,
+          "live_type": 1,
+          "platform": "android_link"
         },
         "video_info": {
-          "replay_status": 2,
+          "replay_status": -8,
           "estimated_time": "1970-01-01 08:00:00",
-          "duration": 1820,
+          "duration": 9350,
           "alert_code": 2,
           "alert_message": "录像时长远小于开播时长，请关注直播时网络状况"
         },
         "alarm_info": {
-          "code": 2,
-          "message": "录像生成失败，请稍后再试",
-          "cur_time": 1747557808,
+          "code": -8,
+          "message": "直播内容存在违规片段",
+          "cur_time": 1756496581,
           "is_ban_publish": false
         },
-        "room_id": 18992371,
-        "live_key": "609043243693510451",
-        "start_time": 1747509268,
-        "end_time": 1747511088
+        "room_id": 1899237171,
+        "live_key": "637117671085969203",
+        "start_time": 1756479520,
+        "end_time": 1756488870
       },
       {
-        "replay_id": 10707664,
+        "replay_id": 13487274,
         "live_info": {
-          "title": "摆",
+          "title": "随缘摸鱼",
           "cover": "https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png",
-          "live_time": 1747508293,
-          "live_type": 1
+          "live_time": 1756385910,
+          "live_type": 1,
+          "platform": "android_link"
         },
         "video_info": {
           "replay_status": 2,
           "estimated_time": "1970-01-01 08:00:00",
-          "duration": 206,
+          "duration": 14985,
           "alert_code": 2,
           "alert_message": "录像时长远小于开播时长，请关注直播时网络状况"
         },
         "alarm_info": {
           "code": 2,
           "message": "录像生成失败，请稍后再试",
-          "cur_time": 1747557808,
+          "cur_time": 1756496581,
           "is_ban_publish": false
         },
-        "room_id": 18992371,
-        "live_key": "609041817764368179",
-        "start_time": 1747508293,
-        "end_time": 1747508499
+        "room_id": 1899237171,
+        "live_key": "636823272552664883",
+        "start_time": 1756385910,
+        "end_time": 1756400895
       }
     ],
     "pagination": {
       "page": 1,
       "page_size": 2,
-      "total": 29
+      "total": 16
     },
     "archive_flag": false,
-    "can_edit": 1
+    "can_edit": 1,
+    "can_upload": false,
+    "has_third_platform_live": false
   }
 }
 ```
@@ -470,7 +476,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/DeleteSliceDr
 
 鉴权方式: Cookie中`bili_jct`的值正确并与`csrf`相同
 
-未生成整场直播回放时将进行生成。
+是否生成回放取决于回放状态，处于可生成回放状态且未生成整场直播回放时将进行生成。
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -635,7 +641,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 </details>
 
-## 轮询回放合成状态
+## 轮询回放状态
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVideoUidRecord
 
@@ -770,8 +776,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| list | arr | 直播回放视频列表 | 如果该场回放没有视频流将为`null` |
-| ban_list | null | 不可发布的回放列表? | [需要验证] |
+| list | arr 或 null | 直播回放视频列表 | 如果该场回放没有视频流将为`null` |
+| ban_list | null 或 arr | 不可发布的回放时间 | 如果该场回放没有不可发布的时间将为`null` |
 
 `data.list` 数组中的对象：
 
@@ -782,12 +788,19 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 | stream | str | 直播回放视频流 |  |
 | type | num | 类型? | 2：一般回放? |
 
+`data.ban_list` 数组中的对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| start_time | num | 不可发布片段的开始时间戳 | Unix秒时间戳 |
+| end_time | num | 不可发布片段的结束时间戳 | Unix秒时间戳 |
+
 **示例：**
 
 获取某个场次的视频流
 
 ```shell
-curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStream?live_key=607113721045847859&start_time=1746863101&end_time=1746879299' \
+curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStream?live_key=637117671085969203&start_time=1756479520&end_time=1756488870' \
   -b 'SESSDATA=xxx'
 ```
 
@@ -802,25 +815,18 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStrea
   "data": {
     "list": [
       {
-        "start_time": 1746863103,
-        "end_time": 1746879246,
-        "stream": "https://bvc-live.bilivideo.com/hls-record-gateway/videoPlay?biz_id=live2vod-clip&end_time=1746879246&header_name=1746863103.m4s&host_id=edge-hls-bvc-self-cn-jsyz-ct-03-59-6d854b4bd8-gnlb7&no_end=0&schema=https&sign=12f649dd540096672745d60b84f18eda&start_time=1746863103&stream_name=live_438160221_32373699&ts=1752930893&version=2",
-        "type": 2
-      },
-      {
-        "start_time": 1746879267,
-        "end_time": 1746879269,
-        "stream": "https://bvc-live.bilivideo.com/hls-record-gateway/videoPlay?biz_id=live2vod-clip&end_time=1746879269&header_name=1746863104.m4s&host_id=edge-hls-bvc-self-cn-jsyz-ct-03-59-6d854b4bd8-gnlb7&no_end=0&schema=https&sign=5c63605f1fa88561a6257b6812725b4f&start_time=1746879267&stream_name=live_438160221_32373699&ts=1752930893&version=2",
-        "type": 2
-      },
-      {
-        "start_time": 1746879269,
-        "end_time": 1746879298,
-        "stream": "https://bvc-live.bilivideo.com/hls-record-gateway/videoPlay?biz_id=live2vod-clip&end_time=1746879298&header_name=1746863105.m4s&host_id=edge-hls-bvc-self-cn-jsyz-ct-03-59-6d854b4bd8-gnlb7&no_end=0&schema=https&sign=70929627354f4380b54b97fcdb69c8a2&start_time=1746879269&stream_name=live_438160221_32373699&ts=1752930893&version=2",
+        "start_time": 1756479528,
+        "end_time": 1756488870,
+        "stream": "https://bvc-live.bilivideo.com/hls-record-gateway/videoPlay?none=为了防止信息泄露，不提供完整链接。目前该视频流可以获取违规片段的视频。",
         "type": 2
       }
     ],
-    "ban_list": null
+    "ban_list": [
+      {
+        "start_time": 1756487070,
+        "end_time": 1756488870
+      }
+    ]
   }
 }
 ```
@@ -840,8 +846,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStrea
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | ----- | --- | ---- | ----- | --- |
 | live_key | str | 标记直播场次的key | 必要 |  |
-| start_tm | str | 开始时间 | 必要 | 格式为`yyyy-mm-dd+HH:MM:SS`，时区为`UTC+08:00`（中国标准时间）；取值对实际无影响 |
-| end_tm | str | 开始时间 | 必要 | 格式为`yyyy-mm-dd+HH:MM:SS`，时区为`UTC+08:00`（中国标准时间）；取值对实际无影响 |
+| start_tm | str | 开始时间 | 必要 | 格式为`yyyy-mm-dd HH:MM:SS`，时区为`UTC+08:00`（中国标准时间）；取值对实际无影响 |
+| end_tm | str | 开始时间 | 必要 | 格式为`yyyy-mm-dd HH:MM:SS`，时区为`UTC+08:00`（中国标准时间）；取值对实际无影响 |
 | web_location | str | (?) |  |
 
 **json回复：**
@@ -1342,7 +1348,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSav
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4002：片段已投稿<br />4003：请选择精彩片段再投稿哦<br />4006：标题已使用<br />4008：不被允许的视频倍速 |
+| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />4000：时长过长<br />4001：操作太快<br />4002：片段已投稿<br />4003：请选择精彩片段再投稿哦<br />4006：标题已使用<br />4008：不被允许的视频倍速<br />4009：该片段存在违规内容，不允许投稿 |
 | message | str | 错误信息 |  |
 | ttl | num | `1` |  |
 | data | obj | 信息本体 | 成功时有效 |
@@ -1397,7 +1403,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublish
 
 2. (可选)请求[获取回放的信息](#获取回放的信息)接口，生成合成进度页面；
 
-3. [轮询回放合成状态](#轮询回放合成状态)，当状态变为`30`转到流程4，变为`-30`转到流程5；
+3. [轮询回放合成状态](#轮询回放状态)，当状态变为`30`转到流程4，变为`-30`转到流程5；
 
 4. 再次[请求整场直播回放下载链接](#请求整场直播回放下载链接)，获取下载链接并下载。
 
