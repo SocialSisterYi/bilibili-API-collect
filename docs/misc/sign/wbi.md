@@ -1475,3 +1475,196 @@ percentEncode byte = '%' : toHex byte
 aid=2&wts=1744823207&w_rid=a3cd246bd42c066932752b24694eaf0d
 bar=514&foo=114&hello=%E4%B8%96%20%E7%95%8C&wts=1744823207&w_rid=93acf59d85f74453e40cea00056c3daf
 ```
+
+### MoonBit
+
+由于MoonBit的异步库仍处于测试中，此处代码可能失效/错误，仅供参考。  
+
+依赖：
+
+```json
+// moon.pkg.json
+{
+  "import": [
+    "moonbitlang/x/crypto",
+    "BigOrangeQWQ/uri",
+    "oboard/mio"
+  ]
+}
+```
+
+主要函数：
+
+```moonbit
+///|
+let mixinKeyEncTab = [
+  46, 47, 18, 2, 53, 8, 23, 32, 15, 50, 10, 31, 58, 3, 45, 35, 27, 43, 5, 49, 33,
+  9, 42, 19, 29, 28, 14, 39, 12, 38, 41, 13, 37, 48, 7, 16, 24, 55, 40, 61, 26, 17,
+  0, 1, 60, 51, 30, 4, 22, 25, 54, 21, 56, 59, 6, 63, 57, 62, 11, 36, 20, 34, 44,
+  52,
+]
+
+///|
+/// 对 imgKey 和 subKey 进行字符顺序打乱编码
+pub fn getMixinKey(orig : String) -> String {
+  String::from_array(mixinKeyEncTab.map(i => orig.to_array()[i])).substring(
+    end=32,
+  )
+}
+
+///|
+/// 为请求参数进行 wbi 签名
+pub fn encWbi(params : Json, img_key~ : String, sub_key~ : String) -> String {
+  let mixin_key = getMixinKey(img_key + sub_key)
+  let curr_time = @env.now() / 1000
+  let new_params = params.as_object().unwrap()
+  // .map(fn(_, v : Json) { v.as_string().unwrap() })
+  new_params.set("wts", curr_time.to_json())
+  // let mut uri = @uri.new_builder()
+  // 按照 key 重排参数
+  let query = new_params
+    .keys()
+    .to_array()
+    ..sort()
+    .map(key => {
+      // 过滤 value 中的 "!'()*" 字符
+      let val = String::from_array(
+        (match new_params[key] {
+          String(val) => val
+          Number(val, ..) => val.to_string()
+          True => "true"
+          False => "false"
+          _ => ""
+        })
+        .to_array()
+        .filter(c => not(c is ('!' | '\'' | '(' | ')' | '*'))),
+      )
+      // uri.add_query_param(key, val)
+      @uri.encode_query(key) + "=" + @uri.encode_query(val)
+    })
+    .join("&")
+  let wbi_sign = @crypto.bytes_to_hex_string(
+    @crypto.md5((query + mixin_key).to_bytes()),
+  ) // 计算 w_rid
+  query + "&w_rid=" + wbi_sign
+}
+
+///|
+pub struct WbiKeys {
+  mut img_key : String
+  mut sub_key : String
+} derive(Show)
+
+///|
+///  获取最新的 img_key 和 sub_key
+pub async fn getWbiKeys(cookies? : String = "") -> WbiKeys noraise {
+  let wbi = WbiKeys::{ img_key: "", sub_key: "" }
+  @mio.run(fn() {
+    match
+      (try? @mio.get("https://api.bilibili.com/x/web-interface/nav", headers={
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
+        "Referer": "https://www.bilibili.com/",
+        "Cookies": cookies,
+      })) {
+      Ok(res) =>
+        if res.statusCode == 200 {
+          match res.unwrap_json() {
+            {
+              "data": {
+                "wbi_img": {
+                  "img_url": String(img_url),
+                  "sub_url": String(sub_url),
+                  ..
+                },
+                ..
+              },
+              ..
+            } => {
+              guard img_url.rev_find("/") is Some(img_url_s) else { abort("") }
+              guard img_url.rev_find(".") is Some(img_url_e) else { abort("") }
+              guard sub_url.rev_find("/") is Some(sub_url_s) else { abort("") }
+              guard sub_url.rev_find(".") is Some(sub_url_e) else { abort("") }
+              wbi.img_key = img_url.substring(
+                start=img_url_s + 1,
+                end=img_url_e,
+              )
+              wbi.sub_key = sub_url.substring(
+                start=sub_url_s + 1,
+                end=sub_url_e,
+              )
+            }
+            _ => abort("")
+          }
+        }
+      Err(e) => abort("Failed: " + e.to_string())
+    }
+  })
+  wbi
+}
+```
+
+测试/用例：
+```moonbit
+///|
+test {
+  let inp = "zxcytvbyijnmko,lxtrdcyvgybhunjimko,dcfvgbhnjmksextctvgbyjnmikxdrycgvbhjnmko,xryctvgybhnjimk,rdyctfvygbhnjimk,ldxfcgvhbjnmk,l"
+  inspect(getMixinKey(inp), content="sercgigklcnmmykdujvtojndjn,gkvho")
+}
+
+///|
+test {
+  println(
+    encWbi(
+      { "foo": "114", "bar": "514", "baz": 1919810 },
+      img_key="7cd084941338484aae1ad9425b84077c",
+      sub_key="4932caff0ff746eab6f01bf08b70ac45",
+    ),
+  )
+}
+
+///|
+async fn[T, E : Error] suspend(
+  // `f` 是负责操作中断的协程的回调函数
+  f : (
+    // `f` 的第一个参数用于继续运行被中断的协程
+    (T) -> Unit,
+    // `f` 的第二个参数用于取消被中断的协程。
+    // 取消会被表示为在中断处抛出错误
+    (E) -> Unit,
+  ) -> Unit,
+) -> T raise E = "%async.suspend"
+
+///|
+#external
+type JSTimer
+
+///|
+extern "js" fn js_set_timeout(f : () -> Unit, duration~ : Int) -> JSTimer =
+  #| (f, duration) => setTimeout(f, duration)
+
+///|
+async fn sleep(duration : Int) -> Unit raise {
+  suspend(fn(resume_ok, _resume_err) {
+    js_set_timeout(duration~, fn() { resume_ok(()) }) |> ignore
+  })
+}
+
+///|
+test {
+  let mut p = WbiKeys::{ img_key: "", sub_key: "" }
+  @mio.run(fn() -> Unit {
+    p = getWbiKeys()
+    sleep(500) catch {
+      _ => panic()
+    }
+    println(p)
+    println(
+      encWbi(
+        { "foo": "114", "bar": "514", "baz": 1919810 },
+        img_key=p.img_key,
+        sub_key=p.sub_key,
+      ),
+    )
+  })
+}
+```
