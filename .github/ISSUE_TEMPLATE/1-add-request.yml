@@ -8,7 +8,7 @@ body:
     attributes:
       label: "提交前请确认"
       options:
-        - label: "我已检索仓库中文档，确认不包含所提及内容，且 Issues、Pull Requests 中无相关提交"
+        - label: "我已阅读贡献指南, 已检索仓库中文档，确认不包含所提及内容，且 Issues、Pull Requests 中无相关提交"
           required: true
   - type: dropdown
     id: source
@@ -17,7 +17,7 @@ body:
       description: "该 API 在何平台中使用"
       multiple: true
       options:
-        - "Web 端（含 h5）"
+        - "Web 端（含 H5）"
         - "PC 客户端（Electron）"
         - "Android 客户端（含粉版、平板版、蓝版、概念版、国际版等）"
         - "TV 客户端（含云视听小电视、车机、物联网版等）"
@@ -35,7 +35,7 @@ body:
       options:
         - "REST"
         - "gRPC"
-        - "长连接数据帧（含 ws、TCP）"
+        - "长连接数据帧（含 WS、TCP）"
         - "其他类型（请在详情中备注）"
     validations:
       required: true
@@ -43,7 +43,7 @@ body:
     id: address
     attributes:
       label: "API 地址"
-      description: "REST 的 url，或 gRPC 的包名+服务名"
+      description: "REST 的 URL，或 gRPC 的包名+服务名"
       placeholder: "eg: https://api.bilibili.com/2333333"
     validations:
       required: true
