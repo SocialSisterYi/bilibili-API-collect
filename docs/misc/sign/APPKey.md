@@ -29,7 +29,7 @@
 | 4409e2ce8ffd12b8 | 59b43e04ad6965f34319062b478f83dd |      `android`       | 云视听小电视(TV版) |          `9`?           |  `android_tv_yst`?   |                                            |
 | 37207f2beaebf8d7 | e988e794d4d4b6dd43bc0e89d6e90c43 |      `android`       |      BiliLink      |            ?            |          ?           |                                            |
 | 9a75abf7de2d8947 | 35ca1c82be6c2c242ecc04d88c735f31 |      `android`       |      BiliScan      |            ?            |          ?           |                                            |
-| aae92bc66f3edfab | af125a0d5279fd576c1b4418a3e8276d |          ?           |    PC 投稿工具     |            -            |          ?           |                                            |
+| aae92bc66f3edfab | af125a0d5279fd576c1b4418a3e8276d |          ?           | PC 投稿工具&PC直播姬|            -            |          ?           |                                            |
 | bca7e84c2d947ac6 | 60698ba2f68e01ce44738920a0ffe768 |          ?           |       login        |            -            |          ?           |                                            |
 | h9Ejat5tFh81cq8V | BdiI92bjmZ9QRcjJBWv2EEssyjekAGKt |                      |                    |                         |                      |      bilibili游戏 web端 游戏详情页API      |
 

@@ -1,18 +1,38 @@
-name: deploy and pubish
+name: deploy and publish
+
 on: [push]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.repository == 'SocialSisterYi/bilibili-API-collect'
+    # if: github.repository == 'SocialSisterYi/bilibili-API-collect'
     steps:
     - name: Checkout
-      uses: actions/checkout@master
-
-    - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: SocialSisterYi/bilibili-API-collect
-        TARGET_BRANCH: gh_pages
-        BUILD_SCRIPT: yarn && yarn build
-        BUILD_DIR: .vuepress/dist/
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.3
+      with:
+        node-version: 22
+        cache: yarn
+    - name: Build with yarn
+      run: yarn && yarn build
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.vuepress/dist/'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

@@ -714,7 +714,7 @@ curl 'https://api.bilibili.com/x/member/web/sign/update' \
 
 ```shell
 curl -G "https://api.bilibili.com/x/member/web/exp/log" \
--b "SESSDATA=xxx
+-b "SESSDATA=xxx"
 ```
 
 <details>
@@ -829,13 +829,18 @@ curl -G "https://api.bilibili.com/x/member/web/exp/log" \
 
 `list`数组中的对象:
 
-*表现良好暂时没有记录, 欢迎封号斗罗前来补充*
+| 字段  | 类型   | 内容             | 备注 |
+| ----- | ------ | ---------------- | ---- |
+| time | string | 时间 | |
+| delta | number | 变化 | |
+| origin | string | 原因 | |
+| reason | string | 说明 | |
 
 **示例:**
 
 ```shell
 curl -G "https://api.bilibili.com/x/member/web/moral/log" \
--b "SESSDATA=xxx
+-b "SESSDATA=xxx"
 ```
 
 <details>

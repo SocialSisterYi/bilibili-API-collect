@@ -75,6 +75,563 @@ JavaScript (Node.js) 请求[示例](https://gist.github.com/SessionHu/5e47a3a1a3
 
 </details>
 
+## 获取上传模板列表
+
+> https://member.bilibili.com/x/vupre/web/tpls
+
+*请求方式: GET*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| t      | num  | 当前时间 | 非必要 | UNIX 毫秒时间戳 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| data    | array | 模板列表 |       |
+
+
+
+`data` 数组中的对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| tid  | num  | 模板 ID  |      |
+| name | str  | 模板名称 |      |
+| typeid | num | 分区 ID  |      |
+| title | str | 标题     |      |
+| tags  | str | 标签     |      |
+| description | str | 描述 |      |
+| copyright | num | 版权类型 | 1: 自制<br />2: 转载 |
+| attribute | num | 属性 | 0 或其他 |
+| is_default | num | 是否默认 | 0: 否<br />1: 是 |
+
+**示例:**
+
+```shell
+curl -G "https://member.bilibili.com/x/vupre/web/tpls" \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": [
+      {
+        "tid": 12,
+        "name": "直播录像",
+        "typeid": 173,
+        "title": " 标题",
+        "tags": "可爱",
+        "description": "描述",
+        "copyright": 1,
+        "attribute": 0,
+        "is_default": 0
+      },
+  ]
+}
+```
+
+</details>
+
+## 编辑上传模板
+
+> https://member.bilibili.com/x/vupre/web/tpl/update
+
+*请求方式: POST*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| t      | num  | 当前时间 | 非必要 | UNIX 毫秒时间戳 |
+
+**正文参数(application/json):**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| tid    | num  | 模板 ID  | 必要   |      |
+| name   | str  | 模板名称 | 非必要 |      |
+| title  | str  | 标题     | 非必要 |      |
+| keywords | str | 标签     | 非必要 | 多个标签用 `,` 分隔 |
+| description | str | 描述 | 非必要 |      |
+| typeid | num | 分区 ID  | 非必要 |      |
+| arctype | str | 版权类型 | 非必要 | "Original": 自制<br />"Copy": 转载 |
+| is_default | num | 是否默认 | 非必要 | 0: 否<br />1: 是 |
+| csrf   | str  | CSRF Token (位于 Cookie 中 bili_jct) | 必要   |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+
+**示例:**
+
+```shell
+curl -X POST "https://member.bilibili.com/x/vupre/web/tpl/update" \
+--url-query "t=$(date +%s%3N)" \
+-H "Content-Type: application/json" \
+--data '{
+  "tid": 12,
+  "name": "新模板名称",
+  "title": "新标题",
+  "keywords": "标签1,标签2",
+  "description": "新描述",
+  "typeid": 173,
+  "arctype": "Original",
+  "is_default": 1,
+  "csrf": "xxxxxxxxxxxx"
+}' \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1
+}
+```
+
+</details>
+
+## 查询话题
+
+> https://member.bilibili.com/x/vupre/web/topic/type
+
+*请求方式: GET*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名   | 类型 | 内容     | 必要性 | 备注 |
+| -------- | ---- | -------- | ------ | ---- |
+| type_id  | num  | 分区 ID  | 非必要 |      |
+| pn       | num  | 页码     | 必要   | 从 0 开始 |
+| ps       | num  | 每页个数 | 必要   |      |
+| title    | str  | 视频标题 | 非必要 |      |  
+| t    | num  | 当前时间 | 非必要 | UNIX 毫秒时间戳     |  
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| data    | array | 话题列表 |       |
+
+
+`data` 数组中的对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| topic_id | num  | 话题 ID  |      |
+| topic_name | str  | 话题名称 |      |
+| description | str  | 话题描述 |      |
+| mission_id | num  | 任务 ID  |      |
+| activity_text | str  | 活动文本 |      |
+| activity_description | str  | 活动描述 |      |
+
+**示例:**
+
+```shell
+curl -G "https://member.bilibili.com/x/vupre/web/topic/type" \
+--data-urlencode "pn=0" \
+--data-urlencode "ps=20" \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "topics": [
+        {
+          "topic_id": 1245317,
+          "topic_name": "疯狂打游戏",
+          "description": "疯狂于游戏的世界吧！愿你在这场虚拟的战斗中展现出你非凡的智慧与勇气，让每一个夜晚都充满了激情与荣耀！",
+          "mission_id": 1742462,
+          "activity_text": "有奖活动",
+          "activity_description": "@神魂の魇 发起"
+        }
+    ],
+    "tags": null,
+    "maxpage": 200,
+    "request_id": "123"
+  }
+}
+```
+
+</details>
+
+## 话题搜索
+
+> https://member.bilibili.com/x/vupre/web/topic/search
+
+*请求方式: GET*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名    | 类型 | 内容     | 必要性 | 备注 |
+| --------- | ---- | -------- | ------ | ---- |
+| page_size | num  | 每页个数 | 非必要   |      |
+| offset    | num  | 个数偏移 | 非必要   | 并非页数 |
+| keywords  | str  | 关键字   | 非必要 |      |
+| t         | num  | 当前时间 | 非必要 | UNIX 毫秒时间戳 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| data    | obj  | 信息本体 |       |
+
+
+
+`data` 对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| result | obj | 搜索结果 |      |
+
+
+
+`result` 对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| has_create_jurisdiction | bool | ？ |      |
+| is_new_topic | bool | 是否为新话题？ |      |
+| tips | str | 提示信息 |      |
+| page_info | obj | 分页信息 |      |
+| topics | array | 话题列表 |      |
+
+
+
+`page_info` 对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| has_more | bool | 是否有更多 |      |
+| offset | num | 偏移量 |      |
+| page_number | num | 页码 |      |
+
+
+
+`topics`数组中的对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| act_protocol | str | ？ |      |
+| activity_sign | str | ？ |      |
+| description | str | 话题描述 |      |
+| id | num | 话题 ID |      |
+| mission_id | num | 任务 ID |      |
+| name | str | 话题名称 |      |
+| state | num | 状态？ |      |
+| uname | str | ？ |      |
+
+**示例:**
+
+```shell
+curl -G "https://member.bilibili.com/x/vupre/web/topic/search" \
+--data-urlencode "page_size=20" \
+--data-urlencode "offset=0" \
+--data-urlencode "keywords=example" \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "result": {
+      "topics": [
+          {
+            "id": 1200265,
+            "name": "巴黎最前线",
+            "uname": "",
+            "state": 0,
+            "description": "巴黎体育盛会前线速递！",
+            "mission_id": 0,
+            "activity_sign": "",
+            "act_protocol": ""
+          }
+      ],
+      "page_info": {
+          "page_num": 0,
+          "offset": 1,
+          "has_more": true
+      },
+      "is_new_topic": false,
+      "has_create_jurisdiction": true,
+      "tips": "该话题是UP主活动相关话题，您在话题下的稿件信息可能会被提供给发起话题的UP主，并可能被UP主用于二次创作"
+    }
+  }
+}
+```
+
+</details>
+
+## 标签可用性检查
+
+> https://member.bilibili.com/x/vupre/web/topic/tag/check
+
+*请求方式: GET*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| tag    | str  | 需要检查的标签 | 必要   |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| data    | obj  | 信息本体 |       |
+
+
+
+`data` 对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| code | num  | 标签状态 | 0: 可用<br />其他: 不可用 |
+| content | str  | 错误返回 |  |
+
+**示例:**
+
+```shell
+curl -G "https://member.bilibili.com/x/vupre/web/topic/tag/check" \
+--data-urlencode "tag=example_tag" \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "code": 0,
+    "content": ""
+  }
+}
+```
+
+```json
+{
+  "code": 16025,
+  "message": "tag已经被封印了~",
+  "ttl": 1,
+  "data": {
+      "code": 1,
+      "content": "服务器错误"
+  }
+}
+```
+
+</details>
+
+## 获取简介相关信息
+
+> https://member.bilibili.com/x/vupre/web/archive/desc/format
+
+*请求方式: GET*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名   | 类型 | 内容     | 必要性 | 备注 |
+| -------- | ---- | -------- | ------ | ---- |
+| typeid   | num  | 分区 ID  | 必要   |      |
+| copyright | num  | 版权类型 | 必要 | 1：自制<br/>2：转载 |
+| t        | num  | 当前时间 | 非必要   | UNIX 毫秒时间戳 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| data    | obj | null  | 信息本体 |       |
+
+注：某个时间点后，没有发现 data 为 null 的情况了，过去为 null 时简介上限250字
+
+`data` 对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| typeid | num  | 分区 ID  |  |
+| id     | num  | ID      |  |
+| lang   | num  | 未知    |  |
+| copyright | num  | 版权类型| 1：自制<br/>2：转载 |
+| components | str  | 简介输入框提示文字   | JSON 字符串 |
+
+`components` 示例：
+`'[{"name":"相关游戏","index":1,"type":"text","required":"1","box":"请输入本视频所涉及的游戏名称，以顿号分隔，例：英雄联盟、塞尔达传说、刺客信条"},{"name":"简介补充","index":2,"type":"textarea","required":"1","box":""}]'`
+
+**示例:**
+
+```shell
+curl -G "https://member.bilibili.com/x/vupre/web/archive/desc/format" \
+--data-urlencode "typeid=65" \
+--data-urlencode "copyright=1" \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "typeid": 65,
+    "id": 1,
+    "lang": 0,
+    "copyright": 1,
+    "components": "[{\"name\":\"相关游戏\",\"index\":1,\"type\":\"text\",\"required\":\"1\",\"box\":\"请输入本视频所涉及的游戏名称，以顿号分隔，例：英雄联盟、塞尔达传说、刺客信条\"},{\"name\":\"简介补充\",\"index\":2,\"type\":\"textarea\",\"required\":\"1\",\"box\":\"\"}]"
+  }
+}
+```
+
+</details>
+
+## 获取上传线路
+
+> https://member.bilibili.com/preupload?r=probe
+
+*请求方式: GET*
+
+认证方式：无
+
+**URL参数:**
+
+无
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| OK      | num  | 返回值   | 1: 成功<br />其他: 失败 |
+| lines   | array | 上传线路列表 |  |
+| probe   | obj | 未知 | |
+
+probe 中的对象：
+| 字段      | 类型 | 内容     | 备注  |
+| --------- | ---- | -------- | ----- |
+| post        | float  | 未知 | 固定0.1      |
+
+lines 数组中的对象:
+
+| 字段      | 类型 | 内容     | 备注  |
+| --------- | ---- | -------- | ----- |
+| os        | str  | 操作系统 |       |
+| query     | str  | 查询参数 |       |
+| probe_url | str  | 探测 URL |       |
+
+**示例:**
+
+```shell
+curl -G "https://member.bilibili.com/preupload?r=probe"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "OK": 1,
+  "lines": [
+      {
+          "os": "upos",
+          "query": "probe_version=20221109&upcdn=tx&zone=cs",
+          "probe_url": "//upos-cs-upcdntx.bilivideo.com/OK"
+      },
+      {
+          "os": "upos",
+          "query": "probe_version=20221109&upcdn=bldsa&zone=cs",
+          "probe_url": "//upos-cs-upcdnbldsa.bilivideo.com/OK"
+      },
+      {
+          "os": "upos",
+          "query": "probe_version=20221109&upcdn=bda2&zone=cs",
+          "probe_url": "//upos-cs-upcdnbda2.bilivideo.com/OK"
+      }
+  ],
+  "probe": {
+      "post": 0.1
+  }
+}
+```
+
+</details>
+
 ## 预测稿件类型
 
 > https://member.bilibili.com/x/vupre/web/archive/types/predict
@@ -136,6 +693,12 @@ JavaScript (Node.js) 请求[示例](https://gist.github.com/SessionHu/5e47a3a1a3
 | rank | num | 排序权重? |       |
 | max_video_count | num | 最大视频数量? |       |
 | request_id | str | 空 |       |
+| human_type | obj\|null | 新分区ID，好像除第一个之外都是null | 
+
+`human_type` 参数
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| id   | num | 新分区id | 可在 [获取新分区ID](#获取新分区ID) 找到对应名称      |
 
 **示例:**
 
@@ -339,7 +902,7 @@ curl -G 'https://member.bilibili.com/x/vupre/web/tag/recommend' \
 
 </details>
 
-## 投递视频稿件
+## 投递视频稿件（Web）
 
 > https://member.bilibili.com/x/vu/web/add/v3
 
@@ -361,19 +924,21 @@ curl -G 'https://member.bilibili.com/x/vupre/web/tag/recommend' \
 | 参数名 | 类型 | 内容     | 必要性 | 备注 |
 | ------ | ---- | -------- | ------ | ---- |
 | videos | array | 视频信息 | 必要   | 若为分 P 视频, 请注意数组元素顺序 |
-| cover  | str  | 视频封面 URL | 必要   | 参见[上传视频封面](#上传视频封面) |
-| cover43 | str  | 视频封面 URL (比例为 4:3) | 必要   | 可为空 |
+| cover  | str  | 视频封面 URL | 非必要   | 如果不传会自动取封面，参见[上传视频封面](#上传视频封面) |
+| cover43 | str  | 视频封面 URL (比例为 4:3) | 非必要   | 可为空 |
 | title  | str  | 视频标题 | 必要   | 最多 80 字 |
 | copyright | num  | 1: 自制<br />2: 转载 | 必要   |      |
-| tid    | num  | 分类 ID | 必要   |      |
+| tid    | num  | 分区 ID | 必要   | Web端此参数已无法手动设置，参数值为从[预测稿件类型](#预测稿件类型)中获取第一个固定id     |
+| human_type2 | num  | 新分区ID | 非必要| 从 [新分区ID](#获取新分区ID) 获取 |
 | tag    | str  | 视频标签 | 必要   | 多个标签用 `,` 分隔, 最多 10 个 |
 | desc_format_id | num  | 简介格式 ID? | 必要   | 9999: 纯文本 |
-| desc   | str  | 视频简介 | 必要   | 最多 2000 字 |
+| desc   | str  | 视频简介 | 非必要   | 最多 2000 字 |
+| desc_v2   | str  | 视频简介额外信息 | 非必要   | 比如有艾特操作时传递，见备注 |
 | recreate | num  | 是否允许二创 | 必要   | -1: 允许(默认)<br />1: 不允许 |
 | dynamic | str  | 粉丝动态 | 必要   |      |
 | interactive | num  | 互动视频? | 必要   | 0: 否 |
 | act_reserve_create | num  | 活动预约? | 必要   | 0: 否 |
-| no_disturbance | num  | 勿扰模式? | 必要   | 0: 否 |
+| no_disturbance | num  | 是否推送到动态| 必要   | 0：不推送，1：推送|
 | no_reprint | num  | 是否允许转载 | 必要   | 1: 允许<br />0: 不允许 |
 | subtitle | obj  | 字幕信息 | 必要   |      |
 | dolby | num  | 杜比音效 | 必要   | 0: 否(默认)<br />1: 是 |
@@ -382,6 +947,11 @@ curl -G 'https://member.bilibili.com/x/vupre/web/tag/recommend' \
 | up_close_reply | bool | 关闭评论 | 必要   |      |
 | up_close_danmu | bool | 关闭弹幕 | 必要   |      |
 | web_os | num  | 平台类型? | 必要   | 3 |
+| is_only_self | 可见性 | 非必要 | 0：公开<br/>1：仅自己可见 |
+| topic_id | 话题id | 非必要 | 可从[查询话题](./upload.md#查询话题)等相关接口获取 |
+| mission_id	 | 任务id | 非必要 | 可从[查询话题](./upload.md#查询话题)等相关接口获取 |
+| is_360 | num | 是否全景 | 非必要 | -1：非全景<br/>1：全景 |
+| neutral_mark | str | 创作者声明 | 非必要 |  |
 
 `videos` 数组中的对象:
 
@@ -398,6 +968,32 @@ curl -G 'https://member.bilibili.com/x/vupre/web/tag/recommend' \
 | ------ | ---- | -------- | ------ | ---- |
 | open | num  | 是否启用字幕投稿 | 必要   | 0: 启用(默认)<br />1: 不启用  |
 | lan | str  | 字幕投稿语言 | 必要   | 可为空 |
+
+**desc_v2举例：**
+
+```js
+{
+  // 如果两者不一致，可能导致后续在web修改出现错误
+  "desc": "前面@陈睿 后面",
+	"desc_v2": [ // 纯文字type是1，艾特用户type是2，biz_id为用户uid
+		{
+			"biz_id": "",
+			"raw_text": "前面",
+			"type": 1
+		},
+		{
+			"biz_id": "208259", // uid
+			"raw_text": "陈睿",  // 用户名
+			"type": 2
+		},
+		{
+			"biz_id": "",
+			"raw_text": " 后面",
+			"type": 1
+		}
+	]
+}
+```
 
 **示例:**
 
@@ -463,6 +1059,250 @@ curl -X POST --url "https://member.bilibili.com/x/vu/web/add/v3" \
   "data": {
     "aid": 112861976201494,
     "bvid": "BV181vnexEmB"
+  }
+}
+```
+
+</details>
+
+## 编辑视频稿件（Web）
+
+> https://member.bilibili.com/x/vu/web/edit
+
+*请求方式: POST*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| t      | num  | 当前时间 | 非必要   | UNIX 毫秒时间戳 |
+| csrf   | str  | CSRF Token (位于 Cookie 中 bili_jct) | 必要   |      |
+
+**正文参数(application/json):**
+
+绝大部分参数与上传一致，部分参数只有不对编辑生效
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| aid    | num  | 视频 ID  | 必要   |      |
+| videos | array | 视频信息 | 必要   | 若为分 P 视频, 请注意数组元素顺序 |
+| title  | str  | 视频标题 | 必要   | 最多 80 字 |
+| cover  | str  | 视频封面 URL | 非必要   | 如果不传会自动取封面，参见[上传视频封面](#上传视频封面) |
+| cover43 | str  | 视频封面 URL (比例为 4:3) | 非必要   | 可为空 |
+| copyright | num  | 1: 自制<br />2: 转载 | 必要   |      |
+| tid    | num  | 分区 ID | 必要   |      |
+| tag    | str  | 视频标签 | 必要   | 多个标签用 `,` 分隔, 最多 10 个 |
+| desc_format_id | num  | 简介格式 ID? | 必要   | 9999: 纯文本 |
+| desc   | str  | 视频简介 | 非必要   | 最多 2000 字 |
+| desc_v2   | str  | 视频简介额外信息 | 非必要   | 比如有艾特操作时传递，见上传视频 |
+| recreate | num  | 是否允许二创 | 必要   | -1: 允许(默认)<br />1: 不允许 |
+| dynamic | str  | 粉丝动态 | 必要   |      |
+| interactive | num  | 互动视频? | 必要   | 0: 否 |
+| act_reserve_create | num  | 活动预约? | 必要   | 0: 否 |
+| no_disturbance | num  | 是否推送到动态 | 必要   | 0：不推送<br />1：推送 |
+| no_reprint | num  | 是否允许转载 | 必要   | 1: 允许<br />0: 不允许 |
+| subtitle | obj | 字幕信息 | 必要   |      |
+| web_os | num  | 操作系统 | 必要   | 1: Web |
+| mission_id | num  | 任务 ID | 非必要   | 0: 无 |
+| csrf   | str  | CSRF Token (位于 Cookie 中 bili_jct) | 必要   |      |
+| new_web_edit | num  | 未知 | 非必要   | 未知 |
+| is_360 | num | 是否全景 | 非必要 | -1：非全景<br/>1：全景 |
+| is_only_self | 可见性 | 非必要 | 0：公开<br/>1：仅自己可见 |
+
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| data    | obj  | 信息本体 |       |
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "aid": 123456,
+    "bvid": "BV1xx411c7mD"
+  }
+}
+```
+
+</details>
+
+## 获取新分区ID
+
+> https://member.bilibili.com/x/vupre/web/archive/human/type2/list
+
+*请求方式: GET*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| t      | num  | 当前时间 | 非必要   | UNIX 毫秒时间戳 |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| type_list    | array  | 信息本体 |       |
+
+`type_list` 对象:
+
+| 参数名 | 类型 | 内容     |  备注 |
+| ------ | ---- | -------- |  ---- |
+| id | num  | 分区ID |   |
+| name | str  | 分区名 |   |
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "type_list": [
+      {
+          "id": 1001,
+          "name": "影视"
+      },
+      {
+          "id": 1002,
+          "name": "娱乐"
+      },
+      {
+          "id": 1003,
+          "name": "音乐"
+      },
+      {
+          "id": 1004,
+          "name": "舞蹈"
+      },
+      {
+          "id": 1005,
+          "name": "动画"
+      },
+      {
+          "id": 1006,
+          "name": "绘画"
+      },
+      {
+          "id": 1007,
+          "name": "鬼畜"
+      },
+      {
+          "id": 1008,
+          "name": "游戏"
+      },
+      {
+          "id": 1009,
+          "name": "资讯"
+      },
+      {
+          "id": 1010,
+          "name": "知识"
+      },
+      {
+          "id": 1011,
+          "name": "人工智能"
+      },
+      {
+          "id": 1012,
+          "name": "科技数码"
+      },
+      {
+          "id": 1013,
+          "name": "汽车"
+      },
+      {
+          "id": 1014,
+          "name": "时尚美妆"
+      },
+      {
+          "id": 1015,
+          "name": "家装房产"
+      },
+      {
+          "id": 1016,
+          "name": "户外潮流"
+      },
+      {
+          "id": 1017,
+          "name": "健身"
+      },
+      {
+          "id": 1018,
+          "name": "体育运动"
+      },
+      {
+          "id": 1019,
+          "name": "手工"
+      },
+      {
+          "id": 1020,
+          "name": "美食"
+      },
+      {
+          "id": 1021,
+          "name": "小剧场"
+      },
+      {
+          "id": 1022,
+          "name": "旅游出行"
+      },
+      {
+          "id": 1023,
+          "name": "三农"
+      },
+      {
+          "id": 1024,
+          "name": "动物"
+      },
+      {
+          "id": 1025,
+          "name": "亲子"
+      },
+      {
+          "id": 1026,
+          "name": "健康"
+      },
+      {
+          "id": 1027,
+          "name": "情感"
+      },
+      {
+          "id": 1029,
+          "name": "vlog"
+      },
+      {
+          "id": 1030,
+          "name": "生活兴趣"
+      },
+      {
+          "id": 1031,
+          "name": "生活经验"
+      }
+    ]
   }
 }
 ```

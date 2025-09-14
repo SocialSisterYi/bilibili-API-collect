@@ -916,3 +916,173 @@ curl -G --url 'https://member.bilibili.com/x2/creative/web/season/section' \
 
 </details>
 
+## 编辑投稿视频合集
+
+> https://member.bilibili.com/x2/creative/web/season/switch
+*请求方式: POST*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| t      | num  | 当前时间 | 非必要 | UNIX 毫秒时间戳 |
+| csrf   | str  | CSRF Token (位于 Cookie 中 bili_jct) | 必要   |      |
+
+**正文参数(application/json):**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| aid    | num  | 视频 ID  | 必要   |      |
+| season_id | num  | null | 合集 ID | 必要   | null 表示从合集中移除 |
+| section_id | num | null | 小节 ID | 必要   | null 表示从小节中移除 |
+| title  | str  | 视频标题 | 必要   |      |
+| csrf   | str  | CSRF Token (位于 Cookie 中 bili_jct) | 非必要   |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| season_id    | num  | null  |    |  |
+| section_id | num  | null  |  |  |
+| title     | str   | 标题        |       |
+| aid     | num     | aid        |       |
+| csrf     | num  | CSRF Token (位于 Cookie 中 bili_jct)        |       |
+
+**示例:**
+
+```shell
+curl -X POST "https://member.bilibili.com/x2/creative/web/season/switch" \
+--url-query "csrf=xxxxxxxxxxxx" \
+-H "Content-Type: application/json" \
+--data '{
+  "aid": 123456,
+  "season_id": 654321,
+  "section_id": 789012,
+  "title": "新视频标题"
+}' \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "season_id": null,
+  "section_id": null,
+  "title": "标题",
+  "aid": 123,
+  "csrf": "eqweeqw"
+}
+```
+
+</details>
+
+## aid反查合集id
+
+> https://member.bilibili.com/x2/creative/web/season/aid
+*请求方式: GET*
+
+认证方式：Cookie(SESSDATA)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容     | 必要性 | 备注 |
+| ------ | ---- | -------- | ------ | ---- |
+| id     | num  | 视频 aid  | 必要   |      |
+
+**JSON回复:**
+
+根对象:
+
+| 字段    | 类型 | 内容     | 备注  |
+| ------- | ---- | -------- | ----- |
+| code    | num  | 返回值   | 0: 成功<br />其他: 失败 |
+| message | str  | 错误信息 | 默认为 0 |
+| ttl     | num  | 1        |       |
+| data    | obj  | 信息本体 |       |
+
+
+
+`data` 对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| season | obj | 合集信息 |      |
+
+
+`season` 对象:
+
+| 字段 | 类型 | 内容     | 备注 |
+| ---- | ---- | -------- | ---- |
+| id   | num  | 合集 ID  |      |
+| title | str | 合集标题 |      |
+| cover | str | 合集封面 URL |  |
+| desc | str | 合集描述 |  |
+| isEnd | num | 是否已完结 | 0: 未完结<br />1: 已完结 |
+| mid | num | 合集作者 ID |  |
+| isAct | num | 是否为活动合集 | 0: 否<br />1: 是 |
+| is_pay | num | 是否付费 | 0: 否<br />1: 是 |
+| state | num | 合集状态 | 0: 正常显示<br />-6: 正在审核 |
+| partState | num | 合集分段状态 | 0: 正常 |
+| signState | num | 合集签名状态 | 0: 正常 |
+| rejectReason | str | 合集拒绝原因 |  |
+| ctime | num | 创建时间 | UNIX 时间戳 |
+| mtime | num | 修改时间 | UNIX 时间戳 |
+| no_section | num | 是否设小节 | 1: 不设小节 |
+| forbid | num | 合集是否禁止 | 0: 否<br />1: 是 |
+| protocol_id | str | 协议 ID |  |
+| ep_num | num | 视频数量 |  |
+| season_price | num | 合集价格 | 0: 免费 |
+| is_opened | num | 是否公开 | 1: 公开<br />0: 不公开 |
+| has_charging_pay | num | 是否充电付费 | 0: 否<br />1: 是 |
+| has_pugv_pay | num | 是否 PUGV 付费 | 0: 否<br />1: 是 |
+
+**示例:**
+
+```shell
+curl -G "https://member.bilibili.com/x2/creative/web/season/aid" \
+--data-urlencode "id=123456" \
+-b "SESSDATA=xxxxxxxxxxx"
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "id": 12,
+    "title": "合集标题",
+    "desc": "",
+    "cover": "",
+    "isEnd": 0,
+    "mid": 123,
+    "isAct": 0,
+    "is_pay": 0,
+    "state": 0,
+    "partState": 0,
+    "signState": 0,
+    "rejectReason": "",
+    "ctime": 1667232000,
+    "mtime": 1667232000,
+    "no_section": 1,
+    "forbid": 0,
+    "protocol_id": "",
+    "ep_num": 0,
+    "season_price": 0,
+    "is_opened": 1,
+    "has_charging_pay": 0,
+    "has_pugv_pay": 0
+  }
+}
+```
+
+</details>

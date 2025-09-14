@@ -37,7 +37,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 
 小小的 Demo：~~av583785685~~ [视频失效原因](https://shakaianee.top/archives/56/) ([Youtube 备链](https://www.youtube.com/watch?v=nfF91Z6fqGk))
 
-::: warning ⚠️声明
+::: warning 声明
 
 1. 本项目遵守 CC-BY-NC 4.0 协议，禁止一切商业使用，如需转载请注明作者 ID
 2. **请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！请勿滥用，本项目仅用于学习和测试！**
@@ -74,6 +74,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [获取当前时间戳](docs/misc/time_stamp.md)
     - [x] [公共错误码](docs/misc/errcode.md)
     - [x] [图片格式化](docs/misc/picture.md)
+    - [x] [表达式渲染](docs/misc/mathjax.md)
     - [x] [bvid 说明](docs/misc/bvid_desc.md)
     - [ ] [设备唯一标识 BUVID](docs/misc/device_identity.md)
     - [ ] [获取 buvid3 / buvid4 / b_nut](docs/misc/buvid3_4.md)
@@ -105,6 +106,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [用户认证类型一览](docs/user/official_role.md)
     - [ ] [加入老粉计划](docs/user/contract.md)
     - [x] [所有粉丝勋章](docs/user/medals.md)
+    - [ ] [批量查询](docs/user/batch.md)
 - [ ] [大会员](docs/vip)
     - [ ] [大会员基本信息](docs/vip/info.md)
     - [ ] [大会员中心](docs/vip/center.md)
@@ -153,12 +155,41 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [笔记列表](docs/note/list.md)
     - [x] [笔记详细信息](docs/note/info.md)
     - [x] [笔记操作](docs/note/action.md)
+- [ ] [图文](docs/opus)
+    - [x] [图文详细](docs/opus/detail.md)
+    - [x] [空间图文](docs/opus/space.md)
+    - [ ] [功能模块](docs/opus/features.md)
+    - [ ] [富文本节点](docs/opus/rich_text_nodes.md)
 - [ ] [专栏](docs/article)
+    - [ ] [专栏内容](docs/article/view.md)
     - [ ] [专栏分类](docs/article/category.md)
-    - [x] [基本信息](docs/article/info.md)
-    - [x] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
-    - [x] [文集基本信息](docs/article/articles.md)
-    - [x] [删除](docs/article/delete.md)
+    - [x] [卡片信息](docs/article/card.md)
+    - [X] [基本信息](docs/article/info.md)
+    - [X] [点赞 & 投币 & 收藏 & 分享](docs/article/action.md)
+    - [X] [文集基本信息](docs/article/articles.md)
+- [ ] [动态](docs/dynamic)
+    - [ ] [获取动态列表](docs/dynamic/all.md)
+    - [ ] [用户空间动态](docs/dynamic/space.md)
+    - [ ] [动态基本信息](docs/dynamic/basicInfo.md)
+    - [ ] [动态卡片信息字段](docs/dynamic/card_info.md)
+    - [ ] [获取动态详情](docs/dynamic/detail.md)
+    - [ ] [动态类型对照](docs/dynamic/dynamic_enum.md)
+    - [ ] [动态信息](docs/dynamic/content.md)
+    - [ ] [发送 & 转载动态](docs/dynamic/publish.md)
+    - [ ] [根据关键字搜索用户（at 别人时的填充列表）](docs/dynamic/atlist.md)
+    - [ ] [操作](docs/dynamic/action.md)
+    - [ ] [话题](docs/dynamic/topic.md)
+    - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
+    - [ ] [导航栏动态](docs/dynamic/nav.md)
+    - [x] [首页公告栏](docs/dynamic/banner.md)
+- [ ] [创作中心](docs/creativecenter)
+    - [ ] [投稿](docs/creativecenter/upload.md)
+    - [ ] [统计与数据](docs/creativecenter/statistics&data.md)
+    - [ ] 列表查询相关
+    - [x] [电磁力数据](docs/creativecenter/railgun.md)
+    - [ ] [合集管理](docs/creativecenter/season.md)
+    - [ ] [视频相关杂项](docs/creativecenter/videos.md)
+    - [ ] [图文操作](docs/creativecenter/opus.md)
 - [ ] [音频](docs/audio)
     - [x] [歌曲基本信息](docs/audio/info.md)
     - [ ] [歌单 & 音频收藏夹详细信息](docs/audio/music_list.md)
@@ -189,13 +220,6 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
 - [ ] [表情](docs/emoji)
     - [x] [表情及表情包信息](docs/emoji/list.md)
     - [x] [操作](docs/emoji/action.md)
-- [ ] [创作中心](docs/creativecenter)
-    - [ ] [投稿](docs/creativecenter/upload.md)
-    - [ ] [统计与数据](docs/creativecenter/statistics&data.md)
-    - [ ] 列表查询相关
-    - [x] [电磁力数据](docs/creativecenter/railgun.md)
-    - [ ] [合集管理](docs/creativecenter/season.md)
-    - [ ] [视频相关杂项](docs/creativecenter/videos.md)
 - [x] [实时广播（通讯协议）](docs/broadcast)
     - [x] [视频内广播](docs/broadcast/video_room.md)
 - [ ] [充电](docs/electric)
@@ -205,22 +229,6 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [微信 & 支付宝方式充电](docs/electric/WeChat&Alipay.md)
     - [x] [充电留言](docs/electric/charge_msg.md)
   - [x] [充电列表](docs/electric/charge_list.md)
-- [ ] [动态](docs/dynamic)
-    - [ ] [获取动态列表](docs/dynamic/all.md)
-    - [ ] [获取用户空间动态](docs/dynamic/space.md)
-    - [ ] [动态基本信息](docs/dynamic/basicInfo.md)
-    - [ ] [动态详细信息字段](docs/dynamic/card_info.md)
-    - [ ] [获取动态详情](docs/dynamic/detail.md)
-    - [ ] [动态类型对照](docs/dynamic/dynamic_enum.md)
-    - [ ] [动态信息](docs/dynamic/content.md)
-    - [ ] [话题搜索](docs/dynamic/topic.md)
-    - [ ] [发送 & 转载动态](docs/dynamic/publish.md)
-    - [ ] [根据关键字搜索用户（at 别人时的填充列表）](docs/dynamic/atlist.md)
-    - [ ] [操作](docs/dynamic/action.md)
-    - [ ] 动态列表
-        - [x] [特定话题动态列表](docs/dynamic/tag_dynamics.md)
-    - [ ] [动态内容](docs/dynamic/get_dynamic_detail.md)
-    - [ ] [导航栏动态](docs/dynamic/nav.md)
 - [ ] ~~[相簿](docs/album)~~ (已下线)
     - [x] ~~[基本信息](docs/album/info.md)~~
     - [x] ~~[相簿列表](docs/album/list.md)~~
@@ -257,6 +265,9 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [ ] [直播心跳上报](docs/live/report.md)
     - [ ] [直播间弹幕](docs/live/danmaku.md)
     - [ ] [直播流水](docs/live/live_bill.md)
+    - [ ] [礼物相关](docs/live/gift.md)
+    - [ ] [大航海/粉丝团](docs/live/guard.md)
+    - [ ] [直播回放](docs/live/live_replay.md)
 - [ ] [活动](docs/activity)
     - [ ] [活动列表](docs/activity/list.md)
     - [ ] [活动主题信息](docs/activity/info.md)
@@ -292,6 +303,7 @@ B站 API 采用 C/S 结构，大多数接口为 REST API 和 gRPC，少部分接
     - [x] [分区当日投稿数](docs/web_widget/zone_upload.md)
     - [x] [404 页漫画收集](docs/web_widget/404_manga.md)
     - [ ] [首页横幅头图](docs/web_widget/header.md)
+    - [ ] [分区横幅轮播图](docs/web_widget/banner.md)
 - [ ] [APP 端组件](docs/APP_widget)
     - [x] [开屏图片 + 恰饭珍贵录像](docs/APP_widget/splash.md)
     - [ ] [获取最新 APP 版本](docs/APP_widget/ver.md)
@@ -390,9 +402,3 @@ OR Aifadian：[https://afdian.com/@ShakaiAneE](https://afdian.com/@ShakaiAneE)
 - [grpc/grpc](https://github.com/grpc/grpc): The C based gRPC (C++, Python, Ruby, Objective-C, PHP, C#)
 - [glideapps/quicktype](https://github.com/glideapps/quicktype): quicktype generates strongly-typed models and serializers from JSON, JSON Schema, TypeScript, and GraphQL queries, making it a breeze to work with JSON type-safely in many programming languages. 一键生成多种语言的JSON反序列化所需类，以便于快速反序列化，有网页版
 - [SessionHu/json-apidoc-gen](https://github.com/SessionHu/json-apidoc-gen): Simple CLI tool for generating BAC document template
-
-<style scoped>
-  .shields a {
-    margin: auto .5em;
-  }
-</style>

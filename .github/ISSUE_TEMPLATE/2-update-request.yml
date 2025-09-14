@@ -8,7 +8,7 @@ body:
     attributes:
       label: "提交前请确认"
       options:
-        - label: "我已确认文档中相关内容存在错误或不足，且 Issues、Pull Requests 中无相关提交"
+        - label: "我已阅读贡献指南, 已确认文档中相关内容存在错误或不足，且 Issues、Pull Requests 中无相关提交"
           required: true
   - type: input
     id: document_link

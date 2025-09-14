@@ -2135,6 +2135,7 @@ curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/dM/gethistory' \
 | ptype    | num | `8`   |     |                                                |
 | dolby    | num | `5`   |     |                                                |
 | panorama | num | `1`   |     |                                                |
+| only_audio | num | 是否为音频流 | 非必要 | 默认为视频流，`1` 为音频流               |
 
 **json回复：**
 
