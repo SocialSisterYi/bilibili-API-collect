@@ -12,7 +12,7 @@
 | DYNAMIC_TYPE_WORD | 纯文字动态 |动态本身id|17|| [718377531474968613](https://t.bilibili.com/718377531474968613) |
 | DYNAMIC_TYPE_DRAW | 带图动态 |相簿id|11|相簿id| [718384798557536290](https://t.bilibili.com/718384798557536290) |
 | DYNAMIC_TYPE_ARTICLE | 投稿专栏 |专栏cv号|12|专栏cv号| [718372214316990512](https://t.bilibili.com/718372214316990512) |
-| DYNAMIC_TYPE_MUSIC | 音乐 ||| ||
+| DYNAMIC_TYPE_MUSIC | 音乐 | 音频au号 | 14 | 音频au号 | [128788657410273954](https://t.bilibili.com/128788657410273954) |
 | DYNAMIC_TYPE_COMMON_SQUARE | 装扮<br/>剧集点评<br/>普通分享 ||17|| [551309621391003098](https://t.bilibili.com/551309621391003098)<br/>[716503778995470375](https://t.bilibili.com/716503778995470375)<br/>[716481612656672789](https://t.bilibili.com/716481612656672789) |
 | DYNAMIC_TYPE_COMMON_VERTICAL | ||| ||
 | DYNAMIC_TYPE_LIVE | 直播间分享 |动态本身id||直播间id| [216042859353895488](https://t.bilibili.com/216042859353895488) |
