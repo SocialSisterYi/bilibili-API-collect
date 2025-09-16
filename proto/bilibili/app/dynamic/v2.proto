@@ -1,0 +1,7508 @@
+syntax = "proto3";
+
+package bilibili.app.dynamic.v2;
+
+import "bilibili/account/service/v1.proto";
+import "bilibili/app/archive/middleware/v1.proto";
+import "bilibili/app/dynamic/common.proto";
+import "bilibili/dagw/component/avatar/v1.proto";
+import "bilibili/pagination.proto";
+import "bilibili/vas/garb/service.proto";
+import "google/protobuf/any.proto";
+
+// 
+service Campus {
+    // 
+    rpc WaterFlowRcmd (WaterFlowRcmdReq) returns (WaterFlowRcmdResp);
+}
+
+// 
+service Dynamic {
+    // 
+    rpc AlumniDynamics (AlumniDynamicsReq) returns (AlumniDynamicsReply);
+    // 
+    rpc CampusBillboard (CampusBillBoardReq) returns (CampusBillBoardReply);
+    // 
+    rpc CampusBillboardInternal (CampusBillboardInternalReq) returns (CampusBillBoardReply);
+    // 
+    rpc CampusEntryTab (CampusEntryTabReq) returns (CampusEntryTabResp);
+    // 
+    rpc CampusFeedback (CampusFeedbackReq) returns (CampusFeedbackReply);
+    // 
+    rpc CampusHomePages (CampusHomePagesReq) returns (CampusHomePagesReply);
+    // 
+    rpc CampusMateLikeList (CampusMateLikeListReq) returns (CampusMateLikeListReply);
+    // 
+    rpc CampusMngDetail (CampusMngDetailReq) returns (CampusMngDetailReply);
+    // 
+    rpc CampusMngQuizOperate (CampusMngQuizOperateReq) returns (CampusMngQuizOperateReply);
+    // 
+    rpc CampusMngSubmit (CampusMngSubmitReq) returns (CampusMngSubmitReply);
+    // 
+    rpc CampusRcmd (CampusRcmdReq) returns (CampusRcmdReply);
+    // 
+    rpc CampusRcmdFeed (CampusRcmdFeedReq) returns (CampusRcmdFeedReply);
+    // 
+    rpc CampusRecommend (CampusRecommendReq) returns (CampusRecommendReply);
+    // 
+    rpc CampusRedDot (CampusRedDotReq) returns (CampusRedDotReply);
+    // 
+    rpc CampusSquare (CampusSquareReq) returns (CampusSquareReply);
+    // 
+    rpc CampusTopicRcmdFeed (CampusTopicRcmdFeedReq) returns (CampusTopicRcmdFeedReply);
+    // 
+    rpc CooperationStaffList (CooperationStaffListReq) returns (CooperationStaffListResp);
+    // 
+    rpc DynAdditionCommonFollow (DynAdditionCommonFollowReq) returns (DynAdditionCommonFollowReply);
+    // 
+    rpc DynAll (DynAllReq) returns (DynAllReply);
+    // 
+    rpc DynAllPersonal (DynAllPersonalReq) returns (DynAllPersonalReply);
+    // 
+    rpc DynAllUpdOffset (DynAllUpdOffsetReq) returns (NoReply);
+    // 
+    rpc DynDetail (DynDetailReq) returns (DynDetailReply);
+    // 
+    rpc DynDetails (DynDetailsReq) returns (DynDetailsReply);
+    // 
+    rpc DynFakeCard (DynFakeCardReq) returns (DynFakeCardReply);
+    // 
+    rpc DynFriend (DynFriendReq) returns (DynFriendReply);
+    // 
+    rpc DynLight (DynLightReq) returns (DynLightReply);
+    // 
+    rpc DynMixUpListSearch (DynMixUpListSearchReq) returns (DynMixUpListSearchReply);
+    // 
+    rpc DynMixUpListViewMore (DynMixUpListViewMoreReq) returns (DynMixUpListViewMoreReply);
+    // 
+    rpc DynRcmdUpExchange (DynRcmdUpExchangeReq) returns (DynRcmdUpExchangeReply);
+    // 
+    rpc DynSearch (DynSearchReq) returns (DynSearchReply);
+    // 
+    rpc DynServerDetails (DynServerDetailsReq) returns (DynServerDetailsReply);
+    // 
+    rpc DynSpace (DynSpaceReq) returns (DynSpaceRsp);
+    // 
+    rpc DynSpaceSearchDetails (DynSpaceSearchDetailsReq) returns (DynSpaceSearchDetailsReply);
+    // 
+    rpc DynTab (DynTabReq) returns (DynTabReply);
+    // 
+    rpc DynThumb (DynThumbReq) returns (NoReply);
+    // 
+    rpc DynUnLoginRcmd (DynRcmdReq) returns (DynRcmdReply);
+    // 
+    rpc DynVideo (DynVideoReq) returns (DynVideoReply);
+    // 
+    rpc DynVideoPersonal (DynVideoPersonalReq) returns (DynVideoPersonalReply);
+    // 
+    rpc DynVideoUpdOffset (DynVideoUpdOffsetReq) returns (NoReply);
+    // 
+    rpc DynVote (DynVoteReq) returns (DynVoteReply);
+    // 
+    rpc FeedFilter (FeedFilterReq) returns (FeedFilterReply);
+    // 
+    rpc FetchTabSetting (NoReq) returns (FetchTabSettingReply);
+    // 
+    rpc HomeSubscribe (HomeSubscribeReq) returns (HomeSubscribeReply);
+    // 
+    rpc LbsPoi (LbsPoiReq) returns (LbsPoiReply);
+    // 
+    rpc LegacyTopicFeed (LegacyTopicFeedReq) returns (LegacyTopicFeedReply);
+    // 
+    rpc LikeList (LikeListReq) returns (LikeListReply);
+    // 
+    rpc OfficialAccounts (OfficialAccountsReq) returns (OfficialAccountsReply);
+    // 
+    rpc OfficialDynamics (OfficialDynamicsReq) returns (OfficialDynamicsReply);
+    // 
+    rpc QuickConsumeMoreAvatarList (QuickConsumeMoreAvatarListReq) returns (QuickConsumeMoreAvatarListReply);
+    // 
+    rpc ReactionList (ReactionListReq) returns (ReactionListReply);
+    // 
+    rpc RepostList (RepostListReq) returns (RepostListRsp);
+    // 
+    rpc SchoolRecommend (SchoolRecommendReq) returns (SchoolRecommendReply);
+    // 
+    rpc SchoolSearch (SchoolSearchReq) returns (SchoolSearchReply);
+    // 
+    rpc SetDecision (SetDecisionReq) returns (NoReply);
+    // 
+    rpc SetRecentCampus (SetRecentCampusReq) returns (NoReply);
+    // 
+    rpc SubscribeCampus (SubscribeCampusReq) returns (NoReply);
+    // 
+    rpc SubscriptionClick (SubscriptionClickReq) returns (SubscriptionClickResp);
+    // 
+    rpc TopicList (TopicListReq) returns (TopicListReply);
+    // 
+    rpc TopicSquare (TopicSquareReq) returns (TopicSquareReply);
+    // 
+    rpc UnfollowMatch (UnfollowMatchReq) returns (NoReply);
+    // 
+    rpc UpdateTabSetting (UpdateTabSettingReq) returns (NoReply);
+}
+
+// 
+service Opus {
+    // 
+    rpc ListCreation (ListCreationReq) returns (ListCreationResp);
+    // 
+    rpc ListFav (ListFavReq) returns (ListFavResp);
+    // 
+    rpc OpusCollectionDetail (OpusCollectionDetailReq) returns (OpusCollectionDetailResp);
+    // 
+    rpc OpusDetail (OpusDetailReq) returns (OpusDetailResp);
+    // 
+    rpc OpusSpaceFlow (OpusSpaceFlowReq) returns (OpusSpaceFlowResp);
+    // 
+    rpc SignResources (SignResourcesReq) returns (SignResourcesResp);
+}
+
+// 
+message AdParam {
+    // 
+    string ad_extra = 1;
+    // 
+    string request_id = 2;
+}
+
+// 
+enum AddButtonBgStyle {
+    // 
+    fill = 0;
+    // 
+    stroke = 1;
+    // 
+    gray = 2;
+}
+
+// 
+enum AddButtonType {
+    // 
+    bt_none = 0;
+    // 
+    bt_jump = 1;
+    // 
+    bt_button = 2;
+}
+
+// 
+message AdditionArticle {
+    // 
+    string title = 1;
+    // 
+    MdlDynDrawItem cover = 2;
+    // 
+    string desc_text_left = 3;
+    // 
+    string desc_text_right = 4;
+    // 
+    string uri = 5;
+    // 
+    string card_type = 6;
+}
+
+// 
+message AdditionCommon {
+    // 
+    string head_text = 1;
+    // 
+    string title = 2;
+    // 
+    string image_url = 3;
+    // 
+    string desc_text1 = 4;
+    // 
+    string desc_text2 = 5;
+    // 
+    string url = 6;
+    // 
+    AdditionalButton button = 7;
+    // 
+    string head_icon = 8;
+    // 
+    ImageStyle style = 9;
+    // 
+    string type = 10;
+    // 
+    string card_type = 11;
+}
+
+// 
+message AdditionEsport {
+    // 
+    oneof item {
+        // 
+        AdditionEsportMoba addition_esport_moba = 2;
+    }
+    // 
+    EspaceStyle style = 1;
+    // 
+    string type = 3;
+    // 
+    string card_type = 4;
+}
+
+// 
+message AdditionEsportMoba {
+    // 
+    string head_text = 1;
+    // 
+    string title = 2;
+    // 
+    repeated MatchTeam match_team = 3;
+    // 
+    AdditionEsportMobaStatus addition_esport_moba_status = 4;
+    // 
+    string uri = 5;
+    // 
+    AdditionalButton button = 6;
+    // 
+    string sub_title = 7;
+    // 
+    string type = 10;
+    // 
+    string card_type = 11;
+    // 
+    string head_icon = 12;
+}
+
+// 
+message AdditionEsportMobaStatus {
+    // 
+    repeated AdditionEsportMobaStatusDesc addition_esport_moba_status_desc = 1;
+    // 
+    string title = 2;
+    // 
+    int32 status = 3;
+    // 
+    string color = 4;
+    // 
+    string night_color = 5;
+}
+
+// 
+message AdditionEsportMobaStatusDesc {
+    // 
+    string title = 1;
+    // 
+    string color = 2;
+    // 
+    string night_color = 3;
+}
+
+// 
+message AdditionGoods {
+    // 
+    string rcmd_desc = 1;
+    // 
+    repeated GoodsItem goods_items = 2;
+    // 
+    string card_type = 3;
+    // 
+    string icon = 4;
+    // 
+    string uri = 5;
+    // 
+    int32 source_type = 6;
+    // 
+    GoodsJumpType jump_type = 7;
+    // 
+    string app_name = 8;
+    // 
+    string ad_mark_icon = 9;
+}
+
+// 
+message AdditionLiveRoom {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    VideoBadge badge = 3;
+    // 
+    CoverIconWithText desc_text_upper = 4;
+    // 
+    string desc_text_lower = 5;
+    // 
+    string uri = 6;
+    // 
+    string card_type = 7;
+}
+
+// 
+message AdditionMusic {
+    // 
+    MdlDynMusic music_card = 1;
+    // 
+    string card_type = 2;
+}
+
+// 
+message AdditionUP {
+    // 
+    string title = 1;
+    // 
+    HighlightText desc_text1 = 2;
+    // 
+    string desc_text2 = 3;
+    // 
+    string url = 4;
+    // 
+    AdditionalButton button = 5;
+    // 
+    string card_type = 6;
+    // 
+    int64 reserve_total = 7;
+    // 
+    AdditionalActSkin act_skin = 8;
+    // 
+    int64 rid = 9;
+    // 
+    ReserveRelationLotteryType lottery_type = 10;
+    // 
+    HighlightText desc_text3 = 11;
+    // 
+    int64 up_mid = 12;
+    // 
+    AdditionUserInfo user_info = 13;
+    // 
+    string dynamic_id = 14;
+    // 
+    bool show_text2 = 15;
+    // 
+    int64 dyn_type = 16;
+    // 
+    string business_id = 17;
+    // 
+    string badge_text = 18;
+    // 
+    bool is_premiere = 19;
+}
+
+// 
+message AdditionUgc {
+    // 
+    string head_text = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    string desc_text1 = 4;
+    // 
+    string desc_text2 = 5;
+    // 
+    string uri = 6;
+    // 
+    string duration = 7;
+    // 
+    bool line_feed = 8;
+    // 
+    string card_type = 9;
+}
+
+// 
+message AdditionUserInfo {
+    // 
+    string name = 1;
+    // 
+    string face = 2;
+}
+
+// 
+message AdditionVote {
+    // 
+    string image_url = 1;
+    // 
+    string title = 2;
+    // 
+    string text1 = 3;
+    // 
+    string button_text = 4;
+    // 
+    string url = 5;
+}
+
+// 
+message AdditionVote2 {
+    // 
+    oneof item {
+        // 
+        AdditionVoteWord addition_vote_word = 10;
+        // 
+        AdditionVotePic addition_vote_pic = 11;
+        // 
+        AdditionVoteDefaule addition_vote_defaule = 12;
+    }
+    // 
+    AdditionVoteType addition_vote_type = 1;
+    // 
+    int64 vote_id = 2;
+    // 
+    string title = 3;
+    // 
+    string label = 4;
+    // 
+    int64 deadline = 5;
+    // 
+    string open_text = 6;
+    // 
+    string close_text = 7;
+    // 
+    string voted_text = 8;
+    // 
+    AdditionVoteState state = 9;
+    // 
+    int32 biz_type = 13;
+    // 
+    int64 total = 14;
+    // 
+    string card_type = 15;
+    // 
+    string tips = 16;
+    // 
+    string uri = 17;
+    // 
+    bool is_voted = 18;
+    // 
+    int32 choice_cnt = 19;
+    // 
+    bool defaule_select_share = 20;
+    // 
+    OnlyFansVoteProperty only_fans_vote = 21;
+    // 
+    int64 vote_owner_mid = 22;
+}
+
+// 
+message AdditionVoteDefaule {
+    // 
+    repeated string cover = 1;
+}
+
+// 
+message AdditionVotePic {
+    // 
+    repeated AdditionVotePicItem item = 1;
+}
+
+// 
+message AdditionVotePicItem {
+    // 
+    int32 opt_idx = 1;
+    // 
+    string cover = 2;
+    // 
+    bool is_vote = 3;
+    // 
+    int32 total = 4;
+    // 
+    double persent = 5;
+    // 
+    string title = 6;
+    // 
+    bool is_max_option = 7;
+}
+
+// 
+enum AdditionVoteState {
+    // 
+    addition_vote_state_none = 0;
+    // 
+    addition_vote_state_open = 1;
+    // 
+    addition_vote_state_close = 2;
+}
+
+// 
+enum AdditionVoteType {
+    // 
+    addition_vote_type_none = 0;
+    // 
+    addition_vote_type_word = 1;
+    // 
+    addition_vote_type_pic = 2;
+    // 
+    addition_vote_type_default = 3;
+}
+
+// 
+message AdditionVoteWord {
+    // 
+    repeated AdditionVoteWordItem item = 1;
+}
+
+// 
+message AdditionVoteWordItem {
+    // 
+    int32 opt_idx = 1;
+    // 
+    string title = 2;
+    // 
+    bool is_vote = 3;
+    // 
+    int32 total = 4;
+    // 
+    double persent = 5;
+    // 
+    bool is_max_option = 6;
+}
+
+// 
+message AdditionalActSkin {
+    // 
+    string svga = 1;
+    // 
+    string last_image = 2;
+    // 
+    int64 play_times = 3;
+}
+
+// 
+message AdditionalButton {
+    // 
+    AddButtonType type = 1;
+    // 
+    AdditionalButtonStyle jump_style = 2;
+    // 
+    string jump_url = 3;
+    // 
+    AdditionalButtonStyle uncheck = 4;
+    // 
+    AdditionalButtonStyle check = 5;
+    // 
+    AdditionalButtonStatus status = 6;
+    // 
+    AdditionalButtonClickType click_type = 7;
+}
+
+// 
+enum AdditionalButtonClickType {
+    // 
+    click_none = 0;
+    // 
+    click_up = 1;
+}
+
+// 
+message AdditionalButtonInteractive {
+    // 
+    string popups = 1;
+    // 
+    string confirm = 2;
+    // 
+    string cancel = 3;
+    // 
+    string desc = 4;
+}
+
+// 
+message AdditionalButtonShare {
+    // 
+    AdditionalShareShowType show = 1;
+    // 
+    string icon = 2;
+    // 
+    string text = 3;
+}
+
+// 
+enum AdditionalButtonStatus {
+    // 
+    none = 0;
+    // 
+    uncheck = 1;
+    // 
+    check = 2;
+}
+
+// 
+message AdditionalButtonStyle {
+    // 
+    string icon = 1;
+    // 
+    string text = 2;
+    // 
+    AdditionalButtonInteractive interactive = 3;
+    // 
+    AddButtonBgStyle bg_style = 4;
+    // 
+    string toast = 5;
+    // 
+    DisableState disable = 6;
+    // 
+    AdditionalButtonShare share = 7;
+}
+
+// 
+message AdditionalPGC {
+    // 
+    string head_text = 1;
+    // 
+    string title = 2;
+    // 
+    string image_url = 3;
+    // 
+    string desc_text1 = 4;
+    // 
+    string desc_text2 = 5;
+    // 
+    string url = 6;
+    // 
+    AdditionalButton button = 7;
+    // 
+    string head_icon = 8;
+    // 
+    ImageStyle style = 9;
+    // 
+    string type = 10;
+}
+
+// 
+enum AdditionalShareShowType {
+    // 
+    st_none = 0;
+    // 
+    st_show = 1;
+}
+
+// 
+enum AdditionalType {
+    // 
+    additional_none = 0;
+    // 
+    additional_type_pgc = 1;
+    // 
+    additional_type_goods = 2;
+    // 
+    additional_type_vote = 3;
+    // 
+    additional_type_common = 4;
+    // 
+    additional_type_esport = 5;
+    // 
+    additional_type_up_rcmd = 6;
+    // 
+    additional_type_ugc = 7;
+    // 
+    additional_type_up_reservation = 8;
+    // 
+    additional_type_article = 9;
+    // 
+    additional_type_live_room = 10;
+    // 
+    additional_type_music = 11;
+}
+
+// 
+message AlumniDynamicsReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string toast = 2;
+}
+
+// 
+message AlumniDynamicsReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    int32 first_time = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    int32 local_time = 4;
+    // 
+    int32 page = 5;
+    // 
+    CampusReqFromType from_type = 6;
+}
+
+// 
+message AuthorBadge {
+    // 
+    AuthorBadgeStyle badge_style = 1;
+    // 
+    IconBadge badge = 2;
+}
+
+// 
+enum AuthorBadgeStyle {
+    // 
+    AUTHOR_BADGE_STYLE_INVALID = 0;
+    // 
+    AUTHOR_BADGE_STYLE_GRAY_OUTLINE = 1;
+}
+
+// 
+message BasicUserInfoV2 {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem avatar = 4;
+    // 
+    int32 level = 5;
+    // 
+    int32 is_senior_member = 6;
+    // 
+    VipInfo vip = 7;
+    // 
+    string jump_uri = 8;
+    // 
+    Relation relation = 9;
+    // 
+    string name_sub_text = 10;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 11;
+}
+
+// 
+message ButtonWithSubTitle {
+    // 
+    string btn_title = 1;
+    // 
+    string btn_sub_title = 2;
+    // 
+    string jump_uri = 3;
+}
+
+// 
+message ButtonWithSubscribeParam {
+    // 
+    string btn_text = 1;
+    // 
+    string btn_icon = 2;
+    // 
+    string subscribe_param = 3;
+}
+
+// 
+message CampusBannerInfo {
+    // 
+    string image = 1;
+    // 
+    string jump_url = 2;
+}
+
+// 
+message CampusBillBoardReply {
+    // 
+    string title = 1;
+    // 
+    string help_uri = 2;
+    // 
+    string campus_name = 3;
+    // 
+    int64 build_time = 4;
+    // 
+    string version_code = 5;
+    // 
+    repeated OfficialItem list = 6;
+    // 
+    string share_uri = 7;
+    // 
+    int32 bind_notice = 8;
+    // 
+    string update_toast = 9;
+    // 
+    int64 campus_id = 10;
+    // 
+    CampusFeatureProgress open_progress = 11;
+}
+
+// 
+message CampusBillBoardReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string version_code = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    CampusReqFromType from_type = 4;
+}
+
+// 
+message CampusBillboardInternalReq {
+    // 
+    int64 mid = 1;
+    // 
+    int64 campus_id = 2;
+    // 
+    string version_code = 3;
+}
+
+// 
+message CampusEntryTabReq {
+    // 
+    int64 campus_id = 1;
+}
+
+// 
+message CampusEntryTabResp {
+    // 
+    CampusEntryType entry_type = 1;
+}
+
+// 
+enum CampusEntryType {
+    // 
+    NONE = 0;
+    // 
+    ENTRY_DYNAMIC = 1;
+    // 
+    ENTRY_HOME = 2;
+}
+
+// 
+message CampusFeatureProgress {
+    // 
+    int64 progress_full = 1;
+    // 
+    int64 progress_achieved = 2;
+    // 
+    string desc_title = 3;
+    // 
+    string desc1 = 4;
+    // 
+    CampusLabel btn = 5;
+}
+
+// 
+message CampusFeedbackInfo {
+    // 
+    int32 biz_type = 1;
+    // 
+    int64 biz_id = 2;
+    // 
+    int64 campus_id = 3;
+    // 
+    string reason = 4;
+}
+
+// 
+message CampusFeedbackReply {
+    // 
+    string message = 1;
+}
+
+// 
+message CampusFeedbackReq {
+    // 
+    repeated CampusFeedbackInfo infos = 1;
+    // 
+    CampusReqFromType from = 2;
+    // 
+    CampusReqFromType from_type = 3;
+}
+
+// 
+enum CampusHomePageType {
+    // 
+    PAGE_MAJOR = 0;
+    // 
+    PAGE_SUBORDINATE = 1;
+    // 
+    PAGE_MAJOR_DETAIL = 2;
+}
+
+// 
+message CampusHomePagesReply {
+    // 
+    CampusRcmdTop top = 1;
+    // 
+    CampusTop campus_top = 2;
+    // 
+    int32 page_type = 3;
+}
+
+// 
+message CampusHomePagesReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    double lat = 3;
+    // 
+    double lng = 4;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    // 
+    CampusHomePageType page_type = 6;
+}
+
+// 
+message CampusHomeRcmdTopic {
+    // 
+    ModuleTitle title = 1;
+    // 
+    repeated TopicItem topic = 2;
+}
+
+// 
+message CampusInfo {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    string desc = 3;
+    // 
+    int64 online = 4;
+    // 
+    string url = 5;
+}
+
+// 
+message CampusLabel {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+    // 
+    string desc = 3;
+}
+
+// 
+message CampusMateLikeListReply {
+    // 
+    repeated ModuleAuthor list = 1;
+}
+
+// 
+message CampusMateLikeListReq {
+    // 
+    int64 dynamic_id = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+enum CampusMngAuditStatus {
+    // 
+    campus_mng_audit_none = 0;
+    // 
+    campus_mng_audit_in_process = 1;
+    // 
+    campus_mng_audit_failed = 2;
+}
+
+// 
+message CampusMngBadge {
+    // 
+    string title = 1;
+    // 
+    string badge_url = 2;
+    // 
+    string upload_hint_msg = 3;
+}
+
+// 
+message CampusMngBasicInfo {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    string hint_msg = 3;
+}
+
+// 
+message CampusMngDetailReply {
+    // 
+    repeated CampusMngItem items = 1;
+    // 
+    string top_hint_bar_msg = 2;
+    // 
+    string bottom_submit_hint_msg = 3;
+    // 
+    int64 campus_id = 4;
+    // 
+    string campus_name = 5;
+}
+
+// 
+message CampusMngDetailReq {
+    // 
+    int64 campus_id = 1;
+}
+
+// 
+message CampusMngItem {
+    // 
+    oneof item {
+        // 
+        CampusMngBasicInfo basic_info = 6;
+        // 
+        CampusMngBadge badge = 7;
+        // 
+        CampusMngSlogan slogan = 8;
+        // 
+        CampusMngQuiz quiz = 9;
+    }
+    // 
+    CampusMngAuditStatus audit_status = 1;
+    // 
+    string audit_message = 2;
+    // 
+    CampusMngItemType item_type = 3;
+    // 
+    string mng_item_id = 4;
+    // 
+    bool is_del = 5;
+}
+
+// 
+enum CampusMngItemType {
+    // 
+    campus_mng_none = 0;
+    // 
+    campus_mng_basic_info = 1;
+    // 
+    campus_mng_badge = 2;
+    // 
+    campus_mng_slogan = 3;
+    // 
+    campus_mng_quiz = 4;
+}
+
+// 
+message CampusMngQuiz {
+    // 
+    string title = 1;
+    // 
+    CampusLabel more_label = 2;
+    // 
+    string add_label = 3;
+    // 
+    string submit_label = 4;
+    // 
+    int64 quiz_count = 5;
+}
+
+// 
+enum CampusMngQuizAction {
+    // 
+    campus_mng_quiz_act_list = 0;
+    // 
+    campus_mng_quiz_act_add = 1;
+    // 
+    campus_mng_quiz_act_del = 2;
+}
+
+// 
+message CampusMngQuizDetail {
+    // 
+    int64 quiz_id = 1;
+    // 
+    string question = 2;
+    // 
+    string correct_answer = 3;
+    // 
+    repeated string wrong_answer_list = 4;
+    // 
+    CampusMngAuditStatus audit_status = 5;
+    // 
+    string audit_message = 6;
+}
+
+// 
+message CampusMngQuizOperateReply {
+    // 
+    string toast = 1;
+    // 
+    repeated CampusMngQuizDetail quiz = 2;
+    // 
+    int64 quiz_total = 3;
+}
+
+// 
+message CampusMngQuizOperateReq {
+    // 
+    CampusMngQuizAction action = 1;
+    // 
+    int64 campus_id = 2;
+    // 
+    repeated CampusMngQuizDetail quiz = 3;
+}
+
+// 
+message CampusMngSlogan {
+    // 
+    string title = 1;
+    // 
+    string slogan = 2;
+    // 
+    string input_hint_msg = 3;
+}
+
+// 
+message CampusMngSubmitReply {
+    // 
+    string toast = 1;
+}
+
+// 
+message CampusMngSubmitReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    repeated CampusMngItem modified_items = 2;
+}
+
+// 
+message CampusNoticeInfo {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    CampusLabel button = 3;
+}
+
+// 
+enum CampusOnlineStatus {
+    // 
+    campus_online_offline = 0;
+    // 
+    campus_online_online = 1;
+}
+
+// 
+message CampusRcmdFeedReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string toast = 2;
+    // 
+    GuideBarInfo guide_bar = 3;
+    // 
+    bool has_more = 4;
+    // 
+    bool update = 5;
+}
+
+// 
+message CampusRcmdFeedReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    int32 first_time = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    int32 local_time = 4;
+    // 
+    int32 page = 5;
+    // 
+    int32 scroll = 6;
+    // 
+    string view_dyn_id = 7;
+    // 
+    CampusReqFromType from_type = 8;
+}
+
+// 
+message CampusRcmdInfo {
+    // 
+    string title = 1;
+    // 
+    repeated CampusRcmdItem items = 2;
+}
+
+// 
+message CampusRcmdItem {
+    // 
+    string title = 1;
+    // 
+    repeated RcmdItem items = 2;
+    // 
+    int64 campus_id = 3;
+    // 
+    CampusLabel entry_label = 4;
+}
+
+// 
+message CampusRcmdReply {
+    // 
+    CampusRcmdTop top = 1;
+    // 
+    CampusRcmdInfo rcmd = 2;
+    // 
+    CampusTop campus_top = 3;
+    // 
+    int32 page_type = 4;
+    // 
+    int32 jump_home_pop = 5;
+}
+
+// 
+message CampusRcmdReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    double lat = 3;
+    // 
+    double lng = 4;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 5;
+    // 
+    CampusReqFromType from_type = 6;
+    // 
+    CampusHomePageType page_type = 7;
+}
+
+// 
+enum CampusRcmdReqFrom {
+    // 
+    CAMPUS_RCMD_FROM_UNKNOWN = 0;
+    // 
+    CAMPUS_RCMD_FROM_HOME_UN_OPEN = 1;
+    // 
+    CAMPUS_RCMD_FROM_VISIT_OTHER = 2;
+    // 
+    CAMPUS_RCMD_FROM_HOME_MOMENT = 3;
+    // 
+    CAMPUS_RCMD_FROM_DYN_MOMENT = 4;
+    // 
+    CAMPUS_RCMD_FROM_PAGE_SUBORDINATE_MOMENT = 5;
+}
+
+// 
+message CampusRcmdTop {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    string title = 3;
+    // 
+    string desc = 4;
+    // 
+    int32 type = 5;
+    // 
+    RcmdTopButton button = 6;
+    // 
+    CampusLabel switch_label = 7;
+    // 
+    CampusLabel notice_label = 8;
+    // 
+    string desc2 = 9;
+    // 
+    string desc3 = 10;
+    // 
+    CampusLabel invite_label = 11;
+    // 
+    CampusLabel reserve_label = 12;
+    // 
+    int64 reserve_number = 13;
+    // 
+    int64 max_reserve = 14;
+    // 
+    CampusLabel school_label = 15;
+    // 
+    CampusLabel mng_label = 16;
+    // 
+    CampusHomeRcmdTopic rcmd_topic = 17;
+    // 
+    bool audit_before_open = 18;
+    // 
+    string audit_message = 19;
+}
+
+// 
+message CampusRecommendReply {
+    // 
+    repeated RcmdItem items = 1;
+    // 
+    bool has_more = 2;
+}
+
+// 
+message CampusRecommendReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    int64 page_no = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    CampusRcmdReqFrom from = 4;
+}
+
+// 
+message CampusRedDotReply {
+    // 
+    int32 red_dot = 1;
+}
+
+// 
+message CampusRedDotReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+enum CampusReqFromType {
+    // 
+    DYNAMIC = 0;
+    // 
+    HOME = 1;
+}
+
+// 
+message CampusShowTabInfo {
+    // 
+    string name = 1;
+    // 
+    string url = 2;
+    // 
+    CampusTabType type = 3;
+    // 
+    int32 red_dot = 4;
+    // 
+    string icon_url = 5;
+}
+
+// 
+message CampusSquareReply {
+    // 
+    string title = 1;
+    // 
+    repeated RcmdCampusBrief list = 2;
+    // 
+    CampusLabel button = 3;
+}
+
+// 
+message CampusSquareReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    double lat = 2;
+    // 
+    double lng = 3;
+}
+
+// 
+enum CampusTabType {
+    // 
+    campus_none = 0;
+    // 
+    campus_school = 1;
+    // 
+    campus_dynamic = 2;
+    // 
+    campus_account = 3;
+    // 
+    campus_billboard = 4;
+    // 
+    campus_topic = 5;
+    // 
+    campues_other = 6;
+}
+
+// 
+message CampusTop {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    repeated CampusShowTabInfo tabs = 3;
+    // 
+    CampusLabel switch_label = 4;
+    // 
+    string title = 5;
+    // 
+    repeated CampusBannerInfo banner = 6;
+    // 
+    CampusLabel invite_label = 7;
+    // 
+    CampusNoticeInfo notice = 8;
+    // 
+    TopicSquareInfo topic_square = 9;
+    // 
+    string campus_badge = 10;
+    // 
+    string campus_background = 11;
+    // 
+    string campus_motto = 12;
+    // 
+    CampusLabel mng_entry = 13;
+    // 
+    string campus_intro = 14;
+    // 
+    string campus_name_link = 15;
+    // 
+    string bottom_left_text = 16;
+}
+
+// 
+message CampusTopicRcmdFeedReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string toast = 2;
+    // 
+    bool has_more = 3;
+    // 
+    string offset = 4;
+    // 
+    IconButton join_discuss = 5;
+}
+
+// 
+message CampusTopicRcmdFeedReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string offset = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    int32 local_time = 4;
+    // 
+    CampusReqFromType from_type = 5;
+}
+
+// 
+message CampusWaterFlowItem {
+    // 
+    oneof flow_item {
+        // 
+        WFItemDefault item_default = 3;
+    }
+    // 
+    WFItemType item_type = 1;
+    // 
+    bilibili.app.dynamic.common.ItemWHRatio wh_ratio = 2;
+}
+
+// 
+message CardParagraph {
+    // 
+    ModuleAdditional additional_card = 1;
+    // 
+    LinkNodeType biz_type = 2;
+    // 
+    string biz_id = 3;
+}
+
+// 
+message CardVideoDynList {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    int64 update_num = 2;
+    // 
+    string history_offset = 3;
+    // 
+    string update_baseline = 4;
+    // 
+    bool has_more = 5;
+}
+
+// 
+message CardVideoFollowList {
+    // 
+    string view_all_link = 1;
+    // 
+    repeated FollowListItem list = 2;
+}
+
+// 
+message CardVideoUpList {
+    // 
+    string title = 1;
+    // 
+    repeated UpListItem list = 2;
+    // 
+    string footprint = 3;
+    // 
+    int32 show_live_num = 4;
+    // 
+    UpListMoreLabel more_label = 5;
+    // 
+    int32 title_switch = 6;
+    // 
+    bool show_more_label = 7;
+    // 
+    bool show_in_personal = 8;
+    // 
+    bool show_more_button = 9;
+    // 
+    repeated UpListItem list_second = 10;
+    // 
+    bool has_more_list = 11;
+    // 
+    string more_list_offset = 12;
+}
+
+// 
+message ChannelInfo {
+    // 
+    int64 channel_id = 1;
+    // 
+    string channel_name = 2;
+    // 
+    string desc = 3;
+    // 
+    bool is_atten = 4;
+    // 
+    string type_icon = 5;
+    // 
+    repeated RcmdItem items = 6;
+    // 
+    string icon = 7;
+    // 
+    string jump_uri = 8;
+}
+
+// 
+message CmtShowItem {
+    // 
+    int64 uid = 1;
+    // 
+    string uname = 2;
+    // 
+    string uri = 3;
+    // 
+    string comment = 4;
+}
+
+// 
+message CodeParagraph {
+    // 
+    string code_lang = 1;
+    // 
+    string code_content = 2;
+    // 
+    string popup_link = 3;
+    // 
+    string bar_icon = 4;
+    // 
+    string bar_notice = 5;
+    // 
+    string btn_text = 6;
+}
+
+// 
+message ColoredText {
+    // 
+    string text = 1;
+    // 
+    Colors color = 2;
+}
+
+// 
+message Colors {
+    // 
+    string color_day = 1;
+    // 
+    string color_night = 2;
+}
+
+// 
+message CommentDetail {
+    // 
+    bool can_modify = 1;
+    // 
+    int64 status = 2;
+}
+
+// 
+message CommonShareCardInfo {
+    // 
+    int64 sketch_id = 1;
+    // 
+    int64 biz_type = 2;
+    // 
+    int64 biz_id = 3;
+}
+
+// 
+message Config {
+    // 
+    bool story_vertical_exp = 1;
+    // 
+    int64 detail_view_bits = 2;
+    // 
+    map<string, string> extra_router_kvs = 3;
+}
+
+// 
+message CooperationStaffListReq {
+    // 
+    string oid = 1;
+}
+
+// 
+message CooperationStaffListResp {
+    // 
+    repeated CooperationUpInfo up_list = 1;
+}
+
+// 
+message CooperationUpInfo {
+    // 
+    BasicUserInfoV2 user_info = 1;
+    // 
+    string up_role = 2;
+}
+
+// 
+enum CoverIcon {
+    // 
+    cover_icon_none = 0;
+    // 
+    cover_icon_play = 1;
+    // 
+    cover_icon_danmaku = 2;
+    // 
+    cover_icon_up = 3;
+    // 
+    cover_icon_vt = 4;
+    // 
+    cover_icon_view_cnt = 5;
+    // 
+    cover_icon_thumb_up = 6;
+    // 
+    cover_icon_reply = 7;
+    // 
+    cover_icon_fav = 8;
+    // 
+    cover_icon_coin = 9;
+    // 
+    cover_icon_self_seen = 10;
+}
+
+// 
+message CoverIconWithText {
+    // 
+    CoverIcon icon = 1;
+    // 
+    string text = 2;
+    // 
+    bool icon_checked = 3;
+}
+
+// 
+message CreationClassification {
+    // 
+    string classification_name = 1;
+    // 
+    int64 count = 2;
+    // 
+    string classification_type = 3;
+    // 
+    bool is_chosen = 4;
+}
+
+// 
+message CreationItemAction {
+    // 
+    enum CreationAction {
+        // 
+        CREATION_ACTION_INVALID = 0;
+        // 
+        CREATION_ACTION_DELETE = 1;
+        // 
+        CREATION_ACTION_EDIT_DYN = 2;
+        // 
+        CREATION_ACTION_JUMP_URL = 3;
+        // 
+        CREATION_ACTION_RETRACT_CV = 4;
+        // 
+        CREATION_ACTION_EDIT_CV = 5;
+        // 
+        CREATION_ACTION_VISIBILITY_CHANGE = 6;
+    }
+    
+    // 
+    string icon = 1;
+    // 
+    string action_name = 2;
+    // 
+    CreationItemAction.CreationAction action_type = 3;
+    // 
+    string jump_url = 4;
+    // 
+    int64 remain_edit_times = 5;
+    // 
+    ThreePointDefaultToast confirmation_toast = 6;
+    // 
+    ThreePointVisibilityChange visibility_change = 7;
+}
+
+// 
+message CreationSortType {
+    // 
+    string sort_name = 1;
+    // 
+    string sort_type = 2;
+    // 
+    bool is_chosen = 3;
+}
+
+// 
+message DecoCardFan {
+    // 
+    int32 is_fan = 1;
+    // 
+    int32 number = 2;
+    // 
+    string number_str = 3;
+    // 
+    string color = 4;
+    // 
+    DecoCardFanNumColorFormat color_format = 5;
+    // 
+    string num_prefix = 6;
+}
+
+// 
+message DecoCardFanNumColorFormat {
+    // 
+    string start_point = 1;
+    // 
+    string end_point = 2;
+    // 
+    repeated string colors = 3;
+    // 
+    repeated int64 gradients = 4;
+}
+
+// 
+message DecorateCard {
+    // 
+    int64 id = 1;
+    // 
+    string card_url = 2;
+    // 
+    string jump_url = 3;
+    // 
+    DecoCardFan fan = 4;
+    // 
+    bilibili.vas.garb.service.UserCard vas_deco_card = 5;
+}
+
+// 
+enum DescType {
+    // 
+    desc_type_none = 0;
+    // 
+    desc_type_text = 1;
+    // 
+    desc_type_aite = 2;
+    // 
+    desc_type_lottery = 3;
+    // 
+    desc_type_vote = 4;
+    // 
+    desc_type_topic = 5;
+    // 
+    desc_type_goods = 6;
+    // 
+    desc_type_bv = 7;
+    // 
+    desc_type_av = 8;
+    // 
+    desc_type_emoji = 9;
+    // 
+    desc_type_user = 10;
+    // 
+    desc_type_cv = 11;
+    // 
+    desc_type_vc = 12;
+    // 
+    desc_type_web = 13;
+    // 
+    desc_type_taobao = 14;
+    // 
+    desc_type_mail = 15;
+    // 
+    desc_type_ogv_season = 16;
+    // 
+    desc_type_ogv_ep = 17;
+    // 
+    desc_type_search_word = 18;
+}
+
+// 
+message Description {
+    // 
+    string text = 1;
+    // 
+    DescType type = 2;
+    // 
+    string uri = 3;
+    // 
+    EmojiType emoji_type = 4;
+    // 
+    string goods_type = 5;
+    // 
+    string icon_url = 6;
+    // 
+    string icon_name = 7;
+    // 
+    string rid = 8;
+    // 
+    ModuleDescGoods goods = 9;
+    // 
+    string orig_text = 10;
+    // 
+    int32 emoji_size = 11;
+    // 
+    EmojiSizeSpec emoji_size_spec = 12;
+}
+
+// 
+message Dimension {
+    // 
+    int64 height = 1;
+    // 
+    int64 width = 2;
+    // 
+    int64 rotate = 3;
+    // 
+    bool force_horizontal = 4;
+}
+
+// 
+enum DisableState {
+    // 
+    highlight = 0;
+    // 
+    gary = 1;
+}
+
+// 
+message DynAdditionCommonFollowReply {
+    // 
+    AdditionalButtonStatus status = 1;
+}
+
+// 
+message DynAdditionCommonFollowReq {
+    // 
+    AdditionalButtonStatus status = 1;
+    // 
+    string dyn_id = 2;
+    // 
+    string card_type = 3;
+}
+
+// 
+message DynAllPersonalReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string offset = 2;
+    // 
+    bool has_more = 3;
+    // 
+    string read_offset = 4;
+    // 
+    Relation relation = 5;
+    // 
+    TopAdditionUP addition_up = 6;
+    // 
+    string title = 7;
+    // 
+    string title_sub = 8;
+}
+
+// 
+message DynAllPersonalReq {
+    // 
+    int64 host_uid = 1;
+    // 
+    string offset = 2;
+    // 
+    int32 page = 3;
+    // 
+    int32 is_preload = 4;
+    // 
+    PlayurlParam playurl_param = 5;
+    // 
+    int32 local_time = 6;
+    // 
+    string footprint = 7;
+    // 
+    string from = 8;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 9;
+    // 
+    string personal_extra = 10;
+    // 
+    AdParam ad_param = 11;
+}
+
+// 
+message DynAllReply {
+    // 
+    DynamicList dynamic_list = 1;
+    // 
+    CardVideoUpList up_list = 2;
+    // 
+    TopicList topic_list = 3;
+    // 
+    Unfollow unfollow = 4;
+    // 
+    DynRegionRcmd region_rcmd = 5;
+    // 
+    Config config = 6;
+    // 
+    FeedSortConfig sort_config = 7;
+}
+
+// 
+message DynAllReq {
+    // 
+    string update_baseline = 1;
+    // 
+    string offset = 2;
+    // 
+    int32 page = 3;
+    // 
+    Refresh refresh_type = 4;
+    // 
+    PlayurlParam playurl_param = 5;
+    // 
+    string assist_baseline = 6;
+    // 
+    int32 local_time = 7;
+    // 
+    RcmdUPsParam rcmd_ups_param = 8;
+    // 
+    AdParam ad_param = 9;
+    // 
+    int32 cold_start = 10;
+    // 
+    string from = 11;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 12;
+    // 
+    int64 tab_recall_uid = 13;
+    // 
+    StyleType tab_recall_type = 14;
+    // 
+    string tab_recall_extra = 15;
+    // 
+    FeedSortOptionReq req_sort_option = 16;
+    // 
+    string bubble_recall_extra_when_show = 17;
+}
+
+// 
+message DynAllUpdOffsetReq {
+    // 
+    int64 host_uid = 1;
+    // 
+    string read_offset = 2;
+    // 
+    string footprint = 3;
+    // 
+    string personal_extra = 4;
+}
+
+// 
+message DynDetailReply {
+    // 
+    DynamicItem item = 1;
+}
+
+// 
+message DynDetailReq {
+    // 
+    int64 uid = 1;
+    // 
+    string dynamic_id = 2;
+    // 
+    int64 dyn_type = 3;
+    // 
+    int64 rid = 4;
+    // 
+    AdParam ad_param = 5;
+    // 
+    string from = 6;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 7;
+    // 
+    string share_id = 8;
+    // 
+    int32 share_mode = 9;
+    // 
+    int32 local_time = 10;
+    // 
+    string pattern = 11;
+    // 
+    Config config = 12;
+}
+
+// 
+message DynDetailsReply {
+    // 
+    repeated DynamicItem list = 1;
+}
+
+// 
+message DynDetailsReq {
+    // 
+    string dynamic_ids = 1;
+    // 
+    PlayurlParam playurl_param = 2;
+    // 
+    int32 local_time = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 
+    Config config = 5;
+}
+
+// 
+enum DynExtendType {
+    // 
+    dyn_ext_type_none = 0;
+    // 
+    dyn_ext_type_topic = 1;
+    // 
+    dyn_ext_type_lbs = 2;
+    // 
+    dyn_ext_type_hot = 3;
+    // 
+    dyn_ext_type_game = 4;
+    // 
+    dyn_ext_type_common = 5;
+    // 
+    dyn_ext_type_biliCut = 6;
+    // 
+    dyn_ext_type_ogv = 7;
+    // 
+    dyn_ext_type_auto_ogv = 8;
+    // 
+    dyn_ext_type_article_tag = 9;
+}
+
+// 
+message DynFakeCardReply {
+    // 
+    DynamicItem item = 1;
+}
+
+// 
+message DynFakeCardReq {
+    // 
+    string content = 1;
+}
+
+// 
+message DynFeatureGate {
+    // 
+    bool enhanced_interaction = 1;
+}
+
+// 
+message DynFriendReply {
+    // 
+    repeated DynamicItem dyn_list = 1;
+    // 
+    bool has_more = 2;
+    // 
+    string offset = 3;
+}
+
+// 
+message DynFriendReq {
+    // 
+    string offset = 1;
+    // 
+    int32 local_time = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+}
+
+// 
+message DynLightReply {
+    // 
+    DynamicList dynamic_list = 1;
+}
+
+// 
+message DynLightReq {
+    // 
+    string history_offset = 1;
+    // 
+    int32 page = 2;
+    // 
+    string from = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 
+    int32 local_time = 5;
+    // 
+    LightFromType from_type = 6;
+    // 
+    int64 fake_uid = 7;
+}
+
+// 
+message DynMixUpListSearchReply {
+    // 
+    repeated MixUpListItem items = 1;
+}
+
+// 
+message DynMixUpListSearchReq {
+    // 
+    string name = 1;
+}
+
+// 
+message DynMixUpListViewMoreReply {
+    // 
+    repeated MixUpListItem items = 1;
+    // 
+    string search_default_text = 2;
+    // 
+    repeated SortType sort_types = 3;
+    // 
+    bool show_more_sort_types = 4;
+    // 
+    int32 default_sort_type = 5;
+}
+
+// 
+message DynMixUpListViewMoreReq {
+    // 
+    int32 sort_type = 1;
+}
+
+// 
+enum DynModuleType {
+    // 
+    module_none = 0;
+    // 
+    module_author = 1;
+    // 
+    module_dispute = 2;
+    // 
+    module_desc = 3;
+    // 
+    module_dynamic = 4;
+    // 
+    module_forward = 5;
+    // 
+    module_likeUser = 6;
+    // 
+    module_extend = 7;
+    // 
+    module_additional = 8;
+    // 
+    module_stat = 9;
+    // 
+    module_fold = 10;
+    // 
+    module_comment = 11;
+    // 
+    module_interaction = 12;
+    // 
+    module_author_forward = 13;
+    // 
+    module_ad = 14;
+    // 
+    module_banner = 15;
+    // 
+    module_item_null = 16;
+    // 
+    module_share_info = 17;
+    // 
+    module_recommend = 18;
+    // 
+    module_stat_forward = 19;
+    // 
+    module_top = 20;
+    // 
+    module_bottom = 21;
+    // 
+    module_story = 22;
+    // 
+    module_topic = 23;
+    // 
+    module_topic_details_ext = 24;
+    // 
+    module_top_tag = 25;
+    // 
+    module_topic_brief = 26;
+    // 
+    module_title = 27;
+    // 
+    module_button = 28;
+    // 
+    module_notice = 29;
+    // 
+    module_opus_summary = 30;
+    // 
+    module_copyright = 31;
+    // 
+    module_paragraph = 32;
+    // 
+    module_blocked = 33;
+    // 
+    module_text_notice = 34;
+    // 
+    module_opus_collection = 35;
+    // 
+    module_onetime_notice = 36;
+    // 
+    module_sneaking_ad = 37;
+    // 
+    module_manga_horizontal_page_pic_content = 38;
+    // 
+    module_manga_vertical_slide_pic_content = 39;
+    // 
+    module_manga_cover_pic_content = 40;
+    // 
+    module_author_for_subscribe = 41;
+    // 
+    module_author_slim = 42;
+    // 
+    module_manga_collection = 43;
+    // 
+    module_cooperation = 44;
+}
+
+// 
+message DynRcmdReply {
+    // 
+    DynRegionRcmd region_rcmd = 1;
+    // 
+    DynamicList dynamic_list = 2;
+}
+
+// 
+message DynRcmdReq {
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 1;
+    // 
+    int32 local_time = 2;
+    // 
+    int64 fake_uid = 3;
+    // 
+    bool is_refresh = 4;
+}
+
+// 
+message DynRcmdUpExchangeReply {
+    // 
+    Unfollow unfollow = 1;
+}
+
+// 
+message DynRcmdUpExchangeReq {
+    // 
+    int64 uid = 1;
+    // 
+    int64 dislike_ts = 2;
+    // 
+    string from = 3;
+}
+
+// 
+message DynRegionRcmd {
+    // 
+    repeated DynRegionRcmdItem items = 1;
+    // 
+    RcmdOption opts = 2;
+}
+
+// 
+message DynRegionRcmdItem {
+    // 
+    int64 rid = 1;
+    // 
+    string title = 2;
+    // 
+    repeated ModuleRcmd items = 3;
+}
+
+// 
+message DynScreenTab {
+    // 
+    string title = 1;
+    // 
+    string name = 2;
+    // 
+    bool default_tab = 3;
+    // 
+    bool strategy_show_on_entrance = 4;
+    // 
+    bool strategy_show_on_refresh = 5;
+    // 
+    bool strategy_show_on_pull_up = 6;
+}
+
+// 
+message DynSearchReply {
+    // 
+    SearchChannel channel_info = 1;
+    // 
+    SearchTopic search_topic = 2;
+    // 
+    SearchInfo search_info = 3;
+}
+
+// 
+message DynSearchReq {
+    // 
+    string keyword = 1;
+    // 
+    int32 page = 2;
+    // 
+    int32 local_time = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+}
+
+// 
+message DynServerDetailsReply {
+    // 
+    map<int64, DynamicItem> items = 1;
+}
+
+// 
+message DynServerDetailsReq {
+    // 
+    repeated int64 dynamic_ids = 1;
+    // 
+    int32 local_time = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    string mobi_app = 4;
+    // 
+    string device = 5;
+    // 
+    string buvid = 6;
+    // 
+    int64 build = 7;
+    // 
+    int64 mid = 8;
+    // 
+    string platform = 9;
+    // 
+    bool is_master = 10;
+    // 
+    repeated int64 top_dynamic_ids = 11;
+}
+
+// 
+message DynSpaceReq {
+    // 
+    int64 host_uid = 1;
+    // 
+    string history_offset = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    int32 local_time = 4;
+    // 
+    int64 page = 5;
+    // 
+    string from = 6;
+}
+
+// 
+message DynSpaceRsp {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string history_offset = 2;
+    // 
+    bool has_more = 3;
+}
+
+// 
+message DynSpaceSearchDetailsReply {
+    // 
+    map<int64, DynamicItem> items = 1;
+}
+
+// 
+message DynSpaceSearchDetailsReq {
+    // 
+    repeated int64 dynamic_ids = 1;
+    // 
+    repeated string search_words = 2;
+    // 
+    int32 local_time = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 
+    string mobi_app = 5;
+    // 
+    string device = 6;
+    // 
+    string buvid = 7;
+    // 
+    int64 build = 8;
+    // 
+    int64 mid = 9;
+    // 
+    string platform = 10;
+    // 
+    string ip = 11;
+    // 
+    NetworkType net_type = 12;
+    // 
+    TFType tf_type = 13;
+}
+
+// 
+message DynTab {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string bubble = 3;
+    // 
+    int32 red_point = 4;
+    // 
+    int64 city_id = 5;
+    // 
+    int32 is_popup = 6;
+    // 
+    Popup popup = 7;
+    // 
+    bool default_tab = 8;
+    // 
+    string sub_title = 9;
+    // 
+    string anchor = 10;
+    // 
+    string internal_test = 11;
+    // 
+    ShowType type = 12;
+    // 
+    DynTab back_up = 13;
+    // 
+    string jump_home_pop = 14;
+}
+
+// 
+message DynTabReply {
+    // 
+    repeated DynTab dyn_tab = 1;
+    // 
+    repeated DynScreenTab screen_tab = 2;
+}
+
+// 
+message DynTabReq {
+    // 
+    int32 teenagers_mode = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+message DynThumbReq {
+    // 
+    int64 uid = 1;
+    // 
+    string dyn_id = 2;
+    // 
+    int64 dyn_type = 3;
+    // 
+    string rid = 4;
+    // 
+    ThumbType type = 5;
+}
+
+// 
+message DynVideoPersonalReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string offset = 2;
+    // 
+    bool has_more = 3;
+    // 
+    string read_offset = 4;
+    // 
+    Relation relation = 5;
+    // 
+    TopAdditionUP addition_up = 6;
+    // 
+    string title = 7;
+    // 
+    string title_sub = 8;
+}
+
+// 
+message DynVideoPersonalReq {
+    // 
+    int64 host_uid = 1;
+    // 
+    string offset = 2;
+    // 
+    int32 page = 3;
+    // 
+    int32 is_preload = 4;
+    // 
+    PlayurlParam playurl_param = 5;
+    // 
+    int32 local_time = 6;
+    // 
+    string footprint = 7;
+    // 
+    string from = 8;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 9;
+    // 
+    int64 pegasus_avid = 10;
+    // 
+    string personal_extra = 11;
+}
+
+// 
+message DynVideoReply {
+    // 
+    CardVideoDynList dynamic_list = 1;
+    // 
+    CardVideoUpList video_up_list = 2;
+    // 
+    CardVideoFollowList video_follow_list = 3;
+    // 
+    FeedSortConfig sort_config = 4;
+}
+
+// 
+message DynVideoReq {
+    // 
+    string update_baseline = 1;
+    // 
+    string offset = 2;
+    // 
+    int32 page = 3;
+    // 
+    Refresh refresh_type = 4;
+    // 
+    PlayurlParam playurl_param = 5;
+    // 
+    string assist_baseline = 6;
+    // 
+    int32 local_time = 7;
+    // 
+    string from = 8;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 9;
+    // 
+    FeedSortOptionReq req_sort_option = 10;
+}
+
+// 
+message DynVideoUpdOffsetReq {
+    // 
+    int64 host_uid = 1;
+    // 
+    string read_offset = 2;
+    // 
+    string footprint = 3;
+    // 
+    string personal_extra = 4;
+}
+
+// 
+enum DynVisibilityStatus {
+    // 
+    DYN_VISIBILITY_PUBLIC = 0;
+    // 
+    DYN_VISIBILITY_SELF_SEEN_ONLY = 1;
+}
+
+// 
+message DynVoteReply {
+    // 
+    AdditionVote2 item = 1;
+    // 
+    string toast = 2;
+}
+
+// 
+message DynVoteReq {
+    // 
+    int64 vote_id = 1;
+    // 
+    repeated int64 votes = 2;
+    // 
+    VoteStatus status = 3;
+    // 
+    string dynamic_id = 4;
+    // 
+    bool share = 5;
+}
+
+// 
+message DynamicItem {
+    // 
+    DynamicType card_type = 1;
+    // 
+    DynamicType item_type = 2;
+    // 
+    repeated Module modules = 3;
+    // 
+    Extend extend = 4;
+    // 
+    int32 has_fold = 5;
+    // 
+    string server_info = 6;
+}
+
+// 
+message DynamicList {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    int64 update_num = 2;
+    // 
+    string history_offset = 3;
+    // 
+    string update_baseline = 4;
+    // 
+    bool has_more = 5;
+}
+
+// 
+enum DynamicType {
+    // 
+    dyn_none = 0;
+    // 
+    forward = 1;
+    // 
+    av = 2;
+    // 
+    pgc = 3;
+    // 
+    courses = 4;
+    // 
+    fold = 5;
+    // 
+    word = 6;
+    // 
+    draw = 7;
+    // 
+    article = 8;
+    // 
+    music = 9;
+    // 
+    common_square = 10;
+    // 
+    common_vertical = 11;
+    // 
+    live = 12;
+    // 
+    medialist = 13;
+    // 
+    courses_season = 14;
+    // 
+    ad = 15;
+    // 
+    applet = 16;
+    // 
+    subscription = 17;
+    // 
+    live_rcmd = 18;
+    // 
+    banner = 19;
+    // 
+    ugc_season = 20;
+    // 
+    subscription_new = 21;
+    // 
+    story = 22;
+    // 
+    topic_rcmd = 23;
+    // 
+    cour_up = 24;
+    // 
+    topic_set = 25;
+    // 
+    notice = 26;
+    // 
+    text_notice = 27;
+    // 
+    onetime_notice = 28;
+    // 
+    manga_ep = 29;
+}
+
+// 
+message EmojiSizeSpec {
+    // 
+    int64 width = 1;
+}
+
+// 
+enum EmojiType {
+    // 
+    emoji_none = 0;
+    // 
+    emoji_old = 1;
+    // 
+    emoji_new = 2;
+    // 
+    vip = 3;
+}
+
+// 
+enum EmoteClickAction {
+    // 
+    EMOTE_CLICK_NONE = 0;
+    // 
+    EMOTE_CLICK_POPUP_PREVIEW = 1;
+}
+
+// 
+message EmoteNode {
+    // 
+    WordNode raw_text = 1;
+    // 
+    string emote_url = 2;
+    // 
+    EmoteSize emote_width = 3;
+    // 
+    bool is_inline_img = 4;
+    // 
+    ImgInlineCfg inline_img_cfg = 5;
+    // 
+    bool allow_animated = 6;
+    // 
+    EmoteClickAction click_action = 7;
+    // 
+    string preview_name = 8;
+    // 
+    string preview_name_jump_uri = 9;
+    // 
+    string emote_url_dark = 10;
+}
+
+// 
+message EmoteSize {
+    // 
+    double width = 1;
+    // 
+    int32 emoji_size = 2;
+}
+
+// 
+enum EspaceStyle {
+    // 
+    moba = 0;
+}
+
+// 
+message ExtInfoCommon {
+    // 
+    enum ExtTagStyle {
+        // 
+        EXT_TAG_STYLE_DEFAULT = 0;
+        // 
+        EXT_TAG_STYLE_PURE_TEXT = 1;
+    }
+    
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+    // 
+    int32 poi_type = 4;
+    // 
+    DynExtendType type = 5;
+    // 
+    string sub_module = 6;
+    // 
+    string action_text = 7;
+    // 
+    string action_url = 8;
+    // 
+    int64 rid = 9;
+    // 
+    bool is_show_light = 10;
+    // 
+    ExtInfoCommon.ExtTagStyle tag_style = 11;
+    // 
+    string extend_report_tag = 12;
+}
+
+// 
+message ExtInfoGame {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message ExtInfoHot {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message ExtInfoLBS {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+    // 
+    int32 poi_type = 4;
+}
+
+// 
+message ExtInfoOGV {
+    // 
+    repeated InfoOGV info_ogv = 1;
+}
+
+// 
+message ExtInfoTopic {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message Extend {
+    // 
+    string dyn_id_str = 1;
+    // 
+    string business_id = 2;
+    // 
+    string orig_dyn_id_str = 3;
+    // 
+    string orig_name = 4;
+    // 
+    string orig_img_url = 5;
+    // 
+    repeated Description orig_desc = 6;
+    // 
+    repeated Description desc = 7;
+    // 
+    DynamicType orig_dyn_type = 8;
+    // 
+    string share_type = 9;
+    // 
+    string share_scene = 10;
+    // 
+    bool is_fast_share = 11;
+    // 
+    int32 r_type = 12;
+    // 
+    int64 dyn_type = 13;
+    // 
+    int64 uid = 14;
+    // 
+    string card_url = 15;
+    // 
+    google.protobuf.Any source_content = 16;
+    // 
+    string orig_face = 17;
+    // 
+    ExtendReply reply = 18;
+    // 
+    string track_id = 19;
+    // 
+    ModuleOpusSummary opus_summary = 20;
+    // 
+    OnlyFansProperty only_fans_property = 21;
+    // 
+    DynFeatureGate feature_gate = 22;
+    // 
+    bool is_in_audit = 23;
+    // 
+    map<string, string> history_report = 24;
+    // 
+    string report_metric_data = 25;
+    // 
+    TextParagraph desc_text_opus = 26;
+    // 
+    bool is_preview_only = 27;
+    // 
+    RepostExtraInfo repost_extra_info = 28;
+    // 
+    MangaProperty manga_property = 29;
+    // 
+    string up_name = 30;
+    // 
+    string up_face = 31;
+    // 
+    DynVisibilityStatus desired_visibility_status = 32;
+}
+
+// 
+message ExtendReply {
+    // 
+    string uri = 1;
+    // 
+    repeated ExtendReplyParam params = 2;
+    // 
+    int64 reply_biz_type = 3;
+    // 
+    int64 reply_biz_id = 4;
+    // 
+    bool no_load_comment = 5;
+    // 
+    string no_load_comment_hint_text = 6;
+}
+
+// 
+message ExtendReplyParam {
+    // 
+    string key = 1;
+    // 
+    string value = 2;
+}
+
+// 
+message FeedFilterReply {
+    // 
+    string offset = 1;
+    // 
+    bool has_more = 2;
+    // 
+    repeated DynamicItem list = 3;
+}
+
+// 
+message FeedFilterReq {
+    // 
+    string offset = 1;
+    // 
+    string tab = 2;
+    // 
+    int32 local_time = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+    // 
+    AdParam ad_param = 5;
+    // 
+    int32 cold_start = 6;
+    // 
+    int64 page = 7;
+}
+
+// 
+message FeedSortConfig {
+    // 
+    string title = 1;
+    // 
+    repeated FeedSortOption sort_options = 2;
+}
+
+// 
+message FeedSortOption {
+    // 
+    string sort_name = 1;
+    // 
+    string sort_type = 2;
+    // 
+    bool is_selected = 3;
+    // 
+    bool no_auto_next_page_when_unsatisfied = 4;
+}
+
+// 
+message FeedSortOptionReq {
+    // 
+    string sort_type = 1;
+    // 
+    bool is_cold_refresh = 2;
+}
+
+// 
+message FetchTabSettingReply {
+    // 
+    HomePageTabSttingStatus status = 1;
+}
+
+// 
+message FlowItemOpus {
+    // 
+    MdlDynDrawItem cover_pic = 1;
+    // 
+    bilibili.app.dynamic.common.ItemWHRatio cover_wh_ratio = 2;
+    // 
+    CoverIconWithText bottom_left_text1 = 3;
+    // 
+    CoverIconWithText bottom_left_text2 = 4;
+    // 
+    Paragraph text_paragraph = 5;
+    // 
+    VideoBadge top_right_badge = 6;
+    // 
+    MdlDynDrawItem dark_cover_pic = 7;
+}
+
+// 
+enum FlowItemType {
+    // 
+    FLOW_ITEM_TYPE_INVALID = 0;
+    // 
+    FLOW_ITEM_TYPE_OPUS = 1;
+}
+
+// 
+enum FoldType {
+    // 
+    FoldTypeZore = 0;
+    // 
+    FoldTypePublish = 1;
+    // 
+    FoldTypeFrequent = 2;
+    // 
+    FoldTypeUnite = 3;
+    // 
+    FoldTypeLimit = 4;
+    // 
+    FoldTypeTopicMerged = 5;
+}
+
+// 
+message FollowListItem {
+    // 
+    int64 season_id = 1;
+    // 
+    string title = 2;
+    // 
+    string cover = 3;
+    // 
+    string url = 4;
+    // 
+    NewEP new_ep = 5;
+    // 
+    string sub_title = 6;
+    // 
+    int64 pos = 7;
+}
+
+// 
+message FormulaNode {
+    // 
+    WordNode latex_content = 1;
+    // 
+    ImgInlineCfg image_spec = 2;
+    // 
+    string img_url = 4;
+}
+
+// 
+message GoodsItem {
+    // 
+    string cover = 1;
+    // 
+    string schema_package_name = 2;
+    // 
+    int32 source_type = 3;
+    // 
+    string jump_url = 4;
+    // 
+    string jump_desc = 5;
+    // 
+    string title = 6;
+    // 
+    string brief = 7;
+    // 
+    string price = 8;
+    // 
+    int64 item_id = 9;
+    // 
+    string schema_url = 10;
+    // 
+    repeated string open_white_list = 11;
+    // 
+    bool user_web_v2 = 12;
+    // 
+    string ad_mark = 13;
+    // 
+    string app_name = 14;
+    // 
+    GoodsJumpType jump_type = 15;
+    // 
+    string cm_cache_passthrough = 16;
+}
+
+// 
+enum GoodsJumpType {
+    // 
+    goods_none = 0;
+    // 
+    goods_schema = 1;
+    // 
+    goods_url = 2;
+}
+
+// 
+message GuideBarInfo {
+    // 
+    int32 show = 1;
+    // 
+    int32 page = 2;
+    // 
+    int32 position = 3;
+    // 
+    string desc = 4;
+    // 
+    int32 jump_page = 5;
+    // 
+    int32 jump_position = 6;
+}
+
+// 
+message HighlightText {
+    // 
+    string text = 1;
+    // 
+    HighlightTextStyle text_style = 2;
+    // 
+    string jump_url = 3;
+    // 
+    string icon = 4;
+}
+
+// 
+enum HighlightTextStyle {
+    // 
+    style_none = 0;
+    // 
+    style_highlight = 1;
+}
+
+// 
+enum HomePageTabSttingStatus {
+    // 
+    SETTING_INVALID = 0;
+    // 
+    SETTING_OPEN = 1;
+    // 
+    SETTING_CLOSE = 2;
+}
+
+// 
+message HomeSubscribeReply {
+    // 
+    CampusOnlineStatus online = 1;
+}
+
+// 
+message HomeSubscribeReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+}
+
+// 
+message IconBadge {
+    // 
+    string icon_bg_url = 1;
+    // 
+    string text = 2;
+}
+
+// 
+message IconButton {
+    // 
+    string text = 1;
+    // 
+    string icon_head = 2;
+    // 
+    string icon_tail = 3;
+    // 
+    string jump_uri = 4;
+    // 
+    RouterAction router_action = 5;
+}
+
+// 
+enum IconResLocal {
+    // 
+    ICON_RES_LOCAL_NONE = 0;
+    // 
+    ICON_RES_LOCAL_LIVE = 1;
+}
+
+// 
+message ImageSet {
+    // 
+    string img_day = 1;
+    // 
+    string img_dark = 2;
+}
+
+// 
+enum ImageStyle {
+    // 
+    add_style_vertical = 0;
+    // 
+    add_style_square = 1;
+}
+
+// 
+message ImgInlineCfg {
+    // 
+    double width = 1;
+    // 
+    double height = 2;
+    // 
+    Colors color = 3;
+}
+
+// 
+message InfoOGV {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+    // 
+    string icon = 3;
+    // 
+    string sub_module = 4;
+}
+
+// 
+message InteractionFace {
+    // 
+    int64 mid = 1;
+    // 
+    string face = 2;
+}
+
+// 
+message InteractionItem {
+    // 
+    LocalIconType icon_type = 1;
+    // 
+    repeated Description desc = 2;
+    // 
+    string uri = 3;
+    // 
+    string dynamic_id = 4;
+    // 
+    int64 comment_mid = 6;
+    // 
+    repeated InteractionFace faces = 7;
+    // 
+    InteractionStat stat = 8;
+    // 
+    string icon = 9;
+    // 
+    string tail_icon = 10;
+    // 
+    repeated Description tail_desc = 11;
+    // 
+    map<string, string> extend_click_param = 12;
+}
+
+// 
+message InteractionStat {
+    // 
+    int64 like = 1;
+    // 
+    int64 forward = 2;
+}
+
+// 
+message LbsPoiDetail {
+    // 
+    string poi = 1;
+    // 
+    int64 type = 2;
+    // 
+    repeated string base_pic = 3;
+    // 
+    repeated string cover = 4;
+    // 
+    string address = 5;
+    // 
+    string title = 6;
+}
+
+// 
+message LbsPoiReply {
+    // 
+    bool has_more = 1;
+    // 
+    string offset = 2;
+    // 
+    LbsPoiDetail detail = 3;
+    // 
+    repeated DynamicItem list = 4;
+}
+
+// 
+message LbsPoiReq {
+    // 
+    string poi = 1;
+    // 
+    int64 type = 2;
+    // 
+    string offset = 3;
+    // 
+    Refresh refresh_type = 4;
+    // 
+    int32 local_time = 5;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 6;
+}
+
+// 
+message LegacyTopicFeedReply {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    bool has_more = 2;
+    // 
+    string offset = 3;
+    // 
+    repeated SortType supported_sort_types = 4;
+    // 
+    repeated SortType feed_card_filters = 5;
+}
+
+// 
+message LegacyTopicFeedReq {
+    // 
+    int64 topic_id = 1;
+    // 
+    string topic_name = 2;
+    // 
+    string offset = 3;
+    // 
+    SortType sort_type = 4;
+    // 
+    SortType card_filter = 5;
+}
+
+// 
+enum LightFromType {
+    // 
+    from_login = 0;
+    // 
+    from_unlogin = 1;
+}
+
+// 
+message LikeAnimation {
+    // 
+    string begin = 1;
+    // 
+    string proc = 2;
+    // 
+    string end = 3;
+    // 
+    int64 like_icon_id = 4;
+}
+
+// 
+message LikeInfo {
+    // 
+    LikeAnimation animation = 1;
+    // 
+    bool is_like = 2;
+}
+
+// 
+message LikeListReply {
+    // 
+    repeated ModuleAuthor list = 1;
+    // 
+    bool has_more = 2;
+    // 
+    int64 total_count = 3;
+}
+
+// 
+message LikeListReq {
+    // 
+    string dynamic_id = 1;
+    // 
+    int64 dyn_type = 2;
+    // 
+    int64 rid = 3;
+    // 
+    int64 uid_offset = 4;
+    // 
+    int32 page = 5;
+}
+
+// 
+message LikeUser {
+    // 
+    int64 uid = 1;
+    // 
+    string uname = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message LineParagraph {
+    // 
+    MdlDynDrawItem pic = 1;
+}
+
+// 
+message LinkNode {
+    // 
+    WordNode show_text = 1;
+    // 
+    string link = 2;
+    // 
+    string icon = 3;
+    // 
+    string icon_suffix = 4;
+    // 
+    string link_type = 5;
+    // 
+    LinkNodeType link_type_enum = 6;
+    // 
+    string biz_id = 7;
+    // 
+    int64 timestamp = 8;
+    // 
+    GoodsItem goods_item = 9;
+    // 
+    NoteVideoTS note_video_ts = 10;
+    // 
+    google.protobuf.Any biz_data = 11;
+    // 
+    MdlDynDraw link_pics = 12;
+}
+
+// 
+enum LinkNodeType {
+    // 
+    INVALID = 0;
+    // 
+    VIDEO = 1;
+    // 
+    RESERVE = 2;
+    // 
+    VOTE = 3;
+    // 
+    LIVE = 4;
+    // 
+    LOTTERY = 5;
+    // 
+    MATCH = 6;
+    // 
+    GOODS = 7;
+    // 
+    OGV_SS = 8;
+    // 
+    OGV_EP = 9;
+    // 
+    MANGA = 10;
+    // 
+    CHEESE = 11;
+    // 
+    VIDEO_TS = 12;
+    // 
+    AT = 13;
+    // 
+    HASH_TAG = 14;
+    // 
+    ARTICLE = 15;
+    // 
+    URL = 16;
+    // 
+    MAIL = 17;
+    // 
+    LBS = 18;
+    // 
+    ACTIVITY = 19;
+    // 
+    ATTACH_CARD_OFFICIAL_ACTIVITY = 20;
+    // 
+    GAME = 21;
+    // 
+    DECORATION = 22;
+    // 
+    UP_TOPIC = 23;
+    // 
+    UP_ACTIVITY = 24;
+    // 
+    UP_MAOER = 25;
+    // 
+    MEMBER_GOODS = 26;
+    // 
+    OPENMALL_UP_ITEMS = 27;
+    // 
+    SEARCH = 28;
+    // 
+    MUSIC = 29;
+    // 
+    GPT_RCMD_QUESTION = 30;
+    // 
+    MEMBER_TICKET = 31;
+    // 
+    REPOST_PIC_URL = 32;
+    // 
+    REPOST_PIC_DYN_URL = 33;
+    // 
+    OGV_FOLLOW_CARD = 34;
+    // 
+    ARTICLE_GOODS = 35;
+    // 
+    ARTICLE_TAG = 36;
+}
+
+// 
+message ListCreationReq {
+    // 
+    SelectedClassificationAndSortType preference = 1;
+    // 
+    int32 local_time = 2;
+    // 
+    bilibili.pagination.Pagination pagination = 3;
+}
+
+// 
+message ListCreationResp {
+    // 
+    repeated CreationClassification classifications = 1;
+    // 
+    repeated CreationSortType sort_types = 2;
+    // 
+    bilibili.pagination.PaginationReply next_page = 3;
+    // 
+    repeated OpusCreationItem creation_list = 4;
+}
+
+// 
+message ListFavReq {
+    // 
+    int32 local_time = 1;
+    // 
+    bilibili.pagination.Pagination pagination = 2;
+}
+
+// 
+message ListFavResp {
+    // 
+    repeated OpusFavItem item_list = 1;
+    // 
+    bilibili.pagination.PaginationReply next_page = 2;
+}
+
+// 
+message LiveInfo {
+    // 
+    int32 is_living = 1;
+    // 
+    string uri = 2;
+    // 
+    LiveState live_state = 3;
+}
+
+// 
+message LivePendant {
+    // 
+    string text = 1;
+    // 
+    string icon = 2;
+    // 
+    int64 pendant_id = 3;
+}
+
+// 
+enum LiveState {
+    // 
+    live_none = 0;
+    // 
+    live_live = 1;
+    // 
+    live_rotation = 2;
+}
+
+// 
+enum LocalIconType {
+    // 
+    local_icon_comment = 0;
+    // 
+    local_icon_like = 1;
+    // 
+    local_icon_avatar = 2;
+    // 
+    local_icon_cover = 3;
+    // 
+    local_icon_like_and_forward = 4;
+}
+
+// 
+message MangaLikeBrowserGuidance {
+    // 
+    bool show_page_right_to_left_guidance = 1;
+    // 
+    string page_right_to_left_guidance_text = 2;
+}
+
+// 
+enum MangaLikePageDirection {
+    // 
+    PAGE_DIRECTION_INVALID = 0;
+    // 
+    PAGE_DIRECTION_LEFT_TO_RIGHT = 1;
+    // 
+    PAGE_DIRECTION_RIGHT_TO_LEFT = 2;
+    // 
+    PAGE_DIRECTION_LEFT_TO_RIGHT_ROTATE = 3;
+}
+
+// 
+message MangaLikePic {
+    // 
+    ProtectedStaticResource pic = 1;
+    // 
+    int64 width = 2;
+    // 
+    int64 height = 3;
+}
+
+// 
+enum MangaLikePicClickAction {
+    // 
+    CLICK_ACT_NONE = 0;
+    // 
+    CLICK_ACT_MANGA_BROWSER = 1;
+    // 
+    CLICK_ACT_NORMAL_BROWSER = 2;
+}
+
+// 
+message MangaProperty {
+    // 
+    int64 ep_id = 1;
+    // 
+    int64 manga_id = 2;
+    // 
+    bool is_premium_content = 3;
+    // 
+    bool is_payment_needed = 4;
+}
+
+// 
+message MatchTeam {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    string cover = 3;
+    // 
+    string color = 4;
+    // 
+    string night_color = 5;
+}
+
+// 
+enum MdlBlockedStyle {
+    // 
+    BLOCKED_STYLE_DEFAULT = 0;
+    // 
+    BLOCKED_STYLE_IN_AUDIT = 1;
+    // 
+    BLOCKED_STYLE_ONLY_FANS_LIST = 2;
+    // 
+    BLOCKED_STYLE_ONLY_FANS_VIDEO = 3;
+    // 
+    BLOCKED_STYLE_MANGA_PURCHASE = 4;
+}
+
+// 
+message MdlDynApplet {
+    // 
+    int64 id = 1;
+    // 
+    string uri = 2;
+    // 
+    string title = 4;
+    // 
+    string sub_title = 5;
+    // 
+    string cover = 6;
+    // 
+    string icon = 7;
+    // 
+    string label = 8;
+    // 
+    string button_title = 9;
+}
+
+// 
+message MdlDynArchive {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string cover_left_text2 = 5;
+    // 
+    string cover_left_text3 = 6;
+    // 
+    int64 avid = 7;
+    // 
+    int64 cid = 8;
+    // 
+    MediaType media_type = 9;
+    // 
+    Dimension dimension = 10;
+    // 
+    repeated VideoBadge badge = 11;
+    // 
+    bool can_play = 12;
+    // 
+    VideoType stype = 13;
+    // 
+    bool is_p_g_c = 14;
+    // 
+    string inline_u_r_l = 15;
+    // 
+    int64 episode_id = 16;
+    // 
+    int32 sub_type = 17;
+    // 
+    int64 pgc_season_id = 18;
+    // 
+    string play_icon = 19;
+    // 
+    int64 duration = 20;
+    // 
+    string jump_url = 21;
+    // 
+    bool is_preview = 22;
+    // 
+    repeated VideoBadge badge_category = 23;
+    // 
+    bool is_feature = 24;
+    // 
+    ReserveType reserve_type = 25;
+    // 
+    string bvid = 26;
+    // 
+    int32 view = 27;
+    // 
+    bool show_premiere_badge = 28;
+    // 
+    bool premiere_card = 29;
+    // 
+    bool show_progress = 30;
+    // 
+    int64 part_duration = 31;
+    // 
+    int64 part_progress = 32;
+}
+
+// 
+message MdlDynArticle {
+    // 
+    int64 id = 1;
+    // 
+    string uri = 2;
+    // 
+    string title = 3;
+    // 
+    string desc = 4;
+    // 
+    repeated string covers = 5;
+    // 
+    string label = 6;
+    // 
+    int32 template_i_d = 7;
+}
+
+// 
+message MdlDynChargingArchive {
+    // 
+    MdlDynArchive archive_info = 1;
+    // 
+    bool has_permission = 2;
+    // 
+    bool can_inline = 3;
+    // 
+    string charging_bundle_name = 4;
+    // 
+    int64 cfg_preview_end_toast_countdown = 5;
+    // 
+    int64 cfg_normal_inline_toast_duration = 6;
+    // 
+    OneLineText video_bottom_text_upper = 7;
+    // 
+    OneLineText video_bottom_text_lower = 8;
+    // 
+    string archive_cover = 9;
+    // 
+    string archive_title = 10;
+    // 
+    IconButton act_btn = 11;
+    // 
+    OneLineText text_normal_inline_toast = 12;
+    // 
+    OneLineText text_append_preview_end_toast = 13;
+}
+
+// 
+message MdlDynCommon {
+    // 
+    int64 oid = 1;
+    // 
+    string uri = 2;
+    // 
+    string title = 3;
+    // 
+    string desc = 4;
+    // 
+    string cover = 5;
+    // 
+    string label = 6;
+    // 
+    int32 biz_type = 7;
+    // 
+    int64 sketch_i_d = 8;
+    // 
+    MdlDynCommonType style = 9;
+    // 
+    repeated VideoBadge badge = 10;
+    // 
+    AdditionalButton button = 11;
+}
+
+// 
+enum MdlDynCommonType {
+    // 
+    mdl_dyn_common_none = 0;
+    // 
+    mdl_dyn_common_square = 1;
+    // 
+    mdl_dyn_common_vertica = 2;
+}
+
+// 
+message MdlDynCourBatch {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string text1 = 4;
+    // 
+    string text2 = 5;
+    // 
+    VideoBadge badge = 6;
+    // 
+    string play_icon = 7;
+    // 
+    bool can_play = 8;
+    // 
+    bool is_preview = 9;
+    // 
+    string cover_left_text1 = 10;
+    // 
+    string cover_left_text2 = 11;
+    // 
+    string cover_left_text3 = 12;
+    // 
+    int64 avid = 13;
+    // 
+    int64 cid = 14;
+    // 
+    int64 epid = 15;
+    // 
+    int64 duration = 16;
+    // 
+    int64 season_id = 17;
+}
+
+// 
+message MdlDynCourSeason {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string text1 = 4;
+    // 
+    string desc = 5;
+    // 
+    VideoBadge badge = 6;
+    // 
+    string play_icon = 7;
+    // 
+    bool can_play = 8;
+    // 
+    bool is_preview = 9;
+    // 
+    int64 avid = 10;
+    // 
+    int64 cid = 11;
+    // 
+    int64 epid = 12;
+    // 
+    int64 duration = 13;
+    // 
+    int64 season_id = 14;
+}
+
+// 
+message MdlDynCourUp {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string cover = 3;
+    // 
+    string uri = 4;
+    // 
+    string text1 = 5;
+    // 
+    VideoBadge badge = 6;
+    // 
+    string play_icon = 7;
+    // 
+    bool can_play = 8;
+    // 
+    bool is_preview = 9;
+    // 
+    int64 avid = 10;
+    // 
+    int64 cid = 11;
+    // 
+    int64 epid = 12;
+    // 
+    int64 duration = 13;
+    // 
+    int64 season_id = 14;
+}
+
+// 
+message MdlDynDraw {
+    // 
+    repeated MdlDynDrawItem items = 1;
+    // 
+    string uri = 2;
+    // 
+    int64 id = 3;
+    // 
+    bool is_draw_first = 4;
+    // 
+    bool is_big_cover = 5;
+    // 
+    bool is_article_cover = 6;
+    // 
+    bool unfold_all = 7;
+}
+
+// 
+message MdlDynDrawItem {
+    // 
+    string src = 1;
+    // 
+    int64 width = 2;
+    // 
+    int64 height = 3;
+    // 
+    float size = 4;
+    // 
+    repeated MdlDynDrawTag tags = 5;
+    // 
+    string src_dark = 6;
+    // 
+    bool is_live_photo = 7;
+    // 
+    string live_video_url = 8;
+    // 
+    double live_video_size = 9;
+}
+
+// 
+message MdlDynDrawTag {
+    // 
+    MdlDynDrawTagType type = 1;
+    // 
+    MdlDynDrawTagItem item = 2;
+}
+
+// 
+message MdlDynDrawTagItem {
+    // 
+    string url = 1;
+    // 
+    string text = 2;
+    // 
+    int64 x = 3;
+    // 
+    int64 y = 4;
+    // 
+    int32 orientation = 5;
+    // 
+    int32 source = 6;
+    // 
+    int64 item_id = 7;
+    // 
+    int64 mid = 8;
+    // 
+    int64 tid = 9;
+    // 
+    string poi = 10;
+    // 
+    string schema_url = 11;
+}
+
+// 
+enum MdlDynDrawTagType {
+    // 
+    mdl_draw_tag_none = 0;
+    // 
+    mdl_draw_tag_common = 1;
+    // 
+    mdl_draw_tag_goods = 2;
+    // 
+    mdl_draw_tag_user = 3;
+    // 
+    mdl_draw_tag_topic = 4;
+    // 
+    mdl_draw_tag_lbs = 5;
+}
+
+// 
+message MdlDynForward {
+    // 
+    DynamicItem item = 1;
+    // 
+    int32 rtype = 2;
+}
+
+// 
+message MdlDynLive {
+    // 
+    int64 id = 1;
+    // 
+    string uri = 2;
+    // 
+    string title = 3;
+    // 
+    string cover = 4;
+    // 
+    string cover_label = 5;
+    // 
+    string cover_label2 = 6;
+    // 
+    LiveState live_state = 7;
+    // 
+    VideoBadge badge = 8;
+    // 
+    ReserveType reserve_type = 9;
+}
+
+// 
+message MdlDynLiveRcmd {
+    // 
+    string content = 1;
+    // 
+    ReserveType reserve_type = 2;
+    // 
+    LivePendant pendant = 3;
+}
+
+// 
+message MdlDynMedialist {
+    // 
+    int64 id = 1;
+    // 
+    string uri = 2;
+    // 
+    string title = 3;
+    // 
+    string sub_title = 4;
+    // 
+    string cover = 5;
+    // 
+    int32 cover_type = 6;
+    // 
+    VideoBadge badge = 7;
+    // 
+    string cover_bottom_right_icon = 8;
+}
+
+// 
+message MdlDynMusic {
+    // 
+    int64 id = 1;
+    // 
+    string uri = 2;
+    // 
+    int64 up_id = 3;
+    // 
+    string title = 4;
+    // 
+    string cover = 5;
+    // 
+    string label1 = 6;
+    // 
+    string upper = 7;
+}
+
+// 
+message MdlDynPGC {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string cover_left_text2 = 5;
+    // 
+    string cover_left_text3 = 6;
+    // 
+    int64 cid = 7;
+    // 
+    int64 season_id = 8;
+    // 
+    int64 epid = 9;
+    // 
+    int64 aid = 10;
+    // 
+    MediaType media_type = 11;
+    // 
+    VideoSubType sub_type = 12;
+    // 
+    bool is_preview = 13;
+    // 
+    Dimension dimension = 14;
+    // 
+    repeated VideoBadge badge = 15;
+    // 
+    bool can_play = 16;
+    // 
+    PGCSeason season = 17;
+    // 
+    string play_icon = 18;
+    // 
+    int64 duration = 19;
+    // 
+    string jump_url = 20;
+    // 
+    repeated VideoBadge badge_category = 21;
+    // 
+    bool is_feature = 22;
+}
+
+// 
+message MdlDynShareChargingQA {
+    // 
+    ImageSet background_img = 1;
+    // 
+    ImageSet left_icon_img = 2;
+    // 
+    string title = 3;
+    // 
+    IconButton jump_button = 4;
+    // 
+    string uri = 5;
+    // 
+    CommonShareCardInfo share_card_meta_info = 6;
+    // 
+    string title_prefix_bold = 7;
+}
+
+// 
+message MdlDynSubscription {
+    // 
+    int64 id = 1;
+    // 
+    int64 ad_id = 2;
+    // 
+    string uri = 3;
+    // 
+    string title = 4;
+    // 
+    string cover = 5;
+    // 
+    string ad_title = 6;
+    // 
+    VideoBadge badge = 7;
+    // 
+    string tips = 8;
+}
+
+// 
+message MdlDynSubscriptionNew {
+    // 
+    oneof item {
+        // 
+        MdlDynSubscription dyn_subscription = 2;
+        // 
+        MdlDynLiveRcmd dyn_live_rcmd = 3;
+    }
+    // 
+    MdlDynSubscriptionNewStyle style = 1;
+}
+
+// 
+enum MdlDynSubscriptionNewStyle {
+    // 
+    mdl_dyn_subscription_new_style_nont = 0;
+    // 
+    mdl_dyn_subscription_new_style_live = 1;
+    // 
+    mdl_dyn_subscription_new_style_draw = 2;
+}
+
+// 
+message MdlDynTopicSet {
+    // 
+    repeated TopicItem topics = 1;
+    // 
+    IconButton more_btn = 2;
+    // 
+    int64 topic_set_id = 3;
+    // 
+    int64 push_id = 4;
+}
+
+// 
+message MdlDynUGCSeason {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string uri = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string cover_left_text2 = 5;
+    // 
+    string cover_left_text3 = 6;
+    // 
+    int64 id = 7;
+    // 
+    string inline_u_r_l = 8;
+    // 
+    bool can_play = 9;
+    // 
+    string play_icon = 10;
+    // 
+    int64 avid = 11;
+    // 
+    int64 cid = 12;
+    // 
+    Dimension dimension = 13;
+    // 
+    int64 duration = 14;
+    // 
+    string jump_url = 15;
+    // 
+    repeated VideoBadge badge = 16;
+}
+
+// 
+enum MediaType {
+    // 
+    MediaTypeNone = 0;
+    // 
+    MediaTypeUGC = 1;
+    // 
+    MediaTypePGC = 2;
+    // 
+    MediaTypeLive = 3;
+    // 
+    MediaTypeVCS = 4;
+}
+
+// 
+message MixUpListItem {
+    // 
+    int64 uid = 1;
+    // 
+    int32 special_attention = 2;
+    // 
+    int32 reddot_state = 3;
+    // 
+    MixUpListLiveItem live_info = 4;
+    // 
+    string name = 5;
+    // 
+    string face = 6;
+    // 
+    OfficialVerify official = 7;
+    // 
+    VipInfo vip = 8;
+    // 
+    Relation relation = 9;
+    // 
+    int32 premiere_state = 10;
+    // 
+    string uri = 11;
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem avatar = 12;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 13;
+}
+
+// 
+message MixUpListLiveItem {
+    // 
+    bool status = 1;
+    // 
+    int64 room_id = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message Module {
+    // 
+    oneof module_item {
+        // 
+        ModuleAuthor module_author = 2;
+        // 
+        ModuleDispute module_dispute = 3;
+        // 
+        ModuleDesc module_desc = 4;
+        // 
+        ModuleDynamic module_dynamic = 5;
+        // 
+        ModuleLikeUser module_like_user = 6;
+        // 
+        ModuleExtend module_extend = 7;
+        // 
+        ModuleAdditional module_additional = 8;
+        // 
+        ModuleStat module_stat = 9;
+        // 
+        ModuleFold module_fold = 10;
+        // 
+        ModuleComment module_comment = 11;
+        // 
+        ModuleInteraction module_interaction = 12;
+        // 
+        ModuleAuthorForward module_author_forward = 13;
+        // 
+        ModuleAd module_ad = 14;
+        // 
+        ModuleBanner module_banner = 15;
+        // 
+        ModuleItemNull module_item_null = 16;
+        // 
+        ModuleShareInfo module_share_info = 17;
+        // 
+        ModuleRecommend module_recommend = 18;
+        // 
+        ModuleTop module_top = 19;
+        // 
+        ModuleButtom module_buttom = 20;
+        // 
+        ModuleStat module_stat_forward = 21;
+        // 
+        ModuleStory module_story = 22;
+        // 
+        ModuleTopic module_topic = 23;
+        // 
+        ModuleTopicDetailsExt module_topic_details_ext = 24;
+        // 
+        ModuleTopTag module_top_tag = 25;
+        // 
+        ModuleTopicBrief module_topic_brief = 26;
+        // 
+        ModuleTitle module_title = 27;
+        // 
+        ModuleButton module_button = 28;
+        // 
+        ModuleNotice module_notice = 29;
+        // 
+        ModuleOpusSummary module_opus_summary = 30;
+        // 
+        ModuleCopyright module_copyright = 31;
+        // 
+        ModuleParagraph module_paragraph = 32;
+        // 
+        ModuleBlocked module_blocked = 33;
+        // 
+        ModuleTextNotice module_text_notice = 34;
+        // 
+        ModuleOpusCollection module_opus_collection = 35;
+        // 
+        ModuleOnetimeNotice module_onetime_notice = 36;
+        // 
+        ModuleSneakingAd module_sneaking_ad = 37;
+        // 
+        ModuleMangaHorizontalPagePicContent module_manga_horizontal_page_pic_content = 38;
+        // 
+        ModuleMangaVerticalSlidePicContent module_manga_vertical_slide_pic_content = 39;
+        // 
+        ModuleMangaCoverPicContent module_manga_cover_pic_content = 40;
+        // 
+        ModuleAuthorForSubscribe module_author_for_subscribe = 41;
+        // 
+        ModuleAuthorSlim module_author_slim = 42;
+        // 
+        ModuleMangaCollection module_manga_collection = 43;
+        // 
+        ModuleCooperation module_cooperation = 44;
+    }
+    // 
+    DynModuleType module_type = 1;
+}
+
+// 
+message ModuleAd {
+    // 
+    google.protobuf.Any source_content = 1;
+    // 
+    ModuleAuthor module_author = 2;
+    // 
+    int32 ad_content_type = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string cover_left_text2 = 5;
+    // 
+    string cover_left_text3 = 6;
+}
+
+// 
+message ModuleAdditional {
+    // 
+    oneof item {
+        // 
+        AdditionalPGC pgc = 2;
+        // 
+        AdditionGoods goods = 3;
+        // 
+        AdditionVote vote = 4;
+        // 
+        AdditionCommon common = 5;
+        // 
+        AdditionEsport esport = 6;
+        // 
+        AdditionVote2 vote2 = 8;
+        // 
+        AdditionUgc ugc = 9;
+        // 
+        AdditionUP up = 10;
+        // 
+        AdditionArticle article = 12;
+        // 
+        AdditionLiveRoom live = 13;
+        // 
+        AdditionMusic music = 14;
+    }
+    // 
+    AdditionalType type = 1;
+    // 
+    int64 rid = 7;
+    // 
+    bool need_write_calender = 11;
+}
+
+// 
+message ModuleAuthor {
+    // 
+    int64 mid = 1;
+    // 
+    string ptime_label_text = 2;
+    // 
+    UserInfo author = 3;
+    // 
+    DecorateCard decorate_card = 4;
+    // 
+    string uri = 5;
+    // 
+    repeated ThreePointItem tp_list = 6;
+    // 
+    ModuleAuthorBadgeType badge_type = 7;
+    // 
+    ModuleAuthorBadgeButton badge_button = 8;
+    // 
+    int32 attend = 9;
+    // 
+    Relation relation = 10;
+    // 
+    Weight weight = 11;
+    // 
+    bool show_follow = 12;
+    // 
+    bool is_top = 13;
+    // 
+    string ptime_location_text = 14;
+    // 
+    bool show_level = 15;
+    // 
+    OnlyFans only_fans = 16;
+    // 
+    AuthorBadge author_badge = 17;
+}
+
+// 
+message ModuleAuthorBadgeButton {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    int32 state = 3;
+    // 
+    int64 id = 4;
+}
+
+// 
+enum ModuleAuthorBadgeType {
+    // 
+    module_author_badge_type_none = 0;
+    // 
+    module_author_badge_type_threePoint = 1;
+    // 
+    module_author_badge_type_button = 2;
+    // 
+    module_author_badge_type_weight = 3;
+}
+
+// 
+message ModuleAuthorForSubscribe {
+    // 
+    string cover = 1;
+    // 
+    string title = 2;
+    // 
+    string sub_title = 3;
+    // 
+    SubscribeButton subscribe_btn = 4;
+}
+
+// 
+message ModuleAuthorForward {
+    // 
+    repeated ModuleAuthorForwardTitle title = 1;
+    // 
+    string url = 2;
+    // 
+    int64 uid = 3;
+    // 
+    string ptime_label_text = 4;
+    // 
+    bool show_follow = 5;
+    // 
+    string face_url = 6;
+    // 
+    Relation relation = 7;
+    // 
+    repeated ThreePointItem tp_list = 8;
+}
+
+// 
+message ModuleAuthorForwardTitle {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+}
+
+// 
+message ModuleAuthorSlim {
+    // 
+    BasicUserInfoV2 user_info = 1;
+    // 
+    string ptime_label_text = 2;
+}
+
+// 
+message ModuleBanner {
+    // 
+    oneof item {
+        // 
+        ModuleBannerUser user = 3;
+    }
+    // 
+    string title = 1;
+    // 
+    ModuleBannerType type = 2;
+    // 
+    string dislike_text = 4;
+    // 
+    string dislike_icon = 5;
+}
+
+// 
+enum ModuleBannerType {
+    // 
+    module_banner_type_none = 0;
+    // 
+    module_banner_type_user = 1;
+}
+
+// 
+message ModuleBannerUser {
+    // 
+    repeated ModuleBannerUserItem list = 1;
+}
+
+// 
+message ModuleBannerUserItem {
+    // 
+    string face = 1;
+    // 
+    string name = 2;
+    // 
+    int64 uid = 3;
+    // 
+    LiveState live_state = 4;
+    // 
+    OfficialVerify official = 5;
+    // 
+    VipInfo vip = 6;
+    // 
+    string label = 7;
+    // 
+    AdditionalButton button = 8;
+    // 
+    string uri = 9;
+    // 
+    Relation relation = 10;
+}
+
+// 
+message ModuleBlocked {
+    // 
+    ImageSet icon = 1;
+    // 
+    ImageSet bg_img = 2;
+    // 
+    string hint_message = 3;
+    // 
+    IconButton act_btn = 4;
+    // 
+    MdlBlockedStyle block_style = 5;
+    // 
+    string sub_hint_message = 6;
+    // 
+    OneLineText video_bottom_text_upper = 7;
+    // 
+    OneLineText video_bottom_text_lower = 8;
+    // 
+    string archive_title = 9;
+    // 
+    OneLineText hint_message_one_line = 10;
+}
+
+// 
+message ModuleButtom {
+    // 
+    enum InteractionIcon {
+        // 
+        ICON_INVALID = 0;
+        // 
+        ICON_FORWARD = 1;
+        // 
+        ICON_COMMENT = 2;
+        // 
+        ICON_FAVORITE = 3;
+        // 
+        ICON_LIKE = 4;
+    }
+    
+    // 
+    ModuleStat module_stat = 1;
+    // 
+    bool comment_box = 2;
+    // 
+    string comment_box_msg = 3;
+    // 
+    repeated int32 interaction_icons = 4;
+    // 
+    repeated InteractionFace faces = 5;
+}
+
+// 
+message ModuleButton {
+    // 
+    IconButton btn = 1;
+}
+
+// 
+message ModuleComment {
+    // 
+    repeated CmtShowItem cmt_show_item = 1;
+}
+
+// 
+message ModuleCooperation {
+    // 
+    string oid = 1;
+    // 
+    repeated CooperationUpInfo up_list = 2;
+    // 
+    IconButton more_btn = 3;
+    // 
+    repeated ThreePointItem tp_list = 4;
+    // 
+    string float_title = 5;
+}
+
+// 
+message ModuleCopyright {
+    // 
+    string left_text = 1;
+    // 
+    string right_text = 2;
+}
+
+// 
+message ModuleDesc {
+    // 
+    repeated Description desc = 1;
+    // 
+    string jump_uri = 2;
+    // 
+    string text = 3;
+}
+
+// 
+message ModuleDescGoods {
+    // 
+    int32 source_type = 1;
+    // 
+    string jump_url = 2;
+    // 
+    string schema_url = 3;
+    // 
+    int64 item_id = 4;
+    // 
+    repeated string open_white_list = 5;
+    // 
+    bool user_web_v2 = 6;
+    // 
+    string ad_mark = 7;
+    // 
+    string schema_package_name = 8;
+    // 
+    GoodsJumpType jump_type = 9;
+    // 
+    string app_name = 10;
+}
+
+// 
+message ModuleDispute {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message ModuleDynamic {
+    // 
+    oneof module_item {
+        // 
+        MdlDynArchive dyn_archive = 2;
+        // 
+        MdlDynPGC dyn_pgc = 3;
+        // 
+        MdlDynCourSeason dyn_cour_season = 4;
+        // 
+        MdlDynCourBatch dyn_cour_batch = 5;
+        // 
+        MdlDynForward dyn_forward = 6;
+        // 
+        MdlDynDraw dyn_draw = 7;
+        // 
+        MdlDynArticle dyn_article = 8;
+        // 
+        MdlDynMusic dyn_music = 9;
+        // 
+        MdlDynCommon dyn_common = 10;
+        // 
+        MdlDynLive dyn_common_live = 11;
+        // 
+        MdlDynMedialist dyn_medialist = 12;
+        // 
+        MdlDynApplet dyn_applet = 13;
+        // 
+        MdlDynSubscription dyn_subscription = 14;
+        // 
+        MdlDynLiveRcmd dyn_live_rcmd = 15;
+        // 
+        MdlDynUGCSeason dyn_ugc_season = 16;
+        // 
+        MdlDynSubscriptionNew dyn_subscription_new = 17;
+        // 
+        MdlDynCourUp dyn_cour_batch_up = 18;
+        // 
+        MdlDynTopicSet dyn_topic_set = 19;
+        // 
+        MdlDynChargingArchive dyn_charging_archive = 20;
+        // 
+        MdlDynShareChargingQA dyn_share_charging_qa = 21;
+    }
+    // 
+    ModuleDynamicType type = 1;
+}
+
+// 
+enum ModuleDynamicType {
+    // 
+    mdl_dyn_archive = 0;
+    // 
+    mdl_dyn_pgc = 1;
+    // 
+    mdl_dyn_cour_season = 2;
+    // 
+    mdl_dyn_cour_batch = 3;
+    // 
+    mdl_dyn_forward = 4;
+    // 
+    mdl_dyn_draw = 5;
+    // 
+    mdl_dyn_article = 6;
+    // 
+    mdl_dyn_music = 7;
+    // 
+    mdl_dyn_common = 8;
+    // 
+    mdl_dyn_live = 9;
+    // 
+    mdl_dyn_medialist = 10;
+    // 
+    mdl_dyn_applet = 11;
+    // 
+    mdl_dyn_subscription = 12;
+    // 
+    mdl_dyn_live_rcmd = 13;
+    // 
+    mdl_dyn_ugc_season = 14;
+    // 
+    mdl_dyn_subscription_new = 15;
+    // 
+    mdl_dyn_cour_up = 16;
+    // 
+    mdl_dyn_topic_set = 17;
+    // 
+    mdl_dyn_charging_archive = 18;
+    // 
+    mdl_dyn_share_charging_qa = 19;
+}
+
+// 
+message ModuleExtend {
+    // 
+    repeated ModuleExtendItem extend = 1;
+    // 
+    string uri = 2;
+}
+
+// 
+message ModuleExtendItem {
+    // 
+    oneof extend {
+        // 
+        ExtInfoTopic ext_info_topic = 2;
+        // 
+        ExtInfoLBS ext_info_lbs = 3;
+        // 
+        ExtInfoHot ext_info_hot = 4;
+        // 
+        ExtInfoGame ext_info_game = 5;
+        // 
+        ExtInfoCommon ext_info_common = 6;
+        // 
+        ExtInfoOGV ext_info_ogv = 7;
+    }
+    // 
+    DynExtendType type = 1;
+}
+
+// 
+message ModuleFold {
+    // 
+    FoldType fold_type = 1;
+    // 
+    string text = 2;
+    // 
+    string fold_ids = 3;
+    // 
+    repeated UserInfo fold_users = 4;
+    // 
+    TopicMergedResource topic_merged_resource = 5;
+}
+
+// 
+message ModuleInteraction {
+    // 
+    repeated InteractionItem interaction_item = 1;
+}
+
+// 
+message ModuleItemNull {
+    // 
+    string icon = 1;
+    // 
+    string text = 2;
+}
+
+// 
+message ModuleLikeUser {
+    // 
+    repeated LikeUser like_users = 1;
+    // 
+    string display_text = 2;
+}
+
+// 
+message ModuleMangaCollection {
+    // 
+    string title_icon = 1;
+    // 
+    string title = 2;
+    // 
+    string sub_text_left = 3;
+    // 
+    string sub_text_right = 4;
+    // 
+    SubscribeButton subscribe_btn = 5;
+    // 
+    OpusCollection manga_collection_info = 6;
+    // 
+    string float_btn_prev_link = 7;
+    // 
+    string float_btn_next_link = 8;
+}
+
+// 
+message ModuleMangaCoverPicContent {
+    // 
+    MangaLikePic manga_pic = 1;
+    // 
+    MangaLikePicClickAction pic_click_action = 2;
+}
+
+// 
+message ModuleMangaHorizontalPagePicContent {
+    // 
+    MangaLikePageDirection page_direction = 1;
+    // 
+    repeated MangaLikePic manga_pics = 2;
+    // 
+    MangaLikePicClickAction pic_click_action = 3;
+    // 
+    MangaLikeBrowserGuidance browser_guidance = 4;
+}
+
+// 
+message ModuleMangaVerticalSlidePicContent {
+    // 
+    MangaLikePic manga_pic = 1;
+    // 
+    MangaLikePicClickAction pic_click_action = 2;
+}
+
+// 
+message ModuleNotice {
+    // 
+    string identity = 1;
+    // 
+    string icon = 2;
+    // 
+    string title = 3;
+    // 
+    string url = 4;
+    // 
+    int32 notice_type = 5;
+}
+
+// 
+message ModuleOnetimeNotice {
+    // 
+    string uuid = 1;
+    // 
+    TextParagraph text_notice = 2;
+    // 
+    string jump_uri = 3;
+}
+
+// 
+message ModuleOpusCollection {
+    // 
+    OpusCollection collection_info = 1;
+    // 
+    string title_upper = 2;
+    // 
+    string title = 3;
+    // 
+    string title_prefix_icon = 4;
+    // 
+    string total_text = 5;
+}
+
+// 
+message ModuleOpusSummary {
+    // 
+    Paragraph title = 1;
+    // 
+    Paragraph summary = 2;
+    // 
+    string summary_jump_btn_text = 3;
+    // 
+    repeated MdlDynDrawItem covers = 4;
+}
+
+// 
+message ModuleParagraph {
+    // 
+    Paragraph paragraph = 1;
+    // 
+    bool is_article_title = 2;
+    // 
+    ParaSpacing para_spacing = 3;
+}
+
+// 
+message ModuleRcmd {
+    // 
+    RcmdAuthor author = 1;
+    // 
+    repeated RcmdItem items = 2;
+    // 
+    string server_info = 3;
+}
+
+// 
+message ModuleRecommend {
+    // 
+    string module_title = 1;
+    // 
+    string image = 2;
+    // 
+    string tag = 3;
+    // 
+    string title = 4;
+    // 
+    string jump_url = 5;
+    // 
+    repeated google.protobuf.Any ad = 6;
+}
+
+// 
+message ModuleShareInfo {
+    // 
+    string title = 1;
+    // 
+    repeated ShareChannel share_channels = 2;
+    // 
+    string share_origin = 3;
+    // 
+    string oid = 4;
+    // 
+    string sid = 5;
+}
+
+// 
+message ModuleSneakingAd {
+    // 
+    string client_action_type = 1;
+}
+
+// 
+message ModuleStat {
+    // 
+    int64 repost = 1;
+    // 
+    int64 like = 2;
+    // 
+    int64 reply = 3;
+    // 
+    LikeInfo like_info = 4;
+    // 
+    bool no_comment = 5;
+    // 
+    bool no_forward = 6;
+    // 
+    string reply_url = 7;
+    // 
+    string no_comment_text = 8;
+    // 
+    string no_forward_text = 9;
+    // 
+    int64 favorite = 10;
+    // 
+    bool is_favorite = 11;
+    // 
+    bool no_like = 12;
+    // 
+    string no_like_text = 13;
+}
+
+// 
+message ModuleStory {
+    // 
+    string title = 1;
+    // 
+    repeated StoryItem items = 2;
+    // 
+    bool show_publish_entrance = 3;
+    // 
+    int64 fold_state = 4;
+    // 
+    string uri = 5;
+    // 
+    string cover = 6;
+    // 
+    string publish_text = 7;
+}
+
+// 
+message ModuleTextNotice {
+    // 
+    OneLineText notice = 1;
+}
+
+// 
+message ModuleTitle {
+    // 
+    string title = 1;
+    // 
+    IconButton right_btn = 2;
+    // 
+    int32 title_style = 3;
+}
+
+// 
+message ModuleTop {
+    // 
+    repeated ThreePointItem tp_list = 1;
+    // 
+    MdlDynArchive archive = 2;
+    // 
+    ModuleAuthor author = 3;
+    // 
+    bool hidden_nav_bar = 4;
+    // 
+    ModuleAuthorForSubscribe subscribe_author = 5;
+}
+
+// 
+message ModuleTopTag {
+    // 
+    string tag_name = 1;
+}
+
+// 
+message ModuleTopic {
+    // 
+    int64 id = 1;
+    // 
+    string name = 2;
+    // 
+    string url = 3;
+}
+
+// 
+message ModuleTopicBrief {
+    // 
+    TopicItem topic = 1;
+}
+
+// 
+message ModuleTopicDetailsExt {
+    // 
+    string comment_guide = 1;
+}
+
+// 
+message NFTInfo {
+    // 
+    NFTRegionType region_type = 1;
+    // 
+    string region_icon = 2;
+    // 
+    NFTShowStatus region_show_status = 3;
+}
+
+// 
+enum NFTRegionType {
+    // 
+    nft_region_default = 0;
+    // 
+    nft_region_mainlang = 1;
+    // 
+    nft_region_gat = 2;
+}
+
+// 
+enum NFTShowStatus {
+    // 
+    nft_show_default = 0;
+    // 
+    nft_show_zoominmainlang = 1;
+    // 
+    nft_show_raw = 2;
+}
+
+// 
+message Nameplate {
+    // 
+    int64 nid = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    string image_small = 4;
+    // 
+    string level = 5;
+    // 
+    string condition = 6;
+}
+
+// 
+enum NetworkType {
+    // 
+    NT_UNKNOWN = 0;
+    // 
+    WIFI = 1;
+    // 
+    CELLULAR = 2;
+    // 
+    OFFLINE = 3;
+    // 
+    OTHERNET = 4;
+    // 
+    ETHERNET = 5;
+}
+
+// 
+message NewEP {
+    // 
+    int32 id = 1;
+    // 
+    string index_show = 2;
+    // 
+    string cover = 3;
+}
+
+// 
+message NoReply {
+}
+
+// 
+message NoReq {
+}
+
+// 
+message NoteVideoTS {
+    // 
+    int64 cid = 1;
+    // 
+    int64 oid_type = 2;
+    // 
+    int64 status = 3;
+    // 
+    int64 index = 4;
+    // 
+    int64 seconds = 5;
+    // 
+    int64 cid_count = 6;
+    // 
+    string key = 7;
+    // 
+    string title = 8;
+    // 
+    int64 epid = 9;
+    // 
+    string desc = 10;
+}
+
+// 
+message OfficialAccountInfo {
+    // 
+    UserInfo author = 1;
+    // 
+    int64 mid = 2;
+    // 
+    string uri = 3;
+    // 
+    Relation relation = 4;
+    // 
+    string desc_text1 = 5;
+    // 
+    string desc_text2 = 6;
+}
+
+// 
+message OfficialAccountsReply {
+    // 
+    repeated OfficialAccountInfo items = 1;
+    // 
+    bool has_more = 2;
+    // 
+    int64 offset = 3;
+}
+
+// 
+message OfficialAccountsReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    int64 offset = 3;
+    // 
+    CampusReqFromType from_type = 4;
+}
+
+// 
+message OfficialDynamicsReply {
+    // 
+    repeated OfficialItem items = 1;
+    // 
+    int64 offset = 2;
+    // 
+    bool has_more = 3;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 4;
+}
+
+// 
+message OfficialDynamicsReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    int64 offset = 3;
+    // 
+    CampusReqFromType from_type = 4;
+}
+
+// 
+message OfficialItem {
+    // 
+    oneof rcmd_item {
+        // 
+        OfficialRcmdArchive rcmd_archive = 2;
+        // 
+        OfficialRcmdDynamic rcmd_dynamic = 3;
+    }
+    // 
+    RcmdType type = 1;
+}
+
+// 
+message OfficialRcmdArchive {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string cover_right_text = 3;
+    // 
+    CoverIcon desc_icon1 = 4;
+    // 
+    string desc_text1 = 5;
+    // 
+    CoverIcon desc_icon2 = 6;
+    // 
+    string desc_text2 = 7;
+    // 
+    string reason = 8;
+    // 
+    bool show_three_point = 9;
+    // 
+    string uri = 10;
+    // 
+    int64 aid = 11;
+    // 
+    int64 mid = 12;
+    // 
+    string name = 13;
+    // 
+    int64 dynamic_id = 14;
+    // 
+    int64 cid = 15;
+}
+
+// 
+message OfficialRcmdDynamic {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    string cover_right_top_text = 3;
+    // 
+    CoverIcon desc_icon1 = 4;
+    // 
+    string desc_text1 = 5;
+    // 
+    CoverIcon desc_icon2 = 6;
+    // 
+    string desc_text2 = 7;
+    // 
+    string reason = 8;
+    // 
+    string uri = 9;
+    // 
+    int64 dynamic_id = 10;
+    // 
+    int64 mid = 11;
+    // 
+    string user_name = 12;
+    // 
+    int64 rid = 13;
+}
+
+// 
+message OfficialVerify {
+    // 
+    int32 type = 1;
+    // 
+    string desc = 2;
+    // 
+    int32 is_atten = 3;
+}
+
+// 
+message OneLineText {
+    // 
+    repeated TextWithPriority texts = 1;
+}
+
+// 
+message OnlyFans {
+    // 
+    bool is_only_fans = 1;
+    // 
+    IconBadge badge = 2;
+}
+
+// 
+message OnlyFansProperty {
+    // 
+    bool has_privilege = 1;
+    // 
+    bool is_only_fans = 2;
+    // 
+    bool allow_download = 3;
+    // 
+    string embed_cashier_link = 4;
+}
+
+// 
+message OnlyFansVoteProperty {
+    // 
+    bool is_only_fans_vote = 1;
+    // 
+    bool has_vote_permission = 2;
+    // 
+    string vote_btn_text = 3;
+    // 
+    string vote_btn_uri = 4;
+    // 
+    string vote_annotation_part1 = 5;
+    // 
+    string vote_annotation_part2 = 6;
+}
+
+// 
+message OpusCollection {
+    // 
+    int64 collection_id = 1;
+    // 
+    OneLineText title = 2;
+    // 
+    string detail_uri = 3;
+    // 
+    string intro = 4;
+    // 
+    repeated OpusCollectionItem all_items = 5;
+}
+
+// 
+message OpusCollectionDetailReq {
+    // 
+    string collection_type = 1;
+    // 
+    string collection_id = 2;
+    // 
+    string selected_opus_id = 3;
+    // 
+    string selected_oid_type = 4;
+    // 
+    string selected_oid = 5;
+    // 
+    int32 local_time = 6;
+}
+
+// 
+message OpusCollectionDetailResp {
+    // 
+    string collection_type = 1;
+    // 
+    string collection_id = 2;
+    // 
+    string collection_cover = 3;
+    // 
+    string collection_title = 4;
+    // 
+    string sub_title_part1 = 5;
+    // 
+    string sub_title_part2 = 6;
+    // 
+    string collection_intro = 7;
+    // 
+    repeated OpusCollectionItem item_list = 8;
+    // 
+    int64 total_cnt = 9;
+    // 
+    BasicUserInfoV2 author_info = 10;
+    // 
+    ButtonWithSubTitle bottom_button = 11;
+    // 
+    SubscribeButton subscribe_btn = 12;
+}
+
+// 
+message OpusCollectionItem {
+    // 
+    int64 opus_id = 1;
+    // 
+    string title = 2;
+    // 
+    string pub_time = 3;
+    // 
+    string uri = 4;
+    // 
+    bool is_selected_highlight = 5;
+    // 
+    string prefix_icon = 6;
+    // 
+    string collection_item_type = 7;
+    // 
+    string collection_item_oid = 8;
+}
+
+// 
+message OpusCollectionWithCover {
+    // 
+    OpusCollection collection_info = 1;
+    // 
+    string cover_pic = 2;
+    // 
+    CoverIconWithText cover_bottom_text = 3;
+    // 
+    string sub_title_text = 4;
+}
+
+// 
+message OpusCreationItem {
+    // 
+    OpusType opus_type = 1;
+    // 
+    MdlDynDrawItem cover_pic = 2;
+    // 
+    VideoBadge cover_top_right_badge = 3;
+    // 
+    Paragraph text_paragraph = 4;
+    // 
+    ColoredText hint_text = 5;
+    // 
+    string bottom_text = 6;
+    // 
+    repeated CoverIconWithText stats = 7;
+    // 
+    repeated CreationItemAction tp_list = 8;
+    // 
+    Extend extend = 9;
+    // 
+    CoverIconWithText visibility_status = 10;
+}
+
+// 
+message OpusDetailReq {
+    // 
+    OpusType opus_type = 1;
+    // 
+    int64 oid = 2;
+    // 
+    int64 dyn_type = 3;
+    // 
+    string share_id = 4;
+    // 
+    int32 share_mode = 9;
+    // 
+    int32 local_time = 10;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 11;
+    // 
+    Config config = 12;
+    // 
+    AdParam ad_param = 13;
+    // 
+    string from = 14;
+    // 
+    string pattern = 15;
+}
+
+// 
+message OpusDetailResp {
+    // 
+    OpusItem opus_item = 1;
+}
+
+// 
+message OpusFavItem {
+    // 
+    int64 opus_id = 1;
+    // 
+    string card_uri = 2;
+    // 
+    MdlDynDrawItem cover_pic = 3;
+    // 
+    Paragraph text_paragraph = 4;
+    // 
+    CoverIconWithText bottom_text = 5;
+    // 
+    string click_toast = 6;
+}
+
+// 
+message OpusFlowItem {
+    // 
+    oneof data {
+        // 
+        FlowItemOpus flow_item_opus = 4;
+    }
+    // 
+    FlowItemType item_type = 1;
+    // 
+    int64 oid = 2;
+    // 
+    Extend extend = 3;
+}
+
+// 
+message OpusItem {
+    // 
+    int64 opus_id = 1;
+    // 
+    OpusType opus_type = 2;
+    // 
+    int64 oid = 3;
+    // 
+    repeated Module modules = 4;
+    // 
+    Extend extend = 5;
+}
+
+// 
+message OpusSpaceFlowReq {
+    // 
+    int64 host_mid = 1;
+    // 
+    int32 local_time = 2;
+    // 
+    bilibili.pagination.Pagination pagination = 3;
+    // 
+    string filter_type = 4;
+}
+
+// 
+message OpusSpaceFlowResp {
+    // 
+    repeated OpusFlowItem item_list = 1;
+    // 
+    bilibili.pagination.PaginationReply next_page = 2;
+    // 
+    SectionOpusCollection host_up_opus_collection = 3;
+    // 
+    SectionNoteNavigationBar host_up_note_nav_bar = 4;
+}
+
+// 
+enum OpusType {
+    // 
+    OPUS_TYPE_DYN = 0;
+    // 
+    OPUS_TYPE_ARTICLE = 1;
+    // 
+    OPUS_TYPE_NOTE = 2;
+    // 
+    OPUS_TYPE_WORD = 3;
+    // 
+    OPUS_TYPE_REPOST = 4;
+    // 
+    OPUS_TYPE_MANGA_EP = 5;
+}
+
+// 
+message PGCSeason {
+    // 
+    int32 is_finish = 1;
+    // 
+    string title = 2;
+    // 
+    int32 type = 3;
+}
+
+// 
+message ParaSpacing {
+    // 
+    double spacing_before_para = 1;
+    // 
+    double spacing_after_para = 2;
+    // 
+    double line_spacing = 3;
+}
+
+// 
+message Paragraph {
+    // 
+    message ListFormat {
+        // 
+        int32 level = 1;
+        // 
+        int32 order = 2;
+        // 
+        string theme = 3;
+    }
+    
+    // 
+    enum ParagraphAlign {
+        // 
+        LEFT = 0;
+        // 
+        MIDDLE = 1;
+        // 
+        RIGHT = 2;
+    }
+    
+    // 
+    message ParagraphFormat {
+        // 
+        Paragraph.ParagraphAlign align = 1;
+        // 
+        Paragraph.ListFormat list_format = 2;
+    }
+    
+    // 
+    enum ParagraphType {
+        // 
+        INVALID_ParagraphType = 0;
+        // 
+        TEXT = 1;
+        // 
+        PICTURES = 2;
+        // 
+        LINE = 3;
+        // 
+        REFERENCE = 4;
+        // 
+        SORTED_LIST = 5;
+        // 
+        UNSORTED_LIST = 6;
+        // 
+        LINK_CARD = 7;
+        // 
+        CODE = 8;
+    }
+    
+    // 
+    oneof content {
+        // 
+        TextParagraph text = 3;
+        // 
+        PicParagraph pic = 4;
+        // 
+        LineParagraph line = 5;
+        // 
+        CardParagraph link_card = 6;
+        // 
+        CodeParagraph code = 7;
+    }
+    // 
+    Paragraph.ParagraphType para_type = 1;
+    // 
+    ParagraphFormat para_format = 2;
+}
+
+// 
+message PicParagraph {
+    // 
+    enum PicParagraphStyle {
+        // 
+        INVALID_PicParagraphStyle = 0;
+        // 
+        NINE_CELL = 1;
+        // 
+        BIG_SCROLL = 2;
+    }
+    
+    // 
+    MdlDynDraw pics = 1;
+    // 
+    PicParagraph.PicParagraphStyle style = 2;
+}
+
+// 
+message PlayurlParam {
+    // 
+    int32 qn = 1;
+    // 
+    int32 fnver = 2;
+    // 
+    int32 fnval = 3;
+    // 
+    int32 force_host = 4;
+    // 
+    int32 fourk = 5;
+}
+
+// 
+message Popup {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string uri = 3;
+}
+
+// 
+message ProtectedStaticResource {
+    // 
+    string res_url = 1;
+    // 
+    bool is_already_signed = 2;
+    // 
+    string sign_param = 3;
+}
+
+// 
+message QuickConsumeMoreAvatarListReply {
+    // 
+    string offset = 1;
+    // 
+    bool has_more = 2;
+    // 
+    repeated UpListItem up_list = 3;
+}
+
+// 
+message QuickConsumeMoreAvatarListReq {
+    // 
+    string offset = 1;
+}
+
+// 
+message RcmdArchive {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    CoverIcon cover_left_icon1 = 3;
+    // 
+    string cover_left_text1 = 4;
+    // 
+    string uri = 5;
+    // 
+    bool is_pgc = 6;
+    // 
+    int64 aid = 7;
+    // 
+    IconBadge badge = 8;
+    // 
+    CoverIcon cover_left_icon2 = 9;
+    // 
+    string cover_left_text2 = 10;
+    // 
+    CoverIcon cover_left_icon3 = 11;
+    // 
+    string cover_left_text3 = 12;
+    // 
+    string desc = 13;
+    // 
+    string track_id = 14;
+    // 
+    RcmdReason rcmd_reason = 15;
+}
+
+// 
+message RcmdAuthor {
+    // 
+    UserInfo author = 1;
+    // 
+    string desc = 2;
+    // 
+    Relation relation = 3;
+}
+
+// 
+message RcmdCampusBrief {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    string campus_badge = 4;
+    // 
+    string url = 5;
+}
+
+// 
+message RcmdItem {
+    // 
+    oneof rcmd_item {
+        // 
+        RcmdArchive rcmd_archive = 2;
+    }
+    // 
+    RcmdType type = 1;
+}
+
+// 
+message RcmdOption {
+    // 
+    bool show_title = 1;
+}
+
+// 
+message RcmdReason {
+    // 
+    string campus_name = 1;
+    // 
+    RcmdReasonStyle style = 2;
+    // 
+    string rcmd_reason = 3;
+    // 
+    string up_name = 4;
+}
+
+// 
+enum RcmdReasonStyle {
+    // 
+    rcmd_reason_style_none = 0;
+    // 
+    rcmd_reason_style_campus_nearby = 1;
+    // 
+    rcmd_reason_style_campus_up = 2;
+    // 
+    rcmd_reason_style_campus_near_up_mix = 3;
+}
+
+// 
+message RcmdTopButton {
+    // 
+    string text = 1;
+    // 
+    string url = 2;
+}
+
+// 
+enum RcmdType {
+    // 
+    rcmd_archive = 0;
+    // 
+    rcmd_dynamic = 1;
+}
+
+// 
+message RcmdUPsParam {
+    // 
+    int64 dislike_ts = 1;
+}
+
+// 
+message ReactionListItem {
+    // 
+    UserInfo user = 1;
+    // 
+    Relation relation = 2;
+    // 
+    string act_text = 3;
+    // 
+    string rcmd_reason = 4;
+}
+
+// 
+message ReactionListReply {
+    // 
+    string title = 1;
+    // 
+    repeated ReactionListItem reaction_list = 2;
+    // 
+    string offset = 3;
+    // 
+    bool has_more = 4;
+}
+
+// 
+message ReactionListReq {
+    // 
+    int64 dynamic_id = 1;
+    // 
+    int64 dyn_type = 2;
+    // 
+    int64 rid = 3;
+    // 
+    string offset = 4;
+}
+
+// 
+enum Refresh {
+    // 
+    refresh_new = 0;
+    // 
+    refresh_history = 1;
+}
+
+// 
+message Relation {
+    // 
+    RelationStatus status = 1;
+    // 
+    int32 is_follow = 2;
+    // 
+    int32 is_followed = 3;
+    // 
+    string title = 4;
+}
+
+// 
+enum RelationStatus {
+    // 
+    relation_status_none = 0;
+    // 
+    relation_status_nofollow = 1;
+    // 
+    relation_status_follow = 2;
+    // 
+    relation_status_followed = 3;
+    // 
+    relation_status_mutual_concern = 4;
+    // 
+    relation_status_special = 5;
+}
+
+// 
+message RepostExtraInfo {
+    // 
+    string adcm_id = 1;
+}
+
+// 
+message RepostListReq {
+    // 
+    string dynamic_id = 1;
+    // 
+    int64 dyn_type = 2;
+    // 
+    int64 rid = 3;
+    // 
+    string offset = 4;
+    // 
+    string from = 5;
+    // 
+    RepostType repost_type = 6;
+}
+
+// 
+message RepostListRsp {
+    // 
+    repeated DynamicItem list = 1;
+    // 
+    string offset = 2;
+    // 
+    bool has_more = 3;
+    // 
+    int64 total_count = 4;
+    // 
+    RepostType repost_type = 5;
+}
+
+// 
+enum RepostType {
+    // 
+    repost_hot = 0;
+    // 
+    repost_general = 1;
+}
+
+// 
+enum ReserveRelationLotteryType {
+    // 
+    reserve_relation_lottery_type_default = 0;
+    // 
+    reserve_relation_lottery_type_cron = 1;
+}
+
+// 
+enum ReserveType {
+    // 
+    reserve_none = 0;
+    // 
+    reserve_recall = 1;
+}
+
+// 
+enum RouterAction {
+    // 
+    OPEN = 0;
+    // 
+    EMBED = 1;
+}
+
+// 
+message SchoolRecommendReply {
+    // 
+    repeated CampusInfo items = 1;
+}
+
+// 
+message SchoolRecommendReq {
+    // 
+    float lat = 1;
+    // 
+    float lng = 2;
+    // 
+    CampusReqFromType from_type = 3;
+}
+
+// 
+message SchoolSearchReply {
+    // 
+    repeated CampusInfo items = 1;
+    // 
+    SearchToast toast = 2;
+}
+
+// 
+message SchoolSearchReq {
+    // 
+    string keyword = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+message SearchChannel {
+    // 
+    string title = 1;
+    // 
+    SearchTopicButton more_button = 2;
+    // 
+    repeated ChannelInfo channels = 3;
+}
+
+// 
+message SearchInfo {
+    // 
+    string title = 1;
+    // 
+    repeated DynamicItem list = 2;
+    // 
+    string track_id = 3;
+    // 
+    int64 total = 4;
+    // 
+    bool has_more = 5;
+    // 
+    string version = 6;
+}
+
+// 
+message SearchToast {
+    // 
+    string desc_text1 = 1;
+    // 
+    string desc_text2 = 2;
+}
+
+// 
+message SearchTopic {
+    // 
+    string title = 1;
+    // 
+    SearchTopicButton more_button = 2;
+    // 
+    repeated SearchTopicItem items = 3;
+}
+
+// 
+message SearchTopicButton {
+    // 
+    string title = 1;
+    // 
+    string jump_uri = 2;
+}
+
+// 
+message SearchTopicItem {
+    // 
+    int64 topic_id = 1;
+    // 
+    string topic_name = 2;
+    // 
+    string desc = 3;
+    // 
+    string url = 4;
+    // 
+    bool is_activity = 5;
+    // 
+    string tag_icon = 6;
+    // 
+    string desc_long = 7;
+    // 
+    string cover = 8;
+    // 
+    string tag_text = 9;
+}
+
+// 
+message SectionNoteNavigationBar {
+    // 
+    string title = 1;
+    // 
+    string right_icon = 2;
+    // 
+    string jump_url = 3;
+}
+
+// 
+message SectionOpusCollection {
+    // 
+    string title = 1;
+    // 
+    repeated OpusCollectionWithCover all_collections = 2;
+}
+
+// 
+message SelectedClassificationAndSortType {
+    // 
+    string chosen_classification_type = 1;
+    // 
+    string chosen_sort_type = 2;
+}
+
+// 
+message SetDecisionReq {
+    // 
+    int32 result = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+message SetRecentCampusReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    CampusReqFromType from_type = 3;
+}
+
+// 
+message ShareChannel {
+    // 
+    string name = 1;
+    // 
+    string image = 2;
+    // 
+    string channel = 3;
+    // 
+    ShareReserve reserve = 4;
+}
+
+// 
+message ShareReserve {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+    // 
+    string qr_code_icon = 3;
+    // 
+    string qr_code_text = 4;
+    // 
+    string qr_code_url = 5;
+    // 
+    AdditionUserInfo user_info = 6;
+}
+
+// 
+enum ShowType {
+    // 
+    show_type_none = 0;
+    // 
+    show_type_backup = 1;
+}
+
+// 
+message SignResourcesReq {
+    // 
+    repeated ProtectedStaticResource to_be_signed_res = 1;
+}
+
+// 
+message SignResourcesResp {
+    // 
+    repeated SignedStaticResource signed_res = 1;
+}
+
+// 
+message SignedStaticResource {
+    // 
+    string signed_res_url = 1;
+    // 
+    bool is_succeed = 2;
+}
+
+// 
+message SortType {
+    // 
+    int32 sort_type = 1;
+    // 
+    string sort_type_name = 2;
+}
+
+// 
+message StoryArchive {
+    // 
+    string cover = 1;
+    // 
+    int64 aid = 2;
+    // 
+    string uri = 3;
+    // 
+    Dimension dimension = 4;
+}
+
+// 
+message StoryItem {
+    // 
+    oneof rcmd_item {
+        // 
+        StoryArchive story_archive = 5;
+    }
+    // 
+    UserInfo author = 1;
+    // 
+    string desc = 2;
+    // 
+    int64 status = 3;
+    // 
+    RcmdType type = 4;
+}
+
+// 
+enum StyleType {
+    // 
+    STYLE_TYPE_NONE = 0;
+    // 
+    STYLE_TYPE_LIVE = 1;
+    // 
+    STYLE_TYPE_DYN_UP = 2;
+}
+
+// 
+message SubscribeButton {
+    // 
+    string subscription_identifier = 1;
+    // 
+    bool is_subscribed = 2;
+    // 
+    ButtonWithSubscribeParam subscribed_style = 3;
+    // 
+    ButtonWithSubscribeParam not_subscribed_style = 4;
+}
+
+// 
+message SubscribeCampusReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string campus_name = 2;
+    // 
+    CampusReqFromType from_type = 3;
+}
+
+// 
+message SubscriptionClickReq {
+    // 
+    string subscribe_param = 1;
+}
+
+// 
+message SubscriptionClickResp {
+    // 
+    string toast = 1;
+}
+
+// 
+enum TFType {
+    // 
+    TF_UNKNOWN = 0;
+    // 
+    U_CARD = 1;
+    // 
+    U_PKG = 2;
+    // 
+    C_CARD = 3;
+    // 
+    C_PKG = 4;
+    // 
+    T_CARD = 5;
+    // 
+    T_PKG = 6;
+}
+
+// 
+message TextNode {
+    // 
+    enum TextNodeType {
+        // 
+        INVALID_TextNodeType = 0;
+        // 
+        WORDS = 1;
+        // 
+        EMOTE = 2;
+        // 
+        AT_TextNodeType = 3;
+        // 
+        BIZ_LINK = 4;
+        // 
+        FORMULA = 5;
+    }
+    
+    // 
+    oneof text {
+        // 
+        WordNode word = 3;
+        // 
+        EmoteNode emote = 4;
+        // 
+        LinkNode link = 5;
+        // 
+        FormulaNode formula = 6;
+    }
+    // 
+    TextNode.TextNodeType node_type = 1;
+    // 
+    string raw_text = 2;
+}
+
+// 
+message TextParagraph {
+    // 
+    repeated TextNode nodes = 1;
+}
+
+// 
+message TextWithPriority {
+    // 
+    string text = 1;
+    // 
+    int64 priority = 2;
+}
+
+// 
+message ThreePointAttention {
+    // 
+    string attention_icon = 1;
+    // 
+    string attention_text = 2;
+    // 
+    string not_attention_icon = 3;
+    // 
+    string not_attention_text = 4;
+    // 
+    ThreePointAttentionStatus status = 5;
+    // 
+    string subscribe_oid = 6;
+}
+
+// 
+enum ThreePointAttentionStatus {
+    // 
+    tp_not_attention = 0;
+    // 
+    tp_attention = 1;
+}
+
+// 
+message ThreePointAutoPlay {
+    // 
+    string open_icon = 1;
+    // 
+    string open_text = 2;
+    // 
+    string close_icon = 3;
+    // 
+    string close_text = 4;
+    // 
+    string open_text_v2 = 5;
+    // 
+    string close_text_v2 = 6;
+    // 
+    string only_icon = 7;
+    // 
+    string only_text = 8;
+    // 
+    string open_icon_v2 = 9;
+    // 
+    string close_icon_v2 = 10;
+}
+
+// 
+message ThreePointComment {
+    // 
+    CommentDetail up_selection = 1;
+    // 
+    CommentDetail up_close = 2;
+    // 
+    string icon = 3;
+    // 
+    string title = 4;
+}
+
+// 
+message ThreePointDefault {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string uri = 3;
+    // 
+    string id = 4;
+    // 
+    ThreePointDefaultToast toast = 5;
+}
+
+// 
+message ThreePointDefaultToast {
+    // 
+    string title = 1;
+    // 
+    string desc = 2;
+}
+
+// 
+message ThreePointDislike {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string feedback_biz_value = 3;
+}
+
+// 
+message ThreePointDynCoin {
+    // 
+    bool had_coin = 1;
+    // 
+    int64 coin_num = 2;
+    // 
+    string coin_business = 3;
+    // 
+    int64 oid = 4;
+}
+
+// 
+message ThreePointDynEdit {
+    // 
+    int64 dyn_id = 1;
+    // 
+    int64 origin_id = 2;
+    // 
+    bool is_origin_deleted = 3;
+    // 
+    string url = 4;
+}
+
+// 
+message ThreePointFavorite {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    int64 id = 3;
+    // 
+    bool is_favourite = 4;
+    // 
+    string cancel_icon = 5;
+    // 
+    string cancel_title = 6;
+}
+
+// 
+message ThreePointHide {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    ThreePointHideInteractive interactive = 3;
+    // 
+    int64 blook_fid = 4;
+    // 
+    string blook_type = 5;
+}
+
+// 
+message ThreePointHideInteractive {
+    // 
+    string title = 1;
+    // 
+    string confirm = 2;
+    // 
+    string cancel = 3;
+    // 
+    string toast = 4;
+}
+
+// 
+message ThreePointItem {
+    // 
+    oneof item {
+        // 
+        ThreePointDefault default = 2;
+        // 
+        ThreePointAutoPlay auto_player = 3;
+        // 
+        ThreePointShare share = 4;
+        // 
+        ThreePointAttention attention = 5;
+        // 
+        ThreePointWait wait = 6;
+        // 
+        ThreePointDislike dislike = 7;
+        // 
+        ThreePointFavorite favorite = 8;
+        // 
+        ThreePointTop top = 9;
+        // 
+        ThreePointComment comment = 10;
+        // 
+        ThreePointHide hide = 11;
+        // 
+        ThreePointTopicIrrelevant topic_irrelevant = 12;
+        // 
+        ThreePointDynEdit dyn_edit = 13;
+        // 
+        ThreePointDynCoin coin = 14;
+        // 
+        ThreePointVisibilityChange visibility_change = 15;
+        // 
+        ThreePointTopicTop topic_top = 16;
+    }
+    // 
+    ThreePointType type = 1;
+}
+
+// 
+message ThreePointShare {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    repeated ThreePointShareChannel channel = 3;
+    // 
+    string channel_name = 4;
+    // 
+    ShareReserve reserve = 5;
+}
+
+// 
+message ThreePointShareChannel {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+}
+
+// 
+message ThreePointTop {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    TopType type = 3;
+}
+
+// 
+message ThreePointTopicIrrelevant {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string toast = 3;
+    // 
+    int64 topic_id = 4;
+    // 
+    int64 res_id = 5;
+    // 
+    int64 res_type = 6;
+    // 
+    string reason = 7;
+}
+
+// 
+message ThreePointTopicTop {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    TopType type = 3;
+    // 
+    int64 topic_id = 4;
+}
+
+// 
+enum ThreePointType {
+    // 
+    tp_none = 0;
+    // 
+    background = 1;
+    // 
+    auto_play = 2;
+    // 
+    share = 3;
+    // 
+    wait = 4;
+    // 
+    attention = 5;
+    // 
+    report = 6;
+    // 
+    delete = 7;
+    // 
+    dislike = 8;
+    // 
+    favorite = 9;
+    // 
+    top = 10;
+    // 
+    comment = 11;
+    // 
+    hide = 12;
+    // 
+    campus_delete = 13;
+    // 
+    topic_irrelevant = 14;
+    // 
+    batch_cancel = 15;
+    // 
+    topic_set_cancel = 16;
+    // 
+    dynamic_edit = 17;
+    // 
+    create_video = 18;
+    // 
+    coin = 19;
+    // 
+    ogv_subscribe = 20;
+    // 
+    visibility_change = 21;
+    // 
+    topic_top = 22;
+}
+
+// 
+message ThreePointVisibilityChange {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    repeated ThreePointVisibilityChangeItem item_list = 3;
+    // 
+    string obj_id = 4;
+}
+
+// 
+message ThreePointVisibilityChangeItem {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string sub_title = 3;
+    // 
+    bool is_selected = 4;
+    // 
+    string visibility_change_action_unselected = 5;
+}
+
+// 
+message ThreePointWait {
+    // 
+    string addition_icon = 1;
+    // 
+    string addition_text = 2;
+    // 
+    string no_addition_icon = 3;
+    // 
+    string no_addition_text = 4;
+    // 
+    int64 id = 5;
+}
+
+// 
+enum ThumbType {
+    // 
+    cancel = 0;
+    // 
+    thumb = 1;
+}
+
+// 
+message TopAdditionUP {
+    // 
+    repeated AdditionUP up = 1;
+    // 
+    int32 has_fold = 2;
+}
+
+// 
+enum TopType {
+    // 
+    top_none = 0;
+    // 
+    top_cancel = 1;
+}
+
+// 
+message TopicButton {
+    // 
+    string icon = 1;
+    // 
+    string title = 2;
+    // 
+    string jump_uri = 3;
+    // 
+    bool red_dot = 4;
+}
+
+// 
+message TopicItem {
+    // 
+    int64 topic_id = 1;
+    // 
+    string topic_name = 2;
+    // 
+    string url = 3;
+    // 
+    string desc = 4;
+    // 
+    string desc2 = 5;
+    // 
+    string rcmd_desc = 6;
+    // 
+    IconButton button = 7;
+}
+
+// 
+message TopicList {
+    // 
+    string title = 1;
+    // 
+    repeated TopicListItem topic_list_item = 2;
+    // 
+    TopicButton act_button = 3;
+    // 
+    TopicButton more_button = 4;
+    // 
+    string server_info = 5;
+    // 
+    string sub_title = 6;
+    // 
+    int32 exp_style = 7;
+    // 
+    string title_icon = 8;
+    // 
+    DynamicItem hint_message = 9;
+}
+
+// 
+message TopicListItem {
+    // 
+    string icon = 1;
+    // 
+    string icon_title = 2;
+    // 
+    int64 topic_id = 3;
+    // 
+    string topic_name = 4;
+    // 
+    string url = 5;
+    // 
+    int64 pos = 6;
+    // 
+    string server_info = 7;
+    // 
+    string head_icon_url = 8;
+    // 
+    int64 up_mid = 9;
+    // 
+    string tail_icon_url = 10;
+    // 
+    string extension = 11;
+    // 
+    int64 position = 12;
+}
+
+// 
+message TopicListReply {
+    // 
+    repeated TopicItem items = 1;
+    // 
+    bool has_more = 2;
+    // 
+    string offset = 3;
+    // 
+    IconButton create_topic_btn = 4;
+}
+
+// 
+message TopicListReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    string offset = 2;
+    // 
+    CampusReqFromType from_type = 3;
+}
+
+// 
+message TopicMergedResource {
+    // 
+    int32 merge_type = 1;
+    // 
+    int32 merged_res_cnt = 2;
+}
+
+// 
+message TopicRcmdCard {
+    // 
+    int64 topic_id = 1;
+    // 
+    string topic_name = 2;
+    // 
+    string url = 3;
+    // 
+    CampusLabel button = 4;
+    // 
+    string desc1 = 5;
+    // 
+    string desc2 = 6;
+    // 
+    string update_desc = 7;
+}
+
+// 
+message TopicSquareInfo {
+    // 
+    string title = 1;
+    // 
+    CampusLabel button = 2;
+    // 
+    TopicRcmdCard rcmd = 3;
+}
+
+// 
+message TopicSquareReply {
+    // 
+    TopicSquareInfo info = 1;
+}
+
+// 
+message TopicSquareReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    CampusReqFromType from_type = 2;
+}
+
+// 
+message Unfollow {
+    // 
+    string title = 1;
+    // 
+    repeated UnfollowUserItem list = 2;
+    // 
+    string track_id = 3;
+}
+
+// 
+message UnfollowMatchReq {
+    // 
+    int64 cid = 1;
+}
+
+// 
+message UnfollowUserItem {
+    // 
+    bool has_update = 1;
+    // 
+    string face = 2;
+    // 
+    string name = 3;
+    // 
+    int64 uid = 4;
+    // 
+    int32 pos = 5;
+    // 
+    LiveState live_state = 6;
+    // 
+    OfficialVerify official = 7;
+    // 
+    VipInfo vip = 8;
+    // 
+    string sign = 9;
+    // 
+    string label = 10;
+    // 
+    AdditionalButton button = 11;
+    // 
+    string uri = 12;
+}
+
+// 
+message UpListItem {
+    // 
+    bool has_update = 1;
+    // 
+    string face = 2;
+    // 
+    string name = 3;
+    // 
+    int64 uid = 4;
+    // 
+    int64 pos = 5;
+    // 
+    UserItemType user_item_type = 6;
+    // 
+    UserItemStyle display_style_day = 7;
+    // 
+    UserItemStyle display_style_night = 8;
+    // 
+    int64 style_id = 9;
+    // 
+    LiveState live_state = 10;
+    // 
+    bool separator = 11;
+    // 
+    string uri = 12;
+    // 
+    bool is_recall = 13;
+    // 
+    IconBadge update_icon = 14;
+    // 
+    string live_rcmd_reason = 15;
+    // 
+    string live_cover = 16;
+    // 
+    string personal_extra = 17;
+    // 
+    string update_icon_type = 18;
+    // 
+    string track_id = 19;
+    // 
+    UpListTextBadge text_badge = 20;
+}
+
+// 
+message UpListMoreLabel {
+    // 
+    string title = 1;
+    // 
+    string uri = 2;
+}
+
+// 
+message UpListTextBadge {
+    // 
+    string text = 1;
+}
+
+// 
+message UpdateTabSettingReq {
+    // 
+    HomePageTabSttingStatus status = 1;
+}
+
+// 
+message UserInfo {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    OfficialVerify official = 4;
+    // 
+    VipInfo vip = 5;
+    // 
+    LiveInfo live = 6;
+    // 
+    string uri = 7;
+    // 
+    UserPendant pendant = 8;
+    // 
+    Nameplate nameplate = 9;
+    // 
+    int32 level = 10;
+    // 
+    string sign = 11;
+    // 
+    int32 face_nft = 12;
+    // 
+    int32 face_nft_new = 13;
+    // 
+    NFTInfo nft_info = 14;
+    // 
+    int32 is_senior_member = 15;
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem avatar = 16;
+    // 
+    bilibili.account.service.v1.NameRender name_render = 17;
+}
+
+// 
+message UserItemStyle {
+    // 
+    string rect_text = 1;
+    // 
+    string rect_text_color = 2;
+    // 
+    string rect_icon = 3;
+    // 
+    string rect_bg_color = 4;
+    // 
+    string outer_animation = 5;
+}
+
+// 
+enum UserItemType {
+    // 
+    user_item_type_none = 0;
+    // 
+    user_item_type_live = 1;
+    // 
+    user_item_type_live_custom = 2;
+    // 
+    user_item_type_normal = 3;
+    // 
+    user_item_type_extend = 4;
+    // 
+    user_item_type_premiere_reserve = 5;
+    // 
+    user_item_type_premiere = 6;
+    // 
+    user_item_type_live_card = 7;
+    // 
+    user_item_type_ogv_season = 8;
+    // 
+    user_item_type_ugc_season = 9;
+}
+
+// 
+message UserPendant {
+    // 
+    int64 pid = 1;
+    // 
+    string name = 2;
+    // 
+    string image = 3;
+    // 
+    int64 expire = 4;
+}
+
+// 
+message VideoBadge {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string text_color_night = 3;
+    // 
+    string bg_color = 4;
+    // 
+    string bg_color_night = 5;
+    // 
+    string border_color = 6;
+    // 
+    string border_color_night = 7;
+    // 
+    int32 bg_style = 8;
+    // 
+    int32 bg_alpha = 9;
+    // 
+    int32 bg_alpha_night = 10;
+    // 
+    string head_icon = 11;
+    // 
+    IconResLocal head_icon_local = 12;
+}
+
+// 
+enum VideoSubType {
+    // 
+    VideoSubTypeNone = 0;
+    // 
+    VideoSubTypeBangumi = 1;
+    // 
+    VideoSubTypeMovie = 2;
+    // 
+    VideoSubTypeDocumentary = 3;
+    // 
+    VideoSubTypeDomestic = 4;
+    // 
+    VideoSubTypeTeleplay = 5;
+}
+
+// 
+enum VideoType {
+    // 
+    video_type_general = 0;
+    // 
+    video_type_dynamic = 1;
+    // 
+    video_type_playback = 2;
+    // 
+    video_type_story = 3;
+}
+
+// 
+message VipInfo {
+    // 
+    int32 type = 1;
+    // 
+    int32 status = 2;
+    // 
+    int64 due_date = 3;
+    // 
+    VipLabel label = 4;
+    // 
+    int32 theme_type = 5;
+    // 
+    int32 avatar_subscript = 6;
+    // 
+    string nickname_color = 7;
+}
+
+// 
+message VipLabel {
+    // 
+    string path = 1;
+    // 
+    string text = 2;
+    // 
+    string label_theme = 3;
+}
+
+// 
+enum VoteStatus {
+    // 
+    normal = 0;
+    // 
+    anonymous = 1;
+}
+
+// 
+message WFItemDefault {
+    // 
+    string title = 1;
+    // 
+    string cover = 2;
+    // 
+    CoverIconWithText bottom_left1 = 3;
+    // 
+    CoverIconWithText bottom_left2 = 4;
+    // 
+    CoverIconWithText bottom_right1 = 5;
+    // 
+    string uri = 6;
+    // 
+    RcmdReason rcmd_reason = 7;
+    // 
+    map<string, string> annotations = 8;
+}
+
+// 
+enum WFItemType {
+    // 
+    WATER_FLOW_TYPE_NONE = 0;
+    // 
+    WATER_FLOW_TYPE_ARCHIVE = 1;
+    // 
+    WATER_FLOW_TYPE_DYNAMIC = 2;
+}
+
+// 
+message WaterFlowRcmdReq {
+    // 
+    int64 campus_id = 1;
+    // 
+    bilibili.pagination.FeedPagination page = 2;
+    // 
+    bilibili.app.archive.middleware.v1.PlayerArgs player_args = 3;
+    // 
+    CampusRcmdReqFrom from = 4;
+}
+
+// 
+message WaterFlowRcmdResp {
+    // 
+    repeated CampusWaterFlowItem items = 1;
+    // 
+    bilibili.pagination.FeedPaginationReply offset = 2;
+}
+
+// 
+message Weight {
+    // 
+    string title = 1;
+    // 
+    repeated WeightItem items = 2;
+    // 
+    string icon = 3;
+}
+
+// 
+message WeightButton {
+    // 
+    string jump_url = 1;
+    // 
+    string title = 2;
+}
+
+// 
+message WeightDislike {
+    // 
+    string feed_back_type = 1;
+    // 
+    string title = 2;
+    // 
+    string feed_back_biz_value = 3;
+}
+
+// 
+message WeightItem {
+    // 
+    oneof item {
+        // 
+        WeightButton button = 2;
+        // 
+        WeightDislike dislike = 3;
+    }
+    // 
+    WeightType type = 1;
+}
+
+// 
+enum WeightType {
+    // 
+    weight_none = 0;
+    // 
+    weight_dislike = 1;
+    // 
+    weight_jump = 2;
+}
+
+// 
+message WordNode {
+    // 
+    message UnderlineStyle {
+        // 
+        double underline_width = 1;
+        // 
+        Colors underline_color = 2;
+    }
+    
+    // 
+    message WordNodeStyle {
+        // 
+        bool bold = 1;
+        // 
+        bool italic = 2;
+        // 
+        bool strikethrough = 3;
+        // 
+        bool underline = 4;
+    }
+    
+    // 
+    string words = 1;
+    // 
+    double font_size = 2;
+    // 
+    Colors color = 3;
+    // 
+    WordNodeStyle style = 4;
+    // 
+    UnderlineStyle underline_style = 5;
+    // 
+    string font_level = 7;
+}
+
