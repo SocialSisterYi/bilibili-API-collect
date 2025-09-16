@@ -1131,16 +1131,20 @@ func biliWbiSign(param: String, completion: @escaping (String?) -> Void) {
     func encWbi(params: [String: Any], imgKey: String, subKey: String) -> [String: Any] {
         var params = params
         let mixinKey = getMixinKey(orig: imgKey + subKey)
-        let currTime = round(Date().timeIntervalSince1970)
+        let currTime = Int(Date().timeIntervalSince1970)
         params["wts"] = currTime
-        params = params.sorted { $0.key < $1.key }.reduce(into: [:]) { $0[$1.key] = $1.value }
-        params = params.mapValues { value in
+        let query = params.sorted {
+            $0.key < $1.key
+        }.map { (key, value) -> String in
+            let stringValue: String
             if let doubleValue = value as? Double, doubleValue.truncatingRemainder(dividingBy: 1) == 0 {
-                return String(Int(doubleValue)).filter { !"!'()*".contains($0) }
+                stringValue = String(Int(doubleValue))
+            } else {
+                stringValue = String(describing: value)
             }
-            return String(describing: value).filter { !"!'()*".contains($0) }
-        }
-        let query = params.map { "\($0.key)=\($0.value)" }.joined(separator: "&")
+            let filteredValue = stringValue.filter { !"!'()*".contains($0) }
+            return "\(key)=\(filteredValue)"
+        }.joined(separator: "&")
         let wbiSign = calculateMD5(string: query + mixinKey)
         params["w_rid"] = wbiSign
         return params
