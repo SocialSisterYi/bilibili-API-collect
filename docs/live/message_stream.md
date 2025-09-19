@@ -30,7 +30,7 @@
 
 | 字段    | 类型 | 内容     | 备注                                                         |
 | ------- | ---- | -------- | ------------------------------------------------------------ |
-| code    | num  | 返回值   | 0: 成功<br />65530: token 错误 (登录错误)<br />1: 错误<br />60009: 分区不存在<br />**（其他错误码有待补充）** |
+| code    | num  | 返回值   | 0: 成功<br />1: 错误<br />65530: token 错误 (登录错误)<br />60009: 分区不存在<br />1002002: 房间号错误<br />**（其他错误码有待补充）** |
 | message | str  | 错误信息 | 默认为空                                                     |
 | ttl     | num  | 1        |                                                              |
 | data    | obj  | 信息本体 |                                                              |
@@ -339,6 +339,10 @@ while (!s.isclosed()) {
 | cmd   | str   | `DANMU_MSG` |      |
 | dm_v2 | str   | 空串?       |      |
 | info  | array | 弹幕信息    | 感谢 [#1084](https://github.com/SocialSisterYi/bilibili-API-collect/issues/1084) 补充 |
+| msg_id | str | 弹幕id?      | 极低概率存在 |
+| p_is_ack | bool |          | 极低概率存在 |
+| p_msg_type | num |         | 极低概率存在 |
+| send_time | num | 发送时间戳 | Unix 毫秒时间戳，极低概率存在 |
 
 `info` 数组:
 
@@ -960,6 +964,8 @@ type===106
 
 注: 有用户进入直播间、关注主播、分享直播间时触发
 
+已被`INTERACT_WORD_V2`替换。
+
 **JSON消息:**
 
 根对象:
@@ -967,7 +973,7 @@ type===106
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
 | cmd  | str  | `INTERACT_WORD`        |  |
-| data | obj  | 进入直播间的用户的信息 |  |
+| data | obj  | 用户交互信息 |  |
 
 `data` 对象:
 
@@ -1036,6 +1042,47 @@ type===106
     "uname": "TIM_Init",
     "uname_color": ""
   }
+}
+```
+
+</details>
+
+#### 用户交互消息V2 (INTERACT_WORD_V2)
+
+注: 该cmd已将`INTERACT_WORD`替换
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| cmd  | str  | `INTERACT_WORD_V2` |  |
+| data | obj  | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| dmscore | num |  |  |
+| pb | str | 使用 base64 编码 protobuf 后的数据 | 解析后数据基本与`INTERACT_WORD`的`data`相同 |
+
+用于解析protobuf数据的proto文件: [#1332(comment)](https://github.com/SocialSisterYi/bilibili-API-collect/issues/1332#issuecomment-3047237367)
+
+注: 先用 base64 解码 `data.pb` 内的字符串为字节数据pb，再使用proto文件解码pb数据。
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "INTERACT_WORD_V2",
+	"data": {
+		"dmscore": 3,
+		"pb": "CJTwwNEBEgpTdGFyU2VhMjQ2IgIDASgBMNWgITispaTDBkDUubHe/jJKLAiv8CkQEhoG55Sf5oCBIKS6ngYopLqeBjCkup4GOKS6ngZAAWDVoCFo9JQRYgB4gZ/v1tmc1qcYmgEAsgHPAQiU8MDRARJYCgpTdGFyU2VhMjQ2EkpodHRwczovL2kwLmhkc2xiLmNvbS9iZnMvZmFjZS8xMDliNzg3YzVmMTEzYzRhM2M3NDE1YmI5YmY2YjgyYmMzM2JjNGUyLmpwZxpnCgbnlJ/mgIEQEhikup4GIKS6ngYopLqeBjCkup4GOP/hAUgBUK/wKWD0lBF6CSNEQzZCNkI5OYIBCSNEQzZCNkI5OYoBCSNEQzZCNkI5OZIBCSNGRkZGRkZGRpoBCSM4MTAwMUY5OSICCAkyALoBAA=="
+	}
 }
 ```
 
@@ -1703,6 +1750,95 @@ type===106
 
 </details>
 
+#### 礼物星球进度更新 (WIDGET_GIFT_STAR_PROCESS)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `WIDGET_GIFT_STAR_PROCESS` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| start_date | num | 开始时间? | 一个年月日数字，格式 `Number(String(年) + String(月) + String(日))`，详见消息示例 |
+| process_list | arr | 礼物进度列表 |  |
+| finished | bool | 是否完成? |  |
+| ddl_timestamp | num | 截止时间? | Unix 秒时间戳 |
+| version | num | 更新时间 | Unix 毫秒时间戳 |
+| reward_gift | num |  |  |
+| reward_gift_img | str |  |  |
+| reward_gift_name | str |  |  |
+| level_info | null | (?) |  |
+
+`data.process_list` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| 0 | obj | 礼物需求1 |  |
+| 1 | obj | 礼物需求2 |  |
+| 2 | obj | 礼物需求3 |  |
+
+`data.process_list` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| gift_id | num | 礼物id |  |
+| gift_img | str | 礼物图片 |  |
+| gift_name | str | 礼物名称 | `礼物星球` |
+| completed_num | num | 当前数量 |  |
+| target_num | num | 目标数量 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "WIDGET_GIFT_STAR_PROCESS",
+	"data": {
+		"start_date": 20250728,
+		"process_list": [
+			{
+				"gift_id": 33988,
+				"gift_img": "https://s1.hdslb.com/bfs/live/7164c955ec0ed7537491d189b821cc68f1bea20d.png",
+				"gift_name": "礼物星球",
+				"completed_num": 155,
+				"target_num": 1000
+			},
+			{
+				"gift_id": 31036,
+				"gift_img": "https://s1.hdslb.com/bfs/live/8b40d0470890e7d573995383af8a8ae074d485d9.png",
+				"gift_name": "礼物星球",
+				"completed_num": 123,
+				"target_num": 500
+			},
+			{
+				"gift_id": 34382,
+				"gift_img": "https://s1.hdslb.com/bfs/live/3a1cc7ca50da48670d9f7aa6c8d3cd874228f7b0.png",
+				"gift_name": "礼物星球",
+				"completed_num": 0,
+				"target_num": 1
+			}
+		],
+		"finished": false,
+		"ddl_timestamp": 1754236800,
+		"version": 1754030237877,
+		"reward_gift": 0,
+		"reward_gift_img": "",
+		"reward_gift_name": "",
+		"level_info": null
+	}
+}
+```
+
+</details>
+
 #### 礼物连击 (COMBO_SEND)
 
 **JSON消息:**
@@ -2107,7 +2243,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "ROOM_REAL_TIME_MESSAGE_UPDATE",
@@ -2122,9 +2258,405 @@ type===106
 
 </details>
 
+#### 播放链接刷新 (PLAYURL_RELOAD)
+
+注: 该cmd通常不提供播放链接。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| cmd | str | `PLAYURL_RELOAD` | |
+| data | obj | 信息本体 | |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| reload_option | obj | 刷新选项? |  |
+| playurl | obj | 播放链接信息 |  |
+
+`data.reload_option` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| reload_stream_name | arr | 空数组? |  |
+| reload_format | arr | 空数组? |  |
+| scatter | num |  |  |
+
+`data.playurl` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| cid | num | 直播间真实id |  |
+| g_qn_desc | arr | 画质描述 |  |
+| stream | arr | 直播流信息 |  |
+| p2p_data | obj | P2P信息 |  |
+| dolby_qn | null | dolby画质信息? |  |
+
+`data.playurl.g_qn_desc` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| 0 | obj | 首个画质信息 |  |
+| … | obj | 多个画质信息 |  |
+| i | obj | 最后画质信息 |  |
+
+`data.playurl.g_qn_desc` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| qn | num | 画质代码 |  |
+| desc | str | 画质描述 |  |
+| hdr_desc | str |  |  |
+| attr_desc | null |  |  |
+| hdr_type | num |  |  |
+| media_base_desc | null 或 obj | 媒体描述 |
+
+`data.playurl.g_qn_desc[i].media_base_desc` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| detail_desc | obj | 详细? |  |
+| brief_desc | obj | 简洁? |  |
+
+`data.playurl.g_qn_desc[i].media_base_desc.detail_desc` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| desc | str | 画质描述 |  |
+| tag | arr | 画质标签 | 字符串数组，部分画质存在 |
+
+`data.playurl.g_qn_desc[i].media_base_desc.brief_desc` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| desc | str | 画质描述 |  |
+| badge | str | 画质描述 | 部分画质存在 |
+
+`data.stream` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| protocol_name | str | 协议名称 |  |
+| format | arr | 封装格式列表 |  |
+
+`data.stream[i].format` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| format_name | str | 视频封装格式名称 |  |
+| codec | arr | 编码列表 |  |
+| master_url | str |  |  |
+
+`data.stream[i].format[i].codec` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| codec_name | str | 视频编码名称 |  |
+| current_qn | num | 当前画质代码? |  |
+| accept_qn | arr | 允许的画质代码? | 数字数组 |
+| base_url | str |  |  |
+| url_info | arr |  |  |
+| hdr_qn | null |  |  |
+| dolby_type | num |  |  |
+| attr_name | str |  |  |
+| hdr_type | num |  |  |
+| drm | bool |  |  |
+| drm_key_systems | null |  |  |
+| video_codecs | obj | 视频编码信息 | 不一定存在 |
+| audio_codecs | obj | 音频编码信息 | 不一定存在 |
+
+`data.stream[i].format[i].codec[i].video_codecs` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| base | str | 编码格式 |  |
+
+`data.stream[i].format[i].codec[i].audio_codecs` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| base | str | 编码格式 |  |
+
+`data.playurl.p2p_data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| p2p | bool |  |  |
+| p2p_type | num |  |  |
+| m_p2p | bool |  |  |
+| m_servers | null |  |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例：</summary>
+
+```json
+{
+	"cmd": "PLAYURL_RELOAD",
+	"data": {
+		"reload_option": {
+			"reload_stream_name": [],
+			"reload_format": [],
+			"scatter": 3000
+		},
+		"playurl": {
+			"cid": 41682,
+			"g_qn_desc": [
+				{
+					"qn": 30000,
+					"desc": "杜比",
+					"hdr_desc": "",
+					"attr_desc": null,
+					"hdr_type": 0,
+					"media_base_desc": null
+				},
+				{
+					"qn": 20000,
+					"desc": "4K",
+					"hdr_desc": "",
+					"attr_desc": null,
+					"hdr_type": 0,
+					"media_base_desc": null
+				},
+				{
+					"qn": 10000,
+					"desc": "原画",
+					"hdr_desc": "",
+					"attr_desc": null,
+					"hdr_type": 0,
+					"media_base_desc": {
+						"detail_desc": {
+							"desc": "1080P 原画",
+							"tag": [
+								"高帧率"
+							]
+						},
+						"brief_desc": {
+							"desc": "1080P",
+							"badge": "原画"
+						}
+					}
+				},
+				{
+					"qn": 400,
+					"desc": "蓝光",
+					"hdr_desc": "",
+					"attr_desc": null,
+					"hdr_type": 0,
+					"media_base_desc": null
+				},
+				{
+					"qn": 250,
+					"desc": "超清",
+					"hdr_desc": "",
+					"attr_desc": null,
+					"hdr_type": 0,
+					"media_base_desc": {
+						"detail_desc": {
+							"desc": "720P 超清"
+						},
+						"brief_desc": {
+							"desc": "720P"
+						}
+					}
+				},
+				{
+					"qn": 150,
+					"desc": "高清",
+					"hdr_desc": "",
+					"attr_desc": null,
+					"hdr_type": 0,
+					"media_base_desc": null
+				},
+				{
+					"qn": 80,
+					"desc": "流畅",
+					"hdr_desc": "",
+					"attr_desc": null,
+					"hdr_type": 0,
+					"media_base_desc": null
+				}
+			],
+			"stream": [
+				{
+					"protocol_name": "http_stream",
+					"format": [
+						{
+							"format_name": "flv",
+							"codec": [
+								{
+									"codec_name": "avc",
+									"current_qn": 10000,
+									"accept_qn": [
+										10000
+									],
+									"base_url": "",
+									"url_info": [],
+									"hdr_qn": null,
+									"dolby_type": 0,
+									"attr_name": "",
+									"hdr_type": 0,
+									"drm": false,
+									"drm_key_systems": null,
+									"video_codecs": {
+										"base": "avc1.64002a"
+									},
+									"audio_codecs": {
+										"base": "mp4a.40.2"
+									}
+								},
+								{
+									"codec_name": "hevc",
+									"current_qn": 250,
+									"accept_qn": [
+										250
+									],
+									"base_url": "",
+									"url_info": [],
+									"hdr_qn": null,
+									"dolby_type": 0,
+									"attr_name": "",
+									"hdr_type": 0,
+									"drm": false,
+									"drm_key_systems": null,
+									"video_codecs": {
+										"base": "hvc1.1.6.L120"
+									},
+									"audio_codecs": {
+										"base": "mp4a.40.2"
+									}
+								}
+							],
+							"master_url": ""
+						}
+					]
+				},
+				{
+					"protocol_name": "http_hls",
+					"format": [
+						{
+							"format_name": "ts",
+							"codec": [
+								{
+									"codec_name": "avc",
+									"current_qn": 10000,
+									"accept_qn": [
+										10000
+									],
+									"base_url": "",
+									"url_info": [],
+									"hdr_qn": null,
+									"dolby_type": 0,
+									"attr_name": "",
+									"hdr_type": 0,
+									"drm": false,
+									"drm_key_systems": null,
+									"video_codecs": {
+										"base": "avc1.64002a"
+									},
+									"audio_codecs": {
+										"base": "mp4a.40.2"
+									}
+								},
+								{
+									"codec_name": "hevc",
+									"current_qn": 250,
+									"accept_qn": [
+										250
+									],
+									"base_url": "",
+									"url_info": [],
+									"hdr_qn": null,
+									"dolby_type": 0,
+									"attr_name": "",
+									"hdr_type": 0,
+									"drm": false,
+									"drm_key_systems": null,
+									"video_codecs": {
+										"base": "hvc1.1.6.L120"
+									},
+									"audio_codecs": {
+										"base": "mp4a.40.2"
+									}
+								}
+							],
+							"master_url": ""
+						},
+						{
+							"format_name": "fmp4",
+							"codec": [
+								{
+									"codec_name": "avc",
+									"current_qn": 10000,
+									"accept_qn": [
+										10000
+									],
+									"base_url": "",
+									"url_info": [],
+									"hdr_qn": null,
+									"dolby_type": 0,
+									"attr_name": "",
+									"hdr_type": 0,
+									"drm": false,
+									"drm_key_systems": null,
+									"video_codecs": {
+										"base": "avc1.64002a"
+									},
+									"audio_codecs": {
+										"base": "mp4a.40.2"
+									}
+								},
+								{
+									"codec_name": "hevc",
+									"current_qn": 250,
+									"accept_qn": [
+										250
+									],
+									"base_url": "",
+									"url_info": [],
+									"hdr_qn": null,
+									"dolby_type": 0,
+									"attr_name": "",
+									"hdr_type": 0,
+									"drm": false,
+									"drm_key_systems": null,
+									"video_codecs": {
+										"base": "hvc1.1.6.L120"
+									},
+									"audio_codecs": {
+										"base": "mp4a.40.2"
+									}
+								}
+							],
+							"master_url": ""
+						}
+					]
+				}
+			],
+			"p2p_data": {
+				"p2p": false,
+				"p2p_type": 0,
+				"m_p2p": false,
+				"m_servers": null
+			},
+			"dolby_qn": null
+		}
+	}
+}
+```
+
+</details>
+
 #### 直播间高能榜 (ONLINE_RANK_V2)
 
 注: 直播间高能用户数据刷新
+
+在线榜已被 `ONLINE_RANK_V3` 替换
 
 **JSON消息:**
 
@@ -2140,7 +2672,7 @@ type===106
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
 | list | array | 在直播间高能用户中的用户信息 | |
-| rank_type | str | 待调查 | |
+| rank_type | str | 榜单类型 |  |
 
 `data.list[n]` 对象:
 
@@ -2152,6 +2684,8 @@ type===106
 | uname | str | 用户名称 | |
 | rank | num | 该用户在高能榜中的排名 | |
 | guard_level | num | 大航海等级? | |
+| is_mystery | bool |  |  |
+| uinfo | obj | 用户信息 |  |
 
 **示例:**
 
@@ -2195,6 +2729,45 @@ type===106
 
 </details>
 
+#### 直播间高能榜V3 (ONLINE_RANK_V3)
+
+注: 直播间高能用户数据刷新
+
+替换 `ONLINE_RANK_V2`
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| cmd | str | `ONLINE_RANK_V3` |  |
+| data | obj | 数据本体 | |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容   | 备注      |
+| ---- | ---- | ------ | --------- |
+| pb | str | 使用 base64 编码 protobuf 后的数据 | 解析后数据基本与`ONLINE_RANK_V2`的`data`相同 |
+
+用于解析protobuf数据的proto文件: [#1332(comment)](https://github.com/SocialSisterYi/bilibili-API-collect/issues/1332#issuecomment-3055621742)
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "ONLINE_RANK_V3",
+	"data": {
+		"pb": "CgtvbmxpbmVfcmFuaxqqAwi8jscKEkpodHRwczovL2kyLmhkc2xiLmNvbS9iZnMvZmFjZS9iODM3MGMzMGM3ZDg5NDg4YjRjOWYyNWZmMTgyNjc4OTEyYTRiOTA3LmpwZxoCMTIiDOW4jOWwlOWonOWonCgBMAFCwAIIvI7HChKfAgoM5biM5bCU5aic5aicEkpodHRwczovL2kyLmhkc2xiLmNvbS9iZnMvZmFjZS9iODM3MGMzMGM3ZDg5NDg4YjRjOWYyNWZmMTgyNjc4OTEyYTRiOTA3LmpwZypaCgzluIzlsJTlqJzlqJwSSmh0dHBzOi8vaTIuaGRzbGIuY29tL2Jmcy9mYWNlL2I4MzcwYzMwYzdkODk0ODhiNGM5ZjI1ZmYxODI2Nzg5MTJhNGI5MDcuanBnMloKDOW4jOWwlOWonOWonBJKaHR0cHM6Ly9pMi5oZHNsYi5jb20vYmZzL2ZhY2UvYjgzNzBjMzBjN2Q4OTQ4OGI0YzlmMjVmZjE4MjY3ODkxMmE0YjkwNy5qcGc6CyD///////////8BMhcIARITMjAyNS0wNy0yOSAyMzo1OTo1ORrNAwjnyMIDEkpodHRwczovL2kxLmhkc2xiLmNvbS9iZnMvZmFjZS9mZWNhYTQ3ZTQ2ODljOWVmYTg0MzBiNmViNzRmNTM2ZTMxN2ZmODYwLmpwZxoBOCIV5byl6IC26IC26IC26IC26IC26IC2KAIwAkLbAgjnyMIDEroCChXlvKXogLbogLbogLbogLbogLbogLYSSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlL2ZlY2FhNDdlNDY4OWM5ZWZhODQzMGI2ZWI3NGY1MzZlMzE3ZmY4NjAuanBnKmMKFeW8peiAtuiAtuiAtuiAtuiAtuiAthJKaHR0cHM6Ly9pMS5oZHNsYi5jb20vYmZzL2ZhY2UvZmVjYWE0N2U0Njg5YzllZmE4NDMwYjZlYjc0ZjUzNmUzMTdmZjg2MC5qcGcyYwoV5byl6IC26IC26IC26IC26IC26IC2EkpodHRwczovL2kxLmhkc2xiLmNvbS9iZnMvZmFjZS9mZWNhYTQ3ZTQ2ODljOWVmYTg0MzBiNmViNzRmNTM2ZTMxN2ZmODYwLmpwZzoLIP///////////wEyFwgCEhMyMDI1LTA4LTAzIDIzOjU5OjU5GvUDCMTF4wQSS2h0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzcxMmMzNjExMzg1ZTJlMGRjYmU4MDc2YmRkM2ViNmYwZWNjNmZkYWYud2VicBoBNiIe5oKg5ZOJ55qE6buR5ZCs5aSn546L5aSq5Zuw6L69KAMwA0L5AgjExeMEEtgCCh7mgqDlk4nnmoTpu5HlkKzlpKfnjovlpKrlm7Dovr0SS2h0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzcxMmMzNjExMzg1ZTJlMGRjYmU4MDc2YmRkM2ViNmYwZWNjNmZkYWYud2VicCptCh7mgqDlk4nnmoTpu5HlkKzlpKfnjovlpKrlm7Dovr0SS2h0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzcxMmMzNjExMzg1ZTJlMGRjYmU4MDc2YmRkM2ViNmYwZWNjNmZkYWYud2VicDJtCh7mgqDlk4nnmoTpu5HlkKzlpKfnjovlpKrlm7Dovr0SS2h0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzcxMmMzNjExMzg1ZTJlMGRjYmU4MDc2YmRkM2ViNmYwZWNjNmZkYWYud2VicDoLIP///////////wEyFwgDEhMyMDI1LTA3LTI2IDIzOjU5OjU5GtkDCLzSxwkSSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzAyMGYxOWEwNTNjZDBkNGZjNGMyYmQzOTlmYWNjMTk3YWJiZWY5N2EuanBnGgE2IhjmuLjmiYvlpb3pl7LnmoTmtYXogIHluIgoBDADQuQCCLzSxwkSwwIKGOa4uOaJi+WlvemXsueahOa1heiAgeW4iBJKaHR0cHM6Ly9pMS5oZHNsYi5jb20vYmZzL2ZhY2UvMDIwZjE5YTA1M2NkMGQ0ZmM0YzJiZDM5OWZhY2MxOTdhYmJlZjk3YS5qcGcqZgoY5ri45omL5aW96Zey55qE5rWF6ICB5biIEkpodHRwczovL2kxLmhkc2xiLmNvbS9iZnMvZmFjZS8wMjBmMTlhMDUzY2QwZDRmYzRjMmJkMzk5ZmFjYzE5N2FiYmVmOTdhLmpwZzJmChjmuLjmiYvlpb3pl7LnmoTmtYXogIHluIgSSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzAyMGYxOWEwNTNjZDBkNGZjNGMyYmQzOTlmYWNjMTk3YWJiZWY5N2EuanBnOgsg////////////ATIXCAMSEzIwMjUtMDgtMDQgMjM6NTk6NTkakAMIp9P+CRJKaHR0cHM6Ly9pMS5oZHNsYi5jb20vYmZzL2ZhY2UvZTJkYmM4ZTQ5NzA3NzFiNjlhNWEyYzYzMDI0YTg5NzhjMjc3YWNmMi5qcGcaATYiDOmaj+WFieaykOW9sSgFQqkCCKfT/gkSnwIKDOmaj+WFieaykOW9sRJKaHR0cHM6Ly9pMS5oZHNsYi5jb20vYmZzL2ZhY2UvZTJkYmM4ZTQ5NzA3NzFiNjlhNWEyYzYzMDI0YTg5NzhjMjc3YWNmMi5qcGcqWgoM6ZqP5YWJ5rKQ5b2xEkpodHRwczovL2kxLmhkc2xiLmNvbS9iZnMvZmFjZS9lMmRiYzhlNDk3MDc3MWI2OWE1YTJjNjMwMjRhODk3OGMyNzdhY2YyLmpwZzJaCgzpmo/lhYnmspDlvbESSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlL2UyZGJjOGU0OTcwNzcxYjY5YTVhMmM2MzAyNGE4OTc4YzI3N2FjZjIuanBnOgsg////////////ATIAGrYDCPWvn4sBEkpodHRwczovL2kxLmhkc2xiLmNvbS9iZnMvZmFjZS80ZTNkYTdmYWJiOWZlMTkyNzRhYmQ0ZTdlYWMyNmQ3MjI4OGQyNmEwLmpwZxoBNiIV5pKS5qyi5YS/55qE5rCU5rOh5YS/KAZCxQII9a+fiwESugIKFeaSkuasouWEv+eahOawlOazoeWEvxJKaHR0cHM6Ly9pMS5oZHNsYi5jb20vYmZzL2ZhY2UvNGUzZGE3ZmFiYjlmZTE5Mjc0YWJkNGU3ZWFjMjZkNzIyODhkMjZhMC5qcGcqYwoV5pKS5qyi5YS/55qE5rCU5rOh5YS/EkpodHRwczovL2kxLmhkc2xiLmNvbS9iZnMvZmFjZS80ZTNkYTdmYWJiOWZlMTkyNzRhYmQ0ZTdlYWMyNmQ3MjI4OGQyNmEwLmpwZzJjChXmkpLmrKLlhL/nmoTmsJTms6HlhL8SSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzRlM2RhN2ZhYmI5ZmUxOTI3NGFiZDRlN2VhYzI2ZDcyMjg4ZDI2YTAuanBnOgsg////////////ATIAGusDCPTXwbEBEkpodHRwczovL2kxLmhkc2xiLmNvbS9iZnMvZmFjZS8yN2RiOGQ5MTY3ZDRhMmUyMDg0NjUzNDJkOGVmZjQzZWUzMGJiOGNlLmpwZxoBNiIc57OW5b+D6JuL6JuLLeWNg+WNg+azoue6r+WGoCgHMANC8QII9NfBsQESzwIKHOezluW/g+ibi+ibiy3ljYPljYPms6Lnuq/lhqASSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzI3ZGI4ZDkxNjdkNGEyZTIwODQ2NTM0MmQ4ZWZmNDNlZTMwYmI4Y2UuanBnKmoKHOezluW/g+ibi+ibiy3ljYPljYPms6Lnuq/lhqASSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzI3ZGI4ZDkxNjdkNGEyZTIwODQ2NTM0MmQ4ZWZmNDNlZTMwYmI4Y2UuanBnMmoKHOezluW/g+ibi+ibiy3ljYPljYPms6Lnuq/lhqASSmh0dHBzOi8vaTEuaGRzbGIuY29tL2Jmcy9mYWNlLzI3ZGI4ZDkxNjdkNGEyZTIwODQ2NTM0MmQ4ZWZmNDNlZTMwYmI4Y2UuanBnOgsg////////////ATIXCAMSEzIwMjUtMDctMjUgMjM6NTk6NTk="
+	}
+}
+```
+
+</details>
+
 #### 直播间高能用户数量 (ONLINE_RANK_COUNT)
 
 **JSON消息:**
@@ -2210,19 +2783,25 @@ type===106
 
 | 字段 | 类型 | 内容   | 备注      |
 | ---- | ---- | ------ | --------- |
-| count | num | 直播间高能用户数量 | |
+| count | num | 直播间高能用户数量 | 存在上限 |
+| count_text | str | 直播间高能用户数量文本 |  |
+| online_count | num | 直播间在线用户数量 | 存在上限 |
+| online_count_text | str | 直播间在线用户数量文本 |  |
 
 **示例:**
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
-  "cmd": "ONLINE_RANK_COUNT",
-  "data": {
-    "count": 4
-  }
+	"cmd": "ONLINE_RANK_COUNT",
+	"data": {
+		"count": 1084,
+		"count_text": "1084",
+		"online_count": 1084,
+		"online_count_text": "1084"
+	}
 }
 ```
 
@@ -2296,7 +2875,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "ONLINE_RANK_TOP3",
@@ -2339,7 +2918,7 @@ type===106
 
 <details>
 <summary>查看消息示例：</summary>
-  
+
 ```json
 {
   "cmd": "POPULAR_RANK_CHANGED",
@@ -2577,7 +3156,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "LIKE_INFO_V3_CLICK",
@@ -2638,7 +3217,7 @@ type===106
 
 <details>
 <summary>查看消息示例：</summary>
-  
+
 ```json
 {
   "cmd": "LIKE_INFO_V3_UPDATE",
@@ -2688,7 +3267,7 @@ type===106
 | wait_num | num | 待调查 | |
 
 `data.awards[n]` 对象:
-  
+
 |    字段    | 类型 |  内容  |    备注   |
 | ---------- | --- | ------ | --------- |
 | gift_id | num | 礼物ID | |
@@ -2782,7 +3361,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "POPULARITY_RED_POCKET_NEW",
@@ -2873,10 +3452,10 @@ type===106
 | award_pic     | str  | 礼物图标 URL |      |
 | award_big_pic | str  | 礼物大图 URL |      |
 | award_price   | num  | 礼物价值     |      |
-  
+
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "POPULARITY_RED_POCKET_WINNER_LIST",
@@ -2961,7 +3540,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "WATCHED_CHANGE",
@@ -3032,7 +3611,7 @@ type===106
 
 <details>
 <summary>查看消息示例：</summary>
-  
+
 ```json
 {
 	"cmd": "ENTRY_EFFECT",
@@ -3275,7 +3854,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "AREA_RANK_CHANGED",
@@ -3317,19 +3896,28 @@ type===106
 | ---------- | --- | ------ | --------- |
 | biz_id | num | 待调查 | |
 | content_segments | array | 文本分段 | |
-| danmaku_style | obj | 文本样式信息 | |
+| danmaku_style | obj | 文本样式信息 | 可能不存在 |
 | danmaku_url | str | 待调查 | |
 | dmscore | num | 待调查 | |
-| terminals | array | 待调查 | |
+| terminals | array | 指定显示的终端 | 数字数组 |
 
 `data.content_segments[n]` 数组中的对象
 
 |    字段    | 类型 |  内容  |    备注   |
 | ---------- | --- | ------ | --------- |
-| font_color | str | text 字段的十六进制颜色值 | |
-| font_color_dark | str | text 字段的十六进制颜色值 | APP端设置为深色模式时使用 |
-| text | str | 文本 | |
-| type | num | 待调查 | |
+| background_color | arr 或 null | 背景颜色? | 字符串数组，可能不存在 |
+| background_color_dark | arr 或 null | 深色模式背景颜色? | 可能不存在 |
+| font_bold | bool | text 字段是否加粗? | 可能不存在 |
+| font_color | str | text 字段的十六进制颜色值 |  |
+| font_color_dark | str | text 字段的十六进制颜色值 | APP端设置为深色模式时使用，可能不存在 |
+| highlight_font_color | str | text 字段高亮部分的十六进制颜色值? | 可能不存在 |
+| highlight_font_color_dark | str | text 字段高亮部分的十六进制颜色值? | 深色模式时使用，可能不存在 |
+| img_height | num | 图片高度 | 可能不存在 |
+| img_url | str | 图片链接 | 可能不存在 |
+| img_width | str | 图片宽度 | 可能不存在 |
+| text | str | 文本 |  |
+| type | num | 文本组件类型 | 1：普通文本<br />2：图片<br />3：链接 |
+| uri | str | 链接 | 文本组件类型为 `3` 时存在 |
 
 `data.danmaku_style` 对象:
 
@@ -3397,6 +3985,59 @@ type===106
       3
     ]
   }
+}
+```
+
+```json
+{
+	"cmd": "COMMON_NOTICE_DANMAKU",
+	"data": {
+		"content_segments": [
+			{
+				"background_color": null,
+				"background_color_dark": null,
+				"font_bold": false,
+				"font_color": "#F294AE",
+				"font_color_dark": "",
+				"highlight_font_color": "",
+				"highlight_font_color_dark": "",
+				"img_height": 0,
+				"img_url": "",
+				"img_width": 0,
+				"text": "疯狂星期五：疯狂任务今日24点结束，请关注任务完成情况~",
+				"type": 1
+			},
+			{
+				"background_color": [
+					"#FA729A"
+				],
+				"background_color_dark": null,
+				"font_bold": false,
+				"font_color": "#FFFFFF",
+				"font_color_dark": "",
+				"highlight_font_color": "",
+				"highlight_font_color_dark": "",
+				"img_height": 0,
+				"img_url": "",
+				"img_width": 0,
+				"text": "立即查看",
+				"type": 3,
+				"uri": "https://live.bilibili.com/p/html/bilili-page-gift-intro-container/index.html?is_live_half_webview=1&hybrid_rotate_d=1&hybrid_half_ui=1,3,100p,70p,0,0,30,100,12;2,2,375,100p,0,0,30,100,0;3,3,100p,544,0,0,30,100,12;4,2,375,100p,0,0,30,100,0;5,3,100p,70p,0,0,30,100,0;6,3,100p,70p,0,0,30,100,0;7,3,100p,70p,0,0,30,100,0;8,3,100p,70p,0,0,30,100,0&gift_id=32251&roomId=6154037&anchorId=194484313&sendTargetUid=194484313&active_tab=1"
+			}
+		],
+		"danmaku_style": {
+			"background_color": null,
+			"background_color_dark": null
+		},
+		"dmscore": 1008,
+		"terminals": [
+			1,
+			2,
+			3,
+			4,
+			5
+		]
+	}
 }
 ```
 
@@ -3602,7 +4243,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "WIDGET_BANNER",
@@ -3872,7 +4513,7 @@ type===106
 
 <details>
 <summary>查看消息示例:</summary>
-  
+
 ```json
 {
   "cmd": "STOP_LIVE_ROOM_LIST",
@@ -4529,8 +5170,8 @@ type===106
 
 ```json
 {
-  cmd: "ROOM_ADMINS",
-  uids: [ 898424, 384203692, 1309513, 30816752, 23931549, 223134 ]
+  "cmd": "ROOM_ADMINS",
+  "uids": [ 898424, 384203692, 1309513, 30816752, 23931549, 223134 ]
 }
 ```
 
@@ -4591,6 +5232,461 @@ type===106
   "cmd": "ROOM_ADMIN_REVOKE",
   "msg": "撤销房管",
   "uid": 6791627
+}
+```
+
+</details>
+
+#### 多个直播视角信息 (LIVE_MULTI_VIEW_NEW_INFO)
+
+部分活动直播间会下发。
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `LIVE_MULTI_VIEW_NEW_INFO` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| title | str | 活动标题 | 活动结束后为`""` |
+| room_id | num | 主直播间id | 活动结束后为`0` |
+| copy_writing | str | 提示文本 | 活动结束后为`""` |
+| bg_image | str | 背景图片 | 活动结束后为`""` |
+| sub_slt_color | str | 切换按钮颜色? | 活动结束后为`""` |
+| sub_bg_color | str | 切换按钮背景颜色? | 活动结束后为`""` |
+| sub_text_color | str | 切换按钮文本颜色? | 活动结束后为`""` |
+| view_type | num |  |  |
+| room_list | arr | 房间列表 | 不包括“未直播”状态的直播间，活动结束后为`null` |
+| relation_view | arr | 详细关系? | 不包括“未直播”状态的直播间，活动结束后为`null` |
+| view_pattern | num |  |  |
+| gather_room_list | arr | 空数组? | 活动结束后为`null` |
+
+`data.room_list` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| order_id | num | 顺序id |  |
+| room_id | num | 直播间id | 似乎是长号 |
+| room_name | str | 主播名称 |  |
+| live_status | num | 直播状态 | 1：直播中<br />2：轮播中 |
+| jump_url | str | 加入直播间的链接 |  |
+
+`data.relation_view` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| order_id | num | 顺序id |  |
+| view_type | num |  |  |
+| view_id | num | 直播间id |  |
+| view_name | str | 主播名称 |  |
+| title | str | 直播间标题 |  |
+| cover | str | 直播间封面 |  |
+| jump_url | str | 加入直播间的链接 |  |
+| switch | bool |  |  |
+| num | num | 看过人数 |  |
+| watch_icon | str | 看过图标 |  |
+| live_status | num | 直播状态 | 同`data.room_list[i].live_status` |
+| text_small | str | 看过人数文本 |  |
+| use_view_vt | bool |  |  |
+| anchor_face | str | 主播头像 |  |
+| match_live_room | bool |  |  |
+| match_info | null |  |  |
+| duration | num |  |  |
+| up_name | str | `""` |  |
+| pub_date | str |  |  |
+| gather_id | num |  |  |
+| sub_name | str |  |  |
+
+**示例:**
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+	"cmd": "LIVE_MULTI_VIEW_NEW_INFO",
+	"data": {
+		"title": "战地风云6公开测试",
+		"room_id": 5050,
+		"copy_writing": "更多视角",
+		"bg_image": "https://i0.hdslb.com/bfs/live/edaa9477a1d8325dd0c36c419b6fd5f9646b2419.png",
+		"sub_slt_color": "#FFFFFF",
+		"sub_bg_color": "#333333",
+		"sub_text_color": "#FFFFFF",
+		"view_type": 0,
+		"room_list": [
+			{
+				"order_id": 2,
+				"room_id": 6154037,
+				"room_name": "Asaki大人",
+				"live_status": 2,
+				"jump_url": "https://live.bilibili.com/6154037?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 4,
+				"room_id": 1521765,
+				"room_name": "南云鸟羽",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/1521765?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 8,
+				"room_id": 24065,
+				"room_name": "闻香识",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/24065?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 14,
+				"room_id": 38528,
+				"room_name": "乔伊奥斯托雷",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/38528?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 15,
+				"room_id": 21263282,
+				"room_name": "Yommyko",
+				"live_status": 2,
+				"jump_url": "https://live.bilibili.com/21263282?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 16,
+				"room_id": 5513659,
+				"room_name": "狙佬-zuener",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/5513659?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 18,
+				"room_id": 146007,
+				"room_name": "Kisflow",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/146007?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 19,
+				"room_id": 1163043,
+				"room_name": "人形鹿头自走炮",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/1163043?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 20,
+				"room_id": 3343118,
+				"room_name": "版尤黑紫",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/3343118?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 21,
+				"room_id": 25212992,
+				"room_name": "贝施汀",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/25212992?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 22,
+				"room_id": 11313,
+				"room_name": "丧心病狂的魔笑",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/11313?broadcast_type=0&is_room_feed=1&live_from=28022"
+			},
+			{
+				"order_id": 24,
+				"room_id": 902302,
+				"room_name": "LF叶绿",
+				"live_status": 1,
+				"jump_url": "https://live.bilibili.com/902302?broadcast_type=0&is_room_feed=1&live_from=28022"
+			}
+		],
+		"relation_view": [
+			{
+				"order_id": 2,
+				"view_type": 0,
+				"view_id": 6154037,
+				"view_name": "Asaki大人",
+				"title": "猪猪猪",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/87e0332a5c3c8cd73fa7616045111b90b0199087.jpg",
+				"jump_url": "https://live.bilibili.com/6154037?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 2305,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 2,
+				"text_small": "2305",
+				"use_view_vt": false,
+				"anchor_face": "https://i1.hdslb.com/bfs/face/84a861facfa041b46f7a30897e9ed3f2e05e0519.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 4,
+				"view_type": 0,
+				"view_id": 1521765,
+				"view_name": "南云鸟羽",
+				"title": "【战地6B测】下午四点开！聊天摸鱼",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/a8216e0b5469949fcbcc72458c7955b562838a89.jpg",
+				"jump_url": "https://live.bilibili.com/1521765?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 36987,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "3.6万",
+				"use_view_vt": false,
+				"anchor_face": "https://i1.hdslb.com/bfs/face/f4744b6346ddaccb4642a0f05f25d798fb5d8474.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 8,
+				"view_type": 0,
+				"view_id": 24065,
+				"view_name": "闻香识",
+				"title": "4点战地6！！",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/6e309306fcb7bdeeb5e72f8b4c2d1ed7ba7e1e29.jpg",
+				"jump_url": "https://live.bilibili.com/24065?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 32408,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "3.2万",
+				"use_view_vt": false,
+				"anchor_face": "https://i0.hdslb.com/bfs/face/df21869b067816e03c517bc774f6ebf5a86563de.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 14,
+				"view_type": 0,
+				"view_id": 38528,
+				"view_name": "乔伊奥斯托雷",
+				"title": "[战地六B测]捞薯条，吃薯条，谁是薯条？",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/a89ebcd8b4f3e841ddb7cb53fbdc6013a9956013.jpg",
+				"jump_url": "https://live.bilibili.com/38528?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 3660,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "3660",
+				"use_view_vt": false,
+				"anchor_face": "https://i1.hdslb.com/bfs/face/82ef4b09c26751649da2a48960d23fd87baa6db5.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 15,
+				"view_type": 0,
+				"view_id": 21263282,
+				"view_name": "Yommyko",
+				"title": "和广东双马尾搏斗！禁闭求生2",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/86ac43cf0c1db277b92a5e83324558ceab2bb108.jpg",
+				"jump_url": "https://live.bilibili.com/21263282?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 1583,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 2,
+				"text_small": "1583",
+				"use_view_vt": false,
+				"anchor_face": "https://i2.hdslb.com/bfs/face/9718e4c59c2cfcc9f8b747ad8ea5006fad78a76a.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 16,
+				"view_type": 0,
+				"view_id": 5513659,
+				"view_name": "狙佬-zuener",
+				"title": "战地6！开玩！七年之约已到！",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/b1779156686031460633d31362205456d1bb53df.jpg",
+				"jump_url": "https://live.bilibili.com/5513659?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 30035,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "3.0万",
+				"use_view_vt": false,
+				"anchor_face": "https://i0.hdslb.com/bfs/face/bdb4b214d3446aca7c11b408ae6f35c89f52a5cc.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 18,
+				"view_type": 0,
+				"view_id": 146007,
+				"view_name": "Kisflow",
+				"title": "战地6 BETA 战场老登职业哥",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/0007988a93c06215f0ffd96f7a4e3834d1396408.jpg",
+				"jump_url": "https://live.bilibili.com/146007?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 7839,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "7839",
+				"use_view_vt": false,
+				"anchor_face": "https://i1.hdslb.com/bfs/face/5761dbf3f03b1a31ad8a6aec01452c97e93c16c0.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 19,
+				"view_type": 0,
+				"view_id": 1163043,
+				"view_name": "人形鹿头自走炮",
+				"title": "神秘远光84男",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/cea622fe174d8c3fd26e58ea5a7e3b709fd8aee4.jpg",
+				"jump_url": "https://live.bilibili.com/1163043?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 20796,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "2.0万",
+				"use_view_vt": false,
+				"anchor_face": "https://i2.hdslb.com/bfs/face/259c1f3b485ad5e2182446246fccb87114701ed8.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 20,
+				"view_type": 0,
+				"view_id": 3343118,
+				"view_name": "版尤黑紫",
+				"title": "爽玩！战地6B测",
+				"cover": "https://i0.hdslb.com/bfs/live/user_cover/039be5f223d26d4108941f1f056ee5842e3e5720.jpg",
+				"jump_url": "https://live.bilibili.com/3343118?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 1704,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "1704",
+				"use_view_vt": false,
+				"anchor_face": "https://i2.hdslb.com/bfs/face/3cdcbc8945d18575279ac55c75f4da9f0a7dbc9e.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 21,
+				"view_type": 0,
+				"view_id": 25212992,
+				"view_name": "贝施汀",
+				"title": "战地6还没开服，先直播剪会儿视频聊聊天",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/fb0227b71dca8555588c9c6c0af329cf250123a9.jpg",
+				"jump_url": "https://live.bilibili.com/25212992?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 2207,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "2207",
+				"use_view_vt": false,
+				"anchor_face": "https://i0.hdslb.com/bfs/face/7242e856562166a27e8be4a184e4cddbaed8177f.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 22,
+				"view_type": 0,
+				"view_id": 11313,
+				"view_name": "丧心病狂的魔笑",
+				"title": "等待测试开启！但是先直播周边开箱！",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/48fb912da0f665427eb230ef3273defdb1a33fa4.jpg",
+				"jump_url": "https://live.bilibili.com/11313?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 2924,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "2924",
+				"use_view_vt": false,
+				"anchor_face": "https://i2.hdslb.com/bfs/face/e672848bc2718b79ca2f44eb447e84282c6f806d.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			},
+			{
+				"order_id": 24,
+				"view_type": 0,
+				"view_id": 902302,
+				"view_name": "LF叶绿",
+				"title": "《田 野 打 架 6》",
+				"cover": "https://i0.hdslb.com/bfs/live/new_room_cover/3b18086f9e70f719917c5d4561c25defdd13cd82.jpg",
+				"jump_url": "https://live.bilibili.com/902302?broadcast_type=0&is_room_feed=1&live_from=28022",
+				"switch": true,
+				"num": 1897,
+				"watch_icon": "https://i0.hdslb.com/bfs/live/a725a9e61242ef44d764ac911691a7ce07f36c1d.png",
+				"live_status": 1,
+				"text_small": "1897",
+				"use_view_vt": false,
+				"anchor_face": "https://i2.hdslb.com/bfs/face/5e3570095f5af77d20188ea45d45da216a31e52d.jpg",
+				"match_live_room": false,
+				"match_info": null,
+				"duration": 0,
+				"up_name": "",
+				"pub_date": "",
+				"gather_id": 0,
+				"sub_name": ""
+			}
+		],
+		"view_pattern": 1,
+		"gather_room_list": []
+	}
 }
 ```
 
@@ -4904,6 +6000,682 @@ type===106
 
 </details>
 
+#### 连线礼物信息 (UNIVERSAL_EVENT_GIFT)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `UNIVERSAL_EVENT_GIFT` |  |
+| data | obj | 信息本体 |  |
+| msg_id | str |  |  |
+| p_is_ack | bool |  |  |
+| p_msg_type | num |  |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| anchor_uid | num | 主播uid |  |
+| info | obj | 连线信息 |  |
+| room_id | num | 直播间id |  |
+
+`data.info` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| biz_session_id | str | 连线会话id? |  |
+| business_label | str |  |  |
+| interact_channel_id | str | 频道id? |  |
+| interact_connect_type | num |  |  |
+| interact_max_users | num | 最大连线数? |  |
+| interact_mode | obj |  |  |
+| interact_template | obj | 展示模板 |  |
+| invoking_time | num |  |  |
+| members | arr | 连线成员 | 参见 `UNIVERSAL_EVENT_GIFT_V2` 的 `data.members` ，缺少部分字段 |
+| members_version | num |  |  |
+| multi_conn_info | obj | 连线信息 |  |
+| room_owner | num | 发起者uid |  |
+| room_start_at | str |  |  |
+| room_start_at_ts | num |  |  |
+| room_status | num |  |  |
+| session_start_at | str |  |  |
+| session_start_at_ts | num |  |  |
+| session_status | num |  |  |
+| system_time_unix | num | 服务器时间戳 | Unix 秒时间戳 |
+| trace_id | str |  |  |
+| version | num | 数据版本 | Unix 毫秒时间戳 |
+
+`data.info.interact_mode` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| apply_timeout | num | 超时? |  |
+| interact_mode_type | num |  |  |
+| invite_timeout | num | 邀请超时? |  |
+| join_types | arr | 加入类型? | 数字数组 |
+| position_mode | num |  |  |
+
+`data.info.interact_template` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| is_variable_layout | bool | 布局是否可变? |  |
+| layout_data | obj | 布局信息 |  |
+| layout_id | str | 布局id |  |
+| layout_list | null | ? |  |
+| show_interact_ui | bool | 显示交互UI? |  |
+| template_id | str | 模板id? |  |
+
+`data.info.interact_template.layout_data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| best_area_show_pos | num |  |  |
+| cells | arr | 具体布局信息 |  |
+| default_cell | obj |  |  |
+| height | num |  |  |
+| rtc_resolution | obj |  |  |
+| width | num |  |  |
+
+`data.info.interact_template.layout_data.cells` 数组中对象:
+
+与 `data.info.interact_template.layout_data.default_cell` 对象相同
+
+`data.info.interact_template.layout_data.default_cell` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| can_zoom | num |  |  |
+| default_open | num |  |  |
+| height | num |  |  |
+| mobile_avatar_size | num |  |  |
+| mobile_font_size | num |  |  |
+| pc_web_avatar_size | num |  |  |
+| pc_web_font_size | num |  |  |
+| position | num | 定位? |  |
+| width | num |  |  |
+| x | num |  |  |
+| y | num |  |  |
+| z_index | num |  |  |
+
+`data.info.interact_template.layout_data.rtc_resolution` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code_rate_init | num |  |  |
+| code_rate_max | num |  |  |
+| code_rate_min | num |  |  |
+| horizontal_height | num |  |  |
+| horizontal_width | num |  |  |
+| vertical_height | num |  |  |
+| vertical_width | num |  |  |
+
+`data.info.members` 数组中对象:
+
+参见 [`UNIVERSAL_EVENT_GIFT_V2`](#连线礼物信息v2-universal_event_gift_v2) 的 `data.members` 数组中对象，本cmd缺少部分字段。
+
+`data.info.multi_conn_info` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| room_owner | num | 发起人uid |  |
+| scores | arr | 礼物信息 |  |
+| show_score | num | 是否显示? |  |
+
+`data.info.multi_conn_info.scores` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| price | num | 礼物累计价值 | CNY × 100 |
+| price_text | str | 礼物累计价值文本 |  |
+| uid | num | 对应主播uid |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "UNIVERSAL_EVENT_GIFT",
+	"data": {
+		"anchor_uid": 1950658,
+		"info": {
+			"biz_session_id": "17545643420522077733317",
+			"business_label": "universal_multi_conn",
+			"interact_channel_id": "4679025140177408",
+			"interact_connect_type": 0,
+			"interact_max_users": 9,
+			"interact_mode": {
+				"apply_timeout": 20,
+				"interact_mode_type": 0,
+				"invite_timeout": 30,
+				"join_types": [
+					1,
+					2
+				],
+				"position_mode": 0
+			},
+			"interact_template": {
+				"is_variable_layout": true,
+				"layout_data": {
+					"best_area_show_pos": 0,
+					"cells": [
+						{
+							"can_zoom": 2,
+							"default_open": 0,
+							"height": 48,
+							"mobile_avatar_size": 64,
+							"mobile_font_size": 0,
+							"pc_web_avatar_size": 112,
+							"pc_web_font_size": 0,
+							"position": 0,
+							"width": 30,
+							"x": 0,
+							"y": 0,
+							"z_index": 0
+						},
+						{
+							"can_zoom": 1,
+							"default_open": 0,
+							"height": 0,
+							"mobile_avatar_size": 0,
+							"mobile_font_size": 0,
+							"pc_web_avatar_size": 0,
+							"pc_web_font_size": 0,
+							"position": 1,
+							"width": 0,
+							"x": 30,
+							"y": 0,
+							"z_index": 0
+						},
+						{
+							"can_zoom": 1,
+							"default_open": 0,
+							"height": 0,
+							"mobile_avatar_size": 0,
+							"mobile_font_size": 0,
+							"pc_web_avatar_size": 0,
+							"pc_web_font_size": 0,
+							"position": 2,
+							"width": 0,
+							"x": 45,
+							"y": 0,
+							"z_index": 0
+						},
+						{
+							"can_zoom": 1,
+							"default_open": 0,
+							"height": 0,
+							"mobile_avatar_size": 0,
+							"mobile_font_size": 0,
+							"pc_web_avatar_size": 0,
+							"pc_web_font_size": 0,
+							"position": 3,
+							"width": 0,
+							"x": 30,
+							"y": 16,
+							"z_index": 0
+						},
+						{
+							"can_zoom": 1,
+							"default_open": 0,
+							"height": 0,
+							"mobile_avatar_size": 0,
+							"mobile_font_size": 0,
+							"pc_web_avatar_size": 0,
+							"pc_web_font_size": 0,
+							"position": 4,
+							"width": 0,
+							"x": 45,
+							"y": 16,
+							"z_index": 0
+						},
+						{
+							"can_zoom": 1,
+							"default_open": 0,
+							"height": 0,
+							"mobile_avatar_size": 0,
+							"mobile_font_size": 0,
+							"pc_web_avatar_size": 0,
+							"pc_web_font_size": 0,
+							"position": 5,
+							"width": 0,
+							"x": 30,
+							"y": 32,
+							"z_index": 0
+						},
+						{
+							"can_zoom": 1,
+							"default_open": 0,
+							"height": 0,
+							"mobile_avatar_size": 0,
+							"mobile_font_size": 0,
+							"pc_web_avatar_size": 0,
+							"pc_web_font_size": 0,
+							"position": 6,
+							"width": 0,
+							"x": 45,
+							"y": 32,
+							"z_index": 0
+						}
+					],
+					"default_cell": {
+						"can_zoom": 0,
+						"default_open": 1,
+						"height": 16,
+						"mobile_avatar_size": 40,
+						"mobile_font_size": 10,
+						"pc_web_avatar_size": 72,
+						"pc_web_font_size": 14,
+						"position": 0,
+						"width": 15,
+						"x": 0,
+						"y": 0,
+						"z_index": 0
+					},
+					"height": 48,
+					"rtc_resolution": {
+						"code_rate_init": 500,
+						"code_rate_max": 700,
+						"code_rate_min": 375,
+						"horizontal_height": 400,
+						"horizontal_width": 500,
+						"vertical_height": 576,
+						"vertical_width": 360
+					},
+					"width": 60
+				},
+				"layout_id": "left1_right6",
+				"layout_list": null,
+				"show_interact_ui": true,
+				"template_id": "multi_conn_grid"
+			},
+			"invoking_time": 1,
+			"members": [
+				{
+					"face": "https://i1.hdslb.com/bfs/face/2ddb513f600c203f21aefb9725ab0eb84f093943.jpg",
+					"gender": 0,
+					"join_time": 1754564992,
+					"link_id": "44479117",
+					"position": 0,
+					"room_id": 41682,
+					"uid": 1950658,
+					"uname": "早稻叽"
+				},
+				{
+					"face": "https://i1.hdslb.com/bfs/face/5958bb6814f25d832775ca37043d38f893b4a478.jpg",
+					"gender": -1,
+					"join_time": 1754564347,
+					"link_id": "44478459",
+					"position": 1,
+					"room_id": 26376408,
+					"uid": 2077733317,
+					"uname": "烛不遥"
+				},
+				{
+					"face": "https://i0.hdslb.com/bfs/face/7c862b4ad1a29cdd2b849bcea3c3812b67770d21.jpg",
+					"gender": 0,
+					"join_time": 1754564347,
+					"link_id": "44478460",
+					"position": 2,
+					"room_id": 1774970222,
+					"uid": 1035559935,
+					"uname": "新砂Athia"
+				},
+				{
+					"face": "https://i0.hdslb.com/bfs/face/81c1f45b45958c19523bb7cbae7fc3fa99b4aae1.jpg",
+					"gender": -1,
+					"join_time": 1754564361,
+					"link_id": "44478500",
+					"position": 3,
+					"room_id": 31361500,
+					"uid": 3546581471070432,
+					"uname": "颂温暖_Swanna"
+				},
+				{
+					"face": "https://i2.hdslb.com/bfs/face/eceb8fa58c41b7cd733bebafcd7c1f3e33b37b07.jpg",
+					"gender": 0,
+					"join_time": 1754564385,
+					"link_id": "44478528",
+					"position": 4,
+					"room_id": 1937830041,
+					"uid": 3546768203582225,
+					"uname": "暴躁小辣jo"
+				},
+				{
+					"face": "https://i0.hdslb.com/bfs/face/12c1cd0df2ee6e6bb09b279b0553cdc9ae4af4f0.jpg",
+					"gender": -1,
+					"join_time": 1754564774,
+					"link_id": "44478875",
+					"position": 5,
+					"room_id": 23090250,
+					"uid": 475912512,
+					"uname": "抵抗Resistance"
+				}
+			],
+			"members_version": 3974722551,
+			"multi_conn_info": {
+				"room_owner": 2077733317,
+				"scores": [
+					{
+						"price": 82900,
+						"price_text": "829",
+						"uid": 1950658
+					},
+					{
+						"price": 21200,
+						"price_text": "212",
+						"uid": 2077733317
+					},
+					{
+						"price": 30400,
+						"price_text": "304",
+						"uid": 1035559935
+					},
+					{
+						"price": 675600,
+						"price_text": "6756",
+						"uid": 3546581471070432
+					},
+					{
+						"price": 96800,
+						"price_text": "968",
+						"uid": 3546768203582225
+					},
+					{
+						"price": 79200,
+						"price_text": "792",
+						"uid": 475912512
+					}
+				],
+				"show_score": 1
+			},
+			"room_owner": 2077733317,
+			"room_start_at": "",
+			"room_start_at_ts": 0,
+			"room_status": 1,
+			"session_start_at": "",
+			"session_start_at_ts": 0,
+			"session_status": 1,
+			"system_time_unix": 1754568295,
+			"trace_id": "",
+			"version": 1754568295428
+		},
+		"room_id": 41682
+	},
+	"msg_id": "34610565842749442:1000:1000",
+	"p_is_ack": true,
+	"p_msg_type": 1,
+	"send_time": 1754568295441
+}
+```
+
+</details>
+
+#### 连线礼物信息V2 (UNIVERSAL_EVENT_GIFT_V2)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `UNIVERSAL_EVENT_GIFT_V2` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| biz_session_id | str | 连线会话id? |  |
+| interact_channel_id | str | 频道id? |  |
+| interact_template | obj | 交互模板信息 |  |
+| members | arr | 连线成员 |  |
+| stream_control | null |  |  |
+| version | num | 数据版本 | Unix 毫秒时间戳 |
+| session_status | num |  |  |
+| business_label | str |  |  |
+| invoking_time | num |  |  |
+| members_version | num |  |  |
+| room_status | num |  |  |
+| system_time_unix | num | 服务器时间戳 | Unix 秒时间戳 |
+| room_owner | num | 发起人uid |  |
+| session_start_at | str | 会话开始时间 |  |
+| session_start_at_ts | num | 会话经过时间 |  |
+| room_start_at | str | 当前直播间加入会话时间 |  |
+| room_start_at_ts | num | 当前直播间自加入会话开始经过的时间 |  |
+| trace_id | str | 追踪id? |  |
+| biz_extra_data | obj |  |  |
+| channel_users | arr | 当前连线频道内uid列表 |  |
+
+`data.interact_template` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| template_id | str | 模板id? |  |
+| show_interact_ui | bool | 显示交互UI? |  |
+| layout_id | str | 样式id? |  |
+
+`data.members` 数组中对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| uid | num | 连线主播uid |  |
+| uname | str | 连线主播名称 |  |
+| face | str | 连线主播头像 |  |
+| position | num | 位置? |  |
+| join_time | num | 加入时间 | Unix 秒时间戳 |
+| link_id | str |  |  |
+| gender | num |  |  |
+| room_id | num | 连线主播直播间id |  |
+| fans_num | num |  |  |
+| display_name | str | 显示名称 |  |
+| biz_extra_data | obj |  |  |
+| join_time_ts | num |  |  |
+
+`data.members[i].biz_extra_data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| multi_conn | obj |  |  |
+
+`data.members[i].biz_extra_data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| price | num | 礼物累计价值 | CNY × 100 |
+| price_text | str | 礼物累计价值文本 |  |
+
+`data.biz_extra_data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| multi_conn | obj |  |  |
+
+`data.biz_extra_data.multi_conn` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| show_score | num |  |  |
+| support_full_zoom | num |  |  |
+
+`data.channel_users` 数组:
+
+| 索引 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| 0 | num | 主播uid |  |
+| … | num | 主播uid |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "UNIVERSAL_EVENT_GIFT_V2",
+	"data": {
+		"biz_session_id": "17545643420522077733317",
+		"interact_channel_id": "4679025140177408",
+		"interact_template": {
+			"template_id": "multi_conn_grid",
+			"show_interact_ui": true,
+			"layout_id": "left1_right6"
+		},
+		"members": [
+			{
+				"uid": 1950658,
+				"uname": "早稻叽",
+				"face": "https://i1.hdslb.com/bfs/face/2ddb513f600c203f21aefb9725ab0eb84f093943.jpg",
+				"position": 0,
+				"join_time": 1754564992,
+				"link_id": "44479117",
+				"gender": 0,
+				"room_id": 41682,
+				"fans_num": 0,
+				"display_name": "本房主播",
+				"biz_extra_data": {
+					"multi_conn": {
+						"price": 82900,
+						"price_text": "829"
+					}
+				},
+				"join_time_ts": 0
+			},
+			{
+				"uid": 2077733317,
+				"uname": "烛不遥",
+				"face": "https://i1.hdslb.com/bfs/face/5958bb6814f25d832775ca37043d38f893b4a478.jpg",
+				"position": 1,
+				"join_time": 1754564347,
+				"link_id": "44478459",
+				"gender": -1,
+				"room_id": 26376408,
+				"fans_num": 0,
+				"display_name": "烛不遥",
+				"biz_extra_data": {
+					"multi_conn": {
+						"price": 21200,
+						"price_text": "212"
+					}
+				},
+				"join_time_ts": 0
+			},
+			{
+				"uid": 1035559935,
+				"uname": "新砂Athia",
+				"face": "https://i0.hdslb.com/bfs/face/7c862b4ad1a29cdd2b849bcea3c3812b67770d21.jpg",
+				"position": 2,
+				"join_time": 1754564347,
+				"link_id": "44478460",
+				"gender": 0,
+				"room_id": 1774970222,
+				"fans_num": 0,
+				"display_name": "新砂Athia",
+				"biz_extra_data": {
+					"multi_conn": {
+						"price": 30400,
+						"price_text": "304"
+					}
+				},
+				"join_time_ts": 0
+			},
+			{
+				"uid": 3546581471070432,
+				"uname": "颂温暖_Swanna",
+				"face": "https://i0.hdslb.com/bfs/face/81c1f45b45958c19523bb7cbae7fc3fa99b4aae1.jpg",
+				"position": 3,
+				"join_time": 1754564361,
+				"link_id": "44478500",
+				"gender": -1,
+				"room_id": 31361500,
+				"fans_num": 0,
+				"display_name": "颂温暖_Swanna",
+				"biz_extra_data": {
+					"multi_conn": {
+						"price": 675600,
+						"price_text": "6756"
+					}
+				},
+				"join_time_ts": 0
+			},
+			{
+				"uid": 3546768203582225,
+				"uname": "暴躁小辣jo",
+				"face": "https://i2.hdslb.com/bfs/face/eceb8fa58c41b7cd733bebafcd7c1f3e33b37b07.jpg",
+				"position": 4,
+				"join_time": 1754564385,
+				"link_id": "44478528",
+				"gender": 0,
+				"room_id": 1937830041,
+				"fans_num": 0,
+				"display_name": "暴躁小辣jo",
+				"biz_extra_data": {
+					"multi_conn": {
+						"price": 96800,
+						"price_text": "968"
+					}
+				},
+				"join_time_ts": 0
+			},
+			{
+				"uid": 475912512,
+				"uname": "抵抗Resistance",
+				"face": "https://i0.hdslb.com/bfs/face/12c1cd0df2ee6e6bb09b279b0553cdc9ae4af4f0.jpg",
+				"position": 5,
+				"join_time": 1754564774,
+				"link_id": "44478875",
+				"gender": -1,
+				"room_id": 23090250,
+				"fans_num": 0,
+				"display_name": "抵抗Resistance",
+				"biz_extra_data": {
+					"multi_conn": {
+						"price": 79200,
+						"price_text": "792"
+					}
+				},
+				"join_time_ts": 0
+			}
+		],
+		"stream_control": null,
+		"version": 1754568295421,
+		"session_status": 1,
+		"business_label": "universal_multi_conn",
+		"invoking_time": 2,
+		"members_version": 1262102210,
+		"room_status": 1,
+		"system_time_unix": 1754568295,
+		"room_owner": 2077733317,
+		"session_start_at": "2025-08-07 18:59:06",
+		"session_start_at_ts": 3949,
+		"room_start_at": "2025-08-07 19:09:52",
+		"room_start_at_ts": 3303,
+		"trace_id": "55df19c042f09f5c625d7b8b60689496",
+		"biz_extra_data": {
+			"multi_conn": {
+				"show_score": 1,
+				"support_full_zoom": 2
+			}
+		},
+		"channel_users": [
+			1950658,
+			2077733317,
+			1035559935,
+			3546581471070432,
+			3546768203582225,
+			475912512
+		]
+	}
+}
+```
+
+</details>
+
 #### ??? (PLAY_TOGETHER)
 
 **示例:**
@@ -5153,6 +6925,51 @@ type===106
 		"pic": "https://i0.hdslb.com/bfs/live/0e04525fee9ea6ea6973e8bd1116d9f1f6501d37.png",
 		"timestamp": 1740319807,
 		"type": "ADD"
+	}
+}
+```
+
+</details>
+
+#### 冲榜提示卡 (POPULAR_RANK_GUIDE_CARD)
+
+**JSON消息:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| cmd | str | `POPULAR_RANK_GUIDE_CARD` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| ruid | num | 主播uid |  |
+| title | str | 提示标题 |  |
+| sub_text | str | 提示副标题 |  |
+| icon_img | str | 提示卡图标 | 主播头像 |
+| gift_id | num | 礼物id |  |
+| countdown | num | 显示时间 |  |
+| popup_title | str | 提示文本 |  |
+
+**示例:**
+
+<details>
+<summary>查看消息示例:</summary>
+
+```json
+{
+	"cmd": "POPULAR_RANK_GUIDE_CARD",
+	"data": {
+		"ruid": 194484313,
+		"title": "目前人气榜NO.1",
+		"sub_text": "帮我投喂人气票冲榜吧~",
+		"icon_img": "https://i1.hdslb.com/bfs/face/84a861facfa041b46f7a30897e9ed3f2e05e0519.jpg",
+		"gift_id": 33988,
+		"countdown": 10,
+		"popup_title": "投喂一个人气票帮助主播打榜~"
 	}
 }
 ```
