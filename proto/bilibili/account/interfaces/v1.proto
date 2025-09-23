@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package bilibili.account.interfaces.v1;
+
+// 
+service AccountInterfaceV1 {
+    // 
+    rpc MidByName (MidByNameReq) returns (MidByNameReply);
+    // 
+    rpc UnameMessage (UnameMessageReq) returns (UnameMessageReply);
+    // 
+    rpc UpdateNameV2 (UpdateNameReq) returns (UpdateNameReply);
+}
+
+// 
+message MidByNameReply {
+    // 
+    map<string, int64> name_map = 1;
+}
+
+// 
+message MidByNameReq {
+    // 
+    repeated string names = 1;
+}
+
+// 
+message UnameMessageReply {
+    // 
+    bool allow = 1;
+    // 
+    bool realname_or_tel = 2;
+    // 
+    string uname_message = 3;
+    // 
+    string confirm_message = 4;
+    // 
+    string condition_message = 5;
+    // 
+    string bind_tel = 6;
+}
+
+// 
+message UnameMessageReq {
+}
+
+// 
+message UpdateNameReply {
+    // 
+    int64 code = 1;
+    // 
+    string msg = 2;
+    // 
+    repeated string name_list = 3;
+    // 
+    string name = 4;
+}
+
+// 
+message UpdateNameReq {
+    // 
+    string uname = 1;
+    // 
+    string source = 2;
+}
+

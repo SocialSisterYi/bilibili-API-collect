@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package bilibili.app.playerunite.ugcanymodel;
+
+// 
+message ButtonStyle {
+    // 
+    string text = 1;
+    // 
+    string text_color = 2;
+    // 
+    string bg_color = 3;
+    // 
+    string jump_link = 4;
+}
+
+// 
+message Clip {
+    // 
+    ClipInfo clip_info = 1;
+}
+
+// 
+message ClipInfo {
+    // 
+    ClipType clip_type = 1;
+    // 
+    int64 material_no = 2;
+    // 
+    int64 start = 3;
+    // 
+    int64 end = 4;
+}
+
+// 
+enum ClipType {
+    // 
+    CLIP_TYPE_UNSPECIFIED = 0;
+    // 
+    CLIP_TYPE_HE = 1;
+}
+
+// 
+message PlayLimit {
+    // 
+    PlayLimitCode code = 1;
+    // 
+    string message = 2;
+    // 
+    string sub_message = 3;
+    // 
+    ButtonStyle button = 4;
+}
+
+// 
+enum PlayLimitCode {
+    // 
+    PLC_UNKNOWN = 0;
+    // 
+    PLC_UGCNOTPAYED = 1;
+    // 
+    PLC_ChargingPlusNotPass = 2;
+    // 
+    PLC_ChargingPlusUpgrade = 3;
+    // 
+    PLC_ChargingPlusReject = 4;
+    // 
+    PLC_COMMON_CODE = 5;
+}
+
+// 
+message UGCAnyModel {
+    // 
+    PlayLimit play_limit = 1;
+    // 
+    Clip clip = 3;
+}
+
