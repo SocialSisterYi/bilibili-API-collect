@@ -19,7 +19,7 @@
 | aid    | num | 稿件 avid | 必要(可选) | avid与bvid任选一个             |
 | bvid   | str | 稿件 bvid | 必要(可选) | avid与bvid任选一个             |
 | cid    | num | 视频 cid  | 必要  |                                  |
-| up_mid | num | UP主 mid | 必要  |                                  |
+| up_mid | num | UP主 mid | 可选  |                                  |
 | w_rid  | str | Wbi 签名 | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 | wts    | num | 当前时间戳  | 必要  | 详见 [Wbi 签名](../misc/sign/wbi.md) |
 
@@ -51,7 +51,8 @@
 |-------------|-----|----------|------------------------------------------|
 | result_type | num | 数据类型 | 0: 没有摘要<br />1：仅存着摘要总结<br />2：存着摘要以及提纲 |
 | summary     | str | 视频摘要 | 通常为一段概括整个视频内容的文本 |
-| outline     | 有数据时：array<br />无数据时：null | 分段提纲 | 通常为视频中叙述的各部分及其要点 |
+| outline     | 有数据时：array<br />无数据时：空数组 | 分段提纲 | 通常为视频中叙述的各部分及其要点 |
+| subtitle    | 有数据时：array<br />无数据时：空数组 | AI字幕 | 由AI识别生成的字幕列表，自动翻译英文，固定返回中文字幕 |
 
 `model_result`对象中的`outline`数组:
 
@@ -83,6 +84,36 @@
 |-----------|-----|-------|----|
 | timestamp | num | 要点起始时间 | 单位为秒   |
 | content   | str | 小结内容  | 其中一个分段的要点   |
+
+`model_result`对象中`subtitle`数组:
+
+| 项   | 类型  | 内容      | 备注  |
+|-----|-----|----------|-----|
+| 0   | obj | 字幕列表1 | 若有结果，该数组长度仅为1 |
+
+`subtitle`数组中的对象:
+
+| 字段           | 类型  | 内容     | 备注 |
+|-----|-----|---------|-----|
+| part_subtitle | array | 字幕分段 | 当前分段中的字幕信息 |
+| timestamp     | num | 字幕识别起始时间 | 单位为秒 |
+| title         | str | 字幕标题 | 固定为空字符串 |
+
+`subtitle`数组中的对象中的`part_subtitle`数组:
+
+| 项   | 类型  | 内容      | 备注  |
+|-----|-----|---------|-----|
+| 0   | obj | 字幕分段1 |    |
+| n   | obj | 字幕分段n |    |
+| ……  | obj | ……      | ……  |
+
+`part_subtitle`数组中的对象:
+
+| 字段        | 类型  | 内容    | 备注 |
+|-----------|-----|-------|----|
+| content   | str | 字幕内容 | 其中一个分段的字幕内容 |
+| start_timestamp | num | 分段开始时间 | 单位为秒 |
+| end_timestamp   | num | 分段结束时间 | 单位为秒 |
 
 **示例：**
 
@@ -147,7 +178,36 @@ curl -G 'https://api.bilibili.com/x/web-interface/view/conclusion/get' \
           ],
           "timestamp": 241
         }
-      ]
+      ],
+      "subtitle": [
+        {
+          "part_subtitle": [
+            {
+              "content": "有时候上网啊",
+              "start_timestamp": 0,
+              "end_timestamp": 1
+            },
+            {
+              "content": "看网友的评论内容",
+              "start_timestamp": 1,
+              "end_timestamp": 3
+            },
+            {
+              "content": "一句话好几个错别字",
+              "start_timestamp": 3,
+              "end_timestamp": 5
+            },
+            // ...
+            {
+              "content": "黄一刀有毒",
+              "start_timestamp": 352,
+              "end_timestamp": 355
+            }
+          ],
+          "timestamp": 1,
+          "title": ""
+        }
+      ],
     },
     "stid": "5117037934391059183",
     "status": 0,
