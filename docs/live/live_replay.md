@@ -183,13 +183,135 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetRepl
 
 </details>
 
+## 获取某位主播的回放列表
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetOtherSliceList
+
+*请求方法: GET*
+
+认证方式: Cookie (SESSDATA)
+
+需要获得那位主播的授权才能获取数据。
+
+**url参数：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_uid | num | 目标主播的uid | 必要 |  |
+| time_range | num | 回放列表的时间范围 | 非必要 | 默认获取近14天<br />1：近3天<br />2：近7天<br />3：近14天 |
+| page | num | 页码 | 非必要 | 默认第1页 |
+| page_size | num | 每页内容数量 | 非必要 | 默认30项，最大30项 |
+| web_location | str | (?) | 非必要 |  |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -101：未登录<br />0：成功<br />301：没有剪辑权限 |
+| message | str | 提示信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 | 与[获取直播回放列表](#获取直播回放列表)接口的信息本体相同 |
+
+**示例：**
+
+获取某位主播的回放列表，他已授权你回放剪辑权限
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetOtherSliceList?live_uid=1&time_range=1&page=1&page_size=2' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "replay_info": [
+      {
+        "replay_id": 14657830,
+        "live_info": {
+          "title": "随缘摸鱼",
+          "cover": "https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png",
+          "live_time": 1760352139,
+          "live_type": 1,
+          "platform": "android_link"
+        },
+        "video_info": {
+          "replay_status": 2,
+          "estimated_time": "1970-01-01 08:00:00",
+          "duration": 858,
+          "alert_code": 2,
+          "alert_message": "录像时长远小于开播时长，请关注直播时网络状况"
+        },
+        "alarm_info": {
+          "code": 2,
+          "message": "录像生成失败，请稍后再试",
+          "cur_time": 1760362012,
+          "is_ban_publish": false
+        },
+        "room_id": 1899237171,
+        "live_key": "648437353747320627",
+        "start_time": 1760352139,
+        "end_time": 1760352997
+      },
+      {
+        "replay_id": 14646585,
+        "live_info": {
+          "title": "随缘摸鱼",
+          "cover": "https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png",
+          "live_time": 1760285326,
+          "live_type": 1,
+          "platform": "android_link"
+        },
+        "video_info": {
+          "replay_status": 2,
+          "estimated_time": "1970-01-01 08:00:00",
+          "duration": 464,
+          "alert_code": 2,
+          "alert_message": "录像时长远小于开播时长，请关注直播时网络状况"
+        },
+        "alarm_info": {
+          "code": 2,
+          "message": "录像生成失败，请稍后再试",
+          "cur_time": 1760362012,
+          "is_ban_publish": false
+        },
+        "room_id": 1899237171,
+        "live_key": "648321565723987763",
+        "start_time": 1760285326,
+        "end_time": 1760285790
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "page_size": 2,
+      "total": 4
+    },
+    "archive_flag": false,
+    "can_edit": 1,
+    "can_upload": false,
+    "has_third_platform_live": false
+  }
+}
+```
+
+</details>
+
 ## 获取已发布片段的信息
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetVideoSliceList
 
-*请求方式: GET*
+*请求方法: GET*
 
 认证方式: Cookie (SESSDATA)
+
+只能获取主播自己的已发布片段。
 
 **url参数：**
 
@@ -298,6 +420,147 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetVide
 
 </details>
 
+## 获取你为某位主播剪辑的已发布片段
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetPublishedList
+
+*请求方法: GET*
+
+认证方式: Cookie (SESSDATA)
+
+需要获得那位主播的授权才能获取数据。
+
+**url参数：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_uid | num | 目标主播的uid | 必要 |  |
+| page | num | 页码 | 非必要 | 默认第1页 |
+| page_size | num | 每页内容数量 | 非必要 | 默认20项，最大20项 |
+| web_location | str | (?) | 非必要 |  |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -101：未登录<br />0：成功<br />301：没有剪辑权限 |
+| message | str | 错误信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| slice_info | arr 或 null | 切片信息 | 无内容时为`null` |
+| pagination | obj | 分页信息 |  |
+
+`data.slice_info` 数组中对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| slice_id | num | 切片id |  |
+| uid | num | 发布者uid? |  |
+| live_uid | num | 主播uid |  |
+| live_key | str | 标记直播场次的key |  |
+| title | str | 切片标题 |  |
+| cover | str | 切片封面 | 若未在[给某位主播投稿直播回放片段](#给某位主播投稿直播回放片段)接口中传递封面将会无此字段，同时及大可能导致发布失败且没有失败提示 |
+| high_light_id | num | 绑定的高光时刻 | 在[给某位主播投稿直播回放片段](#给某位主播投稿直播回放片段)接口中提供相关参数时存在 |
+| start_time | str | 片段开始时间 |  |
+| end_time | str | 片段结束时间 |  |
+| status | num | 切片状态 | 参见[获取已发布片段的信息](#获取已发布片段的信息)接口 |
+| fail_reason | str | 失败提示 | 状态为3且有提示信息时存在 |
+| filename | str | 切片视频文件名 | 内部使用，可作为参数传递给创作中心，视频合成完成时存在 |
+| avid | num | 切片视频的avid | 状态为2时存在 |
+| ctime | str | 切片创建时间 |  |
+| av_duration | num | 切片时长 | 状态为2且创作中心出现有效视频时长时存在 |
+| live_type | num | (?) | 作用尚不明确 |
+
+`data.pagination` 对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| page | num | 请求的页码 |  |
+| page_size | num | 内容数量 |  |
+| total | num | 总计内容数量 | `data.slice_info`有内容时存在 |
+
+**示例：**
+
+获取为某位主播剪辑的已发布片段，他已授权你回放剪辑权限
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetPublishedList?live_uid=1&page=1&page_size=20' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "slice_info": [
+      {
+        "slice_id": 4302,
+        "uid": 438160221,
+        "live_uid": 438160221,
+        "live_key": "648506223547911987",
+        "title": "test202510201450",
+        "cover": "https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png",
+        "high_light_id": 12810575,
+        "start_time": "2025-10-13 23:11:00",
+        "end_time": "2025-10-13 23:14:00",
+        "status": 3,
+        "fail_reason": "合成失败，重新编辑投稿试试～",
+        "ctime": "2025-10-20 14:50:18",
+        "live_type": 1
+      },
+      {
+        "slice_id": 4300,
+        "uid": 438160221,
+        "live_uid": 438160221,
+        "live_key": "648437353747320627",
+        "title": "test202510201318",
+        "start_time": "2025-10-13 18:42:36",
+        "end_time": "2025-10-13 18:43:36",
+        "status": 3,
+        "filename": "n251020tx1rbha851nt85y2fj21bygm8",
+        "ctime": "2025-10-20 13:41:00",
+        "live_type": 1
+      },
+      {
+        "slice_id": 4299,
+        "uid": 438160221,
+        "live_uid": 438160221,
+        "live_key": "648437353747320627",
+        "title": "test202510201318",
+        "cover": "https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png",
+        "start_time": "2025-10-13 18:42:35",
+        "end_time": "2025-10-13 18:43:35",
+        "status": 2,
+        "filename": "n251020tx2u500g1krssxg3om5ou8bdw",
+        "avid": 115404865274992,
+        "ctime": "2025-10-20 13:36:44",
+        "av_duration": 63,
+        "live_type": 1
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "page_size": 20,
+      "total": 4
+    }
+  }
+}
+```
+
+</details>
+
 ## 获取回放剪辑草稿列表
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetDraftList
@@ -305,6 +568,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetVide
 *请求方法: GET*
 
 认证方式: Cookie (SESSDATA)
+
+只能获取主播自己的回放剪辑草稿。
 
 **url参数：**
 
@@ -319,7 +584,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorGetVide
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | -101：未登录<br />0：成功 |
+| code | num | 返回值 | -101：未登录<br />0：成功<br />301：没有剪辑权限 |
 | message | str | 错误信息 | 成功时为`"0"` |
 | ttl | num | `1` |  |
 | data | obj | 信息本体 |  |
@@ -402,6 +667,76 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetDraftList?
 
 </details>
 
+## 获取你为某位主播剪辑的草稿
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetDraftList
+
+*请求方法: GET*
+
+认证方式: Cookie (SESSDATA)
+
+需要获得那位主播的授权才能获取数据。
+
+**url参数：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_uid | num | 目标主播的uid | 必要 |  |
+| page | num | 页码 | 非必要 | 默认第1页 |
+| page_size | num | 每页内容数量 | 非必要 | 默认30项，最大30项 |
+| web_location | str | (?) | 非必要 |  |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -101：未登录<br />0：成功<br />301：没有剪辑权限 |
+| message | str | 错误信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 | 与[获取回放剪辑草稿列表](#获取回放剪辑草稿列表)接口的信息本体相同 |
+
+**示例：**
+
+获取你为某位主播剪辑的草稿，他已授权你回放剪辑权限
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetDraftList?live_uid=1&page=1&page_size=20' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "draft_info": [
+      {
+        "id": 1148889,
+        "title": "直播场次 2025-09-30 23:53:06",
+        "live_key": "645328214036844339",
+        "ctime": "2025-10-14 14:48:22",
+        "live_start_time": "2025-09-30 23:53:06",
+        "live_end_time": "2025-10-01 01:41:29",
+        "live_type": 1
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "page_size": 30,
+      "total": 1
+    }
+  }
+}
+```
+
+</details>
+
 ## 删除某个回放剪辑草稿
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/DeleteSliceDraft
@@ -411,6 +746,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetDraftList?
 认证方式: Cookie (SESSDATA)
 
 鉴权方式: Cookie中`bili_jct`的值正确并与`csrf`相同
+
+主播删除自己的回放剪辑草稿时使用。
 
 **正文参数（ application/x-www-form-urlencoded ）：**
 
@@ -445,8 +782,71 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetDraftList?
 ```shell
 curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/DeleteSliceDraft' \
   --data-urlencode 'draft_id=988275' \
-  --data-urlencode 'csrf=xxx'
+  --data-urlencode 'csrf=xxx' \
   -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "code": 0,
+    "message": ""
+  }
+}
+```
+
+</details>
+
+## 删除为某个主播剪辑的草稿
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/DeleteSliceDraft
+
+*请求方法: POST*
+
+认证方式: Cookie (SESSDATA)
+
+鉴权方式: Cookie中`bili_jct`的值正确并与`csrf`相同
+
+删除你为某位主播创建的回放剪辑草稿。
+
+**url参数：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| csrf | str | CSRF Token（位于cookie） | 必要 |  |
+
+**正文参数（ application/json ）：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| draft_id | num | 回放剪辑id | 必要 |  |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -400：请求错误<br />-101：未登录<br />-111：csrf校验失败<br />0：成功<br />206：无可操作草稿 |
+| message | str | 错误信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 | 与[](#删除某个回放剪辑草稿)的信息本体相同 |
+
+**示例：**
+
+删除回放剪辑id为`1148889`的草稿
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/DeleteSliceDraft?csrf=xxx' \
+  -H 'Content-Type: application/json' \
+  -b 'SESSDATA=xxx;bili_jct=xxx' \
+  -d '{"draft_id":1148889}'
 ```
 
 <details>
@@ -752,6 +1152,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 认证方式: Cookie (SESSDATA)
 
+主播获取自己的切片视频流时使用。
+
 **url参数：**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
@@ -833,6 +1235,75 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStrea
 
 </details>
 
+## 获取某位主播的切片视频流
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetUserSliceStream
+
+*请求方法: GET*
+
+认证方式: Cookie (SESSDATA)
+
+需要获得那位主播的授权才能获取数据。
+
+**url参数：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_key | str | 标记直播场次的key | 必要 | 对应[获取直播回放列表](#获取直播回放列表)的`data.replay_info[i].live_key` |
+| start_time | num | 直播开始时间戳 | 必要 | 对应[获取直播回放列表](#获取直播回放列表)的`data.replay_info[i].start_time` |
+| end_time | num | 直播结束时间戳 | 必要 | 对应[获取直播回放列表](#获取直播回放列表)的`data.replay_info[i].end_time` |
+| live_uid | num | 目标主播的uid | 必要 |  |
+| web_location | str | (?) | 非必要 |  |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -400：参数缺失<br />-101：未登录<br />0：成功<br />100：非法参数<br />202：场次无效<br />301：没有剪辑权限 |
+| message | str | 错误信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 |  |
+
+`data` 对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| list | arr | 直播回放视频列表 | 与[获取切片视频流](#获取切片视频流)的`data.list`数组相同 |
+
+**示例：**
+
+获取某个场次的视频流，他已授权你回放剪辑权限
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetUserSliceStream?live_key=646125196758224691&start_time=1759507126&end_time=1759513440&live_uid=1' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "list": [
+      {
+        "start_time": 1759507132,
+        "end_time": 1759508222,
+        "stream": "https://bvc-live.bilivideo.com/hls-record-gateway/videoPlay?none=获取视频流的参数。",
+        "type": 2
+      }
+    ]
+  }
+}
+```
+
+</details>
+
 ## 获取直播会话数据
 
 > https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetLiveSessionData
@@ -840,6 +1311,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetSliceStrea
 *请求方法: GET*
 
 认证方式: Cookie (SESSDATA)
+
+主播获取自己的直播会话数据时使用。
 
 **url参数：**
 
@@ -998,9 +1471,99 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetLiveSessio
 
 </details>
 
+## 获取某位主播的直播会话数据
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetUserLiveSessionData
+
+*请求方法: GET*
+
+认证方式: Cookie (SESSDATA)
+
+需要获得那位主播的授权才能获取数据。
+
+若已提供`live_key`和`live_uid`参数，则必须正确提供`start_tm`和`end_tm`参数，否则服务器可能无法成功响应，响应头中的`Bili-Status-Code`为`-500`。
+
+**url参数：**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_key | str | 标记直播场次的key | 必要 | 需要提供目标主播的live_key |
+| start_tm | str | 开始时间 | 必要 | 格式为`yyyy-mm-dd HH:MM:SS`，时区为`UTC+08:00`（中国标准时间）；取值对实际无影响 |
+| end_tm | str | 开始时间 | 必要 | 格式为`yyyy-mm-dd HH:MM:SS`，时区为`UTC+08:00`（中国标准时间）；取值对实际无影响 |
+| live_uid | num | 目标主播的uid | 必要 |  |
+| web_location | str | (?) |  |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -500：服务器错误<br />-101：未登录<br />0：成功<br />100：非法参数<br />202：场次无效<br />301：没有剪辑权限 |
+| message | str | 错误信息 | 成功时为`"0"` |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 | 与[获取直播会话数据](#获取直播会话数据)的信息本体相同 |
+
+**示例：**
+
+获取某位主播的某场次会话数据，他已授权你回放剪辑权限
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetUserLiveSessionData?live_key=645810156612095795&start_tm=2025-10-02+20:58:21&end_tm=2025-10-03+01:21:06&live_uid=1' \
+  -b 'SESSDATA=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```jsonc
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data": {
+    "session_data": [
+      {
+        "ts": 1759507080,
+        "value": 0
+      },
+      {
+        "ts": 1759507140,
+        "value": 0
+      },// 省略掉绝大部分数据
+      {
+        "ts": 1759513440,
+        "value": 1
+      }
+    ],
+    "max_danmaku": 1759513380,
+    "max_pcu": 1759507200,
+    "max_value": 0,
+    "high_light_data": [
+      {
+        "id": 12472658,
+        "type": 1,
+        "start_time": 1759513320,
+        "end_time": 1759513440,
+        "title": "弹幕高光 Top 1",
+        "cover": "",
+        "extra": ""
+      }// 省略掉剩下两条
+    ],
+    "high_light_stat": {
+      "original_hl": 3
+    }
+  }
+}
+```
+
+</details>
+
 ## 获取用户高光列表
 
-> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManualHighlightList
+> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManualHighlightList (主播使用)
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/UserGetManualHighlightList (粉丝使用)
 
 *请求方法: GET*
 
@@ -1012,6 +1575,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetLiveSessio
 | ----- | --- | ---- | ----- | --- |
 | live_key | str | 标记直播场次的key | 必要 |  |
 | manual_type | num | 查询类型 | 必要 | 1：回溯录制<br />2：已保存片段 |
+| live_uid | num | 目标主播的uid | 必要（可选） | 通过粉丝使用接口时必要 |
 | web_location | str | (?) | 非必要 | 作用尚不明确 |
 
 **json回复：**
@@ -1063,10 +1627,17 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetLiveSessio
 
 **示例：**
 
-获取用户保存列表
+主播获取用户保存列表
 
 ```shell
 curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManualHighlightList?live_key=625727121464233779&manual_type=2' \
+  -b 'SESSDATA=xxx'
+```
+
+粉丝获取用户保存列表
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/UserGetManualHighlightList?live_key=645810156612095795&manual_type=2&live_uid=1' \
   -b 'SESSDATA=xxx'
 ```
 
@@ -1164,7 +1735,9 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManual
 
 ## 获取某个时间的视频帧
 
-> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVideoKeyFrame
+> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVideoKeyFrame (主播使用)
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetAnchorVideoKeyFrame (粉丝使用)
 
 *请求方法: POST*
 
@@ -1185,6 +1758,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManual
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | ----- | --- | ---- | ----- | --- |
 | live_key | str | 标记直播场次的key | 必要 |  |
+| live_uid | num | 目标主播的uid | 必要（可选） | 通过粉丝使用接口时必要 |
 | time_list | str | 秒时间戳列表，用`,`分隔 | 必要 | 时间间隔低于30秒将会导致只提供部分内容 |
 
 **json回复：**
@@ -1193,7 +1767,7 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManual
 
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
-| code | num | 返回值 | -400：请求错误<br />-111：csrf校验失败<br />-101：未登录<br />0：成功 |
+| code | num | 返回值 | -400：请求错误<br />-111：csrf校验失败<br />-101：未登录<br />0：成功<br />10121188：权限不足 |
 | message | str | 错误信息 | 成功时为`"0"` |
 | ttl | num | `1` |  |
 | data | obj | 信息本体 |  |
@@ -1209,17 +1783,26 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserGetManual
 | 字段 | 类型 | 内容 | 备注 |
 | --- | --- | --- | --- |
 | ts | num | 时间戳 | 对应请求的`time_list`其中某一个 |
-| url | str | 该时间的视频帧 | 该时间有视频时存在 |
+| url | str | 该时间的视频帧 | 该时间有视频且取帧成功时存在 |
 
 **示例：**
 
-获取某场直播的视频帧
+主播获取某场直播的视频帧
 
 ```shell
 curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVideoKeyFrame?csrf=xxx' \
   -H 'Content-Type: application/json' \
   -b 'SESSDATA=xxx;bili_jct=xxx' \
   -d '{"live_key":"609431465787395891","time_list":"174758900,1747658930,1747658960"}'
+```
+
+粉丝获取某场直播的视频帧
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/GetAnchorVideoKeyFrame?csrf=xxx' \
+  -H 'Content-Type: application/json' \
+  -b 'SESSDATA=xxx;bili_jct=xxx' \
+  -d '{"live_key":"645810156612095795","time_list":"1759410340,1759418126","live_uid":1}'
 ```
 
 <details>
@@ -1252,7 +1835,9 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 ## 手动保存高亮片段
 
-> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSaveHighlight
+> https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSaveHighlight (主播使用)
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/UserManualSaveHighlight (粉丝使用)
 
 *请求方法: POST*
 
@@ -1264,9 +1849,10 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | ----- | --- | ---- | ----- | --- |
-| live_key | str | 标记直播场次的key | 必要 | 必须为自己的live_key |
+| live_key | str | 标记直播场次的key | 必要 |  |
 | start_ts | num | 开始时间戳 | 必要 | Unix 秒时间戳 |
 | end_ts | num | 结束时间戳 | 必要 | Unix 秒时间戳 |
+| live_uid | num | 目标主播的uid | 必要（可选） | 通过粉丝使用接口时必要 |
 | csrf | str | CSRF Token（位于cookie） | 必要 |  |
 
 注: 开始时间减结束时间的结果小于1可能导致[直播回放片段发布页面](#直播回放片段发布页面)无法处理这个片段。
@@ -1291,13 +1877,25 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/GetAnchorVide
 
 **示例：**
 
-手动保存一个片段
+主播手动保存一个片段
 
 ```shell
 curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSaveHighlight' \
   --data-urlencode 'live_key=625727121464233779' \
   --data-urlencode 'start_ts=1752935402' \
   --data-urlencode 'end_ts=1752935404' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+粉丝手动保存一个片段
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/UserManualSaveHighlight' \
+  --data-urlencode 'live_key=645810156612095795' \
+  --data-urlencode 'start_ts=1759409907' \
+  --data-urlencode 'end_ts=1759410087' \
+  --data-urlencode 'live_uid=1' \
   --data-urlencode 'csrf=xxx' \
   -b 'SESSDATA=xxx;bili_jct=xxx'
 ```
@@ -1326,6 +1924,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSav
 
 鉴权方式: Cookie中`bili_jct`的值正确并与`csrf`相同
 
+主播投稿自己的直播回放片段时使用。
+
 **正文参数（ application/x-www-form-urlencoded ）：**
 
 | 参数名 | 类型 | 内容 | 必要性 | 备注 |
@@ -1335,8 +1935,8 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/UserManualSav
 | end_ts | num | 结束时间戳 | 必要 | 开始和结束时间目前相差不能大于2小时 |
 | av_title | str | 切片标题 | 必要 | 不能与现有标题重复 |
 | av_cover | str | 切片封面URL | 必要 | 必须为`.hdslb.com`域名下的图片，否则合成结束时会出错 |
-| av_highlight | num | 高光绑定? | 非必要 |  |
-| with_subtitle | num | 是否自动生成字幕? | 非必要 | 效果不明确 |
+| av_highlight | num | 高光绑定 | 非必要 |  |
+| with_subtitle | num | 是否携带字幕 | 非必要 | 效果不明确 |
 | with_danmaku | num | 是否带弹幕? | 非必要 | 传递`1`时可能导致处于“发布中”状态时不在[获取已发布片段的信息](#获取已发布片段的信息)中显示 |
 | with_reserve | num | 投稿携带下场直播提醒 | 非必要 | 0：不携带，1：携带 |
 | av_speed | str | 倍速投稿 | 非必要 | 格式为 `倍速值 + "x"` ，使用非1x倍速时可能导致处于“发布中”状态时不在[获取已发布片段的信息](#获取已发布片段的信息)中显示<br />允许值: `0.5x` , `0.75x` , `1.0x` , `1.25x` , `1.5x` , `2.0x` |
@@ -1395,6 +1995,79 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublish
 
 </details>
 
+## 给某位主播投稿直播回放片段
+
+> https://api.live.bilibili.com/xlive/web-room/v1/videoService/UserPublishOtherVideoSlice
+
+*请求方法: POST*
+
+认证方式: Cookie (SESSDATA)
+
+鉴权方式: Cookie中`bili_jct`的值正确并与`csrf`相同
+
+需要获得那位主播的授权。
+
+**正文参数（ application/x-www-form-urlencoded ）：**
+
+与[投稿直播回放片段](#投稿直播回放片段)的正文参数相比，多了`live_uid`参数，少了`av_speed`参数，其它参数基本相同。
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| live_uid | num | 目标主播的uid | 必要 |  |
+
+**json回复：**
+
+根对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | -111：csrf校验失败<br />-101：未登录<br />0：成功<br />100：非法参数<br />4000：时长过长<br />5006：用户已经投稿过该片段 |
+| message | str | 错误信息 |  |
+| ttl | num | `1` |  |
+| data | obj | 信息本体 | 成功时有效 |
+
+`data` 对象：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| video_slice_id | num | 切片id | 似乎与主播不共用一个切片id |
+
+**示例：**
+
+为某个场次投稿切片
+
+```shell
+curl 'https://api.live.bilibili.com/xlive/web-room/v1/videoService/UserPublishOtherVideoSlice' \
+  --data-urlencode 'live_key=648437353747320627' \
+  --data-urlencode 'start_ts=1760352154' \
+  --data-urlencode 'end_ts=1760352214' \
+  --data-urlencode 'av_title=202510201318' \
+  --data-urlencode 'av_cover=https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png' \
+  --data-urlencode 'av_highlight=0' \
+  --data-urlencode 'with_subtitle=0' \
+  --data-urlencode 'with_danmaku=0' \
+  --data-urlencode 'with_reserve=1' \
+  --data-urlencode 'live_uid=1' \
+  --data-urlencode 'csrf=xxx' \
+  -b 'SESSDATA=xxx;bili_jct=xxx'
+```
+
+<details>
+<summary>查看响应示例：</summary>
+
+```json
+{
+  "code": 0,
+  "message": "0",
+  "ttl": 1,
+  "data":{
+    "video_slice_id": 4300
+  }
+}
+```
+
+</details>
+
 ## 下载整场直播回放的流程
 
 此处的流程是从[直播回放](https://link.bilibili.com/#/my-room/live-record)的“下载回放”功能得出的。
@@ -1426,7 +2099,9 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublish
 | start_time | num | 直播开始时间 | 必要 | 对应[获取直播回放列表](#获取直播回放列表)的`data.replay_info[i].start_time` |
 | end_time | num | 直播结束时间 | 必要 | 对应[获取直播回放列表](#获取直播回放列表)的`data.replay_info[i].end_time` |
 | live_key | str | 标记直播场次的key | 必要 | 对应[获取直播回放列表](#获取直播回放列表)的`data.replay_info[i].live_key` |
-| cover | str | 封面URL | 非必要 | 可以自定义封面，或者在[获取直播回放列表](#获取直播回放列表)使用直播封面 |
+| cover | str | 封面URL | 非必要 | 可以自定义封面（必须为B站图床，详见[投稿接口](#投稿直播回放片段)），或者在[获取直播回放列表](#获取直播回放列表)使用直播封面 |
+| anchor_id | num | 目标主播的uid | 非必要 | 要剪辑某位主播的回放时必须提供 |
+| anchor_name | num | 目标主播的名称 | 非必要 | 由[某位主播的直播回放剪辑界面](#某位主播的直播回放剪辑界面)传递 |
 
 **示例链接：**
 
@@ -1434,9 +2109,11 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublish
 
 移动端： https://live.bilibili.com/web-cut/quick-publish-mobile.html?start_time=1747508293&end_time=1747508499&live_key=609041817764368179
 
+粉丝剪辑： https://live.bilibili.com/web-cut/quick-publish.html?start_time=1760766799&end_time=1760774101&live_key=649597291269984051&cover=https://i0.hdslb.com/bfs/live/59fc254c1f51a962dbf69ae85e4920f2f6fb8dcd.png&anchor_id=1&anchor_name=null
+
 ## 直播回放剪辑页面
 
-此链接用于打开直播回放轻剪辑页面，在点击[直播回放片段发布页面](#直播回放片段发布页面)的“高级剪辑工具”或某一个[回放剪辑草稿](#获取回放剪辑草稿列表)后自动打开。
+此链接用于打开直播回放轻剪辑页面，在点击[直播回放片段发布页面](#直播回放片段发布页面)的“高级剪辑”按钮或某一个[主播回放剪辑草稿](#获取回放剪辑草稿列表)、[粉丝回放剪辑草稿](#获取你为某位主播剪辑的草稿)后自动打开。
 
 > https://live.bilibili.com/web-cut/index.html
 
@@ -1448,5 +2125,23 @@ curl 'https://api.live.bilibili.com/xlive/app-blink/v1/anchorVideo/AnchorPublish
 | end_time | num | 直播结束时间戳 | 必要 | 用于[获取切片视频流](#获取切片视频流) |
 | live_key | str | 标记直播场次的key | 必要 | 用于[获取切片视频流](#获取切片视频流) |
 | draft_id | num | 回放剪辑id | 必要 |  |
+| init | num | (?) | 非必要 | 作用尚不明确 |
+| with_reserve | num | 投稿携带下场直播提醒? | 非必要 | 0：不携带，1：携带 |
+| anchor_id | num | 目标主播的uid | 非必要 |  |
 
 **示例链接：** https://live.bilibili.com/web-cut/index.html?start_time=1747658704&end_time=1747705213&live_key=609431465787395891&draft_id=988275
+
+## 某位主播的直播回放剪辑界面
+
+此链接用于打开某位主播的直播回放剪辑界面，需要获得那位主播的授权。
+
+主播自己访问该界面也需要自己在剪辑权限页面内开启该功能。
+
+> https://live.bilibili.com/web-cut/replay-cut.html
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | --- | ---- | ----- | --- |
+| anchor_Id | num | 主播uid | 必要 | 参数名不区分大小写 |
+| anchor_name | str | 主播名称 | 非必要 | 用于在UI中显示主播名称，目前可随意传递，若不提供将使用 `未知主播` 显示 |
+
+**示例链接：** https://live.bilibili.com/web-cut/replay-cut.html?anchor_Id=1&anchor_name=bishi
