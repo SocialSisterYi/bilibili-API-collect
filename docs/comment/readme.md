@@ -341,7 +341,9 @@
 
 | 字段                 | 类型 | 内容     | 备注                 |
 | -------------------- | ---- | -------- | -------------------- |
+| max_line             | num  | 6       | 用于控制折叠状态下的最大显示行数 |
 | sub_reply_entry_text | str  | 回复提示 | `共 xx 条回复`       |
 | sub_reply_title_text | str  | 回复提示 | `相关回复共有 xx 条` |
 | time_desc            | str  | 时间提示 | `xx 天/小时 前发布`  |
 | location             | str  | IP属地  | `IP属地：xx`<br />评论者发送评论时的IP地址属地<br />仅对2022-07-25 11:00及以后发布的评论有效<br />需要登录|
+| support_share        | bool  | 是否可分享 | false：否<br />true：是 |
