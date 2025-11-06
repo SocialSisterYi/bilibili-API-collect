@@ -346,4 +346,4 @@
 | sub_reply_title_text | str  | 回复提示 | `相关回复共有 xx 条` |
 | time_desc            | str  | 时间提示 | `xx 天/小时 前发布`  |
 | location             | str  | IP属地  | `IP属地：xx`<br />评论者发送评论时的IP地址属地<br />仅对2022-07-25 11:00及以后发布的评论有效<br />需要登录|
-| support_share        | str  | 是否可分享 | false：否<br />true：是 |
+| support_share        | bool  | 是否可分享 | false：否<br />true：是 |
