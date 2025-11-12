@@ -1368,7 +1368,7 @@ curl -G --url 'https://api.bilibili.com/x/vas/dlc_act/lottery_home_detail' \
 | squared_image | str | 效果图         |  |
 | static_icon_image | str | 静态图标        |  |
 
-`play_icon` 数组中的对象中 `properties` 对象中的额外字段：
+`skin` 数组中的对象中 `properties` 对象中的额外字段：
 
 | 字段    | 类型  | 内容                  | 备注                   |
 |---------|-----|---------------------|----------------------|
