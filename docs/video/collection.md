@@ -1576,8 +1576,8 @@ curl -G "https://api.bilibili.com/x/series/archives" \
 | ------ | ---- | -------- | ------ | ---- |
 | mid    | num  | 用户 mid | 必要   |      |
 | keywords | str | 关键词 | 必要   | 可为空, 即获取所有视频 |
-| ps     | num  | 每页视频数 | 非必要 | 默认为 0, 留空为 20 |
-| pn     | num  | 页码     | 非必要 | 留空为 1 |
+| ps     | num  | 每页视频数 | 非必要 | 默认为 0, 留空为 20，最大值 100 |
+| pn     | num  | 页码     | 非必要 | 留空为 1，为 0 则直接忽略 ps 参数获取所有 |
 | orderby | str | 排序方式 | 非必要 | 最新发布: pubdate(默认)<br />最多播放: views<br />senddate: 最新发布 |
 | series_id | num | 系列 ID | 非必要 | 用于过滤结果, 即若某一视频包含在系列内则不返回该视频 |
 
