@@ -14,9 +14,33 @@
 | --------------- | ------ | -------- | ------ | ---- |
 | id              | string | 动态 id  | 必要   | 数字 |
 | timezone_offset | number | 时区偏移 | 非必要 | 如 `-480` |
-| features        | string | 功能     | 非必要 | `onlyfansVote,onlyfansAssetsV2,decorationCard,htmlNewStyle,ugcDelete,editable,opusPrivateVisible,tribeeEdit,avatarAutoTheme,avatarTypeOpus` |
+| features        | string | 功能     | 非必要（部分专栏要求htmlNewStyle） | `onlyfansVote,onlyfansAssetsV2,decorationCard,htmlNewStyle,ugcDelete,editable,opusPrivateVisible,tribeeEdit,avatarAutoTheme,avatarTypeOpus` |
 
-**JSON 回复:**
+**JSON 回复（旧版专栏未携带htmlNewStyle feature时）**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| code | number | 返回值 | 0: 成功<br />-352: 风控校验失败  |
+| data | object | 数据本体 |  |
+| message | string | 错误信息 | 成功时为 `0` |
+| ttl | number | `1` |  |
+
+`data` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| fallback | object | 回退的内容信息 |  |
+
+`fallback` 对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| ---- | ---- | ---- | ---- |
+| id | number | 回退的内容ID |  |
+| type | number | 回退的内容类型 | 已知2为专栏 |
+
+**JSON 回复（正常返回情况）:**
 
 根对象:
 
