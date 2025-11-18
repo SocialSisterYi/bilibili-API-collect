@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package bilibili.app.distribution.setting.other;
+
+import "bilibili/app/distribution.proto";
+
+// 
+message OtherSettingsConfig {
+    // 
+    enum WatermarkType {
+        // 
+        WT_UNKNOW = 0;
+        // 
+        None = 1;
+        // 
+        Center = 2;
+        // 
+        BottomRight = 3;
+    }
+    
+    // 
+    enum WebImageQualityType {
+        // 
+        High = 0;
+        // 
+        Low = 1;
+        // 
+        Auto = 2;
+    }
+    
+    // 
+    bilibili.app.distribution.Int64Value watermark_type = 1;
+    // 
+    bilibili.app.distribution.Int64Value web_image_quality_type = 2;
+    // 
+    bilibili.app.distribution.BoolValue enable_read_pasteboard = 3;
+    // 
+    bilibili.app.distribution.BoolValue paste_auto_jump = 4;
+    // 
+    bilibili.app.distribution.BoolValue mini_screen_play_when_back = 5;
+    // 
+    bilibili.app.distribution.BoolValue enable_resume_playing = 6;
+    // 
+    bilibili.app.distribution.BoolValue enable_wifi_auto_update = 7;
+    // 
+    bilibili.app.distribution.BoolValue enable_guide_screenshot_share = 8;
+}
+

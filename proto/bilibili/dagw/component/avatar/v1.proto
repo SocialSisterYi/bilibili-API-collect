@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package bilibili.dagw.component.avatar.v1;
+
+import "bilibili/dagw/component/avatar/common.proto";
+import "bilibili/dagw/component/avatar/v1/plugin.proto";
+
+// 
+message AvatarItem {
+    // 
+    bilibili.dagw.component.avatar.common.SizeSpec container_size = 1;
+    // 
+    repeated LayerGroup layers = 2;
+    // 
+    LayerGroup fallback_layers = 3;
+    // 
+    int64 mid = 4;
+}
+
+// 
+message BasicLayerResource {
+    // 
+    enum ResType {
+        // 
+        RES_TYPE_INVALID = 0;
+        // 
+        RES_TYPE_PLUGIN = 1;
+        // 
+        RES_TYPE_EMPTY = 2;
+        // 
+        RES_TYPE_IMAGE = 3;
+        // 
+        RES_TYPE_ANIMATION = 4;
+        // 
+        RES_TYPE_NATIVE_DRAW = 5;
+    }
+    
+    // 
+    oneof payload {
+        // 
+        ResImage res_image = 2;
+        // 
+        ResAnimation res_animation = 3;
+        // 
+        ResNativeDraw res_native_draw = 4;
+    }
+    // 
+    BasicLayerResource.ResType res_type = 1;
+}
+
+// 
+message GeneralConfig {
+    // 
+    map<string, string> web_css_style = 1;
+}
+
+// 
+message Layer {
+    // 
+    string layer_id = 1;
+    // 
+    bool visible = 2;
+    // 
+    bilibili.dagw.component.avatar.common.LayerGeneralSpec general_spec = 3;
+    // 
+    LayerConfig layer_config = 4;
+    // 
+    BasicLayerResource resource = 5;
+}
+
+// 
+message LayerConfig {
+    // 
+    map<string, LayerTagConfig> tags = 1;
+    // 
+    bool is_critical = 2;
+    // 
+    bool allow_over_paint = 3;
+    // 
+    bilibili.dagw.component.avatar.common.MaskProperty layer_mask = 4;
+}
+
+// 
+message LayerGroup {
+    // 
+    string group_id = 1;
+    // 
+    repeated Layer layers = 2;
+    // 
+    bilibili.dagw.component.avatar.common.MaskProperty group_mask = 3;
+    // 
+    bool is_critical_group = 4;
+}
+
+// 
+message LayerTagConfig {
+    // 
+    enum TagConfigType {
+        // 
+        TAG_CFG_INVALID = 0;
+        // 
+        TAG_CFG_GENERAL = 1;
+        // 
+        TAG_CFG_GYRO = 2;
+        // 
+        TAG_CFG_COMMENT_DOUBLE_CLICK = 3;
+        // 
+        TAG_CFG_IN_LIVE = 4;
+        // 
+        TAG_CFG_WEB_IN_LIVE = 5;
+        // 
+        TAG_CFG_FOLLOW_ICON = 6;
+        // 
+        TAG_CFG_FOLLOW_ACTION = 7;
+    }
+    
+    // 
+    oneof config {
+        // 
+        GeneralConfig general_config = 2;
+        // 
+        bilibili.dagw.component.avatar.v1.plugin.GyroConfig gyro_config = 3;
+        // 
+        bilibili.dagw.component.avatar.v1.plugin.CommentDoubleClickConfig comment_double_click_config = 4;
+        // 
+        bilibili.dagw.component.avatar.v1.plugin.LiveAnimeConfig live_anime_config = 5;
+        // 
+        bilibili.dagw.component.avatar.v1.plugin.WebLiveAnimeConfig web_live_anime_config = 6;
+        // 
+        bilibili.dagw.component.avatar.v1.plugin.FollowIconConfig follow_icon_config = 7;
+        // 
+        bilibili.dagw.component.avatar.v1.plugin.FollowActionConfig follow_action_config = 8;
+    }
+    // 
+    LayerTagConfig.TagConfigType config_type = 1;
+}
+
+// 
+message ResAnimation {
+    // 
+    bilibili.dagw.component.avatar.common.ResourceSource webp_src = 1;
+}
+
+// 
+message ResImage {
+    // 
+    bilibili.dagw.component.avatar.common.ResourceSource image_src = 1;
+}
+
+// 
+message ResNativeDraw {
+    // 
+    bilibili.dagw.component.avatar.common.ResourceSource draw_src = 1;
+}
+
