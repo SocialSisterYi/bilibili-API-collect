@@ -81,7 +81,7 @@
 | need_jump_bv            | bool    | 需要跳转到BV号?                |                                                              |
 | disable_show_up_info    | bool    | 禁止展示UP主信息?              |                                                              |
 | is_story_play           | bool    |                              | 作用未知，可能与动态视频有关                                     |
-| is_view_self            | bool    | 是否为自己投稿的视频?          |                                                              |
+| is_view_self            | bool    | 是否尽自己可见                |                                                              |
 
 `data`中的`desc_v2`数组：
 
