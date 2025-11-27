@@ -2646,7 +2646,7 @@ curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
 | is_lesson_finished | num  | 课堂是否已完结 | 0：否<br />1：是             |
 | is_live_playback   | num  | 是否为直播回放 | 0：否<br />1：是             |
 | is_pay             | num  | 0              | 作用尚不明确                 |
-| is_self_view       | bool | false          | 作用尚不明确                 |
+| is_self_view       | bool | 是否仅自己可见 |                           |
 | is_steins_gate     | num  | 是否为互动视频 | 0：否<br />1：是             |
 | is_union_video     | num  | 是否为合作视频 | 0：否<br />1：是             |
 | jump_url           | str  | 跳转链接       | 跳转到课堂的链接，否则为""   |
