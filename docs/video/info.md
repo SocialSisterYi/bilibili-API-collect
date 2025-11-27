@@ -42,7 +42,7 @@
 | tid_v2                  | num     | 分区tid (v2)                   | 详情见[视频分区一览 (v2)](video_zone_v2.md)                  |
 | tname                   | str     | 子分区名称                     |                                                              |
 | tname_v2                | str     | 子分区名称 (v2)                |                                                              |
-| copyright               | num     | 视频类型                       | 1：原创<br />2：转载                                         |
+| copyright               | num     | 视频类型                       | 1：原创<br />2：转载<br />3：未填写                            |
 | pic                     | str     | 稿件封面图片url                |                                                              |
 | title                   | str     | 稿件标题                       |                                                              |
 | pubdate                 | num     | 稿件发布时间                   | 秒级时间戳                                                   |
