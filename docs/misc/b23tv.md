@@ -37,7 +37,7 @@ b23.tv 是由 Bilibili 提供的短链服务, 主要用于站内长链接缩短�
 
 必要:
 
-| 参数名 | 类型 | 内容                     | 必要性 | 备注 |
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
 | ------ | ---- | ------- | ------ | ---- |
 | buvid | str | 设备 BUVID | 必要   | 实际任意非空字符串即可 |
 | build | num | 客户端版本号 | 必要   | 大于 `5520400` 的任意有效整数, 如 `7710300` |
@@ -45,6 +45,7 @@ b23.tv 是由 Bilibili 提供的短链服务, 主要用于站内长链接缩短�
 | share_channel | str | 分享方式? | 必要   | COPY |
 | share_mode | num | 分享模式? | 必要   | 任意有效正整数, 常见 `1`, `3`, `4` |
 | share_id | str | 分享 ID | 必要   | 见下方对照表 |
+| share_origin | str | 分享来源? | 部分必要 | 见下方对照表 |
 | oid | num | 对象 ID | 必要   | 见下方对照表 |
 
 不必要:
@@ -55,26 +56,25 @@ b23.tv 是由 Bilibili 提供的短链服务, 主要用于站内长链接缩短�
 | panel_type | num | 面板类型? | 非必要 | 1 |
 | share_title | str | 分享标题? | 非必要 | 分享标题 |
 | share_content | str | 分享内容? | 非必要 | 分享内容, 当 oid 存在时无意义<s>(可是 oid 不可能不存在啊)</s> |
-| share_origin | str | 分享来源? | 非必要 | 如 `vinfo_share` `dynamic` `vertical-three-point-panel` `vinfo_player` |
 | share_pattern | num | 分享模式? | 非必要 | 0 |
 | share_session_id | str | 分享会话 ID? | 非必要 | 各部分用 `-` 分隔的小写的一串 UUID |
 | ts | num | UNIX 秒级时间戳 | 非必要 |    |
 
 对照表:
 
-| 类型 | 分享 ID (share_id) | 对象 ID (oid) |
-| --- | ------------------ | ------------- |
-| 视频 | main.ugc-video-detail.0.0.pv | 视频 aid |
-<!-- 此处被注释是因为以下值均失效
-| 动态 | dt.dt-detail.0.0.pv | 动态 id |
-| 专栏 | read.column-detail.roof.8.click | 文章 cvid |
-| 文集 | read.column-readlist.share.0.click | 文集 rlid |
-| 直播 | live.live-room-detail.0.0.pv | 直播 room_id |
-| 用户 | main.space-total.more.0.click | 用户 mid |
-| 课程 | pugv.pugv-video-detail.0.0.pv | 课程 id? |
-| 番剧 | main.space-bangumi.0.0 | 番剧 id? |
-| 链接 | public.webview.0.0.pv | ? |
--->
+| 类型 | 分享 ID (share_id) | 对象 ID (oid) | 分享来源? (share_origin) | 备注 |
+| --- | ------------------ | ------------- | ----------------------- | ---- |
+| 视频 | `main.ugc-video-detail.0.0.pv` | 视频 aid | 非必要 | |
+| 动态 | `dt.dt-detail.0.0.pv` | 动态 id | `dynamic` | |
+| 专栏 | `read.column-detail.roof.8.click` | 文章 cvid | 非必要 | |
+| 文集 | `read.column-readlist.share.0.click` | 文集 rlid | 非必要 | |
+| 用户 | `main.space-total.more.0.click` | 用户 mid | 非必要 | |
+| 课程 | `pugv.pugv-video-detail.0.0.pv` | 课程 id? | `vinfo_player` | |
+| 链接 | `public.webview.0.0.pv` | 任意站內链接 | 非必要 | 需填写完整链接，且域名必需为 `*.bilibili.com` |
+<!-- 此处被注释是因为以下值均失效 -->
+<!-- | 直播 | live.live-room-detail.0.0.pv | 直播 room_id | `vertical-three-point-panel` | 失效 |
+| 番剧 | `pgc.pgc-video-detail.interaction.share.click` | 番剧 ssid/epid | `new_ogv` | 失效，提示 `不允许分享` | -->
+
 
 **JSON回复:**
 
