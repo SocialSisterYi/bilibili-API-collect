@@ -65,7 +65,7 @@ b23.tv 是由 Bilibili 提供的短链服务, 主要用于站内长链接缩短�
 | 类型 | 分享 ID (share_id) | 对象 ID (oid) | 分享来源? (share_origin) | 备注 |
 | --- | ------------------ | ------------- | ----------------------- | ---- |
 | 视频 | `main.ugc-video-detail.0.0.pv` | 视频 aid | 非必要 | |
-| 动态 | `dt.dt-detail.0.0.pv` | 动态 id | `dynamic` | |
+| 动态/图文 | `dt.dt-detail.0.0.pv` | 动态/图文 id | `dynamic` | |
 | 专栏 | `read.column-detail.roof.8.click` | 文章 cvid | 非必要 | |
 | 文集 | `read.column-readlist.share.0.click` | 文集 rlid | 非必要 | |
 | 用户 | `main.space-total.more.0.click` | 用户 mid | 非必要 | |
