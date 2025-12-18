@@ -69,7 +69,7 @@ b23.tv 是由 Bilibili 提供的短链服务, 主要用于站内长链接缩短�
 | 专栏 | `read.column-detail.roof.8.click` | 文章 cvid | 非必要 | |
 | 文集 | `read.column-readlist.share.0.click` | 文集 rlid | 非必要 | |
 | 用户 | `main.space-total.more.0.click` | 用户 mid | 非必要 | |
-| 课程 | `pugv.pugv-video-detail.0.0.pv` | 课程 id? | `vinfo_player` | |
+| 课程 | `pugv.pugv-video-detail.0.0.pv` | 课程 id? | `vinfo_player` 或 `vinfo_share` | |
 | 链接 | `public.webview.0.0.pv` | 任意站內链接 | 非必要 | 需填写完整链接，且域名必需为 `*.bilibili.com` |
 <!-- 此处被注释是因为以下值均失效 -->
 <!-- | 直播 | live.live-room-detail.0.0.pv | 直播 room_id | `vertical-three-point-panel` | 失效 |
