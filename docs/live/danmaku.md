@@ -304,6 +304,115 @@ curl 'https://api.live.bilibili.com/xlive/web-room/v1/dM/GetDMConfigByGroup?room
 
 </details>
 
+
+## 获取直播间历史弹幕 (Detail)
+
+> https://api.live.bilibili.com/xlive/web-room/v1/dM/gethistory
+
+*请求方式：GET*
+
+**url参数：**
+
+| 参数名 | 类型 | 内容        | 必要性 | 备注 |
+| ------ | ---- | ----------- | ------ | ---- |
+| roomid | num  | 目标真实直播间号 | 必要   | 直播间的`room_id`（非短号） |
+
+**json回复：**
+
+根对象：
+
+| 字段    | 类型 | 内容     | 备注                        |
+| ------- | ---- | -------- | --------------------------- |
+| code    | num  | 状态码   | 0：成功                     |
+| message | str  | 消息     |                             |
+| msg     | str  | 消息     | 通常为空                    |
+| data    | obj  | 数据本体 | 包含 `admin` 和 `room` 列表 |
+
+`data`对象：
+
+| 字段  | 类型  | 内容           | 备注                                     |
+| ----- | ----- | -------------- | ---------------------------------------- |
+| admin | array | 管理员/置顶弹幕 | 通常包含机器人或房管的置顶消息           |
+| room  | array | 普通弹幕列表   | 包含最近的历史弹幕，按时间排序           |
+
+`room` / `admin` 数组中的对象（弹幕单体）：
+
+| 字段     | 类型 | 内容           | 备注                                    |
+| -------- | ---- | -------------- | --------------------------------------- |
+| text     | str  | 弹幕内容       |                                         |
+| nickname | str  | 发送者昵称     |                                         |
+| uid      | num  | 发送者UID      |                                         |
+| timeline | str  | 发送时间       | 格式：YYYY-MM-DD HH:mm:ss               |
+| isadmin  | num  | 是否房管       | 0：否，1：是                            |
+| vip      | num  | 是否VIP        | 0：否，1：是                            |
+| svip     | num  | 是否SVIP       | 0：否，1：是                            |
+| dm_type  | num  | 弹幕类型       | 0：普通文本，1：可能是表情包或特殊弹幕  |
+| user     | obj  | 用户详细信息   | **推荐使用**：包含头像、详细勋章信息等  |
+| medal    | array| 简略勋章信息   | [等级, 勋章名, 主播名, ID...] 格式的数组 |
+| emoticon | obj  | 表情包信息     | 如果是表情包弹幕，此字段包含图片url     |
+| check_info | obj | 校验字段      | 包含 `ts` (时间戳) 和 `ct` (校验码)     |
+
+`user` 对象（嵌套在弹幕对象中）：
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| uid | num | 用户UID | |
+| base | obj | 基础信息 | 包含 `name` (昵称), `face` (头像URL) |
+| medal | obj | 详细勋章 | 包含 `name` (勋章名), `level` (等级) 等键值对结构 |
+
+**示例：**
+
+查询直播间历史弹幕，响应示例（已简化）：
+
+```json
+{
+    "code": 0,
+    "data": {
+        "admin": [
+            {
+                "text": "直播随缘",
+                "nickname": "塔菲的小机器人",
+                "uid": 551139842,
+                "timeline": "2026-01-06 22:53:07",
+                "isadmin": 1
+            }
+        ],
+        "room": [
+            {
+                "text": "哈哈哈哈",
+                "nickname": "不在乎的杰瑞",
+                "uid": 646550218,
+                "timeline": "2026-01-06 23:17:53",
+                "isadmin": 0,
+                "user": {
+                    "uid": 646550218,
+                    "base": {
+                        "name": "不在乎的杰瑞",
+                        "face": "[https://i1.hdslb.com/bfs/face/....jpg](https://i1.hdslb.com/bfs/face/....jpg)"
+                    },
+                    "medal": {
+                        "name": "雏草姬",
+                        "level": 15
+                    }
+                }
+            },
+            {
+                "text": "呜呜呜",
+                "dm_type": 1,
+                "uid": 82082198,
+                "nickname": "悠悠攸有",
+                "emoticon": {
+                    "unique": "room_22603245_2759",
+                    "url": "[http://i0.hdslb.com/bfs/live/....png](http://i0.hdslb.com/bfs/live/....png)"
+                }
+            }
+        ]
+    }
+}
+```
+
+</details>
+
 ## 设置弹幕样式
 
 > https://api.live.bilibili.com/xlive/web-room/v1/dM/AjaxSetConfig
