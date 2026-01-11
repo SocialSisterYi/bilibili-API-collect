@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package bilibili.im.customer.independent;
+
+import "bilibili/app/dynamic/v2.proto";
+
+// 
+enum EvaluateType {
+    // 
+    EvaluateMachineMsg = 0;
+    // 
+    EvaluateCustomer = 1;
+    // 
+    EvaluateCustomerInvited = 2;
+}
+
+// 
+message EvaluationShowInfo {
+    // 
+    bool show = 1;
+    // 
+    EvaluateType type = 2;
+    // 
+    repeated EvaluationStepSelect step_select = 3;
+    // 
+    int64 msg_key = 4;
+    // 
+    bool up = 5;
+    // 
+    string feedback = 6;
+    // 
+    int64 customer_sess_id = 7;
+    // 
+    bool done = 8;
+    // 
+    string editor_input = 9;
+}
+
+// 
+message EvaluationStepSelect {
+    // 
+    string text = 1;
+    // 
+    Select select = 2;
+}
+
+// 
+message FinishParagraphsRenderStopPos {
+    // 
+    int64 para = 1;
+    // 
+    int64 node = 2;
+}
+
+// 
+message MsgParagraphText {
+    // 
+    repeated bilibili.app.dynamic.v2.Paragraph paragraphs = 1;
+    // 
+    EvaluationShowInfo evaluation = 2;
+    // 
+    FinishParagraphsRenderStopPos stop_pos = 3;
+}
+
+// 
+enum Select {
+    // 
+    ABLE = 0;
+    // 
+    SELECTED = 1;
+    // 
+    UNABLE = 2;
+}
+

@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package bilibili.relation.interfaces;
+
+import "bilibili/dagw/component/avatar/v1.proto";
+
+// 
+service RelationInterface {
+    // 
+    rpc AtSearch (AtSearchReq) returns (AtSearchReply);
+    // 
+    rpc ModifyRelation (FollowingReq) returns (ModifyRelationReply);
+}
+
+// 
+enum Act {
+    // 
+    ACT_NA = 0;
+    // 
+    ACT_ADD_FOLLOWING = 1;
+    // 
+    ACT_DEL_FOLLOWING = 2;
+    // 
+    ACT_ADD_WHISPER = 3;
+    // 
+    ACT_DEL_WHISPER = 4;
+    // 
+    ACT_ADD_BLACK = 5;
+    // 
+    ACT_DEL_BLACK = 6;
+    // 
+    ACT_DEL_FOLLOWER = 7;
+}
+
+// 
+message AtGroup {
+    // 
+    enum Type {
+        // 
+        AT_GROUP_TYPE_DEFAULT = 0;
+        // 
+        AT_GROUP_TYPE_RECENT = 1;
+        // 
+        AT_GROUP_TYPE_FOLLOW = 2;
+        // 
+        AT_GROUP_TYPE_FANS = 3;
+        // 
+        AT_GROUP_TYPE_OTHERS = 4;
+    }
+    
+    // 
+    AtGroup.Type group_type = 1;
+    // 
+    string group_name = 2;
+    // 
+    repeated AtItem items = 3;
+}
+
+// 
+message AtItem {
+    // 
+    int64 mid = 1;
+    // 
+    string name = 2;
+    // 
+    string face = 3;
+    // 
+    int32 fans = 4;
+    // 
+    int32 official_verify_type = 5;
+    // 
+    bilibili.dagw.component.avatar.v1.AvatarItem avatar = 6;
+}
+
+// 
+message AtSearchReply {
+    // 
+    repeated AtGroup groups = 1;
+}
+
+// 
+message AtSearchReq {
+    // 
+    int64 mid = 1;
+    // 
+    string keyword = 2;
+    // 
+    int32 scene = 3;
+}
+
+// 
+message FollowingReq {
+    // 
+    int64 fid = 1;
+    // 
+    Act act = 2;
+    // 
+    int32 source = 3;
+    // 
+    string spmid = 4;
+    // 
+    string extend_content = 5;
+    // 
+    string from_spmid = 6;
+    // 
+    string from_scmid = 7;
+    // 
+    string action_id = 8;
+}
+
+// 
+message ModifyRelationReply {
+}
+
