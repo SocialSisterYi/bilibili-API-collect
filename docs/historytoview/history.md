@@ -387,7 +387,7 @@ curl -G 'https://api.bilibili.com/x/web-interface/history/cursor' \
 | videos                          | num     | 视频分P总数                    | 默认为1                                                      |
 | tid                             | num     | 分区tid                        |                                                              |
 | tname                           | str     | 子分区名称                     |                                                              |
-| copyright                       | num     | 是否转载                       | 1：原创<br />2：转载                                         |
+| copyright                       | num     | 是否转载                       | 1：原创<br />2：转载<br />3：未填写                            |
 | pic                             | str     | 视频封面图片url                |                                                              |
 | title                           | str     | 稿件标题                       |                                                              |
 | pubdate                         | num     | 稿件发布时间                   | 时间戳                                                       |

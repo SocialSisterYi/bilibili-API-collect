@@ -39,7 +39,7 @@
 | videos      | num  | 视频分P总数                    | 默认为1                                                      |
 | tid         | num  | 分区tid                        |                                                              |
 | tname       | str  | 子分区名称                     |                                                              |
-| copyright   | num  | 是否转载                       | 1：原创<br />2：转载                                         |
+| copyright   | num  | 是否转载                       | 1：原创<br />2：转载<br />3：未填写                            |
 | pic         | str  | 视频封面图片url                |                                                              |
 | title       | str  | 稿件标题                       |                                                              |
 | pubdate     | num  | 稿件发布时间                   | 时间戳                                                       |
@@ -2646,7 +2646,7 @@ curl -G 'https://app.bilibili.com/x/v2/space/likearc' \
 | is_lesson_finished | num  | 课堂是否已完结 | 0：否<br />1：是             |
 | is_live_playback   | num  | 是否为直播回放 | 0：否<br />1：是             |
 | is_pay             | num  | 0              | 作用尚不明确                 |
-| is_self_view       | bool | false          | 作用尚不明确                 |
+| is_self_view       | bool | 是否仅自己可见 |                           |
 | is_steins_gate     | num  | 是否为互动视频 | 0：否<br />1：是             |
 | is_union_video     | num  | 是否为合作视频 | 0：否<br />1：是             |
 | jump_url           | str  | 跳转链接       | 跳转到课堂的链接，否则为""   |

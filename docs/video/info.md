@@ -42,7 +42,7 @@
 | tid_v2                  | num     | 分区tid (v2)                   | 详情见[视频分区一览 (v2)](video_zone_v2.md)                  |
 | tname                   | str     | 子分区名称                     |                                                              |
 | tname_v2                | str     | 子分区名称 (v2)                |                                                              |
-| copyright               | num     | 视频类型                       | 1：原创<br />2：转载                                         |
+| copyright               | num     | 视频类型                       | 1：原创<br />2：转载<br />3：未填写                            |
 | pic                     | str     | 稿件封面图片url                |                                                              |
 | title                   | str     | 稿件标题                       |                                                              |
 | pubdate                 | num     | 稿件发布时间                   | 秒级时间戳                                                   |
@@ -65,7 +65,7 @@
 | premiere                |         | null                           |                                                              |
 | teenage_mode            | num     |                                | 用于青少年模式                                               |
 | is_chargeable_season    | bool    |                                |                                                              |
-| is_story                | bool    | 是否可以在 Story Mode 展示?    |                                                              |
+| is_story                | bool    | 是否为动态视频                 |                                                              |
 | is_upower_exclusive     | bool    | 是否为充电专属视频             |                                                              |
 | is_upower_play          | bool    |                                |                                                              |
 | is_upower_preview       | bool    | 充电专属视频是否支持试看       |                                                              |
@@ -80,8 +80,8 @@
 | like_icon               | str     | 空串                           |                                                              |
 | need_jump_bv            | bool    | 需要跳转到BV号?                |                                                              |
 | disable_show_up_info    | bool    | 禁止展示UP主信息?              |                                                              |
-| is_story_play           | bool    | 是否为 Story Mode 视频?        |                                                              |
-| is_view_self            | bool    | 是否为自己投稿的视频?          |                                                              |
+| is_story_play           | bool    |                              | 作用未知，可能与动态视频有关                                     |
+| is_view_self            | bool    | 是否尽自己可见                |                                                              |
 
 `data`中的`desc_v2`数组：
 
