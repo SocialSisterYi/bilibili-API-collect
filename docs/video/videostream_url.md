@@ -124,6 +124,7 @@
 | platform | str |    | 非必要 | pc：web播放（默认值，视频流存在 referer鉴权）<br />html5：移动端 HTML5 播放（仅支持 MP4 格式，无 referer 鉴权可以直接使用`video`标签播放） |
 | high_quality | num | 是否高画质 | 非必要 | platform=html5时，此值为1可使画质为1080p |
 | try_look | num | 未登录高画质 | 非必要 | 为 `1` 时可以不登录拉到 `64` 和 `80` 清晰度 |
+| cur_language | str | 使用AI原声翻译 | 非必要 | 可以填写`en`、`ja`等参数。<br/>不填写时，默认拉取原音频。填写后，音频链接替换为指定的AI语音 |
 
 **json回复：**
 
@@ -159,6 +160,8 @@
 | high_format        | null  | （？）                                          |                                                 |
 | last_play_time     | num   | 上次播放进度                                    | 毫秒值                                          |
 | last_play_cid      | num   | 上次播放分P的 cid                               |                                                 |
+| cur_language       | str   | 当前的AI原声翻译语言                           | `en`、`ja`等                                     |
+| language           | obj   | 视频的AI原声翻译信息                           | 视频不支持时，不存在此字段                     |
 
 `data`中的`accept_description`数组：
 
@@ -202,6 +205,36 @@
 | 0    | str  |  例：av01.0.13M.08.0.110.01.01.01.0    |  使用AV1编码    |
 | 1    | str  | 例子：avc1.640034  |   使用AVC编码   |
 | 2    | str  | 例子：hev1.1.6.L153.90 |   使用HEVC编码   |
+
+`data`中的`language`对象：
+
+| 字段          | 类型    | 内容                      | 备注 |
+| ------------- | ------- | -------------------------- | ---- |
+| support       | boolean | 视频是否支持AI原声？     |      |
+| items         | array   | 支持的原声翻译列表       |      |
+| open_toast    | str     | 启用AI原声翻译时的提示？ |      |
+| close_toast   | str     | 关闭AI原声翻译时的提示？ |      |
+| default_title | str     | （？）                    |      |
+| bubble        | obj     | （？）                    |      |
+
+`language`中的`items`数组：
+
+| 项  | 类型 | 内容            | 备注 |
+| --- | ---- | ---------------- | ---- |
+| 0   | obj  | AI原声信息1     |      |
+| n   | obj  | AI原声信息(n+1) |      |
+| ... | obj  | ...              |      |
+
+`items`数组中的对象：
+
+| 字段                     | 类型    | 内容               | 备注                    |
+| ------------------------ | ------- | ------------------- | ----------------------- |
+| lang                     | str     | AI原声翻译的语言值 | 可用于cur_language参数 |
+| title                    | str     | 语言显示文本       | 如：`English`           |
+| subtitle_lang            | str     | （？）              |                         |
+| video_detext             | boolean | （？）              |                         |
+| video_mouth_shape_change | boolean | （？）              |                         |
+| production_type          | num     | 产品类型？         |                         |
 
 由于 MP4 / ~~FLV~~ 与 DASH 格式的返回结构不同，以下内容需要分类讨论`durl`与`dash`字段的内容
 
