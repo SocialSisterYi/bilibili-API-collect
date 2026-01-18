@@ -160,7 +160,7 @@
 | high_format        | null  | （？）                                          |                                                 |
 | last_play_time     | num   | 上次播放进度                                    | 毫秒值                                          |
 | last_play_cid      | num   | 上次播放分P的 cid                               |                                                 |
-| cur_language       | str   | 当前的AI原声翻译语言                           | `en`、`ja`等                                     |
+| cur_language       | str   | 当前的AI原声翻译语言                           | `en`、`ja`等，未使用AI原声翻译时，此项为空字符串 |
 | language           | obj   | 视频的AI原声翻译信息                           | 视频不支持时，不存在此字段                     |
 
 `data`中的`accept_description`数组：
