@@ -1,15 +1,13 @@
 name: deploy and publish
 
-on: [push]
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - msster
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -27,12 +25,13 @@ jobs:
         cache: yarn
     - name: Build with yarn
       run: yarn && yarn build
-    - name: Setup Pages
-      uses: actions/configure-pages@v5
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: '.vuepress/dist/'
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: actions/deploy-pages@v4
+    - name: Commit & Push
+      run: |
+        cd .vuepress/dist/
+        git init -b gh_pages
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git remote add origin https://user:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+        git add -A .
+        git commit -m "generated"
+        git push -fu origin gh_pages
