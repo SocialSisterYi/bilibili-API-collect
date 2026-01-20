@@ -1111,7 +1111,8 @@ curl -G 'https://api.bilibili.com/x/player/playurl' \
         "view_info": null,
         "play_conf": {
             "is_new_description": false
-        }
+        },
+        "cur_language": ""
     }
 }
 ```
