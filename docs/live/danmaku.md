@@ -304,6 +304,1327 @@ curl 'https://api.live.bilibili.com/xlive/web-room/v1/dM/GetDMConfigByGroup?room
 
 </details>
 
+
+## 获取直播间最近历史弹幕
+
+> https://api.live.bilibili.com/xlive/web-room/v1/dM/gethistory
+
+<!--{
+  "from": {
+    "url": "https://www.bilibili.com/read/cv8186413/"
+  }
+}-->
+
+*请求方式: GET*
+
+注: 该接口部分返回信息不明, 仅供参考, 来源 [cv8186413](https://www.bilibili.com/read/cv8186413/)
+
+**URL参数:**
+
+| 参数名 | 类型 | 内容 | 必要性 | 备注 |
+| ----- | ---- | --- | - | - |
+| roomid | num | 直播间短ID | 必要 | |
+
+**JSON回复:**
+
+根对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| code | num | 返回值 | 0: 成功<br />-400: 请求错误 |
+| message | str | 错误信息 | 默认为空 |
+| msg | str | 空 | 仅请求成功时存在 |
+| ttl | num | 1 | 仅请求失败时存在 |
+| data | obj | 信息本体 | |
+
+`data`对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| admin | array | 管理员最新的10条弹幕消息 | 格式与`room`相同 |
+| room | array | 普通用户的10条弹幕信息 | 格式与`admin`相同 |
+
+`data`中的任意数组中的对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| --- | --- | --- | --- |
+| text | str | 弹幕内容 | |
+| dm_type | num | 弹幕类型 | |
+| uid | num | 弹幕发送者的UID | |
+| nickname | str | 弹幕发送者的昵称 | |
+| uname_color | str | 弹幕发送者的昵称颜色? | |
+| timeline | str | 弹幕发送时间 | 格式为`yyyy-MM-dd HH:mm:ss` |
+| isadmin | num | 是否为管理员 | |
+| vip | num | 是否为VIP? ||
+| svip | num | 是否为SVIP? ||
+| medal | array | 粉丝勋章信息? | 格式不明 |
+| title | array | 标题? | 格式不明 |
+| user_level | array | 用户等级信息? | 格式不明 |
+| rank | num | 排名? | [用户空间详细信息](../user/info.md#获取用户详细信息) |
+| teamid | num |  | |
+| rnd | str | 随机数种子? |  |
+| user_title | str | 用户头衔? |格式不明|
+| guard_level |  | 大航海等级？ | |
+| bubble |  | | |
+| bubble_color |  | | |
+| lpl |  | | |
+| yeah_space_url |  | | |
+| jump_to_url |  | | |
+| check_info | obj | 弹幕审核信息? |  |
+| voice_dm_info | obj | 语音弹幕信息? |  |
+| emoticon | obj | 房间独有表情信息 |  |
+| emots | obj | 默认表情信息 | 结构为`表情名-信息`组成的键值对<br />如果信息不含默认表情，则返回 null |
+| id_str | str | 弹幕ID? |  |
+| wealth_level | num | 财富等级? |  |
+| bubble_id_v2 | num |  |  |
+| reply | obj | 回复的弹幕 |  |
+| group_medal | null |  |  |
+| user | obj | 该用户信息 ||
+
+`data`对象中的`emoticon`对象:
+
+| 字段            | 类型 | 内容                     | 备注                         |
+| --------------- | ---- | ------------------------ | ---------------------------- |
+| id              | num  | 0                        |                              |
+| emoticon_unique | str  | 表情的独特标识           | 格式为`room_房间号_表情id`   |
+| text            | text | 表情的触发词             |                              |
+| perm            | num  | 发送权限？               | 1：所有人都可发送            |
+| url             | str  | 表情的图像链接           |                              |
+| in_player_area  | num  | 是否显示在直播画面区域？ |                              |
+| bulge_display   | num  | 是否高亮显示？           |                              |
+| is_dynamic      | num  | 是否为动态表情           | 0：静态图像<br />1：动态图像 |
+| height          | num  | 表情的高度               |                              |
+| width           | num  | 表情的宽度               |                              |
+
+`data`对象中的`emots`对象中的任意一个值对象:
+
+| 字段           | 类型 | 内容             | 备注                      |
+| -------------- | ---- | ---------------- | ------------------------- |
+| count          | num  | 重复发送数量     |                           |
+| descript       | str  | 表情描述         |                           |
+| emoji          | str  | 表情描述         |                           |
+| emotion_id     | num  | 表情 id          |                           |
+| emotion_unique | str  | 表情的独特标识符 | 格式可能为`emoji_表情 id` |
+| height         | num  | 表情的宽度       |                           |
+| url            | str  | 表情的图像链接   |                           |
+| width          | num  | 表情的高度       |                           |
+
+`data`对象中的`user`对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| - | - | --- | --- |
+| uid | num | 用户 mid ||
+| base | obj | 用户基本信息 ||
+| medal | null | ||
+| wealth | null | ||
+| title | obj | 用户标题? ||
+| guard | null | ||
+| uhead_frame | null | ||
+| guard_leader | obj |  |  |
+
+`data`对象中的`user`对象中的`base`对象:
+
+| 字段 | 类型 | 内容 | 备注 |
+| - | - | --- | --- |
+| name | str | 用户名 ||
+| face | str | 用户头像 url ||
+| name_color | num | 用户名颜色? ||
+| is_mystery | bool | 是否为神秘用户? ||
+| risk_ctrl_info | null |  |  |
+| origin_info | obj | 原始信息? |  |
+| official_info | obj | 认证信息 |  |
+| name_color_str | str |  |  |
+
+**示例:**
+
+```shell
+curl -G 'https://api.live.bilibili.com/xlive/web-room/v1/dM/gethistory' \
+--url-query 'roomid=1'
+```
+
+<details>
+<summary>查看响应示例:</summary>
+
+```json
+{
+  "code": 0,
+  "data": {
+    "admin": [],
+    "room": [
+      {
+        "text": "‫",
+        "dm_type": 0,
+        "uid": 20276964,
+        "nickname": "咸菜拉面",
+        "uname_color": "",
+        "timeline": "2024-08-15 05:05:06",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [
+          27,
+          "小孩梓",
+          "阿梓从小就很可爱",
+          80397,
+          398668,
+          "",
+          0,
+          6809855,
+          398668,
+          6850801,
+          3,
+          1,
+          7706705
+        ],
+        "title": [
+          "title-86-1",
+          "title-86-1"
+        ],
+        "user_level": [
+          59,
+          0,
+          16752445,
+          931
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723669505",
+        "user_title": "title-86-1",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723669506,
+          "ct": "18434F3D"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "74368f428dfaec806cd205e62866bd1c45",
+        "wealth_level": 37,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 20276964,
+          "base": {
+            "name": "咸菜拉面",
+            "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "咸菜拉面",
+              "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": {
+            "name": "小孩梓",
+            "level": 27,
+            "color_start": 398668,
+            "color_end": 6850801,
+            "color_border": 6809855,
+            "color": 398668,
+            "id": 13139,
+            "typ": 0,
+            "is_light": 1,
+            "ruid": 7706705,
+            "guard_level": 3,
+            "score": 50112778,
+            "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
+            "honor_icon": "",
+            "v2_medal_color_start": "#4775EFCC",
+            "v2_medal_color_end": "#4775EFCC",
+            "v2_medal_color_border": "#58A1F8FF",
+            "v2_medal_color_text": "#FFFFFFFF",
+            "v2_medal_color_level": "#000B7099",
+            "user_receive_count": 0
+          },
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "title-86-1",
+            "title_css_id": "title-86-1"
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "‫",
+        "dm_type": 0,
+        "uid": 20276964,
+        "nickname": "咸菜拉面",
+        "uname_color": "",
+        "timeline": "2024-08-16 05:05:06",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [
+          27,
+          "小孩梓",
+          "阿梓从小就很可爱",
+          80397,
+          398668,
+          "",
+          0,
+          6809855,
+          398668,
+          6850801,
+          3,
+          1,
+          7706705
+        ],
+        "title": [
+          "title-86-1",
+          "title-86-1"
+        ],
+        "user_level": [
+          59,
+          0,
+          16752445,
+          931
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723755905",
+        "user_title": "title-86-1",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723755906,
+          "ct": "F65D229F"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "7f3bb90826ad642012a31368f266be6d2",
+        "wealth_level": 37,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 20276964,
+          "base": {
+            "name": "咸菜拉面",
+            "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "咸菜拉面",
+              "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": {
+            "name": "小孩梓",
+            "level": 27,
+            "color_start": 398668,
+            "color_end": 6850801,
+            "color_border": 6809855,
+            "color": 398668,
+            "id": 13139,
+            "typ": 0,
+            "is_light": 1,
+            "ruid": 7706705,
+            "guard_level": 3,
+            "score": 50112778,
+            "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
+            "honor_icon": "",
+            "v2_medal_color_start": "#4775EFCC",
+            "v2_medal_color_end": "#4775EFCC",
+            "v2_medal_color_border": "#58A1F8FF",
+            "v2_medal_color_text": "#FFFFFFFF",
+            "v2_medal_color_level": "#000B7099",
+            "user_receive_count": 0
+          },
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "title-86-1",
+            "title_css_id": "title-86-1"
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "好帅",
+        "dm_type": 0,
+        "uid": 3546708493469870,
+        "nickname": "aodun1",
+        "uname_color": "",
+        "timeline": "2024-08-16 22:33:28",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [],
+        "title": [
+          "",
+          ""
+        ],
+        "user_level": [
+          0,
+          0,
+          9868950,
+          ">50000"
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723811729",
+        "user_title": "",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723818808,
+          "ct": "1B75FB"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "088336a59eb277942ee353dd6666bf6347",
+        "wealth_level": 0,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 3546708493469870,
+          "base": {
+            "name": "aodun1",
+            "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "aodun1",
+              "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": null,
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "",
+            "title_css_id": ""
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "好帅",
+        "dm_type": 0,
+        "uid": 3546708493469870,
+        "nickname": "aodun1",
+        "uname_color": "",
+        "timeline": "2024-08-16 22:35:16",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [],
+        "title": [
+          "",
+          ""
+        ],
+        "user_level": [
+          0,
+          0,
+          9868950,
+          ">50000"
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723811729",
+        "user_title": "",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723818916,
+          "ct": "D6ABF2E7"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "6f421255746f5d8e4731fdadac66bf6356",
+        "wealth_level": 0,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 3546708493469870,
+          "base": {
+            "name": "aodun1",
+            "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "aodun1",
+              "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": null,
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "",
+            "title_css_id": ""
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "好帅",
+        "dm_type": 0,
+        "uid": 3546708493469870,
+        "nickname": "aodun1",
+        "uname_color": "",
+        "timeline": "2024-08-16 22:36:51",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [],
+        "title": [
+          "",
+          ""
+        ],
+        "user_level": [
+          0,
+          0,
+          9868950,
+          ">50000"
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723811729",
+        "user_title": "",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723819011,
+          "ct": "1B6978C1"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "270f5a2ac69c5904617873cc4666bf640",
+        "wealth_level": 0,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 3546708493469870,
+          "base": {
+            "name": "aodun1",
+            "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "aodun1",
+              "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": null,
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "",
+            "title_css_id": ""
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "好帅",
+        "dm_type": 0,
+        "uid": 3546708493469870,
+        "nickname": "aodun1",
+        "uname_color": "",
+        "timeline": "2024-08-16 22:39:01",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [],
+        "title": [
+          "",
+          ""
+        ],
+        "user_level": [
+          0,
+          0,
+          9868950,
+          ">50000"
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723811729",
+        "user_title": "",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723819141,
+          "ct": "143613AF"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "002ebbdc402b3d625052865f7b66bf6469",
+        "wealth_level": 0,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 3546708493469870,
+          "base": {
+            "name": "aodun1",
+            "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "aodun1",
+              "face": "https://i2.hdslb.com/bfs/face/6fb05f895d854e68419d45eef2c2e272b04ad25f.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": null,
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "",
+            "title_css_id": ""
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "赚麻了 哈哈",
+        "dm_type": 0,
+        "uid": 243082910,
+        "nickname": "可人的樱花",
+        "uname_color": "",
+        "timeline": "2024-08-17 01:00:49",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [],
+        "title": [
+          "",
+          ""
+        ],
+        "user_level": [
+          0,
+          0,
+          9868950,
+          ">50000"
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723379161",
+        "user_title": "",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723827649,
+          "ct": "3917D4D7"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "03f3261e144366383c49c6b5d166bf8563",
+        "wealth_level": 7,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 243082910,
+          "base": {
+            "name": "可人的樱花",
+            "face": "http://i2.hdslb.com/bfs/face/5faa9bef952f831236b740932c559476658f88e5.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "可人的樱花",
+              "face": "http://i2.hdslb.com/bfs/face/5faa9bef952f831236b740932c559476658f88e5.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": null,
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "",
+            "title_css_id": ""
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "‫",
+        "dm_type": 0,
+        "uid": 20276964,
+        "nickname": "咸菜拉面",
+        "uname_color": "",
+        "timeline": "2024-08-17 05:05:07",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [
+          27,
+          "小孩梓",
+          "阿梓从小就很可爱",
+          80397,
+          398668,
+          "",
+          0,
+          6809855,
+          398668,
+          6850801,
+          3,
+          1,
+          7706705
+        ],
+        "title": [
+          "title-86-1",
+          "title-86-1"
+        ],
+        "user_level": [
+          59,
+          0,
+          16752445,
+          931
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723842307",
+        "user_title": "title-86-1",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723842307,
+          "ct": "8B947ABC"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "1a928b968afaa7825ea506ffe566bfbf16",
+        "wealth_level": 37,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 20276964,
+          "base": {
+            "name": "咸菜拉面",
+            "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "咸菜拉面",
+              "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": {
+            "name": "小孩梓",
+            "level": 27,
+            "color_start": 398668,
+            "color_end": 6850801,
+            "color_border": 6809855,
+            "color": 398668,
+            "id": 13139,
+            "typ": 0,
+            "is_light": 1,
+            "ruid": 7706705,
+            "guard_level": 3,
+            "score": 50112778,
+            "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
+            "honor_icon": "",
+            "v2_medal_color_start": "#4775EFCC",
+            "v2_medal_color_end": "#4775EFCC",
+            "v2_medal_color_border": "#58A1F8FF",
+            "v2_medal_color_text": "#FFFFFFFF",
+            "v2_medal_color_level": "#000B7099",
+            "user_receive_count": 0
+          },
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "title-86-1",
+            "title_css_id": "title-86-1"
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "下播啦~ 感谢大家的陪伴~ 下次见哦~",
+        "dm_type": 0,
+        "uid": 3546614675278489,
+        "nickname": "机器人管家_鱼",
+        "uname_color": "",
+        "timeline": "2024-08-18 00:07:36",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [
+          21,
+          "赴神明",
+          "Mr_钟明",
+          27751673,
+          1725515,
+          "",
+          0,
+          12632256,
+          12632256,
+          12632256,
+          0,
+          0,
+          3493291261692485
+        ],
+        "title": [
+          "",
+          ""
+        ],
+        "user_level": [
+          11,
+          0,
+          6406234,
+          ">50000"
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723910862",
+        "user_title": "",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723910856,
+          "ct": "9BD05026"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "2ee6101973eeb69931eb86ac7e66c0ca17",
+        "wealth_level": 23,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 3546614675278489,
+          "base": {
+            "name": "机器人管家_鱼",
+            "face": "https://i1.hdslb.com/bfs/face/de737cd746a96742c07ced6c213aa25cf0429d90.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "机器人管家_鱼",
+              "face": "https://i1.hdslb.com/bfs/face/de737cd746a96742c07ced6c213aa25cf0429d90.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": {
+            "name": "赴神明",
+            "level": 21,
+            "color_start": 12632256,
+            "color_end": 12632256,
+            "color_border": 12632256,
+            "color": 1725515,
+            "id": 1231122,
+            "typ": 0,
+            "is_light": 0,
+            "ruid": 3493291261692485,
+            "guard_level": 0,
+            "score": 50001573,
+            "guard_icon": "",
+            "honor_icon": "",
+            "v2_medal_color_start": "#919298CC",
+            "v2_medal_color_end": "#919298CC",
+            "v2_medal_color_border": "#919298CC",
+            "v2_medal_color_text": "#FFFFFFFF",
+            "v2_medal_color_level": "#6C6C7299",
+            "user_receive_count": 0
+          },
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "",
+            "title_css_id": ""
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      },
+      {
+        "text": "‫",
+        "dm_type": 0,
+        "uid": 20276964,
+        "nickname": "咸菜拉面",
+        "uname_color": "",
+        "timeline": "2024-08-18 05:05:05",
+        "isadmin": 0,
+        "vip": 0,
+        "svip": 0,
+        "medal": [
+          27,
+          "小孩梓",
+          "阿梓从小就很可爱",
+          80397,
+          398668,
+          "",
+          0,
+          6809855,
+          398668,
+          6850801,
+          3,
+          1,
+          7706705
+        ],
+        "title": [
+          "title-86-1",
+          "title-86-1"
+        ],
+        "user_level": [
+          59,
+          0,
+          16752445,
+          931
+        ],
+        "rank": 10000,
+        "teamid": 0,
+        "rnd": "1723928706",
+        "user_title": "title-86-1",
+        "guard_level": 0,
+        "bubble": 0,
+        "bubble_color": "",
+        "lpl": 0,
+        "yeah_space_url": "",
+        "jump_to_url": "",
+        "check_info": {
+          "ts": 1723928705,
+          "ct": "8A379FF4"
+        },
+        "voice_dm_info": {
+          "voice_url": "",
+          "file_format": "",
+          "text": "",
+          "file_duration": 0,
+          "file_id": ""
+        },
+        "emoticon": {
+          "id": 0,
+          "emoticon_unique": "",
+          "text": "",
+          "perm": 0,
+          "url": "",
+          "in_player_area": 0,
+          "bulge_display": 0,
+          "is_dynamic": 0,
+          "height": 0,
+          "width": 0
+        },
+        "emots": null,
+        "id_str": "41e8b55dea381d494cfe60ba3466c11064",
+        "wealth_level": 37,
+        "bubble_id_v2": 0,
+        "reply": {
+          "show_reply": true,
+          "reply_mid": 0,
+          "reply_uname": "",
+          "reply_uname_color": "",
+          "reply_is_mystery": false
+        },
+        "group_medal": null,
+        "user": {
+          "uid": 20276964,
+          "base": {
+            "name": "咸菜拉面",
+            "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg",
+            "name_color": 0,
+            "is_mystery": false,
+            "risk_ctrl_info": null,
+            "origin_info": {
+              "name": "咸菜拉面",
+              "face": "https://i0.hdslb.com/bfs/face/182b73f6b6274fcee7491219f511b1748c4bc712.jpg"
+            },
+            "official_info": {
+              "role": 0,
+              "title": "",
+              "desc": "",
+              "type": -1
+            },
+            "name_color_str": ""
+          },
+          "medal": {
+            "name": "小孩梓",
+            "level": 27,
+            "color_start": 398668,
+            "color_end": 6850801,
+            "color_border": 6809855,
+            "color": 398668,
+            "id": 13139,
+            "typ": 0,
+            "is_light": 1,
+            "ruid": 7706705,
+            "guard_level": 3,
+            "score": 50112778,
+            "guard_icon": "https://i0.hdslb.com/bfs/live/143f5ec3003b4080d1b5f817a9efdca46d631945.png",
+            "honor_icon": "",
+            "v2_medal_color_start": "#4775EFCC",
+            "v2_medal_color_end": "#4775EFCC",
+            "v2_medal_color_border": "#58A1F8FF",
+            "v2_medal_color_text": "#FFFFFFFF",
+            "v2_medal_color_level": "#000B7099",
+            "user_receive_count": 0
+          },
+          "wealth": null,
+          "title": {
+            "old_title_css_id": "title-86-1",
+            "title_css_id": "title-86-1"
+          },
+          "guard": null,
+          "uhead_frame": null,
+          "guard_leader": {
+            "is_guard_leader": false
+          }
+        }
+      }
+    ]
+  },
+  "message": "",
+  "msg": ""
+}
+```
+
+</details>
+
 ## 设置弹幕样式
 
 > https://api.live.bilibili.com/xlive/web-room/v1/dM/AjaxSetConfig
