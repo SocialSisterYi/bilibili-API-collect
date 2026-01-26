@@ -2,6 +2,7 @@
 
 ## 获取当前时间戳
 
+> https://api.bilibili.com/x/server/now
 > https://api.bilibili.com/x/report/click/now  
 > https://api.bilibili.com/x/click-interface/click/now
 
