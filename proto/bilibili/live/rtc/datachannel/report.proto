@@ -1,0 +1,456 @@
+syntax = "proto3";
+
+package bilibili.live.rtc.datachannel.report;
+
+// 
+message ClientStatsPayload {
+    // 
+    RtcTransport transport = 1;
+    // 
+    RtcCandidatePair selected_candidate_pair = 2;
+    // 
+    repeated RtcCandidatePair candidate_pairs = 3;
+    // 
+    repeated RtcAVSenderStats av_senders = 4;
+    // 
+    repeated RtcAVReceiverStats av_receivers = 5;
+    // 
+    repeated RtcDataChannel data_channels = 6;
+    // 
+    int64 generate_ts = 7;
+    // 
+    string business_name = 8;
+}
+
+// 
+message RtcAVReceiverStats {
+    // 
+    int64 uid = 1;
+    // 
+    repeated RtcVideoReceiverInfo video = 2;
+    // 
+    repeated RtcAudioReceiverInfo audio = 3;
+}
+
+// 
+message RtcAVSenderStats {
+    // 
+    int64 uid = 1;
+    // 
+    repeated RtcVideoSenderInfo video = 2;
+    // 
+    repeated RtcAudioSenderInfo audio = 3;
+}
+
+// 
+message RtcAudioReceiverInfo {
+    // 
+    int32 ssrc = 1;
+    // 
+    double audio_level = 2;
+    // 
+    int64 bytes_received = 3;
+    // 
+    int64 concealed_samples = 4;
+    // 
+    int64 concealment_events = 5;
+    // 
+    int64 silent_concealed_samples = 6;
+    // 
+    double estimated_playout_timestamp = 7;
+    // 
+    int64 fec_packets_discarded = 8;
+    // 
+    int64 fec_packets_received = 9;
+    // 
+    int64 header_bytes_received = 10;
+    // 
+    int64 inserted_samples_for_deceleration = 11;
+    // 
+    double jitter = 12;
+    // 
+    double jitter_buffer_delay = 13;
+    // 
+    int64 jitter_buffer_emitted_count = 14;
+    // 
+    double last_packet_received_timestamp = 15;
+    // 
+    int64 packets_discarded = 16;
+    // 
+    int64 packets_lost = 17;
+    // 
+    int64 packets_received = 18;
+    // 
+    int64 removed_samples_for_acceleration = 19;
+    // 
+    double total_audio_energy = 20;
+    // 
+    double total_samples_duration = 21;
+    // 
+    int64 total_samples_received = 22;
+    // 
+    int64 delayed_packet_outage_samples = 23;
+    // 
+    int32 interruption_count = 24;
+    // 
+    double total_interruption_duration = 25;
+    // 
+    int64 jitter_buffer_flushes = 26;
+    // 
+    double jitter_buffer_target_delay = 27;
+    // 
+    double relative_packet_arrival_delay = 28;
+    // 
+    int32 stream_id = 29;
+    // 
+    bool mute = 30;
+    // 
+    string track_id = 31;
+    // 
+    int64 uid = 32;
+}
+
+// 
+message RtcAudioSenderInfo {
+    // 
+    int32 ssrc = 1;
+    // 
+    int64 bytes_sent = 2;
+    // 
+    int64 header_bytes_sent = 3;
+    // 
+    int32 nack_count = 4;
+    // 
+    int64 packets_sent = 5;
+    // 
+    int64 retransmitted_bytes_sent = 6;
+    // 
+    int64 retransmitted_packets_sent = 7;
+    // 
+    double fraction_lost = 8;
+    // 
+    double jitter = 9;
+    // 
+    int64 packets_lost = 10;
+    // 
+    double round_trip_time = 11;
+    // 
+    int64 round_trip_time_measurements = 12;
+    // 
+    double total_round_trip_time = 13;
+    // 
+    double audio_level = 14;
+    // 
+    double total_audio_energy = 15;
+    // 
+    double total_samples_duration = 16;
+    // 
+    int32 stream_id = 17;
+    // 
+    bool mute = 18;
+    // 
+    string remote_id = 19;
+    // 
+    string media_source_id = 20;
+}
+
+// 
+message RtcCandidatePair {
+    // 
+    string id = 1;
+    // 
+    string state = 2;
+    // 
+    int64 priority = 3;
+    // 
+    RtcLocalCandidate local_candidate = 4;
+    // 
+    RtcRemoteCandidate remote_candidate = 5;
+    // 
+    float available_outgoing_bitrate = 6;
+    // 
+    float available_incoming_bitrate = 7;
+    // 
+    int64 bytes_discarded_on_send = 8;
+    // 
+    int64 bytes_received = 9;
+    // 
+    int64 bytes_sent = 10;
+    // 
+    int64 consent_requests_sent = 11;
+    // 
+    float current_round_trip_time = 12;
+    // 
+    bool nominated = 13;
+    // 
+    int64 packets_discarded_on_send = 14;
+    // 
+    int64 packets_received = 15;
+    // 
+    int64 packets_sent = 16;
+    // 
+    int64 requests_received = 17;
+    // 
+    int64 requests_sent = 18;
+    // 
+    int64 responses_received = 19;
+    // 
+    int64 responses_sent = 20;
+    // 
+    float total_round_trip_time = 21;
+    // 
+    bool writable = 22;
+}
+
+// 
+message RtcDataChannel {
+    // 
+    string id = 1;
+    // 
+    string label = 2;
+    // 
+    string state = 3;
+    // 
+    string protocol = 4;
+    // 
+    int64 bytes_sent = 5;
+    // 
+    int64 bytes_received = 6;
+    // 
+    int32 messages_sent = 7;
+    // 
+    int32 messages_received = 8;
+}
+
+// 
+message RtcLocalCandidate {
+    // 
+    string id = 1;
+    // 
+    string network_type = 2;
+    // 
+    string ip = 3;
+    // 
+    string address = 4;
+    // 
+    int32 port = 5;
+    // 
+    string protocol = 6;
+    // 
+    string candidate_type = 7;
+    // 
+    int64 priority = 8;
+}
+
+// 
+message RtcRemoteCandidate {
+    // 
+    string id = 1;
+    // 
+    string ip = 2;
+    // 
+    string address = 3;
+    // 
+    int32 port = 4;
+    // 
+    string protocol = 5;
+    // 
+    string candidate_type = 6;
+    // 
+    int64 priority = 7;
+}
+
+// 
+message RtcTransport {
+    // 
+    string selected_candidate_pair_id = 1;
+    // 
+    string dtls_cipher = 2;
+    // 
+    string dtls_state = 3;
+    // 
+    int64 bytes_received = 4;
+    // 
+    int64 bytes_sent = 5;
+    // 
+    int64 packets_received = 6;
+    // 
+    int64 packets_sent = 7;
+    // 
+    int32 selected_candidate_pair_changes = 8;
+}
+
+// 
+message RtcVideoReceiverInfo {
+    // 
+    int32 ssrc = 1;
+    // 
+    string decoder_implementation = 2;
+    // 
+    double estimated_playout_timestamp = 3;
+    // 
+    int32 frame_width = 4;
+    // 
+    int32 frame_height = 5;
+    // 
+    int32 frames_decoded = 6;
+    // 
+    int32 frames_dropped = 7;
+    // 
+    int32 frames_received = 8;
+    // 
+    int64 bytes_received = 9;
+    // 
+    int64 header_bytes_received = 10;
+    // 
+    int64 packets_lost = 11;
+    // 
+    int64 packets_received = 12;
+    // 
+    double jitter = 13;
+    // 
+    double jitter_buffer_delay = 14;
+    // 
+    int64 jitter_buffer_emitted_count = 15;
+    // 
+    int32 key_frames_decoded = 16;
+    // 
+    double last_packet_received_timestamp = 17;
+    // 
+    int32 fir_count = 18;
+    // 
+    int32 nack_count = 19;
+    // 
+    int32 pli_count = 20;
+    // 
+    int64 qp_sum = 21;
+    // 
+    double total_decode_time = 22;
+    // 
+    double total_inter_frame_delay = 23;
+    // 
+    double total_squared_inter_frame_delay = 24;
+    // 
+    int32 freeze_count = 25;
+    // 
+    int32 pause_count = 26;
+    // 
+    double sum_of_squared_frames_duration = 27;
+    // 
+    double total_freezes_duration = 28;
+    // 
+    double total_pauses_duration = 29;
+    // 
+    int64 first_frame_cost = 30;
+    // 
+    int32 stream_id = 31;
+    // 
+    bool mute = 32;
+    // 
+    int64 freeze_samples = 33;
+    // 
+    int64 freeze_duration = 34;
+    // 
+    string track_id = 35;
+    // 
+    int64 uid = 36;
+    // 
+    double frames_per_second = 37;
+}
+
+// 
+message RtcVideoSenderInfo {
+    // 
+    int32 ssrc = 1;
+    // 
+    string encoder_implementation = 2;
+    // 
+    int64 bytes_sent = 3;
+    // 
+    int32 fir_count = 4;
+    // 
+    int32 frame_height = 5;
+    // 
+    int32 frame_width = 6;
+    // 
+    int32 frames_encoded = 7;
+    // 
+    int32 frames_sent = 8;
+    // 
+    int32 header_bytes_sent = 9;
+    // 
+    int32 huge_frames_sent = 10;
+    // 
+    int32 key_frames_encoded = 11;
+    // 
+    int32 nack_count = 12;
+    // 
+    int64 packets_sent = 13;
+    // 
+    int32 pli_count = 14;
+    // 
+    int64 retransmitted_bytes_sent = 15;
+    // 
+    int64 retransmitted_packets_sent = 16;
+    // 
+    double total_encode_time = 17;
+    // 
+    int64 total_encoded_bytes_target = 18;
+    // 
+    double total_packet_send_delay = 19;
+    // 
+    int64 qp_sum = 20;
+    // 
+    string quality_limitation_reason = 21;
+    // 
+    int32 quality_limitation_resolution_changes = 22;
+    // 
+    double bandwidth_q_l_durations = 23;
+    // 
+    double cpu_q_l_durations = 24;
+    // 
+    double none_q_l_durations = 25;
+    // 
+    double other_q_l_durations = 26;
+    // 
+    double fraction_lost = 27;
+    // 
+    double jitter = 28;
+    // 
+    int64 packets_lost = 29;
+    // 
+    double round_trip_time = 30;
+    // 
+    int64 round_trip_time_measurements = 31;
+    // 
+    double total_round_trip_time = 32;
+    // 
+    int32 stream_id = 33;
+    // 
+    bool mute = 34;
+    // 
+    string content_type = 35;
+    // 
+    string remote_id = 36;
+    // 
+    int32 frames = 37;
+    // 
+    double framerate_input = 38;
+    // 
+    int32 framerate_sent = 39;
+    // 
+    int32 avg_encode_ms = 40;
+    // 
+    int32 frames_dropped_by_capturer = 41;
+    // 
+    int32 frames_dropped_by_congestion_window = 42;
+    // 
+    int32 frames_dropped_by_encoder = 43;
+    // 
+    int32 frames_dropped_by_encoder_queue = 44;
+    // 
+    int32 frames_dropped_by_rate_limiter = 45;
+    // 
+    double target_bitrate = 46;
+}
+

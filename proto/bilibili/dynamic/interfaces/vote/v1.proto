@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+package bilibili.dynamic.interfaces.vote.v1;
+
+// 
+service Vote {
+    // 
+    rpc NewDoVote (NewDoVoteReq) returns (NewDoVoteRsp);
+}
+
+// 
+message NewDoVoteReq {
+    // 
+    int64 vote_id = 1;
+    // 
+    repeated int32 votes = 2;
+    // 
+    int32 status = 3;
+    // 
+    int64 dynamic_id = 4;
+    // 
+    int64 op_bit = 5;
+}
+
+// 
+message NewDoVoteRsp {
+    // 
+    int64 uid = 1;
+    // 
+    int32 type = 2;
+    // 
+    VoteInfo vote_info = 3;
+}
+
+// 
+message VoteBizInfo {
+    // 
+    int64 biz_id = 1;
+    // 
+    int32 biz_type = 2;
+    // 
+    string biz_ext = 3;
+}
+
+// 
+message VoteInfo {
+    // 
+    int64 vote_id = 1;
+    // 
+    string title = 2;
+    // 
+    string desc = 3;
+    // 
+    int64 join_num = 4;
+    // 
+    int32 type = 5;
+    // 
+    int32 choice_cnt = 6;
+    // 
+    int64 end_time = 7;
+    // 
+    int32 status = 8;
+    // 
+    int64 vote_publisher = 9;
+    // 
+    int32 default_share = 10;
+    // 
+    int64 ctime = 11;
+    // 
+    int32 biz_type = 12;
+    // 
+    string img_url = 13;
+    // 
+    repeated int32 my_votes = 14;
+    // 
+    repeated VoteOptionInfo options = 15;
+    // 
+    int32 options_cnt = 16;
+    // 
+    int64 start_time = 17;
+    // 
+    int64 voter_uid = 18;
+    // 
+    int32 voter_level = 19;
+    // 
+    int64 duration = 20;
+    // 
+    repeated VoteBizInfo vote_biz_info = 21;
+    // 
+    string face = 22;
+    // 
+    string name = 23;
+    // 
+    int64 only_fans_level = 24;
+}
+
+// 
+message VoteOptionInfo {
+    // 
+    int32 opt_idx = 1;
+    // 
+    string opt_desc = 2;
+    // 
+    string img_url = 3;
+    // 
+    int32 cnt = 4;
+    // 
+    string btn_str = 5;
+    // 
+    string title = 6;
+}
+

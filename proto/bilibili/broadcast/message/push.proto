@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package bilibili.broadcast.message.push;
+
+import "google/protobuf/empty.proto";
+
+// 
+service PushUpStream {
+    // 
+    rpc PushUpStream (stream UpStreamMessage) returns (google.protobuf.Empty);
+}
+
+// 
+message UpStreamMessage {
+    // 
+    enum Type {
+        // 
+        TYPE_UNKNOWN = 0;
+        // 
+        TYPE_ACK = 1;
+        // 
+        TYPE_FILTER = 2;
+        // 
+        TYPE_SHOW = 3;
+        // 
+        TYPE_CLICK = 4;
+    }
+    
+    // 
+    string taskid = 1;
+    // 
+    UpStreamMessage.Type type = 2;
+    // 
+    string extra = 3;
+    // 
+    int64 timestamp = 4;
+    // 
+    int64 job = 5;
+    // 
+    string msg_source = 6;
+    // 
+    int64 bid = 7;
+}
+
