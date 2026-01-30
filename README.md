@@ -1,6 +1,6 @@
 # Deprecated
 
-本仓库停止维护并永久永久关停。
+本仓库停止维护并永久关停。
 
 This Repo will cease maintenance and be permanently closed.
 
